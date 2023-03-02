@@ -1,0 +1,59 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SpotifyXP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpotifyXP_jar</output-path>
+    <root id="archive" name="SpotifyXP.jar">
+      <element id="module-output" name="SpotifyXP" />
+      <element id="module-output" name="librespot-player" />
+      <element id="module-output" name="librespot-lib" />
+      <element id="module-output" name="librespot-decoder-api" />
+      <element id="module-output" name="librespot-sink-api" />
+      <element id="module-output" name="librespot-sink" />
+      <element id="module-output" name="librespot-dacp" />
+      <element id="module-output" name="librespot-api" />
+      <element id="module-output" name="spotify-web-api-java" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/xyz/gianlu/zeroconf/zeroconf/1.3.2/zeroconf-1.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jboss/xnio/xnio-api/3.8.6.Final/xnio-api-3.8.6.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.17.1/log4j-slf4j-impl-2.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.9.0/gson-2.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.14.2/jackson-databind-2.14.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-net/commons-net/3.8.0/commons-net-3.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/core5/httpcore5-h2/5.2/httpcore5-h2-5.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/undertow/undertow-core/2.2.16.Final/undertow-core-2.2.16.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/core5/httpcore5/5.2/httpcore5-5.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/neovisionaries/nv-i18n/1.29/nv-i18n-1.29.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/lc/kra/system/system-hook/3.8/system-hook-3.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jcraft/jorbis/0.0.17/jorbis-0.0.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/electronwill/night-config/core/3.6.5/core-3.6.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/lmax/disruptor/3.4.4/disruptor-3.4.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/client5/httpclient5-cache/5.2.1/httpclient5-cache-5.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/client5/httpclient5/5.2.1/httpclient5-5.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.14.2/jackson-annotations-2.14.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/electronwill/night-config/toml/3.6.5/toml-3.6.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/deps/librespot-java/player/target/librespot-player.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/wildfly/common/wildfly-common/1.5.4.Final/wildfly-common-1.5.4.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/badlogicgames/jlayer/jlayer/1.0.2-gdx/jlayer-1.0.2-gdx.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/4.9.3/okhttp-4.9.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.2/commons-codec-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jboss/xnio/xnio-nio/3.8.6.Final/xnio-nio-3.8.6.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.19.4/protobuf-java-3.19.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-common/1.4.0/kotlin-stdlib-common-1.4.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/2.8.0/okio-2.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../libWerwolf/out/artifacts/libWerwolf_jar/libWerwolf.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20220924/json-20220924.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.4.1.Final/jboss-logging-3.4.1.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/1.4.10/kotlin-stdlib-1.4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/wildfly/client/wildfly-client-config/1.0.1.Final/wildfly-client-config-1.0.1.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.14.2/jackson-core-2.14.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jboss/threads/jboss-threads/3.1.0.Final/jboss-threads-3.1.0.Final.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

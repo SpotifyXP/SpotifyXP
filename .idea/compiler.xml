@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="librespot-api" />
+        <module name="SpotifyXP" />
+        <module name="librespot-player" />
+        <module name="librespot-lib" />
+        <module name="librespot-sink-api" />
+        <module name="librespot-dacp" />
+        <module name="librespot-decoder-api" />
+        <module name="spotify-web-api-java" />
+        <module name="librespot-sink" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RedirectSpotify</title>
+</head>
+<body>
+<script>
+    var hash = window.location.hash.substr(1);
+    var result = hash.split('&').reduce(function (res, item) {
+    var parts = item.split('=');
+    res[parts[0]] = parts[1];
+    return res;
+}, {});
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+if(urlParams.get("redirect")==null) {
+window.location.href="http://127.0.0.1:2400/redirectSpotify?access_token=" + result.access_token + "&redirect=false";
+}
+window.close();
+</script>
+</body>
+</html>
