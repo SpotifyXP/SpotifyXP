@@ -1,12 +1,17 @@
 package com.spotifyxp.dialogs;
 
+import com.spotifyxp.ExitCodes;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.logging.ConsoleLogging;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LoginDialog {
     private static JTextField spotifyusernamefield;
@@ -19,7 +24,8 @@ public class LoginDialog {
             spotifyusernamefield.setBounds(10, 81, 314, 39);
             add(spotifyusernamefield);
             spotifyusernamefield.setColumns(10);
-
+            setBorder(new EmptyBorder(5, 5, 5, 5));
+            setLayout(new BorderLayout());
             usernamepasswordfield = new JTextField();
             usernamepasswordfield.setColumns(10);
             usernamepasswordfield.setBounds(10, 179, 314, 39);
@@ -30,7 +36,7 @@ public class LoginDialog {
             spotifycancelbutton = new JButton("Cancel");
             spotifycancelbutton.setBounds(185, 275, 139, 31);
             add(spotifycancelbutton);
-            JLabel spotifylabelusername = new JLabel("Username");
+            JLabel spotifylabelusername = new JLabel("E-Mail");
             spotifylabelusername.setBounds(10, 60, 111, 14);
             add(spotifylabelusername);
             JLabel spotifylabelpassword = new JLabel("Password");
@@ -40,6 +46,7 @@ public class LoginDialog {
             spotifylabelinfo.setHorizontalAlignment(SwingConstants.CENTER);
             spotifylabelinfo.setBounds(10, 11, 314, 14);
             add(spotifylabelinfo);
+            spotifylabelinfo.setVisible(false);
         }
     }
     public void open() {
@@ -61,8 +68,21 @@ public class LoginDialog {
         spotifycancelbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                System.exit(ExitCodes.USER_DECISION.getCode());
             }
         });
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(ExitCodes.USER_DECISION.getCode());
+            }
+        });
+        while(dialog.isVisible()) {
+            try {
+                Thread.sleep(99);
+            } catch (InterruptedException e) {
+                ConsoleLogging.Throwable(e);
+            }
+        }
     }
 }

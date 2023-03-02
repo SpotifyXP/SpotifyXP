@@ -59,6 +59,9 @@ public class Initiator {
         Runtime.getRuntime().addShutdownHook(hook);
         api = new SpotifyAPI();
         SpotifyAPI.Player player = null;
+        if(PublicValues.config.get(ConfigValues.mypalpath.name).equals("")) {
+            JOptionPane.showConfirmDialog(null, "Please set the mypal path under Settings>Configuration", "Mypal path not set", JOptionPane.OK_CANCEL_OPTION);
+        }
         player = new SpotifyAPI.Player(api);
         new KeyListener().start();
         new BackgroundService().start();
