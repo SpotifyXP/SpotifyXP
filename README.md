@@ -1,5 +1,4 @@
-# SpotifyXP
-A Spotify client for Windows XP (Java)
+SpotifyXP
+===============
 
-
-
+First Release
