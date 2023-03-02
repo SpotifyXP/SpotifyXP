@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Category.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">Category.java</span></div><h1>Category.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#category-object&quot;&gt;
+ * Category objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = Category.Builder.class)
+public class Category extends AbstractModelObject {
+  private final String href;
+  private final Image[] icons;
+  private final String id;
+  private final String name;
+
+  private Category(final Builder builder) {
+<span class="fc" id="L22">    super(builder);</span>
+
+<span class="fc" id="L24">    this.href = builder.href;</span>
+<span class="fc" id="L25">    this.icons = builder.icons;</span>
+<span class="fc" id="L26">    this.id = builder.id;</span>
+<span class="fc" id="L27">    this.name = builder.name;</span>
+<span class="fc" id="L28">  }</span>
+
+  /**
+   * Get the Spotify Web API endpoint URL of the category.
+   *
+   * @return A link to the Spotify Web API endpoint returning full details of the category.
+   */
+  public String getHref() {
+<span class="fc" id="L36">    return href;</span>
+  }
+
+  /**
+   * Get the category icon in various sizes.
+   *
+   * @return The category icon, in various sizes.
+   */
+  public Image[] getIcons() {
+<span class="fc" id="L45">    return icons;</span>
+  }
+
+  /**
+   * Get the &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify ID&lt;/a&gt;
+   * of the category.
+   *
+   * @return The Spotify category ID of the category.
+   */
+  public String getId() {
+<span class="fc" id="L55">    return id;</span>
+  }
+
+  /**
+   * Get the name of the category.
+   *
+   * @return The name of the category.
+   */
+  public String getName() {
+<span class="fc" id="L64">    return name;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L69">    return &quot;Category(href=&quot; + href + &quot;, icons=&quot; + Arrays.toString(icons) + &quot;, id=&quot; + id + &quot;, name=&quot; + name + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L74">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Category} instances.
+   */
+<span class="fc" id="L80">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String href;
+    private Image[] icons;
+    private String id;
+    private String name;
+
+    /**
+     * The category href setter.
+     *
+     * @param href A link to the Spotify Web API endpoint returning full details of the category.
+     * @return A Category builder.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L93">      this.href = href;</span>
+<span class="fc" id="L94">      return this;</span>
+    }
+
+    /**
+     * The category icon setter.
+     *
+     * @param icons The category icon, in various sizes.
+     * @return A Category builder.
+     */
+    public Builder setIcons(Image... icons) {
+<span class="fc" id="L104">      this.icons = icons;</span>
+<span class="fc" id="L105">      return this;</span>
+    }
+
+    /**
+     * The category ID setter.
+     *
+     * @param id The Spotify category ID of the category.
+     * @return A Category builder.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L115">      this.id = id;</span>
+<span class="fc" id="L116">      return this;</span>
+    }
+
+    /**
+     * The category name setter.
+     *
+     * @param name The name of the category.
+     * @return A Category builder.
+     */
+    public Builder setName(String name) {
+<span class="fc" id="L126">      this.name = name;</span>
+<span class="fc" id="L127">      return this;</span>
+    }
+
+    @Override
+    public Category build() {
+<span class="fc" id="L132">      return new Category(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Category} instances.
+   */
+<span class="fc" id="L139">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Category&gt; {</span>
+    public Category createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L141" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L142">        return null;</span>
+      }
+
+<span class="fc" id="L145">      return new Category.Builder()</span>
+<span class="fc" id="L146">        .setHref(</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L148">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L149">            : null)</span>
+<span class="fc" id="L150">        .setIcons(</span>
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;icons&quot;)</span>
+<span class="fc" id="L152">            ? new Image.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L153">            jsonObject.getAsJsonArray(&quot;icons&quot;))</span>
+<span class="nc" id="L154">            : null)</span>
+<span class="fc" id="L155">        .setId(</span>
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L157">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L158">            : null)</span>
+<span class="fc" id="L159">        .setName(</span>
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;name&quot;)</span>
+<span class="fc" id="L161">            ? jsonObject.get(&quot;name&quot;).getAsString()</span>
+<span class="nc" id="L162">            : null)</span>
+<span class="fc" id="L163">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L170">      return true;</span>
+    }
+<span class="nc bnc" id="L172" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L173">      return false;</span>
+    }
+<span class="nc" id="L175">    Category category = (Category) o;</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">    return Objects.equals(href, category.href) &amp;&amp; Objects.equals(id, category.id) &amp;&amp;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">      Objects.equals(name, category.name);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L182">    return Objects.hash(href, id, name);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

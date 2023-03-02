@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TrackLink.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">TrackLink.java</span></div><h1>TrackLink.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#track-link-object&quot;&gt;
+ * Track Link objects&lt;/a&gt; by building instances from this class. &lt;br&gt;
+ * Track Link objects contain information about originally requested tracks, when the given track is not available in
+ * your market region.
+ *
+ * @see &lt;a href=&quot;https://developer.spotify.com/web-api/track-relinking-guide/&quot;&gt;Spotify: Track Relinking Guide&lt;/a&gt;
+ */
+@JsonDeserialize(builder = TrackLink.Builder.class)
+public class TrackLink extends AbstractModelObject {
+  private final ExternalUrl externalUrls;
+  private final String href;
+  private final String id;
+  private final ModelObjectType type;
+  private final String uri;
+
+  private TrackLink(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+
+<span class="fc" id="L27">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L28">    this.href = builder.href;</span>
+<span class="fc" id="L29">    this.id = builder.id;</span>
+<span class="fc" id="L30">    this.type = builder.type;</span>
+<span class="fc" id="L31">    this.uri = builder.uri;</span>
+<span class="fc" id="L32">  }</span>
+
+  /**
+   * Get the external URLs of the track.&lt;br&gt;
+   * Example: Spotify-URL.
+   *
+   * @return Known external URLs for this track.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="nc" id="L41">    return externalUrls;</span>
+  }
+
+  /**
+   * Get the Spotify Web API endpoint URL of the track.
+   *
+   * @return A link to the Web API endpoint providing full details of the track.
+   */
+  public String getHref() {
+<span class="nc" id="L50">    return href;</span>
+  }
+
+  /**
+   * Get the &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify ID&lt;/a&gt; of the
+   * track.
+   *
+   * @return A Spotify track ID.
+   */
+  public String getId() {
+<span class="nc" id="L60">    return id;</span>
+  }
+
+  /**
+   * Get the model object type, which should be a &quot;track&quot; in this case.
+   *
+   * @return The object type: &quot;track&quot;.
+   */
+  public ModelObjectType getType() {
+<span class="nc" id="L69">    return type;</span>
+  }
+
+  /**
+   * Get the &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URI&lt;/a&gt; of the
+   * track.
+   *
+   * @return The Spotify URI for the track.
+   */
+  public String getUri() {
+<span class="nc" id="L79">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L84">    return &quot;TrackLink(externalUrls=&quot; + externalUrls + &quot;, href=&quot; + href + &quot;, id=&quot; + id + &quot;, type=&quot; + type + &quot;, uri=&quot;</span>
+        + uri + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L90">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link TrackLink} instances.
+   */
+<span class="fc" id="L96">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private ExternalUrl externalUrls;
+    private String href;
+    private String id;
+    private ModelObjectType type;
+    private String uri;
+
+    /**
+     * Set external URLs of the track to be built.
+     *
+     * @param externalUrls Known external URLs for this track.
+     * @return A {@link TrackLink.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L110">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L111">      return this;</span>
+    }
+
+    /**
+     * Set href of Spotify Web API endpoint of the track to be built.
+     *
+     * @param href A link to the Web API endpoint providing full details of the track.
+     * @return A {@link TrackLink.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L121">      this.href = href;</span>
+<span class="fc" id="L122">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify ID of the track to be built.
+     *
+     * @param id A Spotify track ID.
+     * @return A {@link TrackLink.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L132">      this.id = id;</span>
+<span class="fc" id="L133">      return this;</span>
+    }
+
+    /**
+     * Set the type of the model object. In this case &quot;track&quot;.
+     *
+     * @param type The object type: &quot;track&quot;.
+     * @return A {@link TrackLink.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L143">      this.type = type;</span>
+<span class="fc" id="L144">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify URI of the track to be built.
+     *
+     * @param uri The Spotify URI for the track.
+     * @return A {@link TrackLink.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L154">      this.uri = uri;</span>
+<span class="fc" id="L155">      return this;</span>
+    }
+
+    @Override
+    public TrackLink build() {
+<span class="fc" id="L160">      return new TrackLink(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link TrackLink} instances.
+   */
+<span class="fc" id="L167">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;TrackLink&gt; {</span>
+    public TrackLink createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L169" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L170">        return null;</span>
+      }
+
+<span class="fc" id="L173">      return new TrackLink.Builder()</span>
+<span class="fc" id="L174">        .setExternalUrls(</span>
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L176">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L177">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L178">            : null)</span>
+<span class="fc" id="L179">        .setHref(</span>
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L181">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L182">            : null)</span>
+<span class="fc" id="L183">        .setId(</span>
+<span class="pc bpc" id="L184" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L185">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L186">            : null)</span>
+<span class="fc" id="L187">        .setType(</span>
+<span class="pc bpc" id="L188" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L189">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L190">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L191">            : null)</span>
+<span class="fc" id="L192">        .setUri(</span>
+<span class="pc bpc" id="L193" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L194">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L195">            : null)</span>
+<span class="fc" id="L196">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

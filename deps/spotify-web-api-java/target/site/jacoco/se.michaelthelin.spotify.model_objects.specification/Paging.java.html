@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Paging.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">Paging.java</span></div><h1>Paging.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
+
+/**
+ * Retrieve information about
+ * &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#paging-object&quot;&gt;Paging objects&lt;/a&gt;
+ * by building instances from this class. &lt;br&gt;
+ * This offset-based paging object is a container for a set of objects.
+ *
+ * @param &lt;T&gt; The type of the objects contained in a paging object.
+ */
+@JsonDeserialize(builder = Paging.Builder.class)
+public class Paging&lt;T&gt; extends AbstractModelObject {
+  private final String href;
+  private final T[] items;
+  private final Integer limit;
+  private final String next;
+  private final Integer offset;
+  private final String previous;
+  private final Integer total;
+
+  private Paging(final Paging.Builder&lt;T&gt; builder) {
+<span class="fc" id="L29">    super(builder);</span>
+
+<span class="fc" id="L31">    this.href = builder.href;</span>
+<span class="fc" id="L32">    this.items = builder.items;</span>
+<span class="fc" id="L33">    this.limit = builder.limit;</span>
+<span class="fc" id="L34">    this.next = builder.next;</span>
+<span class="fc" id="L35">    this.offset = builder.offset;</span>
+<span class="fc" id="L36">    this.previous = builder.previous;</span>
+<span class="fc" id="L37">    this.total = builder.total;</span>
+<span class="fc" id="L38">  }</span>
+
+  /**
+   * Get a link to the Web API endpoint returning the full result of the request.
+   *
+   * @return A link to the Web API endpoint returning the full result of the request.
+   */
+  public String getHref() {
+<span class="fc" id="L46">    return href;</span>
+  }
+
+  /**
+   * Get the items contained in the paging object.
+   *
+   * @return The items contained in the paging object.
+   */
+  public T[] getItems() {
+<span class="fc" id="L55">    return items;</span>
+  }
+
+  /**
+   * Get the maximum number of items in the response (as set in the query or by default).
+   *
+   * @return The maximum number of items in the response (as set in the query or by default).
+   */
+  public Integer getLimit() {
+<span class="fc" id="L64">    return limit;</span>
+  }
+
+  /**
+   * Get the URL to the next page of items. ({@code null} if none)
+   *
+   * @return URL to the next page of items. ({@code null} if none)
+   */
+  public String getNext() {
+<span class="fc" id="L73">    return next;</span>
+  }
+
+  /**
+   * Get the offset of the items returned (as set in the query or by default).
+   *
+   * @return The offset of the items returned (as set in the query or by default).
+   */
+  public Integer getOffset() {
+<span class="fc" id="L82">    return offset;</span>
+  }
+
+  /**
+   * Get the URL to the previous page of items. ({@code null} if none)
+   *
+   * @return URL to the previous page of items. ({@code null} if none)
+   */
+  public String getPrevious() {
+<span class="fc" id="L91">    return previous;</span>
+  }
+
+  /**
+   * Get the total number of items available to return.
+   *
+   * @return The total number of items available to return.
+   */
+  public Integer getTotal() {
+<span class="fc" id="L100">    return total;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L105">    return &quot;Paging(href=&quot; + href + &quot;, items=&quot; + Arrays.toString(items) + &quot;, limit=&quot; + limit + &quot;, next=&quot; + next</span>
+        + &quot;, offset=&quot; + offset + &quot;, previous=&quot; + previous + &quot;, total=&quot; + total + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder&lt;T&gt; builder() {
+<span class="nc" id="L111">    return new Builder&lt;&gt;();</span>
+  }
+
+  /**
+   * Builder class for building {@link Paging} instances.
+   *
+   * @param &lt;T&gt; The type of the objects contained in a paging object.
+   */
+<span class="fc" id="L119">  public static final class Builder&lt;T&gt; extends AbstractModelObject.Builder {</span>
+    private String href;
+    private T[] items;
+    private Integer limit;
+    private String next;
+    private Integer offset;
+    private String previous;
+    private Integer total;
+
+    /**
+     * The href setter.
+     *
+     * @param href A link to the Web API endpoint returning the full result of the request.
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setHref(String href) {
+<span class="fc" id="L135">      this.href = href;</span>
+<span class="fc" id="L136">      return this;</span>
+    }
+
+    /**
+     * The items setter.
+     *
+     * @param items A page of items.
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setItems(T[] items) {
+<span class="fc" id="L146">      this.items = items;</span>
+<span class="fc" id="L147">      return this;</span>
+    }
+
+    /**
+     * The request limit setter.
+     *
+     * @param limit The maximum number of items in the response (as set in the query or by default).
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setLimit(Integer limit) {
+<span class="fc" id="L157">      this.limit = limit;</span>
+<span class="fc" id="L158">      return this;</span>
+    }
+
+    /**
+     * The next URL setter.
+     *
+     * @param next URL to the next page of items. ({@code null} if none)
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setNext(String next) {
+<span class="fc" id="L168">      this.next = next;</span>
+<span class="fc" id="L169">      return this;</span>
+    }
+
+    /**
+     * The offset setter.
+     *
+     * @param offset The offset of the items returned (as set in the query or by default).
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setOffset(Integer offset) {
+<span class="fc" id="L179">      this.offset = offset;</span>
+<span class="fc" id="L180">      return this;</span>
+    }
+
+    /**
+     * The previous URL setter.
+     *
+     * @param previous URL to the previous page of items. ({@code null} if none)
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setPrevious(String previous) {
+<span class="fc" id="L190">      this.previous = previous;</span>
+<span class="fc" id="L191">      return this;</span>
+    }
+
+    /**
+     * The total amount setter.
+     *
+     * @param total The total number of items available to return.
+     * @return A {@link Paging.Builder}.
+     */
+    public Builder&lt;T&gt; setTotal(Integer total) {
+<span class="fc" id="L201">      this.total = total;</span>
+<span class="fc" id="L202">      return this;</span>
+    }
+
+    @Override
+    public Paging&lt;T&gt; build() {
+<span class="fc" id="L207">      return new Paging&lt;&gt;(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Paging} instances.
+   *
+   * @param &lt;X&gt; The type of the objects contained in a paging object.
+   */
+  @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L217">  public static final class JsonUtil&lt;X&gt; extends AbstractModelObject.JsonUtil&lt;Paging&lt;X&gt;&gt; {</span>
+    public Paging&lt;X&gt; createModelObject(JsonObject jsonObject) {
+<span class="nc bnc" id="L219" title="All 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L220">        return null;</span>
+      }
+
+<span class="nc" id="L223">      return new Paging.Builder&lt;X&gt;()</span>
+<span class="nc" id="L224">        .setHref(</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="nc" id="L226">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L227">            : null)</span>
+<span class="nc" id="L228">        .setItems(</span>
+<span class="nc" id="L229">          createModelObjectArray(</span>
+<span class="nc" id="L230">            jsonObject.getAsJsonArray(&quot;items&quot;), (Class&lt;X&gt;) ((ParameterizedType) getClass()</span>
+<span class="nc" id="L231">              .getGenericSuperclass()).getActualTypeArguments()[0]))</span>
+<span class="nc" id="L232">        .setLimit(</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;limit&quot;)</span>
+<span class="nc" id="L234">            ? jsonObject.get(&quot;limit&quot;).getAsInt()</span>
+<span class="nc" id="L235">            : null)</span>
+<span class="nc" id="L236">        .setNext(</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;next&quot;)</span>
+<span class="nc" id="L238">            ? jsonObject.get(&quot;next&quot;).getAsString()</span>
+<span class="nc" id="L239">            : null)</span>
+<span class="nc" id="L240">        .setOffset(</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;offset&quot;)</span>
+<span class="nc" id="L242">            ? jsonObject.get(&quot;offset&quot;).getAsInt()</span>
+<span class="nc" id="L243">            : null)</span>
+<span class="nc" id="L244">        .setPrevious(</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;previous&quot;)</span>
+<span class="nc" id="L246">            ? jsonObject.get(&quot;previous&quot;).getAsString()</span>
+<span class="nc" id="L247">            : null)</span>
+<span class="nc" id="L248">        .setTotal(</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;total&quot;)</span>
+<span class="nc" id="L250">            ? jsonObject.get(&quot;total&quot;).getAsInt()</span>
+<span class="nc" id="L251">            : null)</span>
+<span class="nc" id="L252">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Image.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">Image.java</span></div><h1>Image.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about
+ * &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#image-object&quot;&gt;Image objects&lt;/a&gt;
+ * by building instances from this class.
+ */
+@JsonDeserialize(builder = Image.Builder.class)
+public class Image extends AbstractModelObject {
+  private final Integer height;
+  private final String url;
+  private final Integer width;
+
+  private Image(final Builder builder) {
+<span class="fc" id="L19">    super(builder);</span>
+
+<span class="fc" id="L21">    this.height = builder.height;</span>
+<span class="fc" id="L22">    this.url = builder.url;</span>
+<span class="fc" id="L23">    this.width = builder.width;</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Get the height of the image in pixels.
+   *
+   * @return The image height in pixels. If unknown: {@code null}.
+   */
+  public Integer getHeight() {
+<span class="nc" id="L32">    return height;</span>
+  }
+
+  /**
+   * Get the source URL of the image.
+   *
+   * @return The source URL of the image.
+   */
+  public String getUrl() {
+<span class="nc" id="L41">    return url;</span>
+  }
+
+  /**
+   * Get the width of the image in pixels.
+   *
+   * @return The image width in pixels. If unknown: {@code null}.
+   */
+  public Integer getWidth() {
+<span class="nc" id="L50">    return width;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L55">    return &quot;Image(height=&quot; + height + &quot;, url=&quot; + url + &quot;, width=&quot; + width + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L60">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Image} instances.
+   */
+<span class="fc" id="L66">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private Integer height;
+    private String url;
+    private Integer width;
+
+    /**
+     * The height setter.
+     *
+     * @param height The image height in pixels. If unknown: {@code null}.
+     * @return A {@link Image.Builder}.
+     */
+    public Builder setHeight(Integer height) {
+<span class="fc" id="L78">      this.height = height;</span>
+<span class="fc" id="L79">      return this;</span>
+    }
+
+    /**
+     * The source URL setter.
+     *
+     * @param url The source URL of the image.
+     * @return A {@link Image.Builder}.
+     */
+    public Builder setUrl(String url) {
+<span class="fc" id="L89">      this.url = url;</span>
+<span class="fc" id="L90">      return this;</span>
+    }
+
+    /**
+     * The width setter.
+     *
+     * @param width The image width in pixels. If unknown: {@code null}.
+     * @return A {@link Image.Builder}.
+     */
+    public Builder setWidth(Integer width) {
+<span class="fc" id="L100">      this.width = width;</span>
+<span class="fc" id="L101">      return this;</span>
+    }
+
+    @Override
+    public Image build() {
+<span class="fc" id="L106">      return new Image(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Image} instances.
+   */
+<span class="fc" id="L113">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Image&gt; {</span>
+    public Image createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L115" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L116">        return null;</span>
+      }
+
+<span class="fc" id="L119">      return new Image.Builder()</span>
+<span class="fc" id="L120">        .setHeight(</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;height&quot;)</span>
+<span class="fc" id="L122">            ? jsonObject.get(&quot;height&quot;).getAsInt()</span>
+<span class="fc" id="L123">            : null)</span>
+<span class="fc" id="L124">        .setUrl(</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;url&quot;)</span>
+<span class="fc" id="L126">            ? jsonObject.get(&quot;url&quot;).getAsString()</span>
+<span class="nc" id="L127">            : null)</span>
+<span class="fc" id="L128">        .setWidth(</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;width&quot;)</span>
+<span class="fc" id="L130">            ? jsonObject.get(&quot;width&quot;).getAsInt()</span>
+<span class="fc" id="L131">            : null)</span>
+<span class="fc" id="L132">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

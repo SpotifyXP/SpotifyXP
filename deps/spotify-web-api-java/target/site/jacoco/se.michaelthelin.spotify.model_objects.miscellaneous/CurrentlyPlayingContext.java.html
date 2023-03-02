@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurrentlyPlayingContext.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.miscellaneous</a> &gt; <span class="el_source">CurrentlyPlayingContext.java</span></div><h1>CurrentlyPlayingContext.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.miscellaneous;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.CurrentlyPlayingType;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.IPlaylistItem;
+import se.michaelthelin.spotify.model_objects.special.Actions;
+import se.michaelthelin.spotify.model_objects.specification.Context;
+import se.michaelthelin.spotify.model_objects.specification.Disallows;
+import se.michaelthelin.spotify.model_objects.specification.Episode;
+import se.michaelthelin.spotify.model_objects.specification.Track;
+
+/**
+ * Retrieve information about
+ * &lt;a href=&quot;https://developer.spotify.com/web-api/get-information-about-the-users-current-playback/&quot;&gt;Currently Playing
+ * Context objects&lt;/a&gt; by creating instances from this class.
+ */
+@JsonDeserialize(builder = CurrentlyPlayingContext.Builder.class)
+public class CurrentlyPlayingContext extends AbstractModelObject {
+  private final Device device;
+  private final String repeat_state;
+  private final Boolean shuffle_state;
+  private final Context context;
+  private final Long timestamp;
+  private final Integer progress_ms;
+  private final Boolean is_playing;
+  private final IPlaylistItem item;
+  private final CurrentlyPlayingType currentlyPlayingType;
+  private final Actions actions;
+
+  private CurrentlyPlayingContext(final Builder builder) {
+<span class="fc" id="L33">    super(builder);</span>
+
+<span class="fc" id="L35">    this.device = builder.device;</span>
+<span class="fc" id="L36">    this.repeat_state = builder.repeat_state;</span>
+<span class="fc" id="L37">    this.shuffle_state = builder.shuffle_state;</span>
+<span class="fc" id="L38">    this.context = builder.context;</span>
+<span class="fc" id="L39">    this.timestamp = builder.timestamp;</span>
+<span class="fc" id="L40">    this.progress_ms = builder.progress_ms;</span>
+<span class="fc" id="L41">    this.is_playing = builder.is_playing;</span>
+<span class="fc" id="L42">    this.item = builder.item;</span>
+<span class="fc" id="L43">    this.currentlyPlayingType = builder.currentlyPlayingType;</span>
+<span class="fc" id="L44">    this.actions = builder.actions;</span>
+<span class="fc" id="L45">  }</span>
+
+  /**
+   * Get the currently active device.
+   *
+   * @return The device that is currently active.
+   */
+  public Device getDevice() {
+<span class="fc" id="L53">    return device;</span>
+  }
+
+  /**
+   * Get the repeat state of the device. (No repeat, track repeat, context repeat)
+   *
+   * @return The repeat state.
+   */
+  public String getRepeat_state() {
+<span class="fc" id="L62">    return repeat_state;</span>
+  }
+
+  /**
+   * Get the shuffle state of the device.
+   *
+   * @return If shuffle is on or off.
+   */
+  public Boolean getShuffle_state() {
+<span class="fc" id="L71">    return shuffle_state;</span>
+  }
+
+  /**
+   * Get the context from where the currently playing item is played from.
+   *
+   * @return A Context Object. Can be {@code null}.
+   */
+  public Context getContext() {
+<span class="fc" id="L80">    return context;</span>
+  }
+
+  /**
+   * Get the Unix timestamp in milliseconds when the time was fetched.
+   *
+   * @return Unix Millisecond Timestamp when data was fetched.
+   */
+  public Long getTimestamp() {
+<span class="fc" id="L89">    return timestamp;</span>
+  }
+
+  /**
+   * Get the progress of the currently playing item.
+   *
+   * @return Progress into the currently playing item. Can be {@code null}.
+   */
+  public Integer getProgress_ms() {
+<span class="fc" id="L98">    return progress_ms;</span>
+  }
+
+  /**
+   * Check whether a track or episode is playing on the device or not.
+   *
+   * @return If something is currently playing.
+   */
+  public Boolean getIs_playing() {
+<span class="fc" id="L107">    return is_playing;</span>
+  }
+
+  /**
+   * Get the currently playing track or episode, if the device is playing something.
+   *
+   * @return The currently playing item. Can be {@code null}.
+   */
+  public IPlaylistItem getItem() {
+<span class="fc" id="L116">    return item;</span>
+  }
+
+  /**
+   * Get the type of the currently playing item.
+   *
+   * @return The type of the currently playing item.
+   */
+  public CurrentlyPlayingType getCurrentlyPlayingType() {
+<span class="fc" id="L125">    return currentlyPlayingType;</span>
+  }
+
+  /**
+   * Get which playback actions are available within the current context.
+   *
+   * @return A {@link Actions} object which contains a {@link Disallows} object.
+   */
+  public Actions getActions() {
+<span class="fc" id="L134">    return actions;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L139">    return &quot;CurrentlyPlayingContext(device=&quot; + device + &quot;, repeat_state=&quot; + repeat_state + &quot;, shuffle_state=&quot;</span>
+        + shuffle_state + &quot;, context=&quot; + context + &quot;, timestamp=&quot; + timestamp + &quot;, progress_ms=&quot; + progress_ms
+        + &quot;, is_playing=&quot; + is_playing + &quot;, item=&quot; + item + &quot;, currentlyPlayingType=&quot; + currentlyPlayingType
+        + &quot;, actions=&quot; + actions + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L147">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link CurrentlyPlayingContext} instances.
+   */
+<span class="fc" id="L153">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private Device device;
+    private String repeat_state;
+    private Boolean shuffle_state;
+    private Context context;
+    private Long timestamp;
+    private Integer progress_ms;
+    private Boolean is_playing;
+    private IPlaylistItem item;
+    private CurrentlyPlayingType currentlyPlayingType;
+    private Actions actions;
+
+    /**
+     * The active device setter.
+     *
+     * @param device The device that is currently active.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setDevice(Device device) {
+<span class="fc" id="L172">      this.device = device;</span>
+<span class="fc" id="L173">      return this;</span>
+    }
+
+    /**
+     * The repeat state setter.
+     *
+     * @param repeat_state The repeat state.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setRepeat_state(String repeat_state) {
+<span class="fc" id="L183">      this.repeat_state = repeat_state;</span>
+<span class="fc" id="L184">      return this;</span>
+    }
+
+    /**
+     * The shuffle state setter.
+     *
+     * @param shuffle_state If shuffle is on or off.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setShuffle_state(Boolean shuffle_state) {
+<span class="fc" id="L194">      this.shuffle_state = shuffle_state;</span>
+<span class="fc" id="L195">      return this;</span>
+    }
+
+    /**
+     * The playing context setter.
+     *
+     * @param context A Context Object. Can be {@code null}.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setContext(Context context) {
+<span class="fc" id="L205">      this.context = context;</span>
+<span class="fc" id="L206">      return this;</span>
+    }
+
+    /**
+     * The timestamp setter.
+     *
+     * @param timestamp Unix Millisecond Timestamp when data was fetched.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setTimestamp(Long timestamp) {
+<span class="fc" id="L216">      this.timestamp = timestamp;</span>
+<span class="fc" id="L217">      return this;</span>
+    }
+
+    /**
+     * The item progress setter.
+     *
+     * @param progress_ms Progress into the currently playing item. Can be {@code null}.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setProgress_ms(Integer progress_ms) {
+<span class="fc" id="L227">      this.progress_ms = progress_ms;</span>
+<span class="fc" id="L228">      return this;</span>
+    }
+
+    /**
+     * The playing state setter.
+     *
+     * @param is_playing If something is currently playing.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setIs_playing(Boolean is_playing) {
+<span class="fc" id="L238">      this.is_playing = is_playing;</span>
+<span class="fc" id="L239">      return this;</span>
+    }
+
+    /**
+     * The currently playing item setter.
+     *
+     * @param item If something is currently playing.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setItem(IPlaylistItem item) {
+<span class="fc" id="L249">      this.item = item;</span>
+<span class="fc" id="L250">      return this;</span>
+    }
+
+    /**
+     * The currently playing type setter.
+     *
+     * @param currentlyPlayingType The type of the currently playing item.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setCurrentlyPlayingType(CurrentlyPlayingType currentlyPlayingType) {
+<span class="fc" id="L260">      this.currentlyPlayingType = currentlyPlayingType;</span>
+<span class="fc" id="L261">      return this;</span>
+    }
+
+    /**
+     * The actions setter.
+     *
+     * @param actions A {@link Actions} object which contains a {@link Disallows} object.
+     * @return A {@link CurrentlyPlayingContext.Builder}.
+     */
+    public Builder setActions(Actions actions) {
+<span class="fc" id="L271">      this.actions = actions;</span>
+<span class="fc" id="L272">      return this;</span>
+    }
+
+    @Override
+    public CurrentlyPlayingContext build() {
+<span class="fc" id="L277">      return new CurrentlyPlayingContext(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link CurrentlyPlayingContext} instances.
+   */
+<span class="fc" id="L284">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;CurrentlyPlayingContext&gt; {</span>
+    public CurrentlyPlayingContext createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L286" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L287">        return null;</span>
+      }
+
+<span class="fc" id="L290">      return new Builder()</span>
+<span class="fc" id="L291">        .setDevice(</span>
+<span class="pc bpc" id="L292" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;device&quot;)</span>
+<span class="fc" id="L293">            ? new Device.JsonUtil().createModelObject(</span>
+<span class="fc" id="L294">            jsonObject.getAsJsonObject(&quot;device&quot;))</span>
+<span class="nc" id="L295">            : null)</span>
+<span class="fc" id="L296">        .setRepeat_state(</span>
+<span class="pc bpc" id="L297" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;repeat_state&quot;)</span>
+<span class="fc" id="L298">            ? jsonObject.get(&quot;repeat_state&quot;).getAsString()</span>
+<span class="nc" id="L299">            : null)</span>
+<span class="fc" id="L300">        .setShuffle_state(</span>
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;shuffle_state&quot;)</span>
+<span class="fc" id="L302">            ? jsonObject.get(&quot;shuffle_state&quot;).getAsBoolean()</span>
+<span class="nc" id="L303">            : null)</span>
+<span class="fc" id="L304">        .setContext(</span>
+<span class="fc bfc" id="L305" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;context&quot;)</span>
+<span class="fc" id="L306">            ? new Context.JsonUtil().createModelObject(</span>
+<span class="fc" id="L307">            jsonObject.getAsJsonObject(&quot;context&quot;))</span>
+<span class="fc" id="L308">            : null)</span>
+<span class="fc" id="L309">        .setTimestamp(</span>
+<span class="pc bpc" id="L310" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;timestamp&quot;)</span>
+<span class="fc" id="L311">            ? jsonObject.get(&quot;timestamp&quot;).getAsLong()</span>
+<span class="nc" id="L312">            : null)</span>
+<span class="fc" id="L313">        .setProgress_ms(</span>
+<span class="pc bpc" id="L314" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;progress_ms&quot;)</span>
+<span class="fc" id="L315">            ? jsonObject.get(&quot;progress_ms&quot;).getAsInt()</span>
+<span class="nc" id="L316">            : null)</span>
+<span class="fc" id="L317">        .setIs_playing(</span>
+<span class="pc bpc" id="L318" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_playing&quot;)</span>
+<span class="fc" id="L319">            ? jsonObject.get(&quot;is_playing&quot;).getAsBoolean()</span>
+<span class="nc" id="L320">            : null)</span>
+<span class="fc" id="L321">        .setItem(</span>
+<span class="pc bpc" id="L322" title="2 of 4 branches missed.">          hasAndNotNull(jsonObject, &quot;item&quot;) &amp;&amp; hasAndNotNull(jsonObject, &quot;currently_playing_type&quot;)</span>
+<span class="fc bfc" id="L323" title="All 2 branches covered.">            ? (jsonObject.get(&quot;currently_playing_type&quot;).getAsString().equals(&quot;track&quot;)</span>
+<span class="fc" id="L324">            ? new Track.JsonUtil().createModelObject(jsonObject.getAsJsonObject(&quot;item&quot;))</span>
+<span class="pc bpc" id="L325" title="1 of 2 branches missed.">            : jsonObject.get(&quot;currently_playing_type&quot;).getAsString().equals(&quot;episode&quot;)</span>
+<span class="fc" id="L326">            ? new Episode.JsonUtil().createModelObject(jsonObject.getAsJsonObject(&quot;item&quot;))</span>
+<span class="nc" id="L327">            : null)</span>
+<span class="nc" id="L328">            : null)</span>
+<span class="fc" id="L329">        .setCurrentlyPlayingType(</span>
+<span class="pc bpc" id="L330" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;currently_playing_type&quot;)</span>
+<span class="fc" id="L331">            ? CurrentlyPlayingType.keyOf(</span>
+<span class="fc" id="L332">            jsonObject.get(&quot;currently_playing_type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L333">            : null)</span>
+<span class="fc" id="L334">        .setActions(</span>
+<span class="pc bpc" id="L335" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;actions&quot;)</span>
+<span class="fc" id="L336">            ? new Actions.JsonUtil().createModelObject(</span>
+<span class="fc" id="L337">            jsonObject.getAsJsonObject(&quot;actions&quot;))</span>
+<span class="nc" id="L338">            : null)</span>
+<span class="fc" id="L339">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

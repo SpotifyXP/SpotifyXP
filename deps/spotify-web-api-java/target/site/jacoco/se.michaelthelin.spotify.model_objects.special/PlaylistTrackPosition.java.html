@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlaylistTrackPosition.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.special</a> &gt; <span class="el_source">PlaylistTrackPosition.java</span></div><h1>PlaylistTrackPosition.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.special;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about Playlist Track Position objects by building instances from this class. These objects
+ * contain the position in a playlist, where tracks should be added in a request.
+ */
+@JsonDeserialize(builder = PlaylistTrackPosition.Builder.class)
+public class PlaylistTrackPosition extends AbstractModelObject {
+  private final String uri;
+  private final int[] positions;
+
+  public PlaylistTrackPosition(final Builder builder) {
+<span class="nc" id="L21">    super(builder);</span>
+
+<span class="nc" id="L23">    this.uri = builder.uri;</span>
+<span class="nc" id="L24">    this.positions = builder.positions;</span>
+<span class="nc" id="L25">  }</span>
+
+  /**
+   * Get the &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URI&lt;/a&gt; of the
+   * track.
+   *
+   * @return Spotify track URI.
+   */
+  public String getUri() {
+<span class="nc" id="L34">    return uri;</span>
+  }
+
+  /**
+   * Get the position, where the track should be added in the playlist.
+   *
+   * @return Track position.
+   */
+  public int[] getPositions() {
+<span class="nc" id="L43">    return positions;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L48">    return &quot;PlaylistTrackPosition(uri=&quot; + uri + &quot;, positions=&quot; + Arrays.toString(positions) + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L53">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link PlaylistTrackPosition} instances.
+   */
+<span class="nc" id="L59">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String uri;
+    private int[] positions;
+
+    public Builder setUri(String uri) {
+<span class="nc" id="L64">      this.uri = uri;</span>
+<span class="nc" id="L65">      return this;</span>
+    }
+
+    public Builder setPositions(int... positions) {
+<span class="nc" id="L69">      this.positions = positions;</span>
+<span class="nc" id="L70">      return this;</span>
+    }
+
+    @Override
+    public PlaylistTrackPosition build() {
+<span class="nc" id="L75">      return new PlaylistTrackPosition(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link PlaylistTrackPosition} instances.
+   */
+<span class="nc" id="L82">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;PlaylistTrackPosition&gt; {</span>
+    public PlaylistTrackPosition createModelObject(JsonObject jsonObject) {
+<span class="nc bnc" id="L84" title="All 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L85">        return null;</span>
+      }
+
+<span class="nc" id="L88">      return new PlaylistTrackPosition.Builder()</span>
+<span class="nc" id="L89">        .setPositions(</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;positions&quot;)</span>
+<span class="nc" id="L91">            ? new Gson().fromJson(</span>
+<span class="nc" id="L92">            jsonObject.getAsJsonArray(&quot;positions&quot;), int[].class)</span>
+<span class="nc" id="L93">            : null)</span>
+<span class="nc" id="L94">        .setUri(</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="nc" id="L96">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L97">            : null)</span>
+<span class="nc" id="L98">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L105">      return true;</span>
+    }
+<span class="nc bnc" id="L107" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L108">      return false;</span>
+    }
+<span class="nc" id="L110">    PlaylistTrackPosition that = (PlaylistTrackPosition) o;</span>
+<span class="nc" id="L111">    return Objects.equals(uri, that.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L116">    return Objects.hash(uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

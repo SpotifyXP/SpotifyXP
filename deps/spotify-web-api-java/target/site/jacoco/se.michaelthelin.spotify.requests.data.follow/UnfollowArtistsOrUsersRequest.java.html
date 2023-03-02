@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UnfollowArtistsOrUsersRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.follow</a> &gt; <span class="el_source">UnfollowArtistsOrUsersRequest.java</span></div><h1>UnfollowArtistsOrUsersRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.follow;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonArray;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Remove the current user as a follower of one or more artists or other Spotify users.
+ */
+@JsonDeserialize(builder = UnfollowArtistsOrUsersRequest.Builder.class)
+public class UnfollowArtistsOrUsersRequest extends AbstractDataRequest&lt;String&gt; {
+
+  /**
+   * The private {@link UnfollowArtistsOrUsersRequest} constructor.
+   *
+   * @param builder A {@link UnfollowArtistsOrUsersRequest.Builder}.
+   */
+  private UnfollowArtistsOrUsersRequest(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+<span class="fc" id="L26">  }</span>
+
+  /**
+   * Unfollow an artist or user.
+   *
+   * @return A string. &lt;b&gt;Note:&lt;/b&gt; This endpoint doesn't return something in its response body.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public String execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L39">    return deleteJson();</span>
+  }
+
+  /**
+   * Builder class for building an {@link UnfollowArtistsOrUsersRequest}.
+   */
+<span class="fc" id="L45">  public static final class Builder extends AbstractDataRequest.Builder&lt;String, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link UnfollowArtistsOrUsersRequest.Builder} instance.
+     * &lt;p&gt;
+     * Modifying the list of artists or users the current user follows requires authorization of the
+     * {@code user-follow-modify} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L57">      super(accessToken);</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * The ID type setter.
+     *
+     * @param type Required. The ID type: either {@code artist} or {@code user}.
+     * @return An {@link UnfollowArtistsOrUsersRequest.Builder}.
+     */
+    public Builder type(final ModelObjectType type) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (type != null);</span>
+<span class="pc bpc" id="L68" title="3 of 4 branches missed.">      assert (type.getType().equals(&quot;artist&quot;) || type.getType().equals(&quot;user&quot;));</span>
+<span class="fc" id="L69">      return setQueryParameter(&quot;type&quot;, type);</span>
+    }
+
+    /**
+     * The artist or user IDs setter.
+     *
+     * @param ids Optional. A comma-separated list of the artist or the user Spotify IDs. A maximum of 50 IDs can be
+     *            sent in one request.
+     * @return An {@link UnfollowArtistsOrUsersRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder ids(final String ids) {
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">      assert (ids != null);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">      assert (ids.split(&quot;,&quot;).length &lt;= 50);</span>
+<span class="fc" id="L83">      return setQueryParameter(&quot;ids&quot;, ids);</span>
+    }
+
+    /**
+     * The artist or user IDs setter.
+     * &lt;p&gt;
+     * &lt;b&gt;Note:&lt;/b&gt; If the ids have already been set with {@link #ids(String)}, any ids added here will be ignored.
+     * @param ids Optional. A JSON array of the artist or the user Spotify IDs. A maximum of 50 IDs can be
+     *            sent in one request.
+     * @return An {@link UnfollowArtistsOrUsersRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder ids(final JsonArray ids) {
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">      assert (ids != null);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">      assert (!ids.isJsonNull());</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">      assert (ids.size() &lt;= 50);</span>
+<span class="fc" id="L99">      return setBodyParameter(&quot;ids&quot;, ids);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link UnfollowArtistsOrUsersRequest}.
+     */
+    @Override
+    public UnfollowArtistsOrUsersRequest build() {
+<span class="fc" id="L109">      setContentType(ContentType.APPLICATION_JSON);</span>
+<span class="fc" id="L110">      setPath(&quot;/v1/me/following&quot;);</span>
+<span class="fc" id="L111">      return new UnfollowArtistsOrUsersRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L116">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

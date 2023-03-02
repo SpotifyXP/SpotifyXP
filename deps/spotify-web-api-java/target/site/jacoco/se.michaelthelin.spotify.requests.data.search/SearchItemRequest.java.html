@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchItemRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.search</a> &gt; <span class="el_source">SearchItemRequest.java</span></div><h1>SearchItemRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.search;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.neovisionaries.i18n.CountryCode;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.special.SearchResult;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get Spotify catalog information about artists, albums, episodes, playlists, shows or tracks that match a keyword string.
+ */
+@JsonDeserialize(builder = SearchItemRequest.Builder.class)
+public class SearchItemRequest extends AbstractDataRequest&lt;SearchResult&gt; {
+
+  /**
+   * The private {@link SearchItemRequest} constructor.
+   *
+   * @param builder A {@link SearchItemRequest.Builder}.
+   */
+  private SearchItemRequest(final Builder builder) {
+<span class="fc" id="L24">    super(builder);</span>
+<span class="fc" id="L25">  }</span>
+
+  /**
+   * Search for an item.
+   *
+   * @return A {@link SearchResult}.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public SearchResult execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L38">    return new SearchResult.JsonUtil().createModelObject(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link SearchItemRequest}.
+   */
+<span class="fc" id="L44">  public static final class Builder extends AbstractDataRequest.Builder&lt;SearchResult, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link SearchItemRequest.Builder}.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L52">      super(accessToken);</span>
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * The search query setter.
+     *
+     * @param q Required. The search query's keywords (and optional field filters and operators).
+     * @return A {@link SearchItemRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/search-item/#tablepress-47&quot;&gt;Spotify: Search Query Options&lt;/a&gt;
+     */
+    public Builder q(final String q) {
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">      assert (q != null);</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">      assert (!q.equals(&quot;&quot;));</span>
+<span class="fc" id="L65">      return setQueryParameter(&quot;q&quot;, q);</span>
+    }
+
+    /**
+     * The type setter.
+     *
+     * @param type Required. A comma-separated list of item types to search across. Valid types are: {@code album},
+     *             {@code artist}, {@code episode}, {@code playlist}, {@code show} and {@code track}.
+     * @return A {@link SearchItemRequest.Builder}.
+     */
+    public Builder type(final String type) {
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">      assert (type != null);</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">      assert (type.matches(&quot;((^|,)(album|artist|episode|playlist|show|track))+$&quot;));</span>
+<span class="fc" id="L78">      return setQueryParameter(&quot;type&quot;, type);</span>
+    }
+
+    /**
+     * The market country code setter.
+     *
+     * @param market Optional. An ISO 3166-1 alpha-2 country code. If a country code is given, only artists,
+     *               albums, and tracks with content playable in that market will be returned. (Playlist
+     *               results are not affected by the market parameter.)
+     * @return A {@link SearchItemRequest.Builder}.
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     */
+    public Builder market(final CountryCode market) {
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">      assert (market != null);</span>
+<span class="fc" id="L92">      return setQueryParameter(&quot;market&quot;, market);</span>
+    }
+
+    /**
+     * The limit setter.
+     *
+     * @param limit Optional. The maximum number of results to return. Default: 20. Minimum: 1. Maximum: 50.
+     * @return A {@link SearchItemRequest.Builder}.
+     */
+    public Builder limit(final Integer limit) {
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">      assert (limit != null);</span>
+<span class="pc bpc" id="L103" title="2 of 4 branches missed.">      assert (1 &lt;= limit &amp;&amp; limit &lt;= 50);</span>
+<span class="fc" id="L104">      return setQueryParameter(&quot;limit&quot;, limit);</span>
+    }
+
+    /**
+     * The offset setter.
+     *
+     * @param offset Optional. The index of the first result to return. Default: 0 (i.e., the first result). Maximum
+     *               offset: 100.000. Use with {@link #limit(Integer)} to get the next page of search results.
+     * @return A {@link SearchItemRequest.Builder}.
+     */
+    public Builder offset(final Integer offset) {
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">      assert (offset != null);</span>
+<span class="pc bpc" id="L116" title="2 of 4 branches missed.">      assert (0 &lt;= offset &amp;&amp; offset &lt;= 100000);</span>
+<span class="fc" id="L117">      return setQueryParameter(&quot;offset&quot;, offset);</span>
+    }
+
+    /**
+     * The include external setter.
+     *
+     * @param includeExternal Optional. Possible values: {@code audio}. If {@code audio} is set
+     *                        the response will include any relevant audio content that is hosted externally.
+     *                        By default external content is filtered out from responses.
+     * @return A {@link SearchItemRequest.Builder}.
+     */
+    public Builder includeExternal(String includeExternal) {
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">      assert (includeExternal != null);</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">      assert (includeExternal.matches(&quot;audio&quot;));</span>
+<span class="fc" id="L131">      return setQueryParameter(&quot;include_external&quot;, includeExternal);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A {@link SearchItemRequest.Builder}.
+     */
+    @Override
+    public SearchItemRequest build() {
+<span class="fc" id="L141">      setPath(&quot;/v1/search&quot;);</span>
+<span class="fc" id="L142">      return new SearchItemRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L147">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

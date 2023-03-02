@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayHistory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">PlayHistory.java</span></div><h1>PlayHistory.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#play-history-object&quot;&gt;
+ * Play History objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = PlayHistory.Builder.class)
+public class PlayHistory extends AbstractModelObject {
+  private final TrackSimplified track;
+  private final Date playedAt;
+  private final Context context;
+
+  private PlayHistory(final Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+
+<span class="fc" id="L25">    this.track = builder.track;</span>
+<span class="fc" id="L26">    this.playedAt = builder.playedAt;</span>
+<span class="fc" id="L27">    this.context = builder.context;</span>
+<span class="fc" id="L28">  }</span>
+
+  /**
+   * Get the track the user listened to.
+   *
+   * @return The (simplified) track the user listened to.
+   */
+  public TrackSimplified getTrack() {
+<span class="nc" id="L36">    return track;</span>
+  }
+
+  /**
+   * Get the date and time the track was played.
+   *
+   * @return The date and time the track was played.
+   */
+  public Date getPlayedAt() {
+<span class="nc" id="L45">    return playedAt;</span>
+  }
+
+  /**
+   * Get the context the track was played from.
+   *
+   * @return The context the track was played from.
+   */
+  public Context getContext() {
+<span class="nc" id="L54">    return context;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L59">    return &quot;PlayHistory(track=&quot; + track + &quot;, playedAt=&quot; + playedAt + &quot;, context=&quot; + context + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L64">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link PlayHistory} instances.
+   */
+<span class="fc" id="L70">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private TrackSimplified track;
+    private Date playedAt;
+    private Context context;
+
+    /**
+     * The track setter.
+     *
+     * @param track The track the user listened to.
+     * @return A {@link PlayHistory.Builder}.
+     */
+    public Builder setTrack(TrackSimplified track) {
+<span class="fc" id="L82">      this.track = track;</span>
+<span class="fc" id="L83">      return this;</span>
+    }
+
+    /**
+     * The played at date setter.
+     *
+     * @param playedAt The date and time the track was played.
+     * @return A {@link PlayHistory.Builder}.
+     */
+    public Builder setPlayedAt(Date playedAt) {
+<span class="fc" id="L93">      this.playedAt = playedAt;</span>
+<span class="fc" id="L94">      return this;</span>
+    }
+
+    /**
+     * The context setter.
+     *
+     * @param context The context the track was played from.
+     * @return A {@link PlayHistory.Builder}.
+     */
+    public Builder setContext(Context context) {
+<span class="fc" id="L104">      this.context = context;</span>
+<span class="fc" id="L105">      return this;</span>
+    }
+
+    @Override
+    public PlayHistory build() {
+<span class="fc" id="L110">      return new PlayHistory(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link PlayHistory} instances.
+   */
+<span class="fc" id="L117">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;PlayHistory&gt; {</span>
+    public PlayHistory createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L119" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L120">        return null;</span>
+      }
+
+      try {
+<span class="fc" id="L124">        return new Builder()</span>
+<span class="fc" id="L125">          .setTrack(</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">            hasAndNotNull(jsonObject, &quot;track&quot;)</span>
+<span class="fc" id="L127">              ? new TrackSimplified.JsonUtil().createModelObject(</span>
+<span class="fc" id="L128">              jsonObject.getAsJsonObject(&quot;track&quot;))</span>
+<span class="nc" id="L129">              : null)</span>
+<span class="fc" id="L130">          .setPlayedAt(</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">            hasAndNotNull(jsonObject, &quot;played_at&quot;)</span>
+<span class="fc" id="L132">              ? SpotifyApi.parseDefaultDate(jsonObject.get(&quot;played_at&quot;).getAsString())</span>
+<span class="nc" id="L133">              : null)</span>
+<span class="fc" id="L134">          .setContext(</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">            hasAndNotNull(jsonObject, &quot;context&quot;)</span>
+<span class="fc" id="L136">              ? new Context.JsonUtil().createModelObject(</span>
+<span class="fc" id="L137">              jsonObject.getAsJsonObject(&quot;context&quot;))</span>
+<span class="nc" id="L138">              : null)</span>
+<span class="fc" id="L139">          .build();</span>
+<span class="nc" id="L140">      } catch (ParseException e) {</span>
+<span class="nc" id="L141">        SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());</span>
+<span class="nc" id="L142">        return null;</span>
+      }
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

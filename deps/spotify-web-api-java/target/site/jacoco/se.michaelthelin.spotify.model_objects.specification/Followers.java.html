@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Followers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">Followers.java</span></div><h1>Followers.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about
+ * &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#followers-object&quot;&gt;Follower objects&lt;/a&gt;
+ * by building instances from this class.
+ */
+@JsonDeserialize(builder = Followers.Builder.class)
+public class Followers extends AbstractModelObject {
+  private final String href;
+  private final Integer total;
+
+  private Followers(final Builder builder) {
+<span class="fc" id="L18">    super(builder);</span>
+
+<span class="fc" id="L20">    this.href = builder.href;</span>
+<span class="fc" id="L21">    this.total = builder.total;</span>
+<span class="fc" id="L22">  }</span>
+
+  /**
+   * Get a link to the Web API endpoint providing full details of the followers object. &lt;br&gt;
+   * &lt;b&gt;Please note:&lt;/b&gt; This will always be set to {@code null}, as the Web API does not support it at the moment.
+   *
+   * @return A link to the Web API endpoint providing full details of the followers; {@code null} if not available.
+   */
+  public String getHref() {
+<span class="nc" id="L31">    return href;</span>
+  }
+
+  /**
+   * Get the total number of followers.
+   *
+   * @return The total number of followers.
+   */
+  public Integer getTotal() {
+<span class="nc" id="L40">    return total;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L45">    return &quot;Followers(href=&quot; + href + &quot;, total=&quot; + total + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L50">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Followers} instances.
+   */
+<span class="fc" id="L56">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String href;
+    private Integer total;
+
+    /**
+     * The href setter.
+     *
+     * @param href A link to the Web API endpoint providing full details of the followers; {@code null} if not
+     *             available.
+     * @return A {@link Followers.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L68">      this.href = href;</span>
+<span class="fc" id="L69">      return this;</span>
+    }
+
+    /**
+     * The follower count setter.
+     *
+     * @param total The total number of followers.
+     * @return A {@link Followers.Builder}.
+     */
+    public Builder setTotal(Integer total) {
+<span class="fc" id="L79">      this.total = total;</span>
+<span class="fc" id="L80">      return this;</span>
+    }
+
+    @Override
+    public Followers build() {
+<span class="fc" id="L85">      return new Followers(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Followers} instances.
+   */
+<span class="fc" id="L92">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Followers&gt; {</span>
+    public Followers createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L94" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L95">        return null;</span>
+      }
+
+<span class="fc" id="L98">      return new Followers.Builder()</span>
+<span class="fc" id="L99">        .setHref(</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="nc" id="L101">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="fc" id="L102">            : null)</span>
+<span class="fc" id="L103">        .setTotal(</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;total&quot;)</span>
+<span class="fc" id="L105">            ? jsonObject.get(&quot;total&quot;).getAsInt()</span>
+<span class="nc" id="L106">            : null)</span>
+<span class="fc" id="L107">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

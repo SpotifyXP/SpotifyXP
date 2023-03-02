@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlaylistTrack.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">PlaylistTrack.java</span></div><h1>PlaylistTrack.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.IPlaylistItem;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#playlist-track-object&quot;&gt;
+ * Playlist Track objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = PlaylistTrack.Builder.class)
+public class PlaylistTrack extends AbstractModelObject {
+  private final Date addedAt;
+  private final User addedBy;
+  private final Boolean isLocal;
+  private final IPlaylistItem track;
+
+  private PlaylistTrack(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+
+<span class="fc" id="L27">    this.addedAt = builder.addedAt;</span>
+<span class="fc" id="L28">    this.addedBy = builder.addedBy;</span>
+<span class="fc" id="L29">    this.isLocal = builder.isLocal;</span>
+<span class="fc" id="L30">    this.track = builder.track;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Get the date, when the track or episode has been added to its playlist.
+   * &lt;b&gt;Note:&lt;/b&gt; Some very old playlists may return {@code null} in this field.
+   *
+   * @return The date and time the track or episode was added.
+   */
+  public Date getAddedAt() {
+<span class="nc" id="L40">    return addedAt;</span>
+  }
+
+  /**
+   * Get the user, who added the track or episode to its playlist.
+   * &lt;b&gt;Note:&lt;/b&gt; Some very old playlists may return null in this field.
+   *
+   * @return The Spotify user who added the track or episode.
+   */
+  public User getAddedBy() {
+<span class="nc" id="L50">    return addedBy;</span>
+  }
+
+  /**
+   * Check whether a playlist track is a local track or episode or not.&lt;br&gt;
+   * Local tracks can only be played on devices, where the track files are present.
+   *
+   * @return Whether this track is a local file or not.
+   */
+  public Boolean getIsLocal() {
+<span class="nc" id="L60">    return isLocal;</span>
+  }
+
+  /**
+   * Get a full track or episode object from this playlist track object.
+   *
+   * @return Information about the track.
+   */
+  public IPlaylistItem getTrack() {
+<span class="fc" id="L69">    return track;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L74">    return &quot;PlaylistTrack(track=&quot; + track + &quot;, addedAt=&quot; + addedAt + &quot;, addedBy=&quot; + addedBy + &quot;, isLocal=&quot; + isLocal</span>
+        + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L80">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link PlaylistTrack} instances.
+   */
+<span class="fc" id="L86">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private Date addedAt;
+    private User addedBy;
+    private Boolean isLocal;
+    private IPlaylistItem track;
+
+    /**
+     * Set the &quot;added at&quot; date of the playlist track to be built.
+     *
+     * @param addedAt The date and time the track or episode was added.
+     * @return A {@link PlaylistTrack.Builder}.
+     */
+    public Builder setAddedAt(Date addedAt) {
+<span class="fc" id="L99">      this.addedAt = addedAt;</span>
+<span class="fc" id="L100">      return this;</span>
+    }
+
+    /**
+     * Set the user who added the track or episode to the playlist.
+     *
+     * @param addedBy The Spotify user who added the track or episode.
+     * @return A {@link PlaylistTrack.Builder}.
+     */
+    public Builder setAddedBy(User addedBy) {
+<span class="fc" id="L110">      this.addedBy = addedBy;</span>
+<span class="fc" id="L111">      return this;</span>
+    }
+
+    /**
+     * Set whether the track to be built is local or not.
+     *
+     * @param isLocal Whether this track or episode is a local file or not.
+     * @return A {@link PlaylistTrack.Builder}.
+     */
+    public Builder setIsLocal(Boolean isLocal) {
+<span class="fc" id="L121">      this.isLocal = isLocal;</span>
+<span class="fc" id="L122">      return this;</span>
+    }
+
+    /**
+     * Set the full track or episode object of the playlist track to be built.
+     *
+     * @param track Information about the track.
+     * @return A {@link PlaylistTrack.Builder}.
+     */
+    public Builder setTrack(IPlaylistItem track) {
+<span class="fc" id="L132">      this.track = track;</span>
+<span class="fc" id="L133">      return this;</span>
+    }
+
+    @Override
+    public PlaylistTrack build() {
+<span class="fc" id="L138">      return new PlaylistTrack(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link PlaylistTrack} instances.
+   */
+<span class="fc" id="L145">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;PlaylistTrack&gt; {</span>
+    public PlaylistTrack createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L147" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L148">        return null;</span>
+      }
+
+      try {
+<span class="fc" id="L152">        IPlaylistItem track = null;</span>
+
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (hasAndNotNull(jsonObject, &quot;track&quot;)) {</span>
+<span class="fc" id="L155">          final JsonObject trackObj = jsonObject.getAsJsonObject(&quot;track&quot;);</span>
+
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">          if (hasAndNotNull(trackObj, &quot;type&quot;)) {</span>
+<span class="fc" id="L158">            String type = trackObj.get(&quot;type&quot;).getAsString().toLowerCase();</span>
+
+<span class="fc bfc" id="L160" title="All 2 branches covered.">            if (type.equals(&quot;track&quot;)) {</span>
+<span class="fc" id="L161">              track = new Track.JsonUtil().createModelObject(trackObj);</span>
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">            } else if (type.equals(&quot;episode&quot;)) {</span>
+<span class="fc" id="L163">              track = new Episode.JsonUtil().createModelObject(trackObj);</span>
+            }
+          }
+        }
+
+<span class="fc" id="L168">        return new Builder()</span>
+<span class="fc" id="L169">          .setAddedAt(</span>
+<span class="pc bpc" id="L170" title="1 of 2 branches missed.">            hasAndNotNull(jsonObject, &quot;added_at&quot;)</span>
+<span class="fc" id="L171">              ? SpotifyApi.parseDefaultDate(jsonObject.get(&quot;added_at&quot;).getAsString())</span>
+<span class="nc" id="L172">              : null)</span>
+<span class="fc" id="L173">          .setAddedBy(</span>
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">            hasAndNotNull(jsonObject, &quot;added_by&quot;)</span>
+<span class="fc" id="L175">              ? new User.JsonUtil().createModelObject(</span>
+<span class="fc" id="L176">              jsonObject.get(&quot;added_by&quot;).getAsJsonObject())</span>
+<span class="nc" id="L177">              : null)</span>
+<span class="fc" id="L178">          .setIsLocal(</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">            hasAndNotNull(jsonObject, &quot;is_local&quot;)</span>
+<span class="fc" id="L180">              ? jsonObject.get(&quot;is_local&quot;).getAsBoolean()</span>
+<span class="nc" id="L181">              : null)</span>
+<span class="fc" id="L182">          .setTrack(track)</span>
+<span class="fc" id="L183">          .build();</span>
+<span class="nc" id="L184">      } catch (ParseException e) {</span>
+<span class="nc" id="L185">        SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());</span>
+<span class="nc" id="L186">        return null;</span>
+      }
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Actions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.special</a> &gt; <span class="el_source">Actions.java</span></div><h1>Actions.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.special;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.specification.Disallows;
+
+/**
+ * Retrieve information about Actions objects by building instances from this class. These objects
+ * contain information to allow to update the user interface based on which playback actions are
+ * available within the current context. These objects contain a {@link Disallows} object.
+ */
+@JsonDeserialize(builder = Actions.Builder.class)
+public class Actions extends AbstractModelObject {
+  private final Disallows disallows;
+
+  public Actions(Builder builder) {
+<span class="fc" id="L18">    super(builder);</span>
+<span class="fc" id="L19">    this.disallows = builder.disallows;</span>
+<span class="fc" id="L20">  }</span>
+
+  /**
+   * Get the Disallows object.
+   *
+   * @return Disallows object.
+   */
+  public Disallows getDisallows() {
+<span class="fc" id="L28">    return disallows;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L33">    return &quot;Actions(disallows=&quot; + disallows + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L38">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Actions} instances.
+   */
+<span class="fc" id="L44">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private Disallows disallows;
+
+    /**
+     * Set the Disallows object of the Actions object to be built.
+     *
+     * @param disallows The {@link Disallows} object.
+     * @return A {@link Actions.Builder}.
+     */
+    public Builder setDisallows(Disallows disallows) {
+<span class="fc" id="L54">      this.disallows = disallows;</span>
+<span class="fc" id="L55">      return this;</span>
+    }
+
+    @Override
+    public Actions build() {
+<span class="fc" id="L60">      return new Actions(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Actions} instances.
+   */
+<span class="fc" id="L67">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Actions&gt; {</span>
+    @Override
+    public Actions createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L70" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L71">        return null;</span>
+      }
+
+<span class="fc" id="L74">      return new Builder()</span>
+<span class="fc" id="L75">        .setDisallows(</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;disallows&quot;)</span>
+<span class="fc" id="L77">            ? new Disallows.JsonUtil().createModelObject(</span>
+<span class="fc" id="L78">            jsonObject.getAsJsonObject(&quot;disallows&quot;))</span>
+<span class="nc" id="L79">            : null)</span>
+<span class="fc" id="L80">        .build();</span>
+    }
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurrentlyPlayingType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.enums</a> &gt; <span class="el_source">CurrentlyPlayingType.java</span></div><h1>CurrentlyPlayingType.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * An enumeration of all possible currently playing types.
+ */
+<span class="fc" id="L9">public enum CurrentlyPlayingType {</span>
+
+<span class="fc" id="L11">  TRACK(&quot;track&quot;),</span>
+<span class="fc" id="L12">  EPISODE(&quot;episode&quot;),</span>
+<span class="fc" id="L13">  AD(&quot;ad&quot;),</span>
+<span class="fc" id="L14">  UNKNOWN(&quot;unknown&quot;);</span>
+
+<span class="fc" id="L16">  private static final Map&lt;String, CurrentlyPlayingType&gt; map = new HashMap&lt;&gt;();</span>
+
+  static {
+<span class="fc bfc" id="L19" title="All 2 branches covered.">    for (CurrentlyPlayingType currentlyPlayingType : CurrentlyPlayingType.values()) {</span>
+<span class="fc" id="L20">      map.put(currentlyPlayingType.type, currentlyPlayingType);</span>
+    }
+<span class="fc" id="L22">  }</span>
+
+
+  private final String type;
+
+<span class="fc" id="L27">  CurrentlyPlayingType(final String type) {</span>
+<span class="fc" id="L28">    this.type = type;</span>
+<span class="fc" id="L29">  }</span>
+
+  public static CurrentlyPlayingType keyOf(String type) {
+<span class="fc" id="L32">    return map.get(type);</span>
+  }
+
+  /**
+   * Get the currently playing type as a string.
+   *
+   * @return The currently playing type as a string.
+   */
+  public String getType() {
+<span class="nc" id="L41">    return type;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

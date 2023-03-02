@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests</a> &gt; <span class="el_source">AbstractRequest.java</span></div><h1>AbstractRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests;
+
+import com.google.gson.*;
+import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
+import org.apache.hc.core5.http.*;
+import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.message.BasicHeader;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
+import org.apache.hc.core5.net.URIBuilder;
+import se.michaelthelin.spotify.IHttpManager;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.SpotifyApiThreading;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
+import java.util.stream.Collectors;
+
+<span class="fc" id="L24">public abstract class AbstractRequest&lt;T&gt; implements IRequest&lt;T&gt; {</span>
+
+  private final IHttpManager httpManager;
+  private final List&lt;Header&gt; headers;
+  private final ContentType contentType;
+  private final List&lt;NameValuePair&gt; bodyParameters;
+  private URI uri;
+  private HttpEntity body;
+
+<span class="fc" id="L33">  protected AbstractRequest(Builder&lt;T, ?&gt; builder) {</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">    assert (builder != null);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">    assert (builder.path != null);</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">    assert (!builder.path.equals(&quot;&quot;));</span>
+
+<span class="fc" id="L38">    this.httpManager = builder.httpManager;</span>
+
+<span class="fc" id="L40">    URIBuilder uriBuilder = new URIBuilder();</span>
+<span class="fc" id="L41">    uriBuilder</span>
+<span class="fc" id="L42">      .setScheme(builder.scheme)</span>
+<span class="fc" id="L43">      .setHost(builder.host)</span>
+<span class="fc" id="L44">      .setPort(builder.port)</span>
+<span class="fc" id="L45">      .setPath(builder.path);</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">    if (builder.queryParameters.size() &gt; 0) {</span>
+<span class="fc" id="L47">      uriBuilder</span>
+<span class="fc" id="L48">        .setParameters(builder.queryParameters);</span>
+    }
+
+    try {
+<span class="fc" id="L52">      this.uri = uriBuilder.build();</span>
+<span class="nc" id="L53">    } catch (URISyntaxException e) {</span>
+<span class="nc" id="L54">      SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());</span>
+<span class="fc" id="L55">    }</span>
+
+<span class="fc" id="L57">    this.headers = builder.headers;</span>
+<span class="fc" id="L58">    this.contentType = builder.contentType;</span>
+<span class="fc" id="L59">    this.body = builder.body;</span>
+<span class="fc" id="L60">    this.bodyParameters = builder.bodyParameters;</span>
+<span class="fc" id="L61">  }</span>
+
+  /**
+   * Get something asynchronously.
+   *
+   * @return A {@link CompletableFuture} for a generic.
+   */
+  public CompletableFuture&lt;T&gt; executeAsync() {
+<span class="fc" id="L69">    return SpotifyApiThreading.executeAsync(</span>
+      this::execute);
+  }
+
+  public void initializeBody() {
+<span class="fc bfc" id="L74" title="All 4 branches covered.">    if (body == null &amp;&amp; contentType != null) {</span>
+<span class="pc bpc" id="L75" title="1 of 3 branches missed.">      switch (contentType.getMimeType()) {</span>
+        case &quot;application/json&quot;:
+<span class="fc" id="L77">          body = new StringEntity(</span>
+<span class="fc" id="L78">            bodyParametersToJson(bodyParameters),</span>
+            ContentType.APPLICATION_JSON);
+<span class="fc" id="L80">          break;</span>
+        case &quot;application/x-www-form-urlencoded&quot;:
+<span class="fc" id="L82">          body = new UrlEncodedFormEntity(bodyParameters);</span>
+          break;
+      }
+    }
+<span class="fc" id="L86">  }</span>
+
+  public String bodyParametersToJson(List&lt;NameValuePair&gt; bodyParameters) {
+<span class="fc" id="L89">    JsonObject jsonObject = new JsonObject();</span>
+    JsonElement jsonElement;
+
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    for (NameValuePair nameValuePair : bodyParameters) {</span>
+      try {
+<span class="fc" id="L94">        jsonElement = JsonParser.parseString(nameValuePair.getValue());</span>
+<span class="fc" id="L95">      } catch (JsonSyntaxException e) {</span>
+<span class="fc" id="L96">        jsonElement = new JsonPrimitive(nameValuePair.getValue());</span>
+<span class="fc" id="L97">      }</span>
+
+<span class="fc" id="L99">      jsonObject.add(nameValuePair.getName(), jsonElement);</span>
+<span class="fc" id="L100">    }</span>
+
+<span class="fc" id="L102">    return jsonObject.toString();</span>
+  }
+
+  public String getJson() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+
+<span class="fc" id="L110">    String json = httpManager.get(uri, headers.toArray(new Header[0]));</span>
+
+<span class="fc" id="L112">    return returnJson(json);</span>
+  }
+
+  public String postJson() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L119">    initializeBody();</span>
+
+<span class="fc" id="L121">    String json = httpManager.post(uri, headers.toArray(new Header[0]), body);</span>
+
+<span class="fc" id="L123">    return returnJson(json);</span>
+  }
+
+  public String putJson() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L130">    initializeBody();</span>
+
+<span class="fc" id="L132">    String json = httpManager.put(uri, headers.toArray(new Header[0]), body);</span>
+
+<span class="fc" id="L134">    return returnJson(json);</span>
+  }
+
+  public String deleteJson() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L141">    initializeBody();</span>
+
+<span class="fc" id="L143">    String json = httpManager.delete(uri, headers.toArray(new Header[0]), body);</span>
+
+<span class="fc" id="L145">    return returnJson(json);</span>
+  }
+
+  private String returnJson(String json) {
+<span class="fc bfc" id="L149" title="All 2 branches covered.">    if (json == null) {</span>
+<span class="fc" id="L150">      SpotifyApi.LOGGER.log(</span>
+        Level.FINE,
+        &quot;The httpManager returned json == null.&quot;);
+<span class="fc" id="L153">      return null;</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">    } else if (json.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L155">      SpotifyApi.LOGGER.log(</span>
+        Level.FINE,
+        &quot;The httpManager returned json == \&quot;\&quot;.&quot;);
+<span class="nc" id="L158">      return null;</span>
+    } else {
+<span class="fc" id="L160">      SpotifyApi.LOGGER.log(</span>
+        Level.FINE,
+        &quot;The httpManager returned json == &quot; + json + &quot;.&quot;);
+<span class="fc" id="L163">      return json;</span>
+    }
+  }
+
+  public IHttpManager getHttpManager() {
+<span class="nc" id="L168">    return httpManager;</span>
+  }
+
+  public URI getUri() {
+<span class="fc" id="L172">    return uri;</span>
+  }
+
+  public List&lt;Header&gt; getHeaders() {
+<span class="fc" id="L176">    return headers;</span>
+  }
+
+  public ContentType getContentType() {
+<span class="nc" id="L180">    return contentType;</span>
+  }
+
+  public HttpEntity getBody() {
+<span class="fc" id="L184">    return body;</span>
+  }
+
+  public List&lt;NameValuePair&gt; getBodyParameters() {
+<span class="fc" id="L188">    return bodyParameters;</span>
+  }
+
+<span class="fc" id="L191">  public static abstract class Builder&lt;T, BT extends Builder&lt;T, ?&gt;&gt; implements IRequest.Builder&lt;T, BT&gt; {</span>
+
+<span class="fc" id="L193">    private final List&lt;NameValuePair&gt; pathParameters = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L194">    private final List&lt;NameValuePair&gt; queryParameters = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L195">    private final List&lt;Header&gt; headers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L196">    private final List&lt;NameValuePair&gt; bodyParameters = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L197">    private IHttpManager httpManager = SpotifyApi.DEFAULT_HTTP_MANAGER;</span>
+<span class="fc" id="L198">    private String scheme = SpotifyApi.DEFAULT_SCHEME;</span>
+<span class="fc" id="L199">    private String host = SpotifyApi.DEFAULT_HOST;</span>
+<span class="fc" id="L200">    private Integer port = SpotifyApi.DEFAULT_PORT;</span>
+<span class="fc" id="L201">    private String path = null;</span>
+<span class="fc" id="L202">    private ContentType contentType = null;</span>
+<span class="fc" id="L203">    private HttpEntity body = null;</span>
+
+<span class="fc" id="L205">    protected Builder() {</span>
+<span class="fc" id="L206">    }</span>
+
+    public BT setHttpManager(final IHttpManager httpManager) {
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">      assert (httpManager != null);</span>
+<span class="fc" id="L210">      this.httpManager = httpManager;</span>
+<span class="fc" id="L211">      return self();</span>
+    }
+
+    public BT setScheme(final String scheme) {
+<span class="pc bpc" id="L215" title="1 of 2 branches missed.">      assert (scheme != null);</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">      assert (!scheme.equals(&quot;&quot;));</span>
+<span class="fc" id="L217">      this.scheme = scheme;</span>
+<span class="fc" id="L218">      return self();</span>
+    }
+
+    public BT setHost(final String host) {
+<span class="pc bpc" id="L222" title="1 of 2 branches missed.">      assert (host != null);</span>
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">      assert (!scheme.equals(&quot;&quot;));</span>
+<span class="fc" id="L224">      this.host = host;</span>
+<span class="fc" id="L225">      return self();</span>
+    }
+
+    public BT setPort(final Integer port) {
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">      assert (port != null);</span>
+<span class="pc bpc" id="L230" title="1 of 2 branches missed.">      assert (port &gt;= 0);</span>
+<span class="fc" id="L231">      this.port = port;</span>
+<span class="fc" id="L232">      return self();</span>
+    }
+
+    public BT setPath(final String path) {
+<span class="pc bpc" id="L236" title="1 of 2 branches missed.">      assert (path != null);</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">      assert (!path.equals(&quot;&quot;));</span>
+
+<span class="fc" id="L239">      String builtPath = path;</span>
+
+<span class="fc bfc" id="L241" title="All 2 branches covered.">      for (NameValuePair nameValuePair : pathParameters) {</span>
+        // Don't remove the &quot;\\&quot; before the &quot;}&quot; to prevent a regex issue on Android.
+<span class="fc" id="L243">        String key = &quot;\\{&quot; + nameValuePair.getName() + &quot;\\}&quot;;</span>
+<span class="fc" id="L244">        builtPath = builtPath.replaceAll(key, nameValuePair.getValue());</span>
+<span class="fc" id="L245">      }</span>
+
+<span class="fc" id="L247">      this.path = builtPath;</span>
+<span class="fc" id="L248">      return self();</span>
+    }
+
+    public BT setPathParameter(final String name, final String value) {
+<span class="pc bpc" id="L252" title="2 of 4 branches missed.">      assert (name != null &amp;&amp; value != null);</span>
+<span class="pc bpc" id="L253" title="2 of 4 branches missed.">      assert (!name.equals(&quot;&quot;) &amp;&amp; !value.equals(&quot;&quot;));</span>
+
+<span class="fc" id="L255">      listAddOnce(this.pathParameters, new BasicNameValuePair(name, value));</span>
+<span class="fc" id="L256">      return self();</span>
+    }
+
+    public BT setDefaults(final IHttpManager httpManager,
+                          final String scheme,
+                          final String host,
+                          final Integer port) {
+<span class="fc" id="L263">      setHttpManager(httpManager);</span>
+<span class="fc" id="L264">      setScheme(scheme);</span>
+<span class="fc" id="L265">      setHost(host);</span>
+<span class="fc" id="L266">      setPort(port);</span>
+
+<span class="fc" id="L268">      return self();</span>
+    }
+
+    public &lt;X&gt; BT setQueryParameter(final String name, final X value) {
+<span class="pc bpc" id="L272" title="1 of 2 branches missed.">      assert (name != null);</span>
+<span class="pc bpc" id="L273" title="1 of 2 branches missed.">      assert (!name.equals(&quot;&quot;));</span>
+<span class="pc bpc" id="L274" title="1 of 2 branches missed.">      assert (value != null);</span>
+<span class="fc" id="L275">      listAddOnce(this.queryParameters, new BasicNameValuePair(name, String.valueOf(value)));</span>
+<span class="fc" id="L276">      return self();</span>
+    }
+
+    public &lt;X&gt; BT setHeader(final String name, final X value) {
+<span class="pc bpc" id="L280" title="1 of 2 branches missed.">      assert (name != null);</span>
+<span class="pc bpc" id="L281" title="1 of 2 branches missed.">      assert (!name.equals(&quot;&quot;));</span>
+<span class="pc bpc" id="L282" title="1 of 2 branches missed.">      assert (value != null);</span>
+<span class="fc" id="L283">      listAddOnce(this.headers, new BasicHeader(name, String.valueOf(value)));</span>
+<span class="fc" id="L284">      return self();</span>
+    }
+
+    public BT setContentType(final ContentType contentType) {
+<span class="fc" id="L288">      this.contentType = contentType;</span>
+<span class="fc" id="L289">      setHeader(&quot;Content-Type&quot;, contentType.getMimeType());</span>
+<span class="fc" id="L290">      return self();</span>
+    }
+
+    public BT setBody(final HttpEntity httpEntity) {
+<span class="fc" id="L294">      this.body = httpEntity;</span>
+<span class="fc" id="L295">      return self();</span>
+    }
+
+    public &lt;X&gt; BT setBodyParameter(final String name, final X value) {
+<span class="pc bpc" id="L299" title="1 of 2 branches missed.">      assert (name != null);</span>
+<span class="pc bpc" id="L300" title="1 of 2 branches missed.">      assert (!name.equals(&quot;&quot;));</span>
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">      assert (value != null);</span>
+<span class="fc" id="L302">      listAddOnce(this.bodyParameters, new BasicNameValuePair(name, String.valueOf(value)));</span>
+<span class="fc" id="L303">      return self();</span>
+    }
+
+    private void listAddOnce(List&lt;NameValuePair&gt; nameValuePairs, NameValuePair newNameValuePair) {
+<span class="fc" id="L307">      nameValuePairs.removeAll(nameValuePairs.stream()</span>
+<span class="fc" id="L308">        .filter(nameValuePair -&gt; nameValuePair.getName().equals(newNameValuePair.getName()))</span>
+<span class="fc" id="L309">        .collect(Collectors.toList()));</span>
+<span class="fc" id="L310">      nameValuePairs.add(newNameValuePair);</span>
+<span class="fc" id="L311">    }</span>
+
+    private void listAddOnce(List&lt;Header&gt; headers, Header newHeader) {
+<span class="fc" id="L314">      headers.removeAll(headers.stream()</span>
+<span class="fc" id="L315">        .filter(header -&gt; header.getName().equals(newHeader.getName()))</span>
+<span class="fc" id="L316">        .collect(Collectors.toList()));</span>
+<span class="fc" id="L317">      headers.add(newHeader);</span>
+<span class="fc" id="L318">    }</span>
+
+    /**
+     * Return this instance to simulate a self-type.
+     *
+     * @return This instance.
+     */
+    protected abstract BT self();
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

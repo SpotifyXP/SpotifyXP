@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AudioAnalysisTrack.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.miscellaneous</a> &gt; <span class="el_source">AudioAnalysisTrack.java</span></div><h1>AudioAnalysisTrack.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.miscellaneous;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.Modality;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about Audio Analysis Track objects by creating instances from this class.
+ */
+@JsonDeserialize(builder = AudioAnalysisTrack.Builder.class)
+public class AudioAnalysisTrack extends AbstractModelObject {
+  private final Long numSamples;
+  private final Float duration;
+  private final String sampleMd5;
+  private final Integer offsetSeconds;
+  private final Integer windowSeconds;
+  private final Long analysisSampleRate;
+  private final Integer analysisChannels;
+  private final Float endOfFadeIn;
+  private final Float startOfFadeOut;
+  private final Float loudness;
+  private final Float tempo;
+  private final Float tempoConfidence;
+  private final Integer timeSignature;
+  private final Float timeSignatureConfidence;
+  private final Integer key;
+  private final Float keyConfidence;
+  private final Modality mode;
+  private final Float modeConfidence;
+  private final String codeString;
+  private final Float codeVersion;
+  private final String echoprintString;
+  private final Float echoprintVersion;
+  private final String synchString;
+  private final Float synchVersion;
+  private final String rhythmString;
+  private final Float rhythmVersion;
+
+  private AudioAnalysisTrack(final Builder builder) {
+<span class="fc" id="L41">    super(builder);</span>
+<span class="fc" id="L42">    this.numSamples = builder.numSamples;</span>
+<span class="fc" id="L43">    this.duration = builder.duration;</span>
+<span class="fc" id="L44">    this.sampleMd5 = builder.sampleMd5;</span>
+<span class="fc" id="L45">    this.offsetSeconds = builder.offsetSeconds;</span>
+<span class="fc" id="L46">    this.windowSeconds = builder.windowSeconds;</span>
+<span class="fc" id="L47">    this.analysisSampleRate = builder.analysisSampleRate;</span>
+<span class="fc" id="L48">    this.analysisChannels = builder.analysisChannels;</span>
+<span class="fc" id="L49">    this.endOfFadeIn = builder.endOfFadeIn;</span>
+<span class="fc" id="L50">    this.startOfFadeOut = builder.startOfFadeOut;</span>
+<span class="fc" id="L51">    this.loudness = builder.loudness;</span>
+<span class="fc" id="L52">    this.tempo = builder.tempo;</span>
+<span class="fc" id="L53">    this.tempoConfidence = builder.tempoConfidence;</span>
+<span class="fc" id="L54">    this.timeSignature = builder.timeSignature;</span>
+<span class="fc" id="L55">    this.timeSignatureConfidence = builder.timeSignatureConfidence;</span>
+<span class="fc" id="L56">    this.key = builder.key;</span>
+<span class="fc" id="L57">    this.keyConfidence = builder.keyConfidence;</span>
+<span class="fc" id="L58">    this.mode = builder.mode;</span>
+<span class="fc" id="L59">    this.modeConfidence = builder.modeConfidence;</span>
+<span class="fc" id="L60">    this.codeString = builder.codeString;</span>
+<span class="fc" id="L61">    this.codeVersion = builder.codeVersion;</span>
+<span class="fc" id="L62">    this.echoprintString = builder.echoprintString;</span>
+<span class="fc" id="L63">    this.echoprintVersion = builder.echoprintVersion;</span>
+<span class="fc" id="L64">    this.synchString = builder.synchString;</span>
+<span class="fc" id="L65">    this.synchVersion = builder.synchVersion;</span>
+<span class="fc" id="L66">    this.rhythmString = builder.rhythmString;</span>
+<span class="fc" id="L67">    this.rhythmVersion = builder.rhythmVersion;</span>
+<span class="fc" id="L68">  }</span>
+
+  /**
+   * Get the number of samples in the track. &lt;br&gt;
+   * The total number of samples is calculated by multiplying the duration of the track with the sample rate. &lt;br&gt;
+   *
+   * @return The total number of samples in the track.
+   */
+  public Long getNumSamples() {
+<span class="nc" id="L77">    return numSamples;</span>
+  }
+
+  /**
+   * Get the duration of the track in seconds.
+   *
+   * @return The duration of the track in seconds.
+   */
+  public Float getDuration() {
+<span class="nc" id="L86">    return duration;</span>
+  }
+
+  /**
+   * Get the sample MD5. &lt;br&gt;&lt;br&gt;
+   * &lt;p&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; The sample MD5 is &lt;b&gt;probably&lt;/b&gt; the MD5 of the track file. In the documentation of the Analyzer
+   * software, this field is mentioned in an example and contains a value, but it seems that audio analysis objects
+   * returned by the Spotify Web API doesn't include a value in the field anymore. &lt;br&gt;
+   *
+   * @return The sample MD5.
+   */
+  public String getSampleMd5() {
+<span class="nc" id="L99">    return sampleMd5;</span>
+  }
+
+  /**
+   * Get the offset seconds. &lt;br&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; There is no public documentation available for this field. &lt;br&gt;
+   *
+   * @return The offset seconds.
+   */
+  public Integer getOffsetSeconds() {
+<span class="nc" id="L109">    return offsetSeconds;</span>
+  }
+
+  /**
+   * Get the window seconds. &lt;br&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; There is no public documentation available for this field. &lt;br&gt;
+   *
+   * @return The window seconds.
+   */
+  public Integer getWindowSeconds() {
+<span class="nc" id="L119">    return windowSeconds;</span>
+  }
+
+  /**
+   * Get the sample rate in which the audio analysis was performed.
+   *
+   * @return The analysis sample rate.
+   */
+  public Long getAnalysisSampleRate() {
+<span class="nc" id="L128">    return analysisSampleRate;</span>
+  }
+
+  /**
+   * Get the analysis channels.
+   *
+   * @return The analysis channels.
+   */
+  public Integer getAnalysisChannels() {
+<span class="nc" id="L137">    return analysisChannels;</span>
+  }
+
+  /**
+   * Get the end of fade in introduction of the track.
+   *
+   * @return The end of fade in introduction in seconds.
+   */
+  public Float getEndOfFadeIn() {
+<span class="nc" id="L146">    return endOfFadeIn;</span>
+  }
+
+  /**
+   * Get the start of the fade out in seconds.
+   *
+   * @return The start of the fade out in seconds.
+   */
+  public Float getStartOfFadeOut() {
+<span class="nc" id="L155">    return startOfFadeOut;</span>
+  }
+
+  /**
+   * Get the average loudness of the track in decibels. These values are mostly in a range between -60 and 0 decibels.
+   *
+   * @return Average loudness of the track.
+   */
+  public Float getLoudness() {
+<span class="nc" id="L164">    return loudness;</span>
+  }
+
+  /**
+   * Get the estimated tempo of the track in beats per minute.
+   *
+   * @return The estimated tempo of the track.
+   */
+  public Float getTempo() {
+<span class="nc" id="L173">    return tempo;</span>
+  }
+
+  /**
+   * Get the tempo confidence of the track.
+   *
+   * @return The tempo confidence of the track.
+   */
+  public Float getTempoConfidence() {
+<span class="nc" id="L182">    return tempoConfidence;</span>
+  }
+
+  /**
+   * Get the estimated overall time signature of the track. The time signature (or meter) is the number of beats in a
+   * bar. &lt;br&gt;
+   * Example: A Viennese waltz has a three-quarters beat, so this method would return the value 3 in this case.
+   *
+   * @return Time signature value.
+   */
+  public Integer getTimeSignature() {
+<span class="nc" id="L193">    return timeSignature;</span>
+  }
+
+  /**
+   * Get the time signature confidence of the track.
+   *
+   * @return The time signature confidence.
+   */
+  public Float getTimeSignatureConfidence() {
+<span class="nc" id="L202">    return timeSignatureConfidence;</span>
+  }
+
+  /**
+   * Get the estimated main key of the track.
+   *
+   * @return Main key of the track.
+   * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Pitch_class&quot;&gt;Wikipedia: Pitch class notation&lt;/a&gt;
+   */
+  public Integer getKey() {
+<span class="nc" id="L212">    return key;</span>
+  }
+
+  /**
+   * Get the key confidence of the track.
+   *
+   * @return The key confidence of the track.
+   */
+  public Float getKeyConfidence() {
+<span class="nc" id="L221">    return keyConfidence;</span>
+  }
+
+  /**
+   * Get the modality of the track. (either &quot;major&quot; or &quot;minor&quot;)
+   *
+   * @return The modality type of the track.
+   * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Mode_(music)&quot;&gt;Wikipedia: Mode (music)&lt;/a&gt;
+   */
+  public Modality getMode() {
+<span class="fc" id="L231">    return mode;</span>
+  }
+
+  /**
+   * Get the modality confidence of the track.
+   *
+   * @return The modality confidence of the track.
+   */
+  public Float getModeConfidence() {
+<span class="nc" id="L240">    return modeConfidence;</span>
+  }
+
+  /**
+   * Get the code string of the track. &lt;br&gt;&lt;br&gt;
+   * &lt;p&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; The code string is a fingerprint computed on the audio and were used by the Echo Nest services for
+   * song identification, which are no longer available.
+   *
+   * @return The code string of the track.
+   */
+  public String getCodeString() {
+<span class="nc" id="L252">    return codeString;</span>
+  }
+
+  /**
+   * Get the version of the code string.
+   *
+   * @return The version of the code string.
+   */
+  public Float getCodeVersion() {
+<span class="nc" id="L261">    return codeVersion;</span>
+  }
+
+  /**
+   * Get the echoprint string of the track. &lt;br&gt;&lt;br&gt;
+   * &lt;p&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; The echoprint string is a fingerprint computed on the audio and were used by the Echo Nest services
+   * for song identification, which are no longer available.
+   *
+   * @return The echoprint string of the track.
+   */
+  public String getEchoprintString() {
+<span class="nc" id="L273">    return echoprintString;</span>
+  }
+
+  /**
+   * Get the version of the echoprint string.
+   *
+   * @return The version of the echoprint string.
+   */
+  public Float getEchoprintVersion() {
+<span class="nc" id="L282">    return echoprintVersion;</span>
+  }
+
+  /**
+   * Get the synch string of the track. &lt;br&gt;
+   * &lt;p&gt;
+   * It works with a simple synchronization algorithm to be implemented on the client side, which generates offset
+   * values in numbers of samples for 3 locations in the decoded waveform, the beginning, the middle, and the end. These
+   * offsets allow the client application to detect decoding errors (when offsets mismatch). They provide for synching
+   * with sample accuracy, the JSON timing data with the waveform, regardless of which mp3 decoder was used on the
+   * client side (quicktime, ffmpeg, mpg123, etc).
+   *
+   * @return The synch string.
+   */
+  public String getSynchString() {
+<span class="nc" id="L297">    return synchString;</span>
+  }
+
+  /**
+   * Get the version of the synch string.
+   *
+   * @return The synch string version.
+   */
+  public Float getSynchVersion() {
+<span class="nc" id="L306">    return synchVersion;</span>
+  }
+
+  /**
+   * Get the rhythm string of the track.
+   * &lt;p&gt;
+   *
+   * @return The rhythm string of the track.
+   */
+  public String getRhythmString() {
+<span class="nc" id="L316">    return rhythmString;</span>
+  }
+
+  /**
+   * Get the version of the rhythm string.
+   *
+   * @return The rhythm string version.
+   */
+  public Float getRhythmVersion() {
+<span class="nc" id="L325">    return rhythmVersion;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L330">    return &quot;AudioAnalysisTrack(numSamples=&quot; + numSamples + &quot;, duration=&quot; + duration + &quot;, sampleMd5=&quot; + sampleMd5</span>
+        + &quot;, offsetSeconds=&quot; + offsetSeconds + &quot;, windowSeconds=&quot; + windowSeconds + &quot;, analysisSampleRate=&quot;
+        + analysisSampleRate + &quot;, analysisChannels=&quot; + analysisChannels + &quot;, endOfFadeIn=&quot; + endOfFadeIn
+        + &quot;, startOfFadeOut=&quot; + startOfFadeOut + &quot;, loudness=&quot; + loudness + &quot;, tempo=&quot; + tempo + &quot;, tempoConfidence=&quot;
+        + tempoConfidence + &quot;, timeSignature=&quot; + timeSignature + &quot;, timeSignatureConfidence=&quot; + timeSignatureConfidence
+        + &quot;, key=&quot; + key + &quot;, keyConfidence=&quot; + keyConfidence + &quot;, mode=&quot; + mode + &quot;, modeConfidence=&quot; + modeConfidence
+        + &quot;, codeString=&quot; + codeString + &quot;, codeVersion=&quot; + codeVersion + &quot;, echoprintString=&quot; + echoprintString
+        + &quot;, echoprintVersion=&quot; + echoprintVersion + &quot;, synchString=&quot; + synchString + &quot;, synchVersion=&quot; + synchVersion
+        + &quot;, rhythmString=&quot; + rhythmString + &quot;, rhythmVersion=&quot; + rhythmVersion + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L343">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link AudioAnalysisTrack} instances.
+   */
+<span class="fc" id="L349">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private Long numSamples;
+    private Float duration;
+    private String sampleMd5;
+    private Integer offsetSeconds;
+    private Integer windowSeconds;
+    private Long analysisSampleRate;
+    private Integer analysisChannels;
+    private Float endOfFadeIn;
+    private Float startOfFadeOut;
+    private Float loudness;
+    private Float tempo;
+    private Float tempoConfidence;
+    private Integer timeSignature;
+    private Float timeSignatureConfidence;
+    private Integer key;
+    private Float keyConfidence;
+    private Modality mode;
+    private Float modeConfidence;
+    private String codeString;
+    private Float codeVersion;
+    private String echoprintString;
+    private Float echoprintVersion;
+    private String synchString;
+    private Float synchVersion;
+    private String rhythmString;
+    private Float rhythmVersion;
+
+    /**
+     * The sample number setter.
+     *
+     * @param numSamples The total number of samples in the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setNumSamples(Long numSamples) {
+<span class="fc" id="L384">      this.numSamples = numSamples;</span>
+<span class="fc" id="L385">      return this;</span>
+    }
+
+    /**
+     * The track duration setter.
+     *
+     * @param duration The duration of the track in seconds.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setDuration(Float duration) {
+<span class="fc" id="L395">      this.duration = duration;</span>
+<span class="fc" id="L396">      return this;</span>
+    }
+
+    /**
+     * The sample MD5 setter.
+     *
+     * @param sampleMd5 The sample MD5.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setSampleMd5(String sampleMd5) {
+<span class="fc" id="L406">      this.sampleMd5 = sampleMd5;</span>
+<span class="fc" id="L407">      return this;</span>
+    }
+
+    /**
+     * The offset seconds setter.
+     *
+     * @param offsetSeconds The offset seconds.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setOffsetSeconds(Integer offsetSeconds) {
+<span class="fc" id="L417">      this.offsetSeconds = offsetSeconds;</span>
+<span class="fc" id="L418">      return this;</span>
+    }
+
+    /**
+     * The window seconds setter.
+     *
+     * @param windowSeconds The window seconds.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setWindowSeconds(Integer windowSeconds) {
+<span class="fc" id="L428">      this.windowSeconds = windowSeconds;</span>
+<span class="fc" id="L429">      return this;</span>
+    }
+
+    /**
+     * The analysis sample rate setter.
+     *
+     * @param analysisSampleRate The analysis sample rate.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setAnalysisSampleRate(Long analysisSampleRate) {
+<span class="fc" id="L439">      this.analysisSampleRate = analysisSampleRate;</span>
+<span class="fc" id="L440">      return this;</span>
+    }
+
+    /**
+     * The analysis channels setter.
+     *
+     * @param analysisChannels The analysis channels.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setAnalysisChannels(Integer analysisChannels) {
+<span class="fc" id="L450">      this.analysisChannels = analysisChannels;</span>
+<span class="fc" id="L451">      return this;</span>
+    }
+
+    /**
+     * The end of fade in introduction setter.
+     *
+     * @param endOfFadeIn The end of fade in introduction in seconds.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setEndOfFadeIn(Float endOfFadeIn) {
+<span class="fc" id="L461">      this.endOfFadeIn = endOfFadeIn;</span>
+<span class="fc" id="L462">      return this;</span>
+    }
+
+    /**
+     * The start of fade out setter.
+     *
+     * @param startOfFadeOut The start of the fade out in seconds.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setStartOfFadeOut(Float startOfFadeOut) {
+<span class="fc" id="L472">      this.startOfFadeOut = startOfFadeOut;</span>
+<span class="fc" id="L473">      return this;</span>
+    }
+
+    /**
+     * The average loudness setter.
+     *
+     * @param loudness Average loudness of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setLoudness(Float loudness) {
+<span class="fc" id="L483">      this.loudness = loudness;</span>
+<span class="fc" id="L484">      return this;</span>
+    }
+
+    /**
+     * The estimated tempo setter.
+     *
+     * @param tempo The estimated tempo of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setTempo(Float tempo) {
+<span class="fc" id="L494">      this.tempo = tempo;</span>
+<span class="fc" id="L495">      return this;</span>
+    }
+
+    /**
+     * The tempo confidence setter.
+     *
+     * @param tempoConfidence The tempo confidence of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setTempoConfidence(Float tempoConfidence) {
+<span class="fc" id="L505">      this.tempoConfidence = tempoConfidence;</span>
+<span class="fc" id="L506">      return this;</span>
+    }
+
+    /**
+     * The time signature setter.
+     *
+     * @param timeSignature Time signature value.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setTimeSignature(Integer timeSignature) {
+<span class="fc" id="L516">      this.timeSignature = timeSignature;</span>
+<span class="fc" id="L517">      return this;</span>
+    }
+
+    /**
+     * The time signature confidence setter.
+     *
+     * @param timeSignatureConfidence The time signature confidence.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setTimeSignatureConfidence(Float timeSignatureConfidence) {
+<span class="fc" id="L527">      this.timeSignatureConfidence = timeSignatureConfidence;</span>
+<span class="fc" id="L528">      return this;</span>
+    }
+
+    /**
+     * The track key setter.
+     *
+     * @param key Main key of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setKey(Integer key) {
+<span class="fc" id="L538">      this.key = key;</span>
+<span class="fc" id="L539">      return this;</span>
+    }
+
+    /**
+     * The key confidence setter.
+     *
+     * @param keyConfidence The key confidence of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setKeyConfidence(Float keyConfidence) {
+<span class="fc" id="L549">      this.keyConfidence = keyConfidence;</span>
+<span class="fc" id="L550">      return this;</span>
+    }
+
+    /**
+     * The track modality setter.
+     *
+     * @param mode The modality type of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setMode(Modality mode) {
+<span class="fc" id="L560">      this.mode = mode;</span>
+<span class="fc" id="L561">      return this;</span>
+    }
+
+    /**
+     * The modality confidence setter.
+     *
+     * @param modeConfidence The modality confidence of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setModeConfidence(Float modeConfidence) {
+<span class="fc" id="L571">      this.modeConfidence = modeConfidence;</span>
+<span class="fc" id="L572">      return this;</span>
+    }
+
+    /**
+     * The code string setter.
+     *
+     * @param codeString The code string of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setCodeString(String codeString) {
+<span class="fc" id="L582">      this.codeString = codeString;</span>
+<span class="fc" id="L583">      return this;</span>
+    }
+
+    /**
+     * The code string version setter.
+     *
+     * @param codeVersion The version of the code string.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setCodeVersion(Float codeVersion) {
+<span class="fc" id="L593">      this.codeVersion = codeVersion;</span>
+<span class="fc" id="L594">      return this;</span>
+    }
+
+    /**
+     * The echoprint string setter.
+     *
+     * @param echoprintString The echoprint string of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setEchoprintString(String echoprintString) {
+<span class="fc" id="L604">      this.echoprintString = echoprintString;</span>
+<span class="fc" id="L605">      return this;</span>
+    }
+
+    /**
+     * The echoprint string version setter.
+     *
+     * @param echoprintVersion The version of the echoprint string.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setEchoprintVersion(Float echoprintVersion) {
+<span class="fc" id="L615">      this.echoprintVersion = echoprintVersion;</span>
+<span class="fc" id="L616">      return this;</span>
+    }
+
+    /**
+     * The synch string setter.
+     *
+     * @param synchString The synch string.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setSynchString(String synchString) {
+<span class="fc" id="L626">      this.synchString = synchString;</span>
+<span class="fc" id="L627">      return this;</span>
+    }
+
+    /**
+     * The synch string version setter.
+     *
+     * @param synchVersion The synch string version.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setSynchVersion(Float synchVersion) {
+<span class="fc" id="L637">      this.synchVersion = synchVersion;</span>
+<span class="fc" id="L638">      return this;</span>
+    }
+
+    /**
+     * The rhythm string setter.
+     *
+     * @param rhythmString The rhythm string of the track.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setRhythmString(String rhythmString) {
+<span class="fc" id="L648">      this.rhythmString = rhythmString;</span>
+<span class="fc" id="L649">      return this;</span>
+    }
+
+    /**
+     * The rhythm string version setter.
+     *
+     * @param rhythmVersion The rhythm string version.
+     * @return An {@link AudioAnalysisTrack.Builder}.
+     */
+    public Builder setRhythmVersion(Float rhythmVersion) {
+<span class="fc" id="L659">      this.rhythmVersion = rhythmVersion;</span>
+<span class="fc" id="L660">      return this;</span>
+    }
+
+    @Override
+    public AudioAnalysisTrack build() {
+<span class="fc" id="L665">      return new AudioAnalysisTrack(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link AudioAnalysisTrack} instances.
+   */
+<span class="fc" id="L672">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;AudioAnalysisTrack&gt; {</span>
+    public AudioAnalysisTrack createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L674" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L675">        return null;</span>
+      }
+
+<span class="fc" id="L678">      return new AudioAnalysisTrack.Builder()</span>
+<span class="fc" id="L679">        .setAnalysisChannels(</span>
+<span class="pc bpc" id="L680" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;analysis_channels&quot;)</span>
+<span class="fc" id="L681">            ? jsonObject.get(&quot;analysis_channels&quot;).getAsInt()</span>
+<span class="nc" id="L682">            : null)</span>
+<span class="fc" id="L683">        .setAnalysisSampleRate(</span>
+<span class="pc bpc" id="L684" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;analysis_sample_rate&quot;)</span>
+<span class="fc" id="L685">            ? jsonObject.get(&quot;analysis_sample_rate&quot;).getAsLong()</span>
+<span class="nc" id="L686">            : null)</span>
+<span class="fc" id="L687">        .setCodeString(</span>
+<span class="pc bpc" id="L688" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;code_string&quot;)</span>
+<span class="nc" id="L689">            ? jsonObject.get(&quot;code_string&quot;).getAsString()</span>
+<span class="fc" id="L690">            : null)</span>
+<span class="fc" id="L691">        .setCodeVersion(</span>
+<span class="pc bpc" id="L692" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;code_version&quot;)</span>
+<span class="fc" id="L693">            ? jsonObject.get(&quot;code_version&quot;).getAsFloat()</span>
+<span class="nc" id="L694">            : null)</span>
+<span class="fc" id="L695">        .setDuration(</span>
+<span class="pc bpc" id="L696" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;duration&quot;)</span>
+<span class="fc" id="L697">            ? jsonObject.get(&quot;duration&quot;).getAsFloat()</span>
+<span class="nc" id="L698">            : null)</span>
+<span class="fc" id="L699">        .setEchoprintString(</span>
+<span class="pc bpc" id="L700" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;echoprintstring&quot;)</span>
+<span class="fc" id="L701">            ? jsonObject.get(&quot;echoprintstring&quot;).getAsString()</span>
+<span class="nc" id="L702">            : null)</span>
+<span class="fc" id="L703">        .setEchoprintVersion(</span>
+<span class="pc bpc" id="L704" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;echoprint_version&quot;)</span>
+<span class="fc" id="L705">            ? jsonObject.get(&quot;echoprint_version&quot;).getAsFloat()</span>
+<span class="nc" id="L706">            : null)</span>
+<span class="fc" id="L707">        .setEndOfFadeIn(</span>
+<span class="pc bpc" id="L708" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;end_of_face_in&quot;)</span>
+<span class="nc" id="L709">            ? jsonObject.get(&quot;end_of_face_in&quot;).getAsFloat()</span>
+<span class="fc" id="L710">            : null)</span>
+<span class="fc" id="L711">        .setKey(</span>
+<span class="pc bpc" id="L712" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;key&quot;)</span>
+<span class="fc" id="L713">            ? jsonObject.get(&quot;key&quot;).getAsInt()</span>
+<span class="nc" id="L714">            : null)</span>
+<span class="fc" id="L715">        .setKeyConfidence(</span>
+<span class="pc bpc" id="L716" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;key_confidence&quot;)</span>
+<span class="fc" id="L717">            ? jsonObject.get(&quot;key_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L718">            : null)</span>
+<span class="fc" id="L719">        .setLoudness(</span>
+<span class="pc bpc" id="L720" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;loudness&quot;)</span>
+<span class="fc" id="L721">            ? jsonObject.get(&quot;loudness&quot;).getAsFloat()</span>
+<span class="nc" id="L722">            : null)</span>
+<span class="fc" id="L723">        .setMode(</span>
+<span class="pc bpc" id="L724" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;mode&quot;)</span>
+<span class="fc" id="L725">            ? Modality.keyOf(</span>
+<span class="fc" id="L726">            jsonObject.get(&quot;mode&quot;).getAsInt())</span>
+<span class="nc" id="L727">            : null)</span>
+<span class="fc" id="L728">        .setModeConfidence(</span>
+<span class="pc bpc" id="L729" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;mode_confidence&quot;)</span>
+<span class="fc" id="L730">            ? jsonObject.get(&quot;mode_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L731">            : null)</span>
+<span class="fc" id="L732">        .setNumSamples(</span>
+<span class="pc bpc" id="L733" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;num_samples&quot;)</span>
+<span class="fc" id="L734">            ? jsonObject.get(&quot;num_samples&quot;).getAsLong()</span>
+<span class="nc" id="L735">            : null)</span>
+<span class="fc" id="L736">        .setOffsetSeconds(</span>
+<span class="pc bpc" id="L737" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;offset_seconds&quot;)</span>
+<span class="fc" id="L738">            ? jsonObject.get(&quot;offset_seconds&quot;).getAsInt()</span>
+<span class="nc" id="L739">            : null)</span>
+<span class="fc" id="L740">        .setRhythmString(</span>
+<span class="pc bpc" id="L741" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;rhythmstring&quot;)</span>
+<span class="fc" id="L742">            ? jsonObject.get(&quot;rhythmstring&quot;).getAsString()</span>
+<span class="nc" id="L743">            : null)</span>
+<span class="fc" id="L744">        .setRhythmVersion(</span>
+<span class="pc bpc" id="L745" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;rhythm_version&quot;)</span>
+<span class="fc" id="L746">            ? jsonObject.get(&quot;rhythm_version&quot;).getAsFloat()</span>
+<span class="nc" id="L747">            : null)</span>
+<span class="fc" id="L748">        .setSampleMd5(</span>
+<span class="pc bpc" id="L749" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;sample_md5&quot;)</span>
+<span class="fc" id="L750">            ? jsonObject.get(&quot;sample_md5&quot;).getAsString()</span>
+<span class="nc" id="L751">            : null)</span>
+<span class="fc" id="L752">        .setStartOfFadeOut(</span>
+<span class="pc bpc" id="L753" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;start_of_fade_out&quot;)</span>
+<span class="fc" id="L754">            ? jsonObject.get(&quot;start_of_fade_out&quot;).getAsFloat()</span>
+<span class="nc" id="L755">            : null)</span>
+<span class="fc" id="L756">        .setSynchString(</span>
+<span class="pc bpc" id="L757" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;synchstring&quot;)</span>
+<span class="fc" id="L758">            ? jsonObject.get(&quot;synchstring&quot;).getAsString()</span>
+<span class="nc" id="L759">            : null)</span>
+<span class="fc" id="L760">        .setSynchVersion(</span>
+<span class="pc bpc" id="L761" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;synch_version&quot;)</span>
+<span class="fc" id="L762">            ? jsonObject.get(&quot;synch_version&quot;).getAsFloat()</span>
+<span class="nc" id="L763">            : null)</span>
+<span class="fc" id="L764">        .setTempo(</span>
+<span class="pc bpc" id="L765" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;tempo&quot;)</span>
+<span class="fc" id="L766">            ? jsonObject.get(&quot;tempo&quot;).getAsFloat()</span>
+<span class="nc" id="L767">            : null)</span>
+<span class="fc" id="L768">        .setTempoConfidence(</span>
+<span class="pc bpc" id="L769" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;tempo_confidence&quot;)</span>
+<span class="fc" id="L770">            ? jsonObject.get(&quot;tempo_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L771">            : null)</span>
+<span class="fc" id="L772">        .setTimeSignature(</span>
+<span class="pc bpc" id="L773" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;time_signature&quot;)</span>
+<span class="fc" id="L774">            ? jsonObject.get(&quot;time_signature&quot;).getAsInt()</span>
+<span class="nc" id="L775">            : null)</span>
+<span class="fc" id="L776">        .setTimeSignatureConfidence(</span>
+<span class="pc bpc" id="L777" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;time_signature_confidence&quot;)</span>
+<span class="fc" id="L778">            ? jsonObject.get(&quot;time_signature_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L779">            : null)</span>
+<span class="fc" id="L780">        .setWindowSeconds(</span>
+<span class="pc bpc" id="L781" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;windows_seconds&quot;)</span>
+<span class="nc" id="L782">            ? jsonObject.get(&quot;windows_seconds&quot;).getAsInt()</span>
+<span class="fc" id="L783">            : null)</span>
+<span class="fc" id="L784">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

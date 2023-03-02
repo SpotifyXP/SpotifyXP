@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetCategoryRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.browse</a> &gt; <span class="el_source">GetCategoryRequest.java</span></div><h1>GetCategoryRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.browse;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.neovisionaries.i18n.CountryCode;
+import com.neovisionaries.i18n.LanguageCode;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.Category;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get a single category used to tag items in Spotify (on, for example, the Spotify player’s &quot;Browse&quot; tab).
+ */
+@JsonDeserialize(builder = GetCategoryRequest.Builder.class)
+public class GetCategoryRequest extends AbstractDataRequest&lt;Category&gt; {
+
+  /**
+   * The private {@link GetCategoryRequest} constructor.
+   *
+   * @param builder A {@link GetCategoryRequest.Builder}.
+   */
+  private GetCategoryRequest(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+<span class="fc" id="L26">  }</span>
+
+  /**
+   * Get a {@link Category}.
+   *
+   * @return A {@link Category}.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public Category execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L39">    return new Category.JsonUtil().createModelObject(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetCategoryRequest}.
+   */
+<span class="fc" id="L45">  public static final class Builder extends AbstractDataRequest.Builder&lt;Category, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetCategoryRequest.Builder} instance.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L53">      super(accessToken);</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * The category ID setter.
+     *
+     * @param category_id The Spotify category ID for the category.
+     * @return A {@link GetCategoryRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder category_id(final String category_id) {
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">      assert (category_id != null);</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">      assert (category_id.matches(&quot;^[a-z]+$&quot;));</span>
+<span class="fc" id="L66">      return setPathParameter(&quot;category_id&quot;, category_id);</span>
+    }
+
+    /**
+     * The country code setter.
+     *
+     * @param country Optional. A country: an ISO 3166-1 alpha-2 country code. Provide this parameter if you want to
+     *                narrow the list of returned categories to those relevant to a particular country. If omitted, the
+     *                returned items will be globally relevant.
+     * @return A {@link GetCategoryRequest.Builder}.
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     */
+    public Builder country(final CountryCode country) {
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">      assert (country != null);</span>
+<span class="fc" id="L80">      return setQueryParameter(&quot;country&quot;, country);</span>
+    }
+
+    /**
+     * The language code setter.
+     *
+     * @param locale Optional. The desired language, consisting of an ISO 639 language code and an ISO 3166-1 alpha-2
+     *               country code, joined by an underscore. For example: es_MX, meaning &quot;Spanish (Mexico)&quot;. Provide this
+     *               parameter if you want the category metadata returned in a particular language. Note that, if locale
+     *               is not supplied, or if the specified language is not available, all strings will be returned in the
+     *               Spotify default language (American English). The locale parameter, combined with the country
+     *               parameter, may give odd results if not carefully matched. For example
+     *               {@code country=SE&amp;locale=de_DE} will return a list of categories relevant to Sweden but as German
+     *               language strings.
+     * @return A {@link GetCategoryRequest.Builder}
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_639&quot;&gt;Wikipedia: ISO 639 language code&lt;/a&gt;
+     */
+    public Builder locale(final String locale) {
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">      assert (locale != null);</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">      assert (locale.contains(&quot;_&quot;));</span>
+<span class="fc" id="L101">      String[] localeParts = locale.split(&quot;_&quot;);</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">      assert (localeParts.length == 2);</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">      assert (LanguageCode.getByCode(localeParts[0]) != null);</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">      assert (CountryCode.getByCode(localeParts[1]) != null);</span>
+<span class="fc" id="L105">      return setQueryParameter(&quot;locale&quot;, locale);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetCategoryRequest}.
+     */
+    @Override
+    public GetCategoryRequest build() {
+<span class="fc" id="L115">      setPath(&quot;/v1/browse/categories/{category_id}&quot;);</span>
+<span class="fc" id="L116">      return new GetCategoryRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L121">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Modality.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.enums</a> &gt; <span class="el_source">Modality.java</span></div><h1>Modality.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * An enumeration with the two modality types.
+ *
+ * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Mode_(music)&quot;&gt;Wikipedia: Mode (Music)&lt;/a&gt;
+ */
+<span class="fc" id="L11">public enum Modality {</span>
+
+<span class="fc" id="L13">  MAJOR(1),</span>
+<span class="fc" id="L14">  MINOR(0);</span>
+
+<span class="fc" id="L16">  private static final Map&lt;Integer, Modality&gt; map = new HashMap&lt;&gt;();</span>
+
+  static {
+<span class="fc bfc" id="L19" title="All 2 branches covered.">    for (Modality modality : Modality.values()) {</span>
+<span class="fc" id="L20">      map.put(modality.mode, modality);</span>
+    }
+<span class="fc" id="L22">  }</span>
+
+  public final int mode;
+
+<span class="fc" id="L26">  Modality(final int mode) {</span>
+<span class="fc" id="L27">    this.mode = mode;</span>
+<span class="fc" id="L28">  }</span>
+
+  public static Modality keyOf(int mode) {
+<span class="fc" id="L31">    return map.get(mode);</span>
+  }
+
+  /**
+   * Get the {@link Modality} type as a string.
+   *
+   * @return {@link Modality} type as a string.
+   */
+  public int getType() {
+<span class="nc" id="L40">    return this.mode;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

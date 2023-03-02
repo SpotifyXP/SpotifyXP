@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FollowPlaylistRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.follow.legacy</a> &gt; <span class="el_source">FollowPlaylistRequest.java</span></div><h1>FollowPlaylistRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.follow.legacy;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Add the current user as a follower of a playlist.
+ */
+@JsonDeserialize(builder = FollowPlaylistRequest.Builder.class)
+public class FollowPlaylistRequest extends AbstractDataRequest&lt;String&gt; {
+
+  /**
+   * The private {@link FollowPlaylistRequest} constructor.
+   *
+   * @param builder A {@link FollowPlaylistRequest.Builder}.
+   */
+  private FollowPlaylistRequest(final Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Follow a playlist.
+   *
+   * @return A string. &lt;b&gt;Note:&lt;/b&gt; This endpoint doesn't return something in its response body.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public String execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return putJson();</span>
+  }
+
+  /**
+   * Builder class for building a {@link FollowPlaylistRequest}.
+   */
+<span class="fc" id="L43">  public static final class Builder extends AbstractDataRequest.Builder&lt;String, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link FollowPlaylistRequest} instance.
+     * &lt;p&gt;
+     * Following a playlist publicly requires authorization of the {@code playlist-modify-public} scope; following it
+     * privately requires the {@code playlist-modify-private} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L55">      super(accessToken);</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * The playlist owner ID setter.
+     *
+     * @param owner_id The Spotify user ID of the person who owns the playlist.
+     * @return A {@link FollowPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder owner_id(final String owner_id) {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">      assert (owner_id != null);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (!owner_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L68">      return setPathParameter(&quot;owner_id&quot;, owner_id);</span>
+    }
+
+    /**
+     * The playlist ID setter.
+     *
+     * @param playlist_id The Spotify ID of the playlist. Any playlist can be followed, regardless of its public/private
+     *                    status, as long as you know its playlist ID.
+     * @return A {@link FollowPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder playlist_id(final String playlist_id) {
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">      assert (playlist_id != null);</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">      assert (!playlist_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L82">      return setPathParameter(&quot;playlist_id&quot;, playlist_id);</span>
+    }
+
+    /**
+     * The public following state setter.
+     *
+     * @param public_ Optional, default {@code true}. If {@code true} the playlist will be included in user's public
+     *                playlists, if {@code false} it will remain private. To be able to follow playlists privately, the
+     *                user must have granted the {@code playlist-modify-private} scope.
+     * @return A {@link FollowPlaylistRequest.Builder}.
+     */
+    public Builder public_(final Boolean public_) {
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">      assert (public_ != null);</span>
+<span class="fc" id="L95">      return setBodyParameter(&quot;public&quot;, public_);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link FollowPlaylistRequest}.
+     */
+    @Override
+    public FollowPlaylistRequest build() {
+<span class="fc" id="L105">      setContentType(ContentType.APPLICATION_JSON);</span>
+<span class="fc" id="L106">      setPath(&quot;/v1/users/{owner_id}/playlists/{playlist_id}/followers&quot;);</span>
+<span class="fc" id="L107">      return new FollowPlaylistRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L112">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

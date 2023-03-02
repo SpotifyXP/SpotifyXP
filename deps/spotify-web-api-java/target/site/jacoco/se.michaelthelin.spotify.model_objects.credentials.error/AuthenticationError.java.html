@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthenticationError.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.credentials.error</a> &gt; <span class="el_source">AuthenticationError.java</span></div><h1>AuthenticationError.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.credentials.error;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.util.Objects;
+
+/**
+ * Retrieve information about Authorization Error objects by building instances from this class.
+ *
+ * @see &lt;a href=&quot;https://developer.spotify.com/web-api/authorization-guide/&quot;&gt;Spotify: Authorization Guide&lt;/a&gt;
+ */
+@JsonDeserialize(builder = AuthenticationError.Builder.class)
+public class AuthenticationError extends AbstractModelObject {
+  private final String error;
+  private final String error_description;
+
+  private AuthenticationError(final Builder builder) {
+<span class="nc" id="L20">    super(builder);</span>
+
+<span class="nc" id="L22">    this.error = builder.error;</span>
+<span class="nc" id="L23">    this.error_description = builder.error_description;</span>
+<span class="nc" id="L24">  }</span>
+
+  /**
+   * Get the high level description of the error as specified in
+   * &lt;a href=&quot;https://tools.ietf.org/html/rfc6749#section-5.2&quot;&gt;RFC 6749 Section 5.2&lt;/a&gt;.
+   *
+   * @return A high level description of the error as specified in RFC 6749 Section 5.2.
+   */
+  public String getError() {
+<span class="nc" id="L33">    return error;</span>
+  }
+
+  /**
+   * Get the more detailed description of the error as specified in
+   * &lt;a href=&quot;https://tools.ietf.org/html/rfc6749#section-4.1.2.1&quot;&gt;RFC 6749 Section 4.1.2.1&lt;/a&gt;.
+   *
+   * @return string    A more detailed description of the error as specified in RFC 6749 Section 4.1.2.1.
+   */
+  public String getError_description() {
+<span class="nc" id="L43">    return error_description;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L48">    return &quot;AuthenticationError(error=&quot; + error + &quot;, error_description=&quot; + error_description + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L53">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link AuthenticationError} instances.
+   */
+<span class="nc" id="L59">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String error;
+    private String error_description;
+
+    /**
+     * The error setter.
+     *
+     * @param error A high level description of the error as specified in RFC 6749 Section 5.2.
+     * @return An {@link AuthenticationError.Builder}.
+     */
+    public Builder setError(String error) {
+<span class="nc" id="L70">      this.error = error;</span>
+<span class="nc" id="L71">      return this;</span>
+    }
+
+    /**
+     * The error description setter.
+     *
+     * @param error_description A more detailed description of the error as specified in RFC 6749 Section 4.1.2.1.
+     * @return An {@link AuthenticationError.Builder}.
+     */
+    public Builder setError_description(String error_description) {
+<span class="nc" id="L81">      this.error_description = error_description;</span>
+<span class="nc" id="L82">      return this;</span>
+    }
+
+    @Override
+    public AuthenticationError build() {
+<span class="nc" id="L87">      return new AuthenticationError(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link AuthenticationError} instances.
+   */
+<span class="nc" id="L94">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;AuthenticationError&gt; {</span>
+    public AuthenticationError createModelObject(JsonObject jsonObject) {
+<span class="nc bnc" id="L96" title="All 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L97">        return null;</span>
+      }
+
+<span class="nc" id="L100">      return new AuthenticationError.Builder()</span>
+<span class="nc" id="L101">        .setError(</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;error&quot;)</span>
+<span class="nc" id="L103">            ? jsonObject.get(&quot;error&quot;).getAsString()</span>
+<span class="nc" id="L104">            : null)</span>
+<span class="nc" id="L105">        .setError_description(</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">          hasAndNotNull(jsonObject, &quot;error_description&quot;)</span>
+<span class="nc" id="L107">            ? jsonObject.get(&quot;error_description&quot;).getAsString()</span>
+<span class="nc" id="L108">            : null)</span>
+<span class="nc" id="L109">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L116">      return true;</span>
+    }
+<span class="nc bnc" id="L118" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L119">      return false;</span>
+    }
+<span class="nc" id="L121">    AuthenticationError that = (AuthenticationError) o;</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">    return Objects.equals(error, that.error) &amp;&amp; Objects.equals(error_description, that.error_description);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L127">    return Objects.hash(error, error_description);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

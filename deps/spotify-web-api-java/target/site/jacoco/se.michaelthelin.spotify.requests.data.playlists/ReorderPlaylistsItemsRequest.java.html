@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReorderPlaylistsItemsRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.playlists</a> &gt; <span class="el_source">ReorderPlaylistsItemsRequest.java</span></div><h1>ReorderPlaylistsItemsRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.playlists;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.special.SnapshotResult;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Reorder an item or a group of items in a playlist.
+ * &lt;p&gt;
+ * When reordering items, the timestamp indicating when they were added and the user who added them will
+ * be kept untouched. In addition, the users following the playlists won’t be notified about changes in
+ * the playlists when the items are reordered.
+ */
+@JsonDeserialize(builder = ReorderPlaylistsItemsRequest.Builder.class)
+public class ReorderPlaylistsItemsRequest extends AbstractDataRequest&lt;SnapshotResult&gt; {
+
+  /**
+   * The private {@link ReorderPlaylistsItemsRequest} constructor.
+   *
+   * @param builder A {@link ReorderPlaylistsItemsRequest.Builder}.
+   */
+  private ReorderPlaylistsItemsRequest(final Builder builder) {
+<span class="fc" id="L28">    super(builder);</span>
+<span class="fc" id="L29">  }</span>
+
+  /**
+   * Reorder the items in a playlist.
+   *
+   * @return A playlist snapshot ID. The snapshot ID can be used to identify your playlist version in future requests.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   * @see &lt;a href=&quot;https://developer.spotify.com/web-api/working-with-playlists/#version-control-and-snapshots&quot;&gt;
+   * Spotify: Version Control and Snapshots&lt;/a&gt;
+   */
+  public SnapshotResult execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L44">    return new SnapshotResult.JsonUtil().createModelObject(putJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link ReorderPlaylistsItemsRequest}.
+   */
+<span class="fc" id="L50">  public static final class Builder extends AbstractDataRequest.Builder&lt;SnapshotResult, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link ReorderPlaylistsItemsRequest.Builder}.
+     * &lt;p&gt;
+     * Reordering items in the current user's public playlists requires authorization of the
+     * {@code playlist-modify-public} scope; reordering items in the current user's private playlist (including
+     * collaborative playlists) requires the {@code playlist-modify-private} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L63">      super(accessToken);</span>
+<span class="fc" id="L64">    }</span>
+
+    /**
+     * The playlist ID setter.
+     *
+     * @param playlist_id The Spotify ID for the playlist.
+     * @return A {@link ReorderPlaylistsItemsRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder playlist_id(final String playlist_id) {
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">      assert (playlist_id != null);</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">      assert (!playlist_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L76">      return setPathParameter(&quot;playlist_id&quot;, playlist_id);</span>
+    }
+
+    /**
+     * The range start setter.
+     *
+     * @param range_start Required. The position of the first item to be reordered.
+     * @return A {@link ReorderPlaylistsItemsRequest.Builder}.
+     */
+    public Builder range_start(final Integer range_start) {
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">      assert (range_start != null);</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">      assert (range_start &gt;= 0);</span>
+<span class="fc" id="L88">      return setBodyParameter(&quot;range_start&quot;, range_start);</span>
+    }
+
+    /**
+     * The range length setter.
+     *
+     * @param range_length Optional. The amount of items to be reordered. Defaults to 1 if not set.
+     * @return A {@link ReorderPlaylistsItemsRequest.Builder}.
+     */
+    public Builder range_length(final Integer range_length) {
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">      assert (range_length != null);</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">      assert (range_length &gt;= 1);</span>
+<span class="fc" id="L100">      return setBodyParameter(&quot;range_length&quot;, range_length);</span>
+    }
+
+    /**
+     * The insert before setter.
+     *
+     * @param insert_before Required. The position where the items should be inserted. To reorder the items to the
+     *                      end of the playlist, simply set insert_before to the position after the last item.
+     * @return A {@link ReorderPlaylistsItemsRequest.Builder}.
+     */
+    public Builder insert_before(final Integer insert_before) {
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">      assert (insert_before != null);</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">      assert (insert_before &gt;= 0);</span>
+<span class="fc" id="L113">      return setBodyParameter(&quot;insert_before&quot;, insert_before);</span>
+    }
+
+    /**
+     * The playlist snapshot ID setter.
+     *
+     * @param snapshot_id Optional. The playlist's snapshot ID against which you want to make the changes.
+     * @return A {@link ReorderPlaylistsItemsRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/working-with-playlists/#version-control-and-snapshots&quot;&gt;
+     * Spotify: Version Control and Snapshots&lt;/a&gt;
+     */
+    public Builder snapshot_id(final String snapshot_id) {
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">      assert (snapshot_id != null);</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">      assert (!snapshot_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L127">      return setBodyParameter(&quot;snapshot_id&quot;, snapshot_id);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link ReorderPlaylistsItemsRequest}.
+     */
+    @Override
+    public ReorderPlaylistsItemsRequest build() {
+<span class="fc" id="L137">      setContentType(ContentType.APPLICATION_JSON);</span>
+<span class="fc" id="L138">      setPath(&quot;/v1/playlists/{playlist_id}/tracks&quot;);</span>
+<span class="fc" id="L139">      return new ReorderPlaylistsItemsRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L144">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

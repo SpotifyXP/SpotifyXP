@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AudioAnalysisMeta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.miscellaneous</a> &gt; <span class="el_source">AudioAnalysisMeta.java</span></div><h1>AudioAnalysisMeta.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.miscellaneous;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about Audio Analysis Metadata objects by creating instances from this class. &lt;br&gt;
+ * These objects only contain metadata created by the Analyzer software.
+ */
+@JsonDeserialize(builder = AudioAnalysisMeta.Builder.class)
+public class AudioAnalysisMeta extends AbstractModelObject {
+  private final String analyzerVersion;
+  private final String platform;
+  private final String detailedStatus;
+  private final Integer statusCode;
+  private final Long timestamp;
+  private final Float analysisTime;
+  private final String inputProcess;
+
+  private AudioAnalysisMeta(final Builder builder) {
+<span class="fc" id="L22">    super(builder);</span>
+
+<span class="fc" id="L24">    this.analyzerVersion = builder.analyzerVersion;</span>
+<span class="fc" id="L25">    this.platform = builder.platform;</span>
+<span class="fc" id="L26">    this.detailedStatus = builder.detailedStatus;</span>
+<span class="fc" id="L27">    this.statusCode = builder.statusCode;</span>
+<span class="fc" id="L28">    this.timestamp = builder.timestamp;</span>
+<span class="fc" id="L29">    this.analysisTime = builder.analysisTime;</span>
+<span class="fc" id="L30">    this.inputProcess = builder.inputProcess;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Get the version of the Analyzer software, which is used to create audio analysis data.
+   *
+   * @return Analyzer software version.
+   */
+  public String getAnalyzerVersion() {
+<span class="nc" id="L39">    return analyzerVersion;</span>
+  }
+
+  /**
+   * Get the platform, on which the audio analysis was created.
+   *
+   * @return The platform name.
+   */
+  public String getPlatform() {
+<span class="nc" id="L48">    return platform;</span>
+  }
+
+  /**
+   * Get the detailed status of the Analyzer software after creating the audio analysis.
+   *
+   * @return The detailed status of the Analyzer software.
+   */
+  public String getDetailedStatus() {
+<span class="nc" id="L57">    return detailedStatus;</span>
+  }
+
+  /**
+   * Get the exit status code of the Analyzer software.
+   *
+   * @return The exit status code. (Should be 0)
+   */
+  public Integer getStatusCode() {
+<span class="nc" id="L66">    return statusCode;</span>
+  }
+
+  /**
+   * Get the timestamp when the audio analysis object has been created by the Analyzer software.
+   *
+   * @return Timestamp of audio analysis.
+   */
+  public Long getTimestamp() {
+<span class="nc" id="L75">    return timestamp;</span>
+  }
+
+  /**
+   * Get the duration of the audio analysis, eg. in how many seconds the audio analysis has been created by the
+   * software.
+   *
+   * @return Duration of the audio analysis.
+   */
+  public Float getAnalysisTime() {
+<span class="nc" id="L85">    return analysisTime;</span>
+  }
+
+  /**
+   * Get the input process of the audio analysis. The input process is most times the command
+   * {@code libvorbisfile L+R 44100-&gt;22050}, which lowers the sample rate of the track. (probably to reduce the duration
+   * of the audio analysis)
+   *
+   * @return The input process of the audio analysis.
+   */
+  public String getInputProcess() {
+<span class="nc" id="L96">    return inputProcess;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L101">    return &quot;AudioAnalysisMeta(analyzerVersion=&quot; + analyzerVersion + &quot;, platform=&quot; + platform + &quot;, detailedStatus=&quot;</span>
+        + detailedStatus + &quot;, statusCode=&quot; + statusCode + &quot;, timestamp=&quot; + timestamp + &quot;, analysisTime=&quot; + analysisTime
+        + &quot;, inputProcess=&quot; + inputProcess + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L108">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link AudioAnalysisMeta} instances.
+   */
+<span class="fc" id="L114">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String analyzerVersion;
+    private String platform;
+    private String detailedStatus;
+    private Integer statusCode;
+    private Long timestamp;
+    private Float analysisTime;
+    private String inputProcess;
+
+    /**
+     * The Analyzer software version setter.
+     *
+     * @param analyzerVersion Analyzer software version.
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setAnalyzerVersion(String analyzerVersion) {
+<span class="fc" id="L130">      this.analyzerVersion = analyzerVersion;</span>
+<span class="fc" id="L131">      return this;</span>
+    }
+
+    /**
+     * The platform setter.
+     *
+     * @param platform The platform name.
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setPlatform(String platform) {
+<span class="fc" id="L141">      this.platform = platform;</span>
+<span class="fc" id="L142">      return this;</span>
+    }
+
+    /**
+     * The detailed status setter.
+     *
+     * @param detailedStatus The detailed status of the Analyzer software.
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setDetailedStatus(String detailedStatus) {
+<span class="fc" id="L152">      this.detailedStatus = detailedStatus;</span>
+<span class="fc" id="L153">      return this;</span>
+    }
+
+    /**
+     * The status code setter.
+     *
+     * @param statusCode The exit status code. (Should be 0)
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setStatusCode(Integer statusCode) {
+<span class="fc" id="L163">      this.statusCode = statusCode;</span>
+<span class="fc" id="L164">      return this;</span>
+    }
+
+    /**
+     * The timestamp setter.
+     *
+     * @param timestamp Timestamp of audio analysis.
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setTimestamp(Long timestamp) {
+<span class="fc" id="L174">      this.timestamp = timestamp;</span>
+<span class="fc" id="L175">      return this;</span>
+    }
+
+    /**
+     * The analysis time setter.
+     *
+     * @param analysisTime Duration of the audio analysis.
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setAnalysisTime(Float analysisTime) {
+<span class="fc" id="L185">      this.analysisTime = analysisTime;</span>
+<span class="fc" id="L186">      return this;</span>
+    }
+
+    /**
+     * The input process setter.
+     *
+     * @param inputProcess The input process of the audio analysis.
+     * @return An {@link AudioAnalysisMeta.Builder}.
+     */
+    public Builder setInputProcess(String inputProcess) {
+<span class="fc" id="L196">      this.inputProcess = inputProcess;</span>
+<span class="fc" id="L197">      return this;</span>
+    }
+
+    @Override
+    public AudioAnalysisMeta build() {
+<span class="fc" id="L202">      return new AudioAnalysisMeta(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link AudioAnalysisMeta} instances.
+   */
+<span class="fc" id="L209">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;AudioAnalysisMeta&gt; {</span>
+    public AudioAnalysisMeta createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L211" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L212">        return null;</span>
+      }
+
+<span class="fc" id="L215">      return new AudioAnalysisMeta.Builder()</span>
+<span class="fc" id="L216">        .setAnalysisTime(</span>
+<span class="pc bpc" id="L217" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;analysis_time&quot;)</span>
+<span class="fc" id="L218">            ? jsonObject.get(&quot;analysis_time&quot;).getAsFloat()</span>
+<span class="nc" id="L219">            : null)</span>
+<span class="fc" id="L220">        .setAnalyzerVersion(</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;analyzer_version&quot;)</span>
+<span class="fc" id="L222">            ? jsonObject.get(&quot;analyzer_version&quot;).getAsString()</span>
+<span class="nc" id="L223">            : null)</span>
+<span class="fc" id="L224">        .setDetailedStatus(</span>
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;detailed_status&quot;)</span>
+<span class="fc" id="L226">            ? jsonObject.get(&quot;detailed_status&quot;).getAsString()</span>
+<span class="nc" id="L227">            : null)</span>
+<span class="fc" id="L228">        .setInputProcess(</span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;input_process&quot;)</span>
+<span class="fc" id="L230">            ? jsonObject.get(&quot;input_process&quot;).getAsString()</span>
+<span class="nc" id="L231">            : null)</span>
+<span class="fc" id="L232">        .setPlatform(</span>
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;platform&quot;)</span>
+<span class="fc" id="L234">            ? jsonObject.get(&quot;platform&quot;).getAsString()</span>
+<span class="nc" id="L235">            : null)</span>
+<span class="fc" id="L236">        .setStatusCode(</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;status_code&quot;)</span>
+<span class="fc" id="L238">            ? jsonObject.get(&quot;status_code&quot;).getAsInt()</span>
+<span class="nc" id="L239">            : null)</span>
+<span class="fc" id="L240">        .setTimestamp(</span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;timestamp&quot;)</span>
+<span class="fc" id="L242">            ? jsonObject.get(&quot;timestamp&quot;).getAsLong()</span>
+<span class="nc" id="L243">            : null)</span>
+<span class="fc" id="L244">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

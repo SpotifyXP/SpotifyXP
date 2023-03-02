@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChangePlaylistsDetailsRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.playlists</a> &gt; <span class="el_source">ChangePlaylistsDetailsRequest.java</span></div><h1>ChangePlaylistsDetailsRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.playlists;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Change a playlist’s name and public/private state. (The user must, of course, own the playlist.)
+ */
+@JsonDeserialize(builder = ChangePlaylistsDetailsRequest.Builder.class)
+public class ChangePlaylistsDetailsRequest extends AbstractDataRequest&lt;String&gt; {
+
+  /**
+   * The private {@link ChangePlaylistsDetailsRequest} constructor.
+   *
+   * @param builder A {@link ChangePlaylistsDetailsRequest.Builder}.
+   */
+  private ChangePlaylistsDetailsRequest(final Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Change a playlist's details.
+   *
+   * @return A string. &lt;b&gt;Note:&lt;/b&gt; This endpoint doesn't return something in its response body.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public String execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return putJson();</span>
+  }
+
+  /**
+   * Builder class for building a {@link ChangePlaylistsDetailsRequest}.
+   */
+<span class="fc" id="L43">  public static final class Builder extends AbstractDataRequest.Builder&lt;String, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link ChangePlaylistsDetailsRequest.Builder}.
+     * &lt;p&gt;
+     * Modifying an user's public playlists requires authorization of the {@code playlist-modify-public}
+     * scope; Modifying an user's private playlist (including collaborative playlists) requires the
+     * {@code playlist-modify-private} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L56">      super(accessToken);</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * The playlist ID setter.
+     *
+     * @param playlist_id The Spotify ID for the playlist.
+     * @return A {@link ChangePlaylistsDetailsRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder playlist_id(final String playlist_id) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (playlist_id != null);</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">      assert (!playlist_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L69">      return setPathParameter(&quot;playlist_id&quot;, playlist_id);</span>
+    }
+
+    /**
+     * The playlist name setter.
+     *
+     * @param name Optional. The new name for the playlist.
+     * @return A {@link ChangePlaylistsDetailsRequest.Builder}.
+     */
+    public Builder name(final String name) {
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">      assert (name != null);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">      assert (!name.equals(&quot;&quot;));</span>
+<span class="fc" id="L81">      return setBodyParameter(&quot;name&quot;, name);</span>
+    }
+
+    /**
+     * The public status setter.
+     *
+     * @param public_ Optional. If {@code true} the playlist will be public, if {@code false} it will be private.
+     * @return A {@link ChangePlaylistsDetailsRequest.Builder}.
+     */
+    public Builder public_(final Boolean public_) {
+<span class="fc" id="L91">      return setBodyParameter(&quot;public&quot;, public_);</span>
+    }
+
+    /**
+     * The collaborative state setter.
+     *
+     * @param collaborative Optional. If {@code true}, the playlist will become collaborative and other users will be
+     *                      able to modify the playlist in their Spotify client. &lt;b&gt;Note:&lt;/b&gt; You can only set
+     *                      this to {@code true} on non-public playlists.
+     * @return A {@link ChangePlaylistsDetailsRequest.Builder}.
+     */
+    public Builder collaborative(final Boolean collaborative) {
+<span class="fc" id="L103">      return setBodyParameter(&quot;collaborative&quot;, collaborative);</span>
+    }
+
+    /**
+     * The playlist description setter.
+     *
+     * @param description Optional, value for playlist description as displayed in Spotify Clients and in the Web API.
+     * @return A {@link ChangePlaylistsDetailsRequest.Builder}.
+     */
+    public Builder description(final String description) {
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">      assert (description != null);</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">      assert (!description.equals(&quot;&quot;));</span>
+<span class="fc" id="L115">      return setBodyParameter(&quot;description&quot;, description);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link ChangePlaylistsDetailsRequest}.
+     */
+    @Override
+    public ChangePlaylistsDetailsRequest build() {
+<span class="fc" id="L125">      setContentType(ContentType.APPLICATION_JSON);</span>
+<span class="fc" id="L126">      setPath(&quot;/v1/playlists/{playlist_id}&quot;);</span>
+<span class="fc" id="L127">      return new ChangePlaylistsDetailsRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L132">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShowSimplified.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">ShowSimplified.java</span></div><h1>ShowSimplified.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.neovisionaries.i18n.CountryCode;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-simplified&quot;&gt;
+ * simplified Show objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = ShowSimplified.Builder.class)
+public class ShowSimplified extends AbstractModelObject implements ISearchModelObject {
+  private final CountryCode[] availableMarkets;
+  private final Copyright[] copyrights;
+  private final String description;
+  private final Boolean explicit;
+  private final ExternalUrl externalUrls;
+  private final String href;
+  private final String id;
+  private final Image[] images;
+  private final Boolean isExternallyHosted;
+  private final String[] languages;
+  private final String mediaType;
+  private final String name;
+  private final String publisher;
+  private final ModelObjectType type;
+  private final String uri;
+
+  public ShowSimplified(Builder builder) {
+<span class="fc" id="L37">    super(builder);</span>
+<span class="fc" id="L38">    this.availableMarkets = builder.availableMarkets;</span>
+<span class="fc" id="L39">    this.copyrights = builder.copyrights;</span>
+<span class="fc" id="L40">    this.description = builder.description;</span>
+<span class="fc" id="L41">    this.explicit = builder.explicit;</span>
+<span class="fc" id="L42">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L43">    this.href = builder.href;</span>
+<span class="fc" id="L44">    this.id = builder.id;</span>
+<span class="fc" id="L45">    this.images = builder.images;</span>
+<span class="fc" id="L46">    this.isExternallyHosted = builder.isExternallyHosted;</span>
+<span class="fc" id="L47">    this.languages = builder.languages;</span>
+<span class="fc" id="L48">    this.mediaType = builder.mediaType;</span>
+<span class="fc" id="L49">    this.name = builder.name;</span>
+<span class="fc" id="L50">    this.publisher = builder.publisher;</span>
+<span class="fc" id="L51">    this.type = builder.type;</span>
+<span class="fc" id="L52">    this.uri = builder.uri;</span>
+<span class="fc" id="L53">  }</span>
+
+  /**
+   * Get a list of the countries in which the show can be played.
+   *
+   * @return An array of &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2 country
+   * * codes&lt;/a&gt;.
+   */
+  public CountryCode[] getAvailableMarkets() {
+<span class="nc" id="L62">    return availableMarkets;</span>
+  }
+
+  /**
+   * Get the copyright statements of the show.
+   *
+   * @return An array of {@link Copyright} objects.
+   */
+  public Copyright[] getCopyrights() {
+<span class="nc" id="L71">    return copyrights;</span>
+  }
+
+  /**
+   * Get a description of the show.
+   *
+   * @return The description of the show.
+   */
+  public String getDescription() {
+<span class="nc" id="L80">    return description;</span>
+  }
+
+  /**
+   * Check whether the show is explicit or not.
+   *
+   * @return Whether or not the show has explicit content ({@code true} = yes it does; {@code false} = no it does not
+   * &lt;b&gt;OR&lt;/b&gt; unknown).
+   */
+  public Boolean getExplicit() {
+<span class="nc" id="L90">    return explicit;</span>
+  }
+
+  /**
+   * Get the external URLs of the show. &lt;br&gt;
+   * Example: &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify-URL&lt;/a&gt;
+   *
+   * @return An {@link ExternalUrl} object.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="nc" id="L100">    return externalUrls;</span>
+  }
+
+  /**
+   * Get the full Spotify Web API endpoint URL of the show.
+   *
+   * @return A link to the Web API endpoint providing full details of the show.
+   */
+  public String getHref() {
+<span class="nc" id="L109">    return href;</span>
+  }
+
+  /**
+   * Get the Spotify ID of the show.
+   *
+   * @return A &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify show ID&lt;/a&gt;.
+   */
+  public String getId() {
+<span class="nc" id="L118">    return id;</span>
+  }
+
+  /**
+   * Get the cover art for the show in various sizes, widest first.
+   *
+   * @return An array of {@link Image} objects.
+   */
+  public Image[] getImages() {
+<span class="nc" id="L127">    return images;</span>
+  }
+
+  /**
+   * Check whether the show is hosted outside of Spotify's CDN.
+   *
+   * @return True if the show is hosted outside of Spotify’s CDN. Might be {@code null} in some cases.
+   */
+  public Boolean getExternallyHosted() {
+<span class="nc" id="L136">    return isExternallyHosted;</span>
+  }
+
+  /**
+   * Get a list of the languages used in the show, identified by their ISO 639 code.
+   *
+   * @return An array of &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2 country codes&lt;/a&gt;.
+   */
+  public String[] getLanguages() {
+<span class="nc" id="L145">    return languages;</span>
+  }
+
+  /**
+   * Get the media type of the show.
+   *
+   * @return The media type of the show.
+   */
+  public String getMediaType() {
+<span class="nc" id="L154">    return mediaType;</span>
+  }
+
+  /**
+   * Get the name of the show.
+   *
+   * @return The name of the show.
+   */
+  public String getName() {
+<span class="nc" id="L163">    return name;</span>
+  }
+
+  /**
+   * Get the publisher of the show.
+   *
+   * @return The publisher of the show.
+   */
+  public String getPublisher() {
+<span class="nc" id="L172">    return publisher;</span>
+  }
+
+  /**
+   * Get the model object type. In this case &quot;show&quot;.
+   *
+   * @return A {@link ModelObjectType}.
+   */
+  public ModelObjectType getType() {
+<span class="nc" id="L181">    return type;</span>
+  }
+
+  /**
+   * Get the Spotify URI of the show.
+   *
+   * @return &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify show URI&lt;/a&gt;.
+   */
+  public String getUri() {
+<span class="nc" id="L190">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L195">    return &quot;ShowSimplified(availableMarkets=&quot; + Arrays.toString(availableMarkets) + &quot;, copyrights=&quot;</span>
+<span class="nc" id="L196">        + Arrays.toString(copyrights) + &quot;, description=&quot; + description + &quot;, explicit=&quot; + explicit + &quot;, externalUrls=&quot;</span>
+<span class="nc" id="L197">        + externalUrls + &quot;, href=&quot; + href + &quot;, id=&quot; + id + &quot;, images=&quot; + Arrays.toString(images)</span>
+<span class="nc" id="L198">        + &quot;, isExternallyHosted=&quot; + isExternallyHosted + &quot;, languages=&quot; + Arrays.toString(languages) + &quot;, mediaType=&quot;</span>
+        + mediaType + &quot;, name=&quot; + name + &quot;, publisher=&quot; + publisher + &quot;, type=&quot; + type + &quot;, uri=&quot; + uri + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L204">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link ShowSimplified} instances.
+   */
+<span class="fc" id="L210">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private CountryCode[] availableMarkets;
+    private Copyright[] copyrights;
+    private String description;
+    private Boolean explicit;
+    private ExternalUrl externalUrls;
+    private String href;
+    private String id;
+    private Image[] images;
+    private Boolean isExternallyHosted;
+    private String[] languages;
+    private String mediaType;
+    private String name;
+    private String publisher;
+    private ModelObjectType type;
+    private String uri;
+
+    /**
+     * Set the available markets of the show to be built.
+     *
+     * @param availableMarkets A list of the countries in which the show can be played, identified by their
+     *                         &lt;a href=&quot;http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2&lt;/a&gt; code.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setAvailableMarkets(CountryCode... availableMarkets) {
+<span class="fc" id="L235">      this.availableMarkets = availableMarkets;</span>
+<span class="fc" id="L236">      return this;</span>
+    }
+
+    /**
+     * Set the copyrights of the show to be built.
+     *
+     * @param copyrights {@link Copyright} objects.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setCopyrights(Copyright... copyrights) {
+<span class="fc" id="L246">      this.copyrights = copyrights;</span>
+<span class="fc" id="L247">      return this;</span>
+    }
+
+    /**
+     * Set the description for the show to be built.
+     *
+     * @param description The description of the show.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setDescription(String description) {
+<span class="fc" id="L257">      this.description = description;</span>
+<span class="fc" id="L258">      return this;</span>
+    }
+
+    /**
+     * Set whether the show to be built is explicit or not.
+     *
+     * @param explicit Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown).
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setExplicit(Boolean explicit) {
+<span class="fc" id="L268">      this.explicit = explicit;</span>
+<span class="fc" id="L269">      return this;</span>
+    }
+
+    /**
+     * Set the external URLs for the show to be built.
+     *
+     * @param externalUrls The {@link ExternalUrl} for the show object.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L279">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L280">      return this;</span>
+    }
+
+    /**
+     * Set the link to the Web API endpoint providing full details of the show to be built.
+     *
+     * @param href The link to the Web API endpoint providing full details of the show.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L290">      this.href = href;</span>
+<span class="fc" id="L291">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify ID for the show to be built.
+     *
+     * @param id &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify show ID&lt;/a&gt;.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L301">      this.id = id;</span>
+<span class="fc" id="L302">      return this;</span>
+    }
+
+    /**
+     * Set the cover art for the show to be built.
+     *
+     * @param images {@link Image} objects.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setImages(Image... images) {
+<span class="fc" id="L312">      this.images = images;</span>
+<span class="fc" id="L313">      return this;</span>
+    }
+
+    /**
+     * Set whether the show to be built is hosted outside of Spotify's CDN.
+     *
+     * @param externallyHosted True if the show is hosted outside of Spotify’s CDN.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setExternallyHosted(Boolean externallyHosted) {
+<span class="fc" id="L323">      isExternallyHosted = externallyHosted;</span>
+<span class="fc" id="L324">      return this;</span>
+    }
+
+    /**
+     * Set a list of the languages used in the show to be built.
+     *
+     * @param languages An array of &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2 country codes&lt;/a&gt;.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setLanguages(String[] languages) {
+<span class="fc" id="L334">      this.languages = languages;</span>
+<span class="fc" id="L335">      return this;</span>
+    }
+
+    /**
+     * Set the media type of the show.
+     *
+     * @param mediaType The media type of the show.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setMediaType(String mediaType) {
+<span class="fc" id="L345">      this.mediaType = mediaType;</span>
+<span class="fc" id="L346">      return this;</span>
+    }
+
+    /**
+     * Set the name for the show to be built.
+     *
+     * @param name The name of the show.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setName(String name) {
+<span class="fc" id="L356">      this.name = name;</span>
+<span class="fc" id="L357">      return this;</span>
+    }
+
+    /**
+     * Set the publisher for the show to be built.
+     *
+     * @param publisher The publisher of the show.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setPublisher(String publisher) {
+<span class="fc" id="L367">      this.publisher = publisher;</span>
+<span class="fc" id="L368">      return this;</span>
+    }
+
+    /**
+     * Set the type of the model object. In this case &quot;show&quot;.
+     *
+     * @param type The {@link ModelObjectType}.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L378">      this.type = type;</span>
+<span class="fc" id="L379">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify URI for the show to be built.
+     *
+     * @param uri The &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URI&lt;/a&gt; for the show.
+     * @return A {@link ShowSimplified.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L389">      this.uri = uri;</span>
+<span class="fc" id="L390">      return this;</span>
+    }
+
+    @Override
+    public ShowSimplified build() {
+<span class="fc" id="L395">      return new ShowSimplified(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link ShowSimplified} instances.
+   */
+<span class="fc" id="L402">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;ShowSimplified&gt; {</span>
+    @Override
+    public ShowSimplified createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L405" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L406">        return null;</span>
+      }
+
+<span class="fc" id="L409">      return new Builder()</span>
+<span class="fc" id="L410">        .setAvailableMarkets(</span>
+<span class="pc bpc" id="L411" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;available_markets&quot;)</span>
+<span class="fc" id="L412">            ? new Gson().fromJson(</span>
+<span class="fc" id="L413">            jsonObject.getAsJsonArray(&quot;available_markets&quot;), CountryCode[].class)</span>
+<span class="nc" id="L414">            : null)</span>
+<span class="fc" id="L415">        .setCopyrights(</span>
+<span class="pc bpc" id="L416" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;copyrights&quot;)</span>
+<span class="fc" id="L417">            ? new Gson().fromJson(</span>
+<span class="fc" id="L418">            jsonObject.getAsJsonArray(&quot;copyrights&quot;), Copyright[].class)</span>
+<span class="nc" id="L419">            : null)</span>
+<span class="fc" id="L420">        .setDescription(</span>
+<span class="pc bpc" id="L421" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;description&quot;)</span>
+<span class="fc" id="L422">            ? jsonObject.get(&quot;description&quot;).getAsString()</span>
+<span class="nc" id="L423">            : null)</span>
+<span class="fc" id="L424">        .setExplicit(</span>
+<span class="pc bpc" id="L425" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;explicit&quot;)</span>
+<span class="fc" id="L426">            ? jsonObject.get(&quot;explicit&quot;).getAsBoolean()</span>
+<span class="nc" id="L427">            : null)</span>
+<span class="fc" id="L428">        .setExternalUrls(</span>
+<span class="pc bpc" id="L429" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L430">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L431">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L432">            : null)</span>
+<span class="fc" id="L433">        .setHref(</span>
+<span class="pc bpc" id="L434" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L435">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L436">            : null)</span>
+<span class="fc" id="L437">        .setId(</span>
+<span class="pc bpc" id="L438" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L439">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L440">            : null)</span>
+<span class="fc" id="L441">        .setImages(</span>
+<span class="pc bpc" id="L442" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;images&quot;)</span>
+<span class="fc" id="L443">            ? new Image.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L444">            jsonObject.getAsJsonArray(&quot;images&quot;))</span>
+<span class="nc" id="L445">            : null)</span>
+<span class="fc" id="L446">        .setExternallyHosted(</span>
+<span class="pc bpc" id="L447" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_externally_hosted&quot;)</span>
+<span class="fc" id="L448">            ? jsonObject.get(&quot;is_externally_hosted&quot;).getAsBoolean()</span>
+<span class="nc" id="L449">            : null)</span>
+<span class="fc" id="L450">        .setLanguages(</span>
+<span class="pc bpc" id="L451" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;languages&quot;)</span>
+<span class="fc" id="L452">            ? new Gson().fromJson(</span>
+<span class="fc" id="L453">            jsonObject.getAsJsonArray(&quot;languages&quot;), String[].class)</span>
+<span class="nc" id="L454">            : null)</span>
+<span class="fc" id="L455">        .setMediaType(</span>
+<span class="pc bpc" id="L456" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;media_type&quot;)</span>
+<span class="fc" id="L457">            ? jsonObject.get(&quot;media_type&quot;).getAsString()</span>
+<span class="nc" id="L458">            : null)</span>
+<span class="fc" id="L459">        .setName(</span>
+<span class="pc bpc" id="L460" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;name&quot;)</span>
+<span class="fc" id="L461">            ? jsonObject.get(&quot;name&quot;).getAsString()</span>
+<span class="nc" id="L462">            : null)</span>
+<span class="fc" id="L463">        .setPublisher(</span>
+<span class="pc bpc" id="L464" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;publisher&quot;)</span>
+<span class="fc" id="L465">            ? jsonObject.get(&quot;publisher&quot;).getAsString()</span>
+<span class="nc" id="L466">            : null)</span>
+<span class="fc" id="L467">        .setType(</span>
+<span class="pc bpc" id="L468" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L469">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L470">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L471">            : null)</span>
+<span class="fc" id="L472">        .setUri(</span>
+<span class="pc bpc" id="L473" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L474">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L475">            : null)</span>
+<span class="fc" id="L476">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L482" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L483">      return true;</span>
+    }
+<span class="nc bnc" id="L485" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L486">      return false;</span>
+    }
+<span class="nc" id="L488">    ShowSimplified show = (ShowSimplified) o;</span>
+<span class="nc bnc" id="L489" title="All 6 branches missed.">    return Objects.equals(id, show.id) &amp;&amp; Objects.equals(name, show.name) &amp;&amp; Objects.equals(explicit, show.explicit) &amp;&amp;</span>
+<span class="nc bnc" id="L490" title="All 2 branches missed.">      Objects.equals(uri, show.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L495">    return Objects.hash(id, name, explicit, uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

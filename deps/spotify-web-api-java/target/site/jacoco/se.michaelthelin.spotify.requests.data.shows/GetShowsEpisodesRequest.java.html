@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetShowsEpisodesRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.shows</a> &gt; <span class="el_source">GetShowsEpisodesRequest.java</span></div><h1>GetShowsEpisodesRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.shows;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.neovisionaries.i18n.CountryCode;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.EpisodeSimplified;
+import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get Spotify catalog information about an show’s episodes.
+ */
+@JsonDeserialize(builder = GetShowsEpisodesRequest.Builder.class)
+public class GetShowsEpisodesRequest extends AbstractDataRequest&lt;Paging&lt;EpisodeSimplified&gt;&gt; {
+
+  /**
+   * The private {@link GetShowsEpisodesRequest} constructor.
+   *
+   * @param builder A {@link GetShowsEpisodesRequest.Builder}.
+   */
+  private GetShowsEpisodesRequest(Builder builder) {
+<span class="fc" id="L26">    super(builder);</span>
+<span class="fc" id="L27">  }</span>
+
+  /**
+   * Get episodes of a show.
+   *
+   * @return An array of {@link EpisodeSimplified} objects wrapped in a {@link Paging} object.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  @Override
+  public Paging&lt;EpisodeSimplified&gt; execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L41">    return new EpisodeSimplified.JsonUtil().createModelObjectPaging(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetShowsEpisodesRequest}.
+   */
+<span class="fc" id="L47">  public static final class Builder extends AbstractDataPagingRequest.Builder&lt;EpisodeSimplified, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetShowsEpisodesRequest.Builder} instance.
+     * &lt;p&gt;
+     * Reading the user’s resume points on episode objects requires the {@code user-read-playback-position} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L58">      super(accessToken);</span>
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * The show ID setter.
+     *
+     * @param id The Spotify ID for the show.
+     * @return A {@link GetShowsEpisodesRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder id(final String id) {
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">      assert (id != null);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">      assert (!id.equals(&quot;&quot;));</span>
+<span class="fc" id="L71">      return setPathParameter(&quot;id&quot;, id);</span>
+    }
+
+    /**
+     * The limit setter.
+     *
+     * @param limit Optional. The maximum number of episodes to return. Default: 20. Minimum: 1. Maximum: 50.
+     * @return A {@link GetShowsEpisodesRequest.Builder}.
+     */
+    @Override
+    public Builder limit(final Integer limit) {
+<span class="pc bpc" id="L82" title="2 of 4 branches missed.">      assert (1 &lt;= limit &amp;&amp; limit &lt;= 50);</span>
+<span class="fc" id="L83">      return setQueryParameter(&quot;limit&quot;, limit);</span>
+    }
+
+    /**
+     * The offset setter.
+     *
+     * @param offset Optional. The index of the first episode to return. Default: 0 (i.e., the first object). Use with
+     *               {@link #limit(Integer)} to get the next set of objects.
+     * @return A {@link GetShowsEpisodesRequest.Builder}.
+     */
+    @Override
+    public Builder offset(final Integer offset) {
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">      assert (offset &gt;= 0);</span>
+<span class="fc" id="L96">      return setQueryParameter(&quot;offset&quot;, offset);</span>
+    }
+
+    /**
+     * The market country code setter.&lt;p&gt;
+     * If a country code is specified, only shows and episodes that are available in that market will be returned.
+     * If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.
+     * &lt;i&gt;Note: If neither market or user country are provided, the content is considered unavailable for the client.&lt;/i&gt;&lt;p&gt;
+     * Users can view the country that is associated with their account in the account settings.
+     *
+     * @param market Optional. An ISO 3166-1 alpha-2 country code.
+     * @return A {@link GetShowsEpisodesRequest.Builder}.
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     */
+    public Builder market(final CountryCode market) {
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">      assert (market != null);</span>
+<span class="fc" id="L112">      return setQueryParameter(&quot;market&quot;, market);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetShowsEpisodesRequest}.
+     */
+    @Override
+    public GetShowsEpisodesRequest build() {
+<span class="fc" id="L122">      setPath(&quot;/v1/shows/{id}/episodes&quot;);</span>
+<span class="fc" id="L123">      return new GetShowsEpisodesRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L128">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

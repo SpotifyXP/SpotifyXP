@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetListOfCurrentUsersPlaylistsRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.playlists</a> &gt; <span class="el_source">GetListOfCurrentUsersPlaylistsRequest.java</span></div><h1>GetListOfCurrentUsersPlaylistsRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.playlists;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
+import se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get a list of the playlists owned or followed by the current Spotify user.
+ */
+@JsonDeserialize(builder = GetListOfCurrentUsersPlaylistsRequest.Builder.class)
+public class GetListOfCurrentUsersPlaylistsRequest extends AbstractDataRequest&lt;Paging&lt;PlaylistSimplified&gt;&gt; {
+
+  /**
+   * The private {@link GetListOfCurrentUsersPlaylistsRequest} constructor.
+   *
+   * @param builder A {@link GetListOfCurrentUsersPlaylistsRequest.Builder}.
+   */
+  private GetListOfCurrentUsersPlaylistsRequest(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+<span class="fc" id="L26">  }</span>
+
+  /**
+   * Get a list of the current user's playlists.
+   *
+   * @return A {@link PlaylistSimplified} paging.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public Paging&lt;PlaylistSimplified&gt; execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L39">    return new PlaylistSimplified.JsonUtil().createModelObjectPaging(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetListOfCurrentUsersPlaylistsRequest}
+   */
+<span class="fc" id="L45">  public static final class Builder extends AbstractDataPagingRequest.Builder&lt;PlaylistSimplified, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetListOfCurrentUsersPlaylistsRequest.Builder}.
+     * &lt;p&gt;
+     * Private playlists are only retrievable for the current user and requires the {@code playlist-read-private}
+     * scope to have been authorized by the user. &lt;b&gt;Note:&lt;/b&gt; This scope alone will not return collaborative playlists,
+     * even though they are always private.
+     * &lt;p&gt;
+     * Collaborative playlists are only retrievable for the current user and requires the
+     * {@code playlist-read-collaborative} scope to have been authorized by the user.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L61">      super(accessToken);</span>
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * The limit setter.
+     *
+     * @param limit Optional. The maximum number of playlists to return. Default: 20. Minimum: 1. Maximum: 50.
+     * @return A {@link GetListOfCurrentUsersPlaylistsRequest.Builder}.
+     */
+    @Override
+    public Builder limit(final Integer limit) {
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">      assert (1 &lt;= limit &amp;&amp; limit &lt;= 50);</span>
+<span class="fc" id="L73">      return setQueryParameter(&quot;limit&quot;, limit);</span>
+    }
+
+    /**
+     * The offset setter.
+     *
+     * @param offset Optional. The index of the first playlist to return. Default: 0 (the first object). Maximum offset:
+     *               100.000. Use with {@link #limit(Integer)} to get the next set of playlists.
+     * @return A {@link GetListOfCurrentUsersPlaylistsRequest.Builder}.
+     */
+    @Override
+    public Builder offset(final Integer offset) {
+<span class="pc bpc" id="L85" title="2 of 4 branches missed.">      assert (0 &lt;= offset &amp;&amp; offset &lt;= 100000);</span>
+<span class="fc" id="L86">      return setQueryParameter(&quot;offset&quot;, offset);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetListOfCurrentUsersPlaylistsRequest}.
+     */
+    @Override
+    public GetListOfCurrentUsersPlaylistsRequest build() {
+<span class="fc" id="L96">      setPath(&quot;/v1/me/playlists&quot;);</span>
+<span class="fc" id="L97">      return new GetListOfCurrentUsersPlaylistsRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L102">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

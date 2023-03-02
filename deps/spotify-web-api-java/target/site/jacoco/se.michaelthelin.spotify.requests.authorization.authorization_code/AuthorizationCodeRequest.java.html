@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthorizationCodeRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.authorization.authorization_code</a> &gt; <span class="el_source">AuthorizationCodeRequest.java</span></div><h1>AuthorizationCodeRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.authorization.authorization_code;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
+import se.michaelthelin.spotify.requests.authorization.AbstractAuthorizationRequest;
+
+import java.io.IOException;
+import java.net.URI;
+
+/**
+ * Request an access token and refresh token by creating an
+ * &lt;a href=&quot;https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow&quot;&gt;Authorization Code&lt;/a&gt;
+ * request.
+ */
+@JsonDeserialize(builder = AuthorizationCodeRequest.Builder.class)
+public class AuthorizationCodeRequest extends AbstractAuthorizationRequest&lt;AuthorizationCodeCredentials&gt; {
+
+  private AuthorizationCodeRequest(Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Request new {@link AuthorizationCodeCredentials}.
+   *
+   * @return An {@link AuthorizationCodeCredentials} object containing an access token and refresh token.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public AuthorizationCodeCredentials execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return new AuthorizationCodeCredentials.JsonUtil().createModelObject(postJson());</span>
+  }
+
+  /**
+   * Builder class for building an {@link AuthorizationCodeRequest}.
+   */
+<span class="fc" id="L43">  public static final class Builder extends AbstractAuthorizationRequest.Builder&lt;AuthorizationCodeCredentials, Builder&gt; {</span>
+
+    public Builder(final String clientId, final String clientSecret) {
+<span class="fc" id="L46">      super(clientId, clientSecret);</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * The grant type setter.
+     *
+     * @param grant_type Required. As defined in the OAuth 2.0 specification, this field must contain the value
+     *                   {@code &quot;authorization_code&quot;}
+     * @return An {@link AuthorizationCodeRequest.Builder}.
+     */
+    public Builder grant_type(final String grant_type) {
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">      assert (grant_type != null);</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">      assert (grant_type.equals(&quot;authorization_code&quot;));</span>
+<span class="fc" id="L59">      return setBodyParameter(&quot;grant_type&quot;, grant_type);</span>
+    }
+
+    /**
+     * The authorization code setter.
+     *
+     * @param code Required. The authorization code returned from the initial request to the Account's /authorize
+     *             endpoint.
+     * @return An {@link AuthorizationCodeRequest.Builder}.
+     */
+    public Builder code(final String code) {
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">      assert (code != null);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">      assert (!code.equals(&quot;&quot;));</span>
+<span class="fc" id="L72">      return setBodyParameter(&quot;code&quot;, code);</span>
+    }
+
+    /**
+     * The redirect URI setter.
+     *
+     * @param redirect_uri Required. This parameter is used for validation only (there is no actual redirection). The
+     *                     value of this parameter must exactly match the value of {@code redirect_uri} supplied when
+     *                     requesting the authorization code.
+     * @return An {@link AuthorizationCodeRequest.Builder}.
+     */
+    public Builder redirect_uri(final URI redirect_uri) {
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">      assert (redirect_uri != null);</span>
+<span class="fc" id="L85">      return setBodyParameter(&quot;redirect_uri&quot;, redirect_uri.toString());</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return An {@link AuthorizationCodeRequest}.
+     */
+    public AuthorizationCodeRequest build() {
+<span class="fc" id="L94">      setContentType(ContentType.APPLICATION_FORM_URLENCODED);</span>
+<span class="fc" id="L95">      setHost(SpotifyApi.DEFAULT_AUTHENTICATION_HOST);</span>
+<span class="fc" id="L96">      setPort(SpotifyApi.DEFAULT_AUTHENTICATION_PORT);</span>
+<span class="fc" id="L97">      setScheme(SpotifyApi.DEFAULT_AUTHENTICATION_SCHEME);</span>
+<span class="fc" id="L98">      setPath(&quot;/api/token&quot;);</span>
+
+<span class="fc" id="L100">      return new AuthorizationCodeRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L105">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

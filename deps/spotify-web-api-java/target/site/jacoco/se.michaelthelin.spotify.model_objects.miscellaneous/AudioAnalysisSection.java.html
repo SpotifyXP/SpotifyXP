@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AudioAnalysisSection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.miscellaneous</a> &gt; <span class="el_source">AudioAnalysisSection.java</span></div><h1>AudioAnalysisSection.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.miscellaneous;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.Modality;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about Audio Analysis Section objects by creating instances from this class. &lt;br&gt;
+ * Sections are defined by large variations in rhythm or timbre, e.g. chorus, verse, bridge, guitar solo, etc. Each
+ * section contains its own descriptions of tempo, key, mode, time_signature, and loudness.
+ */
+@JsonDeserialize(builder = AudioAnalysisSection.Builder.class)
+public class AudioAnalysisSection extends AbstractModelObject {
+  private final AudioAnalysisMeasure measure;
+  private final Float loudness;
+  private final Float tempo;
+  private final Float tempoConfidence;
+  private final Integer key;
+  private final Float keyConfidence;
+  private final Modality mode;
+  private final Float modeConfidence;
+  private final Integer timeSignature;
+  private final Float timeSignatureConfidence;
+
+  private AudioAnalysisSection(final Builder builder) {
+<span class="fc" id="L27">    super(builder);</span>
+
+<span class="fc" id="L29">    this.measure = builder.measure;</span>
+<span class="fc" id="L30">    this.loudness = builder.loudness;</span>
+<span class="fc" id="L31">    this.tempo = builder.tempo;</span>
+<span class="fc" id="L32">    this.tempoConfidence = builder.tempoConfidence;</span>
+<span class="fc" id="L33">    this.key = builder.key;</span>
+<span class="fc" id="L34">    this.keyConfidence = builder.keyConfidence;</span>
+<span class="fc" id="L35">    this.mode = builder.mode;</span>
+<span class="fc" id="L36">    this.modeConfidence = builder.modeConfidence;</span>
+<span class="fc" id="L37">    this.timeSignature = builder.timeSignature;</span>
+<span class="fc" id="L38">    this.timeSignatureConfidence = builder.timeSignatureConfidence;</span>
+<span class="fc" id="L39">  }</span>
+
+  /**
+   * Get the measure of the audio analysis section object. This measure contains the start point, duration and
+   * confidence of the section.
+   *
+   * @return The measure of the audio analysis section object.
+   */
+  public AudioAnalysisMeasure getMeasure() {
+<span class="nc" id="L48">    return measure;</span>
+  }
+
+  /**
+   * Get the (average) loudness of the section in decibels.
+   *
+   * @return The loudness of the section.
+   */
+  public Float getLoudness() {
+<span class="nc" id="L57">    return loudness;</span>
+  }
+
+  /**
+   * Get the (estimated) tempo of the section in beats per minute.
+   *
+   * @return The tempo of the section.
+   */
+  public Float getTempo() {
+<span class="nc" id="L66">    return tempo;</span>
+  }
+
+  /**
+   * Get the tempo confidence of the section.
+   *
+   * @return The tempo confidence of the section.
+   */
+  public Float getTempoConfidence() {
+<span class="nc" id="L75">    return tempoConfidence;</span>
+  }
+
+  /**
+   * Get the main key of the section.
+   *
+   * @return Main key of the section.
+   * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Pitch_class&quot;&gt;Wikipedia: Pitch class notation&lt;/a&gt;
+   */
+  public Integer getKey() {
+<span class="nc" id="L85">    return key;</span>
+  }
+
+  /**
+   * Get the key confidence of the section.
+   *
+   * @return The key confidence of the section.
+   */
+  public Float getKeyConfidence() {
+<span class="nc" id="L94">    return keyConfidence;</span>
+  }
+
+  /**
+   * Get the modality of the section. (either &quot;major&quot; or &quot;minor&quot;)
+   *
+   * @return The modality type of the section.
+   * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Mode_(music)&quot;&gt;Wikipedia: Mode (music)&lt;/a&gt;
+   */
+  public Modality getMode() {
+<span class="nc" id="L104">    return mode;</span>
+  }
+
+  /**
+   * Get the modality confidence of the section.
+   *
+   * @return The modality confidence of the section.
+   */
+  public Float getModeConfidence() {
+<span class="nc" id="L113">    return modeConfidence;</span>
+  }
+
+  /**
+   * Get the estimated overall time signature of the section. The time signature (or meter) is the number of beats in a
+   * bar. &lt;br&gt;
+   * Example: A Viennese waltz has a three-quarters beat, so this method would return the value 3 in this case.
+   *
+   * @return Time signature value of the section.
+   */
+  public Integer getTimeSignature() {
+<span class="nc" id="L124">    return timeSignature;</span>
+  }
+
+  /**
+   * Get the time signature confidence of the section.
+   *
+   * @return The time signature confidence of the section.
+   */
+  public Float getTimeSignatureConfidence() {
+<span class="nc" id="L133">    return timeSignatureConfidence;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L138">    return &quot;AudioAnalysisSection(measure=&quot; + measure + &quot;, loudness=&quot; + loudness + &quot;, tempo=&quot; + tempo</span>
+        + &quot;, tempoConfidence=&quot; + tempoConfidence + &quot;, key=&quot; + key + &quot;, keyConfidence=&quot; + keyConfidence + &quot;, mode=&quot;
+        + mode + &quot;, modeConfidence=&quot; + modeConfidence + &quot;, timeSignature=&quot; + timeSignature
+        + &quot;, timeSignatureConfidence=&quot; + timeSignatureConfidence + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L146">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link AudioAnalysisSection} instances.
+   */
+<span class="fc" id="L152">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private AudioAnalysisMeasure measure;
+    private Float loudness;
+    private Float tempo;
+    private Float tempoConfidence;
+    private Integer key;
+    private Float keyConfidence;
+    private Modality mode;
+    private Float modeConfidence;
+    private Integer timeSignature;
+    private Float timeSignatureConfidence;
+
+    /**
+     * The measure setter.
+     *
+     * @param measure The measure of the audio analysis section object.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setMeasure(AudioAnalysisMeasure measure) {
+<span class="fc" id="L171">      this.measure = measure;</span>
+<span class="fc" id="L172">      return this;</span>
+    }
+
+    /**
+     * The loudness setter.
+     *
+     * @param loudness The loudness of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setLoudness(Float loudness) {
+<span class="fc" id="L182">      this.loudness = loudness;</span>
+<span class="fc" id="L183">      return this;</span>
+    }
+
+    /**
+     * The tempo setter.
+     *
+     * @param tempo The tempo of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setTempo(Float tempo) {
+<span class="fc" id="L193">      this.tempo = tempo;</span>
+<span class="fc" id="L194">      return this;</span>
+    }
+
+    /**
+     * The tempo confidence setter.
+     *
+     * @param tempoConfidence The tempo confidence of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setTempoConfidence(Float tempoConfidence) {
+<span class="fc" id="L204">      this.tempoConfidence = tempoConfidence;</span>
+<span class="fc" id="L205">      return this;</span>
+    }
+
+    /**
+     * The key setter.
+     *
+     * @param key Main key of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setKey(Integer key) {
+<span class="fc" id="L215">      this.key = key;</span>
+<span class="fc" id="L216">      return this;</span>
+    }
+
+    /**
+     * The key confidence setter.
+     *
+     * @param keyConfidence The key confidence of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setKeyConfidence(Float keyConfidence) {
+<span class="fc" id="L226">      this.keyConfidence = keyConfidence;</span>
+<span class="fc" id="L227">      return this;</span>
+    }
+
+    /**
+     * The mode setter.
+     *
+     * @param mode The modality type of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setMode(Modality mode) {
+<span class="fc" id="L237">      this.mode = mode;</span>
+<span class="fc" id="L238">      return this;</span>
+    }
+
+    /**
+     * The mode confidence setter.
+     *
+     * @param modeConfidence The modality confidence of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setModeConfidence(Float modeConfidence) {
+<span class="fc" id="L248">      this.modeConfidence = modeConfidence;</span>
+<span class="fc" id="L249">      return this;</span>
+    }
+
+    /**
+     * The time signature setter.
+     *
+     * @param timeSignature Time signature value of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setTimeSignature(Integer timeSignature) {
+<span class="fc" id="L259">      this.timeSignature = timeSignature;</span>
+<span class="fc" id="L260">      return this;</span>
+    }
+
+    /**
+     * The time signature confidence setter.
+     *
+     * @param timeSignatureConfidence The time signature confidence of the section.
+     * @return An {@link AudioAnalysisSection.Builder}.
+     */
+    public Builder setTimeSignatureConfidence(Float timeSignatureConfidence) {
+<span class="fc" id="L270">      this.timeSignatureConfidence = timeSignatureConfidence;</span>
+<span class="fc" id="L271">      return this;</span>
+    }
+
+    @Override
+    public AudioAnalysisSection build() {
+<span class="fc" id="L276">      return new AudioAnalysisSection(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link AudioAnalysisSection} instances.
+   */
+<span class="fc" id="L283">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;AudioAnalysisSection&gt; {</span>
+    public AudioAnalysisSection createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L285" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L286">        return null;</span>
+      }
+
+<span class="fc" id="L289">      return new AudioAnalysisSection.Builder()</span>
+<span class="fc" id="L290">        .setKey(</span>
+<span class="pc bpc" id="L291" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;key&quot;)</span>
+<span class="fc" id="L292">            ? jsonObject.get(&quot;key&quot;).getAsInt()</span>
+<span class="nc" id="L293">            : null)</span>
+<span class="fc" id="L294">        .setKeyConfidence(</span>
+<span class="pc bpc" id="L295" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;key_confidence&quot;)</span>
+<span class="fc" id="L296">            ? jsonObject.get(&quot;key_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L297">            : null)</span>
+<span class="fc" id="L298">        .setLoudness(</span>
+<span class="pc bpc" id="L299" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;loudness&quot;)</span>
+<span class="fc" id="L300">            ? jsonObject.get(&quot;loudness&quot;).getAsFloat()</span>
+<span class="nc" id="L301">            : null)</span>
+<span class="fc" id="L302">        .setMeasure(</span>
+<span class="fc" id="L303">          new AudioAnalysisMeasure.JsonUtil().createModelObject(jsonObject))</span>
+<span class="fc" id="L304">        .setMode(</span>
+<span class="pc bpc" id="L305" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="nc" id="L306">            ? Modality.keyOf(</span>
+<span class="nc" id="L307">            jsonObject.get(&quot;mode&quot;).getAsInt())</span>
+<span class="fc" id="L308">            : null)</span>
+<span class="fc" id="L309">        .setModeConfidence(</span>
+<span class="pc bpc" id="L310" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;mode_confidence&quot;)</span>
+<span class="fc" id="L311">            ? jsonObject.get(&quot;mode_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L312">            : null)</span>
+<span class="fc" id="L313">        .setTempo(</span>
+<span class="pc bpc" id="L314" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;tempo&quot;)</span>
+<span class="fc" id="L315">            ? jsonObject.get(&quot;tempo&quot;).getAsFloat()</span>
+<span class="nc" id="L316">            : null)</span>
+<span class="fc" id="L317">        .setTempoConfidence(</span>
+<span class="pc bpc" id="L318" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;tempo_confidence&quot;)</span>
+<span class="fc" id="L319">            ? jsonObject.get(&quot;tempo_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L320">            : null)</span>
+<span class="fc" id="L321">        .setTimeSignature(</span>
+<span class="pc bpc" id="L322" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;time_signature&quot;)</span>
+<span class="fc" id="L323">            ? jsonObject.get(&quot;time_signature&quot;).getAsInt()</span>
+<span class="nc" id="L324">            : null)</span>
+<span class="fc" id="L325">        .setTimeSignatureConfidence(</span>
+<span class="pc bpc" id="L326" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;time_signature_confidence&quot;)</span>
+<span class="fc" id="L327">            ? jsonObject.get(&quot;time_signature_confidence&quot;).getAsFloat()</span>
+<span class="nc" id="L328">            : null)</span>
+<span class="fc" id="L329">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

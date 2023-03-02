@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SnapshotResult.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.special</a> &gt; <span class="el_source">SnapshotResult.java</span></div><h1>SnapshotResult.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.special;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+/**
+ * Retrieve information about Snapshot Result objects by building instances from this class. These objects contain a
+ * playlist snapshot ID, which is created after adding or removing tracks from a playlist.
+ * &lt;p&gt;
+ * &lt;a href=&quot;https://developer.spotify.com/web-api/working-with-playlists/#version-control-and-snapshots&quot;&gt;
+ * Spotify: Working With Playlists&lt;/a&gt;
+ */
+@JsonDeserialize(builder = SnapshotResult.Builder.class)
+public class SnapshotResult extends AbstractModelObject {
+  private final String snapshotId;
+
+  private SnapshotResult(final Builder builder) {
+<span class="fc" id="L19">    super(builder);</span>
+
+<span class="fc" id="L21">    this.snapshotId = builder.snapshotId;</span>
+<span class="fc" id="L22">  }</span>
+
+  /**
+   * Get the snapshot ID.
+   *
+   * @return The snapshot ID.
+   */
+  public String getSnapshotId() {
+<span class="fc" id="L30">    return snapshotId;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L35">    return &quot;SnapshotResult(snapshotId=&quot; + snapshotId + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L40">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link SnapshotResult} instances.
+   */
+<span class="fc" id="L46">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    public String snapshotId;
+
+    public Builder setSnapshotId(String snapshotId) {
+<span class="fc" id="L50">      this.snapshotId = snapshotId;</span>
+<span class="fc" id="L51">      return this;</span>
+    }
+
+    @Override
+    public SnapshotResult build() {
+<span class="fc" id="L56">      return new SnapshotResult(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link SnapshotResult} instances.
+   */
+<span class="fc" id="L63">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;SnapshotResult&gt; {</span>
+    public SnapshotResult createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L65" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L66">        return null;</span>
+      }
+
+<span class="fc" id="L69">      return new SnapshotResult.Builder()</span>
+<span class="fc" id="L70">        .setSnapshotId(</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;snapshot_id&quot;)</span>
+<span class="fc" id="L72">            ? jsonObject.get(&quot;snapshot_id&quot;).getAsString()</span>
+<span class="nc" id="L73">            : null)</span>
+<span class="fc" id="L74">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

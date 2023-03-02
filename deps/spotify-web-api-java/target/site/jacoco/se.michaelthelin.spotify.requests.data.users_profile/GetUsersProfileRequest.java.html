@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetUsersProfileRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.users_profile</a> &gt; <span class="el_source">GetUsersProfileRequest.java</span></div><h1>GetUsersProfileRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.users_profile;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.User;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get public profile information about a Spotify user.
+ */
+@JsonDeserialize(builder = GetUsersProfileRequest.Builder.class)
+public class GetUsersProfileRequest extends AbstractDataRequest&lt;User&gt; {
+
+  /**
+   * The private {@link GetUsersProfileRequest} constructor.
+   *
+   * @param builder A {@link GetUsersProfileRequest.Builder}.
+   */
+  private GetUsersProfileRequest(final Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Get the profile of a current user.
+   *
+   * @return A {@link User}.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public User execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return new User.JsonUtil().createModelObject(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetUsersProfileRequest}.
+   */
+<span class="fc" id="L43">  public static final class Builder extends AbstractDataRequest.Builder&lt;User, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetUsersProfileRequest.Builder}.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L51">      super(accessToken);</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * The user ID setter.
+     *
+     * @param user_id The user's Spotify user ID.
+     * @return A {@link GetUsersProfileRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder user_id(final String user_id) {
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">      assert (user_id != null);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">      assert (!user_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L64">      return setPathParameter(&quot;user_id&quot;, user_id);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetUsersProfileRequest}.
+     */
+    @Override
+    public GetUsersProfileRequest build() {
+<span class="fc" id="L74">      setPath(&quot;/v1/users/{user_id}&quot;);</span>
+<span class="fc" id="L75">      return new GetUsersProfileRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L80">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

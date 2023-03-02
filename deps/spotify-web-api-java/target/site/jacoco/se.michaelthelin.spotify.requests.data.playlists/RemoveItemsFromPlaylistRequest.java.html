@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RemoveItemsFromPlaylistRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.playlists</a> &gt; <span class="el_source">RemoveItemsFromPlaylistRequest.java</span></div><h1>RemoveItemsFromPlaylistRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.playlists;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonArray;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.special.SnapshotResult;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Remove one or more items from a user’s playlist.
+ */
+@JsonDeserialize(builder = RemoveItemsFromPlaylistRequest.Builder.class)
+public class RemoveItemsFromPlaylistRequest extends AbstractDataRequest&lt;SnapshotResult&gt; {
+
+  /**
+   * The private {@link RemoveItemsFromPlaylistRequest} constructor.
+   *
+   * @param builder A {@link RemoveItemsFromPlaylistRequest.Builder}.
+   */
+  private RemoveItemsFromPlaylistRequest(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+<span class="fc" id="L26">  }</span>
+
+  /**
+   * Remove items from a playlist.
+   *
+   * @return A playlist snapshot ID. The snapshot ID can be used to identify your playlist version in future requests.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   * @see &lt;a href=&quot;https://developer.spotify.com/web-api/working-with-playlists/#version-control-and-snapshots&quot;&gt;
+   * Spotify: Version Control and Snapshots&lt;/a&gt;
+   */
+  public SnapshotResult execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L41">    return new SnapshotResult.JsonUtil().createModelObject(deleteJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link RemoveItemsFromPlaylistRequest}.
+   */
+<span class="fc" id="L47">  public static final class Builder extends AbstractDataRequest.Builder&lt;SnapshotResult, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link RemoveItemsFromPlaylistRequest.Builder}.
+     * &lt;p&gt;
+     * Removing items from an user's public playlists requires authorization of the {@code playlist-modify-public}
+     * scope; removing items from an user's private playlist (including collaborative playlists) requires the
+     * {@code playlist-modify-private} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L60">      super(accessToken);</span>
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * The playlist ID setter.
+     *
+     * @param playlist_id The Spotify ID for the playlist.
+     * @return An {@link RemoveItemsFromPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder playlist_id(final String playlist_id) {
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">      assert (playlist_id != null);</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">      assert (!playlist_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L73">      return setPathParameter(&quot;playlist_id&quot;, playlist_id);</span>
+    }
+
+    /**
+     * The item URIs setter.
+     * &lt;p&gt;
+     * There are several ways to specify which tracks or episodes to remove, determined by the request parameters.
+     * Removing all occurrences of specific items: &lt;br&gt;
+     * {@code [{ &quot;uri&quot;: &quot;spotify:track:4iV5W9uYEdYUVa79Axb7Rh&quot; },
+     * {&quot;uri&quot;: &quot;spotify:episode:512ojhOuo1ktJprKbVcKyQ&quot; }] } &lt;br&gt;
+     * Removing a specific occurrence of an item: &lt;br&gt;
+     * {@code [{ &quot;uri&quot;: &quot;spotify:track:4iV5W9uYEdYUVa79Axb7Rh&quot;, &quot;positions&quot;: [0,3] },
+     * { &quot;uri&quot;: &quot;spotify:track:1301WleyT98MSxVHPZCA6M&quot;, &quot;positions&quot;: [7] }] }
+     *
+     * @param tracks Required. An array of objects containing Spotify URIs of the items to remove. A maximum of
+     *               100 objects can be sent at once
+     * @return A {@link RemoveItemsFromPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder tracks(final JsonArray tracks) {
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">      assert (tracks != null);</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">      assert (!tracks.isJsonNull());</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">      assert (tracks.size() &lt;= 100);</span>
+<span class="fc" id="L96">      return setBodyParameter(&quot;tracks&quot;, tracks);</span>
+    }
+
+    /**
+     * The playlist snapshot ID setter.
+     * &lt;p&gt;
+     * To guard against errors when concurrent edits happen to the same playlist, we recommend specifying a snapshot ID.
+     * The snapshot ID lets us know which version of the playlist you are trying to edit. Concurrent edits by another
+     * user will be automatically resolved. If a given item in a given position is not found in the specified snapshot,
+     * the entire request will fail an no edits will take place.
+     *
+     * @param snapshotId Optional. The playlist's snapshot ID against which you want to make the changes. The API will
+     *                   validate that the specified items exist and in the specified positions and make the changes,
+     *                   even if more recent changes have been made to the playlist.
+     * @return A {@link RemoveItemsFromPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/working-with-playlists/#version-control-and-snapshots&quot;&gt;
+     * Spotify: Version Control and Snapshots&lt;/a&gt;
+     */
+    public Builder snapshotId(final String snapshotId) {
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">      assert (snapshotId != null);</span>
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">      assert (!snapshotId.equals(&quot;&quot;));</span>
+<span class="fc" id="L117">      return setBodyParameter(&quot;snapshot_id&quot;, snapshotId);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link RemoveItemsFromPlaylistRequest}.
+     */
+    @Override
+    public RemoveItemsFromPlaylistRequest build() {
+<span class="fc" id="L127">      setContentType(ContentType.APPLICATION_JSON);</span>
+<span class="fc" id="L128">      setPath(&quot;/v1/playlists/{playlist_id}/tracks&quot;);</span>
+<span class="fc" id="L129">      return new RemoveItemsFromPlaylistRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L134">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

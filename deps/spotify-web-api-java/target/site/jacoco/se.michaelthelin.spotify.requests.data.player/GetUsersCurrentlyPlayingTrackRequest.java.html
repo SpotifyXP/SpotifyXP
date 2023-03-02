@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetUsersCurrentlyPlayingTrackRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.player</a> &gt; <span class="el_source">GetUsersCurrentlyPlayingTrackRequest.java</span></div><h1>GetUsersCurrentlyPlayingTrackRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.player;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.neovisionaries.i18n.CountryCode;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get the object currently being played on the user’s Spotify account.
+ */
+@JsonDeserialize(builder = GetUsersCurrentlyPlayingTrackRequest.Builder.class)
+public class GetUsersCurrentlyPlayingTrackRequest extends AbstractDataRequest&lt;CurrentlyPlaying&gt; {
+
+  /**
+   * The private {@link GetUsersCurrentlyPlayingTrackRequest} constructor.
+   *
+   * @param builder A {@link GetUsersCurrentlyPlayingTrackRequest.Builder}.
+   */
+  private GetUsersCurrentlyPlayingTrackRequest(final Builder builder) {
+<span class="fc" id="L24">    super(builder);</span>
+<span class="fc" id="L25">  }</span>
+
+  /**
+   * Get an user's currently playing track.
+   *
+   * @return An user's currently playing track.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public CurrentlyPlaying execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L38">    return new CurrentlyPlaying.JsonUtil().createModelObject(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetUsersCurrentlyPlayingTrackRequest}.
+   */
+<span class="fc" id="L44">  public static final class Builder extends AbstractDataRequest.Builder&lt;CurrentlyPlaying, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetUsersCurrentlyPlayingTrackRequest.Builder}.
+     * &lt;p&gt;
+     * Your access token must have the {@code user-read-currently-playing} scope and/or the
+     * {@code user-read-playback-state} authorized in order to read information.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L56">      super(accessToken);</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * The market country code setter.
+     *
+     * @param market Optional. An ISO 3166-1 alpha-2 country code. Provide this parameter if you
+     *               want to apply Track Relinking.
+     * @return A {@link GetUsersCurrentlyPlayingTrackRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/track-relinking-guide/&quot;&gt;Spotify: Track Relinking Guide&lt;/a&gt;
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     */
+    public Builder market(final CountryCode market) {
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">      assert (market != null);</span>
+<span class="fc" id="L70">      return setQueryParameter(&quot;market&quot;, market);</span>
+    }
+
+    /**
+     * The additional types setter.
+     *
+     * @param additionalTypes Optional. A comma-separated list of item types that your client supports
+     *                        besides the default track type. Valid types are: {@code track} and {@code episode}.
+     *                        An unsupported type in the response is expected to be represented as {@code null} value in the {@code item} field.
+     * @return A {@link GetUsersCurrentlyPlayingTrackRequest.Builder}.
+     */
+    public GetUsersCurrentlyPlayingTrackRequest.Builder additionalTypes(final String additionalTypes) {
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">      assert (additionalTypes != null);</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">      assert (additionalTypes.matches(&quot;((^|,)(episode|track))+$&quot;));</span>
+<span class="fc" id="L84">      return setQueryParameter(&quot;additional_types&quot;, additionalTypes);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetUsersCurrentlyPlayingTrackRequest}.
+     */
+    @Override
+    public GetUsersCurrentlyPlayingTrackRequest build() {
+<span class="fc" id="L94">      setPath(&quot;/v1/me/player/currently-playing&quot;);</span>
+<span class="fc" id="L95">      return new GetUsersCurrentlyPlayingTrackRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L100">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

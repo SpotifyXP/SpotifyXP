@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SetRepeatModeOnUsersPlaybackRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.player</a> &gt; <span class="el_source">SetRepeatModeOnUsersPlaybackRequest.java</span></div><h1>SetRepeatModeOnUsersPlaybackRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.player;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Set the repeat mode for the user’s playback.
+ */
+@JsonDeserialize(builder = SetRepeatModeOnUsersPlaybackRequest.Builder.class)
+public class SetRepeatModeOnUsersPlaybackRequest extends AbstractDataRequest&lt;String&gt; {
+
+  /**
+   * The private {@link SetRepeatModeOnUsersPlaybackRequest} constructor.
+   *
+   * @param builder A {@link SetRepeatModeOnUsersPlaybackRequest.Builder}.
+   */
+  private SetRepeatModeOnUsersPlaybackRequest(final Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Set the repeat mode on a user's playback.
+   *
+   * @return A string. &lt;b&gt;Note:&lt;/b&gt; This endpoint doesn't return something in its response body.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public String execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return putJson();</span>
+  }
+
+  /**
+   * Builder class for building a {@link SetRepeatModeOnUsersPlaybackRequest}.
+   */
+<span class="fc" id="L43">  public static final class Builder extends AbstractDataRequest.Builder&lt;String, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link SetRepeatModeOnUsersPlaybackRequest.Builder}.
+     * &lt;p&gt;
+     * Your access token must have the {@code user-modify-playback-state} scope authorized in order to control playback.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L54">      super(accessToken);</span>
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * The repeat state setter.
+     *
+     * @param state Required. {@code track}, {@code context} or {@code off}. {@code track} will repeat the current
+     *              track. {@code context} will repeat the current context. {@code off} will turn repeat off.
+     * @return A {@link SetRepeatModeOnUsersPlaybackRequest.Builder}.
+     */
+    public Builder state(final String state) {
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">      assert (state != null);</span>
+<span class="pc bpc" id="L66" title="5 of 6 branches missed.">      assert (state.equals(&quot;track&quot;) || state.equals(&quot;context&quot;) || state.equals(&quot;off&quot;));</span>
+<span class="fc" id="L67">      return setQueryParameter(&quot;state&quot;, state);</span>
+    }
+
+    /**
+     * The device ID setter.
+     *
+     * @param device_id Optional. The ID of the device this command is targeting. If not supplied, the
+     *                  user's currently active device is the target.
+     * @return A {@link SetRepeatModeOnUsersPlaybackRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder device_id(final String device_id) {
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">      assert (device_id != null);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">      assert (!device_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L81">      return setQueryParameter(&quot;device_id&quot;, device_id);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link SetRepeatModeOnUsersPlaybackRequest}.
+     */
+    @Override
+    public SetRepeatModeOnUsersPlaybackRequest build() {
+<span class="fc" id="L91">      setContentType(ContentType.APPLICATION_JSON);</span>
+<span class="fc" id="L92">      setPath(&quot;/v1/me/player/repeat&quot;);</span>
+<span class="fc" id="L93">      return new SetRepeatModeOnUsersPlaybackRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L98">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetUsersAvailableDevicesRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.player</a> &gt; <span class="el_source">GetUsersAvailableDevicesRequest.java</span></div><h1>GetUsersAvailableDevicesRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.player;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.miscellaneous.Device;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get information about a user’s available devices.
+ */
+@JsonDeserialize(builder = GetUsersAvailableDevicesRequest.Builder.class)
+public class GetUsersAvailableDevicesRequest extends AbstractDataRequest&lt;Device[]&gt; {
+
+  /**
+   * The private {@link GetUsersAvailableDevicesRequest} constructor.
+   *
+   * @param builder A {@link GetUsersAvailableDevicesRequest.Builder}.
+   */
+  private GetUsersAvailableDevicesRequest(final Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Get an user's available devices.
+   *
+   * @return An user's available devices.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public Device[] execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return new Device.JsonUtil().createModelObjectArray(getJson(), &quot;devices&quot;);</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetUsersAvailableDevicesRequest}.
+   */
+  public static final class Builder extends AbstractDataRequest.Builder&lt;Device[], Builder&gt; {
+
+    /**
+     * Create a new {@link GetUsersAvailableDevicesRequest.Builder}.
+     * &lt;p&gt;
+     * Your access token must have the {@code user-read-playback-state} scope authorized in order to read information.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L54">      super(accessToken);</span>
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetUsersAvailableDevicesRequest}.
+     */
+    @Override
+    public GetUsersAvailableDevicesRequest build() {
+<span class="fc" id="L64">      setPath(&quot;/v1/me/player/devices&quot;);</span>
+<span class="fc" id="L65">      return new GetUsersAvailableDevicesRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L70">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

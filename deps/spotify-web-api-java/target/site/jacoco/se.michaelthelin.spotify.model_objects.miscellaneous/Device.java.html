@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Device.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.miscellaneous</a> &gt; <span class="el_source">Device.java</span></div><h1>Device.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.miscellaneous;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/get-a-users-available-devices/&quot;&gt;Device
+ * objects&lt;/a&gt; by creating instances from this class.
+ */
+@JsonDeserialize(builder = Device.Builder.class)
+public class Device extends AbstractModelObject {
+  private final String id;
+  private final Boolean is_active;
+  private final Boolean is_private_session;
+  private final Boolean is_restricted;
+  private final String name;
+  private final String type;
+  private final Integer volume_percent;
+
+  private Device(final Builder builder) {
+<span class="fc" id="L24">    super(builder);</span>
+
+<span class="fc" id="L26">    this.id = builder.id;</span>
+<span class="fc" id="L27">    this.is_active = builder.is_active;</span>
+<span class="fc" id="L28">    this.is_private_session = builder.is_private_session;</span>
+<span class="fc" id="L29">    this.is_restricted = builder.is_restricted;</span>
+<span class="fc" id="L30">    this.name = builder.name;</span>
+<span class="fc" id="L31">    this.type = builder.type;</span>
+<span class="fc" id="L32">    this.volume_percent = builder.volume_percent;</span>
+<span class="fc" id="L33">  }</span>
+
+  /**
+   * Get the ID of the device.
+   *
+   * @return The device ID. This may be {@code null}.
+   */
+  public String getId() {
+<span class="nc" id="L41">    return id;</span>
+  }
+
+  /**
+   * Check whether the device is the currently active device.
+   *
+   * @return If this device is the currently active device.
+   */
+  public Boolean getIs_active() {
+<span class="nc" id="L50">    return is_active;</span>
+  }
+
+  /**
+   * Get whether the device is in a private session. Access to playback info is limited on clients in a private session.
+   *
+   * @return Whether the user has put the client into a private session.
+   */
+  public Boolean getIs_private_session() {
+<span class="nc" id="L59">    return is_private_session;</span>
+  }
+
+  /**
+   * Check whether the device is restricted or not. Restricted devices don't accept Spotify Web API calls.
+   *
+   * @return Whether controlling this device is restricted.
+   */
+  public Boolean getIs_restricted() {
+<span class="nc" id="L68">    return is_restricted;</span>
+  }
+
+  /**
+   * Get the name of the device.
+   *
+   * @return The name of the device.
+   */
+  public String getName() {
+<span class="nc" id="L77">    return name;</span>
+  }
+
+  /**
+   * Get the type of the device.
+   *
+   * @return Device type, such as &quot;Computer&quot;, &quot;Smartphone&quot; or &quot;Speaker&quot;.
+   */
+  public String getType() {
+<span class="nc" id="L86">    return type;</span>
+  }
+
+  /**
+   * Get the current volume of the device in percent.
+   *
+   * @return The current volume in percent. This may be {@code null}.
+   */
+  public Integer getVolume_percent() {
+<span class="nc" id="L95">    return volume_percent;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L100">    return &quot;Device(id=&quot; + id + &quot;, is_active=&quot; + is_active + &quot;, is_private_session=&quot; + is_private_session + &quot;, is_restricted=&quot; + is_restricted + &quot;, name=&quot; + name</span>
+        + &quot;, type=&quot; + type + &quot;, volume_percent=&quot; + volume_percent + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L106">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Device} instances.
+   */
+<span class="fc" id="L112">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String id;
+    private Boolean is_active;
+    private Boolean is_private_session;
+    private Boolean is_restricted;
+    private String name;
+    private String type;
+    private Integer volume_percent;
+
+    /**
+     * The device ID setter.
+     *
+     * @param id The device ID. This may be {@code null}.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L128">      this.id = id;</span>
+<span class="fc" id="L129">      return this;</span>
+    }
+
+    /**
+     * The active device state setter.
+     *
+     * @param is_active If this device is the currently active device.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setIs_active(Boolean is_active) {
+<span class="fc" id="L139">      this.is_active = is_active;</span>
+<span class="fc" id="L140">      return this;</span>
+    }
+
+    /**
+     * The private session state setter.
+     *
+     * @param is_private_session If this device is currently in a private session.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setIs_private_session(Boolean is_private_session) {
+<span class="fc" id="L150">      this.is_private_session = is_private_session;</span>
+<span class="fc" id="L151">      return this;</span>
+    }
+
+    /**
+     * The device restriction state setter.
+     *
+     * @param is_restricted Whether controlling this device is restricted.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setIs_restricted(Boolean is_restricted) {
+<span class="fc" id="L161">      this.is_restricted = is_restricted;</span>
+<span class="fc" id="L162">      return this;</span>
+    }
+
+    /**
+     * The device name setter.
+     *
+     * @param name The name of the device.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setName(String name) {
+<span class="fc" id="L172">      this.name = name;</span>
+<span class="fc" id="L173">      return this;</span>
+    }
+
+    /**
+     * The device type setter.
+     *
+     * @param type Device type, such as &quot;Computer&quot;, &quot;Smartphone&quot; or &quot;Speaker&quot;.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setType(String type) {
+<span class="fc" id="L183">      this.type = type;</span>
+<span class="fc" id="L184">      return this;</span>
+    }
+
+    /**
+     * The device volume setter.
+     *
+     * @param volume_percent The current volume in percent. This may be {@code null}.
+     * @return A {@link Device.Builder}.
+     */
+    public Builder setVolume_percent(Integer volume_percent) {
+<span class="fc" id="L194">      this.volume_percent = volume_percent;</span>
+<span class="fc" id="L195">      return this;</span>
+    }
+
+    @Override
+    public Device build() {
+<span class="fc" id="L200">      return new Device(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Device} instances.
+   */
+<span class="fc" id="L207">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Device&gt; {</span>
+    public Device createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L209" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L210">        return null;</span>
+      }
+
+<span class="fc" id="L213">      return new Device.Builder()</span>
+<span class="fc" id="L214">        .setId(</span>
+<span class="pc bpc" id="L215" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L216">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L217">            : null)</span>
+<span class="fc" id="L218">        .setIs_active(</span>
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_active&quot;)</span>
+<span class="fc" id="L220">            ? jsonObject.get(&quot;is_active&quot;).getAsBoolean()</span>
+<span class="nc" id="L221">            : null)</span>
+<span class="fc" id="L222">        .setIs_private_session(</span>
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_private_session&quot;)</span>
+<span class="fc" id="L224">            ? jsonObject.get(&quot;is_private_session&quot;).getAsBoolean()</span>
+<span class="nc" id="L225">            : null)</span>
+<span class="fc" id="L226">        .setIs_restricted(</span>
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_restricted&quot;)</span>
+<span class="fc" id="L228">            ? jsonObject.get(&quot;is_restricted&quot;).getAsBoolean()</span>
+<span class="nc" id="L229">            : null)</span>
+<span class="fc" id="L230">        .setName(</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;name&quot;)</span>
+<span class="fc" id="L232">            ? jsonObject.get(&quot;name&quot;).getAsString()</span>
+<span class="nc" id="L233">            : null)</span>
+<span class="fc" id="L234">        .setType(</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L236">            ? jsonObject.get(&quot;type&quot;).getAsString()</span>
+<span class="nc" id="L237">            : null)</span>
+<span class="fc" id="L238">        .setVolume_percent(</span>
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;volume_percent&quot;)</span>
+<span class="fc" id="L240">            ? jsonObject.get(&quot;volume_percent&quot;).getAsInt()</span>
+<span class="nc" id="L241">            : null)</span>
+<span class="fc" id="L242">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L248" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L249">      return true;</span>
+    }
+<span class="nc bnc" id="L251" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L252">      return false;</span>
+    }
+<span class="nc" id="L254">    Device device = (Device) o;</span>
+<span class="nc bnc" id="L255" title="All 4 branches missed.">    return Objects.equals(id, device.id) &amp;&amp; Objects.equals(name, device.name);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L260">    return Objects.hash(id, name);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

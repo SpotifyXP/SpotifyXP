@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AudioAnalysis.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.miscellaneous</a> &gt; <span class="el_source">AudioAnalysis.java</span></div><h1>AudioAnalysis.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.miscellaneous;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.specification.AudioFeatures;
+
+import java.util.Arrays;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/get-audio-analysis/&quot;&gt;
+ * Audio Analysis objects&lt;/a&gt; by building instances from this class. &lt;br&gt;
+ * These objects contain a great amount of additional information to
+ * {@link AudioFeatures} objects. &lt;br&gt;&lt;br&gt;
+ * &lt;p&gt;
+ * &lt;b&gt;Note:&lt;/b&gt; Audio Analysis data is created by the Software &quot;Analyzer&quot; by &quot;The Echo Nest&quot;, which has been bought by
+ * Spotify in the past. Since then, new Analyzer versions were created by Spotify but there is a lack of documentation
+ * on the side of Spotify, so it is possible that this Javadoc page (and other Audio Analysis related Javadoc pages)
+ * contains speculative information about a few of its corresponding methods.
+ */
+@JsonDeserialize(builder = AudioAnalysis.Builder.class)
+public class AudioAnalysis extends AbstractModelObject {
+  private final AudioAnalysisMeasure[] bars;
+  private final AudioAnalysisMeasure[] beats;
+  private final AudioAnalysisMeta meta;
+  private final AudioAnalysisSection[] sections;
+  private final AudioAnalysisSegment[] segments;
+  private final AudioAnalysisMeasure[] tatums;
+  private final AudioAnalysisTrack track;
+
+  private AudioAnalysis(final Builder builder) {
+<span class="fc" id="L32">    super(builder);</span>
+
+<span class="fc" id="L34">    this.bars = builder.bars;</span>
+<span class="fc" id="L35">    this.beats = builder.beats;</span>
+<span class="fc" id="L36">    this.meta = builder.meta;</span>
+<span class="fc" id="L37">    this.sections = builder.sections;</span>
+<span class="fc" id="L38">    this.segments = builder.segments;</span>
+<span class="fc" id="L39">    this.tatums = builder.tatums;</span>
+<span class="fc" id="L40">    this.track = builder.track;</span>
+<span class="fc" id="L41">  }</span>
+
+  /**
+   * Get the list of bar markers, in seconds.  A bar (or measure) is a segment of time defined as a given number of
+   * beats. Bar offsets also indicate downbeats, the first beat of the measure.
+   *
+   * @return The list of bar markers, in seconds.
+   */
+  public AudioAnalysisMeasure[] getBars() {
+<span class="fc" id="L50">    return bars;</span>
+  }
+
+  /**
+   * Get the list of beat markers, in seconds. A beat is the basic time unit of a piece of music; for example, each tick
+   * of a metronome. Beats are typically multiples of tatums.
+   *
+   * @return The list of beat markers, in seconds.
+   */
+  public AudioAnalysisMeasure[] getBeats() {
+<span class="fc" id="L60">    return beats;</span>
+  }
+
+  /**
+   * Get the metadata of the analyzer software for the track.
+   *
+   * @return Analyze, compute, and track information.
+   */
+  public AudioAnalysisMeta getMeta() {
+<span class="fc" id="L69">    return meta;</span>
+  }
+
+  /**
+   * Get the set of section markers, in seconds. Sections are defined by large variations in rhythm or timbre, e.g.
+   * chorus, verse, bridge, guitar solo, etc. Each section contains its own descriptions of tempo, key, mode,
+   * time_signature, and loudness
+   *
+   * @return The set of section markers, in seconds.
+   */
+  public AudioAnalysisSection[] getSections() {
+<span class="fc" id="L80">    return sections;</span>
+  }
+
+  /**
+   * Get the set of sound entities (typically under a second) each relatively uniform in timbre and harmony.
+   * Segments are characterized by their perceptual onsets and duration in seconds, loudness (dB), pitch and timbral
+   * content.
+   *
+   * @return The set of sound entities (typically under a second) each relatively uniform in timbre and harmony.
+   */
+  public AudioAnalysisSegment[] getSegments() {
+<span class="fc" id="L91">    return segments;</span>
+  }
+
+  /**
+   * Get the list of tatum markers, in seconds. Tatums represent the lowest regular pulse train that a listener
+   * intuitively infers from the timing of perceived musical events (segments).
+   *
+   * @return Get the list of tatum markers, in seconds.
+   */
+  public AudioAnalysisMeasure[] getTatums() {
+<span class="fc" id="L101">    return tatums;</span>
+  }
+
+  /**
+   * Get the track data of the audio analysis object.
+   *
+   * @return Track data of audio analysis object.
+   */
+  public AudioAnalysisTrack getTrack() {
+<span class="fc" id="L110">    return track;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L115">    return &quot;AudioAnalysis(bars=&quot; + Arrays.toString(bars) + &quot;, beats=&quot; + Arrays.toString(beats) + &quot;, meta=&quot; + meta</span>
+<span class="nc" id="L116">        + &quot;, sections=&quot; + Arrays.toString(sections) + &quot;, segments=&quot; + Arrays.toString(segments) + &quot;, tatums=&quot;</span>
+<span class="nc" id="L117">        + Arrays.toString(tatums) + &quot;, track=&quot; + track + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L122">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link AudioAnalysis} instances.
+   */
+<span class="fc" id="L128">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private AudioAnalysisMeasure[] bars;
+    private AudioAnalysisMeasure[] beats;
+    private AudioAnalysisMeta meta;
+    private AudioAnalysisSection[] sections;
+    private AudioAnalysisSegment[] segments;
+    private AudioAnalysisMeasure[] tatums;
+    private AudioAnalysisTrack track;
+
+    /**
+     * Track bars setter.
+     *
+     * @param bars The list of bar markers, in seconds.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setBars(AudioAnalysisMeasure[] bars) {
+<span class="fc" id="L144">      this.bars = bars;</span>
+<span class="fc" id="L145">      return this;</span>
+    }
+
+    /**
+     * The track beats setter.
+     *
+     * @param beats The list of beat markers, in seconds.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setBeats(AudioAnalysisMeasure[] beats) {
+<span class="fc" id="L155">      this.beats = beats;</span>
+<span class="fc" id="L156">      return this;</span>
+    }
+
+    /**
+     * The anaylzer metadata setter.
+     *
+     * @param meta Analyze, compute, and track information.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setMeta(AudioAnalysisMeta meta) {
+<span class="fc" id="L166">      this.meta = meta;</span>
+<span class="fc" id="L167">      return this;</span>
+    }
+
+    /**
+     * The track sections setter.
+     *
+     * @param sections The set of section markers, in seconds.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setSections(AudioAnalysisSection[] sections) {
+<span class="fc" id="L177">      this.sections = sections;</span>
+<span class="fc" id="L178">      return this;</span>
+    }
+
+    /**
+     * The track segments setter.
+     *
+     * @param segments The set of sound entities (typically under a second) each relatively uniform in timbre and
+     *                 harmony.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setSegments(AudioAnalysisSegment[] segments) {
+<span class="fc" id="L189">      this.segments = segments;</span>
+<span class="fc" id="L190">      return this;</span>
+    }
+
+    /**
+     * The track tatums setter.
+     *
+     * @param tatums Get the list of tatum markers, in seconds.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setTatums(AudioAnalysisMeasure[] tatums) {
+<span class="fc" id="L200">      this.tatums = tatums;</span>
+<span class="fc" id="L201">      return this;</span>
+    }
+
+    /**
+     * The track data setter.
+     *
+     * @param track Track data of audio analysis object.
+     * @return An {@link AudioAnalysis.Builder}.
+     */
+    public Builder setTrack(AudioAnalysisTrack track) {
+<span class="fc" id="L211">      this.track = track;</span>
+<span class="fc" id="L212">      return this;</span>
+    }
+
+    @Override
+    public AudioAnalysis build() {
+<span class="fc" id="L217">      return new AudioAnalysis(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link AudioAnalysis} instances.
+   */
+<span class="fc" id="L224">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;AudioAnalysis&gt; {</span>
+    public AudioAnalysis createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L226" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L227">        return null;</span>
+      }
+
+<span class="fc" id="L230">      return new AudioAnalysis.Builder()</span>
+<span class="fc" id="L231">        .setBars(</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;bars&quot;)</span>
+<span class="fc" id="L233">            ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L234">            jsonObject.getAsJsonArray(&quot;bars&quot;))</span>
+<span class="nc" id="L235">            : null)</span>
+<span class="fc" id="L236">        .setBeats(</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;beats&quot;)</span>
+<span class="fc" id="L238">            ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L239">            jsonObject.getAsJsonArray(&quot;beats&quot;))</span>
+<span class="nc" id="L240">            : null)</span>
+<span class="fc" id="L241">        .setMeta(</span>
+<span class="pc bpc" id="L242" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;meta&quot;)</span>
+<span class="fc" id="L243">            ? new AudioAnalysisMeta.JsonUtil().createModelObject(</span>
+<span class="fc" id="L244">            jsonObject.getAsJsonObject(&quot;meta&quot;))</span>
+<span class="nc" id="L245">            : null)</span>
+<span class="fc" id="L246">        .setSections(</span>
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;sections&quot;)</span>
+<span class="fc" id="L248">            ? new AudioAnalysisSection.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L249">            jsonObject.getAsJsonArray(&quot;sections&quot;))</span>
+<span class="nc" id="L250">            : null)</span>
+<span class="fc" id="L251">        .setSegments(</span>
+<span class="pc bpc" id="L252" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;segments&quot;)</span>
+<span class="fc" id="L253">            ? new AudioAnalysisSegment.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L254">            jsonObject.getAsJsonArray(&quot;segments&quot;))</span>
+<span class="nc" id="L255">            : null)</span>
+<span class="fc" id="L256">        .setTatums(</span>
+<span class="pc bpc" id="L257" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;tatums&quot;)</span>
+<span class="fc" id="L258">            ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L259">            jsonObject.getAsJsonArray(&quot;tatums&quot;))</span>
+<span class="nc" id="L260">            : null)</span>
+<span class="fc" id="L261">        .setTrack(</span>
+<span class="pc bpc" id="L262" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;track&quot;)</span>
+<span class="fc" id="L263">            ? new AudioAnalysisTrack.JsonUtil().createModelObject(</span>
+<span class="fc" id="L264">            jsonObject.getAsJsonObject(&quot;track&quot;))</span>
+<span class="nc" id="L265">            : null)</span>
+<span class="fc" id="L266">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractModelObject.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects</a> &gt; <span class="el_source">AbstractModelObject.java</span></div><h1>AbstractModelObject.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects;
+
+import com.google.gson.*;
+import se.michaelthelin.spotify.model_objects.specification.Cursor;
+import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.ParameterizedType;
+
+/**
+ * This abstract class (and its wrapping classes) is used as a sort of template for other model object classes and
+ * includes multiple generic methods.
+ */
+<span class="fc" id="L15">public abstract class AbstractModelObject implements IModelObject {</span>
+
+  /**
+   * This constructor initializes the time zone.
+   *
+   * @param builder The builder object of the corresponding model object.
+   */
+<span class="fc" id="L22">  protected AbstractModelObject(final Builder builder) {</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">    assert (builder != null);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Returns a String representation of this model object in the style:&lt;p&gt;
+   * {@code ModelObject(attr1=value1, attr2=value2, ...)}
+   */
+  @Override
+  public abstract String toString(); // abstract enforces overriding of toString() for subclasses
+
+  /**
+   * Each model object needs to implement its own builder class.
+   */
+<span class="fc" id="L36">  public static abstract class Builder implements IModelObject.Builder {</span>
+  }
+
+  /**
+   * Each model object needs to implement its own JsonUtil class. &lt;br&gt;
+   *
+   * @param &lt;T&gt; The model object type of the corresponding JsonUtil.
+   */
+<span class="fc" id="L44">  public static abstract class JsonUtil&lt;T&gt; implements IModelObject.IJsonUtil&lt;T&gt; {</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean hasAndNotNull(final JsonObject jsonObject, final String memberName) {
+<span class="fc bfc" id="L50" title="All 4 branches covered.">      return jsonObject.has(memberName) &amp;&amp; !jsonObject.get(memberName).isJsonNull();</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public T createModelObject(final String json) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">      if (json == null) {</span>
+<span class="fc" id="L58">        return null;</span>
+      } else {
+<span class="fc" id="L60">        return createModelObject(JsonParser.parseString(json).getAsJsonObject());</span>
+      }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public T[] createModelObjectArray(final JsonArray jsonArray) {
+      @SuppressWarnings(&quot;unchecked&quot;)
+<span class="fc" id="L69">      T[] array = (T[]) Array.newInstance((Class&lt;T&gt;) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0], jsonArray.size());</span>
+
+<span class="fc bfc" id="L71" title="All 2 branches covered.">      for (int i = 0; i &lt; jsonArray.size(); i++) {</span>
+<span class="fc" id="L72">        JsonElement jsonElement = jsonArray.get(i);</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (jsonElement instanceof JsonNull) {</span>
+<span class="fc" id="L75">          array[i] = null;</span>
+        } else {
+<span class="fc" id="L77">          JsonObject jsonObject = jsonElement.getAsJsonObject();</span>
+<span class="fc" id="L78">          array[i] = createModelObject(jsonObject);</span>
+        }
+      }
+
+<span class="fc" id="L82">      return array;</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public T[] createModelObjectArray(final String json) {
+<span class="fc" id="L89">      return createModelObjectArray(JsonParser.parseString(json).getAsJsonArray());</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public T[] createModelObjectArray(final String json, final String key) {
+<span class="fc" id="L96">      return createModelObjectArray(JsonParser.parseString(json).getAsJsonObject().get(key).getAsJsonArray());</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public &lt;X&gt; X[] createModelObjectArray(final JsonArray jsonArray, Class&lt;X&gt; clazz) {
+<span class="nc" id="L104">      X[] array = (X[]) Array.newInstance(clazz, jsonArray.size());</span>
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">      for (int i = 0; i &lt; jsonArray.size(); i++) {</span>
+<span class="nc" id="L107">        JsonElement jsonElement = jsonArray.get(i);</span>
+<span class="nc" id="L108">        JsonObject jsonObject = jsonElement.getAsJsonObject();</span>
+<span class="nc" id="L109">        array[i] = (X) createModelObject(jsonObject);</span>
+      }
+
+<span class="nc" id="L112">      return array;</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Paging&lt;T&gt; createModelObjectPaging(final JsonObject jsonObject) {
+<span class="fc" id="L119">      return new Paging.Builder&lt;T&gt;()</span>
+<span class="fc" id="L120">        .setHref(</span>
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L122">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L123">            : null)</span>
+<span class="fc" id="L124">        .setItems(</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;items&quot;)</span>
+<span class="fc" id="L126">            ? createModelObjectArray(jsonObject.getAsJsonArray(&quot;items&quot;))</span>
+<span class="nc" id="L127">            : null)</span>
+<span class="fc" id="L128">        .setLimit(</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;limit&quot;)</span>
+<span class="fc" id="L130">            ? jsonObject.get(&quot;limit&quot;).getAsInt()</span>
+<span class="nc" id="L131">            : null)</span>
+<span class="fc" id="L132">        .setNext(</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;next&quot;)</span>
+<span class="fc" id="L134">            ? jsonObject.get(&quot;next&quot;).getAsString()</span>
+<span class="fc" id="L135">            : null)</span>
+<span class="fc" id="L136">        .setOffset(</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;offset&quot;)</span>
+<span class="fc" id="L138">            ? jsonObject.get(&quot;offset&quot;).getAsInt()</span>
+<span class="nc" id="L139">            : null)</span>
+<span class="fc" id="L140">        .setPrevious(</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;previous&quot;)</span>
+<span class="fc" id="L142">            ? jsonObject.get(&quot;previous&quot;).getAsString()</span>
+<span class="fc" id="L143">            : null)</span>
+<span class="fc" id="L144">        .setTotal(</span>
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;total&quot;)</span>
+<span class="fc" id="L146">            ? jsonObject.get(&quot;total&quot;).getAsInt()</span>
+<span class="nc" id="L147">            : null)</span>
+<span class="fc" id="L148">        .build();</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Paging&lt;T&gt; createModelObjectPaging(final String json) {
+<span class="fc" id="L155">      return createModelObjectPaging(JsonParser.parseString(json).getAsJsonObject());</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Paging&lt;T&gt; createModelObjectPaging(final String json, final String key) {
+<span class="fc" id="L162">      return createModelObjectPaging(JsonParser.parseString(json).getAsJsonObject().get(key).getAsJsonObject());</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public PagingCursorbased&lt;T&gt; createModelObjectPagingCursorbased(final JsonObject jsonObject) {
+<span class="fc" id="L169">      return new PagingCursorbased.Builder&lt;T&gt;()</span>
+<span class="fc" id="L170">        .setHref(</span>
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L172">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L173">            : null)</span>
+<span class="fc" id="L174">        .setItems(</span>
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;items&quot;)</span>
+<span class="fc" id="L176">            ? createModelObjectArray(jsonObject.getAsJsonArray(&quot;items&quot;))</span>
+<span class="nc" id="L177">            : null)</span>
+<span class="fc" id="L178">        .setLimit(</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;limit&quot;)</span>
+<span class="fc" id="L180">            ? jsonObject.get(&quot;limit&quot;).getAsInt()</span>
+<span class="nc" id="L181">            : null)</span>
+<span class="fc" id="L182">        .setNext(</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;next&quot;)</span>
+<span class="fc" id="L184">            ? jsonObject.get(&quot;next&quot;).getAsString()</span>
+<span class="fc" id="L185">            : null)</span>
+<span class="fc" id="L186">        .setCursors(</span>
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;cursors&quot;)</span>
+<span class="fc" id="L188">            ? new Cursor.JsonUtil().createModelObject(jsonObject.getAsJsonObject(&quot;cursors&quot;))</span>
+<span class="pc" id="L189">            : null)</span>
+<span class="fc" id="L190">        .setTotal(</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;total&quot;)</span>
+<span class="fc" id="L192">            ? jsonObject.get(&quot;total&quot;).getAsInt()</span>
+<span class="fc" id="L193">            : null)</span>
+<span class="fc" id="L194">        .build();</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public PagingCursorbased&lt;T&gt; createModelObjectPagingCursorbased(final String json) {
+<span class="fc" id="L201">      return createModelObjectPagingCursorbased(JsonParser.parseString(json).getAsJsonObject());</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public PagingCursorbased&lt;T&gt; createModelObjectPagingCursorbased(final String json, final String key) {
+<span class="fc" id="L208">      return createModelObjectPagingCursorbased(JsonParser.parseString(json).getAsJsonObject().get(key).getAsJsonObject());</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

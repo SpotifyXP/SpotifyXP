@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AlbumType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.enums</a> &gt; <span class="el_source">AlbumType.java</span></div><h1>AlbumType.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * An enumeration of all possible album types.
+ */
+<span class="fc" id="L9">public enum AlbumType {</span>
+
+<span class="fc" id="L11">  ALBUM(&quot;album&quot;),</span>
+<span class="fc" id="L12">  COMPILATION(&quot;compilation&quot;),</span>
+<span class="fc" id="L13">  SINGLE(&quot;single&quot;);</span>
+
+<span class="fc" id="L15">  private static final Map&lt;String, AlbumType&gt; map = new HashMap&lt;&gt;();</span>
+
+  static {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">    for (AlbumType albumType : AlbumType.values()) {</span>
+<span class="fc" id="L19">      map.put(albumType.type, albumType);</span>
+    }
+<span class="fc" id="L21">  }</span>
+
+  public final String type;
+
+<span class="fc" id="L25">  AlbumType(final String type) {</span>
+<span class="fc" id="L26">    this.type = type;</span>
+<span class="fc" id="L27">  }</span>
+
+  public static AlbumType keyOf(String type) {
+<span class="fc" id="L30">    return map.get(type);</span>
+  }
+
+  /**
+   * Get the album type as a string.
+   *
+   * @return Album type as string.
+   */
+  public String getType() {
+<span class="fc" id="L39">    return type;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

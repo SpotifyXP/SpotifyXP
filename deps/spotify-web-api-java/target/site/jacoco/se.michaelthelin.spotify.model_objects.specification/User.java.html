@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import com.neovisionaries.i18n.CountryCode;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.enums.ProductType;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#user-object-private&quot;&gt;
+ * User objects&lt;/a&gt; by building instances from this class. &lt;br&gt;
+ * &lt;b&gt;Note:&lt;/b&gt; Many methods of this model object may return {@code null}, depending on the scopes specified in the
+ * authentication request.
+ *
+ * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+ */
+@JsonDeserialize(builder = User.Builder.class)
+public class User extends AbstractModelObject {
+  private final String birthdate;
+  private final CountryCode country;
+  private final String displayName;
+  private final String email;
+  private final ExternalUrl externalUrls;
+  private final Followers followers;
+  private final String href;
+  private final String id;
+  private final Image[] images;
+  private final ProductType product;
+  private final ModelObjectType type;
+  private final String uri;
+
+  private User(final Builder builder) {
+<span class="fc" id="L37">    super(builder);</span>
+
+<span class="fc" id="L39">    this.birthdate = builder.birthdate;</span>
+<span class="fc" id="L40">    this.country = builder.country;</span>
+<span class="fc" id="L41">    this.displayName = builder.displayName;</span>
+<span class="fc" id="L42">    this.email = builder.email;</span>
+<span class="fc" id="L43">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L44">    this.followers = builder.followers;</span>
+<span class="fc" id="L45">    this.href = builder.href;</span>
+<span class="fc" id="L46">    this.id = builder.id;</span>
+<span class="fc" id="L47">    this.images = builder.images;</span>
+<span class="fc" id="L48">    this.product = builder.product;</span>
+<span class="fc" id="L49">    this.type = builder.type;</span>
+<span class="fc" id="L50">    this.uri = builder.uri;</span>
+<span class="fc" id="L51">  }</span>
+
+  /**
+   * Get the users birthdate. &lt;br&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; This field is only available when the current user has granted access to the
+   * {@code user-read-birthdate} scope.
+   *
+   * @return The user's date-of-birth.
+   * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+   */
+  public String getBirthdate() {
+<span class="fc" id="L62">    return birthdate;</span>
+  }
+
+  /**
+   * Get the country code of the users set home country. &lt;br&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; This field is only available when the current user has granted access to the {@code user-read-private}
+   * scope.
+   *
+   * @return An &lt;a href=&quot;http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2&lt;/a&gt; country code.
+   * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+   */
+  public CountryCode getCountry() {
+<span class="fc" id="L74">    return country;</span>
+  }
+
+  /**
+   * Get the users display name if available. &lt;br&gt;
+   * If the display name is not available, {@code null} will be returned.
+   *
+   * @return The name displayed on the user's profile. {@code null} if not available.
+   */
+  public String getDisplayName() {
+<span class="fc" id="L84">    return displayName;</span>
+  }
+
+  /**
+   * Get the users email address. &lt;br&gt;
+   * &lt;b&gt;Important!&lt;/b&gt; This email address is unverified; there is no proof that it actually belongs to the user. &lt;br&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; This field is only available when the current user has granted access to the {@code user-read-email}
+   * scope.
+   *
+   * @return The user's email address, as entered by the user when creating their account.
+   * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+   */
+  public String getEmail() {
+<span class="fc" id="L97">    return email;</span>
+  }
+
+  /**
+   * Get the external URLs of the user. &lt;br&gt;
+   * Example: Spotify-URL.
+   *
+   * @return Known external URLs for this user.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="fc" id="L107">    return externalUrls;</span>
+  }
+
+  /**
+   * Get information about the followers of the user. &lt;br&gt;
+   * Example: Follower count.
+   *
+   * @return Information about the followers of the user.
+   */
+  public Followers getFollowers() {
+<span class="fc" id="L117">    return followers;</span>
+  }
+
+  /**
+   * Get the Spotify Web API endpoint URL of the user.
+   *
+   * @return A link to the Spotify Web API endpoint for this user.
+   */
+  public String getHref() {
+<span class="fc" id="L126">    return href;</span>
+  }
+
+  /**
+   * Get the Spotify ID of the user.
+   *
+   * @return The &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify user ID&lt;/a&gt;
+   * for the user.
+   */
+  public String getId() {
+<span class="fc" id="L136">    return id;</span>
+  }
+
+  /**
+   * Get the profile image of the user in different sizes.
+   *
+   * @return The user's profile image.
+   */
+  public Image[] getImages() {
+<span class="fc" id="L145">    return images;</span>
+  }
+
+  /**
+   * Get the product type of the users account. &lt;br&gt;
+   * Product type refers to premium account, free account, etc. &lt;br&gt;
+   * &lt;b&gt;Note:&lt;/b&gt; This field is only available when the current user has granted access to the {@code user-read-private}
+   * scope.
+   *
+   * @return The user's Spotify subscription level: &quot;premium&quot;, &quot;free&quot;, etc.
+   * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+   */
+  public ProductType getProduct() {
+<span class="fc" id="L158">    return product;</span>
+  }
+
+  /**
+   * Get the model object type. In this case &quot;user&quot;.
+   *
+   * @return The object type: &quot;user&quot;
+   */
+  public ModelObjectType getType() {
+<span class="fc" id="L167">    return type;</span>
+  }
+
+  /**
+   * Get the &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URI&lt;/a&gt; of the
+   * user.
+   *
+   * @return The Spotify URI for the user.
+   */
+  public String getUri() {
+<span class="fc" id="L177">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L182">    return &quot;User(birthdate=&quot; + birthdate + &quot;, country=&quot; + country + &quot;, displayName=&quot; + displayName + &quot;, email=&quot; + email</span>
+        + &quot;, externalUrls=&quot; + externalUrls + &quot;, followers=&quot; + followers + &quot;, href=&quot; + href + &quot;, id=&quot; + id + &quot;, images=&quot;
+<span class="nc" id="L184">        + Arrays.toString(images) + &quot;, product=&quot; + product + &quot;, type=&quot; + type + &quot;, uri=&quot; + uri + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L189">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link User} instances.
+   */
+<span class="fc" id="L195">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String birthdate;
+    private CountryCode country;
+    private String displayName;
+    private String email;
+    private ExternalUrl externalUrls;
+    private Followers followers;
+    private String href;
+    private String id;
+    private Image[] images;
+    private ProductType product;
+    private ModelObjectType type;
+    private String uri;
+
+    /**
+     * Set the birthday of the user object to be built.
+     *
+     * @param birthdate The user's date-of-birth.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setBirthdate(String birthdate) {
+<span class="fc" id="L216">      this.birthdate = birthdate;</span>
+<span class="fc" id="L217">      return this;</span>
+    }
+
+    /**
+     * Set the home country of the user object to be built.
+     *
+     * @param country An ISO 3166-1 alpha-2 country code.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setCountry(CountryCode country) {
+<span class="fc" id="L227">      this.country = country;</span>
+<span class="fc" id="L228">      return this;</span>
+    }
+
+    /**
+     * Set the display name of the user to be built. If the user hasn't a display name, set {@code null} instead.
+     *
+     * @param displayName The name displayed on the user's profile. {@code null} if not available.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setDisplayName(String displayName) {
+<span class="fc" id="L238">      this.displayName = displayName;</span>
+<span class="fc" id="L239">      return this;</span>
+    }
+
+    /**
+     * Set the email address of the user to be built.
+     *
+     * @param email The user's email address, as entered by the user when creating their account.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setEmail(String email) {
+<span class="fc" id="L249">      this.email = email;</span>
+<span class="fc" id="L250">      return this;</span>
+    }
+
+    /**
+     * Set external urls of the user to be built.
+     *
+     * @param externalUrls Known external URLs for this user.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L260">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L261">      return this;</span>
+    }
+
+    /**
+     * Set the followers object of the user to be built.
+     *
+     * @param followers Information about the followers of the user.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setFollowers(Followers followers) {
+<span class="fc" id="L271">      this.followers = followers;</span>
+<span class="fc" id="L272">      return this;</span>
+    }
+
+    /**
+     * Set href of Spotify api endpoint of the user to be built.
+     *
+     * @param href A link to the Spotify Web API endpoint for this user.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L282">      this.href = href;</span>
+<span class="fc" id="L283">      return this;</span>
+    }
+
+    /**
+     * Set user ID of the user to be built.
+     *
+     * @param id The &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify user ID
+     *           &lt;/a&gt; for the user.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L294">      this.id = id;</span>
+<span class="fc" id="L295">      return this;</span>
+    }
+
+    /**
+     * Set the profile image of the user to be built.
+     *
+     * @param images The user's profile image.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setImages(Image... images) {
+<span class="fc" id="L305">      this.images = images;</span>
+<span class="fc" id="L306">      return this;</span>
+    }
+
+    /**
+     * Set the product type of the user to be built.
+     *
+     * @param product The user's Spotify subscription level: &quot;premium&quot;, &quot;free&quot;, etc.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setProduct(ProductType product) {
+<span class="fc" id="L316">      this.product = product;</span>
+<span class="fc" id="L317">      return this;</span>
+    }
+
+    /**
+     * Set the type of the model object. In this case &quot;user&quot;.
+     *
+     * @param type The object type: &quot;user&quot;
+     * @return A {@link User.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L327">      this.type = type;</span>
+<span class="fc" id="L328">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify URI of the user to be built.
+     *
+     * @param uri The Spotify URI for the user.
+     * @return A {@link User.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L338">      this.uri = uri;</span>
+<span class="fc" id="L339">      return this;</span>
+    }
+
+    @Override
+    public User build() {
+<span class="fc" id="L344">      return new User(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link User} instances.
+   */
+<span class="fc" id="L351">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;User&gt; {</span>
+    public User createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L353" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L354">        return null;</span>
+      }
+
+<span class="fc" id="L357">      return new User.Builder()</span>
+<span class="fc" id="L358">        .setBirthdate(</span>
+<span class="fc bfc" id="L359" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;birthdate&quot;)</span>
+<span class="fc" id="L360">            ? jsonObject.get(&quot;birthdate&quot;).getAsString()</span>
+<span class="fc" id="L361">            : null)</span>
+<span class="fc" id="L362">        .setCountry(</span>
+<span class="fc bfc" id="L363" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;country&quot;)</span>
+<span class="fc" id="L364">            ? CountryCode.getByCode(</span>
+<span class="fc" id="L365">            jsonObject.get(&quot;country&quot;).getAsString())</span>
+<span class="fc" id="L366">            : null)</span>
+<span class="fc" id="L367">        .setDisplayName(</span>
+<span class="fc bfc" id="L368" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;display_name&quot;)</span>
+<span class="fc" id="L369">            ? jsonObject.get(&quot;display_name&quot;).getAsString()</span>
+<span class="fc" id="L370">            : null)</span>
+<span class="fc" id="L371">        .setEmail(</span>
+<span class="fc bfc" id="L372" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;email&quot;)</span>
+<span class="fc" id="L373">            ? jsonObject.get(&quot;email&quot;).getAsString()</span>
+<span class="fc" id="L374">            : null)</span>
+<span class="fc" id="L375">        .setExternalUrls(</span>
+<span class="pc bpc" id="L376" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L377">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L378">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L379">            : null)</span>
+<span class="fc" id="L380">        .setFollowers(</span>
+<span class="fc bfc" id="L381" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;followers&quot;)</span>
+<span class="fc" id="L382">            ? new Followers.JsonUtil().createModelObject(</span>
+<span class="fc" id="L383">            jsonObject.getAsJsonObject(&quot;followers&quot;))</span>
+<span class="fc" id="L384">            : null)</span>
+<span class="fc" id="L385">        .setHref(</span>
+<span class="pc bpc" id="L386" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L387">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L388">            : null)</span>
+<span class="fc" id="L389">        .setId(</span>
+<span class="pc bpc" id="L390" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L391">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L392">            : null)</span>
+<span class="fc" id="L393">        .setImages(</span>
+<span class="fc bfc" id="L394" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;images&quot;)</span>
+<span class="fc" id="L395">            ? new Image.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L396">            jsonObject.getAsJsonArray(&quot;images&quot;))</span>
+<span class="fc" id="L397">            : null)</span>
+<span class="fc" id="L398">        .setProduct(</span>
+<span class="fc bfc" id="L399" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;product&quot;)</span>
+<span class="fc" id="L400">            ? ProductType.keyOf(</span>
+<span class="fc" id="L401">            jsonObject.get(&quot;product&quot;).getAsString().toLowerCase())</span>
+<span class="fc" id="L402">            : null)</span>
+<span class="fc" id="L403">        .setType(</span>
+<span class="pc bpc" id="L404" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L405">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L406">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L407">            : null)</span>
+<span class="fc" id="L408">        .setUri(</span>
+<span class="pc bpc" id="L409" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L410">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L411">            : null)</span>
+<span class="fc" id="L412">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L418" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L419">      return true;</span>
+    }
+<span class="nc bnc" id="L421" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L422">      return false;</span>
+    }
+<span class="nc" id="L424">    User user = (User) o;</span>
+<span class="nc bnc" id="L425" title="All 6 branches missed.">    return Objects.equals(birthdate, user.birthdate) &amp;&amp; Objects.equals(id, user.id) &amp;&amp; Objects.equals(uri, user.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L430">    return Objects.hash(birthdate, id, uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

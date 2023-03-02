@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceUnavailableException.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.exceptions.detailed</a> &gt; <span class="el_source">ServiceUnavailableException.java</span></div><h1>ServiceUnavailableException.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.exceptions.detailed;
+
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+
+/**
+ * The server is currently unable to handle the request due to a temporary condition which will be alleviated after some
+ * delay. You can choose to resend the request again.
+ */
+public class ServiceUnavailableException extends SpotifyWebApiException {
+
+  public ServiceUnavailableException() {
+<span class="nc" id="L12">    super();</span>
+<span class="nc" id="L13">  }</span>
+
+  public ServiceUnavailableException(String message) {
+<span class="nc" id="L16">    super(message);</span>
+<span class="nc" id="L17">  }</span>
+
+  public ServiceUnavailableException(String message, Throwable cause) {
+<span class="nc" id="L20">    super(message, cause);</span>
+<span class="nc" id="L21">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

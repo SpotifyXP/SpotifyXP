@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UnfollowPlaylistRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.follow.legacy</a> &gt; <span class="el_source">UnfollowPlaylistRequest.java</span></div><h1>UnfollowPlaylistRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.follow.legacy;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Remove the specified user as a follower of a playlist.
+ */
+@JsonDeserialize(builder = UnfollowPlaylistRequest.Builder.class)
+public class UnfollowPlaylistRequest extends AbstractDataRequest&lt;String&gt; {
+
+  /**
+   * The private {@link UnfollowPlaylistRequest} constructor.
+   *
+   * @param builder A {@link UnfollowPlaylistRequest.Builder}.
+   */
+  private UnfollowPlaylistRequest(final Builder builder) {
+<span class="fc" id="L22">    super(builder);</span>
+<span class="fc" id="L23">  }</span>
+
+  /**
+   * Unfollow a playlist.
+   *
+   * @return A string. &lt;b&gt;Note:&lt;/b&gt; This endpoint doesn't return something in its response body.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public String execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L36">    return deleteJson();</span>
+  }
+
+  /**
+   * Builder class for building an {@link UnfollowPlaylistRequest}.
+   */
+<span class="fc" id="L42">  public static final class Builder extends AbstractDataRequest.Builder&lt;String, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link UnfollowPlaylistRequest.Builder} instance.
+     * &lt;p&gt;
+     * Unfollowing a publicly followed playlist for a user requires authorization of the {@code playlist-modify-public}
+     * scope; unfollowing a privately followed playlist requires the {@code playlist-modify-private} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L54">      super(accessToken);</span>
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * The playlist owner ID setter.
+     *
+     * @param owner_id The Spotify user ID of the person who owns the playlist.
+     * @return An {@link UnfollowPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder owner_id(final String owner_id) {
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">      assert (owner_id != null);</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">      assert (!owner_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L67">      return setPathParameter(&quot;owner_id&quot;, owner_id);</span>
+    }
+
+    /**
+     * The playlist ID setter.
+     *
+     * @param playlist_id The Spotify ID of the playlist that is to be no longer followed.
+     * @return An {@link UnfollowPlaylistRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder playlist_id(final String playlist_id) {
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">      assert (playlist_id != null);</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">      assert (!playlist_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L80">      return setPathParameter(&quot;playlist_id&quot;, playlist_id);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link UnfollowPlaylistRequest}.
+     */
+    @Override
+    public UnfollowPlaylistRequest build() {
+<span class="fc" id="L90">      setPath(&quot;/v1/users/{owner_id}/playlists/{playlist_id}/followers&quot;);</span>
+<span class="fc" id="L91">      return new UnfollowPlaylistRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L96">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

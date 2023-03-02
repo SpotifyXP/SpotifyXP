@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckUsersSavedShowsRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.library</a> &gt; <span class="el_source">CheckUsersSavedShowsRequest.java</span></div><h1>CheckUsersSavedShowsRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.library;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Check if one or more shows is already saved in the current Spotify user’s library.
+ */
+@JsonDeserialize(builder = CheckUsersSavedShowsRequest.Builder.class)
+public class CheckUsersSavedShowsRequest extends AbstractDataRequest&lt;Boolean[]&gt; {
+
+  /**
+   * The private {@link CheckUsersSavedShowsRequest} constructor.
+   *
+   * @param builder A {@link CheckUsersSavedShowsRequest.Builder}.
+   */
+  private CheckUsersSavedShowsRequest(final Builder builder) {
+<span class="fc" id="L24">    super(builder);</span>
+<span class="fc" id="L25">  }</span>
+
+  /**
+   * Check whether a show is present in the current user's &quot;Your Music&quot; library.
+   *
+   * @return Whether an show is present in the current user's &quot;Your Music&quot; library.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  @Override
+  public Boolean[] execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L39">    return new Gson().fromJson(JsonParser.parseString(getJson()).getAsJsonArray(), Boolean[].class);</span>
+  }
+
+  /**
+   * Builder class for building a {@link CheckUsersSavedShowsRequest}.
+   */
+<span class="fc" id="L45">  public static final class Builder extends AbstractDataRequest.Builder&lt;Boolean[], Builder&gt; {</span>
+    /**
+     * Create a new {@link CheckUsersSavedShowsRequest.Builder} instance.
+     * &lt;p&gt;
+     * The {@code user-library-read} scope must have been authorized by the user.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L55">      super(accessToken);</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * The show IDs setter.
+     *
+     * @param ids Required. A comma-separated list of the Spotify IDs for the shows. Maximum: 50 IDs.
+     * @return A {@link CheckUsersSavedShowsRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public CheckUsersSavedShowsRequest.Builder ids(final String ids) {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">      assert (ids != null);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (ids.split(&quot;,&quot;).length &lt;= 50);</span>
+<span class="fc" id="L68">      return setQueryParameter(&quot;ids&quot;, ids);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link CheckUsersSavedShowsRequest}.
+     */
+    @Override
+    public CheckUsersSavedShowsRequest build() {
+<span class="fc" id="L78">      setPath(&quot;/v1/me/shows/contains&quot;);</span>
+<span class="fc" id="L79">      return new CheckUsersSavedShowsRequest(this);</span>
+    }
+
+    @Override
+    protected CheckUsersSavedShowsRequest.Builder self() {
+<span class="fc" id="L84">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

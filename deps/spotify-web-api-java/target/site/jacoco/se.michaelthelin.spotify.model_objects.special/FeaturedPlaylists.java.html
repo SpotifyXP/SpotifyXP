@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FeaturedPlaylists.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.special</a> &gt; <span class="el_source">FeaturedPlaylists.java</span></div><h1>FeaturedPlaylists.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.special;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/console/get-featured-playlists&quot;&gt;
+ * Featured Playlist objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = FeaturedPlaylists.Builder.class)
+public class FeaturedPlaylists extends AbstractModelObject {
+  private final String message;
+  private final Paging&lt;PlaylistSimplified&gt; playlists;
+
+  private FeaturedPlaylists(final Builder builder) {
+<span class="fc" id="L19">    super(builder);</span>
+
+<span class="fc" id="L21">    this.message = builder.message;</span>
+<span class="fc" id="L22">    this.playlists = builder.playlists;</span>
+<span class="fc" id="L23">  }</span>
+
+  /**
+   * Get the message which is displayed on the front page of the &quot;browse&quot; tab in the Spotify client. &lt;br&gt;
+   * The message usually refers to the featured playlists.
+   *
+   * @return A &quot;welcoming&quot; message.
+   */
+  public String getMessage() {
+<span class="fc" id="L32">    return message;</span>
+  }
+
+  /**
+   * Get the page of featured playlists.
+   *
+   * @return Featured playlists page.
+   */
+  public Paging&lt;PlaylistSimplified&gt; getPlaylists() {
+<span class="fc" id="L41">    return playlists;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L46">    return &quot;FeaturedPlaylists(message=&quot; + message + &quot;, playlists=&quot; + playlists + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L51">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link FeaturedPlaylists} instances.
+   */
+<span class="fc" id="L57">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String message;
+    private Paging&lt;PlaylistSimplified&gt; playlists;
+
+    /**
+     * Set the message, which normally would be displayed on the front page of the &quot;browse&quot; tab.
+     *
+     * @param message Message to be set.
+     * @return A {@link FeaturedPlaylists.Builder}.
+     */
+    public Builder setMessage(String message) {
+<span class="fc" id="L68">      this.message = message;</span>
+<span class="fc" id="L69">      return this;</span>
+    }
+
+    /**
+     * Set a page of playlists contained in the featured playlists object to be built.
+     *
+     * @param playlists A page of simplified playlists.
+     * @return A {@link FeaturedPlaylists.Builder}.
+     */
+    public Builder setPlaylists(Paging&lt;PlaylistSimplified&gt; playlists) {
+<span class="fc" id="L79">      this.playlists = playlists;</span>
+<span class="fc" id="L80">      return this;</span>
+    }
+
+    @Override
+    public FeaturedPlaylists build() {
+<span class="fc" id="L85">      return new FeaturedPlaylists(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link FeaturedPlaylists} instances.
+   */
+<span class="fc" id="L92">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;FeaturedPlaylists&gt; {</span>
+    public FeaturedPlaylists createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L94" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L95">        return null;</span>
+      }
+
+<span class="fc" id="L98">      return new FeaturedPlaylists.Builder()</span>
+<span class="fc" id="L99">        .setMessage(</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;message&quot;)</span>
+<span class="fc" id="L101">            ? jsonObject.get(&quot;message&quot;).getAsString()</span>
+<span class="nc" id="L102">            : null)</span>
+<span class="fc" id="L103">        .setPlaylists(</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;playlists&quot;)</span>
+<span class="fc" id="L105">            ? new PlaylistSimplified.JsonUtil().createModelObjectPaging(</span>
+<span class="fc" id="L106">            jsonObject.getAsJsonObject(&quot;playlists&quot;))</span>
+<span class="nc" id="L107">            : null)</span>
+<span class="fc" id="L108">        .build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

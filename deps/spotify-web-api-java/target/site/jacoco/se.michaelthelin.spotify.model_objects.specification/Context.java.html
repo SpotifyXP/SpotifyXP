@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Context.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">Context.java</span></div><h1>Context.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#context-object&quot;&gt;
+ * Context objects&lt;/a&gt; by building instances from this class. Context objects contain information from where a
+ * specific track has been played by a user.
+ *
+ * @see PlayHistory
+ */
+@JsonDeserialize(builder = Context.Builder.class)
+public class Context extends AbstractModelObject {
+  private final ModelObjectType type;
+  private final String href;
+  private final ExternalUrl externalUrls;
+  private final String uri;
+
+  private Context(final Builder builder) {
+<span class="fc" id="L25">    super(builder);</span>
+
+<span class="fc" id="L27">    this.type = builder.type;</span>
+<span class="fc" id="L28">    this.href = builder.href;</span>
+<span class="fc" id="L29">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L30">    this.uri = builder.uri;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Get the model object type of the context.
+   *
+   * @return The {@link ModelObjectType}.
+   */
+  public ModelObjectType getType() {
+<span class="fc" id="L39">    return type;</span>
+  }
+
+  /**
+   * Get a link to the Spotify Web API endpoint providing full details of the track.
+   *
+   * @return A link to the Spotify Web API endpoint providing full details of the track.
+   */
+  public String getHref() {
+<span class="nc" id="L48">    return href;</span>
+  }
+
+  /**
+   * Get the external URLs of the context.
+   *
+   * @return An {@link ExternalUrl} object.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="nc" id="L57">    return externalUrls;</span>
+  }
+
+  /**
+   * Get the &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URI&lt;/a&gt;
+   * for the context.
+   *
+   * @return The Spotify URI for the context.
+   */
+  public String getUri() {
+<span class="nc" id="L67">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L72">    return &quot;Context(type=&quot; + type + &quot;, href=&quot; + href + &quot;, externalUrls=&quot; + externalUrls + &quot;, uri=&quot; + uri + &quot;)&quot;;</span>
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L77">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Context} instances.
+   */
+<span class="fc" id="L83">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private ModelObjectType type;
+    private String href;
+    private ExternalUrl externalUrls;
+    private String uri;
+
+    /**
+     * The model object type setter.
+     *
+     * @param type The {@link ModelObjectType}.
+     * @return A {@link Context.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L96">      this.type = type;</span>
+<span class="fc" id="L97">      return this;</span>
+    }
+
+    /**
+     * The context href setter.
+     *
+     * @param href A link to the Spotify Web API endpoint providing full details of the track.
+     * @return A {@link Context.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L107">      this.href = href;</span>
+<span class="fc" id="L108">      return this;</span>
+    }
+
+    /**
+     * The external URLs setter.
+     *
+     * @param externalUrls External URLs for this context.
+     * @return A {@link Context.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L118">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L119">      return this;</span>
+    }
+
+    /**
+     * The Spotify URI setter.
+     *
+     * @param uri Spotify URI for this context.
+     * @return A {@link Context.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L129">      this.uri = uri;</span>
+<span class="fc" id="L130">      return this;</span>
+    }
+
+    @Override
+    public Context build() {
+<span class="fc" id="L135">      return new Context(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Context} instances.
+   */
+<span class="fc" id="L142">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Context&gt; {</span>
+    public Context createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L144" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L145">        return null;</span>
+      }
+
+<span class="fc" id="L148">      return new Context.Builder()</span>
+<span class="fc" id="L149">        .setType(</span>
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L151">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L152">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L153">            : null)</span>
+<span class="fc" id="L154">        .setHref(</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L156">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L157">            : null)</span>
+<span class="fc" id="L158">        .setExternalUrls(</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L160">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L161">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L162">            : null)</span>
+<span class="fc" id="L163">        .setUri(</span>
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L165">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L166">            : null)</span>
+<span class="fc" id="L167">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L174">      return true;</span>
+    }
+<span class="nc bnc" id="L176" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L177">      return false;</span>
+    }
+<span class="nc" id="L179">    Context context = (Context) o;</span>
+<span class="nc" id="L180">    return Objects.equals(uri, context.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L185">    return Objects.hash(uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

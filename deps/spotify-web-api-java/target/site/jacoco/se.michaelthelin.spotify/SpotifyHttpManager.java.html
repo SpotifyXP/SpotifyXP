@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpotifyHttpManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify</a> &gt; <span class="el_source">SpotifyHttpManager.java</span></div><h1>SpotifyHttpManager.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify;
+
+import com.google.gson.*;
+import org.apache.hc.client5.http.auth.AuthScope;
+import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
+import org.apache.hc.client5.http.cache.CacheResponseStatus;
+import org.apache.hc.client5.http.cache.HttpCacheContext;
+import org.apache.hc.client5.http.classic.methods.HttpDelete;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.classic.methods.HttpPut;
+import org.apache.hc.client5.http.config.RequestConfig;
+import org.apache.hc.client5.http.cookie.StandardCookieSpec;
+import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
+import org.apache.hc.client5.http.impl.cache.CacheConfig;
+import org.apache.hc.client5.http.impl.cache.CachingHttpClients;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.*;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.util.Timeout;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.exceptions.detailed.*;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+
+public class SpotifyHttpManager implements IHttpManager {
+
+  private static final int DEFAULT_CACHE_MAX_ENTRIES = 1000;
+  private static final int DEFAULT_CACHE_MAX_OBJECT_SIZE = 8192;
+<span class="fc" id="L35">  private static final Gson GSON = new Gson();</span>
+  private final CloseableHttpClient httpClient;
+  private final CloseableHttpClient httpClientCaching;
+  private final HttpHost proxy;
+  private final UsernamePasswordCredentials proxyCredentials;
+  private final Integer cacheMaxEntries;
+  private final Integer cacheMaxObjectSize;
+  private final Integer connectionRequestTimeout;
+  private final Integer connectTimeout;
+  private final Integer socketTimeout;
+
+  /**
+   * Construct a new SpotifyHttpManager instance.
+   *
+   * @param builder The builder.
+   */
+<span class="fc" id="L51">  public SpotifyHttpManager(Builder builder) {</span>
+<span class="fc" id="L52">    this.proxy = builder.proxy;</span>
+<span class="fc" id="L53">    this.proxyCredentials = builder.proxyCredentials;</span>
+<span class="fc" id="L54">    this.cacheMaxEntries = builder.cacheMaxEntries;</span>
+<span class="fc" id="L55">    this.cacheMaxObjectSize = builder.cacheMaxObjectSize;</span>
+<span class="fc" id="L56">    this.connectionRequestTimeout = builder.connectionRequestTimeout;</span>
+<span class="fc" id="L57">    this.connectTimeout = builder.connectTimeout;</span>
+<span class="fc" id="L58">    this.socketTimeout = builder.socketTimeout;</span>
+
+<span class="fc" id="L60">    CacheConfig cacheConfig = CacheConfig.custom()</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">      .setMaxCacheEntries(cacheMaxEntries != null ? cacheMaxEntries : DEFAULT_CACHE_MAX_ENTRIES)</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">      .setMaxObjectSize(cacheMaxObjectSize != null ? cacheMaxObjectSize : DEFAULT_CACHE_MAX_OBJECT_SIZE)</span>
+<span class="fc" id="L63">      .setSharedCache(false)</span>
+<span class="fc" id="L64">      .build();</span>
+
+<span class="fc" id="L66">    BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();</span>
+
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">    if (proxy != null) {</span>
+<span class="nc" id="L69">      credentialsProvider.setCredentials(</span>
+<span class="nc" id="L70">        new AuthScope(null, proxy.getHostName(), proxy.getPort(), null, proxy.getSchemeName()),</span>
+        proxyCredentials
+      );
+    }
+
+    RequestConfig requestConfig = RequestConfig
+<span class="fc" id="L76">      .custom()</span>
+<span class="fc" id="L77">      .setCookieSpec(StandardCookieSpec.STRICT)</span>
+<span class="fc" id="L78">      .setProxy(proxy)</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">      .setConnectionRequestTimeout(builder.connectionRequestTimeout != null</span>
+<span class="nc" id="L80">        ? Timeout.ofMilliseconds(builder.connectionRequestTimeout)</span>
+<span class="fc" id="L81">        : RequestConfig.DEFAULT.getConnectionRequestTimeout())</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">      .setConnectTimeout(builder.connectTimeout != null</span>
+<span class="nc" id="L83">        ? Timeout.ofMilliseconds(builder.connectTimeout)</span>
+<span class="fc" id="L84">        : RequestConfig.DEFAULT.getConnectTimeout())</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">      .setResponseTimeout(builder.socketTimeout != null</span>
+<span class="nc" id="L86">        ? Timeout.ofMilliseconds(builder.socketTimeout)</span>
+<span class="fc" id="L87">        : RequestConfig.DEFAULT.getResponseTimeout())</span>
+<span class="fc" id="L88">      .build();</span>
+
+<span class="fc" id="L90">    this.httpClient = HttpClients</span>
+<span class="fc" id="L91">      .custom()</span>
+<span class="fc" id="L92">      .setDefaultCredentialsProvider(credentialsProvider)</span>
+<span class="fc" id="L93">      .setDefaultRequestConfig(requestConfig)</span>
+<span class="fc" id="L94">      .disableContentCompression()</span>
+<span class="fc" id="L95">      .build();</span>
+
+<span class="fc" id="L97">    this.httpClientCaching = CachingHttpClients</span>
+<span class="fc" id="L98">      .custom()</span>
+<span class="fc" id="L99">      .setCacheConfig(cacheConfig)</span>
+<span class="fc" id="L100">      .setDefaultCredentialsProvider(credentialsProvider)</span>
+<span class="fc" id="L101">      .setDefaultRequestConfig(requestConfig)</span>
+<span class="fc" id="L102">      .disableContentCompression()</span>
+<span class="fc" id="L103">      .build();</span>
+<span class="fc" id="L104">  }</span>
+
+  public static URI makeUri(String uriString) {
+    try {
+<span class="fc" id="L108">      return new URI(uriString);</span>
+<span class="nc" id="L109">    } catch (URISyntaxException e) {</span>
+<span class="nc" id="L110">      SpotifyApi.LOGGER.log(</span>
+        Level.SEVERE,
+        &quot;URI Syntax Exception for \&quot;&quot; + uriString + &quot;\&quot;&quot;);
+<span class="nc" id="L113">      return null;</span>
+    }
+  }
+
+  public HttpHost getProxy() {
+<span class="nc" id="L118">    return proxy;</span>
+  }
+
+  public UsernamePasswordCredentials getProxyCredentials() {
+<span class="nc" id="L122">    return proxyCredentials;</span>
+  }
+
+  public Integer getCacheMaxEntries() {
+<span class="nc" id="L126">    return cacheMaxEntries;</span>
+  }
+
+  public Integer getCacheMaxObjectSize() {
+<span class="nc" id="L130">    return cacheMaxObjectSize;</span>
+  }
+
+  public Integer getConnectionRequestTimeout() {
+<span class="nc" id="L134">    return connectionRequestTimeout;</span>
+  }
+
+  public Integer getConnectTimeout() {
+<span class="nc" id="L138">    return connectTimeout;</span>
+  }
+
+  public Integer getSocketTimeout() {
+<span class="nc" id="L142">    return socketTimeout;</span>
+  }
+
+  @Override
+  public String get(URI uri, Header[] headers) throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="nc bnc" id="L150" title="All 2 branches missed.">    assert (uri != null);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">    assert (!uri.toString().equals(&quot;&quot;));</span>
+
+<span class="nc" id="L153">    final HttpGet httpGet = new HttpGet(uri);</span>
+
+<span class="nc" id="L155">    httpGet.setHeaders(headers);</span>
+<span class="nc" id="L156">    SpotifyApi.LOGGER.log(</span>
+      Level.FINE,
+<span class="nc" id="L158">      &quot;GET request uses these headers: &quot; + GSON.toJson(headers));</span>
+
+<span class="nc" id="L160">    String responseBody = getResponseBody(execute(httpClientCaching, httpGet));</span>
+
+<span class="nc" id="L162">    httpGet.reset();</span>
+
+<span class="nc" id="L164">    return responseBody;</span>
+  }
+
+  @Override
+  public String post(URI uri, Header[] headers, HttpEntity body) throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="nc bnc" id="L172" title="All 2 branches missed.">    assert (uri != null);</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">    assert (!uri.toString().equals(&quot;&quot;));</span>
+
+<span class="nc" id="L175">    final HttpPost httpPost = new HttpPost(uri);</span>
+
+<span class="nc" id="L177">    httpPost.setHeaders(headers);</span>
+<span class="nc" id="L178">    httpPost.setEntity(body);</span>
+<span class="nc" id="L179">    SpotifyApi.LOGGER.log(</span>
+      Level.FINE,
+<span class="nc" id="L181">      &quot;POST request uses these headers: &quot; + GSON.toJson(headers));</span>
+
+<span class="nc" id="L183">    String responseBody = getResponseBody(execute(httpClient, httpPost));</span>
+
+<span class="nc" id="L185">    httpPost.reset();</span>
+
+<span class="nc" id="L187">    return responseBody;</span>
+  }
+
+  @Override
+  public String put(URI uri, Header[] headers, HttpEntity body) throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="nc bnc" id="L195" title="All 2 branches missed.">    assert (uri != null);</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">    assert (!uri.toString().equals(&quot;&quot;));</span>
+
+<span class="nc" id="L198">    final HttpPut httpPut = new HttpPut(uri);</span>
+
+<span class="nc" id="L200">    httpPut.setHeaders(headers);</span>
+<span class="nc" id="L201">    httpPut.setEntity(body);</span>
+<span class="nc" id="L202">    SpotifyApi.LOGGER.log(</span>
+      Level.FINE,
+<span class="nc" id="L204">      &quot;PUT request uses these headers: &quot; + GSON.toJson(headers));</span>
+
+<span class="nc" id="L206">    String responseBody = getResponseBody(execute(httpClient, httpPut));</span>
+
+<span class="nc" id="L208">    httpPut.reset();</span>
+
+<span class="nc" id="L210">    return responseBody;</span>
+  }
+
+  @Override
+  public String delete(URI uri, Header[] headers, HttpEntity body) throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="nc bnc" id="L218" title="All 2 branches missed.">    assert (uri != null);</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">    assert (!uri.toString().equals(&quot;&quot;));</span>
+
+<span class="nc" id="L221">    final HttpDelete httpDelete = new HttpDelete(uri);</span>
+
+<span class="nc" id="L223">    httpDelete.setHeaders(headers);</span>
+<span class="nc" id="L224">    httpDelete.setEntity(body);</span>
+<span class="nc" id="L225">    SpotifyApi.LOGGER.log(</span>
+      Level.FINE,
+<span class="nc" id="L227">      &quot;DELETE request uses these headers: &quot; + GSON.toJson(headers));</span>
+
+<span class="nc" id="L229">    String responseBody = getResponseBody(execute(httpClient, httpDelete));</span>
+
+<span class="nc" id="L231">    httpDelete.reset();</span>
+
+<span class="nc" id="L233">    return responseBody;</span>
+  }
+
+  private CloseableHttpResponse execute(CloseableHttpClient httpClient, ClassicHttpRequest method) throws
+    IOException {
+<span class="nc" id="L238">    HttpCacheContext context = HttpCacheContext.create();</span>
+<span class="nc" id="L239">    CloseableHttpResponse response = httpClient.execute(method, context);</span>
+
+    try {
+<span class="nc" id="L242">      CacheResponseStatus responseStatus = context.getCacheResponseStatus();</span>
+
+<span class="nc bnc" id="L244" title="All 2 branches missed.">      if (responseStatus != null) {</span>
+<span class="nc bnc" id="L245" title="All 6 branches missed.">        switch (responseStatus) {</span>
+          case CACHE_HIT:
+<span class="nc" id="L247">            SpotifyApi.LOGGER.log(</span>
+              Level.CONFIG,
+              &quot;A response was generated from the cache with no requests sent upstream&quot;);
+<span class="nc" id="L250">            break;</span>
+          case CACHE_MODULE_RESPONSE:
+<span class="nc" id="L252">            SpotifyApi.LOGGER.log(</span>
+              Level.CONFIG,
+              &quot;The response was generated directly by the caching module&quot;);
+<span class="nc" id="L255">            break;</span>
+          case CACHE_MISS:
+<span class="nc" id="L257">            SpotifyApi.LOGGER.log(</span>
+              Level.CONFIG,
+              &quot;The response came from an upstream server&quot;);
+<span class="nc" id="L260">            break;</span>
+          case VALIDATED:
+<span class="nc" id="L262">            SpotifyApi.LOGGER.log(</span>
+              Level.CONFIG,
+              &quot;The response was generated from the cache after validating the entry with the origin server&quot;);
+<span class="nc" id="L265">            break;</span>
+          case FAILURE:
+<span class="nc" id="L267">            SpotifyApi.LOGGER.log(</span>
+              Level.CONFIG,
+              &quot;The response came from an upstream server after a cache failure&quot;);
+            break;
+        }
+      }
+<span class="nc" id="L273">    } catch (Exception e) {</span>
+<span class="nc" id="L274">      SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());</span>
+<span class="nc" id="L275">    }</span>
+
+<span class="nc" id="L277">    return response;</span>
+  }
+
+  private String getResponseBody(CloseableHttpResponse httpResponse) throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+
+<span class="nc bnc" id="L285" title="All 2 branches missed.">    final String responseBody = httpResponse.getEntity() != null</span>
+<span class="nc" id="L286">      ? EntityUtils.toString(httpResponse.getEntity(), &quot;UTF-8&quot;)</span>
+<span class="nc" id="L287">      : null;</span>
+<span class="nc" id="L288">    String errorMessage = httpResponse.getReasonPhrase();</span>
+
+<span class="nc" id="L290">    SpotifyApi.LOGGER.log(</span>
+      Level.FINE,
+      &quot;The http response has body &quot; + responseBody);
+
+<span class="nc bnc" id="L294" title="All 4 branches missed.">    if (responseBody != null &amp;&amp; !responseBody.equals(&quot;&quot;)) {</span>
+      try {
+<span class="nc" id="L296">        final JsonElement jsonElement = JsonParser.parseString(responseBody);</span>
+
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        if (jsonElement.isJsonObject()) {</span>
+<span class="nc" id="L299">          final JsonObject jsonObject = JsonParser.parseString(responseBody).getAsJsonObject();</span>
+
+<span class="nc bnc" id="L301" title="All 2 branches missed.">          if (jsonObject.has(&quot;error&quot;)) {</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            if (jsonObject.has(&quot;error_description&quot;)) {</span>
+<span class="nc" id="L303">              errorMessage = jsonObject.get(&quot;error_description&quot;).getAsString();</span>
+<span class="nc bnc" id="L304" title="All 4 branches missed.">            } else if (jsonObject.get(&quot;error&quot;).isJsonObject() &amp;&amp; jsonObject.getAsJsonObject(&quot;error&quot;).has(&quot;message&quot;)) {</span>
+<span class="nc" id="L305">              errorMessage = jsonObject.getAsJsonObject(&quot;error&quot;).get(&quot;message&quot;).getAsString();</span>
+            }
+          }
+        }
+<span class="nc" id="L309">      } catch (JsonSyntaxException e) {</span>
+        // Not necessary
+<span class="nc" id="L311">      }</span>
+    }
+
+<span class="nc" id="L314">    SpotifyApi.LOGGER.log(</span>
+      Level.FINE,
+<span class="nc" id="L316">      &quot;The http response has status code &quot; + httpResponse.getCode());</span>
+
+<span class="nc bnc" id="L318" title="All 9 branches missed.">    switch (httpResponse.getCode()) {</span>
+      case HttpStatus.SC_BAD_REQUEST:
+<span class="nc" id="L320">        throw new BadRequestException(errorMessage);</span>
+      case HttpStatus.SC_UNAUTHORIZED:
+<span class="nc" id="L322">        throw new UnauthorizedException(errorMessage);</span>
+      case HttpStatus.SC_FORBIDDEN:
+<span class="nc" id="L324">        throw new ForbiddenException(errorMessage);</span>
+      case HttpStatus.SC_NOT_FOUND:
+<span class="nc" id="L326">        throw new NotFoundException(errorMessage);</span>
+      case 429: // TOO_MANY_REQUESTS (additional status code, RFC 6585)
+        // Sets &quot;Retry-After&quot; header as described at https://beta.developer.spotify.com/documentation/web-api/#rate-limiting
+<span class="nc" id="L329">        Header header = httpResponse.getFirstHeader(&quot;Retry-After&quot;);</span>
+
+<span class="nc bnc" id="L331" title="All 2 branches missed.">        if (header != null) {</span>
+<span class="nc" id="L332">          throw new TooManyRequestsException(errorMessage, Integer.parseInt(header.getValue()));</span>
+        } else {
+<span class="nc" id="L334">          throw new TooManyRequestsException(errorMessage);</span>
+        }
+      case HttpStatus.SC_INTERNAL_SERVER_ERROR:
+<span class="nc" id="L337">        throw new InternalServerErrorException(errorMessage);</span>
+      case HttpStatus.SC_BAD_GATEWAY:
+<span class="nc" id="L339">        throw new BadGatewayException(errorMessage);</span>
+      case HttpStatus.SC_SERVICE_UNAVAILABLE:
+<span class="nc" id="L341">        throw new ServiceUnavailableException(errorMessage);</span>
+      default:
+<span class="nc" id="L343">        return responseBody;</span>
+    }
+  }
+
+<span class="fc" id="L347">  public static class Builder {</span>
+    private HttpHost proxy;
+    private UsernamePasswordCredentials proxyCredentials;
+    private Integer cacheMaxEntries;
+    private Integer cacheMaxObjectSize;
+    private Integer connectionRequestTimeout;
+    private Integer connectTimeout;
+    private Integer socketTimeout;
+
+    public Builder setProxy(HttpHost proxy) {
+<span class="nc" id="L357">      this.proxy = proxy;</span>
+<span class="nc" id="L358">      return this;</span>
+    }
+
+    public Builder setProxyCredentials(UsernamePasswordCredentials proxyCredentials) {
+<span class="nc" id="L362">      this.proxyCredentials = proxyCredentials;</span>
+<span class="nc" id="L363">      return this;</span>
+    }
+
+    public Builder setCacheMaxEntries(Integer cacheMaxEntries) {
+<span class="nc" id="L367">      this.cacheMaxEntries = cacheMaxEntries;</span>
+<span class="nc" id="L368">      return this;</span>
+    }
+
+    public Builder setCacheMaxObjectSize(Integer cacheMaxObjectSize) {
+<span class="nc" id="L372">      this.cacheMaxObjectSize = cacheMaxObjectSize;</span>
+<span class="nc" id="L373">      return this;</span>
+    }
+
+    public Builder setConnectionRequestTimeout(Integer connectionRequestTimeout) {
+<span class="nc" id="L377">      this.connectionRequestTimeout = connectionRequestTimeout;</span>
+<span class="nc" id="L378">      return this;</span>
+    }
+
+    public Builder setConnectTimeout(Integer connectTimeout) {
+<span class="nc" id="L382">      this.connectTimeout = connectTimeout;</span>
+<span class="nc" id="L383">      return this;</span>
+    }
+
+    public Builder setSocketTimeout(Integer socketTimeout) {
+<span class="nc" id="L387">      this.socketTimeout = socketTimeout;</span>
+<span class="nc" id="L388">      return this;</span>
+    }
+
+    public SpotifyHttpManager build() {
+<span class="fc" id="L392">      return new SpotifyHttpManager(this);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

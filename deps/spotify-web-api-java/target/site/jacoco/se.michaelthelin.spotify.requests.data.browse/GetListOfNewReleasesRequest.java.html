@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetListOfNewReleasesRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.browse</a> &gt; <span class="el_source">GetListOfNewReleasesRequest.java</span></div><h1>GetListOfNewReleasesRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.browse;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.neovisionaries.i18n.CountryCode;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
+import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s &quot;Browse&quot; tab).
+ */
+@JsonDeserialize(builder = GetListOfNewReleasesRequest.Builder.class)
+public class GetListOfNewReleasesRequest extends AbstractDataRequest&lt;Paging&lt;AlbumSimplified&gt;&gt; {
+
+  /**
+   * The private {@link GetListOfNewReleasesRequest} constructor.
+   *
+   * @param builder A {@link GetListOfNewReleasesRequest.Builder}.
+   */
+  private GetListOfNewReleasesRequest(final Builder builder) {
+<span class="fc" id="L26">    super(builder);</span>
+<span class="fc" id="L27">  }</span>
+
+  /**
+   * Get a paging of new {@link AlbumSimplified} releases.
+   *
+   * @return An {@link AlbumSimplified} paging.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public Paging&lt;AlbumSimplified&gt; execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L40">    return new AlbumSimplified.JsonUtil().createModelObjectPaging(getJson(), &quot;albums&quot;);</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetListOfNewReleasesRequest}.
+   */
+<span class="fc" id="L46">  public static final class Builder extends AbstractDataPagingRequest.Builder&lt;AlbumSimplified, Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetListOfNewReleasesRequest.Builder} instance.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L54">      super(accessToken);</span>
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * The country code setter.
+     *
+     * @param country Optional. A country: an ISO 3166-1 alpha-2 country code. Provide this parameter if you want the
+     *                list of returned items to be relevant to a particular country. If omitted, the returned items will
+     *                be relevant to all countries.
+     * @return A {@link GetListOfNewReleasesRequest.Builder}.
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     */
+    public Builder country(final CountryCode country) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (country != null);</span>
+<span class="fc" id="L68">      return setQueryParameter(&quot;country&quot;, country);</span>
+    }
+
+    /**
+     * The limit setter.
+     *
+     * @param limit Optional. The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
+     * @return A {@link GetListOfNewReleasesRequest.Builder}.
+     */
+    @Override
+    public Builder limit(final Integer limit) {
+<span class="pc bpc" id="L79" title="2 of 4 branches missed.">      assert (1 &lt;= limit &amp;&amp; limit &lt;= 50);</span>
+<span class="fc" id="L80">      return setQueryParameter(&quot;limit&quot;, limit);</span>
+    }
+
+    /**
+     * The offset setter.
+     *
+     * @param offset Optional. The index of the first item to return. Default: 0 (the first object). Use with
+     *               {@link #limit(Integer)} to get the next set of items.
+     * @return A {@link GetListOfNewReleasesRequest.Builder}.
+     */
+    @Override
+    public Builder offset(final Integer offset) {
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">      assert (offset &gt;= 0);</span>
+<span class="fc" id="L93">      return setQueryParameter(&quot;offset&quot;, offset);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetListOfNewReleasesRequest}.
+     */
+    @Override
+    public GetListOfNewReleasesRequest build() {
+<span class="fc" id="L103">      setPath(&quot;/v1/browse/new-releases&quot;);</span>
+<span class="fc" id="L104">      return new GetListOfNewReleasesRequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L109">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EpisodeSimplified.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">EpisodeSimplified.java</span></div><h1>EpisodeSimplified.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.enums.ReleaseDatePrecision;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/documentation/web-api/reference/object-model/#episode-object-simplified&quot;&gt;
+ * simplified Episode objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = EpisodeSimplified.Builder.class)
+public class EpisodeSimplified extends AbstractModelObject implements ISearchModelObject {
+  private final String audioPreviewUrl;
+  private final String description;
+  private final Integer durationMs;
+  private final Boolean explicit;
+  private final ExternalUrl externalUrls;
+  private final String href;
+  private final String id;
+  private final Image[] images;
+  private final Boolean isExternallyHosted;
+  private final Boolean isPlayable;
+  private final String[] languages;
+  private final String name;
+  private final String releaseDate;
+  private final ReleaseDatePrecision releaseDatePrecision;
+  private final ResumePoint resumePoint;
+  private final ModelObjectType type;
+  private final String uri;
+
+  private EpisodeSimplified(final Builder builder) {
+<span class="fc" id="L39">    super(builder);</span>
+<span class="fc" id="L40">    this.audioPreviewUrl = builder.audioPreviewUrl;</span>
+<span class="fc" id="L41">    this.description = builder.description;</span>
+<span class="fc" id="L42">    this.durationMs = builder.durationMs;</span>
+<span class="fc" id="L43">    this.explicit = builder.explicit;</span>
+<span class="fc" id="L44">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L45">    this.href = builder.href;</span>
+<span class="fc" id="L46">    this.id = builder.id;</span>
+<span class="fc" id="L47">    this.images = builder.images;</span>
+<span class="fc" id="L48">    this.isExternallyHosted = builder.isExternallyHosted;</span>
+<span class="fc" id="L49">    this.isPlayable = builder.isPlayable;</span>
+<span class="fc" id="L50">    this.languages = builder.languages;</span>
+<span class="fc" id="L51">    this.name = builder.name;</span>
+<span class="fc" id="L52">    this.releaseDate = builder.releaseDate;</span>
+<span class="fc" id="L53">    this.releaseDatePrecision = builder.releaseDatePrecision;</span>
+<span class="fc" id="L54">    this.resumePoint = builder.resumePoint;</span>
+<span class="fc" id="L55">    this.type = builder.type;</span>
+<span class="fc" id="L56">    this.uri = builder.uri;</span>
+<span class="fc" id="L57">  }</span>
+
+  /**
+   * Get a URL to a 30 second preview (MP3 format) of the episode. {@code null} if not available.
+   *
+   * @return A URL to an audio preview.
+   */
+  public String getAudioPreviewUrl() {
+<span class="nc" id="L65">    return audioPreviewUrl;</span>
+  }
+
+  /**
+   * Get a description of the episode.
+   *
+   * @return The description of the episode.
+   */
+  public String getDescription() {
+<span class="nc" id="L74">    return description;</span>
+  }
+
+  /**
+   * Get the duration of the episode in milliseconds.
+   *
+   * @return The length of the episode in milliseconds.
+   */
+  public Integer getDurationMs() {
+<span class="nc" id="L83">    return durationMs;</span>
+  }
+
+  /**
+   * Check whether the episode is explicit or not.
+   *
+   * @return Whether or not the episode has explicit content ({@code true} = yes it does; {@code false} = no it does not
+   * &lt;b&gt;OR&lt;/b&gt; unknown).
+   */
+  public Boolean getExplicit() {
+<span class="nc" id="L93">    return explicit;</span>
+  }
+
+  /**
+   * Get the external URLs of the episode. &lt;br&gt;
+   * Example: &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify-URL&lt;/a&gt;
+   *
+   * @return An {@link ExternalUrl} object.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="nc" id="L103">    return externalUrls;</span>
+  }
+
+  /**
+   * Get the full Spotify Web API endpoint URL of the episode.
+   *
+   * @return A link to the Web API endpoint providing full details of the episode.
+   */
+  public String getHref() {
+<span class="nc" id="L112">    return href;</span>
+  }
+
+  /**
+   * Get the Spotify ID of the episode.
+   *
+   * @return A &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify episode ID&lt;/a&gt;.
+   */
+  public String getId() {
+<span class="nc" id="L121">    return id;</span>
+  }
+
+  /**
+   * Get the cover art for the episode in various sizes, widest first.
+   *
+   * @return An array of {@link Image} objects.
+   */
+  public Image[] getImages() {
+<span class="nc" id="L130">    return images;</span>
+  }
+
+  /**
+   * Check whether the episode is hosted outside of Spotify's CDN.
+   *
+   * @return True if the episode is hosted outside of Spotify’s CDN.
+   */
+  public Boolean getExternallyHosted() {
+<span class="nc" id="L139">    return isExternallyHosted;</span>
+  }
+
+  /**
+   * Check whether the episode is playable in the given market.
+   *
+   * @return True if the episode is playable in the given market. Otherwise false.
+   */
+  public Boolean getPlayable() {
+<span class="nc" id="L148">    return isPlayable;</span>
+  }
+
+  /**
+   * Get a list of the languages used in the episode, identified by their ISO 639 code.
+   *
+   * @return An array of &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2 country codes&lt;/a&gt;.
+   */
+  public String[] getLanguages() {
+<span class="nc" id="L157">    return languages;</span>
+  }
+
+  /**
+   * Get the name of the episode.
+   *
+   * @return The name of the episode.
+   */
+  public String getName() {
+<span class="nc" id="L166">    return name;</span>
+  }
+
+  /**
+   * Get the date the episode was first released, for example &quot;1981-12-15&quot;. Depending on the precision, it might be shown as &quot;1981&quot; or &quot;1981-12&quot;.
+   *
+   * @return The release date of the episode.
+   */
+  public String getReleaseDate() {
+<span class="nc" id="L175">    return releaseDate;</span>
+  }
+
+  /**
+   * Get the precision with which the release date is known.
+   *
+   * @return A {@link ReleaseDatePrecision} object.
+   */
+  public ReleaseDatePrecision getReleaseDatePrecision() {
+<span class="nc" id="L184">    return releaseDatePrecision;</span>
+  }
+
+  /**
+   * Get the user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope {@code user-read-playback-position}.
+   *
+   * @return A {@link ResumePoint} object.
+   */
+  public ResumePoint getResumePoint() {
+<span class="nc" id="L193">    return resumePoint;</span>
+  }
+
+  /**
+   * Get the model object type. In this case &quot;episode&quot;.
+   *
+   * @return A {@link ModelObjectType}.
+   */
+  public ModelObjectType getType() {
+<span class="nc" id="L202">    return type;</span>
+  }
+
+  /**
+   * Get the Spotify URI of the episode.
+   *
+   * @return &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify episode URI&lt;/a&gt;.
+   */
+  public String getUri() {
+<span class="nc" id="L211">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L216">    return &quot;EpisodeSimplified(name=&quot; + name + &quot;, audioPreviewUrl=&quot; + audioPreviewUrl + &quot;, description=&quot; + description</span>
+        + &quot;, durationMs=&quot; + durationMs + &quot;, explicit=&quot; + explicit + &quot;, externalUrls=&quot; + externalUrls + &quot;, href=&quot; + href
+<span class="nc" id="L218">        + &quot;, id=&quot; + id + &quot;, images=&quot; + Arrays.toString(images) + &quot;, isExternallyHosted=&quot; + isExternallyHosted</span>
+<span class="nc" id="L219">        + &quot;, isPlayable=&quot; + isPlayable + &quot;, languages=&quot; + Arrays.toString(languages) + &quot;, releaseDate=&quot; + releaseDate</span>
+        + &quot;, releaseDatePrecision=&quot; + releaseDatePrecision + &quot;, resumePoint=&quot; + resumePoint + &quot;, type=&quot; + type
+        + &quot;, uri=&quot; + uri + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L226">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link EpisodeSimplified} instances.
+   */
+<span class="fc" id="L232">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private String audioPreviewUrl;
+    private String description;
+    private Integer durationMs;
+    private Boolean explicit;
+    private ExternalUrl externalUrls;
+    private String href;
+    private String id;
+    private Image[] images;
+    private Boolean isExternallyHosted;
+    private Boolean isPlayable;
+    private String[] languages;
+    private String name;
+    private String releaseDate;
+    private ReleaseDatePrecision releaseDatePrecision;
+    private ResumePoint resumePoint;
+    private ModelObjectType type;
+    private String uri;
+
+    /**
+     * Set the URL to a audio preview for the episode to be built.
+     *
+     * @param audioPreviewUrl The URL to an audio preview.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setAudioPreviewUrl(String audioPreviewUrl) {
+<span class="fc" id="L258">      this.audioPreviewUrl = audioPreviewUrl;</span>
+<span class="fc" id="L259">      return this;</span>
+    }
+
+    /**
+     * Set the description for the episode to be built.
+     *
+     * @param description The description of the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setDescription(String description) {
+<span class="fc" id="L269">      this.description = description;</span>
+<span class="fc" id="L270">      return this;</span>
+    }
+
+    /**
+     * Set the duration for the episode to be built.
+     *
+     * @param durationMs The duration of the episode in milliseconds.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setDurationMs(Integer durationMs) {
+<span class="fc" id="L280">      this.durationMs = durationMs;</span>
+<span class="fc" id="L281">      return this;</span>
+    }
+
+    /**
+     * Set whether the episode to be built is explicit or not.
+     *
+     * @param explicit Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown).
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setExplicit(Boolean explicit) {
+<span class="fc" id="L291">      this.explicit = explicit;</span>
+<span class="fc" id="L292">      return this;</span>
+    }
+
+    /**
+     * Set the external URLs for the episode to be built.
+     *
+     * @param externalUrls The {@link ExternalUrl} for the episode object.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L302">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L303">      return this;</span>
+    }
+
+    /**
+     * Set the link to the Web API endpoint providing full details of the episode to be built.
+     *
+     * @param href The link to the Web API endpoint providing full details of the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L313">      this.href = href;</span>
+<span class="fc" id="L314">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify ID for the episode to be built.
+     *
+     * @param id &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify episode ID&lt;/a&gt;.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L324">      this.id = id;</span>
+<span class="fc" id="L325">      return this;</span>
+    }
+
+    /**
+     * Set the cover art for the episode to be built.
+     *
+     * @param images {@link Image} objects.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setImages(Image... images) {
+<span class="fc" id="L335">      this.images = images;</span>
+<span class="fc" id="L336">      return this;</span>
+    }
+
+    /**
+     * Set whether the episode to be built is hosted outside of Spotify's CDN.
+     *
+     * @param externallyHosted True if the episode is hosted outside of Spotify’s CDN.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setExternallyHosted(Boolean externallyHosted) {
+<span class="fc" id="L346">      isExternallyHosted = externallyHosted;</span>
+<span class="fc" id="L347">      return this;</span>
+    }
+
+    /**
+     * Set whether the episode to be built is playable in the given market.
+     *
+     * @param playable True if the episode is playable in the given market. Otherwise false.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setPlayable(Boolean playable) {
+<span class="fc" id="L357">      isPlayable = playable;</span>
+<span class="fc" id="L358">      return this;</span>
+    }
+
+    /**
+     * Set a list of the languages used in the episode to be built.
+     *
+     * @param languages An array of &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2 country codes&lt;/a&gt;.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setLanguages(String... languages) {
+<span class="fc" id="L368">      this.languages = languages;</span>
+<span class="fc" id="L369">      return this;</span>
+    }
+
+    /**
+     * Set the name for the episode to be built.
+     *
+     * @param name The name of the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setName(String name) {
+<span class="fc" id="L379">      this.name = name;</span>
+<span class="fc" id="L380">      return this;</span>
+    }
+
+    /**
+     * Set the release date for the episode to be built.
+     *
+     * @param releaseDate The release date of the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setReleaseDate(String releaseDate) {
+<span class="fc" id="L390">      this.releaseDate = releaseDate;</span>
+<span class="fc" id="L391">      return this;</span>
+    }
+
+    /**
+     * Set the release date precision for the episode to be built.
+     *
+     * @param releaseDatePrecision The {@link ReleaseDatePrecision} of the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setReleaseDatePrecision(ReleaseDatePrecision releaseDatePrecision) {
+<span class="fc" id="L401">      this.releaseDatePrecision = releaseDatePrecision;</span>
+<span class="fc" id="L402">      return this;</span>
+    }
+
+    /**
+     * Set the user's most recent resume point for the episode to be built.
+     *
+     * @param resumePoint The {@link ResumePoint} of the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setResumePoint(ResumePoint resumePoint) {
+<span class="fc" id="L412">      this.resumePoint = resumePoint;</span>
+<span class="fc" id="L413">      return this;</span>
+    }
+
+    /**
+     * Set the type of model object. In this case &quot;episode&quot;.
+     *
+     * @param type The {@link ModelObjectType}.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L423">      this.type = type;</span>
+<span class="fc" id="L424">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify URI for the episode to be built.
+     *
+     * @param uri The &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify URI&lt;/a&gt; for the episode.
+     * @return A {@link EpisodeSimplified.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L434">      this.uri = uri;</span>
+<span class="fc" id="L435">      return this;</span>
+    }
+
+    @Override
+    public EpisodeSimplified build() {
+<span class="fc" id="L440">      return new EpisodeSimplified(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link EpisodeSimplified} instances.
+   */
+<span class="fc" id="L447">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;EpisodeSimplified&gt; {</span>
+    @Override
+    public EpisodeSimplified createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L450" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L451">        return null;</span>
+      }
+
+<span class="fc" id="L454">      return new Builder()</span>
+<span class="fc" id="L455">        .setAudioPreviewUrl(</span>
+<span class="pc bpc" id="L456" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;audio_preview_url&quot;)</span>
+<span class="fc" id="L457">            ? jsonObject.get(&quot;audio_preview_url&quot;).getAsString()</span>
+<span class="nc" id="L458">            : null)</span>
+<span class="fc" id="L459">        .setDescription(</span>
+<span class="pc bpc" id="L460" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;description&quot;)</span>
+<span class="fc" id="L461">            ? jsonObject.get(&quot;description&quot;).getAsString()</span>
+<span class="nc" id="L462">            : null)</span>
+<span class="fc" id="L463">        .setDurationMs(</span>
+<span class="pc bpc" id="L464" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;duration_ms&quot;)</span>
+<span class="fc" id="L465">            ? jsonObject.get(&quot;duration_ms&quot;).getAsInt()</span>
+<span class="nc" id="L466">            : null)</span>
+<span class="fc" id="L467">        .setExplicit(</span>
+<span class="pc bpc" id="L468" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;explicit&quot;)</span>
+<span class="fc" id="L469">            ? jsonObject.get(&quot;explicit&quot;).getAsBoolean()</span>
+<span class="nc" id="L470">            : null)</span>
+<span class="fc" id="L471">        .setExternalUrls(</span>
+<span class="pc bpc" id="L472" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L473">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L474">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L475">            : null)</span>
+<span class="fc" id="L476">        .setHref(</span>
+<span class="pc bpc" id="L477" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L478">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L479">            : null)</span>
+<span class="fc" id="L480">        .setId(</span>
+<span class="pc bpc" id="L481" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L482">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L483">            : null)</span>
+<span class="fc" id="L484">        .setImages(</span>
+<span class="pc bpc" id="L485" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;images&quot;)</span>
+<span class="fc" id="L486">            ? new Image.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L487">            jsonObject.getAsJsonArray(&quot;images&quot;))</span>
+<span class="nc" id="L488">            : null)</span>
+<span class="fc" id="L489">        .setExternallyHosted(</span>
+<span class="pc bpc" id="L490" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_externally_hosted&quot;)</span>
+<span class="fc" id="L491">            ? jsonObject.get(&quot;is_externally_hosted&quot;).getAsBoolean()</span>
+<span class="nc" id="L492">            : null)</span>
+<span class="fc" id="L493">        .setPlayable(</span>
+<span class="pc bpc" id="L494" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;is_playable&quot;)</span>
+<span class="fc" id="L495">            ? jsonObject.get(&quot;is_playable&quot;).getAsBoolean()</span>
+<span class="nc" id="L496">            : null)</span>
+<span class="fc" id="L497">        .setLanguages(</span>
+<span class="fc bfc" id="L498" title="All 2 branches covered.">          hasAndNotNull(jsonObject, &quot;languages&quot;)</span>
+<span class="fc" id="L499">            ? new Gson().fromJson(</span>
+<span class="fc" id="L500">            jsonObject.getAsJsonArray(&quot;languages&quot;), String[].class)</span>
+<span class="fc" id="L501">            : null)</span>
+<span class="fc" id="L502">        .setName(</span>
+<span class="pc bpc" id="L503" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;name&quot;)</span>
+<span class="fc" id="L504">            ? jsonObject.get(&quot;name&quot;).getAsString()</span>
+<span class="nc" id="L505">            : null)</span>
+<span class="fc" id="L506">        .setReleaseDate(</span>
+<span class="pc bpc" id="L507" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;release_date&quot;)</span>
+<span class="fc" id="L508">            ? jsonObject.get(&quot;release_date&quot;).getAsString()</span>
+<span class="nc" id="L509">            : null)</span>
+<span class="fc" id="L510">        .setReleaseDatePrecision(</span>
+<span class="pc bpc" id="L511" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;release_date_precision&quot;)</span>
+<span class="fc" id="L512">            ? ReleaseDatePrecision.keyOf(</span>
+<span class="fc" id="L513">            jsonObject.get(&quot;release_date_precision&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L514">            : null)</span>
+<span class="fc" id="L515">        .setResumePoint(</span>
+<span class="pc bpc" id="L516" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;resume_point&quot;)</span>
+<span class="nc" id="L517">            ? new ResumePoint.JsonUtil().createModelObject(</span>
+<span class="nc" id="L518">            jsonObject.getAsJsonObject(&quot;resume_point&quot;))</span>
+<span class="fc" id="L519">            : null)</span>
+<span class="fc" id="L520">        .setType(</span>
+<span class="pc bpc" id="L521" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L522">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L523">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L524">            : null)</span>
+<span class="fc" id="L525">        .setUri(</span>
+<span class="pc bpc" id="L526" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L527">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L528">            : null)</span>
+<span class="fc" id="L529">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L535" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L536">      return true;</span>
+    }
+<span class="nc bnc" id="L538" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L539">      return false;</span>
+    }
+<span class="nc" id="L541">    EpisodeSimplified episode = (EpisodeSimplified) o;</span>
+<span class="nc bnc" id="L542" title="All 4 branches missed.">    return Objects.equals(id, episode.id) &amp;&amp; Objects.equals(name, episode.name) &amp;&amp;</span>
+<span class="nc bnc" id="L543" title="All 4 branches missed.">      Objects.equals(releaseDate, episode.releaseDate) &amp;&amp; Objects.equals(explicit, episode.explicit) &amp;&amp;</span>
+<span class="nc bnc" id="L544" title="All 2 branches missed.">      Objects.equals(uri, episode.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L549">    return Objects.hash(id, name, releaseDate, explicit, uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

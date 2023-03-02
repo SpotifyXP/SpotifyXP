@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetUsersTopArtistsAndTracksRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.personalization</a> &gt; <span class="el_source">GetUsersTopArtistsAndTracksRequest.java</span></div><h1>GetUsersTopArtistsAndTracksRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.personalization;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.specification.Artist;
+import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+import se.michaelthelin.spotify.requests.data.personalization.interfaces.IArtistTrackModelObject;
+import se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopArtistsRequest;
+import se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopTracksRequest;
+
+import java.io.IOException;
+
+/**
+ * This class only exists for theoretical purposes. Please use {@link GetUsersTopArtistsRequest} and
+ * {@link GetUsersTopTracksRequest} instead.
+ *
+ * @param &lt;T&gt; The request {@link ModelObjectType}: artist or track.
+ */
+@JsonDeserialize(builder = GetUsersTopArtistsAndTracksRequest.Builder.class)
+public class GetUsersTopArtistsAndTracksRequest&lt;T extends IArtistTrackModelObject&gt; extends AbstractDataRequest&lt;Paging&lt;T&gt;&gt; {
+
+  private final AbstractModelObject.JsonUtil&lt;T&gt; tClass;
+
+  /**
+   * The private {@link GetUsersTopArtistsAndTracksRequest} constructor.
+   *
+   * @param builder A {@link GetUsersTopArtistsAndTracksRequest.Builder}.
+   * @param tClass  A {@link AbstractModelObject.JsonUtil}.
+   */
+  private GetUsersTopArtistsAndTracksRequest(final Builder&lt;T&gt; builder, final AbstractModelObject.JsonUtil&lt;T&gt; tClass) {
+<span class="nc" id="L37">    super(builder);</span>
+<span class="nc" id="L38">    this.tClass = tClass;</span>
+<span class="nc" id="L39">  }</span>
+
+  /**
+   * Get the top artists and tracks.
+   *
+   * @return Top artists and tracks.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public Paging&lt;T&gt; execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="nc" id="L52">    return tClass.createModelObjectPaging(getJson());</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetUsersTopArtistsAndTracksRequest}.
+   * &lt;p&gt;
+   * This class only exists for theoretical purposes. Please use {@link GetUsersTopArtistsRequest.Builder} and
+   * {@link GetUsersTopTracksRequest.Builder} instead.
+   *
+   * @param &lt;T&gt; The request {@link ModelObjectType}: artist or track.
+   */
+<span class="nc" id="L63">  public static final class Builder&lt;T extends IArtistTrackModelObject&gt; extends AbstractDataPagingRequest.Builder&lt;T, Builder&lt;T&gt;&gt; {</span>
+
+    private AbstractModelObject.JsonUtil&lt;T&gt; tClass;
+
+    /**
+     * Create a new {@link GetUsersTopArtistsAndTracksRequest.Builder} instance.
+     * &lt;p&gt;
+     * Getting details of a user's top artists and tracks requires authorization of the {@code user-top-read} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/using-scopes/&quot;&gt;Spotify: Using Scopes&lt;/a&gt;
+     */
+    public Builder(final String accessToken) {
+<span class="nc" id="L76">      super(accessToken);</span>
+<span class="nc" id="L77">    }</span>
+
+    /**
+     * The model object type setter.
+     *
+     * @param type The type of entity to return. Valid values: {@code artists} or {@code tracks}.
+     * @return A {@link GetUsersTopArtistsAndTracksRequest.Builder}.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public Builder&lt;T&gt; type(final ModelObjectType type) {
+<span class="nc bnc" id="L87" title="All 2 branches missed.">      assert (type != null);</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">      assert (type.getType().equals(&quot;artists&quot;) || type.getType().equals(&quot;tracks&quot;));</span>
+
+<span class="nc bnc" id="L90" title="All 3 branches missed.">      switch (type.getType()) {</span>
+        case &quot;artists&quot;:
+<span class="nc" id="L92">          tClass = (AbstractModelObject.JsonUtil&lt;T&gt;) new Artist.JsonUtil();</span>
+<span class="nc" id="L93">          break;</span>
+        case &quot;tracks&quot;:
+<span class="nc" id="L95">          tClass = (AbstractModelObject.JsonUtil&lt;T&gt;) new Track.JsonUtil();</span>
+          break;
+      }
+
+<span class="nc" id="L99">      return setPathParameter(&quot;type&quot;, type.getType());</span>
+    }
+
+    /**
+     * The limit setter.
+     *
+     * @param limit Optional. The number of entities to return. Default: 20. Minimum: 1. Maximum: 50.
+     * @return A {@link GetUsersTopArtistsAndTracksRequest.Builder}.
+     */
+    @Override
+    public Builder&lt;T&gt; limit(final Integer limit) {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">      assert (limit != null);</span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">      assert (1 &lt;= limit &amp;&amp; limit &lt;= 50);</span>
+<span class="nc" id="L112">      return setQueryParameter(&quot;limit&quot;, limit);</span>
+    }
+
+    /**
+     * The offset setter.
+     *
+     * @param offset Optional. The index of the first entity to return. Default: 0 (i.e., the first track). Use with
+     *               {@link #limit(Integer)} to get the next set of entities.
+     * @return A {@link GetUsersTopArtistsAndTracksRequest.Builder}.
+     */
+    @Override
+    public Builder&lt;T&gt; offset(final Integer offset) {
+<span class="nc bnc" id="L124" title="All 2 branches missed.">      assert (offset &gt;= 0);</span>
+<span class="nc" id="L125">      return setQueryParameter(&quot;offset&quot;, offset);</span>
+    }
+
+    /**
+     * The time range setter.
+     *
+     * @param time_range Optional. Over what time frame the affinities are computed. Valid values: {@code long_term}
+     *                   (calculated from several years of data and including all new data as it becomes available),
+     *                   {@code medium_term} (approximately last 6 months), {@code short_term} (approximately last 4
+     *                   weeks). Default: {@code medium_term}.
+     * @return A {@link GetUsersTopArtistsAndTracksRequest.Builder}.
+     */
+    public Builder&lt;T&gt; time_range(final String time_range) {
+<span class="nc bnc" id="L138" title="All 2 branches missed.">      assert (time_range != null);</span>
+<span class="nc bnc" id="L139" title="All 6 branches missed.">      assert (time_range.equals(&quot;long_term&quot;) || time_range.equals(&quot;medium_term&quot;) || time_range.equals(&quot;short_term&quot;));</span>
+<span class="nc" id="L140">      return setQueryParameter(&quot;time_range&quot;, time_range);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetUsersTopArtistsAndTracksRequest}.
+     */
+    @Override
+    public GetUsersTopArtistsAndTracksRequest&lt;T&gt; build() {
+<span class="nc" id="L150">      setPath(&quot;/v1/me/top/{type}&quot;);</span>
+<span class="nc" id="L151">      return new GetUsersTopArtistsAndTracksRequest&lt;&gt;(this, tClass);</span>
+    }
+
+    @Override
+    protected Builder&lt;T&gt; self() {
+<span class="nc" id="L156">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Artist.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.specification</a> &gt; <span class="el_source">Artist.java</span></div><h1>Artist.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.specification;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.requests.data.personalization.interfaces.IArtistTrackModelObject;
+import se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#artist-object-full&quot;&gt;
+ * Artist objects&lt;/a&gt; by building instances from this class.
+ */
+@JsonDeserialize(builder = Artist.Builder.class)
+public class Artist extends AbstractModelObject implements IArtistTrackModelObject, ISearchModelObject {
+  private final ExternalUrl externalUrls;
+  private final Followers followers;
+  private final String[] genres;
+  private final String href;
+  private final String id;
+  private final Image[] images;
+  private final String name;
+  private final Integer popularity;
+  private final ModelObjectType type;
+  private final String uri;
+
+  private Artist(final Builder builder) {
+<span class="fc" id="L32">    super(builder);</span>
+
+<span class="fc" id="L34">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L35">    this.followers = builder.followers;</span>
+<span class="fc" id="L36">    this.genres = builder.genres;</span>
+<span class="fc" id="L37">    this.href = builder.href;</span>
+<span class="fc" id="L38">    this.id = builder.id;</span>
+<span class="fc" id="L39">    this.images = builder.images;</span>
+<span class="fc" id="L40">    this.name = builder.name;</span>
+<span class="fc" id="L41">    this.popularity = builder.popularity;</span>
+<span class="fc" id="L42">    this.type = builder.type;</span>
+<span class="fc" id="L43">    this.uri = builder.uri;</span>
+<span class="fc" id="L44">  }</span>
+
+  /**
+   * Get the external URLs of the artist. &lt;br&gt;
+   * Example: &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify-URL&lt;/a&gt;
+   *
+   * @return An {@link ExternalUrl} object.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="fc" id="L53">    return externalUrls;</span>
+  }
+
+  /**
+   * Get information about the followers of the artist. &lt;br&gt;
+   * Example: Follower count.
+   *
+   * @return A {@link Followers} object.
+   */
+  public Followers getFollowers() {
+<span class="fc" id="L63">    return followers;</span>
+  }
+
+  /**
+   * Get a list of all genres of the artist. &lt;br&gt;
+   * A great amount of artists may contain no information about their genres.
+   *
+   * @return An array of genre names.
+   */
+  public String[] getGenres() {
+<span class="fc" id="L73">    return genres;</span>
+  }
+
+  /**
+   * Get the full Spotify Web API endpoint URL of the artist.
+   *
+   * @return A Spotify Web API endpoint URL.
+   */
+  public String getHref() {
+<span class="fc" id="L82">    return href;</span>
+  }
+
+  /**
+   * Get the Spotify ID of the artist.
+   *
+   * @return A &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify artist ID&lt;/a&gt;.
+   */
+  public String getId() {
+<span class="fc" id="L91">    return id;</span>
+  }
+
+  /**
+   * Get all images of the artist (like header image) in different sizes.
+   *
+   * @return An array of {@link Image} objects.
+   */
+  public Image[] getImages() {
+<span class="fc" id="L100">    return images;</span>
+  }
+
+  /**
+   * Get the name of the artist.
+   *
+   * @return Artist name.
+   */
+  public String getName() {
+<span class="fc" id="L109">    return name;</span>
+  }
+
+  /**
+   * Get the popularity of the artist in a range between 0 and 100. (higher = more popular)&lt;br&gt;
+   * The popularity of the artist is based on the popularity of its tracks.
+   *
+   * @return The popularity of the artist.
+   */
+  public Integer getPopularity() {
+<span class="fc" id="L119">    return popularity;</span>
+  }
+
+  /**
+   * Get the model object type. In this case &quot;artist&quot;.
+   *
+   * @return A {@link ModelObjectType}.
+   */
+  public ModelObjectType getType() {
+<span class="fc" id="L128">    return type;</span>
+  }
+
+  /**
+   * Get the Spotify URI of the artist.
+   *
+   * @return &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify artist URI&lt;/a&gt;.
+   */
+  public String getUri() {
+<span class="fc" id="L137">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L142">    return &quot;Artist(name=&quot; + name + &quot;, externalUrls=&quot; + externalUrls + &quot;, followers=&quot; + followers + &quot;, genres=&quot;</span>
+<span class="nc" id="L143">        + Arrays.toString(genres) + &quot;, href=&quot; + href + &quot;, id=&quot; + id + &quot;, images=&quot; + Arrays.toString(images)</span>
+        + &quot;, popularity=&quot; + popularity + &quot;, type=&quot; + type + &quot;, uri=&quot; + uri + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L149">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link Artist} instances.
+   */
+<span class="fc" id="L155">  public static final class Builder extends AbstractModelObject.Builder {</span>
+    private ExternalUrl externalUrls;
+    private Followers followers;
+    private String[] genres;
+    private String href;
+    private String id;
+    private Image[] images;
+    private String name;
+    private Integer popularity;
+    private ModelObjectType type;
+    private String uri;
+
+    /**
+     * Set external URLs of the artist to be built.
+     *
+     * @param externalUrls {@link ExternalUrl} object.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L174">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L175">      return this;</span>
+    }
+
+    /**
+     * Set the followers object of the artist to be built.
+     *
+     * @param followers A {@link Followers} object.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setFollowers(Followers followers) {
+<span class="fc" id="L185">      this.followers = followers;</span>
+<span class="fc" id="L186">      return this;</span>
+    }
+
+    /**
+     * Set the genres of the artist to be built.
+     *
+     * @param genres Genre names.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setGenres(String... genres) {
+<span class="fc" id="L196">      this.genres = genres;</span>
+<span class="fc" id="L197">      return this;</span>
+    }
+
+    /**
+     * Set href of Spotify Web API endpoint of the artist to be built.
+     *
+     * @param href Spotify Web API endpoint URL.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L207">      this.href = href;</span>
+<span class="fc" id="L208">      return this;</span>
+    }
+
+    /**
+     * Set artist ID of the artist to be built.
+     *
+     * @param id &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify artist ID&lt;/a&gt;.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L218">      this.id = id;</span>
+<span class="fc" id="L219">      return this;</span>
+    }
+
+    /**
+     * Set the images of the artist to be built, like the header image.
+     *
+     * @param images {@link Image} objects.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setImages(Image... images) {
+<span class="fc" id="L229">      this.images = images;</span>
+<span class="fc" id="L230">      return this;</span>
+    }
+
+    /**
+     * Set the name of the artist to be built.
+     *
+     * @param name The artist name.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setName(String name) {
+<span class="fc" id="L240">      this.name = name;</span>
+<span class="fc" id="L241">      return this;</span>
+    }
+
+    /**
+     * Set the popularity of the artist to be built.
+     *
+     * @param popularity The popularity of the artist between 0 and 100.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setPopularity(Integer popularity) {
+<span class="fc" id="L251">      this.popularity = popularity;</span>
+<span class="fc" id="L252">      return this;</span>
+    }
+
+    /**
+     * Set the type of the model object. In this case &quot;artist&quot;.
+     *
+     * @param type The {@link ModelObjectType}.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L262">      this.type = type;</span>
+<span class="fc" id="L263">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify artist URI of the artist to be built.
+     *
+     * @param uri &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;
+     *            Spotify artist URI&lt;/a&gt;.
+     * @return A {@link Artist.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L274">      this.uri = uri;</span>
+<span class="fc" id="L275">      return this;</span>
+    }
+
+    @Override
+    public Artist build() {
+<span class="fc" id="L280">      return new Artist(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link Artist} instances.
+   */
+<span class="fc" id="L287">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;Artist&gt; {</span>
+    public Artist createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L289" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L290">        return null;</span>
+      }
+
+<span class="fc" id="L293">      return new Artist.Builder()</span>
+<span class="fc" id="L294">        .setExternalUrls(</span>
+<span class="pc bpc" id="L295" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L296">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L297">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L298">            : null)</span>
+<span class="fc" id="L299">        .setFollowers(</span>
+<span class="pc bpc" id="L300" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;followers&quot;)</span>
+<span class="fc" id="L301">            ? new Followers.JsonUtil().createModelObject(</span>
+<span class="fc" id="L302">            jsonObject.getAsJsonObject(&quot;followers&quot;))</span>
+<span class="nc" id="L303">            : null)</span>
+<span class="fc" id="L304">        .setGenres(</span>
+<span class="pc bpc" id="L305" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;genres&quot;)</span>
+<span class="fc" id="L306">            ? new Gson().fromJson(</span>
+<span class="fc" id="L307">            jsonObject.getAsJsonArray(&quot;genres&quot;), String[].class)</span>
+<span class="nc" id="L308">            : null)</span>
+<span class="fc" id="L309">        .setHref(</span>
+<span class="pc bpc" id="L310" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L311">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L312">            : null)</span>
+<span class="fc" id="L313">        .setId(</span>
+<span class="pc bpc" id="L314" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L315">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L316">            : null)</span>
+<span class="fc" id="L317">        .setImages(</span>
+<span class="pc bpc" id="L318" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;images&quot;)</span>
+<span class="fc" id="L319">            ? new Image.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L320">            jsonObject.getAsJsonArray(&quot;images&quot;))</span>
+<span class="nc" id="L321">            : null)</span>
+<span class="fc" id="L322">        .setName(</span>
+<span class="pc bpc" id="L323" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;name&quot;)</span>
+<span class="fc" id="L324">            ? jsonObject.get(&quot;name&quot;).getAsString()</span>
+<span class="nc" id="L325">            : null)</span>
+<span class="fc" id="L326">        .setPopularity(</span>
+<span class="pc bpc" id="L327" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;popularity&quot;)</span>
+<span class="fc" id="L328">            ? jsonObject.get(&quot;popularity&quot;).getAsInt()</span>
+<span class="nc" id="L329">            : null)</span>
+<span class="fc" id="L330">        .setType(</span>
+<span class="pc bpc" id="L331" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L332">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L333">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L334">            : null)</span>
+<span class="fc" id="L335">        .setUri(</span>
+<span class="pc bpc" id="L336" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L337">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L338">            : null)</span>
+<span class="fc" id="L339">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L345" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L346">      return true;</span>
+    }
+<span class="nc bnc" id="L348" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L349">      return false;</span>
+    }
+<span class="nc" id="L351">    Artist artist = (Artist) o;</span>
+<span class="nc bnc" id="L352" title="All 6 branches missed.">    return Objects.equals(id, artist.id) &amp;&amp; Objects.equals(name, artist.name) &amp;&amp; Objects.equals(uri, artist.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L357">    return Objects.hash(id, name, uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

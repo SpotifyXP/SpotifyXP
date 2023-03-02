@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractDataPagingCursorbasedRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data</a> &gt; <span class="el_source">AbstractDataPagingCursorbasedRequest.java</span></div><h1>AbstractDataPagingCursorbasedRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data;
+
+import se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
+
+public abstract class AbstractDataPagingCursorbasedRequest&lt;T&gt; extends AbstractDataRequest&lt;T&gt; {
+  protected AbstractDataPagingCursorbasedRequest(final AbstractDataRequest.Builder&lt;T, ?&gt; builder) {
+<span class="nc" id="L7">    super(builder);</span>
+<span class="nc" id="L8">  }</span>
+
+<span class="fc" id="L10">  public static abstract class Builder&lt;T, A, BT extends Builder&lt;T, A, ?&gt;&gt; extends AbstractDataRequest.Builder&lt;PagingCursorbased&lt;T&gt;, BT&gt; implements IPagingCursorbasedRequestBuilder&lt;T, A, BT&gt; {</span>
+    protected Builder(String accessToken) {
+<span class="fc" id="L12">      super(accessToken);</span>
+
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">      assert (!accessToken.equals(&quot;&quot;));</span>
+
+<span class="fc" id="L16">      setHeader(&quot;Authorization&quot;, &quot;Bearer &quot; + accessToken);</span>
+<span class="fc" id="L17">    }</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

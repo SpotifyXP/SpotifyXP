@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthorizationCodePKCERequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.authorization.authorization_code.pkce</a> &gt; <span class="el_source">AuthorizationCodePKCERequest.java</span></div><h1>AuthorizationCodePKCERequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.authorization.authorization_code.pkce;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
+import se.michaelthelin.spotify.requests.AbstractRequest;
+
+import java.io.IOException;
+import java.net.URI;
+
+/**
+ * Request an access token by exchanging the authorization code for an access token with an
+ * &lt;a href=&quot;https://developer.spotify.com/documentation/general/guides/authorization-guide/#4-your-app-exchanges-the-code-for-an-access-token&quot;&gt;Authorization Code&lt;/a&gt;
+ * request.
+ */
+@JsonDeserialize(builder = AuthorizationCodePKCERequest.Builder.class)
+public class AuthorizationCodePKCERequest extends AbstractRequest&lt;AuthorizationCodeCredentials&gt; {
+
+  private AuthorizationCodePKCERequest(Builder builder) {
+<span class="fc" id="L23">    super(builder);</span>
+<span class="fc" id="L24">  }</span>
+
+  /**
+   * Request new {@link AuthorizationCodeCredentials}.
+   *
+   * @return An {@link AuthorizationCodeCredentials} object containing an access token and refresh token.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  public AuthorizationCodeCredentials execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L37">    return new AuthorizationCodeCredentials.JsonUtil().createModelObject(postJson());</span>
+  }
+
+<span class="fc" id="L40">  public static final class Builder extends AbstractRequest.Builder&lt;AuthorizationCodeCredentials, Builder&gt; {</span>
+
+    public Builder() {
+<span class="fc" id="L43">      super();</span>
+<span class="fc" id="L44">    }</span>
+
+    /**
+     * The client ID setter.
+     *
+     * @param client_id Required. The client ID for your app, available from the developer dashboard.
+     * @return An {@link AuthorizationCodePKCERequest.Builder}.
+     */
+    public Builder client_id(final String client_id) {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">      assert (client_id != null);</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">      assert (!client_id.equals(&quot;&quot;));</span>
+<span class="fc" id="L55">      return setBodyParameter(&quot;client_id&quot;, client_id);</span>
+    }
+
+    /**
+     * The grant type setter.
+     *
+     * @param grant_type Required. As defined in the OAuth 2.0 specification, this field must contain the value
+     *                   {@code &quot;authorization_code&quot;}
+     * @return An {@link AuthorizationCodePKCERequest.Builder}.
+     */
+    public Builder grant_type(final String grant_type) {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">      assert (grant_type != null);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (grant_type.equals(&quot;authorization_code&quot;));</span>
+<span class="fc" id="L68">      return setBodyParameter(&quot;grant_type&quot;, grant_type);</span>
+    }
+
+    /**
+     * The authorization code setter.
+     *
+     * @param code Required. The authorization code returned from the initial request to the Account's /authorize
+     *             endpoint.
+     * @return An {@link AuthorizationCodePKCERequest.Builder}.
+     */
+    public Builder code(final String code) {
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">      assert (code != null);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">      assert (!code.equals(&quot;&quot;));</span>
+<span class="fc" id="L81">      return setBodyParameter(&quot;code&quot;, code);</span>
+    }
+
+    /**
+     * The redirect URI setter.
+     *
+     * @param redirect_uri Required. This parameter is used for validation only (there is no actual redirection). The
+     *                     value of this parameter must exactly match the value of {@code redirect_uri} supplied when
+     *                     requesting the authorization code.
+     * @return An {@link AuthorizationCodePKCERequest.Builder}.
+     */
+    public Builder redirect_uri(final URI redirect_uri) {
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">      assert (redirect_uri != null);</span>
+<span class="fc" id="L94">      return setBodyParameter(&quot;redirect_uri&quot;, redirect_uri.toString());</span>
+    }
+
+    /**
+     * The code verifier setter.
+     *
+     * @param code_verifier Required. The value of this parameter must match the value of the code_verifier that your app generated beforehand.
+     * @return An {@link AuthorizationCodePKCERequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow-with-proof-key-for-code-exchange-pkce&quot;&gt;
+     *      Authorization Code Flow with Proof Key for Code Exchange (PKCE)&lt;/a&gt;
+     */
+    public Builder code_verifier(String code_verifier) {
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">      assert (code_verifier != null);</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">      assert (!code_verifier.equals(&quot;&quot;));</span>
+<span class="fc" id="L108">      return setBodyParameter(&quot;code_verifier&quot;, code_verifier);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return An {@link AuthorizationCodePKCERequest}.
+     */
+    public AuthorizationCodePKCERequest build() {
+<span class="fc" id="L117">      setContentType(ContentType.APPLICATION_FORM_URLENCODED);</span>
+<span class="fc" id="L118">      setHost(SpotifyApi.DEFAULT_AUTHENTICATION_HOST);</span>
+<span class="fc" id="L119">      setPort(SpotifyApi.DEFAULT_AUTHENTICATION_PORT);</span>
+<span class="fc" id="L120">      setScheme(SpotifyApi.DEFAULT_AUTHENTICATION_SCHEME);</span>
+<span class="fc" id="L121">      setPath(&quot;/api/token&quot;);</span>
+
+<span class="fc" id="L123">      return new AuthorizationCodePKCERequest(this);</span>
+    }
+
+    @Override
+    protected Builder self() {
+<span class="fc" id="L128">      return this;</span>
+    }
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

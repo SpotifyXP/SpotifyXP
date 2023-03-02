@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AlbumSimplifiedSpecial.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.model_objects.special</a> &gt; <span class="el_source">AlbumSimplifiedSpecial.java</span></div><h1>AlbumSimplifiedSpecial.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.model_objects.special;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.neovisionaries.i18n.CountryCode;
+import se.michaelthelin.spotify.enums.AlbumType;
+import se.michaelthelin.spotify.enums.ModelObjectType;
+import se.michaelthelin.spotify.enums.ReleaseDatePrecision;
+import se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import se.michaelthelin.spotify.model_objects.specification.Album;
+import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
+import se.michaelthelin.spotify.model_objects.specification.ExternalUrl;
+import se.michaelthelin.spotify.model_objects.specification.Image;
+import se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+/**
+ * Retrieve information about &lt;a href=&quot;https://developer.spotify.com/web-api/object-model/#album-object-simplified&quot;&gt;
+ * simplified Album objects&lt;/a&gt; by building instances from this class.
+ * &lt;p&gt;
+ * This class exists because it includes the property {@code totalTracks}, which is not documented in the official
+ * specification, although the albums object as returned by the searches API includes it.
+ */
+@JsonDeserialize(builder = AlbumSimplifiedSpecial.Builder.class)
+public class AlbumSimplifiedSpecial extends AbstractModelObject implements ISearchModelObject {
+  private final AlbumType albumType;
+  private final ArtistSimplified[] artists;
+  private final CountryCode[] availableMarkets;
+  private final ExternalUrl externalUrls;
+  private final String href;
+  private final String id;
+  private final Image[] images;
+  private final String name;
+  private final String releaseDate;
+  private final ReleaseDatePrecision releaseDatePrecision;
+  private final Integer totalTracks;
+  private final ModelObjectType type;
+  private final String uri;
+
+  private AlbumSimplifiedSpecial(final Builder builder) {
+<span class="fc" id="L44">    super(builder);</span>
+
+<span class="fc" id="L46">    this.albumType = builder.albumType;</span>
+<span class="fc" id="L47">    this.artists = builder.artists;</span>
+<span class="fc" id="L48">    this.availableMarkets = builder.availableMarkets;</span>
+<span class="fc" id="L49">    this.externalUrls = builder.externalUrls;</span>
+<span class="fc" id="L50">    this.href = builder.href;</span>
+<span class="fc" id="L51">    this.id = builder.id;</span>
+<span class="fc" id="L52">    this.images = builder.images;</span>
+<span class="fc" id="L53">    this.name = builder.name;</span>
+<span class="fc" id="L54">    this.releaseDate = builder.releaseDate;</span>
+<span class="fc" id="L55">    this.releaseDatePrecision = builder.releaseDatePrecision;</span>
+<span class="fc" id="L56">    this.totalTracks = builder.totalTracks;</span>
+<span class="fc" id="L57">    this.type = builder.type;</span>
+<span class="fc" id="L58">    this.uri = builder.uri;</span>
+<span class="fc" id="L59">  }</span>
+
+  /**
+   * Get the type of the album.
+   *
+   * @return The {@link AlbumType}.
+   */
+  public AlbumType getAlbumType() {
+<span class="nc" id="L67">    return albumType;</span>
+  }
+
+  /**
+   * Get the artists of the album.
+   *
+   * @return An array of {@link ArtistSimplified} objects.
+   */
+  public ArtistSimplified[] getArtists() {
+<span class="nc" id="L76">    return artists;</span>
+  }
+
+  /**
+   * Get the country codes of all countries, in which the album is available.
+   *
+   * @return An array of &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166-1 alpha-2 country
+   * codes&lt;/a&gt;.
+   */
+  public CountryCode[] getAvailableMarkets() {
+<span class="nc" id="L86">    return availableMarkets;</span>
+  }
+
+  /**
+   * Get the external URLs of the album. &lt;br&gt;
+   * Example: &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify-URL&lt;/a&gt;
+   *
+   * @return An {@link ExternalUrl} object.
+   */
+  public ExternalUrl getExternalUrls() {
+<span class="nc" id="L96">    return externalUrls;</span>
+  }
+
+  /**
+   * Get the full Spotify Web API endpoint URL of the album.
+   *
+   * @return A Spotify Web API endpoint URL.
+   */
+  public String getHref() {
+<span class="nc" id="L105">    return href;</span>
+  }
+
+  /**
+   * Get the Spotify ID of the album.
+   *
+   * @return A Spotify album ID.
+   */
+  public String getId() {
+<span class="nc" id="L114">    return id;</span>
+  }
+
+  /**
+   * Get the album cover art of the album in different sizes.
+   *
+   * @return An array of {@link Image} objects.
+   */
+  public Image[] getImages() {
+<span class="nc" id="L123">    return images;</span>
+  }
+
+  /**
+   * Get the name of the album.
+   *
+   * @return Album name.
+   */
+  public String getName() {
+<span class="nc" id="L132">    return name;</span>
+  }
+
+  /**
+   * Get the release date of the album with the highest precision available.
+   *
+   * @return The release date of the album.
+   */
+  public String getReleaseDate() {
+<span class="nc" id="L141">    return releaseDate;</span>
+  }
+
+  /**
+   * Get the precision of the albums release date. This is needed when the exact release day of an album is not known.
+   *
+   * @return The precision of the albums release date.
+   */
+  public ReleaseDatePrecision getReleaseDatePrecision() {
+<span class="nc" id="L150">    return releaseDatePrecision;</span>
+  }
+
+  /**
+   * Get the total tracks of the album.
+   *
+   * @return The total tracks of the album.
+   */
+  public Integer getTotalTracks() {
+<span class="nc" id="L159">    return totalTracks;</span>
+  }
+
+  /**
+   * Get the model object type. In this case &quot;album&quot;.
+   *
+   * @return A {@link ModelObjectType}.
+   */
+  public ModelObjectType getType() {
+<span class="nc" id="L168">    return type;</span>
+  }
+
+  /**
+   * Get the Spotify URI of the album.
+   *
+   * @return &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify album URI&lt;/a&gt;.
+   */
+  public String getUri() {
+<span class="nc" id="L177">    return uri;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L182">    return &quot;AlbumSimplifiedSpecial(albumType=&quot; + albumType + &quot;, artists=&quot; + Arrays.toString(artists)</span>
+<span class="nc" id="L183">        + &quot;, availableMarkets=&quot; + Arrays.toString(availableMarkets) + &quot;, externalUrls=&quot; + externalUrls + &quot;, href=&quot;</span>
+<span class="nc" id="L184">        + href + &quot;, id=&quot; + id + &quot;, images=&quot; + Arrays.toString(images) + &quot;, name=&quot; + name + &quot;, releaseDate=&quot;</span>
+        + releaseDate + &quot;, releaseDatePrecision=&quot; + releaseDatePrecision + &quot;, totalTracks=&quot; + totalTracks + &quot;, type=&quot;
+        + type + &quot;, uri=&quot; + uri + &quot;)&quot;;
+  }
+
+  @Override
+  public Builder builder() {
+<span class="nc" id="L191">    return new Builder();</span>
+  }
+
+  /**
+   * Builder class for building {@link AlbumSimplifiedSpecial} instances.
+   */
+<span class="fc" id="L197">  public static final class Builder extends AbstractModelObject.Builder {</span>
+
+    private AlbumType albumType;
+    private ArtistSimplified[] artists;
+    private CountryCode[] availableMarkets;
+    private ExternalUrl externalUrls;
+    private String href;
+    private String id;
+    private Image[] images;
+    private String name;
+    private String releaseDate;
+    private ReleaseDatePrecision releaseDatePrecision;
+    private Integer totalTracks;
+    private ModelObjectType type;
+    private String uri;
+
+    /**
+     * Set the type of the album to be built.
+     *
+     * @param albumType The {@link AlbumType}.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setAlbumType(AlbumType albumType) {
+<span class="fc" id="L220">      this.albumType = albumType;</span>
+<span class="fc" id="L221">      return this;</span>
+
+    }
+
+    /**
+     * Set the artists of the album to be built.
+     *
+     * @param artists {@link ArtistSimplified} objects.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setArtists(ArtistSimplified... artists) {
+<span class="fc" id="L232">      this.artists = artists;</span>
+<span class="fc" id="L233">      return this;</span>
+    }
+
+    /**
+     * Set the available markets of the album to be built.
+     *
+     * @param availableMarkets &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;
+     *                         ISO 3166-1 alpha-2 country codes&lt;/a&gt;.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setAvailableMarkets(CountryCode... availableMarkets) {
+<span class="fc" id="L244">      this.availableMarkets = availableMarkets;</span>
+<span class="fc" id="L245">      return this;</span>
+    }
+
+    /**
+     * Set external URLs of the album to be built.
+     *
+     * @param externalUrls {@link ExternalUrl} object.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setExternalUrls(ExternalUrl externalUrls) {
+<span class="fc" id="L255">      this.externalUrls = externalUrls;</span>
+<span class="fc" id="L256">      return this;</span>
+    }
+
+    /**
+     * Set href of Spotify Web API endpoint of the album to be built.
+     *
+     * @param href Spotify Web API endpoint URL.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setHref(String href) {
+<span class="fc" id="L266">      this.href = href;</span>
+<span class="fc" id="L267">      return this;</span>
+    }
+
+    /**
+     * Set album ID of the album to be built.
+     *
+     * @param id &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify album ID&lt;/a&gt;.
+     * @return A {@link Album.Builder}.
+     */
+    public Builder setId(String id) {
+<span class="fc" id="L277">      this.id = id;</span>
+<span class="fc" id="L278">      return this;</span>
+    }
+
+    /**
+     * Set the cover art in different sizes of the album to be built.
+     *
+     * @param images {@link Image} objects.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setImages(Image... images) {
+<span class="fc" id="L288">      this.images = images;</span>
+<span class="fc" id="L289">      return this;</span>
+    }
+
+    /**
+     * Set the name of the album to be built.
+     *
+     * @param name The album name.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setName(String name) {
+<span class="fc" id="L299">      this.name = name;</span>
+<span class="fc" id="L300">      return this;</span>
+    }
+
+    /**
+     * Set the release date of the album to be built.
+     *
+     * @param releaseDate The release date of the album.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setReleaseDate(String releaseDate) {
+<span class="fc" id="L310">      this.releaseDate = releaseDate;</span>
+<span class="fc" id="L311">      return this;</span>
+    }
+
+    /**
+     * Set the release date precision of the album to be built.
+     *
+     * @param releaseDatePrecision The {@link ReleaseDatePrecision} of the album.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setReleaseDatePrecision(ReleaseDatePrecision releaseDatePrecision) {
+<span class="fc" id="L321">      this.releaseDatePrecision = releaseDatePrecision;</span>
+<span class="fc" id="L322">      return this;</span>
+    }
+
+    /**
+     * Set the number of total tracks of the album to be built.
+     *
+     * @param totalTracks The number of total tracks of the album.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setTotalTracks(Integer totalTracks) {
+<span class="fc" id="L332">      this.totalTracks = totalTracks;</span>
+<span class="fc" id="L333">      return this;</span>
+    }
+
+    /**
+     * Set the type of the model object. In this case &quot;album&quot;.
+     *
+     * @param type The {@link ModelObjectType}.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setType(ModelObjectType type) {
+<span class="fc" id="L343">      this.type = type;</span>
+<span class="fc" id="L344">      return this;</span>
+    }
+
+    /**
+     * Set the Spotify album URI of the album to be built.
+     *
+     * @param uri &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;
+     *            Spotify album URI&lt;/a&gt;.
+     * @return A {@link AlbumSimplifiedSpecial.Builder}.
+     */
+    public Builder setUri(String uri) {
+<span class="fc" id="L355">      this.uri = uri;</span>
+<span class="fc" id="L356">      return this;</span>
+    }
+
+    @Override
+    public AlbumSimplifiedSpecial build() {
+<span class="fc" id="L361">      return new AlbumSimplifiedSpecial(this);</span>
+    }
+  }
+
+  /**
+   * JsonUtil class for building {@link AlbumSimplifiedSpecial} instances.
+   */
+<span class="fc" id="L368">  public static final class JsonUtil extends AbstractModelObject.JsonUtil&lt;AlbumSimplifiedSpecial&gt; {</span>
+    public AlbumSimplifiedSpecial createModelObject(JsonObject jsonObject) {
+<span class="pc bpc" id="L370" title="2 of 4 branches missed.">      if (jsonObject == null || jsonObject.isJsonNull()) {</span>
+<span class="nc" id="L371">        return null;</span>
+      }
+
+<span class="fc" id="L374">      return new AlbumSimplifiedSpecial.Builder()</span>
+<span class="fc" id="L375">        .setAlbumType(</span>
+<span class="pc bpc" id="L376" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;album_type&quot;)</span>
+<span class="fc" id="L377">            ? AlbumType.keyOf(</span>
+<span class="fc" id="L378">            jsonObject.get(&quot;album_type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L379">            : null)</span>
+<span class="fc" id="L380">        .setArtists(</span>
+<span class="pc bpc" id="L381" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;artists&quot;)</span>
+<span class="fc" id="L382">            ? new ArtistSimplified.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L383">            jsonObject.getAsJsonArray(&quot;artists&quot;))</span>
+<span class="nc" id="L384">            : null)</span>
+<span class="fc" id="L385">        .setAvailableMarkets(</span>
+<span class="pc bpc" id="L386" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;available_markets&quot;)</span>
+<span class="nc" id="L387">            ? new Gson().fromJson(</span>
+<span class="nc" id="L388">            jsonObject.get(&quot;available_markets&quot;), CountryCode[].class)</span>
+<span class="fc" id="L389">            : null)</span>
+<span class="fc" id="L390">        .setExternalUrls(</span>
+<span class="pc bpc" id="L391" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;external_urls&quot;)</span>
+<span class="fc" id="L392">            ? new ExternalUrl.JsonUtil().createModelObject(</span>
+<span class="fc" id="L393">            jsonObject.getAsJsonObject(&quot;external_urls&quot;))</span>
+<span class="nc" id="L394">            : null)</span>
+<span class="fc" id="L395">        .setHref(</span>
+<span class="pc bpc" id="L396" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;href&quot;)</span>
+<span class="fc" id="L397">            ? jsonObject.get(&quot;href&quot;).getAsString()</span>
+<span class="nc" id="L398">            : null)</span>
+<span class="fc" id="L399">        .setId(</span>
+<span class="pc bpc" id="L400" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;id&quot;)</span>
+<span class="fc" id="L401">            ? jsonObject.get(&quot;id&quot;).getAsString()</span>
+<span class="nc" id="L402">            : null)</span>
+<span class="fc" id="L403">        .setImages(</span>
+<span class="pc bpc" id="L404" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;images&quot;)</span>
+<span class="fc" id="L405">            ? new Image.JsonUtil().createModelObjectArray(</span>
+<span class="fc" id="L406">            jsonObject.getAsJsonArray(&quot;images&quot;))</span>
+<span class="nc" id="L407">            : null)</span>
+<span class="fc" id="L408">        .setName(</span>
+<span class="pc bpc" id="L409" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;name&quot;)</span>
+<span class="fc" id="L410">            ? jsonObject.get(&quot;name&quot;).getAsString()</span>
+<span class="nc" id="L411">            : null)</span>
+<span class="fc" id="L412">        .setReleaseDate(</span>
+<span class="pc bpc" id="L413" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;release_date&quot;)</span>
+<span class="fc" id="L414">            ? jsonObject.get(&quot;release_date&quot;).getAsString()</span>
+<span class="nc" id="L415">            : null)</span>
+<span class="fc" id="L416">        .setReleaseDatePrecision(</span>
+<span class="pc bpc" id="L417" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;release_date_precision&quot;)</span>
+<span class="fc" id="L418">            ? ReleaseDatePrecision.keyOf(</span>
+<span class="fc" id="L419">            jsonObject.get(&quot;release_date_precision&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L420">            : null)</span>
+<span class="fc" id="L421">        .setTotalTracks(</span>
+<span class="pc bpc" id="L422" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;total_tracks&quot;)</span>
+<span class="fc" id="L423">            ? jsonObject.get(&quot;total_tracks&quot;).getAsInt()</span>
+<span class="nc" id="L424">            : null)</span>
+<span class="fc" id="L425">        .setType(</span>
+<span class="pc bpc" id="L426" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;type&quot;)</span>
+<span class="fc" id="L427">            ? ModelObjectType.keyOf(</span>
+<span class="fc" id="L428">            jsonObject.get(&quot;type&quot;).getAsString().toLowerCase())</span>
+<span class="nc" id="L429">            : null)</span>
+<span class="fc" id="L430">        .setUri(</span>
+<span class="pc bpc" id="L431" title="1 of 2 branches missed.">          hasAndNotNull(jsonObject, &quot;uri&quot;)</span>
+<span class="fc" id="L432">            ? jsonObject.get(&quot;uri&quot;).getAsString()</span>
+<span class="nc" id="L433">            : null)</span>
+<span class="fc" id="L434">        .build();</span>
+    }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L440" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L441">      return true;</span>
+    }
+<span class="nc bnc" id="L443" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L444">      return false;</span>
+    }
+<span class="nc" id="L446">    AlbumSimplifiedSpecial that = (AlbumSimplifiedSpecial) o;</span>
+<span class="nc bnc" id="L447" title="All 4 branches missed.">    return Objects.equals(id, that.id) &amp;&amp; Objects.equals(name, that.name) &amp;&amp;</span>
+<span class="nc bnc" id="L448" title="All 4 branches missed.">      Objects.equals(releaseDate, that.releaseDate) &amp;&amp; Objects.equals(uri, that.uri);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L453">    return Objects.hash(id, name, releaseDate, uri);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

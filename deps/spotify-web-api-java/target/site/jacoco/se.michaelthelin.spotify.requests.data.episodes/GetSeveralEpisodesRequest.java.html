@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetSeveralEpisodesRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Spotify Web API Java Client</a> &gt; <a href="index.source.html" class="el_package">se.michaelthelin.spotify.requests.data.episodes</a> &gt; <span class="el_source">GetSeveralEpisodesRequest.java</span></div><h1>GetSeveralEpisodesRequest.java</h1><pre class="source lang-java linenums">package se.michaelthelin.spotify.requests.data.episodes;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.neovisionaries.i18n.CountryCode;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.Episode;
+import se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+
+import java.io.IOException;
+
+/**
+ * Get Spotify catalog information for multiple episodes based on their Spotify IDs.
+ */
+@JsonDeserialize(builder = GetSeveralEpisodesRequest.Builder.class)
+public class GetSeveralEpisodesRequest extends AbstractDataRequest&lt;Episode[]&gt; {
+
+  /**
+   * The private {@link GetSeveralEpisodesRequest} constructor.
+   *
+   * @param builder A {@link GetSeveralEpisodesRequest.Builder}.
+   */
+  private GetSeveralEpisodesRequest(final Builder builder) {
+<span class="fc" id="L24">    super(builder);</span>
+<span class="fc" id="L25">  }</span>
+
+  /**
+   * Get several episodes.
+   *
+   * @return Multiple {@link Episode} objects.
+   * @throws IOException            In case of networking issues.
+   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
+   */
+  @Override
+  public Episode[] execute() throws
+    IOException,
+    SpotifyWebApiException,
+    ParseException {
+<span class="fc" id="L39">    return new Episode.JsonUtil().createModelObjectArray(getJson(), &quot;episodes&quot;);</span>
+  }
+
+  /**
+   * Builder class for building a {@link GetSeveralEpisodesRequest}.
+   */
+<span class="fc" id="L45">  public static final class Builder extends AbstractDataRequest.Builder&lt;Episode[], Builder&gt; {</span>
+
+    /**
+     * Create a new {@link GetSeveralEpisodesRequest.Builder}.
+     * &lt;p&gt;
+     * Reading the user’s resume points on episode objects requires the {@code user-read-playback-position} scope.
+     *
+     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     */
+    public Builder(final String accessToken) {
+<span class="fc" id="L55">      super(accessToken);</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * The episode IDs setter.
+     *
+     * @param ids Required. A comma-separated list of the Spotify IDs for the episodes. Maximum: 50 IDs.
+     * @return A {@link GetSeveralEpisodesRequest.Builder}.
+     * @see &lt;a href=&quot;https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids&quot;&gt;Spotify: URIs &amp;amp; IDs&lt;/a&gt;
+     */
+    public Builder ids(final String ids) {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">      assert (ids != null);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">      assert (ids.split(&quot;,&quot;).length &lt;= 50);</span>
+<span class="fc" id="L68">      return setQueryParameter(&quot;ids&quot;, ids);</span>
+    }
+
+    /**
+     * The market country code setter.&lt;p&gt;
+     * If a country code is specified, only shows and episodes that are available in that market will be returned.
+     * If a valid user access token is specified in the request header, the country associated with the user account will take priority over this parameter.
+     * &lt;i&gt;Note: If neither market or user country are provided, the content is considered unavailable for the client.&lt;/i&gt;&lt;p&gt;
+     * Users can view the country that is associated with their account in the account settings.
+     *
+     * @param market Optional. An ISO 3166-1 alpha-2 country code.
+     * @return A {@link GetSeveralEpisodesRequest.Builder}.
+     * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;Wikipedia: ISO 3166-1 alpha-2 country codes&lt;/a&gt;
+     */
+    public Builder market(final CountryCode market) {
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">      assert (market != null);</span>
+<span class="fc" id="L84">      return setQueryParameter(&quot;market&quot;, market);</span>
+    }
+
+    /**
+     * The request build method.
+     *
+     * @return A custom {@link GetSeveralEpisodesRequest}.
+     */
+    @Override
+    public GetSeveralEpisodesRequest build() {
+<span class="fc" id="L94">      setPath(&quot;/v1/episodes&quot;);</span>
+<span class="fc" id="L95">      return new GetSeveralEpisodesRequest(this);</span>
+    }
+
+    @Override
+    protected GetSeveralEpisodesRequest.Builder self() {
+<span class="fc" id="L100">      return this;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
