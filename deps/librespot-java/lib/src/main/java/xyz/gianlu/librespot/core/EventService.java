@@ -90,6 +90,7 @@ public final class EventService implements Closeable {
         EventBuilder build();
     }
 
+    @SuppressWarnings("NullableProblems")
     public static class EventBuilder {
         private final ByteArrayOutputStream body = new ByteArrayOutputStream(256);
 

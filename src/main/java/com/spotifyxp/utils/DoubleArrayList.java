@@ -6,6 +6,7 @@ import com.spotifyxp.custom.DoubleArrayListForEachOne;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("CanBeFinal")
 public class DoubleArrayList {
     Object al1type = null;
     Object al2type = null;

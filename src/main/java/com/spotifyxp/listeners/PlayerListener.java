@@ -21,19 +21,20 @@ import xyz.gianlu.librespot.player.Player;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("CanBeFinal")
 public class PlayerListener implements Player.EventsListener {
-    private SpotifyAPI.Player pl;
-    private SpotifyAPI a;
+    private final SpotifyAPI.Player pl;
+    private final SpotifyAPI a;
     public static boolean pauseTimer = false;
     class PlayerThread extends TimerTask {
         public void run() {
             if(!pauseTimer) {
                 try {
-                    ContentPanel.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(pl.getPlayer().currentMetadata().duration()));
+                    ContentPanel.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
                     ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
                 } catch (NullPointerException ex) {
                     //No song is playing
@@ -63,15 +64,15 @@ public class PlayerListener implements Player.EventsListener {
                 }
                 ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                 ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                String artists = "";
+                StringBuilder artists = new StringBuilder();
                 for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
-                    if (artist.equals("")) {
-                        artists = artist.getName();
+                    if (artist.toString().equals("")) {
+                        artists.append(artist.getName());
                     } else {
-                        artists = artists + " " + artist.getName();
+                        artists.append(" ").append(artist.getName());
                     }
                 }
-                ContentPanel.playerdescription.setText(artists);
+                ContentPanel.playerdescription.setText(artists.toString());
                 JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
                 JSONObject album = new JSONObject(root.get("album").toString());
                 for (Object object : album.getJSONArray("images")) {
@@ -79,11 +80,7 @@ public class PlayerListener implements Player.EventsListener {
                     ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                     break;
                 }
-            } catch (IOException e) {
-                ConsoleLogging.Throwable(e);
-            } catch (SpotifyWebApiException e) {
-                ConsoleLogging.Throwable(e);
-            } catch (ParseException e) {
+            } catch (IOException | ParseException | SpotifyWebApiException e) {
                 ConsoleLogging.Throwable(e);
             }
         }

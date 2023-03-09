@@ -21,9 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
 
 /**
  * @author devgianlu
@@ -56,7 +56,7 @@ public final class PipeOutput implements SinkOutput {
                 }
             }
 
-            stream = new FileOutputStream(file);
+            stream = Files.newOutputStream(file.toPath());
         }
 
         stream.write(buffer, 0, len);

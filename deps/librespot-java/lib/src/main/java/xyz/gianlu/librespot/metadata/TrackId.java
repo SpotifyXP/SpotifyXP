@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public final class TrackId implements SpotifyId, PlayableId {
     static final Pattern PATTERN = Pattern.compile("spotify:track:(.{22})");
     private final String hexId;

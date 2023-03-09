@@ -25,6 +25,7 @@ import java.util.Random;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public class DiffieHellman {
     private static final BigInteger GENERATOR = BigInteger.valueOf(2);
     private static final byte[] PRIME_BYTES = {

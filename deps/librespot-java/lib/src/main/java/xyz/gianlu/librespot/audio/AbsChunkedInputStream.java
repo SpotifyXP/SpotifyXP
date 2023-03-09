@@ -26,6 +26,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
 /**
  * @author devgianlu
  */
+@SuppressWarnings("NullableProblems")
 public abstract class AbsChunkedInputStream extends SeekableInputStream implements HaltListener {
     private static final int PRELOAD_AHEAD = 3;
     private static final int PRELOAD_CHUNK_RETRIES = 2;

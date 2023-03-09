@@ -247,7 +247,6 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
             head.prev.endReason = reason;
             if (head.prev.crossfade == null) {
                 head.prev.close();
-                customFade = false;
             } else {
                 customFade = head.playable.equals(head.prev.crossfade.fadeOutPlayable());
                 CrossfadeController.FadeInterval fadeOut;

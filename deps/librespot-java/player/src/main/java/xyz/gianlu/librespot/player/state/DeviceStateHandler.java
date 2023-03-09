@@ -50,6 +50,7 @@ import java.util.concurrent.RejectedExecutionException;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public final class DeviceStateHandler implements Closeable, DealerClient.MessageListener, DealerClient.RequestListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(DeviceStateHandler.class);
 

@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+@SuppressWarnings("CanBeFinal")
 public class Config {
     Properties properties;
     public Config() {

@@ -64,6 +64,7 @@ public class RawMercuryRequest {
         return new Builder();
     }
 
+    @SuppressWarnings("NullableProblems")
     public static class Builder {
         private final Mercury.Header.Builder header;
         private final BytesArrayList payload;

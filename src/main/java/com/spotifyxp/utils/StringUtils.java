@@ -32,8 +32,7 @@ public class StringUtils {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] byteOfTextToHash = textToHash.getBytes(StandardCharsets.UTF_8);
             byte[] hashedByetArray = digest.digest(byteOfTextToHash);
-            String encoded = Base64.getEncoder().encodeToString(hashedByetArray);
-            return encoded;
+            return Base64.getEncoder().encodeToString(hashedByetArray);
         } catch (NoSuchAlgorithmException e) {
             ConsoleLogging.Throwable(e);
         }

@@ -45,8 +45,11 @@ public final class TimeProvider {
     private TimeProvider() {
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public static void init(@NotNull Session.Configuration conf) {
-        switch (method = conf.timeSynchronizationMethod) {
+        method = Method.MANUAL;
+        //switch (method = conf.timeSynchronizationMethod) {
+        switch (method) {
             case NTP:
                 try {
                     updateWithNtp();

@@ -112,25 +112,31 @@ public class ConsoleLogging {
         String time = dateFormat.format(date);
         if(libDetect.isWindows()) {
             if (!new File(UniversalPath.getTempDirectory() + "\\libwerwolf").exists()) {
+                //noinspection ResultOfMethodCallIgnored
                 new File(UniversalPath.getTempDirectory() + "\\libwerwolf").mkdir();
             }
             if(!new File(UniversalPath.getTempDirectory() + "\\libwerwolf\\logs").exists()) {
+                //noinspection ResultOfMethodCallIgnored
                 new File(UniversalPath.getTempDirectory() + "\\libwerwolf\\logs").mkdir();
             }
         }else{
             if (!new File(UniversalPath.getTempDirectory() + "/libwerwolf").exists()) {
+                //noinspection ResultOfMethodCallIgnored
                 new File(UniversalPath.getTempDirectory() + "/libwerwolf").mkdir();
             }
             if(!new File(UniversalPath.getTempDirectory() + "/libwerwolf/logs").exists()) {
+                //noinspection ResultOfMethodCallIgnored
                 new File(UniversalPath.getTempDirectory() + "/libwerwolf/logs").mkdir();
             }
         }
         String additional = "/libwerwolf/logs/log" + time + ".lwlogfile";
         if(libDetect.isWindows()) {
+            //noinspection ResultOfMethodCallIgnored
             additional.replace("/", "\\");
         }
         File f = new File(path + additional);
         try {
+            //noinspection ResultOfMethodCallIgnored
             f.createNewFile();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
@@ -147,6 +153,7 @@ public class ConsoleLogging {
         String time = dateFormat.format(date);
         File f = new File(path + "/log" + time + ".lwlogfile");
         try {
+            //noinspection ResultOfMethodCallIgnored
             f.createNewFile();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);

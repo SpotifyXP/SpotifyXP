@@ -32,6 +32,7 @@ import static com.spotify.context.ContextTrackOuterClass.ContextTrack;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public interface PlayableId {
     Base62 BASE62 = Base62.createInstanceWithInvertedCharacterSet();
 

@@ -29,6 +29,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("UnusedReturnValue")
 public class CircularBuffer implements Closeable {
     protected final Lock lock = new ReentrantLock();
     protected final Condition awaitSpace = lock.newCondition();
@@ -46,11 +47,13 @@ public class CircularBuffer implements Closeable {
 
     private void awaitSpace(int count) throws InterruptedException {
         while (free() < count && !closed)
+            //noinspection ResultOfMethodCallIgnored
             awaitSpace.await(100, TimeUnit.MILLISECONDS);
     }
 
     protected void awaitData(int count) throws InterruptedException {
         while (available() < count && !closed)
+            //noinspection ResultOfMethodCallIgnored
             awaitData.await(100, TimeUnit.MILLISECONDS);
     }
 

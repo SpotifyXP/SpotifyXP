@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 
+@SuppressWarnings("NullableProblems")
 public class DummyGraphics extends Graphics {
     @Override
     public Graphics create() {

@@ -5,6 +5,7 @@ import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
 import lc.kra.system.keyboard.event.GlobalKeyListener;
 
+@SuppressWarnings("CanBeFinal")
 public class KeyListener {
     int playpause = 179;
     int next = 176;
@@ -30,7 +31,7 @@ public class KeyListener {
                         previouspressed = true;
                         try {
                             PublicValues.spotifyplayer.previous();
-                        }catch (IllegalStateException exc) {
+                        }catch (IllegalStateException ignored) {
 
                         }
                     }

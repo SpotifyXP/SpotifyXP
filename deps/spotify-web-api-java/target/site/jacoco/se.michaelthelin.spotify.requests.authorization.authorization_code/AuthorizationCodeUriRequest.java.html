@@ -141,13 +141,13 @@ public class AuthorizationCodeUriRequest extends AbstractRequest&lt;URI&gt; {
     }
 
     public Builder scope(final AuthorizationScope... scopes) {
-<span class="nc" id="L144">      String finalScopes = &quot;&quot;;</span>
+<span class="nc" id="L144">      StringBuilder finalScopes = new StringBuilder();</span>
 
 <span class="nc bnc" id="L146" title="All 2 branches missed.">      for (AuthorizationScope scope : scopes) {</span>
-<span class="nc" id="L147">        finalScopes += (scope.GetScope() + &quot; &quot;);</span>
+<span class="nc" id="L147">        finalScopes.append(scope.GetScope()).append(&quot; &quot;);</span>
       }
 
-<span class="nc" id="L150">      return scope(finalScopes.trim());</span>
+<span class="nc" id="L150">      return scope(finalScopes.toString().trim());</span>
     }
 
     /**

@@ -106,7 +106,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
      *
      * @throws PlayableContentFeeder.ContentRestrictedException If the content cannot be retrieved because of restrictions (this condition won't change with a retry).
      */
-    private void load(boolean preload) throws IOException, Decoder.DecoderException, MercuryClient.MercuryException, CdnManager.CdnException, PlayableContentFeeder.ContentRestrictedException {
+    private void load(boolean preload) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, PlayableContentFeeder.ContentRestrictedException {
         PlayableContentFeeder.LoadedStream stream;
         if (playable instanceof LocalId)
             stream = PlayableContentFeeder.LoadedStream.forLocalFile((LocalId) playable,
@@ -274,7 +274,8 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
 
         try {
             load(preloaded);
-        } catch (IOException | PlayableContentFeeder.ContentRestrictedException | CdnManager.CdnException | MercuryClient.MercuryException | Decoder.DecoderException ex) {
+        } catch (IOException | PlayableContentFeeder.ContentRestrictedException | CdnManager.CdnException |
+                 MercuryClient.MercuryException ex) {
             close();
             listener.loadingError(this, ex, retried);
             LOGGER.trace("{} terminated at loading.", this, ex);

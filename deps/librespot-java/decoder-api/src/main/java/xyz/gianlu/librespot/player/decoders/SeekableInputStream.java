@@ -22,6 +22,7 @@ import java.io.InputStream;
 /**
  * @author devgianlu
  */
+@SuppressWarnings("NullableProblems")
 public abstract class SeekableInputStream extends InputStream {
     public abstract int size();
 

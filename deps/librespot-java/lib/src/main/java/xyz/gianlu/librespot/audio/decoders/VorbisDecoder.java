@@ -35,6 +35,7 @@ import java.io.OutputStream;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("StatementWithEmptyBody")
 public final class VorbisDecoder extends Decoder {
     private static final int CONVERTED_BUFFER_SIZE = Decoder.BUFFER_SIZE * 2;
     private final StreamState joggStreamState = new StreamState();

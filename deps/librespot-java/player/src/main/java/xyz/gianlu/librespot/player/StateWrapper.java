@@ -66,6 +66,7 @@ import java.util.function.Function;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.MessageListener, Closeable {
     private static final Logger LOGGER = LoggerFactory.getLogger(StateWrapper.class);
 
@@ -911,6 +912,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         }
     }
 
+    @SuppressWarnings({"SameParameterValue", "JavadocBlankLines"})
     private class TracksKeeper {
         private static final int MAX_PREV_TRACKS = 16;
         private static final int MAX_NEXT_TRACKS = 48;

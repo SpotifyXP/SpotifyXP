@@ -35,6 +35,7 @@ import java.util.Map;
 /**
  * @author devgianlu
  */
+@SuppressWarnings("resource")
 public final class DiscoveryHandler implements HttpHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(DiscoveryHandler.class);
     private final Zeroconf.DiscoveredServices discoverer;
@@ -68,6 +69,7 @@ public final class DiscoveryHandler implements HttpHandler {
             return;
         }
 
+        //noinspection SwitchStatementWithTooFewBranches
         switch (action) {
             case "list":
                 JsonArray array = new JsonArray();

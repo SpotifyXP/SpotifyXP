@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: xyz.gianlu.librespot.api.UndertowTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.392 s - in xyz.gianlu.librespot.api.UndertowTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.497 s - in xyz.gianlu.librespot.api.UndertowTest

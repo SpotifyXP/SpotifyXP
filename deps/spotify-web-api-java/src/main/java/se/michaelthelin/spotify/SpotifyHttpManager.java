@@ -72,7 +72,7 @@ public class SpotifyHttpManager implements IHttpManager {
       );
     }
 
-    RequestConfig requestConfig = RequestConfig
+    @SuppressWarnings("deprecation") RequestConfig requestConfig = RequestConfig
       .custom()
       .setCookieSpec(StandardCookieSpec.STRICT)
       .setProxy(proxy)
@@ -233,6 +233,7 @@ public class SpotifyHttpManager implements IHttpManager {
     return responseBody;
   }
 
+  @SuppressWarnings("deprecation")
   private CloseableHttpResponse execute(CloseableHttpClient httpClient, ClassicHttpRequest method) throws
     IOException {
     HttpCacheContext context = HttpCacheContext.create();

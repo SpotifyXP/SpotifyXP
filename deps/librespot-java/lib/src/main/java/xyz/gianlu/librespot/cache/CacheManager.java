@@ -156,6 +156,7 @@ public class CacheManager implements Closeable {
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     public class Handler implements Closeable {
         private final String streamId;
         private final RandomAccessFile io;

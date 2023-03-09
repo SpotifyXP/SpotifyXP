@@ -44,6 +44,7 @@ import java.util.*;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public final class Utils {
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
     private static final Logger LOGGER = LoggerFactory.getLogger(Utils.class);
@@ -326,6 +327,7 @@ public final class Utils {
             if (!padding)
                 encoder = withoutPadding.invoke(encoder);
             final Method encode = encoderClazz.getDeclaredMethod("encode", byte[].class);
+            //noinspection PrimitiveArrayArgumentToVarargsMethod
             encodedBytes = (byte[]) encode.invoke(encoder, bytes);
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
             try {
@@ -367,6 +369,7 @@ public final class Utils {
             final Object decoder = getDecoder.invoke(null);
             Class<?> decoderClazz = Class.forName("java.util.Base64$Decoder");
             final Method decode = decoderClazz.getDeclaredMethod("decode", byte[].class);
+            //noinspection PrimitiveArrayArgumentToVarargsMethod
             decodedBytes = (byte[]) decode.invoke(decoder, bytes);
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
             try {

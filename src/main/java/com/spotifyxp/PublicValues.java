@@ -5,9 +5,9 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import xyz.gianlu.librespot.core.Session;
 import xyz.gianlu.librespot.player.Player;
 
+@SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static libLanguage language = null;
     public static String version = "1.0.0";

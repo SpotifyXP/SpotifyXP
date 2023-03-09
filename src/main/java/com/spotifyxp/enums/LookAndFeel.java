@@ -25,7 +25,8 @@ public enum LookAndFeel {
     FlatIntelliJLaf("com.formdev.flatlaf.IntelliJ"),
     FlatMacDarkLaf("com.formdev.flatlaf.MacDark"),
     FlatMacLightLaf("com.formdev.flatlaf.MacLight");
-    String selected = "";
+    @SuppressWarnings({"NonFinalFieldInEnum", "CanBeFinal"})
+    String selected;
     LookAndFeel(String select) {
         selected = select;
     }

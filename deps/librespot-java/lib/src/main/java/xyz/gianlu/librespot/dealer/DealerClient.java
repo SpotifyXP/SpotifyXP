@@ -287,11 +287,13 @@ public class DealerClient implements Closeable {
         DEVICE_DOES_NOT_SUPPORT_COMMAND, RATE_LIMITED
     }
 
+    @SuppressWarnings("SameReturnValue")
     public interface RequestListener {
         @NotNull
         RequestResult onRequest(@NotNull String mid, int pid, @NotNull String sender, @NotNull JsonObject command);
     }
 
+    @SuppressWarnings("NullableProblems")
     public interface MessageListener {
         void onMessage(@NotNull String uri, @NotNull Map<String, String> headers, @NotNull byte[] payload) throws IOException;
     }

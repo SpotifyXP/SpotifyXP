@@ -1,16 +1,12 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.api.SpotifyAPI;
-import org.apache.hc.core5.http.ParseException;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import se.michaelthelin.spotify.model_objects.specification.Track;
 import se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 
-import java.io.IOException;
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings({"SameReturnValue", "IntegerDivisionInFloatingPointContext"})
 public class TrackUtils {
     public static int calculateFileSizeKb(Track t) {
         double minutes = Math.round(TimeUnit.MILLISECONDS.convert(t.getDurationMs(), TimeUnit.MINUTES));

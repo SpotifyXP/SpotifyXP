@@ -410,6 +410,7 @@ public class ZeroconfServer implements Closeable {
         void sessionChanged(@NotNull Session session);
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static class Builder extends Session.AbsBuilder<Builder> {
         private boolean listenAll = true;
         private int listenPort = -1;

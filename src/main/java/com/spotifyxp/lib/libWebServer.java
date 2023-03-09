@@ -12,8 +12,9 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+@SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
 public class libWebServer {
-    int p = 0;
+    int p;
     HttpServer server = null;
     DoubleArrayList contexts = new DoubleArrayList();
     StoppableThread serverthread = null;

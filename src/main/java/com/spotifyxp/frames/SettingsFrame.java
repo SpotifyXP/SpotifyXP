@@ -12,17 +12,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
+@SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
 public class SettingsFrame extends JPanel {
-    private JTextField mypalpathdisplay;
-    private final JPanel moduleHolder = new JPanel();
-    private JToggleButton performanceoptionloadallrecommendations;
-    private JToggleButton performanceoptiondisableplayerstats;
+    private final JTextField mypalpathdisplay;
+    private final JToggleButton performanceoptionloadallrecommendations;
+    private final JToggleButton performanceoptiondisableplayerstats;
     private JFrame settingsframe;
     public SettingsFrame() {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(5, 5, 5, 5));
+        JPanel moduleHolder = new JPanel();
         add(moduleHolder, BorderLayout.CENTER);
         moduleHolder.setLayout(null);
 

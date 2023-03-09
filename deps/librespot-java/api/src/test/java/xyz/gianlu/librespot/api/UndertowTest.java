@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
+@SuppressWarnings("JavadocLinkAsPlainText")
 class UndertowTest {
     /**
      * From https://gist.github.com/vorburger/3429822

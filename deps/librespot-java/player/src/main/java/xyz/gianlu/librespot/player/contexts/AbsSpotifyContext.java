@@ -59,6 +59,7 @@ public abstract class AbsSpotifyContext {
         return context;
     }
 
+    @SuppressWarnings("SameParameterValue")
     public static class UnsupportedContextException extends Exception {
         UnsupportedContextException(@NotNull String message) {
             super(message);

@@ -29,6 +29,7 @@ import java.io.OutputStream;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public final class MixingLine extends InputStream {
     private static final Logger LOGGER = LoggerFactory.getLogger(MixingLine.class);
     boolean switchFormat = false;
@@ -131,6 +132,7 @@ public final class MixingLine extends InputStream {
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     public abstract static class MixingOutput extends OutputStream {
         StreamConverter converter = null;
 
@@ -164,6 +166,7 @@ public final class MixingLine extends InputStream {
         public abstract void emptyBuffer();
     }
 
+    @SuppressWarnings("NullableProblems")
     public class FirstOutputStream extends MixingOutput {
 
         @Override
@@ -211,6 +214,7 @@ public final class MixingLine extends InputStream {
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     public class SecondOutputStream extends MixingOutput {
 
         @Override

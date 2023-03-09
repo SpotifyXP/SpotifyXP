@@ -33,6 +33,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public final class AesAudioDecrypt implements AudioDecrypt {
     private static final byte[] AUDIO_AES_IV = new byte[]{(byte) 0x72, (byte) 0xe0, (byte) 0x67, (byte) 0xfb, (byte) 0xdd, (byte) 0xcb, (byte) 0xcf, (byte) 0x77, (byte) 0xeb, (byte) 0xe8, (byte) 0xbc, (byte) 0x64, (byte) 0x3f, (byte) 0x63, (byte) 0x0d, (byte) 0x93};
     private final static BigInteger IV_INT = new BigInteger(1, AUDIO_AES_IV);

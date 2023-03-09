@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author devgianlu
  */
+@SuppressWarnings({"SameParameterValue", "NullableProblems", "JavadocLinkAsPlainText"})
 public final class DacpMetadataPipe implements Closeable {
     private static final String TYPE_SSNC = "73736e63";
     private static final String TYPE_CORE = "636f7265";

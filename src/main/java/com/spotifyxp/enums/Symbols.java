@@ -6,7 +6,8 @@ public enum Symbols {
     CRITICAL("/critical.png"),
     INFO("/info.png"),
     WARNING("/warning.png");
-    String selected = "";
+    @SuppressWarnings({"NonFinalFieldInEnum", "CanBeFinal"})
+    String selected;
     Symbols(String path) {
         selected = path;
     }

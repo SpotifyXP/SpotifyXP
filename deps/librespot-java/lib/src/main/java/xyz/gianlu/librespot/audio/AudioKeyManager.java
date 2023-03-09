@@ -38,6 +38,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public final class AudioKeyManager implements PacketsReceiver {
     private static final byte[] ZERO_SHORT = new byte[]{0, 0};
     private static final Logger LOGGER = LoggerFactory.getLogger(AudioKeyManager.class);
@@ -112,6 +113,7 @@ public final class AudioKeyManager implements PacketsReceiver {
         void error(short code);
     }
 
+    @SuppressWarnings("NullableProblems")
     private static class SyncCallback implements Callback {
         private final AtomicReference<byte[]> reference = new AtomicReference<>();
 

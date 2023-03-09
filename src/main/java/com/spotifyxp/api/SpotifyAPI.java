@@ -10,7 +10,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -18,40 +17,42 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import org.json.JSONObject;
 import java.io.*;
-import java.security.GeneralSecurityException;
 import java.util.Timer;
 import java.util.TimerTask;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.model_objects.specification.Track;
-import xyz.gianlu.librespot.core.Session;
-import xyz.gianlu.librespot.mercury.MercuryClient;
-import xyz.gianlu.librespot.player.FileConfiguration;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+@SuppressWarnings("CanBeFinal")
 public class SpotifyAPI {
-    private static String deviceName = "XPS";
+    private static final String deviceName = "XPS";
     public static int waitAmount = 4;
     public SpotifyAPI() {
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
-                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 50);
+                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 39);
             }
         }
     }
     public SpotifyApi getSpotifyApi() {
         return SpotifyApi.builder().setAccessToken(OAuthPKCE.token).build();
     }
+    @SuppressWarnings("CanBeFinal")
     public static class Player {
-        int wait = 0;
-        xyz.gianlu.librespot.player.Player player = null;
+        int wait;
+        xyz.gianlu.librespot.player.Player player;
         SpotifyAPI api;
 
+        @SuppressWarnings("BusyWait")
         public void retry() {
             player = PlayerUtils.buildPlayer();
             wait = 0;
-            while(!player.isReady()) {
+            while(true) {
+                assert player != null;
+                if (!player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
                     Thread.sleep(999);
@@ -67,12 +68,15 @@ public class SpotifyAPI {
             player.addEventsListener(new PlayerListener(this, api));
             PublicValues.spotifyplayer = player;
         }
+        @SuppressWarnings("BusyWait")
         public Player(SpotifyAPI a) {
             api = a;
             //Make player session
             player = PlayerUtils.buildPlayer();
             wait = 0;
-            while(!player.isReady()) {
+            while(true) {
+                assert player != null;
+                if (!player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
                     Thread.sleep(999);
@@ -103,8 +107,6 @@ public class SpotifyAPI {
             post.addRequestHeader("Authorization", "Bearer " + OAuthPKCE.token);
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
-        } catch (HttpException e) {
-            ConsoleLogging.Throwable(e);
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
@@ -121,8 +123,6 @@ public class SpotifyAPI {
             post.addRequestHeader("Authorization", "Bearer " + OAuthPKCE.token);
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
-        } catch (HttpException e) {
-            ConsoleLogging.Throwable(e);
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
@@ -139,25 +139,26 @@ public class SpotifyAPI {
             post.addRequestHeader("Authorization", "Bearer " + OAuthPKCE.token);
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
-        } catch (HttpException e) {
-            ConsoleLogging.Throwable(e);
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
         return ret;
     }
+    @SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
     public static class OAuthPKCE {
-        private String redirectURI = "http://127.0.0.1:2400/redirectSpotify";
+        private final String redirectURI = "http://127.0.0.1:2400/redirectSpotify";
         private String code = "";
         private String refreshToken = "";
         public static String token = "";
         private long expiresIn = 0;
         private boolean isFirst = true;
-        private String CLIENT_ID = "091d7b71d33743d389cef8449136c62e";
-        private String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
-        private String code_verifier = StringUtils.generateStringFrom(50);
-        private String challenge = PkceUtil.generateCodeChallenge(code_verifier);
-        private Timer timer = new Timer();
+        private final String CLIENT_ID = "091d7b71d33743d389cef8449136c62e";
+        @SuppressWarnings("FieldCanBeLocal")
+        private final String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
+        private final String code_verifier = StringUtils.generateStringFrom(50);
+        @SuppressWarnings("FieldCanBeLocal")
+        private final String challenge = PkceUtil.generateCodeChallenge(code_verifier);
+        private final Timer timer = new Timer();
         public OAuthPKCE() {
             //Requests a token without client_secret with the PKCE method
             ConnectionUtils.openBrowser("https://accounts.spotify.com/authorize?client_id=" + CLIENT_ID + "&response_type=code&redirect_uri=" + redirectURI + "&code_challenge_method=S256&code_challenge=" + challenge + "&scope=" + scopes);
@@ -206,7 +207,7 @@ public class SpotifyAPI {
             libWebServer server = new libWebServer(2400);
             server.addHttpContext("/redirectSpotify", new HttpHandler() {
                 @Override
-                public void handle(HttpExchange exchange) throws IOException {
+                public void handle(HttpExchange exchange) {
                     try {
                         Thread.sleep(99);
                     } catch (InterruptedException e) {
@@ -233,6 +234,7 @@ public class SpotifyAPI {
             server.start();
         }
         private boolean stop = false;
+        @SuppressWarnings("BusyWait")
         private void startServer() {
             libWebServer server = new libWebServer(2400);
             server.addHttpContext("/redirectSpotify", new HttpHandler() {

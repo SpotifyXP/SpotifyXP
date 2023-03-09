@@ -43,8 +43,7 @@ public class PlayerUtils {
                 .setLocalFilesPath(new File(""))
                 .build();
         try {
-            Player player = new Player(playerconfig, builder2.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create());
-            return player;
+            return new Player(playerconfig, builder2.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create());
         } catch (IOException | MercuryClient.MercuryException | GeneralSecurityException |
                  Session.SpotifyAuthenticationException e) {
             ConsoleLogging.Throwable(e);

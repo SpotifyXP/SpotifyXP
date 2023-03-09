@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
 
 
 public class Resources {
-    public String readToString(String path) throws FileNotFoundException, Exception {
+    public String readToString(String path) {
         if (!path.startsWith("/")) {
             path = "/" + path;
         }
@@ -20,6 +20,7 @@ public class Resources {
             ConsoleLogging.Throwable(new FileNotFoundException());
         }
         try {
+            assert stream != null;
             return IOUtils.toString(stream, Charset.defaultCharset());
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +28,7 @@ public class Resources {
         ConsoleLogging.Throwable(new Exception());
         return path;
     }
-    public InputStream readToInputStream(String path) throws FileNotFoundException {
+    public InputStream readToInputStream(String path) {
         if(!path.startsWith("/")) {
             path = "/" + path;
         }

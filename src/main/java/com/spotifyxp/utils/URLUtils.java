@@ -3,24 +3,13 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
-import java.nio.charset.Charset;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
+import java.nio.charset.StandardCharsets;
 
 public class URLUtils {
     public static String getURLResponseAsString(String url) {
@@ -32,7 +21,7 @@ public class URLUtils {
             connection.connect();
 
             BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream(),
-                    Charset.forName("UTF-8")));
+                    StandardCharsets.UTF_8));
 
             StringBuilder sb = new StringBuilder();
             String line;
@@ -59,9 +48,6 @@ public class URLUtils {
             GetMethod get = new GetMethod(url + ":" + port);
             client.executeMethod(get);
             return true;
-        } catch (HttpException e) {
-            e.printStackTrace();
-            return false;
         } catch (IOException e) {
             e.printStackTrace();
             return false;

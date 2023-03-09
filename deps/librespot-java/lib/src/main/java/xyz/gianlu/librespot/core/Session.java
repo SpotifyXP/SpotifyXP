@@ -26,13 +26,6 @@ import com.spotify.explicit.ExplicitContentPubsub;
 import com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate;
 import okhttp3.Authenticator;
 import okhttp3.*;
-import okhttp3.Credentials;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.Route;
 import okio.BufferedSink;
 import okio.GzipSink;
 import okio.Okio;
@@ -81,6 +74,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("resource")
 public final class Session implements Closeable {
     private static final Logger LOGGER = LoggerFactory.getLogger(Session.class);
     private static final byte[] serverKey = new byte[]{
@@ -906,6 +900,7 @@ public final class Session implements Closeable {
     /**
      * Builder for setting up a {@link Session} object.
      */
+    @SuppressWarnings("UnusedReturnValue")
     public static class Builder extends AbsBuilder<Builder> {
         private Authentication.LoginCredentials loginCredentials = null;
 
@@ -1258,6 +1253,7 @@ public final class Session implements Closeable {
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     private static class Accumulator extends DataOutputStream {
         private byte[] bytes;
 
@@ -1395,7 +1391,7 @@ public final class Session implements Closeable {
             return configureSocket(socket);
         }
 
-        protected Socket configureSocket(Socket socket) throws IOException {
+        protected Socket configureSocket(Socket socket) {
             // No-op by default.
             return socket;
         }

@@ -37,6 +37,7 @@ import java.util.*;
  *
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 class CacheJournal implements Closeable {
     static final int MAX_CHUNKS_SIZE = 2048;
     static final int MAX_CHUNKS = MAX_CHUNKS_SIZE * 8;

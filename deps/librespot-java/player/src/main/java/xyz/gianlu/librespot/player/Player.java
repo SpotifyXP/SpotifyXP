@@ -60,6 +60,7 @@ import java.util.concurrent.*;
 /**
  * @author Gianlu
  */
+@SuppressWarnings({"JavadocBlankLines", "NullableProblems"})
 public class Player implements Closeable {
     public static final int VOLUME_MAX = 65536;
     private static final Logger LOGGER = LoggerFactory.getLogger(Player.class);
@@ -861,6 +862,7 @@ public class Player implements Closeable {
         LOGGER.info("Closed player.");
     }
 
+    @SuppressWarnings("EmptyMethod")
     public interface EventsListener {
         void onContextChanged(@NotNull Player player, @NotNull String newUri);
 
@@ -971,6 +973,7 @@ public class Player implements Closeable {
         }
     }
 
+    @SuppressWarnings("resource")
     private class EventsDispatcher {
         private final ExecutorService executorService = Executors.newSingleThreadExecutor(new NameThreadFactory((r) -> "player-events-" + r.hashCode()));
         private final List<EventsListener> listeners = new ArrayList<>();

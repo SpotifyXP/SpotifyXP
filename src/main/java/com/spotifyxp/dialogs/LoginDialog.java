@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+@SuppressWarnings("Convert2Lambda")
 public class LoginDialog {
     private static JTextField spotifyusernamefield;
     private static JTextField usernamepasswordfield;
@@ -49,6 +50,7 @@ public class LoginDialog {
             spotifylabelinfo.setVisible(false);
         }
     }
+    @SuppressWarnings("BusyWait")
     public void open() {
         JDialog dialog = new JDialog();
         dialog.setTitle("Enter Spotify Credentials");

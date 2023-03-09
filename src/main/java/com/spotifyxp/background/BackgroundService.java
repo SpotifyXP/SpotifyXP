@@ -1,7 +1,6 @@
 package com.spotifyxp.background;
 
 
-import com.spotifyxp.Initiator;
 import com.spotifyxp.dialogs.SystemTrayDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
@@ -9,10 +8,8 @@ import com.spotifyxp.utils.Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileNotFoundException;
 
 public class BackgroundService {
     public static SystemTrayDialog trayDialog;
@@ -26,9 +23,8 @@ public class BackgroundService {
                     ContentPanel.frame.setVisible(true);
                 }
             });
-        }catch (FileNotFoundException exc) {
-            ConsoleLogging.error("Cant create TrayIcon: SpotifyXP.png not found"); //ToDo: Translate
-        } catch (Exception e) {
+        }//ToDo: Translate
+        catch (Exception e) {
             ConsoleLogging.Throwable(e);
         }
     }

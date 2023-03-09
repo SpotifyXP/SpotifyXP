@@ -62,7 +62,7 @@ public class ConnectionUtils {
         }
     }
     public static void openBrowser(String url) {
-        String browserpath = "";
+        String browserpath;
         if(new File("pom.xml").exists()) {
             browserpath="C:\\Program Files\\Mozilla Firefox\\firefox.exe";
         }else {

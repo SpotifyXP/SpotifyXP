@@ -19,6 +19,7 @@ package xyz.gianlu.librespot.player.mixing;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("SameParameterValue")
 class GainAwareCircularBuffer extends CircularBuffer {
     GainAwareCircularBuffer(int bufferSize) {
         super(bufferSize);

@@ -65,6 +65,7 @@ public final class FileConfiguration {
 
     public FileConfiguration(@Nullable String... override) throws IOException {
         File confFile = null;
+        //noinspection RedundantLengthCheck
         if (override != null && override.length > 0) {
             for (String arg : override) {
                 if (arg != null && arg.startsWith("--conf-file="))
@@ -95,6 +96,7 @@ public final class FileConfiguration {
             updateConfigFile(new TomlParser().parse(streamDefaultConfig()));
         }
 
+        //noinspection RedundantLengthCheck
         if (override != null && override.length > 0) {
             for (String str : override) {
                 LOGGER.debug("Configuration: String = " + str);

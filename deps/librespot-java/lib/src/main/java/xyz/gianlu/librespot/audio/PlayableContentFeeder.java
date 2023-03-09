@@ -54,6 +54,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("ProtectedMemberInFinalClass")
 public final class PlayableContentFeeder {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlayableContentFeeder.class);
     private static final String STORAGE_RESOLVE_INTERACTIVE = "/storage-resolve/files/audio/interactive/%s";
@@ -81,7 +82,7 @@ public final class PlayableContentFeeder {
     }
 
     @NotNull
-    public final LoadedStream load(@NotNull PlayableId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws CdnManager.CdnException, ContentRestrictedException, MercuryClient.MercuryException, IOException {
+    public LoadedStream load(@NotNull PlayableId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws CdnManager.CdnException, ContentRestrictedException, MercuryClient.MercuryException, IOException {
 
         if (id instanceof TrackId)
             return loadTrack((TrackId) id, audioQualityPicker, preload, haltListener);

@@ -6,45 +6,46 @@ import java.io.ByteArrayOutputStream;
  * Source: https://gist.github.com/EmilHernvall/953733#file-base64-java
  * Due to Java version support issues with Datatypeconverter (&amp;lt;=1.7) class and Base64 (&amp;gt;=1.8) class.
  */
-<span class="nc" id="L9">public class Base64 {</span>
+@SuppressWarnings(&quot;JavadocLinkAsPlainText&quot;)
+<span class="nc" id="L10">public class Base64 {</span>
   public static String encode(byte[] data) {
-<span class="fc" id="L11">    char[] tbl = {</span>
+<span class="fc" id="L12">    char[] tbl = {</span>
       'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
       'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
       'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
       'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'};
 
-<span class="fc" id="L17">    StringBuilder buffer = new StringBuilder();</span>
-<span class="fc" id="L18">    int pad = 0;</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">    for (int i = 0; i &lt; data.length; i += 3) {</span>
+<span class="fc" id="L18">    StringBuilder buffer = new StringBuilder();</span>
+<span class="fc" id="L19">    int pad = 0;</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">    for (int i = 0; i &lt; data.length; i += 3) {</span>
 
-<span class="fc" id="L21">      int b = ((data[i] &amp; 0xFF) &lt;&lt; 16) &amp; 0xFFFFFF;</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">      if (i + 1 &lt; data.length) {</span>
-<span class="fc" id="L23">        b |= (data[i + 1] &amp; 0xFF) &lt;&lt; 8;</span>
+<span class="fc" id="L22">      int b = ((data[i] &amp; 0xFF) &lt;&lt; 16) &amp; 0xFFFFFF;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">      if (i + 1 &lt; data.length) {</span>
+<span class="fc" id="L24">        b |= (data[i + 1] &amp; 0xFF) &lt;&lt; 8;</span>
       } else {
-<span class="fc" id="L25">        pad++;</span>
+<span class="fc" id="L26">        pad++;</span>
       }
-<span class="fc bfc" id="L27" title="All 2 branches covered.">      if (i + 2 &lt; data.length) {</span>
-<span class="fc" id="L28">        b |= (data[i + 2] &amp; 0xFF);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">      if (i + 2 &lt; data.length) {</span>
+<span class="fc" id="L29">        b |= (data[i + 2] &amp; 0xFF);</span>
       } else {
-<span class="fc" id="L30">        pad++;</span>
+<span class="fc" id="L31">        pad++;</span>
       }
 
-<span class="fc bfc" id="L33" title="All 2 branches covered.">      for (int j = 0; j &lt; 4 - pad; j++) {</span>
-<span class="fc" id="L34">        int c = (b &amp; 0xFC0000) &gt;&gt; 18;</span>
-<span class="fc" id="L35">        buffer.append(tbl[c]);</span>
-<span class="fc" id="L36">        b &lt;&lt;= 6;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">      for (int j = 0; j &lt; 4 - pad; j++) {</span>
+<span class="fc" id="L35">        int c = (b &amp; 0xFC0000) &gt;&gt; 18;</span>
+<span class="fc" id="L36">        buffer.append(tbl[c]);</span>
+<span class="fc" id="L37">        b &lt;&lt;= 6;</span>
       }
     }
-<span class="fc bfc" id="L39" title="All 2 branches covered.">    for (int j = 0; j &lt; pad; j++) {</span>
-<span class="fc" id="L40">      buffer.append(&quot;=&quot;);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    for (int j = 0; j &lt; pad; j++) {</span>
+<span class="fc" id="L41">      buffer.append(&quot;=&quot;);</span>
     }
 
-<span class="fc" id="L43">    return buffer.toString();</span>
+<span class="fc" id="L44">    return buffer.toString();</span>
   }
 
   public static byte[] decode(String data) {
-<span class="nc" id="L47">    int[] tbl = {</span>
+<span class="nc" id="L48">    int[] tbl = {</span>
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 54,
@@ -60,42 +61,42 @@ import java.io.ByteArrayOutputStream;
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-<span class="nc" id="L63">    byte[] bytes = data.getBytes();</span>
-<span class="nc" id="L64">    ByteArrayOutputStream buffer = new ByteArrayOutputStream();</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">    for (int i = 0; i &lt; bytes.length; ) {</span>
+<span class="nc" id="L64">    byte[] bytes = data.getBytes();</span>
+<span class="nc" id="L65">    ByteArrayOutputStream buffer = new ByteArrayOutputStream();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    for (int i = 0; i &lt; bytes.length; ) {</span>
       int b;
-<span class="nc bnc" id="L67" title="All 2 branches missed.">      if (tbl[bytes[i]] != -1) {</span>
-<span class="nc" id="L68">        b = (tbl[bytes[i]] &amp; 0xFF) &lt;&lt; 18;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (tbl[bytes[i]] != -1) {</span>
+<span class="nc" id="L69">        b = (tbl[bytes[i]] &amp; 0xFF) &lt;&lt; 18;</span>
       }
       // skip unknown characters
       else {
-<span class="nc" id="L72">        i++;</span>
-<span class="nc" id="L73">        continue;</span>
+<span class="nc" id="L73">        i++;</span>
+<span class="nc" id="L74">        continue;</span>
       }
 
-<span class="nc" id="L76">      int num = 0;</span>
-<span class="nc bnc" id="L77" title="All 4 branches missed.">      if (i + 1 &lt; bytes.length &amp;&amp; tbl[bytes[i + 1]] != -1) {</span>
-<span class="nc" id="L78">        b = b | ((tbl[bytes[i + 1]] &amp; 0xFF) &lt;&lt; 12);</span>
-<span class="nc" id="L79">        num++;</span>
+<span class="nc" id="L77">      int num = 0;</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">      if (i + 1 &lt; bytes.length &amp;&amp; tbl[bytes[i + 1]] != -1) {</span>
+<span class="nc" id="L79">        b = b | ((tbl[bytes[i + 1]] &amp; 0xFF) &lt;&lt; 12);</span>
+<span class="nc" id="L80">        num++;</span>
       }
-<span class="nc bnc" id="L81" title="All 4 branches missed.">      if (i + 2 &lt; bytes.length &amp;&amp; tbl[bytes[i + 2]] != -1) {</span>
-<span class="nc" id="L82">        b = b | ((tbl[bytes[i + 2]] &amp; 0xFF) &lt;&lt; 6);</span>
-<span class="nc" id="L83">        num++;</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">      if (i + 2 &lt; bytes.length &amp;&amp; tbl[bytes[i + 2]] != -1) {</span>
+<span class="nc" id="L83">        b = b | ((tbl[bytes[i + 2]] &amp; 0xFF) &lt;&lt; 6);</span>
+<span class="nc" id="L84">        num++;</span>
       }
-<span class="nc bnc" id="L85" title="All 4 branches missed.">      if (i + 3 &lt; bytes.length &amp;&amp; tbl[bytes[i + 3]] != -1) {</span>
-<span class="nc" id="L86">        b = b | (tbl[bytes[i + 3]] &amp; 0xFF);</span>
-<span class="nc" id="L87">        num++;</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">      if (i + 3 &lt; bytes.length &amp;&amp; tbl[bytes[i + 3]] != -1) {</span>
+<span class="nc" id="L87">        b = b | (tbl[bytes[i + 3]] &amp; 0xFF);</span>
+<span class="nc" id="L88">        num++;</span>
       }
 
-<span class="nc bnc" id="L90" title="All 2 branches missed.">      while (num &gt; 0) {</span>
-<span class="nc" id="L91">        int c = (b &amp; 0xFF0000) &gt;&gt; 16;</span>
-<span class="nc" id="L92">        buffer.write((char) c);</span>
-<span class="nc" id="L93">        b &lt;&lt;= 8;</span>
-<span class="nc" id="L94">        num--;</span>
-<span class="nc" id="L95">      }</span>
-<span class="nc" id="L96">      i += 4;</span>
-<span class="nc" id="L97">    }</span>
-<span class="nc" id="L98">    return buffer.toByteArray();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">      while (num &gt; 0) {</span>
+<span class="nc" id="L92">        int c = (b &amp; 0xFF0000) &gt;&gt; 16;</span>
+<span class="nc" id="L93">        buffer.write((char) c);</span>
+<span class="nc" id="L94">        b &lt;&lt;= 8;</span>
+<span class="nc" id="L95">        num--;</span>
+<span class="nc" id="L96">      }</span>
+<span class="nc" id="L97">      i += 4;</span>
+<span class="nc" id="L98">    }</span>
+<span class="nc" id="L99">    return buffer.toByteArray();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

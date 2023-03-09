@@ -14,7 +14,7 @@ public class WebUtils {
             try (OutputStream os = exchange.getResponseBody()) {
                 Files.copy(file.toPath(), os);
             }
-        }catch (IOException ex) {
+        }catch (IOException ignored) {
         }
     }
     public static void sendFile(HttpExchange exchange, int code, String path) {
@@ -24,7 +24,7 @@ public class WebUtils {
             try (OutputStream os = exchange.getResponseBody()) {
                 Files.copy(file.toPath(), os);
             }
-        }catch (IOException ex) {
+        }catch (IOException ignored) {
         }
     }
     public static void sendCode(HttpExchange exchange, int code, String htmlcode) {
@@ -33,7 +33,7 @@ public class WebUtils {
             OutputStream os = exchange.getResponseBody();
             os.write(htmlcode.getBytes());
             os.close();
-        }catch (IOException ex) {
+        }catch (IOException ignored) {
         }
     }
 }

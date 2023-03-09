@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.util.function.BiConsumer;
 
+@SuppressWarnings("Convert2Lambda")
 public class libLanguage {
     /*
     How to use:

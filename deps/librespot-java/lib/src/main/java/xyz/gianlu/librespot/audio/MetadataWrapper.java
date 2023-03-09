@@ -27,6 +27,7 @@ import xyz.gianlu.librespot.metadata.PlayableId;
 /**
  * @author devgianlu
  */
+@SuppressWarnings("StatementWithEmptyBody")
 public final class MetadataWrapper {
     public final PlayableId id;
     public final Metadata.Track track;

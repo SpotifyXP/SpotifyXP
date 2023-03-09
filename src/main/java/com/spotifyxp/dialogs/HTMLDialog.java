@@ -11,19 +11,20 @@ import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowListener;
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("CanBeFinal")
 public class HTMLDialog {
-    private List<LoggerEvent> loggerlist = new ArrayList<LoggerEvent>();
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    private final List<LoggerEvent> loggerlist = new ArrayList<>();
     public void registerLoggerListener(LoggerEvent toAdd) {
         loggerlist.add(toAdd);
     }
     public HTMLDialog(LoggerEvent event) {
         registerLoggerListener(event);
     }
-    private List<HtmlDialogEvents> listeners = new ArrayList<HtmlDialogEvents>();
+    private final List<HtmlDialogEvents> listeners = new ArrayList<>();
     public void registerEventListener(HtmlDialogEvents toAdd) {
         listeners.add(toAdd);
     }
@@ -127,7 +128,7 @@ public class HTMLDialog {
             });
             dialog.setVisible(true);
             dialog.pack();
-        }catch (NullPointerException ex) {
+        }catch (NullPointerException ignored) {
 
         }
     }

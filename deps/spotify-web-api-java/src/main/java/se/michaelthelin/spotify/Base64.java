@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
  * Source: https://gist.github.com/EmilHernvall/953733#file-base64-java
  * Due to Java version support issues with Datatypeconverter (&lt;=1.7) class and Base64 (&gt;=1.8) class.
  */
+@SuppressWarnings("JavadocLinkAsPlainText")
 public class Base64 {
   public static String encode(byte[] data) {
     char[] tbl = {

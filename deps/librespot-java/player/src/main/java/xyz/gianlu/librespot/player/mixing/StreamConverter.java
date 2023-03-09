@@ -22,6 +22,7 @@ import xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.OutputStream;
 
+@SuppressWarnings("NullableProblems")
 public final class StreamConverter extends OutputStream {
     private final boolean monoToStereo;
     private final int sampleSizeFrom;
@@ -38,7 +39,7 @@ public final class StreamConverter extends OutputStream {
         if (from.isBigEndian() || to.isBigEndian()) return false;
 
         if (from.matches(to)) return true;
-        if (from.getEncoding() != to.getEncoding()) return false;
+        if (!from.getEncoding().equals(to.getEncoding())) return false;
         return from.getSampleRate() == to.getSampleRate();
     }
 

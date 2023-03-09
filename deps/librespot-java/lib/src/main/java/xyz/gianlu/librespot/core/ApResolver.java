@@ -29,7 +29,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -112,13 +111,30 @@ public final class ApResolver {
         }
     }
 
+    private String returnPort80(String url, String type) {
+        if(url.contains(":80") || url.contains(":443")) {
+            return url;
+        }else{
+            waitForPool();
+            List<String> urls = pool.get(type);
+            if (urls == null || urls.isEmpty()) throw new IllegalStateException();
+            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+        }
+    }
+
     @NotNull
     private String getRandomOf(@NotNull String type) {
         waitForPool();
 
         List<String> urls = pool.get(type);
         if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-        return urls.get(ThreadLocalRandom.current().nextInt(urls.size()));
+        try {
+            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+        }catch (StackOverflowError error) {
+            System.err.println("Couldn't find a suitable url for connection");
+            System.exit(0);
+            return null;
+        }
     }
 
     @NotNull

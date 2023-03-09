@@ -119,6 +119,7 @@ public class BytesArrayList implements Iterable<byte[]> {
         return new String(b);
     }
 
+    @SuppressWarnings("NullableProblems")
     private class InternalStream extends InputStream {
         private int offset = 0;
         private int sub = 0;

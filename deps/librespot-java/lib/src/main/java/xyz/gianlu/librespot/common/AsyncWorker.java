@@ -28,6 +28,7 @@ import java.util.function.Consumer;
  *
  * @param <T> Task type for processor
  */
+@SuppressWarnings("UnusedReturnValue")
 public class AsyncWorker<T> implements Closeable {
     private final AsyncProcessor<T, Void> underlyingProcessor;
 

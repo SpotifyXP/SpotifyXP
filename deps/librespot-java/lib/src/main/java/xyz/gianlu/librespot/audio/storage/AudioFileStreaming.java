@@ -181,6 +181,7 @@ public class AudioFileStreaming implements AudioFile, DecodedAudioStream {
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     private class ChunksBuffer implements Closeable {
         private final int size;
         private final byte[][] buffer;

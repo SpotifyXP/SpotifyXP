@@ -48,6 +48,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
 /**
  * @author Gianlu
  */
+@SuppressWarnings("NullableProblems")
 public class CdnManager {
     private static final Logger LOGGER = LoggerFactory.getLogger(CdnManager.class);
     private final Session session;
@@ -195,6 +196,7 @@ public class CdnManager {
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     public class Streamer implements DecodedAudioStream, GeneralWritableStream {
         private final StreamId streamId;
         private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "cdn-async-" + r.hashCode()));
