@@ -35,7 +35,7 @@ public class libWebServer {
                 });
                 server.start();
             }catch (IOException ex) {
-                ConsoleLogging.Throwable(ex);
+                //ConsoleLogging.Throwable(ex); Not sure why this exception happens ToDo: Investigate
             }
         }
     };
