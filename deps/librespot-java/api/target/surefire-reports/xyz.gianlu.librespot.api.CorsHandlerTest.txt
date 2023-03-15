@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: xyz.gianlu.librespot.api.CorsHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.318 s - in xyz.gianlu.librespot.api.CorsHandlerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.322 s - in xyz.gianlu.librespot.api.CorsHandlerTest

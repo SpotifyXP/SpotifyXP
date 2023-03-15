@@ -1,6 +1,7 @@
 package se.michaelthelin.spotify;
 
 import com.google.gson.*;
+import com.spotifyxp.PublicValues;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.cache.CacheResponseStatus;
@@ -157,7 +158,12 @@ public class SpotifyHttpManager implements IHttpManager {
       Level.FINE,
       "GET request uses these headers: " + GSON.toJson(headers));
 
-    String responseBody = getResponseBody(execute(httpClientCaching, httpGet));
+    String responseBody;
+    try {
+      responseBody = getResponseBody(execute(httpClient, httpGet));
+    }catch (UnauthorizedException exc) {
+      throw new UnauthorizedException();
+    }
 
     httpGet.reset();
 
@@ -180,7 +186,12 @@ public class SpotifyHttpManager implements IHttpManager {
       Level.FINE,
       "POST request uses these headers: " + GSON.toJson(headers));
 
-    String responseBody = getResponseBody(execute(httpClient, httpPost));
+    String responseBody;
+    try {
+      responseBody = getResponseBody(execute(httpClient, httpPost));
+    }catch (UnauthorizedException exc) {
+      throw new UnauthorizedException();
+    }
 
     httpPost.reset();
 
@@ -191,7 +202,8 @@ public class SpotifyHttpManager implements IHttpManager {
   public String put(URI uri, Header[] headers, HttpEntity body) throws
     IOException,
     SpotifyWebApiException,
-    ParseException {
+    ParseException
+    {
     assert (uri != null);
     assert (!uri.toString().equals(""));
 
@@ -202,8 +214,12 @@ public class SpotifyHttpManager implements IHttpManager {
     SpotifyApi.LOGGER.log(
       Level.FINE,
       "PUT request uses these headers: " + GSON.toJson(headers));
-
-    String responseBody = getResponseBody(execute(httpClient, httpPut));
+      String responseBody;
+    try {
+      responseBody = getResponseBody(execute(httpClient, httpPut));
+    }catch (UnauthorizedException exc) {
+      throw new UnauthorizedException();
+    }
 
     httpPut.reset();
 
@@ -226,8 +242,12 @@ public class SpotifyHttpManager implements IHttpManager {
       Level.FINE,
       "DELETE request uses these headers: " + GSON.toJson(headers));
 
-    String responseBody = getResponseBody(execute(httpClient, httpDelete));
-
+    String responseBody;
+    try {
+      responseBody = getResponseBody(execute(httpClient, httpDelete));
+    }catch (UnauthorizedException exc) {
+      throw new UnauthorizedException();
+    }
     httpDelete.reset();
 
     return responseBody;
@@ -320,7 +340,9 @@ public class SpotifyHttpManager implements IHttpManager {
       case HttpStatus.SC_BAD_REQUEST:
         throw new BadRequestException(errorMessage);
       case HttpStatus.SC_UNAUTHORIZED:
-        throw new UnauthorizedException(errorMessage);
+        //Refresh token
+        PublicValues.elevated.refresh();
+        return getResponseBody(httpResponse);
       case HttpStatus.SC_FORBIDDEN:
         throw new ForbiddenException(errorMessage);
       case HttpStatus.SC_NOT_FOUND:

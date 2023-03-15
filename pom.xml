@@ -62,6 +62,11 @@
             <artifactId>flatlaf</artifactId>
             <version>3.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.jtattoo</groupId>
+            <artifactId>JTattoo</artifactId>
+            <version>1.6.13</version>
+        </dependency>
     </dependencies>
 
 </project>

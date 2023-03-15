@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.*;
-
+import com.spotifyxp.listeners.PlayerListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -840,7 +840,7 @@ public class ContentPanel extends JPanel {
         playerplaypreviousbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                player.getPlayer().previous();
+
             }
         });
 
@@ -963,7 +963,16 @@ public class ContentPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
-                    player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                    if(player.getPlayer().isReady()) {
+                        player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                    }else{
+                        player.retry();
+                        if(player.getPlayer().isReady()) {
+                            player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                        }else{
+                            JOptionPane.showConfirmDialog(frame, "An error has occured! Please restart the application", "Critical", JOptionPane.OK_CANCEL_OPTION);
+                        }
+                    }
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
                 }else{
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);

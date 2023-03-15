@@ -62,7 +62,7 @@ public class JImagePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(image!=null) {
-            g.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_REPLICATE), 0, 0, this);
+            g.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_REPLICATE), 0, 0, null);
         }
     }
 }

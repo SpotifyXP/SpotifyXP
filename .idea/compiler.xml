@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
+      <profile name="Maven default annotation processors profile">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -17,5 +17,8 @@
         <module name="librespot-sink" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="libEvents" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

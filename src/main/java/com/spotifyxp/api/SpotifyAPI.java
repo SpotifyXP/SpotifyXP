@@ -1,6 +1,5 @@
 package com.spotifyxp.api;
 
-
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.lib.libWebServer;
 import com.spotifyxp.listeners.PlayerListener;
@@ -19,9 +18,9 @@ import org.json.JSONObject;
 import java.io.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.model_objects.specification.Track;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class SpotifyAPI {
     private static final String deviceName = "XPS";
     public static int waitAmount = 4;
+    static SpotifyApi spotifyApi = null;
     public SpotifyAPI() {
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
@@ -36,9 +36,13 @@ public class SpotifyAPI {
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 39);
             }
         }
+        getSpotifyApi();
     }
     public SpotifyApi getSpotifyApi() {
-        return SpotifyApi.builder().setAccessToken(OAuthPKCE.token).build();
+        if(spotifyApi==null) {
+            spotifyApi = SpotifyApi.builder().setAccessToken(OAuthPKCE.token).build();
+        }
+        return spotifyApi;
     }
     @SuppressWarnings("CanBeFinal")
     public static class Player {
@@ -152,7 +156,7 @@ public class SpotifyAPI {
         public static String token = "";
         private long expiresIn = 0;
         private boolean isFirst = true;
-        private final String CLIENT_ID = "091d7b71d33743d389cef8449136c62e";
+        private final String CLIENT_ID = "091d7b71d33743d389cef8449136c62e"; 
         @SuppressWarnings("FieldCanBeLocal")
         private final String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
         private final String code_verifier = StringUtils.generateStringFrom(50);
@@ -186,22 +190,25 @@ public class SpotifyAPI {
             return  new TimerTask() {
                 @Override
                 public void run() {
-                    refresh();
+                    if(!isFirst) {
+                        refresh();
+                    }else{
+                        isFirst = false;
+                    }
                 }
             };
         }
         private void startExpirationTimer() {
-            timer.schedule(ExpirationTask(), expiresIn);
+            timer.schedule(ExpirationTask(), TimeUnit.SECONDS.toMillis(expiresIn));
         }
-        private void refresh() {
-            if(!isFirst) {
-                JSONObject refreshres = new JSONObject(ConnectionUtils.makePost("https://accounts.spotify.com/api/token", new NameValuePair[]{new NameValuePair("grant_type", "refresh_token"), new NameValuePair("refresh_token", refreshToken), new NameValuePair("client_id", CLIENT_ID)}, new Header("Content-Type", "application/x-www-form-urlencoded")));
-                token = refreshres.getString("access_token");
-                expiresIn = refreshres.getLong("expires_in");
-                refreshToken = refreshres.getString("refresh_token");
-            }else{
-                isFirst = false;
-            }
+        public void refresh() {
+            JSONObject refreshres = new JSONObject(ConnectionUtils.makePost("https://accounts.spotify.com/api/token", new NameValuePair[]{new NameValuePair("grant_type", "refresh_token"), new NameValuePair("refresh_token", refreshToken), new NameValuePair("client_id", CLIENT_ID)}, new Header("Content-Type", "application/x-www-form-urlencoded")));
+            token = refreshres.getString("access_token");
+            expiresIn = refreshres.getLong("expires_in");
+            refreshToken = refreshres.getString("refresh_token");
+            spotifyApi.setAccessToken(token);
+            spotifyApi.setRefreshToken(refreshToken);
+            System.out.println("Triggered refresh");
         }
         private void startServerSecondStep() {
             libWebServer server = new libWebServer(2400);

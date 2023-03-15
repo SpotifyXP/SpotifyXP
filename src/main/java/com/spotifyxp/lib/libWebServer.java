@@ -3,7 +3,6 @@ package com.spotifyxp.lib;
 
 import com.spotifyxp.custom.DoubleArrayListForEach;
 import com.spotifyxp.custom.StoppableThreadRunnable;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.threading.StoppableThread;
 import com.spotifyxp.utils.DoubleArrayList;
 import com.sun.net.httpserver.HttpHandler;

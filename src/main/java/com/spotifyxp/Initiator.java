@@ -4,6 +4,7 @@ package com.spotifyxp;
 import com.spotifyxp.dummy.DummyJFrame;
 import com.spotifyxp.enums.LookAndFeel;
 import com.spotifyxp.lib.libLanguage;
+import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.utils.GlobalLookAndFeel;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.background.BackgroundService;
@@ -12,13 +13,14 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
-
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
     static SpotifyAPI api = null;
     public static void main(String[] args) {
+        new SplashPanel().show();
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setNoAutoFindLanguage("en"); //The german translation is sh*t but funny (Hot List = Heiße Liste)
@@ -55,5 +57,6 @@ public class Initiator {
         new BackgroundService().start();
         ContentPanel panel = new ContentPanel(player, api);
         panel.open();
+        SplashPanel.hide();
     }
 }

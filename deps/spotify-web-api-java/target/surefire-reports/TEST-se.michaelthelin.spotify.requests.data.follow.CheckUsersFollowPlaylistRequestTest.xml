@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.michaelthelin.spotify.requests.data.follow.CheckUsersFollowPlaylistRequestTest" time="0.004" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.michaelthelin.spotify.requests.data.follow.CheckUsersFollowPlaylistRequestTest" time="0.003" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="18"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="DE"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-18.0.1.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\gianl\AppData\Local\Temp\surefire4539358261283414570\surefirebooter10533342030580580069.jar C:\Users\gianl\AppData\Local\Temp\surefire4539358261283414570 2023-03-09T21-59-34_728-jvmRun1 surefire3833803745789598869tmp surefire_014763893670136559738tmp"/>
+    <property name="sun.java.command" value="C:\Users\gianl\AppData\Local\Temp\surefire16660621483516638260\surefirebooter3085192611041248023.jar C:\Users\gianl\AppData\Local\Temp\surefire16660621483516638260 2023-03-10T19-24-02_023-jvmRun1 surefire1120290160070893196tmp surefire_25929513968227329005tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="F:\SpotifyXP\deps\spotify-web-api-java\target\test-classes;F:\SpotifyXP\deps\spotify-web-api-java\target\classes;C:\Users\gianl\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\gianl\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\gianl\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\gianl\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\gianl\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\gianl\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\gianl\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\gianl\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\gianl\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.2\jackson-databind-2.14.2.jar;C:\Users\gianl\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.2\jackson-annotations-2.14.2.jar;C:\Users\gianl\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.2\jackson-core-2.14.2.jar;C:\Users\gianl\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\gianl\.m2\repository\com\neovisionaries\nv-i18n\1.29\nv-i18n-1.29.jar;C:\Users\gianl\.m2\repository\org\apache\httpcomponents\client5\httpclient5-cache\5.2.1\httpclient5-cache-5.2.1.jar;C:\Users\gianl\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\gianl\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\gianl\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\gianl\.m2\repository\org\mockito\mockito-all\1.10.19\mockito-all-1.10.19.jar;C:\Users\gianl\.m2\repository\org\slf4j\slf4j-api\2.0.6\slf4j-api-2.0.6.jar;C:\Users\gianl\.m2\repository\org\slf4j\slf4j-simple\2.0.6\slf4j-simple-2.0.6.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\gianl\AppData\Local\Temp\surefire4539358261283414570\surefirebooter10533342030580580069.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\gianl\AppData\Local\Temp\surefire16660621483516638260\surefirebooter3085192611041248023.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="18.0.1.1+2-6"/>
@@ -56,7 +56,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="62.0"/>
   </properties>
-  <testcase name="shouldReturnDefault_sync" classname="se.michaelthelin.spotify.requests.data.follow.CheckUsersFollowPlaylistRequestTest" time="0"/>
+  <testcase name="shouldReturnDefault_sync" classname="se.michaelthelin.spotify.requests.data.follow.CheckUsersFollowPlaylistRequestTest" time="0.001"/>
   <testcase name="shouldReturnDefault_async" classname="se.michaelthelin.spotify.requests.data.follow.CheckUsersFollowPlaylistRequestTest" time="0"/>
   <testcase name="shouldComplyWithReference" classname="se.michaelthelin.spotify.requests.data.follow.CheckUsersFollowPlaylistRequestTest" time="0"/>
 </testsuite>
