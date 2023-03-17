@@ -2,14 +2,12 @@ package se.michaelthelin.spotify;
 
 import com.google.gson.*;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.api.SpotifyAPI;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.cache.CacheResponseStatus;
 import org.apache.hc.client5.http.cache.HttpCacheContext;
-import org.apache.hc.client5.http.classic.methods.HttpDelete;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
+import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.cookie.StandardCookieSpec;
 import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
@@ -152,7 +150,6 @@ public class SpotifyHttpManager implements IHttpManager {
     assert (!uri.toString().equals(""));
 
     final HttpGet httpGet = new HttpGet(uri);
-
     httpGet.setHeaders(headers);
     SpotifyApi.LOGGER.log(
       Level.FINE,
@@ -160,7 +157,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     String responseBody;
     try {
-      responseBody = getResponseBody(execute(httpClient, httpGet));
+      responseBody = getResponseBody(execute(httpClient, httpGet), String.valueOf(uri), "get", httpGet, null);
     }catch (UnauthorizedException exc) {
       throw new UnauthorizedException();
     }
@@ -188,7 +185,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     String responseBody;
     try {
-      responseBody = getResponseBody(execute(httpClient, httpPost));
+      responseBody = getResponseBody(execute(httpClient, httpPost), String.valueOf(uri), "post", httpPost, body);
     }catch (UnauthorizedException exc) {
       throw new UnauthorizedException();
     }
@@ -216,7 +213,7 @@ public class SpotifyHttpManager implements IHttpManager {
       "PUT request uses these headers: " + GSON.toJson(headers));
       String responseBody;
     try {
-      responseBody = getResponseBody(execute(httpClient, httpPut));
+      responseBody = getResponseBody(execute(httpClient, httpPut), String.valueOf(uri), "put", httpPut, body);
     }catch (UnauthorizedException exc) {
       throw new UnauthorizedException();
     }
@@ -244,7 +241,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     String responseBody;
     try {
-      responseBody = getResponseBody(execute(httpClient, httpDelete));
+      responseBody = getResponseBody(execute(httpClient, httpDelete), String.valueOf(uri), "delete", httpDelete, body);
     }catch (UnauthorizedException exc) {
       throw new UnauthorizedException();
     }
@@ -258,7 +255,6 @@ public class SpotifyHttpManager implements IHttpManager {
     IOException {
     HttpCacheContext context = HttpCacheContext.create();
     CloseableHttpResponse response = httpClient.execute(method, context);
-
     try {
       CacheResponseStatus responseStatus = context.getCacheResponseStatus();
 
@@ -298,7 +294,9 @@ public class SpotifyHttpManager implements IHttpManager {
     return response;
   }
 
-  private String getResponseBody(CloseableHttpResponse httpResponse) throws
+  public static boolean triggerTokenExpire = false;
+
+  private String getResponseBody(CloseableHttpResponse httpResponse, String uri, String method, HttpUriRequestBase base, HttpEntity body) throws
     IOException,
     SpotifyWebApiException,
     ParseException {
@@ -332,6 +330,10 @@ public class SpotifyHttpManager implements IHttpManager {
       }
     }
 
+    if(triggerTokenExpire) {
+      httpResponse.setCode(HttpStatus.SC_UNAUTHORIZED);
+    }
+
     SpotifyApi.LOGGER.log(
       Level.FINE,
       "The http response has status code " + httpResponse.getCode());
@@ -342,7 +344,22 @@ public class SpotifyHttpManager implements IHttpManager {
       case HttpStatus.SC_UNAUTHORIZED:
         //Refresh token
         PublicValues.elevated.refresh();
-        return getResponseBody(httpResponse);
+        base.removeHeaders("Authorization");
+        base.addHeader("Authorization", "Bearer " + SpotifyAPI.OAuthPKCE.token);
+        switch (method) {
+          case "get":
+            triggerTokenExpire = false;
+            return get(URI.create(uri), base.getHeaders());
+          case "post":
+            triggerTokenExpire = false;
+            return post(URI.create(uri), base.getHeaders(), body);
+          case "put":
+            triggerTokenExpire = false;
+            return put(URI.create(uri), base.getHeaders(), body);
+          case "delete":
+            triggerTokenExpire = false;
+            return delete(URI.create(uri), base.getHeaders(), body);
+        }
       case HttpStatus.SC_FORBIDDEN:
         throw new ForbiddenException(errorMessage);
       case HttpStatus.SC_NOT_FOUND:

@@ -1,5 +1,6 @@
 package com.spotifyxp.testing;
 
+import com.spotifyxp.analytics.Analytics;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.engine.elements.AddRemove;
 import com.spotifyxp.engine.elements.Heart;
@@ -10,11 +11,18 @@ import com.spotifyxp.utils.Resources;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
 
 @SuppressWarnings("EmptyMethod")
 public class Test {
     public static void main(String[] args ) {
-        new SplashPanel().show();
+        ConsoleLogging logging = new ConsoleLogging("SpotifyXP");
+        logging.setColored(true);
+        logging.setShowTime(false);
+        ConsoleLogging.info("Logger active");
+        new Analytics();
     }
 
     public void old() {

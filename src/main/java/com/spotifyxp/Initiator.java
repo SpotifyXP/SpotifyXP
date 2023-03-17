@@ -1,6 +1,7 @@
 package com.spotifyxp;
 
 
+import com.spotifyxp.analytics.Analytics;
 import com.spotifyxp.dummy.DummyJFrame;
 import com.spotifyxp.enums.LookAndFeel;
 import com.spotifyxp.lib.libLanguage;
@@ -13,8 +14,13 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.SpotifyHttpManager;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
+import java.util.Scanner;
+import java.util.logging.Level;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
@@ -50,13 +56,17 @@ public class Initiator {
         api = new SpotifyAPI();
         SpotifyAPI.Player player;
         if(PublicValues.config.get(ConfigValues.mypalpath.name).equals("")) {
-            JOptionPane.showConfirmDialog(null, "Please set the mypal path under Settings>Configuration", "Mypal path not set", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(null, "Please set the mypal path under Settings>Configuration and then restart spotifyxp", "Mypal path not set", JOptionPane.OK_CANCEL_OPTION); //ToDo: Translate
         }
         player = new SpotifyAPI.Player(api);
         new KeyListener().start();
         new BackgroundService().start();
         ContentPanel panel = new ContentPanel(player, api);
         panel.open();
+        new Analytics();
         SplashPanel.hide();
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+        SpotifyHttpManager.triggerTokenExpire = true;
     }
 }
