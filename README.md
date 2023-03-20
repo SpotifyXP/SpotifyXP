@@ -1,7 +1,6 @@
 SpotifyXP
 ===============
 
-First Release
 
 Compile Info: Please open the project inside I ntelliJ and compile it there I can't get maven to build this project without IntelliJ
 
