@@ -18,35 +18,34 @@ public class Config {
         properties = new Properties();
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
-                ConsoleLogging.error("Failed to create files directory"); //ToDo: Translate
+                ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreatefolder"));
             }
         }
         if(!new File(PublicValues.configfilepath).exists()) {
             properties.put(ConfigValues.disableplayerstats.name, "false");
             properties.put(ConfigValues.showallrecommendations.name, "false");
-            properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.username.name, "");
             properties.put(ConfigValues.password.name, "");
             try {
                 if(!new File(PublicValues.configfilepath).createNewFile()) {
-                    ConsoleLogging.error("Cant create configfile"); //ToDo: Translate
+                    ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
                 }
             } catch (IOException e) {
                 ConsoleLogging.Throwable(e);
-                ConsoleLogging.error("Cant create configfile"); //ToDo: Translate
+                ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
             }
             try {
-                properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Configuration file");
+                properties.store(new FileWriter(PublicValues.configfilepath), PublicValues.language.translate("configuration.comment"));
             } catch (IOException e) {
                 ConsoleLogging.Throwable(e);
-                ConsoleLogging.error("Cant store configfile"); //ToDo: Translate
+                ConsoleLogging.error(PublicValues.language.translate("configuration.error.writefail"));
             }
         }
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-            ConsoleLogging.error("Failed to load configfile"); //ToDo: Translate
+            ConsoleLogging.error(PublicValues.language.translate("configuration.error.loadfail"));
         }
     }
     public void write(String name, String value) {
@@ -55,16 +54,20 @@ public class Config {
             properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Configuration file");
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-            ConsoleLogging.error("Cant store configfile"); //ToDo: Translate
+            ConsoleLogging.error(PublicValues.language.translate("configuration.error.writefail"));
         }
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-            ConsoleLogging.error("Failed to load configfile"); //ToDo: Translate
+            ConsoleLogging.error(PublicValues.language.translate("configuration.error.loadfail"));
         }
     }
     public String get(String name) {
-        return properties.getProperty(name);
+        String ret = properties.getProperty(name);
+        if(ret==null) {
+            ret = name;
+        }
+        return ret;
     }
 }

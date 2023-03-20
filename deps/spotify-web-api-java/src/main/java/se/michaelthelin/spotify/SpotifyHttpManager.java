@@ -3,6 +3,7 @@ package se.michaelthelin.spotify;
 import com.google.gson.*;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
+import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.cache.CacheResponseStatus;

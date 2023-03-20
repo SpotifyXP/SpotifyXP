@@ -1,7 +1,6 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.lib.libWebServer;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.*;
@@ -21,6 +20,9 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.model_objects.specification.Track;
+import xyz.gianlu.librespot.core.TokenProvider;
+import xyz.gianlu.librespot.mercury.MercuryClient;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -150,130 +152,28 @@ public class SpotifyAPI {
     }
     @SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
     public static class OAuthPKCE {
-        private final String redirectURI = "http://127.0.0.1:2400/redirectSpotify";
-        private String code = "";
-        private String refreshToken = "";
         public static String token = "";
-        private long expiresIn = 0;
-        private boolean isFirst = true;
-        private final String CLIENT_ID = "091d7b71d33743d389cef8449136c62e"; 
         @SuppressWarnings("FieldCanBeLocal")
         private final String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
-        private final String code_verifier = StringUtils.generateStringFrom(50);
-        @SuppressWarnings("FieldCanBeLocal")
-        private final String challenge = PkceUtil.generateCodeChallenge(code_verifier);
         private final Timer timer = new Timer();
         public OAuthPKCE() {
-            //Requests a token without client_secret with the PKCE method
-            ConnectionUtils.openBrowser("https://accounts.spotify.com/authorize?client_id=" + CLIENT_ID + "&response_type=code&redirect_uri=" + redirectURI + "&code_challenge_method=S256&code_challenge=" + challenge + "&scope=" + scopes);
-            startServer();
-            getTokenFromCode();
-        }
-        private void getTokenFromCode() {
-            startServerSecondStep();
             try {
-                HttpClient client = new HttpClient();
-                PostMethod get = new PostMethod("https://accounts.spotify.com/api/token");
-                get.setQueryString(new NameValuePair[]{new NameValuePair("grant_type", "authorization_code"), new NameValuePair("code", code), new NameValuePair("redirect_uri", redirectURI), new NameValuePair("client_id", CLIENT_ID), new NameValuePair("code_verifier", code_verifier)});
-                get.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                client.executeMethod(get);
-                token = new JSONObject(get.getResponseBodyAsString()).getString("access_token");
-                expiresIn = new JSONObject(get.getResponseBodyAsString()).getLong("expires_in");
-                refreshToken = new JSONObject(get.getResponseBodyAsString()).getString("refresh_token");
-            } catch (IOException e) {
+                TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
+                token = provider.accessToken;
+                spotifyApi.setAccessToken(token);
+            } catch (IOException | MercuryClient.MercuryException e) {
                 ConsoleLogging.Throwable(e);
             }
-            //Start refresh timer
-            startExpirationTimer();
-        }
-        private TimerTask ExpirationTask() {
-            return  new TimerTask() {
-                @Override
-                public void run() {
-                    if(!isFirst) {
-                        refresh();
-                    }else{
-                        isFirst = false;
-                    }
-                }
-            };
-        }
-        private void startExpirationTimer() {
-            timer.schedule(ExpirationTask(), TimeUnit.SECONDS.toMillis(expiresIn));
         }
         public void refresh() {
-            JSONObject refreshres = new JSONObject(ConnectionUtils.makePost("https://accounts.spotify.com/api/token", new NameValuePair[]{new NameValuePair("grant_type", "refresh_token"), new NameValuePair("refresh_token", refreshToken), new NameValuePair("client_id", CLIENT_ID)}, new Header("Content-Type", "application/x-www-form-urlencoded")));
-            token = refreshres.getString("access_token");
-            expiresIn = refreshres.getLong("expires_in");
-            refreshToken = refreshres.getString("refresh_token");
-            spotifyApi.setAccessToken(token);
-            spotifyApi.setRefreshToken(refreshToken);
-            System.out.println("Triggered refresh");
-        }
-        private void startServerSecondStep() {
-            libWebServer server = new libWebServer(2400);
-            server.addHttpContext("/redirectSpotify", new HttpHandler() {
-                @Override
-                public void handle(HttpExchange exchange) {
-                    try {
-                        Thread.sleep(99);
-                    } catch (InterruptedException e) {
-                        ConsoleLogging.Throwable(e);
-                    }
-                    try {
-                        WebUtils.sendCode(exchange, 200, new Resources().readToString("worker.html"));
-                    } catch (Exception e) {
-                        ConsoleLogging.Throwable(e);
-                    }
-                    if (exchange.getRequestURI().toString().contains("?")) {
-                        //Do something with the token
-                        System.out.println(exchange.getRequestURI().toString());
-                        //Then stop the server
-                        try {
-                            Thread.sleep(99);
-                        } catch (InterruptedException e) {
-                            ConsoleLogging.Throwable(e);
-                        }
-                        server.stop();
-                    }
-                }
-            });
-            server.start();
-        }
-        private boolean stop = false;
-        @SuppressWarnings("BusyWait")
-        private void startServer() {
-            libWebServer server = new libWebServer(2400);
-            server.addHttpContext("/redirectSpotify", new HttpHandler() {
-                @Override
-                public void handle(HttpExchange exchange) {
-                    try {
-                        Thread.sleep(99);
-                    } catch (InterruptedException e) {
-                        ConsoleLogging.Throwable(e);
-                    }
-                    try {
-                        WebUtils.sendCode(exchange, 200, new Resources().readToString("worker.html"));
-                    } catch (Exception e) {
-                        ConsoleLogging.Throwable(e);
-                    }
-                    if (exchange.getRequestURI().toString().contains("?")) {
-                        //Do something with the token
-                        code = exchange.getRequestURI().toString().split("\\?")[1].replace("code=", "");
-                        //Then stop the server
-                        stop = true;
-                    }
-                }
-            });
-            server.start();
-            while(!stop) {
-                try {
-                    Thread.sleep(99);
-                } catch (InterruptedException e) {
-                    ConsoleLogging.Throwable(e);
-                }
+            try {
+                TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
+                token = provider.accessToken;
+                spotifyApi.setAccessToken(token);
+            } catch (IOException | MercuryClient.MercuryException e) {
+                ConsoleLogging.Throwable(e);
             }
-            server.stop();
+            System.out.println("Triggered refresh");
         }
         public String makePost(String url) {
             if(!url.contains("https")) {

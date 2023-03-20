@@ -61,20 +61,6 @@ public class ConnectionUtils {
             return "FAILED";
         }
     }
-    public static void openBrowser(String url) {
-        String browserpath;
-        if(new File("pom.xml").exists()) {
-            browserpath="C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-        }else {
-            browserpath = PublicValues.config.get(ConfigValues.mypalpath.name);
-        }
-        ProcessBuilder builder = new ProcessBuilder("\"" + browserpath + "\"", url);
-        try {
-            builder.start();
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-    }
     public static boolean makePingToServer() {
         try {
             HttpClient client = new HttpClient();

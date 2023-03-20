@@ -278,7 +278,11 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
             head.seek(pos);
         }
 
-        head.setOutput(out);
+        try {
+            head.setOutput(out);
+        }catch (IllegalStateException exc) {
+            //Output already set skipping
+        }
         LOGGER.debug("{} has been added to the output. {sessionId: {}, pos: {}, reason: {}}", head, sessionId, pos, reason);
         return new PlayerSession.EntryWithPos(head, pos);
     }

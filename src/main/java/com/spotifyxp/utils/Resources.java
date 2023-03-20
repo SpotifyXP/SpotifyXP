@@ -11,21 +11,28 @@ import java.nio.charset.Charset;
 
 
 public class Resources {
+    boolean sm = false;
+    public Resources(boolean suppresserrors) {
+        sm = true;
+    }
+    public Resources() {
+
+    }
     public String readToString(String path) {
         if (!path.startsWith("/")) {
             path = "/" + path;
         }
         InputStream stream = getClass().getResourceAsStream(path);
         if (stream == null) {
-            ConsoleLogging.Throwable(new FileNotFoundException());
+            if(!sm) { ConsoleLogging.Throwable(new FileNotFoundException()); }
         }
         try {
             assert stream != null;
             return IOUtils.toString(stream, Charset.defaultCharset());
         } catch (IOException e) {
-            e.printStackTrace();
+            if(!sm) { ConsoleLogging.Throwable(e); }
         }
-        ConsoleLogging.Throwable(new Exception());
+        if(!sm) { ConsoleLogging.Throwable(new Exception()); }
         return path;
     }
     public InputStream readToInputStream(String path) {
@@ -34,7 +41,7 @@ public class Resources {
         }
         InputStream stream = getClass().getResourceAsStream(path);
         if(stream==null) {
-            ConsoleLogging.Throwable(new FileNotFoundException());
+            if(!sm) { ConsoleLogging.Throwable(new FileNotFoundException()); }
         }
         return stream;
     }

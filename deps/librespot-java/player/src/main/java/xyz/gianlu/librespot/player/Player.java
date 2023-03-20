@@ -70,7 +70,7 @@ public class Player implements Closeable {
     private final EventsDispatcher events;
     private final AudioSink sink;
     private final Map<String, PlaybackMetrics> metrics = new HashMap<>(5);
-    private StateWrapper state;
+    public static StateWrapper state;
     private PlayerSession playerSession;
     private ScheduledFuture<?> releaseLineFuture = null;
     private DeviceStateHandler.Listener deviceStateListener;
@@ -911,7 +911,7 @@ public class Player implements Closeable {
     /**
      * Stores information about the transition between two tracks.
      */
-    private static class TransitionInfo {
+    public static class TransitionInfo {
         /**
          * How the <bold>next</bold> track started
          */
@@ -956,7 +956,7 @@ public class Player implements Closeable {
          * Skipping to previous track.
          */
         @NotNull
-        static TransitionInfo skippedPrev(@NotNull StateWrapper state) {
+        public static TransitionInfo skippedPrev(@NotNull StateWrapper state) {
             TransitionInfo trans = new TransitionInfo(PlaybackMetrics.Reason.BACK_BTN, PlaybackMetrics.Reason.BACK_BTN);
             if (state.getCurrentPlayable() != null) trans.endedWhen = state.getPosition();
             return trans;

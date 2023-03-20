@@ -22,6 +22,10 @@ import org.json.JSONObject;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.listeners.PlayerListener;
+import sun.security.mscapi.CPublicKey;
+import xyz.gianlu.librespot.player.Player;
+import xyz.gianlu.librespot.player.StateWrapper;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -587,9 +591,7 @@ public class ContentPanel extends JPanel {
                             try {
                                 fetchHotlist();
                             }catch (RuntimeException exc) {
-                                if(!PublicValues.config.get(ConfigValues.mypalpath.name).equals("")) {
-                                    JOptionPane.showConfirmDialog(frame, "Something went wrong", "JSON Exception", JOptionPane.OK_CANCEL_OPTION);
-                                }
+                                JOptionPane.showConfirmDialog(frame, "Something went wrong", "JSON Exception", JOptionPane.OK_CANCEL_OPTION);
                             }
                         }
                     });
@@ -840,7 +842,7 @@ public class ContentPanel extends JPanel {
         playerplaypreviousbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                PublicValues.spotifyplayer.previous();
             }
         });
 
@@ -930,7 +932,16 @@ public class ContentPanel extends JPanel {
                 });
                 dialog.getDialog().setPreferredSize(new Dimension(400, 500));
                 try {
-                    dialog.open(frame, "About SpotifyXP", new Resources().readToString("about.html")); //ToDo: Translate
+                    String out = new Resources().readToString("about.html");
+                    StringBuilder cache = new StringBuilder();
+                    for(String s : out.split("\n")) {
+                        if(s.contains("(TRANSLATE)")) {
+                            s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
+                            s = s.replace("(TRANSLATE)", "");
+                        }
+                        cache.append(s);
+                    }
+                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), cache.toString());
                 } catch (Exception ex) {
                     ConsoleLogging.Throwable(ex);
                 }

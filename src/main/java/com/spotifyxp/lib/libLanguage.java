@@ -27,7 +27,7 @@ public class libLanguage {
      }
      */
     boolean afl = false;
-    String languageCode = "";
+    String languageCode = System.getProperty("user.language");
     String lf = "";
     public void setNoAutoFindLanguage(String code) {
         afl = false;
@@ -43,7 +43,7 @@ public class libLanguage {
         final String[] ret = {key};
         if(afl) {
             try {
-                JSONObject object = new JSONObject(new Resources().readToString(lf + "/" + System.getProperty("user.language") + ".json"));
+                JSONObject object = new JSONObject(new Resources(true).readToString(lf + "/" + languageCode + ".json"));
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {
@@ -53,11 +53,12 @@ public class libLanguage {
                     }
                 });
             } catch (Exception e) {
-                ConsoleLogging.Throwable(e);
+                languageCode = "en";
+                return translate(key);
             }
         }else{
             try {
-                JSONObject object = new JSONObject(new Resources().readToString(lf + "/" + languageCode + ".json"));
+                JSONObject object = new JSONObject(new Resources(true).readToString(lf + "/" + languageCode + ".json"));
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {
@@ -67,7 +68,8 @@ public class libLanguage {
                     }
                 });
             } catch (Exception e) {
-                ConsoleLogging.Throwable(e);
+                languageCode = "en";
+                return translate(key);
             }
         }
         return ret[0];

@@ -17,6 +17,7 @@ public class SplashPanel {
         frame.setPreferredSize(new Dimension(290,300));
         frame.add(l, BorderLayout.SOUTH);
         frame.setUndecorated(true);
+        frame.setAlwaysOnTop(true);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.pack();

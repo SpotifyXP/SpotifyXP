@@ -23,7 +23,7 @@ public class BackgroundService {
                     ContentPanel.frame.setVisible(true);
                 }
             });
-        }//ToDo: Translate
+        }
         catch (Exception e) {
             ConsoleLogging.Throwable(e);
         }
