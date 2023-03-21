@@ -19,11 +19,12 @@ package xyz.gianlu.librespot.audio.cdn;
 import com.google.protobuf.ByteString;
 import com.spotify.metadata.Metadata;
 import com.spotify.storage.StorageResolve.StorageResolveResponse;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.*;
 import xyz.gianlu.librespot.audio.decrypt.AesAudioDecrypt;
 import xyz.gianlu.librespot.audio.decrypt.AudioDecrypt;
@@ -50,7 +51,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
  */
 @SuppressWarnings("NullableProblems")
 public class CdnManager {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CdnManager.class);
+    
     private final Session session;
 
     public CdnManager(@NotNull Session session) {
@@ -100,7 +101,7 @@ public class CdnManager {
             StorageResolveResponse proto = StorageResolveResponse.parseFrom(body.byteStream());
             if (proto.getResult() == StorageResolveResponse.Result.CDN) {
                 String url = proto.getCdnurl(session.random().nextInt(proto.getCdnurlCount()));
-                LOGGER.debug("Fetched CDN url for {}: {}", Utils.bytesToHex(fileId), url);
+                ConsoleLoggingModules.debug("Fetched CDN url for {}: {}", Utils.bytesToHex(fileId), url);
                 return HttpUrl.get(url);
             } else {
                 throw new CdnException(String.format("Could not retrieve CDN url! {result: %s}", proto.getResult()));
@@ -174,7 +175,7 @@ public class CdnManager {
 
                     if (expireAt == null) {
                         expiration = -1;
-                        LOGGER.warn("Invalid __token__ in CDN url: " + url);
+                        ConsoleLoggingModules.warning("Invalid __token__ in CDN url: " + url);
                         return;
                     }
 
@@ -184,7 +185,7 @@ public class CdnManager {
                     int i = param.indexOf('_');
                     if (i == -1) {
                         expiration = -1;
-                        LOGGER.warn("Couldn't extract expiration, invalid parameter in CDN url: " + url);
+                        ConsoleLoggingModules.warning("Couldn't extract expiration, invalid parameter in CDN url: " + url);
                         return;
                     }
 
@@ -233,7 +234,7 @@ public class CdnManager {
                     firstChunk = cacheHandler.readChunk(0);
                     fromCache = true;
                 } catch (IOException | CacheManager.BadChunkHashException ex) {
-                    LOGGER.error("Failed getting first chunk from cache.", ex);
+                    ConsoleLoggingModules.error("Failed getting first chunk from cache.", ex);
 
                     InternalResponse resp = request(0, CHUNK_SIZE - 1);
                     firstChunk = resp.buffer;
@@ -273,11 +274,11 @@ public class CdnManager {
                 try {
                     cacheHandler.writeChunk(chunk, chunkIndex);
                 } catch (IOException ex) {
-                    LOGGER.warn("Failed writing to cache! {index: {}}", chunkIndex, ex);
+                    ConsoleLoggingModules.warning("Failed writing to cache! {index: {}}", chunkIndex, ex);
                 }
             }
 
-            LOGGER.trace("Chunk {}/{} completed, cached: {}, stream: {}", chunkIndex, chunks, cached, describe());
+            ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, stream: {}", chunkIndex, chunks, cached, describe());
 
             buffer[chunkIndex] = chunk;
             audioDecrypt.decryptChunk(chunkIndex, chunk);
@@ -313,7 +314,7 @@ public class CdnManager {
                         return;
                     }
                 } catch (IOException | CacheManager.BadChunkHashException ex) {
-                    LOGGER.error("Failed requesting chunk from cache, index: {}", index, ex);
+                    ConsoleLoggingModules.error("Failed requesting chunk from cache, index: {}", index, ex);
                 }
             }
 
@@ -321,7 +322,7 @@ public class CdnManager {
                 InternalResponse resp = request(index);
                 writeChunk(resp.buffer, index, false);
             } catch (IOException | CdnException ex) {
-                LOGGER.error("Failed requesting chunk from network, index: {}", index, ex);
+                ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
                 internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
             }
         }

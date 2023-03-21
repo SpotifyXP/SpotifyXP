@@ -34,11 +34,12 @@ import com.spotify.transfer.PlaybackOuterClass;
 import com.spotify.transfer.QueueOuterClass;
 import com.spotify.transfer.SessionOuterClass;
 import com.spotify.transfer.TransferStateOuterClass;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.MetadataWrapper;
 import xyz.gianlu.librespot.common.FisherYatesShuffle;
 import xyz.gianlu.librespot.common.ProtoUtils;
@@ -68,7 +69,6 @@ import java.util.function.Function;
  */
 @SuppressWarnings("NullableProblems")
 public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.MessageListener, Closeable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StateWrapper.class);
 
     static {
         try {
@@ -78,7 +78,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             ProtoUtils.overrideDefaultValue(ContextPlayerOptions.getDescriptor().findFieldByName("repeating_track"), "");
             ProtoUtils.overrideDefaultValue(ContextPlayerOptions.getDescriptor().findFieldByName("repeating_context"), "");
         } catch (IllegalAccessException | NoSuchFieldException ex) {
-            LOGGER.warn("Failed changing default value!", ex);
+            ConsoleLoggingModules.warning("Failed changing default value!", ex);
         }
     }
 
@@ -240,23 +240,23 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             shuffle = Boolean.parseBoolean(state.getContextMetadataOrThrow("transforming.shuffle"));
 
         boolean willRequest = !tracksKeeper.getCurrentTrack().getMetadataMap().containsKey("audio.fwdbtn.fade_overlap"); // I don't see another way to do this
-        LOGGER.info("Context has transforming! {url: {}, shuffle: {}, willRequest: {}}", url, shuffle, willRequest);
+        ConsoleLoggingModules.info("Context has transforming! {url: {}, shuffle: {}, willRequest: {}}", url, shuffle, willRequest);
 
         if (!willRequest) return;
         JsonObject obj = ProtoUtils.craftContextStateCombo(state, tracksKeeper.tracks);
         try (Response resp = session.api().send("POST", HttpUrl.get(url).encodedPath(), null, RequestBody.create(obj.toString(), MediaType.get("application/json")))) {
             ResponseBody body = resp.body();
             if (resp.code() != 200) {
-                LOGGER.warn("Failed loading cuepoints! {code: {}, msg: {}, body: {}}", resp.code(), resp.message(), body == null ? null : body.string());
+                ConsoleLoggingModules.warning("Failed loading cuepoints! {code: {}, msg: {}, body: {}}", resp.code(), resp.message(), body == null ? null : body.string());
                 return;
             }
 
             if (body != null) updateContext(JsonParser.parseString(body.string()).getAsJsonObject());
             else throw new IllegalArgumentException();
 
-            LOGGER.debug("Updated context with transforming information!");
+            ConsoleLoggingModules.debug("Updated context with transforming information!");
         } catch (MercuryClient.MercuryException | IOException ex) {
-            LOGGER.warn("Failed loading cuepoints!", ex);
+            ConsoleLoggingModules.warning("Failed loading cuepoints!", ex);
         }
     }
 
@@ -342,7 +342,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
     public synchronized void ready() {
         state.setIsSystemInitiated(true);
         device.updateState(Connect.PutStateReason.NEW_DEVICE, player.time(), state.build());
-        LOGGER.info("Notified new device (us)!");
+        ConsoleLoggingModules.info("Notified new device (us)!");
     }
 
     @Override
@@ -363,7 +363,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
 
         device.setIsActive(false);
         device.updateState(Connect.PutStateReason.BECAME_INACTIVE, player.time(), state.build());
-        LOGGER.info("Notified inactivity!");
+        ConsoleLoggingModules.info("Notified inactivity!");
     }
 
     synchronized int getVolume() {
@@ -382,7 +382,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
     private synchronized void enrichWithMetadata(@NotNull Metadata.Track track) {
         if (state.getTrack() == null) throw new IllegalStateException();
         if (!ProtoUtils.isTrack(state.getTrack(), track)) {
-            LOGGER.warn("Failed updating metadata: tracks do not match. {current: {}, expected: {}}", ProtoUtils.toString(state.getTrack()), ProtoUtils.toString(track));
+            ConsoleLoggingModules.warning("Failed updating metadata: tracks do not match. {current: {}, expected: {}}", ProtoUtils.toString(state.getTrack()), ProtoUtils.toString(track));
             return;
         }
 
@@ -443,7 +443,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
     private synchronized void enrichWithMetadata(@NotNull Metadata.Episode episode) {
         if (state.getTrack() == null) throw new IllegalStateException();
         if (!ProtoUtils.isEpisode(state.getTrack(), episode)) {
-            LOGGER.warn("Failed updating metadata: episodes do not match. {current: {}, expected: {}}", ProtoUtils.toString(state.getTrack()), ProtoUtils.toString(episode));
+            ConsoleLoggingModules.warning("Failed updating metadata: episodes do not match. {current: {}, expected: {}}", ProtoUtils.toString(state.getTrack()), ProtoUtils.toString(episode));
             return;
         }
 
@@ -528,7 +528,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                 return -1;
             }, pb.getCurrentTrack(), cmd.getQueue());
         } catch (IllegalStateException ex) {
-            LOGGER.warn("Failed initializing tracks, falling back to start. {uid: {}}", ps.getCurrentUid());
+            ConsoleLoggingModules.warning("Failed initializing tracks, falling back to start. {uid: {}}", ps.getCurrentUid());
             tracksKeeper.initializeStart();
         }
 
@@ -564,7 +564,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                 tracksKeeper.initializeStart();
             }
         } catch (IllegalStateException ex) {
-            LOGGER.warn("Failed initializing tracks, falling back to start. {uri: {}, uid: {}, index: {}}", trackUri, trackUid, trackIndex);
+            ConsoleLoggingModules.warning("Failed initializing tracks, falling back to start. {uri: {}, uid: {}, index: {}}", trackUri, trackUid, trackIndex);
             tracksKeeper.initializeStart();
         }
 
@@ -579,7 +579,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
     synchronized void updateContext(@NotNull JsonObject obj) {
         String uri = obj.get("uri").getAsString();
         if (!context.uri().equals(uri)) {
-            LOGGER.warn("Received update for the wrong context! {context: {}, newUri: {}}", context, uri);
+            ConsoleLoggingModules.warning("Received update for the wrong context! {context: {}, newUri: {}}", context, uri);
             return;
         }
 
@@ -611,7 +611,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         try {
             return tracksKeeper.nextPlayable(autoplayEnabled);
         } catch (IOException | MercuryClient.MercuryException ex) {
-            LOGGER.error("Failed fetching next playable.", ex);
+            ConsoleLoggingModules.error("Failed fetching next playable.", ex);
             return NextPlayable.MISSING_TRACKS;
         }
     }
@@ -622,7 +622,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             PlayableIdWithIndex id = tracksKeeper.nextPlayableDoNotSet();
             return id == null ? null : id.id;
         } catch (IOException | MercuryClient.MercuryException ex) {
-            LOGGER.error("Failed fetching next playable.", ex);
+            ConsoleLoggingModules.error("Failed fetching next playable.", ex);
             return null;
         }
     }
@@ -750,16 +750,16 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                             break;
                         case UPDATE_ITEM_ATTRIBUTES:
                         case UPDATE_LIST_ATTRIBUTES:
-                            LOGGER.warn("Unsupported operation: " + TextFormat.shortDebugString(op));
+                            ConsoleLoggingModules.warning("Unsupported operation: " + TextFormat.shortDebugString(op));
                             break;
                         default:
                         case KIND_UNKNOWN:
-                            LOGGER.warn("Received unknown op: " + op.getKind());
+                            ConsoleLoggingModules.warning("Received unknown op: " + op.getKind());
                             break;
                     }
                 }
 
-                LOGGER.info("Received update for current context! {uri: {}, ops: {}}", modUri, ProtoUtils.opsKindList(mod.getOpsList()));
+                ConsoleLoggingModules.info("Received update for current context! {uri: {}, ops: {}}", modUri, ProtoUtils.opsKindList(mod.getOpsList()));
                 updated();
             } else if (context != null && AbsSpotifyContext.isCollection(session, modUri)) {
                 for (Playlist4ApiProto.Op op : mod.getOpsList()) {
@@ -773,7 +773,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                         performCollectionUpdate(uris, false);
                 }
 
-                LOGGER.info("Updated tracks in collection! {uri: {}, ops: {}}", modUri, ProtoUtils.opsKindList(mod.getOpsList()));
+                ConsoleLoggingModules.info("Updated tracks in collection! {uri: {}, ops: {}}", modUri, ProtoUtils.opsKindList(mod.getOpsList()));
                 updated();
             }
         } else if (context != null && uri.equals("hm://collection/collection/" + session.username() + "/json")) {
@@ -796,7 +796,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             if (added != null) performCollectionUpdate(added, true);
             if (removed != null) performCollectionUpdate(removed, false);
 
-            LOGGER.info("Updated tracks in collection! {added: {}, removed: {}}", added != null, removed != null);
+            ConsoleLoggingModules.info("Updated tracks in collection! {added: {}, removed: {}}", added != null, removed != null);
             updated();
         }
     }
@@ -1111,7 +1111,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
 
             setCurrentTrackIndex(0);
             if (!shouldPlay(tracks.get(getCurrentTrackIndex()))) {
-                LOGGER.debug("Cannot play currently selected track, skipping: {}", getCurrentPlayable());
+                ConsoleLoggingModules.debug("Cannot play currently selected track, skipping: {}", getCurrentPlayable());
 
                 boolean repeatTrack = isRepeatingTrack();
                 if (repeatTrack) state.getOptionsBuilder().setRepeatingTrack(false);
@@ -1129,7 +1129,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                     List<ContextTrack> newTracks = pages.currentPage();
                     int index = finder.apply(newTracks);
                     if (index == -1) {
-                        LOGGER.trace("Did not find track, going to next page.");
+                        ConsoleLoggingModules.debug("Did not find track, going to next page.");
                         tracks.addAll(newTracks);
                         continue;
                     }
@@ -1138,7 +1138,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                     tracks.addAll(newTracks);
 
                     setCurrentTrackIndex(index);
-                    LOGGER.trace("Initialized current track index to {}.", index);
+                    ConsoleLoggingModules.debug("Initialized current track index to {}.", index);
                     break;
                 } else {
                     cannotLoadMore = true;
@@ -1160,11 +1160,11 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             try {
                 if (track != null) enrichCurrentTrack(track);
             } catch (IllegalArgumentException ex) {
-                LOGGER.warn("Failed updating current track metadata.", ex);
+                ConsoleLoggingModules.warning("Failed updating current track metadata.", ex);
             }
 
             if (!shouldPlay(tracks.get(getCurrentTrackIndex()))) {
-                LOGGER.debug("Cannot play currently selected track, skipping: {}", getCurrentPlayable());
+                ConsoleLoggingModules.debug("Cannot play currently selected track, skipping: {}", getCurrentPlayable());
 
                 boolean repeatTrack = isRepeatingTrack();
                 if (repeatTrack) state.getOptionsBuilder().setRepeatingTrack(false);
@@ -1246,9 +1246,9 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             if (!context.isFinite() && tracks.size() - current <= 5) {
                 if (pages.nextPage()) {
                     tracks.addAll(pages.currentPage());
-                    LOGGER.trace("Preloaded next page due to infinite context.");
+                    ConsoleLoggingModules.debug("Preloaded next page due to infinite context.");
                 } else {
-                    LOGGER.warn("Couldn't (pre)load next page of context!");
+                    ConsoleLoggingModules.warning("Couldn't (pre)load next page of context!");
                 }
             }
 
@@ -1346,7 +1346,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                     else break;
                 }
             } catch (IOException | MercuryClient.MercuryException ex) {
-                LOGGER.error("Failed loading all tracks!", ex);
+                ConsoleLoggingModules.error("Failed loading all tracks!", ex);
                 return false;
             }
 
@@ -1366,15 +1366,15 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
 
             if (!cannotLoadMore) {
                 if (loadAllTracks()) {
-                    LOGGER.trace("Loaded all tracks before shuffling (entirely).");
+                    ConsoleLoggingModules.debug("Loaded all tracks before shuffling (entirely).");
                 } else {
-                    LOGGER.error("Cannot shuffle entire context!");
+                    ConsoleLoggingModules.error("Cannot shuffle entire context!");
                     return;
                 }
             }
 
             shuffle.shuffle(tracks, true);
-            LOGGER.trace("Shuffled context entirely!");
+            ConsoleLoggingModules.debug("Shuffled context entirely!");
         }
 
         synchronized void toggleShuffle(boolean value) {
@@ -1385,9 +1385,9 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             if (value) {
                 if (!cannotLoadMore) {
                     if (loadAllTracks()) {
-                        LOGGER.trace("Loaded all tracks before shuffling.");
+                        ConsoleLoggingModules.debug("Loaded all tracks before shuffling.");
                     } else {
-                        LOGGER.error("Cannot shuffle context!");
+                        ConsoleLoggingModules.error("Cannot shuffle context!");
                         return;
                     }
                 }
@@ -1398,7 +1398,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                 Collections.swap(tracks, 0, shuffleKeepIndex);
                 setCurrentTrackIndex(0);
 
-                LOGGER.trace("Shuffled context! {keepIndex: {}}", shuffleKeepIndex);
+                ConsoleLoggingModules.debug("Shuffled context! {keepIndex: {}}", shuffleKeepIndex);
             } else {
                 if (shuffle.canUnshuffle(tracks.size())) {
                     PlayableId currentlyPlaying = getCurrentPlayableOrThrow();
@@ -1407,7 +1407,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                     shuffle.unshuffle(tracks);
                     setCurrentTrackIndex(PlayableId.indexOfTrack(tracks, currentlyPlaying));
 
-                    LOGGER.trace("Unshuffled using Fisher-Yates.");
+                    ConsoleLoggingModules.debug("Unshuffled using Fisher-Yates.");
                 } else {
                     PlayableId id = getCurrentPlayableOrThrow();
 
@@ -1416,7 +1416,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
                     loadAllTracks();
 
                     setCurrentTrackIndex(PlayableId.indexOfTrack(tracks, id));
-                    LOGGER.trace("Unshuffled by reloading context.");
+                    ConsoleLoggingModules.debug("Unshuffled by reloading context.");
                 }
             }
         }
@@ -1431,9 +1431,9 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         void addToTracks(int from, @NotNull List<Playlist4ApiProto.Item> items) {
             if (!cannotLoadMore) {
                 if (loadAllTracks()) {
-                    LOGGER.trace("Loaded all tracks before adding new ones.");
+                    ConsoleLoggingModules.debug("Loaded all tracks before adding new ones.");
                 } else {
-                    LOGGER.warn("Cannot add new tracks!");
+                    ConsoleLoggingModules.warning("Cannot add new tracks!");
                     return;
                 }
             }
@@ -1463,9 +1463,9 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         void removeTracks(int from, int length) {
             if (!cannotLoadMore) {
                 if (loadAllTracks()) {
-                    LOGGER.trace("Loaded all tracks before removing some.");
+                    ConsoleLoggingModules.debug("Loaded all tracks before removing some.");
                 } else {
-                    LOGGER.warn("Cannot remove tracks!");
+                    ConsoleLoggingModules.warning("Cannot remove tracks!");
                     return;
                 }
             }

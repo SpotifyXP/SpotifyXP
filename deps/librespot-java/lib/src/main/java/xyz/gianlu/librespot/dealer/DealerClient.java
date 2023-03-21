@@ -19,14 +19,15 @@ package xyz.gianlu.librespot.dealer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.AsyncWorker;
 import xyz.gianlu.librespot.common.BytesArrayList;
 import xyz.gianlu.librespot.common.NameThreadFactory;
@@ -46,7 +47,6 @@ import java.util.zip.GZIPInputStream;
  * @author Gianlu
  */
 public class DealerClient implements Closeable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DealerClient.class);
     private final AsyncWorker<Runnable> asyncWorker;
     private final Session session;
     private final Map<String, RequestListener> reqListeners = new HashMap<>();
@@ -101,7 +101,7 @@ public class DealerClient implements Closeable {
             try (GZIPInputStream in = new GZIPInputStream(new ByteArrayInputStream(gzip)); Reader reader = new InputStreamReader(in)) {
                 payload = JsonParser.parseReader(reader).getAsJsonObject();
             } catch (IOException ex) {
-                LOGGER.warn("Failed decompressing request! {mid: {}, key: {}}", mid, key, ex);
+                ConsoleLoggingModules.warning("Failed decompressing request! {mid: {}, key: {}}", mid, key, ex);
                 return;
             }
         }
@@ -110,7 +110,7 @@ public class DealerClient implements Closeable {
         String sender = payload.get("sent_by_device_id").getAsString();
 
         JsonObject command = payload.getAsJsonObject("command");
-        LOGGER.trace("Received request. {mid: {}, key: {}, pid: {}, sender: {}, command: {}}", mid, key, pid, sender, command);
+        ConsoleLoggingModules.debug("Received request. {mid: {}, key: {}, pid: {}, sender: {}, command: {}}", mid, key, pid, sender, command);
 
         boolean interesting = false;
         synchronized (reqListeners) {
@@ -122,17 +122,17 @@ public class DealerClient implements Closeable {
                         try {
                             RequestResult result = listener.onRequest(mid, pid, sender, command);
                             if (conn != null) conn.sendReply(key, result);
-                            LOGGER.debug("Handled request. {key: {}, result: {}}", key, result);
+                            ConsoleLoggingModules.debug("Handled request. {key: {}, result: {}}", key, result);
                         } catch (Exception ex) {
                             if (conn != null) conn.sendReply(key, RequestResult.UPSTREAM_ERROR);
-                            LOGGER.error("Failed handling request. {key: {}}", key, ex);
+                            ConsoleLoggingModules.error("Failed handling request. {key: {}}", key, ex);
                         }
                     });
                 }
             }
         }
 
-        if (!interesting) LOGGER.debug("Couldn't dispatch request: " + mid);
+        if (!interesting) ConsoleLoggingModules.debug("Couldn't dispatch request: " + mid);
     }
 
     private void handleMessage(@NotNull JsonObject obj) {
@@ -157,7 +157,7 @@ public class DealerClient implements Closeable {
                     try {
                         in = new GZIPInputStream(in);
                     } catch (IOException ex) {
-                        LOGGER.warn("Failed decompressing message! {uri: {}}", uri, ex);
+                        ConsoleLoggingModules.warning("Failed decompressing message! {uri: {}}", uri, ex);
                         return;
                     }
                 }
@@ -193,9 +193,9 @@ public class DealerClient implements Closeable {
                             try {
                                 listener.onMessage(uri, headers, decodedPayload);
                             } catch (IOException ex) {
-                                LOGGER.error("Failed dispatching message! {uri: {}}", uri, ex);
+                                ConsoleLoggingModules.error("Failed dispatching message! {uri: {}}", uri, ex);
                             } catch (Exception ex) {
-                                LOGGER.error("Failed handling message! {uri: {}}", uri, ex);
+                                ConsoleLoggingModules.error("Failed handling message! {uri: {}}", uri, ex);
                             }
                         });
                         dispatched = true;
@@ -204,7 +204,7 @@ public class DealerClient implements Closeable {
             }
         }
 
-        if (!interesting) LOGGER.debug("Couldn't dispatch message: " + uri);
+        if (!interesting) ConsoleLoggingModules.debug("Couldn't dispatch message: " + uri);
     }
 
     public void addMessageListener(@NotNull MessageListener listener, @NotNull String... uris) {
@@ -267,14 +267,14 @@ public class DealerClient implements Closeable {
 
         conn = null;
 
-        LOGGER.trace("Scheduled reconnection attempt in 10 seconds...");
+        ConsoleLoggingModules.debug("Scheduled reconnection attempt in 10 seconds...");
         lastScheduledReconnection = scheduler.schedule(() -> {
             lastScheduledReconnection = null;
 
             try {
                 connect();
             } catch (IOException | MercuryClient.MercuryException ex) {
-                LOGGER.error("Failed reconnecting, retrying...", ex);
+                ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
                 connectionInvalided();
             }
         }, 10, TimeUnit.SECONDS);
@@ -334,7 +334,7 @@ public class DealerClient implements Closeable {
             if (conn == ConnectionHolder.this)
                 connectionInvalided();
             else
-                LOGGER.debug("Did not dispatch connection invalidated: {} != {}", conn, ConnectionHolder.this);
+                ConsoleLoggingModules.debug("Did not dispatch connection invalidated: {} != {}", conn, ConnectionHolder.this);
         }
 
         private class WebSocketListenerImpl extends WebSocketListener {
@@ -342,11 +342,11 @@ public class DealerClient implements Closeable {
             @Override
             public void onOpen(@NotNull WebSocket ws, @NotNull Response response) {
                 if (closed || scheduler.isShutdown()) {
-                    LOGGER.error("I wonder what happened here... Terminating. {closed: {}}", closed);
+                    ConsoleLoggingModules.error("I wonder what happened here... Terminating. {closed: {}}", closed);
                     return;
                 }
 
-                LOGGER.debug("Dealer connected! {host: {}}", response.request().url().host());
+                ConsoleLoggingModules.debug("Dealer connected! {host: {}}", response.request().url().host());
                 lastScheduledPing = scheduler.scheduleAtFixedRate(() -> {
                     sendPing();
                     receivedPong = false;
@@ -355,7 +355,7 @@ public class DealerClient implements Closeable {
                         if (lastScheduledPing == null || lastScheduledPing.isCancelled()) return;
 
                         if (!receivedPong) {
-                            LOGGER.warn("Did not receive ping in 3 seconds. Reconnecting...");
+                            ConsoleLoggingModules.warning("Did not receive ping in 3 seconds. Reconnecting...");
                             ConnectionHolder.this.close();
                             return;
                         }
@@ -377,14 +377,14 @@ public class DealerClient implements Closeable {
                         try {
                             handleMessage(obj);
                         } catch (Exception ex) {
-                            LOGGER.warn("Failed handling message: " + obj, ex);
+                            ConsoleLoggingModules.warning("Failed handling message: " + obj, ex);
                         }
                         break;
                     case REQUEST:
                         try {
                             handleRequest(obj);
                         } catch (Exception ex) {
-                            LOGGER.warn("Failed handling request: " + obj, ex);
+                            ConsoleLoggingModules.warning("Failed handling request: " + obj, ex);
                         }
                         break;
                     case PONG:
@@ -401,7 +401,7 @@ public class DealerClient implements Closeable {
             public void onFailure(@NotNull WebSocket ws, @NotNull Throwable t, @Nullable Response response) {
                 if (closed) return;
 
-                LOGGER.warn("An exception occurred. Reconnecting...", t);
+                ConsoleLoggingModules.warning("An exception occurred. Reconnecting...", t);
                 ConnectionHolder.this.close();
             }
         }

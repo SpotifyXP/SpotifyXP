@@ -19,14 +19,15 @@ package xyz.gianlu.librespot.audio;
 import com.google.protobuf.ByteString;
 import com.spotify.metadata.Metadata;
 import com.spotify.storage.StorageResolve.StorageResolveResponse;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.cdn.CdnFeedHelper;
 import xyz.gianlu.librespot.audio.cdn.CdnManager;
 import xyz.gianlu.librespot.audio.format.AudioQualityPicker;
@@ -56,7 +57,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
  */
 @SuppressWarnings("ProtectedMemberInFinalClass")
 public final class PlayableContentFeeder {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlayableContentFeeder.class);
+    
     private static final String STORAGE_RESOLVE_INTERACTIVE = "/storage-resolve/files/audio/interactive/%s";
     private static final String STORAGE_RESOLVE_INTERACTIVE_PREFETCH = "/storage-resolve/files/audio/interactive_prefetch/%s";
     protected final Session session;
@@ -111,7 +112,7 @@ public final class PlayableContentFeeder {
             String country = session.countryCode();
             if (country != null) ContentRestrictedException.checkRestrictions(country, original.getRestrictionList());
 
-            LOGGER.error("Couldn't find playable track: " + id.toSpotifyUri());
+            ConsoleLoggingModules.error("Couldn't find playable track: " + id.toSpotifyUri());
             throw new FeederException();
         }
 
@@ -145,7 +146,7 @@ public final class PlayableContentFeeder {
                     if (track != null) return StorageFeedHelper.loadTrack(session, track, file, preload, haltListener);
                     else return StorageFeedHelper.loadEpisode(session, episode, file, preload, haltListener);
                 } catch (AudioFileFetch.StorageNotAvailable ex) {
-                    LOGGER.info("Storage is not available. Going CDN: " + ex.cdnUrl);
+                    ConsoleLoggingModules.info("Storage is not available. Going CDN: " + ex.cdnUrl);
                     return loadCdnStream(file, track, episode, ex.cdnUrl, preload, haltListener);
                 }
             case RESTRICTED:
@@ -162,7 +163,7 @@ public final class PlayableContentFeeder {
         Metadata.AudioFile file = audioQualityPicker.getFile(track.getFileList());
 
         if (file == null) {
-            LOGGER.error("Couldn't find any suitable audio file, available: {}", Utils.formatsToString(track.getFileList()));
+            ConsoleLoggingModules.error("Couldn't find any suitable audio file, available: {}", Utils.formatsToString(track.getFileList()));
             throw new FeederException();
         }
 
@@ -178,7 +179,7 @@ public final class PlayableContentFeeder {
         } else {
             Metadata.AudioFile file = audioQualityPicker.getFile(episode.getAudioList());
             if (file == null) {
-                LOGGER.error("Couldn't find any suitable audio file, available: {}", Utils.formatsToString(episode.getAudioList()));
+                ConsoleLoggingModules.error("Couldn't find any suitable audio file, available: {}", Utils.formatsToString(episode.getAudioList()));
                 throw new FeederException();
             }
 
@@ -187,7 +188,7 @@ public final class PlayableContentFeeder {
     }
 
     private static class FileAudioStream implements DecodedAudioStream {
-        private static final Logger LOGGER = LoggerFactory.getLogger(FileAudioStream.class);
+        
         private final File file;
         private final RandomAccessFile raf;
         private final byte[][] buffer;
@@ -251,12 +252,12 @@ public final class PlayableContentFeeder {
 
                 @Override
                 public void streamReadHalted(int chunk, long time) {
-                    LOGGER.warn("Not dispatching stream read halted event {chunk: {}}", chunk);
+                    ConsoleLoggingModules.warning("Not dispatching stream read halted event {chunk: {}}", chunk);
                 }
 
                 @Override
                 public void streamReadResumed(int chunk, long time) {
-                    LOGGER.warn("Not dispatching stream read resumed event {chunk: {}}", chunk);
+                    ConsoleLoggingModules.warning("Not dispatching stream read resumed event {chunk: {}}", chunk);
                 }
             };
         }

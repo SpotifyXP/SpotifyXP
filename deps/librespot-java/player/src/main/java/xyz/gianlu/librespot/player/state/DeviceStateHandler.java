@@ -24,10 +24,11 @@ import com.google.protobuf.TextFormat;
 import com.spotify.connectstate.Connect;
 import com.spotify.connectstate.Player;
 import com.spotify.context.ContextTrackOuterClass.ContextTrack;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.Version;
 import xyz.gianlu.librespot.common.AsyncWorker;
 import xyz.gianlu.librespot.common.ProtoUtils;
@@ -52,13 +53,12 @@ import java.util.concurrent.RejectedExecutionException;
  */
 @SuppressWarnings("NullableProblems")
 public final class DeviceStateHandler implements Closeable, DealerClient.MessageListener, DealerClient.RequestListener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DeviceStateHandler.class);
 
     static {
         try {
             ProtoUtils.overrideDefaultValue(Connect.PutStateRequest.getDescriptor().findFieldByName("has_been_playing_for_ms"), -1);
         } catch (IllegalAccessException | NoSuchFieldException ex) {
-            LOGGER.warn("Failed changing default value!", ex);
+            ConsoleLoggingModules.warning("Failed changing default value!", ex);
         }
     }
 
@@ -122,7 +122,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
 
     private void notifyCommand(@NotNull Endpoint endpoint, @NotNull CommandBody data) {
         if (listeners.isEmpty()) {
-            LOGGER.warn("Cannot dispatch command because there are no listeners. {command: {}}", endpoint);
+            ConsoleLoggingModules.warning("Cannot dispatch command because there are no listeners. {command: {}}", endpoint);
             return;
         }
 
@@ -130,7 +130,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
             try {
                 listener.command(endpoint, data);
             } catch (InvalidProtocolBufferException ex) {
-                LOGGER.error("Failed parsing command!", ex);
+                ConsoleLoggingModules.error("Failed parsing command!", ex);
             }
         }
     }
@@ -153,7 +153,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
 
         if (connectionId == null || !connectionId.equals(newer)) {
             connectionId = newer;
-            LOGGER.debug("Updated Spotify-Connection-Id: " + connectionId);
+            ConsoleLoggingModules.debug("Updated Spotify-Connection-Id: " + connectionId);
             notifyReady();
         }
     }
@@ -169,14 +169,14 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
             Connect.ClusterUpdate update = Connect.ClusterUpdate.parseFrom(payload);
 
             long now = TimeProvider.currentTimeMillis();
-            if (LOGGER.isTraceEnabled())
-                LOGGER.trace("Received cluster update at {}: {}", now, TextFormat.shortDebugString(update));
+            if (ConsoleLoggingModules.isTraceEnabled())
+                ConsoleLoggingModules.debug("Received cluster update at {}: {}", now, TextFormat.shortDebugString(update));
 
             long ts = update.getCluster().getTimestamp() - 3000; // Workaround
             if (!session.deviceId().equals(update.getCluster().getActiveDeviceId()) && isActive() && now > startedPlayingAt() && ts > startedPlayingAt())
                 notifyNotActive();
         } else {
-            LOGGER.warn("Message left unhandled! {uri: {}}", uri);
+            ConsoleLoggingModules.warning("Message left unhandled! {uri: {}}", uri);
         }
     }
 
@@ -208,7 +208,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
             if (!putState.getIsActive()) {
                 long now = TimeProvider.currentTimeMillis();
                 putState.setIsActive(true).setStartedPlayingAt(now);
-                LOGGER.debug("Device is now active. {ts: {}}", now);
+                ConsoleLoggingModules.debug("Device is now active. {ts: {}}", now);
             }
         } else {
             putState.setIsActive(false).clearStartedPlayingAt();
@@ -234,7 +234,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
         try {
             putStateWorker.submit(putState.build());
         } catch (RejectedExecutionException ex) {
-            if (!closing) LOGGER.error("Failed to submit update state task.", ex);
+            if (!closing) ConsoleLoggingModules.error("Failed to submit update state task.", ex);
         }
     }
 
@@ -248,7 +248,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
         }
 
         notifyVolumeChange();
-        LOGGER.trace("Update volume. {volume: {}/{}}", val, xyz.gianlu.librespot.player.Player.VOLUME_MAX);
+        ConsoleLoggingModules.debug("Update volume. {volume: {}/{}}", val, xyz.gianlu.librespot.player.Player.VOLUME_MAX);
     }
 
     @Override
@@ -270,15 +270,15 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
     private void putConnectState(@NotNull Connect.PutStateRequest req) {
         try {
             session.api().putConnectState(connectionId, req);
-            if (LOGGER.isTraceEnabled()) {
-                LOGGER.info("Put state. {ts: {}, connId: {}, reason: {}, request: {}}", req.getClientSideTimestamp(),
+            if (ConsoleLoggingModules.isTraceEnabled()) {
+                ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}, request: {}}", req.getClientSideTimestamp(),
                         Utils.truncateMiddle(connectionId, 10), req.getPutStateReason(), TextFormat.shortDebugString(putState));
             } else {
-                LOGGER.info("Put state. {ts: {}, connId: {}, reason: {}}", req.getClientSideTimestamp(),
+                ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}}", req.getClientSideTimestamp(),
                         Utils.truncateMiddle(connectionId, 10), req.getPutStateReason());
             }
         } catch (IOException | MercuryClient.MercuryException ex) {
-            LOGGER.error("Failed updating state.", ex);
+            ConsoleLoggingModules.error("Failed updating state.", ex);
         }
     }
 

@@ -20,9 +20,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
 import com.spotify.Authentication;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.Version;
 import xyz.gianlu.librespot.common.NetUtils;
 import xyz.gianlu.librespot.common.Utils;
@@ -39,7 +40,7 @@ import java.net.URL;
  */
 public final class FacebookAuthenticator implements Closeable {
     private static final URL LOGIN_SPOTIFY;
-    private static final Logger LOGGER = LoggerFactory.getLogger(FacebookAuthenticator.class);
+    
     private static final byte[] EOL = new byte[]{'\r', '\n'};
 
     static {
@@ -62,7 +63,7 @@ public final class FacebookAuthenticator implements Closeable {
             JsonObject obj = JsonParser.parseReader(reader).getAsJsonObject();
             credentialsUrl = obj.get("credentials_url").getAsString();
             String loginUrl = obj.get("login_url").getAsString();
-            LOGGER.info("Visit {} in your browser.", loginUrl);
+            ConsoleLoggingModules.info("Visit {} in your browser.", loginUrl);
             startPolling();
         } finally {
             conn.disconnect();
@@ -90,7 +91,7 @@ public final class FacebookAuthenticator implements Closeable {
     private void authData(@NotNull String json) {
         JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
         if (!obj.get("error").isJsonNull()) {
-            LOGGER.error("Error during authentication: " + obj.get("error"));
+            ConsoleLoggingModules.error("Error during authentication: " + obj.get("error"));
             return;
         }
 
@@ -165,13 +166,13 @@ public final class FacebookAuthenticator implements Closeable {
                             json = Utils.readLine(in);
                         }
 
-                        LOGGER.trace("Received authentication data: " + json);
+                        ConsoleLoggingModules.debug("Received authentication data: " + json);
                         authData(json);
                         break;
                     }
                 }
             } catch (IOException ex) {
-                LOGGER.error("Failed polling Spotify credentials URL!", ex);
+                ConsoleLoggingModules.error("Failed polling Spotify credentials URL!", ex);
             }
         }
     }

@@ -16,11 +16,12 @@
 
 package xyz.gianlu.librespot.player;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.MetadataWrapper;
 import xyz.gianlu.librespot.core.Session;
 import xyz.gianlu.librespot.metadata.PlayableId;
@@ -31,7 +32,7 @@ import java.io.IOException;
  * @author devgianlu
  */
 public final class ShellEvents implements Player.EventsListener, Session.ReconnectionListener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ShellEvents.class);
+    
     private final Configuration conf;
     private final Runtime runtime;
 
@@ -52,9 +53,9 @@ public final class ShellEvents implements Player.EventsListener, Session.Reconne
             if (conf.executeWithBash) p = runtime.exec(new String[]{"/bin/bash", "-c", command.trim()}, envp);
             else p = runtime.exec(command.trim(), envp);
             int exitCode = p.waitFor();
-            LOGGER.trace("Executed shell command: {} -> {}", command, exitCode);
+            ConsoleLoggingModules.debug("Executed shell command: {} -> {}", command, exitCode);
         } catch (IOException | InterruptedException ex) {
-            LOGGER.error("Failed executing command: {}", command, ex);
+            ConsoleLoggingModules.error("Failed executing command: {}", command, ex);
         }
     }
 

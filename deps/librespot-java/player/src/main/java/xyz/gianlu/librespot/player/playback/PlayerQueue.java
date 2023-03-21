@@ -16,11 +16,12 @@
 
 package xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.NameThreadFactory;
 
 import java.io.Closeable;
@@ -33,7 +34,7 @@ import java.util.concurrent.Executors;
  * @author devgianlu
  */
 final class PlayerQueue implements Closeable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlayerQueue.class);
+    
     private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "player-queue-" + r.hashCode()));
     private PlayerQueueEntry head = null;
 
@@ -79,7 +80,7 @@ final class PlayerQueue implements Closeable {
         else head.setNext(entry);
         executorService.execute(entry);
 
-        LOGGER.trace("{} added to queue.", entry);
+        ConsoleLoggingModules.debug("{} added to queue.", entry);
     }
 
     /**
@@ -104,7 +105,7 @@ final class PlayerQueue implements Closeable {
         oldEntry.close();
         if (swapped) {
             executorService.execute(newEntry);
-            LOGGER.trace("{} swapped with {}.", oldEntry, newEntry);
+            ConsoleLoggingModules.debug("{} swapped with {}.", oldEntry, newEntry);
         }
     }
 
@@ -126,7 +127,7 @@ final class PlayerQueue implements Closeable {
             removed = head.remove(entry);
         }
 
-        if (removed) LOGGER.trace("{} removed from queue.", entry);
+        if (removed) ConsoleLoggingModules.debug("{} removed from queue.", entry);
     }
 
     /**
@@ -154,7 +155,7 @@ final class PlayerQueue implements Closeable {
         if (head != null) head.clear();
         executorService.shutdown();
 
-        LOGGER.trace("Queue has been cleared.");
+        ConsoleLoggingModules.debug("Queue has been cleared.");
     }
 
     abstract static class Entry {

@@ -1,10 +1,12 @@
 package com.spotifyxp.panels;
 
+import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.custom.StoppableThreadRunnable;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.StoppableThread;
 import com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
@@ -13,6 +15,9 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.frames.SettingsFrame;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.swingextension.JImagePanel;
+import com.spotifyxp.updater.Updater;
+import com.spotifyxp.utils.ConnectionUtils;
+import com.spotifyxp.utils.DoubleArrayList;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.commons.httpclient.NameValuePair;
@@ -26,6 +31,7 @@ import sun.security.mscapi.CPublicKey;
 import xyz.gianlu.librespot.player.Player;
 import xyz.gianlu.librespot.player.StateWrapper;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -34,8 +40,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
+import java.io.BufferedInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -331,6 +342,18 @@ public class ContentPanel extends JPanel {
         hotslistsongscrollpanel.setBounds(0, 0, 524, 421);
         hotlistsonglistpanel.add(hotslistsongscrollpanel);
 
+        ContextMenu hotlistplaylistspanelrightclickmenu = new ContextMenu(hotlistplayliststable);
+        hotlistplaylistspanelrightclickmenu.addItem("Refresh", new Runnable() {
+            @Override
+            public void run() {
+                hotlistplaylistlistcache.clear();
+                hotlistsonglistcache.clear();
+                ((DefaultTableModel)hotlistsongstable.getModel()).setRowCount(0);
+                ((DefaultTableModel)hotlistplayliststable.getModel()).setRowCount(0);
+                fetchHotlist();
+            }
+        });
+
         hotlistsongstable = new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -447,7 +470,7 @@ public class ContentPanel extends JPanel {
         feedbackpane.setLayout(null);
 
         feedbackmakesurelabel = new JLabel(l.translate("ui.feedback.makesure"));
-        feedbackmakesurelabel.setBounds(10, 23, 553, 25);
+        feedbackmakesurelabel.setBounds(10, 23, 690, 25);
         feedbackpane.add(feedbackmakesurelabel);
 
         feedbackissuepanel = new JPanel();
@@ -465,7 +488,7 @@ public class ContentPanel extends JPanel {
         feedbackissuepanel.add(feedbackcreateissuebutton);
 
         feedbackgithubbutton = new JButton(l.translate("ui.feedback.github.open"));
-        feedbackgithubbutton.setBounds(466, 355, 213, 55);
+        feedbackgithubbutton.setBounds(466, 355, 250, 55);
         feedbackpane.add(feedbackgithubbutton);
 
         feedbackupdatespanel = new JPanel();
@@ -535,6 +558,25 @@ public class ContentPanel extends JPanel {
             }
         });
 
+        ContextMenu menu = new ContextMenu(playlistsplayliststable);
+        menu.addItem("Remove Playlist", new Runnable() {
+            @Override
+            public void run() {
+                //ToDo: Implement this with caution
+                JOptionPane.showConfirmDialog(null, "The function 'Remove Playlist' is not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION);
+            }
+        });
+
+        menu.addItem("Copy URI", new Runnable() {
+            @Override
+            public void run() {
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                Clipboard clipboard = toolkit.getSystemClipboard();
+                StringSelection strSel = new StringSelection(playlistsuricache.get(playlistsplayliststable.getSelectedRow()));
+                clipboard.setContents(strSel, null);
+            }
+        });
+
         playlistsplayliststable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -578,27 +620,6 @@ public class ContentPanel extends JPanel {
         hotlistplayliststable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(SwingUtilities.isRightMouseButton(e)) {
-                    JPopupMenu rightmenu = new JPopupMenu();
-                    JMenuItem refresh = new JMenuItem("Refresh");
-                    refresh.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            hotlistplaylistlistcache.clear();
-                            hotlistsonglistcache.clear();
-                            ((DefaultTableModel)hotlistsongstable.getModel()).setRowCount(0);
-                            ((DefaultTableModel)hotlistplayliststable.getModel()).setRowCount(0);
-                            try {
-                                fetchHotlist();
-                            }catch (RuntimeException exc) {
-                                JOptionPane.showConfirmDialog(frame, "Something went wrong", "JSON Exception", JOptionPane.OK_CANCEL_OPTION);
-                            }
-                        }
-                    });
-                    rightmenu.add(refresh);
-                    rightmenu.show(frame, e.getXOnScreen(), e.getYOnScreen());
-                    return;
-                }
                 ((DefaultTableModel)hotlistsongstable.getModel()).setRowCount(0);
                 hotlistsonglistcache.clear();
                 if(e.getClickCount()==2) {
@@ -807,6 +828,14 @@ public class ContentPanel extends JPanel {
         searchclearfieldsbutton = new JButton(l.translate("ui.search.searchfield.button.clear"));
         searchclearfieldsbutton.setBounds(30, 94, 194, 23);
         searchsearchfieldspanel.add(searchclearfieldsbutton);
+
+        searchclearfieldsbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchartistfield.setText("");
+                searchsongtitlefield.setText("");
+            }
+        });
 
         searchfinditbutton = new JButton(l.translate("ui.search.searchfield.button.findit"));
         searchfinditbutton.setBounds(234, 94, 194, 23);
@@ -1026,6 +1055,42 @@ public class ContentPanel extends JPanel {
                 //View issues on GitHub
             }
         });
+        feedbackupdaterversionfield.setEditable(false);
+        feedbackupdaterdownloadbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DoubleArrayList updater = new Updater().updateAvailable();
+                String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
+                try (BufferedInputStream in = new BufferedInputStream(new URL(((GitHubAPI.Release) updater.getSecond(0)).downloadURL).openStream());
+                     FileOutputStream fileOutputStream = new FileOutputStream("SpotifyXP.jar")) {
+                    byte dataBuffer[] = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                        fileOutputStream.write(dataBuffer, 0, bytesRead);
+                    }
+                } catch (IOException e2) {
+                    ConsoleLogging.Throwable(e2);
+                }
+            }
+        });
+        feedbackgithubbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConnectionUtils.openBrowser("https://github.com/werwolf2303/SpotifyXP");
+            }
+        });
+        feedbackviewissuesbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConnectionUtils.openBrowser("https://github.com/werwolf2303/SpotifyXP/issues");
+            }
+        });
+        feedbackcreateissuebutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConnectionUtils.openBrowser("https://github.com/werwolf2303/SpotifyXP/issues/new");
+            }
+        });
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
     }
     public void setLibraryVisible() {
@@ -1228,6 +1293,11 @@ public class ContentPanel extends JPanel {
     public void open() {
         JFrame mainframe = new JFrame("SpotifyXP - v" + PublicValues.version);
         frame = mainframe;
+        try {
+            mainframe.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+        }
         mainframe.getContentPane().add(this);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.setResizable(false);

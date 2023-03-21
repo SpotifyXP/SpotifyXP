@@ -17,10 +17,11 @@
 package xyz.gianlu.librespot.audio.decoders;
 
 import com.spotify.metadata.Metadata;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.format.AudioQualityPicker;
 import xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import xyz.gianlu.librespot.common.Utils;
@@ -31,7 +32,7 @@ import java.util.List;
  * @author Gianlu
  */
 public final class VorbisOnlyAudioQuality implements AudioQualityPicker {
-    private static final Logger LOGGER = LoggerFactory.getLogger(VorbisOnlyAudioQuality.class);
+    
     private final AudioQuality preferred;
 
     public VorbisOnlyAudioQuality(@NotNull AudioQuality preferred) {
@@ -55,9 +56,9 @@ public final class VorbisOnlyAudioQuality implements AudioQualityPicker {
         if (vorbis == null) {
             vorbis = getVorbisFile(files);
             if (vorbis != null)
-                LOGGER.warn("Using {} because preferred {} couldn't be found.", vorbis.getFormat(), preferred);
+                ConsoleLoggingModules.warning("Using {} because preferred {} couldn't be found.", vorbis.getFormat(), preferred);
             else
-                LOGGER.error("Couldn't find any Vorbis file, available: {}", Utils.formatsToString(files));
+                ConsoleLoggingModules.error("Couldn't find any Vorbis file, available: {}", Utils.formatsToString(files));
         }
 
         return vorbis;

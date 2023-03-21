@@ -61,7 +61,7 @@ public class PlayerListener implements Player.EventsListener {
                 //        HH MM SS
                 //Display 00:00:00
                 if(!ContentPanel.frame.isVisible()) {
-                    BackgroundService.trayDialog.getTrayIcon().displayMessage("SpotifyXP: Now Playing", a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName() + " - " + TrackUtils.getArtists(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()), TrayIcon.MessageType.INFO);
+                    //BackgroundService.trayDialog.getTrayIcon().displayMessage("SpotifyXP: Now Playing", a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName() + " - " + TrackUtils.getArtists(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()), TrayIcon.MessageType.INFO);
                 }
                 ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                 ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());

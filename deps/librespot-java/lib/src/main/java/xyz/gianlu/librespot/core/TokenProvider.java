@@ -18,10 +18,11 @@ package xyz.gianlu.librespot.core;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.Utils;
 import xyz.gianlu.librespot.json.GenericJson;
 import xyz.gianlu.librespot.mercury.MercuryClient;
@@ -37,7 +38,6 @@ import java.util.Objects;
  * @author Gianlu
  */
 public final class TokenProvider {
-    private final static Logger LOGGER = LoggerFactory.getLogger(TokenProvider.class);
     private final static int TOKEN_EXPIRE_THRESHOLD = 10;
     private final Session session;
     private final List<StoredToken> tokens = new ArrayList<>();
@@ -65,11 +65,11 @@ public final class TokenProvider {
             else return token;
         }
 
-        LOGGER.debug("Token expired or not suitable, requesting again. {scopes: {}, oldToken: {}}", Arrays.asList(scopes), token);
+        ConsoleLoggingModules.debug("Token expired or not suitable, requesting again. {scopes: {}, oldToken: {}}", Arrays.asList(scopes), token);
         GenericJson resp = session.mercury().sendSync(MercuryRequests.requestToken(session.deviceId(), String.join(",", scopes)));
         token = new StoredToken(resp.obj);
 
-        LOGGER.debug("Updated token successfully! {scopes: {}, newToken: {}}", Arrays.asList(scopes), token);
+        ConsoleLoggingModules.debug("Updated token successfully! {scopes: {}, newToken: {}}", Arrays.asList(scopes), token);
         tokens.add(token);
 
         return token;

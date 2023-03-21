@@ -5,6 +5,15 @@
       <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,org.apache.hc.client5.http.impl.classic.HttpClientBuilder,build,xyz.gianlu.librespot.audio.storage.AudioFileStreaming,requestHeaders,io.undertow.server.HttpServerExchange,startBlocking,xyz.gianlu.librespot.player.mixing.output.LineHelper,findMixer,java.util.Map,remove,okhttp3.Call,execute,xyz.gianlu.librespot.ZeroconfServer.Builder,create,xyz.gianlu.librespot.core.Session,channel|mercury|dealer,xyz.gianlu.librespot.audio.DecodedAudioStream,stream" />
     </inspection_tool>
     <inspection_tool class="GrazieInspection" enabled="false" level="GRAMMAR_ERROR" enabled_by_default="false" />
+    <inspection_tool class="MavenPackageUpdate" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="excludeList">
+        <list>
+          <option value="org.slf4j:slf4j-api" />
+          <option value="org.apache.logging.log4j:log4j-slf4j-impl" />
+          <option value="io.undertow:undertow-core" />
+        </list>
+      </option>
+    </inspection_tool>
     <inspection_tool class="RegExpRedundantEscape" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
       <option name="processCode" value="true" />

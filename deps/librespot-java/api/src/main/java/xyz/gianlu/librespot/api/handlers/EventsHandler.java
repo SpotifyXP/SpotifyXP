@@ -17,12 +17,11 @@
 package xyz.gianlu.librespot.api.handlers;
 
 import com.google.gson.JsonObject;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import io.undertow.websockets.WebSocketConnectionCallback;
 import io.undertow.websockets.WebSocketProtocolHandshakeHandler;
 import io.undertow.websockets.core.WebSocketChannel;
 import io.undertow.websockets.core.WebSockets;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
@@ -34,10 +33,9 @@ import xyz.gianlu.librespot.metadata.PlayableId;
 import xyz.gianlu.librespot.player.Player;
 
 public final class EventsHandler extends WebSocketProtocolHandshakeHandler implements Player.EventsListener, PlayerWrapper.Listener, Session.ReconnectionListener {
-    private static final Logger LOGGER = LogManager.getLogger(EventsHandler.class);
 
     public EventsHandler() {
-        super((WebSocketConnectionCallback) (exchange, channel) -> LOGGER.info("Accepted new websocket connection from {}.", channel.getSourceAddress().getAddress()));
+        super((WebSocketConnectionCallback) (exchange, channel) -> ConsoleLoggingModules.info("Accepted new websocket connection from {}.", channel.getSourceAddress().getAddress()));
     }
 
     private void dispatch(@NotNull JsonObject obj) {

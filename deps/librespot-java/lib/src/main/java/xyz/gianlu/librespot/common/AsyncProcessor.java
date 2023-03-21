@@ -17,9 +17,10 @@
 package xyz.gianlu.librespot.common;
 
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 
 import java.io.Closeable;
 import java.util.concurrent.ExecutorService;
@@ -36,7 +37,7 @@ import java.util.function.Function;
  * @param <RES> Return type of our processor implementation
  */
 public class AsyncProcessor<REQ, RES> implements Closeable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncProcessor.class);
+    
     private final String name;
     private final Function<REQ, RES> processor;
     private final ExecutorService executor;
@@ -49,7 +50,7 @@ public class AsyncProcessor<REQ, RES> implements Closeable {
         executor = Executors.newSingleThreadExecutor(new NameThreadFactory(r -> name));
         this.name = name;
         this.processor = processor;
-        LOGGER.trace("AsyncProcessor{{}} has started", name);
+        ConsoleLoggingModules.debug("AsyncProcessor{{}} has started", name);
     }
 
     public Future<RES> submit(@NotNull REQ task) {
@@ -61,7 +62,7 @@ public class AsyncProcessor<REQ, RES> implements Closeable {
             throw new IllegalStateException(String.format("AsyncProcessor{%s} hasn't been shut down yet", name));
 
         if (executor.awaitTermination(timeout, unit)) {
-            LOGGER.trace("AsyncProcessor{{}} is shut down", name);
+            ConsoleLoggingModules.debug("AsyncProcessor{{}} is shut down", name);
             return true;
         } else {
             return false;
@@ -70,7 +71,7 @@ public class AsyncProcessor<REQ, RES> implements Closeable {
 
     @Override
     public void close() {
-        LOGGER.trace("AsyncProcessor{{}} is shutting down", name);
+        ConsoleLoggingModules.debug("AsyncProcessor{{}} is shutting down", name);
         executor.shutdown();
     }
 }

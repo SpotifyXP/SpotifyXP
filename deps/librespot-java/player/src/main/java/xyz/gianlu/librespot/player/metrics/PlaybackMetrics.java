@@ -16,10 +16,11 @@
 
 package xyz.gianlu.librespot.player.metrics;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.core.Session;
 import xyz.gianlu.librespot.core.TimeProvider;
 import xyz.gianlu.librespot.metadata.PlayableId;
@@ -33,7 +34,7 @@ import java.util.List;
  * @author devgianlu
  */
 public class PlaybackMetrics {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlaybackMetrics.class);
+    
     public final PlayableId id;
     final String playbackId;
     final String featureVersion;
@@ -99,7 +100,7 @@ public class PlaybackMetrics {
 
     public void sendEvents(@NotNull Session session, @NotNull DeviceStateHandler device) {
         if (player == null || player.contentMetrics == null || device.getLastCommandSentByDeviceId() == null) {
-            LOGGER.warn("Did not send event because of missing metrics: " + playbackId);
+            ConsoleLoggingModules.warning("Did not send event because of missing metrics: " + playbackId);
             return;
         }
 

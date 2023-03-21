@@ -18,12 +18,13 @@ package xyz.gianlu.librespot;
 
 import com.google.gson.JsonObject;
 import com.spotify.connectstate.Connect;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.HttpUrl;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.NameThreadFactory;
 import xyz.gianlu.librespot.common.Utils;
 import xyz.gianlu.librespot.core.Session;
@@ -57,7 +58,7 @@ public class ZeroconfServer implements Closeable {
     public static final String SERVICE = "spotify-connect";
     private final static int MAX_PORT = 65536;
     private final static int MIN_PORT = 1024;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ZeroconfServer.class);
+    
     private static final byte[] EOL = new byte[]{'\r', '\n'};
     private static final JsonObject DEFAULT_GET_INFO_FIELDS = new JsonObject();
     private static final JsonObject DEFAULT_SUCCESSFUL_ADD_USER = new JsonObject();
@@ -137,7 +138,7 @@ public class ZeroconfServer implements Closeable {
                 for (String str : interfacesList) {
                     NetworkInterface nif = NetworkInterface.getByName(str);
                     if (nif == null) {
-                        LOGGER.warn("Interface {} doesn't exists.", str);
+                        ConsoleLoggingModules.warning("Interface {} doesn't exists.", str);
                         continue;
                     }
 
@@ -166,7 +167,7 @@ public class ZeroconfServer implements Closeable {
         String host = InetAddress.getLocalHost().getHostName();
         if (Objects.equals(host, "localhost")) {
             host = Utils.toBase64(BigInteger.valueOf(ThreadLocalRandom.current().nextLong()).toByteArray()) + ".local";
-            LOGGER.warn("Hostname cannot be `localhost`, temporary hostname: " + host);
+            ConsoleLoggingModules.warning("Hostname cannot be `localhost`, temporary hostname: " + host);
             return host;
         }
 
@@ -264,25 +265,25 @@ public class ZeroconfServer implements Closeable {
     private void handleAddUser(OutputStream out, Map<String, String> params, String httpVersion) throws GeneralSecurityException, IOException {
         String username = params.get("userName");
         if (username == null || username.isEmpty()) {
-            LOGGER.error("Missing userName!");
+            ConsoleLoggingModules.error("Missing userName!");
             return;
         }
 
         String blobStr = params.get("blob");
         if (blobStr == null || blobStr.isEmpty()) {
-            LOGGER.error("Missing blob!");
+            ConsoleLoggingModules.error("Missing blob!");
             return;
         }
 
         String clientKeyStr = params.get("clientKey");
         if (clientKeyStr == null || clientKeyStr.isEmpty()) {
-            LOGGER.error("Missing clientKey!");
+            ConsoleLoggingModules.error("Missing clientKey!");
             return;
         }
 
         synchronized (connectionLock) {
             if (username.equals(connectingUsername)) {
-                LOGGER.info("{} is already trying to connect.", username);
+                ConsoleLoggingModules.info("{} is already trying to connect.", username);
 
                 out.write(httpVersion.getBytes());
                 out.write(" 403 Forbidden".getBytes()); // I don't think this is the Spotify way
@@ -317,7 +318,7 @@ public class ZeroconfServer implements Closeable {
         byte[] mac = hmac.doFinal();
 
         if (!Arrays.equals(mac, checksum)) {
-            LOGGER.error("Mac and checksum don't match!");
+            ConsoleLoggingModules.error("Mac and checksum don't match!");
 
             out.write(httpVersion.getBytes());
             out.write(" 400 Bad Request".getBytes()); // I don't think this is the Spotify way
@@ -334,7 +335,7 @@ public class ZeroconfServer implements Closeable {
         try {
             closeSession();
         } catch (IOException ex) {
-            LOGGER.warn("Failed closing previous session.", ex);
+            ConsoleLoggingModules.warning("Failed closing previous session.", ex);
         }
 
         try {
@@ -342,7 +343,7 @@ public class ZeroconfServer implements Closeable {
                 connectingUsername = username;
             }
 
-            LOGGER.info("Accepted new user from {}. {deviceId: {}}", params.get("deviceName"), inner.deviceId);
+            ConsoleLoggingModules.info("Accepted new user from {}. {deviceId: {}}", params.get("deviceName"), inner.deviceId);
 
             // Sending response
             String resp = DEFAULT_SUCCESSFUL_ADD_USER.toString();
@@ -372,7 +373,7 @@ public class ZeroconfServer implements Closeable {
 
             sessionListeners.forEach(l -> l.sessionChanged(session));
         } catch (Session.SpotifyAuthenticationException | MercuryClient.MercuryException | IOException | GeneralSecurityException ex) {
-            LOGGER.error("Couldn't establish a new session.", ex);
+            ConsoleLoggingModules.error("Couldn't establish a new session.", ex);
 
             synchronized (connectionLock) {
                 connectingUsername = null;
@@ -470,7 +471,7 @@ public class ZeroconfServer implements Closeable {
 
         HttpRunner(int port) throws IOException {
             serverSocket = new ServerSocket(port);
-            LOGGER.info("Zeroconf HTTP server started successfully on port {}!", port);
+            ConsoleLoggingModules.info("Zeroconf HTTP server started successfully on port {}!", port);
         }
 
         @Override
@@ -483,11 +484,11 @@ public class ZeroconfServer implements Closeable {
                             handle(socket);
                             socket.close();
                         } catch (IOException ex) {
-                            LOGGER.error("Failed handling request!", ex);
+                            ConsoleLoggingModules.error("Failed handling request!", ex);
                         }
                     });
                 } catch (IOException ex) {
-                    if (!shouldStop) LOGGER.error("Failed handling connection!", ex);
+                    if (!shouldStop) ConsoleLoggingModules.error("Failed handling connection!", ex);
                 }
             }
         }
@@ -499,16 +500,16 @@ public class ZeroconfServer implements Closeable {
                 try {
                     handleAddUser(out, params, httpVersion);
                 } catch (GeneralSecurityException | IOException ex) {
-                    LOGGER.error("Failed handling addUser!", ex);
+                    ConsoleLoggingModules.error("Failed handling addUser!", ex);
                 }
             } else if (Objects.equals(action, "getInfo")) {
                 try {
                     handleGetInfo(out, httpVersion);
                 } catch (IOException ex) {
-                    LOGGER.error("Failed handling getInfo!", ex);
+                    ConsoleLoggingModules.error("Failed handling getInfo!", ex);
                 }
             } else {
-                LOGGER.warn("Unknown action: " + action);
+                ConsoleLoggingModules.warning("Unknown action: " + action);
             }
         }
 
@@ -518,7 +519,7 @@ public class ZeroconfServer implements Closeable {
 
             String[] requestLine = Utils.split(Utils.readLine(in), ' ');
             if (requestLine.length != 3) {
-                LOGGER.warn("Unexpected request line: " + Arrays.toString(requestLine));
+                ConsoleLoggingModules.warning("Unexpected request line: " + Arrays.toString(requestLine));
                 return;
             }
 
@@ -534,19 +535,19 @@ public class ZeroconfServer implements Closeable {
             }
 
             if (!hasValidSession())
-                LOGGER.trace("Handling request: {} {} {}, headers: {}", method, path, httpVersion, headers);
+                ConsoleLoggingModules.debug("Handling request: {} {} {}, headers: {}", method, path, httpVersion, headers);
 
             Map<String, String> params;
             if (Objects.equals(method, "POST")) {
                 String contentType = headers.get("Content-Type");
                 if (!Objects.equals(contentType, "application/x-www-form-urlencoded")) {
-                    LOGGER.error("Bad Content-Type: " + contentType);
+                    ConsoleLoggingModules.error("Bad Content-Type: " + contentType);
                     return;
                 }
 
                 String contentLengthStr = headers.get("Content-Length");
                 if (contentLengthStr == null) {
-                    LOGGER.error("Missing Content-Length header!");
+                    ConsoleLoggingModules.error("Missing Content-Length header!");
                     return;
                 }
 
@@ -568,7 +569,7 @@ public class ZeroconfServer implements Closeable {
 
             String action = params.get("action");
             if (action == null) {
-                LOGGER.debug("Request is missing action.");
+                ConsoleLoggingModules.debug("Request is missing action.");
                 return;
             }
 

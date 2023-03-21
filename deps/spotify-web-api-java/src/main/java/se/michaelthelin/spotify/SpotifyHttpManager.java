@@ -4,6 +4,7 @@ import com.google.gson.*;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.cache.CacheResponseStatus;
@@ -107,8 +108,7 @@ public class SpotifyHttpManager implements IHttpManager {
     try {
       return new URI(uriString);
     } catch (URISyntaxException e) {
-      SpotifyApi.LOGGER.log(
-        Level.SEVERE,
+      ConsoleLoggingModules.error(
         "URI Syntax Exception for \"" + uriString + "\"");
       return null;
     }
@@ -152,8 +152,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     final HttpGet httpGet = new HttpGet(uri);
     httpGet.setHeaders(headers);
-    SpotifyApi.LOGGER.log(
-      Level.FINE,
+    ConsoleLoggingModules.info(
       "GET request uses these headers: " + GSON.toJson(headers));
 
     String responseBody;
@@ -180,8 +179,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     httpPost.setHeaders(headers);
     httpPost.setEntity(body);
-    SpotifyApi.LOGGER.log(
-      Level.FINE,
+    ConsoleLoggingModules.info(
       "POST request uses these headers: " + GSON.toJson(headers));
 
     String responseBody;
@@ -209,8 +207,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     httpPut.setHeaders(headers);
     httpPut.setEntity(body);
-    SpotifyApi.LOGGER.log(
-      Level.FINE,
+    ConsoleLoggingModules.info(
       "PUT request uses these headers: " + GSON.toJson(headers));
       String responseBody;
     try {
@@ -236,8 +233,7 @@ public class SpotifyHttpManager implements IHttpManager {
 
     httpDelete.setHeaders(headers);
     httpDelete.setEntity(body);
-    SpotifyApi.LOGGER.log(
-      Level.FINE,
+    ConsoleLoggingModules.info(
       "DELETE request uses these headers: " + GSON.toJson(headers));
 
     String responseBody;
@@ -262,34 +258,29 @@ public class SpotifyHttpManager implements IHttpManager {
       if (responseStatus != null) {
         switch (responseStatus) {
           case CACHE_HIT:
-            SpotifyApi.LOGGER.log(
-              Level.CONFIG,
+            ConsoleLoggingModules.debug(
               "A response was generated from the cache with no requests sent upstream");
             break;
           case CACHE_MODULE_RESPONSE:
-            SpotifyApi.LOGGER.log(
-              Level.CONFIG,
+            ConsoleLoggingModules.debug(
               "The response was generated directly by the caching module");
             break;
           case CACHE_MISS:
-            SpotifyApi.LOGGER.log(
-              Level.CONFIG,
+            ConsoleLoggingModules.debug(
               "The response came from an upstream server");
             break;
           case VALIDATED:
-            SpotifyApi.LOGGER.log(
-              Level.CONFIG,
+            ConsoleLoggingModules.debug(
               "The response was generated from the cache after validating the entry with the origin server");
             break;
           case FAILURE:
-            SpotifyApi.LOGGER.log(
-              Level.CONFIG,
+            ConsoleLoggingModules.debug(
               "The response came from an upstream server after a cache failure");
             break;
         }
       }
     } catch (Exception e) {
-      SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());
+      ConsoleLoggingModules.Throwable(e);
     }
 
     return response;
@@ -307,8 +298,7 @@ public class SpotifyHttpManager implements IHttpManager {
       : null;
     String errorMessage = httpResponse.getReasonPhrase();
 
-    SpotifyApi.LOGGER.log(
-      Level.FINE,
+    ConsoleLoggingModules.debug(
       "The http response has body " + responseBody);
 
     if (responseBody != null && !responseBody.equals("")) {
@@ -335,8 +325,7 @@ public class SpotifyHttpManager implements IHttpManager {
       httpResponse.setCode(HttpStatus.SC_UNAUTHORIZED);
     }
 
-    SpotifyApi.LOGGER.log(
-      Level.FINE,
+    ConsoleLoggingModules.debug(
       "The http response has status code " + httpResponse.getCode());
 
     switch (httpResponse.getCode()) {

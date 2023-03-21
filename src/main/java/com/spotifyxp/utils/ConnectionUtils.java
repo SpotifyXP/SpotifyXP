@@ -10,10 +10,23 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
 public class ConnectionUtils {
+    public static String makeGet(String url) {
+        try {
+            HttpClient client = new HttpClient();
+            GetMethod get = new GetMethod(url);
+            client.executeMethod(get);
+            return get.getResponseBodyAsString();
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            return "FAILED";
+        }
+    }
     public static String makeGet(String url, NameValuePair[] topost, Header... headers) {
         try {
             HttpClient client = new HttpClient();
@@ -59,6 +72,24 @@ public class ConnectionUtils {
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             return "FAILED";
+        }
+    }
+    public static void openBrowser(String url) {
+        String browserpath;
+        if(new File("pom.xml").exists()) {
+            browserpath="C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+        }else {
+            browserpath = PublicValues.config.get(ConfigValues.mypalpath.name);
+        }
+        if(browserpath.equals(""))  {
+            JOptionPane.showConfirmDialog(null, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
+            return;
+        }
+        ProcessBuilder builder = new ProcessBuilder("\"" + browserpath + "\"", url);
+        try {
+            builder.start();
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
         }
     }
     public static boolean makePingToServer() {

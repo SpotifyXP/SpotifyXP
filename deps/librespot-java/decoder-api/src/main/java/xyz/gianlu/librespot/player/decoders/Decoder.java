@@ -16,9 +16,9 @@
 
 package xyz.gianlu.librespot.player.decoders;
 
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.Closeable;
@@ -30,7 +30,6 @@ import java.io.OutputStream;
  */
 public abstract class Decoder implements Closeable {
     public static final int BUFFER_SIZE = 2048;
-    private static final Logger LOGGER = LoggerFactory.getLogger(Decoder.class);
     protected final SeekableInputStream audioIn;
     protected final float normalizationFactor;
     protected final int duration;
@@ -76,7 +75,7 @@ public abstract class Decoder implements Closeable {
                     throw new IOException(String.format("Failed seeking, skip: %d, skipped: %d", skip, skipped));
             }
         } catch (IOException ex) {
-            LOGGER.error("Failed seeking!", ex);
+            ConsoleLoggingModules.error("Failed seeking! " + ex.getMessage());
         }
     }
 

@@ -17,9 +17,11 @@
 package xyz.gianlu.librespot.audio.storage;
 
 import com.google.protobuf.ByteString;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.NameThreadFactory;
 import xyz.gianlu.librespot.common.Utils;
 import xyz.gianlu.librespot.core.PacketsReceiver;
@@ -44,7 +46,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ChannelManager implements Closeable, PacketsReceiver {
     public static final int CHUNK_SIZE = 128 * 1024;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ChannelManager.class);
     private final Map<Short, Channel> channels = new HashMap<>();
     private final AtomicInteger seqHolder = new AtomicInteger(0);
     private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory(r -> "channel-queue-" + r.hashCode()));
@@ -83,7 +84,7 @@ public class ChannelManager implements Closeable, PacketsReceiver {
             short id = payload.getShort();
             Channel channel = channels.get(id);
             if (channel == null) {
-                LOGGER.warn("Couldn't find channel, id: {}, received: {}", id, packet.payload.length);
+                ConsoleLoggingModules.warning("Couldn't find channel, id: {}, received: {}", id, packet.payload.length);
                 return;
             }
 
@@ -92,13 +93,13 @@ public class ChannelManager implements Closeable, PacketsReceiver {
             short id = payload.getShort();
             Channel channel = channels.get(id);
             if (channel == null) {
-                LOGGER.warn("Dropping channel error, id: {}, code: {}", id, payload.getShort());
+                ConsoleLoggingModules.warning("Dropping channel error, id: {}, code: {}", id, payload.getShort());
                 return;
             }
 
             channel.streamError(payload.getShort());
         } else {
-            LOGGER.warn("Couldn't handle packet, cmd: {}, payload: {}", packet.type(), Utils.bytesToHex(packet.payload));
+            ConsoleLoggingModules.warning("Couldn't handle packet, cmd: {}, payload: {}", packet.type(), Utils.bytesToHex(packet.payload));
         }
     }
 
@@ -137,7 +138,7 @@ public class ChannelManager implements Closeable, PacketsReceiver {
                     }
                 }
 
-                LOGGER.trace("Received empty chunk, skipping.");
+                ConsoleLoggingModules.debug("Received empty chunk, skipping.");
                 return false;
             }
 
@@ -174,7 +175,7 @@ public class ChannelManager implements Closeable, PacketsReceiver {
 
             @Override
             public void run() {
-                LOGGER.trace("ChannelManager.Handler is starting");
+                ConsoleLoggingModules.debug("ChannelManager.Handler is starting");
 
                 while (true) {
                     try {
@@ -183,13 +184,13 @@ public class ChannelManager implements Closeable, PacketsReceiver {
                             break;
                         }
                     } catch (IOException ex) {
-                        LOGGER.error("Failed handling packet!", ex);
+                        ConsoleLoggingModules.debug("Failed handling packet!", ex.getMessage());
                     } catch (InterruptedException ex) {
                         break;
                     }
                 }
 
-                LOGGER.trace("ChannelManager.Handler is shutting down");
+                ConsoleLoggingModules.debug("ChannelManager.Handler is shutting down");
             }
         }
     }

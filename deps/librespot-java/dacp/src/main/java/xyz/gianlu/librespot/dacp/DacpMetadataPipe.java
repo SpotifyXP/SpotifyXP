@@ -16,11 +16,12 @@
 
 package xyz.gianlu.librespot.dacp;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.Utils;
 
 import java.io.Closeable;
@@ -45,7 +46,7 @@ public final class DacpMetadataPipe implements Closeable {
     private static final String CODE_PRGR = "70726772";
     private static final String CODE_PICT = "50494354";
     private static final String CODE_PFLS = "70666C73";
-    private static final Logger LOGGER = LoggerFactory.getLogger(DacpMetadataPipe.class);
+    
     private final File file;
     private FileOutputStream out;
 
@@ -65,7 +66,7 @@ public final class DacpMetadataPipe implements Closeable {
         try {
             send(type, code, payload);
         } catch (IOException ex) {
-            LOGGER.error("Failed sending metadata through pipe!", ex);
+            ConsoleLoggingModules.error("Failed sending metadata through pipe!", ex);
         }
     }
 
@@ -82,7 +83,7 @@ public final class DacpMetadataPipe implements Closeable {
 
     public void sendImage(byte[] image) {
         if (image == null) {
-            LOGGER.warn("No image found in metadata.");
+            ConsoleLoggingModules.warning("No image found in metadata.");
             return;
         }
 

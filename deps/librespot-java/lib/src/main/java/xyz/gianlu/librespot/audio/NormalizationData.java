@@ -17,9 +17,10 @@
 package xyz.gianlu.librespot.audio;
 
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -31,7 +32,7 @@ import java.nio.ByteOrder;
  * @author Gianlu
  */
 public class NormalizationData {
-    private static final Logger LOGGER = LoggerFactory.getLogger(NormalizationData.class);
+    
     public final float track_gain_db;
     public final float track_peak;
     public final float album_gain_db;
@@ -43,7 +44,7 @@ public class NormalizationData {
         this.album_gain_db = album_gain_db;
         this.album_peak = album_peak;
 
-        LOGGER.trace("Loaded normalization data, track_gain: {}, track_peak: {}, album_gain: {}, album_peak: {}",
+        ConsoleLoggingModules.debug("Loaded normalization data, track_gain: {}, track_peak: {}, album_gain: {}, album_peak: {}",
                 track_gain_db, track_peak, album_gain_db, album_peak);
     }
 
@@ -65,7 +66,7 @@ public class NormalizationData {
     public float getFactor(float normalisationPregain) {
         float normalisationFactor = (float) Math.pow(10, (track_gain_db + normalisationPregain) / 20);
         if (normalisationFactor * track_peak > 1) {
-            LOGGER.warn("Reducing normalisation factor to prevent clipping. Please add negative pregain to avoid.");
+            ConsoleLoggingModules.warning("Reducing normalisation factor to prevent clipping. Please add negative pregain to avoid.");
             normalisationFactor = 1 / track_peak;
         }
 

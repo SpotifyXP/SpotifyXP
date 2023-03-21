@@ -17,10 +17,12 @@
 package xyz.gianlu.librespot.audio;
 
 import com.google.protobuf.ByteString;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.Utils;
 import xyz.gianlu.librespot.core.PacketsReceiver;
 import xyz.gianlu.librespot.core.Session;
@@ -41,7 +43,6 @@ import java.util.concurrent.atomic.AtomicReference;
 @SuppressWarnings("NullableProblems")
 public final class AudioKeyManager implements PacketsReceiver {
     private static final byte[] ZERO_SHORT = new byte[]{0, 0};
-    private static final Logger LOGGER = LoggerFactory.getLogger(AudioKeyManager.class);
     private static final long AUDIO_KEY_REQUEST_TIMEOUT = 2000;
     private final AtomicInteger seqHolder = new AtomicInteger(0);
     private final Map<Integer, Callback> callbacks = Collections.synchronizedMap(new HashMap<>());
@@ -91,7 +92,7 @@ public final class AudioKeyManager implements PacketsReceiver {
 
         Callback callback = callbacks.remove(seq);
         if (callback == null) {
-            LOGGER.warn("Couldn't find callback for seq: " + seq);
+            ConsoleLoggingModules.warning("Couldn't find callback for seq: " + seq);
             return;
         }
 
@@ -103,7 +104,7 @@ public final class AudioKeyManager implements PacketsReceiver {
             short code = payload.getShort();
             callback.error(code);
         } else {
-            LOGGER.warn("Couldn't handle packet, cmd: {}, length: {}", packet.type(), packet.payload.length);
+            ConsoleLoggingModules.warning("Couldn't handle packet, cmd: " + packet.type() + ", length: " + packet.payload.length);
         }
     }
 
@@ -127,7 +128,7 @@ public final class AudioKeyManager implements PacketsReceiver {
 
         @Override
         public void error(short code) {
-            LOGGER.error("Audio key error, code: {}", code);
+            ConsoleLoggingModules.error("Audio key error, code: " + code);
 
             synchronized (reference) {
                 reference.set(null);

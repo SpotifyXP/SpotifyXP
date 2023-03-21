@@ -16,10 +16,11 @@
 
 package xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.DecodedAudioStream;
 import xyz.gianlu.librespot.audio.HaltListener;
 import xyz.gianlu.librespot.audio.MetadataWrapper;
@@ -58,7 +59,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
     static final int INSTANT_PRELOAD = 1;
     static final int INSTANT_START_NEXT = 2;
     static final int INSTANT_END = 3;
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlayerQueueEntry.class);
+    
     final PlayableId playable;
     final String playbackId;
     private final PlayerConfiguration conf;
@@ -89,7 +90,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
         this.preloaded = preloaded;
         this.listener = listener;
 
-        LOGGER.trace("Created new {}.", this);
+        ConsoleLoggingModules.debug("Created new {}.", this);
     }
 
     @NotNull
@@ -119,13 +120,13 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
         audioStream = stream.in;
 
         if (metadata.isEpisode() && metadata.episode != null) {
-            LOGGER.info("Loaded episode. {name: '{}', duration: {}, uri: {}, id: {}}", metadata.episode.getName(),
+            ConsoleLoggingModules.info("Loaded episode. {name: '{}', duration: {}, uri: {}, id: {}}", metadata.episode.getName(),
                     metadata.episode.getDuration(), playable.toSpotifyUri(), playbackId);
         } else if (metadata.isTrack() && metadata.track != null) {
-            LOGGER.info("Loaded track. {name: '{}', artists: '{}', duration: {}, uri: {}, id: {}}", metadata.track.getName(),
+            ConsoleLoggingModules.info("Loaded track. {name: '{}', artists: '{}', duration: {}, uri: {}, id: {}}", metadata.track.getName(),
                     Utils.artistsToString(metadata.track.getArtistList()), metadata.track.getDuration(), playable.toSpotifyUri(), playbackId);
         } else if (playable instanceof LocalId) {
-            LOGGER.info("Loaded local file. {filename: '{}', duration: {}, uri: {}, id: {}}", ((LocalId) playable).name(),
+            ConsoleLoggingModules.info("Loaded local file. {filename: '{}', duration: {}, uri: {}, id: {}}", ((LocalId) playable).name(),
                     ((LocalId) playable).duration(), playable.toSpotifyUri(), playbackId);
         }
 
@@ -146,7 +147,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
         if (decoder == null)
             throw new UnsupportedEncodingException(stream.in.codec().toString());
 
-        LOGGER.trace("Loaded {} decoder: {} {of: {}, format: {}, playbackId: {}}", stream.in.codec(), decoder.getClass().getSimpleName(), stream.in.describe(), decoder.getAudioFormat(), playbackId);
+        ConsoleLoggingModules.debug("Loaded {} decoder: {} {of: {}, format: {}, playbackId: {}}", stream.in.codec(), decoder.getClass().getSimpleName(), stream.in.describe(), decoder.getAudioFormat(), playbackId);
     }
 
     /**
@@ -231,7 +232,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
             tmp.toggle(false, null);
             tmp.clear();
 
-            LOGGER.debug("{} has been removed from output.", this);
+            ConsoleLoggingModules.debug("{} has been removed from output.", this);
         }
 
         synchronized (playbackLock) {
@@ -278,7 +279,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
                  MercuryClient.MercuryException ex) {
             close();
             listener.loadingError(this, ex, retried);
-            LOGGER.trace("{} terminated at loading.", this, ex);
+            ConsoleLoggingModules.debug("{} terminated at loading.", this, ex);
             return;
         }
 
@@ -328,7 +329,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
                 if (decoder.writeSomeTo(output) == -1) {
                     try {
                         int time = decoder.time();
-                        LOGGER.debug("Player time offset is {}. {id: {}}", metadata.duration() - time, playbackId);
+                        ConsoleLoggingModules.debug("Player time offset is {}. {id: {}}", metadata.duration() - time, playbackId);
                     } catch (Decoder.CannotGetTimeException ignored) {
                     }
 
@@ -348,7 +349,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
 
         if (output != null) output.toggle(false, null);
         listener.playbackEnded(this);
-        LOGGER.trace("{} terminated.", this);
+        ConsoleLoggingModules.debug("{} terminated.", this);
     }
 
     private void checkInstants(int time) {

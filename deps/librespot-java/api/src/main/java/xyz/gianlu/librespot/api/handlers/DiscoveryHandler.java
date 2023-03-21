@@ -18,11 +18,12 @@ package xyz.gianlu.librespot.api.handlers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.ZeroconfServer;
 import xyz.gianlu.librespot.api.Utils;
 import xyz.gianlu.zeroconf.DiscoveredService;
@@ -37,7 +38,6 @@ import java.util.Map;
  */
 @SuppressWarnings("resource")
 public final class DiscoveryHandler implements HttpHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DiscoveryHandler.class);
     private final Zeroconf.DiscoveredServices discoverer;
 
     public DiscoveryHandler() {
@@ -48,7 +48,7 @@ public final class DiscoveryHandler implements HttpHandler {
         try {
             zeroconf.addAllNetworkInterfaces();
         } catch (IOException ex) {
-            LOGGER.error("Failed adding network interfaces for Zeroconf.", ex);
+            ConsoleLoggingModules.error("Failed adding network interfaces for Zeroconf.", ex);
         }
 
         discoverer = zeroconf.discover(ZeroconfServer.SERVICE, "tcp", ".local");

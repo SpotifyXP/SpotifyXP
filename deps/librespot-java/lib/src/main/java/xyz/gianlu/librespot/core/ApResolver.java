@@ -20,13 +20,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +41,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public final class ApResolver {
     private static final String BASE_URL = "http://apresolve.spotify.com/";
-    private static final Logger LOGGER = LoggerFactory.getLogger(ApResolver.class);
 
     private final OkHttpClient client;
     private final Map<String, List<String>> pool = new HashMap<>(3);
@@ -95,7 +95,7 @@ public final class ApResolver {
                 pool.notifyAll();
             }
 
-            LOGGER.info("Loaded aps into pool: " + pool);
+            ConsoleLoggingModules.info("Loaded aps into pool: " + pool);
         }
     }
 

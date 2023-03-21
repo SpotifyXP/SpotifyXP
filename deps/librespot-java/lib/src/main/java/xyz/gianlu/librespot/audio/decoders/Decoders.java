@@ -16,10 +16,11 @@
 
 package xyz.gianlu.librespot.audio.decoders;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import xyz.gianlu.librespot.player.decoders.Decoder;
 import xyz.gianlu.librespot.player.decoders.SeekableInputStream;
@@ -32,7 +33,7 @@ import java.util.*;
  */
 public final class Decoders {
     private static final Map<SuperAudioFormat, List<Class<? extends Decoder>>> decoders = new EnumMap<>(SuperAudioFormat.class);
-    private static final Logger LOGGER = LoggerFactory.getLogger(Decoders.class);
+    
 
     static {
         registerDecoder(SuperAudioFormat.VORBIS, VorbisDecoder.class);
@@ -60,7 +61,7 @@ public final class Decoders {
                 try {
                     audioIn.seek(seekZero);
                 } catch (IOException ex) {
-                    LOGGER.error("Failed rewinding SeekableInputStream!", ex);
+                    ConsoleLoggingModules.error("Failed rewinding SeekableInputStream!", ex);
                     return null;
                 }
 
@@ -68,7 +69,7 @@ public final class Decoders {
                     Class<? extends Decoder> clazz = iter.next();
                     return clazz.getConstructor(SeekableInputStream.class, float.class, int.class).newInstance(audioIn, normalizationFactor, duration);
                 } catch (ReflectiveOperationException ex) {
-                    LOGGER.error("Failed initializing Codec instance for {}", format, ex.getCause());
+                    ConsoleLoggingModules.error("Failed initializing Codec instance for {}", format, ex.getCause());
                     return null;
                 }
             }

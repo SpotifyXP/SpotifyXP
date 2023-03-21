@@ -19,10 +19,11 @@ package xyz.gianlu.librespot.player.crossfade;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.metadata.PlayableId;
 import xyz.gianlu.librespot.player.PlayerConfiguration;
 import xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Reason;
@@ -31,7 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CrossfadeController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CrossfadeController.class);
+    
     private final String playbackId;
     private final int trackDuration;
     private final Map<Reason, FadeInterval> fadeOutMap = new HashMap<>(8);
@@ -55,7 +56,7 @@ public class CrossfadeController {
         populateFadeIn(metadata);
         populateFadeOut(metadata);
 
-        LOGGER.debug("Loaded crossfade intervals {id: {}, in: {}, out: {}}", playbackId, fadeInMap, fadeOutMap);
+        ConsoleLoggingModules.debug("Loaded crossfade intervals {id: {}, in: {}, out: {}}", playbackId, fadeInMap, fadeOutMap);
     }
 
     @NotNull
@@ -126,10 +127,10 @@ public class CrossfadeController {
 
             if (activeInterval == fadeIn) {
                 fadeIn = null;
-                LOGGER.debug("Cleared fade in. {id: {}}", playbackId);
+                ConsoleLoggingModules.debug("Cleared fade in. {id: {}}", playbackId);
             } else if (activeInterval == fadeOut) {
                 fadeOut = null;
-                LOGGER.debug("Cleared fade out. {id: {}}", playbackId);
+                ConsoleLoggingModules.debug("Cleared fade out. {id: {}}", playbackId);
             }
 
             activeInterval = null;
@@ -162,12 +163,12 @@ public class CrossfadeController {
         if ((!customFade && fadeOutPlayable != null) && reason == Reason.TRACK_DONE) {
             fadeIn = null;
             activeInterval = null;
-            LOGGER.debug("Cleared fade in because custom fade doesn't apply. {id: {}}", playbackId);
+            ConsoleLoggingModules.debug("Cleared fade in because custom fade doesn't apply. {id: {}}", playbackId);
             return null;
         } else {
             fadeIn = fadeInMap.get(reason);
             activeInterval = null;
-            LOGGER.debug("Changed fade in. {curr: {}, custom: {}, why: {}, id: {}}", fadeIn, customFade, reason, playbackId);
+            ConsoleLoggingModules.debug("Changed fade in. {curr: {}, custom: {}, why: {}, id: {}}", fadeIn, customFade, reason, playbackId);
             return fadeIn;
         }
     }
@@ -184,12 +185,12 @@ public class CrossfadeController {
         if ((!customFade && fadeOutPlayable != null) && reason == Reason.TRACK_DONE) {
             fadeOut = null;
             activeInterval = null;
-            LOGGER.debug("Cleared fade out because custom fade doesn't apply. {id: {}}", playbackId);
+            ConsoleLoggingModules.debug("Cleared fade out because custom fade doesn't apply. {id: {}}", playbackId);
             return null;
         } else {
             fadeOut = fadeOutMap.get(reason);
             activeInterval = null;
-            LOGGER.debug("Changed fade out. {curr: {}, custom: {}, why: {}, id: {}}", fadeOut, customFade, reason, playbackId);
+            ConsoleLoggingModules.debug("Changed fade out. {curr: {}, custom: {}, why: {}, id: {}}", fadeOut, customFade, reason, playbackId);
             return fadeOut;
         }
     }

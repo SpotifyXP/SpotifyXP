@@ -15,12 +15,10 @@
  */
 
 package xyz.gianlu.librespot.player.mixing.output;
-
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.sound.sampled.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,9 +28,9 @@ import java.util.List;
  * @author Gianlu
  */
 final class LineHelper {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LineHelper.class);
 
     private LineHelper() {
+
     }
 
     @NotNull
@@ -78,7 +76,7 @@ final class LineHelper {
         }
 
         if (list.size() > 1)
-            LOGGER.info("Multiple mixers available after keyword search: " + mixersToString(list));
+            ConsoleLoggingModules.info("Multiple mixers available after keyword search: " + mixersToString(list));
 
         return list.get(0);
     }
@@ -87,7 +85,7 @@ final class LineHelper {
     static SourceDataLine getLineFor(@NotNull String[] searchKeywords, boolean logAvailableMixers, @NotNull AudioFormat format) throws MixerException, LineUnavailableException {
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format, AudioSystem.NOT_SPECIFIED);
         List<Mixer> mixers = findSupportingMixersFor(info);
-        if (logAvailableMixers) LOGGER.info("Available mixers: " + mixersToString(mixers));
+        if (logAvailableMixers) ConsoleLoggingModules.info("Available mixers: " + mixersToString(mixers));
         Mixer mixer = findMixer(mixers, searchKeywords);
         return (SourceDataLine) mixer.getLine(info);
     }

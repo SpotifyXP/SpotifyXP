@@ -16,10 +16,11 @@
 
 package xyz.gianlu.librespot.core;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.common.AsyncWorker;
 import xyz.gianlu.librespot.mercury.MercuryClient;
 import xyz.gianlu.librespot.mercury.RawMercuryRequest;
@@ -34,7 +35,6 @@ import java.util.concurrent.TimeUnit;
  * @author Gianlu
  */
 public final class EventService implements Closeable {
-    private final static Logger LOGGER = LoggerFactory.getLogger(EventService.class);
     private final AsyncWorker<EventBuilder> asyncWorker;
 
     EventService(@NotNull Session session) {
@@ -48,9 +48,9 @@ public final class EventService implements Closeable {
                         .addPayloadPart(body)
                         .build());
 
-                LOGGER.debug("Event sent. {body: {}, result: {}}", EventBuilder.toString(body), resp.statusCode);
+                ConsoleLoggingModules.debug("Event sent. {body: {}, result: {}}", EventBuilder.toString(body), resp.statusCode);
             } catch (IOException ex) {
-                LOGGER.error("Failed sending event: " + eventBuilder, ex);
+                ConsoleLoggingModules.error("Failed sending event: " + eventBuilder, ex);
             }
         });
     }

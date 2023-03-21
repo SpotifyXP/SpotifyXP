@@ -2,9 +2,11 @@ package se.michaelthelin.spotify.model_objects.specification;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.model_objects.AbstractModelObject;
 
+import java.io.Console;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -110,7 +112,7 @@ public class SavedAlbum extends AbstractModelObject {
               : null)
           .build();
       } catch (ParseException e) {
-        SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());
+        ConsoleLoggingModules.Throwable(e);
         return null;
       }
     }

@@ -16,9 +16,10 @@
 
 package xyz.gianlu.librespot.player.mixing.output;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.nio.file.Files;
  * @author devgianlu
  */
 public final class PipeOutput implements SinkOutput {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PipeOutput.class);
+    
     private final File file;
     private OutputStream stream;
 
@@ -48,9 +49,9 @@ public final class PipeOutput implements SinkOutput {
                             .start();
                     p.waitFor();
                     if (p.exitValue() != 0)
-                        LOGGER.warn("Failed creating pipe! {exit: {}}", p.exitValue());
+                        ConsoleLoggingModules.warning("Failed creating pipe! {exit: {}}", p.exitValue());
                     else
-                        LOGGER.info("Created pipe: " + file);
+                        ConsoleLoggingModules.info("Created pipe: " + file);
                 } catch (InterruptedException ex) {
                     throw new IllegalStateException(ex);
                 }

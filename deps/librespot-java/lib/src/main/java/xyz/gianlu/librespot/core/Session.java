@@ -24,6 +24,8 @@ import com.spotify.Keyexchange;
 import com.spotify.connectstate.Connect;
 import com.spotify.explicit.ExplicitContentPubsub;
 import com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Authenticator;
 import okhttp3.*;
 import okio.BufferedSink;
@@ -31,8 +33,8 @@ import okio.GzipSink;
 import okio.Okio;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -76,7 +78,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @SuppressWarnings("resource")
 public final class Session implements Closeable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Session.class);
     private static final byte[] serverKey = new byte[]{
             (byte) 0xac, (byte) 0xe0, (byte) 0x46, (byte) 0x0b, (byte) 0xff, (byte) 0xc2, (byte) 0x30, (byte) 0xaf, (byte) 0xf4, (byte) 0x6b, (byte) 0xfe, (byte) 0xc3,
             (byte) 0xbf, (byte) 0xbf, (byte) 0x86, (byte) 0x3d, (byte) 0xa1, (byte) 0x91, (byte) 0xc6, (byte) 0xcc, (byte) 0x33, (byte) 0x6c, (byte) 0x93, (byte) 0xa1,
@@ -138,7 +139,7 @@ public final class Session implements Closeable {
         String addr = apResolver.getRandomAccesspoint();
         this.conn = ConnectionHolder.create(addr, inner.conf);
 
-        LOGGER.info("Created new session! {deviceId: {}, ap: {}, proxy: {}} ", inner.deviceId, addr, inner.conf.proxyEnabled);
+        ConsoleLoggingModules.info("Created new session! {deviceId: " + inner.deviceId + ", ap: " + addr + ", proxy: " + inner.conf.proxyEnabled + "} ");
     }
 
     @NotNull
@@ -332,7 +333,7 @@ public final class Session implements Closeable {
             authLock.set(true);
         }
 
-        LOGGER.info("Connected successfully!");
+        ConsoleLoggingModules.info("Connected successfully!");
     }
 
     /**
@@ -362,20 +363,20 @@ public final class Session implements Closeable {
         TimeProvider.init(this);
         dealer.connect();
 
-        LOGGER.info("Authenticated as {}!", apWelcome.getCanonicalUsername());
+        ConsoleLoggingModules.info("Authenticated as " + apWelcome.getCanonicalUsername() + "!");
         mercury().interestedIn(resp -> {
             if (resp.uri.equals("spotify:user:attributes:update")) {
                 UserAttributesUpdate attributesUpdate;
                 try {
                     attributesUpdate = UserAttributesUpdate.parseFrom(resp.payload.stream());
                 } catch (IOException ex) {
-                    LOGGER.warn("Failed parsing user attributes update.", ex);
+                    ConsoleLoggingModules.warning("Failed parsing user attributes update. " + ex.getMessage());
                     return;
                 }
 
                 for (ExplicitContentPubsub.KeyValuePair pair : attributesUpdate.getPairsList()) {
                     userAttributes.put(pair.getKey(), pair.getValue());
-                    LOGGER.trace("Updated user attribute: {} -> {}", pair.getKey(), pair.getValue());
+                    ConsoleLoggingModules.debug("Updated user attribute: " + pair.getKey() + " -> " + pair.getValue());
                 }
             }
         }, "spotify:user:attributes:update");
@@ -384,7 +385,7 @@ public final class Session implements Closeable {
                 try {
                     close();
                 } catch (IOException ex) {
-                    LOGGER.error("Failed closing session due to logout.", ex);
+                    ConsoleLoggingModules.error("Failed closing session due to logout. " + ex.getMessage());
                 }
             }
         }, "hm://connect-state/v1/connect/logout");
@@ -459,7 +460,7 @@ public final class Session implements Closeable {
 
     @Override
     public void close() throws IOException {
-        LOGGER.info("Closing session. {deviceId: {}}", inner.deviceId);
+        ConsoleLoggingModules.info("Closing session. {deviceId: " + inner.deviceId + "}");
 
         if (scheduledReconnect != null) scheduledReconnect.cancel(true);
 
@@ -520,7 +521,7 @@ public final class Session implements Closeable {
 
         reconnectionListeners.clear();
 
-        LOGGER.info("Closed session. {deviceId: {}} ", inner.deviceId);
+        ConsoleLoggingModules.info("Closed session. {deviceId: " + inner.deviceId + "} ");
     }
 
     private void sendUnchecked(Packet.Type cmd, byte[] payload) throws IOException {
@@ -532,7 +533,7 @@ public final class Session implements Closeable {
 
     private void waitAuthLock() {
         if (closing && conn == null) {
-            LOGGER.debug("Connection was broken while closing.");
+            ConsoleLoggingModules.debug("Connection was broken while closing.");
             return;
         }
 
@@ -551,7 +552,7 @@ public final class Session implements Closeable {
 
     public void send(Packet.Type cmd, byte[] payload) throws IOException {
         if (closing && conn == null) {
-            LOGGER.debug("Connection was broken while closing.");
+            ConsoleLoggingModules.debug("Connection was broken while closing.");
             return;
         }
 
@@ -734,7 +735,7 @@ public final class Session implements Closeable {
                     .setAuthData(apWelcome.getReusableAuthCredentials())
                     .build(), true);
 
-            LOGGER.info("Re-authenticated as {}!", apWelcome.getCanonicalUsername());
+            ConsoleLoggingModules.info("Re-authenticated as " + apWelcome.getCanonicalUsername() + "!");
 
             synchronized (reconnectionListeners) {
                 reconnectionListeners.forEach(ReconnectionListener::onConnectionEstablished);
@@ -744,12 +745,12 @@ public final class Session implements Closeable {
                 return;
 
             conn = null;
-            LOGGER.error("Failed reconnecting, retrying in 10 seconds...", ex);
+            ConsoleLoggingModules.error("Failed reconnecting, retrying in 10 seconds... " + ex.getMessage());
 
             try {
                 scheduler.schedule(this::reconnect, 10, TimeUnit.SECONDS);
             } catch (RejectedExecutionException exx) {
-                LOGGER.info("Scheduler already shutdown, stopping reconnection", exx);
+                ConsoleLoggingModules.info("Scheduler already shutdown, stopping reconnection " + exx.getMessage());
             }
         }
     }
@@ -782,7 +783,7 @@ public final class Session implements Closeable {
             userAttributes.put(node.getNodeName(), node.getTextContent());
         }
 
-        LOGGER.trace("Parsed product info: " + userAttributes);
+        ConsoleLoggingModules.debug("Parsed product info: " + userAttributes);
     }
 
     @Nullable
@@ -1317,7 +1318,7 @@ public final class Session implements Closeable {
                         // Read all headers
                     }
 
-                    LOGGER.info(String.format("Successfully connected to the %s proxy.", conf.proxySSL ? "HTTPS" : "HTTP"));
+                    ConsoleLoggingModules.info(String.format("Successfully connected to the %s proxy.", conf.proxySSL ? "HTTPS" : "HTTP"));
                     return new ConnectionHolder(sock);
                 case SOCKS:
                     if (conf.proxyAuth) {
@@ -1338,7 +1339,7 @@ public final class Session implements Closeable {
                     Proxy proxy = new Proxy(conf.proxyType, new InetSocketAddress(conf.proxyAddress, conf.proxyPort));
                     Socket proxySocket = new Socket(proxy);
                     proxySocket.connect(new InetSocketAddress(apAddr, apPort));
-                    LOGGER.info("Successfully connected to the SOCKS proxy.");
+                    ConsoleLoggingModules.info("Successfully connected to the SOCKS proxy.");
                     return new ConnectionHolder(proxySocket);
                 default:
                     throw new UnsupportedOperationException();
@@ -1413,7 +1414,7 @@ public final class Session implements Closeable {
 
         @Override
         public void run() {
-            LOGGER.trace("Session.Receiver started");
+            ConsoleLoggingModules.debug("Session.Receiver started");
 
             while (running) {
                 Packet packet;
@@ -1422,12 +1423,12 @@ public final class Session implements Closeable {
                     packet = cipherPair.receiveEncoded(conn.in);
                     cmd = Packet.Type.parse(packet.cmd);
                     if (cmd == null) {
-                        LOGGER.info("Skipping unknown command {cmd: 0x{}, payload: {}}", Integer.toHexString(packet.cmd), Utils.bytesToHex(packet.payload));
+                        ConsoleLoggingModules.info("Skipping unknown command {cmd: 0x" + Integer.toHexString(packet.cmd) + ", payload: " + Utils.bytesToHex(packet.payload) + "}");
                         continue;
                     }
                 } catch (IOException | GeneralSecurityException ex) {
                     if (running && !closing) {
-                        LOGGER.error("Failed reading packet!", ex);
+                        ConsoleLoggingModules.error("Failed reading packet! " + ex.getMessage());
                         reconnect();
                     }
 
@@ -1440,7 +1441,7 @@ public final class Session implements Closeable {
                     case Ping:
                         if (scheduledReconnect != null) scheduledReconnect.cancel(true);
                         scheduledReconnect = scheduler.schedule(() -> {
-                            LOGGER.warn("Socket timed out. Reconnecting...");
+                            ConsoleLoggingModules.warning("Socket timed out. Reconnecting...");
                             reconnect();
                         }, 2 * 60 + configuration().connectionTimeout, TimeUnit.SECONDS);
 
@@ -1449,7 +1450,7 @@ public final class Session implements Closeable {
                         try {
                             send(Packet.Type.Pong, packet.payload);
                         } catch (IOException ex) {
-                            LOGGER.error("Failed sending Pong!", ex);
+                            ConsoleLoggingModules.error("Failed sending Pong! " + ex.getMessage());
                         }
                         break;
                     case PongAck:
@@ -1457,7 +1458,7 @@ public final class Session implements Closeable {
                         break;
                     case CountryCode:
                         countryCode = new String(packet.payload);
-                        LOGGER.info("Received CountryCode: " + countryCode);
+                        ConsoleLoggingModules.info("Received CountryCode: " + countryCode);
                         break;
                     case LicenseVersion:
                         ByteBuffer licenseVersion = ByteBuffer.wrap(packet.payload);
@@ -1465,13 +1466,13 @@ public final class Session implements Closeable {
                         if (id != 0) {
                             byte[] buffer = new byte[licenseVersion.get()];
                             licenseVersion.get(buffer);
-                            LOGGER.info("Received LicenseVersion: {}, {}", id, new String(buffer));
+                            ConsoleLoggingModules.info("Received LicenseVersion: " + id + ", " + new String(buffer));
                         } else {
-                            LOGGER.info("Received LicenseVersion: {}", id);
+                            ConsoleLoggingModules.info("Received LicenseVersion: " + id);
                         }
                         break;
                     case Unknown_0x10:
-                        LOGGER.debug("Received 0x10: " + Utils.bytesToHex(packet.payload));
+                        ConsoleLoggingModules.debug("Received 0x10: " + Utils.bytesToHex(packet.payload));
                         break;
                     case MercurySub:
                     case MercuryUnsub:
@@ -1491,16 +1492,16 @@ public final class Session implements Closeable {
                         try {
                             parseProductInfo(new ByteArrayInputStream(packet.payload));
                         } catch (IOException | ParserConfigurationException | SAXException ex) {
-                            LOGGER.warn("Failed parsing product info!", ex);
+                            ConsoleLoggingModules.warning("Failed parsing product info! " + ex.getMessage());
                         }
                         break;
                     default:
-                        LOGGER.info("Skipping " + cmd.name());
+                        ConsoleLoggingModules.info("Skipping " + cmd.name());
                         break;
                 }
             }
 
-            LOGGER.trace("Session.Receiver stopped");
+            ConsoleLoggingModules.debug("Session.Receiver stopped");
         }
     }
 }

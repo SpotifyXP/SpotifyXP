@@ -31,8 +31,8 @@ import com.spotify.playlist4.Playlist4ApiProto;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.metadata.PlayableId;
 
 import java.lang.reflect.Field;
@@ -46,7 +46,7 @@ import static com.spotify.context.PlayOriginOuterClass.PlayOrigin;
  * @author Gianlu
  */
 public final class ProtoUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProtoUtils.class);
+    
 
     private ProtoUtils() {
     }

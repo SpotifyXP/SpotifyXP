@@ -5,12 +5,17 @@ import com.spotifyxp.configuration.ConfigValues;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 @SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
 public class SettingsFrame extends JPanel {
+    private final JTextField mypalpathdisplay;
     private final JToggleButton performanceoptionloadallrecommendations;
     private final JToggleButton performanceoptiondisableplayerstats;
     private JFrame settingsframe;
@@ -30,6 +35,38 @@ public class SettingsFrame extends JPanel {
         performance.setBounds(0, 96, 484, 97);
         moduleHolder.add(performance);
         performance.setLayout(null);
+
+        mypalpathdisplay = new JTextField();
+        mypalpathdisplay.setBounds(125, 50, 239, 20);
+        mypal.add(mypalpathdisplay);
+        mypalpathdisplay.setColumns(10);
+
+        JButton mypalsetpathbutton = new JButton("Set Path"); //ToDo: Translate
+        mypalsetpathbutton.setBounds(374, 50, 89, 23);
+        mypal.add(mypalsetpathbutton);
+
+        mypalsetpathbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+                chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"),"exe");
+                chooser.setFileFilter(filter);
+                chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
+                chooser.showOpenDialog(settingsframe);
+                mypalpathdisplay.setText(chooser.getSelectedFile().getAbsolutePath());
+            }
+        });
+
+        JLabel mypalpathlabel = new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label"));
+        mypalpathlabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        mypalpathlabel.setBounds(23, 53, 70, 14);
+        mypal.add(mypalpathlabel);
+
+        JLabel mypalpathsettingslabel = new JLabel(PublicValues.language.translate("ui.settings.mypal.label"));
+        mypalpathsettingslabel.setHorizontalAlignment(SwingConstants.CENTER);
+        mypalpathsettingslabel.setBounds(125, 11, 239, 14);
+        mypal.add(mypalpathsettingslabel);
 
         performanceoptionloadallrecommendations = new JToggleButton(PublicValues.language.translate("ui.settings.performance.showall"));
         performanceoptionloadallrecommendations.setBounds(24, 45, 208, 30);

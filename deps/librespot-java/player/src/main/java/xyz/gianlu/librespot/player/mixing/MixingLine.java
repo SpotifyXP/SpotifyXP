@@ -16,10 +16,11 @@
 
 package xyz.gianlu.librespot.player.mixing;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.player.decoders.Decoder;
 import xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
@@ -31,7 +32,7 @@ import java.io.OutputStream;
  */
 @SuppressWarnings("NullableProblems")
 public final class MixingLine extends InputStream {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MixingLine.class);
+    
     boolean switchFormat = false;
     private GainAwareCircularBuffer fcb;
     private GainAwareCircularBuffer scb;
@@ -116,13 +117,13 @@ public final class MixingLine extends InputStream {
             return null;
         } else if (!this.format.matches(format)) {
             if (StreamConverter.canConvert(format, this.format)) {
-                LOGGER.info("Converting, '{}' -> '{}'", format, this.format);
+                ConsoleLoggingModules.info("Converting, '{}' -> '{}'", format, this.format);
                 return StreamConverter.converter(format, this.format);
             } else {
                 if (fout == from && sout != null) sout.clear();
                 else if (sout == from && fout != null) fout.clear();
 
-                LOGGER.info("Switching format, '{}' -> '{}'", this.format, format);
+                ConsoleLoggingModules.info("Switching format, '{}' -> '{}'", this.format, format);
                 this.format = format;
                 switchFormat = true;
                 return null;
@@ -184,7 +185,7 @@ public final class MixingLine extends InputStream {
 
             if (format != null) converter = setFormat(format, this);
             fe = enabled;
-            LOGGER.trace("Toggle first channel: " + enabled);
+            ConsoleLoggingModules.debug("Toggle first channel: " + enabled);
         }
 
         @Override
@@ -232,7 +233,7 @@ public final class MixingLine extends InputStream {
 
             if (format != null) converter = setFormat(format, this);
             se = enabled;
-            LOGGER.trace("Toggle second channel: " + enabled);
+            ConsoleLoggingModules.debug("Toggle second channel: " + enabled);
         }
 
         @Override

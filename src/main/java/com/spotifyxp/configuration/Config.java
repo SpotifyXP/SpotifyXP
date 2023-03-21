@@ -25,6 +25,7 @@ public class Config {
             properties.put(ConfigValues.disableplayerstats.name, "false");
             properties.put(ConfigValues.showallrecommendations.name, "false");
             properties.put(ConfigValues.username.name, "");
+            properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.password.name, "");
             try {
                 if(!new File(PublicValues.configfilepath).createNewFile()) {

@@ -21,11 +21,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.protobuf.ByteString;
 import com.spotify.metadata.Metadata;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -47,7 +48,7 @@ import java.util.*;
 @SuppressWarnings("NullableProblems")
 public final class Utils {
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
-    private static final Logger LOGGER = LoggerFactory.getLogger(Utils.class);
+    
     private static final String randomString = "abcdefghijklmnopqrstuvwxyz0123456789";
     private static final String JAVA_UTIL_BASE_64 = "java.util.Base64";
     private static final String ANDROID_UTIL_BASE_64 = "android.util.Base64";
@@ -102,7 +103,7 @@ public final class Utils {
 
     public static void removeCryptographyRestrictions() {
         if (!isRestrictedCryptography()) {
-            LOGGER.info("Cryptography restrictions removal not needed.");
+            ConsoleLoggingModules.info("Cryptography restrictions removal not needed.");
             return;
         }
 
@@ -137,9 +138,9 @@ public final class Utils {
             instance.setAccessible(true);
             defaultPolicy.add((Permission) instance.get(null));
 
-            LOGGER.info("Successfully removed cryptography restrictions.");
+            ConsoleLoggingModules.info("Successfully removed cryptography restrictions.");
         } catch (Exception ex) {
-            LOGGER.warn("Failed to remove cryptography restrictions!", ex);
+            ConsoleLoggingModules.warning("Failed to remove cryptography restrictions!", ex);
         }
     }
 

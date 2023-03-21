@@ -86,8 +86,6 @@ public class SpotifyApi {
    */
   public static final String DEFAULT_SCHEME = "https";
 
-  public static final Logger LOGGER = Logger.getLogger(SpotifyApi.class.getName());
-
   /**
    * The date format used by the Spotify Web API. It uses the {@code GMT}  timezone and the following pattern:
    * {@code yyyy-MM-dd'T'HH:mm:ss}

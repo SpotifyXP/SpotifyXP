@@ -25,12 +25,13 @@ import com.spotify.connectstate.Connect;
 import com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotify.metadata.Metadata;
 import com.spotify.playlist4.Playlist4ApiProto;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.*;
 import okio.BufferedSink;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.Version;
 import xyz.gianlu.librespot.core.Session;
 import xyz.gianlu.librespot.json.StationsWrapper;
@@ -48,7 +49,7 @@ import static com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse;
  * @author devgianlu
  */
 public final class ApiClient {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ApiClient.class);
+    
     private final Session session;
     private final String baseUrl;
     private String clientToken = null;
@@ -78,7 +79,7 @@ public final class ApiClient {
         if (clientToken == null) {
             ClientToken.ClientTokenResponse resp = clientToken();
             clientToken = resp.getGrantedToken().getToken();
-            LOGGER.debug("Updated client token: {}", clientToken);
+            ConsoleLoggingModules.debug("Updated client token: {}", clientToken);
         }
 
         Request.Builder request = new Request.Builder();
@@ -135,9 +136,9 @@ public final class ApiClient {
         try (Response resp = send("PUT", "/connect-state/v1/devices/" + session.deviceId(), new Headers.Builder()
                 .add("X-Spotify-Connection-Id", connectionId).build(), protoBody(proto), 5 /* We want this to succeed */)) {
             if (resp.code() == 413)
-                LOGGER.warn("PUT state payload is too large: {} bytes uncompressed.", proto.getSerializedSize());
+                ConsoleLoggingModules.warning("PUT state payload is too large: {} bytes uncompressed.", proto.getSerializedSize());
             else if (resp.code() != 200)
-                LOGGER.warn("PUT state returned {}. {headers: {}}", resp.code(), resp.headers());
+                ConsoleLoggingModules.warning("PUT state returned {}. {headers: {}}", resp.code(), resp.headers());
         }
     }
 

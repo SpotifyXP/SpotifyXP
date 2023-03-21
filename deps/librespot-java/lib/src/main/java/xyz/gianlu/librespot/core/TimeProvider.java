@@ -18,13 +18,14 @@ package xyz.gianlu.librespot.core;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.TimeInfo;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.mercury.MercuryClient;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public final class TimeProvider {
     private static final AtomicLong offset = new AtomicLong(0);
-    private static final Logger LOGGER = LoggerFactory.getLogger(TimeProvider.class);
+    
     private static Method method = Method.NTP;
 
     private TimeProvider() {
@@ -54,7 +55,7 @@ public final class TimeProvider {
                 try {
                     updateWithNtp();
                 } catch (IOException ex) {
-                    LOGGER.warn("Failed updating time!", ex);
+                    ConsoleLoggingModules.warning("Failed updating time!", ex);
                 }
                 break;
             case MANUAL:
@@ -90,7 +91,7 @@ public final class TimeProvider {
                 TimeInfo info = client.getTime(InetAddress.getByName("time.google.com"));
                 info.computeDetails();
                 Long offsetValue = info.getOffset();
-                LOGGER.debug("Loaded time offset from NTP: {}ms", offsetValue);
+                ConsoleLoggingModules.debug("Loaded time offset from NTP: {}ms", offsetValue);
                 offset.set(offsetValue == null ? 0 : offsetValue);
             }
         } catch (SocketTimeoutException ex) {
@@ -101,17 +102,17 @@ public final class TimeProvider {
     private static void updateMelody(@NotNull Session session) {
         try (Response resp = session.api().send("OPTIONS", "/melody/v1/time", null, null)) {
             if (resp.code() != 200) {
-                LOGGER.error("Failed notifying server of time request! {code: {}, msg: {}}", resp.code(), resp.message());
+                ConsoleLoggingModules.error("Failed notifying server of time request! {code: {}, msg: {}}", resp.code(), resp.message());
                 return;
             }
         } catch (IOException | MercuryClient.MercuryException ex) {
-            LOGGER.error("Failed notifying server of time request!", ex);
+            ConsoleLoggingModules.error("Failed notifying server of time request!", ex);
             return;
         }
 
         try (Response resp = session.api().send("GET", "/melody/v1/time", null, null)) {
             if (resp.code() != 200) {
-                LOGGER.error("Failed requesting time! {code: {}, msg: {}}", resp.code(), resp.message());
+                ConsoleLoggingModules.error("Failed requesting time! {code: {}, msg: {}}", resp.code(), resp.message());
                 return;
             }
 
@@ -124,9 +125,9 @@ public final class TimeProvider {
                 offset.set(diff);
             }
 
-            LOGGER.info("Loaded time offset from melody: {}ms", diff);
+            ConsoleLoggingModules.info("Loaded time offset from melody: {}ms", diff);
         } catch (IOException | MercuryClient.MercuryException ex) {
-            LOGGER.error("Failed requesting time!", ex);
+            ConsoleLoggingModules.error("Failed requesting time!", ex);
         }
     }
 
@@ -137,7 +138,7 @@ public final class TimeProvider {
             long diff = ByteBuffer.wrap(pingPayload).getInt() * 1000L - System.currentTimeMillis();
             offset.set(diff);
 
-            LOGGER.debug("Loaded time offset from ping: {}ms", diff);
+            ConsoleLoggingModules.debug("Loaded time offset from ping: {}ms", diff);
         }
     }
 

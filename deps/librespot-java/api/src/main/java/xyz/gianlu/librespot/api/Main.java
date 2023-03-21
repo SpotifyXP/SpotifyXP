@@ -17,7 +17,6 @@
 package xyz.gianlu.librespot.api;
 
 
-import org.apache.logging.log4j.core.config.Configurator;
 import org.jetbrains.annotations.NotNull;
 import xyz.gianlu.librespot.common.Log4JUncaughtExceptionHandler;
 import xyz.gianlu.librespot.core.Session;
@@ -35,7 +34,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, MercuryClient.MercuryException, GeneralSecurityException, Session.SpotifyAuthenticationException {
         FileConfiguration conf = new FileConfiguration(args);
-        Configurator.setRootLevel(conf.loggingLevel());
         Thread.setDefaultUncaughtExceptionHandler(new Log4JUncaughtExceptionHandler());
 
         String host = conf.apiHost();

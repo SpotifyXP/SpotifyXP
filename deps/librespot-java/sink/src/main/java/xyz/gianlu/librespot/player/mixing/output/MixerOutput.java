@@ -16,10 +16,9 @@
 
 package xyz.gianlu.librespot.player.mixing.output;
 
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
@@ -30,7 +29,6 @@ import javax.sound.sampled.SourceDataLine;
  */
 @SuppressWarnings("unused")
 public final class MixerOutput implements SinkOutput {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MixerOutput.class);
     private final String[] mixerSearchKeywords;
     private final boolean logAvailableMixers;
     private SourceDataLine line;
@@ -55,7 +53,7 @@ public final class MixerOutput implements SinkOutput {
                 line = LineHelper.getLineFor(mixerSearchKeywords, logAvailableMixers, format);
                 line.open(format);
             } catch (LineUnavailableException | LineHelper.MixerException ex) {
-                LOGGER.warn("Failed opening line for custom format '{}'. Opening default.", format);
+                ConsoleLoggingModules.warning("Failed opening line for custom format '" + format + "'. Opening default.");
 
                 format = makeJavaxAudioFormat(OutputAudioFormat.DEFAULT_FORMAT);
                 line = LineHelper.getLineFor(mixerSearchKeywords, logAvailableMixers, format);

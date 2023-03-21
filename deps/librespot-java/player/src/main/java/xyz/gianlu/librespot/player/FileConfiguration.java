@@ -28,11 +28,11 @@ import com.electronwill.nightconfig.core.io.ConfigParser;
 import com.electronwill.nightconfig.core.io.ConfigWriter;
 import com.electronwill.nightconfig.toml.TomlParser;
 import com.spotify.connectstate.Connect;
-import org.apache.logging.log4j.Level;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.ZeroconfServer;
 import xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import xyz.gianlu.librespot.common.Utils;
@@ -55,7 +55,7 @@ import java.util.function.Supplier;
  * @author devgianlu
  */
 public final class FileConfiguration {
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileConfiguration.class);
+    
 
     static {
         FormatDetector.registerExtension("properties", new PropertiesFormat());
@@ -89,9 +89,9 @@ public final class FileConfiguration {
             migrateOldConfig(confFile, config);
             config.save();
             if (!confFile.delete())
-                LOGGER.warn("Failed deleting old configuration file.");
+                ConsoleLoggingModules.warning("Failed deleting old configuration file.");
 
-            LOGGER.info("Your configuration has been migrated to `config.toml`, change your input file if needed.");
+            ConsoleLoggingModules.info("Your configuration has been migrated to `config.toml`, change your input file if needed.");
         } else {
             updateConfigFile(new TomlParser().parse(streamDefaultConfig()));
         }
@@ -99,21 +99,21 @@ public final class FileConfiguration {
         //noinspection RedundantLengthCheck
         if (override != null && override.length > 0) {
             for (String str : override) {
-                LOGGER.debug("Configuration: String = " + str);
+                ConsoleLoggingModules.debug("Configuration: String = " + str);
                 if (str == null) continue;
 
                 if (str.contains("=") && str.startsWith("--")) {
                     String[] split = Utils.split(str, '=');
                     if (split.length != 2) {
-                        LOGGER.warn("Invalid command line argument: " + str);
+                        ConsoleLoggingModules.warning("Invalid command line argument: " + str);
                         continue;
                     }
 
                     String key = split[0].substring(2);
-                    LOGGER.debug("Configuration: Key = " + str);
+                    ConsoleLoggingModules.debug("Configuration: Key = " + str);
                     config.set(key, convertFromString(key, split[1]));
                 } else {
-                    LOGGER.warn("Invalid command line argument: " + str);
+                    ConsoleLoggingModules.warning("Invalid command line argument: " + str);
                 }
             }
         }
@@ -129,7 +129,7 @@ public final class FileConfiguration {
                     save = true;
             } else {
                 if (!defaultConfig.contains(key)) {
-                    LOGGER.trace("Removed entry from configuration file: " + key);
+                    ConsoleLoggingModules.debug("Removed entry from configuration file: " + key);
                     base.remove(key);
                     save = true;
                 }
@@ -149,7 +149,7 @@ public final class FileConfiguration {
                     save = true;
             } else {
                 if (!config.contains(key)) {
-                    LOGGER.trace("Added new entry to configuration file: " + key);
+                    ConsoleLoggingModules.debug("Added new entry to configuration file: " + key);
                     config.set(key, entry.getValue());
                     save = true;
                 }
@@ -234,7 +234,7 @@ public final class FileConfiguration {
         try {
             return config.getEnum("player.preferredAudioQuality", AudioQuality.class);
         } catch (IllegalArgumentException ex) { // Retro-compatibility
-            LOGGER.warn("Please update the `player.preferredAudioQuality` option to either `NORMAL`, `HIGH` or `VERY_HIGH`.");
+            ConsoleLoggingModules.warning("Please update the `player.preferredAudioQuality` option to either `NORMAL`, `HIGH` or `VERY_HIGH`.");
 
             String val = config.get("player.preferredAudioQuality");
             switch (val) {
@@ -324,11 +324,6 @@ public final class FileConfiguration {
         String path = config.get("auth.credentialsFile");
         if (path == null || path.isEmpty()) return null;
         return new File(path);
-    }
-
-    @NotNull
-    public Level loggingLevel() {
-        return Level.toLevel(config.get("logLevel"));
     }
 
     @NotNull

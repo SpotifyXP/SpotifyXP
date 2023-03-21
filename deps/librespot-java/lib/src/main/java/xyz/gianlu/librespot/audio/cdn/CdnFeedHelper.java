@@ -18,13 +18,12 @@ package xyz.gianlu.librespot.audio.cdn;
 
 import com.spotify.metadata.Metadata;
 import com.spotify.storage.StorageResolve.StorageResolveResponse;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xyz.gianlu.librespot.audio.HaltListener;
 import xyz.gianlu.librespot.audio.NormalizationData;
 import xyz.gianlu.librespot.audio.PlayableContentFeeder;
@@ -39,7 +38,7 @@ import java.io.InputStream;
  * @author Gianlu
  */
 public final class CdnFeedHelper {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CdnFeedHelper.class);
+    
 
     private CdnFeedHelper() {
     }
@@ -72,10 +71,10 @@ public final class CdnFeedHelper {
                 .url(episode.getExternalUrl()).build()).execute()) {
 
             if (resp.code() != 200)
-                LOGGER.warn("Couldn't resolve redirect!");
+                ConsoleLoggingModules.warning("Couldn't resolve redirect!");
 
             HttpUrl url = resp.request().url();
-            LOGGER.debug("Fetched external url for {}: {}", Utils.bytesToHex(episode.getGid()), url);
+            ConsoleLoggingModules.debug("Fetched external url for {}: {}", Utils.bytesToHex(episode.getGid()), url);
 
             CdnManager.Streamer streamer = session.cdn().streamExternalEpisode(episode, url, haltListener);
             return new LoadedStream(episode, streamer, null, new PlayableContentFeeder.Metrics(null, false, -1));

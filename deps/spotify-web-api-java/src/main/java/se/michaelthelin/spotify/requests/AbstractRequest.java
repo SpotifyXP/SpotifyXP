@@ -1,6 +1,7 @@
 package se.michaelthelin.spotify.requests;
 
 import com.google.gson.*;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.StringEntity;
@@ -51,7 +52,7 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     try {
       this.uri = uriBuilder.build();
     } catch (URISyntaxException e) {
-      SpotifyApi.LOGGER.log(Level.SEVERE, e.getMessage());
+      ConsoleLoggingModules.Throwable(e);
     }
 
     this.headers = builder.headers;
@@ -147,18 +148,15 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
 
   private String returnJson(String json) {
     if (json == null) {
-      SpotifyApi.LOGGER.log(
-        Level.FINE,
+      ConsoleLoggingModules.debug(
         "The httpManager returned json == null.");
       return null;
     } else if (json.equals("")) {
-      SpotifyApi.LOGGER.log(
-        Level.FINE,
+      ConsoleLoggingModules.debug(
         "The httpManager returned json == \"\".");
       return null;
     } else {
-      SpotifyApi.LOGGER.log(
-        Level.FINE,
+      ConsoleLoggingModules.debug(
         "The httpManager returned json == " + json + ".");
       return json;
     }

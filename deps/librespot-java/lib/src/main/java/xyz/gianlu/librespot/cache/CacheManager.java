@@ -16,10 +16,11 @@
 
 package xyz.gianlu.librespot.cache;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.GeneralWritableStream;
 import xyz.gianlu.librespot.audio.StreamId;
 import xyz.gianlu.librespot.common.Utils;
@@ -43,7 +44,7 @@ import static xyz.gianlu.librespot.audio.storage.ChannelManager.CHUNK_SIZE;
  */
 public class CacheManager implements Closeable {
     private static final long CLEAN_UP_THRESHOLD = TimeUnit.DAYS.toMillis(7);
-    private static final Logger LOGGER = LoggerFactory.getLogger(CacheManager.class);
+    
     /**
      * The header indicating when the file was last read or written to.
      */
@@ -92,9 +93,9 @@ public class CacheManager implements Closeable {
                     }
                 }
 
-                LOGGER.info("There are {} cached entries.", entries.size());
+                ConsoleLoggingModules.info("There are {} cached entries.", entries.size());
             } catch (IOException ex) {
-                LOGGER.warn("Failed performing maintenance operations.", ex);
+                ConsoleLoggingModules.warning("Failed performing maintenance operations.", ex);
             }
         }, "cache-maintenance").start();
     }
@@ -118,9 +119,9 @@ public class CacheManager implements Closeable {
 
         File file = getCacheFile(parent, streamId);
         if (file.exists() && !file.delete())
-            LOGGER.warn("Couldn't delete cache file: " + file.getAbsolutePath());
+            ConsoleLoggingModules.warning("Couldn't delete cache file: " + file.getAbsolutePath());
 
-        LOGGER.trace("Removed {} from cache.", streamId);
+        ConsoleLoggingModules.debug("Removed {} from cache.", streamId);
     }
 
     @Override
@@ -180,7 +181,7 @@ public class CacheManager implements Closeable {
                 journal.setHeader(streamId, HEADER_TIMESTAMP, BigInteger.valueOf(System.currentTimeMillis() / 1000).toByteArray());
                 updatedTimestamp = true;
             } catch (IOException ex) {
-                LOGGER.warn("Failed updating timestamp for " + streamId, ex);
+                ConsoleLoggingModules.warning("Failed updating timestamp for " + streamId, ex);
             }
         }
 
@@ -253,7 +254,7 @@ public class CacheManager implements Closeable {
                                 throw new BadChunkHashException(streamId, header.value, hash);
                             }
                         } catch (NoSuchAlgorithmException ex) {
-                            LOGGER.error("Failed initializing MD5 digest.", ex);
+                            ConsoleLoggingModules.error("Failed initializing MD5 digest.", ex);
                         }
                     }
                 }
@@ -277,7 +278,7 @@ public class CacheManager implements Closeable {
                         byte[] hash = digest.digest(buffer);
                         journal.setHeader(streamId, HEADER_HASH, hash);
                     } catch (NoSuchAlgorithmException ex) {
-                        LOGGER.error("Failed initializing MD5 digest.", ex);
+                        ConsoleLoggingModules.error("Failed initializing MD5 digest.", ex);
                     }
                 }
             } finally {

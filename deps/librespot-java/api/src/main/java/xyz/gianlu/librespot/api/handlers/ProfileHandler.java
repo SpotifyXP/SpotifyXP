@@ -19,8 +19,6 @@ package xyz.gianlu.librespot.api.handlers;
 import com.google.gson.JsonObject;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import xyz.gianlu.librespot.api.SessionWrapper;
 import xyz.gianlu.librespot.api.Utils;
@@ -30,7 +28,6 @@ import java.util.Deque;
 import java.util.Map;
 
 public final class ProfileHandler extends AbsSessionHandler {
-    private static final Logger LOGGER = LogManager.getLogger(ProfileHandler.class);
 
     public ProfileHandler(@NotNull SessionWrapper wrapper) {
         super(wrapper);

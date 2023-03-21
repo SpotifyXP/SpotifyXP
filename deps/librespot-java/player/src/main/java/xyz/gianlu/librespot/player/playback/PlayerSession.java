@@ -16,11 +16,12 @@
 
 package xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import xyz.gianlu.librespot.audio.MetadataWrapper;
 import xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import xyz.gianlu.librespot.common.NameThreadFactory;
@@ -47,7 +48,7 @@ import java.util.concurrent.Executors;
  * @author devgianlu
  */
 public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlayerSession.class);
+    
     private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "player-session-" + r.hashCode()));
     private final Session session;
     private final AudioSink sink;
@@ -66,7 +67,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
         this.sessionId = sessionId;
         this.listener = listener;
         this.queue = new PlayerQueue();
-        LOGGER.info("Created new session. {id: {}}", sessionId);
+        ConsoleLoggingModules.info("Created new session. {id: {}}", sessionId);
 
         sink.clearOutputs();
     }
@@ -159,7 +160,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
 
     @Override
     public void startedLoading(@NotNull PlayerQueueEntry entry) {
-        LOGGER.trace("{} started loading.", entry);
+        ConsoleLoggingModules.debug("{} started loading.", entry);
         if (entry == queue.head()) listener.startedLoading();
     }
 
@@ -191,7 +192,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
 
     @Override
     public void finishedLoading(@NotNull PlayerQueueEntry entry, @NotNull MetadataWrapper metadata) {
-        LOGGER.trace("{} finished loading.", entry);
+        ConsoleLoggingModules.debug("{} finished loading.", entry);
         if (entry == queue.head()) listener.finishedLoading(metadata);
     }
 
@@ -283,7 +284,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
         }catch (IllegalStateException exc) {
             //Output already set skipping
         }
-        LOGGER.debug("{} has been added to the output. {sessionId: {}, pos: {}, reason: {}}", head, sessionId, pos, reason);
+        ConsoleLoggingModules.debug("{} has been added to the output. {sessionId: {}, pos: {}, reason: {}}", head, sessionId, pos, reason);
         return new PlayerSession.EntryWithPos(head, pos);
     }
 

@@ -16,17 +16,16 @@
 
 package xyz.gianlu.librespot.api;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import io.undertow.Undertow;
 import io.undertow.server.RoutingHandler;
 import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.ResponseCodeHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import xyz.gianlu.librespot.api.handlers.*;
 
 public class ApiServer {
-    private static final Logger LOGGER = LogManager.getLogger(ApiServer.class);
+
     protected final RoutingHandler handler;
     protected final EventsHandler events = new EventsHandler();
     private final SessionWrapper wrapper;
@@ -62,7 +61,7 @@ public class ApiServer {
 
         undertow = Undertow.builder().addHttpListener(port, host, new CorsHandler(handler)).build();
         undertow.start();
-        LOGGER.info("Server started on port {}!", port);
+        ConsoleLoggingModules.info("Server started on port {}!", port);
     }
 
     public void stop() {
@@ -72,7 +71,7 @@ public class ApiServer {
             undertow.stop();
             undertow = null;
 
-            LOGGER.info("Server stopped!");
+            ConsoleLoggingModules.info("Server stopped!");
         }
     }
 }
