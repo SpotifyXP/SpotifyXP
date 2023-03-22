@@ -10,11 +10,13 @@ SpotifyXP
 <h3 style="display:inline">Only for Spotify Premium users
 <br>
 
-<a>Stable Design</a>
+<h2>Stable Design</h2>
+<br>
 <img src="SpotifyXPShowStable.PNG" width="500" >
 
 <br>
 <br>
 <br>
-<a>Nightly Design</a>
+<h2>Nightly Design</h2>
+<br>
 <img src="SpotifyXPShowNightly.PNG" width="500" >
