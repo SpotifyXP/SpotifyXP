@@ -17,6 +17,7 @@ import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.DoubleArrayList;
+import com.spotifyxp.utils.Encryption;
 import com.spotifyxp.utils.Resources;
 
 import javax.swing.*;

@@ -4,6 +4,7 @@ import com.spotifyxp.ExitCodes;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.Encryption;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -62,8 +63,8 @@ public class LoginDialog {
         spotifyokbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
-                PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
+                PublicValues.config.write(ConfigValues.username.name, new Encryption().encrypt(spotifyusernamefield.getText()));
+                PublicValues.config.write(ConfigValues.password.name, new Encryption().encrypt(usernamepasswordfield.getText()));
                 dialog.dispose();
             }
         });

@@ -32,12 +32,6 @@ public class SpotifyAPI {
     public static int waitAmount = 4;
     static SpotifyApi spotifyApi = null;
     public SpotifyAPI() {
-        if(!new File(PublicValues.fileslocation).exists()) {
-            if(!new File(PublicValues.fileslocation).mkdir()) {
-                ConsoleLogging.changeName("SpotifyAPI");
-                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 39);
-            }
-        }
         getSpotifyApi();
     }
     public SpotifyApi getSpotifyApi() {

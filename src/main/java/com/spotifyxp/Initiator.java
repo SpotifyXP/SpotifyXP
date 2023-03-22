@@ -1,8 +1,14 @@
 package com.spotifyxp;
 
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.jtattoo.plaf.graphite.GraphiteDefaultTheme;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import com.spotifyxp.analytics.Analytics;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.audio.Quality;
+import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dummy.DummyJFrame;
 import com.spotifyxp.enums.LookAndFeel;
 import com.spotifyxp.lib.libLanguage;
@@ -41,29 +47,52 @@ public class Initiator {
                 PublicValues.debug = true;
             }
         }
+        PublicValues.logger.setColored(false);
+        PublicValues.logger.setShowTime(false);
         if(PublicValues.debug) {
+            PublicValues.logger.setColored(true);
             ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-            modules.setColored(false);
+            modules.setColored(true);
             modules.setShowTime(false);
         }
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setAutoFindLanguage();
-        PublicValues.logger.setColored(false);
-        PublicValues.logger.setShowTime(false);
+        if(!new File(PublicValues.fileslocation).exists()) {
+            if(!new File(PublicValues.fileslocation).mkdir()) {
+                ConsoleLogging.changeName("SpotifyAPI");
+                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 39);
+            }
+        }
+        PublicValues.config = new Config();
+        PublicValues.theme = Theme.valueOf(PublicValues.config.get(ConfigValues.theme.name));
+        PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
         if(new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
             JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
         }
         new SplashPanel().show();
-        //Read settings
-        PublicValues.config = new Config();
         try {
             new File(PublicValues.fileslocation + "/" + "LOCKED").createNewFile();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
-        new GlobalLookAndFeel().setLookAndFeel(LookAndFeel.Graphite.getClassName());
+        switch (PublicValues.theme) {
+            case DARK:
+                try {
+                    UIManager.setLookAndFeel(new FlatDarkLaf());
+                } catch (UnsupportedLookAndFeelException e) {
+                    ConsoleLogging.Throwable(e);
+                }
+                break;
+            case LIGHT:
+                try {
+                    UIManager.setLookAndFeel(new FlatLightLaf());
+                } catch (UnsupportedLookAndFeelException e) {
+                    ConsoleLogging.Throwable(e);
+                }
+                break;
+        }
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
             new LoginDialog().open();
         }

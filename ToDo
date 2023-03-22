@@ -1,5 +1,7 @@
-[ ] - Implement more spotify functions such as remove songs from liked songs
+[ ] - Implement more spotify functions such as remove songs from liked songs or add songs to liked songs
 [ ] - Implement audio quality selection
 [ ] - Implement equalizer
 [ ] - Make the settings dialog more shiny
 [ ] - Resolve any ToDo's
+[ ] - Create build script
+[x] - Make theme not erasing your eyes

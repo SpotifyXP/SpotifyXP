@@ -40,7 +40,7 @@ public class PlayerUtils {
                 .setOutput(PlayerConfiguration.AudioOutput.MIXER)
                 .setOutputClass("")
                 .setOutputPipe(new File(""))
-                .setPreferredQuality(AudioQuality.NORMAL)
+                .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name)))
                 .setPreloadEnabled(true)
                 .setReleaseLineDelay(20)
                 .setVolumeSteps(64)
@@ -48,7 +48,7 @@ public class PlayerUtils {
                 .setLocalFilesPath(new File(""))
                 .build();
         try {
-            Session session = builder2.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();
+            Session session = builder2.userPass(new Encryption().decrypt(PublicValues.config.get(ConfigValues.username.name)), new Encryption().decrypt(PublicValues.config.get(ConfigValues.password.name))).create();
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             return player;

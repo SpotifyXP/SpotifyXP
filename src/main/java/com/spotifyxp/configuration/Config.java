@@ -22,6 +22,8 @@ public class Config {
             }
         }
         if(!new File(PublicValues.configfilepath).exists()) {
+            properties.put(ConfigValues.audioquality.name, "NORMAL");
+            properties.put(ConfigValues.theme.name, "DARK");
             properties.put(ConfigValues.disableplayerstats.name, "false");
             properties.put(ConfigValues.showallrecommendations.name, "false");
             properties.put(ConfigValues.username.name, "");

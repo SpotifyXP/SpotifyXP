@@ -1,5 +1,6 @@
 package com.spotifyxp.panels;
 
+import com.spotifyxp.Colors;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.custom.StoppableThreadRunnable;
 import com.spotifyxp.dialogs.HTMLDialog;
@@ -7,11 +8,11 @@ import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.swingextension.DropDownMenu;
 import com.spotifyxp.threading.StoppableThread;
 import com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
-import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.frames.SettingsFrame;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.swingextension.JImagePanel;
@@ -26,10 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.*;
-import com.spotifyxp.listeners.PlayerListener;
-import sun.security.mscapi.CPublicKey;
-import xyz.gianlu.librespot.player.Player;
-import xyz.gianlu.librespot.player.StateWrapper;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -65,7 +62,6 @@ public class ContentPanel extends JPanel {
     public static JTable playlistsplayliststable;
     public static JTable playlistssongtable;
     public static JTextField feedbackupdaterversionfield;
-    public static JMenuBar menuBar;
     public static JMenu file;
     public static JMenu settings;
     public static JMenu help;
@@ -143,6 +139,20 @@ public class ContentPanel extends JPanel {
     public static DefaultListModel<String> queuelistmodel = new DefaultListModel<>();
     public static ArrayList<String> playlistsuricache = new ArrayList<>();
     public static ArrayList<String> playlistssonguricache = new ArrayList<>();
+    public static JImagePanel userbutton;
+    public static JImagePanel settingsbutton;
+    public static JImagePanel threepointbutton;
+    public static DropDownMenu userdropdown;
+    public static DropDownMenu threepointdropdown;
+    enum LastTypes {
+        Playlists,
+        Library,
+        Search,
+        HotList,
+        Queue,
+        Feedback
+    }
+    public static LastTypes lastmenu = LastTypes.HotList;
     public ContentPanel(SpotifyAPI.Player p, SpotifyAPI a) {
         libLanguage l = PublicValues.language;
         ConsoleLogging.info(l.translate("debug.buildcontentpanelbegin"));
@@ -152,13 +162,137 @@ public class ContentPanel extends JPanel {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
-        menuBar = new JMenuBar();
-        menuBar.setBounds(0, 0, 784, 22);
         file = new JMenu(l.translate("ui.menu.file"));
         settings = new JMenu(l.translate("ui.menu.settings"));
         help = new JMenu(l.translate("ui.menu.help"));
         help.setHorizontalAlignment(SwingConstants.LEFT);
-        menuBar.add(file);
+
+
+        settingsbutton = new JImagePanel();
+        settingsbutton.setBounds(669, 11, 23, 23);
+        add(settingsbutton);
+
+        settingsbutton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(!settingsPanel.isVisible()) {
+                    setNothingVisible();
+                    settingsPanel.setVisible(true);
+                    settingsbutton.setRotation(10);
+                }else {
+                    SettingsPanel.applySettings();
+                    settingsPanel.setVisible(false);
+                    switch (lastmenu) {
+                        case Queue:
+                            setQueueVisible();
+                            setButtonsVisible();
+                            break;
+                        case Search:
+                            setSearchVisible();
+                            setButtonsVisible();
+                            break;
+                        case Library:
+                            setLibraryVisible();
+                            setButtonsVisible();
+                            break;
+                        case Feedback:
+                            setFeedbackVisible();
+                            setButtonsVisible();
+                            break;
+                        case Playlists:
+                            setPlaylistsVisible();
+                            setButtonsVisible();
+                            break;
+                        case HotList:
+                            setHotlistVisible();
+                            setButtonsVisible();
+                            break;
+                    }
+                    settingsbutton.setRotation(0);
+                }
+            }
+        });
+
+
+        userbutton = new JImagePanel();
+        userbutton.setBounds(702, 11, 23, 23);
+        add(userbutton);
+
+        userdropdown = new DropDownMenu(userbutton, false);
+
+        threepointbutton = new JImagePanel();
+        threepointbutton.setBounds(735, 11, 23, 23);
+        add(threepointbutton);
+
+        threepointdropdown = new DropDownMenu(threepointbutton, false);
+        threepointdropdown.addItem("About SpotifyXP", new Runnable() {
+            @Override
+            public void run() {
+                HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
+                    @Override
+                    public void log(String s) {
+
+                    }
+
+                    @Override
+                    public void err(String s) {
+
+                    }
+
+                    @Override
+                    public void info(String s) {
+
+                    }
+
+                    @Override
+                    public void crit(String s) {
+
+                    }
+                });
+                dialog.getDialog().setPreferredSize(new Dimension(400, 500));
+                try {
+                    String out = new Resources().readToString("about.html");
+                    StringBuilder cache = new StringBuilder();
+                    for(String s : out.split("\n")) {
+                        if(s.contains("(TRANSLATE)")) {
+                            s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
+                            s = s.replace("(TRANSLATE)", "");
+                        }
+                        cache.append(s);
+                    }
+                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), cache.toString());
+                } catch (Exception ex) {
+                    ConsoleLogging.Throwable(ex);
+                }
+                dialog.getDialog().addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        dialog.getDialog().dispose();
+                    }
+                });
+            }
+        });
+        threepointdropdown.addItem("Close SpotifyXP", new Runnable() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        });
+
+
+        switch (PublicValues.theme) {
+            case DARK:
+                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingslight.png"));
+                userbutton.setImage(new Resources(true).readToInputStream("icons/userlight.png"));
+                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotslight.png"));
+                break;
+            case LIGHT:
+                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingsdark.png"));
+                userbutton.setImage(new Resources(true).readToInputStream("icons/userdark.png"));
+                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotsdark.png"));
+                break;
+        }
 
         connect = new JMenuItem(l.translate("ui.menu.file.connect"));
         connect.setHorizontalAlignment(SwingConstants.LEFT);
@@ -173,16 +307,16 @@ public class ContentPanel extends JPanel {
 
         exit = new JMenuItem(l.translate("ui.menu.file.exit"));
         file.add(exit);
-        menuBar.add(settings);
+        //menuBar.add(settings);
 
         configuration = new JMenuItem(l.translate("ui.menu.settings.configuration"));
         configuration.setHorizontalAlignment(SwingConstants.CENTER);
         settings.add(configuration);
-        menuBar.add(help);
+        //menuBar.add(help);
 
         about = new JMenuItem(l.translate("ui.menu.help.about"));
         help.add(about);
-        add(menuBar);
+        //add(menuBar);
 
         playerarea = new JPanel();
         playerarea.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -1091,9 +1225,44 @@ public class ContentPanel extends JPanel {
                 ConnectionUtils.openBrowser("https://github.com/werwolf2303/SpotifyXP/issues/new");
             }
         });
+        switch (PublicValues.theme) {
+            case DARK:
+                //setThemeDark(this);
+                break;
+        }
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
     }
+
+    int counter = 0;
+
+    void setThemeDark(Component co) {
+        JPanel c = (JPanel) co;
+        for(Component component : c.getComponents()) {
+            component.setBackground(Colors.black);
+            component.setForeground(Color.white);
+            if(counter==0) {
+                if (!(component.getParent().getBackground() == Colors.black)) {
+                    component.getParent().setBackground(Colors.black);
+                }
+                counter++;
+            }
+            if(component instanceof JTable) {
+                JTable table = (JTable) component;
+                table.setGridColor(Colors.black);
+                if(table.getBorder() instanceof  TitledBorder) {
+                    TitledBorder border = (TitledBorder) table.getBorder();
+                    border.setTitleColor(Color.white);
+                }
+            }
+            if(component instanceof JPanel) {
+                JPanel panel = (JPanel) component;
+                setThemeDark(panel);
+            }
+        }
+    }
+
     public void setLibraryVisible() {
+        lastmenu = LastTypes.Library;
         librarypane.setVisible(true);
         searchpane.setVisible(false);
         hotlistpane.setVisible(false);
@@ -1113,7 +1282,9 @@ public class ContentPanel extends JPanel {
         hotlistVisible = false;
         feedbackVisible = false;
     }
+
     public void setSearchVisible() {
+        lastmenu = LastTypes.Search;
         librarypane.setVisible(false);
         searchpane.setVisible(true);
         hotlistpane.setVisible(false);
@@ -1133,7 +1304,47 @@ public class ContentPanel extends JPanel {
         hotlistVisible = false;
         feedbackVisible = false;
     }
+    public void setButtonsHidden() {
+        playerarea.setVisible(false);
+        librarybutton.setVisible(false);
+        playlistsbutton.setVisible(false);
+        searchbutton.setVisible(false);
+        hotlistbutton.setVisible(false);
+        queuebutton.setVisible(false);
+        feedbackbutton.setVisible(false);
+    }
+    public void setButtonsVisible() {
+        playerarea.setVisible(true);
+        librarybutton.setVisible(true);
+        playlistsbutton.setVisible(true);
+        searchbutton.setVisible(true);
+        hotlistbutton.setVisible(true);
+        queuebutton.setVisible(true);
+        feedbackbutton.setVisible(true);
+    }
+    public void setNothingVisible() {
+        setButtonsHidden();
+        librarypane.setVisible(false);
+        searchpane.setVisible(false);
+        hotlistpane.setVisible(false);
+        feedbackpane.setVisible(false);
+        playlistspane.setVisible(false);
+        queuepane.setVisible(false);
+        hotlistbutton.setSelected(true);
+        searchbutton.setSelected(false);
+        librarybutton.setSelected(false);
+        feedbackbutton.setSelected(false);
+        playlistsbutton.setSelected(false);
+        queuebutton.setSelected(false);
+        queueVisible = false;
+        playlistsVisible = false;
+        searchVisible = false;
+        libraryVisble = false;
+        hotlistVisible = false;
+        feedbackVisible = false;
+    }
     public void setHotlistVisible() {
+        lastmenu = LastTypes.HotList;
         librarypane.setVisible(false);
         searchpane.setVisible(false);
         hotlistpane.setVisible(true);
@@ -1154,6 +1365,7 @@ public class ContentPanel extends JPanel {
         feedbackVisible = false;
     }
     public void setFeedbackVisible() {
+        lastmenu = LastTypes.Feedback;
         librarypane.setVisible(false);
         searchpane.setVisible(false);
         hotlistpane.setVisible(false);
@@ -1174,6 +1386,7 @@ public class ContentPanel extends JPanel {
         feedbackVisible = true;
     }
     public void setPlaylistsVisible() {
+        lastmenu = LastTypes.Playlists;
         librarypane.setVisible(false);
         searchpane.setVisible(false);
         hotlistpane.setVisible(false);
@@ -1194,6 +1407,7 @@ public class ContentPanel extends JPanel {
         feedbackVisible = false;
     }
     public void setQueueVisible() {
+        lastmenu = LastTypes.Queue;
         librarypane.setVisible(false);
         searchpane.setVisible(false);
         hotlistpane.setVisible(false);
@@ -1290,6 +1504,7 @@ public class ContentPanel extends JPanel {
         }
     }
     public static JFrame frame = null;
+    public static SettingsPanel settingsPanel = null;
     public void open() {
         JFrame mainframe = new JFrame("SpotifyXP - v" + PublicValues.version);
         frame = mainframe;
@@ -1298,7 +1513,11 @@ public class ContentPanel extends JPanel {
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
-        mainframe.getContentPane().add(this);
+        settingsPanel = new SettingsPanel();
+        settingsPanel.setBounds(0, 52, 784, 509);
+        settingsPanel.setVisible(false);
+        mainframe.add(settingsPanel, BorderLayout.CENTER);
+        mainframe.add(this, BorderLayout.CENTER);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.setResizable(false);
         mainframe.setPreferredSize(new Dimension(793, 600));
