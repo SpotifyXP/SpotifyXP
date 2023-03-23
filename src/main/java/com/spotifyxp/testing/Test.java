@@ -16,10 +16,9 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.updater.Updater;
-import com.spotifyxp.utils.DoubleArrayList;
-import com.spotifyxp.utils.Encryption;
 import com.spotifyxp.utils.Resources;
 
+import javax.crypto.SecretKey;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -32,7 +31,6 @@ import java.util.TimeZone;
 @SuppressWarnings("EmptyMethod")
 public class Test {
     public static void main(String[] args ) throws IOException {
-
     }
     public void old() {
         JFrame frame = new JFrame("Test Engine");

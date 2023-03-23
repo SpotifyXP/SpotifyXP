@@ -1,7 +1,10 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.Colors;
+import com.spotifyxp.ExitCodes;
+import com.spotifyxp.Initiator;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.custom.StoppableThreadRunnable;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.events.LoggerEvent;
@@ -13,7 +16,6 @@ import com.spotifyxp.threading.StoppableThread;
 import com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
-import com.spotifyxp.frames.SettingsFrame;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.updater.Updater;
@@ -21,6 +23,7 @@ import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.DoubleArrayList;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
+import com.sun.org.apache.xml.internal.security.Init;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
@@ -41,6 +44,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -220,6 +224,15 @@ public class ContentPanel extends JPanel {
         add(userbutton);
 
         userdropdown = new DropDownMenu(userbutton, false);
+        userdropdown.addItem("Logout", new Runnable() {
+            @Override
+            public void run() {
+                PublicValues.config.write(ConfigValues.username.name, "");
+                PublicValues.config.write(ConfigValues.password.name, "");
+                JOptionPane.showConfirmDialog(null, "SpotifyXP now exits. On the next start you must enter your email and password", "Info", JOptionPane.OK_CANCEL_OPTION);
+                System.exit(ExitCodes.USER_DECISION.getCode());
+            }
+        });
 
         threepointbutton = new JImagePanel();
         threepointbutton.setBounds(735, 11, 23, 23);
@@ -734,6 +747,13 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
                     player.getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, false);
+                    try {
+                        for(PlaylistTrack track : api.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getItems()) {
+                            player.getPlayer().addToQueue(track.getTrack().getUri());
+                        }
+                    } catch (IOException | SpotifyWebApiException | ParseException ignored) {
+
+                    }
                 }
             }
         });
@@ -747,10 +767,15 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 hotlistsongstable.setColumnSelectionInterval(0, hotlistsongstable.getColumnCount() - 1);
                 if(e.getClickCount()==2) {
+                    //player.getPlayer().tracks(true).next.clear();
                     player.getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, false);
+                    for(String s : hotlistsonglistcache.subList(0, hotlistsongstable.getSelectedRow())) {
+                        player.getPlayer().addToQueue(s);
+                    }
                 }
             }
         });
+        ArrayList<String> hotlistsongs = new ArrayList<>();
         hotlistplayliststable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -761,6 +786,7 @@ public class ContentPanel extends JPanel {
                         for (TrackSimplified track : api.getSpotifyApi().getAlbum(hotlistplaylistlistcache.get(hotlistplayliststable.getSelectedRow())).build().execute().getTracks().getItems()) {
                             String a = TrackUtils.getArtists(track.getArtists());
                             hotlistsonglistcache.add(track.getUri());
+                            hotlistsongs.add(track.getUri());
                             ((DefaultTableModel) hotlistsongstable.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
                         }
                     } catch (IOException | SpotifyWebApiException | ParseException ex) {
@@ -772,7 +798,7 @@ public class ContentPanel extends JPanel {
         try {
             fetchHotlist();
         }catch (RuntimeException exc) {
-            JOptionPane.showConfirmDialog(frame, "Something went wrong", "JSON Exception", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(frame, "Something went wrong", "JSON Exception", JOptionPane.OK_CANCEL_OPTION); //ToDo: Translate
         }
 
         playlistsbutton.addActionListener(new ActionListener() {
@@ -1126,12 +1152,6 @@ public class ContentPanel extends JPanel {
                 return false;
             }
         };
-        configuration.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new SettingsFrame().open();
-            }
-        });
         searchsonglist.getTableHeader().setReorderingAllowed(false);
         searchsonglist.addMouseListener(new MouseAdapter() {
             @Override

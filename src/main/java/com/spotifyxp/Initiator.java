@@ -39,6 +39,7 @@ import java.util.Scanner;
 public class Initiator {
     static SpotifyAPI api = null;
     public static void main(String[] args) {
+        PublicValues.args = args;
         if(new File("pom.xml").exists()) {
             args = new String[] {"--debug"};
         }

@@ -862,6 +862,12 @@ public class Player implements Closeable {
         ConsoleLoggingModules.info("Closed player.");
     }
 
+    public void removeAllFromQueue() {
+        state.getNextTracks(true).clear();
+        state.setQueue(state.getPrevTracks(), state.getNextTracks(true));
+        state.updated();
+    }
+
     @SuppressWarnings("EmptyMethod")
     public interface EventsListener {
         void onContextChanged(@NotNull Player player, @NotNull String newUri);

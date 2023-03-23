@@ -27,4 +27,5 @@ public class PublicValues {
     public static Theme theme = null;
     public static GraphiteLookAndFeel windowTheme = new GraphiteLookAndFeel();
     public static Quality quality = null;
+    public static String[] args = null;
 }

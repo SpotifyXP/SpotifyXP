@@ -7,7 +7,8 @@ SpotifyXP
 <h4>Compile Info: The default branch is nightly!</h4>
 
 
-<h3 style="display:inline">Only for Spotify Premium users
+<h3>In some regions you need Premium</h3>
+
 <br>
 
 <h2>Stable Design</h2>
