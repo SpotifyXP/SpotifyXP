@@ -21,6 +21,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotify.metadata.Metadata;
 import com.spotify.transfer.TransferStateOuterClass;
+import com.spotifyxp.ExitCodes;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -53,6 +54,7 @@ import xyz.gianlu.librespot.player.playback.PlayerSession;
 import xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 
+import javax.swing.*;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.*;
@@ -266,6 +268,9 @@ public class Player implements Closeable {
         } catch (AbsSpotifyContext.UnsupportedContextException ex) {
             ConsoleLoggingModules.error("Cannot play context!", ex);
             panicState(null);
+        } catch (IllegalStateException ex) {
+            JOptionPane.showConfirmDialog(null, "A critical error occured SpotifyXP now closes", "Critical", JOptionPane.OK_CANCEL_OPTION);
+            System.exit(10);
         }
     }
 

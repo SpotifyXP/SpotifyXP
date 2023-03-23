@@ -1,6 +1,7 @@
 package com.spotifyxp.engine;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public interface Element {
     int getX();
@@ -9,4 +10,5 @@ public interface Element {
     void drawElement(Graphics2D graphics2D);
     void setEnginePanelInstance(EnginePanel enginePanel);
     void setDebug(boolean debug);
+    void handleClick(int x, int y, MouseEvent e);
 }

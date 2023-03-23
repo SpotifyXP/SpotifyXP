@@ -5,6 +5,7 @@ import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
 
 public class AddRemove implements Element {
@@ -35,6 +36,11 @@ public class AddRemove implements Element {
     @Override
     public void setDebug(boolean debug) {
         d = debug;
+    }
+
+    @Override
+    public void handleClick(int x, int y, MouseEvent e) {
+
     }
 
     public void setAdd(boolean add) {

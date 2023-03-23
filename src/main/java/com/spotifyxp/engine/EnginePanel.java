@@ -2,9 +2,22 @@ package com.spotifyxp.engine;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class EnginePanel extends JPanel {
+    public EnginePanel() {
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                for(Element element : elements) {
+                    element.handleClick(e.getX(), e.getY(), e);
+                }
+            }
+        });
+    }
     ArrayList<Element> elements = new ArrayList<>();
     boolean d = false;
     boolean f = true;
@@ -33,5 +46,8 @@ public class EnginePanel extends JPanel {
         e.setEnginePanelInstance(this);
         e.setDebug(d);
         elements.add(e);
+    }
+    public void addNon2DElement(Non2DElement element) {
+        this.add((Component) element);
     }
 }

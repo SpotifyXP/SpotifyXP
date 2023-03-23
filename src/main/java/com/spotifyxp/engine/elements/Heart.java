@@ -5,7 +5,9 @@ import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
+import java.util.ArrayList;
 
 public class Heart implements Element {
     int x = 0;
@@ -18,6 +20,8 @@ public class Heart implements Element {
     boolean fill = false;
     EnginePanel ep = null;
     boolean d = false;
+    Runnable click;
+    Path2D.Float heartPath = new Path2D.Float();
 
     public Heart(int width, int height, int xaxis, int yaxis, Color backgroundColor, Color lineColor) {
         w = width;
@@ -36,6 +40,17 @@ public class Heart implements Element {
     @Override
     public void setDebug(boolean debug) {
         d = debug;
+    }
+
+    public void onclick(Runnable runnable) {
+        click = runnable;
+    }
+
+    @Override
+    public void handleClick(int x, int y, MouseEvent e) {
+        if(heartPath.contains(x, y)) {
+            click.run();
+        }
     }
 
     public void setFill(boolean fillit) {
@@ -58,6 +73,10 @@ public class Heart implements Element {
         return name;
     }
 
+    public boolean isFilled() {
+        return fill;
+    }
+
     @Override
     public void drawElement(Graphics2D graphics2D) {
         float beX = x + w / 2;
@@ -67,7 +86,6 @@ public class Heart implements Element {
         float c2DX = w  * 0.281f;
         float c2DY = h * 1.295f;
         float teDY = h * 0.850f;
-        Path2D.Float heartPath = new Path2D.Float();
         heartPath.moveTo(beX, beY);
         heartPath.curveTo(beX - c1DX, beY - c1DY, beX - c2DX, beY - c2DY, beX, beY - teDY);
         heartPath.curveTo(beX + c2DX, beY - c2DY, beX + c1DX, beY - c1DY, beX, beY);

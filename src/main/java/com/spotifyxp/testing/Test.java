@@ -3,12 +3,14 @@ package com.spotifyxp.testing;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.analytics.Analytics;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dummy.DummyJFrame;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.engine.elements.AddRemove;
 import com.spotifyxp.engine.elements.Heart;
 import com.spotifyxp.engine.elements.Image;
+import com.spotifyxp.engine.non2d.Volume;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -31,6 +33,18 @@ import java.util.TimeZone;
 @SuppressWarnings("EmptyMethod")
 public class Test {
     public static void main(String[] args ) throws IOException {
+        PublicValues.theme = Theme.DARK;
+        JFrame frame = new JFrame("Test");
+        JPanel contentPanel = new JPanel();
+        EnginePanel panel = new EnginePanel();
+        Volume volume = new Volume();
+        volume.setVertical();
+        panel.addNon2DElement(volume);
+        contentPanel.add(volume);
+        frame.setPreferredSize(new Dimension(800, 600));
+        frame.add(contentPanel);
+        frame.setVisible(true);
+        frame.pack();
     }
     public void old() {
         JFrame frame = new JFrame("Test Engine");

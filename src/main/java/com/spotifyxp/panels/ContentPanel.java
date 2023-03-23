@@ -6,10 +6,14 @@ import com.spotifyxp.Initiator;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.custom.StoppableThreadRunnable;
+import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.HTMLDialog;
+import com.spotifyxp.engine.EnginePanel;
+import com.spotifyxp.engine.elements.Heart;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.DropDownMenu;
 import com.spotifyxp.threading.StoppableThread;
@@ -19,10 +23,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.updater.Updater;
-import com.spotifyxp.utils.ConnectionUtils;
-import com.spotifyxp.utils.DoubleArrayList;
-import com.spotifyxp.utils.Resources;
-import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.utils.*;
 import com.sun.org.apache.xml.internal.security.Init;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
@@ -75,7 +76,7 @@ public class ContentPanel extends JPanel {
     public static JMenuItem exit;
     public static JMenuItem configuration;
     public static JMenuItem about;
-    public static JPanel playerarea;
+    public static EnginePanel playerarea;
     public static JImagePanel playerimage;
     public static JLabel playertitle;
     public static JLabel playerdescription;
@@ -135,6 +136,7 @@ public class ContentPanel extends JPanel {
     public static boolean queueVisible = false;
     public static boolean hotlistVisible = false;
     public static boolean libraryVisble = false;
+    public static Heart heart;
     public static ArrayList<String> searchsonglistcache = new ArrayList<>();
     public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
     public static ArrayList<String> hotlistsonglistcache = new ArrayList<>();
@@ -148,6 +150,9 @@ public class ContentPanel extends JPanel {
     public static JImagePanel threepointbutton;
     public static DropDownMenu userdropdown;
     public static DropDownMenu threepointdropdown;
+    public static JImagePanel playerareavolumeicon;
+    public static JSlider playerareavolumeslider;
+    public static JLabel playerareavolumecurrent;
     enum LastTypes {
         Playlists,
         Library,
@@ -331,26 +336,142 @@ public class ContentPanel extends JPanel {
         help.add(about);
         //add(menuBar);
 
-        playerarea = new JPanel();
-        playerarea.setBorder(new LineBorder(new Color(0, 0, 0)));
-        playerarea.setBounds(140, 22, 497, 78);
+        playerarea = new EnginePanel();
+        if(PublicValues.theme == Theme.LIGHT) {
+            playerarea.setBorder(new LineBorder(Color.black));
+        }else {
+            playerarea.setBorder(new LineBorder(Color.gray));
+        }
+        playerarea.setBounds(72, 0, 565, 100);
         add(playerarea);
         playerarea.setLayout(null);
 
         playerimage = new JImagePanel();
-        playerimage.setBounds(10, 11, 57, 54);
+        playerimage.setBounds(10, 11, 78, 78);
         playerarea.add(playerimage);
 
+        playerareavolumeicon = new JImagePanel();
+        playerareavolumeicon.setBounds(238, 75, 14, 14);
+        playerarea.add(playerareavolumeicon);
+
+        playerareavolumecurrent = new JLabel();
+        playerareavolumecurrent.setBounds(421, 75, 35, 14);
+        playerarea.add(playerareavolumecurrent);
+
+        playerareavolumeslider = new JSlider();
+        playerareavolumeslider.setBounds(266, 76, 145, 13);
+        playerarea.add(playerareavolumeslider);
+
+        playerareavolumecurrent.setText("10");
+
+        playerareavolumeslider.setMinimum(0);
+        playerareavolumeslider.setMaximum(10);
+        playerareavolumeslider.setValue(10);
+
+        player.getPlayer().setVolume(65536);
+
+        if(PublicValues.theme == Theme.LIGHT) {
+            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
+        }else{
+            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
+        }
+
+        playerareavolumeslider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(PublicValues.theme == Theme.LIGHT) {
+                    playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+                    if (playerareavolumeslider.getValue() == 0) {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
+                    }else{
+                        if(playerareavolumeslider.getValue() == 10) {
+                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
+                        }else{
+                            if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
+                                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.png"));
+                            }
+                        }
+                    }
+                }else{
+                    playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+                    if (playerareavolumeslider.getValue() == 0) {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.png"));
+                    }else{
+                        if(playerareavolumeslider.getValue() == 10) {
+                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
+                        }else{
+                            if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
+                                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.png"));
+                            }
+                        }
+                    }
+                }
+                switch (playerareavolumeslider.getValue()) {
+                    case 0:
+                        player.getPlayer().setVolume(0);
+                        break;
+                    case 1:
+                        player.getPlayer().setVolume(6553);
+                        break;
+                    case 2:
+                        player.getPlayer().setVolume(13107);
+                        break;
+                    case 3:
+                        player.getPlayer().setVolume(19660);
+                        break;
+                    case 4:
+                        player.getPlayer().setVolume(26214);
+                        break;
+                    case 5:
+                        player.getPlayer().setVolume(32768);
+                        break;
+                    case 6:
+                        player.getPlayer().setVolume(39321);
+                        break;
+                    case 7:
+                        player.getPlayer().setVolume(45875);
+                        break;
+                    case 8:
+                        player.getPlayer().setVolume(52428);
+                        break;
+                    case 9:
+                        player.getPlayer().setVolume(58982);
+                        break;
+                    case 10:
+                        player.getPlayer().setVolume(65536);
+                        break;
+                }
+            }
+        });
+
         playertitle = new JLabel(l.translate("ui.player.title"));
-        playertitle.setBounds(77, 11, 138, 14);
+        playertitle.setBounds(109, 11, 138, 14);
         playerarea.add(playertitle);
 
         playerdescription = new JLabel(l.translate("ui.player.description"));
-        playerdescription.setBounds(77, 36, 138, 20);
+        playerdescription.setBounds(109, 40, 138, 20);
         playerarea.add(playerdescription);
 
+        if(PublicValues.theme == Theme.DARK) {
+            heart = new Heart(20, 20, 462, 21, Colors.green, Colors.green);
+        }else{
+            heart = new Heart(20, 20, 462, 21, Colors.green, Colors.green);
+        }
+        heart.onclick(new Runnable() {
+            @Override
+            public void run() {
+                if(heart.isFilled()) {
+                    PublicValues.elevated.makeDelete("https://api.spotify.com/v1/me/tracks?ids=" + player.getPlayer().currentPlayable().toSpotifyUri().split(":")[2]);
+                    heart.setFill(false);
+                }else {
+                    PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + player.getPlayer().currentPlayable().toSpotifyUri().split(":")[2]);
+                    heart.setFill(true);
+                }
+            }
+        });
+        playerarea.addElement(heart);
+
         playerplaypreviousbutton = new JButton(l.translate("ui.player.playprevious"));
-        playerplaypreviousbutton.setBounds(219, 11, 70, 36);
         playerarea.add(playerplaypreviousbutton);
 
         playerplaypausebutton = new JButton(l.translate("ui.player.playpause"));
@@ -359,26 +480,32 @@ public class ContentPanel extends JPanel {
                 player.getPlayer().playPause();
             }
         });
-        playerplaypausebutton.setBounds(301, 11, 69, 36);
         playerarea.add(playerplaypausebutton);
 
         playerplaynextbutton = new JButton(l.translate("ui.player.playnext"));
-        playerplaynextbutton.setBounds(380, 11, 69, 36);
         playerarea.add(playerplaynextbutton);
 
         playercurrenttime = new JSlider();
         playercurrenttime.setValue(0);
-        playercurrenttime.setBounds(238, 54, 200, 13);
         playerarea.add(playercurrenttime);
 
         playerplaytime = new JLabel("00:00:00");
         playerplaytime.setHorizontalAlignment(SwingConstants.RIGHT);
-        playerplaytime.setBounds(176, 54, 57, 14);
         playerarea.add(playerplaytime);
 
         playerplaytimetotal = new JLabel("00:00:00");
-        playerplaytimetotal.setBounds(438, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
+
+        playerplaypreviousbutton.setBounds(287, 11, 70, 36);
+        playerplaypausebutton.setBounds(369, 11, 69, 36);
+        playerplaynextbutton.setBounds(448, 11, 69, 36);
+        playercurrenttime.setBounds(306, 54, 200, 13);
+        playerplaytime.setBounds(244, 54, 57, 14);
+        playerplaytimetotal.setBounds(506, 54, 49, 14);
+        playertitle.setBounds(109, 11, 168, 14);
+        playerareavolumeicon.setBounds(306, 75, 14, 14);
+        playerareavolumecurrent.setBounds(489, 75, 35, 14);
+        playerareavolumeslider.setBounds(334, 76, 145, 13);
 
         tabpanel = new JPanel();
         tabpanel.setBounds(0, 140, 784, 421);
@@ -1245,11 +1372,20 @@ public class ContentPanel extends JPanel {
                 ConnectionUtils.openBrowser("https://github.com/werwolf2303/SpotifyXP/issues/new");
             }
         });
-        switch (PublicValues.theme) {
-            case DARK:
-                //setThemeDark(this);
-                break;
-        }
+        ContextMenu searchcontextmenu = new ContextMenu(searchsonglist);
+        searchcontextmenu.addItem("Add to library", new Runnable() {
+            @Override
+            public void run() {
+                heart.setFill(true);
+                PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
+            }
+        });
+        searchcontextmenu.addItem("Copy URI", new Runnable() {
+            @Override
+            public void run() {
+                ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow()));
+            }
+        });
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
     }
 

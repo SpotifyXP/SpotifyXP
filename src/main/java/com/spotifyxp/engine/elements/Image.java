@@ -7,6 +7,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -104,5 +105,10 @@ public class Image implements Element {
     @Override
     public void setDebug(boolean debug) {
         d = debug;
+    }
+
+    @Override
+    public void handleClick(int x, int y, MouseEvent e) {
+
     }
 }
