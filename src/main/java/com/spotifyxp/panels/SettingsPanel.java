@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 
 import javax.swing.*;
@@ -10,11 +9,10 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
-    SettingsPanel panel = this;
+    final SettingsPanel panel = this;
     public static JTextField settingsbrowserpath;
     public static JButton settingspathsetbutton;
     public static JRadioButton settingsuidisableplayerstats;
@@ -83,24 +81,16 @@ public class SettingsPanel extends JPanel {
         settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
         add(settingsplaybackopenequalizerbutton);
 
-        settingsplaybackopenequalizerbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showConfirmDialog(null, "Equalizer not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION);
-            }
-        });
+        settingsplaybackopenequalizerbutton.addActionListener(e -> JOptionPane.showConfirmDialog(null, "Equalizer not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION));
 
-        settingspathsetbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
-                chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"),"exe");
-                chooser.setFileFilter(filter);
-                chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
-                chooser.showOpenDialog(panel);
-                settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
-            }
+        settingspathsetbutton.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"),"exe");
+            chooser.setFileFilter(filter);
+            chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
+            chooser.showOpenDialog(panel);
+            settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
         });
 
         settingsuidisableplayerstats.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.disableplayerstats.name)));

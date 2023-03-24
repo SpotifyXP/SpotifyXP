@@ -15,12 +15,12 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class Image implements Element {
-    int w = 0;
-    int h = 0;
-    int x = 0;
-    int y = 0;
+    int w;
+    int h;
+    int x;
+    int y;
     EnginePanel ep;
-    String name = "Image";
+    final String name = "Image";
     boolean d = false;
     private BufferedImage image = null;
     public Image(int width, int height, int xaxis, int yaxis) {

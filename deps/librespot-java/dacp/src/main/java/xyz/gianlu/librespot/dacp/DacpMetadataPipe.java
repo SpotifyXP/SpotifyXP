@@ -66,7 +66,8 @@ public final class DacpMetadataPipe implements Closeable {
         try {
             send(type, code, payload);
         } catch (IOException ex) {
-            ConsoleLoggingModules.error("Failed sending metadata through pipe!", ex);
+            //ConsoleLoggingModules.error("Failed sending metadata through pipe! ", ex.getMessage());
+            //This is normal it should not prevent SpotifyXP from working
         }
     }
 

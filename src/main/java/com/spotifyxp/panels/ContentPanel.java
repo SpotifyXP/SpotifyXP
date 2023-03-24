@@ -1,19 +1,15 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.Colors;
-import com.spotifyxp.ExitCodes;
-import com.spotifyxp.Initiator;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.custom.StoppableThreadRunnable;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.engine.EnginePanel;
-import com.spotifyxp.engine.elements.Heart;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.DropDownMenu;
 import com.spotifyxp.threading.StoppableThread;
@@ -24,7 +20,6 @@ import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.*;
-import com.sun.org.apache.xml.internal.security.Init;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
@@ -45,11 +40,11 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -136,7 +131,7 @@ public class ContentPanel extends JPanel {
     public static boolean queueVisible = false;
     public static boolean hotlistVisible = false;
     public static boolean libraryVisble = false;
-    public static Heart heart;
+    public static JImagePanel heart;
     public static ArrayList<String> searchsonglistcache = new ArrayList<>();
     public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
     public static ArrayList<String> hotlistsonglistcache = new ArrayList<>();
@@ -162,6 +157,7 @@ public class ContentPanel extends JPanel {
         Feedback
     }
     public static LastTypes lastmenu = LastTypes.HotList;
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public ContentPanel(SpotifyAPI.Player p, SpotifyAPI a) {
         libLanguage l = PublicValues.language;
         ConsoleLogging.info(l.translate("debug.buildcontentpanelbegin"));
@@ -235,7 +231,7 @@ public class ContentPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.username.name, "");
                 PublicValues.config.write(ConfigValues.password.name, "");
                 JOptionPane.showConfirmDialog(null, "SpotifyXP now exits. On the next start you must enter your email and password", "Info", JOptionPane.OK_CANCEL_OPTION);
-                System.exit(ExitCodes.USER_DECISION.getCode());
+                System.exit(0);
             }
         });
 
@@ -351,15 +347,15 @@ public class ContentPanel extends JPanel {
         playerarea.add(playerimage);
 
         playerareavolumeicon = new JImagePanel();
-        playerareavolumeicon.setBounds(238, 75, 14, 14);
+        playerareavolumeicon.setBounds(306, 75, 14, 14);
         playerarea.add(playerareavolumeicon);
 
         playerareavolumecurrent = new JLabel();
-        playerareavolumecurrent.setBounds(421, 75, 35, 14);
+        playerareavolumecurrent.setBounds(489, 75, 35, 14);
         playerarea.add(playerareavolumecurrent);
 
         playerareavolumeslider = new JSlider();
-        playerareavolumeslider.setBounds(266, 76, 145, 13);
+        playerareavolumeslider.setBounds(334, 76, 145, 13);
         playerarea.add(playerareavolumeslider);
 
         playerareavolumecurrent.setText("10");
@@ -445,36 +441,21 @@ public class ContentPanel extends JPanel {
         });
 
         playertitle = new JLabel(l.translate("ui.player.title"));
-        playertitle.setBounds(109, 11, 138, 14);
+        playertitle.setBounds(109, 11, 168, 14);
         playerarea.add(playertitle);
 
         playerdescription = new JLabel(l.translate("ui.player.description"));
         playerdescription.setBounds(109, 40, 138, 20);
         playerarea.add(playerdescription);
 
-        if(PublicValues.theme == Theme.DARK) {
-            heart = new Heart(20, 20, 462, 21, Colors.green, Colors.green);
-        }else{
-            heart = new Heart(20, 20, 462, 21, Colors.green, Colors.green);
-        }
-        heart.onclick(new Runnable() {
-            @Override
-            public void run() {
-                if(heart.isFilled()) {
-                    PublicValues.elevated.makeDelete("https://api.spotify.com/v1/me/tracks?ids=" + player.getPlayer().currentPlayable().toSpotifyUri().split(":")[2]);
-                    heart.setFill(false);
-                }else {
-                    PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + player.getPlayer().currentPlayable().toSpotifyUri().split(":")[2]);
-                    heart.setFill(true);
-                }
-            }
-        });
-        playerarea.addElement(heart);
+        playerarea.setDebug(true);
 
         playerplaypreviousbutton = new JButton(l.translate("ui.player.playprevious"));
+        playerplaypreviousbutton.setBounds(287, 11, 70, 36);
         playerarea.add(playerplaypreviousbutton);
 
         playerplaypausebutton = new JButton(l.translate("ui.player.playpause"));
+        playerplaypausebutton.setBounds(369, 11, 69, 36);
         playerplaypausebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 player.getPlayer().playPause();
@@ -483,29 +464,46 @@ public class ContentPanel extends JPanel {
         playerarea.add(playerplaypausebutton);
 
         playerplaynextbutton = new JButton(l.translate("ui.player.playnext"));
+        playerplaynextbutton.setBounds(448, 11, 69, 36);
         playerarea.add(playerplaynextbutton);
 
         playercurrenttime = new JSlider();
         playercurrenttime.setValue(0);
+        playercurrenttime.setBounds(306, 54, 200, 13);
         playerarea.add(playercurrenttime);
 
         playerplaytime = new JLabel("00:00:00");
         playerplaytime.setHorizontalAlignment(SwingConstants.RIGHT);
+        playerplaytime.setBounds(244, 54, 57, 14);
         playerarea.add(playerplaytime);
 
         playerplaytimetotal = new JLabel("00:00:00");
+        playerplaytimetotal.setBounds(506, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
 
-        playerplaypreviousbutton.setBounds(287, 11, 70, 36);
-        playerplaypausebutton.setBounds(369, 11, 69, 36);
-        playerplaynextbutton.setBounds(448, 11, 69, 36);
-        playercurrenttime.setBounds(306, 54, 200, 13);
-        playerplaytime.setBounds(244, 54, 57, 14);
-        playerplaytimetotal.setBounds(506, 54, 49, 14);
-        playertitle.setBounds(109, 11, 168, 14);
-        playerareavolumeicon.setBounds(306, 75, 14, 14);
-        playerareavolumecurrent.setBounds(489, 75, 35, 14);
-        playerareavolumeslider.setBounds(334, 76, 145, 13);
+        heart = new JImagePanel();
+        heart.setBounds(525, 20, 24, 24);
+
+
+        heart.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(heart.isFilled) {
+                    PublicValues.elevated.makeDelete("https://api.spotify.com/v1/me/tracks?ids=" + Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]);
+                    heart.setImage(new Resources().readToInputStream("icons/heart.png"));
+                    heart.isFilled = false;
+                }else {
+                    PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]);
+                    heart.setImage(new Resources().readToInputStream("icons/heartfilled.png"));
+                    heart.isFilled = true;
+                }
+            }
+        });
+
+        heart.setImage(new Resources().readToInputStream("icons/heart.png"));
+
+        playerarea.add(heart);
 
         tabpanel = new JPanel();
         tabpanel.setBounds(0, 140, 784, 421);
@@ -836,8 +834,9 @@ public class ContentPanel extends JPanel {
         menu.addItem("Remove Playlist", new Runnable() {
             @Override
             public void run() {
-                //ToDo: Implement this with caution
-                JOptionPane.showConfirmDialog(null, "The function 'Remove Playlist' is not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION);
+                api.getSpotifyApi().unfollowPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]);
+                playlistsuricache.remove(playlistsuricache.get(playlistsplayliststable.getSelectedRow()));
+                ((DefaultTableModel)playlistsplayliststable.getModel()).removeRow(playlistsplayliststable.getSelectedRow());
             }
         });
 
@@ -1344,7 +1343,7 @@ public class ContentPanel extends JPanel {
                 String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
                 try (BufferedInputStream in = new BufferedInputStream(new URL(((GitHubAPI.Release) updater.getSecond(0)).downloadURL).openStream());
                      FileOutputStream fileOutputStream = new FileOutputStream("SpotifyXP.jar")) {
-                    byte dataBuffer[] = new byte[1024];
+                    byte[] dataBuffer = new byte[1024];
                     int bytesRead;
                     while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                         fileOutputStream.write(dataBuffer, 0, bytesRead);
@@ -1376,8 +1375,12 @@ public class ContentPanel extends JPanel {
         searchcontextmenu.addItem("Add to library", new Runnable() {
             @Override
             public void run() {
-                heart.setFill(true);
+                heart.isFilled = true;
+                heart.setImage(new Resources().readToInputStream("icons/heartfilled.png"));
                 PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
+                if(!(libraryuricache.size()==0)) {
+                    fetchOnlyFirstSongsFromUserLibrary();
+                }
             }
         });
         searchcontextmenu.addItem("Copy URI", new Runnable() {
@@ -1386,7 +1389,39 @@ public class ContentPanel extends JPanel {
                 ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow()));
             }
         });
+        ContextMenu librarymenu = new ContextMenu(librarysonglist);
+        librarymenu.addItem("Copy URI", new Runnable() {
+            @Override
+            public void run() {
+                ClipboardUtil.set(libraryuricache.get(librarysonglist.getSelectedRow()));
+            }
+        });
+        librarymenu.addItem("Remove", new Runnable() {
+            @Override
+            public void run() {
+                PublicValues.elevated.makeDelete("https://api.spotify.com/v1/me/tracks?ids=" + libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);
+                libraryuricache.remove(librarysonglist.getSelectedRow());
+                ((DefaultTableModel)librarysonglist.getModel()).removeRow(librarysonglist.getSelectedRow());
+            }
+        });
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
+    }
+
+    void fetchOnlyFirstSongsFromUserLibrary() {
+        DefaultTableModel model = (DefaultTableModel) librarysonglist.getModel();
+        try {
+            int count = 0;
+            for(SavedTrack track : api.getSpotifyApi().getUsersSavedTracks().limit(10).build().execute().getItems()) {
+                if(!libraryuricache.contains(track.getTrack().getUri())) {
+                    String a = TrackUtils.getArtists(track.getTrack().getArtists());
+                    model.insertRow(count, new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                    libraryuricache.add(count, track.getTrack().getUri());
+                    count++;
+                }
+            }
+        } catch (IOException | ParseException | SpotifyWebApiException e) {
+            ConsoleLogging.Throwable(e);
+        }
     }
 
     int counter = 0;

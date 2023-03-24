@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ContextMenu {
-    JPopupMenu holder = new JPopupMenu();
+    final JPopupMenu holder = new JPopupMenu();
     public ContextMenu(JPanel panel) {
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -32,12 +32,7 @@ public class ContextMenu {
     }
     public void addItem(String text, Runnable onClick) {
         JMenuItem item = new JMenuItem(text);
-        item.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onClick.run();
-            }
-        });
+        item.addActionListener(e -> onClick.run());
         holder.add(item);
     }
     public void addSeperator() {

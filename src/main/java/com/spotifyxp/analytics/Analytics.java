@@ -3,15 +3,9 @@ package com.spotifyxp.analytics;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
-import com.spotifyxp.utils.URLUtils;
-import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
 
-import java.io.Console;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -25,7 +19,7 @@ public class Analytics {
         if(ConnectionUtils.makePingToServer()) {
             return;
         }
-        String hostname = "";
+        String hostname;
         HttpClient client = new HttpClient();
         try {
              hostname = InetAddress.getLocalHost().getHostName();

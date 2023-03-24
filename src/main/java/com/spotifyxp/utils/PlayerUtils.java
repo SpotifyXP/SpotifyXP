@@ -5,16 +5,11 @@ import com.spotify.connectstate.Connect;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import xyz.gianlu.librespot.api.ApiServer;
-import xyz.gianlu.librespot.api.PlayerApiServer;
-import xyz.gianlu.librespot.api.PlayerWrapper;
-import xyz.gianlu.librespot.api.SessionWrapper;
 import xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import xyz.gianlu.librespot.core.Session;
 import xyz.gianlu.librespot.mercury.MercuryClient;
 import xyz.gianlu.librespot.player.Player;
 import xyz.gianlu.librespot.player.PlayerConfiguration;
-import xyz.gianlu.librespot.player.ShellEvents;
 
 import java.io.File;
 import java.io.IOException;

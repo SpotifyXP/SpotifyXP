@@ -18,7 +18,7 @@ public class EnginePanel extends JPanel {
             }
         });
     }
-    ArrayList<Element> elements = new ArrayList<>();
+    final ArrayList<Element> elements = new ArrayList<>();
     boolean d = false;
     boolean f = true;
 
@@ -46,8 +46,5 @@ public class EnginePanel extends JPanel {
         e.setEnginePanelInstance(this);
         e.setDebug(d);
         elements.add(e);
-    }
-    public void addNon2DElement(Non2DElement element) {
-        this.add((Component) element);
     }
 }

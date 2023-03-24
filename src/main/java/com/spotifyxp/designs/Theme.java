@@ -3,7 +3,7 @@ package com.spotifyxp.designs;
 public enum Theme {
     DARK("Dark"),
     LIGHT("Light");
-    String s;
+    final String s;
     Theme(String toselect) {
         s = toselect;
     }

@@ -5,12 +5,12 @@ import com.spotifyxp.utils.ConnectionUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.json.JSONObject;
-import se.michaelthelin.spotify.Base64;
-
 import java.io.IOException;
+import java.util.Base64;
 
 public class GitHubAPI {
-    static String token = Base64.decode("Z2hwX3hBQ3Y3U1pVWnB2OWE0aWF6YXI3amlMNzFZRE5tVjB0aFlnSA==").toString();
+    static final String token = new String(Base64.getDecoder().decode("Z2hwX3hBQ3Y3U1pVWnB2OWE0aWF6YXI3amlMNzFZRE5tVjB0aFlnSA=="));
+    @SuppressWarnings("SameParameterValue")
     static String makeRequestGet(String url) {
         String ret = "FAILED";
         try {

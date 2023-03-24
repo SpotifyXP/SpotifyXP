@@ -7,21 +7,20 @@ import com.spotifyxp.logging.ConsoleLogging;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
-import java.util.ArrayList;
 
 public class Heart implements Element {
-    int x = 0;
-    int y = 0;
-    String name = "Heart";
-    int w = 0;
-    int h = 0;
-    Color bc = Color.white;
-    Color lc = Color.black;
+    int x;
+    int y;
+    final String name = "Heart";
+    int w;
+    int h;
+    Color bc;
+    Color lc;
     boolean fill = false;
     EnginePanel ep = null;
     boolean d = false;
     Runnable click;
-    Path2D.Float heartPath = new Path2D.Float();
+    final Path2D.Float heartPath = new Path2D.Float();
 
     public Heart(int width, int height, int xaxis, int yaxis, Color backgroundColor, Color lineColor) {
         w = width;
@@ -79,7 +78,7 @@ public class Heart implements Element {
 
     @Override
     public void drawElement(Graphics2D graphics2D) {
-        float beX = x + w / 2;
+        float beX = x + (float)w / 2;
         float beY = y + h;
         float c1DX = w  * 0.968f;
         float c1DY = h * 0.672f;

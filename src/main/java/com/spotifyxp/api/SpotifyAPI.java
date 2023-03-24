@@ -4,20 +4,16 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.*;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
-import org.json.JSONObject;
+
 import java.io.*;
 import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.model_objects.specification.Track;
 import xyz.gianlu.librespot.core.TokenProvider;
@@ -144,10 +140,9 @@ public class SpotifyAPI {
         }
         return ret;
     }
-    @SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
+    @SuppressWarnings({"CanBeFinal"})
     public static class OAuthPKCE {
         public static String token = "";
-        @SuppressWarnings("FieldCanBeLocal")
         private final String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
         private final Timer timer = new Timer();
         public OAuthPKCE() {
@@ -218,6 +213,7 @@ public class SpotifyAPI {
             }
             return ret;
         }
+        @SuppressWarnings("UnusedReturnValue")
         public String makePut(String url) {
             if(!url.contains("https")) {
                 url = "https://api.spotify.com" + url;
@@ -234,6 +230,7 @@ public class SpotifyAPI {
             }
             return ret;
         }
+        @SuppressWarnings("UnusedReturnValue")
         public String makeDelete(String url) {
             if(!url.contains("https")) {
                 url = "https://api.spotify.com" + url;

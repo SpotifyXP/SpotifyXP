@@ -4,7 +4,7 @@ public enum Quality {
     NORMAL("Normal"),
     HIGH("High"),
     VERY_HIGH("VeryHigh");
-    String s;
+    final String s;
     Quality(String toselect) {
         s = toselect;
     }

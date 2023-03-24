@@ -1,6 +1,5 @@
 package com.spotifyxp.lib;
 
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONObject;
 

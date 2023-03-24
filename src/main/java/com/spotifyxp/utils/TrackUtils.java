@@ -1,24 +1,49 @@
 package com.spotifyxp.utils;
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.panels.ContentPanel;
 import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import se.michaelthelin.spotify.model_objects.specification.Track;
 import se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 
-import java.util.concurrent.TimeUnit;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 @SuppressWarnings({"SameReturnValue", "IntegerDivisionInFloatingPointContext"})
 public class TrackUtils {
-    public static int calculateFileSizeKb(Track t) {
-        double minutes = Math.round(TimeUnit.MILLISECONDS.convert(t.getDurationMs(), TimeUnit.MINUTES));
+    public static String calculateFileSizeKb(Track t) {
+        long minutes = getMMofTrack(t.getDurationMs());
         //720kb per minute if normal 96kbps
+        //1200kb per minute if high 160kbps
         //2400kb per minute if extremely high 320kbps
-        return Integer.parseInt(String.valueOf(Math.round(minutes*0.72)));
+        switch (PublicValues.quality) {
+            case NORMAL:
+                return Integer.parseInt(String.valueOf(minutes*720)) + "KB";
+            case HIGH:
+                return Integer.parseInt(String.valueOf(minutes*1200)) + "KB";
+            case VERY_HIGH:
+                return Integer.parseInt(String.valueOf(minutes*2400)) + "KB";
+        }
+        return "Unknown (BUG)";
     }
-    public static int calculateFileSizeKb(TrackSimplified t) {
-        double minutes = Math.round(TimeUnit.MILLISECONDS.convert(t.getDurationMs(), TimeUnit.MINUTES));
+    public static String calculateFileSizeKb(TrackSimplified t) {
+        long minutes = getMMofTrack(t.getDurationMs());
         //720kb per minute if normal 96kbps
+        //1200kb per minute if high 160kbps
         //2400kb per minute if extremely high 320kbps
-        return Integer.parseInt(String.valueOf(Math.round(minutes*0.72)));
+        switch (PublicValues.quality) {
+            case NORMAL:
+                return Integer.parseInt(String.valueOf(minutes*720)) + "KB";
+            case HIGH:
+                return Integer.parseInt(String.valueOf(minutes*1200)) + "KB";
+            case VERY_HIGH:
+                return Integer.parseInt(String.valueOf(minutes*2400)) + "KB";
+        }
+        return "Unknown (BUG)";
+    }
+    public static long getMMofTrack(long milliseconds) {
+        return milliseconds/60000;
     }
     public static String getHHMMSSOfTrack(long milliseconds) {
         boolean ddh = false;
@@ -53,7 +78,15 @@ public class TrackUtils {
         return Math.round(milliseconds/1000);
     }
     public static String getBitrate() {
-        return "96kbps";
+        switch (PublicValues.quality) {
+            case NORMAL:
+                return "96kbps";
+            case HIGH:
+                return "160kbps";
+            case VERY_HIGH:
+                return "320kbps";
+        }
+        return "Unknown (BUG)";
     }
     public static String getArtists(ArtistSimplified[] artists) {
         StringBuilder builder = new StringBuilder();
@@ -65,5 +98,15 @@ public class TrackUtils {
             }
         }
         return builder.toString();
+    }
+    public static void removeLovedTrack(JTable table, ArrayList<String> uricache) {
+        ContentPanel.api.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
+        uricache.remove(table.getSelectedRow());
+        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+    }
+    public static void removeFollowedPlaylist(JTable table, ArrayList<String> uricache) {
+        ContentPanel.api.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
+        uricache.remove(table.getSelectedRow());
+        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
     }
 }

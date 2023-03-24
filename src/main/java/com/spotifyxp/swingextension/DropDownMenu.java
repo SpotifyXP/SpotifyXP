@@ -1,17 +1,14 @@
 package com.spotifyxp.swingextension;
 
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import javafx.scene.input.MouseButton;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import java.awt.*;
 import java.awt.event.*;
 
 public class DropDownMenu {
-    JPopupMenu popupMenu = new JPopupMenu();
+    final JPopupMenu popupMenu = new JPopupMenu();
 
     int xcache = 0;
     int ycache = 0;
@@ -57,12 +54,7 @@ public class DropDownMenu {
     }
     public void addItem(String text, Runnable onClick) {
         JMenuItem item = new JMenuItem(text);
-        item.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onClick.run();
-            }
-        });
+        item.addActionListener(e -> onClick.run());
         popupMenu.add(item);
     }
 }

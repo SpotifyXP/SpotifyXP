@@ -3,22 +3,20 @@ package com.spotifyxp.engine.elements;
 import com.spotifyxp.engine.Element;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.logging.ConsoleLogging;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Path2D;
 
 public class AddRemove implements Element {
-    int x = 0;
-    int y = 0;
-    String name = "AddRemove";
-    int w = 0;
-    int h = 0;
-    boolean a = false;
-    Color lc = Color.black;
+    int x;
+    int y;
+    final String name = "AddRemove";
+    final int w = 0;
+    final int h = 0;
+    boolean a;
+    Color lc;
     EnginePanel ep = null;
     boolean d = false;
-    int s = 0;
+    int s;
 
     public AddRemove(int size, int xaxis, int yaxis, boolean add, Color lineColor) {
         s = size;

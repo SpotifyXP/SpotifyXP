@@ -245,8 +245,9 @@ public class ConsoleLoggingModules {
         }
         error(builder.toString());
     }
+    @SuppressWarnings("SameReturnValue")
     public static boolean isTraceEnabled() {
-        return true;
+        return true; //For logger compatibility (Because I replaced Log4J with my logger)
     }
     public static void Throwable(Throwable throwable, int linenumber) {
         setLine(linenumber);

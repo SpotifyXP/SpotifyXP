@@ -1,11 +1,11 @@
 package com.spotifyxp.listeners;
 
-import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.api.SpotifyAPI;
+import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
@@ -18,10 +18,8 @@ import xyz.gianlu.librespot.audio.MetadataWrapper;
 import xyz.gianlu.librespot.metadata.PlayableId;
 import xyz.gianlu.librespot.player.Player;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,14 +53,25 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
+        if(!ContentPanel.libraryuricache.contains(playableId.toSpotifyUri())) {
+            ContentPanel.heart.isFilled = false;
+            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heart.png"));
+        }else{
+            ContentPanel.heart.isFilled = true;
+            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heartfilled.png"));
+        }
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             timer.schedule(new PlayerThread(), 0, 1000);
             try {
                 //        HH MM SS
                 //Display 00:00:00
-                if(!ContentPanel.frame.isVisible()) {
-                    //BackgroundService.trayDialog.getTrayIcon().displayMessage("SpotifyXP: Now Playing", a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName() + " - " + TrackUtils.getArtists(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()), TrayIcon.MessageType.INFO);
-                }
+
+                //Removed feature announce song name
+                //if(!ContentPanel.frame.isVisible()) {
+                //BackgroundService.trayDialog.getTrayIcon().displayMessage("SpotifyXP: Now Playing", a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName() + " - " + TrackUtils.getArtists(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()), TrayIcon.MessageType.INFO);
+                //}
+                //---
+
                 ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                 ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
                 StringBuilder artists = new StringBuilder();
