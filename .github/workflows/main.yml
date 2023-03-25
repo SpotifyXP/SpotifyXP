@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:    
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Clone Repository
+        run: git clone -b unstable https://github.com/werwolf2303/SpotifyXP
+      - name: Build with Maven
+        run: mvn --batch-mode -f SpotifyXP/pom.xml --update-snapshots package
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+           name: Build
+           path: /home/runner/work/SpotifyXP/SpotifyXP/SpotifyXP/target/SpotifyXP.jar
