@@ -1,6 +1,8 @@
 SpotifyXP
 ===============
 
+<h2>Check out the Actions tab for nightly builds</h2>
+
 
 <h4>Compile Info: The default branch is nightly!</h4>
 
