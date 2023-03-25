@@ -1,17 +1,37 @@
 @echo off
 
-cd deps/librespot-java
 
-echo Building librespot-java
+echo Building SpotifyXP
 
-::call mvn clean package
+REM Build with Maven
+call mvn clean package
 
-cd ../spotify-web-api-java
+REM check if file has been build
+IF NOT EXIST target/SpotifyXP.jar GOTO BUILDNOTEXISTING
 
-echo Building spotify-web-api-java
+REM Check if build folder exists
+IF EXIST build/ GOTO BUILDEXISTING
 
-::call mvn clean package
+REM Create build directory
+mkdir build
 
-cd ../../
+REM Goto BUILDEXISTING because build directory has been made
+GOTO BUILDEXISTING
 
-call mvn clean package -Dfile=deps/librespot-java/player/target/librespot-player-1.6.3-SNAPSHOT.jar
+:BUILDNOTEXISTING
+REM Set color to Red
+color 04
+echo Build failed
+
+
+:BUILDEXISTING
+
+REM copy file
+cp target/SpotifyXP.jar build
+
+REM check if file has ben copied
+IF NOT EXIST build/SpotifyXP.jar GOTO BUILDNOTEXISTING
+
+REM Set color to Green
+color 0A
+echo Build Successfull! You can find it in %cd%/build/SpotifyXP.jar

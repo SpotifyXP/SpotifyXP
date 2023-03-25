@@ -1,6 +1,4 @@
 package com.spotifyxp.dialogs;
-
-import com.spotifyxp.ExitCodes;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -69,13 +67,13 @@ public class LoginDialog {
         spotifycancelbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(ExitCodes.USER_DECISION.getCode());
+                System.exit(0);
             }
         });
         dialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                System.exit(ExitCodes.USER_DECISION.getCode());
+                System.exit(0);
             }
         });
         while(dialog.isVisible()) {

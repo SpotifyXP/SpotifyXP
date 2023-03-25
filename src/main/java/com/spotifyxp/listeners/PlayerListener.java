@@ -12,11 +12,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
 import org.json.JSONObject;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
-import xyz.gianlu.librespot.audio.MetadataWrapper;
-import xyz.gianlu.librespot.metadata.PlayableId;
-import xyz.gianlu.librespot.player.Player;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,15 +1,15 @@
 package com.spotifyxp.utils;
 
 
-import com.spotify.connectstate.Connect;
+import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import xyz.gianlu.librespot.audio.decoders.AudioQuality;
-import xyz.gianlu.librespot.core.Session;
-import xyz.gianlu.librespot.mercury.MercuryClient;
-import xyz.gianlu.librespot.player.Player;
-import xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class PlayerUtils {
                 .setReleaseLineDelay(20)
                 .setVolumeSteps(64)
                 .setBypassSinkVolume(false)
-                .setLocalFilesPath(new File(""))
+                .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
         try {
             Session session = builder2.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();

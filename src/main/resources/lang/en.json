@@ -10,6 +10,7 @@
   "configuration.comment" : "SpotifyXP Configuration file",
   "startup.error.lockcreate" : "Failed to create lock",
   "startup.error.lockdelete" : "Failed to delete lock",
+  "startup.error.cachedelete" : "Failed to delete cache folder",
   "ui.menu.file" : "File",
   "ui.menu.settings" : "Settings",
   "ui.menu.help" : "Help",

@@ -8,8 +8,8 @@ import com.spotifyxp.configuration.Config;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import xyz.gianlu.librespot.core.Session;
-import xyz.gianlu.librespot.player.Player;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {

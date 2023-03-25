@@ -2,9 +2,9 @@ SpotifyXP
 ===============
 
 
-<h4>Compile Info: Please open the project inside IntelliJ and compile it there I can't get maven to build this project without IntelliJ</h4>
-
 <h4>Compile Info: The default branch is nightly!</h4>
+
+<h4>How to compile: Run 'build.bat' </h4>
 
 
 <h3>In some regions you need Premium</h3>

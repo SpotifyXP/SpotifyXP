@@ -20,6 +20,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
+import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
 import java.io.File;

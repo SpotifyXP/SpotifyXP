@@ -2,9 +2,9 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.ContentPanel;
-import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
-import se.michaelthelin.spotify.model_objects.specification.Track;
-import se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

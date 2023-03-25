@@ -5,9 +5,18 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/deps/librespot-java/pom.xml" />
-        <option value="$PROJECT_DIR$/deps/spotify-web-api-java/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/deps/librespot-java/api/pom.xml" />
+        <option value="$PROJECT_DIR$/deps/librespot-java/dacp/pom.xml" />
+        <option value="$PROJECT_DIR$/deps/librespot-java/decoder-api/pom.xml" />
+        <option value="$PROJECT_DIR$/deps/librespot-java/lib/pom.xml" />
+        <option value="$PROJECT_DIR$/deps/librespot-java/player/pom.xml" />
+        <option value="$PROJECT_DIR$/deps/librespot-java/sink-api/pom.xml" />
+        <option value="$PROJECT_DIR$/deps/librespot-java/sink/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">

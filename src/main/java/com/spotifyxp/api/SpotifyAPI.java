@@ -14,10 +14,10 @@ import org.apache.commons.httpclient.methods.PutMethod;
 import java.io.*;
 import java.util.Timer;
 
-import se.michaelthelin.spotify.SpotifyApi;
-import se.michaelthelin.spotify.model_objects.specification.Track;
-import xyz.gianlu.librespot.core.TokenProvider;
-import xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +39,7 @@ public class SpotifyAPI {
     @SuppressWarnings("CanBeFinal")
     public static class Player {
         int wait;
-        xyz.gianlu.librespot.player.Player player;
+        com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;
         SpotifyAPI api;
 
         @SuppressWarnings("BusyWait")
@@ -88,7 +88,7 @@ public class SpotifyAPI {
             player.addEventsListener(new PlayerListener(this, api));
             PublicValues.spotifyplayer = player;
         }
-        public xyz.gianlu.librespot.player.Player getPlayer() {
+        public com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getPlayer() {
             return player;
         }
     }

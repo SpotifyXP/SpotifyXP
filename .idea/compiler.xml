@@ -6,19 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="librespot-api" />
         <module name="SpotifyXP" />
-        <module name="librespot-player" />
-        <module name="librespot-lib" />
-        <module name="librespot-sink-api" />
-        <module name="librespot-dacp" />
-        <module name="librespot-decoder-api" />
-        <module name="spotify-web-api-java" />
-        <module name="librespot-sink" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="libEvents" target="1.8" />
+      <module name="librespot-api" target="1.8" />
+      <module name="librespot-dacp" target="1.8" />
+      <module name="librespot-decoder-api" target="1.8" />
+      <module name="librespot-java" target="1.8" />
+      <module name="librespot-lib" target="1.8" />
+      <module name="librespot-player" target="1.8" />
+      <module name="librespot-sink" target="1.8" />
+      <module name="librespot-sink-api" target="1.8" />
+      <module name="spotify-web-api-java" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

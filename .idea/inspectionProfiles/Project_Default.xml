@@ -11,6 +11,7 @@
           <option value="org.slf4j:slf4j-api" />
           <option value="org.apache.logging.log4j:log4j-slf4j-impl" />
           <option value="io.undertow:undertow-core" />
+          <option value="org.apache.httpcomponents.client5:httpclient5-cache" />
         </list>
       </option>
     </inspection_tool>
