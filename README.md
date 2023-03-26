@@ -75,6 +75,10 @@ SpotifyXP is build with
 
 Follow the steps under 'Getting Started' and then login with your Email and Password. Then just listen to music
 
+## Compiling
+
+Just run the 'build.bat' inside the root of the repository. It will print some useful information
+
 ## Contributing
 
 Just make your desired changes and open a pull request
