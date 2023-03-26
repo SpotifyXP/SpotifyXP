@@ -34,6 +34,10 @@
 Nightly version
 ![Screen Shot](https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/SpotifyXPShowNightly.PNG)
 
+Stable version
+![Screen Shot](https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/SpotifyXPShowStable.PNG)
+
+
 I programmed SpotifyXP for my daily driver that runs Windows XP. My daily driver is an Amilo Pa 1510
 
 <h5>Why use SpotifyXP:</h5>
