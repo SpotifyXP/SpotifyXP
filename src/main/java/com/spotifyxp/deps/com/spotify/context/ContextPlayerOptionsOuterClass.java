@@ -74,11 +74,11 @@ public final class ContextPlayerOptionsOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptions_descriptor;
     }
@@ -230,8 +230,7 @@ public final class ContextPlayerOptionsOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextPlayerOptions}
@@ -240,7 +239,7 @@ public final class ContextPlayerOptionsOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextPlayerOptions)
         com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptions_descriptor;
       }
@@ -264,9 +263,6 @@ public final class ContextPlayerOptionsOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -467,13 +463,13 @@ public final class ContextPlayerOptionsOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -589,11 +585,11 @@ public final class ContextPlayerOptionsOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptionOverrides_descriptor;
     }
@@ -745,8 +741,7 @@ public final class ContextPlayerOptionsOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextPlayerOptionOverrides}
@@ -755,7 +750,7 @@ public final class ContextPlayerOptionsOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextPlayerOptionOverrides)
         com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptionOverrides_descriptor;
       }
@@ -779,9 +774,6 @@ public final class ContextPlayerOptionsOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -982,13 +974,13 @@ public final class ContextPlayerOptionsOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1059,7 +1051,7 @@ public final class ContextPlayerOptionsOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

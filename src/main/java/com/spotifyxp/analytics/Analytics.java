@@ -34,6 +34,7 @@ public class Analytics {
             PostMethod post = new PostMethod("https://api.werwolf2303.de?point=analytics&programname=spotifyxp&programversion=" + PublicValues.version + "&serverpcname=" + hostname + "&progdatetime=" + datetime);
             post.setParameter("Auth", "public");
             client.executeMethod(post);
+            System.out.println(post.getResponseBodyAsString());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }

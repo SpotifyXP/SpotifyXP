@@ -162,11 +162,11 @@ public final class ContextOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextOuterClass.internal_static_spotify_player_proto_Context_descriptor;
     }
@@ -175,13 +175,11 @@ public final class ContextOuterClass {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      switch (number) {
-        case 3:
-          return internalGetMetadata();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
+        if (number == 3) {
+            return internalGetMetadata();
+        }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -287,7 +285,7 @@ public final class ContextOuterClass {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
+              .newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.context.ContextOuterClass.internal_static_spotify_player_proto_Context_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
@@ -341,7 +339,7 @@ public final class ContextOuterClass {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+      return map.getOrDefault(key, defaultValue);
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
@@ -520,8 +518,7 @@ public final class ContextOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.Context}
@@ -530,7 +527,7 @@ public final class ContextOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.Context)
         com.spotifyxp.deps.com.spotify.context.ContextOuterClass.ContextOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextOuterClass.internal_static_spotify_player_proto_Context_descriptor;
       }
@@ -538,24 +535,20 @@ public final class ContextOuterClass {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        switch (number) {
-          case 3:
-            return internalGetMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
+          if (number == 3) {
+              return internalGetMetadata();
+          }
+          throw new RuntimeException(
+                  "Invalid map field number: " + number);
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        switch (number) {
-          case 3:
-            return internalGetMutableMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
+          if (number == 3) {
+              return internalGetMutableMetadata();
+          }
+          throw new RuntimeException(
+                  "Invalid map field number: " + number);
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -882,7 +875,7 @@ public final class ContextOuterClass {
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
       internalGetMutableMetadata() {
-        onChanged();;
+        onChanged();
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -929,7 +922,7 @@ public final class ContextOuterClass {
         if (key == null) { throw new java.lang.NullPointerException(); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
+        return map.getOrDefault(key, defaultValue);
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
@@ -1103,8 +1096,7 @@ public final class ContextOuterClass {
           com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.Builder, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.RestrictionsOrBuilder> 
           getRestrictionsFieldBuilder() {
         if (restrictionsBuilder_ == null) {
-          restrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.Builder, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.RestrictionsOrBuilder>(
+          restrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getRestrictions(),
                   getParentForChildren(),
                   isClean());
@@ -1116,8 +1108,8 @@ public final class ContextOuterClass {
       private java.util.List<com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage> pages_ =
         java.util.Collections.emptyList();
       private void ensurePagesIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
-          pages_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage>(pages_);
+        if ((bitField0_ & 0x00000010) == 0) {
+          pages_ = new java.util.ArrayList<>(pages_);
           bitField0_ |= 0x00000010;
          }
       }
@@ -1342,8 +1334,7 @@ public final class ContextOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage, com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage.Builder, com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPageOrBuilder> 
           getPagesFieldBuilder() {
         if (pagesBuilder_ == null) {
-          pagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage, com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage.Builder, com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPageOrBuilder>(
+          pagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   pages_,
                   ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
@@ -1390,13 +1381,13 @@ public final class ContextOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1467,7 +1458,7 @@ public final class ContextOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

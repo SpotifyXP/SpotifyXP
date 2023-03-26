@@ -103,11 +103,7 @@ public final class CanvazMeta {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         Type> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-            public Type findValueByNumber(int number) {
-              return Type.forNumber(number);
-            }
-          };
+            Type::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -117,7 +113,7 @@ public final class CanvazMeta {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.getDescriptor().getEnumTypes().get(0);
     }
@@ -138,7 +134,7 @@ public final class CanvazMeta {
 
     private final int value;
 
-    private Type(int value) {
+    Type(int value) {
       this.value = value;
     }
 
@@ -150,7 +146,7 @@ public final class CanvazMeta {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

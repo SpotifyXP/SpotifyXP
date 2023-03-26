@@ -7,8 +7,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
@@ -25,7 +23,7 @@ public class SettingsPanel extends JPanel {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
-        JLabel settingsbrowserlabel = new JLabel("Browser Settings"); //ToDo: Translate
+        JLabel settingsbrowserlabel = new JLabel(PublicValues.language.translate("ui.settings.browser.label"));
         settingsbrowserlabel.setBounds(10, 11, 206, 29);
         add(settingsbrowserlabel);
 
@@ -34,50 +32,50 @@ public class SettingsPanel extends JPanel {
         add(settingsbrowserpath);
         settingsbrowserpath.setColumns(10);
 
-        JLabel settingsbrowserpathlable = new JLabel("Path"); //ToDo: Translate
+        JLabel settingsbrowserpathlable = new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label"));
         settingsbrowserpathlable.setHorizontalAlignment(SwingConstants.RIGHT);
         settingsbrowserpathlable.setBounds(10, 57, 46, 14);
         add(settingsbrowserpathlable);
 
-        settingspathsetbutton = new JButton("Set Path"); //ToDo: Translate
+        settingspathsetbutton = new JButton(PublicValues.language.translate("ui.settings.mypal.path.choosebutton"));
         settingspathsetbutton.setBounds(478, 53, 89, 23);
         add(settingspathsetbutton);
 
-        JLabel settingsuilabel = new JLabel("UI"); //ToDo: Translate
+        JLabel settingsuilabel = new JLabel(PublicValues.language.translate("ui.settings.ui.label"));
         settingsuilabel.setBounds(10, 122, 89, 14);
         add(settingsuilabel);
 
-        settingsuidisableplayerstats = new JRadioButton("Disable player stats"); //ToDo: Translate
+        settingsuidisableplayerstats = new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats"));
         settingsuidisableplayerstats.setBounds(28, 155, 199, 23);
         add(settingsuidisableplayerstats);
 
         settingsuiselecttheme = new JComboBox(new String[] {
                 "Light", "Dark"
-        }); //ToDo: Translate
+        });
         settingsuiselecttheme.setBounds(442, 155, 230, 22);
         add(settingsuiselecttheme);
 
-        JLabel settingsuithemelabel = new JLabel("Select Theme"); //ToDo: Translate
+        JLabel settingsuithemelabel = new JLabel(PublicValues.language.translate("ui.settings.theme"));
         settingsuithemelabel.setHorizontalAlignment(SwingConstants.RIGHT);
         settingsuithemelabel.setBounds(287, 159, 120, 14);
         add(settingsuithemelabel);
 
-        JLabel settingsplaybacklabel = new JLabel("Playback"); //ToDo: Translate
+        JLabel settingsplaybacklabel = new JLabel(PublicValues.language.translate("ui.settings.playback.label"));
         settingsplaybacklabel.setBounds(10, 224, 71, 14);
         add(settingsplaybacklabel);
 
         settingsplaybackselectquality = new JComboBox(new String[] {
                 "Normal", "High", "Very_High"
-        }); //ToDo: Translate
+        });
         settingsplaybackselectquality.setBounds(178, 255, 206, 22);
         add(settingsplaybackselectquality);
 
-        JLabel settingsplaybackselectqualitylabel = new JLabel("Select Quality"); //ToDo: Translate
+        JLabel settingsplaybackselectqualitylabel = new JLabel(PublicValues.language.translate("ui.settings.quality"));
         settingsplaybackselectqualitylabel.setHorizontalAlignment(SwingConstants.RIGHT);
         settingsplaybackselectqualitylabel.setBounds(28, 259, 120, 14);
         add(settingsplaybackselectqualitylabel);
 
-        settingsplaybackopenequalizerbutton = new JButton("Open Equalizer"); //ToDo: Translate
+        settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.equalizer.open"));
         settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
         add(settingsplaybackopenequalizerbutton);
 

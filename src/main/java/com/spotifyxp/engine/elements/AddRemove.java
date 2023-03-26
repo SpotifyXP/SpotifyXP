@@ -7,16 +7,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class AddRemove implements Element {
-    int x;
-    int y;
+    final int x;
+    final int y;
     final String name = "AddRemove";
     final int w = 0;
     final int h = 0;
     boolean a;
-    Color lc;
+    final Color lc;
     EnginePanel ep = null;
     boolean d = false;
-    int s;
+    final int s;
 
     public AddRemove(int size, int xaxis, int yaxis, boolean add, Color lineColor) {
         s = size;

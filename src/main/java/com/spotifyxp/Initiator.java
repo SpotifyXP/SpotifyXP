@@ -20,8 +20,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
-import org.apache.commons.io.FileUtils;
-
+import com.spotifyxp.utils.StartupTime;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +28,9 @@ import java.io.IOException;
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
     static SpotifyAPI api = null;
+    static StartupTime startupTime;
     public static void main(String[] args) {
+        startupTime = new StartupTime();
         PublicValues.args = args;
         if(new File("pom.xml").exists()) {
             args = new String[] {"--debug"};
@@ -101,9 +102,9 @@ public class Initiator {
         api = new SpotifyAPI();
         SpotifyAPI.Player player = new SpotifyAPI.Player(api);
         new KeyListener().start();
-        new BackgroundService().start();
         PublicValues.elevated = new SpotifyAPI.OAuthPKCE();
         ContentPanel panel = new ContentPanel(player, api);
+        new BackgroundService().start();
         panel.open();
         new Analytics();
         SplashPanel.hide();
@@ -120,5 +121,7 @@ public class Initiator {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
             }
         }
+        //new Equalizer();
+        ConsoleLogging.info("SpotifyXP needed " + startupTime.getHHMMSS() + " to start");
     }
 }

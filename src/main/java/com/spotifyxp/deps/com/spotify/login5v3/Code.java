@@ -78,7 +78,7 @@ public final class Code {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -101,9 +101,8 @@ public final class Code {
               done = true;
               break;
             case 8: {
-              int rawValue = input.readEnum();
 
-              method_ = rawValue;
+                method_ = input.readEnum();
               break;
             }
             case 16: {
@@ -117,9 +116,8 @@ public final class Code {
               break;
             }
             case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              canonicalPhoneNumber_ = s;
+                canonicalPhoneNumber_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -141,7 +139,7 @@ public final class Code {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeChallenge_descriptor;
     }
@@ -216,11 +214,7 @@ public final class Code {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Method> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Method>() {
-              public Method findValueByNumber(int number) {
-                return Method.forNumber(number);
-              }
-            };
+              Method::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -230,7 +224,7 @@ public final class Code {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.getDescriptor().getEnumTypes().get(0);
       }
@@ -251,7 +245,7 @@ public final class Code {
 
       private final int value;
 
-      private Method(int value) {
+      Method(int value) {
         this.value = value;
       }
 
@@ -272,7 +266,6 @@ public final class Code {
      * @return The method.
      */
     public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method getMethod() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method result = com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.valueOf(method_);
       return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.UNRECOGNIZED : result;
     }
@@ -335,7 +328,7 @@ public final class Code {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -405,8 +398,7 @@ public final class Code {
           != other.getExpiresIn()) return false;
       if (!getCanonicalPhoneNumber()
           .equals(other.getCanonicalPhoneNumber())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -516,8 +508,7 @@ public final class Code {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.challenges.CodeChallenge}
@@ -526,7 +517,7 @@ public final class Code {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.challenges.CodeChallenge)
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeChallenge_descriptor;
       }
@@ -550,9 +541,6 @@ public final class Code {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -662,7 +650,7 @@ public final class Code {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -708,7 +696,6 @@ public final class Code {
        * @return The method.
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method getMethod() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method result = com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.valueOf(method_);
         return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.UNRECOGNIZED : result;
       }
@@ -873,13 +860,13 @@ public final class Code {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -965,7 +952,7 @@ public final class Code {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -988,9 +975,8 @@ public final class Code {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              code_ = s;
+                code_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -1012,7 +998,7 @@ public final class Code {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeSolution_descriptor;
     }
@@ -1063,7 +1049,7 @@ public final class Code {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1107,8 +1093,7 @@ public final class Code {
 
       if (!getCode()
           .equals(other.getCode())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -1212,8 +1197,7 @@ public final class Code {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.challenges.CodeSolution}
@@ -1222,7 +1206,7 @@ public final class Code {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.challenges.CodeSolution)
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeSolution_descriptor;
       }
@@ -1246,9 +1230,6 @@ public final class Code {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1340,7 +1321,7 @@ public final class Code {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -1439,13 +1420,13 @@ public final class Code {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1506,11 +1487,11 @@ public final class Code {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\'spotify/login5/v3/challenges/code.prot" +
+            "\n'spotify/login5/v3/challenges/code.prot" +
       "o\022\034spotify.login5.v3.challenges\"\274\001\n\rCode" +
       "Challenge\022B\n\006method\030\001 \001(\01622.spotify.logi" +
       "n5.v3.challenges.CodeChallenge.Method\022\023\n" +

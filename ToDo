@@ -1,7 +1,14 @@
-[ ] - Implement more spotify functions such as remove songs from liked songs or add songs to liked songs
-[ ] - Implement audio quality selection
-[ ] - Implement equalizer
-[ ] - Make the settings dialog more shiny
-[ ] - Resolve any ToDo's
-[ ] - Create build script
-[x] - Make theme not erasing your eyes
+[ ] - Implement equalizer (Not sure how to do this yet)
+[ ] - Don't use Text for the player buttons use images instead
+[ ] - Implement queue on all tabs
+[ ] - Implement context menus for all tabs
+[ ] - Improve the updater
+[ ] - Make the first v1.5 build
+[ ] - Make the README more fancy
+[ ] - Add German translation
+[ ] - Remove unnecessary files and dependencies
+[ ] - Add SVG support
+[ ] - Add extension api
+[ ] - Add more themes
+[ ] - Add more script functions
+[ ] - Cleanup english translation

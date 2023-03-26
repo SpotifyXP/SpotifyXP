@@ -77,11 +77,11 @@ public final class QueueOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.internal_static_spotify_player_proto_transfer_Queue_descriptor;
     }
@@ -234,8 +234,7 @@ public final class QueueOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.Queue}
@@ -244,7 +243,7 @@ public final class QueueOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.Queue)
         com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.internal_static_spotify_player_proto_transfer_Queue_descriptor;
       }
@@ -367,8 +366,8 @@ public final class QueueOuterClass {
       private java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> tracks_ =
         java.util.Collections.emptyList();
       private void ensureTracksIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          tracks_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack>(tracks_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          tracks_ = new java.util.ArrayList<>(tracks_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -593,8 +592,7 @@ public final class QueueOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder> 
           getTracksFieldBuilder() {
         if (tracksBuilder_ == null) {
-          tracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder>(
+          tracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   tracks_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -641,13 +639,13 @@ public final class QueueOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -713,7 +711,7 @@ public final class QueueOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

@@ -67,7 +67,7 @@ public final class ClientInfoOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -90,15 +90,13 @@ public final class ClientInfoOuterClass {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              clientId_ = s;
+                clientId_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              deviceId_ = s;
+                deviceId_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -120,7 +118,7 @@ public final class ClientInfoOuterClass {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.internal_static_spotify_login5_v3_ClientInfo_descriptor;
     }
@@ -207,7 +205,7 @@ public final class ClientInfoOuterClass {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -259,8 +257,7 @@ public final class ClientInfoOuterClass {
           .equals(other.getClientId())) return false;
       if (!getDeviceId()
           .equals(other.getDeviceId())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -366,8 +363,7 @@ public final class ClientInfoOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.ClientInfo}
@@ -376,7 +372,7 @@ public final class ClientInfoOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.ClientInfo)
         com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.internal_static_spotify_login5_v3_ClientInfo_descriptor;
       }
@@ -400,9 +396,6 @@ public final class ClientInfoOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -501,7 +494,7 @@ public final class ClientInfoOuterClass {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -676,13 +669,13 @@ public final class ClientInfoOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -738,7 +731,7 @@ public final class ClientInfoOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

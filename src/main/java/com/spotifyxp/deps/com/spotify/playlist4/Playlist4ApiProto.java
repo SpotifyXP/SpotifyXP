@@ -143,11 +143,7 @@ public final class Playlist4ApiProto {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ListAttributeKind> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<ListAttributeKind>() {
-            public ListAttributeKind findValueByNumber(int number) {
-              return ListAttributeKind.forNumber(number);
-            }
-          };
+            ListAttributeKind::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -157,7 +153,7 @@ public final class Playlist4ApiProto {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.getDescriptor().getEnumTypes().get(0);
     }
@@ -175,7 +171,7 @@ public final class Playlist4ApiProto {
 
     private final int value;
 
-    private ListAttributeKind(int value) {
+    ListAttributeKind(int value) {
       this.value = value;
     }
 
@@ -284,11 +280,7 @@ public final class Playlist4ApiProto {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ItemAttributeKind> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<ItemAttributeKind>() {
-            public ItemAttributeKind findValueByNumber(int number) {
-              return ItemAttributeKind.forNumber(number);
-            }
-          };
+            ItemAttributeKind::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -298,7 +290,7 @@ public final class Playlist4ApiProto {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.getDescriptor().getEnumTypes().get(1);
     }
@@ -316,7 +308,7 @@ public final class Playlist4ApiProto {
 
     private final int value;
 
-    private ItemAttributeKind(int value) {
+    ItemAttributeKind(int value) {
       this.value = value;
     }
 
@@ -383,11 +375,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Item_descriptor;
     }
@@ -556,8 +548,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Item}
@@ -566,7 +557,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Item)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Item_descriptor;
       }
@@ -879,8 +870,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder> 
           getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder>(
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -889,13 +879,13 @@ public final class Playlist4ApiProto {
         return attributesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1045,11 +1035,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_MetaItem_descriptor;
     }
@@ -1269,8 +1259,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.MetaItem}
@@ -1279,7 +1268,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.MetaItem)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_MetaItem_descriptor;
       }
@@ -1566,8 +1555,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder> 
           getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder>(
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -1734,13 +1722,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1895,11 +1883,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListItems_descriptor;
     }
@@ -2104,8 +2092,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListItems}
@@ -2114,7 +2101,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListItems)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListItems_descriptor;
       }
@@ -2333,8 +2320,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
-          items_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item>(items_);
+        if ((bitField0_ & 0x00000004) == 0) {
+          items_ = new java.util.ArrayList<>(items_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -2559,8 +2546,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
           getItemsFieldBuilder() {
         if (itemsBuilder_ == null) {
-          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder>(
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   items_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -2573,8 +2559,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem> metaItems_ =
         java.util.Collections.emptyList();
       private void ensureMetaItemsIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          metaItems_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem>(metaItems_);
+        if ((bitField0_ & 0x00000008) == 0) {
+          metaItems_ = new java.util.ArrayList<>(metaItems_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -2799,8 +2785,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder> 
           getMetaItemsFieldBuilder() {
         if (metaItemsBuilder_ == null) {
-          metaItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder>(
+          metaItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   metaItems_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -2810,13 +2795,13 @@ public final class Playlist4ApiProto {
         return metaItemsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2935,11 +2920,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_FormatListAttribute_descriptor;
     }
@@ -3130,8 +3115,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.FormatListAttribute}
@@ -3140,7 +3124,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.FormatListAttribute)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_FormatListAttribute_descriptor;
       }
@@ -3164,9 +3148,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -3418,13 +3399,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3656,11 +3637,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributes_descriptor;
     }
@@ -4072,8 +4053,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListAttributes}
@@ -4082,7 +4062,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributes_descriptor;
       }
@@ -4781,8 +4761,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> formatAttributes_ =
         java.util.Collections.emptyList();
       private void ensureFormatAttributesIsMutable() {
-        if (!((bitField0_ & 0x00000100) != 0)) {
-          formatAttributes_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute>(formatAttributes_);
+        if ((bitField0_ & 0x00000100) == 0) {
+          formatAttributes_ = new java.util.ArrayList<>(formatAttributes_);
           bitField0_ |= 0x00000100;
          }
       }
@@ -5007,8 +4987,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder> 
           getFormatAttributesFieldBuilder() {
         if (formatAttributesBuilder_ == null) {
-          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder>(
+          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   formatAttributes_,
                   ((bitField0_ & 0x00000100) != 0),
                   getParentForChildren(),
@@ -5018,13 +4997,13 @@ public final class Playlist4ApiProto {
         return formatAttributesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5195,11 +5174,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributes_descriptor;
     }
@@ -5448,8 +5427,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ItemAttributes}
@@ -5458,7 +5436,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ItemAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributes_descriptor;
       }
@@ -5800,8 +5778,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> formatAttributes_ =
         java.util.Collections.emptyList();
       private void ensureFormatAttributesIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
-          formatAttributes_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute>(formatAttributes_);
+        if ((bitField0_ & 0x00000010) == 0) {
+          formatAttributes_ = new java.util.ArrayList<>(formatAttributes_);
           bitField0_ |= 0x00000010;
          }
       }
@@ -6026,8 +6004,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder> 
           getFormatAttributesFieldBuilder() {
         if (formatAttributesBuilder_ == null) {
-          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder>(
+          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   formatAttributes_,
                   ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
@@ -6077,13 +6054,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6224,11 +6201,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Add_descriptor;
     }
@@ -6415,8 +6392,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Add}
@@ -6425,7 +6401,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Add)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Add_descriptor;
       }
@@ -6597,8 +6573,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          items_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item>(items_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          items_ = new java.util.ArrayList<>(items_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -6823,8 +6799,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
           getItemsFieldBuilder() {
         if (itemsBuilder_ == null) {
-          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder>(
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   items_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -6908,13 +6883,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7055,11 +7030,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Rem_descriptor;
     }
@@ -7246,8 +7221,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Rem}
@@ -7256,7 +7230,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Rem)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Rem_descriptor;
       }
@@ -7465,8 +7439,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
-          items_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item>(items_);
+        if ((bitField0_ & 0x00000004) == 0) {
+          items_ = new java.util.ArrayList<>(items_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -7691,8 +7665,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
           getItemsFieldBuilder() {
         if (itemsBuilder_ == null) {
-          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder>(
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   items_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -7739,13 +7712,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7861,11 +7834,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Mov_descriptor;
     }
@@ -8017,8 +7990,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Mov}
@@ -8027,7 +7999,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Mov)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Mov_descriptor;
       }
@@ -8051,9 +8023,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -8254,13 +8223,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8376,11 +8345,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributesPartialState_descriptor;
     }
@@ -8421,21 +8390,16 @@ public final class Playlist4ApiProto {
     private java.util.List<java.lang.Integer> noValue_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind> noValue_converter_ =
-            new com.google.protobuf.Internal.ListAdapter.Converter<
-                java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind>() {
-              public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind convert(java.lang.Integer from) {
-                @SuppressWarnings("deprecation")
-                com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind.valueOf(from);
-                return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind.ITEM_UNKNOWN : result;
-              }
+            from -> {
+              ItemAttributeKind result = ItemAttributeKind.valueOf(from);
+              return result == null ? ItemAttributeKind.ITEM_UNKNOWN : result;
             };
     /**
      * <code>repeated .spotify.playlist4.proto.ItemAttributeKind no_value = 2;</code>
      * @return A list containing the noValue.
      */
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind> getNoValueList() {
-      return new com.google.protobuf.Internal.ListAdapter<
-          java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind>(noValue_, noValue_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.ItemAttributeKind no_value = 2;</code>
@@ -8540,8 +8504,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ItemAttributesPartialState}
@@ -8550,7 +8513,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ItemAttributesPartialState)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributesPartialState_descriptor;
       }
@@ -8780,8 +8743,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder> 
           getValuesFieldBuilder() {
         if (valuesBuilder_ == null) {
-          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder>(
+          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getValues(),
                   getParentForChildren(),
                   isClean());
@@ -8793,8 +8755,8 @@ public final class Playlist4ApiProto {
       private java.util.List<java.lang.Integer> noValue_ =
         java.util.Collections.emptyList();
       private void ensureNoValueIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          noValue_ = new java.util.ArrayList<java.lang.Integer>(noValue_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          noValue_ = new java.util.ArrayList<>(noValue_);
           bitField0_ |= 0x00000002;
         }
       }
@@ -8803,8 +8765,7 @@ public final class Playlist4ApiProto {
        * @return A list containing the noValue.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind> getNoValueList() {
-        return new com.google.protobuf.Internal.ListAdapter<
-            java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind>(noValue_, noValue_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
       }
       /**
        * <code>repeated .spotify.playlist4.proto.ItemAttributeKind no_value = 2;</code>
@@ -8876,13 +8837,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8998,11 +8959,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributesPartialState_descriptor;
     }
@@ -9043,21 +9004,16 @@ public final class Playlist4ApiProto {
     private java.util.List<java.lang.Integer> noValue_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind> noValue_converter_ =
-            new com.google.protobuf.Internal.ListAdapter.Converter<
-                java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind>() {
-              public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind convert(java.lang.Integer from) {
-                @SuppressWarnings("deprecation")
-                com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind.valueOf(from);
-                return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind.LIST_UNKNOWN : result;
-              }
+            from -> {
+              ListAttributeKind result = ListAttributeKind.valueOf(from);
+              return result == null ? ListAttributeKind.LIST_UNKNOWN : result;
             };
     /**
      * <code>repeated .spotify.playlist4.proto.ListAttributeKind no_value = 2;</code>
      * @return A list containing the noValue.
      */
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind> getNoValueList() {
-      return new com.google.protobuf.Internal.ListAdapter<
-          java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind>(noValue_, noValue_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.ListAttributeKind no_value = 2;</code>
@@ -9162,8 +9118,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListAttributesPartialState}
@@ -9172,7 +9127,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListAttributesPartialState)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributesPartialState_descriptor;
       }
@@ -9402,8 +9357,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder> 
           getValuesFieldBuilder() {
         if (valuesBuilder_ == null) {
-          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder>(
+          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getValues(),
                   getParentForChildren(),
                   isClean());
@@ -9415,8 +9369,8 @@ public final class Playlist4ApiProto {
       private java.util.List<java.lang.Integer> noValue_ =
         java.util.Collections.emptyList();
       private void ensureNoValueIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          noValue_ = new java.util.ArrayList<java.lang.Integer>(noValue_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          noValue_ = new java.util.ArrayList<>(noValue_);
           bitField0_ |= 0x00000002;
         }
       }
@@ -9425,8 +9379,7 @@ public final class Playlist4ApiProto {
        * @return A list containing the noValue.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind> getNoValueList() {
-        return new com.google.protobuf.Internal.ListAdapter<
-            java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind>(noValue_, noValue_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
       }
       /**
        * <code>repeated .spotify.playlist4.proto.ListAttributeKind no_value = 2;</code>
@@ -9498,13 +9451,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9628,11 +9581,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateItemAttributes_descriptor;
     }
@@ -9796,8 +9749,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.UpdateItemAttributes}
@@ -9806,7 +9758,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.UpdateItemAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateItemAttributes_descriptor;
       }
@@ -10087,8 +10039,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder> 
           getNewAttributesFieldBuilder() {
         if (newAttributesBuilder_ == null) {
-          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder>(
+          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getNewAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10207,8 +10158,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder> 
           getOldAttributesFieldBuilder() {
         if (oldAttributesBuilder_ == null) {
-          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder>(
+          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getOldAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10217,13 +10167,13 @@ public final class Playlist4ApiProto {
         return oldAttributesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10336,11 +10286,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateListAttributes_descriptor;
     }
@@ -10487,8 +10437,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.UpdateListAttributes}
@@ -10497,7 +10446,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.UpdateListAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateListAttributes_descriptor;
       }
@@ -10735,8 +10684,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder> 
           getNewAttributesFieldBuilder() {
         if (newAttributesBuilder_ == null) {
-          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder>(
+          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getNewAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10855,8 +10803,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder> 
           getOldAttributesFieldBuilder() {
         if (oldAttributesBuilder_ == null) {
-          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder>(
+          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getOldAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10865,13 +10812,13 @@ public final class Playlist4ApiProto {
         return oldAttributesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11041,11 +10988,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Op_descriptor;
     }
@@ -11151,11 +11098,7 @@ public final class Playlist4ApiProto {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Kind> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Kind>() {
-              public Kind findValueByNumber(int number) {
-                return Kind.forNumber(number);
-              }
-            };
+              Kind::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -11165,7 +11108,7 @@ public final class Playlist4ApiProto {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.getDescriptor().getEnumTypes().get(0);
       }
@@ -11183,7 +11126,7 @@ public final class Playlist4ApiProto {
 
       private final int value;
 
-      private Kind(int value) {
+      Kind(int value) {
         this.value = value;
       }
 
@@ -11205,7 +11148,6 @@ public final class Playlist4ApiProto {
      * @return The kind.
      */
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind getKind() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.valueOf(kind_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.KIND_UNKNOWN : result;
     }
@@ -11412,8 +11354,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Op}
@@ -11422,7 +11363,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Op)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Op_descriptor;
       }
@@ -11614,7 +11555,6 @@ public final class Playlist4ApiProto {
        * @return The kind.
        */
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind getKind() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.valueOf(kind_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.KIND_UNKNOWN : result;
       }
@@ -11753,8 +11693,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder> 
           getAddFieldBuilder() {
         if (addBuilder_ == null) {
-          addBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder>(
+          addBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getAdd(),
                   getParentForChildren(),
                   isClean());
@@ -11873,8 +11812,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder> 
           getRemFieldBuilder() {
         if (remBuilder_ == null) {
-          remBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder>(
+          remBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getRem(),
                   getParentForChildren(),
                   isClean());
@@ -11993,8 +11931,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder> 
           getMovFieldBuilder() {
         if (movBuilder_ == null) {
-          movBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder>(
+          movBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getMov(),
                   getParentForChildren(),
                   isClean());
@@ -12113,8 +12050,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder> 
           getUpdateItemAttributesFieldBuilder() {
         if (updateItemAttributesBuilder_ == null) {
-          updateItemAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder>(
+          updateItemAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getUpdateItemAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -12233,8 +12169,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder> 
           getUpdateListAttributesFieldBuilder() {
         if (updateListAttributesBuilder_ == null) {
-          updateListAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder>(
+          updateListAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getUpdateListAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -12243,13 +12178,13 @@ public final class Playlist4ApiProto {
         return updateListAttributesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12357,11 +12292,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_OpList_descriptor;
     }
@@ -12496,8 +12431,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.OpList}
@@ -12506,7 +12440,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.OpList)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpListOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_OpList_descriptor;
       }
@@ -12621,8 +12555,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          ops_ = new java.util.ArrayList<>(ops_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -12847,8 +12781,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   ops_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -12858,13 +12791,13 @@ public final class Playlist4ApiProto {
         return opsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13068,11 +13001,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ChangeInfo_descriptor;
     }
@@ -13377,8 +13310,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ChangeInfo}
@@ -13387,7 +13319,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ChangeInfo)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ChangeInfo_descriptor;
       }
@@ -14044,8 +13976,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder> 
           getSourceFieldBuilder() {
         if (sourceBuilder_ == null) {
-          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder>(
+          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getSource(),
                   getParentForChildren(),
                   isClean());
@@ -14054,13 +13985,13 @@ public final class Playlist4ApiProto {
         return sourceBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14209,11 +14140,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SourceInfo_descriptor;
     }
@@ -14328,11 +14259,7 @@ public final class Playlist4ApiProto {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Client> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Client>() {
-              public Client findValueByNumber(int number) {
-                return Client.forNumber(number);
-              }
-            };
+              Client::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -14342,7 +14269,7 @@ public final class Playlist4ApiProto {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.getDescriptor().getEnumTypes().get(0);
       }
@@ -14360,7 +14287,7 @@ public final class Playlist4ApiProto {
 
       private final int value;
 
-      private Client(int value) {
+      Client(int value) {
         this.value = value;
       }
 
@@ -14382,7 +14309,6 @@ public final class Playlist4ApiProto {
      * @return The client.
      */
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client getClient() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.valueOf(client_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.CLIENT_UNKNOWN : result;
     }
@@ -14609,8 +14535,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.SourceInfo}
@@ -14619,7 +14544,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.SourceInfo)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SourceInfo_descriptor;
       }
@@ -14643,9 +14568,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -14754,7 +14676,6 @@ public final class Playlist4ApiProto {
        * @return The client.
        */
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client getClient() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.valueOf(client_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.CLIENT_UNKNOWN : result;
       }
@@ -15035,13 +14956,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -15176,11 +15097,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Delta_descriptor;
     }
@@ -15356,8 +15277,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Delta}
@@ -15366,7 +15286,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Delta)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Delta_descriptor;
       }
@@ -15544,8 +15464,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          ops_ = new java.util.ArrayList<>(ops_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -15770,8 +15690,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   ops_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -15891,8 +15810,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder> 
           getInfoFieldBuilder() {
         if (infoBuilder_ == null) {
-          infoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder>(
+          infoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getInfo(),
                   getParentForChildren(),
                   isClean());
@@ -15901,13 +15819,13 @@ public final class Playlist4ApiProto {
         return infoBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -16039,11 +15957,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Diff_descriptor;
     }
@@ -16213,8 +16131,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Diff}
@@ -16223,7 +16140,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Diff)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Diff_descriptor;
       }
@@ -16392,8 +16309,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          ops_ = new java.util.ArrayList<>(ops_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -16618,8 +16535,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   ops_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -16669,13 +16585,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -16835,11 +16751,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListChanges_descriptor;
     }
@@ -17052,8 +16968,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListChanges}
@@ -17062,7 +16977,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListChanges)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChangesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListChanges_descriptor;
       }
@@ -17244,8 +17159,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta> deltas_ =
         java.util.Collections.emptyList();
       private void ensureDeltasIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          deltas_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta>(deltas_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          deltas_ = new java.util.ArrayList<>(deltas_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -17470,8 +17385,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder> 
           getDeltasFieldBuilder() {
         if (deltasBuilder_ == null) {
-          deltasBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder>(
+          deltasBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   deltas_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -17557,7 +17471,7 @@ public final class Playlist4ApiProto {
 
       private com.google.protobuf.Internal.LongList nonces_ = emptyLongList();
       private void ensureNoncesIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
+        if ((bitField0_ & 0x00000010) == 0) {
           nonces_ = mutableCopy(nonces_);
           bitField0_ |= 0x00000010;
          }
@@ -17634,13 +17548,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -17893,11 +17807,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SelectedListContent_descriptor;
     }
@@ -18272,8 +18186,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.SelectedListContent}
@@ -18282,7 +18195,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.SelectedListContent)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContentOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SelectedListContent_descriptor;
       }
@@ -18677,8 +18590,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder> 
           getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder>(
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -18797,8 +18709,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder> 
           getContentsFieldBuilder() {
         if (contentsBuilder_ == null) {
-          contentsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder>(
+          contentsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getContents(),
                   getParentForChildren(),
                   isClean());
@@ -18917,8 +18828,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder> 
           getDiffFieldBuilder() {
         if (diffBuilder_ == null) {
-          diffBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder>(
+          diffBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getDiff(),
                   getParentForChildren(),
                   isClean());
@@ -19037,8 +18947,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder> 
           getSyncResultFieldBuilder() {
         if (syncResultBuilder_ == null) {
-          syncResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder>(
+          syncResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getSyncResult(),
                   getParentForChildren(),
                   isClean());
@@ -19049,8 +18958,8 @@ public final class Playlist4ApiProto {
 
       private java.util.List<com.google.protobuf.ByteString> resultingRevisions_ = java.util.Collections.emptyList();
       private void ensureResultingRevisionsIsMutable() {
-        if (!((bitField0_ & 0x00000040) != 0)) {
-          resultingRevisions_ = new java.util.ArrayList<com.google.protobuf.ByteString>(resultingRevisions_);
+        if ((bitField0_ & 0x00000040) == 0) {
+          resultingRevisions_ = new java.util.ArrayList<>(resultingRevisions_);
           bitField0_ |= 0x00000040;
          }
       }
@@ -19208,7 +19117,7 @@ public final class Playlist4ApiProto {
 
       private com.google.protobuf.Internal.LongList nonces_ = emptyLongList();
       private void ensureNoncesIsMutable() {
-        if (!((bitField0_ & 0x00000200) != 0)) {
+        if ((bitField0_ & 0x00000200) == 0) {
           nonces_ = mutableCopy(nonces_);
           bitField0_ |= 0x00000200;
          }
@@ -19406,13 +19315,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -19519,11 +19428,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_CreateListReply_descriptor;
     }
@@ -19658,8 +19567,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.CreateListReply}
@@ -19668,7 +19576,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.CreateListReply)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReplyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_CreateListReply_descriptor;
       }
@@ -19692,9 +19600,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -19858,13 +19763,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -19971,11 +19876,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ModifyReply_descriptor;
     }
@@ -20110,8 +20015,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ModifyReply}
@@ -20120,7 +20024,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ModifyReply)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReplyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ModifyReply_descriptor;
       }
@@ -20144,9 +20048,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -20310,13 +20211,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -20417,11 +20318,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SubscribeRequest_descriptor;
     }
@@ -20547,8 +20448,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.SubscribeRequest}
@@ -20557,7 +20457,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.SubscribeRequest)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SubscribeRequest_descriptor;
       }
@@ -20581,9 +20481,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -20662,8 +20559,8 @@ public final class Playlist4ApiProto {
 
       private java.util.List<com.google.protobuf.ByteString> uris_ = java.util.Collections.emptyList();
       private void ensureUrisIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          uris_ = new java.util.ArrayList<com.google.protobuf.ByteString>(uris_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          uris_ = new java.util.ArrayList<>(uris_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -20745,13 +20642,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -20852,11 +20749,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UnsubscribeRequest_descriptor;
     }
@@ -20982,8 +20879,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.UnsubscribeRequest}
@@ -20992,7 +20888,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.UnsubscribeRequest)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UnsubscribeRequest_descriptor;
       }
@@ -21016,9 +20912,6 @@ public final class Playlist4ApiProto {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -21097,8 +20990,8 @@ public final class Playlist4ApiProto {
 
       private java.util.List<com.google.protobuf.ByteString> uris_ = java.util.Collections.emptyList();
       private void ensureUrisIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          uris_ = new java.util.ArrayList<com.google.protobuf.ByteString>(uris_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          uris_ = new java.util.ArrayList<>(uris_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -21180,13 +21073,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -21330,11 +21223,11 @@ public final class Playlist4ApiProto {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_PlaylistModificationInfo_descriptor;
     }
@@ -21521,8 +21414,7 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.PlaylistModificationInfo}
@@ -21531,7 +21423,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.PlaylistModificationInfo)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_PlaylistModificationInfo_descriptor;
       }
@@ -21786,8 +21678,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
+        if ((bitField0_ & 0x00000008) == 0) {
+          ops_ = new java.util.ArrayList<>(ops_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -22012,8 +21904,7 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   ops_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -22023,13 +21914,13 @@ public final class Playlist4ApiProto {
         return opsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -22220,15 +22111,15 @@ public final class Playlist4ApiProto {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\030playlist4_external.proto\022\027spotify.play" +
       "list4.proto\"P\n\004Item\022\013\n\003uri\030\001 \002(\t\022;\n\nattr" +
-      "ibutes\030\002 \001(\0132\'.spotify.playlist4.proto.I" +
+              "ibutes\030\002 \001(\0132'.spotify.playlist4.proto.I" +
       "temAttributes\"\224\001\n\010MetaItem\022\020\n\010revision\030\001" +
-      " \001(\014\022;\n\nattributes\030\002 \001(\0132\'.spotify.playl" +
+              " \001(\014\022;\n\nattributes\030\002 \001(\0132'.spotify.playl" +
       "ist4.proto.ListAttributes\022\016\n\006length\030\003 \001(" +
       "\005\022\021\n\ttimestamp\030\004 \001(\003\022\026\n\016owner_username\030\005" +
       " \001(\t\"\220\001\n\tListItems\022\013\n\003pos\030\001 \002(\005\022\021\n\ttrunc" +
@@ -22255,10 +22146,10 @@ public final class Playlist4ApiProto {
       "s_key\030\007 \001(\010\";\n\003Mov\022\022\n\nfrom_index\030\001 \002(\005\022\016" +
       "\n\006length\030\002 \002(\005\022\020\n\010to_index\030\003 \002(\005\"\223\001\n\032Ite" +
       "mAttributesPartialState\0227\n\006values\030\001 \002(\0132" +
-      "\'.spotify.playlist4.proto.ItemAttributes" +
+              "'.spotify.playlist4.proto.ItemAttributes" +
       "\022<\n\010no_value\030\002 \003(\0162*.spotify.playlist4.p" +
       "roto.ItemAttributeKind\"\223\001\n\032ListAttribute" +
-      "sPartialState\0227\n\006values\030\001 \002(\0132\'.spotify." +
+              "sPartialState\0227\n\006values\030\001 \002(\0132'.spotify." +
       "playlist4.proto.ListAttributes\022<\n\010no_val" +
       "ue\030\002 \003(\0162*.spotify.playlist4.proto.ListA" +
       "ttributeKind\"\277\001\n\024UpdateItemAttributes\022\r\n" +
@@ -22305,7 +22196,7 @@ public final class Playlist4ApiProto {
       "elta\022 \n\030want_resulting_revisions\030\003 \001(\010\022\030" +
       "\n\020want_sync_result\030\004 \001(\010\022\016\n\006nonces\030\006 \003(\003" +
       "\"\217\003\n\023SelectedListContent\022\020\n\010revision\030\001 \001" +
-      "(\014\022\016\n\006length\030\002 \001(\005\022;\n\nattributes\030\003 \001(\0132\'" +
+              "(\014\022\016\n\006length\030\002 \001(\005\022;\n\nattributes\030\003 \001(\0132'" +
       ".spotify.playlist4.proto.ListAttributes\022" +
       "4\n\010contents\030\005 \001(\0132\".spotify.playlist4.pr" +
       "oto.ListItems\022+\n\004diff\030\006 \001(\0132\035.spotify.pl" +

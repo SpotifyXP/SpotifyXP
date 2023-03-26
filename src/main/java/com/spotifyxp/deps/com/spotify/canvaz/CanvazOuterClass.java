@@ -80,11 +80,11 @@ public final class CanvazOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_Artist_descriptor;
     }
@@ -292,8 +292,7 @@ public final class CanvazOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.Artist}
@@ -302,7 +301,7 @@ public final class CanvazOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.Artist)
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_Artist_descriptor;
       }
@@ -326,9 +325,6 @@ public final class CanvazOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -633,13 +629,13 @@ public final class CanvazOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -753,11 +749,11 @@ public final class CanvazOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_descriptor;
     }
@@ -921,11 +917,11 @@ public final class CanvazOuterClass {
       }
 
       @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
+      public com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
       }
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_Canvaz_descriptor;
       }
@@ -1329,8 +1325,7 @@ public final class CanvazOuterClass {
       @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
+        return new Builder(parent);
       }
       /**
        * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz}
@@ -1339,7 +1334,7 @@ public final class CanvazOuterClass {
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
+        public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
           return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_Canvaz_descriptor;
         }
@@ -1363,9 +1358,6 @@ public final class CanvazOuterClass {
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
         }
         @java.lang.Override
         public Builder clear() {
@@ -1936,8 +1928,7 @@ public final class CanvazOuterClass {
             com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder> 
             getArtistFieldBuilder() {
           if (artistBuilder_ == null) {
-            artistBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder>(
+            artistBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                     getArtist(),
                     getParentForChildren(),
                     isClean());
@@ -2204,13 +2195,13 @@ public final class CanvazOuterClass {
           return this;
         }
         @java.lang.Override
-        public final Builder setUnknownFields(
+        public Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
-        public final Builder mergeUnknownFields(
+        public Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
         }
@@ -2398,8 +2389,7 @@ public final class CanvazOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse}
@@ -2408,7 +2398,7 @@ public final class CanvazOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse)
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_descriptor;
       }
@@ -2526,8 +2516,8 @@ public final class CanvazOuterClass {
       private java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> canvases_ =
         java.util.Collections.emptyList();
       private void ensureCanvasesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          canvases_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz>(canvases_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          canvases_ = new java.util.ArrayList<>(canvases_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -2752,8 +2742,7 @@ public final class CanvazOuterClass {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder> 
           getCanvasesFieldBuilder() {
         if (canvasesBuilder_ == null) {
-          canvasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder>(
+          canvasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   canvases_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2793,13 +2782,13 @@ public final class CanvazOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2907,11 +2896,11 @@ public final class CanvazOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_descriptor;
     }
@@ -2977,11 +2966,11 @@ public final class CanvazOuterClass {
       }
 
       @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
+      public com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
       }
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_Entity_descriptor;
       }
@@ -3153,8 +3142,7 @@ public final class CanvazOuterClass {
       @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
+        return new Builder(parent);
       }
       /**
        * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity}
@@ -3163,7 +3151,7 @@ public final class CanvazOuterClass {
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity)
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
+        public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
           return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_Entity_descriptor;
         }
@@ -3187,9 +3175,6 @@ public final class CanvazOuterClass {
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
         }
         @java.lang.Override
         public Builder clear() {
@@ -3415,13 +3400,13 @@ public final class CanvazOuterClass {
           return this;
         }
         @java.lang.Override
-        public final Builder setUnknownFields(
+        public Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
-        public final Builder mergeUnknownFields(
+        public Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
         }
@@ -3599,8 +3584,7 @@ public final class CanvazOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest}
@@ -3609,7 +3593,7 @@ public final class CanvazOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest)
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_descriptor;
       }
@@ -3724,8 +3708,8 @@ public final class CanvazOuterClass {
       private java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> entities_ =
         java.util.Collections.emptyList();
       private void ensureEntitiesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          entities_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity>(entities_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          entities_ = new java.util.ArrayList<>(entities_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -3950,8 +3934,7 @@ public final class CanvazOuterClass {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder> 
           getEntitiesFieldBuilder() {
         if (entitiesBuilder_ == null) {
-          entitiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder>(
+          entitiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   entities_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -3961,13 +3944,13 @@ public final class CanvazOuterClass {
         return entitiesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4053,7 +4036,7 @@ public final class CanvazOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

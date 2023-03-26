@@ -104,11 +104,11 @@ public final class SessionOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.internal_static_spotify_player_proto_transfer_Session_descriptor;
     }
@@ -323,8 +323,7 @@ public final class SessionOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.Session}
@@ -333,7 +332,7 @@ public final class SessionOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.Session)
         com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.internal_static_spotify_player_proto_transfer_Session_descriptor;
       }
@@ -592,8 +591,7 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.Builder, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder> 
           getPlayOriginFieldBuilder() {
         if (playOriginBuilder_ == null) {
-          playOriginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.Builder, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder>(
+          playOriginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPlayOrigin(),
                   getParentForChildren(),
                   isClean());
@@ -712,8 +710,7 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.Builder, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.ContextOrBuilder> 
           getContextFieldBuilder() {
         if (contextBuilder_ == null) {
-          contextBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.Builder, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.ContextOrBuilder>(
+          contextBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getContext(),
                   getParentForChildren(),
                   isClean());
@@ -916,8 +913,7 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder> 
           getOptionOverridesFieldBuilder() {
         if (optionOverridesBuilder_ == null) {
-          optionOverridesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder>(
+          optionOverridesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getOptionOverrides(),
                   getParentForChildren(),
                   isClean());
@@ -926,13 +922,13 @@ public final class SessionOuterClass {
         return optionOverridesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -998,7 +994,7 @@ public final class SessionOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

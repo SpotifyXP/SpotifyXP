@@ -80,7 +80,7 @@ public final class Identifiers {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -103,21 +103,18 @@ public final class Identifiers {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              number_ = s;
+                number_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              isoCountryCode_ = s;
+                isoCountryCode_ = input.readStringRequireUtf8();
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              countryCallingCode_ = s;
+                countryCallingCode_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -139,7 +136,7 @@ public final class Identifiers {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Identifiers.internal_static_spotify_login5_v3_identifiers_PhoneNumber_descriptor;
     }
@@ -262,7 +259,7 @@ public final class Identifiers {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -322,8 +319,7 @@ public final class Identifiers {
           .equals(other.getIsoCountryCode())) return false;
       if (!getCountryCallingCode()
           .equals(other.getCountryCallingCode())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -431,8 +427,7 @@ public final class Identifiers {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.identifiers.PhoneNumber}
@@ -441,7 +436,7 @@ public final class Identifiers {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.identifiers.PhoneNumber)
         com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Identifiers.internal_static_spotify_login5_v3_identifiers_PhoneNumber_descriptor;
       }
@@ -465,9 +460,6 @@ public final class Identifiers {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -573,7 +565,7 @@ public final class Identifiers {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -824,13 +816,13 @@ public final class Identifiers {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -886,7 +878,7 @@ public final class Identifiers {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

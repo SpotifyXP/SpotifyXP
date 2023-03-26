@@ -69,11 +69,11 @@ public final class Connectivity {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_ConnectivitySdkData_descriptor;
     }
@@ -232,8 +232,7 @@ public final class Connectivity {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.clienttoken.data.v0.ConnectivitySdkData}
@@ -242,7 +241,7 @@ public final class Connectivity {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.data.v0.ConnectivitySdkData)
         com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_ConnectivitySdkData_descriptor;
       }
@@ -266,9 +265,6 @@ public final class Connectivity {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -459,8 +455,7 @@ public final class Connectivity {
           com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificData, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificData.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificDataOrBuilder> 
           getPlatformSpecificDataFieldBuilder() {
         if (platformSpecificDataBuilder_ == null) {
-          platformSpecificDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificData, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificData.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificDataOrBuilder>(
+          platformSpecificDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPlatformSpecificData(),
                   getParentForChildren(),
                   isClean());
@@ -545,13 +540,13 @@ public final class Connectivity {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -656,7 +651,7 @@ public final class Connectivity {
      */
     com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsDataOrBuilder getWindowsOrBuilder();
 
-    public com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificData.DataCase getDataCase();
+    com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificData.DataCase getDataCase();
   }
   /**
    * Protobuf type {@code spotify.clienttoken.data.v0.PlatformSpecificData}
@@ -681,11 +676,11 @@ public final class Connectivity {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_PlatformSpecificData_descriptor;
     }
@@ -708,7 +703,7 @@ public final class Connectivity {
       WINDOWS(4),
       DATA_NOT_SET(0);
       private final int value;
-      private DataCase(int value) {
+      DataCase(int value) {
         this.value = value;
       }
       /**
@@ -733,7 +728,7 @@ public final class Connectivity {
       public int getNumber() {
         return this.value;
       }
-    };
+    }
 
     public DataCase
     getDataCase() {
@@ -912,8 +907,7 @@ public final class Connectivity {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.clienttoken.data.v0.PlatformSpecificData}
@@ -922,7 +916,7 @@ public final class Connectivity {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.data.v0.PlatformSpecificData)
         com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.PlatformSpecificDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_PlatformSpecificData_descriptor;
       }
@@ -946,9 +940,6 @@ public final class Connectivity {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1073,13 +1064,12 @@ public final class Connectivity {
           if (dataCase_ == 1) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData) data_;
           }
-          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData.getDefaultInstance();
         } else {
           if (dataCase_ == 1) {
             return androidBuilder_.getMessage();
           }
-          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData.getDefaultInstance();
         }
+          return NativeAndroidData.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.data.v0.NativeAndroidData android = 1;</code>
@@ -1181,15 +1171,14 @@ public final class Connectivity {
           if (!(dataCase_ == 1)) {
             data_ = com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData.getDefaultInstance();
           }
-          androidBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidDataOrBuilder>(
+          androidBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidData) data_,
                   getParentForChildren(),
                   isClean());
           data_ = null;
         }
         dataCase_ = 1;
-        onChanged();;
+        onChanged();
         return androidBuilder_;
       }
 
@@ -1211,13 +1200,12 @@ public final class Connectivity {
           if (dataCase_ == 2) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData) data_;
           }
-          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData.getDefaultInstance();
         } else {
           if (dataCase_ == 2) {
             return iosBuilder_.getMessage();
           }
-          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData.getDefaultInstance();
         }
+          return NativeIOSData.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.data.v0.NativeIOSData ios = 2;</code>
@@ -1319,15 +1307,14 @@ public final class Connectivity {
           if (!(dataCase_ == 2)) {
             data_ = com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData.getDefaultInstance();
           }
-          iosBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSDataOrBuilder>(
+          iosBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSData) data_,
                   getParentForChildren(),
                   isClean());
           data_ = null;
         }
         dataCase_ = 2;
-        onChanged();;
+        onChanged();
         return iosBuilder_;
       }
 
@@ -1349,13 +1336,12 @@ public final class Connectivity {
           if (dataCase_ == 4) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData) data_;
           }
-          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData.getDefaultInstance();
         } else {
           if (dataCase_ == 4) {
             return windowsBuilder_.getMessage();
           }
-          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData.getDefaultInstance();
         }
+          return NativeWindowsData.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.data.v0.NativeWindowsData windows = 4;</code>
@@ -1457,25 +1443,24 @@ public final class Connectivity {
           if (!(dataCase_ == 4)) {
             data_ = com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData.getDefaultInstance();
           }
-          windowsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsDataOrBuilder>(
+          windowsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsData) data_,
                   getParentForChildren(),
                   isClean());
           data_ = null;
         }
         dataCase_ = 4;
-        onChanged();;
+        onChanged();
         return windowsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1597,11 +1582,11 @@ public final class Connectivity {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_NativeAndroidData_descriptor;
     }
@@ -1764,8 +1749,7 @@ public final class Connectivity {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.clienttoken.data.v0.NativeAndroidData}
@@ -1774,7 +1758,7 @@ public final class Connectivity {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.data.v0.NativeAndroidData)
         com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeAndroidDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_NativeAndroidData_descriptor;
       }
@@ -1798,9 +1782,6 @@ public final class Connectivity {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -2120,8 +2101,7 @@ public final class Connectivity {
           com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.Screen, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.Screen.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ScreenOrBuilder> 
           getScreenDimensionsFieldBuilder() {
         if (screenDimensionsBuilder_ == null) {
-          screenDimensionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.Screen, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.Screen.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ScreenOrBuilder>(
+          screenDimensionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getScreenDimensions(),
                   getParentForChildren(),
                   isClean());
@@ -2130,13 +2110,13 @@ public final class Connectivity {
         return screenDimensionsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2270,11 +2250,11 @@ public final class Connectivity {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_NativeIOSData_descriptor;
     }
@@ -2502,8 +2482,7 @@ public final class Connectivity {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.clienttoken.data.v0.NativeIOSData}
@@ -2512,7 +2491,7 @@ public final class Connectivity {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.data.v0.NativeIOSData)
         com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeIOSDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_NativeIOSData_descriptor;
       }
@@ -2536,9 +2515,6 @@ public final class Connectivity {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -2909,13 +2885,13 @@ public final class Connectivity {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3040,11 +3016,11 @@ public final class Connectivity {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_NativeWindowsData_descriptor;
     }
@@ -3214,8 +3190,7 @@ public final class Connectivity {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.clienttoken.data.v0.NativeWindowsData}
@@ -3224,7 +3199,7 @@ public final class Connectivity {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.data.v0.NativeWindowsData)
         com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.NativeWindowsDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_NativeWindowsData_descriptor;
       }
@@ -3248,9 +3223,6 @@ public final class Connectivity {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -3549,13 +3521,13 @@ public final class Connectivity {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3656,11 +3628,11 @@ public final class Connectivity {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_Screen_descriptor;
     }
@@ -3790,8 +3762,7 @@ public final class Connectivity {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.clienttoken.data.v0.Screen}
@@ -3800,7 +3771,7 @@ public final class Connectivity {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.data.v0.Screen)
         com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ScreenOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.internal_static_spotify_clienttoken_data_v0_Screen_descriptor;
       }
@@ -3824,9 +3795,6 @@ public final class Connectivity {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -3993,13 +3961,13 @@ public final class Connectivity {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4090,7 +4058,7 @@ public final class Connectivity {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

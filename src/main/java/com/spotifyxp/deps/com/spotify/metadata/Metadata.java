@@ -441,7 +441,7 @@ public final class Metadata {
       compilationGroup_ = java.util.Collections.emptyList();
       appearsOnGroup_ = java.util.Collections.emptyList();
       genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      externalId_ = java.util.Collections.emptyList();
+        externalId_ = java.util.Collections.emptyList();
       portrait_ = java.util.Collections.emptyList();
       biography_ = java.util.Collections.emptyList();
       activityPeriod_ = java.util.Collections.emptyList();
@@ -459,11 +459,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Artist_descriptor;
     }
@@ -1173,8 +1173,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Artist}
@@ -1183,7 +1182,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Artist)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Artist_descriptor;
       }
@@ -1265,7 +1264,7 @@ public final class Metadata {
           appearsOnGroupBuilder_.clear();
         }
         genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000100);
         if (externalIdBuilder_ == null) {
           externalId_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000200);
@@ -1699,8 +1698,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks> topTrack_ =
         java.util.Collections.emptyList();
       private void ensureTopTrackIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          topTrack_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks>(topTrack_);
+        if ((bitField0_ & 0x00000008) == 0) {
+          topTrack_ = new java.util.ArrayList<>(topTrack_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -1925,8 +1924,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder> 
           getTopTrackFieldBuilder() {
         if (topTrackBuilder_ == null) {
-          topTrackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder>(
+          topTrackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   topTrack_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -1939,8 +1937,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> albumGroup_ =
         java.util.Collections.emptyList();
       private void ensureAlbumGroupIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
-          albumGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(albumGroup_);
+        if ((bitField0_ & 0x00000010) == 0) {
+          albumGroup_ = new java.util.ArrayList<>(albumGroup_);
           bitField0_ |= 0x00000010;
          }
       }
@@ -2165,8 +2163,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getAlbumGroupFieldBuilder() {
         if (albumGroupBuilder_ == null) {
-          albumGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
+          albumGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   albumGroup_,
                   ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
@@ -2179,8 +2176,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> singleGroup_ =
         java.util.Collections.emptyList();
       private void ensureSingleGroupIsMutable() {
-        if (!((bitField0_ & 0x00000020) != 0)) {
-          singleGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(singleGroup_);
+        if ((bitField0_ & 0x00000020) == 0) {
+          singleGroup_ = new java.util.ArrayList<>(singleGroup_);
           bitField0_ |= 0x00000020;
          }
       }
@@ -2405,8 +2402,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getSingleGroupFieldBuilder() {
         if (singleGroupBuilder_ == null) {
-          singleGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
+          singleGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   singleGroup_,
                   ((bitField0_ & 0x00000020) != 0),
                   getParentForChildren(),
@@ -2419,8 +2415,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> compilationGroup_ =
         java.util.Collections.emptyList();
       private void ensureCompilationGroupIsMutable() {
-        if (!((bitField0_ & 0x00000040) != 0)) {
-          compilationGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(compilationGroup_);
+        if ((bitField0_ & 0x00000040) == 0) {
+          compilationGroup_ = new java.util.ArrayList<>(compilationGroup_);
           bitField0_ |= 0x00000040;
          }
       }
@@ -2645,8 +2641,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getCompilationGroupFieldBuilder() {
         if (compilationGroupBuilder_ == null) {
-          compilationGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
+          compilationGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   compilationGroup_,
                   ((bitField0_ & 0x00000040) != 0),
                   getParentForChildren(),
@@ -2659,8 +2654,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> appearsOnGroup_ =
         java.util.Collections.emptyList();
       private void ensureAppearsOnGroupIsMutable() {
-        if (!((bitField0_ & 0x00000080) != 0)) {
-          appearsOnGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(appearsOnGroup_);
+        if ((bitField0_ & 0x00000080) == 0) {
+          appearsOnGroup_ = new java.util.ArrayList<>(appearsOnGroup_);
           bitField0_ |= 0x00000080;
          }
       }
@@ -2885,8 +2880,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getAppearsOnGroupFieldBuilder() {
         if (appearsOnGroupBuilder_ == null) {
-          appearsOnGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
+          appearsOnGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   appearsOnGroup_,
                   ((bitField0_ & 0x00000080) != 0),
                   getParentForChildren(),
@@ -2897,8 +2891,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureGenreIsMutable() {
-        if (!((bitField0_ & 0x00000100) != 0)) {
+
+        private void ensureGenreIsMutable() {
+        if ((bitField0_ & 0x00000100) == 0) {
           genre_ = new com.google.protobuf.LazyStringArrayList(genre_);
           bitField0_ |= 0x00000100;
          }
@@ -2985,7 +2980,7 @@ public final class Metadata {
        */
       public Builder clearGenre() {
         genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000100);
         onChanged();
         return this;
       }
@@ -3008,8 +3003,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_ =
         java.util.Collections.emptyList();
       private void ensureExternalIdIsMutable() {
-        if (!((bitField0_ & 0x00000200) != 0)) {
-          externalId_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId>(externalId_);
+        if ((bitField0_ & 0x00000200) == 0) {
+          externalId_ = new java.util.ArrayList<>(externalId_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -3234,8 +3229,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
           getExternalIdFieldBuilder() {
         if (externalIdBuilder_ == null) {
-          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder>(
+          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   externalId_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -3248,8 +3242,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> portrait_ =
         java.util.Collections.emptyList();
       private void ensurePortraitIsMutable() {
-        if (!((bitField0_ & 0x00000400) != 0)) {
-          portrait_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(portrait_);
+        if ((bitField0_ & 0x00000400) == 0) {
+          portrait_ = new java.util.ArrayList<>(portrait_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -3474,8 +3468,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getPortraitFieldBuilder() {
         if (portraitBuilder_ == null) {
-          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
+          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   portrait_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -3488,8 +3481,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography> biography_ =
         java.util.Collections.emptyList();
       private void ensureBiographyIsMutable() {
-        if (!((bitField0_ & 0x00000800) != 0)) {
-          biography_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography>(biography_);
+        if ((bitField0_ & 0x00000800) == 0) {
+          biography_ = new java.util.ArrayList<>(biography_);
           bitField0_ |= 0x00000800;
          }
       }
@@ -3714,8 +3707,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography, com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder> 
           getBiographyFieldBuilder() {
         if (biographyBuilder_ == null) {
-          biographyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography, com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder>(
+          biographyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   biography_,
                   ((bitField0_ & 0x00000800) != 0),
                   getParentForChildren(),
@@ -3728,8 +3720,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod> activityPeriod_ =
         java.util.Collections.emptyList();
       private void ensureActivityPeriodIsMutable() {
-        if (!((bitField0_ & 0x00001000) != 0)) {
-          activityPeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod>(activityPeriod_);
+        if ((bitField0_ & 0x00001000) == 0) {
+          activityPeriod_ = new java.util.ArrayList<>(activityPeriod_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -3954,8 +3946,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder> 
           getActivityPeriodFieldBuilder() {
         if (activityPeriodBuilder_ == null) {
-          activityPeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder>(
+          activityPeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   activityPeriod_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -3968,8 +3959,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if (!((bitField0_ & 0x00002000) != 0)) {
-          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
+        if ((bitField0_ & 0x00002000) == 0) {
+          restriction_ = new java.util.ArrayList<>(restriction_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -4194,8 +4185,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   restriction_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -4208,8 +4198,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> related_ =
         java.util.Collections.emptyList();
       private void ensureRelatedIsMutable() {
-        if (!((bitField0_ & 0x00004000) != 0)) {
-          related_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist>(related_);
+        if ((bitField0_ & 0x00004000) == 0) {
+          related_ = new java.util.ArrayList<>(related_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -4434,8 +4424,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
           getRelatedFieldBuilder() {
         if (relatedBuilder_ == null) {
-          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder>(
+          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   related_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -4592,8 +4581,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getPortraitGroupFieldBuilder() {
         if (portraitGroupBuilder_ == null) {
-          portraitGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
+          portraitGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPortraitGroup(),
                   getParentForChildren(),
                   isClean());
@@ -4605,8 +4593,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_ =
         java.util.Collections.emptyList();
       private void ensureSalePeriodIsMutable() {
-        if (!((bitField0_ & 0x00020000) != 0)) {
-          salePeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod>(salePeriod_);
+        if ((bitField0_ & 0x00020000) == 0) {
+          salePeriod_ = new java.util.ArrayList<>(salePeriod_);
           bitField0_ |= 0x00020000;
          }
       }
@@ -4831,8 +4819,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
           getSalePeriodFieldBuilder() {
         if (salePeriodBuilder_ == null) {
-          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder>(
+          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   salePeriod_,
                   ((bitField0_ & 0x00020000) != 0),
                   getParentForChildren(),
@@ -4845,8 +4832,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if (!((bitField0_ & 0x00040000) != 0)) {
-          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
+        if ((bitField0_ & 0x00040000) == 0) {
+          availability_ = new java.util.ArrayList<>(availability_);
           bitField0_ |= 0x00040000;
          }
       }
@@ -5071,8 +5058,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   availability_,
                   ((bitField0_ & 0x00040000) != 0),
                   getParentForChildren(),
@@ -5082,13 +5068,13 @@ public final class Metadata {
         return availabilityBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5581,11 +5567,11 @@ public final class Metadata {
       type_ = 1;
       label_ = "";
       genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      cover_ = java.util.Collections.emptyList();
+        cover_ = java.util.Collections.emptyList();
       externalId_ = java.util.Collections.emptyList();
       disc_ = java.util.Collections.emptyList();
       review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      copyright_ = java.util.Collections.emptyList();
+        copyright_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
       related_ = java.util.Collections.emptyList();
       salePeriod_ = java.util.Collections.emptyList();
@@ -5603,11 +5589,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Album_descriptor;
     }
@@ -5713,11 +5699,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
-              }
-            };
+              Type::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -5727,7 +5709,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.getDescriptor().getEnumTypes().get(0);
       }
@@ -5745,7 +5727,7 @@ public final class Metadata {
 
       private final int value;
 
-      private Type(int value) {
+      Type(int value) {
         this.value = value;
       }
 
@@ -5864,7 +5846,6 @@ public final class Metadata {
      * @return The type.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type getType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.valueOf(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.ALBUM : result;
     }
@@ -6549,8 +6530,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Album}
@@ -6559,7 +6539,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Album)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Album_descriptor;
       }
@@ -6624,7 +6604,7 @@ public final class Metadata {
         popularity_ = 0;
         bitField0_ = (bitField0_ & ~0x00000040);
         genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000080);
         if (coverBuilder_ == null) {
           cover_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000100);
@@ -6644,7 +6624,7 @@ public final class Metadata {
           discBuilder_.clear();
         }
         review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+          bitField0_ = (bitField0_ & ~0x00000800);
         if (copyrightBuilder_ == null) {
           copyright_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00001000);
@@ -7020,8 +7000,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> artist_ =
         java.util.Collections.emptyList();
       private void ensureArtistIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
-          artist_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist>(artist_);
+        if ((bitField0_ & 0x00000004) == 0) {
+          artist_ = new java.util.ArrayList<>(artist_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -7246,8 +7226,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
           getArtistFieldBuilder() {
         if (artistBuilder_ == null) {
-          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder>(
+          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   artist_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -7270,7 +7249,6 @@ public final class Metadata {
        * @return The type.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type getType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.valueOf(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.ALBUM : result;
       }
@@ -7493,8 +7471,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getDateFieldBuilder() {
         if (dateBuilder_ == null) {
-          dateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
+          dateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getDate(),
                   getParentForChildren(),
                   isClean());
@@ -7541,8 +7518,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureGenreIsMutable() {
-        if (!((bitField0_ & 0x00000080) != 0)) {
+
+        private void ensureGenreIsMutable() {
+        if ((bitField0_ & 0x00000080) == 0) {
           genre_ = new com.google.protobuf.LazyStringArrayList(genre_);
           bitField0_ |= 0x00000080;
          }
@@ -7629,7 +7607,7 @@ public final class Metadata {
        */
       public Builder clearGenre() {
         genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
       }
@@ -7652,8 +7630,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> cover_ =
         java.util.Collections.emptyList();
       private void ensureCoverIsMutable() {
-        if (!((bitField0_ & 0x00000100) != 0)) {
-          cover_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(cover_);
+        if ((bitField0_ & 0x00000100) == 0) {
+          cover_ = new java.util.ArrayList<>(cover_);
           bitField0_ |= 0x00000100;
          }
       }
@@ -7878,8 +7856,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getCoverFieldBuilder() {
         if (coverBuilder_ == null) {
-          coverBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
+          coverBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   cover_,
                   ((bitField0_ & 0x00000100) != 0),
                   getParentForChildren(),
@@ -7892,8 +7869,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_ =
         java.util.Collections.emptyList();
       private void ensureExternalIdIsMutable() {
-        if (!((bitField0_ & 0x00000200) != 0)) {
-          externalId_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId>(externalId_);
+        if ((bitField0_ & 0x00000200) == 0) {
+          externalId_ = new java.util.ArrayList<>(externalId_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -8118,8 +8095,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
           getExternalIdFieldBuilder() {
         if (externalIdBuilder_ == null) {
-          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder>(
+          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   externalId_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -8132,8 +8108,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc> disc_ =
         java.util.Collections.emptyList();
       private void ensureDiscIsMutable() {
-        if (!((bitField0_ & 0x00000400) != 0)) {
-          disc_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc>(disc_);
+        if ((bitField0_ & 0x00000400) == 0) {
+          disc_ = new java.util.ArrayList<>(disc_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -8358,8 +8334,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc, com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder> 
           getDiscFieldBuilder() {
         if (discBuilder_ == null) {
-          discBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc, com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder>(
+          discBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   disc_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -8370,8 +8345,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureReviewIsMutable() {
-        if (!((bitField0_ & 0x00000800) != 0)) {
+
+        private void ensureReviewIsMutable() {
+        if ((bitField0_ & 0x00000800) == 0) {
           review_ = new com.google.protobuf.LazyStringArrayList(review_);
           bitField0_ |= 0x00000800;
          }
@@ -8458,7 +8434,7 @@ public final class Metadata {
        */
       public Builder clearReview() {
         review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+          bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
         return this;
       }
@@ -8481,8 +8457,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> copyright_ =
         java.util.Collections.emptyList();
       private void ensureCopyrightIsMutable() {
-        if (!((bitField0_ & 0x00001000) != 0)) {
-          copyright_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright>(copyright_);
+        if ((bitField0_ & 0x00001000) == 0) {
+          copyright_ = new java.util.ArrayList<>(copyright_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -8707,8 +8683,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder> 
           getCopyrightFieldBuilder() {
         if (copyrightBuilder_ == null) {
-          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder>(
+          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   copyright_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -8721,8 +8696,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if (!((bitField0_ & 0x00002000) != 0)) {
-          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
+        if ((bitField0_ & 0x00002000) == 0) {
+          restriction_ = new java.util.ArrayList<>(restriction_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -8947,8 +8922,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   restriction_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -8961,8 +8935,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> related_ =
         java.util.Collections.emptyList();
       private void ensureRelatedIsMutable() {
-        if (!((bitField0_ & 0x00004000) != 0)) {
-          related_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album>(related_);
+        if ((bitField0_ & 0x00004000) == 0) {
+          related_ = new java.util.ArrayList<>(related_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -9187,8 +9161,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
           getRelatedFieldBuilder() {
         if (relatedBuilder_ == null) {
-          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder>(
+          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   related_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -9201,8 +9174,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_ =
         java.util.Collections.emptyList();
       private void ensureSalePeriodIsMutable() {
-        if (!((bitField0_ & 0x00008000) != 0)) {
-          salePeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod>(salePeriod_);
+        if ((bitField0_ & 0x00008000) == 0) {
+          salePeriod_ = new java.util.ArrayList<>(salePeriod_);
           bitField0_ |= 0x00008000;
          }
       }
@@ -9427,8 +9400,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
           getSalePeriodFieldBuilder() {
         if (salePeriodBuilder_ == null) {
-          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder>(
+          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   salePeriod_,
                   ((bitField0_ & 0x00008000) != 0),
                   getParentForChildren(),
@@ -9548,8 +9520,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getCoverGroupFieldBuilder() {
         if (coverGroupBuilder_ == null) {
-          coverGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
+          coverGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCoverGroup(),
                   getParentForChildren(),
                   isClean());
@@ -9813,8 +9784,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if (!((bitField0_ & 0x00100000) != 0)) {
-          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
+        if ((bitField0_ & 0x00100000) == 0) {
+          availability_ = new java.util.ArrayList<>(availability_);
           bitField0_ |= 0x00100000;
          }
       }
@@ -10039,8 +10010,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   availability_,
                   ((bitField0_ & 0x00100000) != 0),
                   getParentForChildren(),
@@ -10050,13 +10020,13 @@ public final class Metadata {
         return availabilityBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10491,7 +10461,7 @@ public final class Metadata {
       salePeriod_ = java.util.Collections.emptyList();
       preview_ = java.util.Collections.emptyList();
       tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      availability_ = java.util.Collections.emptyList();
+        availability_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -10502,11 +10472,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Track_descriptor;
     }
@@ -11149,8 +11119,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Track}
@@ -11159,7 +11128,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Track)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Track_descriptor;
       }
@@ -11263,7 +11232,7 @@ public final class Metadata {
           previewBuilder_.clear();
         }
         tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00008000);
+          bitField0_ = (bitField0_ & ~0x00008000);
         earliestLiveTimestamp_ = 0L;
         bitField0_ = (bitField0_ & ~0x00010000);
         hasLyrics_ = false;
@@ -11710,8 +11679,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
           getAlbumFieldBuilder() {
         if (albumBuilder_ == null) {
-          albumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder>(
+          albumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getAlbum(),
                   getParentForChildren(),
                   isClean());
@@ -11723,8 +11691,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> artist_ =
         java.util.Collections.emptyList();
       private void ensureArtistIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          artist_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist>(artist_);
+        if ((bitField0_ & 0x00000008) == 0) {
+          artist_ = new java.util.ArrayList<>(artist_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -11949,8 +11917,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
           getArtistFieldBuilder() {
         if (artistBuilder_ == null) {
-          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder>(
+          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   artist_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -12148,8 +12115,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_ =
         java.util.Collections.emptyList();
       private void ensureExternalIdIsMutable() {
-        if (!((bitField0_ & 0x00000200) != 0)) {
-          externalId_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId>(externalId_);
+        if ((bitField0_ & 0x00000200) == 0) {
+          externalId_ = new java.util.ArrayList<>(externalId_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -12374,8 +12341,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
           getExternalIdFieldBuilder() {
         if (externalIdBuilder_ == null) {
-          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder>(
+          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   externalId_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -12388,8 +12354,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if (!((bitField0_ & 0x00000400) != 0)) {
-          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
+        if ((bitField0_ & 0x00000400) == 0) {
+          restriction_ = new java.util.ArrayList<>(restriction_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -12614,8 +12580,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   restriction_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -12628,8 +12593,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> file_ =
         java.util.Collections.emptyList();
       private void ensureFileIsMutable() {
-        if (!((bitField0_ & 0x00000800) != 0)) {
-          file_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(file_);
+        if ((bitField0_ & 0x00000800) == 0) {
+          file_ = new java.util.ArrayList<>(file_);
           bitField0_ |= 0x00000800;
          }
       }
@@ -12854,8 +12819,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getFileFieldBuilder() {
         if (fileBuilder_ == null) {
-          fileBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
+          fileBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   file_,
                   ((bitField0_ & 0x00000800) != 0),
                   getParentForChildren(),
@@ -12868,8 +12832,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> alternative_ =
         java.util.Collections.emptyList();
       private void ensureAlternativeIsMutable() {
-        if (!((bitField0_ & 0x00001000) != 0)) {
-          alternative_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track>(alternative_);
+        if ((bitField0_ & 0x00001000) == 0) {
+          alternative_ = new java.util.ArrayList<>(alternative_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -13094,8 +13058,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
           getAlternativeFieldBuilder() {
         if (alternativeBuilder_ == null) {
-          alternativeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder>(
+          alternativeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   alternative_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -13108,8 +13071,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_ =
         java.util.Collections.emptyList();
       private void ensureSalePeriodIsMutable() {
-        if (!((bitField0_ & 0x00002000) != 0)) {
-          salePeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod>(salePeriod_);
+        if ((bitField0_ & 0x00002000) == 0) {
+          salePeriod_ = new java.util.ArrayList<>(salePeriod_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -13334,8 +13297,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
           getSalePeriodFieldBuilder() {
         if (salePeriodBuilder_ == null) {
-          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder>(
+          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   salePeriod_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -13348,8 +13310,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> preview_ =
         java.util.Collections.emptyList();
       private void ensurePreviewIsMutable() {
-        if (!((bitField0_ & 0x00004000) != 0)) {
-          preview_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(preview_);
+        if ((bitField0_ & 0x00004000) == 0) {
+          preview_ = new java.util.ArrayList<>(preview_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -13574,8 +13536,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getPreviewFieldBuilder() {
         if (previewBuilder_ == null) {
-          previewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
+          previewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   preview_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -13586,8 +13547,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureTagsIsMutable() {
-        if (!((bitField0_ & 0x00008000) != 0)) {
+
+        private void ensureTagsIsMutable() {
+        if ((bitField0_ & 0x00008000) == 0) {
           tags_ = new com.google.protobuf.LazyStringArrayList(tags_);
           bitField0_ |= 0x00008000;
          }
@@ -13674,7 +13636,7 @@ public final class Metadata {
        */
       public Builder clearTags() {
         tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00008000);
+          bitField0_ = (bitField0_ & ~0x00008000);
         onChanged();
         return this;
       }
@@ -13771,8 +13733,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if (!((bitField0_ & 0x00040000) != 0)) {
-          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
+        if ((bitField0_ & 0x00040000) == 0) {
+          availability_ = new java.util.ArrayList<>(availability_);
           bitField0_ |= 0x00040000;
          }
       }
@@ -13997,8 +13959,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   availability_,
                   ((bitField0_ & 0x00040000) != 0),
                   getParentForChildren(),
@@ -14118,8 +14079,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor, com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder> 
           getLicensorFieldBuilder() {
         if (licensorBuilder_ == null) {
-          licensorBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor, com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder>(
+          licensorBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getLicensor(),
                   getParentForChildren(),
                   isClean());
@@ -14128,13 +14088,13 @@ public final class Metadata {
         return licensorBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14492,7 +14452,7 @@ public final class Metadata {
       copyright_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
       keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      mediaType_ = 0;
+        mediaType_ = 0;
       consumptionOrder_ = 1;
       availability_ = java.util.Collections.emptyList();
       trailerUri_ = "";
@@ -14506,11 +14466,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Show_descriptor;
     }
@@ -14589,11 +14549,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           MediaType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<MediaType>() {
-              public MediaType findValueByNumber(int number) {
-                return MediaType.forNumber(number);
-              }
-            };
+              MediaType::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -14603,7 +14559,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDescriptor().getEnumTypes().get(0);
       }
@@ -14621,7 +14577,7 @@ public final class Metadata {
 
       private final int value;
 
-      private MediaType(int value) {
+      MediaType(int value) {
         this.value = value;
       }
 
@@ -14694,11 +14650,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           ConsumptionOrder> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<ConsumptionOrder>() {
-              public ConsumptionOrder findValueByNumber(int number) {
-                return ConsumptionOrder.forNumber(number);
-              }
-            };
+              ConsumptionOrder::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -14708,7 +14660,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDescriptor().getEnumTypes().get(1);
       }
@@ -14726,7 +14678,7 @@ public final class Metadata {
 
       private final int value;
 
-      private ConsumptionOrder(int value) {
+      ConsumptionOrder(int value) {
         this.value = value;
       }
 
@@ -15142,7 +15094,6 @@ public final class Metadata {
      * @return The mediaType.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType getMediaType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.valueOf(mediaType_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.MIXED : result;
     }
@@ -15161,7 +15112,6 @@ public final class Metadata {
      * @return The consumptionOrder.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder getConsumptionOrder() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.valueOf(consumptionOrder_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.SEQUENTIAL : result;
     }
@@ -15333,8 +15283,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Show}
@@ -15343,7 +15292,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Show)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Show_descriptor;
       }
@@ -15418,7 +15367,7 @@ public final class Metadata {
           restrictionBuilder_.clear();
         }
         keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+          bitField0_ = (bitField0_ & ~0x00000800);
         mediaType_ = 0;
         bitField0_ = (bitField0_ & ~0x00001000);
         consumptionOrder_ = 1;
@@ -16147,8 +16096,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getCoverImageFieldBuilder() {
         if (coverImageBuilder_ == null) {
-          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
+          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCoverImage(),
                   getParentForChildren(),
                   isClean());
@@ -16160,8 +16108,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode> episode_ =
         java.util.Collections.emptyList();
       private void ensureEpisodeIsMutable() {
-        if (!((bitField0_ & 0x00000100) != 0)) {
-          episode_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode>(episode_);
+        if ((bitField0_ & 0x00000100) == 0) {
+          episode_ = new java.util.ArrayList<>(episode_);
           bitField0_ |= 0x00000100;
          }
       }
@@ -16386,8 +16334,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode, com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder> 
           getEpisodeFieldBuilder() {
         if (episodeBuilder_ == null) {
-          episodeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode, com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder>(
+          episodeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   episode_,
                   ((bitField0_ & 0x00000100) != 0),
                   getParentForChildren(),
@@ -16400,8 +16347,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> copyright_ =
         java.util.Collections.emptyList();
       private void ensureCopyrightIsMutable() {
-        if (!((bitField0_ & 0x00000200) != 0)) {
-          copyright_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright>(copyright_);
+        if ((bitField0_ & 0x00000200) == 0) {
+          copyright_ = new java.util.ArrayList<>(copyright_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -16626,8 +16573,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder> 
           getCopyrightFieldBuilder() {
         if (copyrightBuilder_ == null) {
-          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder>(
+          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   copyright_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -16640,8 +16586,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if (!((bitField0_ & 0x00000400) != 0)) {
-          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
+        if ((bitField0_ & 0x00000400) == 0) {
+          restriction_ = new java.util.ArrayList<>(restriction_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -16866,8 +16812,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   restriction_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -16878,8 +16823,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureKeywordIsMutable() {
-        if (!((bitField0_ & 0x00000800) != 0)) {
+
+        private void ensureKeywordIsMutable() {
+        if ((bitField0_ & 0x00000800) == 0) {
           keyword_ = new com.google.protobuf.LazyStringArrayList(keyword_);
           bitField0_ |= 0x00000800;
          }
@@ -16966,7 +16912,7 @@ public final class Metadata {
        */
       public Builder clearKeyword() {
         keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+          bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
         return this;
       }
@@ -16999,7 +16945,6 @@ public final class Metadata {
        * @return The mediaType.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType getMediaType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.valueOf(mediaType_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.MIXED : result;
       }
@@ -17041,7 +16986,6 @@ public final class Metadata {
        * @return The consumptionOrder.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder getConsumptionOrder() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.valueOf(consumptionOrder_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.SEQUENTIAL : result;
       }
@@ -17073,8 +17017,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if (!((bitField0_ & 0x00004000) != 0)) {
-          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
+        if ((bitField0_ & 0x00004000) == 0) {
+          availability_ = new java.util.ArrayList<>(availability_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -17299,8 +17243,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   availability_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -17394,13 +17337,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -17857,7 +17800,7 @@ public final class Metadata {
       audioPreview_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
       keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      availability_ = java.util.Collections.emptyList();
+        availability_ = java.util.Collections.emptyList();
       externalUrl_ = "";
       type_ = 0;
     }
@@ -17870,11 +17813,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Episode_descriptor;
     }
@@ -17953,11 +17896,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           EpisodeType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<EpisodeType>() {
-              public EpisodeType findValueByNumber(int number) {
-                return EpisodeType.forNumber(number);
-              }
-            };
+              EpisodeType::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -17967,7 +17906,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.getDescriptor().getEnumTypes().get(0);
       }
@@ -17985,7 +17924,7 @@ public final class Metadata {
 
       private final int value;
 
-      private EpisodeType(int value) {
+      EpisodeType(int value) {
         this.value = value;
       }
 
@@ -18626,7 +18565,6 @@ public final class Metadata {
      * @return The type.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType getType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.valueOf(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.FULL : result;
     }
@@ -18718,8 +18656,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Episode}
@@ -18728,7 +18665,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Episode)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Episode_descriptor;
       }
@@ -18840,7 +18777,7 @@ public final class Metadata {
         }
         bitField0_ = (bitField0_ & ~0x00010000);
         keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00020000);
+          bitField0_ = (bitField0_ & ~0x00020000);
         allowBackgroundPlayback_ = false;
         bitField0_ = (bitField0_ & ~0x00040000);
         if (availabilityBuilder_ == null) {
@@ -19219,8 +19156,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> audio_ =
         java.util.Collections.emptyList();
       private void ensureAudioIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          audio_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(audio_);
+        if ((bitField0_ & 0x00000008) == 0) {
+          audio_ = new java.util.ArrayList<>(audio_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -19445,8 +19382,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getAudioFieldBuilder() {
         if (audioBuilder_ == null) {
-          audioBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
+          audioBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   audio_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -19687,8 +19623,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getPublishTimeFieldBuilder() {
         if (publishTimeBuilder_ == null) {
-          publishTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
+          publishTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPublishTime(),
                   getParentForChildren(),
                   isClean());
@@ -19844,8 +19779,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getCoverImageFieldBuilder() {
         if (coverImageBuilder_ == null) {
-          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
+          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCoverImage(),
                   getParentForChildren(),
                   isClean());
@@ -20085,8 +20019,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Show, com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder> 
           getShowFieldBuilder() {
         if (showBuilder_ == null) {
-          showBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Show, com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder>(
+          showBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getShow(),
                   getParentForChildren(),
                   isClean());
@@ -20098,8 +20031,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> video_ =
         java.util.Collections.emptyList();
       private void ensureVideoIsMutable() {
-        if (!((bitField0_ & 0x00001000) != 0)) {
-          video_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile>(video_);
+        if ((bitField0_ & 0x00001000) == 0) {
+          video_ = new java.util.ArrayList<>(video_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -20324,8 +20257,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder> 
           getVideoFieldBuilder() {
         if (videoBuilder_ == null) {
-          videoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder>(
+          videoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   video_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -20338,8 +20270,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> videoPreview_ =
         java.util.Collections.emptyList();
       private void ensureVideoPreviewIsMutable() {
-        if (!((bitField0_ & 0x00002000) != 0)) {
-          videoPreview_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile>(videoPreview_);
+        if ((bitField0_ & 0x00002000) == 0) {
+          videoPreview_ = new java.util.ArrayList<>(videoPreview_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -20564,8 +20496,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder> 
           getVideoPreviewFieldBuilder() {
         if (videoPreviewBuilder_ == null) {
-          videoPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder>(
+          videoPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   videoPreview_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -20578,8 +20509,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> audioPreview_ =
         java.util.Collections.emptyList();
       private void ensureAudioPreviewIsMutable() {
-        if (!((bitField0_ & 0x00004000) != 0)) {
-          audioPreview_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(audioPreview_);
+        if ((bitField0_ & 0x00004000) == 0) {
+          audioPreview_ = new java.util.ArrayList<>(audioPreview_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -20804,8 +20735,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getAudioPreviewFieldBuilder() {
         if (audioPreviewBuilder_ == null) {
-          audioPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
+          audioPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   audioPreview_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -20818,8 +20748,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if (!((bitField0_ & 0x00008000) != 0)) {
-          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
+        if ((bitField0_ & 0x00008000) == 0) {
+          restriction_ = new java.util.ArrayList<>(restriction_);
           bitField0_ |= 0x00008000;
          }
       }
@@ -21044,8 +20974,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   restriction_,
                   ((bitField0_ & 0x00008000) != 0),
                   getParentForChildren(),
@@ -21165,8 +21094,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getFreezeFrameFieldBuilder() {
         if (freezeFrameBuilder_ == null) {
-          freezeFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
+          freezeFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getFreezeFrame(),
                   getParentForChildren(),
                   isClean());
@@ -21176,8 +21104,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureKeywordIsMutable() {
-        if (!((bitField0_ & 0x00020000) != 0)) {
+
+        private void ensureKeywordIsMutable() {
+        if ((bitField0_ & 0x00020000) == 0) {
           keyword_ = new com.google.protobuf.LazyStringArrayList(keyword_);
           bitField0_ |= 0x00020000;
          }
@@ -21264,7 +21193,7 @@ public final class Metadata {
        */
       public Builder clearKeyword() {
         keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00020000);
+          bitField0_ = (bitField0_ & ~0x00020000);
         onChanged();
         return this;
       }
@@ -21324,8 +21253,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if (!((bitField0_ & 0x00080000) != 0)) {
-          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
+        if ((bitField0_ & 0x00080000) == 0) {
+          availability_ = new java.util.ArrayList<>(availability_);
           bitField0_ |= 0x00080000;
          }
       }
@@ -21550,8 +21479,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   availability_,
                   ((bitField0_ & 0x00080000) != 0),
                   getParentForChildren(),
@@ -21658,7 +21586,6 @@ public final class Metadata {
        * @return The type.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType getType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.valueOf(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.FULL : result;
       }
@@ -21687,13 +21614,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -21788,11 +21715,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Licensor_descriptor;
     }
@@ -21910,8 +21837,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Licensor}
@@ -21920,7 +21846,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Licensor)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Licensor_descriptor;
       }
@@ -21944,9 +21870,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -22064,13 +21987,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -22196,11 +22119,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_TopTracks_descriptor;
     }
@@ -22381,8 +22304,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.TopTracks}
@@ -22391,7 +22313,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.TopTracks)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_TopTracks_descriptor;
       }
@@ -22598,8 +22520,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> track_ =
         java.util.Collections.emptyList();
       private void ensureTrackIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          track_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track>(track_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          track_ = new java.util.ArrayList<>(track_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -22824,8 +22746,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
           getTrackFieldBuilder() {
         if (trackBuilder_ == null) {
-          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder>(
+          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   track_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -22835,13 +22756,13 @@ public final class Metadata {
         return trackBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -22957,11 +22878,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ActivityPeriod_descriptor;
     }
@@ -23113,8 +23034,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.ActivityPeriod}
@@ -23123,7 +23043,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.ActivityPeriod)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ActivityPeriod_descriptor;
       }
@@ -23147,9 +23067,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -23350,13 +23267,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -23464,11 +23381,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AlbumGroup_descriptor;
     }
@@ -23603,8 +23520,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.AlbumGroup}
@@ -23613,7 +23529,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.AlbumGroup)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AlbumGroup_descriptor;
       }
@@ -23728,8 +23644,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> album_ =
         java.util.Collections.emptyList();
       private void ensureAlbumIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          album_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album>(album_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          album_ = new java.util.ArrayList<>(album_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -23954,8 +23870,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
           getAlbumFieldBuilder() {
         if (albumBuilder_ == null) {
-          albumBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder>(
+          albumBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   album_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -23965,13 +23880,13 @@ public final class Metadata {
         return albumBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -24109,11 +24024,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Date_descriptor;
     }
@@ -24299,8 +24214,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Date}
@@ -24309,7 +24223,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Date)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Date_descriptor;
       }
@@ -24333,9 +24247,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -24622,13 +24533,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -24757,11 +24668,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Image_descriptor;
     }
@@ -24849,11 +24760,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Size> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Size>() {
-              public Size findValueByNumber(int number) {
-                return Size.forNumber(number);
-              }
-            };
+              Size::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -24863,7 +24770,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.getDescriptor().getEnumTypes().get(0);
       }
@@ -24881,7 +24788,7 @@ public final class Metadata {
 
       private final int value;
 
-      private Size(int value) {
+      Size(int value) {
         this.value = value;
       }
 
@@ -24920,7 +24827,6 @@ public final class Metadata {
      * @return The size.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size getSize() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.valueOf(size_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.DEFAULT : result;
     }
@@ -25046,8 +24952,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Image}
@@ -25056,7 +24961,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Image)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Image_descriptor;
       }
@@ -25080,9 +24985,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -25231,7 +25133,6 @@ public final class Metadata {
        * @return The size.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size getSize() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.valueOf(size_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.DEFAULT : result;
       }
@@ -25334,13 +25235,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -25448,11 +25349,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ImageGroup_descriptor;
     }
@@ -25587,8 +25488,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.ImageGroup}
@@ -25597,7 +25497,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.ImageGroup)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ImageGroup_descriptor;
       }
@@ -25712,8 +25612,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> image_ =
         java.util.Collections.emptyList();
       private void ensureImageIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          image_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(image_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          image_ = new java.util.ArrayList<>(image_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -25938,8 +25838,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getImageFieldBuilder() {
         if (imageBuilder_ == null) {
-          imageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
+          imageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   image_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -25949,13 +25848,13 @@ public final class Metadata {
         return imageBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -26106,11 +26005,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Biography_descriptor;
     }
@@ -26326,8 +26225,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Biography}
@@ -26336,7 +26234,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Biography)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Biography_descriptor;
       }
@@ -26559,8 +26457,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> portrait_ =
         java.util.Collections.emptyList();
       private void ensurePortraitIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          portrait_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(portrait_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          portrait_ = new java.util.ArrayList<>(portrait_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -26785,8 +26683,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getPortraitFieldBuilder() {
         if (portraitBuilder_ == null) {
-          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
+          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   portrait_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -26799,8 +26696,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup> portraitGroup_ =
         java.util.Collections.emptyList();
       private void ensurePortraitGroupIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
-          portraitGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup>(portraitGroup_);
+        if ((bitField0_ & 0x00000004) == 0) {
+          portraitGroup_ = new java.util.ArrayList<>(portraitGroup_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -27025,8 +26922,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getPortraitGroupFieldBuilder() {
         if (portraitGroupBuilder_ == null) {
-          portraitGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
+          portraitGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   portraitGroup_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -27036,13 +26932,13 @@ public final class Metadata {
         return portraitGroupBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -27179,11 +27075,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Disc_descriptor;
     }
@@ -27381,8 +27277,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Disc}
@@ -27391,7 +27286,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Disc)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Disc_descriptor;
       }
@@ -27641,8 +27536,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> track_ =
         java.util.Collections.emptyList();
       private void ensureTrackIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
-          track_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track>(track_);
+        if ((bitField0_ & 0x00000004) == 0) {
+          track_ = new java.util.ArrayList<>(track_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -27867,8 +27762,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
           getTrackFieldBuilder() {
         if (trackBuilder_ == null) {
-          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder>(
+          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   track_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -27878,13 +27772,13 @@ public final class Metadata {
         return trackBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -27997,11 +27891,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Copyright_descriptor;
     }
@@ -28071,11 +27965,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
-              }
-            };
+              Type::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -28085,7 +27975,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.getDescriptor().getEnumTypes().get(0);
       }
@@ -28103,7 +27993,7 @@ public final class Metadata {
 
       private final int value;
 
-      private Type(int value) {
+      Type(int value) {
         this.value = value;
       }
 
@@ -28125,7 +28015,6 @@ public final class Metadata {
      * @return The type.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type getType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.valueOf(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.P : result;
     }
@@ -28262,8 +28151,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Copyright}
@@ -28272,7 +28160,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Copyright)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Copyright_descriptor;
       }
@@ -28296,9 +28184,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -28395,7 +28280,6 @@ public final class Metadata {
        * @return The type.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type getType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.valueOf(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.P : result;
       }
@@ -28508,13 +28392,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -28661,7 +28545,7 @@ public final class Metadata {
     com.google.protobuf.ByteString
         getCountriesForbiddenBytes();
 
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.CountryRestrictionCase getCountryRestrictionCase();
+    com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.CountryRestrictionCase getCountryRestrictionCase();
   }
   /**
    * Protobuf type {@code spotify.metadata.proto.Restriction}
@@ -28689,11 +28573,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Restriction_descriptor;
     }
@@ -28790,11 +28674,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Catalogue> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Catalogue>() {
-              public Catalogue findValueByNumber(int number) {
-                return Catalogue.forNumber(number);
-              }
-            };
+              Catalogue::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -28804,7 +28684,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.getDescriptor().getEnumTypes().get(0);
       }
@@ -28822,7 +28702,7 @@ public final class Metadata {
 
       private final int value;
 
-      private Catalogue(int value) {
+      Catalogue(int value) {
         this.value = value;
       }
 
@@ -28865,10 +28745,10 @@ public final class Metadata {
        * @return The enum associated with the given numeric wire value.
        */
       public static Type forNumber(int value) {
-        switch (value) {
-          case 0: return STREAMING;
-          default: return null;
-        }
+          if (value == 0) {
+              return STREAMING;
+          }
+          return null;
       }
 
       public static com.google.protobuf.Internal.EnumLiteMap<Type>
@@ -28877,11 +28757,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
-              }
-            };
+              Type::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -28891,7 +28767,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.getDescriptor().getEnumTypes().get(1);
       }
@@ -28909,7 +28785,7 @@ public final class Metadata {
 
       private final int value;
 
-      private Type(int value) {
+      Type(int value) {
         this.value = value;
       }
 
@@ -28926,7 +28802,7 @@ public final class Metadata {
       COUNTRIES_FORBIDDEN(3),
       COUNTRYRESTRICTION_NOT_SET(0);
       private final int value;
-      private CountryRestrictionCase(int value) {
+      CountryRestrictionCase(int value) {
         this.value = value;
       }
       /**
@@ -28950,9 +28826,9 @@ public final class Metadata {
       public int getNumber() {
         return this.value;
       }
-    };
+    }
 
-    public CountryRestrictionCase
+      public CountryRestrictionCase
     getCountryRestrictionCase() {
       return CountryRestrictionCase.forNumber(
           countryRestrictionCase_);
@@ -28962,21 +28838,16 @@ public final class Metadata {
     private java.util.List<java.lang.Integer> catalogue_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue> catalogue_converter_ =
-            new com.google.protobuf.Internal.ListAdapter.Converter<
-                java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue>() {
-              public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue convert(java.lang.Integer from) {
-                @SuppressWarnings("deprecation")
-                com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue.valueOf(from);
-                return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue.AD : result;
-              }
+            from -> {
+              Catalogue result = Catalogue.valueOf(from);
+              return result == null ? Catalogue.AD : result;
             };
     /**
      * <code>repeated .spotify.metadata.proto.Restriction.Catalogue catalogue = 1;</code>
      * @return A list containing the catalogue.
      */
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue> getCatalogueList() {
-      return new com.google.protobuf.Internal.ListAdapter<
-          java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue>(catalogue_, catalogue_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<>(catalogue_, catalogue_converter_);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction.Catalogue catalogue = 1;</code>
@@ -29008,7 +28879,6 @@ public final class Metadata {
      * @return The type.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type getType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.valueOf(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.STREAMING : result;
     }
@@ -29239,8 +29109,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Restriction}
@@ -29249,7 +29118,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Restriction)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Restriction_descriptor;
       }
@@ -29273,9 +29142,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -29285,7 +29151,7 @@ public final class Metadata {
         type_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000004);
         countryRestrictionCase_ = 0;
         countryRestriction_ = null;
         return this;
@@ -29394,8 +29260,8 @@ public final class Metadata {
       private java.util.List<java.lang.Integer> catalogue_ =
         java.util.Collections.emptyList();
       private void ensureCatalogueIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          catalogue_ = new java.util.ArrayList<java.lang.Integer>(catalogue_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          catalogue_ = new java.util.ArrayList<>(catalogue_);
           bitField0_ |= 0x00000001;
         }
       }
@@ -29404,8 +29270,7 @@ public final class Metadata {
        * @return A list containing the catalogue.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue> getCatalogueList() {
-        return new com.google.protobuf.Internal.ListAdapter<
-            java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue>(catalogue_, catalogue_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<>(catalogue_, catalogue_converter_);
       }
       /**
        * <code>repeated .spotify.metadata.proto.Restriction.Catalogue catalogue = 1;</code>
@@ -29490,7 +29355,6 @@ public final class Metadata {
        * @return The type.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type getType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.valueOf(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.STREAMING : result;
       }
@@ -29520,8 +29384,9 @@ public final class Metadata {
       }
 
       private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureCatalogueStrIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+
+        private void ensureCatalogueStrIsMutable() {
+        if ((bitField0_ & 0x00000004) == 0) {
           catalogueStr_ = new com.google.protobuf.LazyStringArrayList(catalogueStr_);
           bitField0_ |= 0x00000004;
          }
@@ -29608,7 +29473,7 @@ public final class Metadata {
        */
       public Builder clearCatalogueStr() {
         catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -29818,13 +29683,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -29948,11 +29813,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Availability_descriptor;
     }
@@ -30111,8 +29976,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Availability}
@@ -30121,7 +29985,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Availability)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Availability_descriptor;
       }
@@ -30154,7 +30018,7 @@ public final class Metadata {
       public Builder clear() {
         super.clear();
         catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000001);
         if (startBuilder_ == null) {
           start_ = null;
         } else {
@@ -30242,8 +30106,9 @@ public final class Metadata {
       private int bitField0_;
 
       private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureCatalogueStrIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+
+        private void ensureCatalogueStrIsMutable() {
+        if ((bitField0_ & 0x00000001) == 0) {
           catalogueStr_ = new com.google.protobuf.LazyStringArrayList(catalogueStr_);
           bitField0_ |= 0x00000001;
          }
@@ -30330,7 +30195,7 @@ public final class Metadata {
        */
       public Builder clearCatalogueStr() {
         catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -30460,8 +30325,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getStartFieldBuilder() {
         if (startBuilder_ == null) {
-          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
+          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getStart(),
                   getParentForChildren(),
                   isClean());
@@ -30470,13 +30334,13 @@ public final class Metadata {
         return startBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -30614,11 +30478,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_SalePeriod_descriptor;
     }
@@ -30800,8 +30664,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.SalePeriod}
@@ -30810,7 +30673,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.SalePeriod)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_SalePeriod_descriptor;
       }
@@ -30957,8 +30820,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          restriction_ = new java.util.ArrayList<>(restriction_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -31183,8 +31046,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   restriction_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -31304,8 +31166,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getStartFieldBuilder() {
         if (startBuilder_ == null) {
-          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
+          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getStart(),
                   getParentForChildren(),
                   isClean());
@@ -31424,8 +31285,7 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getEndFieldBuilder() {
         if (endBuilder_ == null) {
-          endBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
+          endBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getEnd(),
                   getParentForChildren(),
                   isClean());
@@ -31434,13 +31294,13 @@ public final class Metadata {
         return endBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -31559,11 +31419,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ExternalId_descriptor;
     }
@@ -31754,8 +31614,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.ExternalId}
@@ -31764,7 +31623,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.ExternalId)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ExternalId_descriptor;
       }
@@ -31788,9 +31647,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -32042,13 +31898,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -32155,11 +32011,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AudioFile_descriptor;
     }
@@ -32310,11 +32166,7 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Format> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Format>() {
-              public Format findValueByNumber(int number) {
-                return Format.forNumber(number);
-              }
-            };
+              Format::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -32324,7 +32176,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.getDescriptor().getEnumTypes().get(0);
       }
@@ -32342,7 +32194,7 @@ public final class Metadata {
 
       private final int value;
 
-      private Format(int value) {
+      Format(int value) {
         this.value = value;
       }
 
@@ -32381,7 +32233,6 @@ public final class Metadata {
      * @return The format.
      */
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format getFormat() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format result = com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.valueOf(format_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.OGG_VORBIS_96 : result;
     }
@@ -32473,8 +32324,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.AudioFile}
@@ -32483,7 +32333,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.AudioFile)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AudioFile_descriptor;
       }
@@ -32507,9 +32357,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -32646,7 +32493,6 @@ public final class Metadata {
        * @return The format.
        */
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format getFormat() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format result = com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.valueOf(format_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.OGG_VORBIS_96 : result;
       }
@@ -32675,13 +32521,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -32776,11 +32622,11 @@ public final class Metadata {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_VideoFile_descriptor;
     }
@@ -32898,8 +32744,7 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.VideoFile}
@@ -32908,7 +32753,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.VideoFile)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_VideoFile_descriptor;
       }
@@ -32932,9 +32777,6 @@ public final class Metadata {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -33052,13 +32894,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -33224,7 +33066,7 @@ public final class Metadata {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

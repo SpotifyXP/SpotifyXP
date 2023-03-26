@@ -5,7 +5,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
@@ -23,8 +22,6 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.util.Timeout;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,7 +32,6 @@ public class SpotifyHttpManager implements IHttpManager {
   private static final int DEFAULT_CACHE_MAX_OBJECT_SIZE = 8192;
   private static final Gson GSON = new Gson();
   private final CloseableHttpClient httpClient;
-  private final CloseableHttpClient httpClientCaching;
   private final HttpHost proxy;
   private final UsernamePasswordCredentials proxyCredentials;
   private final Integer cacheMaxEntries;
@@ -95,13 +91,13 @@ public class SpotifyHttpManager implements IHttpManager {
       .disableContentCompression()
       .build();
 
-    this.httpClientCaching = CachingHttpClients
-      .custom()
-      .setCacheConfig(cacheConfig)
-      .setDefaultCredentialsProvider(credentialsProvider)
-      .setDefaultRequestConfig(requestConfig)
-      .disableContentCompression()
-      .build();
+    CloseableHttpClient httpClientCaching = CachingHttpClients
+            .custom()
+            .setCacheConfig(cacheConfig)
+            .setDefaultCredentialsProvider(credentialsProvider)
+            .setDefaultRequestConfig(requestConfig)
+            .disableContentCompression()
+            .build();
   }
 
   public static URI makeUri(String uriString) {

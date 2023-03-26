@@ -86,11 +86,11 @@ public final class StorageResolve {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.storage.StorageResolve.internal_static_spotify_download_proto_StorageResolveResponse_descriptor;
     }
@@ -174,11 +174,7 @@ public final class StorageResolve {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Result> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Result>() {
-              public Result findValueByNumber(int number) {
-                return Result.forNumber(number);
-              }
-            };
+              Result::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -188,7 +184,7 @@ public final class StorageResolve {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.getDescriptor().getEnumTypes().get(0);
       }
@@ -209,7 +205,7 @@ public final class StorageResolve {
 
       private final int value;
 
-      private Result(int value) {
+      Result(int value) {
         this.value = value;
       }
 
@@ -230,7 +226,6 @@ public final class StorageResolve {
      * @return The result.
      */
     public com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result getResult() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result result = com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.valueOf(result_);
       return result == null ? com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.UNRECOGNIZED : result;
     }
@@ -367,8 +362,7 @@ public final class StorageResolve {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.download.proto.StorageResolveResponse}
@@ -377,7 +371,7 @@ public final class StorageResolve {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.download.proto.StorageResolveResponse)
         com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.storage.StorageResolve.internal_static_spotify_download_proto_StorageResolveResponse_descriptor;
       }
@@ -401,9 +395,6 @@ public final class StorageResolve {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -509,7 +500,6 @@ public final class StorageResolve {
        * @return The result.
        */
       public com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result getResult() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result result = com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.valueOf(result_);
         return result == null ? com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.UNRECOGNIZED : result;
       }
@@ -539,8 +529,9 @@ public final class StorageResolve {
       }
 
       private com.google.protobuf.LazyStringList cdnurl_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureCdnurlIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if ((bitField0_ & 0x00000001) == 0) {
           cdnurl_ = new com.google.protobuf.LazyStringArrayList(cdnurl_);
           bitField0_ |= 0x00000001;
          }
@@ -681,13 +672,13 @@ public final class StorageResolve {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -753,7 +744,7 @@ public final class StorageResolve {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

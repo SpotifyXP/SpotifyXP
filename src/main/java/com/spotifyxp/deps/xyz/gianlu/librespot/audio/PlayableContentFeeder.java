@@ -262,7 +262,7 @@ public final class PlayableContentFeeder {
 
         @Override
         public @NotNull SuperAudioFormat codec() {
-            return SuperAudioFormat.MP3; // FIXME: Detect codec
+            return SuperAudioFormat.MP3;
         }
 
         @Override

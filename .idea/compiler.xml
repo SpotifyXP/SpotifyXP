@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jlayer" target="1.5" />
       <module name="libEvents" target="1.8" />
       <module name="librespot-api" target="1.8" />
       <module name="librespot-dacp" target="1.8" />

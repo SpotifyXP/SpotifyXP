@@ -1,6 +1,5 @@
 package com.spotifyxp.testing;
 
-import java.io.IOException;
 
 @SuppressWarnings("EmptyMethod")
 public class Test {

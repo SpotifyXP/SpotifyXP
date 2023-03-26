@@ -14,12 +14,14 @@ import java.awt.event.MouseEvent;
 public class BackgroundService {
     public static SystemTrayDialog trayDialog;
     public void start() {
+        startSpotifyApiEventHandlers();
         try {
             trayDialog = new SystemTrayDialog();
             trayDialog.add(new ImageIcon(ImageIO.read(new Resources().readToInputStream("spotifyxp.png"))), "SpotifyXP");
             trayDialog.open(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
                     ContentPanel.frame.setVisible(true);
                 }
             });
@@ -27,5 +29,8 @@ public class BackgroundService {
         catch (Exception e) {
             ConsoleLogging.Throwable(e);
         }
+    }
+    public void startSpotifyApiEventHandlers() {
+
     }
 }

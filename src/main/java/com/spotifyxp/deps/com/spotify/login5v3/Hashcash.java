@@ -54,7 +54,7 @@ public final class Hashcash {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -105,7 +105,7 @@ public final class Hashcash {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Hashcash.internal_static_spotify_login5_v3_challenges_HashcashChallenge_descriptor;
     }
@@ -140,7 +140,7 @@ public final class Hashcash {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -194,8 +194,7 @@ public final class Hashcash {
           .equals(other.getPrefix())) return false;
       if (getLength()
           != other.getLength()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -301,8 +300,7 @@ public final class Hashcash {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.challenges.HashcashChallenge}
@@ -311,7 +309,7 @@ public final class Hashcash {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.challenges.HashcashChallenge)
         com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallengeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Hashcash.internal_static_spotify_login5_v3_challenges_HashcashChallenge_descriptor;
       }
@@ -335,9 +333,6 @@ public final class Hashcash {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -434,7 +429,7 @@ public final class Hashcash {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -520,13 +515,13 @@ public final class Hashcash {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -621,7 +616,7 @@ public final class Hashcash {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -680,7 +675,7 @@ public final class Hashcash {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Hashcash.internal_static_spotify_login5_v3_challenges_HashcashSolution_descriptor;
     }
@@ -728,7 +723,7 @@ public final class Hashcash {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -785,8 +780,7 @@ public final class Hashcash {
         if (!getDuration()
             .equals(other.getDuration())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -894,8 +888,7 @@ public final class Hashcash {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.challenges.HashcashSolution}
@@ -904,7 +897,7 @@ public final class Hashcash {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.challenges.HashcashSolution)
         com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolutionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Hashcash.internal_static_spotify_login5_v3_challenges_HashcashSolution_descriptor;
       }
@@ -928,9 +921,6 @@ public final class Hashcash {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1035,7 +1025,7 @@ public final class Hashcash {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -1200,8 +1190,7 @@ public final class Hashcash {
           com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
           getDurationFieldBuilder() {
         if (durationBuilder_ == null) {
-          durationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
+          durationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getDuration(),
                   getParentForChildren(),
                   isClean());
@@ -1210,13 +1199,13 @@ public final class Hashcash {
         return durationBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1277,7 +1266,7 @@ public final class Hashcash {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

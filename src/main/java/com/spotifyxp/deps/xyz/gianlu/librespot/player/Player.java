@@ -95,7 +95,7 @@ public class Player implements Closeable {
     }
 
     private void initState() {
-        this.state = new StateWrapper(session, this, conf);
+        state = new StateWrapper(session, this, conf);
         state.addListener(deviceStateListener = new DeviceStateHandler.Listener() {
             @Override
             public void ready() {

@@ -175,11 +175,11 @@ public final class PlayOriginOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.internal_static_spotify_player_proto_PlayOrigin_descriptor;
     }
@@ -585,8 +585,7 @@ public final class PlayOriginOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.PlayOrigin}
@@ -595,7 +594,7 @@ public final class PlayOriginOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.PlayOrigin)
         com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.internal_static_spotify_player_proto_PlayOrigin_descriptor;
       }
@@ -619,9 +618,6 @@ public final class PlayOriginOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1241,8 +1237,9 @@ public final class PlayOriginOuterClass {
       }
 
       private com.google.protobuf.LazyStringList featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureFeatureClassesIsMutable() {
-        if (!((bitField0_ & 0x00000040) != 0)) {
+        if ((bitField0_ & 0x00000040) == 0) {
           featureClasses_ = new com.google.protobuf.LazyStringArrayList(featureClasses_);
           bitField0_ |= 0x00000040;
          }
@@ -1349,13 +1346,13 @@ public final class PlayOriginOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1421,7 +1418,7 @@ public final class PlayOriginOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

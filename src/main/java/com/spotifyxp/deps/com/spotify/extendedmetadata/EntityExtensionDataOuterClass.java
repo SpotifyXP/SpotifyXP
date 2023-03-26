@@ -110,11 +110,11 @@ public final class EntityExtensionDataOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionDataHeader_descriptor;
     }
@@ -356,8 +356,7 @@ public final class EntityExtensionDataOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.extendedmetadata.proto.EntityExtensionDataHeader}
@@ -366,7 +365,7 @@ public final class EntityExtensionDataOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.extendedmetadata.proto.EntityExtensionDataHeader)
         com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionDataHeader_descriptor;
       }
@@ -390,9 +389,6 @@ public final class EntityExtensionDataOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -773,13 +769,13 @@ public final class EntityExtensionDataOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -910,11 +906,11 @@ public final class EntityExtensionDataOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionData_descriptor;
     }
@@ -1106,8 +1102,7 @@ public final class EntityExtensionDataOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.extendedmetadata.proto.EntityExtensionData}
@@ -1116,7 +1111,7 @@ public final class EntityExtensionDataOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.extendedmetadata.proto.EntityExtensionData)
         com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionData_descriptor;
       }
@@ -1360,8 +1355,7 @@ public final class EntityExtensionDataOuterClass {
           com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.Builder, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder> 
           getHeaderFieldBuilder() {
         if (headerBuilder_ == null) {
-          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.Builder, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder>(
+          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getHeader(),
                   getParentForChildren(),
                   isClean());
@@ -1564,8 +1558,7 @@ public final class EntityExtensionDataOuterClass {
           com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getExtensionDataFieldBuilder() {
         if (extensionDataBuilder_ == null) {
-          extensionDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+          extensionDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getExtensionData(),
                   getParentForChildren(),
                   isClean());
@@ -1574,13 +1567,13 @@ public final class EntityExtensionDataOuterClass {
         return extensionDataBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1651,7 +1644,7 @@ public final class EntityExtensionDataOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

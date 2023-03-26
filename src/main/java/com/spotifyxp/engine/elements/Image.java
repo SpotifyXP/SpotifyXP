@@ -15,10 +15,10 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class Image implements Element {
-    int w;
-    int h;
-    int x;
-    int y;
+    final int w;
+    final int h;
+    final int x;
+    final int y;
     EnginePanel ep;
     final String name = "Image";
     boolean d = false;

@@ -242,11 +242,7 @@ public final class ExtensionKindOuterClass {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ExtensionKind> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<ExtensionKind>() {
-            public ExtensionKind findValueByNumber(int number) {
-              return ExtensionKind.forNumber(number);
-            }
-          };
+            ExtensionKind::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -256,7 +252,7 @@ public final class ExtensionKindOuterClass {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.extendedmetadata.ExtensionKindOuterClass.getDescriptor().getEnumTypes().get(0);
     }
@@ -274,7 +270,7 @@ public final class ExtensionKindOuterClass {
 
     private final int value;
 
-    private ExtensionKind(int value) {
+    ExtensionKind(int value) {
       this.value = value;
     }
 
@@ -286,7 +282,7 @@ public final class ExtensionKindOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

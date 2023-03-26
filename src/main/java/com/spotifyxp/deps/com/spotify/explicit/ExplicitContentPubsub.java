@@ -77,11 +77,11 @@ public final class ExplicitContentPubsub {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_KeyValuePair_descriptor;
     }
@@ -272,8 +272,7 @@ public final class ExplicitContentPubsub {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.explicit_content.proto.KeyValuePair}
@@ -282,7 +281,7 @@ public final class ExplicitContentPubsub {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.explicit_content.proto.KeyValuePair)
         com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_KeyValuePair_descriptor;
       }
@@ -306,9 +305,6 @@ public final class ExplicitContentPubsub {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -560,13 +556,13 @@ public final class ExplicitContentPubsub {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -674,11 +670,11 @@ public final class ExplicitContentPubsub {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_UserAttributesUpdate_descriptor;
     }
@@ -813,8 +809,7 @@ public final class ExplicitContentPubsub {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.explicit_content.proto.UserAttributesUpdate}
@@ -823,7 +818,7 @@ public final class ExplicitContentPubsub {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.explicit_content.proto.UserAttributesUpdate)
         com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_UserAttributesUpdate_descriptor;
       }
@@ -938,8 +933,8 @@ public final class ExplicitContentPubsub {
       private java.util.List<com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair> pairs_ =
         java.util.Collections.emptyList();
       private void ensurePairsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          pairs_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair>(pairs_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          pairs_ = new java.util.ArrayList<>(pairs_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -1164,8 +1159,7 @@ public final class ExplicitContentPubsub {
           com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair.Builder, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder> 
           getPairsFieldBuilder() {
         if (pairsBuilder_ == null) {
-          pairsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair.Builder, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder>(
+          pairsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   pairs_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -1175,13 +1169,13 @@ public final class ExplicitContentPubsub {
         return pairsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1252,7 +1246,7 @@ public final class ExplicitContentPubsub {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

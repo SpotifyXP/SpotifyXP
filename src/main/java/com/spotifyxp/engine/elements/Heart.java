@@ -9,13 +9,13 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
 
 public class Heart implements Element {
-    int x;
-    int y;
+    final int x;
+    final int y;
     final String name = "Heart";
-    int w;
-    int h;
-    Color bc;
-    Color lc;
+    final int w;
+    final int h;
+    final Color bc;
+    final Color lc;
     boolean fill = false;
     EnginePanel ep = null;
     boolean d = false;

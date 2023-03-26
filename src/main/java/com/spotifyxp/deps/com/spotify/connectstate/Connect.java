@@ -3,6 +3,11 @@
 
 package com.spotifyxp.deps.com.spotify.connectstate;
 
+import com.google.protobuf.LazyStringArrayList;
+
+//Note: Don't replace the deprecated methods here otherwise SpotifyXP wouldn't work on Windows XP for some reason
+
+@SuppressWarnings("deprecation")
 public final class Connect {
   private Connect() {}
   public static void registerAllExtensions(
@@ -130,11 +135,7 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         SendCommandResult> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<SendCommandResult>() {
-            public SendCommandResult findValueByNumber(int number) {
-              return SendCommandResult.forNumber(number);
-            }
-          };
+            SendCommandResult::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -144,7 +145,7 @@ public final class Connect {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(0);
     }
@@ -165,7 +166,7 @@ public final class Connect {
 
     private final int value;
 
-    private SendCommandResult(int value) {
+    SendCommandResult(int value) {
       this.value = value;
     }
 
@@ -297,11 +298,7 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         PutStateReason> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<PutStateReason>() {
-            public PutStateReason findValueByNumber(int number) {
-              return PutStateReason.forNumber(number);
-            }
-          };
+            PutStateReason::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -311,7 +308,7 @@ public final class Connect {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(1);
     }
@@ -332,7 +329,7 @@ public final class Connect {
 
     private final int value;
 
-    private PutStateReason(int value) {
+    PutStateReason(int value) {
       this.value = value;
     }
 
@@ -437,11 +434,7 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         MemberType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<MemberType>() {
-            public MemberType findValueByNumber(int number) {
-              return MemberType.forNumber(number);
-            }
-          };
+            MemberType::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -451,7 +444,7 @@ public final class Connect {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(2);
     }
@@ -472,7 +465,7 @@ public final class Connect {
 
     private final int value;
 
-    private MemberType(int value) {
+    MemberType(int value) {
       this.value = value;
     }
 
@@ -577,11 +570,7 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ClusterUpdateReason> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<ClusterUpdateReason>() {
-            public ClusterUpdateReason findValueByNumber(int number) {
-              return ClusterUpdateReason.forNumber(number);
-            }
-          };
+            ClusterUpdateReason::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -591,7 +580,7 @@ public final class Connect {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(3);
     }
@@ -612,7 +601,7 @@ public final class Connect {
 
     private final int value;
 
-    private ClusterUpdateReason(int value) {
+    ClusterUpdateReason(int value) {
       this.value = value;
     }
 
@@ -834,11 +823,7 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         DeviceType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<DeviceType>() {
-            public DeviceType findValueByNumber(int number) {
-              return DeviceType.forNumber(number);
-            }
-          };
+            DeviceType::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -848,7 +833,7 @@ public final class Connect {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(4);
     }
@@ -869,7 +854,7 @@ public final class Connect {
 
     private final int value;
 
-    private DeviceType(int value) {
+    DeviceType(int value) {
       this.value = value;
     }
 
@@ -969,11 +954,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ClusterUpdate_descriptor;
     }
@@ -1023,7 +1008,6 @@ public final class Connect {
      * @return The updateReason.
      */
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason getUpdateReason() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.valueOf(updateReason_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.UNRECOGNIZED : result;
     }
@@ -1186,8 +1170,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.ClusterUpdate}
@@ -1196,7 +1179,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ClusterUpdate)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ClusterUpdate_descriptor;
       }
@@ -1220,9 +1203,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1425,8 +1405,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster, com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder> 
           getClusterFieldBuilder() {
         if (clusterBuilder_ == null) {
-          clusterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster, com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder>(
+          clusterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCluster(),
                   getParentForChildren(),
                   isClean());
@@ -1458,7 +1437,6 @@ public final class Connect {
        * @return The updateReason.
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason getUpdateReason() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.valueOf(updateReason_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.UNRECOGNIZED : result;
       }
@@ -1564,8 +1542,9 @@ public final class Connect {
       }
 
       private com.google.protobuf.LazyStringList devicesThatChanged_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDevicesThatChangedIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if ((bitField0_ & 0x00000001) == 0) {
           devicesThatChanged_ = new com.google.protobuf.LazyStringArrayList(devicesThatChanged_);
           bitField0_ |= 0x00000001;
          }
@@ -1673,13 +1652,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1818,11 +1797,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Device_descriptor;
     }
@@ -2005,8 +1984,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.Device}
@@ -2015,7 +1993,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Device)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Device_descriptor;
       }
@@ -2039,9 +2017,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -2254,8 +2229,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder> 
           getDeviceInfoFieldBuilder() {
         if (deviceInfoBuilder_ == null) {
-          deviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder>(
+          deviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getDeviceInfo(),
                   getParentForChildren(),
                   isClean());
@@ -2373,8 +2347,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder> 
           getPlayerStateFieldBuilder() {
         if (playerStateBuilder_ == null) {
-          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder>(
+          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPlayerState(),
                   getParentForChildren(),
                   isClean());
@@ -2492,8 +2465,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder> 
           getPrivateDeviceInfoFieldBuilder() {
         if (privateDeviceInfoBuilder_ == null) {
-          privateDeviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder>(
+          privateDeviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPrivateDeviceInfo(),
                   getParentForChildren(),
                   isClean());
@@ -2547,13 +2519,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2735,11 +2707,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Cluster_descriptor;
     }
@@ -2748,13 +2720,11 @@ public final class Connect {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      switch (number) {
-        case 4:
-          return internalGetDevice();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
+      if (number == 4) {
+        return internalGetDevice();
       }
+      throw new RuntimeException(
+              "Invalid map field number: " + number);
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2838,7 +2808,7 @@ public final class Connect {
       static final com.google.protobuf.MapEntry<
           java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>newDefaultInstance(
+              .newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Cluster_DeviceEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
@@ -2892,7 +2862,7 @@ public final class Connect {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> map =
           internalGetDevice().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+      return map.getOrDefault(key, defaultValue);
     }
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
@@ -3046,8 +3016,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.Cluster}
@@ -3056,7 +3025,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Cluster)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Cluster_descriptor;
       }
@@ -3064,24 +3033,20 @@ public final class Connect {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        switch (number) {
-          case 4:
-            return internalGetDevice();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        if (number == 4) {
+          return internalGetDevice();
         }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        switch (number) {
-          case 4:
-            return internalGetMutableDevice();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        if (number == 4) {
+          return internalGetMutableDevice();
         }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -3102,9 +3067,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -3424,8 +3386,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder> 
           getPlayerStateFieldBuilder() {
         if (playerStateBuilder_ == null) {
-          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder>(
+          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPlayerState(),
                   getParentForChildren(),
                   isClean());
@@ -3446,7 +3407,7 @@ public final class Connect {
       }
       private com.google.protobuf.MapField<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>
       internalGetMutableDevice() {
-        onChanged();;
+        onChanged();
         if (device_ == null) {
           device_ = com.google.protobuf.MapField.newMapField(
               DeviceDefaultEntryHolder.defaultEntry);
@@ -3493,7 +3454,7 @@ public final class Connect {
         if (key == null) { throw new java.lang.NullPointerException(); }
         java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> map =
             internalGetDevice().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
+        return map.getOrDefault(key, defaultValue);
       }
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
@@ -3710,13 +3671,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3906,11 +3867,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PutStateRequest_descriptor;
     }
@@ -3996,7 +3957,6 @@ public final class Connect {
      * @return The memberType.
      */
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType getMemberType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.valueOf(memberType_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.UNRECOGNIZED : result;
     }
@@ -4025,7 +3985,6 @@ public final class Connect {
      * @return The putStateReason.
      */
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason getPutStateReason() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.valueOf(putStateReason_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.UNRECOGNIZED : result;
     }
@@ -4213,8 +4172,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.PutStateRequest}
@@ -4223,7 +4181,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PutStateRequest)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PutStateRequest_descriptor;
       }
@@ -4247,9 +4205,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -4546,8 +4501,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Device, com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder> 
           getDeviceFieldBuilder() {
         if (deviceBuilder_ == null) {
-          deviceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.Device, com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder>(
+          deviceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getDevice(),
                   getParentForChildren(),
                   isClean());
@@ -4579,7 +4533,6 @@ public final class Connect {
        * @return The memberType.
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType getMemberType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.valueOf(memberType_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.UNRECOGNIZED : result;
       }
@@ -4661,7 +4614,6 @@ public final class Connect {
        * @return The putStateReason.
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason getPutStateReason() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.valueOf(putStateReason_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.UNRECOGNIZED : result;
       }
@@ -4946,13 +4898,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5048,11 +5000,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PrivateDeviceInfo_descriptor;
     }
@@ -5188,8 +5140,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.PrivateDeviceInfo}
@@ -5198,7 +5149,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PrivateDeviceInfo)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PrivateDeviceInfo_descriptor;
       }
@@ -5222,9 +5173,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -5371,13 +5319,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5473,11 +5421,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SubscribeRequest_descriptor;
     }
@@ -5613,8 +5561,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.SubscribeRequest}
@@ -5623,7 +5570,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.SubscribeRequest)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SubscribeRequest_descriptor;
       }
@@ -5647,9 +5594,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -5796,13 +5740,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6150,11 +6094,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_descriptor;
     }
@@ -6163,13 +6107,11 @@ public final class Connect {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      switch (number) {
-        case 16:
-          return internalGetMetadataMap();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
+      if (number == 16) {
+        return internalGetMetadataMap();
       }
+      throw new RuntimeException(
+              "Invalid map field number: " + number);
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -6227,11 +6169,11 @@ public final class Connect {
       }
 
       @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
+      public com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
       }
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_DeviceAliasesEntry_descriptor;
       }
@@ -6364,8 +6306,7 @@ public final class Connect {
       @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
+        return new Builder(parent);
       }
       /**
        * Protobuf type {@code connectstate.DeviceInfo.DeviceAliasesEntry}
@@ -6374,7 +6315,7 @@ public final class Connect {
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:connectstate.DeviceInfo.DeviceAliasesEntry)
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
+        public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
           return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_DeviceAliasesEntry_descriptor;
         }
@@ -6398,9 +6339,6 @@ public final class Connect {
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
         }
         @java.lang.Override
         public Builder clear() {
@@ -6621,8 +6559,7 @@ public final class Connect {
             com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder> 
             getValueFieldBuilder() {
           if (valueBuilder_ == null) {
-            valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder>(
+            valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                     getValue(),
                     getParentForChildren(),
                     isClean());
@@ -6631,13 +6568,13 @@ public final class Connect {
           return valueBuilder_;
         }
         @java.lang.Override
-        public final Builder setUnknownFields(
+        public Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
-        public final Builder mergeUnknownFields(
+        public Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
         }
@@ -6822,7 +6759,6 @@ public final class Connect {
      * @return The deviceType.
      */
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType getDeviceType() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.valueOf(deviceType_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.UNRECOGNIZED : result;
     }
@@ -7032,7 +6968,7 @@ public final class Connect {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
+              .newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_MetadataMapEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
@@ -7086,7 +7022,7 @@ public final class Connect {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadataMap().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+      return map.getOrDefault(key, defaultValue);
     }
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
@@ -7389,8 +7325,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.DeviceInfo}
@@ -7399,7 +7334,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.DeviceInfo)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_descriptor;
       }
@@ -7407,24 +7342,20 @@ public final class Connect {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        switch (number) {
-          case 16:
-            return internalGetMetadataMap();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        if (number == 16) {
+          return internalGetMetadataMap();
         }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        switch (number) {
-          case 16:
-            return internalGetMutableMetadataMap();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        if (number == 16) {
+          return internalGetMutableMetadataMap();
         }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7846,8 +7777,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities, com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder> 
           getCapabilitiesFieldBuilder() {
         if (capabilitiesBuilder_ == null) {
-          capabilitiesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities, com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder>(
+          capabilitiesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCapabilities(),
                   getParentForChildren(),
                   isClean());
@@ -7955,7 +7885,6 @@ public final class Connect {
        * @return The deviceType.
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType getDeviceType() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.valueOf(deviceType_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.UNRECOGNIZED : result;
       }
@@ -8436,7 +8365,7 @@ public final class Connect {
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
       internalGetMutableMetadataMap() {
-        onChanged();;
+        onChanged();
         if (metadataMap_ == null) {
           metadataMap_ = com.google.protobuf.MapField.newMapField(
               MetadataMapDefaultEntryHolder.defaultEntry);
@@ -8483,7 +8412,7 @@ public final class Connect {
         if (key == null) { throw new java.lang.NullPointerException(); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadataMap().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
+        return map.getOrDefault(key, defaultValue);
       }
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
@@ -8732,8 +8661,8 @@ public final class Connect {
       private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry> deviceAliases_ =
         java.util.Collections.emptyList();
       private void ensureDeviceAliasesIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          deviceAliases_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry>(deviceAliases_);
+        if ((bitField0_ & 0x00000002) == 0) {
+          deviceAliases_ = new java.util.ArrayList<>(deviceAliases_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -8958,8 +8887,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder> 
           getDeviceAliasesFieldBuilder() {
         if (deviceAliasesBuilder_ == null) {
-          deviceAliasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder>(
+          deviceAliasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   deviceAliases_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -9151,13 +9079,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9265,11 +9193,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceAlias_descriptor;
     }
@@ -9425,8 +9353,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.DeviceAlias}
@@ -9435,7 +9362,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.DeviceAlias)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceAlias_descriptor;
       }
@@ -9459,9 +9386,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -9674,13 +9598,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9937,7 +9861,7 @@ public final class Connect {
       super(builder);
     }
     private Capabilities() {
-      supportedTypes_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      supportedTypes_ = LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -9948,11 +9872,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Capabilities_descriptor;
     }
@@ -10342,8 +10266,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.Capabilities}
@@ -10352,7 +10275,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Capabilities)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Capabilities_descriptor;
       }
@@ -10376,9 +10299,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -10713,8 +10633,9 @@ public final class Connect {
       }
 
       private com.google.protobuf.LazyStringList supportedTypes_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureSupportedTypesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if ((bitField0_ & 0x00000001) == 0) {
           supportedTypes_ = new com.google.protobuf.LazyStringArrayList(supportedTypes_);
           bitField0_ |= 0x00000001;
          }
@@ -11447,8 +11368,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder> 
           getSupportsHifiFieldBuilder() {
         if (supportsHifiBuilder_ == null) {
-          supportsHifiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder>(
+          supportsHifiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getSupportsHifi(),
                   getParentForChildren(),
                   isClean());
@@ -11457,13 +11377,13 @@ public final class Connect {
         return supportsHifiBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11564,11 +11484,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_CapabilitySupportDetails_descriptor;
     }
@@ -11698,8 +11618,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.CapabilitySupportDetails}
@@ -11708,7 +11627,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.CapabilitySupportDetails)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_CapabilitySupportDetails_descriptor;
       }
@@ -11732,9 +11651,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -11901,13 +11817,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11996,11 +11912,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ConnectCommandOptions_descriptor;
     }
@@ -12110,8 +12026,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.ConnectCommandOptions}
@@ -12120,7 +12035,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ConnectCommandOptions)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ConnectCommandOptions_descriptor;
       }
@@ -12144,9 +12059,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -12247,13 +12159,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12351,11 +12263,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_LogoutCommand_descriptor;
     }
@@ -12478,8 +12390,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.LogoutCommand}
@@ -12488,7 +12399,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.LogoutCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommandOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_LogoutCommand_descriptor;
       }
@@ -12512,9 +12423,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -12702,8 +12610,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder> 
           getCommandOptionsFieldBuilder() {
         if (commandOptionsBuilder_ == null) {
-          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder>(
+          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCommandOptions(),
                   getParentForChildren(),
                   isClean());
@@ -12712,13 +12619,13 @@ public final class Connect {
         return commandOptionsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12822,11 +12729,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetVolumeCommand_descriptor;
     }
@@ -12959,8 +12866,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.SetVolumeCommand}
@@ -12969,7 +12875,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.SetVolumeCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommandOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetVolumeCommand_descriptor;
       }
@@ -12993,9 +12899,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -13216,8 +13119,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder> 
           getCommandOptionsFieldBuilder() {
         if (commandOptionsBuilder_ == null) {
-          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder>(
+          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCommandOptions(),
                   getParentForChildren(),
                   isClean());
@@ -13226,13 +13128,13 @@ public final class Connect {
         return commandOptionsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13343,11 +13245,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_RenameCommand_descriptor;
     }
@@ -13506,8 +13408,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.RenameCommand}
@@ -13516,7 +13417,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.RenameCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommandOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_RenameCommand_descriptor;
       }
@@ -13540,9 +13441,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -13809,8 +13707,7 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder> 
           getCommandOptionsFieldBuilder() {
         if (commandOptionsBuilder_ == null) {
-          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder>(
+          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCommandOptions(),
                   getParentForChildren(),
                   isClean());
@@ -13819,13 +13716,13 @@ public final class Connect {
         return commandOptionsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13942,11 +13839,11 @@ public final class Connect {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetBackendMetadataCommand_descriptor;
     }
@@ -13955,13 +13852,11 @@ public final class Connect {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      switch (number) {
-        case 1:
-          return internalGetMetadata();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
+      if (number == 1) {
+        return internalGetMetadata();
       }
+      throw new RuntimeException(
+              "Invalid map field number: " + number);
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -13976,7 +13871,7 @@ public final class Connect {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
+              .newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetBackendMetadataCommand_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
@@ -14030,7 +13925,7 @@ public final class Connect {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+      return map.getOrDefault(key, defaultValue);
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
@@ -14134,8 +14029,7 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+      return new Builder(parent);
     }
     /**
      * Protobuf type {@code connectstate.SetBackendMetadataCommand}
@@ -14144,7 +14038,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.SetBackendMetadataCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommandOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetBackendMetadataCommand_descriptor;
       }
@@ -14152,24 +14046,20 @@ public final class Connect {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        switch (number) {
-          case 1:
-            return internalGetMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        if (number == 1) {
+          return internalGetMetadata();
         }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        if (number == 1) {
+          return internalGetMutableMetadata();
         }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -14190,9 +14080,6 @@ public final class Connect {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -14277,7 +14164,7 @@ public final class Connect {
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
       internalGetMutableMetadata() {
-        onChanged();;
+        onChanged();
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -14324,7 +14211,7 @@ public final class Connect {
         if (key == null) { throw new java.lang.NullPointerException(); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
+        return map.getOrDefault(key, defaultValue);
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
@@ -14388,13 +14275,13 @@ public final class Connect {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14550,7 +14437,7 @@ public final class Connect {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -14572,7 +14459,7 @@ public final class Connect {
                     "tamp\030\006 \001(\004\022#\n\033not_playing_since_timestam" +
                     "p\030\007 \001(\003\022\036\n\026need_full_player_state\030\010 \001(\010\022" +
                     "\033\n\023server_timestamp_ms\030\t \001(\003\032G\n\013DeviceEn" +
-                    "try\022\013\n\003key\030\001 \001(\t\022\'\n\005value\030\002 \001(\0132\030.connec" +
+                    "try\022\013\n\003key\030\001 \001(\t\022'\n\005value\030\002 \001(\0132\030.connec" +
                     "tstate.DeviceInfo:\0028\001\"\241\003\n\017PutStateReques" +
                     "t\022\024\n\014callback_url\030\001 \001(\t\022$\n\006device\030\002 \001(\0132" +
                     "\024.connectstate.Device\022-\n\013member_type\030\003 \001" +

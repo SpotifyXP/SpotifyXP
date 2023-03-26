@@ -123,7 +123,7 @@ public final class UserInfoOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -146,15 +146,13 @@ public final class UserInfoOuterClass {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              name_ = s;
+                name_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              email_ = s;
+                email_ = input.readStringRequireUtf8();
               break;
             }
             case 24: {
@@ -163,21 +161,18 @@ public final class UserInfoOuterClass {
               break;
             }
             case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              birthdate_ = s;
+                birthdate_ = input.readStringRequireUtf8();
               break;
             }
             case 40: {
-              int rawValue = input.readEnum();
 
-              gender_ = rawValue;
+                gender_ = input.readEnum();
               break;
             }
             case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              phoneNumber_ = s;
+                phoneNumber_ = input.readStringRequireUtf8();
               break;
             }
             case 56: {
@@ -209,7 +204,7 @@ public final class UserInfoOuterClass {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.internal_static_spotify_login5_v3_UserInfo_descriptor;
     }
@@ -302,11 +297,7 @@ public final class UserInfoOuterClass {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Gender> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
-              public Gender findValueByNumber(int number) {
-                return Gender.forNumber(number);
-              }
-            };
+              Gender::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -316,7 +307,7 @@ public final class UserInfoOuterClass {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.getDescriptor().getEnumTypes().get(0);
       }
@@ -337,7 +328,7 @@ public final class UserInfoOuterClass {
 
       private final int value;
 
-      private Gender(int value) {
+      Gender(int value) {
         this.value = value;
       }
 
@@ -476,7 +467,6 @@ public final class UserInfoOuterClass {
      * @return The gender.
      */
     public com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender getGender() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender result = com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender.valueOf(gender_);
       return result == null ? com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender.UNRECOGNIZED : result;
     }
@@ -539,7 +529,7 @@ public final class UserInfoOuterClass {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -557,8 +547,8 @@ public final class UserInfoOuterClass {
       if (!getEmailBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, email_);
       }
-      if (emailVerified_ != false) {
-        output.writeBool(3, emailVerified_);
+      if (emailVerified_) {
+        output.writeBool(3, true);
       }
       if (!getBirthdateBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, birthdate_);
@@ -569,11 +559,11 @@ public final class UserInfoOuterClass {
       if (!getPhoneNumberBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, phoneNumber_);
       }
-      if (phoneNumberVerified_ != false) {
-        output.writeBool(7, phoneNumberVerified_);
+      if (phoneNumberVerified_) {
+        output.writeBool(7, true);
       }
-      if (emailAlreadyRegistered_ != false) {
-        output.writeBool(8, emailAlreadyRegistered_);
+      if (emailAlreadyRegistered_) {
+        output.writeBool(8, true);
       }
       unknownFields.writeTo(output);
     }
@@ -590,9 +580,9 @@ public final class UserInfoOuterClass {
       if (!getEmailBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, email_);
       }
-      if (emailVerified_ != false) {
+      if (emailVerified_) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, emailVerified_);
+          .computeBoolSize(3, true);
       }
       if (!getBirthdateBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, birthdate_);
@@ -604,13 +594,13 @@ public final class UserInfoOuterClass {
       if (!getPhoneNumberBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, phoneNumber_);
       }
-      if (phoneNumberVerified_ != false) {
+      if (phoneNumberVerified_) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, phoneNumberVerified_);
+          .computeBoolSize(7, true);
       }
-      if (emailAlreadyRegistered_ != false) {
+      if (emailAlreadyRegistered_) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(8, emailAlreadyRegistered_);
+          .computeBoolSize(8, true);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -642,8 +632,7 @@ public final class UserInfoOuterClass {
           != other.getPhoneNumberVerified()) return false;
       if (getEmailAlreadyRegistered()
           != other.getEmailAlreadyRegistered()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -764,8 +753,7 @@ public final class UserInfoOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.UserInfo}
@@ -774,7 +762,7 @@ public final class UserInfoOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.UserInfo)
         com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.internal_static_spotify_login5_v3_UserInfo_descriptor;
       }
@@ -798,9 +786,6 @@ public final class UserInfoOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -911,8 +896,8 @@ public final class UserInfoOuterClass {
           email_ = other.email_;
           onChanged();
         }
-        if (other.getEmailVerified() != false) {
-          setEmailVerified(other.getEmailVerified());
+        if (other.getEmailVerified()) {
+          setEmailVerified(true);
         }
         if (!other.getBirthdate().isEmpty()) {
           birthdate_ = other.birthdate_;
@@ -925,11 +910,11 @@ public final class UserInfoOuterClass {
           phoneNumber_ = other.phoneNumber_;
           onChanged();
         }
-        if (other.getPhoneNumberVerified() != false) {
-          setPhoneNumberVerified(other.getPhoneNumberVerified());
+        if (other.getPhoneNumberVerified()) {
+          setPhoneNumberVerified(true);
         }
-        if (other.getEmailAlreadyRegistered() != false) {
-          setEmailAlreadyRegistered(other.getEmailAlreadyRegistered());
+        if (other.getEmailAlreadyRegistered()) {
+          setEmailAlreadyRegistered(true);
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -937,7 +922,7 @@ public final class UserInfoOuterClass {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -1241,7 +1226,6 @@ public final class UserInfoOuterClass {
        * @return The gender.
        */
       public com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender getGender() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender result = com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender.valueOf(gender_);
         return result == null ? com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Gender.UNRECOGNIZED : result;
       }
@@ -1406,13 +1390,13 @@ public final class UserInfoOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1468,7 +1452,7 @@ public final class UserInfoOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

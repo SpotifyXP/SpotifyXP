@@ -284,6 +284,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
         }catch (IllegalStateException exc) {
             //Output already set skipping
         }
+        
         ConsoleLoggingModules.debug("{} has been added to the output. {sessionId: {}, pos: {}, reason: {}}", head, sessionId, pos, reason);
         return new PlayerSession.EntryWithPos(head, pos);
     }

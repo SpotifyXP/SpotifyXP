@@ -61,7 +61,7 @@ public final class Credentials {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -84,9 +84,8 @@ public final class Credentials {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              username_ = s;
+                username_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
@@ -113,7 +112,7 @@ public final class Credentials {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_StoredCredential_descriptor;
     }
@@ -174,7 +173,7 @@ public final class Credentials {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -227,8 +226,7 @@ public final class Credentials {
           .equals(other.getUsername())) return false;
       if (!getData()
           .equals(other.getData())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -334,8 +332,7 @@ public final class Credentials {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.credentials.StoredCredential}
@@ -344,7 +341,7 @@ public final class Credentials {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.credentials.StoredCredential)
         com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_StoredCredential_descriptor;
       }
@@ -368,9 +365,6 @@ public final class Credentials {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -468,7 +462,7 @@ public final class Credentials {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -600,13 +594,13 @@ public final class Credentials {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -712,7 +706,7 @@ public final class Credentials {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -735,15 +729,13 @@ public final class Credentials {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              id_ = s;
+                id_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              password_ = s;
+                password_ = input.readStringRequireUtf8();
               break;
             }
             case 26: {
@@ -770,7 +762,7 @@ public final class Credentials {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_Password_descriptor;
     }
@@ -867,7 +859,7 @@ public final class Credentials {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -928,8 +920,7 @@ public final class Credentials {
           .equals(other.getPassword())) return false;
       if (!getPadding()
           .equals(other.getPadding())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -1037,8 +1028,7 @@ public final class Credentials {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.credentials.Password}
@@ -1047,7 +1037,7 @@ public final class Credentials {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.credentials.Password)
         com.spotifyxp.deps.com.spotify.login5v3.Credentials.PasswordOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_Password_descriptor;
       }
@@ -1071,9 +1061,6 @@ public final class Credentials {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1178,7 +1165,7 @@ public final class Credentials {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -1386,13 +1373,13 @@ public final class Credentials {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1491,7 +1478,7 @@ public final class Credentials {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -1514,15 +1501,13 @@ public final class Credentials {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              fbUid_ = s;
+                fbUid_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              accessToken_ = s;
+                accessToken_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -1544,7 +1529,7 @@ public final class Credentials {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_FacebookAccessToken_descriptor;
     }
@@ -1631,7 +1616,7 @@ public final class Credentials {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1683,8 +1668,7 @@ public final class Credentials {
           .equals(other.getFbUid())) return false;
       if (!getAccessToken()
           .equals(other.getAccessToken())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -1790,8 +1774,7 @@ public final class Credentials {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.credentials.FacebookAccessToken}
@@ -1800,7 +1783,7 @@ public final class Credentials {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.credentials.FacebookAccessToken)
         com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessTokenOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_FacebookAccessToken_descriptor;
       }
@@ -1824,9 +1807,6 @@ public final class Credentials {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1925,7 +1905,7 @@ public final class Credentials {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -2100,13 +2080,13 @@ public final class Credentials {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2192,7 +2172,7 @@ public final class Credentials {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -2215,9 +2195,8 @@ public final class Credentials {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              token_ = s;
+                token_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -2239,7 +2218,7 @@ public final class Credentials {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_OneTimeToken_descriptor;
     }
@@ -2290,7 +2269,7 @@ public final class Credentials {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -2334,8 +2313,7 @@ public final class Credentials {
 
       if (!getToken()
           .equals(other.getToken())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -2439,8 +2417,7 @@ public final class Credentials {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.credentials.OneTimeToken}
@@ -2449,7 +2426,7 @@ public final class Credentials {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.credentials.OneTimeToken)
         com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeTokenOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_OneTimeToken_descriptor;
       }
@@ -2473,9 +2450,6 @@ public final class Credentials {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -2567,7 +2541,7 @@ public final class Credentials {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -2666,13 +2640,13 @@ public final class Credentials {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2773,7 +2747,7 @@ public final class Credentials {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -2796,9 +2770,8 @@ public final class Credentials {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              childId_ = s;
+                childId_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
@@ -2833,7 +2806,7 @@ public final class Credentials {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_ParentChildCredential_descriptor;
     }
@@ -2907,7 +2880,7 @@ public final class Credentials {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -2963,8 +2936,7 @@ public final class Credentials {
         if (!getParentStoredCredential()
             .equals(other.getParentStoredCredential())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -3072,8 +3044,7 @@ public final class Credentials {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.credentials.ParentChildCredential}
@@ -3082,7 +3053,7 @@ public final class Credentials {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.credentials.ParentChildCredential)
         com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredentialOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_ParentChildCredential_descriptor;
       }
@@ -3106,9 +3077,6 @@ public final class Credentials {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -3214,7 +3182,7 @@ public final class Credentials {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -3422,8 +3390,7 @@ public final class Credentials {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder> 
           getParentStoredCredentialFieldBuilder() {
         if (parentStoredCredentialBuilder_ == null) {
-          parentStoredCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder>(
+          parentStoredCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getParentStoredCredential(),
                   getParentForChildren(),
                   isClean());
@@ -3432,13 +3399,13 @@ public final class Credentials {
         return parentStoredCredentialBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3550,7 +3517,7 @@ public final class Credentials {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -3573,21 +3540,18 @@ public final class Credentials {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              authCode_ = s;
+                authCode_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              redirectUri_ = s;
+                redirectUri_ = input.readStringRequireUtf8();
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              bundleId_ = s;
+                bundleId_ = input.readStringRequireUtf8();
               break;
             }
             default: {
@@ -3609,7 +3573,7 @@ public final class Credentials {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_AppleSignInCredential_descriptor;
     }
@@ -3732,7 +3696,7 @@ public final class Credentials {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -3792,8 +3756,7 @@ public final class Credentials {
           .equals(other.getRedirectUri())) return false;
       if (!getBundleId()
           .equals(other.getBundleId())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -3901,8 +3864,7 @@ public final class Credentials {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.credentials.AppleSignInCredential}
@@ -3911,7 +3873,7 @@ public final class Credentials {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.credentials.AppleSignInCredential)
         com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredentialOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Credentials.internal_static_spotify_login5_v3_credentials_AppleSignInCredential_descriptor;
       }
@@ -3935,9 +3897,6 @@ public final class Credentials {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -4043,7 +4002,7 @@ public final class Credentials {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -4294,13 +4253,13 @@ public final class Credentials {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4381,7 +4340,7 @@ public final class Credentials {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

@@ -112,11 +112,11 @@ public final class TransferStateOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.internal_static_spotify_player_proto_transfer_TransferState_descriptor;
     }
@@ -326,8 +326,7 @@ public final class TransferStateOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.TransferState}
@@ -336,7 +335,7 @@ public final class TransferStateOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.TransferState)
         com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferStateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.internal_static_spotify_player_proto_transfer_TransferState_descriptor;
       }
@@ -610,8 +609,7 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder> 
           getOptionsFieldBuilder() {
         if (optionsBuilder_ == null) {
-          optionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder>(
+          optionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getOptions(),
                   getParentForChildren(),
                   isClean());
@@ -730,8 +728,7 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.Builder, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.PlaybackOrBuilder> 
           getPlaybackFieldBuilder() {
         if (playbackBuilder_ == null) {
-          playbackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.Builder, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.PlaybackOrBuilder>(
+          playbackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPlayback(),
                   getParentForChildren(),
                   isClean());
@@ -850,8 +847,7 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.Builder, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder> 
           getCurrentSessionFieldBuilder() {
         if (currentSessionBuilder_ == null) {
-          currentSessionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.Builder, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder>(
+          currentSessionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCurrentSession(),
                   getParentForChildren(),
                   isClean());
@@ -970,8 +966,7 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.Builder, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder> 
           getQueueFieldBuilder() {
         if (queueBuilder_ == null) {
-          queueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.Builder, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder>(
+          queueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getQueue(),
                   getParentForChildren(),
                   isClean());
@@ -1017,13 +1012,13 @@ public final class TransferStateOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1089,7 +1084,7 @@ public final class TransferStateOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1098,7 +1093,7 @@ public final class TransferStateOuterClass {
       "oto\032\016playback.proto\032\rsession.proto\032\013queu" +
       "e.proto\"\231\002\n\rTransferState\022;\n\007options\030\001 \001" +
       "(\0132*.spotify.player.proto.ContextPlayerO" +
-      "ptions\0229\n\010playback\030\002 \001(\0132\'.spotify.playe" +
+              "ptions\0229\n\010playback\030\002 \001(\0132'.spotify.playe" +
       "r.proto.transfer.Playback\022?\n\017current_ses" +
       "sion\030\003 \001(\0132&.spotify.player.proto.transf" +
       "er.Session\0223\n\005queue\030\004 \001(\0132$.spotify.play" +

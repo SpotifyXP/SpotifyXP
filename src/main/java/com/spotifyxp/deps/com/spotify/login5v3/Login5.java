@@ -139,11 +139,7 @@ public final class Login5 {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         LoginError> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<LoginError>() {
-            public LoginError findValueByNumber(int number) {
-              return LoginError.forNumber(number);
-            }
-          };
+            LoginError::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -153,7 +149,7 @@ public final class Login5 {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.getDescriptor().getEnumTypes().get(0);
     }
@@ -174,7 +170,7 @@ public final class Login5 {
 
     private final int value;
 
-    private LoginError(int value) {
+    LoginError(int value) {
       this.value = value;
     }
 
@@ -233,7 +229,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -257,8 +253,8 @@ public final class Login5 {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                challenges_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge>();
+              if ((mutable_bitField0_ & 0x00000001) == 0) {
+                challenges_ = new java.util.ArrayList<>();
                 mutable_bitField0_ |= 0x00000001;
               }
               challenges_.add(
@@ -287,7 +283,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenges_descriptor;
     }
@@ -337,7 +333,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -349,9 +345,9 @@ public final class Login5 {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < challenges_.size(); i++) {
-        output.writeMessage(1, challenges_.get(i));
-      }
+        for (Challenge challenge : challenges_) {
+            output.writeMessage(1, challenge);
+        }
       unknownFields.writeTo(output);
     }
 
@@ -361,10 +357,10 @@ public final class Login5 {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < challenges_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, challenges_.get(i));
-      }
+        for (Challenge challenge : challenges_) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(1, challenge);
+        }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -382,8 +378,7 @@ public final class Login5 {
 
       if (!getChallengesList()
           .equals(other.getChallengesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -489,8 +484,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.Challenges}
@@ -499,7 +493,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.Challenges)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenges_descriptor;
       }
@@ -653,7 +647,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -680,8 +674,8 @@ public final class Login5 {
       private java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge> challenges_ =
         java.util.Collections.emptyList();
       private void ensureChallengesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          challenges_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge>(challenges_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          challenges_ = new java.util.ArrayList<>(challenges_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -906,8 +900,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder> 
           getChallengesFieldBuilder() {
         if (challengesBuilder_ == null) {
-          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder>(
+          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   challenges_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -917,13 +910,13 @@ public final class Login5 {
         return challengesBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1026,7 +1019,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -1093,7 +1086,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenge_descriptor;
     }
@@ -1154,7 +1147,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1214,8 +1207,7 @@ public final class Login5 {
         if (!getCode()
             .equals(other.getCode())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -1325,8 +1317,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.Challenge}
@@ -1335,7 +1326,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.Challenge)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenge_descriptor;
       }
@@ -1359,9 +1350,6 @@ public final class Login5 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1474,7 +1462,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -1606,8 +1594,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallengeOrBuilder> 
           getHashcashFieldBuilder() {
         if (hashcashBuilder_ == null) {
-          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallengeOrBuilder>(
+          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getHashcash(),
                   getParentForChildren(),
                   isClean());
@@ -1725,8 +1712,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder> 
           getCodeFieldBuilder() {
         if (codeBuilder_ == null) {
-          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder>(
+          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCode(),
                   getParentForChildren(),
                   isClean());
@@ -1735,13 +1721,13 @@ public final class Login5 {
         return codeBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1839,7 +1825,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -1863,8 +1849,8 @@ public final class Login5 {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                solutions_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution>();
+              if ((mutable_bitField0_ & 0x00000001) == 0) {
+                solutions_ = new java.util.ArrayList<>();
                 mutable_bitField0_ |= 0x00000001;
               }
               solutions_.add(
@@ -1893,7 +1879,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolutions_descriptor;
     }
@@ -1943,7 +1929,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1955,9 +1941,9 @@ public final class Login5 {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < solutions_.size(); i++) {
-        output.writeMessage(1, solutions_.get(i));
-      }
+        for (ChallengeSolution challengeSolution : solutions_) {
+            output.writeMessage(1, challengeSolution);
+        }
       unknownFields.writeTo(output);
     }
 
@@ -1967,10 +1953,10 @@ public final class Login5 {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < solutions_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, solutions_.get(i));
-      }
+        for (ChallengeSolution challengeSolution : solutions_) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(1, challengeSolution);
+        }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1988,8 +1974,7 @@ public final class Login5 {
 
       if (!getSolutionsList()
           .equals(other.getSolutionsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -2095,8 +2080,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.ChallengeSolutions}
@@ -2105,7 +2089,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.ChallengeSolutions)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolutions_descriptor;
       }
@@ -2259,7 +2243,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -2286,8 +2270,8 @@ public final class Login5 {
       private java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution> solutions_ =
         java.util.Collections.emptyList();
       private void ensureSolutionsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          solutions_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution>(solutions_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          solutions_ = new java.util.ArrayList<>(solutions_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -2512,8 +2496,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder> 
           getSolutionsFieldBuilder() {
         if (solutionsBuilder_ == null) {
-          solutionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder>(
+          solutionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   solutions_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2523,13 +2506,13 @@ public final class Login5 {
         return solutionsBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2632,7 +2615,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -2699,7 +2682,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolution_descriptor;
     }
@@ -2760,7 +2743,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -2820,8 +2803,7 @@ public final class Login5 {
         if (!getCode()
             .equals(other.getCode())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -2931,8 +2913,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.ChallengeSolution}
@@ -2941,7 +2922,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.ChallengeSolution)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolution_descriptor;
       }
@@ -2965,9 +2946,6 @@ public final class Login5 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -3080,7 +3058,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -3212,8 +3190,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolutionOrBuilder> 
           getHashcashFieldBuilder() {
         if (hashcashBuilder_ == null) {
-          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolutionOrBuilder>(
+          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getHashcash(),
                   getParentForChildren(),
                   isClean());
@@ -3331,8 +3308,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder> 
           getCodeFieldBuilder() {
         if (codeBuilder_ == null) {
-          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder>(
+          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getCode(),
                   getParentForChildren(),
                   isClean());
@@ -3341,13 +3317,13 @@ public final class Login5 {
         return codeBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3562,7 +3538,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -3725,7 +3701,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginRequest_descriptor;
     }
@@ -3957,7 +3933,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -4110,8 +4086,7 @@ public final class Login5 {
         if (!getAppleSignInCredential()
             .equals(other.getAppleSignInCredential())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -4251,8 +4226,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.LoginRequest}
@@ -4261,7 +4235,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.LoginRequest)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginRequest_descriptor;
       }
@@ -4285,9 +4259,6 @@ public final class Login5 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -4504,7 +4475,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -4636,8 +4607,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfoOrBuilder> 
           getClientInfoFieldBuilder() {
         if (clientInfoBuilder_ == null) {
-          clientInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfoOrBuilder>(
+          clientInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getClientInfo(),
                   getParentForChildren(),
                   isClean());
@@ -4788,8 +4758,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder> 
           getChallengeSolutionsFieldBuilder() {
         if (challengeSolutionsBuilder_ == null) {
-          challengeSolutionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder>(
+          challengeSolutionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getChallengeSolutions(),
                   getParentForChildren(),
                   isClean());
@@ -4907,8 +4876,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder> 
           getStoredCredentialFieldBuilder() {
         if (storedCredentialBuilder_ == null) {
-          storedCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder>(
+          storedCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getStoredCredential(),
                   getParentForChildren(),
                   isClean());
@@ -5026,8 +4994,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password, com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.PasswordOrBuilder> 
           getPasswordFieldBuilder() {
         if (passwordBuilder_ == null) {
-          passwordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password, com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.PasswordOrBuilder>(
+          passwordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPassword(),
                   getParentForChildren(),
                   isClean());
@@ -5145,8 +5112,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessTokenOrBuilder> 
           getFacebookAccessTokenFieldBuilder() {
         if (facebookAccessTokenBuilder_ == null) {
-          facebookAccessTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessTokenOrBuilder>(
+          facebookAccessTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getFacebookAccessToken(),
                   getParentForChildren(),
                   isClean());
@@ -5264,8 +5230,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder> 
           getPhoneNumberFieldBuilder() {
         if (phoneNumberBuilder_ == null) {
-          phoneNumberBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder>(
+          phoneNumberBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getPhoneNumber(),
                   getParentForChildren(),
                   isClean());
@@ -5383,8 +5348,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeTokenOrBuilder> 
           getOneTimeTokenFieldBuilder() {
         if (oneTimeTokenBuilder_ == null) {
-          oneTimeTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeTokenOrBuilder>(
+          oneTimeTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getOneTimeToken(),
                   getParentForChildren(),
                   isClean());
@@ -5502,8 +5466,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredentialOrBuilder> 
           getParentChildCredentialFieldBuilder() {
         if (parentChildCredentialBuilder_ == null) {
-          parentChildCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredentialOrBuilder>(
+          parentChildCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getParentChildCredential(),
                   getParentForChildren(),
                   isClean());
@@ -5621,8 +5584,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredentialOrBuilder> 
           getAppleSignInCredentialFieldBuilder() {
         if (appleSignInCredentialBuilder_ == null) {
-          appleSignInCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredentialOrBuilder>(
+          appleSignInCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getAppleSignInCredential(),
                   getParentForChildren(),
                   isClean());
@@ -5631,13 +5593,13 @@ public final class Login5 {
         return appleSignInCredentialBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5749,7 +5711,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -5772,15 +5734,13 @@ public final class Login5 {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              username_ = s;
+                username_ = input.readStringRequireUtf8();
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              accessToken_ = s;
+                accessToken_ = input.readStringRequireUtf8();
               break;
             }
             case 26: {
@@ -5812,7 +5772,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginOk_descriptor;
     }
@@ -5919,7 +5879,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5989,8 +5949,7 @@ public final class Login5 {
           .equals(other.getStoredCredential())) return false;
       if (getAccessTokenExpiresIn()
           != other.getAccessTokenExpiresIn()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -6100,8 +6059,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.LoginOk}
@@ -6110,7 +6068,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.LoginOk)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginOk_descriptor;
       }
@@ -6134,9 +6092,6 @@ public final class Login5 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -6247,7 +6202,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -6485,13 +6440,13 @@ public final class Login5 {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6671,7 +6626,7 @@ public final class Login5 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
@@ -6708,9 +6663,8 @@ public final class Login5 {
               break;
             }
             case 16: {
-              int rawValue = input.readEnum();
 
-              error_ = rawValue;
+                error_ = input.readEnum();
               break;
             }
             case 26: {
@@ -6728,8 +6682,8 @@ public final class Login5 {
             }
             case 32: {
               int rawValue = input.readEnum();
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                warnings_ = new java.util.ArrayList<java.lang.Integer>();
+              if ((mutable_bitField0_ & 0x00000001) == 0) {
+                warnings_ = new java.util.ArrayList<>();
                 mutable_bitField0_ |= 0x00000001;
               }
               warnings_.add(rawValue);
@@ -6740,8 +6694,8 @@ public final class Login5 {
               int oldLimit = input.pushLimit(length);
               while(input.getBytesUntilLimit() > 0) {
                 int rawValue = input.readEnum();
-                if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                  warnings_ = new java.util.ArrayList<java.lang.Integer>();
+                if ((mutable_bitField0_ & 0x00000001) == 0) {
+                  warnings_ = new java.util.ArrayList<>();
                   mutable_bitField0_ |= 0x00000001;
                 }
                 warnings_.add(rawValue);
@@ -6755,9 +6709,8 @@ public final class Login5 {
               break;
             }
             case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
 
-              identifierToken_ = s;
+                identifierToken_ = input.readStringRequireUtf8();
               break;
             }
             case 58: {
@@ -6795,7 +6748,7 @@ public final class Login5 {
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginResponse_descriptor;
     }
@@ -6870,11 +6823,7 @@ public final class Login5 {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Warnings> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Warnings>() {
-              public Warnings findValueByNumber(int number) {
-                return Warnings.forNumber(number);
-              }
-            };
+              Warnings::forNumber;
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -6884,7 +6833,7 @@ public final class Login5 {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
+      public static com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.getDescriptor().getEnumTypes().get(0);
       }
@@ -6905,7 +6854,7 @@ public final class Login5 {
 
       private final int value;
 
-      private Warnings(int value) {
+      Warnings(int value) {
         this.value = value;
       }
 
@@ -6949,7 +6898,6 @@ public final class Login5 {
      * @return The error.
      */
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError getError() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.valueOf(error_);
       return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.UNRECOGNIZED : result;
     }
@@ -6981,21 +6929,16 @@ public final class Login5 {
     private java.util.List<java.lang.Integer> warnings_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings> warnings_converter_ =
-            new com.google.protobuf.Internal.ListAdapter.Converter<
-                java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings>() {
-              public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings convert(java.lang.Integer from) {
-                @SuppressWarnings("deprecation")
-                com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings.valueOf(from);
-                return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings.UNRECOGNIZED : result;
-              }
+            from -> {
+              Warnings result = Warnings.valueOf(from);
+              return result == null ? Warnings.UNRECOGNIZED : result;
             };
     /**
      * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
      * @return A list containing the warnings.
      */
     public java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings> getWarningsList() {
-      return new com.google.protobuf.Internal.ListAdapter<
-          java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings>(warnings_, warnings_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<>(warnings_, warnings_converter_);
     }
     /**
      * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
@@ -7101,7 +7044,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public final boolean isInitialized() {
+    public boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -7127,9 +7070,9 @@ public final class Login5 {
         output.writeUInt32NoTag(34);
         output.writeUInt32NoTag(warningsMemoizedSerializedSize);
       }
-      for (int i = 0; i < warnings_.size(); i++) {
-        output.writeEnumNoTag(warnings_.get(i));
-      }
+        for (Integer integer : warnings_) {
+            output.writeEnumNoTag(integer);
+        }
       if (!loginContext_.isEmpty()) {
         output.writeBytes(5, loginContext_);
       }
@@ -7162,10 +7105,10 @@ public final class Login5 {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < warnings_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeEnumSizeNoTag(warnings_.get(i));
-        }
+          for (Integer integer : warnings_) {
+              dataSize += com.google.protobuf.CodedOutputStream
+                      .computeEnumSizeNoTag(integer);
+          }
         size += dataSize;
         if (!getWarningsList().isEmpty()) {  size += 1;
           size += com.google.protobuf.CodedOutputStream
@@ -7219,8 +7162,7 @@ public final class Login5 {
         if (!getUserInfo()
             .equals(other.getUserInfo())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+        return unknownFields.equals(other.unknownFields);
     }
 
     @java.lang.Override
@@ -7344,8 +7286,7 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.login5.v3.LoginResponse}
@@ -7354,7 +7295,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.LoginResponse)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginResponse_descriptor;
       }
@@ -7378,9 +7319,6 @@ public final class Login5 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -7544,7 +7482,7 @@ public final class Login5 {
       }
 
       @java.lang.Override
-      public final boolean isInitialized() {
+      public boolean isInitialized() {
         return true;
       }
 
@@ -7677,8 +7615,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder> 
           getOkFieldBuilder() {
         if (okBuilder_ == null) {
-          okBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder>(
+          okBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getOk(),
                   getParentForChildren(),
                   isClean());
@@ -7710,7 +7647,6 @@ public final class Login5 {
        * @return The error.
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError getError() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.valueOf(error_);
         return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.UNRECOGNIZED : result;
       }
@@ -7848,8 +7784,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder> 
           getChallengesFieldBuilder() {
         if (challengesBuilder_ == null) {
-          challengesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder>(
+          challengesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getChallenges(),
                   getParentForChildren(),
                   isClean());
@@ -7861,8 +7796,8 @@ public final class Login5 {
       private java.util.List<java.lang.Integer> warnings_ =
         java.util.Collections.emptyList();
       private void ensureWarningsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          warnings_ = new java.util.ArrayList<java.lang.Integer>(warnings_);
+        if ((bitField0_ & 0x00000001) == 0) {
+          warnings_ = new java.util.ArrayList<>(warnings_);
           bitField0_ |= 0x00000001;
         }
       }
@@ -7871,8 +7806,7 @@ public final class Login5 {
        * @return A list containing the warnings.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings> getWarningsList() {
-        return new com.google.protobuf.Internal.ListAdapter<
-            java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings>(warnings_, warnings_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<>(warnings_, warnings_converter_);
       }
       /**
        * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
@@ -7963,7 +7897,6 @@ public final class Login5 {
        * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
        * @param index The index of the value to return.
        * @return The enum numeric value on the wire of warnings at the given index.
-       * @return This builder for chaining.
        */
       public Builder setWarningsValue(
           int index, int value) {
@@ -8216,8 +8149,7 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfoOrBuilder> 
           getUserInfoFieldBuilder() {
         if (userInfoBuilder_ == null) {
-          userInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfoOrBuilder>(
+          userInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                   getUserInfo(),
                   getParentForChildren(),
                   isClean());
@@ -8226,13 +8158,13 @@ public final class Login5 {
         return userInfoBuilder_;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8318,14 +8250,14 @@ public final class Login5 {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\036spotify/login5/v3/login5.proto\022\021spotif" +
       "y.login5.v3\032#spotify/login5/v3/client_in" +
       "fo.proto\032!spotify/login5/v3/user_info.pr" +
-      "oto\032\'spotify/login5/v3/challenges/code.p" +
+              "oto\032'spotify/login5/v3/challenges/code.p" +
       "roto\032+spotify/login5/v3/challenges/hashc" +
       "ash.proto\032/spotify/login5/v3/credentials" +
       "/credentials.proto\032/spotify/login5/v3/id" +
@@ -8346,7 +8278,7 @@ public final class Login5 {
       "e_solutions\030\003 \001(\0132%.spotify.login5.v3.Ch" +
       "allengeSolutions\022J\n\021stored_credential\030d " +
       "\001(\0132/.spotify.login5.v3.credentials.Stor" +
-      "edCredential\0229\n\010password\030e \001(\0132\'.spotify" +
+              "edCredential\0229\n\010password\030e \001(\0132'.spotify" +
       ".login5.v3.credentials.Password\022Q\n\025faceb" +
       "ook_access_token\030f \001(\01322.spotify.login5." +
       "v3.credentials.FacebookAccessToken\022@\n\014ph" +

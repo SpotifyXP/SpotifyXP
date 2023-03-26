@@ -24,7 +24,7 @@ import static com.spotifyxp.deps.com.spotify.Keyexchange.*;
  * @author Gianlu
  */
 public class Version {
-    private static String VERSION;
+    private static final String VERSION;
     private static final String OS = System.getProperty("os.name").toLowerCase();
 
     static {

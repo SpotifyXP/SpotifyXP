@@ -71,11 +71,7 @@ public final class PlaylistAnnotate3 {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         RenderFeatures> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<RenderFeatures>() {
-            public RenderFeatures findValueByNumber(int number) {
-              return RenderFeatures.forNumber(number);
-            }
-          };
+            RenderFeatures::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -85,7 +81,7 @@ public final class PlaylistAnnotate3 {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.getDescriptor().getEnumTypes().get(0);
     }
@@ -103,7 +99,7 @@ public final class PlaylistAnnotate3 {
 
     private final int value;
 
-    private RenderFeatures(int value) {
+    RenderFeatures(int value) {
       this.value = value;
     }
 
@@ -167,11 +163,7 @@ public final class PlaylistAnnotate3 {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         AbuseReportState> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<AbuseReportState>() {
-            public AbuseReportState findValueByNumber(int number) {
-              return AbuseReportState.forNumber(number);
-            }
-          };
+            AbuseReportState::forNumber;
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -181,7 +173,7 @@ public final class PlaylistAnnotate3 {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    public static com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.getDescriptor().getEnumTypes().get(1);
     }
@@ -199,7 +191,7 @@ public final class PlaylistAnnotate3 {
 
     private final int value;
 
-    private AbuseReportState(int value) {
+    AbuseReportState(int value) {
       this.value = value;
     }
 
@@ -245,11 +237,11 @@ public final class PlaylistAnnotate3 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TakedownRequest_descriptor;
     }
@@ -277,7 +269,6 @@ public final class PlaylistAnnotate3 {
      * @return The abuseReportState.
      */
     public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
     }
@@ -369,8 +360,7 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.TakedownRequest}
@@ -379,7 +369,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.TakedownRequest)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TakedownRequest_descriptor;
       }
@@ -403,9 +393,6 @@ public final class PlaylistAnnotate3 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -496,7 +483,6 @@ public final class PlaylistAnnotate3 {
        * @return The abuseReportState.
        */
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
       }
@@ -525,13 +511,13 @@ public final class PlaylistAnnotate3 {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -650,11 +636,11 @@ public final class PlaylistAnnotate3 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_AnnotateRequest_descriptor;
     }
@@ -845,8 +831,7 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.AnnotateRequest}
@@ -855,7 +840,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.AnnotateRequest)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_AnnotateRequest_descriptor;
       }
@@ -879,9 +864,6 @@ public final class PlaylistAnnotate3 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1133,13 +1115,13 @@ public final class PlaylistAnnotate3 {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1258,11 +1240,11 @@ public final class PlaylistAnnotate3 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TranscodedPicture_descriptor;
     }
@@ -1453,8 +1435,7 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.TranscodedPicture}
@@ -1463,7 +1444,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.TranscodedPicture)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TranscodedPicture_descriptor;
       }
@@ -1487,9 +1468,6 @@ public final class PlaylistAnnotate3 {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1741,13 +1719,13 @@ public final class PlaylistAnnotate3 {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1927,11 +1905,11 @@ public final class PlaylistAnnotate3 {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_PlaylistAnnotation_descriptor;
     }
@@ -2049,7 +2027,6 @@ public final class PlaylistAnnotate3 {
      * @return The deprecatedRenderFeatures.
      */
     @java.lang.Deprecated public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures getDeprecatedRenderFeatures() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.valueOf(deprecatedRenderFeatures_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.NORMAL_FEATURES : result;
     }
@@ -2120,7 +2097,6 @@ public final class PlaylistAnnotate3 {
      * @return The abuseReportState.
      */
     public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-      @SuppressWarnings("deprecation")
       com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
     }
@@ -2212,8 +2188,7 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.PlaylistAnnotation}
@@ -2222,7 +2197,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.PlaylistAnnotation)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotationOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_PlaylistAnnotation_descriptor;
       }
@@ -2547,7 +2522,6 @@ public final class PlaylistAnnotate3 {
        * @return The deprecatedRenderFeatures.
        */
       @java.lang.Deprecated public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures getDeprecatedRenderFeatures() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.valueOf(deprecatedRenderFeatures_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.NORMAL_FEATURES : result;
       }
@@ -2579,8 +2553,8 @@ public final class PlaylistAnnotate3 {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture> transcodedPicture_ =
         java.util.Collections.emptyList();
       private void ensureTranscodedPictureIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          transcodedPicture_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture>(transcodedPicture_);
+        if ((bitField0_ & 0x00000008) == 0) {
+          transcodedPicture_ = new java.util.ArrayList<>(transcodedPicture_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -2805,8 +2779,7 @@ public final class PlaylistAnnotate3 {
           com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture.Builder, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder> 
           getTranscodedPictureFieldBuilder() {
         if (transcodedPictureBuilder_ == null) {
-          transcodedPictureBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture.Builder, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder>(
+          transcodedPictureBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                   transcodedPicture_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -2866,7 +2839,6 @@ public final class PlaylistAnnotate3 {
        * @return The abuseReportState.
        */
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-        @SuppressWarnings("deprecation")
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
       }
@@ -2895,13 +2867,13 @@ public final class PlaylistAnnotate3 {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2982,7 +2954,7 @@ public final class PlaylistAnnotate3 {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

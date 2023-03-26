@@ -123,11 +123,11 @@ public final class ContextTrackOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.internal_static_spotify_player_proto_ContextTrack_descriptor;
     }
@@ -136,13 +136,11 @@ public final class ContextTrackOuterClass {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      switch (number) {
-        case 4:
-          return internalGetMetadata();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
+        if (number == 4) {
+            return internalGetMetadata();
+        }
+        throw new RuntimeException(
+                "Invalid map field number: " + number);
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -265,7 +263,7 @@ public final class ContextTrackOuterClass {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
+              .newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.internal_static_spotify_player_proto_ContextTrack_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
@@ -319,7 +317,7 @@ public final class ContextTrackOuterClass {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+      return map.getOrDefault(key, defaultValue);
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
@@ -423,8 +421,7 @@ public final class ContextTrackOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextTrack}
@@ -433,7 +430,7 @@ public final class ContextTrackOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextTrack)
         com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.internal_static_spotify_player_proto_ContextTrack_descriptor;
       }
@@ -441,24 +438,20 @@ public final class ContextTrackOuterClass {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        switch (number) {
-          case 4:
-            return internalGetMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
+          if (number == 4) {
+              return internalGetMetadata();
+          }
+          throw new RuntimeException(
+                  "Invalid map field number: " + number);
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        switch (number) {
-          case 4:
-            return internalGetMutableMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
+          if (number == 4) {
+              return internalGetMutableMetadata();
+          }
+          throw new RuntimeException(
+                  "Invalid map field number: " + number);
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -479,9 +472,6 @@ public final class ContextTrackOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -794,7 +784,7 @@ public final class ContextTrackOuterClass {
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
       internalGetMutableMetadata() {
-        onChanged();;
+        onChanged();
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -841,7 +831,7 @@ public final class ContextTrackOuterClass {
         if (key == null) { throw new java.lang.NullPointerException(); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
+        return map.getOrDefault(key, defaultValue);
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
@@ -905,13 +895,13 @@ public final class ContextTrackOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -982,7 +972,7 @@ public final class ContextTrackOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {

@@ -587,11 +587,11 @@ public final class RestrictionsOuterClass {
     }
 
     @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
+    public com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
+    public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.internal_static_spotify_player_proto_Restrictions_descriptor;
     }
@@ -1426,8 +1426,7 @@ public final class RestrictionsOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
+        return new Builder(parent);
     }
     /**
      * Protobuf type {@code spotify.player.proto.Restrictions}
@@ -1436,7 +1435,7 @@ public final class RestrictionsOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.Restrictions)
            com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.RestrictionsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
+      public static com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.internal_static_spotify_player_proto_Restrictions_descriptor;
       }
@@ -1460,9 +1459,6 @@ public final class RestrictionsOuterClass {
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -1680,8 +1676,9 @@ public final class RestrictionsOuterClass {
       private int bitField0_;
 
       private com.google.protobuf.LazyStringList disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowPausingReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if ((bitField0_ & 0x00000001) == 0) {
           disallowPausingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPausingReasons_);
           bitField0_ |= 0x00000001;
          }
@@ -1789,8 +1786,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowResumingReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
+        if ((bitField0_ & 0x00000002) == 0) {
           disallowResumingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowResumingReasons_);
           bitField0_ |= 0x00000002;
          }
@@ -1898,8 +1896,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowSeekingReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+        if ((bitField0_ & 0x00000004) == 0) {
           disallowSeekingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSeekingReasons_);
           bitField0_ |= 0x00000004;
          }
@@ -2007,8 +2006,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowPeekingPrevReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
+        if ((bitField0_ & 0x00000008) == 0) {
           disallowPeekingPrevReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPeekingPrevReasons_);
           bitField0_ |= 0x00000008;
          }
@@ -2116,8 +2116,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowPeekingNextReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
+        if ((bitField0_ & 0x00000010) == 0) {
           disallowPeekingNextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPeekingNextReasons_);
           bitField0_ |= 0x00000010;
          }
@@ -2225,8 +2226,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowSkippingPrevReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000020) != 0)) {
+        if ((bitField0_ & 0x00000020) == 0) {
           disallowSkippingPrevReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSkippingPrevReasons_);
           bitField0_ |= 0x00000020;
          }
@@ -2334,8 +2336,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowSkippingNextReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000040) != 0)) {
+        if ((bitField0_ & 0x00000040) == 0) {
           disallowSkippingNextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSkippingNextReasons_);
           bitField0_ |= 0x00000040;
          }
@@ -2443,8 +2446,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowTogglingRepeatContextReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000080) != 0)) {
+        if ((bitField0_ & 0x00000080) == 0) {
           disallowTogglingRepeatContextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingRepeatContextReasons_);
           bitField0_ |= 0x00000080;
          }
@@ -2552,8 +2556,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowTogglingRepeatTrackReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000100) != 0)) {
+        if ((bitField0_ & 0x00000100) == 0) {
           disallowTogglingRepeatTrackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingRepeatTrackReasons_);
           bitField0_ |= 0x00000100;
          }
@@ -2661,8 +2666,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowTogglingShuffleReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000200) != 0)) {
+        if ((bitField0_ & 0x00000200) == 0) {
           disallowTogglingShuffleReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingShuffleReasons_);
           bitField0_ |= 0x00000200;
          }
@@ -2770,8 +2776,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowSetQueueReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000400) != 0)) {
+        if ((bitField0_ & 0x00000400) == 0) {
           disallowSetQueueReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSetQueueReasons_);
           bitField0_ |= 0x00000400;
          }
@@ -2879,8 +2886,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowInterruptingPlaybackReasonsIsMutable() {
-        if (!((bitField0_ & 0x00000800) != 0)) {
+        if ((bitField0_ & 0x00000800) == 0) {
           disallowInterruptingPlaybackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInterruptingPlaybackReasons_);
           bitField0_ |= 0x00000800;
          }
@@ -2988,8 +2996,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowTransferringPlaybackReasonsIsMutable() {
-        if (!((bitField0_ & 0x00001000) != 0)) {
+        if ((bitField0_ & 0x00001000) == 0) {
           disallowTransferringPlaybackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTransferringPlaybackReasons_);
           bitField0_ |= 0x00001000;
          }
@@ -3097,8 +3106,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowRemoteControlReasonsIsMutable() {
-        if (!((bitField0_ & 0x00002000) != 0)) {
+        if ((bitField0_ & 0x00002000) == 0) {
           disallowRemoteControlReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemoteControlReasons_);
           bitField0_ |= 0x00002000;
          }
@@ -3206,8 +3216,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowInsertingIntoNextTracksReasonsIsMutable() {
-        if (!((bitField0_ & 0x00004000) != 0)) {
+        if ((bitField0_ & 0x00004000) == 0) {
           disallowInsertingIntoNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInsertingIntoNextTracksReasons_);
           bitField0_ |= 0x00004000;
          }
@@ -3315,8 +3326,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowInsertingIntoContextTracksReasonsIsMutable() {
-        if (!((bitField0_ & 0x00008000) != 0)) {
+        if ((bitField0_ & 0x00008000) == 0) {
           disallowInsertingIntoContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInsertingIntoContextTracksReasons_);
           bitField0_ |= 0x00008000;
          }
@@ -3424,8 +3436,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowReorderingInNextTracksReasonsIsMutable() {
-        if (!((bitField0_ & 0x00010000) != 0)) {
+        if ((bitField0_ & 0x00010000) == 0) {
           disallowReorderingInNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReorderingInNextTracksReasons_);
           bitField0_ |= 0x00010000;
          }
@@ -3533,8 +3546,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowReorderingInContextTracksReasonsIsMutable() {
-        if (!((bitField0_ & 0x00020000) != 0)) {
+        if ((bitField0_ & 0x00020000) == 0) {
           disallowReorderingInContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReorderingInContextTracksReasons_);
           bitField0_ |= 0x00020000;
          }
@@ -3642,8 +3656,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowRemovingFromNextTracksReasonsIsMutable() {
-        if (!((bitField0_ & 0x00040000) != 0)) {
+        if ((bitField0_ & 0x00040000) == 0) {
           disallowRemovingFromNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemovingFromNextTracksReasons_);
           bitField0_ |= 0x00040000;
          }
@@ -3751,8 +3766,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowRemovingFromContextTracksReasonsIsMutable() {
-        if (!((bitField0_ & 0x00080000) != 0)) {
+        if ((bitField0_ & 0x00080000) == 0) {
           disallowRemovingFromContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemovingFromContextTracksReasons_);
           bitField0_ |= 0x00080000;
          }
@@ -3860,8 +3876,9 @@ public final class RestrictionsOuterClass {
       }
 
       private com.google.protobuf.LazyStringList disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
       private void ensureDisallowUpdatingContextReasonsIsMutable() {
-        if (!((bitField0_ & 0x00100000) != 0)) {
+        if ((bitField0_ & 0x00100000) == 0) {
           disallowUpdatingContextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowUpdatingContextReasons_);
           bitField0_ |= 0x00100000;
          }
@@ -3968,13 +3985,13 @@ public final class RestrictionsOuterClass {
         return this;
       }
       @java.lang.Override
-      public final Builder setUnknownFields(
+      public Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public final Builder mergeUnknownFields(
+      public Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4040,7 +4057,7 @@ public final class RestrictionsOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -4058,7 +4075,7 @@ public final class RestrictionsOuterClass {
       "shuffle_reasons\030\n \003(\t\022\"\n\032disallow_set_qu" +
       "eue_reasons\030\013 \003(\t\022.\n&disallow_interrupti" +
       "ng_playback_reasons\030\014 \003(\t\022.\n&disallow_tr" +
-      "ansferring_playback_reasons\030\r \003(\t\022\'\n\037dis" +
+              "ansferring_playback_reasons\030\r \003(\t\022'\n\037dis" +
       "allow_remote_control_reasons\030\016 \003(\t\0223\n+di" +
       "sallow_inserting_into_next_tracks_reason" +
       "s\030\017 \003(\t\0226\n.disallow_inserting_into_conte" +

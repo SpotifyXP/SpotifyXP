@@ -62,15 +62,6 @@ public class ContentPanel extends JPanel {
     public static JTable playlistsplayliststable;
     public static JTable playlistssongtable;
     public static JTextField feedbackupdaterversionfield;
-    public static JMenu file;
-    public static JMenu settings;
-    public static JMenu help;
-    public static JMenuItem connect;
-    public static JMenuItem disconnect;
-    public static JSeparator filemenuseparator;
-    public static JMenuItem exit;
-    public static JMenuItem configuration;
-    public static JMenuItem about;
     public static EnginePanel playerarea;
     public static JImagePanel playerimage;
     public static JLabel playertitle;
@@ -167,12 +158,6 @@ public class ContentPanel extends JPanel {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
-        file = new JMenu(l.translate("ui.menu.file"));
-        settings = new JMenu(l.translate("ui.menu.settings"));
-        help = new JMenu(l.translate("ui.menu.help"));
-        help.setHorizontalAlignment(SwingConstants.LEFT);
-
-
         settingsbutton = new JImagePanel();
         settingsbutton.setBounds(669, 11, 23, 23);
         add(settingsbutton);
@@ -225,12 +210,12 @@ public class ContentPanel extends JPanel {
         add(userbutton);
 
         userdropdown = new DropDownMenu(userbutton, false);
-        userdropdown.addItem("Logout", new Runnable() {
+        userdropdown.addItem(PublicValues.language.translate("ui.menu.logout"), new Runnable() {
             @Override
             public void run() {
                 PublicValues.config.write(ConfigValues.username.name, "");
                 PublicValues.config.write(ConfigValues.password.name, "");
-                JOptionPane.showConfirmDialog(null, "SpotifyXP now exits. On the next start you must enter your email and password", "Info", JOptionPane.OK_CANCEL_OPTION);
+                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
                 System.exit(0);
             }
         });
@@ -240,7 +225,7 @@ public class ContentPanel extends JPanel {
         add(threepointbutton);
 
         threepointdropdown = new DropDownMenu(threepointbutton, false);
-        threepointdropdown.addItem("About SpotifyXP", new Runnable() {
+        threepointdropdown.addItem(PublicValues.language.translate("ui.menu.help.about"), new Runnable() {
             @Override
             public void run() {
                 HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
@@ -287,7 +272,7 @@ public class ContentPanel extends JPanel {
                 });
             }
         });
-        threepointdropdown.addItem("Close SpotifyXP", new Runnable() {
+        threepointdropdown.addItem(PublicValues.language.translate("ui.menu.file.exit"), new Runnable() {
             @Override
             public void run() {
                 System.exit(0);
@@ -308,30 +293,6 @@ public class ContentPanel extends JPanel {
                 break;
         }
 
-        connect = new JMenuItem(l.translate("ui.menu.file.connect"));
-        connect.setHorizontalAlignment(SwingConstants.LEFT);
-        file.add(connect);
-
-        disconnect = new JMenuItem(l.translate("ui.menu.file.disconnect"));
-        disconnect.setHorizontalAlignment(SwingConstants.LEFT);
-        file.add(disconnect);
-
-        filemenuseparator = new JSeparator();
-        file.add(filemenuseparator);
-
-        exit = new JMenuItem(l.translate("ui.menu.file.exit"));
-        file.add(exit);
-        //menuBar.add(settings);
-
-        configuration = new JMenuItem(l.translate("ui.menu.settings.configuration"));
-        configuration.setHorizontalAlignment(SwingConstants.CENTER);
-        settings.add(configuration);
-        //menuBar.add(help);
-
-        about = new JMenuItem(l.translate("ui.menu.help.about"));
-        help.add(about);
-        //add(menuBar);
-
         playerarea = new EnginePanel();
         if(PublicValues.theme == Theme.LIGHT) {
             playerarea.setBorder(new LineBorder(Color.black));
@@ -345,6 +306,8 @@ public class ContentPanel extends JPanel {
         playerimage = new JImagePanel();
         playerimage.setBounds(10, 11, 78, 78);
         playerarea.add(playerimage);
+
+        playerimage.setImage(new Resources().readToInputStream("icons/nothingplaying.png"));
 
         playerareavolumeicon = new JImagePanel();
         playerareavolumeicon.setBounds(306, 75, 14, 14);
@@ -472,12 +435,12 @@ public class ContentPanel extends JPanel {
         playercurrenttime.setBounds(306, 54, 200, 13);
         playerarea.add(playercurrenttime);
 
-        playerplaytime = new JLabel("00:00:00");
+        playerplaytime = new JLabel("00:00");
         playerplaytime.setHorizontalAlignment(SwingConstants.RIGHT);
         playerplaytime.setBounds(244, 54, 57, 14);
         playerarea.add(playerplaytime);
 
-        playerplaytimetotal = new JLabel("00:00:00");
+        playerplaytimetotal = new JLabel("00:00");
         playerplaytimetotal.setBounds(506, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
 
@@ -615,7 +578,7 @@ public class ContentPanel extends JPanel {
         hotlistsonglistpanel.add(hotslistsongscrollpanel);
 
         ContextMenu hotlistplaylistspanelrightclickmenu = new ContextMenu(hotlistplayliststable);
-        hotlistplaylistspanelrightclickmenu.addItem("Refresh", new Runnable() {
+        hotlistplaylistspanelrightclickmenu.addItem(PublicValues.language.translate("ui.general.refresh"), new Runnable() {
             @Override
             public void run() {
                 hotlistplaylistlistcache.clear();
@@ -831,7 +794,7 @@ public class ContentPanel extends JPanel {
         });
 
         ContextMenu menu = new ContextMenu(playlistsplayliststable);
-        menu.addItem("Remove Playlist", new Runnable() {
+        menu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), new Runnable() {
             @Override
             public void run() {
                 api.getSpotifyApi().unfollowPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]);
@@ -840,7 +803,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        menu.addItem("Copy URI", new Runnable() {
+        menu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), new Runnable() {
             @Override
             public void run() {
                 Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -924,7 +887,7 @@ public class ContentPanel extends JPanel {
         try {
             fetchHotlist();
         }catch (RuntimeException exc) {
-            JOptionPane.showConfirmDialog(frame, "Something went wrong", "JSON Exception", JOptionPane.OK_CANCEL_OPTION); //ToDo: Translate
+            JOptionPane.showConfirmDialog(frame, PublicValues.language.translate("ui.error.critical"), PublicValues.language.translate("ui.error.critical.title"), JOptionPane.OK_CANCEL_OPTION);
         }
 
         playlistsbutton.addActionListener(new ActionListener() {
@@ -1210,65 +1173,6 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-        connect.setVisible(false);
-        disconnect.setVisible(false);
-        filemenuseparator.setVisible(false);
-
-        about.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
-                    @Override
-                    public void log(String s) {
-
-                    }
-
-                    @Override
-                    public void err(String s) {
-
-                    }
-
-                    @Override
-                    public void info(String s) {
-
-                    }
-
-                    @Override
-                    public void crit(String s) {
-
-                    }
-                });
-                dialog.getDialog().setPreferredSize(new Dimension(400, 500));
-                try {
-                    String out = new Resources().readToString("about.html");
-                    StringBuilder cache = new StringBuilder();
-                    for(String s : out.split("\n")) {
-                        if(s.contains("(TRANSLATE)")) {
-                            s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
-                            s = s.replace("(TRANSLATE)", "");
-                        }
-                        cache.append(s);
-                    }
-                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), cache.toString());
-                } catch (Exception ex) {
-                    ConsoleLogging.Throwable(ex);
-                }
-                dialog.getDialog().addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        dialog.getDialog().dispose();
-                    }
-                });
-            }
-        });
-
         searchscrollpanel = new JScrollPane();
         searchscrollpanel.setBounds(0, 139, 784, 282);
         searchpane.add(searchscrollpanel);
@@ -1290,7 +1194,7 @@ public class ContentPanel extends JPanel {
                         if(player.getPlayer().isReady()) {
                             player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
                         }else{
-                            JOptionPane.showConfirmDialog(frame, "An error has occured! Please restart the application", "Critical", JOptionPane.OK_CANCEL_OPTION);
+                            JOptionPane.showConfirmDialog(frame, PublicValues.language.translate("ui.error.critical2.text"), PublicValues.language.translate("ui.error.critical2.title"), JOptionPane.OK_CANCEL_OPTION);
                         }
                     }
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
@@ -1372,7 +1276,7 @@ public class ContentPanel extends JPanel {
             }
         });
         ContextMenu searchcontextmenu = new ContextMenu(searchsonglist);
-        searchcontextmenu.addItem("Add to library", new Runnable() {
+        searchcontextmenu.addItem(PublicValues.language.translate("ui.general.addtolibrary"), new Runnable() {
             @Override
             public void run() {
                 heart.isFilled = true;
@@ -1383,20 +1287,28 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        searchcontextmenu.addItem("Copy URI", new Runnable() {
+        searchcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
             @Override
             public void run() {
                 ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow()));
             }
         });
         ContextMenu librarymenu = new ContextMenu(librarysonglist);
-        librarymenu.addItem("Copy URI", new Runnable() {
+        librarymenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
             @Override
             public void run() {
                 ClipboardUtil.set(libraryuricache.get(librarysonglist.getSelectedRow()));
             }
         });
-        librarymenu.addItem("Remove", new Runnable() {
+        librarymenu.addItem(PublicValues.language.translate("ui.general.refresh"), new Runnable() {
+            @Override
+            public void run() {
+                libraryuricache.clear();
+                librarysonglist.removeAll();
+                thread.start();
+            }
+        });
+        librarymenu.addItem(PublicValues.language.translate("ui.general.remove"), new Runnable() {
             @Override
             public void run() {
                 PublicValues.elevated.makeDelete("https://api.spotify.com/v1/me/tracks?ids=" + libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);
