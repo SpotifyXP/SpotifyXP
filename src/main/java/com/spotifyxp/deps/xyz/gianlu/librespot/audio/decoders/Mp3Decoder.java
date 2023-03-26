@@ -16,7 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
-import javazoom.jl.decoder.*;
+
+import com.spotifyxp.deps.javazoom.jl.decoder.*;
 import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
@@ -125,6 +126,8 @@ public final class Mp3Decoder extends Decoder {
             sampleRate = header.getSampleRate();
             bitstream.unreadFrame();
 
+
+
             outputBuffer.setReplayGainScale(normalisationPregain);
         }
 
@@ -147,9 +150,13 @@ public final class Mp3Decoder extends Decoder {
 
                 try {
                     decoder.decodeFrame(header, bitstream);
-                } catch (javazoom.jl.decoder.DecoderException ex) {
+                } catch (com.spotifyxp.deps.javazoom.jl.decoder.DecoderException ex) {
                     throw new IOException(ex);
                 }
+
+                //Here
+
+                //---
 
                 bitstream.closeFrame();
                 int bytesRead = outputBuffer.reset();

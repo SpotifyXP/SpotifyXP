@@ -75,11 +75,6 @@
             <version>0.0.17</version>
         </dependency>
         <dependency>
-            <groupId>com.badlogicgames.jlayer</groupId>
-            <artifactId>jlayer</artifactId>
-            <version>1.0.2-gdx</version>
-        </dependency>
-        <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>3.22.2</version>

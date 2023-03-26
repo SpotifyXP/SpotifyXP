@@ -10,7 +10,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="jlayer" target="1.5" />
+      <module name="httpclient5" target="1.8" />
+      <module name="httpclient5-cache" target="1.8" />
+      <module name="httpclient5-fluent" target="1.8" />
+      <module name="httpclient5-parent" target="1.8" />
+      <module name="httpclient5-testing" target="1.8" />
+      <module name="httpclient5-win" target="1.8" />
+      <module name="jlayer" target="1.6" />
       <module name="libEvents" target="1.8" />
       <module name="librespot-api" target="1.8" />
       <module name="librespot-dacp" target="1.8" />
@@ -20,7 +26,13 @@
       <module name="librespot-player" target="1.8" />
       <module name="librespot-sink" target="1.8" />
       <module name="librespot-sink-api" target="1.8" />
+      <module name="org.jfree.svg" target="11" />
       <module name="spotify-web-api-java" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="org.jfree.svg" options="-Xlint:unchecked" />
+    </option>
   </component>
 </project>

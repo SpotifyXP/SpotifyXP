@@ -5,6 +5,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/jlayer-gdx-master/pom.xml" />
+        <option value="$PROJECT_DIR$/httpcomponents-client-master/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -16,6 +18,9 @@
         <option value="$PROJECT_DIR$/deps/librespot-java/player/pom.xml" />
         <option value="$PROJECT_DIR$/deps/librespot-java/sink-api/pom.xml" />
         <option value="$PROJECT_DIR$/deps/librespot-java/sink/pom.xml" />
+        <option value="$PROJECT_DIR$/httpcomponents-client-master/httpclient5-testing/pom.xml" />
+        <option value="$PROJECT_DIR$/httpcomponents-client-master/httpclient5/pom.xml" />
+        <option value="$PROJECT_DIR$/httpcomponents-client-master/pom.xml" />
       </set>
     </option>
   </component>

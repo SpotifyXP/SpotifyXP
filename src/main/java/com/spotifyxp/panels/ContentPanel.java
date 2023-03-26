@@ -13,6 +13,7 @@ import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.DropDownMenu;
+import com.spotifyxp.swingextension.JImageButton;
 import com.spotifyxp.threading.StoppableThread;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
@@ -66,9 +67,9 @@ public class ContentPanel extends JPanel {
     public static JImagePanel playerimage;
     public static JLabel playertitle;
     public static JLabel playerdescription;
-    public static JButton playerplaypreviousbutton;
-    public static JButton playerplaypausebutton;
-    public static JButton playerplaynextbutton;
+    public static JImageButton playerplaypreviousbutton;
+    public static JImageButton playerplaypausebutton;
+    public static JImageButton playerplaynextbutton;
     public static JSlider playercurrenttime;
     public static JLabel playerplaytime;
     public static JLabel playerplaytimetotal;
@@ -413,11 +414,11 @@ public class ContentPanel extends JPanel {
 
         playerarea.setDebug(true);
 
-        playerplaypreviousbutton = new JButton(l.translate("ui.player.playprevious"));
+        playerplaypreviousbutton = new JImageButton();
         playerplaypreviousbutton.setBounds(287, 11, 70, 36);
         playerarea.add(playerplaypreviousbutton);
 
-        playerplaypausebutton = new JButton(l.translate("ui.player.playpause"));
+        playerplaypausebutton = new JImageButton();
         playerplaypausebutton.setBounds(369, 11, 69, 36);
         playerplaypausebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -426,7 +427,7 @@ public class ContentPanel extends JPanel {
         });
         playerarea.add(playerplaypausebutton);
 
-        playerplaynextbutton = new JButton(l.translate("ui.player.playnext"));
+        playerplaynextbutton = new JImageButton();
         playerplaynextbutton.setBounds(448, 11, 69, 36);
         playerarea.add(playerplaynextbutton);
 
@@ -443,6 +444,20 @@ public class ContentPanel extends JPanel {
         playerplaytimetotal = new JLabel("00:00");
         playerplaytimetotal.setBounds(506, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
+
+        switch (PublicValues.theme) {
+            case DARK:
+                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviouswhite.png"));
+                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.png"));
+                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextwhite.png"));
+                break;
+            case LIGHT:
+                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviousdark.png"));
+                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
+                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.png"));
+                break;
+        }
+
 
         heart = new JImagePanel();
         heart.setBounds(525, 20, 24, 24);

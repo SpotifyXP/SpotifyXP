@@ -21,6 +21,22 @@
     <file url="file://$PROJECT_DIR$/deps/librespot-java/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/deps/spotify-web-api-java/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/deps/spotify-web-api-java/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-cache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-fluent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-fluent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-testing/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-testing/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-win/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5-win/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/httpclient5/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/httpcomponents-client-master/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jfreesvg-master/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jfreesvg-master/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jlayer-gdx-master/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jlayer-gdx-master/src" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
