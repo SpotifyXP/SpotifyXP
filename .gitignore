@@ -1,5 +1,9 @@
 /cache/
 /out/
+/scripts/bin/git
+/scripts/bin/jdk
+/scripts/bin/maven
+/scripts/bin/bin.zip
 /target/
 /build/
 X
