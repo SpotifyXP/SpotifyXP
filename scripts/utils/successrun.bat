@@ -1,5 +1,6 @@
 CALL :color 0A "Build successfull! You can find it in the 'build' folder"
 DEL X
+"%cd%\scripts\bin\jdk\bin\java.exe" -jar "%cd%\build\SpotifyXP.jar"
 EXIT /B
 
 :color

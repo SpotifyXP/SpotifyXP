@@ -1,3 +1,6 @@
+IF NOT EXIST "%cd%\scripts\bin\maven\" GOTO UNZIP
+
+:start
 set JAVA_HOME=%cd%\scripts\bin\jdk
 cd %JAVA_HOME%
 for /r %%x in (*.pack) do .\bin\unpack200 -r "%%x" "%%~dx%%~px%%~nx.jar"
@@ -26,7 +29,14 @@ IF EXIST "%cd%\target\SpotifyXP.jar" copy /y "%cd%\target\SpotifyXP.jar" "%cd%\b
 
 IF NOT EXIST "%cd%\build\SpotifyXP.jar" "%cd%\scripts\utils\failed.bat"
 
-"%cd%\scripts\utils\success.bat" "run"
+"%cd%\scripts\utils\successrun.bat"
+
+:UNZIP
+echo Downloading and unzipping the file
+"%cd%\scripts\wget.exe" http://werwolf2303.de/SpotifyXP/bin.zip -P "%cd%\scripts\bin"
+REM Unzip
+"%cd%\scripts\zipworker.vbs" "%cd%\scripts\bin\bin.zip" %cd%\scripts\bin"
+GOTO start
 
 :color
 set "param=^%~2" !
