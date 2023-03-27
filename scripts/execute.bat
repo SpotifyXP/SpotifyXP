@@ -1,3 +1,4 @@
+IF NOT EXIST "%cd%/scripts/bin/" MKDIR "%cd%/scripts/bin"
 IF %1 == "--refresh-nightly" "%cd%/scripts/utils/reporefresh.bat"
 IF %1 == "--build" "%cd%/scripts/build.bat"
 IF %1 == "--buildandrun" "%cd%/scripts/buildandrun.bat"
