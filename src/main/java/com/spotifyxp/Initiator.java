@@ -37,7 +37,7 @@ public class Initiator {
         }
         if(args.length>0) {
             if(args[0].equals("--debug")) {
-                PublicValues.debug = true;
+                //PublicValues.debug = true;
             }
         }
         PublicValues.logger.setColored(false);

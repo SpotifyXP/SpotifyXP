@@ -132,6 +132,7 @@ public class ContentPanel extends JPanel {
     public static DefaultListModel<String> queuelistmodel = new DefaultListModel<>();
     public static ArrayList<String> playlistsuricache = new ArrayList<>();
     public static ArrayList<String> playlistssonguricache = new ArrayList<>();
+    public static ArrayList<String> searchplaylistsongscache = new ArrayList<>();
     public static JImagePanel userbutton;
     public static JImagePanel settingsbutton;
     public static JImagePanel threepointbutton;
@@ -140,6 +141,15 @@ public class ContentPanel extends JPanel {
     public static JImagePanel playerareavolumeicon;
     public static JSlider playerareavolumeslider;
     public static JLabel playerareavolumecurrent;
+    public static JPanel searchplaylistpanel;
+    public static JButton searchbackbutton;
+    public static JTable searchplaylisttable;
+    public static JRadioButton searchfilterplaylist;
+    public static JRadioButton searchfilteralbum;
+    public static JRadioButton searchfiltershow;
+    public static JRadioButton searchfiltertrack;
+    public static JScrollPane searchplaylistscrollpanel;
+    public static JRadioButton searchfilterartist;
     enum LastTypes {
         Playlists,
         Library,
@@ -851,13 +861,7 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
                     player.getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, false);
-                    try {
-                        for(PlaylistTrack track : api.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getItems()) {
-                            player.getPlayer().addToQueue(track.getTrack().getUri());
-                        }
-                    } catch (IOException | SpotifyWebApiException | ParseException ignored) {
-
-                    }
+                    TrackUtils.addAllToQueue(playlistssonguricache, playlistssongtable);
                 }
             }
         });
@@ -873,9 +877,7 @@ public class ContentPanel extends JPanel {
                 if(e.getClickCount()==2) {
                     //player.getPlayer().tracks(true).next.clear();
                     player.getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, false);
-                    for(String s : hotlistsonglistcache.subList(0, hotlistsongstable.getSelectedRow())) {
-                        player.getPlayer().addToQueue(s);
-                    }
+                    TrackUtils.addAllToQueue(hotlistsonglistcache, hotlistsongstable);
                 }
             }
         });
@@ -1040,7 +1042,12 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        libraryplaybutton.setEnabled(false);
+        librarybutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TrackUtils.addAllToQueue(libraryuricache, librarysonglist);
+            }
+        });
         libraryshufflebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1069,6 +1076,13 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
                     player.getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, false);
+                    StoppableThread thread1 = new StoppableThread(new StoppableThreadRunnable() {
+                        @Override
+                        public void run(int counter) {
+                            TrackUtils.addAllToQueue(libraryuricache, librarysonglist);
+                        }
+                    }, false);
+                    thread1.start();
                 }
             }
         });
@@ -1110,10 +1124,30 @@ public class ContentPanel extends JPanel {
         searchsearchfieldspanel.add(searchartistfield);
         searchartistfield.setColumns(10);
 
+        searchartistfield.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+                    searchfinditbutton.doClick();
+                }
+            }
+        });
+
         searchsongtitlefield = new JTextField();
         searchsongtitlefield.setColumns(10);
         searchsongtitlefield.setBounds(86, 59, 356, 20);
         searchsearchfieldspanel.add(searchsongtitlefield);
+
+        searchsongtitlefield.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+                    searchfinditbutton.doClick();
+                }
+            }
+        });
 
         searchsearchfilterpanel = new JPanel();
         searchsearchfilterpanel.setLayout(null);
@@ -1124,6 +1158,79 @@ public class ContentPanel extends JPanel {
         searchfilterexcludeexplicit = new JRadioButton(l.translate("ui.search.searchfield.filters.excludeexplicit"));
         searchfilterexcludeexplicit.setBounds(6, 24, 130, 23);
         searchsearchfilterpanel.add(searchfilterexcludeexplicit);
+
+        searchfilterartist = new JRadioButton("Search Artists");
+        searchfilterartist.setBounds(160, 23, 130, 23);
+        searchsearchfilterpanel.add(searchfilterartist);
+
+        searchfiltertrack = new JRadioButton("Search Tracks");
+        searchfiltertrack.setBounds(6, 50, 130, 23);
+        searchsearchfilterpanel.add(searchfiltertrack);
+
+        searchfiltertrack.setSelected(true);
+
+        searchfilteralbum = new JRadioButton("Search Albums");
+        searchfilteralbum.setBounds(160, 50, 130, 23);
+        searchsearchfilterpanel.add(searchfilteralbum);
+
+        searchfilterplaylist = new JRadioButton("Search Playlists");
+        searchfilterplaylist.setBounds(6, 75, 130, 23);
+        searchsearchfilterpanel.add(searchfilterplaylist);
+
+        searchfiltershow = new JRadioButton("Search Shows");
+        searchfiltershow.setBounds(160, 75, 130, 23);
+        searchsearchfilterpanel.add(searchfiltershow);
+
+        searchfilterartist.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfilteralbum.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfilteralbum.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfilterplaylist.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfilteralbum.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfiltershow.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfilteralbum.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfiltertrack.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                searchfilteralbum.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
 
         playerplaynextbutton.addActionListener(new ActionListener() {
             @Override
@@ -1142,49 +1249,71 @@ public class ContentPanel extends JPanel {
         searchfinditbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean excludeExplicit = searchfilterexcludeexplicit.isSelected();
-                try {
-                    if(searchsongtitlefield.getText().equals("")) {
-                        if(!searchartistfield.getText().equals("")) {
-                            searchsonglistcache.clear();
-                            ((DefaultTableModel)searchsonglist.getModel()).setRowCount(0);
-                            for (Track t : api.getSpotifyApi().searchTracks(searchartistfield.getText()).limit(50).build().execute().getItems()) {
-                                String artists = TrackUtils.getArtists(t.getArtists());
-                                if (excludeExplicit) {
-                                    if (!t.getIsExplicit()) {
+                StoppableThread thread1 = new StoppableThread(new StoppableThreadRunnable() {
+                    @Override
+                    public void run(int counter) {
+                        boolean excludeExplicit = searchfilterexcludeexplicit.isSelected();
+                        String searchartist = searchartistfield.getText();
+                        String searchtitle = searchsongtitlefield.getText();
+                        boolean track = searchfiltertrack.isSelected();
+                        boolean artist = searchfilterartist.isSelected();
+                        boolean album = searchfilteralbum.isSelected();
+                        boolean show = searchfiltershow.isSelected();
+                        boolean playlist = searchfilterplaylist.isSelected();
+                        searchsonglistcache.clear();
+                        ((DefaultTableModel)searchsonglist.getModel()).setRowCount(0);
+                        if(searchtitle.equals("")) {
+                            return;
+                        }
+                        try {
+                            if(track) {
+                                for (Track t : api.getSpotifyApi().searchTracks(searchtitle + " " + searchartist).limit(50).build().execute().getItems()) {
+                                    String artists = TrackUtils.getArtists(t.getArtists());
+                                    if (excludeExplicit) {
+                                        if (!t.getIsExplicit()) {
+                                            searchsonglistcache.add(t.getUri());
+                                            api.addSongToList(artists, t, searchsonglist);
+                                        }
+                                    } else {
                                         searchsonglistcache.add(t.getUri());
                                         api.addSongToList(artists, t, searchsonglist);
                                     }
-                                } else {
-                                    searchsonglistcache.add(t.getUri());
-                                    api.addSongToList(artists, t, searchsonglist);
                                 }
                             }
-                        }
-                    }else {
-                        searchsonglistcache.clear();
-                        ((DefaultTableModel)searchsonglist.getModel()).setRowCount(0);
-                        for (Track t : api.getSpotifyApi().searchTracks(searchsongtitlefield.getText()).limit(50).build().execute().getItems()) {
-                            String artists = TrackUtils.getArtists(t.getArtists());
-                            if (!searchartistfield.getText().equals("")) {
-                                if (!artists.toLowerCase().contains(searchartistfield.getText().toLowerCase())) {
-                                    continue;
+                            if(artist) {
+                                for(Artist a : api.getSpotifyApi().searchArtists(searchtitle).limit(50).build().execute().getItems()) {
+                                    //ToDo: Implement artist search
                                 }
                             }
-                            if (excludeExplicit) {
-                                if (!t.getIsExplicit()) {
-                                    searchsonglistcache.add(t.getUri());
-                                    api.addSongToList(artists, t, searchsonglist);
+                            if(album) {
+                                for(AlbumSimplified a : api.getSpotifyApi().searchAlbums(searchtitle).limit(50).build().execute().getItems()) {
+                                    //ToDo: Implement album search
                                 }
-                            } else {
-                                searchsonglistcache.add(t.getUri());
-                                api.addSongToList(artists, t, searchsonglist);
                             }
+                            if(show) {
+                                for(ShowSimplified s : api.getSpotifyApi().searchShows(searchtitle).limit(50).build().execute().getItems()) {
+                                    //ToDo: Imlement show search
+                                }
+                            }
+                            if(playlist) {
+                                if(searchartist.equals("")) {
+                                    for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchtitle).limit(50).build().execute().getItems()) {
+                                        searchsonglistcache.add(t.getUri());
+                                        api.addPlaylistToList(t, searchsonglist);
+                                    }
+                                }else{
+                                    for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchartist).limit(50).build().execute().getItems()) {
+                                        searchsonglistcache.add(t.getUri());
+                                        api.addPlaylistToList(t, searchsonglist);
+                                    }
+                                }
+                            }
+                        } catch (IOException | SpotifyWebApiException | ParseException ex) {
+                            ConsoleLogging.Throwable(ex);
                         }
                     }
-                } catch (IOException | SpotifyWebApiException | ParseException ex) {
-                    ConsoleLogging.Throwable(ex);
-                }
+                }, false);
+                thread1.start();
             }
         });
 
@@ -1203,7 +1332,23 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
                     if(player.getPlayer().isReady()) {
-                        player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                        if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("playlist")) {
+                            searchpane.setVisible(false);
+                            searchplaylistpanel.setVisible(true);
+                            searchplaylistsongscache.clear();
+                            ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
+                            try {
+                                Playlist pl = api.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                for(PlaylistTrack track : pl.getTracks().getItems()) {
+                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                    searchplaylistsongscache.add(track.getTrack().getUri());
+                                }
+                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                ConsoleLogging.Throwable(ex);
+                            }
+                        }else {
+                            player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                        }
                     }else{
                         player.retry();
                         if(player.getPlayer().isReady()) {
@@ -1230,6 +1375,67 @@ public class ContentPanel extends JPanel {
         searchsonglist.setFillsViewportHeight(true);
         searchsonglist.setColumnSelectionAllowed(true);
         searchscrollpanel.setViewportView(searchsonglist);
+
+        searchplaylistpanel = new JPanel();
+        searchplaylistpanel.setBounds(0, 0, 784, 421);
+        tabpanel.add(searchplaylistpanel);
+        searchplaylistpanel.setLayout(null);
+
+        searchbackbutton = new JButton("Back");
+        searchbackbutton.setBounds(0, 0, 89, 23);
+        searchplaylistpanel.add(searchbackbutton);
+
+        searchplaylistscrollpanel = new JScrollPane();
+        searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
+        searchplaylistpanel.add(searchplaylistscrollpanel);
+
+        searchplaylisttable = new JTable() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        searchplaylistscrollpanel.setViewportView(searchplaylisttable);
+
+        searchplaylisttable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(e.getClickCount()==2) {
+                    player.getPlayer().load(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()), true, false);
+                    searchplaylisttable.setColumnSelectionInterval(0, searchplaylisttable.getColumnCount() - 1);
+                    TrackUtils.addAllToQueue(searchplaylistsongscache, searchplaylisttable);
+                }
+            }
+        });
+
+        searchplaylisttable.setModel(new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        l.translate("ui.search.songlist.songname"), l.translate("ui.search.songlist.filesize"), l.translate("ui.search.songlist.bitrate"), l.translate("ui.search.songlist.length")
+                }
+        ));
+
+        searchplaylistpanel.setVisible(false);
+
+        ContextMenu searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable);
+        searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
+            @Override
+            public void run() {
+                ClipboardUtil.set(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()));
+            }
+        });
+
+
+
+        searchbackbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchplaylistpanel.setVisible(false);
+                searchpane.setVisible(true);
+            }
+        });
+
         playercurrenttime.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {

@@ -1,6 +1,7 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.*;
@@ -250,5 +251,8 @@ public class SpotifyAPI {
     }
     public void addSongToList(String artists, Track track, JTable table) {
         ((DefaultTableModel) table.getModel()).addRow(new Object[]{track.getName() + " - " + track.getAlbum().getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+    }
+    public void addPlaylistToList(PlaylistSimplified simplified, JTable table) {
+        ((DefaultTableModel) table.getModel()).addRow(new Object[]{simplified.getName() + " - " + simplified.getOwner().getDisplayName()});
     }
 }

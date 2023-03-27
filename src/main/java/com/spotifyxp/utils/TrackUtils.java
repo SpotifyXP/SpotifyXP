@@ -74,6 +74,40 @@ public class TrackUtils {
             return m + ":" + s; //Return as 00:00:00
         }
     }
+    public static void addAllToQueue(ArrayList<String> cache, JTable addintable) {
+        try {
+            ContentPanel.player.getPlayer().tracks(true).next.clear();
+        }catch (NullPointerException exc) {
+            // ToDo: Find the bug (why is this raising a nullpointer exception)
+        }
+        int counter = 0;
+        try {
+            for (String s : cache) {
+                if (!(counter == addintable.getSelectedRow() + 1)) {
+                    counter++;
+                    continue;
+                }
+                if(counter==addintable.getRowCount()) {
+                    break; //User is on the last song
+                }
+                ContentPanel.player.getPlayer().addToQueue(s);
+            }
+        }catch (ArrayIndexOutOfBoundsException exception) {
+            // When this is raised this is a bug
+        } catch (NullPointerException exc) {
+            //ContentPanel.player.getPlayer().load("spotify:track:40aG6sP7TMy3x1J1zGW8su", true, false);
+            for (String s : cache) {
+                if (!(counter == addintable.getSelectedRow() + 1)) {
+                    counter++;
+                    continue;
+                }
+                if(counter==addintable.getRowCount()) {
+                    break; //User is on the last song
+                }
+                ContentPanel.player.getPlayer().addToQueue(s);
+            }
+        }
+    }
     public static int getSecondsFromMS(long milliseconds) {
         return Math.round(milliseconds/1000);
     }

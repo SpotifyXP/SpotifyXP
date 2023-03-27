@@ -1,10 +1,4 @@
-[x] - Don't use Text for the player buttons use images instead
-[ ] - Implement queue on all tabs
-[ ] - Implement context menus for all tabs
-[ ] - Improve the updater
 [ ] - Make the first v1.5 build
-[x] - Make the README more fancy
-[x] - Add German translation
-[x] - Remove unnecessary files and dependencies
-[ ] - Add more buildscript functions
-[x] - Cleanup english translation
+[ ] - Implement search for albums
+[ ] - Implement search for artists
+[ ] - Implement search for shows
