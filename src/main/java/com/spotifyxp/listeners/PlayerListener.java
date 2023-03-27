@@ -98,14 +98,6 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackEnded(@NotNull Player player) {
-        switch (PublicValues.theme) {
-            case DARK:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.png"));
-                break;
-            case LIGHT:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
-                break;
-        }
         //timer.cancel();
     }
 

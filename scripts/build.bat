@@ -2,9 +2,6 @@ IF NOT EXIST "%cd%\scripts\bin\maven\" GOTO UNZIP
 
 :start
 set JAVA_HOME=%cd%\scripts\bin\jdk
-cd %JAVA_HOME%
-for /r %%x in (*.pack) do .\bin\unpack200 -r "%%x" "%%~dx%%~px%%~nx.jar"
-cd ../../../
 SETLOCAL EnableDelayedExpansion
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do     rem"') do (
   set "DEL=%%a"
@@ -35,7 +32,7 @@ IF NOT EXIST "%cd%\build\SpotifyXP.jar" "%cd%\scripts\utils\failed.bat"
 echo Downloading and unzipping the file
 "%cd%\scripts\wget.exe" http://werwolf2303.de/SpotifyXP/bin.zip -P "%cd%\scripts\bin"
 REM Unzip
-"%cd%\scripts\zipworker.vbs" "%cd%\scripts\bin\bin.zip" %cd%\scripts\bin"
+"%cd%\scripts\zipworker.vbs" "%cd%\scripts\bin\bin.zip" "%cd%\scripts\bin"
 GOTO start
 
 :color
