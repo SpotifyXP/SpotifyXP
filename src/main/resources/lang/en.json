@@ -56,7 +56,7 @@
   "ui.search.searchfield.button.findit" : "Find It!",
   "ui.search.searchfield.filters.border" : "Search Filters",
   "ui.search.searchfield.filters.excludeexplicit" : "Exclude Explicit",
-  "ui.search.songlist.songname" : "Song name",
+  "ui.search.songlist.songname" : "Name",
   "ui.search.songlist.filesize" : "Filesize",
   "ui.search.songlist.bitrate" : "Bitrate",
   "ui.search.songlist.length" : "Length",

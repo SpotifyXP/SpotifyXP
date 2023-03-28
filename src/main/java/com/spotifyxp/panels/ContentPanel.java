@@ -1,5 +1,6 @@
 package com.spotifyxp.panels;
 
+import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.Colors;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
@@ -43,6 +44,7 @@ import java.awt.event.*;
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -150,6 +152,8 @@ public class ContentPanel extends JPanel {
     public static JRadioButton searchfiltertrack;
     public static JScrollPane searchplaylistscrollpanel;
     public static JRadioButton searchfilterartist;
+    public static ArtistPanel artistPanel = new ArtistPanel();
+    public static CountryCode countryCode;
     enum LastTypes {
         Playlists,
         Library,
@@ -1181,10 +1185,49 @@ public class ContentPanel extends JPanel {
         searchfiltershow.setBounds(160, 75, 130, 23);
         searchsearchfilterpanel.add(searchfiltershow);
 
-        searchfilterartist.addChangeListener(new ChangeListener() {
+        searchfilterartist.addActionListener(new ActionListener() {
             @Override
-            public void stateChanged(ChangeEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 searchfiltertrack.setSelected(false);
+                searchfilteralbum.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+            }
+        });
+
+        searchfilteralbum.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfilterplaylist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfilteralbum.setSelected(false);
+                searchfiltershow.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfiltershow.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchfiltertrack.setSelected(false);
+                searchfilteralbum.setSelected(false);
+                searchfilterplaylist.setSelected(false);
+                searchfilterartist.setSelected(false);
+            }
+        });
+
+        searchfiltertrack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 searchfilteralbum.setSelected(false);
                 searchfiltershow.setSelected(false);
                 searchfilterplaylist.setSelected(false);
@@ -1192,45 +1235,13 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        searchfilteralbum.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                searchfiltertrack.setSelected(false);
-                searchfiltershow.setSelected(false);
-                searchfilterplaylist.setSelected(false);
-                searchfilterartist.setSelected(false);
-            }
-        });
-
-        searchfilterplaylist.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                searchfiltertrack.setSelected(false);
-                searchfilteralbum.setSelected(false);
-                searchfiltershow.setSelected(false);
-                searchfilterartist.setSelected(false);
-            }
-        });
-
-        searchfiltershow.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                searchfiltertrack.setSelected(false);
-                searchfilteralbum.setSelected(false);
-                searchfilterplaylist.setSelected(false);
-                searchfilterartist.setSelected(false);
-            }
-        });
-
-        searchfiltertrack.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                searchfilteralbum.setSelected(false);
-                searchfiltershow.setSelected(false);
-                searchfilterplaylist.setSelected(false);
-                searchfilterartist.setSelected(false);
-            }
-        });
+        try {
+            countryCode = api.getSpotifyApi().getCurrentUsersProfile().build().execute().getCountry();
+        } catch (IOException | ParseException | SpotifyWebApiException e) {
+            ConsoleLogging.Throwable(e);
+            //Defaulting to German
+            countryCode = CountryCode.DE;
+        }
 
         playerplaynextbutton.addActionListener(new ActionListener() {
             @Override
@@ -1281,8 +1292,11 @@ public class ContentPanel extends JPanel {
                                 }
                             }
                             if(artist) {
+                                artistPanel.artistalbumuricache.clear();
+                                artistPanel.artistpopularuricache.clear();
                                 for(Artist a : api.getSpotifyApi().searchArtists(searchtitle).limit(50).build().execute().getItems()) {
-                                    //ToDo: Implement artist search
+                                    searchsonglistcache.add(a.getUri());
+                                    api.addArtistToList(a, searchsonglist);
                                 }
                             }
                             if(album) {
@@ -1316,6 +1330,21 @@ public class ContentPanel extends JPanel {
                 thread1.start();
             }
         });
+        JButton artistPanelBackButton = new JButton("Back");
+        artistPanelBackButton.setBounds(0, 0, 89, 23);
+        artistPanelBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                artistPanel.setVisible(false);
+                artistPanelBackButton.setVisible(false);
+                searchpane.setVisible(true);
+            }
+        });
+        tabpanel.add(artistPanelBackButton);
+
+        artistPanel.contentPanel.setBounds(0, 21, 784, 400);
+        tabpanel.add(artistPanel.contentPanel);
+        artistPanel.contentPanel.setVisible(false);
 
         searchscrollpanel = new JScrollPane();
         searchscrollpanel.setBounds(0, 139, 784, 282);
@@ -1347,7 +1376,61 @@ public class ContentPanel extends JPanel {
                                 ConsoleLogging.Throwable(ex);
                             }
                         }else {
-                            player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                            if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("artist")) {
+                                artistPanel.artistpopularuricache.clear();
+                                artistPanel.artistalbumuricache.clear();
+                                ((DefaultTableModel)artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                                ((DefaultTableModel)artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                                artistPanel.artisttitle.setText("");
+                                try {
+                                    Artist a = api.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                    try {
+                                        artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                    } catch (ArrayIndexOutOfBoundsException exception) {
+                                        //No artist image (when this is raised it's a bug)
+                                    }
+                                    artistPanel.artisttitle.setText(a.getName());
+                                    StoppableThread trackthread = new StoppableThread(new StoppableThreadRunnable() {
+                                        @Override
+                                        public void run(int counter) {
+                                            try {
+                                                for (Track t : api.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], countryCode).build().execute()) {
+                                                    artistPanel.artistpopularuricache.add(t.getUri());
+                                                    ArrayList<String> artistcache = new ArrayList<>();
+                                                    for (ArtistSimplified simplified : t.getArtists()) {
+                                                        artistcache.add(simplified.getName());
+                                                    }
+                                                    api.addSongToList(artistcache.toString(), t, artistPanel.artistpopularsonglist);
+                                                }
+                                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                ConsoleLogging.Throwable(ex);
+                                            }
+                                        }
+                                    },false);
+                                    StoppableThread albumthread = new StoppableThread(new StoppableThreadRunnable() {
+                                        @Override
+                                        public void run(int counter) {
+                                            try {
+                                                for (AlbumSimplified simplified : api.getSpotifyApi().getArtistsAlbums(a.getUri().split(":")[2]).build().execute().getItems()) {
+                                                    artistPanel.artistalbumuricache.add(simplified.getUri());
+                                                    api.addAlbumToList(simplified, artistPanel.artistalbumalbumtable);
+                                                }
+                                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                ConsoleLogging.Throwable(ex);
+                                            }
+                                        }
+                                    }, false);
+                                    albumthread.start();
+                                    trackthread.start();
+                                } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                    ConsoleLogging.Throwable(ex);
+                                }
+                                artistPanel.contentPanel.setVisible(true);
+                                artistPanelBackButton.setVisible(true);
+                                searchpane.setVisible(false);
+                            }else {
+                                player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, false);
+                            }
                         }
                     }else{
                         player.retry();
