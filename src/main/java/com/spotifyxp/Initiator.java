@@ -57,8 +57,19 @@ public class Initiator {
             }
         }
         PublicValues.config = new Config();
-        PublicValues.theme = Theme.valueOf(PublicValues.config.get(ConfigValues.theme.name));
-        PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
+        try {
+            PublicValues.theme = Theme.valueOf(PublicValues.config.get(ConfigValues.theme.name));
+        }catch (IllegalArgumentException exception) {
+            //Issue: #2
+            //Defaulting to dark for not making someone blind
+            PublicValues.theme = Theme.DARK;
+        }
+        try {
+            PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
+        }catch (IllegalArgumentException exception) {
+            //This should not happen but when it happens don't crash SpotifyXP
+            PublicValues.quality = Quality.NORMAL;
+        }
         if(new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
             JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
