@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.*;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
@@ -15,12 +16,14 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Timer;
 
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -249,6 +252,18 @@ public class SpotifyAPI {
                 ConsoleLogging.Throwable(e);
             }
             return ret;
+        }
+    }
+    public void addAllAlbumsToList(ArrayList<String> uricache, String fromuri, JTable totable) {
+        int offset = 0;
+        int limit = 50;
+        while(uricache.size()!=new JSONObject(makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
+            for(Object o : new JSONObject(makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
+                JSONObject object = new JSONObject(o.toString());
+                uricache.add(object.getString("uri"));
+                ((DefaultTableModel) totable.getModel()).addRow(new Object[] {object.getString("name")});
+            }
+            offset=offset+50;
         }
     }
     public void addAlbumToList(AlbumSimplified simplified, JTable table) {

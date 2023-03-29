@@ -27,6 +27,21 @@ public class TrackUtils {
         }
         return "Unknown (BUG)";
     }
+    public static String calculateFileSizeKb(long milliseconds) {
+        long minutes = getMMofTrack(milliseconds);
+        //720kb per minute if normal 96kbps
+        //1200kb per minute if high 160kbps
+        //2400kb per minute if extremely high 320kbps
+        switch (PublicValues.quality) {
+            case NORMAL:
+                return Integer.parseInt(String.valueOf(minutes*720)) + "KB";
+            case HIGH:
+                return Integer.parseInt(String.valueOf(minutes*1200)) + "KB";
+            case VERY_HIGH:
+                return Integer.parseInt(String.valueOf(minutes*2400)) + "KB";
+        }
+        return "Unknown (BUG)";
+    }
     public static String calculateFileSizeKb(TrackSimplified t) {
         long minutes = getMMofTrack(t.getDurationMs());
         //720kb per minute if normal 96kbps

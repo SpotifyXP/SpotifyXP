@@ -3,6 +3,7 @@ package com.spotifyxp.listeners;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.utils.Resources;
@@ -71,25 +72,57 @@ public class PlayerListener implements Player.EventsListener {
                 //BackgroundService.trayDialog.getTrayIcon().displayMessage("SpotifyXP: Now Playing", a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName() + " - " + TrackUtils.getArtists(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()), TrayIcon.MessageType.INFO);
                 //}
                 //---
-
-                ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
                 StringBuilder artists = new StringBuilder();
-                for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
-                    if (artist.toString().equals("")) {
-                        artists.append(artist.getName());
-                    } else {
-                        artists.append(" ").append(artist.getName());
+                if(playableId.toSpotifyUri().contains("episode")) {
+                    ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
+                    ContentPanel.playertitle.setText(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
+                    artists.append(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getShow().getPublisher());
+                    JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/episodes/" + playableId.toSpotifyUri().split(":")[2]));
+                    for (Object object : root.getJSONArray("images")) {
+                        JSONObject urls = new JSONObject(object.toString());
+                        ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
+                        break;
+                    }
+                }
+                else{
+                    if(playableId.toSpotifyUri().contains("track")) {
+                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
+                        ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
+                        for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
+                            if (artist.toString().equals("")) {
+                                artists.append(artist.getName());
+                            } else {
+                                artists.append(" ").append(artist.getName());
+                            }
+                        }
+                        JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
+                        JSONObject album = new JSONObject(root.get("album").toString());
+                        for (Object object : album.getJSONArray("images")) {
+                            JSONObject urls = new JSONObject(object.toString());
+                            ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
+                            break;
+                        }
+                    }else{
+                        ConsoleLogging.warning("The 'thing' you have selected will play but it's a high chance that it will be not shown in the player display (not title info)");
+                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
+                        ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
+                        for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
+                            if (artist.toString().equals("")) {
+                                artists.append(artist.getName());
+                            } else {
+                                artists.append(" ").append(artist.getName());
+                            }
+                        }
+                        JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
+                        JSONObject album = new JSONObject(root.get("album").toString());
+                        for (Object object : album.getJSONArray("images")) {
+                            JSONObject urls = new JSONObject(object.toString());
+                            ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
+                            break;
+                        }
                     }
                 }
                 ContentPanel.playerdescription.setText(artists.toString());
-                JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
-                JSONObject album = new JSONObject(root.get("album").toString());
-                for (Object object : album.getJSONArray("images")) {
-                    JSONObject urls = new JSONObject(object.toString());
-                    ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
-                    break;
-                }
             } catch (IOException | ParseException | SpotifyWebApiException e) {
                 ConsoleLogging.Throwable(e);
             }
