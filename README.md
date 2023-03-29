@@ -31,9 +31,6 @@
 
 ## About The Project
 
-Nightly version
-![Screen Shot](https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/SpotifyXPShowNightly.PNG)
-
 Stable version
 ![Screen Shot](https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/SpotifyXPShowStable.PNG)
 
