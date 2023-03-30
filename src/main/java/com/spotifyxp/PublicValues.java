@@ -11,9 +11,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 
-import javax.swing.*;
-import java.util.ArrayList;
-
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static libLanguage language = null;

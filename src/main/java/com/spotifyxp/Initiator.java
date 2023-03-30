@@ -20,6 +20,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import javax.swing.*;
 import java.io.File;
@@ -132,7 +133,6 @@ public class Initiator {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
             }
         }
-        //new Equalizer();
         ConsoleLogging.info("SpotifyXP needed " + startupTime.getHHMMSS() + " to start");
     }
 }
