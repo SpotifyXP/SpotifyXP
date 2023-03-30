@@ -11,6 +11,7 @@ import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.setup.Setup;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.DoubleArrayList;
 import com.spotifyxp.api.SpotifyAPI;
@@ -31,16 +32,11 @@ public class Initiator {
     static SpotifyAPI api = null;
     static StartupTime startupTime;
     public static void main(String[] args) {
+        for(String s : args) {
+            System.out.println(s);
+        }
         startupTime = new StartupTime();
         PublicValues.args = args;
-        if(new File("pom.xml").exists()) {
-            args = new String[] {"--debug"};
-        }
-        if(args.length>0) {
-            if(args[0].equals("--debug")) {
-                //PublicValues.debug = true;
-            }
-        }
         PublicValues.logger.setColored(false);
         PublicValues.logger.setShowTime(false);
         if(PublicValues.debug) {
@@ -75,14 +71,6 @@ public class Initiator {
             JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
         }
-        new SplashPanel().show();
-        try {
-            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").createNewFile()) {
-                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockcreate"));
-            }
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
         switch (PublicValues.theme) {
             case DARK:
                 try {
@@ -98,6 +86,24 @@ public class Initiator {
                     ConsoleLogging.Throwable(e);
                 }
                 break;
+        }
+        try {
+            if (args[0].equals("--setup-complete")) {
+                PublicValues.foundSetupArgument = true;
+            }
+        }catch (ArrayIndexOutOfBoundsException ioe) {
+            new Setup();
+        }
+        if(!PublicValues.foundSetupArgument) {
+            new Setup();
+        }
+        new SplashPanel().show();
+        try {
+            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").createNewFile()) {
+                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockcreate"));
+            }
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
         }
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
             new LoginDialog().open();

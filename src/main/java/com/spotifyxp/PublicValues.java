@@ -14,7 +14,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static libLanguage language = null;
-    public static String version = "1.5";
+    public static String version = "1.6";
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
     public static String configlocation = fileslocation + "/config.toml";
     public static Player spotifyplayer = null;
@@ -28,4 +28,6 @@ public class PublicValues {
     public static GraphiteLookAndFeel windowTheme = new GraphiteLookAndFeel();
     public static Quality quality = null;
     public static String[] args = null;
+    public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
+    public static boolean foundSetupArgument = false;
 }

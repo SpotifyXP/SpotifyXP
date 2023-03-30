@@ -1559,24 +1559,6 @@ public class ContentPanel extends JPanel {
                 ContentPanel.playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(player.getPlayer().time()));
             }
         });
-        feedbackgithubbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Open GitHub
-            }
-        });
-        feedbackcreateissuebutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Create an issue on GitHub
-            }
-        });
-        feedbackviewissuesbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //View issues on GitHub
-            }
-        });
         feedbackupdaterversionfield.setEditable(false);
         feedbackupdaterdownloadbutton.addActionListener(new ActionListener() {
             @Override
