@@ -10,6 +10,7 @@ import com.spotifyxp.utils.Resources;
 import mslinks.ShellLink;
 import mslinks.ShellLinkException;
 import mslinks.ShellLinkHelper;
+import org.json.JSONException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,9 +29,13 @@ import static org.apache.commons.io.IOUtils.DEFAULT_BUFFER_SIZE;
 public class Setup {
     public static JFrame setupframe = new JFrame();
     public Setup() {
-        GitHubAPI.Release release = (GitHubAPI.Release) new Updater().updateAvailable().getSecond(0);
-        if(Integer.parseInt(release.version.replace("v", "").replace(".", ""))<Integer.parseInt(PublicValues.version.replace(".", ""))) {
-            return; //This is a nightly build skipping
+        try {
+            GitHubAPI.Release release = (GitHubAPI.Release) new Updater().updateAvailable().getSecond(0);
+            if (Integer.parseInt(release.version.replace("v", "").replace(".", "")) < Integer.parseInt(PublicValues.version.replace(".", ""))) {
+                return; //This is a nightly build skipping
+            }
+        }catch (JSONException ex) {
+            ConsoleLogging.Throwable(ex);
         }
         displaySetup();
     }
