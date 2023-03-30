@@ -2,5 +2,6 @@
 /out/
 /target/
 /build/
+/scripts/bin
 X
 /src/main/resources/NIGHTLY
