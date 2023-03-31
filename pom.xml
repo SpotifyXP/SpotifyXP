@@ -114,7 +114,13 @@
             <artifactId>annotations</artifactId>
             <version>24.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.devzendo</groupId>
+            <artifactId>quaqua</artifactId>
+            <version>9.1</version>
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>

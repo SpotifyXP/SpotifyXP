@@ -12,10 +12,10 @@ import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.DropDownMenu;
 import com.spotifyxp.swingextension.JImageButton;
+import com.spotifyxp.theming.ThemeEngine;
 import com.spotifyxp.threading.StoppableThread;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
@@ -295,26 +295,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-
-        switch (PublicValues.theme) {
-            case DARK:
-                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingslight.png"));
-                userbutton.setImage(new Resources(true).readToInputStream("icons/userlight.png"));
-                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotslight.png"));
-                break;
-            case LIGHT:
-                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingsdark.png"));
-                userbutton.setImage(new Resources(true).readToInputStream("icons/userdark.png"));
-                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotsdark.png"));
-                break;
-        }
-
         playerarea = new EnginePanel();
-        if(PublicValues.theme == Theme.LIGHT) {
-            playerarea.setBorder(new LineBorder(Color.black));
-        }else {
-            playerarea.setBorder(new LineBorder(Color.gray));
-        }
         playerarea.setBounds(72, 0, 565, 100);
         add(playerarea);
         playerarea.setLayout(null);
@@ -345,16 +326,10 @@ public class ContentPanel extends JPanel {
 
         player.getPlayer().setVolume(65536);
 
-        if(PublicValues.theme == Theme.LIGHT) {
-            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
-        }else{
-            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
-        }
-
         playerareavolumeslider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(PublicValues.theme == Theme.LIGHT) {
+                if(PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS) {
                     playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
                     if (playerareavolumeslider.getValue() == 0) {
                         playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
@@ -417,6 +392,7 @@ public class ContentPanel extends JPanel {
                         break;
                 }
             }
+
         });
 
         playertitle = new JLabel(l.translate("ui.player.title"));
@@ -459,19 +435,6 @@ public class ContentPanel extends JPanel {
         playerplaytimetotal = new JLabel("00:00");
         playerplaytimetotal.setBounds(506, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
-
-        switch (PublicValues.theme) {
-            case DARK:
-                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviouswhite.png"));
-                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.png"));
-                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextwhite.png"));
-                break;
-            case LIGHT:
-                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviousdark.png"));
-                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
-                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.png"));
-                break;
-        }
 
 
         heart = new JImagePanel();
@@ -1636,6 +1599,8 @@ public class ContentPanel extends JPanel {
                 ((DefaultTableModel)librarysonglist.getModel()).removeRow(librarysonglist.getSelectedRow());
             }
         });
+        artistPanelBackButton.setVisible(false);
+        updateTheme();
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
     }
 
@@ -1656,30 +1621,58 @@ public class ContentPanel extends JPanel {
         }
     }
 
-    int counter = 0;
-
-    void setThemeDark(Component co) {
-        JPanel c = (JPanel) co;
-        for(Component component : c.getComponents()) {
-            component.setBackground(Colors.black);
-            component.setForeground(Color.white);
-            if(counter==0) {
-                if (!(component.getParent().getBackground() == Colors.black)) {
-                    component.getParent().setBackground(Colors.black);
+    public static void updateTheme() {
+        switch (PublicValues.theme) {
+            case DARK:
+            case MacOSDark:
+                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingslight.png"));
+                userbutton.setImage(new Resources(true).readToInputStream("icons/userlight.png"));
+                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotslight.png"));
+                playerarea.setBorder(new LineBorder(Color.gray));
+                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviouswhite.png"));
+                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.png"));
+                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextwhite.png"));
+                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
+                break;
+            case LIGHT:
+            case WINDOWS:
+            case MacOSLight:
+            case QuaQua:
+                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
+                playerarea.setBorder(new LineBorder(Color.black));
+                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingsdark.png"));
+                userbutton.setImage(new Resources(true).readToInputStream("icons/userdark.png"));
+                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotsdark.png"));
+                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviousdark.png"));
+                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
+                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.png"));
+                break;
+        }
+        if(PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS) {
+            playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+            if (playerareavolumeslider.getValue() == 0) {
+                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
+            }else{
+                if(playerareavolumeslider.getValue() == 10) {
+                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
+                }else{
+                    if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.png"));
+                    }
                 }
-                counter++;
             }
-            if(component instanceof JTable) {
-                JTable table = (JTable) component;
-                table.setGridColor(Colors.black);
-                if(table.getBorder() instanceof  TitledBorder) {
-                    TitledBorder border = (TitledBorder) table.getBorder();
-                    border.setTitleColor(Color.white);
+        }else{
+            playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+            if (playerareavolumeslider.getValue() == 0) {
+                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.png"));
+            }else{
+                if(playerareavolumeslider.getValue() == 10) {
+                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
+                }else{
+                    if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.png"));
+                    }
                 }
-            }
-            if(component instanceof JPanel) {
-                JPanel panel = (JPanel) component;
-                setThemeDark(panel);
             }
         }
     }

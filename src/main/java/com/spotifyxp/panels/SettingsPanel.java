@@ -1,12 +1,25 @@
 package com.spotifyxp.panels;
 
+import ch.randelshofer.quaqua.QuaquaLookAndFeel;
+import ch.randelshofer.quaqua.jaguar.Quaqua15JaguarLookAndFeel;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.theming.Theme;
+import com.spotifyxp.theming.ThemeEngine;
+import com.spotifyxp.theming.includedThemes.Luna;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.ArrayList;
+import java.util.Objects;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
@@ -17,6 +30,7 @@ public class SettingsPanel extends JPanel {
     public static JComboBox settingsuiselecttheme;
     public static JComboBox settingsplaybackselectquality;
     public static JButton settingsplaybackopenequalizerbutton;
+    ArrayList<Theme> themecache = new ArrayList<>();
 
     public SettingsPanel() {
         setBounds(100, 100, 800, 600);
@@ -49,9 +63,17 @@ public class SettingsPanel extends JPanel {
         settingsuidisableplayerstats.setBounds(28, 155, 199, 23);
         add(settingsuidisableplayerstats);
 
-        settingsuiselecttheme = new JComboBox(new String[] {
-                "Light", "Dark"
-        });
+        settingsuiselecttheme = new JComboBox();
+        //for(Theme theme : ThemeEngine.themes) {
+        //    themecache.add(theme);
+        //    ((DefaultListModel) settingsuiselecttheme.getModel()).addElement(theme.name);
+        //}
+        ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement("Light");
+        ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement("Dark");
+        ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement("Windows");
+        ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement("MacOSLight");
+        ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement("MacOSDark");
+        ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement("QuaQua");
         settingsuiselecttheme.setBounds(442, 155, 230, 22);
         add(settingsuiselecttheme);
 
@@ -109,15 +131,62 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
                 break;
         }
-        switch ((String)settingsuiselecttheme.getModel().getSelectedItem()) {
-            case "Light":
-                PublicValues.config.write(ConfigValues.theme.name, "LIGHT");
-                break;
-            case "Dark":
-                PublicValues.config.write(ConfigValues.theme.name, "DARK");
-                break;
-        }
+        PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().toUpperCase());
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
         PublicValues.config.write(ConfigValues.disableplayerstats.name, String.valueOf(settingsuidisableplayerstats.isSelected()));
+        if(!Objects.equals(settingsuiselecttheme.getModel().getSelectedItem().toString(), PublicValues.theme.toString())) {
+            switch (settingsuiselecttheme.getModel().getSelectedItem().toString()) {
+                case "Light":
+                    PublicValues.theme = com.spotifyxp.designs.Theme.LIGHT;
+                    try {
+                        UIManager.setLookAndFeel(new FlatLightLaf());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                    break;
+                case "Dark":
+                    PublicValues.theme = com.spotifyxp.designs.Theme.DARK;
+                    try {
+                        UIManager.setLookAndFeel(new FlatDarkLaf());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                    break;
+                case "Windows":
+                    PublicValues.theme = com.spotifyxp.designs.Theme.WINDOWS;
+                    try {
+                        UIManager.setLookAndFeel(new WindowsLookAndFeel());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                    break;
+                case "MacOSDark":
+                    PublicValues.theme = com.spotifyxp.designs.Theme.MacOSDark;
+                    try {
+                        UIManager.setLookAndFeel(new FlatMacDarkLaf());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                    break;
+                case "MacOSLight":
+                    PublicValues.theme = com.spotifyxp.designs.Theme.MacOSLight;
+                    try {
+                        UIManager.setLookAndFeel(new FlatMacLightLaf());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                    break;
+                case "QuaQua":
+                    PublicValues.theme = com.spotifyxp.designs.Theme.QuaQua;
+                    try {
+                        UIManager.setLookAndFeel(new QuaquaLookAndFeel());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                    break;
+            }
+            ContentPanel.updateTheme();
+            SwingUtilities.updateComponentTreeUI(ContentPanel.frame);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.spotifyxp;
 
 
+import ch.randelshofer.quaqua.QuaquaLookAndFeel;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.spotifyxp.analytics.Analytics;
@@ -21,8 +22,8 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -32,18 +33,10 @@ public class Initiator {
     static SpotifyAPI api = null;
     static StartupTime startupTime;
     public static void main(String[] args) {
-        for(String s : args) {
-            System.out.println(s);
-        }
         startupTime = new StartupTime();
         PublicValues.args = args;
         PublicValues.logger.setColored(false);
         PublicValues.logger.setShowTime(false);
-        if(PublicValues.debug) {
-            ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-            modules.setColored(false);
-            modules.setShowTime(false);
-        }
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setAutoFindLanguage();
@@ -53,13 +46,33 @@ public class Initiator {
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 39);
             }
         }
+        if(new File("pom.xml").exists()) {
+            PublicValues.debug = true;
+            ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
+            modules.setColored(false);
+            modules.setShowTime(false);
+            PublicValues.foundSetupArgument = true;
+        }
         PublicValues.config = new Config();
-        try {
-            PublicValues.theme = Theme.valueOf(PublicValues.config.get(ConfigValues.theme.name));
-        }catch (IllegalArgumentException exception) {
-            //Issue: #2
-            //Defaulting to dark for not making someone blind
-            PublicValues.theme = Theme.DARK;
+        switch(PublicValues.config.get(ConfigValues.theme.name)) {
+            case "QUAQUA":
+                PublicValues.theme = Theme.QuaQua;
+                break;
+            case "MACOSDARK":
+                PublicValues.theme = Theme.MacOSDark;
+                break;
+            case "MACOSLIGHT":
+                PublicValues.theme = Theme.MacOSLight;
+                break;
+            case "LIGHT":
+                PublicValues.theme = Theme.LIGHT;
+                break;
+            case "WINDOWS":
+                PublicValues.theme = Theme.WINDOWS;
+                break;
+            default:
+                PublicValues.theme = Theme.DARK;
+                break;
         }
         try {
             PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
@@ -86,13 +99,29 @@ public class Initiator {
                     ConsoleLogging.Throwable(e);
                 }
                 break;
+            case WINDOWS:
+                try {
+                    UIManager.setLookAndFeel(new WindowsLookAndFeel());
+                } catch (UnsupportedLookAndFeelException e) {
+                    ConsoleLogging.Throwable(e);
+                }
+                break;
+            case QuaQua:
+                try {
+                    UIManager.setLookAndFeel(new QuaquaLookAndFeel());
+                } catch (UnsupportedLookAndFeelException e) {
+                    ConsoleLogging.Throwable(e);
+                }
+                break;
         }
         try {
             if (args[0].equals("--setup-complete")) {
                 PublicValues.foundSetupArgument = true;
             }
         }catch (ArrayIndexOutOfBoundsException ioe) {
-            new Setup();
+            if(!new File("pom.xml").exists()) {
+                new Setup();
+            }
         }
         if(!PublicValues.foundSetupArgument) {
             new Setup();
