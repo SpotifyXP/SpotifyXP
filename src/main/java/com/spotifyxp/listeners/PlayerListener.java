@@ -138,9 +138,13 @@ public class PlayerListener implements Player.EventsListener {
     public void onPlaybackPaused(@NotNull Player player, long l) {
         switch (PublicValues.theme) {
             case DARK:
+            case MacOSDark:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.png"));
                 break;
             case LIGHT:
+            case MacOSLight:
+            case QuaQua:
+            case WINDOWS:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
                 break;
         }
@@ -151,9 +155,13 @@ public class PlayerListener implements Player.EventsListener {
     public void onPlaybackResumed(@NotNull Player player, long l) {
         switch (PublicValues.theme) {
             case DARK:
+            case MacOSDark:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.png"));
                 break;
             case LIGHT:
+            case MacOSLight:
+            case QuaQua:
+            case WINDOWS:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.png"));
                 break;
         }
