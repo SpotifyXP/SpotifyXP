@@ -63,9 +63,6 @@ public class JImagePanel extends JPanel {
         }
         refresh();
     }
-    public void clearImage() {
-        repaint();
-    }
 
     @Override
     protected void paintComponent(Graphics g) {

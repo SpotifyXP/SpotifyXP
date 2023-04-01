@@ -24,9 +24,6 @@ import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.StartupTime;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-import com.sun.org.apache.xpath.internal.Arg;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -112,8 +109,9 @@ public class Initiator {
             case WINDOWS:
             case LEGACY:
                 try {
-                    UIManager.setLookAndFeel(new WindowsLookAndFeel());
-                } catch (UnsupportedLookAndFeelException e) {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (RuntimeException | UnsupportedLookAndFeelException | ClassNotFoundException |
+                         InstantiationException | IllegalAccessException e) {
                     ConsoleLogging.Throwable(e);
                 }
                 break;
