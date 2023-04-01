@@ -396,7 +396,7 @@ public final class Session implements Closeable {
      *                   {@code false} for {@link Session#authenticate(Authentication.LoginCredentials)},
      *                   {@code true} for {@link Session#reconnect()}.
      */
-    private void authenticatePartial(@NotNull Authentication.LoginCredentials credentials, boolean removeLock) throws IOException, GeneralSecurityException, SpotifyAuthenticationException {
+    private void authenticatePartial(@NotNull Authentication.LoginCredentials credentials, boolean removeLock) throws IOException, EOFException, GeneralSecurityException, SpotifyAuthenticationException {
         if (conn == null || cipherPair == null) throw new IllegalStateException("Connection not established!");
 
         Authentication.ClientResponseEncrypted clientResponseEncrypted = Authentication.ClientResponseEncrypted.newBuilder()
@@ -450,7 +450,7 @@ public final class Session implements Closeable {
                 }
             }
         } else if (packet.is(Packet.Type.AuthFailure)) {
-            throw new SpotifyAuthenticationException(Keyexchange.APLoginFailed.parseFrom(packet.payload));
+            throw new SpotifyAuthenticationException(Keyexchange.APLoginFailed.parseFrom(packet.payload)); //This was hit
         } else {
             throw new IllegalStateException("Unknown CMD 0x" + Integer.toHexString(packet.cmd));
         }
@@ -1047,7 +1047,7 @@ public final class Session implements Closeable {
          * Creates a connected and fully authenticated {@link Session} object.
          */
         @NotNull
-        public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
+        public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, EOFException, MercuryClient.MercuryException {
             if (loginCredentials == null)
                 throw new IllegalStateException("You must select an authentication method.");
 

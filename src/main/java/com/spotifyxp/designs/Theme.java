@@ -6,12 +6,13 @@ public enum Theme {
     WINDOWS("Windows"),
     MacOSDark("MacOSDark"),
     MacOSLight("MacOSLight"),
-    QuaQua("QuaQua");
+    QuaQua("QuaQua"),
+    LEGACY("Legacy");
     final String s;
     Theme(String toselect) {
         s = toselect;
     }
-    String getAsString() {
+    public String getAsString() {
         return s;
     }
 }

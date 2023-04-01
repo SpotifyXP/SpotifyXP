@@ -29,14 +29,6 @@ import static org.apache.commons.io.IOUtils.DEFAULT_BUFFER_SIZE;
 public class Setup {
     public static JFrame setupframe = new JFrame();
     public Setup() {
-        try {
-            GitHubAPI.Release release = (GitHubAPI.Release) new Updater().updateAvailable().getSecond(0);
-            if (Integer.parseInt(release.version.replace("v", "").replace(".", "")) < Integer.parseInt(PublicValues.version.replace(".", ""))) {
-                return; //This is a nightly build skipping
-            }
-        }catch (JSONException ex) {
-            ConsoleLogging.Throwable(ex);
-        }
         displaySetup();
     }
     public static SetupState setupState = SetupState.WELCOME;

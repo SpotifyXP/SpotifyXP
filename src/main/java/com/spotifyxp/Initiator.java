@@ -6,6 +6,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.spotifyxp.analytics.Analytics;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.lib.libLanguage;
@@ -24,6 +25,8 @@ import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.StartupTime;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import com.sun.org.apache.xpath.internal.Arg;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -43,14 +46,16 @@ public class Initiator {
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
-                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"), 39);
+                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
             }
         }
+        new ArgParser(args);
         if(new File("pom.xml").exists()) {
             PublicValues.debug = true;
             ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-            modules.setColored(false);
+            modules.setColored(true);
             modules.setShowTime(false);
+            PublicValues.logger.setColored(true);
             PublicValues.foundSetupArgument = true;
         }
         PublicValues.config = new Config();
@@ -70,6 +75,9 @@ public class Initiator {
             case "WINDOWS":
                 PublicValues.theme = Theme.WINDOWS;
                 break;
+            case "LEGACY":
+                PublicValues.theme = Theme.LEGACY;
+                break;
             default:
                 PublicValues.theme = Theme.DARK;
                 break;
@@ -80,9 +88,11 @@ public class Initiator {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
         }
-        if(new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
-            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
-            System.exit(0);
+        if(!PublicValues.debug) {
+            if (new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
+                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
+                System.exit(0);
+            }
         }
         switch (PublicValues.theme) {
             case DARK:
@@ -100,6 +110,7 @@ public class Initiator {
                 }
                 break;
             case WINDOWS:
+            case LEGACY:
                 try {
                     UIManager.setLookAndFeel(new WindowsLookAndFeel());
                 } catch (UnsupportedLookAndFeelException e) {
@@ -113,15 +124,6 @@ public class Initiator {
                     ConsoleLogging.Throwable(e);
                 }
                 break;
-        }
-        try {
-            if (args[0].equals("--setup-complete")) {
-                PublicValues.foundSetupArgument = true;
-            }
-        }catch (ArrayIndexOutOfBoundsException ioe) {
-            if(!new File("pom.xml").exists()) {
-                new Setup();
-            }
         }
         if(!PublicValues.foundSetupArgument) {
             new Setup();

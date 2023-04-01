@@ -1,5 +1,6 @@
 package com.spotifyxp.dialogs;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 @SuppressWarnings("Convert2Lambda")
 public class LoginDialog {
@@ -47,6 +49,43 @@ public class LoginDialog {
             spotifylabelinfo.setVisible(false);
         }
     }
+    public void openWithInvalidAuth() {
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Invalid Login! Try again");
+        dialog.getContentPane().add(new ContentPanel());
+        dialog.setResizable(false);
+        dialog.setPreferredSize(new Dimension(350, 356));
+        dialog.pack();
+        dialog.setVisible(true);
+        dialog.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.red);
+        spotifyokbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
+                PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
+                dialog.dispose();
+            }
+        });
+        spotifycancelbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        while(dialog.isVisible()) {
+            try {
+                Thread.sleep(99);
+            } catch (InterruptedException e) {
+                ConsoleLogging.Throwable(e);
+            }
+        }
+    }
     @SuppressWarnings("BusyWait")
     public void open() {
         JDialog dialog = new JDialog();
@@ -67,6 +106,9 @@ public class LoginDialog {
         spotifycancelbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!new File(PublicValues.fileslocation + "/" + "LOCKED").delete()) {
+                    ConsoleLogging.error(PublicValues.language.translate("startup.error.lockdelete"));
+                }
                 System.exit(0);
             }
         });

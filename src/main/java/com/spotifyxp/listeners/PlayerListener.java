@@ -145,6 +145,7 @@ public class PlayerListener implements Player.EventsListener {
             case MacOSLight:
             case QuaQua:
             case WINDOWS:
+            case LEGACY:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
                 break;
         }
@@ -162,6 +163,7 @@ public class PlayerListener implements Player.EventsListener {
             case MacOSLight:
             case QuaQua:
             case WINDOWS:
+            case LEGACY:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.png"));
                 break;
         }

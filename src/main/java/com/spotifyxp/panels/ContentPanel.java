@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.Colors;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.custom.StoppableThreadRunnable;
@@ -15,7 +14,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.DropDownMenu;
 import com.spotifyxp.swingextension.JImageButton;
-import com.spotifyxp.theming.ThemeEngine;
 import com.spotifyxp.threading.StoppableThread;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
@@ -29,7 +27,6 @@ import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -37,6 +34,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -125,6 +123,8 @@ public class ContentPanel extends JPanel {
     public static boolean queueVisible = false;
     public static boolean hotlistVisible = false;
     public static boolean libraryVisble = false;
+    public static JTabbedPane legacyswitch = new JTabbedPane();  //For Legacy theme
+    public static JMenuBar bar = new JMenuBar(); //For Legacy theme
     public static JImagePanel heart;
     public static ArrayList<String> searchsonglistcache = new ArrayList<>();
     public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
@@ -304,8 +304,6 @@ public class ContentPanel extends JPanel {
         playerimage.setBounds(10, 11, 78, 78);
         playerarea.add(playerimage);
 
-        playerimage.setImage(new Resources().readToInputStream("icons/nothingplaying.png"));
-
         playerareavolumeicon = new JImagePanel();
         playerareavolumeicon.setBounds(306, 75, 14, 14);
         playerarea.add(playerareavolumeicon);
@@ -463,7 +461,6 @@ public class ContentPanel extends JPanel {
 
         tabpanel = new JPanel();
         tabpanel.setBounds(0, 140, 784, 421);
-        add(tabpanel);
         tabpanel.setLayout(null);
 
         librarypane = new JPanel();
@@ -1600,8 +1597,176 @@ public class ContentPanel extends JPanel {
             }
         });
         artistPanelBackButton.setVisible(false);
+        legacyswitch.setBounds(0, 111, 784, 450);
+        legacyswitch.addTab("Playlists", new JPanel()); //ToDo: Translate
+        legacyswitch.addTab("Library", new JPanel()); //ToDo: Translate
+        legacyswitch.addTab("Search", new JPanel()); //ToDo: Translate
+        legacyswitch.addTab("Hot List", new JPanel()); //ToDo: Translate
+        legacyswitch.addTab("Queue", new JPanel()); //ToDo: Translate
+        legacyswitch.addTab("Feedback", new JPanel()); //ToDo: Translate
+        legacyswitch.setUI(new BasicTabbedPaneUI() {
+            @Override
+            protected int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
+                return 129;
+            }
+        });
+        add(legacyswitch);
+        legacyswitch.setSelectedIndex(3);
+        preventBugLegacySwitch();
+        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+        setHotlistVisible();
+        playlistspane.setVisible(true);
+        legacyswitch.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                switch (legacyswitch.getSelectedIndex()) {
+                    case 0:
+                        playlistsbutton.doClick();
+                        preventBugLegacySwitch();
+                        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                        setPlaylistsVisible();
+                        break;
+                    case 1:
+                        librarybutton.doClick();
+                        preventBugLegacySwitch();
+                        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                        setLibraryVisible();
+                        break;
+                    case 2:
+                        searchbutton.doClick();
+                        preventBugLegacySwitch();
+                        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                        setSearchVisible();
+                        break;
+                    case 3:
+                        hotlistbutton.doClick();
+                        preventBugLegacySwitch();
+                        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                        setHotlistVisible();
+                        break;
+                    case 4:
+                        queuebutton.doClick();
+                        preventBugLegacySwitch();
+                        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                        setQueueVisible();
+                        break;
+                    case 5:
+                        feedbackbutton.doClick();
+                        preventBugLegacySwitch();
+                        legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                        setFeedbackVisible();
+                        break;
+                    default:
+                        GraphicalMessage.bug("Legacy JTabbedPane changeListener");
+                        break;
+                }
+            }
+        });
+        JMenu file = new JMenu("File"); //ToDo: Translate
+        JMenu edit = new JMenu("Edit"); //ToDo: Translate
+        JMenu account = new JMenu("Account"); //ToDo: Translate
+        JMenu help = new JMenu("Help"); //ToDo: Translate
+        JMenuItem exit = new JMenuItem("Exit"); //ToDo: Translate
+        JMenuItem logout = new JMenuItem("Logout"); //ToDo: Translate
+        JMenuItem about = new JMenuItem("About SpotifyXP"); //ToDo: Translate
+        JMenuItem settings = new JMenuItem("Settings"); //ToDo: Translate
+        bar.add(file);
+        bar.add(edit);
+        bar.add(account);
+        bar.add(help);
+        file.add(exit);
+        edit.add(settings);
+        account.add(logout);
+        help.add(about);
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog dialog = new JDialog();
+                dialog.setTitle("SpotifyXP - Settings"); //ToDo: Translate
+                SettingsPanel panel = new SettingsPanel();
+                dialog.setPreferredSize(new Dimension(793, 600));
+                dialog.getContentPane().add(panel);
+                dialog.setVisible(true);
+                dialog.pack();
+                dialog.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        super.windowClosing(e);
+                        SettingsPanel.applySettings();
+                    }
+                });
+            }
+        });
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.username.name, "");
+                PublicValues.config.write(ConfigValues.password.name, "");
+                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
+                System.exit(0);
+            }
+        });
+        about.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
+                    @Override
+                    public void log(String s) {
+
+                    }
+
+                    @Override
+                    public void err(String s) {
+
+                    }
+
+                    @Override
+                    public void info(String s) {
+
+                    }
+
+                    @Override
+                    public void crit(String s) {
+
+                    }
+                });
+                dialog.getDialog().setPreferredSize(new Dimension(400, 500));
+                try {
+                    String out = new Resources().readToString("about.html");
+                    StringBuilder cache = new StringBuilder();
+                    for(String s : out.split("\n")) {
+                        if(s.contains("(TRANSLATE)")) {
+                            s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
+                            s = s.replace("(TRANSLATE)", "");
+                        }
+                        cache.append(s);
+                    }
+                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), cache.toString());
+                } catch (Exception ex) {
+                    ConsoleLogging.Throwable(ex);
+                }
+                dialog.getDialog().addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        dialog.getDialog().dispose();
+                    }
+                });
+            }
+        });
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         updateTheme();
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
+    }
+
+    static void preventBugLegacySwitch() {
+        for(int i = 0; i < legacyswitch.getTabCount(); i++) {
+            legacyswitch.setComponentAt(i, new JPanel());
+        }
     }
 
     void fetchOnlyFirstSongsFromUserLibrary() {
@@ -1636,6 +1801,7 @@ public class ContentPanel extends JPanel {
                 break;
             case LIGHT:
             case WINDOWS:
+            case LEGACY:
             case MacOSLight:
             case QuaQua:
                 playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
@@ -1648,7 +1814,7 @@ public class ContentPanel extends JPanel {
                 playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.png"));
                 break;
         }
-        if(PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS) {
+        if(PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.LEGACY) {
             playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
             if (playerareavolumeslider.getValue() == 0) {
                 playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
@@ -1675,8 +1841,36 @@ public class ContentPanel extends JPanel {
                 }
             }
         }
+        if(PublicValues.theme == Theme.LEGACY) {
+            //Hide stylish buttons
+            settingsbutton.setVisible(false);
+            userbutton.setVisible(false);
+            threepointbutton.setVisible(false);
+            //---
+            //Set toggle buttons hidden
+            librarybutton.setVisible(false);
+            playlistsbutton.setVisible(false);
+            searchbutton.setVisible(false);
+            hotlistbutton.setVisible(false);
+            queuebutton.setVisible(false);
+            feedbackbutton.setVisible(false);
+            //---
+            //Set style of components
+            //INFO: No need to change the color of the jmenubar because under windowsxp it has the right color
+            playerimage.setBackground(Color.darkGray);
+            playerarea.setBorder(null);
+            //---
+            //Resize components
+            playerarea.setBounds(784/2-playerarea.getWidth()/2, 8, playerarea.getWidth(), playerarea.getHeight()-3);
+            //---
+            //Add JTabbedPane
+            legacyswitch.setVisible(true);
+            //---
+        }else{
+            playerimage.setImage(new Resources().readToInputStream("icons/nothingplaying.png"));
+            frame.add(tabpanel);
+        }
     }
-
     public void setLibraryVisible() {
         lastmenu = LastTypes.Library;
         librarypane.setVisible(true);
@@ -1932,6 +2126,9 @@ public class ContentPanel extends JPanel {
         settingsPanel = new SettingsPanel();
         settingsPanel.setBounds(0, 52, 784, 509);
         settingsPanel.setVisible(false);
+        if(PublicValues.theme == Theme.LEGACY) {
+            mainframe.setJMenuBar(bar);
+        }
         mainframe.add(settingsPanel, BorderLayout.CENTER);
         mainframe.add(this, BorderLayout.CENTER);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

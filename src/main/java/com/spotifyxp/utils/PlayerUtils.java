@@ -11,12 +11,13 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class PlayerUtils {
-    public static Player buildPlayer() {
+    public static Player buildPlayer() throws EOFException, Session.SpotifyAuthenticationException {
         Session.Builder builder2 = new Session.Builder()
                 .setPreferredLocale("de")
                 .setDeviceType(Connect.DeviceType.COMPUTER)
@@ -47,9 +48,9 @@ public class PlayerUtils {
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             return player;
-        } catch (IOException | MercuryClient.MercuryException | GeneralSecurityException |
-                 Session.SpotifyAuthenticationException e) {
-            ConsoleLogging.Throwable(e);
+        } catch (IOException | MercuryClient.MercuryException | GeneralSecurityException e) {
+            //ConsoleLogging.Throwable(e);
+            e.printStackTrace();
         }
         return null;
     }

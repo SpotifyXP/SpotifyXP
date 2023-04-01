@@ -4,6 +4,8 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
@@ -14,11 +16,9 @@ import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Timer;
-
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
@@ -50,7 +50,16 @@ public class SpotifyAPI {
 
         @SuppressWarnings("BusyWait")
         public void retry() {
-            player = PlayerUtils.buildPlayer();
+            try {
+                player = PlayerUtils.buildPlayer();
+            } catch (Session.SpotifyAuthenticationException | EOFException e) {
+                new LoginDialog().openWithInvalidAuth();
+                try {
+                    player = PlayerUtils.buildPlayer();
+                } catch (EOFException | Session.SpotifyAuthenticationException ex) {
+                    retry();
+                }
+            }
             wait = 0;
             while(true) {
                 assert player != null;
@@ -74,7 +83,16 @@ public class SpotifyAPI {
         public Player(SpotifyAPI a) {
             api = a;
             //Make player session
-            player = PlayerUtils.buildPlayer();
+            try {
+                player = PlayerUtils.buildPlayer();
+            } catch (Session.SpotifyAuthenticationException | EOFException e) {
+                new LoginDialog().openWithInvalidAuth();
+                try {
+                    player = PlayerUtils.buildPlayer();
+                } catch (EOFException | Session.SpotifyAuthenticationException ex) {
+                    retry();
+                }
+            }
             wait = 0;
             while(true) {
                 assert player != null;
