@@ -26,6 +26,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewSessionIdEvent;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -266,8 +267,7 @@ public class Player implements Closeable {
             ConsoleLoggingModules.error("Cannot play context!", ex);
             panicState(null);
         } catch (IllegalStateException ex) {
-            JOptionPane.showConfirmDialog(null, "A critical error occured SpotifyXP now closes", "Critical", JOptionPane.OK_CANCEL_OPTION);
-            System.exit(10);
+            ConsoleLoggingModules.Throwable(ex);
         }
     }
 
