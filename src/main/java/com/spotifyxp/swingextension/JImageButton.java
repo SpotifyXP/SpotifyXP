@@ -1,6 +1,8 @@
 package com.spotifyxp.swingextension;
 
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.designs.Theme;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
@@ -67,7 +69,25 @@ public class JImageButton extends JButton {
 
     @Override
     protected void paintComponent(Graphics g) {
+        Color oldFg = getForeground();
+        Color newFg = oldFg;
+        if(PublicValues.theme == Theme.LEGACY) {
+            ButtonModel mod = getModel();
+            if (mod.isPressed()) {
+                newFg = getForeground();
+                g.setColor(Color.white);
+                this.setBorderPainted(true);
+            } else {
+                this.setBorderPainted(false);
+                g.setColor(getBackground());
+            }
+            g.fillRect(0, 0, getWidth(), getHeight());
+            setForeground(newFg);
+        }
         super.paintComponent(g);
+        if(PublicValues.theme == Theme.LEGACY) {
+            setForeground(oldFg);
+        }
         if(image!=null) {
             Graphics2D graphics2D = (Graphics2D) g;
             if(!(rad.equals(""))) {

@@ -89,10 +89,10 @@ public class PlayerListener implements Player.EventsListener {
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                         ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
                         for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
-                            if (artist.toString().equals("")) {
+                            if (artists.toString().equals("")) {
                                 artists.append(artist.getName());
                             } else {
-                                artists.append(" ").append(artist.getName());
+                                artists.append(", ").append(artist.getName());
                             }
                         }
                         JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
@@ -103,14 +103,14 @@ public class PlayerListener implements Player.EventsListener {
                             break;
                         }
                     }else{
-                        ConsoleLogging.warning("The 'thing' you have selected will play but it's a high chance that it will be not shown in the player display (not title info)");
+                        ConsoleLogging.warning("The 'thing' you have selected will play but it's a high chance that it will be not shown in the player display (no title info)"); //ToDo: Translate
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                         ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
                         for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
-                            if (artist.toString().equals("")) {
+                            if (artists.toString().equals("")) {
                                 artists.append(artist.getName());
                             } else {
-                                artists.append(" ").append(artist.getName());
+                                artists.append(", ").append(artist.getName());
                             }
                         }
                         JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
@@ -145,8 +145,11 @@ public class PlayerListener implements Player.EventsListener {
             case MacOSLight:
             case QuaQua:
             case WINDOWS:
-            case LEGACY:
+            case UGLY:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
+                break;
+            case LEGACY:
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.png"));
                 break;
         }
         //timer.cancel();
@@ -163,8 +166,11 @@ public class PlayerListener implements Player.EventsListener {
             case MacOSLight:
             case QuaQua:
             case WINDOWS:
-            case LEGACY:
+            case UGLY:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.png"));
+                break;
+            case LEGACY:
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpause.png"));
                 break;
         }
         //timer.schedule(new PlayerThread(), 0, 1000);

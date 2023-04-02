@@ -7,7 +7,8 @@ public enum Theme {
     MacOSDark("MacOSDark"),
     MacOSLight("MacOSLight"),
     QuaQua("QuaQua"),
-    LEGACY("Legacy");
+    LEGACY("Legacy"),
+    UGLY("Ugly");
     final String s;
     Theme(String toselect) {
         s = toselect;

@@ -75,6 +75,9 @@ public class Initiator {
             case "LEGACY":
                 PublicValues.theme = Theme.LEGACY;
                 break;
+            case "UGLY":
+                PublicValues.theme = Theme.UGLY;
+                break;
             default:
                 PublicValues.theme = Theme.DARK;
                 break;
@@ -91,11 +94,13 @@ public class Initiator {
                 System.exit(0);
             }
         }
+        boolean unsupported = false;
         switch (PublicValues.theme) {
             case DARK:
                 try {
                     UIManager.setLookAndFeel(new FlatDarkLaf());
                 } catch (UnsupportedLookAndFeelException e) {
+                    unsupported = true;
                     ConsoleLogging.Throwable(e);
                 }
                 break;
@@ -103,6 +108,7 @@ public class Initiator {
                 try {
                     UIManager.setLookAndFeel(new FlatLightLaf());
                 } catch (UnsupportedLookAndFeelException e) {
+                    unsupported = true;
                     ConsoleLogging.Throwable(e);
                 }
                 break;
@@ -112,6 +118,7 @@ public class Initiator {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 } catch (RuntimeException | UnsupportedLookAndFeelException | ClassNotFoundException |
                          InstantiationException | IllegalAccessException e) {
+                    unsupported = true;
                     ConsoleLogging.Throwable(e);
                 }
                 break;
@@ -119,9 +126,13 @@ public class Initiator {
                 try {
                     UIManager.setLookAndFeel(new QuaquaLookAndFeel());
                 } catch (UnsupportedLookAndFeelException e) {
+                    unsupported = true;
                     ConsoleLogging.Throwable(e);
                 }
                 break;
+        }
+        if(unsupported) {
+            ConsoleLogging.error("The theme you selected is not supported! Set theme to ugly");
         }
         if(!PublicValues.foundSetupArgument) {
             new Setup();

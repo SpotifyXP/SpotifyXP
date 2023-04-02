@@ -327,29 +327,38 @@ public class ContentPanel extends JPanel {
         playerareavolumeslider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS) {
+                if(PublicValues.theme == Theme.LEGACY) {
                     playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
                     if (playerareavolumeslider.getValue() == 0) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
-                    }else{
-                        if(playerareavolumeslider.getValue() == 10) {
-                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
-                        }else{
-                            if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
-                                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.png"));
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.png"));
+                    } else {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
+                    }
+                }else {
+                    if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {
+                        playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+                        if (playerareavolumeslider.getValue() == 0) {
+                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
+                        } else {
+                            if (playerareavolumeslider.getValue() == 10) {
+                                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
+                            } else {
+                                if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
+                                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.png"));
+                                }
                             }
                         }
-                    }
-                }else{
-                    playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
-                    if (playerareavolumeslider.getValue() == 0) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.png"));
-                    }else{
-                        if(playerareavolumeslider.getValue() == 10) {
-                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
-                        }else{
-                            if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
-                                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.png"));
+                    } else {
+                        playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+                        if (playerareavolumeslider.getValue() == 0) {
+                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.png"));
+                        } else {
+                            if (playerareavolumeslider.getValue() == 10) {
+                                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
+                            } else {
+                                if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
+                                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.png"));
+                                }
                             }
                         }
                     }
@@ -396,6 +405,7 @@ public class ContentPanel extends JPanel {
         playertitle = new JLabel(l.translate("ui.player.title"));
         playertitle.setBounds(109, 11, 168, 14);
         playerarea.add(playertitle);
+
 
         playerdescription = new JLabel(l.translate("ui.player.description"));
         playerdescription.setBounds(109, 40, 138, 20);
@@ -1596,6 +1606,67 @@ public class ContentPanel extends JPanel {
                 ((DefaultTableModel)librarysonglist.getModel()).removeRow(librarysonglist.getSelectedRow());
             }
         });
+        JFrame dialog = new JFrame();
+        playerarea.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(e.getClickCount()==2) {
+                    if(!dialog.isVisible()) {
+                        playerareawidth = playerarea.getWidth();
+                        playerareaheight = playerarea.getHeight();
+                        windowWasOpened = true;
+                        frame.getContentPane().remove(playerarea);
+                        frame.repaint();
+                        frame.getContentPane().repaint();
+                        dialog.setTitle("SpotifyXP - Player");
+                        dialog.setContentPane(playerarea);
+                        dialog.setPreferredSize(new Dimension(338, 359));
+                        dialog.setVisible(true);
+                        dialog.pack();
+                        changePlayerToWindowStyle();
+                    }else{
+                        windowWasOpened = false;
+                        dialog.dispose();
+                        playerarea.setBounds(784/2-playerareawidth/2, 8, playerareawidth, playerareaheight-3);
+                        restoreDefaultPlayerStyle();
+                        add(playerarea);
+                        frame.repaint();
+                        frame.getContentPane().repaint();
+                    }
+                }
+            }
+        });
+        dialog.setResizable(false);
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                windowWasOpened = false;
+                dialog.dispose();
+                playerarea.setBounds(784/2-playerareawidth/2, 8, playerareawidth, playerareaheight-3);
+                restoreDefaultPlayerStyle();
+                add(playerarea);
+                frame.repaint();
+                frame.getContentPane().repaint();
+            }
+        });
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                dialog.dispose();
+            }
+        });
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                super.componentShown(e);
+                if(windowWasOpened) {
+                    dialog.setVisible(true);
+                }
+            }
+        });
         artistPanelBackButton.setVisible(false);
         if(PublicValues.theme!=Theme.LEGACY) {
             add(tabpanel);
@@ -1613,6 +1684,12 @@ public class ContentPanel extends JPanel {
                     return 129;
                 }
             });
+            legacyswitch.setBackgroundAt(0, Color.white);
+            legacyswitch.setBackgroundAt(1, Color.white);
+            legacyswitch.setBackgroundAt(2, Color.white);
+            legacyswitch.setBackgroundAt(3, Color.white);
+            legacyswitch.setBackgroundAt(4, Color.white);
+            legacyswitch.setBackgroundAt(5, Color.white);
             add(legacyswitch);
             legacyswitch.setSelectedIndex(3);
             preventBugLegacySwitch();
@@ -1630,7 +1707,9 @@ public class ContentPanel extends JPanel {
                             setPlaylistsVisible();
                             break;
                         case 1:
-                            librarybutton.doClick();
+                            if(librarysonglist.getModel().getRowCount()==0) {
+                                thread.start();
+                            }
                             preventBugLegacySwitch();
                             legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                             setLibraryVisible();
@@ -1767,6 +1846,46 @@ public class ContentPanel extends JPanel {
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
     }
 
+    int playerareawidth = 0;
+    int playerareaheight = 0;
+
+    void changePlayerToWindowStyle() {
+        playertitle.setHorizontalAlignment(SwingConstants.CENTER);
+        playerdescription.setHorizontalAlignment(SwingConstants.CENTER);
+        playerarea.add(playerdescription);
+        playerimage.setBounds(91, 11, 132, 130);
+        playertitle.setBounds(10, 166, 301, 14);
+        playerdescription.setBounds(10, 184, 300, 20);
+        playerplaypreviousbutton.setBounds(47, 222, 70, 36);
+        playerplaypausebutton.setBounds(129, 222, 69, 36);
+        playerplaynextbutton.setBounds(208, 222, 69, 36);
+        playercurrenttime.setBounds(62, 269, 200, 13);
+        playerplaytime.setBounds(0, 269, 57, 14);
+        playerplaytimetotal.setBounds(262, 269, 49, 14);
+        playerareavolumeicon.setBounds(62, 293, 14, 14);
+        playerareavolumeslider.setBounds(87, 293, 145, 13);
+        playerareavolumecurrent.setBounds(242, 293, 35, 14);
+        heart.setBounds(286, 229, 24, 24);
+    }
+
+    void restoreDefaultPlayerStyle() {
+        playertitle.setHorizontalAlignment(SwingConstants.LEFT);
+        playerdescription.setHorizontalAlignment(SwingConstants.LEFT);
+        playerimage.setBounds(10, 11, 78, 78);
+        playertitle.setBounds(109, 11, 168, 14);
+        playerdescription.setBounds(109, 40, 138, 20);
+        playerplaypreviousbutton.setBounds(287, 11, 70, 36);
+        playerplaypausebutton.setBounds(369, 11, 69, 36);
+        playerplaynextbutton.setBounds(448, 11, 69, 36);
+        playercurrenttime.setBounds(306, 54, 200, 13);
+        playerplaytime.setBounds(244, 54, 57, 14);
+        playerplaytimetotal.setBounds(506, 54, 49, 14);
+        playerareavolumeicon.setBounds(306, 75, 14, 14);
+        playerareavolumeslider.setBounds(334, 76, 145, 13);
+        playerareavolumecurrent.setBounds(489, 75, 35, 14);
+        heart.setBounds(525, 20, 24, 24);
+    }
+
     static void preventBugLegacySwitch() {
         for(int i = 0; i < legacyswitch.getTabCount(); i++) {
             legacyswitch.setComponentAt(i, new JPanel());
@@ -1805,9 +1924,9 @@ public class ContentPanel extends JPanel {
                 break;
             case LIGHT:
             case WINDOWS:
-            case LEGACY:
             case MacOSLight:
             case QuaQua:
+            case UGLY:
                 playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
                 playerarea.setBorder(new LineBorder(Color.black));
                 settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingsdark.png"));
@@ -1817,30 +1936,45 @@ public class ContentPanel extends JPanel {
                 playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
                 playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.png"));
                 break;
+            case LEGACY:
+                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
+                playerplaypreviousbutton.setImage(new Resources().readToInputStream("legacyicons/playerplayprevious.png"));
+                playerplaynextbutton.setImage(new Resources().readToInputStream("legacyicons/playerplaynext.png"));
+                playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.png"));
+                break;
         }
-        if(PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.LEGACY) {
+        if(PublicValues.theme == Theme.LEGACY) {
             playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
             if (playerareavolumeslider.getValue() == 0) {
-                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
-            }else{
-                if(playerareavolumeslider.getValue() == 10) {
-                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
-                }else{
-                    if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.png"));
+                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.png"));
+            } else {
+                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
+            }
+        }else {
+            if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {
+                playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+                if (playerareavolumeslider.getValue() == 0) {
+                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.png"));
+                } else {
+                    if (playerareavolumeslider.getValue() == 10) {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.png"));
+                    } else {
+                        if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
+                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.png"));
+                        }
                     }
                 }
-            }
-        }else{
-            playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
-            if (playerareavolumeslider.getValue() == 0) {
-                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.png"));
-            }else{
-                if(playerareavolumeslider.getValue() == 10) {
-                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
-                }else{
-                    if(playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4 ) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.png"));
+            } else {
+                playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
+                if (playerareavolumeslider.getValue() == 0) {
+                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.png"));
+                } else {
+                    if (playerareavolumeslider.getValue() == 10) {
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.png"));
+                    } else {
+                        if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
+                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.png"));
+                        }
                     }
                 }
             }
@@ -1861,7 +1995,19 @@ public class ContentPanel extends JPanel {
             //---
             //Set style of components
             //INFO: No need to change the color of the jmenubar because under windowsxp it has the right color
-            playerimage.setBackground(Color.darkGray);
+            playerplaypausebutton.setBorderPainted(false);
+            playerplaypausebutton.setContentAreaFilled(false);
+            playerplaynextbutton.setBorderPainted(false);
+            playerplaynextbutton.setContentAreaFilled(false);
+            playerplaypreviousbutton.setBorderPainted(false);
+            playerplaypreviousbutton.setContentAreaFilled(false);
+            playerplaypreviousbutton.setFocusPainted(false);
+            playerplaynextbutton.setFocusPainted(false);
+            playerplaypausebutton.setFocusPainted(false);
+            playerplaypausebutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
+            playerplaypreviousbutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
+            playerplaynextbutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
+            playerimage.setImage(new Resources().readToInputStream("legacyicons/nothingplaying.png"));
             playerarea.setBorder(null);
             //---
             //Resize components
@@ -1873,6 +2019,13 @@ public class ContentPanel extends JPanel {
         }else{
             playerimage.setImage(new Resources().readToInputStream("icons/nothingplaying.png"));
         }
+    }
+    boolean windowWasOpened = false;
+    static Color hex2Rgb(String colorStr) {
+        return new Color(
+                Integer.valueOf( colorStr.substring( 1, 3 ), 16 ),
+                Integer.valueOf( colorStr.substring( 3, 5 ), 16 ),
+                Integer.valueOf( colorStr.substring( 5, 7 ), 16 ) );
     }
     public void setLibraryVisible() {
         lastmenu = LastTypes.Library;
@@ -2116,11 +2269,11 @@ public class ContentPanel extends JPanel {
             }
         }
     }
-    public static JFrame frame = null;
+    public static JFrame frame = new JFrame("SpotifyXP - v" + PublicValues.version);
     public static SettingsPanel settingsPanel = null;
     public void open() {
-        JFrame mainframe = new JFrame("SpotifyXP - v" + PublicValues.version);
-        frame = mainframe;
+        JFrame mainframe;
+        mainframe = frame;
         try {
             mainframe.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
         } catch (IOException e) {
@@ -2131,12 +2284,14 @@ public class ContentPanel extends JPanel {
         settingsPanel.setVisible(false);
         if(PublicValues.theme == Theme.LEGACY) {
             mainframe.setJMenuBar(bar);
+            mainframe.setPreferredSize(new Dimension(793, 620));
+        }else{
+            mainframe.setPreferredSize(new Dimension(793, 600));
         }
         mainframe.add(settingsPanel, BorderLayout.CENTER);
         mainframe.add(this, BorderLayout.CENTER);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.setResizable(false);
-        mainframe.setPreferredSize(new Dimension(793, 600));
         mainframe.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
