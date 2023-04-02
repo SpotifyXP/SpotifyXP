@@ -1619,7 +1619,7 @@ public class ContentPanel extends JPanel {
                         frame.getContentPane().remove(playerarea);
                         frame.repaint();
                         frame.getContentPane().repaint();
-                        dialog.setTitle("SpotifyXP - Player");
+                        dialog.setTitle(PublicValues.language.translate("ui.player.dialog.title"));
                         dialog.setContentPane(playerarea);
                         dialog.setPreferredSize(new Dimension(338, 359));
                         dialog.setVisible(true);
@@ -1628,7 +1628,7 @@ public class ContentPanel extends JPanel {
                     }else{
                         windowWasOpened = false;
                         dialog.dispose();
-                        playerarea.setBounds(784/2-playerareawidth/2, 8, playerareawidth, playerareaheight-3);
+                        playerarea.setBounds(784/2-playerareawidth/2, 8, playerareawidth, playerareaheight);
                         restoreDefaultPlayerStyle();
                         add(playerarea);
                         frame.repaint();
@@ -1644,7 +1644,7 @@ public class ContentPanel extends JPanel {
                 super.windowClosing(e);
                 windowWasOpened = false;
                 dialog.dispose();
-                playerarea.setBounds(784/2-playerareawidth/2, 8, playerareawidth, playerareaheight-3);
+                playerarea.setBounds(784/2-playerareawidth/2, 8, playerareawidth, playerareaheight);
                 restoreDefaultPlayerStyle();
                 add(playerarea);
                 frame.repaint();
@@ -1672,12 +1672,12 @@ public class ContentPanel extends JPanel {
             add(tabpanel);
         }else{
             legacyswitch.setBounds(0, 111, 784, 450);
-            legacyswitch.addTab("Playlists", new JPanel()); //ToDo: Translate
-            legacyswitch.addTab("Library", new JPanel()); //ToDo: Translate
-            legacyswitch.addTab("Search", new JPanel()); //ToDo: Translate
-            legacyswitch.addTab("Hot List", new JPanel()); //ToDo: Translate
-            legacyswitch.addTab("Queue", new JPanel()); //ToDo: Translate
-            legacyswitch.addTab("Feedback", new JPanel()); //ToDo: Translate
+            legacyswitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
+            legacyswitch.addTab(PublicValues.language.translate("ui.navigation.library"), new JPanel());
+            legacyswitch.addTab(PublicValues.language.translate("ui.navigation.search"), new JPanel());
+            legacyswitch.addTab(PublicValues.language.translate("ui.navigation.hotlist"), new JPanel());
+            legacyswitch.addTab(PublicValues.language.translate("ui.navigation.queue"), new JPanel());
+            legacyswitch.addTab(PublicValues.language.translate("ui.navigation.feedback"), new JPanel());
             legacyswitch.setUI(new BasicTabbedPaneUI() {
                 @Override
                 protected int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
@@ -1744,14 +1744,14 @@ public class ContentPanel extends JPanel {
                     }
                 }
             });
-            JMenu file = new JMenu("File"); //ToDo: Translate
-            JMenu edit = new JMenu("Edit"); //ToDo: Translate
-            JMenu account = new JMenu("Account"); //ToDo: Translate
-            JMenu help = new JMenu("Help"); //ToDo: Translate
-            JMenuItem exit = new JMenuItem("Exit"); //ToDo: Translate
-            JMenuItem logout = new JMenuItem("Logout"); //ToDo: Translate
-            JMenuItem about = new JMenuItem("About SpotifyXP"); //ToDo: Translate
-            JMenuItem settings = new JMenuItem("Settings"); //ToDo: Translate
+            JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
+            JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
+            JMenu account = new JMenu(PublicValues.language.translate("ui.legacy.account"));
+            JMenu help = new JMenu(PublicValues.language.translate("ui.legacy.help"));
+            JMenuItem exit = new JMenuItem(PublicValues.language.translate("ui.legacy.exit"));
+            JMenuItem logout = new JMenuItem(PublicValues.language.translate("ui.legacy.logout"));
+            JMenuItem about = new JMenuItem(PublicValues.language.translate("ui.legacy.about"));
+            JMenuItem settings = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
             bar.add(file);
             bar.add(edit);
             bar.add(account);
@@ -1764,7 +1764,7 @@ public class ContentPanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JDialog dialog = new JDialog();
-                    dialog.setTitle("SpotifyXP - Settings"); //ToDo: Translate
+                    dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
                     SettingsPanel panel = new SettingsPanel();
                     dialog.setPreferredSize(new Dimension(793, 600));
                     dialog.getContentPane().add(panel);

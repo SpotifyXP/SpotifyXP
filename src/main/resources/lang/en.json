@@ -1,4 +1,5 @@
 {
+  //This is a comment and should work with libLanguage version 1.1
   "debug.buildcontentpanelbegin" : "Building ContentPanel",
   "debug.buildcontentpanelend" : "Done building ContentPanel",
   "debug.connection.waiting" : "Waiting for player to be ready",
@@ -86,5 +87,20 @@
   "ui.general.copyuri" : "Copy URI",
   "ui.general.remove" : "Remove",
   "ui.general.addtolibrary" : "Add to library",
-  "ui.general.remove.playlist" : "Remove Playlist"
+  "ui.general.remove.playlist" : "Remove Playlist",
+  "ui.player.dialog.title" : "SpotifyXP - Player",
+  "ui.legacy.file" : "File",
+  "ui.legacy.edit" : "Edit",
+  "ui.legacy.account" : "Account",
+  "ui.legacy.help" : "Help",
+  "ui.legacy.exit" : "Exit",
+  "ui.legacy.logout" : "Logout",
+  "ui.legacy.about" : "About SpotifyXP",
+  "ui.legacy.settings" : "Settings",
+  "ui.graphicalmessage.bug" : "A bug was encountered please report this! Where: ",
+  "ui.settings.pleaserestart" : "Please restart SpotifyXP to apply the changes",
+  "joptionpane.info" : "Info",
+  "joptionpane.updater" : "Updater",
+  "playerlistener.playableid.unknowntype" : "The 'thing' you have selected will play but it's a high chance that it will be not shown in the player display (no title info)",
+  "startup.info.took" : "SpotifyXP needed {} to start"
 }

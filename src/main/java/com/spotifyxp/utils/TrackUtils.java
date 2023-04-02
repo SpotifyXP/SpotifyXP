@@ -93,7 +93,8 @@ public class TrackUtils {
         try {
             ContentPanel.player.getPlayer().tracks(true).next.clear();
         }catch (NullPointerException exc) {
-            // ToDo: Find the bug (why is this raising a nullpointer exception)
+            //This should not happen
+            GraphicalMessage.bug("TrackUtils line 94 NullPointerException");
         }
         int counter = 0;
         try {
@@ -122,6 +123,9 @@ public class TrackUtils {
                 ContentPanel.player.getPlayer().addToQueue(s);
             }
         }
+    }
+    public static Integer roundVolumeToNormal(float volume) {
+        return Integer.parseInt(String.valueOf(Math.round(volume*10)));
     }
     public static int getSecondsFromMS(long milliseconds) {
         return Math.round(milliseconds/1000);

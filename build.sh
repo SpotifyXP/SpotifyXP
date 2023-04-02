@@ -1,0 +1,1 @@
+echo "Building SpotifyXP on Linux is not supported"

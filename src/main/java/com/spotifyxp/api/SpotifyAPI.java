@@ -52,13 +52,9 @@ public class SpotifyAPI {
         public void retry() {
             try {
                 player = PlayerUtils.buildPlayer();
-            } catch (Session.SpotifyAuthenticationException | EOFException e) {
+            } catch (Exception e) {
                 new LoginDialog().openWithInvalidAuth();
-                try {
-                    player = PlayerUtils.buildPlayer();
-                } catch (EOFException | Session.SpotifyAuthenticationException ex) {
-                    retry();
-                }
+                retry();
             }
             wait = 0;
             while(true) {
@@ -85,13 +81,9 @@ public class SpotifyAPI {
             //Make player session
             try {
                 player = PlayerUtils.buildPlayer();
-            } catch (Session.SpotifyAuthenticationException | EOFException e) {
+            } catch (Exception e) {
                 new LoginDialog().openWithInvalidAuth();
-                try {
-                    player = PlayerUtils.buildPlayer();
-                } catch (EOFException | Session.SpotifyAuthenticationException ex) {
-                    retry();
-                }
+                retry();
             }
             wait = 0;
             while(true) {

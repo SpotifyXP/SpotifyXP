@@ -23,10 +23,16 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
@@ -55,6 +61,20 @@ public class Initiator {
             PublicValues.logger.setColored(true);
             PublicValues.foundSetupArgument = true;
         }
+        //Try to unrestrict security
+        try {
+            Files.copy(new Resources().readToInputStream("security/local_policy.jar"), Paths.get(System.getProperty("java.home") + "\\jre\\lib\\security\\local_policy.jar"), REPLACE_EXISTING);
+            Files.copy(new Resources().readToInputStream("security/US_export_policy.jar"), Paths.get(System.getProperty("java.home") + "\\jre\\lib\\security\\US_export_policy.jar"), REPLACE_EXISTING);
+        } catch (IOException e) {
+            try {
+                Files.copy(new Resources().readToInputStream("security/local_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\local_policy.jar"), REPLACE_EXISTING);
+                Files.copy(new Resources().readToInputStream("security/US_export_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\US_export_policy.jar"), REPLACE_EXISTING);
+            } catch (IOException ignored) {
+                GraphicalMessage.bug("Can't unrestrict security");
+                System.exit(0);
+            }
+        }
+        //---
         PublicValues.config = new Config();
         switch(PublicValues.config.get(ConfigValues.theme.name)) {
             case "QUAQUA":
@@ -170,7 +190,7 @@ public class Initiator {
         if(Boolean.parseBoolean(updater.getFirst(0).toString())) {
             String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
             ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.updater.available") + version, "Updater", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.updater.available") + version, PublicValues.language.translate("joptionpane.updater"), JOptionPane.OK_CANCEL_OPTION);
         }else{
             if(Double.parseDouble((((GitHubAPI.Release) updater.getSecond(0)).version.replace("v", "")))<Double.parseDouble(PublicValues.version.replace("v", ""))) {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
@@ -179,6 +199,6 @@ public class Initiator {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
             }
         }
-        ConsoleLogging.info("SpotifyXP needed " + startupTime.getHHMMSS() + " to start");
+        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getHHMMSS()));
     }
 }

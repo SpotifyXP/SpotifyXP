@@ -103,7 +103,7 @@ public class PlayerListener implements Player.EventsListener {
                             break;
                         }
                     }else{
-                        ConsoleLogging.warning("The 'thing' you have selected will play but it's a high chance that it will be not shown in the player display (no title info)"); //ToDo: Translate
+                        ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                         ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
                         for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
@@ -206,7 +206,11 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onVolumeChanged(@NotNull Player player, @Range(from = 0L, to = 1L) float v) {
-
+        try {
+            ContentPanel.playerareavolumeslider.setValue(TrackUtils.roundVolumeToNormal(v));
+        }catch (NullPointerException ex) {
+            //ContentPanel is not visible yet
+        }
     }
 
     @Override

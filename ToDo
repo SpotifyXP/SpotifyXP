@@ -1,1 +1,2 @@
 [ ] - Implement password encryption for security
+[x] - Fix legacy player resize bug (player getting smaller everytime the window is reattached)

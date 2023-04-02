@@ -32,17 +32,29 @@ public class libLanguage {
         afl = false;
         languageCode = code;
     }
+    boolean langNotFound = false;
     public void setAutoFindLanguage() {
         afl = true;
     }
     public void setLanguageFolder(String path) {
         lf = path;
     }
+    public String removeComment(String json) {
+        StringBuilder builder = new StringBuilder();
+        for(String s : json.split("\n")) {
+            if(s.replaceAll(" ", "").startsWith("//")) {
+                continue;
+            }
+            builder.append(s);
+        }
+        return builder.toString();
+    }
+    String jsoncache = "";
     public String translate(String key) {
         final String[] ret = {key};
-        if(afl) {
+        if(!jsoncache.equals("")) {
             try {
-                JSONObject object = new JSONObject(new Resources(true).readToString(lf + "/" + languageCode + ".json"));
+                JSONObject object = new JSONObject(jsoncache);
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {
@@ -51,13 +63,50 @@ public class libLanguage {
                         }
                     }
                 });
+                jsoncache = object.toString();
+            } catch (Exception ignored) {
+            }
+        }
+        if(afl) {
+            try {
+                JSONObject object = new JSONObject(removeComment(new Resources(true).readToString(lf + "/" + languageCode + ".json")));
+                object.toMap().forEach(new BiConsumer<String, Object>() {
+                    @Override
+                    public void accept(String s, Object o) {
+                        if(s.equals(key)) {
+                            ret[0] = o.toString();
+                        }
+                    }
+                });
+                jsoncache = object.toString();
+                return ret[0];
             } catch (Exception e) {
+                if(langNotFound) {
+                    return key;
+                }
                 languageCode = "en";
+                langNotFound = true;
                 return translate(key);
             }
         }else{
+            if(!jsoncache.equals("")) {
+                try {
+                    JSONObject object = new JSONObject(jsoncache);
+                    object.toMap().forEach(new BiConsumer<String, Object>() {
+                        @Override
+                        public void accept(String s, Object o) {
+                            if(s.equals(key)) {
+                                ret[0] = o.toString();
+                            }
+                        }
+                    });
+                    jsoncache = object.toString();
+                    return ret[0];
+                } catch (Exception ignored) {
+                }
+            }
             try {
-                JSONObject object = new JSONObject(new Resources(true).readToString(lf + "/" + languageCode + ".json"));
+                JSONObject object = new JSONObject(removeComment(new Resources(true).readToString(lf + "/" + languageCode + ".json")));
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {
@@ -66,7 +115,12 @@ public class libLanguage {
                         }
                     }
                 });
+                jsoncache = object.toString();
             } catch (Exception e) {
+                if(langNotFound) {
+                    return key;
+                }
+                langNotFound = true;
                 languageCode = "en";
                 return translate(key);
             }

@@ -1,25 +1,12 @@
 package com.spotifyxp.panels;
 
-import ch.randelshofer.quaqua.QuaquaLookAndFeel;
-import ch.randelshofer.quaqua.jaguar.Quaqua15JaguarLookAndFeel;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.theming.Theme;
-import com.spotifyxp.theming.ThemeEngine;
-import com.spotifyxp.theming.includedThemes.Luna;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.util.ArrayList;
-import java.util.Objects;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
@@ -30,7 +17,6 @@ public class SettingsPanel extends JPanel {
     public static JComboBox settingsuiselecttheme;
     public static JComboBox settingsplaybackselectquality;
     public static JButton settingsplaybackopenequalizerbutton;
-    ArrayList<Theme> themecache = new ArrayList<>();
 
     public SettingsPanel() {
         setBounds(100, 100, 800, 600);
@@ -100,6 +86,8 @@ public class SettingsPanel extends JPanel {
 
         settingsplaybackopenequalizerbutton.addActionListener(e -> JOptionPane.showConfirmDialog(null, "Equalizer not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION));
 
+        settingsplaybackopenequalizerbutton.setVisible(false); //Equalizer will be implemented in the fure but propably first when I learned how this works
+
         settingspathsetbutton.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -131,6 +119,6 @@ public class SettingsPanel extends JPanel {
         PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().toUpperCase());
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
         PublicValues.config.write(ConfigValues.disableplayerstats.name, String.valueOf(settingsuidisableplayerstats.isSelected()));
-        JOptionPane.showConfirmDialog(null, "Please restart SpotifyXP to apply the changes", "Info", JOptionPane.OK_CANCEL_OPTION);
+        JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
     }
 }

@@ -158,7 +158,9 @@ public class Setup {
             try {
                 progressBar.setVisible(true);
                 //Create the SpotifyXP directory
-                new File(PublicValues.appLocation).mkdir();
+                if(!new File(PublicValues.appLocation).exists()) {
+                    new File(PublicValues.appLocation).mkdir();
+                }
                 copyInputStreamToFile(new Resources().readToInputStream("spotifyxp.ico"), new File(PublicValues.appLocation + "/spotifyxp.ico"));
                 progressBar.setValue(25);
                 //Get the path of the current Jar File
