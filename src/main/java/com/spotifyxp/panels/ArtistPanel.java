@@ -4,8 +4,11 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
+import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 
@@ -49,6 +52,14 @@ public class ArtistPanel extends JPanel {
         };
         artistpopularscrollpane.setViewportView(artistpopularsonglist);
 
+        ContextMenu artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
+        artistpopularsonglistcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
+            @Override
+            public void run() {
+                ClipboardUtil.set(artistpopularuricache.get(artistpopularsonglist.getSelectedRow()));
+            }
+        });
+
         artistalbumscrollpanel = new JScrollPane();
         artistalbumscrollpanel.setBounds(10, 667, 780, 295);
         add(artistalbumscrollpanel);
@@ -79,6 +90,14 @@ public class ArtistPanel extends JPanel {
         artistbackgroundimage.setBounds(0, 0, 780, 277);
         add(artistbackgroundimage, new Integer(1));
 
+        ContextMenu artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
+        artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
+            @Override
+            public void run() {
+                ClipboardUtil.set(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()));
+            }
+        });
+
         artistalbumalbumtable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -96,6 +115,7 @@ public class ArtistPanel extends JPanel {
                             ContentPanel.searchplaylistsongscache.add(simplified.getUri());
                         }
                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                        ExceptionDialog.open(ex);
                         ConsoleLogging.Throwable(ex);
                     }
                 }

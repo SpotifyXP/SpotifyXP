@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.TextFormat;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.connectstate.Player.*;
 import com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context;
@@ -55,6 +56,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.P
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager.Action;
 
+import javax.swing.*;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.*;
@@ -327,7 +329,12 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
 
     synchronized void updated() {
         updateRestrictions();
-        device.updateState(Connect.PutStateReason.PLAYER_STATE_CHANGED, player.time(), state.build());
+        try {
+            device.updateState(Connect.PutStateReason.PLAYER_STATE_CHANGED, player.time(), state.build());
+        }catch (IllegalStateException e) {
+            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.error.critical2.text"), PublicValues.language.translate("ui.error.critical2.title"), JOptionPane.OK_CANCEL_OPTION);
+            System.exit(0);
+        }
     }
 
     void addListener(@NotNull DeviceStateHandler.Listener listener) {

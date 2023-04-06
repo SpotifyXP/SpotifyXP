@@ -27,7 +27,7 @@ public class VistaIDList implements Serializable {
 
 	public static final int signature = 0xA000000C;
 	
-	private LinkedList<byte[]> list = new LinkedList<>();
+	private final LinkedList<byte[]> list = new LinkedList<>();
 
 	public VistaIDList() {
 	}

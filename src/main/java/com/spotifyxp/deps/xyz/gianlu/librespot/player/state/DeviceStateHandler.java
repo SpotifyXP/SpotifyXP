@@ -215,7 +215,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
         }
     }
 
-    public synchronized void updateState(@NotNull Connect.PutStateReason reason, int playerTime, @NotNull Player.PlayerState state) {
+    public synchronized void updateState(@NotNull Connect.PutStateReason reason, int playerTime, @NotNull Player.PlayerState state) throws IllegalStateException {
         if (connectionId == null) throw new IllegalStateException();
 
         long timestamp = TimeProvider.currentTimeMillis();

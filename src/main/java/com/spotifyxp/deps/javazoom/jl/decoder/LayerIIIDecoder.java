@@ -33,32 +33,32 @@ public final class LayerIIIDecoder implements FrameDecoder {
 	public int[] scalefac_buffer;
 
 	private int CheckSumHuff = 0;
-	private int[] is_1d;
-	private float[][][] ro;
-	private float[][][] lr;
-	private float[] out_1d;
-	private float[][] prevblck;
-	private float[][] k;
-	private int[] nonzero;
-	private Bitstream stream;
-	private Header header;
-	private SynthesisFilter filter1, filter2;
-	private OutputBuffer buffer;
-	private int which_channels;
+	private final int[] is_1d;
+	private final float[][][] ro;
+	private final float[][][] lr;
+	private final float[] out_1d;
+	private final float[][] prevblck;
+	private final float[][] k;
+	private final int[] nonzero;
+	private final Bitstream stream;
+	private final Header header;
+	private final SynthesisFilter filter1;
+	private final SynthesisFilter filter2;
+	private final OutputBuffer buffer;
+	private final int which_channels;
 	private BitReserve br;
-	private III_side_info_t si;
+	private final III_side_info_t si;
 
-	private temporaire2[] III_scalefac_t;
-	private temporaire2[] scalefac;
+    private final temporaire2[] scalefac;
 	// private III_scalefac_t scalefac;
 
-	private int max_gr;
+	private final int max_gr;
 	private int frame_start;
 	private int part2_start;
-	private int channels;
-	private int first_channel;
-	private int last_channel;
-	private int sfreq;
+	private final int channels;
+	private final int first_channel;
+	private final int last_channel;
+	private final int sfreq;
 
 	/**
 	 * Constructor.
@@ -77,7 +77,7 @@ public final class LayerIIIDecoder implements FrameDecoder {
 		nonzero = new int[2];
 
 		// III_scalefact_t
-		III_scalefac_t = new temporaire2[2];
+        temporaire2[] III_scalefac_t = new temporaire2[2];
 		III_scalefac_t[0] = new temporaire2();
 		III_scalefac_t[1] = new temporaire2();
 		scalefac = III_scalefac_t;
@@ -198,8 +198,8 @@ public final class LayerIIIDecoder implements FrameDecoder {
 
 	// subband samples are buffered and passed to the
 	// SynthesisFilter in one go.
-	private float[] samples1 = new float[32];
-	private float[] samples2 = new float[32];
+	private final float[] samples1 = new float[32];
+	private final float[] samples2 = new float[32];
 
 	public void decode () {
 		int nSlots = header.slots();
@@ -259,13 +259,8 @@ public final class LayerIIIDecoder implements FrameDecoder {
 
 				reorder(lr[ch], ch, gr);
 				antialias(ch, gr);
-				// for (int hb = 0;hb<576;hb++) CheckSumOut1d = CheckSumOut1d + out_1d[hb];
-				// System.out.println("CheckSumOut1d = "+CheckSumOut1d);
 
 				hybrid(ch, gr);
-
-				// for (int hb = 0;hb<576;hb++) CheckSumOut1d = CheckSumOut1d + out_1d[hb];
-				// System.out.println("CheckSumOut1d = "+CheckSumOut1d);
 
 				for (sb18 = 18; sb18 < 576; sb18 += 36)
 					// Frequency inversion
@@ -308,8 +303,6 @@ public final class LayerIIIDecoder implements FrameDecoder {
 		// counter++;
 		// }
 		// else
-		// {
-		// }
 
 	}
 
@@ -731,8 +724,6 @@ public final class LayerIIIDecoder implements FrameDecoder {
 				h = huffcodetab.ht[si.ch[ch].gr[gr].table_select[2]];
 
 			huffcodetab.huffman_decoder(h, x, y, v, w, br);
-			// if (index >= is_1d.length)
-			// System.out.println("i0="+i+"/"+(si.ch[ch].gr[gr].big_values<<1)+" Index="+index+" is_1d="+is_1d.length);
 
 			is_1d[index++] = x[0];
 			is_1d[index++] = y[0];
@@ -754,8 +745,6 @@ public final class LayerIIIDecoder implements FrameDecoder {
 			is_1d[index++] = x[0];
 			is_1d[index++] = y[0];
 			CheckSumHuff = CheckSumHuff + v[0] + w[0] + x[0] + y[0];
-			// System.out.println("v = "+v[0]+" w = "+w[0]);
-			// System.out.println("x = "+x[0]+" y = "+y[0]);
 			num_bits = br.hsstell();
 		}
 
@@ -802,7 +791,7 @@ public final class LayerIIIDecoder implements FrameDecoder {
 	/**
 	 *
 	 */
-	private void dequantize_sample (float xr[][], int ch, int gr) {
+	private void dequantize_sample (float[][] xr, int ch, int gr) {
 		gr_info_s gr_info = si.ch[ch].gr[gr];
 		int cb = 0;
 		int next_cb_boundary;
@@ -940,7 +929,7 @@ public final class LayerIIIDecoder implements FrameDecoder {
 	/**
 	 *
 	 */
-	private void reorder (float xr[][], int ch, int gr) {
+	private void reorder (float[][] xr, int ch, int gr) {
 		gr_info_s gr_info = si.ch[ch].gr[gr];
 		int freq, freq3;
 		int index;
@@ -967,8 +956,6 @@ public final class LayerIIIDecoder implements FrameDecoder {
 				 * sfb++,sfb_start = sfBandIndex[sfreq].s[sfb], sfb_lines = sfBandIndex[sfreq].s[sfb+1] - sfb_start ) {
 				 */
 				for (sfb = 3; sfb < 13; sfb++) {
-					// System.out.println("sfreq="+sfreq+" sfb="+sfb+" sfBandIndex="+sfBandIndex.length+" sfBandIndex[sfreq].s="+
-					// sfBandIndex[sfreq].s.length);
 					sfb_start = sfBandIndex[sfreq].s[sfb];
 					sfb_lines = sfBandIndex[sfreq].s[sfb + 1] - sfb_start;
 
@@ -1815,26 +1802,14 @@ i++;
 		}
 	}
 
-	// class III_scalefac_t
-	// {
-	// public temporaire2[] tab;
-	// /**
-	// * Dummy Constructor
-	// */
-	// public III_scalefac_t()
-	// {
-	// tab = new temporaire2[2];
-	// }
-	// }
-
-	private static final int slen[][] = { {0, 0, 0, 0, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4},
+	private static final int[][] slen = { {0, 0, 0, 0, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4},
 		{0, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 2, 3}};
 
-	public static final int pretab[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 2, 0};
+	public static final int[] pretab = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 2, 0};
 
-	private SBI[] sfBandIndex; // Init in the constructor.
+	private final SBI[] sfBandIndex; // Init in the constructor.
 
-	public static final float two_to_negative_half_pow[] = {1.0000000000E+00f, 7.0710678119E-01f, 5.0000000000E-01f,
+	public static final float[] two_to_negative_half_pow = {1.0000000000E+00f, 7.0710678119E-01f, 5.0000000000E-01f,
 		3.5355339059E-01f, 2.5000000000E-01f, 1.7677669530E-01f, 1.2500000000E-01f, 8.8388347648E-02f, 6.2500000000E-02f,
 		4.4194173824E-02f, 3.1250000000E-02f, 2.2097086912E-02f, 1.5625000000E-02f, 1.1048543456E-02f, 7.8125000000E-03f,
 		5.5242717280E-03f, 3.9062500000E-03f, 2.7621358640E-03f, 1.9531250000E-03f, 1.3810679320E-03f, 9.7656250000E-04f,
@@ -1847,7 +1822,7 @@ i++;
 		2.6341780319E-09f, 1.8626451492E-09f, 1.3170890160E-09f, 9.3132257462E-10f, 6.5854450798E-10f, 4.6566128731E-10f,
 		3.2927225399E-10f};
 
-	public static final float t_43[] = create_t_43();
+	public static final float[] t_43 = create_t_43();
 
 	static private float[] create_t_43 () {
 		float[] t43 = new float[8192];
@@ -1858,7 +1833,7 @@ i++;
 		return t43;
 	}
 
-	public static final float io[][] = {
+	public static final float[][] io = {
 		{1.0000000000E+00f, 8.4089641526E-01f, 7.0710678119E-01f, 5.9460355751E-01f, 5.0000000001E-01f, 4.2044820763E-01f,
 			3.5355339060E-01f, 2.9730177876E-01f, 2.5000000001E-01f, 2.1022410382E-01f, 1.7677669530E-01f, 1.4865088938E-01f,
 			1.2500000000E-01f, 1.0511205191E-01f, 8.8388347652E-02f, 7.4325444691E-02f, 6.2500000003E-02f, 5.2556025956E-02f,
@@ -1872,10 +1847,10 @@ i++;
 			2.4414062501E-04f, 1.7263349151E-04f, 1.2207031251E-04f, 8.6316745755E-05f, 6.1035156254E-05f, 4.3158372878E-05f,
 			3.0517578127E-05f, 2.1579186439E-05f}};
 
-	public static final float TAN12[] = {0.0f, 0.26794919f, 0.57735027f, 1.0f, 1.73205081f, 3.73205081f, 9.9999999e10f,
+	public static final float[] TAN12 = {0.0f, 0.26794919f, 0.57735027f, 1.0f, 1.73205081f, 3.73205081f, 9.9999999e10f,
 		-3.73205081f, -1.73205081f, -1.0f, -0.57735027f, -0.26794919f, 0.0f, 0.26794919f, 0.57735027f, 1.0f};
 
-	private static/* final */int reorder_table[][]/* = loadReorderTable() */; // SZD: will be generated on demand
+	private static/* final */ int[][] reorder_table/* = loadReorderTable() */; // SZD: will be generated on demand
 
 	/**
 	 * Loads the data for the reorder
@@ -1886,9 +1861,9 @@ i++;
 	 * (int[][])o; } catch (IOException ex) { throw new ExceptionInInitializerError(ex); } }
 	 */
 
-	static int[] reorder (int scalefac_band[]) { // SZD: converted from LAME
+	static int[] reorder (int[] scalefac_band) { // SZD: converted from LAME
 		int j = 0;
-		int ix[] = new int[576];
+		int[] ix = new int[576];
 		for (int sfb = 0; sfb < 13; sfb++) {
 			int start = scalefac_band[sfb];
 			int end = scalefac_band[sfb + 1];
@@ -1899,10 +1874,10 @@ i++;
 		return ix;
 	}
 
-	private static final float cs[] = {0.857492925712f, 0.881741997318f, 0.949628649103f, 0.983314592492f, 0.995517816065f,
+	private static final float[] cs = {0.857492925712f, 0.881741997318f, 0.949628649103f, 0.983314592492f, 0.995517816065f,
 		0.999160558175f, 0.999899195243f, 0.999993155067f};
 
-	private static final float ca[] = {-0.5144957554270f, -0.4717319685650f, -0.3133774542040f, -0.1819131996110f,
+	private static final float[] ca = {-0.5144957554270f, -0.4717319685650f, -0.3133774542040f, -0.1819131996110f,
 		-0.0945741925262f, -0.0409655828852f, -0.0141985685725f, -0.00369997467375f};
 
 	/************************************************************/
@@ -1920,7 +1895,7 @@ i++;
 	/***************************************************************/
 	/* INV_MDCT */
 	/***************************************************************/
-	public static final float win[][] = {
+	public static final float[][] win = {
 		{-1.6141214951E-02f, -5.3603178919E-02f, -1.0070713296E-01f, -1.6280817573E-01f, -4.9999999679E-01f, -3.8388735032E-01f,
 			-6.2061144372E-01f, -1.1659756083E+00f, -3.8720752656E+00f, -4.2256286556E+00f, -1.5195289984E+00f, -9.7416483388E-01f,
 			-7.3744074053E-01f, -1.2071067773E+00f, -5.1636156596E-01f, -4.5426052317E-01f, -4.0715656898E-01f, -3.6969460527E-01f,
@@ -1970,7 +1945,7 @@ i++;
 
 	public Sftable sftable;
 
-	public static final int nr_of_sfb_block[][][] = { { {6, 5, 5, 5}, {9, 9, 9, 9}, {6, 9, 9, 9}},
+	public static final int[][][] nr_of_sfb_block = { { {6, 5, 5, 5}, {9, 9, 9, 9}, {6, 9, 9, 9}},
 		{ {6, 5, 7, 3}, {9, 9, 12, 6}, {6, 9, 12, 6}}, { {11, 10, 0, 0}, {18, 18, 0, 0}, {15, 18, 0, 0}},
 		{ {7, 7, 7, 0}, {12, 12, 12, 0}, {6, 15, 12, 0}}, { {6, 6, 6, 3}, {12, 9, 9, 6}, {6, 12, 9, 6}},
 		{ {8, 8, 5, 0}, {15, 12, 9, 0}, {6, 18, 9, 0}}};

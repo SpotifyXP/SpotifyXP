@@ -2,6 +2,7 @@ package com.spotifyxp.dialogs;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.Crypto;
 
@@ -84,6 +85,7 @@ public class LoginDialog {
             try {
                 Thread.sleep(99);
             } catch (InterruptedException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
         }
@@ -124,6 +126,7 @@ public class LoginDialog {
             try {
                 Thread.sleep(99);
             } catch (InterruptedException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
         }

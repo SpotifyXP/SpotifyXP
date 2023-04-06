@@ -3,6 +3,8 @@ package com.spotifyxp.setup;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.FileUtils;
@@ -44,8 +46,15 @@ public class Setup {
         public JScrollPane pane;
         public JProgressBar progressBar;
         public JButton setupfinishbutton;
+        public JButton dontacceptbutton;
         public Content() {
             setLayout(null);
+
+            dontacceptbutton = new JButton();
+            dontacceptbutton.setBounds(100, 338, 89, 23);
+            add(dontacceptbutton);
+
+            dontacceptbutton.setVisible(false);
 
             setupnextbutton = new JButton("Next");
             setupnextbutton.setBounds(395, 338, 89, 23);
@@ -122,10 +131,20 @@ public class Setup {
         }
 
         void showAnalytics() {
+            dontacceptbutton.setVisible(true);
+            dontacceptbutton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    PublicValues.config.write(ConfigValues.sendanalytics.name, "false");
+                    setupnextbutton.doClick();
+                }
+            });
+            dontacceptbutton.setText("No");
             setupcontent.setText(new Resources().readToString("setup/analytics.html"));
         }
 
         void showFileInfo() {
+            dontacceptbutton.setVisible(false);
             setupcontent.setText(new Resources().readToString("setup/fileinfo.html"));
             beginInstall();
             setupnextbutton.setVisible(false);
@@ -181,6 +200,7 @@ public class Setup {
                 PublicValues.foundSetupArgument = true;
                 switchToNext();
             } catch (URISyntaxException | IOException | ShellLinkException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
         }
@@ -238,6 +258,7 @@ public class Setup {
             try {
                 Thread.sleep(999);
             } catch (InterruptedException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
         }

@@ -1,5 +1,6 @@
 package com.spotifyxp.utils;
 
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import java.net.InetAddress;
@@ -20,6 +21,7 @@ public class Crypto {
             }
             password = sb.toString();
         } catch (UnknownHostException | SocketException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
     }
@@ -27,13 +29,15 @@ public class Crypto {
         try {
             return EncryptorAesGcmPassword.decrypt(todecrypt, password);
         } catch (Exception e) {
-            throw new Exception();
+            ExceptionDialog.open(e);
+            return "ERROR";
         }
     }
     public String encrypt(String toencrypt) {
         try {
             return EncryptorAesGcmPassword.encrypt(toencrypt.getBytes(), password);
         } catch (Exception e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
             return "ERROR";
         }

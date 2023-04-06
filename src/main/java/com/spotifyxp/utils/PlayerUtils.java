@@ -9,6 +9,9 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
@@ -47,10 +50,10 @@ public class PlayerUtils {
             PublicValues.session = session;
             return player;
         } catch (IOException | MercuryClient.MercuryException | GeneralSecurityException e) {
-            //ConsoleLogging.Throwable(e);
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            ExceptionDialog.open(e);
         }
         return null;
     }

@@ -2,8 +2,8 @@ package com.spotifyxp.configuration;
 
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,6 +22,7 @@ public class Config {
             }
         }
         if(!new File(PublicValues.configfilepath).exists()) {
+            properties.put(ConfigValues.sendanalytics.name, "true");
             properties.put(ConfigValues.audioquality.name, "NORMAL");
             properties.put(ConfigValues.theme.name, "DARK");
             properties.put(ConfigValues.disableplayerstats.name, "false");
@@ -34,12 +35,14 @@ public class Config {
                     ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
                 }
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
                 ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
             }
             try {
                 properties.store(new FileWriter(PublicValues.configfilepath), PublicValues.language.translate("configuration.comment"));
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
                 ConsoleLogging.error(PublicValues.language.translate("configuration.error.writefail"));
             }
@@ -47,6 +50,7 @@ public class Config {
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
             ConsoleLogging.error(PublicValues.language.translate("configuration.error.loadfail"));
         }
@@ -56,12 +60,14 @@ public class Config {
         try {
             properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Configuration file");
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
             ConsoleLogging.error(PublicValues.language.translate("configuration.error.writefail"));
         }
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
             ConsoleLogging.error(PublicValues.language.translate("configuration.error.loadfail"));
         }

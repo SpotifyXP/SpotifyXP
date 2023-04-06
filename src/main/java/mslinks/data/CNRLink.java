@@ -70,7 +70,7 @@ public class CNRLink implements Serializable {
 	public static final int WNNC_NET_MS_NFS = 0x0042000;
 	public static final int WNNC_NET_GOOGLE = 0x0043000;
 	
-	private CNRLinkFlags flags; 
+	private final CNRLinkFlags flags;
 	private int nptype;
 	private String netname, devname;
 

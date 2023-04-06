@@ -23,8 +23,8 @@ import mslinks.Serializable;
 
 public class Stub implements Serializable {
 	
-	private int sign;
-	private byte[] data;
+	private final int sign;
+	private final byte[] data;
 
 	public Stub(ByteReader br, int sz, int sgn) throws IOException {
 		int len = sz - 8;

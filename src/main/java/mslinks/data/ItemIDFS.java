@@ -66,7 +66,6 @@ public class ItemIDFS extends ItemID {
 	protected String shortname;
 	protected String longname;
 
-	@SuppressWarnings("removal")
 	public ItemIDFS(int flags) throws UnsupportedItemIDException {
 		super(flags | GROUP_FS);
 		onTypeFlagsChanged();
@@ -200,9 +199,7 @@ public class ItemIDFS extends ItemID {
 		return this;
 	}
 
-	@SuppressWarnings("removal")
 	public int getSize() { return size; }
-	@SuppressWarnings("removal")
 	public ItemID setSize(int s) {
 		size = s;
 		return this;
@@ -221,14 +218,12 @@ public class ItemIDFS extends ItemID {
 		return this;
 	}
 
-	@SuppressWarnings("removal")
 	public String getName() {
 		if (longname != null && !longname.equals(""))
 			return longname;
 		return shortname;
 	}
 	
-	@SuppressWarnings("removal")
 	public ItemID setName(String s) throws ShellLinkException {
 		if (s == null) 
 			return this;

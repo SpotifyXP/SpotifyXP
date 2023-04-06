@@ -36,20 +36,20 @@ public class ConsoleData implements Serializable {
 	public static int g(int rgb) { return (rgb & 0xff00) >> 8; }
 	public static int b(int rgb) { return (rgb & 0xff0000) >> 16; }
 	
-	private ConsoleFlags flags = new ConsoleFlags(0);
+	private final ConsoleFlags flags = new ConsoleFlags(0);
 	private int textFG;
 	private int textBG;
 	private int popupFG;
 	private int popupBG;
-	private Size buffer;
-	private Size window;
-	private Size windowpos;
+	private final Size buffer;
+	private final Size window;
+	private final Size windowpos;
 	private int fontsize;
 	private Font font;
 	private CursorSize cursize;
 	private int historysize;
 	private int historybuffers;
-	private int[] colors = new int[16];
+	private final int[] colors = new int[16];
 	
 	public ConsoleData() {
 		textFG = 7;

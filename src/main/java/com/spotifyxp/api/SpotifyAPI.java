@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.dialogs.LoginDialog;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
@@ -64,6 +65,7 @@ public class SpotifyAPI {
                 try {
                     Thread.sleep(999);
                 } catch (InterruptedException e) {
+                    ExceptionDialog.open(e);
                     ConsoleLogging.Throwable(e);
                 }
                 if(wait==waitAmount) {
@@ -93,6 +95,7 @@ public class SpotifyAPI {
                 try {
                     Thread.sleep(999);
                 } catch (InterruptedException e) {
+                    ExceptionDialog.open(e);
                     ConsoleLogging.Throwable(e);
                 }
                 if(wait==waitAmount) {
@@ -120,6 +123,7 @@ public class SpotifyAPI {
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -136,6 +140,7 @@ public class SpotifyAPI {
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -152,6 +157,7 @@ public class SpotifyAPI {
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -167,6 +173,7 @@ public class SpotifyAPI {
                 token = provider.accessToken;
                 spotifyApi.setAccessToken(token);
             } catch (IOException | MercuryClient.MercuryException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
         }
@@ -176,6 +183,7 @@ public class SpotifyAPI {
                 token = provider.accessToken;
                 spotifyApi.setAccessToken(token);
             } catch (IOException | MercuryClient.MercuryException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
             System.out.println("Triggered refresh");
@@ -192,6 +200,7 @@ public class SpotifyAPI {
                 client.executeMethod(post);
                 ret = post.getResponseBodyAsString();
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
             return ret;
@@ -208,6 +217,7 @@ public class SpotifyAPI {
                 client.executeMethod(post);
                 ret = post.getResponseBodyAsString();
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
             return ret;
@@ -225,6 +235,7 @@ public class SpotifyAPI {
                 client.executeMethod(post);
                 ret = post.getResponseBodyAsString();
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
             return ret;
@@ -242,6 +253,7 @@ public class SpotifyAPI {
                 client.executeMethod(post);
                 ret = post.getResponseBodyAsString();
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
             return ret;
@@ -259,6 +271,7 @@ public class SpotifyAPI {
                 client.executeMethod(post);
                 ret = post.getResponseBodyAsString();
             } catch (IOException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
             return ret;

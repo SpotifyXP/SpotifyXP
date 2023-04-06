@@ -21,7 +21,7 @@ import java.nio.ByteOrder;
 public class ByteReader extends InputStream {
 	private boolean le = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
 	
-	private InputStream stream;
+	private final InputStream stream;
 	private int pos = 0;
 	
 	

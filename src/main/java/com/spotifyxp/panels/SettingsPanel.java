@@ -50,10 +50,6 @@ public class SettingsPanel extends JPanel {
         add(settingsuidisableplayerstats);
 
         settingsuiselecttheme = new JComboBox();
-        //for(Theme theme : ThemeEngine.themes) {
-        //    themecache.add(theme);
-        //    ((DefaultListModel) settingsuiselecttheme.getModel()).addElement(theme.name);
-        //}
         for(Enum e : com.spotifyxp.designs.Theme.values()) {
             ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement(((com.spotifyxp.designs.Theme)e).getAsString());
         }

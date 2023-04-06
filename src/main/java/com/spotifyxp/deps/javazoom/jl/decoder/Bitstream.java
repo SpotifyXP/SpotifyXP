@@ -68,7 +68,7 @@ public final class Bitstream {
 	/**
 	 * The bytes read from the stream.
 	 */
-	private byte[] frame_bytes = new byte[BUFFER_INT_SIZE * 4];
+	private final byte[] frame_bytes = new byte[BUFFER_INT_SIZE * 4];
 
 	/**
 	 * Index into <code>framebuffer</code> where the next bits are retrieved.
@@ -96,10 +96,8 @@ public final class Bitstream {
 	 *
 	 */
 	private boolean single_ch_mode;
-	// private int current_frame_number;
-	// private int last_frame_number;
 
-	private final int bitmask[] = {
+	private final int[] bitmask = {
 		0, // dummy
 		0x00000001, 0x00000003, 0x00000007, 0x0000000F, 0x0000001F, 0x0000003F, 0x0000007F, 0x000000FF, 0x000001FF, 0x000003FF,
 		0x000007FF, 0x00000FFF, 0x00001FFF, 0x00003FFF, 0x00007FFF, 0x0000FFFF, 0x0001FFFF};
@@ -108,9 +106,9 @@ public final class Bitstream {
 
 	private final Header header = new Header();
 
-	private final byte syncbuf[] = new byte[4];
+	private final byte[] syncbuf = new byte[4];
 
-	private Crc16[] crc = new Crc16[1];
+	private final Crc16[] crc = new Crc16[1];
 
 	private byte[] rawid3v2 = null;
 
@@ -130,8 +128,6 @@ public final class Bitstream {
 		source = new PushbackInputStream(in, BUFFER_INT_SIZE * 4);
 
 		closeFrame();
-		// current_frame_number = -1;
-		// last_frame_number = -1;
 	}
 
 	/**
@@ -373,7 +369,7 @@ public final class Bitstream {
 	public boolean isSyncCurrentPosition (int syncmode) throws BitstreamException {
 		int read = readBytes(syncbuf, 0, 4);
 		int headerstring = syncbuf[0] << 24 & 0xFF000000 | syncbuf[1] << 16 & 0x00FF0000 | syncbuf[2] << 8 & 0x0000FF00
-			| syncbuf[3] << 0 & 0x000000FF;
+			| syncbuf[3] & 0x000000FF;
 
 		try {
 			source.unread(syncbuf, 0, read);
@@ -426,7 +422,7 @@ public final class Bitstream {
 
 		if (bytesRead != 3) throw newBitstreamException(STREAM_EOF, null);
 
-		headerstring = syncbuf[0] << 16 & 0x00FF0000 | syncbuf[1] << 8 & 0x0000FF00 | syncbuf[2] << 0 & 0x000000FF;
+		headerstring = syncbuf[0] << 16 & 0x00FF0000 | syncbuf[1] << 8 & 0x0000FF00 | syncbuf[2] & 0x000000FF;
 
 		do {
 			headerstring <<= 8;
@@ -437,9 +433,6 @@ public final class Bitstream {
 
 			sync = isSyncMark(headerstring, syncmode, syncword);
 		} while (!sync);
-
-		// current_frame_number++;
-		// if (last_frame_number < current_frame_number) last_frame_number = current_frame_number;
 
 		return headerstring;
 	}
@@ -484,14 +477,6 @@ public final class Bitstream {
 		int bytesize = framesize;
 
 		// Check ID3v1 TAG (True only if last frame).
-		// for (int t=0;t<(byteread.length)-2;t++)
-		// {
-		// if ((byteread[t]=='T') && (byteread[t+1]=='A') && (byteread[t+2]=='G'))
-		// {
-		// System.out.println("ID3v1 detected at offset "+t);
-		// throw newBitstreamException(INVALIDFRAME, null);
-		// }
-		// }
 
 		for (int k = 0; k < bytesize; k = k + 4) {
 			byte b0 = 0;

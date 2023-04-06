@@ -1,19 +1,24 @@
 package com.spotifyxp.designs;
 
 public enum Theme {
-    DARK("Dark"),
-    LIGHT("Light"),
-    WINDOWS("Windows"),
-    MacOSDark("MacOSDark"),
-    MacOSLight("MacOSLight"),
-    QuaQua("QuaQua"),
-    LEGACY("Legacy"),
-    UGLY("Ugly");
+    DARK("Dark", false),
+    LIGHT("Light", true),
+    WINDOWS("Windows", true),
+    MacOSDark("MacOSDark", false),
+    MacOSLight("MacOSLight", true),
+    QuaQua("QuaQua", true),
+    LEGACY("Legacy", true),
+    UGLY("Ugly", true);
     final String s;
-    Theme(String toselect) {
+    final boolean isLight;
+    Theme(String toselect, boolean light) {
         s = toselect;
+        isLight = light;
     }
     public String getAsString() {
         return s;
+    }
+    public boolean isDark() {
+        return !isLight;
     }
 }

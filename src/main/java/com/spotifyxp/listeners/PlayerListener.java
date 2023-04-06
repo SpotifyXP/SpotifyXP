@@ -1,9 +1,9 @@
 package com.spotifyxp.listeners;
 
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.utils.Resources;
@@ -18,7 +18,6 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -52,15 +51,18 @@ public class PlayerListener implements Player.EventsListener {
 
     }
 
+    boolean fromShuffle = false;
+
     @Override
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
-        if(!ContentPanel.libraryuricache.contains(playableId.toSpotifyUri())) {
+        if (!ContentPanel.libraryuricache.contains(playableId.toSpotifyUri())) {
             ContentPanel.heart.isFilled = false;
             ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heart.png"));
-        }else{
+        } else {
             ContentPanel.heart.isFilled = true;
             ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heartfilled.png"));
         }
+
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             timer.schedule(new PlayerThread(), 0, 1000);
             try {
@@ -124,6 +126,7 @@ public class PlayerListener implements Player.EventsListener {
                 }
                 ContentPanel.playerdescription.setText(artists.toString());
             } catch (IOException | ParseException | SpotifyWebApiException e) {
+                ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
         }

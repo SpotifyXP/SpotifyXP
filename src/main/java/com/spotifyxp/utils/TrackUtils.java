@@ -109,7 +109,7 @@ public class TrackUtils {
                 ContentPanel.player.getPlayer().addToQueue(s);
             }
         }catch (ArrayIndexOutOfBoundsException exception) {
-            // When this is raised this is a bug
+            GraphicalMessage.bug("TrackUtils line 112");
         } catch (NullPointerException exc) {
             //ContentPanel.player.getPlayer().load("spotify:track:40aG6sP7TMy3x1J1zGW8su", true, false);
             for (String s : cache) {

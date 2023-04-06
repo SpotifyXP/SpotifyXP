@@ -3,6 +3,8 @@
 
 package com.spotifyxp.deps.com.spotify;
 
+import com.spotifyxp.exception.ExceptionDialog;
+
 public final class Mercury {
   private Mercury() {}
   public static void registerAllExtensions(

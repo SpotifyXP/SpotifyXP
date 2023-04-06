@@ -35,9 +35,9 @@ public class Registry {
 		public Class<?>[] allowedItemIdTypes;
 	}
 
-	private static ArrayList<Entry> registry = new ArrayList<>();
-	private static HashMap<GUID, Entry> indexClsids = new HashMap<>();
-	private static HashMap<String, Entry> indexNames = new HashMap<>();
+	private static final ArrayList<Entry> registry = new ArrayList<>();
+	private static final HashMap<GUID, Entry> indexClsids = new HashMap<>();
+	private static final HashMap<String, Entry> indexNames = new HashMap<>();
 
 	public static void registerClsid(GUID clsid, String name, Class<?>... allowedItemIdTypes) throws ShellLinkException {
 		if (indexClsids.containsKey(clsid))

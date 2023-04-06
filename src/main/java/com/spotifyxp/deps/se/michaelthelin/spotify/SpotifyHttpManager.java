@@ -5,6 +5,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
@@ -276,6 +277,7 @@ public class SpotifyHttpManager implements IHttpManager {
         }
       }
     } catch (Exception e) {
+      ExceptionDialog.open(e);
       ConsoleLoggingModules.Throwable(e);
     }
 

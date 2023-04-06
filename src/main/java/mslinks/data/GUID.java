@@ -24,13 +24,13 @@ import java.util.Random;
 import mslinks.Serializable;
 
 public class GUID implements Serializable {
-	private static Random r = new Random();
+	private static final Random r = new Random();
 	
-	private int d1;
-	private short d2;
-	private short d3;
-	private short d4;
-	private long d5;
+	private final int d1;
+	private final short d2;
+	private final short d3;
+	private final short d4;
+	private final long d5;
 	
 	public GUID() {
 		d1 = r.nextInt();

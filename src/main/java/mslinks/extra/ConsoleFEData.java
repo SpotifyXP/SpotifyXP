@@ -51,7 +51,7 @@ public class ConsoleFEData implements Serializable {
 	public String getLanguage() { return lang; }
 	public ConsoleFEData setLanguage(String s) { lang = s; return this;}
 	
-	private static Object[] langData = new Object[] {
+	private static final Object[] langData = new Object[] {
 		"ar", 0x0001,
 		"bg", 0x0002,
 		"ca", 0x0003,
@@ -504,8 +504,8 @@ public class ConsoleFEData implements Serializable {
 		"ku-Arab", 0x7c92,
 	};
 	
-	private static HashMap<String, Integer> langs = new HashMap<>();
-	private static HashMap<Integer, String> ids = new HashMap<>();
+	private static final HashMap<String, Integer> langs = new HashMap<>();
+	private static final HashMap<Integer, String> ids = new HashMap<>();
 	
 	static {
 		for (int i = 0; i < langData.length; i +=2) {

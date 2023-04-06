@@ -48,7 +48,7 @@ public class OutputChannels {
 	public static final OutputChannels BOTH = new OutputChannels(BOTH_CHANNELS);
 	public static final OutputChannels DOWNMIX = new OutputChannels(DOWNMIX_CHANNELS);
 
-	private/* final */int outputChannels;
+	private final/* final */int outputChannels;
 
 	/**
 	 * Creates an <code>OutputChannels</code> instance corresponding to the given channel code.

@@ -240,8 +240,6 @@ public class NOPLogger extends NamedLoggerBase implements Logger {
      * Always returns false.
      * @return always false
      */
-
-    //ToDo: Find out how markers work for correct logging
     final public boolean isTraceEnabled(Marker marker) {
         return true;
     }

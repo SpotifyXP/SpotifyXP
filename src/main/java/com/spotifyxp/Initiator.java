@@ -9,12 +9,14 @@ import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
 import com.spotifyxp.updater.Updater;
+import com.spotifyxp.updater.UpdaterDialog;
 import com.spotifyxp.utils.DoubleArrayList;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.background.BackgroundService;
@@ -71,7 +73,7 @@ public class Initiator {
                 Files.copy(new Resources().readToInputStream("security/US_export_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\US_export_policy.jar"), REPLACE_EXISTING);
             } catch (IOException ignored) {
                 GraphicalMessage.bug("Can't unrestrict security");
-                System.exit(0);
+                //System.exit(0);
             }
         }
         //---
@@ -152,7 +154,7 @@ public class Initiator {
                 break;
         }
         if(unsupported) {
-            ConsoleLogging.error("The theme you selected is not supported! Set theme to ugly");
+            ConsoleLogging.error("The theme you selected is not supported! Setting theme to ugly");
         }
         if(!PublicValues.foundSetupArgument) {
             new Setup();
@@ -190,7 +192,7 @@ public class Initiator {
         if(Boolean.parseBoolean(updater.getFirst(0).toString())) {
             String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
             ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.updater.available") + version, PublicValues.language.translate("joptionpane.updater"), JOptionPane.OK_CANCEL_OPTION);
+            new UpdaterDialog();
         }else{
             if(Double.parseDouble((((GitHubAPI.Release) updater.getSecond(0)).version.replace("v", "")))<Double.parseDouble(PublicValues.version.replace("v", ""))) {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));

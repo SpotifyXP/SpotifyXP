@@ -24,7 +24,6 @@ public class ItemIDUnknown extends ItemID {
 
 	protected byte[] data;
 
-	@SuppressWarnings("removal")
 	public ItemIDUnknown(int flags) {
 		super(flags);
 	}

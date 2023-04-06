@@ -124,7 +124,7 @@ public class LayerIDecoder implements FrameDecoder {
 	 * segmentation faults)
 	 */
 	// Scalefactors for layer I and II, Annex 3-B.1 in ISO/IEC DIS 11172:
-	static final float scalefactors[] = {2.00000000000000f, 1.58740105196820f, 1.25992104989487f, 1.00000000000000f,
+	static final float[] scalefactors = {2.00000000000000f, 1.58740105196820f, 1.25992104989487f, 1.00000000000000f,
 		0.79370052598410f, 0.62996052494744f, 0.50000000000000f, 0.39685026299205f, 0.31498026247372f, 0.25000000000000f,
 		0.19842513149602f, 0.15749013123686f, 0.12500000000000f, 0.09921256574801f, 0.07874506561843f, 0.06250000000000f,
 		0.04960628287401f, 0.03937253280921f, 0.03125000000000f, 0.02480314143700f, 0.01968626640461f, 0.01562500000000f,
@@ -161,13 +161,13 @@ public class LayerIDecoder implements FrameDecoder {
 	static class SubbandLayer1 extends Subband {
 
 		// Factors and offsets for sample requantization
-		public static final float table_factor[] = {0.0f, 1.0f / 2.0f * 4.0f / 3.0f, 1.0f / 4.0f * 8.0f / 7.0f,
+		public static final float[] table_factor = {0.0f, 1.0f / 2.0f * 4.0f / 3.0f, 1.0f / 4.0f * 8.0f / 7.0f,
 			1.0f / 8.0f * 16.0f / 15.0f, 1.0f / 16.0f * 32.0f / 31.0f, 1.0f / 32.0f * 64.0f / 63.0f, 1.0f / 64.0f * 128.0f / 127.0f,
 			1.0f / 128.0f * 256.0f / 255.0f, 1.0f / 256.0f * 512.0f / 511.0f, 1.0f / 512.0f * 1024.0f / 1023.0f,
 			1.0f / 1024.0f * 2048.0f / 2047.0f, 1.0f / 2048.0f * 4096.0f / 4095.0f, 1.0f / 4096.0f * 8192.0f / 8191.0f,
 			1.0f / 8192.0f * 16384.0f / 16383.0f, 1.0f / 16384.0f * 32768.0f / 32767.0f};
 
-		public static final float table_offset[] = {0.0f, (1.0f / 2.0f - 1.0f) * 4.0f / 3.0f, (1.0f / 4.0f - 1.0f) * 8.0f / 7.0f,
+		public static final float[] table_offset = {0.0f, (1.0f / 2.0f - 1.0f) * 4.0f / 3.0f, (1.0f / 4.0f - 1.0f) * 8.0f / 7.0f,
 			(1.0f / 8.0f - 1.0f) * 16.0f / 15.0f, (1.0f / 16.0f - 1.0f) * 32.0f / 31.0f, (1.0f / 32.0f - 1.0f) * 64.0f / 63.0f,
 			(1.0f / 64.0f - 1.0f) * 128.0f / 127.0f, (1.0f / 128.0f - 1.0f) * 256.0f / 255.0f,
 			(1.0f / 256.0f - 1.0f) * 512.0f / 511.0f, (1.0f / 512.0f - 1.0f) * 1024.0f / 1023.0f,

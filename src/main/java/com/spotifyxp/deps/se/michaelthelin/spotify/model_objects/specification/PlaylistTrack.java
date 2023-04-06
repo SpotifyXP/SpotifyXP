@@ -2,6 +2,7 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
@@ -182,6 +183,7 @@ public class PlaylistTrack extends AbstractModelObject {
           .setTrack(track)
           .build();
       } catch (ParseException e) {
+        ExceptionDialog.open(e);
         ConsoleLoggingModules.Throwable(e);
         return null;
       }

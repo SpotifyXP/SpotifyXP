@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 import mslinks.data.*;
 
 public class LinkInfo implements Serializable {
-	private LinkInfoFlags lif;
+	private final LinkInfoFlags lif;
 	private VolumeID vid;
 	private String localBasePath;
 	private CNRLink cnrlink;

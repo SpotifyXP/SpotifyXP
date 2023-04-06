@@ -1,5 +1,6 @@
 package com.spotifyxp.api;
 
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
 import org.apache.commons.httpclient.HttpClient;
@@ -11,7 +12,7 @@ import java.util.Base64;
 public class GitHubAPI {
     static final String token = new String(Base64.getDecoder().decode("Z2hwX3hBQ3Y3U1pVWnB2OWE0aWF6YXI3amlMNzFZRE5tVjB0aFlnSA=="));
     @SuppressWarnings("SameParameterValue")
-    static String makeRequestGet(String url) {
+    public static String makeRequestGet(String url) {
         String ret = "FAILED";
         try {
             HttpClient client = new HttpClient();
@@ -22,6 +23,7 @@ public class GitHubAPI {
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;

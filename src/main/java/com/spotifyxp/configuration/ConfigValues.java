@@ -1,6 +1,7 @@
 package com.spotifyxp.configuration;
 
 public enum ConfigValues {
+    sendanalytics("settings.analytics"),
     audioquality("settings.playback.quality"),
     theme("settings.ui.theme"),
     mypalpath("settings.mypal.path"),

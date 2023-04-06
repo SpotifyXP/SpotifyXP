@@ -29,10 +29,10 @@ public class Tracker implements Serializable {
 	public static final int size = 0x60;
 	
 	private String netbios;
-	private GUID d1;
-	private GUID d2;
-	private GUID db1;
-	private GUID db2;
+	private final GUID d1;
+	private final GUID d2;
+	private final GUID db1;
+	private final GUID db2;
 	
 	public Tracker() {
 		netbios = "localhost";

@@ -117,11 +117,11 @@ public final class Util {
         return trace[i + 2];
     }
 
-    static final public void report(String msg, Throwable t) {
+    static public void report(String msg, Throwable t) {
 
     }
 
-    static final public void report(String msg) {
+    static public void report(String msg) {
 
     }
 

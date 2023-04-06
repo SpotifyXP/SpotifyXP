@@ -35,13 +35,13 @@ import java.lang.reflect.Array;
  * defined. Frequencies above 4 kHz are removed by ignoring higher subbands.
  */
 public  final class SynthesisFilter {
-	private float[] v1;
-	private float[] v2;
+	private final float[] v1;
+	private final float[] v2;
 	private float[] actual_v; // v1 or v2
 	private int actual_write_pos; // 0-15
-	private float[] samples; // 32 new subband samples
-	private int channel;
-	private float scalefactor;
+	private final float[] samples; // 32 new subband samples
+	private final int channel;
+	private final float scalefactor;
 
 	/**
 	 * Quality value for controlling CPU usage/quality tradeoff.
@@ -125,15 +125,8 @@ public  final class SynthesisFilter {
 		// p is fully initialized from x1
 		// float[] p = _p;
 		// pp is fully initialized from p
-		// float[] pp = _pp;
 
-		// float[] new_v = _new_v;
-
-		// float[] new_v = new float[32]; // new V[0-15] and V[33-48] of Figure 3-A.2 in ISO DIS 11172-3
-		// float[] p = new float[16];
-		// float[] pp = new float[16];
-
-		/*
+        /*
 		 * for (int i=31; i>=0; i--) { new_v[i] = 0.0f; }
 		 */
 
@@ -142,11 +135,7 @@ public  final class SynthesisFilter {
 		float new_v20, new_v21, new_v22, new_v23, new_v24, new_v25, new_v26, new_v27, new_v28, new_v29;
 		float new_v30, new_v31;
 
-		// float[] new_v = new float[32]; // new V[0-15] and V[33-48] of Figure 3-A.2 in ISO DIS 11172-3
-		// float[] p = new float[16];
-		// float[] pp = new float[16];
-
-		float[] s = samples;
+        float[] s = samples;
 
 		float s0 = s[0];
 		float s1 = s[1];
@@ -381,7 +370,7 @@ public  final class SynthesisFilter {
 
 		// insert V[0-15] (== new_v[0-15]) into actual v:
 		// float[] x2 = actual_v + actual_write_pos;
-		float dest[] = actual_v;
+		float[] dest = actual_v;
 
 		int pos = actual_write_pos;
 
@@ -480,7 +469,7 @@ public  final class SynthesisFilter {
 	/**
 	 * Compute PCM Samples.
 	 */
-	private float[] _tmpOut = new float[32];
+	private final float[] _tmpOut = new float[32];
 
 	private void compute_pcm_samples0 (OutputBuffer buffer) {
 		final float[] vp = actual_v;
@@ -831,7 +820,7 @@ public  final class SynthesisFilter {
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
 			float pcm_sample;
-			final float dp[] = d16[i];
+			final float[] dp = d16[i];
 			pcm_sample = ((vp[15 + dvp] * dp[0] + vp[14 + dvp] * dp[1] + vp[13 + dvp] * dp[2] + vp[12 + dvp] * dp[3] + vp[11 + dvp]
 				* dp[4] + vp[10 + dvp] * dp[5] + vp[9 + dvp] * dp[6] + vp[8 + dvp] * dp[7] + vp[7 + dvp] * dp[8] + vp[6 + dvp]
 				* dp[9] + vp[5 + dvp] * dp[10] + vp[4 + dvp] * dp[11] + vp[3 + dvp] * dp[12] + vp[2 + dvp] * dp[13] + vp[1 + dvp]
@@ -966,13 +955,13 @@ public  final class SynthesisFilter {
 	// as in Annex 3-B.3 of the ISO/IEC DIS 11172-3
 	// private float d[] = {0.000000000, -4.000442505};
 
-	private static float d[] = null;
+	private static float[] d = null;
 
 	/**
 	 * d[] split into subarrays of length 16. This provides for more faster access by allowing a block of 16 to be addressed with
 	 * constant offset.
 	 **/
-	private static float d16[][] = null;
+	private static float[][] d16 = null;
 
 	/**
 	 * Loads the data for the d[] from the resource SFd.ser.

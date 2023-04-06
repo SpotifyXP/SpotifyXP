@@ -25,7 +25,6 @@ public abstract class ItemIDRegItem extends ItemID {
 	
 	protected GUID clsid;
 
-	@SuppressWarnings("removal")
 	public ItemIDRegItem(int flags) {
 		super(flags);
 	}

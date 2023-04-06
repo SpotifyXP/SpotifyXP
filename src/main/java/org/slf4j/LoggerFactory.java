@@ -156,14 +156,14 @@ public final class LoggerFactory {
         INITIALIZATION_STATE = UNINITIALIZED;
     }
 
-    private final static void performInitialization() {
+    private static void performInitialization() {
         bind();
         if (INITIALIZATION_STATE == SUCCESSFUL_INITIALIZATION) {
             versionSanityCheck();
         }
     }
 
-    private final static void bind() {
+    private static void bind() {
         try {
             List<SLF4JServiceProvider> providersList = findServiceProviders();
             reportMultipleBindingAmbiguity(providersList);
@@ -313,7 +313,7 @@ public final class LoggerFactory {
         Util.report("See also " + REPLAY_URL);
     }
 
-    private final static void versionSanityCheck() {
+    private static void versionSanityCheck() {
         try {
             String requested = PROVIDER.getRequestedApiVersion();
 

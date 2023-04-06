@@ -1,6 +1,8 @@
 package com.spotifyxp.analytics;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.Config;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
 import org.apache.commons.httpclient.HttpClient;
@@ -19,6 +21,9 @@ public class Analytics {
         if(ConnectionUtils.makePingToServer()) {
             return;
         }
+        if(!PublicValues.config.get(ConfigValues.sendanalytics.name).equals("true")) {
+           return;
+        }
         String hostname;
         HttpClient client = new HttpClient();
         try {
@@ -34,7 +39,6 @@ public class Analytics {
             PostMethod post = new PostMethod("https://api.werwolf2303.de?point=analytics&programname=spotifyxp&programversion=" + PublicValues.version + "&serverpcname=" + hostname + "&progdatetime=" + datetime);
             post.setParameter("Auth", "public");
             client.executeMethod(post);
-            System.out.println(post.getResponseBodyAsString());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }

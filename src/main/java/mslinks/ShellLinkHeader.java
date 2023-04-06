@@ -33,15 +33,15 @@ public class ShellLinkHeader implements Serializable {
 	public static final int SW_SHOWMAXIMIZED = 3;
 	public static final int SW_SHOWMINNOACTIVE = 7;	
 	
-	private LinkFlags lf;
-	private FileAttributesFlags faf;
-	private Filetime creationTime;
-	private Filetime accessTime;
-	private Filetime writeTime;
+	private final LinkFlags lf;
+	private final FileAttributesFlags faf;
+	private final Filetime creationTime;
+	private final Filetime accessTime;
+	private final Filetime writeTime;
 	private int fileSize;
 	private int iconIndex;
 	private int showCommand;
-	private HotKeyFlags hkf;
+	private final HotKeyFlags hkf;
 	
 	public ShellLinkHeader() {
 		lf = new LinkFlags(0);

@@ -26,7 +26,6 @@ public class ItemIDDrive extends ItemID {
 
 	protected String name;
 
-	@SuppressWarnings("removal")
 	public ItemIDDrive(int flags) throws UnsupportedItemIDException {
 		super(flags | GROUP_COMPUTER);
 
@@ -67,12 +66,10 @@ public class ItemIDDrive extends ItemID {
 		return name;
 	}
 
-	@SuppressWarnings("removal")
 	public String getName() {
 		return name;
 	}
 	
-	@SuppressWarnings("removal")
 	public ItemIDDrive setName(String s) throws ShellLinkException {
 		if (s == null) 
 			return this;

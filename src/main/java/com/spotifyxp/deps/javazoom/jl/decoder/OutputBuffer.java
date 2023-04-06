@@ -36,10 +36,10 @@ public class OutputBuffer {
 	private static final int MAXCHANNELS = 2; // max. number of channels
 
 	private Float replayGainScale;
-	private int channels;
-	private byte[] buffer;
-	private int[] channelPointer;
-	private boolean isBigEndian;
+	private final int channels;
+	private final byte[] buffer;
+	private final int[] channelPointer;
+	private final boolean isBigEndian;
 
 	public OutputBuffer (int channels, boolean isBigEndian) {
 		this.channels = channels;
@@ -109,7 +109,7 @@ public class OutputBuffer {
 	}
 
 	// Clip to 16 bits.
-	private final short clip (float sample) {
+	private short clip (float sample) {
 		return sample > 32767.0f ? 32767 : sample < -32768.0f ? -32768 : (short)sample;
 	}
 

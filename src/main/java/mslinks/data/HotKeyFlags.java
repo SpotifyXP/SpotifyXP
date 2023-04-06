@@ -24,7 +24,7 @@ import java.util.Map;
 import mslinks.Serializable;
 
 public class HotKeyFlags implements Serializable {
-	private static HashMap<Byte, String> keys = new HashMap<Byte, String>() {{
+	private static final HashMap<Byte, String> keys = new HashMap<Byte, String>() {{
 		put((byte)0x30, "0");
 		put((byte)0x31, "1");
 		put((byte)0x32, "2");
@@ -92,7 +92,7 @@ public class HotKeyFlags implements Serializable {
 		put((byte)0x04, "ALT");
 	}};
 	
-	private static HashMap<String, Byte> keysr = new HashMap<>();
+	private static final HashMap<String, Byte> keysr = new HashMap<>();
 	static {
 		for (Map.Entry<Byte, String> i : keys.entrySet())
 			keysr.put(i.getValue(), i.getKey());
