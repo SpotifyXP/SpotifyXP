@@ -99,8 +99,7 @@ public class ConnectionUtils {
             get.setRequestHeader("Content-Type", "text/html");
             client.executeMethod(get);
             return get.getResponseBodyAsString().replace("\n", "").equals("Pong from Werwolf2303.de");
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
+        } catch (Exception e) {
             return false;
         }
     }
