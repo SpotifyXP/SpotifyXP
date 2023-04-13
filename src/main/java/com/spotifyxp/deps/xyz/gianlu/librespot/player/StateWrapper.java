@@ -327,13 +327,18 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         state.setContextRestrictions(context.restrictions.toProto());
     }
 
+    int counter = 0;
     synchronized void updated() {
         updateRestrictions();
         try {
             device.updateState(Connect.PutStateReason.PLAYER_STATE_CHANGED, player.time(), state.build());
         }catch (IllegalStateException e) {
-            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.error.critical2.text"), PublicValues.language.translate("ui.error.critical2.title"), JOptionPane.OK_CANCEL_OPTION);
-            System.exit(0);
+            if(counter==5) {
+                JOptionPane.showConfirmDialog(null, "Please restart SpotifyXP", "Something went wrong", JOptionPane.OK_CANCEL_OPTION);
+                return;
+            }
+            counter++;
+            updated();
         }
     }
 
