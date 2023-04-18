@@ -4,9 +4,12 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.custom.StoppableThreadRunnable;
+import com.spotifyxp.deps.com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.HTMLDialog;
+import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -52,7 +55,6 @@ import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"CanBeFinal", "rawtypes", "Convert2Lambda"})
 public class ContentPanel extends JPanel {
-    private final ContentPanel contentPanel = this;
     public static JTable librarysonglist;
     public static SpotifyAPI api = null;
     public static SpotifyAPI.Player player = null;
@@ -1058,13 +1060,18 @@ public class ContentPanel extends JPanel {
                         boolean playlist = searchfilterplaylist.isSelected();
                         searchsonglistcache.clear();
                         ((DefaultTableModel)searchsonglist.getModel()).setRowCount(0);
-                        if(searchtitle.equals("")) {
-                            return;
+                        if(searchtitle.equals("") && searchartist.equals("")) {
+                            return; //User didn't type anything in so we just return
                         }
                         try {
                             if(track) {
                                 for (Track t : api.getSpotifyApi().searchTracks(searchtitle + " " + searchartist).limit(50).build().execute().getItems()) {
                                     String artists = TrackUtils.getArtists(t.getArtists());
+                                    if(!searchartist.equalsIgnoreCase("")) {
+                                        if (!TrackUtils.trackHasArtist(t.getArtists(), searchartist, true)) {
+                                            continue;
+                                        }
+                                    }
                                     if (excludeExplicit) {
                                         if (!t.getIsExplicit()) {
                                             searchsonglistcache.add(t.getUri());
@@ -1079,6 +1086,9 @@ public class ContentPanel extends JPanel {
                             if(artist) {
                                 artistPanel.artistalbumuricache.clear();
                                 artistPanel.artistpopularuricache.clear();
+                                if(searchtitle.equals("")) {
+                                    searchtitle = searchartist;
+                                }
                                 for(Artist a : api.getSpotifyApi().searchArtists(searchtitle).limit(50).build().execute().getItems()) {
                                     searchsonglistcache.add(a.getUri());
                                     api.addArtistToList(a, searchsonglist);
@@ -1086,27 +1096,35 @@ public class ContentPanel extends JPanel {
                             }
                             if(album) {
                                 for(AlbumSimplified a : api.getSpotifyApi().searchAlbums(searchtitle).limit(50).build().execute().getItems()) {
+                                    if(!searchartist.equals("")) {
+                                        if(!TrackUtils.trackHasArtist(a.getArtists(), searchartist, true)) {
+                                            continue;
+                                        }
+                                    }
                                     searchsonglistcache.add(a.getUri());
                                     ((DefaultTableModel)searchsonglist.getModel()).addRow(new Object[] {a.getName()});
                                 }
                             }
                             if(show) {
                                 for(ShowSimplified s : api.getSpotifyApi().searchShows(searchtitle).limit(50).build().execute().getItems()) {
+                                    if(!searchartist.equals("")) {
+                                        if(!s.getPublisher().equalsIgnoreCase(searchartist)) {
+                                            continue;
+                                        }
+                                    }
                                     searchsonglistcache.add(s.getUri());
                                     ((DefaultTableModel)searchsonglist.getModel()).addRow(new Object[]{s.getName()});
                                 }
                             }
                             if(playlist) {
-                                if(searchartist.equals("")) {
-                                    for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchtitle).limit(50).build().execute().getItems()) {
-                                        searchsonglistcache.add(t.getUri());
-                                        api.addPlaylistToList(t, searchsonglist);
+                                for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchtitle).limit(50).build().execute().getItems()) {
+                                    if(!searchartist.equals("")) {
+                                        if(!t.getOwner().getDisplayName().equalsIgnoreCase(searchartist)) {
+                                            continue;
+                                        }
                                     }
-                                }else{
-                                    for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchartist).limit(50).build().execute().getItems()) {
-                                        searchsonglistcache.add(t.getUri());
-                                        api.addPlaylistToList(t, searchsonglist);
-                                    }
+                                    searchsonglistcache.add(t.getUri());
+                                    api.addPlaylistToList(t, searchsonglist);
                                 }
                             }
                         } catch (IOException | SpotifyWebApiException | ParseException ex) {
@@ -1189,11 +1207,7 @@ public class ContentPanel extends JPanel {
                                             try {
                                                 for (Track t : api.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], countryCode).build().execute()) {
                                                     artistPanel.artistpopularuricache.add(t.getUri());
-                                                    ArrayList<String> artistcache = new ArrayList<>();
-                                                    for (ArtistSimplified simplified : t.getArtists()) {
-                                                        artistcache.add(simplified.getName());
-                                                    }
-                                                    api.addSongToList(artistcache.toString(), t, artistPanel.artistpopularsonglist);
+                                                    api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
                                                 }
                                             } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                                 ConsoleLogging.Throwable(ex);
@@ -1258,6 +1272,8 @@ public class ContentPanel extends JPanel {
                             JOptionPane.showConfirmDialog(frame, PublicValues.language.translate("ui.error.critical2.text"), PublicValues.language.translate("ui.error.critical2.title"), JOptionPane.OK_CANCEL_OPTION);
                         }
                     }
+                    PublicValues.lyricsDialog = new LyricsDialog();
+                    PublicValues.lyricsDialog.open(searchsonglistcache.get(searchsonglist.getSelectedRow()));
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
                 }else{
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
@@ -1601,7 +1617,6 @@ public class ContentPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DoubleArrayList updater = new Updater().updateAvailable();
-                String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
                 try (BufferedInputStream in = new BufferedInputStream(new URL(((GitHubAPI.Release) updater.getSecond(0)).downloadURL).openStream());
                      FileOutputStream fileOutputStream = new FileOutputStream("SpotifyXP.jar")) {
                     byte[] dataBuffer = new byte[1024];
@@ -1818,36 +1833,27 @@ public class ContentPanel extends JPanel {
                 HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
                     @Override
                     public void log(String s) {
-
+                        ConsoleLogging.info(s);
                     }
 
                     @Override
                     public void err(String s) {
-
+                        ConsoleLogging.error(s);
                     }
 
                     @Override
                     public void info(String s) {
-
+                        ConsoleLogging.info(s);
                     }
 
                     @Override
                     public void crit(String s) {
-
+                        ConsoleLogging.error(s);
                     }
                 });
                 dialog.getDialog().setPreferredSize(new Dimension(400, 500));
                 try {
-                    String out = new Resources().readToString("about.html");
-                    StringBuilder cache = new StringBuilder();
-                    for(String s : out.split("\n")) {
-                        if(s.contains("(TRANSLATE)")) {
-                            s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
-                            s = s.replace("(TRANSLATE)", "");
-                        }
-                        cache.append(s);
-                    }
-                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), cache.toString());
+                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), PublicValues.language.translateHTML(new Resources().readToString("about.html")));
                 } catch (Exception ex) {
                     ConsoleLogging.Throwable(ex);
                 }
@@ -2101,6 +2107,8 @@ public class ContentPanel extends JPanel {
         }
     }
     boolean windowWasOpened = false;
+
+    @SuppressWarnings("SameParameterValue")
     static Color hex2Rgb(String colorStr) {
         return new Color(
                 Integer.valueOf( colorStr.substring( 1, 3 ), 16 ),

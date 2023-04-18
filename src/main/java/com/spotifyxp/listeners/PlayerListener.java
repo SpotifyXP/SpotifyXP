@@ -104,6 +104,11 @@ public class PlayerListener implements Player.EventsListener {
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                             break;
                         }
+
+                        //For lyrics ToDo: Find out if user wants to see lyrics
+                        if(!(PublicValues.lyricsDialog == null)) {
+                            PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
+                        }
                     }else{
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));

@@ -143,14 +143,29 @@ public class TrackUtils {
     }
     public static String getArtists(ArtistSimplified[] artists) {
         StringBuilder builder = new StringBuilder();
-        for(ArtistSimplified artist : artists) {
-            if(!(builder.length()==artists.length-1)) {
+        for (ArtistSimplified artist : artists) {
+            if (!(builder.length() == artists.length - 1)) {
                 builder.append(artist.getName()).append(", ");
-            }else{
+            } else {
                 builder.append(artist.getName());
             }
         }
         return builder.toString();
+    }
+
+    public static boolean trackHasArtist(ArtistSimplified[] artists, String tosearchfor, boolean ignoreCase) {
+        for(ArtistSimplified artist : artists) {
+            if(ignoreCase) {
+                if (artist.getName().equalsIgnoreCase(tosearchfor)) {
+                    return true;
+                }
+            }else {
+                if (artist.getName().equals(tosearchfor)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     public static void removeLovedTrack(JTable table, ArrayList<String> uricache) {
         ContentPanel.api.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);

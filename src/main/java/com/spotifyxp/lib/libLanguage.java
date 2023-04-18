@@ -1,5 +1,6 @@
 package com.spotifyxp.lib;
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONObject;
 
@@ -50,6 +51,20 @@ public class libLanguage {
         return builder.toString();
     }
     String jsoncache = "";
+    public String translateHTML(String htmlfile) {
+        StringBuilder cache = new StringBuilder();
+        for(String s : htmlfile.split("\n")) {
+            if(s.equalsIgnoreCase("")) {
+                continue; //Don't waste time here
+            }
+            if(s.contains("(TRANSLATE)")) {
+                s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
+                s = s.replace("(TRANSLATE)", "");
+            }
+            cache.append(s);
+        }
+        return cache.toString();
+    }
     public String translate(String key) {
         final String[] ret = {key};
         if(!jsoncache.equals("")) {

@@ -17,6 +17,7 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.javazoom.jl.decoder.*;
 import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
@@ -136,6 +137,7 @@ public final class Mp3Decoder extends Decoder {
 
             int total = 0;
             while (total < MAX_READ_SIZE) {
+                PublicValues.lyricsDialog.triggerRefresh();
                 Header header;
                 try {
                     header = bitstream.readFrame();

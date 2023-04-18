@@ -6,6 +6,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.designs.Theme;
+import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
@@ -31,4 +32,5 @@ public class PublicValues {
     //public static Theme theme = null;
     public static Theme theme = null;
     public static boolean foundSetupArgument = false;
+    public static LyricsDialog lyricsDialog = null;
 }

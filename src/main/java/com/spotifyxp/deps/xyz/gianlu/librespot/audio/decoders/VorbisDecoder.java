@@ -24,6 +24,7 @@ import com.jcraft.jorbis.Block;
 import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
+import com.spotifyxp.PublicValues;
 import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
@@ -194,7 +195,7 @@ public final class VorbisDecoder extends Decoder {
         int samples;
         while ((samples = jorbisDspState.synthesis_pcmout(pcmInfo, pcmIndex)) > 0) {
             range = Math.min(samples, CONVERTED_BUFFER_SIZE);
-
+            PublicValues.lyricsDialog.triggerRefresh();
             for (int i = 0; i < jorbisInfo.channels; i++) {
                 int sampleIndex = i * 2;
                 for (int j = 0; j < range; j++) {
