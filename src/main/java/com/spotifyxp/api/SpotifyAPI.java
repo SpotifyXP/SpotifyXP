@@ -90,7 +90,7 @@ public class SpotifyAPI {
             wait = 0;
             while(true) {
                 assert player != null;
-                if (!player.isReady()) break;
+                if (player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
                     Thread.sleep(999);

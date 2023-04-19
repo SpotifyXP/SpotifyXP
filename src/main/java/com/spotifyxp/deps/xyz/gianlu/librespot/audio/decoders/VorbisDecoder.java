@@ -195,7 +195,9 @@ public final class VorbisDecoder extends Decoder {
         int samples;
         while ((samples = jorbisDspState.synthesis_pcmout(pcmInfo, pcmIndex)) > 0) {
             range = Math.min(samples, CONVERTED_BUFFER_SIZE);
-            PublicValues.lyricsDialog.triggerRefresh();
+            if(PublicValues.lyricsDialog!=null) {
+                PublicValues.lyricsDialog.triggerRefresh();
+            }
             for (int i = 0; i < jorbisInfo.channels; i++) {
                 int sampleIndex = i * 2;
                 for (int j = 0; j < range; j++) {

@@ -17,45 +17,66 @@ public class TrackUtils {
         //720kb per minute if normal 96kbps
         //1200kb per minute if high 160kbps
         //2400kb per minute if extremely high 320kbps
+        String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                return Integer.parseInt(String.valueOf(minutes*720)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*720)));
+                break;
             case HIGH:
-                return Integer.parseInt(String.valueOf(minutes*1200)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*1200)));
+                break;
             case VERY_HIGH:
-                return Integer.parseInt(String.valueOf(minutes*2400)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
+                break;
         }
-        return "Unknown (BUG)";
+        if(toret.equals("") || toret.equals("0")) {
+            toret = "N/A";
+        }
+        return toret + " KB";
     }
     public static String calculateFileSizeKb(long milliseconds) {
         long minutes = getMMofTrack(milliseconds);
         //720kb per minute if normal 96kbps
         //1200kb per minute if high 160kbps
         //2400kb per minute if extremely high 320kbps
+        String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                return Integer.parseInt(String.valueOf(minutes*720)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*720)));
+                break;
             case HIGH:
-                return Integer.parseInt(String.valueOf(minutes*1200)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*1200)));
+                break;
             case VERY_HIGH:
-                return Integer.parseInt(String.valueOf(minutes*2400)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
+                break;
         }
-        return "Unknown (BUG)";
+        if(toret.equals("") || toret.equals("0")) {
+            toret = "N/A";
+        }
+        return toret + " KB";
     }
     public static String calculateFileSizeKb(TrackSimplified t) {
         long minutes = getMMofTrack(t.getDurationMs());
         //720kb per minute if normal 96kbps
         //1200kb per minute if high 160kbps
         //2400kb per minute if extremely high 320kbps
+        String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                return Integer.parseInt(String.valueOf(minutes*720)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*720)));
+                break;
             case HIGH:
-                return Integer.parseInt(String.valueOf(minutes*1200)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*1200)));
+                break;
             case VERY_HIGH:
-                return Integer.parseInt(String.valueOf(minutes*2400)) + "KB";
+                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
+                break;
         }
-        return "Unknown (BUG)";
+        if(toret.equals("") || toret.equals("0")) {
+            toret = "N/A";
+        }
+        return toret + " KB";
     }
     public static long getMMofTrack(long milliseconds) {
         return milliseconds/60000;

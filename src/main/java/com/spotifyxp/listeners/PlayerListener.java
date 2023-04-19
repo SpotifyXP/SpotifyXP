@@ -12,6 +12,7 @@ import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
+import org.json.JSONException;
 import org.json.JSONObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
@@ -105,8 +106,8 @@ public class PlayerListener implements Player.EventsListener {
                             break;
                         }
 
-                        //For lyrics ToDo: Find out if user wants to see lyrics
-                        if(!(PublicValues.lyricsDialog == null)) {
+
+                        if(PublicValues.lyricsDialog!=null) {
                             PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
                         }
                     }else{
@@ -130,7 +131,7 @@ public class PlayerListener implements Player.EventsListener {
                     }
                 }
                 ContentPanel.playerdescription.setText(artists.toString());
-            } catch (IOException | ParseException | SpotifyWebApiException e) {
+            } catch (IOException | ParseException | SpotifyWebApiException | JSONException e) {
                 ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }

@@ -22,18 +22,6 @@ import java.io.IOException;
 @SuppressWarnings("EmptyMethod")
 public class Test {
     public static void main(String[] args ) {
-        PublicValues.config = new Config();
-        PublicValues.language = new libLanguage();
-        PublicValues.language.setLanguageFolder("lang");
-        PublicValues.language.setNoAutoFindLanguage("en");
-        SpotifyAPI.Player player = new SpotifyAPI.Player(new SpotifyAPI());
-        PublicValues.elevated = new SpotifyAPI.OAuthPKCE();
-        try {
-            UnofficialSpotifyAPI api = new UnofficialSpotifyAPI(PublicValues.session.tokens().getToken("ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private".split(" ")).accessToken);
-            api.getArtist("spotify:artist:7vk5e3vY1uw9plTHJAMwjN");
-        } catch (IOException | MercuryClient.MercuryException e) {
-            e.printStackTrace();
-        }
 
     }
 

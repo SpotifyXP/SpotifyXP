@@ -187,15 +187,19 @@ public class Setup {
                 jarPath = jarPath.replaceFirst("/", "");
                 progressBar.setValue(50);
                 //Now copy the file there
-                Files.copy(Paths.get(jarPath), Paths.get(PublicValues.appLocation + "/SpotifyXP.jar"), REPLACE_EXISTING);
+                if(!PublicValues.appLocation.startsWith("/")) {
+                    Files.copy(Paths.get(jarPath), Paths.get(PublicValues.appLocation + "/SpotifyXP.jar"), REPLACE_EXISTING);
+                }
                 progressBar.setValue(75);
                 //Now create the shortcut
-                ShellLink shellLink = new ShellLink();
-                shellLink.setIconLocation(PublicValues.appLocation + "/SpotifyXP.ico");
-                shellLink.setCMDArgs("--setup-complete");
-                ShellLinkHelper helper = new ShellLinkHelper(shellLink);
-                helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
-                helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
+                if(!PublicValues.appLocation.startsWith("/")) {
+                    ShellLink shellLink = new ShellLink();
+                    shellLink.setIconLocation(PublicValues.appLocation + "/SpotifyXP.ico");
+                    shellLink.setCMDArgs("--setup-complete");
+                    ShellLinkHelper helper = new ShellLinkHelper(shellLink);
+                    helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
+                    helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
+                }
                 progressBar.setValue(100);
                 PublicValues.foundSetupArgument = true;
                 switchToNext();

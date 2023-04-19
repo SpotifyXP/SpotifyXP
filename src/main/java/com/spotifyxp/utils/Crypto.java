@@ -23,6 +23,19 @@ public class Crypto {
         } catch (UnknownHostException | SocketException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
+        } catch (NullPointerException e) {
+            try {
+                byte[] mac = NetworkInterface.getNetworkInterfaces().nextElement().getHardwareAddress();
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < mac.length; i++) {
+                    sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+                }
+                password = sb.toString();
+            } catch (SocketException ex) {
+                ExceptionDialog.open(e);
+                ConsoleLogging.Throwable(e);
+                System.exit(0); //This is a critical error can't continue
+            }
         }
     }
     public String decrypt(String todecrypt) throws Exception {

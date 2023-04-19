@@ -1,6 +1,7 @@
 package com.spotifyxp.listeners;
 
 import com.spotifyxp.PublicValues;
+import com.sun.scenario.effect.impl.prism.ps.PPSZeroSamplerPeer;
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
 import lc.kra.system.keyboard.event.GlobalKeyListener;
@@ -14,6 +15,9 @@ public class KeyListener {
     public static boolean nextpressed = false;
     public static boolean previouspressed = false;
     public void start() {
+        if(PublicValues.appLocation.startsWith("/")) {
+            return; //Operating system is Linux KeyListener not supported > Missing library files
+        }
         GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook();
         try {
             keyboardHook.addKeyListener(new GlobalKeyListener() {

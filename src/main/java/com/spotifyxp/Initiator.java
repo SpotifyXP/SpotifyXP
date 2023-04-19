@@ -15,6 +15,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
+import com.spotifyxp.support.LinuxSupportModule;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.updater.UpdaterDialog;
 import com.spotifyxp.utils.DoubleArrayList;
@@ -48,6 +49,13 @@ public class Initiator {
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setAutoFindLanguage();
+        if(!System.getProperty("os.name").toLowerCase().contains("win")) {
+            //Is not Windows
+            new LinuxSupportModule();
+        }
+        if(PublicValues.appLocation.startsWith("/")) {
+            args = new String[] {"--setup-complete"}; //Skip setup on linux
+        }
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
@@ -72,8 +80,7 @@ public class Initiator {
                 Files.copy(new Resources().readToInputStream("security/local_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\local_policy.jar"), REPLACE_EXISTING);
                 Files.copy(new Resources().readToInputStream("security/US_export_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\US_export_policy.jar"), REPLACE_EXISTING);
             } catch (IOException ignored) {
-                GraphicalMessage.bug("Can't unrestrict security");
-                //System.exit(0);
+                //This will propably fail on Java versions above 1.8
             }
         }
         //---

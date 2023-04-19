@@ -102,7 +102,7 @@
   "joptionpane.updater" : "Updater",
   "playerlistener.playableid.unknowntype" : "The 'thing' you have selected will play but it's a high chance that it will be not shown in the player display (no title info)",
   "startup.info.took" : "SpotifyXP needed {} to start",
-  "excpetion.dialog.title" : "SpotifyXP - Exception",
+  "exception.dialog.title" : "SpotifyXP - Exception",
   "exception.dialog.label" : "An error occurred",
   "exception.dialog.button.text" : "Ok",
   "updater.dialog.title" : "New Update available",

@@ -137,7 +137,9 @@ public final class Mp3Decoder extends Decoder {
 
             int total = 0;
             while (total < MAX_READ_SIZE) {
-                PublicValues.lyricsDialog.triggerRefresh();
+                if(PublicValues.lyricsDialog!=null) {
+                    PublicValues.lyricsDialog.triggerRefresh();
+                }
                 Header header;
                 try {
                     header = bitstream.readFrame();

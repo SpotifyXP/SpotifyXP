@@ -28,13 +28,13 @@ public class ExceptionDialog {
         exceptionscrollpane.setViewportView(exceptiontext);
 
         exceptiontext.setEditable(false);
-        exceptiontext.setText("[" + e.getLocalizedMessage() + "]" + " ");
+        exceptiontext.setText("[" + e.toString() + "]" + " ");
 
         for(StackTraceElement trace : e.getStackTrace()) {
             exceptiontext.setText(exceptiontext.getText() + trace + "\n");
         }
 
-        JButton exceptionokbutton = new JButton(PublicValues.language.translate("exception.dialog.button.next"));
+        JButton exceptionokbutton = new JButton(PublicValues.language.translate("exception.dialog.button.text"));
         exceptionokbutton.setBounds(0, 377, 589, 23);
         contentPane.add(exceptionokbutton);
 

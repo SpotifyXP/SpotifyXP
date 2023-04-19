@@ -4,9 +4,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.custom.StoppableThreadRunnable;
-import com.spotifyxp.deps.com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
@@ -161,6 +159,7 @@ public class ContentPanel extends JPanel {
     public static JButton artistPanelBackButton;
     public static JImagePanel playerareashufflebutton;
     public static JImagePanel playerarearepeatingbutton;
+    public static JImagePanel playerarealyricsbutton;
     public static StoppableThread librarythread = new StoppableThread(new StoppableThreadRunnable() {
         @SuppressWarnings("BusyWait")
         @Override
@@ -410,6 +409,42 @@ public class ContentPanel extends JPanel {
         playerimage.setBounds(10, 11, 78, 78);
         playerarea.add(playerimage);
 
+        playerarealyricsbutton = new JImagePanel();
+        playerarealyricsbutton.setBounds(280, 75, 14, 14);
+        playerarea.add(playerarealyricsbutton);
+
+        playerarealyricsbutton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    if (PublicValues.lyricsDialog == null) {
+                        PublicValues.lyricsDialog = new LyricsDialog();
+                    }
+                    if (playerarealyricsbutton.isFilled) {
+                        PublicValues.lyricsDialog.close();
+                        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
+                            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.png"));
+                        }else{
+                            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.png"));
+                        }
+                        playerarealyricsbutton.isFilled = false;
+                    } else {
+                        PublicValues.lyricsDialog.open(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri());
+                        playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphoneselected.png"));
+                        playerarealyricsbutton.isFilled = true;
+                    }
+                }catch (NullPointerException e2) {
+                    if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
+                        playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.png"));
+                    }else{
+                        playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.png"));
+                    }
+                    playerarealyricsbutton.isFilled = false;
+                }
+            }
+        });
+
         playerareavolumeicon = new JImagePanel();
         playerareavolumeicon.setBounds(306, 75, 14, 14);
         playerarea.add(playerareavolumeicon);
@@ -562,6 +597,7 @@ public class ContentPanel extends JPanel {
                 if(heart.isFilled) {
                     PublicValues.elevated.makeDelete("https://api.spotify.com/v1/me/tracks?ids=" + Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]);
                     heart.setImage(new Resources().readToInputStream("icons/heart.png"));
+
                     heart.isFilled = false;
                 }else {
                     PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]);
@@ -1272,8 +1308,6 @@ public class ContentPanel extends JPanel {
                             JOptionPane.showConfirmDialog(frame, PublicValues.language.translate("ui.error.critical2.text"), PublicValues.language.translate("ui.error.critical2.title"), JOptionPane.OK_CANCEL_OPTION);
                         }
                     }
-                    PublicValues.lyricsDialog = new LyricsDialog();
-                    PublicValues.lyricsDialog.open(searchsonglistcache.get(searchsonglist.getSelectedRow()));
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
                 }else{
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
@@ -2061,9 +2095,11 @@ public class ContentPanel extends JPanel {
         if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
             playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shuffledark.png"));
             playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatdark.png"));
+            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.png"));
         }else{
             playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shufflewhite.png"));
             playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatwhite.png"));
+            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.png"));
         }
         if(PublicValues.theme == Theme.LEGACY) {
             //Hide stylish buttons
