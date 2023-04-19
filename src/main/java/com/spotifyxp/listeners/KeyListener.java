@@ -1,7 +1,6 @@
 package com.spotifyxp.listeners;
 
 import com.spotifyxp.PublicValues;
-import com.sun.scenario.effect.impl.prism.ps.PPSZeroSamplerPeer;
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
 import lc.kra.system.keyboard.event.GlobalKeyListener;
