@@ -1,8 +1,6 @@
 package com.spotifyxp.exception;
 
 import com.spotifyxp.PublicValues;
-import jdk.jfr.StackTrace;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
