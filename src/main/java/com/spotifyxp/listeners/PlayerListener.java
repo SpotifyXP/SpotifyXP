@@ -58,10 +58,10 @@ public class PlayerListener implements Player.EventsListener {
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
         if (!ContentPanel.libraryuricache.contains(playableId.toSpotifyUri())) {
             ContentPanel.heart.isFilled = false;
-            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heart.png"));
+            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heart.svg"));
         } else {
             ContentPanel.heart.isFilled = true;
-            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heartfilled.png"));
+            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heartfilled.svg"));
         }
 
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
@@ -148,17 +148,17 @@ public class PlayerListener implements Player.EventsListener {
         switch (PublicValues.theme) {
             case DARK:
             case MacOSDark:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.png"));
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
                 break;
             case LIGHT:
             case MacOSLight:
             case QuaQua:
             case WINDOWS:
             case UGLY:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.png"));
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.svg"));
                 break;
             case LEGACY:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.png"));
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
                 break;
         }
         //timer.cancel();
@@ -169,17 +169,17 @@ public class PlayerListener implements Player.EventsListener {
         switch (PublicValues.theme) {
             case DARK:
             case MacOSDark:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.png"));
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
                 break;
             case LIGHT:
             case MacOSLight:
             case QuaQua:
             case WINDOWS:
             case UGLY:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.png"));
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.svg"));
                 break;
             case LEGACY:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpause.png"));
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpause.svg"));
                 break;
         }
         //timer.schedule(new PlayerThread(), 0, 1000);

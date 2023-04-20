@@ -3,66 +3,79 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.designs.Theme;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.ContentPanel;
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.swing.JSVGCanvas;
+import org.apache.batik.util.XMLResourceDescriptor;
+import org.w3c.dom.svg.SVGDocument;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 public class JImageButton extends JButton {
-    private BufferedImage image = null;
+    private final BufferedImage image = null;
     public boolean isFilled = false;
-    private String rad = "";
-
+    private final String rad = "";
+    JSVGCanvas canvas = new JSVGCanvas();
     void refresh() {
         this.repaint();
     }
+    public JImageButton() {
+        JImageButton button = this;
+        //graphics2D.drawImage(image.getScaledInstance(this.getWidth() / 4,this.getHeight() /2, Image.SCALE_SMOOTH), this.getWidth()/3 + 3, this.getHeight()/4, null);
+        add(canvas);
+        nw = this.getWidth() / 4;
+        nh = this.getHeight() / 2;
+        nx = this.getWidth() / 3 + 3;
+        ny = this.getHeight() / 2;
+        //canvas.setBounds(canvas.getWidth() / 2, canvas.getHeight() / 2, canvas.getX() - canvas.getWidth() / 2, canvas.getY() - canvas.getHeight() / 2);
+        canvas.setBackground(getBackground());
+        canvas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
 
-    public void setImage(String filename) {
-        try {
-            image = ImageIO.read(new File(filename));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        refresh();
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                button.getMouseListeners()[0].mouseClicked(e);
+                button.setSelected(true);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                button.setSelected(false);
+            }
+        });
+        t.start();
     }
-    public void setImage(File file) {
-        try {
-            image = ImageIO.read(file);
-        }catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        refresh();
-    }
-    public void setRotation(int percent) {
-        rad = String.valueOf(((float) 360/100*percent) * 0.01745329252);
-        refresh();
-    }
-    public void setImage(URL url) {
-        try {
-            image = ImageIO.read(url);
-        }catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        refresh();
-    }
+    int nw = 0;
+    int nh = 0;
+    int nx = 0;
+    int ny = 0;
     public void setImage(InputStream inputStream) {
         try {
-            image = ImageIO.read(inputStream);
-        }catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        refresh();
-    }
-    public void setImage(ImageInputStream imageInputStream) {
-        try {
-            image = ImageIO.read(imageInputStream);
-        }catch (IOException ex) {
-            ex.printStackTrace();
+            String parser = XMLResourceDescriptor.getXMLParserClassName();
+            SAXSVGDocumentFactory factory = new SAXSVGDocumentFactory(parser);
+            SVGDocument document = factory.createSVGDocument("", inputStream);
+            canvas.setSVGDocument(document);
+            canvas.setBounds(canvas.getBounds());
+        }catch (IOException e) {
+            ExceptionDialog.open(e);
+            ConsoleLogging.Throwable(e);
         }
         refresh();
     }
@@ -88,12 +101,18 @@ public class JImageButton extends JButton {
         if(PublicValues.theme == Theme.LEGACY) {
             setForeground(oldFg);
         }
-        if(image!=null) {
-            Graphics2D graphics2D = (Graphics2D) g;
-            if(!(rad.equals(""))) {
-                graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
-            }
-            graphics2D.drawImage(image.getScaledInstance(this.getWidth() / 4,this.getHeight() /2, Image.SCALE_SMOOTH), this.getWidth()/3 + 3, this.getHeight()/4, null);
-        }
     }
+
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while(!ContentPanel.frame.isVisible()) {
+                try {
+                    Thread.sleep(99);
+                } catch (InterruptedException ignored) {
+                }
+            }
+            canvas.setBounds(canvas.getBounds());
+        }
+    });
 }
