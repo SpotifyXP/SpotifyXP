@@ -16,11 +16,6 @@ public class Config {
     Properties properties;
     public Config() {
         properties = new Properties();
-        if(!new File(PublicValues.fileslocation).exists()) {
-            if(!new File(PublicValues.fileslocation).mkdir()) {
-                ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreatefolder"));
-            }
-        }
         if(!new File(PublicValues.configfilepath).exists()) {
             properties.put(ConfigValues.sendanalytics.name, "true");
             properties.put(ConfigValues.audioquality.name, "NORMAL");

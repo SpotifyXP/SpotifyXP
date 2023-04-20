@@ -2047,7 +2047,7 @@ public class ContentPanel extends JPanel {
                 playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.svg"));
                 break;
             case LEGACY:
-                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.svg"));
+                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
                 playerplaypreviousbutton.setImage(new Resources().readToInputStream("legacyicons/playerplayprevious.svg"));
                 playerplaynextbutton.setImage(new Resources().readToInputStream("legacyicons/playerplaynext.svg"));
                 playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
@@ -2056,9 +2056,9 @@ public class ContentPanel extends JPanel {
         if(PublicValues.theme == Theme.LEGACY) {
             playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
             if (playerareavolumeslider.getValue() == 0) {
-                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.svg"));
+                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.png"));
             } else {
-                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.svg"));
+                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
             }
         }else {
             if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {

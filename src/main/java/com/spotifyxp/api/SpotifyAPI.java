@@ -4,7 +4,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
@@ -19,7 +18,6 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Timer;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
@@ -31,7 +29,6 @@ import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("CanBeFinal")
 public class SpotifyAPI {
-    private static final String deviceName = "XPS";
     public static int waitAmount = 4;
     static SpotifyApi spotifyApi = null;
     public SpotifyAPI() {
@@ -63,7 +60,7 @@ public class SpotifyAPI {
                 if (!player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
-                    Thread.sleep(999);
+                    Thread.sleep(99);
                 } catch (InterruptedException e) {
                     ExceptionDialog.open(e);
                     ConsoleLogging.Throwable(e);
@@ -80,9 +77,8 @@ public class SpotifyAPI {
         @SuppressWarnings("BusyWait")
         public Player(SpotifyAPI a) {
             api = a;
-            //Make player session
             try {
-                player = PlayerUtils.buildPlayer();
+                player = PlayerUtils.buildPlayer(); //Make player session
             } catch (Exception e) {
                 new LoginDialog().openWithInvalidAuth();
                 retry();
@@ -93,7 +89,7 @@ public class SpotifyAPI {
                 if (player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
-                    Thread.sleep(999);
+                    Thread.sleep(99);
                 } catch (InterruptedException e) {
                     ExceptionDialog.open(e);
                     ConsoleLogging.Throwable(e);
@@ -111,62 +107,10 @@ public class SpotifyAPI {
             return player;
         }
     }
-    public String makePost(String url) {
-        if(!url.contains("https")) {
-            url = "https://api.spotify.com" + url;
-        }
-        String ret = "FAILED";
-        try {
-            HttpClient client = new HttpClient();
-            PostMethod post = new PostMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + OAuthPKCE.token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
-        } catch (IOException e) {
-            ExceptionDialog.open(e);
-            ConsoleLogging.Throwable(e);
-        }
-        return ret;
-    }
-    public String makeGet(String url) {
-        if(!url.contains("https")) {
-            url = "https://api.spotify.com" + url;
-        }
-        String ret = "FAILED";
-        try {
-            HttpClient client = new HttpClient();
-            GetMethod post = new GetMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + OAuthPKCE.token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
-        } catch (IOException e) {
-            ExceptionDialog.open(e);
-            ConsoleLogging.Throwable(e);
-        }
-        return ret;
-    }
-    public String makePut(String url) {
-        if(!url.contains("https")) {
-            url = "https://api.spotify.com" + url;
-        }
-        String ret = "FAILED";
-        try {
-            HttpClient client = new HttpClient();
-            PutMethod post = new PutMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + OAuthPKCE.token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
-        } catch (IOException e) {
-            ExceptionDialog.open(e);
-            ConsoleLogging.Throwable(e);
-        }
-        return ret;
-    }
     @SuppressWarnings({"CanBeFinal"})
     public static class OAuthPKCE {
         public static String token = "";
         private final String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
-        private final Timer timer = new Timer();
         public OAuthPKCE() {
             try {
                 TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
@@ -280,8 +224,8 @@ public class SpotifyAPI {
     public void addAllAlbumsToList(ArrayList<String> uricache, String fromuri, JTable totable) {
         int offset = 0;
         int limit = 50;
-        while(uricache.size()!=new JSONObject(makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
-            for(Object o : new JSONObject(makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
+        while(uricache.size()!=new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
+            for(Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
                 JSONObject object = new JSONObject(o.toString());
                 uricache.add(object.getString("uri"));
                 ((DefaultTableModel) totable.getModel()).addRow(new Object[] {object.getString("name")});

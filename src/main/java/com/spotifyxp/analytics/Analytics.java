@@ -1,13 +1,11 @@
 package com.spotifyxp.analytics;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -19,7 +17,7 @@ public class Analytics {
     //Only sends (pc name, program name, program version, date and time)
     public Analytics() {
         if(ConnectionUtils.makePingToServer()) {
-            return;
+            return; // If the server is on the local network don't send analytics
         }
         if(!PublicValues.config.get(ConfigValues.sendanalytics.name).equals("true")) {
            return;

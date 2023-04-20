@@ -80,7 +80,7 @@ public class PlayerListener implements Player.EventsListener {
                     ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                     ContentPanel.playertitle.setText(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
                     artists.append(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getShow().getPublisher());
-                    JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/episodes/" + playableId.toSpotifyUri().split(":")[2]));
+                    JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/episodes/" + playableId.toSpotifyUri().split(":")[2]));
                     for (Object object : root.getJSONArray("images")) {
                         JSONObject urls = new JSONObject(object.toString());
                         ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
@@ -98,7 +98,7 @@ public class PlayerListener implements Player.EventsListener {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
+                        JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
                         JSONObject album = new JSONObject(root.get("album").toString());
                         for (Object object : album.getJSONArray("images")) {
                             JSONObject urls = new JSONObject(object.toString());
@@ -121,7 +121,7 @@ public class PlayerListener implements Player.EventsListener {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        JSONObject root = new JSONObject(a.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
+                        JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
                         JSONObject album = new JSONObject(root.get("album").toString());
                         for (Object object : album.getJSONArray("images")) {
                             JSONObject urls = new JSONObject(object.toString());

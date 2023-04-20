@@ -9,7 +9,6 @@ import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
@@ -26,7 +25,6 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import javax.swing.*;
@@ -41,6 +39,14 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 public class Initiator {
     static SpotifyAPI api = null;
     static StartupTime startupTime;
+    static Thread hook = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").delete()) {
+                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockdelete"));
+            }
+        }
+    });
     public static void main(String[] args) {
         startupTime = new StartupTime();
         PublicValues.args = args;
@@ -52,15 +58,20 @@ public class Initiator {
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
             new LinuxSupportModule();
-        }
-        if(PublicValues.appLocation.startsWith("/")) {
-            args = new String[] {"--setup-complete"}; //Skip setup on linux
+            args = new String[] {"--setup-complete"};
         }
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
             }
+        }
+        try {
+            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").createNewFile()) {
+                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockcreate"));
+            }
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
         }
         new ArgParser(args);
         if(new File("pom.xml").exists()) {
@@ -111,18 +122,6 @@ public class Initiator {
                 PublicValues.theme = Theme.DARK;
                 break;
         }
-        try {
-            PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
-        }catch (IllegalArgumentException exception) {
-            //This should not happen but when it happens don't crash SpotifyXP
-            PublicValues.quality = Quality.NORMAL;
-        }
-        if(!PublicValues.debug) {
-            if (new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
-                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
-                System.exit(0);
-            }
-        }
         boolean unsupported = false;
         switch (PublicValues.theme) {
             case DARK:
@@ -163,29 +162,26 @@ public class Initiator {
         if(unsupported) {
             ConsoleLogging.error("The theme you selected is not supported! Setting theme to ugly");
         }
+        try {
+            PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
+        }catch (IllegalArgumentException exception) {
+            //This should not happen but when it happens don't crash SpotifyXP
+            PublicValues.quality = Quality.NORMAL;
+        }
+        if(!PublicValues.debug) {
+            if (new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
+                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
+                System.exit(0);
+            }
+        }
         if(!PublicValues.foundSetupArgument) {
-            new Setup();
+            new Setup(); //Start setup because the argument "--setup-complete" was not found
         }
         new SplashPanel().show();
-        try {
-            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").createNewFile()) {
-                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockcreate"));
-            }
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
-            new LoginDialog().open();
+            new LoginDialog().open(); //Show login dialog if no username is set
         }
-        Thread hook = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if(!new File(PublicValues.fileslocation + "/" + "LOCKED").delete()) {
-                    ConsoleLogging.error(PublicValues.language.translate("startup.error.lockdelete"));
-                }
-            }
-        });
-        Runtime.getRuntime().addShutdownHook(hook);
+        Runtime.getRuntime().addShutdownHook(hook); //Gets executed when SpotifyXP is closing
         api = new SpotifyAPI();
         SpotifyAPI.Player player = new SpotifyAPI.Player(api);
         new KeyListener().start();

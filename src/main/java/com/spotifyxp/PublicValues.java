@@ -29,7 +29,7 @@ public class PublicValues {
     public static Quality quality = null;
     public static String[] args = null;
     public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
-    //public static Theme theme = null;
+    public static String deviceName = "SpotifyXP";
     public static Theme theme = null;
     public static boolean foundSetupArgument = false;
     public static LyricsDialog lyricsDialog = null;

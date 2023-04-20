@@ -2,7 +2,6 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;

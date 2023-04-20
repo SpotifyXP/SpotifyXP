@@ -1,28 +1,22 @@
 package com.spotifyxp.utils;
 
-
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-
-import java.io.EOFException;
 import java.io.File;
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 
 public class PlayerUtils {
-    public static Player buildPlayer() throws EOFException, Exception, Session.SpotifyAuthenticationException {
-        Session.Builder builder2 = new Session.Builder()
-                .setPreferredLocale("de")
+    public static Player buildPlayer() {
+        Session.Builder builder = new Session.Builder()
+                .setPreferredLocale("en")
                 .setDeviceType(Connect.DeviceType.COMPUTER)
-                .setDeviceName("XPS")
+                .setDeviceName(PublicValues.deviceName)
                 .setClientToken("")
                 .setDeviceId(null);
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
@@ -45,14 +39,12 @@ public class PlayerUtils {
                 .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
         try {
-            Session session = builder2.userPass(new Crypto().decrypt(PublicValues.config.get(ConfigValues.username.name)), new Crypto().decrypt(PublicValues.config.get(ConfigValues.password.name))).create();
+            Session session = builder.userPass(new Crypto().decrypt(PublicValues.config.get(ConfigValues.username.name)), new Crypto().decrypt(PublicValues.config.get(ConfigValues.password.name))).create();
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             return player;
-        } catch (IOException | MercuryClient.MercuryException | GeneralSecurityException e) {
-            ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
         } catch (Exception e) {
+            ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
         }
         return null;
