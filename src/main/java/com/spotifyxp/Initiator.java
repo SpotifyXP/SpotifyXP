@@ -49,17 +49,17 @@ public class Initiator {
     });
     public static void main(String[] args) {
         startupTime = new StartupTime();
-        PublicValues.args = args;
         PublicValues.logger.setColored(false);
         PublicValues.logger.setShowTime(false);
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
-        PublicValues.language.setAutoFindLanguage();
+        PublicValues.language.setNoAutoFindLanguage("en");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
             new LinuxSupportModule();
             args = new String[] {"--setup-complete"};
         }
+        PublicValues.args = args;
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
@@ -82,19 +82,6 @@ public class Initiator {
             PublicValues.logger.setColored(true);
             PublicValues.foundSetupArgument = true;
         }
-        //Try to unrestrict security
-        try {
-            Files.copy(new Resources().readToInputStream("security/local_policy.jar"), Paths.get(System.getProperty("java.home") + "\\jre\\lib\\security\\local_policy.jar"), REPLACE_EXISTING);
-            Files.copy(new Resources().readToInputStream("security/US_export_policy.jar"), Paths.get(System.getProperty("java.home") + "\\jre\\lib\\security\\US_export_policy.jar"), REPLACE_EXISTING);
-        } catch (IOException e) {
-            try {
-                Files.copy(new Resources().readToInputStream("security/local_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\local_policy.jar"), REPLACE_EXISTING);
-                Files.copy(new Resources().readToInputStream("security/US_export_policy.jar"), Paths.get(System.getProperty("java.home") + "\\lib\\security\\US_export_policy.jar"), REPLACE_EXISTING);
-            } catch (IOException ignored) {
-                //This will propably fail on Java versions above 1.8
-            }
-        }
-        //---
         PublicValues.config = new Config();
         switch(PublicValues.config.get(ConfigValues.theme.name)) {
             case "QUAQUA":
@@ -170,8 +157,11 @@ public class Initiator {
         }
         if(!PublicValues.debug) {
             if (new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
-                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION);
-                System.exit(0);
+                if(!(JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION) == -1)) {
+                    System.exit(0);
+                }else{
+                    new File(PublicValues.fileslocation + "/" + "LOCKED").delete();
+                }
             }
         }
         if(!PublicValues.foundSetupArgument) {

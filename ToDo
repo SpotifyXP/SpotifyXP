@@ -1,4 +1,5 @@
 [ ] - Clean up code
-[ ] - Implement SVG fully
-[ ] - Better Translation (make language selectable)
-[ ] - Fix Deprecations
+[x] - Implement SVG fully
+[x] - Better Translation (make language selectable)
+[x] - Fix JSVGPanel not drawing normal images
+[ ] - Fix shuffle (propably some mistake when copying deps code)

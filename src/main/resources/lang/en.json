@@ -81,7 +81,7 @@
   "ui.error.critical.title" : "JSON Exception",
   "ui.logout.title" : "Info",
   "ui.logout.text" : "SpotifyXP now exits. On the next start you must enter your email and password",
-  "ui.startup.alreadystarted" : "SpotifyXP is already running! If you are not seeing SpotifyXP please wait! It can take longer on older CPUs",
+  "ui.startup.alreadystarted" : "SpotifyXP is already running! If you are not seeing SpotifyXP please wait! It can take longer on older CPUs. Start anyway? Click on Cancel",
   "ui.general.refresh" : "Refresh",
   "ui.general.copyuri" : "Copy URI",
   "ui.general.remove" : "Remove",
@@ -108,5 +108,10 @@
   "updater.dialog.title" : "New Update available",
   "updater.dialog.changelog.label" : "Changelog",
   "updater.dialog.download" : "Download",
-  "updater.dialog.cancel" : "Cancel"
+  "updater.dialog.cancel" : "Cancel",
+  "ui.error.critical3.text" : "A critical error occurred! SpotifyXP will now exit",
+  "critical.sorry.text" : "A critical error occurred and SpotifyXP can't start. SpotifyXP will now close! Sorry :(",
+  "critical.sorry.title" : "Critical",
+  "queue.failed.title" : "Something went wrong",
+  "queue.failed.text" : "SpotifyXP failed to queue the tracks"
 }

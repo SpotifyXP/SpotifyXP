@@ -70,7 +70,7 @@ public class DropDownMenu {
 
             }
         });
-        panel.addMouseListener(new MouseAdapter() {
+        panel.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseClicked(e);
@@ -79,13 +79,13 @@ public class DropDownMenu {
                         ycache = e.getY();
                         xcache = e.getX();
                         panel.setRotation(10);
-                        popupMenu.show(ContentPanel.frame, panel.getX(), panel.getY()+panel.getHeight()*3-5);
+                        popupMenu.show(ContentPanel.frame, panel.getJComponent().getX(), panel.getJComponent().getY()+panel.getJComponent().getHeight()*3-5);
                     }
                 }else{
                     if (!popupMenu.isVisible()) {
                         ycache = e.getY();
                         xcache = e.getX();
-                        popupMenu.show(ContentPanel.frame, panel.getX(), panel.getY()+panel.getHeight()*3-5);
+                        popupMenu.show(ContentPanel.frame, panel.getJComponent().getX(), panel.getJComponent().getY()+panel.getJComponent().getHeight()*3-5);
                     }
                 }
             }

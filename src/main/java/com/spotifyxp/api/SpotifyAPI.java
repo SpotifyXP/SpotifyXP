@@ -45,7 +45,7 @@ public class SpotifyAPI {
         int wait;
         com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;
         SpotifyAPI api;
-
+        int times = 0;
         @SuppressWarnings("BusyWait")
         public void retry() {
             try {
@@ -55,8 +55,13 @@ public class SpotifyAPI {
                 retry();
             }
             wait = 0;
+            boolean r = false;
             while(true) {
-                assert player != null;
+                if(player == null) {
+                    r = true;
+                    times++;
+                    break;
+                }
                 if (!player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
@@ -69,6 +74,13 @@ public class SpotifyAPI {
                     retry();
                 }
                 wait++;
+            }
+            if(r) {
+                if(times != 5) {
+                    retry();
+                }else{
+
+                }
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));
@@ -84,8 +96,12 @@ public class SpotifyAPI {
                 retry();
             }
             wait = 0;
+            boolean r = false;
             while(true) {
-                assert player != null;
+                if(player == null) {
+                    r = true;
+                    break;
+                }
                 if (player.isReady()) break;
                 ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
                 try {
@@ -98,6 +114,9 @@ public class SpotifyAPI {
                     retry();
                 }
                 wait++;
+            }
+            if(r) {
+                retry();
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));

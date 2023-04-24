@@ -7,9 +7,11 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import java.io.File;
+import java.net.UnknownHostException;
 
 public class PlayerUtils {
     public static Player buildPlayer() {
@@ -39,11 +41,16 @@ public class PlayerUtils {
                 .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
         try {
-            Session session = builder.userPass(new Crypto().decrypt(PublicValues.config.get(ConfigValues.username.name)), new Crypto().decrypt(PublicValues.config.get(ConfigValues.password.name))).create();
+            Session session = builder.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             return player;
-        } catch (Exception e) {
+        }catch (Session.SpotifyAuthenticationException e) {
+            new LoginDialog().openWithInvalidAuth();
+        }catch (UnknownHostException e) {
+            GraphicalMessage.sorryError();
+            System.exit(0);
+        }catch(Exception e) {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
         }

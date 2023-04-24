@@ -63,7 +63,7 @@ public class ContentPanel extends JPanel {
     public static JTextField feedbackupdaterversionfield;
     public static EnginePanel playerarea;
     public static JImagePanel playerimage;
-    public static JLabel playertitle;
+    public static JScrollText playertitle;
     public static JLabel playerdescription;
     public static JImageButton playerplaypreviousbutton;
     public static JImageButton playerplaypausebutton;
@@ -138,7 +138,7 @@ public class ContentPanel extends JPanel {
     public static JSVGPanel threepointbutton;
     public static DropDownMenu userdropdown;
     public static DropDownMenu threepointdropdown;
-    public static JImagePanel playerareavolumeicon;
+    public static JSVGPanel playerareavolumeicon;
     public static JSlider playerareavolumeslider;
     public static JLabel playerareavolumecurrent;
     public static JPanel searchplaylistpanel;
@@ -225,10 +225,10 @@ public class ContentPanel extends JPanel {
     public static LastTypes lastmenu = LastTypes.HotList;
     void createSettingsButton() {
         settingsbutton = new JSVGPanel();
-        settingsbutton.setBounds(669, 11, 23, 23);
-        add(settingsbutton);
+        settingsbutton.getJComponent().setBounds(669, 11, 23, 23);
+        add(settingsbutton.getJComponent());
 
-        settingsbutton.addMouseListener(new MouseAdapter() {
+        settingsbutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -272,8 +272,8 @@ public class ContentPanel extends JPanel {
     }
     void createUserButton() {
         userbutton = new JSVGPanel();
-        userbutton.setBounds(702, 11, 23, 23);
-        add(userbutton);
+        userbutton.getJComponent().setBounds(702, 11, 23, 23);
+        add(userbutton.getJComponent());
 
         userdropdown = new DropDownMenu(userbutton, false);
         userdropdown.addItem(PublicValues.language.translate("ui.menu.logout"), new Runnable() {
@@ -288,8 +288,8 @@ public class ContentPanel extends JPanel {
     }
     void createThreePointButton() {
         threepointbutton = new JSVGPanel();
-        threepointbutton.setBounds(735, 11, 23, 23);
-        add(threepointbutton);
+        threepointbutton.getJComponent().setBounds(735, 11, 23, 23);
+        add(threepointbutton.getJComponent());
 
         threepointdropdown = new DropDownMenu(threepointbutton, false);
         threepointdropdown.addItem(PublicValues.language.translate("ui.menu.help.about"), new Runnable() {
@@ -354,14 +354,14 @@ public class ContentPanel extends JPanel {
         playerarea.setLayout(null);
 
         playerareashufflebutton = new JSVGPanel();
-        playerareashufflebutton.setBounds(510, 75, 20, 20);
-        playerarea.add(playerareashufflebutton);
+        playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
+        playerarea.add(playerareashufflebutton.getJComponent());
 
         playerarearepeatingbutton = new JSVGPanel();
-        playerarearepeatingbutton.setBounds(540, 75, 20, 20);
-        playerarea.add(playerarearepeatingbutton);
+        playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
+        playerarea.add(playerarearepeatingbutton.getJComponent());
 
-        playerareashufflebutton.addMouseListener(new MouseAdapter() {
+        playerareashufflebutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -382,7 +382,7 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        playerarearepeatingbutton.addMouseListener(new MouseAdapter() {
+        playerarearepeatingbutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -407,10 +407,10 @@ public class ContentPanel extends JPanel {
         playerarea.add(playerimage);
 
         playerarealyricsbutton = new JSVGPanel();
-        playerarealyricsbutton.setBounds(280, 75, 14, 14);
-        playerarea.add(playerarealyricsbutton);
+        playerarealyricsbutton.getJComponent().setBounds(280, 75, 14, 14);
+        playerarea.add(playerarealyricsbutton.getJComponent());
 
-        playerarealyricsbutton.addMouseListener(new MouseAdapter() {
+        playerarealyricsbutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -442,9 +442,12 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        playerareavolumeicon = new JImagePanel();
-        playerareavolumeicon.setBounds(306, 75, 14, 14);
-        playerarea.add(playerareavolumeicon);
+        playerareavolumeicon = new JSVGPanel();
+        if(PublicValues.theme == Theme.LEGACY) {
+            playerareavolumeicon.setSVG(false);
+        }
+        playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
+        playerarea.add(playerareavolumeicon.getJComponent());
 
         playerareavolumecurrent = new JLabel();
         playerareavolumecurrent.setBounds(489, 75, 35, 14);
@@ -468,9 +471,9 @@ public class ContentPanel extends JPanel {
                 if(PublicValues.theme == Theme.LEGACY) {
                     playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
                     if (playerareavolumeslider.getValue() == 0) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.svg"));
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.png"));
                     } else {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.svg"));
+                        playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
                     }
                 }else {
                     if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {
@@ -540,7 +543,7 @@ public class ContentPanel extends JPanel {
 
         });
 
-        playertitle = new JLabel(l.translate("ui.player.title"));
+        playertitle = new JScrollText(l.translate("ui.player.title"));
         playertitle.setBounds(109, 11, 168, 14);
         playerarea.add(playertitle);
 
@@ -584,10 +587,10 @@ public class ContentPanel extends JPanel {
 
 
         heart = new JSVGPanel();
-        heart.setBounds(525, 20, 24, 24);
+        heart.getJComponent().setBounds(525, 20, 24, 24);
 
 
-        heart.addMouseListener(new MouseAdapter() {
+        heart.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -606,7 +609,7 @@ public class ContentPanel extends JPanel {
 
         heart.setImage(new Resources().readToInputStream("icons/heart.svg"));
 
-        playerarea.add(heart);
+        playerarea.add(heart.getJComponent());
 
         playercurrenttime.addMouseListener(new MouseAdapter() {
             @Override
@@ -1955,10 +1958,12 @@ public class ContentPanel extends JPanel {
     int playerareawidth = 0;
     int playerareaheight = 0;
 
+    //These are the position for the popup window
     void changePlayerToWindowStyle() {
-        playerareashufflebutton.setBounds(20, 293, 20, 20);
-        playerarearepeatingbutton.setBounds(280, 293, 20, 20);
+        playerareashufflebutton.getJComponent().setBounds(20, 293, 20, 20);
+        playerarearepeatingbutton.getJComponent().setBounds(280, 293, 20, 20);
         playertitle.setHorizontalAlignment(SwingConstants.CENTER);
+        playerarealyricsbutton.getJComponent().setBounds(20, 232, 14, 14);
         playerdescription.setHorizontalAlignment(SwingConstants.CENTER);
         playerarea.add(playerdescription);
         playerimage.setBounds(91, 11, 132, 130);
@@ -1970,19 +1975,21 @@ public class ContentPanel extends JPanel {
         playercurrenttime.setBounds(62, 269, 200, 13);
         playerplaytime.setBounds(0, 269, 57, 14);
         playerplaytimetotal.setBounds(262, 269, 49, 14);
-        playerareavolumeicon.setBounds(62, 293, 14, 14);
+        playerareavolumeicon.getJComponent().setBounds(62, 293, 14, 14);
         playerareavolumeslider.setBounds(87, 293, 145, 13);
         playerareavolumecurrent.setBounds(242, 293, 35, 14);
-        heart.setBounds(286, 229, 24, 24);
+        heart.getJComponent().setBounds(286, 229, 24, 24);
     }
 
+    //These are the positions for the normal player style
     void restoreDefaultPlayerStyle() {
-        playerarearepeatingbutton.setBounds(540, 75, 20, 20);
-        playerareashufflebutton.setBounds(510, 75, 20, 20);
+        playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
+        playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
         playertitle.setHorizontalAlignment(SwingConstants.LEFT);
         playerdescription.setHorizontalAlignment(SwingConstants.LEFT);
         playerimage.setBounds(10, 11, 78, 78);
         playertitle.setBounds(109, 11, 168, 14);
+        playerarealyricsbutton.getJComponent().setBounds(280, 75, 14, 14);
         playerdescription.setBounds(109, 40, 138, 20);
         playerplaypreviousbutton.setBounds(287, 11, 70, 36);
         playerplaypausebutton.setBounds(369, 11, 69, 36);
@@ -1990,10 +1997,10 @@ public class ContentPanel extends JPanel {
         playercurrenttime.setBounds(306, 54, 200, 13);
         playerplaytime.setBounds(244, 54, 57, 14);
         playerplaytimetotal.setBounds(506, 54, 49, 14);
-        playerareavolumeicon.setBounds(306, 75, 14, 14);
+        playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
         playerareavolumeslider.setBounds(334, 76, 145, 13);
         playerareavolumecurrent.setBounds(489, 75, 35, 14);
-        heart.setBounds(525, 20, 24, 24);
+        heart.getJComponent().setBounds(525, 20, 24, 24);
     }
 
     static void preventBugLegacySwitch() {
@@ -2061,6 +2068,9 @@ public class ContentPanel extends JPanel {
                 playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
             }
         }else {
+            playerplaynextbutton.setBorderPainted(true);
+            playerplaypreviousbutton.setBorderPainted(true);
+            playerplaypausebutton.setBorderPainted(true);
             if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {
                 playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
                 if (playerareavolumeslider.getValue() == 0) {
@@ -2100,9 +2110,9 @@ public class ContentPanel extends JPanel {
         }
         if(PublicValues.theme == Theme.LEGACY) {
             //Hide stylish buttons
-            settingsbutton.setVisible(false);
-            userbutton.setVisible(false);
-            threepointbutton.setVisible(false);
+            settingsbutton.getJComponent().setVisible(false);
+            userbutton.getJComponent().setVisible(false);
+            threepointbutton.getJComponent().setVisible(false);
             //---
             //Set toggle buttons hidden
             librarybutton.setVisible(false);
@@ -2120,12 +2130,12 @@ public class ContentPanel extends JPanel {
             playerplaynextbutton.setContentAreaFilled(false);
             playerplaypreviousbutton.setBorderPainted(false);
             playerplaypreviousbutton.setContentAreaFilled(false);
-            playerplaypreviousbutton.setFocusPainted(false);
-            playerplaynextbutton.setFocusPainted(false);
-            playerplaypausebutton.setFocusPainted(false);
-            playerplaypausebutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
-            playerplaypreviousbutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
-            playerplaynextbutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
+            //playerplaypreviousbutton.setFocusPainted(false);
+            //playerplaynextbutton.setFocusPainted(false);
+            //playerplaypausebutton.setFocusPainted(false);
+            //playerplaypausebutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
+            //playerplaypreviousbutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
+            //playerplaynextbutton.setBorder(new LineBorder(hex2Rgb("#3B77BC"), 1));
             playerimage.setImage(new Resources().readToInputStream("legacyicons/nothingplaying.png"));
             playerarea.setBorder(null);
             //---

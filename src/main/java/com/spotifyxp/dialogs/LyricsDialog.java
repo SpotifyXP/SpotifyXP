@@ -50,9 +50,9 @@ public class LyricsDialog {
                     public void windowClosing(WindowEvent e) {
                         super.windowClosing(e);
                         if (PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
-                            ContentPanel.playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.png"));
+                            ContentPanel.playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
                         } else {
-                            ContentPanel.playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.png"));
+                            ContentPanel.playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
                         }
                         ContentPanel.playerarealyricsbutton.isFilled = false;
                     }

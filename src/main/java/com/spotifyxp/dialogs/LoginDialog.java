@@ -1,11 +1,8 @@
 package com.spotifyxp.dialogs;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.utils.Crypto;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -64,8 +61,8 @@ public class LoginDialog {
         spotifyokbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.username.name, new Crypto().encrypt(spotifyusernamefield.getText()));
-                PublicValues.config.write(ConfigValues.password.name, new Crypto().encrypt(usernamepasswordfield.getText()));
+                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
+                PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
                 dialog.dispose();
             }
         });
@@ -102,8 +99,8 @@ public class LoginDialog {
         spotifyokbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.username.name, new Crypto().encrypt(spotifyusernamefield.getText()));
-                PublicValues.config.write(ConfigValues.password.name, new Crypto().encrypt(usernamepasswordfield.getText()));
+                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
+                PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
                 dialog.dispose();
             }
         });

@@ -114,8 +114,8 @@ public class TrackUtils {
         try {
             ContentPanel.player.getPlayer().tracks(true).next.clear();
         }catch (NullPointerException exc) {
-            //This should not happen
-            //GraphicalMessage.bug("TrackUtils line 94 NullPointerException"); ToDo change this to something like this : "SpotifxXP failed to queue the tracks"
+            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("queue.failed.text"), PublicValues.language.translate("queue.failed.title"), JOptionPane.OK_CANCEL_OPTION);
+            return;
         }
         int counter = 0;
         try {

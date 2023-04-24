@@ -63,7 +63,9 @@ public class PlayerListener implements Player.EventsListener {
             ContentPanel.heart.isFilled = true;
             ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heartfilled.svg"));
         }
-
+        if(ContentPanel.playerarealyricsbutton.isFilled) {
+            PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
+        }
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             timer.schedule(new PlayerThread(), 0, 1000);
             try {
@@ -104,11 +106,6 @@ public class PlayerListener implements Player.EventsListener {
                             JSONObject urls = new JSONObject(object.toString());
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                             break;
-                        }
-
-
-                        if(PublicValues.lyricsDialog!=null) {
-                            PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
                         }
                     }else{
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));

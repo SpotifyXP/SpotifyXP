@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SplashPanel {
-    private static JFrame frame;
+    public static JFrame frame;
     public void show() {
         frame = new JFrame();
         JImagePanel image = new JImagePanel();

@@ -1,6 +1,8 @@
 package com.spotifyxp.exception;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.panels.SplashPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,9 @@ import java.awt.event.ActionListener;
 
 public class ExceptionDialog {
     public static void open(Throwable e) {
+        if(SplashPanel.frame.isVisible()) {
+            SplashPanel.frame.setAlwaysOnTop(false);
+        }
         JFrame frame = new JFrame(PublicValues.language.translate("exception.dialog.title"));
         JPanel contentPane = new JPanel();
         JLabel exceptionlabel = new JLabel(PublicValues.language.translate("exception.dialog.label"));
