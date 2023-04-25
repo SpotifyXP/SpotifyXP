@@ -143,4 +143,49 @@ public class UnofficialSpotifyAPI {
         System.out.println(root);
     }
 
+    public static class HomeTab {
+        public String greeting = "";
+
+    }
+
+
+    public HomeTab getHomeTab() {
+        JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=%7B%22timeZone%22%3A%22Europe%2FBerlin%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D")).getJSONObject("data").getJSONObject("home").toString());
+        HomeTab tab = new HomeTab();
+
+        System.err.println("Parsing greeting message");
+        //Parse greeting text (z.b Good evening)
+        tab.greeting = root.getJSONObject("greeting").getString("text");
+        //---
+        System.err.println("---");
+
+        System.err.println("Parsing sections");
+        //Parse sections
+        for(Object o : root.getJSONObject("sectionContainer").getJSONObject("sections").getJSONArray("items")) {
+            JSONObject section = new JSONObject(o.toString());
+            JSONObject sectionItems = new JSONObject(section.getJSONObject("sectionItems").toString());
+            int totalCount = sectionItems.getInt("totalCount");
+            String typeName = section.getJSONObject("data").getString("__typename");
+            System.out.println("TotalCount: " + totalCount);
+            System.out.println("TypeName: " + typeName);
+            String uri = section.getString("uri");
+            for(Object i : sectionItems.getJSONArray("items")) {
+                JSONObject item = new JSONObject(i.toString());
+                if(item.getJSONObject("content").getString("__typename").equals("UnknownType")) {
+                    continue; //Skipping items that have no usable data
+                }
+                String itemuri = item.getString("uri");
+                JSONObject content = new JSONObject(item.getJSONObject("content").getJSONObject("data").toString());
+                String itemname = content.getString("name");
+                //ToDo: Parse uri and check if its a playlist a track a artist a album or a show or something else
+                System.out.println("   "  + itemname);
+            }
+            System.out.println("EndOfType\n\n");
+        }
+        System.err.println("---");
+        //---
+
+        System.out.println(root);
+        return tab;
+    }
 }

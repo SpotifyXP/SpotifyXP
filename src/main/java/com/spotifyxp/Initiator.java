@@ -57,7 +57,7 @@ public class Initiator {
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
             new LinuxSupportModule();
-            args = new String[] {"--setup-complete"};
+            args = new String[]{"--setup-complete"};
         }
         PublicValues.args = args;
         if(!new File(PublicValues.fileslocation).exists()) {
