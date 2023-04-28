@@ -352,10 +352,16 @@ public class ContentPanel extends JPanel {
         });
     }
     void createHome() {
-        homepane = new HomePanel(frame.getWidth(), frame.getHeight());
+        homepane = new HomePanel();
         tabpanel.add(homepane.getComponent());
         homebutton = new JToggleButton("Home");
-        homebutton.setBounds(10, 111, 107, 23);
+        homebutton.setBounds(5, 111, 107, 23);
+        homebutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setHomeVisible();
+            }
+        });
         add(homebutton);
     }
     void createPlayerArea() {
@@ -664,7 +670,7 @@ public class ContentPanel extends JPanel {
         librarypane.setLayout(null);
 
         librarybutton = new JToggleButton(l.translate("ui.navigation.library"));
-        librarybutton.setBounds(162, 111, 107, 23);
+        librarybutton.setBounds(230, 111, 107, 23);
         add(librarybutton);
 
         libraryshufflebutton = new JButton(l.translate("ui.library.shuffle"));
@@ -780,7 +786,7 @@ public class ContentPanel extends JPanel {
     }
     void createPlaylist() {
         playlistsbutton = new JToggleButton(l.translate("ui.navigation.playlists"));
-        playlistsbutton.setBounds(45, 111, 107, 23);
+        playlistsbutton.setBounds(118, 111, 107, 23);
         add(playlistsbutton);
         playlistspane = new JPanel();
         playlistspane.setBounds(0, 0, 784, 421);
@@ -936,7 +942,7 @@ public class ContentPanel extends JPanel {
     }
     void createSearch() {
         searchbutton = new JToggleButton(l.translate("ui.navigation.search"));
-        searchbutton.setBounds(279, 111, 107, 23);
+        searchbutton.setBounds(338, 111, 107, 23);
         add(searchbutton);
         searchpane = new JPanel();
         searchpane.setBounds(0, 0, 784, 421);
@@ -1417,7 +1423,7 @@ public class ContentPanel extends JPanel {
     }
     void createHotList() {
         hotlistbutton = new JToggleButton(l.translate("ui.navigation.hotlist"));
-        hotlistbutton.setBounds(396, 111, 107, 23);
+        hotlistbutton.setBounds(447, 111, 107, 23);
         add(hotlistbutton);
         hotlistpane = new JPanel();
         hotlistpane.setBounds(0, 0, 784, 421);
@@ -1543,7 +1549,7 @@ public class ContentPanel extends JPanel {
     }
     void createQueue() {
         queuebutton = new JToggleButton(l.translate("ui.navigation.queue"));
-        queuebutton.setBounds(513, 111, 107, 23);
+        queuebutton.setBounds(557, 111, 107, 23);
         add(queuebutton);
         queuepane = new JPanel();
         queuepane.setBounds(0, 0, 784, 421);
@@ -1604,7 +1610,7 @@ public class ContentPanel extends JPanel {
     }
     void createFeedback() {
         feedbackbutton = new JToggleButton(l.translate("ui.navigation.feedback"));
-        feedbackbutton.setBounds(630, 111, 107, 23);
+        feedbackbutton.setBounds(667, 111, 107, 23);
         add(feedbackbutton);
         feedbackpane = new JPanel();
         feedbackpane.setBounds(0, 0, 784, 421);
@@ -2212,9 +2218,9 @@ public class ContentPanel extends JPanel {
         feedbackbutton.setSelected(false);
         playlistsbutton.setSelected(false);
         queuebutton.setSelected(false);
-        homebutton.setVisible(false);
         homepane.getComponent().setVisible(false);
         homeVisible = false;
+        homebutton.setSelected(false);
         queueVisible = false;
         playlistsVisible = false;
         searchVisible = true;
@@ -2254,9 +2260,9 @@ public class ContentPanel extends JPanel {
         searchbutton.setSelected(false);
         librarybutton.setSelected(false);
         feedbackbutton.setSelected(false);
-        homebutton.setVisible(false);
         homepane.getComponent().setVisible(false);
         homeVisible = false;
+        homebutton.setSelected(false);
         playlistsbutton.setSelected(false);
         queuebutton.setSelected(false);
         queueVisible = false;
@@ -2279,9 +2285,9 @@ public class ContentPanel extends JPanel {
         librarybutton.setSelected(false);
         feedbackbutton.setSelected(false);
         playlistsbutton.setSelected(false);
-        homebutton.setVisible(false);
         homepane.getComponent().setVisible(false);
         homeVisible = false;
+        homebutton.setSelected(false);
         queuebutton.setSelected(false);
         queueVisible = false;
         playlistsVisible = false;
@@ -2298,9 +2304,9 @@ public class ContentPanel extends JPanel {
         feedbackpane.setVisible(true);
         playlistspane.setVisible(false);
         queuepane.setVisible(false);
-        homebutton.setVisible(false);
         homepane.getComponent().setVisible(false);
         homeVisible = false;
+        homebutton.setSelected(false);
         hotlistbutton.setSelected(false);
         searchbutton.setSelected(false);
         librarybutton.setSelected(false);
@@ -2327,9 +2333,9 @@ public class ContentPanel extends JPanel {
         librarybutton.setSelected(false);
         feedbackbutton.setSelected(false);
         playlistsbutton.setSelected(true);
-        homebutton.setVisible(false);
         homepane.getComponent().setVisible(false);
         homeVisible = false;
+        homebutton.setSelected(false);
         queuebutton.setSelected(false);
         queueVisible = false;
         playlistsVisible = true;
@@ -2351,9 +2357,9 @@ public class ContentPanel extends JPanel {
         librarybutton.setSelected(false);
         feedbackbutton.setSelected(false);
         playlistsbutton.setSelected(false);
-        homebutton.setVisible(false);
         homepane.getComponent().setVisible(false);
         homeVisible = false;
+        homebutton.setSelected(false);
         queuebutton.setSelected(true);
         queueVisible = true;
         playlistsVisible = false;
@@ -2362,7 +2368,7 @@ public class ContentPanel extends JPanel {
         hotlistVisible = false;
         feedbackVisible = false;
     }
-    void setHomeVisible() {
+    public void setHomeVisible() {
         lastmenu = LastTypes.Home;
         librarypane.setVisible(false);
         searchpane.setVisible(false);
@@ -2370,16 +2376,15 @@ public class ContentPanel extends JPanel {
         feedbackpane.setVisible(false);
         playlistspane.setVisible(false);
         queuepane.setVisible(false);
-        homebutton.setVisible(true);
         homepane.getComponent().setVisible(true);
         homeVisible = true;
+        homebutton.setSelected(true);
         hotlistbutton.setSelected(false);
         searchbutton.setSelected(false);
         librarybutton.setSelected(false);
         feedbackbutton.setSelected(false);
         playlistsbutton.setSelected(false);
-        queuebutton.setSelected(true);
-        homebutton.setSelected(false);
+        queuebutton.setSelected(false);
         queueVisible = false;
         playlistsVisible = false;
         searchVisible = false;
