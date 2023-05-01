@@ -30,6 +30,7 @@ public class PublicValues {
     public static String[] args = null;
     public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
     public static String deviceName = "SpotifyXP";
+    public static String releaseCandidate = "Public Beta";
     public static Theme theme = null;
     public static boolean foundSetupArgument = false;
     public static LyricsDialog lyricsDialog = null;

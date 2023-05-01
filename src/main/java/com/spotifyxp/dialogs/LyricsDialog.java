@@ -90,7 +90,7 @@ public class LyricsDialog {
     }
 
     public void setLyricsMode(LyricsMode lyricsMode) {
-        //mode = lyricsMode; ToDo: Implement Spotify Mode
+        //mode = lyricsMode;
     }
 
     int c = 0;

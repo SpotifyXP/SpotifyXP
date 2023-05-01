@@ -25,15 +25,9 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import javax.swing.*;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
@@ -42,9 +36,7 @@ public class Initiator {
     static Thread hook = new Thread(new Runnable() {
         @Override
         public void run() {
-            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").delete()) {
-                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockdelete"));
-            }
+
         }
     });
     public static void main(String[] args) {
@@ -65,13 +57,6 @@ public class Initiator {
                 ConsoleLogging.changeName("SpotifyAPI");
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
             }
-        }
-        try {
-            if(!new File(PublicValues.fileslocation + "/" + "LOCKED").createNewFile()) {
-                ConsoleLogging.error(PublicValues.language.translate("startup.error.lockcreate"));
-            }
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
         }
         new ArgParser(args);
         if(new File("pom.xml").exists()) {
@@ -154,15 +139,6 @@ public class Initiator {
         }catch (IllegalArgumentException exception) {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
-        }
-        if(!PublicValues.debug) {
-            if (new File(PublicValues.fileslocation + "/" + "LOCKED").exists()) {
-                if(!(JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.startup.alreadystarted"), "SpotifyXP", JOptionPane.OK_CANCEL_OPTION) == -1)) {
-                    System.exit(0);
-                }else{
-                    new File(PublicValues.fileslocation + "/" + "LOCKED").delete();
-                }
-            }
         }
         if(!PublicValues.foundSetupArgument) {
             new Setup(); //Start setup because the argument "--setup-complete" was not found

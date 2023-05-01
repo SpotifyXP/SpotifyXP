@@ -96,6 +96,7 @@
   "ui.legacy.logout" : "Logout",
   "ui.legacy.about" : "About SpotifyXP",
   "ui.legacy.settings" : "Settings",
+  "ui.navigation.home" : "Home",
   "ui.graphicalmessage.bug" : "A bug was encountered please report this! Where: ",
   "ui.settings.pleaserestart" : "Please restart SpotifyXP to apply the changes",
   "joptionpane.info" : "Info",

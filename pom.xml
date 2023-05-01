@@ -126,6 +126,12 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>Jabylon</id>
+            <url>https://www.jabylon.org/maven/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

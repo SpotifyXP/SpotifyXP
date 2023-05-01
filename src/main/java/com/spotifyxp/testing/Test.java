@@ -16,10 +16,9 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("TestFrame");
-        frame.setPreferredSize(new Dimension(800, 600));
-        frame.getContentPane().add(new HomePanel().getComponent());
-        frame.setVisible(true);
-        frame.pack();
+        PublicValues.config = new Config();
+        PublicValues.spotifyplayer = PlayerUtils.buildPlayer();
+        UnofficialSpotifyAPI api = new UnofficialSpotifyAPI(Token.getDefaultToken());
+        api.getArtist("spotify:artist:6XyY86QOPPrYVGvF9ch6wz");
     }
 }

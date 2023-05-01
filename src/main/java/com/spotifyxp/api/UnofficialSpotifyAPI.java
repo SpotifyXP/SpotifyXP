@@ -1,25 +1,19 @@
 package com.spotifyxp.api;
 
 
-import com.fasterxml.jackson.core.io.JsonEOFException;
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 public class UnofficialSpotifyAPI {
     //This API is used in the Official Spotify Client
@@ -151,7 +145,8 @@ public class UnofficialSpotifyAPI {
 
     //ToDo: Find out for what the 256hash is
     public void getArtist(String uri) {
-        JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?operationName=queryArtistOverview&variables=%7B%22uri%22:%22" + uri + "%22,%22locale%22:%22%22%7D&extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%22b82fd661d09d47afff0d0239b165e01c7b21926923064ecc7e63f0cde2b12f4e%22%7D%7D")).getJSONObject("data").getJSONObject("artistUnion").toString());
+        //b82fd661d09d47afff0d0239b165e01c7b21926923064ecc7e63f0cde2b12f4e
+        JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=queryArtistOverview&variables={\"uri\":\"" + uri + "\",\"locale\":\"\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"\"}}"))).toString());
         System.out.println(root);
     }
 
@@ -159,7 +154,7 @@ public class UnofficialSpotifyAPI {
         try {
             return URLEncoder.encode(url, StandardCharsets.UTF_8.toString()).replace("%3D", "=").replace("%26", "&");
         } catch (UnsupportedEncodingException e) {
-            return URLEncoder.encode(url).replace("%3D", "=").replace("%26", "&"); //Encode url without giving him the charset use Fixme: Should check if the charset is the right one
+            return URLEncoder.encode(url).replace("%3D", "=").replace("%26", "&");
         }
     }
 

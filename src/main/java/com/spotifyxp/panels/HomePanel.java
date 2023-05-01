@@ -2,44 +2,24 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
-import com.spotifyxp.deps.se.michaelthelin.spotify.Base64;
-import com.spotifyxp.designs.Theme;
+import com.spotifyxp.custom.StoppableThreadRunnable;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.lib.libLanguage;
-import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.threading.StoppableThread;
 import com.spotifyxp.utils.TrackUtils;
-
+import org.apache.hc.core5.http.ParseException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
+import java.awt.event.*;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class HomePanel {
-    //ToDo: Implement this
-
-    //The homepanel will display:
-
-    // - Made for 'USER'
-    // - Recently played
-    // - Discover picks for you
-    // - Episodes for you
-    // - Your top mixes
-    // - Stay tuned
-    // - It's time for some classics
-    // - Uniquely yours
-    // - More of what you like
-    // - Recommended for today
-    // - Best of artists
-    // - Suggested artists
-    // - Throwback
-
-    //Performance:
-
-    //Don't load not visible objects (write custom JScrollPane that loads and unloads parts based on their visibility)
-
     JScrollPane scrollholder;
     JPanel content;
 
@@ -52,43 +32,43 @@ public class HomePanel {
 
     public void initializeLayout() {
         content = new JPanel();
-        content.setPreferredSize(new Dimension(784, 302 * tab.sections.size()));
+        content.setPreferredSize(new Dimension(784, 337 * tab.sections.size()));
         scrollholder = new JScrollPane(content);
+        scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollholder.setSize(784, 421);
-        scrollholder.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                super.componentShown(e);
-                System.out.println("Component Shown: " + scrollholder.getPreferredSize());
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-                super.componentHidden(e);
-                System.out.println("Component Hidden: " + scrollholder.getPreferredSize());
-            }
-        });
-        initializeContent();
+        Thread t = new Thread(this::initializeContent);
+        t.start();
     }
 
     int addCache = 302;
 
-    public void addModule(UnofficialSpotifyAPI.HomeTabSection section) {
-        JPanel homepanelmodule = new JPanel();
-        homepanelmodule.setBounds(0, addCache, 777, 319);
-        content.add(homepanelmodule);
-        homepanelmodule.setLayout(null);
+    int cache = 0;
 
-        JLabel homepanelmoduletext = new JLabel("Greetings SpotifyXP user");
+    enum ContentTypes {
+        show,
+        track,
+        album,
+        artist,
+        user,
+        playlist
+    }
+
+    public void addModule(UnofficialSpotifyAPI.HomeTabSection section) {
+        ArrayList<String> uricache = new ArrayList<>();
+        JLabel homepanelmoduletext = new JLabel(section.name);
         homepanelmoduletext.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        homepanelmoduletext.setBounds(0, homepanelmodule.getY() + 11, 375, 24);
-        homepanelmodule.add(homepanelmoduletext);
+        homepanelmoduletext.setBounds(0, addCache + 11, 375, 24);
+        content.add(homepanelmoduletext);
 
         JScrollPane homepanelmodulescrollpanel = new JScrollPane();
-        homepanelmodulescrollpanel.setBounds(0, homepanelmodule.getY() + 38, 777, 281);
-        homepanelmodule.add(homepanelmodulescrollpanel);
+        homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
+        content.add(homepanelmodulescrollpanel);
 
-        JTable homepanelmodulecontenttable = new JTable();
+        JTable homepanelmodulecontenttable = new JTable()  {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         homepanelmodulescrollpanel.setViewportView(homepanelmodulecontenttable);
 
         homepanelmodulecontenttable.setModel(new DefaultTableModel(
@@ -99,7 +79,85 @@ public class HomePanel {
                 }
         ));
 
+
+        for(UnofficialSpotifyAPI.HomeTabAlbum album : section.albums) {
+            uricache.add(album.uri);
+            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{album.name, artistParser(album.artists)});
+        }
+        for(UnofficialSpotifyAPI.HomeTabEpisodeOrChapter episodeOrChapter : section.episodeOrChapters) {
+            uricache.add(episodeOrChapter.uri);
+            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{episodeOrChapter.EpisodeOrChapterName, episodeOrChapter.name + " - " + episodeOrChapter.publisherName});
+        }
+        for(UnofficialSpotifyAPI.HomeTabPlaylist playlist : section.playlists) {
+            uricache.add(playlist.uri);
+            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{playlist.name, playlist.ownerName});
+        }
+        for(UnofficialSpotifyAPI.HomeTabArtist artist : section.artists) {
+            uricache.add(artist.uri);
+            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{artist.name, ""});
+        }
+
+        homepanelmodulecontenttable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(e.getClickCount() == 2) {
+                    ContentTypes ct = ContentTypes.valueOf(uricache.get(homepanelmodulecontenttable.getSelectedRow()).split(":")[1]);
+                    String uri = uricache.get(homepanelmodulecontenttable.getSelectedRow());
+                    String id = uri.split(":")[2];
+                    try {
+                        switch (ct) {
+                            case track:
+                                PublicValues.spotifyplayer.load(uri, true, false);
+                                break;
+                            case artist:
+                                scrollholder.setVisible(false);
+                                ContentPanel.artistPanel.artistpopularuricache.clear();
+                                ContentPanel.artistPanel.artistalbumuricache.clear();
+                                ((DefaultTableModel)ContentPanel.artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                                ((DefaultTableModel)ContentPanel.artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                                ContentPanel.artistPanel.artisttitle.setText("");
+                                try {
+                                    Artist a = ContentPanel.api.getSpotifyApi().getArtist(id).build().execute();
+                                    try {
+                                        ContentPanel.artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                    } catch (ArrayIndexOutOfBoundsException exception) {
+                                        //No artist image (when this is raised it's a bug)
+                                    }
+                                    ContentPanel.artistPanel.artisttitle.setText(a.getName());
+                                    StoppableThread trackthread = new StoppableThread(counter -> {
+                                        try {
+                                            for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                                ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
+                                                ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                            }
+                                        } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                            ConsoleLogging.Throwable(ex);
+                                        }
+                                    },false);
+                                    StoppableThread albumthread = new StoppableThread(counter -> ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable), false);
+                                    albumthread.start();
+                                    trackthread.start();
+                                } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                    ConsoleLogging.Throwable(ex);
+                                }
+                                ContentPanel.artistPanel.contentPanel.setVisible(true);
+                                ContentPanel.artistPanelBackButton.setVisible(true);
+                                break;
+                            default:
+                                ContentPanel.showAdvancedSongPanel(uri, ct);
+                                break;
+                        }
+                    }catch (Exception ignored) {
+                    }
+                }
+            }
+        });
+
         addCache+=319;
+        cache++;
+        content.revalidate();
+        content.repaint();
     }
 
     String artistParser(ArrayList<UnofficialSpotifyAPI.HomeTabArtistNoImage> cache) {
@@ -118,17 +176,17 @@ public class HomePanel {
 
     public void initializeContent() {
         content.setLayout(null);
-        JPanel homepaneluser = new JPanel();
-        homepaneluser.setBounds(0, 39, 777, 261);
-        content.add(homepaneluser);
-        homepaneluser.setLayout(null);
         ArrayList<String> usersuricache = new ArrayList<>();
 
         JScrollPane homepaneluserscrollpanel = new JScrollPane();
-        homepaneluserscrollpanel.setBounds(0, 0, 777, 261);
-        homepaneluser.add(homepaneluserscrollpanel);
+        homepaneluserscrollpanel.setBounds(0, 39, 777, 261);
+        content.add(homepaneluserscrollpanel);
 
-        JTable homepanelusertable = new JTable();
+        JTable homepanelusertable = new JTable()  {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         homepaneluserscrollpanel.setViewportView(homepanelusertable);
 
         homepanelusertable.setModel(new DefaultTableModel(
@@ -138,6 +196,63 @@ public class HomePanel {
                         "Name", "Artist"
                 }
         ));
+
+        homepanelusertable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(e.getClickCount() == 2) {
+                    ContentTypes ct = ContentTypes.valueOf(usersuricache.get(homepanelusertable.getSelectedRow()).split(":")[1]);
+                    String uri = usersuricache.get(homepanelusertable.getSelectedRow());
+                    String id = uri.split(":")[2];
+                    try {
+                        switch (ct) {
+                            case track:
+                                PublicValues.spotifyplayer.load(uri, true, false);
+                                break;
+                            case artist:
+                                scrollholder.setVisible(false);
+                                ContentPanel.artistPanel.artistpopularuricache.clear();
+                                ContentPanel.artistPanel.artistalbumuricache.clear();
+                                ((DefaultTableModel)ContentPanel.artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                                ((DefaultTableModel)ContentPanel.artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                                ContentPanel.artistPanel.artisttitle.setText("");
+                                try {
+                                    Artist a = ContentPanel.api.getSpotifyApi().getArtist(id).build().execute();
+                                    try {
+                                        ContentPanel.artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                    } catch (ArrayIndexOutOfBoundsException exception) {
+                                        //No artist image (when this is raised it's a bug)
+                                    }
+                                    ContentPanel.artistPanel.artisttitle.setText(a.getName());
+                                    StoppableThread trackthread = new StoppableThread(counter -> {
+                                        try {
+                                            for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                                ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
+                                                ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                            }
+                                        } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                            ConsoleLogging.Throwable(ex);
+                                        }
+                                    },false);
+                                    StoppableThread albumthread = new StoppableThread(counter -> ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable), false);
+                                    albumthread.start();
+                                    trackthread.start();
+                                } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                    ConsoleLogging.Throwable(ex);
+                                }
+                                ContentPanel.artistPanel.contentPanel.setVisible(true);
+                                ContentPanel.artistPanelBackButton.setVisible(true);
+                                break;
+                            default:
+                                ContentPanel.showAdvancedSongPanel(uri, ct);
+                                break;
+                        }
+                    }catch (Exception ignored) {
+                    }
+                }
+            }
+        });
 
         JLabel homepanelgreetingstext = new JLabel(tab.greeting);
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 16));
