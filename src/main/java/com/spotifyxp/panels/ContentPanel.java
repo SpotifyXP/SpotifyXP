@@ -11,7 +11,7 @@ import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.injector.Injector;
+//import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
