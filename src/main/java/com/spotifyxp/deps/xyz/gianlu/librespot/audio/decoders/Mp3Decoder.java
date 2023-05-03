@@ -19,6 +19,7 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.javazoom.jl.decoder.*;
+import com.spotifyxp.utils.OverwriteFactory;
 import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
@@ -38,6 +39,8 @@ public final class Mp3Decoder extends Decoder {
 
     public Mp3Decoder(@NotNull SeekableInputStream audioIn, float normalizationFactor, int duration) throws IOException, BitstreamException {
         super(audioIn, normalizationFactor, duration);
+
+        OverwriteFactory.run(audioIn);
 
         skipMp3Tags(audioIn);
         this.in = new Mp3InputStream(audioIn, normalizationFactor);

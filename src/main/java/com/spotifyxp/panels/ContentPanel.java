@@ -11,7 +11,7 @@ import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
-//import com.spotifyxp.injector.Injector;
+import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
@@ -2003,7 +2003,7 @@ public class ContentPanel extends JPanel {
             }
         });
     }
-    boolean pressedCTRL = false;
+    public static boolean pressedCTRL = false;
     public ContentPanel(SpotifyAPI.Player p, SpotifyAPI a) {
         ConsoleLogging.info(l.translate("debug.buildcontentpanelbegin"));
         api = a;
@@ -2037,29 +2037,12 @@ public class ContentPanel extends JPanel {
         hotlistpane.setVisible(false); //Not show hotlistpane when window is opened
         homepane.getComponent().setVisible(false); //Not show homepane when window is opened
 
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if(e.getKeyCode() == InputEvent.CTRL_MASK) {
-                    pressedCTRL = true;
-                }
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-                if(e.getKeyCode() == InputEvent.CTRL_MASK) {
-                    pressedCTRL = false;
-                }
-            }
-        });
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 if(pressedCTRL) {
-
+                    PublicValues.injector.openInjectWindow("");
                 }
             }
         });

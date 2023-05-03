@@ -2,6 +2,7 @@ package com.spotifyxp.api;
 
 
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -452,8 +453,20 @@ public class UnofficialSpotifyAPI {
         EpisodeOrChapterResponseWrapper
     }
 
+    int times = 0;
+
     public HomeTab getHomeTab() {
-        JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=%7B%22timeZone%22%3A%22Europe%2FBerlin%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D")).getJSONObject("data").getJSONObject("home").toString());
+        JSONObject root = new JSONObject();
+        try {
+            root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=%7B%22timeZone%22%3A%22Europe%2FBerlin%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D")).getJSONObject("data").getJSONObject("home").toString());
+        }catch (JSONException e) {
+            if(times>5) {
+                GraphicalMessage.sorryError();
+            }else{
+                times+=1;
+                return getHomeTab();
+            }
+        }
         HomeTab tab = new HomeTab();
         tab.greeting = root.getJSONObject("greeting").getString("text");
         int counter = 0;

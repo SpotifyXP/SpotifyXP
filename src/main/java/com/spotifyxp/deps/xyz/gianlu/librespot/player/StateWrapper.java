@@ -1390,8 +1390,11 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         }
 
         synchronized void toggleShuffle(boolean value) {
+            //System.err.println("isFinite");
             if (!context.isFinite()) throw new IllegalStateException("Cannot shuffle infinite context!");
+            //System.err.println("TracksSize"); //It was here
             if (tracks.size() <= 1) return;
+            //System.err.println("IsPlayingQueue");
             if (isPlayingQueue) return;
 
             if (value) {

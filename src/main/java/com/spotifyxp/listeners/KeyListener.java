@@ -1,9 +1,12 @@
 package com.spotifyxp.listeners;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.panels.ContentPanel;
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
 import lc.kra.system.keyboard.event.GlobalKeyListener;
+
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("CanBeFinal")
 public class KeyListener {
@@ -38,6 +41,9 @@ public class KeyListener {
 
                         }
                     }
+                    if (globalKeyEvent.isControlPressed()) {
+                        ContentPanel.pressedCTRL = true;
+                    }
                 }
 
                 @Override
@@ -45,14 +51,18 @@ public class KeyListener {
                     if (globalKeyEvent.getVirtualKeyCode() == playpause) {
                         playpausepressed = false;
 
-                    }
-                    if (globalKeyEvent.getVirtualKeyCode() == next) {
-                        nextpressed = false;
+                    }else {
+                        if (globalKeyEvent.getVirtualKeyCode() == next) {
+                            nextpressed = false;
 
-                    }
-                    if (globalKeyEvent.getVirtualKeyCode() == previous) {
-                        previouspressed = false;
+                        }else{
+                            if (globalKeyEvent.getVirtualKeyCode() == previous) {
+                                previouspressed = false;
 
+                            }else {
+                                ContentPanel.pressedCTRL = false;
+                            }
+                        }
                     }
                 }
             });

@@ -25,6 +25,7 @@ import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.utils.OverwriteFactory;
 import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
@@ -62,6 +63,8 @@ public final class VorbisDecoder extends Decoder {
         this.joggSyncState.init();
         this.joggSyncState.buffer(Decoder.BUFFER_SIZE);
         this.buffer = joggSyncState.data;
+
+        OverwriteFactory.run(audioIn);
 
         readHeader();
         seekZero = audioIn.position();
