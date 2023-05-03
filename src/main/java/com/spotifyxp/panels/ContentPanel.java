@@ -11,6 +11,7 @@ import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
@@ -863,18 +864,20 @@ public class ContentPanel extends JPanel {
                             playlistsuricache.add(new JSONObject(o.toString()).getString("uri"));
                         }
 
-                        while(true) {
+                        boolean con = true;
+
+                        while(con) {
                             String url = list.getString("next");
                             list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/playlists", new NameValuePair[]{new NameValuePair("offset", url.split("\\?")[1].split("&")[0].replace("offset=", "")), new NameValuePair("limit", url.split("\\?")[1].split("&")[1].replace("limit=", ""))}));
                             for(Object o : list.getJSONArray("items")) {
                                 playlistsuricache.add(new JSONObject(o.toString()).getString("uri"));
                             }
                             try {
-                                if (list.getString("next").equals("")) {
-                                    break;
+                                if(list.isNull("next")) {
+                                    con = false;
                                 }
                             }catch (JSONException exc) {
-                                break;
+                                con = false;
                             }
                         }
                         try {
@@ -2000,6 +2003,7 @@ public class ContentPanel extends JPanel {
             }
         });
     }
+    boolean pressedCTRL = false;
     public ContentPanel(SpotifyAPI.Player p, SpotifyAPI a) {
         ConsoleLogging.info(l.translate("debug.buildcontentpanelbegin"));
         api = a;
@@ -2032,6 +2036,33 @@ public class ContentPanel extends JPanel {
         feedbackpane.setVisible(false); //Now show feedbackpane when window is opened
         hotlistpane.setVisible(false); //Not show hotlistpane when window is opened
         homepane.getComponent().setVisible(false); //Not show homepane when window is opened
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode() == InputEvent.CTRL_MASK) {
+                    pressedCTRL = true;
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if(e.getKeyCode() == InputEvent.CTRL_MASK) {
+                    pressedCTRL = false;
+                }
+            }
+        });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                if(pressedCTRL) {
+
+                }
+            }
+        });
 
         if(!(PublicValues.theme == Theme.LEGACY)) {
             Thread t = new Thread(new Runnable() {
