@@ -62,9 +62,17 @@ public class Initiator {
         if(new File("pom.xml").exists()) {
             PublicValues.debug = true;
             ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-            modules.setColored(true);
+            if(!System.getProperty("os.name").toLowerCase().contains("xp")) {
+                modules.setColored(true);
+            }else{
+                modules.setColored(false);
+            }
             modules.setShowTime(false);
-            PublicValues.logger.setColored(true);
+            if(!System.getProperty("os.name").toLowerCase().contains("xp")) {
+                PublicValues.logger.setColored(true);
+            }else{
+                PublicValues.logger.setColored(false);
+            }
             PublicValues.foundSetupArgument = true;
         }
         PublicValues.config = new Config();
@@ -155,8 +163,13 @@ public class Initiator {
         ContentPanel panel = new ContentPanel(player, api);
         new BackgroundService().start();
         panel.open();
-        new Analytics();
-        SplashPanel.hide();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new Analytics();
+            }
+        });
+        t.start();
         DoubleArrayList updater = new Updater().updateAvailable();
         if(Boolean.parseBoolean(updater.getFirst(0).toString())) {
             String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
@@ -171,5 +184,6 @@ public class Initiator {
             }
         }
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getHHMMSS()));
+        SplashPanel.hide();
     }
 }

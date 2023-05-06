@@ -22,7 +22,9 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.*;
+import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -165,6 +167,7 @@ public class ContentPanel extends JPanel {
     public static JButton advancedbackbutton;
     public static JSVGPanel playerarearepeatingbutton;
     public static JSVGPanel playerarealyricsbutton;
+    public static JTextField noconnectionmessage;
     public static StoppableThread librarythread = new StoppableThread(new StoppableThreadRunnable() {
         @SuppressWarnings("BusyWait")
         @Override
@@ -867,10 +870,13 @@ public class ContentPanel extends JPanel {
                         boolean con = true;
 
                         while(con) {
-                            String url = list.getString("next");
-                            list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/playlists", new NameValuePair[]{new NameValuePair("offset", url.split("\\?")[1].split("&")[0].replace("offset=", "")), new NameValuePair("limit", url.split("\\?")[1].split("&")[1].replace("limit=", ""))}));
-                            for(Object o : list.getJSONArray("items")) {
-                                playlistsuricache.add(new JSONObject(o.toString()).getString("uri"));
+                            try {
+                                String url = list.getString("next");
+                                list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/playlists", new NameValuePair[]{new NameValuePair("offset", url.split("\\?")[1].split("&")[0].replace("offset=", "")), new NameValuePair("limit", url.split("\\?")[1].split("&")[1].replace("limit=", ""))}));
+                                for (Object o : list.getJSONArray("items")) {
+                                    playlistsuricache.add(new JSONObject(o.toString()).getString("uri"));
+                                }
+                            }catch (JSONException ignored) {
                             }
                             try {
                                 if(list.isNull("next")) {
@@ -948,6 +954,19 @@ public class ContentPanel extends JPanel {
                 setPlaylistsVisible();
             }
         });
+    }
+    void checkPremium() {
+        try {
+            GetMethod method = new GetMethod("https://api.spotify.com/v1/me/albums?limit=10&offset=5&market=ES");
+            method.setRequestHeader("Authorization", "Bearer " + Token.getDefaultToken());
+            HttpClient client = new HttpClient();
+            client.executeMethod(method);
+            if(method.getStatusCode() == 403) {
+                JOptionPane.showConfirmDialog(frame, "SpotifyXP only works for premium users", "Critical", JOptionPane.OK_CANCEL_OPTION);
+                System.exit(0);
+            }
+        }catch (IOException ignored) {
+        }
     }
     void createSearch() {
         searchbutton = new JToggleButton(l.translate("ui.navigation.search"));
@@ -1719,6 +1738,26 @@ public class ContentPanel extends JPanel {
             }
         });
     }
+    static boolean tnitoggle = false;
+    public static void toggleNoInternet() {
+        if(!tnitoggle) {
+            if(PublicValues.theme == Theme.LEGACY) {
+                legacyswitch.setVisible(false);
+            }else {
+                PublicValues.contentPanel.setButtonsHidden();
+                tabpanel.setVisible(false);
+            }
+            tnitoggle = true;
+        }else{
+            if(PublicValues.theme == Theme.LEGACY) {
+                legacyswitch.setVisible(true);
+            }else {
+                PublicValues.contentPanel.setButtonsVisible();
+                tabpanel.setVisible(true);
+            }
+            tnitoggle = false;
+        }
+    }
     void createLegacy() {
         JFrame dialog = new JFrame();
         playerarea.addMouseListener(new MouseAdapter() {
@@ -2028,6 +2067,8 @@ public class ContentPanel extends JPanel {
         createUserButton();
         createHome();
         createAdvancedPanel();
+
+        checkPremium();
 
         searchpane.setVisible(false); //Not show searchpane when window is opened
         librarypane.setVisible(false); //Not show librarypane when window is opened
@@ -2608,7 +2649,9 @@ public class ContentPanel extends JPanel {
     }
     public static JFrame frame = new JFrame("SpotifyXP - v" + PublicValues.version + " " + PublicValues.releaseCandidate);
     public static SettingsPanel settingsPanel = null;
-    public void open() {
+    public void open()
+    {
+        PublicValues.contentPanel = this;
         JFrame mainframe;
         mainframe = frame;
         try {

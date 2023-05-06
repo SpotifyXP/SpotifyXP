@@ -114,5 +114,9 @@
   "critical.sorry.text" : "A critical error occurred and SpotifyXP can't start. SpotifyXP will now close! Sorry :(",
   "critical.sorry.title" : "Critical",
   "queue.failed.title" : "Something went wrong",
-  "queue.failed.text" : "SpotifyXP failed to queue the tracks"
+  "queue.failed.text" : "SpotifyXP failed to queue the tracks",
+  "message.noconnection" : "Lost internet connection",
+  "message.noconnection.title" : "Internet",
+  "message.connection.title" : "Internet",
+  "message.connection" : "Internet reconnected"
 }

@@ -12,6 +12,7 @@ import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
+import com.spotifyxp.panels.ContentPanel;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
@@ -36,4 +37,5 @@ public class PublicValues {
     public static boolean foundSetupArgument = false;
     public static LyricsDialog lyricsDialog = null;
     public static Injector injector = new Injector();
+    public static ContentPanel contentPanel;
 }

@@ -47,6 +47,7 @@ public class ExceptionDialog {
                 frame.dispose();
             }
         });
+
         frame.getContentPane().add(contentPane);
         frame.setPreferredSize(new Dimension(605, 439));
         frame.setVisible(true);

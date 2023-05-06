@@ -46,6 +46,7 @@ public class SpotifyAPI {
         com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;
         SpotifyAPI api;
         int times = 0;
+
         @SuppressWarnings("BusyWait")
         public void retry() {
             try {
@@ -56,8 +57,8 @@ public class SpotifyAPI {
             }
             wait = 0;
             boolean r = false;
-            while(true) {
-                if(player == null) {
+            while (true) {
+                if (player == null) {
                     r = true;
                     times++;
                     break;
@@ -70,15 +71,15 @@ public class SpotifyAPI {
                     ExceptionDialog.open(e);
                     ConsoleLogging.Throwable(e);
                 }
-                if(wait==waitAmount) {
+                if (wait == waitAmount) {
                     retry();
                 }
                 wait++;
             }
-            if(r) {
-                if(times != 5) {
+            if (r) {
+                if (times != 5) {
                     retry();
-                }else{
+                } else {
 
                 }
             }
@@ -86,6 +87,7 @@ public class SpotifyAPI {
             player.addEventsListener(new PlayerListener(this, api));
             PublicValues.spotifyplayer = player;
         }
+
         @SuppressWarnings("BusyWait")
         public Player(SpotifyAPI a) {
             api = a;
@@ -97,8 +99,8 @@ public class SpotifyAPI {
             }
             wait = 0;
             boolean r = false;
-            while(true) {
-                if(player == null) {
+            while (true) {
+                if (player == null) {
                     r = true;
                     break;
                 }
@@ -110,18 +112,19 @@ public class SpotifyAPI {
                     ExceptionDialog.open(e);
                     ConsoleLogging.Throwable(e);
                 }
-                if(wait==waitAmount) {
+                if (wait == waitAmount) {
                     retry();
                 }
                 wait++;
             }
-            if(r) {
+            if (r) {
                 retry();
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));
             PublicValues.spotifyplayer = player;
         }
+
         public com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getPlayer() {
             return player;
         }

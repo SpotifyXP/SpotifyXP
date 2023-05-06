@@ -95,7 +95,7 @@ public class ConnectionUtils {
     public static boolean makePingToServer() {
         try {
             HttpClient client = new HttpClient();
-            GetMethod get = new GetMethod("http://192.168.2.202/ping.html");
+            GetMethod get = new GetMethod("http://192.168.2.30/ping.html");
             get.setRequestHeader("Content-Type", "text/html");
             client.executeMethod(get);
             return get.getResponseBodyAsString().replace("\n", "").equals("Pong from Werwolf2303.de");

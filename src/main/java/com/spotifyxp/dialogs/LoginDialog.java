@@ -6,10 +6,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.File;
 
 @SuppressWarnings("Convert2Lambda")
@@ -47,6 +44,15 @@ public class LoginDialog {
             spotifylabelinfo.setBounds(10, 11, 314, 14);
             add(spotifylabelinfo);
             spotifylabelinfo.setVisible(false);
+            usernamepasswordfield.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    super.keyTyped(e);
+                    if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        spotifyokbutton.doClick();
+                    }
+                }
+            });
         }
     }
     public void openWithInvalidAuth() {
