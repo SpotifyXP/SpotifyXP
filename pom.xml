@@ -152,9 +152,9 @@
                     </descriptorRefs>
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
-                        <manifest>
-                            <mainClass>com.spotifyxp.Initiator</mainClass>
-                        </manifest>
+                        <archive>
+                            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        </archive>
                     </archive>
                 </configuration>
             </plugin>

@@ -7,6 +7,8 @@ import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.LyricsDialog;
+import com.spotifyxp.fx.MainController;
+import com.spotifyxp.fx.MainWindow;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -38,4 +40,6 @@ public class PublicValues {
     public static LyricsDialog lyricsDialog = null;
     public static Injector injector = new Injector();
     public static ContentPanel contentPanel;
+    public static MainWindow newWindow;
+    public static MainController newController;
 }

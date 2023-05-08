@@ -9,6 +9,7 @@ import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
+import com.spotifyxp.fx.MainWindow;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
@@ -185,5 +186,7 @@ public class Initiator {
         }
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getHHMMSS()));
         SplashPanel.hide();
+        PublicValues.newWindow = new MainWindow();
+        PublicValues.newWindow.openWindow(args);
     }
 }

@@ -5,6 +5,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
+import com.spotifyxp.fx.MainWindow;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.swingextension.JFrame2;
@@ -17,8 +18,6 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) {
-        Injector injector = new Injector();
-        //injector.openInjectWindow("");
-        injector.loadJarAt("F:\\SpotifyXPDownloadModule\\out\\artifacts\\SPXPDM\\SPXPDM.jar");
+        new MainWindow().openWindow(args);
     }
 }
