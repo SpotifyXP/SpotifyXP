@@ -2,11 +2,15 @@ package com.spotifyxp.dialogs;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.designs.Theme;
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
@@ -14,11 +18,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import static com.spotifyxp.panels.ContentPanel.playerarealyricsbutton;
+
 public class LyricsDialog {
     JFrame frame = new JFrame("SpotifyXP - Song Lyrics");
     UnofficialSpotifyAPI.Lyrics lyrics;
 
     JTextArea area = new JTextArea();
+    JScrollPane pane = new JScrollPane(area);
 
     LyricsMode mode = LyricsMode.LIVE;
 
@@ -35,7 +42,7 @@ public class LyricsDialog {
         SPOTIFY,
     }
 
-    public void open(String uri) {
+    public boolean open(String uri) {
         words.clear();
         area.setText("");
         try {
@@ -44,20 +51,28 @@ public class LyricsDialog {
             } else {
                 lyrics = new UnofficialSpotifyAPI(ContentPanel.api.getSpotifyApi().getAccessToken()).getLyrics(uri);
                 area.setEditable(false);
-                frame.add(area, BorderLayout.CENTER);
+                frame.add(pane, BorderLayout.CENTER);
                 frame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
                         super.windowClosing(e);
                         if (PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
-                            ContentPanel.playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
+                            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
                         } else {
-                            ContentPanel.playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
+                            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
                         }
-                        ContentPanel.playerarealyricsbutton.isFilled = false;
+                        playerarealyricsbutton.isFilled = false;
                     }
                 });
-                frame.setPreferredSize(new Dimension(ContentPanel.frame.getWidth(), ContentPanel.frame.getHeight()));
+                try {
+                    frame.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
+                }catch (Exception e) {
+                    ConsoleLogging.Throwable(e);
+                    if(PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {
+                        ExceptionDialog.open(e);
+                    }
+                }
+                frame.setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
                 frame.setVisible(true);
                 frame.pack();
             }
@@ -72,8 +87,9 @@ public class LyricsDialog {
                 area.append(line.words + "\n");
                 counter++;
             }
+            return true;
         }catch (JSONException e) {
-            //No lyrics available
+            return false;
         }
     }
 

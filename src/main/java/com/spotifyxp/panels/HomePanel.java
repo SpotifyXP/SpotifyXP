@@ -2,13 +2,12 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
-import com.spotifyxp.custom.StoppableThreadRunnable;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.threading.StoppableThread;
+import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 import javax.swing.*;
@@ -36,7 +35,7 @@ public class HomePanel {
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollholder.setSize(784, 421);
-        Thread t = new Thread(this::initializeContent);
+        DefThread t = new DefThread(this::initializeContent);
         t.start();
     }
 
@@ -125,17 +124,19 @@ public class HomePanel {
                                         //No artist image (when this is raised it's a bug)
                                     }
                                     ContentPanel.artistPanel.artisttitle.setText(a.getName());
-                                    StoppableThread trackthread = new StoppableThread(counter -> {
-                                        try {
-                                            for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
-                                                ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                    DefThread trackthread = new DefThread(new Runnable() {
+                                        public void run() {
+                                            try {
+                                                for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                                    ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
+                                                    ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                }
+                                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                ConsoleLogging.Throwable(ex);
                                             }
-                                        } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                                            ConsoleLogging.Throwable(ex);
                                         }
-                                    },false);
-                                    StoppableThread albumthread = new StoppableThread(counter -> ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable), false);
+                                    });
+                                    DefThread albumthread = new DefThread(new Runnable() { public void run() { ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable); }});
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
@@ -225,17 +226,25 @@ public class HomePanel {
                                         //No artist image (when this is raised it's a bug)
                                     }
                                     ContentPanel.artistPanel.artisttitle.setText(a.getName());
-                                    StoppableThread trackthread = new StoppableThread(counter -> {
-                                        try {
-                                            for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
-                                                ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                    DefThread trackthread = new DefThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                                    ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
+                                                    ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                }
+                                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                ConsoleLogging.Throwable(ex);
                                             }
-                                        } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                                            ConsoleLogging.Throwable(ex);
                                         }
-                                    },false);
-                                    StoppableThread albumthread = new StoppableThread(counter -> ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable), false);
+                                    });
+                                    DefThread albumthread = new DefThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable);
+                                        }
+                                    });
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {

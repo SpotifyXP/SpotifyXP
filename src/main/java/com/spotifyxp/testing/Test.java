@@ -18,6 +18,11 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) {
-        new MainWindow().openWindow(args);
+        PublicValues.config = new Config();
+        PublicValues.logger.setColored(true);
+        PublicValues.logger.setShowTime(false);
+        PublicValues.spotifyplayer = PlayerUtils.buildPlayer();
+        UnofficialSpotifyAPI api = new UnofficialSpotifyAPI(Token.getDefaultToken());
+        api.getHomeTab();
     }
 }

@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JFrame2 extends JFrame {
+    public JFrame2(String title) {
+        super.setTitle(title);
+    }
+    public JFrame2() {
+    }
     public void close() {
         this.setVisible(false);
     }

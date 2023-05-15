@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
@@ -17,6 +18,7 @@ public class SettingsPanel extends JPanel {
     public static JComboBox settingsuiselecttheme;
     public static JComboBox settingsplaybackselectquality;
     public static JButton settingsplaybackopenequalizerbutton;
+    public static JRadioButton settingsdisableexceptions;
 
     public SettingsPanel() {
         setBounds(100, 100, 800, 600);
@@ -44,6 +46,10 @@ public class SettingsPanel extends JPanel {
         JLabel settingsuilabel = new JLabel(PublicValues.language.translate("ui.settings.ui.label"));
         settingsuilabel.setBounds(10, 122, 89, 14);
         add(settingsuilabel);
+
+        settingsdisableexceptions = new JRadioButton(PublicValues.language.translate("general.exception.hide"));
+        settingsdisableexceptions.setBounds(160, 155, 140, 23);
+        add(settingsdisableexceptions);
 
         settingsuidisableplayerstats = new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats"));
         settingsuidisableplayerstats.setBounds(28, 155, 199, 23);
@@ -94,6 +100,7 @@ public class SettingsPanel extends JPanel {
             settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
         });
 
+        settingsdisableexceptions.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.hideExceptions.name)));
         settingsuidisableplayerstats.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.disableplayerstats.name)));
         settingsbrowserpath.setText(PublicValues.config.get(ConfigValues.mypalpath.name));
         settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.theme.name));
@@ -112,6 +119,7 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
                 break;
         }
+        PublicValues.config.write(ConfigValues.hideExceptions.name, String.valueOf(settingsdisableexceptions.isSelected()));
         PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().toUpperCase());
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
         PublicValues.config.write(ConfigValues.disableplayerstats.name, String.valueOf(settingsuidisableplayerstats.isSelected()));

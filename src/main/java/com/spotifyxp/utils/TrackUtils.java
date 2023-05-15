@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -114,7 +115,9 @@ public class TrackUtils {
         try {
             ContentPanel.player.getPlayer().tracks(true).next.clear();
         }catch (NullPointerException exc) {
-            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("queue.failed.text"), PublicValues.language.translate("queue.failed.title"), JOptionPane.OK_CANCEL_OPTION);
+            if (PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {
+                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("queue.failed.text"), PublicValues.language.translate("queue.failed.title"), JOptionPane.OK_CANCEL_OPTION);
+            }
             return;
         }
         int counter = 0;

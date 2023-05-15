@@ -86,16 +86,6 @@ public class PlayerListener implements Player.EventsListener {
                 if(playableId.toSpotifyUri().contains("episode")) {
                     ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                     ContentPanel.playertitle.setText(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                PublicValues.newController.getPlayertitle().setText(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                                PublicValues.newController.getPlayerartist().setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                            }catch (Exception e) {
-                            }
-                        }
-                    });
                     artists.append(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getShow().getPublisher());
                     JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/episodes/" + playableId.toSpotifyUri().split(":")[2]));
                     for (Object object : root.getJSONArray("images")) {
@@ -108,16 +98,6 @@ public class PlayerListener implements Player.EventsListener {
                     if(playableId.toSpotifyUri().contains("track")) {
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                         ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    PublicValues.newController.getPlayertitle().setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                                    PublicValues.newController.getPlayerartist().setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                                }catch (Exception e) {
-                                }
-                            }
-                        });
                         for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
                             if (artists.toString().equals("")) {
                                 artists.append(artist.getName());
@@ -136,16 +116,6 @@ public class PlayerListener implements Player.EventsListener {
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
                         ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    PublicValues.newController.getPlayertitle().setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                                    PublicValues.newController.getPlayerartist().setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                                }catch (Exception e) {
-                                }
-                            }
-                        });
                         for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
                             if (artists.toString().equals("")) {
                                 artists.append(artist.getName());
@@ -158,28 +128,10 @@ public class PlayerListener implements Player.EventsListener {
                         for (Object object : album.getJSONArray("images")) {
                             JSONObject urls = new JSONObject(object.toString());
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        PublicValues.newController.getPlayericon().setImage(Image.impl_fromPlatformImage(new URL(urls.getString("url")).openStream()));
-                                    }catch (Exception e) {
-                                    }
-                                }
-                            });
                             break;
                         }
                     }
                 }
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            PublicValues.newController.getPlayerartist().setText(artists.toString());
-                        }catch (Exception e) {
-                        }
-                    }
-                });
                 ContentPanel.playerdescription.setText(artists.toString());
             } catch (IOException | ParseException | SpotifyWebApiException | JSONException e) {
                 ExceptionDialog.open(e);

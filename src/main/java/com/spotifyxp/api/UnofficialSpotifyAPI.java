@@ -450,7 +450,8 @@ public class UnofficialSpotifyAPI {
         PlaylistResponseWrapper,
         ArtistResponseWrapper,
         AlbumResponseWrapper,
-        EpisodeOrChapterResponseWrapper
+        EpisodeOrChapterResponseWrapper,
+        PodcastOrAudiobookResponseWrapper
     }
 
     int times = 0;

@@ -9,13 +9,16 @@ import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
+import com.spotifyxp.experimental.HttpService;
 import com.spotifyxp.fx.MainWindow;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
+import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.LinuxSupportModule;
+import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.updater.UpdaterDialog;
 import com.spotifyxp.utils.DoubleArrayList;
@@ -34,32 +37,44 @@ import java.io.File;
 public class Initiator {
     static SpotifyAPI api = null;
     static StartupTime startupTime;
-    static Thread hook = new Thread(new Runnable() {
+    static DefThread hook = new DefThread(new Runnable() {
         @Override
         public void run() {
 
         }
     });
     public static void main(String[] args) {
+        new SplashPanel().show();
+        SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
+        SplashPanel.linfo.setText("Setting up logging...");
         PublicValues.logger.setColored(false);
         PublicValues.logger.setShowTime(false);
+        SplashPanel.linfo.setText("Setting up multilanguage support...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setNoAutoFindLanguage("en");
+        SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
+        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+        SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
+            SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
             new LinuxSupportModule();
             args = new String[]{"--setup-complete"};
         }
+        SplashPanel.linfo.setText("Storing program arguments...");
         PublicValues.args = args;
+        SplashPanel.linfo.setText("Checking required folders...");
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
             }
         }
+        SplashPanel.linfo.setText("Parsing arguments...");
         new ArgParser(args);
+        SplashPanel.linfo.setText("Detecting debugging...");
         if(new File("pom.xml").exists()) {
             PublicValues.debug = true;
             ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
@@ -76,7 +91,9 @@ public class Initiator {
             }
             PublicValues.foundSetupArgument = true;
         }
+        SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
+        SplashPanel.linfo.setText("Init Themes...");
         switch(PublicValues.config.get(ConfigValues.theme.name)) {
             case "QUAQUA":
                 PublicValues.theme = Theme.QuaQua;
@@ -143,34 +160,44 @@ public class Initiator {
         if(unsupported) {
             ConsoleLogging.error("The theme you selected is not supported! Setting theme to ugly");
         }
+        SplashPanel.linfo.setText("Parsing audio quality info...");
         try {
             PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
         }catch (IllegalArgumentException exception) {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
         }
+        SplashPanel.linfo.setText("Checking setup...");
         if(!PublicValues.foundSetupArgument) {
             new Setup(); //Start setup because the argument "--setup-complete" was not found
         }
-        new SplashPanel().show();
+        SplashPanel.linfo.setText("Checking login...");
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
             new LoginDialog().open(); //Show login dialog if no username is set
         }
-        Runtime.getRuntime().addShutdownHook(hook); //Gets executed when SpotifyXP is closing
+        SplashPanel.linfo.setText("Add shutdown hook...");
+        Runtime.getRuntime().addShutdownHook(hook.getRawThread()); //Gets executed when SpotifyXP is closing
+        SplashPanel.linfo.setText("Creating api...");
         api = new SpotifyAPI();
         SpotifyAPI.Player player = new SpotifyAPI.Player(api);
+        SplashPanel.linfo.setText("Creating keylistener...");
         new KeyListener().start();
+        SplashPanel.linfo.setText("Create advanced api key...");
         PublicValues.elevated = new SpotifyAPI.OAuthPKCE();
+        SplashPanel.linfo.setText("Creating contentPanel...");
         ContentPanel panel = new ContentPanel(player, api);
+        SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
         panel.open();
-        Thread t = new Thread(new Runnable() {
+        DefThread t = new DefThread(new Runnable() {
             @Override
             public void run() {
+                SplashPanel.linfo.setText("Invoking analytics...");
                 new Analytics();
             }
         });
         t.start();
+        SplashPanel.linfo.setText("Check updater...");
         DoubleArrayList updater = new Updater().updateAvailable();
         if(Boolean.parseBoolean(updater.getFirst(0).toString())) {
             String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
@@ -184,9 +211,9 @@ public class Initiator {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
             }
         }
+        SplashPanel.linfo.setText("Showing startup time...");
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getHHMMSS()));
         SplashPanel.hide();
-        PublicValues.newWindow = new MainWindow();
-        PublicValues.newWindow.openWindow(args);
+        //new HttpService();
     }
 }

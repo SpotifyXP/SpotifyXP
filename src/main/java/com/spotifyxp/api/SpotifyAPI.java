@@ -47,7 +47,6 @@ public class SpotifyAPI {
         SpotifyAPI api;
         int times = 0;
 
-        @SuppressWarnings("BusyWait")
         public void retry() {
             try {
                 player = PlayerUtils.buildPlayer();
@@ -55,40 +54,17 @@ public class SpotifyAPI {
                 new LoginDialog().openWithInvalidAuth();
                 retry();
             }
-            wait = 0;
-            boolean r = false;
-            while (true) {
-                if (player == null) {
-                    r = true;
-                    times++;
-                    break;
-                }
-                if (!player.isReady()) break;
-                ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
-                try {
-                    Thread.sleep(99);
-                } catch (InterruptedException e) {
-                    ExceptionDialog.open(e);
-                    ConsoleLogging.Throwable(e);
-                }
-                if (wait == waitAmount) {
-                    retry();
-                }
-                wait++;
-            }
-            if (r) {
-                if (times != 5) {
-                    retry();
-                } else {
-
-                }
+            try {
+                player.waitReady();
+            } catch (InterruptedException e) {
+                ConsoleLogging.Throwable(e);
+                ExceptionDialog.open(e);
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));
             PublicValues.spotifyplayer = player;
         }
 
-        @SuppressWarnings("BusyWait")
         public Player(SpotifyAPI a) {
             api = a;
             try {
@@ -97,28 +73,11 @@ public class SpotifyAPI {
                 new LoginDialog().openWithInvalidAuth();
                 retry();
             }
-            wait = 0;
-            boolean r = false;
-            while (true) {
-                if (player == null) {
-                    r = true;
-                    break;
-                }
-                if (player.isReady()) break;
-                ConsoleLogging.info(PublicValues.language.translate("debug.connection.waiting"));
-                try {
-                    Thread.sleep(99);
-                } catch (InterruptedException e) {
-                    ExceptionDialog.open(e);
-                    ConsoleLogging.Throwable(e);
-                }
-                if (wait == waitAmount) {
-                    retry();
-                }
-                wait++;
-            }
-            if (r) {
-                retry();
+            try {
+                player.waitReady();
+            } catch (InterruptedException e) {
+                ConsoleLogging.Throwable(e);
+                ExceptionDialog.open(e);
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));

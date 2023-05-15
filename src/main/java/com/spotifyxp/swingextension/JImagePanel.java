@@ -1,5 +1,8 @@
 package com.spotifyxp.swingextension;
 
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
+
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
@@ -51,7 +54,8 @@ public class JImagePanel extends JPanel {
         try {
             image = ImageIO.read(inputStream);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
+            ExceptionDialog.open(ex);
         }
         refresh();
     }

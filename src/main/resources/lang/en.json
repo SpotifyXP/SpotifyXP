@@ -118,5 +118,6 @@
   "message.noconnection" : "Lost internet connection",
   "message.noconnection.title" : "Internet",
   "message.connection.title" : "Internet",
-  "message.connection" : "Internet reconnected"
+  "message.connection" : "Internet reconnected",
+  "general.exception.hide" : "Hide Exceptions"
 }

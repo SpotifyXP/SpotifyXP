@@ -6,6 +6,7 @@ import com.spotifyxp.designs.Theme;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.threading.DefThread;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.swing.JSVGCanvas;
 import org.apache.batik.util.XMLResourceDescriptor;
@@ -151,7 +152,7 @@ public class JImageButton extends JSVGCanvas {
         }
     }
 
-    Thread t = new Thread(new Runnable() {
+    DefThread t = new DefThread(new Runnable() {
         @Override
         public void run() {
             while(!ContentPanel.frame.isVisible()) {

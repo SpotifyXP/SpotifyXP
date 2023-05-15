@@ -1,6 +1,7 @@
 package com.spotifyxp.exception;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;
@@ -10,6 +11,9 @@ import java.awt.event.ActionListener;
 
 public class ExceptionDialog {
     public static void open(Throwable e) {
+        if(PublicValues.config.get(ConfigValues.hideExceptions.name).equals("true")) {
+            return;
+        }
         if(SplashPanel.frame.isVisible()) {
             SplashPanel.frame.setAlwaysOnTop(false);
         }

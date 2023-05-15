@@ -25,6 +25,7 @@ public class Config {
             properties.put(ConfigValues.username.name, "");
             properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.password.name, "");
+            properties.put(ConfigValues.hideExceptions, "false");
             try {
                 if(!new File(PublicValues.configfilepath).createNewFile()) {
                     ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));

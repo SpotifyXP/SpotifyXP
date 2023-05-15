@@ -71,6 +71,6 @@ public class BackgroundService {
         };
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(internetListenerRunnable, 0, 120, TimeUnit.MILLISECONDS);
+        //executor.scheduleAtFixedRate(internetListenerRunnable, 0, 120, TimeUnit.MILLISECONDS); Deactivated for performance reasons
     }
 }

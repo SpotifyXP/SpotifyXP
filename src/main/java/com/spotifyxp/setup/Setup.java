@@ -6,6 +6,7 @@ import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.FileUtils;
 import com.spotifyxp.utils.Resources;
@@ -67,6 +68,8 @@ public class Setup {
             setupcancelbutton = new JButton("Cancel");
             setupcancelbutton.setBounds(197, 338, 89, 23);
             add(setupcancelbutton);
+
+            SplashPanel.hide();
 
             setupcancelbutton.addActionListener(new ActionListener() {
                 @Override
@@ -228,6 +231,7 @@ public class Setup {
                     showComplete();
                     break;
                 case COMPLETE:
+                    SplashPanel.frame.setVisible(true);
                     setupframe.setVisible(false);
             }
         }
