@@ -19,7 +19,7 @@ import com.spotifyxp.panels.ContentPanel;
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static libLanguage language = null;
-    public static String version = "1.8";
+    public static String version = "1.9";
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
     public static String configlocation = fileslocation + "/config.toml";
     public static Player spotifyplayer = null;

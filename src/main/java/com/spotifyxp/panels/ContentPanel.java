@@ -2618,18 +2618,22 @@ public class ContentPanel extends JPanel {
             }
             tc++;
         }
-        JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations", new NameValuePair[] {new NameValuePair("seed_artists", fiveartists.toString()), new NameValuePair("seed_genres", fivegenres.toString()), new NameValuePair("seed_tracks", fivetracks.toString())}));
-        for(Object o : recommendations.getJSONArray("tracks")) {
-            JSONObject album = new JSONObject(new JSONObject(o.toString()).get("album").toString());
-            String uri = album.getString("uri").split(":")[2];
-            hotlistplaylistlistcache.add(uri);
-            try {
-                Album albumreq = api.getSpotifyApi().getAlbum(uri).build().execute();
-                String a = TrackUtils.getArtists(albumreq.getArtists());
-                ((DefaultTableModel)hotlistplayliststable.getModel()).addRow(new Object[] {albumreq.getName() + " - " + a});
-            } catch (IOException | ParseException | SpotifyWebApiException e) {
-                ConsoleLogging.Throwable(e);
+        try {
+            JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations", new NameValuePair[]{new NameValuePair("seed_artists", fiveartists.toString()), new NameValuePair("seed_genres", fivegenres.toString()), new NameValuePair("seed_tracks", fivetracks.toString())}));
+            for (Object o : recommendations.getJSONArray("tracks")) {
+                JSONObject album = new JSONObject(new JSONObject(o.toString()).get("album").toString());
+                String uri = album.getString("uri").split(":")[2];
+                hotlistplaylistlistcache.add(uri);
+                try {
+                    Album albumreq = api.getSpotifyApi().getAlbum(uri).build().execute();
+                    String a = TrackUtils.getArtists(albumreq.getArtists());
+                    ((DefaultTableModel) hotlistplayliststable.getModel()).addRow(new Object[]{albumreq.getName() + " - " + a});
+                } catch (IOException | ParseException | SpotifyWebApiException e) {
+                    ConsoleLogging.Throwable(e);
+                }
             }
+        }catch (JSONException exception) {
+            ExceptionDialog.open(exception);
         }
     }
     public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {

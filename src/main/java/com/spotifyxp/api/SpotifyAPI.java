@@ -70,6 +70,7 @@ public class SpotifyAPI {
             try {
                 player = PlayerUtils.buildPlayer(); //Make player session
             } catch (Exception e) {
+                e.printStackTrace();
                 new LoginDialog().openWithInvalidAuth();
                 retry();
             }
