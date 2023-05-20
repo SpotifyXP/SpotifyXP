@@ -29,6 +29,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
 import javax.swing.*;
 import java.io.File;
@@ -43,6 +44,7 @@ public class Initiator {
 
         }
     });
+    static boolean past = false;
     public static void main(String[] args) {
         new SplashPanel().show();
         SplashPanel.linfo.setText("Storing startup millis...");
@@ -170,16 +172,36 @@ public class Initiator {
         SplashPanel.linfo.setText("Checking setup...");
         if(!PublicValues.foundSetupArgument) {
             new Setup(); //Start setup because the argument "--setup-complete" was not found
+            startupTime = new StartupTime();
         }
         SplashPanel.linfo.setText("Checking login...");
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
             new LoginDialog().open(); //Show login dialog if no username is set
+            startupTime = new StartupTime();
         }
         SplashPanel.linfo.setText("Add shutdown hook...");
         Runtime.getRuntime().addShutdownHook(hook.getRawThread()); //Gets executed when SpotifyXP is closing
         SplashPanel.linfo.setText("Creating api...");
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                while (!past) {
+                    int s = Integer.parseInt(startupTime.getMMSSCoded().split(":")[1]);
+                    if (s > 10) {
+                        if(GraphicalMessage.stuck()) {
+                            System.exit(0);
+                        }else{
+                            past = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+        thread.start();
         api = new SpotifyAPI();
         SpotifyAPI.Player player = new SpotifyAPI.Player(api);
+        past = true;
         SplashPanel.linfo.setText("Creating keylistener...");
         new KeyListener().start();
         SplashPanel.linfo.setText("Create advanced api key...");
@@ -188,7 +210,6 @@ public class Initiator {
         ContentPanel panel = new ContentPanel(player, api);
         SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
-        panel.open();
         DefThread t = new DefThread(new Runnable() {
             @Override
             public void run() {
@@ -212,8 +233,8 @@ public class Initiator {
             }
         }
         SplashPanel.linfo.setText("Showing startup time...");
-        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getHHMMSS()));
+        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide();
-        //new HttpService();
+        panel.open();
     }
 }

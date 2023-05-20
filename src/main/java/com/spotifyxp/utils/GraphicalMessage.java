@@ -18,4 +18,14 @@ public class GraphicalMessage {
         }
         JOptionPane.showConfirmDialog(null, PublicValues.language.translate("critical.sorry.text"), PublicValues.language.translate("critical.sorry.title"), JOptionPane.OK_CANCEL_OPTION);
     }
+    public static boolean stuck() {
+        if(SplashPanel.frame.isVisible()) {
+            SplashPanel.frame.setAlwaysOnTop(false);
+        }
+        if(JOptionPane.showConfirmDialog(null, PublicValues.language.translate("message.stuck.text"), PublicValues.language.translate("message.stuck.title"), JOptionPane.YES_NO_OPTION) == 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -523,9 +523,16 @@ public final class Session implements Closeable {
     }
 
     private void sendUnchecked(Packet.Type cmd, byte[] payload) throws IOException {
-        if (conn == null)
-            throw new IOException("Cannot write to missing connection.");
+        //if (conn == null) {
+            //throw new IOException("Cannot write to missing connection.");
 
+        //}
+        while(conn == null) {
+            try {
+                Thread.sleep(TimeUnit.SECONDS.toMillis(2));
+            } catch (InterruptedException ignored) {
+            }
+        }
         cipherPair.sendEncoded(conn.out, cmd.val, payload);
     }
 
@@ -743,10 +750,10 @@ public final class Session implements Closeable {
                 return;
 
             conn = null;
-            ConsoleLoggingModules.error("Failed reconnecting, retrying in 10 seconds... " + ex.getMessage());
+            ConsoleLoggingModules.error("Failed reconnecting, retrying in 3 seconds... " + ex.getMessage());
 
             try {
-                scheduler.schedule(this::reconnect, 10, TimeUnit.SECONDS);
+                scheduler.schedule(this::reconnect, 3, TimeUnit.SECONDS);
             } catch (RejectedExecutionException exx) {
                 ConsoleLoggingModules.info("Scheduler already shutdown, stopping reconnection " + exx.getMessage());
             }

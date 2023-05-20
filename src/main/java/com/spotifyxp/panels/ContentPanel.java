@@ -24,6 +24,7 @@ import com.spotifyxp.utils.*;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.TraceMethod;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -953,18 +954,6 @@ public class ContentPanel extends JPanel {
                 setPlaylistsVisible();
             }
         });
-    }
-    void checkPremium() {
-        try {
-            GetMethod method = new GetMethod("https://api.spotify.com/v1/me/albums?limit=10&offset=5&market=ES");
-            method.setRequestHeader("Authorization", "Bearer " + Token.getDefaultToken());
-            HttpClient client = new HttpClient();
-            client.executeMethod(method);
-            if(method.getStatusCode() == 403) {
-                JOptionPane.showConfirmDialog(frame, "SpotifyXP only works for premium users you sometimes can run this without premium but this is not officialy supported", "Critical", JOptionPane.OK_CANCEL_OPTION);
-            }
-        }catch (IOException ignored) {
-        }
     }
     void createSearch() {
         searchbutton = new JToggleButton(l.translate("ui.navigation.search"));
@@ -2046,6 +2035,12 @@ public class ContentPanel extends JPanel {
         });
     }
     public static boolean pressedCTRL = false;
+    boolean clicked = false;
+    int w = 0;
+    int h = 0;
+    boolean visible = false;
+    boolean dragging = false;
+    boolean toggle = false;
     public ContentPanel(SpotifyAPI.Player p, SpotifyAPI a) {
         ConsoleLogging.info(l.translate("debug.buildcontentpanelbegin"));
         api = a;
@@ -2084,7 +2079,6 @@ public class ContentPanel extends JPanel {
         createAdvancedPanel();
 
         SplashPanel.linfo.setText("Checking premium account...");
-        checkPremium();
 
         SplashPanel.linfo.setText("Changing component visibility...");
         searchpane.setVisible(false); //Not show searchpane when window is opened
@@ -2094,6 +2088,14 @@ public class ContentPanel extends JPanel {
         feedbackpane.setVisible(false); //Now show feedbackpane when window is opened
         hotlistpane.setVisible(false); //Not show hotlistpane when window is opened
         homepane.getComponent().setVisible(false); //Not show homepane when window is opened
+
+        ContextMenu menu = new ContextMenu(this);
+        menu.addItem("Overlay Mode", new Runnable() {
+            @Override
+            public void run() {
+                createOverlay();
+            }
+        });
 
 
         SplashPanel.linfo.setText("Adding window mouse listener...");
@@ -2135,7 +2137,105 @@ public class ContentPanel extends JPanel {
         SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
     }
+    JPanel panel;
+    JFrame overlay;
+    ActionListener al;
+    Timer timer;
+    WindowAdapter windowAdapter;
+    void createOverlay() {
+        if(toggle) {
+            visible = false;
+            frame.setAlwaysOnTop(false);
+            overlay.dispose();
+            toggle = false;
+            return;
+        }
+        panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(Color.black);
+                StringUtils.drawCenteredString(g, "Toggle", new Rectangle(w, h), g.getFont());
+            }
+        };
+        overlay = new JFrame();
+        al = new ActionListener() {
 
+            Point lastPoint;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Point p = MouseInfo.getPointerInfo().getLocation();
+                if (!p.equals(lastPoint)) {
+                    if(clicked) {
+                        dragging = true;
+                        overlay.setLocation(p);
+                    }else{
+                        dragging = false;
+                    }
+                }
+                lastPoint = p;
+            }
+        };
+        timer = new Timer(40, al);
+        windowAdapter = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if(toggle) {
+                    overlay.setVisible(true);
+                }
+            }
+            @Override
+            public void windowOpened(WindowEvent e) {
+                if(toggle) {
+                    visible = true;
+                    repaint();
+                }
+            }
+        };
+        toggle = true;
+        frame.setAlwaysOnTop(true);
+        w = 60;
+        h = 20;
+        overlay.setLocation(frame.getX(), frame.getY());
+        overlay.setPreferredSize(new Dimension(60,20));
+        overlay.setAlwaysOnTop(true);
+        frame.addWindowListener(windowAdapter);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                clicked = true;
+                timer.start();
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                clicked = false;
+                timer.stop();
+            }
+        });
+        overlay.add(panel, BorderLayout.CENTER);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                if(SwingUtilities.isRightMouseButton(e)) {
+                    if (frame.isVisible()) {
+                        frame.setVisible(false);
+                        overlay.setVisible(true);
+                    } else {
+                        frame.setLocation(overlay.getX(), overlay.getY());
+                        frame.setVisible(true);
+                        overlay.setVisible(false);
+                    }
+                }
+            }
+        });
+        overlay.setUndecorated(true);
+        overlay.setOpacity(0.4f);
+        overlay.pack();
+    }
     int playerareawidth = 0;
     int playerareaheight = 0;
 
@@ -2705,5 +2805,14 @@ public class ContentPanel extends JPanel {
         });
         mainframe.setVisible(true);
         mainframe.pack();
+        int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+        mainframe.setLocation(w / 2 - mainframe.getWidth() / 2, h / 2 - mainframe.getHeight() / 2);
+        mainframe.setAlwaysOnTop(true);
+        try {
+            Thread.sleep(TimeUnit.SECONDS.toMillis(2));
+        } catch (InterruptedException ignored) {
+        }
+        mainframe.setAlwaysOnTop(false);
     }
 }

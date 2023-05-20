@@ -20,13 +20,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,10 +113,12 @@ public final class ApResolver {
         }
     }
 
+    boolean retry = false;
+
     private String returnPort80(String url, String type) {
-        if(url.contains(":80") || url.contains(":443")) {
+        if (url.contains(":80") || url.contains(":443")) {
             return url;
-        }else{
+        } else {
             waitForPool();
             List<String> urls = pool.get(type);
             if (urls == null || urls.isEmpty()) throw new IllegalStateException();
@@ -120,8 +126,13 @@ public final class ApResolver {
         }
     }
 
+    int counter = 0;
+
     @NotNull
     private String getRandomOf(@NotNull String type) {
+        if(counter>200) {
+            GraphicalMessage.sorryError();
+        }
         waitForPool();
 
         List<String> urls = pool.get(type);
@@ -129,9 +140,9 @@ public final class ApResolver {
         try {
             return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }catch (StackOverflowError error) {
-            System.err.println("Couldn't find a suitable url for connection");
-            System.exit(0);
-            return null;
+            //Just retry eventually it will work
+            counter++;
+            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }
     }
 

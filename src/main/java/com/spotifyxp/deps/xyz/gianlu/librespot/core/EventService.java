@@ -21,6 +21,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.RawMercuryRequest;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,8 +35,9 @@ import java.util.concurrent.TimeUnit;
  * @author Gianlu
  */
 public final class EventService implements Closeable {
-    private final AsyncWorker<EventBuilder> asyncWorker;
+    private AsyncWorker<EventBuilder> asyncWorker;
 
+    int passes = 0;
     EventService(@NotNull Session session) {
         this.asyncWorker = new AsyncWorker<>("event-service-sender", eventBuilder -> {
             try {
@@ -48,9 +50,39 @@ public final class EventService implements Closeable {
                         .build());
 
                 ConsoleLoggingModules.debug("Event sent. {body: {}, result: {}}", EventBuilder.toString(body), resp.statusCode);
+                passes = 0;
             } catch (IOException ex) {
-                ExceptionDialog.open(ex);
+                if(passes>10) {
+                    GraphicalMessage.sorryError();
+                }
+                //ExceptionDialog.open(ex); Shut up
                 ConsoleLoggingModules.error("Failed sending event: " + eventBuilder, ex);
+                passes++;
+                retry(session);
+            }
+        });
+    }
+    void retry(Session session) {
+        this.asyncWorker = new AsyncWorker<>("event-service-sender", eventBuilder -> {
+            try {
+                byte[] body = eventBuilder.toArray();
+                MercuryClient.Response resp = session.mercury().sendSync(RawMercuryRequest.newBuilder()
+                        .setUri("hm://event-service/v1/events").setMethod("POST")
+                        .addUserField("Accept-Language", "en")
+                        .addUserField("X-ClientTimeStamp", String.valueOf(TimeProvider.currentTimeMillis()))
+                        .addPayloadPart(body)
+                        .build());
+
+                ConsoleLoggingModules.debug("Event sent. {body: {}, result: {}}", EventBuilder.toString(body), resp.statusCode);
+                passes = 0;
+            } catch (IOException ex) {
+                if(passes>10) {
+                    GraphicalMessage.sorryError();
+                }
+                //ExceptionDialog.open(ex); Shut up
+                ConsoleLoggingModules.error("Failed sending event: " + eventBuilder, ex);
+                passes++;
+                retry(session);
             }
         });
     }

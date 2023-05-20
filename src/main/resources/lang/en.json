@@ -119,5 +119,7 @@
   "message.noconnection.title" : "Internet",
   "message.connection.title" : "Internet",
   "message.connection" : "Internet reconnected",
-  "general.exception.hide" : "Hide Exceptions"
+  "general.exception.hide" : "Hide Exceptions",
+  "message.stuck.title" : "Message",
+  "message.stuck.text" : "It looks like SpotifyXP is stuck. Do you want to close SpotifyXP?"
 }

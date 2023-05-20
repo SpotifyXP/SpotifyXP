@@ -7,7 +7,28 @@ public class StartupTime {
     public StartupTime() {
         whenstarted = new Date().getTime();
     }
-    public String getHHMMSS() {
+    public String getMMSSCoded() {
+        long timemillis = new Date().getTime() - whenstarted;
+        boolean ddh = false;
+        float ttr = timemillis/(float)1000;
+        int seconds = Math.round(ttr);
+        int hh = seconds/60/60;
+        seconds = seconds - hh * 3600;
+        int mm = seconds/60;
+        seconds = seconds - mm * 60;
+        int ss = seconds;
+        String h = String.valueOf(hh);
+        String m = String.valueOf(mm);
+        String s = String.valueOf(ss);
+        if(mm<10) {
+            m = "0" + m;
+        }
+        if(ss<10) {
+            s = "0" + s;
+        }
+        return m + ":" + s;
+    }
+    public String getMMSS() {
         long timemillis = new Date().getTime() - whenstarted;
         boolean ddh = false;
         float ttr = timemillis/(float)1000;

@@ -46,7 +46,6 @@ public class Injector {
             Class<?> jarclass = classLoader.loadClass(mainclasspath.split(":")[1]);
             Object t = jarclass.newInstance();
             for (Method m : jarclass.getDeclaredMethods()) {
-                //Object o = m2.invoke(t);
                 if(m.getName().equals("getIdentifier")) {
                     Object o = m.invoke(t);
                     entry.identifier = o.toString();
@@ -59,10 +58,11 @@ public class Injector {
                 }
             }
             entry.filename = new File(path).getName();
-            jarclass.getDeclaredMethod("init").invoke(t);
-            entry.loaded = true;
+            if(fv & fi) {
+                jarclass.getDeclaredMethod("init").invoke(t);
+                entry.loaded = true;
+            }
         }catch (Exception e) {
-            System.err.println("Failed to inject jar");
             e.printStackTrace();
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
@@ -76,6 +76,14 @@ public class Injector {
     }
 
     public ArrayList<InjectionEntry> injectedJars = new ArrayList<>();
+
+    public ArrayList<InjectionEntry> getInjectedJars() {
+        return injectedJars;
+    }
+
+    public void unload() {
+        throw new UnsupportedOperationException();
+    }
 
     public static class InjectionEntry {
         public String filename = "";

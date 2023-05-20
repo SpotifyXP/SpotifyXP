@@ -2,6 +2,7 @@ package com.spotifyxp.testing;
 
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.analytics.Analytics;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
@@ -18,11 +19,6 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) {
-        PublicValues.config = new Config();
-        PublicValues.logger.setColored(true);
-        PublicValues.logger.setShowTime(false);
-        PublicValues.spotifyplayer = PlayerUtils.buildPlayer();
-        UnofficialSpotifyAPI api = new UnofficialSpotifyAPI(Token.getDefaultToken());
-        api.getHomeTab();
+
     }
 }
