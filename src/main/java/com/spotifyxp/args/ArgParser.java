@@ -9,6 +9,7 @@ public class ArgParser {
         for(String s : args) {
             if(s.contains("--custom-savedir")) {
                 PublicValues.fileslocation = s.split("=")[1];
+                PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
             }
             if(s.equals("--setup-complete")) {
                 PublicValues.foundSetupArgument = true;

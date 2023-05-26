@@ -1,8 +1,13 @@
 package com.spotifyxp.dialogs;
+import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.swingextension.CustomLengthTextField;
+import com.spotifyxp.utils.StartupTime;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -11,19 +16,19 @@ import java.io.File;
 
 @SuppressWarnings("Convert2Lambda")
 public class LoginDialog {
-    private static JTextField spotifyusernamefield;
-    private static JTextField usernamepasswordfield;
+    private static CustomLengthTextField spotifyusernamefield;
+    private static CustomLengthTextField usernamepasswordfield;
     private static JButton spotifyokbutton;
     private static JButton spotifycancelbutton;
     private static class ContentPanel extends JPanel {
         public ContentPanel() {
-            spotifyusernamefield = new JTextField();
+            spotifyusernamefield = new CustomLengthTextField(60);
             spotifyusernamefield.setBounds(10, 81, 314, 39);
             add(spotifyusernamefield);
             spotifyusernamefield.setColumns(10);
             setBorder(new EmptyBorder(5, 5, 5, 5));
             setLayout(new BorderLayout());
-            usernamepasswordfield = new JTextField();
+            usernamepasswordfield = new CustomLengthTextField(60);
             usernamepasswordfield.setColumns(10);
             usernamepasswordfield.setBounds(10, 179, 314, 39);
             add(usernamepasswordfield);
@@ -84,6 +89,8 @@ public class LoginDialog {
                 System.exit(0);
             }
         });
+        Initiator.past = true;
+        SplashPanel.frame.setAlwaysOnTop(false);
         while(dialog.isVisible()) {
             try {
                 Thread.sleep(99);
@@ -92,6 +99,10 @@ public class LoginDialog {
                 ConsoleLogging.Throwable(e);
             }
         }
+        Initiator.past = false;
+        Initiator.startupTime = new StartupTime();
+        Initiator.thread.start();
+        SplashPanel.frame.setAlwaysOnTop(true);
     }
     @SuppressWarnings("BusyWait")
     public void open() {
@@ -125,6 +136,8 @@ public class LoginDialog {
                 System.exit(0);
             }
         });
+        Initiator.past = true;
+        SplashPanel.frame.setAlwaysOnTop(false);
         while(dialog.isVisible()) {
             try {
                 Thread.sleep(99);
@@ -133,5 +146,9 @@ public class LoginDialog {
                 ConsoleLogging.Throwable(e);
             }
         }
+        Initiator.past = false;
+        Initiator.startupTime = new StartupTime();
+        Initiator.thread.start();
+        SplashPanel.frame.setAlwaysOnTop(true);
     }
 }

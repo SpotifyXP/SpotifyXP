@@ -9,8 +9,7 @@ import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
-import com.spotifyxp.experimental.HttpService;
-import com.spotifyxp.fx.MainWindow;
+import com.spotifyxp.beamngintegration.HttpService;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
@@ -37,14 +36,30 @@ import java.io.File;
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
     static SpotifyAPI api = null;
-    static StartupTime startupTime;
+    public static StartupTime startupTime;
     static DefThread hook = new DefThread(new Runnable() {
         @Override
         public void run() {
 
         }
     });
-    static boolean past = false;
+    public static DefThread thread = new DefThread(new Runnable() {
+        @Override
+        public void run() {
+            while (!past) {
+                int s = Integer.parseInt(startupTime.getMMSSCoded().split(":")[1]);
+                if (s > 10) {
+                    if(GraphicalMessage.stuck()) {
+                        System.exit(0);
+                    }else{
+                        past = true;
+                        break;
+                    }
+                }
+            }
+        }
+    });
+    public static boolean past = false;
     public static void main(String[] args) {
         new SplashPanel().show();
         SplashPanel.linfo.setText("Storing startup millis...");
@@ -58,6 +73,8 @@ public class Initiator {
         PublicValues.language.setNoAutoFindLanguage("en");
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+        SplashPanel.linfo.setText("Parsing arguments...");
+        new ArgParser(args);
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
@@ -74,8 +91,6 @@ public class Initiator {
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
             }
         }
-        SplashPanel.linfo.setText("Parsing arguments...");
-        new ArgParser(args);
         SplashPanel.linfo.setText("Detecting debugging...");
         if(new File("pom.xml").exists()) {
             PublicValues.debug = true;
@@ -182,22 +197,6 @@ public class Initiator {
         SplashPanel.linfo.setText("Add shutdown hook...");
         Runtime.getRuntime().addShutdownHook(hook.getRawThread()); //Gets executed when SpotifyXP is closing
         SplashPanel.linfo.setText("Creating api...");
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                while (!past) {
-                    int s = Integer.parseInt(startupTime.getMMSSCoded().split(":")[1]);
-                    if (s > 10) {
-                        if(GraphicalMessage.stuck()) {
-                            System.exit(0);
-                        }else{
-                            past = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        });
         thread.start();
         api = new SpotifyAPI();
         SpotifyAPI.Player player = new SpotifyAPI.Player(api);
@@ -236,5 +235,6 @@ public class Initiator {
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide();
         panel.open();
+        new HttpService();
     }
 }
