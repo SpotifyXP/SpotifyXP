@@ -7,12 +7,14 @@ public class ArgParser {
     public ArgParser(String[] args) {
         int counter = 0;
         for(String s : args) {
+            if(s.contains("--custom-savedir")) {
+                PublicValues.fileslocation = s.split("=")[1];
+            }
             if(s.equals("--setup-complete")) {
                 PublicValues.foundSetupArgument = true;
             }
             if(s.contains("--language")) {
-                String language = s.split("=")[1];
-                PublicValues.language.setNoAutoFindLanguage(language);
+                PublicValues.language.setNoAutoFindLanguage(s.split("=")[1]);
             }
             if(s.equals("--debug")) {
                 PublicValues.debug = true;

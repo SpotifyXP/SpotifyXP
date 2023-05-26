@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
@@ -48,12 +49,7 @@ public class SpotifyAPI {
         int times = 0;
 
         public void retry() {
-            try {
-                player = PlayerUtils.buildPlayer();
-            } catch (Exception e) {
-                new LoginDialog().openWithInvalidAuth();
-                retry();
-            }
+            player = PlayerUtils.buildPlayer();
             try {
                 player.waitReady();
             } catch (InterruptedException e) {
@@ -67,13 +63,7 @@ public class SpotifyAPI {
 
         public Player(SpotifyAPI a) {
             api = a;
-            try {
-                player = PlayerUtils.buildPlayer(); //Make player session
-            } catch (Exception e) {
-                e.printStackTrace();
-                new LoginDialog().openWithInvalidAuth();
-                retry();
-            }
+            player = PlayerUtils.buildPlayer();
             try {
                 player.waitReady();
             } catch (InterruptedException e) {
