@@ -2,8 +2,6 @@ package com.spotifyxp.listeners;
 
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.fx.MainController;
-import com.spotifyxp.fx.MainWindow;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
