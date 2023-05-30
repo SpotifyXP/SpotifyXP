@@ -9,8 +9,6 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
-import javafx.application.Platform;
-import javafx.scene.image.Image;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
