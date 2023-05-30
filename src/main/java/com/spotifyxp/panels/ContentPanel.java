@@ -637,6 +637,13 @@ public class ContentPanel extends JPanel {
 
         playerarea.add(heart.getJComponent());
 
+        playercurrenttime.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(playercurrenttime.getValue()*1000));
+            }
+        });
+
         playercurrenttime.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
