@@ -147,15 +147,15 @@
                 </executions>
                 <configuration>
                     <finalName>SpotifyXP</finalName>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.spotifyxp.Initiator</mainClass>
+                        </manifest>
+                    </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <archive>
-                        <archive>
-                            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        </archive>
-                    </archive>
                 </configuration>
             </plugin>
         </plugins>
