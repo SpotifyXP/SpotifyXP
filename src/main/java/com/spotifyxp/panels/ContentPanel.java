@@ -168,6 +168,10 @@ public class ContentPanel extends JPanel {
     public static JSVGPanel playerarearepeatingbutton;
     public static JSVGPanel playerarealyricsbutton;
     public static JTextField noconnectionmessage;
+    public static ContextMenu searchplaylistsongscontextmenu;
+    public static ContextMenu searchcontextmenu;
+    public static ContextMenu hotlistplaylistspanelrightclickmenu;
+    public static ContextMenu hotlistsongstablecontextmenu;
     public static DefThread librarythread = new DefThread(new Runnable() {
         public void run() {
             hotlistbutton.setEnabled(false); //Lock user due to spotifys api rate limit
@@ -1418,7 +1422,7 @@ public class ContentPanel extends JPanel {
 
         searchplaylistpanel.setVisible(false);
 
-        ContextMenu searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable);
+        searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable);
         searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
             @Override
             public void run() {
@@ -1434,7 +1438,7 @@ public class ContentPanel extends JPanel {
                 searchpane.setVisible(true);
             }
         });
-        ContextMenu searchcontextmenu = new ContextMenu(searchsonglist);
+        searchcontextmenu = new ContextMenu(searchsonglist);
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.addtolibrary"), new Runnable() {
             @Override
             public void run() {
@@ -1497,7 +1501,7 @@ public class ContentPanel extends JPanel {
         hotslistsongscrollpanel.setBounds(0, 0, 524, 421);
         hotlistsonglistpanel.add(hotslistsongscrollpanel);
 
-        ContextMenu hotlistplaylistspanelrightclickmenu = new ContextMenu(hotlistplayliststable);
+        hotlistplaylistspanelrightclickmenu = new ContextMenu(hotlistplayliststable);
         hotlistplaylistspanelrightclickmenu.addItem(PublicValues.language.translate("ui.general.refresh"), new Runnable() {
             @Override
             public void run() {
@@ -1522,7 +1526,7 @@ public class ContentPanel extends JPanel {
                 }
         ));
 
-        ContextMenu hotlistsongstablecontextmenu = new ContextMenu(hotlistsongstable);
+        hotlistsongstablecontextmenu = new ContextMenu(hotlistsongstable);
         hotlistsongstablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
             @Override
             public void run() {

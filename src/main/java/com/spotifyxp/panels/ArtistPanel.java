@@ -31,6 +31,8 @@ public class ArtistPanel extends JPanel {
     public JImagePanel artistimage;
     public ArrayList<String> artistpopularuricache = new ArrayList<>();
     public ArrayList<String> artistalbumuricache = new ArrayList<>();
+    public ContextMenu artistpopularsonglistcontextmenu;
+    public ContextMenu artistalbumcontextmenu;
     public ArtistPanel() {
         contentPanel = new JScrollPane();
         contentPanel.setViewportView(this);
@@ -52,7 +54,7 @@ public class ArtistPanel extends JPanel {
         };
         artistpopularscrollpane.setViewportView(artistpopularsonglist);
 
-        ContextMenu artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
+        artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
         artistpopularsonglistcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
             @Override
             public void run() {
@@ -90,7 +92,7 @@ public class ArtistPanel extends JPanel {
         artistbackgroundimage.setBounds(0, 0, 780, 277);
         add(artistbackgroundimage, new Integer(1));
 
-        ContextMenu artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
+        artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
         artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
             @Override
             public void run() {

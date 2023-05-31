@@ -1,10 +1,17 @@
 package com.spotifyxp.swingextension;
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player.PauseUsersPlaybackRequest;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ContextMenu {
+    public static class GlobalContextMenuItem {
+        public Runnable torun;
+        public String name;
+    }
     final JPopupMenu holder = new JPopupMenu();
     public ContextMenu(JPanel panel) {
         panel.addMouseListener(new MouseAdapter() {
@@ -16,6 +23,11 @@ public class ContextMenu {
                 }
             }
         });
+        for(GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            JMenuItem i = new JMenuItem(item.name);
+            i.addActionListener(e -> item.torun.run());
+            holder.add(i);
+        }
     }
     public ContextMenu(JComponent component) {
         component.addMouseListener(new MouseAdapter() {
@@ -27,6 +39,11 @@ public class ContextMenu {
                 }
             }
         });
+        for(GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            JMenuItem i = new JMenuItem(item.name);
+            i.addActionListener(e -> item.torun.run());
+            holder.add(i);
+        }
     }
     public void addItem(String text, Runnable onClick) {
         JMenuItem item = new JMenuItem(text);

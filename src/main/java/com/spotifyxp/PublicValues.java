@@ -3,6 +3,7 @@ package com.spotifyxp;
 
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import com.spotifyxp.api.SpotifyAPI;
+import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.designs.Theme;
@@ -13,6 +14,9 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.swingextension.ContextMenu;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
@@ -38,4 +42,6 @@ public class PublicValues {
     public static LyricsDialog lyricsDialog = null;
     public static Injector injector = new Injector();
     public static ContentPanel contentPanel;
+    public static ArgParser argParser = new ArgParser();
+    public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
 }

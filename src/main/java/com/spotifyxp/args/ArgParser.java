@@ -3,27 +3,51 @@ package com.spotifyxp.args;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 
+import java.util.ArrayList;
+
 public class ArgParser {
-    public ArgParser(String[] args) {
-        int counter = 0;
+    public ArrayList<Argument> arguments = new ArrayList<>();
+    public ArgParser() {
+        arguments.add(new CustomSaveDir());
+        arguments.add(new Debug());
+        arguments.add(new Language());
+        arguments.add(new SetupComplete());
+    }
+    public void printHelp() {
+        System.out.println("SpotifyXP - " + PublicValues.version + "\n");
+        System.out.println("Usage java -jar SpotifyXP.jar <argument>..." + "\n\n");
+        for(Argument a : arguments) {
+            if(a.hasParameter()) {
+                System.out.println("--" + a.getName() + "=<parameter>" + "   =>   " + a.getDescription());
+            }else {
+                System.out.println("--" + a.getName() + "   =>   " + a.getDescription());
+            }
+        }
+    }
+    public void parseArguments(String[] args) {
+        boolean isvalid = false;
         for(String s : args) {
-            if(s.contains("--custom-savedir")) {
-                PublicValues.fileslocation = s.split("=")[1];
-                PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
+            String argument = s.replace("--", "");
+            try {
+                argument = s.replace("--", "").split("=")[0];
+            }catch (Exception ignored) {
             }
-            if(s.equals("--setup-complete")) {
-                PublicValues.foundSetupArgument = true;
+            String parameter = "";
+            try {
+                parameter = s.split("=")[1];
+            }catch (Exception ignored) {
             }
-            if(s.contains("--language")) {
-                PublicValues.language.setNoAutoFindLanguage(s.split("=")[1]);
+            for(Argument a : arguments) {
+                if(a.getName().equals(argument)) {
+                    isvalid = true;
+                    a.runArgument(parameter);
+                    break;
+                }
             }
-            if(s.equals("--debug")) {
-                PublicValues.debug = true;
-                ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-                modules.setColored(false);
-                modules.setShowTime(false);
+            if(!isvalid) {
+                System.out.println("Invalid argument: " + argument + "\n");
+                printHelp();
             }
-            counter++;
         }
     }
 }

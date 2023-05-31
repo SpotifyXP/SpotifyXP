@@ -74,7 +74,7 @@ public class Initiator {
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         SplashPanel.linfo.setText("Parsing arguments...");
-        new ArgParser(args);
+        PublicValues.argParser.parseArguments(args);
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
