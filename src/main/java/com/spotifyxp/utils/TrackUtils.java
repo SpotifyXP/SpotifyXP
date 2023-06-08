@@ -148,6 +148,9 @@ public class TrackUtils {
             }
         }
         ContentPanel.player.getPlayer().setShuffle(ContentPanel.shuffle);
+        if(ContentPanel.shuffle) {
+            Shuffle.makeShuffle();
+        }
     }
     public static Integer roundVolumeToNormal(float volume) {
         return Integer.parseInt(String.valueOf(Math.round(volume*10)));

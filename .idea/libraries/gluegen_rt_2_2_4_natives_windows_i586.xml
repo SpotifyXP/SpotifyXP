@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="gluegen-rt-2.2.4-natives-windows-i586">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gluegen-rt-2.2.4-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gluegen-rt-2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java-cef-49.87.win32.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jogl-all-2.2.4-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jogl-all-2.2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

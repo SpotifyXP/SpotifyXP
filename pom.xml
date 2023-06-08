@@ -124,6 +124,41 @@
             <artifactId>batik-swing</artifactId>
             <version>1.16</version>
         </dependency>
+        <dependency>
+            <groupId>org.jcef</groupId>
+            <artifactId>jcef</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/lib/java-cef-49.87.win32.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.jogamp</groupId>
+            <artifactId>gluegen</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/lib/gluegen-rt-2.2.4.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.jogamp</groupId>
+            <artifactId>gluegen-natives</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/lib/gluegen-rt-2.2.4-natives-windows-i586.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>media-natives</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/lib/jogl-all-2.2.4-natives-windows-i586.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>media</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/lib/jogl-all-2.2.4.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <repositories>

@@ -397,6 +397,15 @@ public class ContentPanel extends JPanel {
                 if(playerareashufflebutton.isFilled) {
                     shuffle = false;
                     player.getPlayer().setShuffle(false);
+                    try {
+                        PublicValues.spotifyplayer.tracks(true).next.clear();
+                        for(String s : Shuffle.before) {
+                            PublicValues.spotifyplayer.addToQueue(s);
+                        }
+                    }catch (Exception e2) {
+                        ConsoleLogging.Throwable(e2);
+                        ExceptionDialog.open(e2);
+                    }
                     if(PublicValues.theme.isDark()) {
                         playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shufflewhite.svg"));
                     }else{
@@ -406,6 +415,7 @@ public class ContentPanel extends JPanel {
                 }else{
                     shuffle = true;
                     player.getPlayer().setShuffle(true);
+                    Shuffle.makeShuffle();
                     playerareashufflebutton.isFilled = true;
                     playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shuffleselected.svg"));
                 }
