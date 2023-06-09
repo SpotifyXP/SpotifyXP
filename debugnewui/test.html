@@ -1,0 +1,16 @@
+<body>
+    <script>
+        var cla = (function() {
+            function initClass(...val) {
+                this.constructor = function(val) {
+                    
+                }
+                this.constructor(val);
+            }
+            return initClass;
+        }());
+        var t = new cla("Hello", "World", "We", "Are", "Parameters");
+        t.hellos();
+    </script>
+    <script src="framework.js">
+</body>
