@@ -9,6 +9,7 @@ import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
+import javafx.scene.effect.Light;
 import org.apache.hc.core5.http.ParseException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -48,6 +49,7 @@ public class HomePanel {
         track,
         album,
         artist,
+        episode,
         user,
         playlist
     }
@@ -148,6 +150,9 @@ public class HomePanel {
                                 }
                                 ContentPanel.artistPanel.contentPanel.setVisible(true);
                                 ContentPanel.artistPanelBackButton.setVisible(true);
+                                break;
+                            case episode:
+                                PublicValues.spotifyplayer.load(uri, true, ContentPanel.shuffle);
                                 break;
                             default:
                                 ContentPanel.showAdvancedSongPanel(uri, ct);

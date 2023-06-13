@@ -10,6 +10,7 @@ import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.beamngintegration.HttpService;
+import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
@@ -68,6 +69,8 @@ public class Initiator {
         SplashPanel.linfo.setText("Setting up logging...");
         PublicValues.logger.setColored(false);
         PublicValues.logger.setShowTime(false);
+        SplashPanel.linfo.setText("Loading Extensions...");
+        new Injector().autoInject();
         SplashPanel.linfo.setText("Setting up multilanguage support...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
@@ -237,7 +240,6 @@ public class Initiator {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
             }
         }
-
         SplashPanel.linfo.setText("Showing startup time...");
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide();

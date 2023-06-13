@@ -1,5 +1,8 @@
 Version 1.9.1 ToDo List:
 
-[ ] - Create an uninstaller for SpotifyXP
+[x] - Create an uninstaller for SpotifyXP
+[x] - Adding darkgreen theme
+[x] - Fix color issue
 [ ] - Fix shuffle
-[ ] - Implement auto injection of extensions
+[x] - Fix No enum constant com.spotifyxp.panels.HomePanel.ContentTypes.episode when clicking on episode in HomeTab
+[x] - Implement auto injection of extensions

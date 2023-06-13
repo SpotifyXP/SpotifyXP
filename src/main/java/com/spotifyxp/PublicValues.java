@@ -41,7 +41,7 @@ public class PublicValues {
     public static String releaseCandidate = "Public Beta";
     public static Theme theme = null;
     public static boolean foundSetupArgument = false;
-    public static Color globalFontColor = Color.white;
+    public static Color globalFontColor = Color.black;
     public static LyricsDialog lyricsDialog = null;
     public static Injector injector = new Injector();
     public static ContentPanel contentPanel;

@@ -1,5 +1,6 @@
 package com.spotifyxp.injector;
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
@@ -19,6 +20,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Injector {
+    public void autoInject() {
+        if(!new File(PublicValues.appLocation, "Extensions").exists()) {
+            new File(PublicValues.appLocation, "Extensions").mkdir();
+        }else{
+            for(File f : new File(PublicValues.appLocation, "Extensions").listFiles()) {
+                if(f.isFile()) {
+                    loadJarAt(f.getAbsolutePath());
+                }
+            }
+        }
+    }
     public void openInjectWindow(String path) {
         String openpath = path;
         if(path.equals("")) {
@@ -61,6 +73,7 @@ public class Injector {
             if(fv & fi) {
                 jarclass.getDeclaredMethod("init").invoke(t);
                 entry.loaded = true;
+                ConsoleLogging.info("Loaded Extension => " + entry.identifier + "-" + entry.version);
             }
         }catch (Exception e) {
             e.printStackTrace();
