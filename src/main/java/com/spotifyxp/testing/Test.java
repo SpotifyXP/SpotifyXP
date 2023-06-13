@@ -11,6 +11,7 @@ import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libBrowser;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.HomePanel;
+import com.spotifyxp.panels.SettingsPanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.PlayerUtils;
@@ -37,14 +38,6 @@ public class Test {
         //frame.setPreferredSize(new Dimension(800, 600));
         //frame.setVisible(true);
         //frame.pack();
-        new ConsoleLogging("Test");
-        ThemeLoader loader = new ThemeLoader();
-        loader.loadTheme("Light");
-        if(ThemeLoader.loadedTheme.isLight()) {
-            System.out.println("Theme is light");
-        }else{
-            System.out.println("Theme is Dark");
-        }
-        ThemeLoader.loadedTheme.styleElement(new JButton("Hello World Button").getClass());
+        SettingsPanel.triggerUninstall();
     }
 }

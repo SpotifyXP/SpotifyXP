@@ -224,19 +224,20 @@ public class Initiator {
         });
         t.start();
         SplashPanel.linfo.setText("Check updater...");
-        DoubleArrayList updater = new Updater().updateAvailable();
-        if(Boolean.parseBoolean(updater.getFirst(0).toString())) {
-            String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
+        Updater.UpdateInfo info = new Updater().updateAvailable();
+        if(info.updateAvailable) {
+            String version = info.version;
             ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
             new UpdaterDialog();
         }else{
-            if(Double.parseDouble((((GitHubAPI.Release) updater.getSecond(0)).version.replace("v", "")))<Double.parseDouble(PublicValues.version.replace("v", ""))) {
+            if(new Updater().isNightly()) {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
                 ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
             } else {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
             }
         }
+
         SplashPanel.linfo.setText("Showing startup time...");
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide();

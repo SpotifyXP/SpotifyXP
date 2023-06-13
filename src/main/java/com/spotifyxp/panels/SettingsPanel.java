@@ -2,12 +2,17 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.utils.Resources;
+import org.apache.xmlgraphics.io.Resource;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
@@ -100,15 +105,16 @@ public class SettingsPanel extends JPanel {
 
         settingsplaybackselectqualitylabel.setForeground(PublicValues.globalFontColor);
 
-        settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.equalizer.open"));
+        //settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.equalizer.open"));
+        settingsplaybackopenequalizerbutton = new JButton("Uninstall SpotifyXP");
         settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
         add(settingsplaybackopenequalizerbutton);
 
         settingsplaybackopenequalizerbutton.setForeground(PublicValues.globalFontColor);
 
-        settingsplaybackopenequalizerbutton.addActionListener(e -> JOptionPane.showConfirmDialog(null, "Equalizer not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION));
+        settingsplaybackopenequalizerbutton.addActionListener(e -> triggerUninstall());
 
-        settingsplaybackopenequalizerbutton.setVisible(false); //Equalizer will be implemented in the fure but propably first when I learned how this works
+        //settingsplaybackopenequalizerbutton.setVisible(false); //Equalizer will be implemented in the fure but propably first when I learned how this works
 
         settingspathsetbutton.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
@@ -144,5 +150,27 @@ public class SettingsPanel extends JPanel {
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
         PublicValues.config.write(ConfigValues.disableplayerstats.name, String.valueOf(settingsuidisableplayerstats.isSelected()));
         JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
+    }
+
+    public static void triggerUninstall() {
+        if(new File(PublicValues.tempPath, "SpotifyXP-Uninstaller.jar").exists()) {
+            new File(PublicValues.tempPath, "SpotifyXP-Uninstaller.jar").delete();
+        }
+        try {
+            Files.copy(new Resources(false).readToInputStream("SpotifyXP-Uninstaller.jar"), new File(PublicValues.tempPath, "SpotifyXP-Uninstaller.jar").toPath());
+        }catch (Exception ignored) {
+        }
+        ProcessBuilder builder;
+        if(System.getProperty("os.name").toLowerCase().contains("win")) {
+            builder = new ProcessBuilder("cmd.exe", "/c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
+        }else{
+            builder = new ProcessBuilder("bash", "-c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
+        }
+        try {
+            builder.start();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.exit(0);
     }
 }

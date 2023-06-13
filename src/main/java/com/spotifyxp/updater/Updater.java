@@ -2,20 +2,76 @@ package com.spotifyxp.updater;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.DoubleArrayList;
 import org.json.JSONObject;
 
 public class Updater {
-    public DoubleArrayList updateAvailable() {
-        GitHubAPI.Releases releases = new GitHubAPI.Releases();
-        GitHubAPI.Release release = releases.getLatest();
-        DoubleArrayList arrayList = new DoubleArrayList();
-        if(Integer.parseInt(release.version.replace("v", "").replace(".", ""))>Integer.parseInt(PublicValues.version.replace(".", ""))) {
-            arrayList.add(true, release);
-        }else{
-            arrayList.add(false, release);
+    public static class UpdateInfo {
+        public String version = "";
+        public boolean updateAvailable = false;
+        public String url = "";
+    }
+    public UpdateInfo updateAvailable() {
+        try {
+            GitHubAPI.Releases releases = new GitHubAPI.Releases();
+            GitHubAPI.Release release = releases.getLatest();
+            UpdateInfo info = new UpdateInfo();
+            int Releasemain = Integer.parseInt(release.version.replace("v", "").split("\\.")[0]);
+            ;
+            int Releasesub = Integer.parseInt(release.version.replace("v", "").split("\\.")[1]);
+            int Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
+            int Thismain = Integer.parseInt(PublicValues.version.split("\\.")[0]);
+            int Thissub = Integer.parseInt(PublicValues.version.split("\\.")[1]);
+            int Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+            if (Releasemain > Thismain) {
+                info.updateAvailable = true;
+            } else {
+                if (Releasesub > Thissub) {
+                    info.updateAvailable = true;
+                } else {
+                    if (Releaselast > Thislast) {
+                        info.updateAvailable = true;
+                    } else {
+                        info.updateAvailable = false;
+                    }
+                }
+            }
+            info.url = release.downloadURL;
+            info.version = release.version;
+            return info;
+        }catch (Exception e) {
+            return new UpdateInfo();
         }
-        return arrayList;
+    }
+
+    public boolean isNightly() {
+        try {
+            GitHubAPI.Releases releases = new GitHubAPI.Releases();
+            GitHubAPI.Release release = releases.getLatest();
+            int Releasemain = Integer.parseInt(release.version.replace("v", "").split("\\.")[0]);
+            int Releasesub = Integer.parseInt(release.version.replace("v", "").split("\\.")[1]);
+            int Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
+            int Thismain = Integer.parseInt(PublicValues.version.split("\\.")[0]);
+            int Thissub = Integer.parseInt(PublicValues.version.split("\\.")[1]);
+            int Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+            if (Releasemain < Thismain) {
+                return true;
+            } else {
+                if (Releasesub < Thissub) {
+                    return true;
+                } else {
+                    if (Releaselast < Thislast) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }catch (Exception e) {
+            return true;
+        }
     }
 
     public String getChangelogForNewest() {

@@ -9,6 +9,7 @@ public class SetupComplete implements Argument {
             @Override
             public void run() {
                 PublicValues.foundSetupArgument = true;
+                System.out.println("Found setup argument => " + PublicValues.foundSetupArgument);
             }
         };
     }

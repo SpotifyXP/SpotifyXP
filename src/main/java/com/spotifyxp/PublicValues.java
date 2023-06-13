@@ -22,8 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static libLanguage language = null;
-    public static String version = "1.9";
+    public static String version = "1.9.2";
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
+    public static String startmenupath = fileslocation + "/Roaming/Microsoft/Windows/Start Menu/Programs";
     public static String configlocation = fileslocation + "/config.toml";
     public static Player spotifyplayer = null;
     public static ConsoleLogging logger = new ConsoleLogging("SpotifyXP");
@@ -47,4 +48,5 @@ public class PublicValues {
     public static ArgParser argParser = new ArgParser();
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
     public static boolean isSteamDeckMode = false;
+    public static String tempPath = System.getenv("temp");
 }

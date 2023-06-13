@@ -41,7 +41,7 @@ public class ArgParser {
             for(Argument a : arguments) {
                 if(a.getName().equals(argument)) {
                     isvalid = true;
-                    a.runArgument(parameter);
+                    a.runArgument(parameter).run();
                     break;
                 }
             }

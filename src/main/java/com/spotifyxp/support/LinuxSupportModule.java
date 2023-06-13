@@ -8,5 +8,6 @@ public class LinuxSupportModule {
         PublicValues.fileslocation = "/home/" + System.getProperty("user.name") + "/SpotifyXP";
         PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
         PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
+        PublicValues.tempPath = "/tmp";
     }
 }

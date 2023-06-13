@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.DoubleArrayList;
 import javax.swing.*;
 import java.awt.*;
@@ -43,19 +44,7 @@ public class UpdaterDialog extends JFrame {
         updaterupdatebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DoubleArrayList updater = new Updater().updateAvailable();
-                String version = ((GitHubAPI.Release)updater.getSecond(0)).version;
-                try (BufferedInputStream in = new BufferedInputStream(new URL(((GitHubAPI.Release) updater.getSecond(0)).downloadURL).openStream());
-                     FileOutputStream fileOutputStream = new FileOutputStream("SpotifyXP.jar")) {
-                    byte[] dataBuffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                        fileOutputStream.write(dataBuffer, 0, bytesRead);
-                    }
-                } catch (IOException e2) {
-                    ExceptionDialog.open(e2);
-                    ConsoleLogging.Throwable(e2);
-                }
+                ConnectionUtils.openBrowser(new Updater().updateAvailable().url);
             }
         });
 

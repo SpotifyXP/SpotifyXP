@@ -203,6 +203,12 @@ public class Setup {
                     helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
                     helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
                 }
+                try {
+                    if (new File(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk").exists()) {
+                        Files.copy(Paths.get(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk"), Paths.get(PublicValues.startmenupath + "/SpotifyXP.lnk"), REPLACE_EXISTING);
+                    }
+                }catch (Exception ignored) {
+                }
                 progressBar.setValue(100);
                 PublicValues.foundSetupArgument = true;
                 switchToNext();

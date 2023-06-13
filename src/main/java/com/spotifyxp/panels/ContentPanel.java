@@ -1776,17 +1776,7 @@ public class ContentPanel extends JPanel {
         feedbackupdaterdownloadbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DoubleArrayList updater = new Updater().updateAvailable();
-                try (BufferedInputStream in = new BufferedInputStream(new URL(((GitHubAPI.Release) updater.getSecond(0)).downloadURL).openStream());
-                     FileOutputStream fileOutputStream = new FileOutputStream("SpotifyXP.jar")) {
-                    byte[] dataBuffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                        fileOutputStream.write(dataBuffer, 0, bytesRead);
-                    }
-                } catch (IOException e2) {
-                    ConsoleLogging.Throwable(e2);
-                }
+                ConnectionUtils.openBrowser(new Updater().updateAvailable().url);
             }
         });
         feedbackgithubbutton.addActionListener(new ActionListener() {
