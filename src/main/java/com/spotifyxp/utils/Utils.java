@@ -1,13 +1,15 @@
 package com.spotifyxp.utils;
 
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.io.IOUtils;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("IntegerDivisionInFloatingPointContext")
 public class Utils {
@@ -26,5 +28,26 @@ public class Utils {
     }
     public static int calculateRest(int from, int by) {
         return from - Math.round(from/by);
+    }
+
+    public static Set<Class> findAllClassesUsingClassLoader(String packageName) {
+        InputStream stream = ClassLoader.getSystemClassLoader()
+                .getResourceAsStream(packageName.replaceAll("[.]", "/"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        return reader.lines()
+                .filter(line -> line.endsWith(".class"))
+                .map(line -> getClass(line, packageName))
+                .collect(Collectors.toSet());
+    }
+
+    private static Class getClass(String className, String packageName) {
+        try {
+            return Class.forName(packageName + "."
+                    + className.substring(0, className.lastIndexOf('.')));
+        } catch (ClassNotFoundException e) {
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
+        }
+        return null;
     }
 }

@@ -25,6 +25,7 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.TraceMethod;
+import org.apache.commons.io.FileUtils;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,13 +43,13 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"CanBeFinal", "rawtypes", "Convert2Lambda"})
@@ -497,6 +498,8 @@ public class ContentPanel extends JPanel {
         playerareavolumeslider.setBounds(334, 76, 145, 13);
         playerarea.add(playerareavolumeslider);
 
+        playerareavolumeslider.setForeground(PublicValues.globalFontColor);
+
         playerareavolumecurrent.setText("10");
 
         playerareavolumeslider.setMinimum(0);
@@ -587,10 +590,13 @@ public class ContentPanel extends JPanel {
         playertitle.setBounds(109, 11, 168, 14);
         playerarea.add(playertitle);
 
+        playertitle.setForeground(PublicValues.globalFontColor);
 
         playerdescription = new JLabel(l.translate("ui.player.description"));
         playerdescription.setBounds(109, 40, 138, 20);
         playerarea.add(playerdescription);
+
+        playerdescription.setForeground(PublicValues.globalFontColor);
 
         playerarea.setDebug(true);
 
@@ -621,9 +627,13 @@ public class ContentPanel extends JPanel {
         playerplaytime.setBounds(244, 54, 57, 14);
         playerarea.add(playerplaytime);
 
+        playerplaytime.setForeground(PublicValues.globalFontColor);
+
         playerplaytimetotal = new JLabel("00:00");
         playerplaytimetotal.setBounds(506, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
+
+        playerplaytimetotal.setForeground(PublicValues.globalFontColor);
 
 
         heart = new JSVGPanel();
@@ -650,6 +660,8 @@ public class ContentPanel extends JPanel {
         heart.setImage(new Resources().readToInputStream("icons/heart.svg"));
 
         playerarea.add(heart.getJComponent());
+
+        playercurrenttime.setForeground(PublicValues.globalFontColor);
 
         playercurrenttime.addChangeListener(new ChangeListener() {
             @Override
@@ -707,9 +719,13 @@ public class ContentPanel extends JPanel {
         libraryshufflebutton.setBounds(41, 398, 321, 23);
         librarypane.add(libraryshufflebutton);
 
+        libraryshufflebutton.setForeground(PublicValues.globalFontColor);
+
         libraryplaybutton = new JButton(l.translate("ui.library.play"));
         libraryplaybutton.setBounds(408, 398, 321, 23);
         librarypane.add(libraryplaybutton);
+
+        libraryplaybutton.setForeground(PublicValues.globalFontColor);
 
         libraryscrollpane = new JScrollPane();
         libraryscrollpane.setBounds(0, 0, 784, 398);
@@ -727,6 +743,8 @@ public class ContentPanel extends JPanel {
                         l.translate("ui.library.songlist.songname"), l.translate("ui.library.songlist.filesize"), l.translate("ui.library.songlist.bitrate"), l.translate("ui.library.songlist.length")
                 }
         ));
+        librarysonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
+        librarysonglist.setForeground(PublicValues.globalFontColor);
         librarydefaulttablemodel = (DefaultTableModel) librarysonglist.getModel();
         librarysonglist.getColumnModel().getColumn(0).setPreferredWidth(347);
         librarysonglist.getColumnModel().getColumn(3).setPreferredWidth(51);
@@ -845,9 +863,11 @@ public class ContentPanel extends JPanel {
                         l.translate("ui.playlists.playlists.playlistname")
                 }
         ));
+        playlistsplayliststable.setForeground(PublicValues.globalFontColor);
         playlistsplayliststable.getColumnModel().getColumn(0).setPreferredWidth(623);
         playlistsplayliststable.setFillsViewportHeight(true);
         playlistsplayliststable.setColumnSelectionAllowed(true);
+        playlistsplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistsplaylistsscroll.setViewportView(playlistsplayliststable);
 
         playlistssonglist = new JPanel();
@@ -864,6 +884,7 @@ public class ContentPanel extends JPanel {
                 return false;
             }
         };
+        playlistssongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistssongtable.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
@@ -871,6 +892,7 @@ public class ContentPanel extends JPanel {
                         l.translate("ui.playlists.songslist.songtitle"), l.translate("ui.playlists.songslist.filesize"), l.translate("ui.playlists.songslist.bitrate"), l.translate("ui.playlists.songslist.length")
                 }
         ));
+        playlistssongtable.setForeground(PublicValues.globalFontColor);
         playlistssongtable.getColumnModel().getColumn(0).setPreferredWidth(363);
         playlistssongtable.getColumnModel().getColumn(1).setPreferredWidth(89);
         playlistssongtable.getColumnModel().getColumn(3).setPreferredWidth(96);
@@ -995,20 +1017,27 @@ public class ContentPanel extends JPanel {
         searchsearchfieldspanel.setBounds(0, 0, 784, 128);
         searchpane.add(searchsearchfieldspanel);
         searchsearchfieldspanel.setLayout(null);
+        searchsearchfieldspanel.setForeground(PublicValues.globalFontColor);
 
         searchartistlabel = new JLabel(l.translate("ui.search.searchfield.artist"));
         searchartistlabel.setHorizontalAlignment(SwingConstants.RIGHT);
         searchartistlabel.setBounds(30, 25, 46, 14);
         searchsearchfieldspanel.add(searchartistlabel);
 
+        searchartistlabel.setForeground(PublicValues.globalFontColor);
+
         searchsongtitlelabel = new JLabel(l.translate("ui.search.searchfield.title"));
         searchsongtitlelabel.setHorizontalAlignment(SwingConstants.RIGHT);
         searchsongtitlelabel.setBounds(10, 62, 66, 14);
         searchsearchfieldspanel.add(searchsongtitlelabel);
 
+        searchsongtitlelabel.setForeground(PublicValues.globalFontColor);
+
         searchclearfieldsbutton = new JButton(l.translate("ui.search.searchfield.button.clear"));
         searchclearfieldsbutton.setBounds(30, 94, 194, 23);
         searchsearchfieldspanel.add(searchclearfieldsbutton);
+
+        searchclearfieldsbutton.setForeground(PublicValues.globalFontColor);
 
         searchclearfieldsbutton.addActionListener(new ActionListener() {
             @Override
@@ -1021,6 +1050,8 @@ public class ContentPanel extends JPanel {
         searchfinditbutton = new JButton(l.translate("ui.search.searchfield.button.findit"));
         searchfinditbutton.setBounds(234, 94, 194, 23);
         searchsearchfieldspanel.add(searchfinditbutton);
+
+        searchfinditbutton.setForeground(PublicValues.globalFontColor);
 
         searchartistfield = new JTextField();
         searchartistfield.setBounds(86, 22, 356, 20);
@@ -1062,13 +1093,19 @@ public class ContentPanel extends JPanel {
         searchfilterexcludeexplicit.setBounds(6, 24, 130, 23);
         searchsearchfilterpanel.add(searchfilterexcludeexplicit);
 
+        searchfilterexcludeexplicit.setForeground(PublicValues.globalFontColor);
+
         searchfilterartist = new JRadioButton("Search Artists");
         searchfilterartist.setBounds(160, 23, 130, 23);
         searchsearchfilterpanel.add(searchfilterartist);
 
+        searchfilterartist.setForeground(PublicValues.globalFontColor);
+
         searchfiltertrack = new JRadioButton("Search Tracks");
         searchfiltertrack.setBounds(6, 50, 130, 23);
         searchsearchfilterpanel.add(searchfiltertrack);
+
+        searchfiltertrack.setForeground(PublicValues.globalFontColor);
 
         searchfiltertrack.setSelected(true);
 
@@ -1076,13 +1113,19 @@ public class ContentPanel extends JPanel {
         searchfilteralbum.setBounds(160, 50, 130, 23);
         searchsearchfilterpanel.add(searchfilteralbum);
 
+        searchfilteralbum.setForeground(PublicValues.globalFontColor);
+
         searchfilterplaylist = new JRadioButton("Search Playlists");
         searchfilterplaylist.setBounds(6, 75, 130, 23);
         searchsearchfilterpanel.add(searchfilterplaylist);
 
+        searchfilterplaylist.setForeground(PublicValues.globalFontColor);
+
         searchfiltershow = new JRadioButton("Search Shows");
         searchfiltershow.setBounds(160, 75, 130, 23);
         searchsearchfilterpanel.add(searchfiltershow);
+
+        searchfiltershow.setForeground(PublicValues.globalFontColor);
 
         searchfilterartist.addActionListener(new ActionListener() {
             @Override
@@ -1236,6 +1279,7 @@ public class ContentPanel extends JPanel {
         searchsonglist.getTableHeader().setReorderingAllowed(false);
         artistPanelBackButton = new JButton("Back");
         artistPanelBackButton.setBounds(0, 0, 89, 23);
+        artistPanelBackButton.setForeground(PublicValues.globalFontColor);
         artistPanelBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1377,6 +1421,8 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
+        searchsonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
+        searchsonglist.setForeground(PublicValues.globalFontColor);
         searchsonglist.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
@@ -1399,6 +1445,8 @@ public class ContentPanel extends JPanel {
         searchbackbutton.setBounds(0, 0, 89, 23);
         searchplaylistpanel.add(searchbackbutton);
 
+        searchbackbutton.setForeground(PublicValues.globalFontColor);
+
         searchplaylistscrollpanel = new JScrollPane();
         searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
         searchplaylistpanel.add(searchplaylistscrollpanel);
@@ -1409,6 +1457,8 @@ public class ContentPanel extends JPanel {
             }
         };
         searchplaylistscrollpanel.setViewportView(searchplaylisttable);
+        searchplaylisttable.setForeground(PublicValues.globalFontColor);
+        searchplaylisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
         searchplaylisttable.addMouseListener(new MouseAdapter() {
             @Override
@@ -1497,6 +1547,8 @@ public class ContentPanel extends JPanel {
                         l.translate("ui.hotlist.playlistlist.playlists")
                 }
         ));
+        hotlistplayliststable.setForeground(PublicValues.globalFontColor);
+        hotlistplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
         hotlistplayliststable.getColumnModel().getColumn(0).setPreferredWidth(623);
         hotlistplayliststable.setFillsViewportHeight(true);
         hotlistplayliststable.setColumnSelectionAllowed(true);
@@ -1549,6 +1601,8 @@ public class ContentPanel extends JPanel {
         hotlistsongstable.getColumnModel().getColumn(3).setPreferredWidth(96);
         hotlistsongstable.setFillsViewportHeight(true);
         hotlistsongstable.setColumnSelectionAllowed(true);
+        hotlistsongstable.setForeground(PublicValues.globalFontColor);
+        hotlistsongstable.getTableHeader().setForeground(PublicValues.globalFontColor);
         hotslistsongscrollpanel.setViewportView(hotlistsongstable);
         hotlistplayliststable.getTableHeader().setReorderingAllowed(false);
 
@@ -1581,15 +1635,6 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        if(!(PublicValues.theme == Theme.LEGACY)) {
-            try {
-                fetchHotlist();
-            } catch (RuntimeException exc) {
-                if(PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {
-                    JOptionPane.showConfirmDialog(frame, PublicValues.language.translate("ui.error.critical"), PublicValues.language.translate("ui.error.critical.title"), JOptionPane.OK_CANCEL_OPTION);
-                }
-            }
-        }
         hotlistbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1609,6 +1654,8 @@ public class ContentPanel extends JPanel {
         queueremovebutton = new JButton(l.translate("ui.queue.remove"));
         queueremovebutton.setBounds(0, 398, 784, 23);
         queuepane.add(queueremovebutton);
+
+        queueremovebutton.setForeground(PublicValues.globalFontColor);
 
         queuescrollpane = new JScrollPane();
         queuescrollpane.setBounds(0, 0, 784, 395);
@@ -1671,6 +1718,8 @@ public class ContentPanel extends JPanel {
         feedbackmakesurelabel.setBounds(10, 23, 690, 25);
         feedbackpane.add(feedbackmakesurelabel);
 
+        feedbackmakesurelabel.setForeground(PublicValues.globalFontColor);
+
         feedbackissuepanel = new JPanel();
         feedbackissuepanel.setBorder(new TitledBorder(null, l.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         feedbackissuepanel.setBounds(0, 333, 426, 88);
@@ -1681,13 +1730,19 @@ public class ContentPanel extends JPanel {
         feedbackviewissuesbutton.setBounds(10, 21, 188, 56);
         feedbackissuepanel.add(feedbackviewissuesbutton);
 
+        feedbackviewissuesbutton.setForeground(PublicValues.globalFontColor);
+
         feedbackcreateissuebutton = new JButton(l.translate("ui.feedback.issues.create"));
         feedbackcreateissuebutton.setBounds(227, 21, 188, 56);
         feedbackissuepanel.add(feedbackcreateissuebutton);
 
+        feedbackcreateissuebutton.setForeground(PublicValues.globalFontColor);
+
         feedbackgithubbutton = new JButton(l.translate("ui.feedback.github.open"));
         feedbackgithubbutton.setBounds(466, 355, 250, 55);
         feedbackpane.add(feedbackgithubbutton);
+
+        feedbackgithubbutton.setForeground(PublicValues.globalFontColor);
 
         feedbackupdatespanel = new JPanel();
         feedbackupdatespanel.setBorder(new TitledBorder(null, l.translate("ui.updater.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -1704,9 +1759,13 @@ public class ContentPanel extends JPanel {
         feedbackwillbemovedlabel.setBounds(10, 29, 327, 14);
         feedbackupdatespanel.add(feedbackwillbemovedlabel);
 
+        feedbackwillbemovedlabel.setForeground(PublicValues.globalFontColor);
+
         feedbackupdaterdownloadbutton = new JButton(l.translate("ui.updater.downloadnewest"));
         feedbackupdaterdownloadbutton.setBounds(10, 149, 230, 23);
         feedbackupdatespanel.add(feedbackupdaterdownloadbutton);
+
+        feedbackupdaterdownloadbutton.setForeground(PublicValues.globalFontColor);
         feedbackbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1831,6 +1890,10 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
+        if(PublicValues.theme == Theme.DARKGREEN) {
+            legacyswitch.setBackground(new Color(63, 63, 63));
+        }
+        legacyswitch.setForeground(PublicValues.globalFontColor);
         legacyswitch.setBounds(0, 111, 784, 450);
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
@@ -1845,13 +1908,15 @@ public class ContentPanel extends JPanel {
                 return frame.getWidth() / legacyswitch.getTabCount() - 2;
             }
         });
-        legacyswitch.setBackgroundAt(0, Color.white);
-        legacyswitch.setBackgroundAt(1, Color.white);
-        legacyswitch.setBackgroundAt(2, Color.white);
-        legacyswitch.setBackgroundAt(3, Color.white);
-        legacyswitch.setBackgroundAt(4, Color.white);
-        legacyswitch.setBackgroundAt(5, Color.white);
-        legacyswitch.setBackgroundAt(6, Color.white);
+        if(PublicValues.theme != Theme.DARKGREEN) {
+            legacyswitch.setBackgroundAt(0, Color.white);
+            legacyswitch.setBackgroundAt(1, Color.white);
+            legacyswitch.setBackgroundAt(2, Color.white);
+            legacyswitch.setBackgroundAt(3, Color.white);
+            legacyswitch.setBackgroundAt(4, Color.white);
+            legacyswitch.setBackgroundAt(5, Color.white);
+            legacyswitch.setBackgroundAt(6, Color.white);
+        }
         add(legacyswitch);
         legacyswitch.setSelectedIndex(0);
         homebutton.doClick();
@@ -2012,6 +2077,8 @@ public class ContentPanel extends JPanel {
         advancedbackbutton.setBounds(0, 0, 89, 23);
         advancedsongpanel.add(advancedbackbutton);
 
+        advancedbackbutton.setForeground(PublicValues.globalFontColor);
+
         advancedsongpanel.setVisible(false);
 
         advancedbackbutton.addActionListener(new ActionListener() {
@@ -2036,6 +2103,8 @@ public class ContentPanel extends JPanel {
                         l.translate("ui.search.songlist.songname"), l.translate("ui.search.songlist.filesize"), l.translate("ui.search.songlist.bitrate"), l.translate("ui.search.songlist.length")
                 }
         ));
+        advancedsongtable.setForeground(PublicValues.globalFontColor);
+        advancedsongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
         advancedscrollpanel = new JScrollPane();
         advancedscrollpanel.setBounds(0, 22, 784, 399);
@@ -2130,7 +2199,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        if(!(PublicValues.theme == Theme.LEGACY)) {
+        if(PublicValues.theme != Theme.LEGACY && PublicValues.theme != Theme.DARKGREEN) {
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -2148,15 +2217,79 @@ public class ContentPanel extends JPanel {
             countryCode = CountryCode.DE;
         }
         artistPanelBackButton.setVisible(false);
-        if(PublicValues.theme!=Theme.LEGACY) {
+        if(PublicValues.theme!=Theme.LEGACY && PublicValues.theme!=Theme.DARKGREEN) {
             add(tabpanel);
         }else{
             createLegacy();
         }
         SplashPanel.linfo.setText("Init Theme...");
         updateTheme();
+        SplashPanel.linfo.setText("Trying to restore play state...");
+        if(new File(PublicValues.fileslocation, "play.state").exists()) {
+            parseLastPlayState();
+            try {
+                if (!lastPlayState.uri.equals("")) {
+                    playerplaytime.setText(lastPlayState.playtime);
+                    playerplaytimetotal.setText(lastPlayState.playtimetotal);
+                    playercurrenttime.setMaximum(Integer.parseInt(lastPlayState.playerslidermax));
+                    PublicValues.spotifyplayer.load(lastPlayState.uri, false, shuffle);
+                    PlayerListener.locked = true;
+                    while(PlayerListener.locked) {
+                        Thread.sleep(99);
+                    }
+                    PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider)*1000);
+                    while(PlayerListener.locked) {
+                        Thread.sleep(99);
+                    }
+                    playercurrenttime.setValue(Integer.parseInt(lastPlayState.playtime));
+                }
+            }catch (Exception ignored) {
+            }
+        }
         SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
+    }
+    class LastPlayState {
+        public String uri;
+        public String playtimetotal;
+        public String playtime;
+        public String playerslider;
+        public String playerslidermax;
+    }
+    LastPlayState lastPlayState;
+    void parseLastPlayState() {
+        try {
+            LastPlayState state = new LastPlayState();
+            File playstate = new File(PublicValues.fileslocation, "play.state");
+            Scanner scan = new Scanner(playstate);
+            int read = 0;
+            while (scan.hasNextLine()) {
+                String data = scan.nextLine();
+                switch (read) {
+                    case 0:
+                        state.uri = data;
+                        break;
+                    case 1:
+                        state.playerslider = data;
+                        break;
+                    case 2:
+                        state.playtime = data;
+                        break;
+                    case 3:
+                        state.playtimetotal = data;
+                        break;
+                    case 4:
+                        state.playerslidermax = data;
+                        break;
+                }
+                read++;
+            }
+            scan.close();
+            lastPlayState = state;
+        } catch (FileNotFoundException e) {
+            ExceptionDialog.open(e);
+            ConsoleLogging.Throwable(e);
+        }
     }
     JPanel panel;
     JFrame overlay;
@@ -2330,6 +2463,7 @@ public class ContentPanel extends JPanel {
 
     public static void updateTheme() {
         switch (PublicValues.theme) {
+            case DARKGREEN:
             case DARK:
             case MacOSDark:
                 settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingswhite.svg"));
@@ -2410,7 +2544,7 @@ public class ContentPanel extends JPanel {
             playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatwhite.svg"));
             playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
         }
-        if(PublicValues.theme == Theme.LEGACY) {
+        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.DARKGREEN) {
             //Hide stylish buttons
             settingsbutton.getJComponent().setVisible(false);
             userbutton.getJComponent().setVisible(false);
@@ -2677,6 +2811,16 @@ public class ContentPanel extends JPanel {
         hotlistVisible = false;
         feedbackVisible = false;
     }
+    public static void saveCurrentState() {
+        try {
+            FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
+            writer.write(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum());
+            writer.close();
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
+        }
+    }
     void fetchHotlist() {
         JSONObject stuff = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/top/artists"));
         StringBuilder genres = new StringBuilder();
@@ -2808,7 +2952,7 @@ public class ContentPanel extends JPanel {
         settingsPanel = new SettingsPanel();
         settingsPanel.setBounds(0, 52, 784, 509);
         settingsPanel.setVisible(false);
-        if(PublicValues.theme == Theme.LEGACY) {
+        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.DARKGREEN) {
             mainframe.setJMenuBar(bar);
             mainframe.setPreferredSize(new Dimension(793, 620));
         }else{
@@ -2824,6 +2968,7 @@ public class ContentPanel extends JPanel {
                 mainframe.dispose();
             }
         });
+        mainframe.setForeground(Color.blue);
         mainframe.setVisible(true);
         mainframe.pack();
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;

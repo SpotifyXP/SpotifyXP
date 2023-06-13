@@ -32,14 +32,17 @@ public class PlayerListener implements Player.EventsListener {
     private final SpotifyAPI.Player pl;
     private final SpotifyAPI a;
     public static boolean pauseTimer = false;
+    public static boolean locked = true;
     class PlayerThread extends TimerTask {
         public void run() {
             if(!pauseTimer) {
-                try {
-                    ContentPanel.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
-                    ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
-                } catch (NullPointerException ex) {
-                    //No song is playing
+                if(!PublicValues.spotifyplayer.isPaused()) {
+                    try {
+                        ContentPanel.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
+                        ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
+                    } catch (NullPointerException ex) {
+                        //No song is playing
+                    }
                 }
             }
         }
@@ -135,6 +138,7 @@ public class PlayerListener implements Player.EventsListener {
                 ConsoleLogging.Throwable(e);
             }
         }
+        locked = false;
     }
 
     @Override
@@ -146,6 +150,7 @@ public class PlayerListener implements Player.EventsListener {
     public void onPlaybackPaused(@NotNull Player player, long l) {
         switch (PublicValues.theme) {
             case DARK:
+            case DARKGREEN:
             case MacOSDark:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
                 break;
@@ -167,6 +172,7 @@ public class PlayerListener implements Player.EventsListener {
     public void onPlaybackResumed(@NotNull Player player, long l) {
         switch (PublicValues.theme) {
             case DARK:
+            case DARKGREEN:
             case MacOSDark:
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
                 break;
@@ -195,6 +201,7 @@ public class PlayerListener implements Player.EventsListener {
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
         }
+        locked = false;
     }
 
     @Override
@@ -223,7 +230,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPanicState(@NotNull Player player) {
-        //timer.cancel();
+        ExceptionDialog.open(new UnknownError("PanicState in PlayerListener"));
     }
 
     @Override

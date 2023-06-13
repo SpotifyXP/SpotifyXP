@@ -59,6 +59,8 @@ public class HomePanel {
         homepanelmoduletext.setBounds(0, addCache + 11, 375, 24);
         content.add(homepanelmoduletext);
 
+        homepanelmoduletext.setForeground(PublicValues.globalFontColor);
+
         JScrollPane homepanelmodulescrollpanel = new JScrollPane();
         homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
         content.add(homepanelmodulescrollpanel);
@@ -69,6 +71,8 @@ public class HomePanel {
             }
         };
         homepanelmodulescrollpanel.setViewportView(homepanelmodulecontenttable);
+        homepanelmodulecontenttable.setForeground(PublicValues.globalFontColor);
+        homepanelmodulecontenttable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
         homepanelmodulecontenttable.setModel(new DefaultTableModel(
                 new Object[][] {
@@ -189,6 +193,8 @@ public class HomePanel {
             }
         };
         homepaneluserscrollpanel.setViewportView(homepanelusertable);
+        homepanelusertable.setForeground(PublicValues.globalFontColor);
+        homepanelusertable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
         homepanelusertable.setModel(new DefaultTableModel(
                 new Object[][] {
@@ -267,6 +273,7 @@ public class HomePanel {
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 16));
         homepanelgreetingstext.setBounds(0, 11, 375, 24);
         content.add(homepanelgreetingstext);
+        homepanelgreetingstext.setForeground(PublicValues.globalFontColor);
 
         for(UnofficialSpotifyAPI.HomeTabAlbum album : tab.firstSection.albums) {
             usersuricache.add(album.uri);

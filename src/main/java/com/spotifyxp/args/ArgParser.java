@@ -12,6 +12,7 @@ public class ArgParser {
         arguments.add(new Debug());
         arguments.add(new Language());
         arguments.add(new SetupComplete());
+        arguments.add(new SteamDeckMode());
     }
     public void printHelp() {
         System.out.println("SpotifyXP - " + PublicValues.version + "\n");

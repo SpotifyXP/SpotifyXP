@@ -17,6 +17,7 @@ import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.LinuxSupportModule;
+import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.updater.UpdaterDialog;
@@ -40,7 +41,7 @@ public class Initiator {
     static DefThread hook = new DefThread(new Runnable() {
         @Override
         public void run() {
-
+            ContentPanel.saveCurrentState();
         }
     });
     public static DefThread thread = new DefThread(new Runnable() {
@@ -133,12 +134,17 @@ public class Initiator {
             case "UGLY":
                 PublicValues.theme = Theme.UGLY;
                 break;
+            case "DARKGREEN":
+                PublicValues.globalFontColor = Colors.green;
+                PublicValues.theme = Theme.DARKGREEN;
+                break;
             default:
                 PublicValues.theme = Theme.DARK;
                 break;
         }
         boolean unsupported = false;
         switch (PublicValues.theme) {
+            case DARKGREEN:
             case DARK:
                 try {
                     UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -236,5 +242,8 @@ public class Initiator {
         SplashPanel.hide();
         panel.open();
         new HttpService();
+        if(PublicValues.isSteamDeckMode) {
+            new SteamDeckSupportModule();
+        }
     }
 }

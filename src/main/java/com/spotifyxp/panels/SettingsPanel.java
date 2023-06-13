@@ -29,6 +29,8 @@ public class SettingsPanel extends JPanel {
         settingsbrowserlabel.setBounds(10, 11, 206, 29);
         add(settingsbrowserlabel);
 
+        settingsbrowserlabel.setForeground(PublicValues.globalFontColor);
+
         settingsbrowserpath = new JTextField();
         settingsbrowserpath.setBounds(81, 54, 364, 20);
         add(settingsbrowserpath);
@@ -39,21 +41,31 @@ public class SettingsPanel extends JPanel {
         settingsbrowserpathlable.setBounds(10, 57, 46, 14);
         add(settingsbrowserpathlable);
 
+        settingsbrowserpathlable.setForeground(PublicValues.globalFontColor);
+
         settingspathsetbutton = new JButton(PublicValues.language.translate("ui.settings.mypal.path.choosebutton"));
         settingspathsetbutton.setBounds(478, 53, 89, 23);
         add(settingspathsetbutton);
+
+        settingspathsetbutton.setForeground(PublicValues.globalFontColor);
 
         JLabel settingsuilabel = new JLabel(PublicValues.language.translate("ui.settings.ui.label"));
         settingsuilabel.setBounds(10, 122, 89, 14);
         add(settingsuilabel);
 
+        settingsuilabel.setForeground(PublicValues.globalFontColor);
+
         settingsdisableexceptions = new JRadioButton(PublicValues.language.translate("general.exception.hide"));
         settingsdisableexceptions.setBounds(160, 155, 140, 23);
         add(settingsdisableexceptions);
 
+        settingsdisableexceptions.setForeground(PublicValues.globalFontColor);
+
         settingsuidisableplayerstats = new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats"));
         settingsuidisableplayerstats.setBounds(28, 155, 199, 23);
         add(settingsuidisableplayerstats);
+
+        settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
         settingsuiselecttheme = new JComboBox();
         for(Enum e : com.spotifyxp.designs.Theme.values()) {
@@ -67,9 +79,13 @@ public class SettingsPanel extends JPanel {
         settingsuithemelabel.setBounds(287, 159, 120, 14);
         add(settingsuithemelabel);
 
+        settingsuithemelabel.setForeground(PublicValues.globalFontColor);
+
         JLabel settingsplaybacklabel = new JLabel(PublicValues.language.translate("ui.settings.playback.label"));
         settingsplaybacklabel.setBounds(10, 224, 71, 14);
         add(settingsplaybacklabel);
+
+        settingsplaybacklabel.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackselectquality = new JComboBox(new String[] {
                 "Normal", "High", "Very_High"
@@ -82,9 +98,13 @@ public class SettingsPanel extends JPanel {
         settingsplaybackselectqualitylabel.setBounds(28, 259, 120, 14);
         add(settingsplaybackselectqualitylabel);
 
+        settingsplaybackselectqualitylabel.setForeground(PublicValues.globalFontColor);
+
         settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.equalizer.open"));
         settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
         add(settingsplaybackopenequalizerbutton);
+
+        settingsplaybackopenequalizerbutton.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackopenequalizerbutton.addActionListener(e -> JOptionPane.showConfirmDialog(null, "Equalizer not implemented yet", "ToDo", JOptionPane.OK_CANCEL_OPTION));
 

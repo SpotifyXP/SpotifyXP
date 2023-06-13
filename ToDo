@@ -1,5 +1,5 @@
-[ ] - Clean up code
-[x] - Implement SVG fully
-[x] - Better Translation (make language selectable)
-[x] - Fix JSVGPanel not drawing normal images
-[ ] - Fix shuffle (propably some mistake when copying deps code)
+Version 1.9.1 ToDo List:
+
+[ ] - Create an uninstaller for SpotifyXP
+[ ] - Fix shuffle
+[ ] - Implement auto injection of extensions

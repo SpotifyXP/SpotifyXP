@@ -43,6 +43,8 @@ public class ArtistPanel extends JPanel {
         artistpopularlabel.setBounds(10, 291, 137, 27);
         add(artistpopularlabel);
 
+        artistpopularlabel.setForeground(PublicValues.globalFontColor);
+
         artistpopularscrollpane = new JScrollPane();
         artistpopularscrollpane.setBounds(10, 320, 780, 277);
         add(artistpopularscrollpane);
@@ -79,6 +81,8 @@ public class ArtistPanel extends JPanel {
         artistalbumlabel.setBounds(10, 642, 102, 14);
         add(artistalbumlabel);
 
+        artistalbumlabel.setForeground(PublicValues.globalFontColor);
+
         artistimage = new JImagePanel();
         artistimage.setBounds(288, 11, 155, 153);
         add(artistimage, new Integer(3));
@@ -87,6 +91,8 @@ public class ArtistPanel extends JPanel {
         artisttitle.setHorizontalAlignment(SwingConstants.CENTER);
         artisttitle.setBounds(0, 213, 780, 64);
         add(artisttitle, new Integer(2));
+
+        artisttitle.setForeground(PublicValues.globalFontColor);
 
         artistbackgroundimage = new JImagePanel();
         artistbackgroundimage.setBounds(0, 0, 780, 277);
@@ -99,6 +105,9 @@ public class ArtistPanel extends JPanel {
                 ClipboardUtil.set(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()));
             }
         });
+
+        artistalbumalbumtable.setForeground(PublicValues.globalFontColor);
+        artistalbumalbumtable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
         artistalbumalbumtable.addMouseListener(new MouseAdapter() {
             @Override
@@ -131,6 +140,8 @@ public class ArtistPanel extends JPanel {
                         PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
                 }
         ));
+        artistpopularsonglist.setForeground(PublicValues.globalFontColor);
+        artistpopularsonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
 
         artistalbumalbumtable.setModel(new DefaultTableModel(
                 new Object[][] {

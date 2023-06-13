@@ -16,6 +16,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
@@ -39,9 +40,11 @@ public class PublicValues {
     public static String releaseCandidate = "Public Beta";
     public static Theme theme = null;
     public static boolean foundSetupArgument = false;
+    public static Color globalFontColor = Color.white;
     public static LyricsDialog lyricsDialog = null;
     public static Injector injector = new Injector();
     public static ContentPanel contentPanel;
     public static ArgParser argParser = new ArgParser();
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
+    public static boolean isSteamDeckMode = false;
 }

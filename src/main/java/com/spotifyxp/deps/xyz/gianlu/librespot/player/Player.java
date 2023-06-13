@@ -236,6 +236,10 @@ public class Player implements Closeable {
         else handlePause();
     }
 
+    public boolean isPaused() {
+        return state.isPaused();
+    }
+
     public void pause() {
         handlePause();
     }

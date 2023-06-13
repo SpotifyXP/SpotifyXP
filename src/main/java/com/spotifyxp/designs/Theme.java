@@ -8,7 +8,8 @@ public enum Theme {
     MacOSLight("MacOSLight", true),
     QuaQua("QuaQua", true),
     LEGACY("Legacy", true),
-    UGLY("Ugly", true);
+    UGLY("Ugly", true),
+    DARKGREEN("DarkGreen", false);
     final String s;
     final boolean isLight;
     Theme(String toselect, boolean light) {
