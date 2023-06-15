@@ -8,6 +8,7 @@ import com.spotifyxp.betaui.BETAUIService;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.injector.Injector;
+import com.spotifyxp.injector.InjectorAPI;
 import com.spotifyxp.lib.libBrowser;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.HomePanel;
@@ -15,6 +16,7 @@ import com.spotifyxp.panels.SettingsPanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
+import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.PlayerUtils;
 import com.spotifyxp.utils.Token;
 import org.apache.commons.httpclient.Header;
@@ -32,14 +34,14 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        //new BETAUIService();
-        //JFrame frame = new JFrame("Test");
-        //libBrowser browser = new libBrowser("http://127.0.0.1:6969/app.html", frame);
-        //frame.getContentPane().add(browser.getComponent());
-        //frame.setPreferredSize(new Dimension(800, 600));
-        //frame.setVisible(true);
-        //frame.pack();
-        ThemeLoader loader = new ThemeLoader();
-        loader.loadTheme("Dark");
+        InjectorAPI api = new InjectorAPI();
+        api.parseExtensions();
+        long size = api.getExtensionSize(api.getExtension("Hello").location);
+        api.downloadExtension(api.getExtension("Hello").location, new InjectorAPI.ProgressRunnable() {
+            @Override
+            public void run(long filesizeDownloaded) {
+                System.out.println("Downloaded " + filesizeDownloaded + "/" + size);
+            }
+        });
     }
 }

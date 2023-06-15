@@ -22,9 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static libLanguage language = null;
-    public static String version = "1.9.2";
+    public static String version = "2.0.0";
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
-    public static String startmenupath = fileslocation + "/Roaming/Microsoft/Windows/Start Menu/Programs";
+    public static String startmenupath = System.getenv("appdata") + "/Microsoft/Windows/Start Menu/Programs";
     public static String configlocation = fileslocation + "/config.toml";
     public static Player spotifyplayer = null;
     public static ConsoleLogging logger = new ConsoleLogging("SpotifyXP");

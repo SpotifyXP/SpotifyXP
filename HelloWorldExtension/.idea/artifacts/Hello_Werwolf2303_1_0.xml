@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Hello-Werwolf2303-1.0">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hello_Werwolf2303_1_0</output-path>
+    <root id="archive" name="Hello-Werwolf2303-1.0.jar">
+      <element id="module-output" name="HelloWorldExtension" />
+    </root>
+  </artifact>
+</component>

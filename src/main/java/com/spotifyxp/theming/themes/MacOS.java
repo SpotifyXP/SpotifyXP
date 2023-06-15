@@ -9,7 +9,7 @@ import javax.swing.*;
 public class MacOS implements Theme {
     @Override
     public String getAuthor() {
-        return "Werwolf2303";
+        return "Werwolf2303 [NO UPDATES]";
     }
 
     @Override

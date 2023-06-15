@@ -32,6 +32,9 @@ import static org.apache.commons.io.IOUtils.DEFAULT_BUFFER_SIZE;
 public class Setup {
     public static JFrame setupframe = new JFrame();
     public Setup() {
+        if(new Updater().isNightly()) {
+            return;
+        }
         displaySetup();
     }
     public static SetupState setupState = SetupState.WELCOME;
@@ -207,7 +210,8 @@ public class Setup {
                     if (new File(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk").exists()) {
                         Files.copy(Paths.get(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk"), Paths.get(PublicValues.startmenupath + "/SpotifyXP.lnk"), REPLACE_EXISTING);
                     }
-                }catch (Exception ignored) {
+                }catch (Exception r) {
+                    r.printStackTrace();
                 }
                 progressBar.setValue(100);
                 PublicValues.foundSetupArgument = true;

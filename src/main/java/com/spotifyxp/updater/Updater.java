@@ -2,6 +2,7 @@ package com.spotifyxp.updater;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.deps.com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.DoubleArrayList;
@@ -19,12 +20,19 @@ public class Updater {
             GitHubAPI.Release release = releases.getLatest();
             UpdateInfo info = new UpdateInfo();
             int Releasemain = Integer.parseInt(release.version.replace("v", "").split("\\.")[0]);
-            ;
             int Releasesub = Integer.parseInt(release.version.replace("v", "").split("\\.")[1]);
-            int Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
+            int Releaselast = 0;
+            try {
+                Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
+            }catch (Exception ignored) {
+            }
             int Thismain = Integer.parseInt(PublicValues.version.split("\\.")[0]);
             int Thissub = Integer.parseInt(PublicValues.version.split("\\.")[1]);
-            int Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+            int Thislast = 0;
+            try {
+                Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+            }catch (Exception ignored) {
+            }
             if (Releasemain > Thismain) {
                 info.updateAvailable = true;
             } else {
@@ -52,10 +60,18 @@ public class Updater {
             GitHubAPI.Release release = releases.getLatest();
             int Releasemain = Integer.parseInt(release.version.replace("v", "").split("\\.")[0]);
             int Releasesub = Integer.parseInt(release.version.replace("v", "").split("\\.")[1]);
-            int Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
+            int Releaselast = 0;
+            try {
+                Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
+            }catch (Exception ignored) {
+            }
             int Thismain = Integer.parseInt(PublicValues.version.split("\\.")[0]);
             int Thissub = Integer.parseInt(PublicValues.version.split("\\.")[1]);
-            int Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+            int Thislast = 0;
+            try {
+                Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+            }catch (Exception ignored) {
+            }
             if (Releasemain < Thismain) {
                 return true;
             } else {

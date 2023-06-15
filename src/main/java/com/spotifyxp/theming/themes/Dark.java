@@ -10,7 +10,7 @@ import java.awt.*;
 public class Dark implements Theme {
     @Override
     public String getAuthor() {
-        return "Werwolf2303";
+        return "Werwolf2303 [NO UPDATES]";
     }
 
     @Override

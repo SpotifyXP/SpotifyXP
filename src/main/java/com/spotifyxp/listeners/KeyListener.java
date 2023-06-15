@@ -61,8 +61,8 @@ public class KeyListener {
                                 previouspressed = false;
 
                             }else {
+                                if(ContentPanel.pressedCTRL) ContentPanel.frame.setResizable(false);
                                 ContentPanel.pressedCTRL = false;
-                                ContentPanel.frame.setResizable(false);
                             }
                         }
                     }
