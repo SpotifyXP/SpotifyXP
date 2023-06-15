@@ -6,7 +6,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
-import com.spotifyxp.designs.Theme;
+import com.spotifyxp.theming.Theme;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;

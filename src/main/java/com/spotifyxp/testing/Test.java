@@ -13,6 +13,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.SettingsPanel;
 import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.PlayerUtils;
 import com.spotifyxp.utils.Token;
@@ -38,6 +39,7 @@ public class Test {
         //frame.setPreferredSize(new Dimension(800, 600));
         //frame.setVisible(true);
         //frame.pack();
-        SettingsPanel.triggerUninstall();
+        ThemeLoader loader = new ThemeLoader();
+        loader.loadTheme("Dark");
     }
 }

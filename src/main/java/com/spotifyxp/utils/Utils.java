@@ -50,4 +50,8 @@ public class Utils {
         }
         return null;
     }
+
+    public static String getClassName(Class c) {
+        return c.getName().split("\\.")[c.getName().split("\\.").length-1];
+    }
 }

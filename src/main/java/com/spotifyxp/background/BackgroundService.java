@@ -38,39 +38,5 @@ public class BackgroundService {
         catch (Exception e) {
             ConsoleLogging.Throwable(e);
         }
-        startInternetListener();
-    }
-
-    public LastType lastType = LastType.INTERNET;
-
-    public static enum LastType {
-        INTERNET,
-        NO_INTERNET;
-    }
-
-    public void startInternetListener() {
-        Runnable internetListenerRunnable = new Runnable() {
-            public void run() {
-                try {
-                    URL url = new URL("https://www.apple.com/library/test/success.html");
-                    URLConnection connection = url.openConnection();
-                    connection.connect();
-                    if(lastType!=LastType.INTERNET) {
-                        BackgroundService.trayDialog.getTrayIcon().displayMessage(PublicValues.language.translate("message.connection.title"), PublicValues.language.translate("message.connection"), TrayIcon.MessageType.INFO);
-                        ContentPanel.toggleNoInternet();
-                    }
-                    lastType = LastType.INTERNET;
-                } catch (Exception e) {
-                    if(lastType!=LastType.NO_INTERNET) {
-                        BackgroundService.trayDialog.getTrayIcon().displayMessage(PublicValues.language.translate("message.noconnection.title"), PublicValues.language.translate("message.noconnection"), TrayIcon.MessageType.ERROR);
-                        ContentPanel.toggleNoInternet();
-                    }
-                    lastType = LastType.NO_INTERNET;
-                }
-            }
-        };
-
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        //executor.scheduleAtFixedRate(internetListenerRunnable, 0, 120, TimeUnit.MILLISECONDS); Deactivated for performance reasons
     }
 }

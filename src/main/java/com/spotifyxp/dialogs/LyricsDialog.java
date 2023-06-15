@@ -56,7 +56,7 @@ public class LyricsDialog {
                     @Override
                     public void windowClosing(WindowEvent e) {
                         super.windowClosing(e);
-                        if (PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
+                        if (PublicValues.theme.isLight()) {
                             playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
                         } else {
                             playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));

@@ -1,6 +1,10 @@
 package com.spotifyxp.theming.themes;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.Theme;
+
+import javax.swing.*;
 import java.awt.*;
 
 public class Dark implements Theme {
@@ -11,11 +15,15 @@ public class Dark implements Theme {
 
     @Override
     public boolean isLight() {
-        return true;
+        return false;
     }
 
     @Override
-    public void styleElement(Class component) {
-        System.out.println("Execute styleElement");
+    public void initTheme() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            ConsoleLogging.Throwable(e);
+        }
     }
 }

@@ -10,6 +10,7 @@ import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.beamngintegration.HttpService;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -19,6 +20,8 @@ import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.LinuxSupportModule;
 import com.spotifyxp.support.SteamDeckSupportModule;
+import com.spotifyxp.theming.ThemeLoader;
+import com.spotifyxp.theming.themes.Ugly;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.updater.UpdaterDialog;
@@ -115,76 +118,17 @@ public class Initiator {
         SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
         SplashPanel.linfo.setText("Init Themes...");
-        switch(PublicValues.config.get(ConfigValues.theme.name)) {
-            case "QUAQUA":
-                PublicValues.theme = Theme.QuaQua;
-                break;
-            case "MACOSDARK":
-                PublicValues.theme = Theme.MacOSDark;
-                break;
-            case "MACOSLIGHT":
-                PublicValues.theme = Theme.MacOSLight;
-                break;
-            case "LIGHT":
-                PublicValues.theme = Theme.LIGHT;
-                break;
-            case "WINDOWS":
-                PublicValues.theme = Theme.WINDOWS;
-                break;
-            case "LEGACY":
-                PublicValues.theme = Theme.LEGACY;
-                break;
-            case "UGLY":
-                PublicValues.theme = Theme.UGLY;
-                break;
-            case "DARKGREEN":
-                PublicValues.globalFontColor = Colors.green;
-                PublicValues.theme = Theme.DARKGREEN;
-                break;
-            default:
-                PublicValues.theme = Theme.DARK;
-                break;
-        }
-        boolean unsupported = false;
-        switch (PublicValues.theme) {
-            case DARKGREEN:
-            case DARK:
-                try {
-                    UIManager.setLookAndFeel(new FlatDarkLaf());
-                } catch (UnsupportedLookAndFeelException e) {
-                    unsupported = true;
-                    ConsoleLogging.Throwable(e);
-                }
-                break;
-            case LIGHT:
-                try {
-                    UIManager.setLookAndFeel(new FlatLightLaf());
-                } catch (UnsupportedLookAndFeelException e) {
-                    unsupported = true;
-                    ConsoleLogging.Throwable(e);
-                }
-                break;
-            case WINDOWS:
-            case LEGACY:
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (RuntimeException | UnsupportedLookAndFeelException | ClassNotFoundException |
-                         InstantiationException | IllegalAccessException e) {
-                    unsupported = true;
-                    ConsoleLogging.Throwable(e);
-                }
-                break;
-            case QuaQua:
-                try {
-                    UIManager.setLookAndFeel(new QuaquaLookAndFeel());
-                } catch (UnsupportedLookAndFeelException e) {
-                    unsupported = true;
-                    ConsoleLogging.Throwable(e);
-                }
-                break;
-        }
-        if(unsupported) {
-            ConsoleLogging.error("The theme you selected is not supported! Setting theme to ugly");
+        ThemeLoader loader = new ThemeLoader();
+        try {
+            loader.loadTheme(PublicValues.config.get(ConfigValues.theme.name));
+        } catch (ThemeLoader.UnknownThemeException e) {
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
+            try {
+                loader.loadTheme("Ugly");
+            }catch (Exception e2) {
+                GraphicalMessage.bug("Can't load any theme");
+            }
         }
         SplashPanel.linfo.setText("Parsing audio quality info...");
         try {

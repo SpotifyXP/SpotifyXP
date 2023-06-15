@@ -42,6 +42,7 @@ public class KeyListener {
                         }
                     }
                     if (globalKeyEvent.isControlPressed()) {
+                        if(!ContentPanel.pressedCTRL) ContentPanel.frame.setResizable(true);
                         ContentPanel.pressedCTRL = true;
                     }
                 }
@@ -61,6 +62,7 @@ public class KeyListener {
 
                             }else {
                                 ContentPanel.pressedCTRL = false;
+                                ContentPanel.frame.setResizable(false);
                             }
                         }
                     }

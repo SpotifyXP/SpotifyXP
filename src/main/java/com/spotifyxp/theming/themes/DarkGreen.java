@@ -1,13 +1,14 @@
 package com.spotifyxp.theming.themes;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.Theme;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Light implements Theme {
+public class DarkGreen implements Theme {
     @Override
     public String getAuthor() {
         return "Werwolf2303";
@@ -15,15 +16,16 @@ public class Light implements Theme {
 
     @Override
     public boolean isLight() {
-        return true;
+        return false;
     }
 
     @Override
     public void initTheme() {
         try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException e) {
             ConsoleLogging.Throwable(e);
         }
+        PublicValues.globalFontColor = Color.green;
     }
 }

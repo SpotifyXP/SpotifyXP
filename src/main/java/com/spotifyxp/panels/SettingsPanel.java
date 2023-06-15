@@ -2,7 +2,10 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.theming.Theme;
+import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.Resources;
+import com.spotifyxp.utils.Utils;
 import org.apache.xmlgraphics.io.Resource;
 
 import javax.swing.*;
@@ -73,8 +76,8 @@ public class SettingsPanel extends JPanel {
         settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
         settingsuiselecttheme = new JComboBox();
-        for(Enum e : com.spotifyxp.designs.Theme.values()) {
-            ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement(((com.spotifyxp.designs.Theme)e).getAsString());
+        for(Theme theme : ThemeLoader.availableThemes) {
+            ((DefaultComboBoxModel)settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
         }
         settingsuiselecttheme.setBounds(442, 155, 230, 22);
         add(settingsuiselecttheme);
@@ -146,7 +149,7 @@ public class SettingsPanel extends JPanel {
                 break;
         }
         PublicValues.config.write(ConfigValues.hideExceptions.name, String.valueOf(settingsdisableexceptions.isSelected()));
-        PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().toUpperCase());
+        PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
         PublicValues.config.write(ConfigValues.disableplayerstats.name, String.valueOf(settingsuidisableplayerstats.isSelected()));
         JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);

@@ -14,6 +14,8 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
+import com.spotifyxp.theming.themes.DarkGreen;
+import com.spotifyxp.theming.themes.Legacy;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.PublicValues;
@@ -407,7 +409,7 @@ public class ContentPanel extends JPanel {
                         ConsoleLogging.Throwable(e2);
                         ExceptionDialog.open(e2);
                     }
-                    if(PublicValues.theme.isDark()) {
+                    if(!PublicValues.theme.isLight()) {
                         playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shufflewhite.svg"));
                     }else{
                         playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shuffledark.svg"));
@@ -428,7 +430,7 @@ public class ContentPanel extends JPanel {
                 super.mouseClicked(e);
                 if(playerarearepeatingbutton.isFilled) {
                     player.getPlayer().setRepeat(false, false);
-                    if(PublicValues.theme.isDark()) {
+                    if(!PublicValues.theme.isLight()) {
                         playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatwhite.svg"));
                     }else{
                         playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatdark.svg"));
@@ -460,7 +462,7 @@ public class ContentPanel extends JPanel {
                     }
                     if (playerarealyricsbutton.isFilled) {
                         PublicValues.lyricsDialog.close();
-                        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
+                        if(PublicValues.theme.isLight()) {
                             playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
                         }else{
                             playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
@@ -473,7 +475,7 @@ public class ContentPanel extends JPanel {
                         }
                     }
                 }catch (NullPointerException e2) {
-                    if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
+                    if(PublicValues.theme.isLight()) {
                         playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
                     }else{
                         playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
@@ -484,7 +486,7 @@ public class ContentPanel extends JPanel {
         });
 
         playerareavolumeicon = new JSVGPanel();
-        if(PublicValues.theme == Theme.LEGACY) {
+        if(PublicValues.theme instanceof Legacy) {
             playerareavolumeicon.setSVG(false);
         }
         playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
@@ -511,7 +513,7 @@ public class ContentPanel extends JPanel {
         playerareavolumeslider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(PublicValues.theme == Theme.LEGACY) {
+                if(PublicValues.theme instanceof Legacy) {
                     playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
                     if (playerareavolumeslider.getValue() == 0) {
                         playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.png"));
@@ -519,7 +521,7 @@ public class ContentPanel extends JPanel {
                         playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
                     }
                 }else {
-                    if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {
+                    if (PublicValues.theme.isLight()) {
                         playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
                         if (playerareavolumeslider.getValue() == 0) {
                             playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.svg"));
@@ -1799,25 +1801,6 @@ public class ContentPanel extends JPanel {
         });
     }
     static boolean tnitoggle = false;
-    public static void toggleNoInternet() {
-        if(!tnitoggle) {
-            if(PublicValues.theme == Theme.LEGACY) {
-                legacyswitch.setVisible(false);
-            }else {
-                PublicValues.contentPanel.setButtonsHidden();
-                tabpanel.setVisible(false);
-            }
-            tnitoggle = true;
-        }else{
-            if(PublicValues.theme == Theme.LEGACY) {
-                legacyswitch.setVisible(true);
-            }else {
-                PublicValues.contentPanel.setButtonsVisible();
-                tabpanel.setVisible(true);
-            }
-            tnitoggle = false;
-        }
-    }
     void createLegacy() {
         JFrame dialog = new JFrame();
         playerarea.addMouseListener(new MouseAdapter() {
@@ -1880,7 +1863,7 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        if(PublicValues.theme == Theme.DARKGREEN) {
+        if(PublicValues.theme instanceof DarkGreen) {
             legacyswitch.setBackground(new Color(63, 63, 63));
         }
         legacyswitch.setForeground(PublicValues.globalFontColor);
@@ -1898,7 +1881,7 @@ public class ContentPanel extends JPanel {
                 return frame.getWidth() / legacyswitch.getTabCount() - 2;
             }
         });
-        if(PublicValues.theme != Theme.DARKGREEN) {
+        if(!(PublicValues.theme instanceof DarkGreen)) {
             legacyswitch.setBackgroundAt(0, Color.white);
             legacyswitch.setBackgroundAt(1, Color.white);
             legacyswitch.setBackgroundAt(2, Color.white);
@@ -2189,7 +2172,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        if(PublicValues.theme != Theme.LEGACY && PublicValues.theme != Theme.DARKGREEN) {
+        if(!(PublicValues.theme instanceof Legacy) && !(PublicValues.theme instanceof DarkGreen)) {
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -2197,6 +2180,9 @@ public class ContentPanel extends JPanel {
                 }
             });
             t.start();
+            add(tabpanel);
+        }else{
+            createLegacy();
         }
 
         try {
@@ -2207,11 +2193,6 @@ public class ContentPanel extends JPanel {
             countryCode = CountryCode.DE;
         }
         artistPanelBackButton.setVisible(false);
-        if(PublicValues.theme!=Theme.LEGACY && PublicValues.theme!=Theme.DARKGREEN) {
-            add(tabpanel);
-        }else{
-            createLegacy();
-        }
         SplashPanel.linfo.setText("Init Theme...");
         updateTheme();
         SplashPanel.linfo.setText("Trying to restore play state...");
@@ -2452,89 +2433,48 @@ public class ContentPanel extends JPanel {
     }
 
     public static void updateTheme() {
-        switch (PublicValues.theme) {
-            case DARKGREEN:
-            case DARK:
-            case MacOSDark:
-                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingswhite.svg"));
-                userbutton.setImage(new Resources(true).readToInputStream("icons/userwhite.svg"));
-                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotswhite.svg"));
-                playerarea.setBorder(new LineBorder(Color.gray));
-                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviouswhite.svg"));
-                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
-                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextwhite.svg"));
-                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.svg"));
-                break;
-            case LIGHT:
-            case WINDOWS:
-            case MacOSLight:
-            case QuaQua:
-            case UGLY:
-                playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.svg"));
-                playerarea.setBorder(new LineBorder(Color.black));
-                settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingsdark.svg"));
-                userbutton.setImage(new Resources(true).readToInputStream("icons/userdark.svg"));
-                threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotsdark.svg"));
-                playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviousdark.svg"));
-                playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.svg"));
-                playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.svg"));
-                break;
-            case LEGACY:
-                playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
-                playerplaypreviousbutton.setImage(new Resources().readToInputStream("legacyicons/playerplayprevious.svg"));
-                playerplaynextbutton.setImage(new Resources().readToInputStream("legacyicons/playerplaynext.svg"));
-                playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
-                break;
+        if(PublicValues.theme.isLight()) {
+            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.svg"));
+            playerarea.setBorder(new LineBorder(Color.black));
+            settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingsdark.svg"));
+            userbutton.setImage(new Resources(true).readToInputStream("icons/userdark.svg"));
+            threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotsdark.svg"));
+            playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviousdark.svg"));
+            playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.svg"));
+            playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextdark.svg"));
+            playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shuffledark.svg"));
+            playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatdark.svg"));
+            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
+        }else{
+            settingsbutton.setImage(new Resources(true).readToInputStream("icons/settingswhite.svg"));
+            userbutton.setImage(new Resources(true).readToInputStream("icons/userwhite.svg"));
+            threepointbutton.setImage(new Resources(true).readToInputStream("icons/dotswhite.svg"));
+            playerarea.setBorder(new LineBorder(Color.gray));
+            playerplaypreviousbutton.setImage(new Resources().readToInputStream("icons/playerplaypreviouswhite.svg"));
+            playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
+            playerplaynextbutton.setImage(new Resources().readToInputStream("icons/playerplaynextwhite.svg"));
+            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.svg"));
+            playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shufflewhite.svg"));
+            playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatwhite.svg"));
+            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
         }
-        if(PublicValues.theme == Theme.LEGACY) {
+        if(PublicValues.theme instanceof Legacy) {
+            playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
+            playerplaypreviousbutton.setImage(new Resources().readToInputStream("legacyicons/playerplayprevious.svg"));
+            playerplaynextbutton.setImage(new Resources().readToInputStream("legacyicons/playerplaynext.svg"));
+            playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
             playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
             if (playerareavolumeslider.getValue() == 0) {
                 playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumemuted.png"));
             } else {
                 playerareavolumeicon.setImage(new Resources().readToInputStream("legacyicons/volumefull.png"));
             }
-        }else {
+        }else{
             playerplaynextbutton.setBorderPainted(true);
             playerplaypreviousbutton.setBorderPainted(true);
             playerplaypausebutton.setBorderPainted(true);
-            if (PublicValues.theme == Theme.LIGHT || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.UGLY) {
-                playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
-                if (playerareavolumeslider.getValue() == 0) {
-                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutedark.svg"));
-                } else {
-                    if (playerareavolumeslider.getValue() == 10) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefulldark.svg"));
-                    } else {
-                        if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
-                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfdark.svg"));
-                        }
-                    }
-                }
-            } else {
-                playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
-                if (playerareavolumeslider.getValue() == 0) {
-                    playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumemutewhite.svg"));
-                } else {
-                    if (playerareavolumeslider.getValue() == 10) {
-                        playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumefullwhite.svg"));
-                    } else {
-                        if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
-                            playerareavolumeicon.setImage(new Resources().readToInputStream("icons/volumehalfwhite.svg"));
-                        }
-                    }
-                }
-            }
         }
-        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.WINDOWS || PublicValues.theme == Theme.MacOSLight || PublicValues.theme == Theme.QuaQua || PublicValues.theme == Theme.UGLY) {
-            playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shuffledark.svg"));
-            playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatdark.svg"));
-            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
-        }else{
-            playerareashufflebutton.setImage(new Resources().readToInputStream("icons/shufflewhite.svg"));
-            playerarearepeatingbutton.setImage(new Resources().readToInputStream("icons/repeatwhite.svg"));
-            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
-        }
-        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.DARKGREEN) {
+        if(PublicValues.theme instanceof Legacy || PublicValues.theme instanceof DarkGreen) {
             //Hide stylish buttons
             settingsbutton.getJComponent().setVisible(false);
             userbutton.getJComponent().setVisible(false);
@@ -2803,6 +2743,11 @@ public class ContentPanel extends JPanel {
     }
     public static void saveCurrentState() {
         try {
+            PublicValues.spotifyplayer.currentPlayable().toSpotifyUri();
+        }catch (Exception e) {
+            return;
+        }
+        try {
             FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
             writer.write(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum());
             writer.close();
@@ -2942,7 +2887,7 @@ public class ContentPanel extends JPanel {
         settingsPanel = new SettingsPanel();
         settingsPanel.setBounds(0, 52, 784, 509);
         settingsPanel.setVisible(false);
-        if(PublicValues.theme == Theme.LEGACY || PublicValues.theme == Theme.DARKGREEN) {
+        if(PublicValues.theme instanceof Legacy || PublicValues.theme instanceof DarkGreen) {
             mainframe.setJMenuBar(bar);
             mainframe.setPreferredSize(new Dimension(793, 620));
         }else{

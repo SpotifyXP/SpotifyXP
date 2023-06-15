@@ -7,6 +7,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.api.SpotifyAPI;
+import com.spotifyxp.theming.themes.Legacy;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
@@ -148,44 +149,28 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
-        switch (PublicValues.theme) {
-            case DARK:
-            case DARKGREEN:
-            case MacOSDark:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
-                break;
-            case LIGHT:
-            case MacOSLight:
-            case QuaQua:
-            case WINDOWS:
-            case UGLY:
+        if(PublicValues.theme instanceof Legacy) {
+            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
+        }else{
+            if(PublicValues.theme.isLight()) {
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.svg"));
-                break;
-            case LEGACY:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
-                break;
+            }else{
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
+            }
         }
         //timer.cancel();
     }
 
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
-        switch (PublicValues.theme) {
-            case DARK:
-            case DARKGREEN:
-            case MacOSDark:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
-                break;
-            case LIGHT:
-            case MacOSLight:
-            case QuaQua:
-            case WINDOWS:
-            case UGLY:
+        if(PublicValues.theme instanceof Legacy) {
+            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpause.svg"));
+        }else{
+            if(PublicValues.theme.isLight()) {
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.svg"));
-                break;
-            case LEGACY:
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpause.svg"));
-                break;
+            }else{
+                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
+            }
         }
         //timer.schedule(new PlayerThread(), 0, 1000);
     }
