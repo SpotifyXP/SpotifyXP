@@ -314,55 +314,63 @@ public class ContentPanel extends JPanel {
         threepointdropdown.addItem(PublicValues.language.translate("ui.menu.help.about"), new Runnable() {
             @Override
             public void run() {
-                HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
-                    @Override
-                    public void log(String s) {
-
-                    }
-
-                    @Override
-                    public void err(String s) {
-
-                    }
-
-                    @Override
-                    public void info(String s) {
-
-                    }
-
-                    @Override
-                    public void crit(String s) {
-
-                    }
-                });
-                dialog.getDialog().setPreferredSize(new Dimension(400, 500));
-                try {
-                    String out = new Resources().readToString("about.html");
-                    StringBuilder cache = new StringBuilder();
-                    for(String s : out.split("\n")) {
-                        if(s.contains("(TRANSLATE)")) {
-                            s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
-                            s = s.replace("(TRANSLATE)", "");
-                        }
-                        cache.append(s);
-                    }
-                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), cache.toString());
-                } catch (Exception ex) {
-                    ExceptionDialog.open(ex);
-                    ConsoleLogging.Throwable(ex);
-                }
-                dialog.getDialog().addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        dialog.getDialog().dispose();
-                    }
-                });
+                openAbout();
             }
         });
         threepointdropdown.addItem(PublicValues.language.translate("ui.menu.file.exit"), new Runnable() {
             @Override
             public void run() {
                 System.exit(0);
+            }
+        });
+    }
+    void openAbout() {
+        HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
+            @Override
+            public void log(String s) {
+
+            }
+
+            @Override
+            public void err(String s) {
+
+            }
+
+            @Override
+            public void info(String s) {
+
+            }
+
+            @Override
+            public void crit(String s) {
+
+            }
+        });
+        dialog.getDialog().setPreferredSize(new Dimension(400, 500));
+        try {
+            String out = new Resources().readToString("about.html");
+            StringBuilder cache = new StringBuilder();
+            for(String s : out.split("\n")) {
+                if(s.contains("(TRANSLATE)")) {
+                    s = s.replace(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", ""), PublicValues.language.translate(s.split("\\(TRANSLATE\\)")[1].replace("(TRANSLATE)", "")));
+                    s = s.replace("(TRANSLATE)", "");
+                }
+                cache.append(s);
+            }
+            String opensourcelist = URLUtils.getURLResponseAsString("https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/opensource.html");
+            StringBuilder finalhtml = new StringBuilder();
+            finalhtml.append(cache.toString().split("<insertOpenSourceList>")[0]);
+            finalhtml.append(opensourcelist);
+            finalhtml.append(cache.toString().split("</insertOpenSourceList>")[1]);
+            dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml.toString());
+        } catch (Exception ex) {
+            ExceptionDialog.open(ex);
+            ConsoleLogging.Throwable(ex);
+        }
+        dialog.getDialog().addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dialog.getDialog().dispose();
             }
         });
     }
@@ -1997,39 +2005,7 @@ public class ContentPanel extends JPanel {
         about.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
-                    @Override
-                    public void log(String s) {
-                        ConsoleLogging.info(s);
-                    }
-
-                    @Override
-                    public void err(String s) {
-                        ConsoleLogging.error(s);
-                    }
-
-                    @Override
-                    public void info(String s) {
-                        ConsoleLogging.info(s);
-                    }
-
-                    @Override
-                    public void crit(String s) {
-                        ConsoleLogging.error(s);
-                    }
-                });
-                dialog.getDialog().setPreferredSize(new Dimension(400, 500));
-                try {
-                    dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), PublicValues.language.translateHTML(new Resources().readToString("about.html")));
-                } catch (Exception ex) {
-                    ConsoleLogging.Throwable(ex);
-                }
-                dialog.getDialog().addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        dialog.getDialog().dispose();
-                    }
-                });
+                openAbout();
             }
         });
         exit.addActionListener(new ActionListener() {
