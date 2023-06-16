@@ -74,6 +74,9 @@ public class Injector {
                 jarclass.getDeclaredMethod("init").invoke(t);
                 entry.loaded = true;
                 ConsoleLogging.info("Loaded Extension => " + entry.identifier + "-" + entry.version);
+                entry.loader = classLoader;
+            }else{
+                classLoader.close();
             }
         }catch (Exception e) {
             e.printStackTrace();
@@ -104,5 +107,6 @@ public class Injector {
         public String version = "";
         public boolean loaded = false;
         public boolean failed = false;
+        public URLClassLoader loader = null;
     }
 }

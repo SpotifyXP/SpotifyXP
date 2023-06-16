@@ -30,7 +30,7 @@ IF NOT EXIST "%cd%\build\SpotifyXP.jar" "%cd%\scripts\utils\failed.bat"
 
 :UNZIP
 echo Downloading and unzipping the file
-"%cd%\scripts\wget.exe" http://werwolf2303.de/SpotifyXP/bin.zip -P "%cd%\scripts\bin"
+"%cd%\scripts\wget.exe" http://spotifyxp.werwolf2303.de/bin.zip -P "%cd%\scripts\bin"
 REM Unzip
 "%cd%\scripts\zipworker.vbs" "%cd%\scripts\bin\bin.zip" "%cd%\scripts\bin"
 GOTO start

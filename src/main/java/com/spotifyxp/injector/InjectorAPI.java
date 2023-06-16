@@ -30,6 +30,7 @@ public class InjectorAPI {
         public String author;
         public String version;
         public String description;
+        public String identifier;
     }
 
     public void parseExtensions() {
@@ -41,6 +42,7 @@ public class InjectorAPI {
             Extension e = new Extension();
             e.location = repoRootURL + new JSONObject(content).getString("FILE");
             e.name = new JSONObject(content).getString("NAME");
+            e.identifier = new JSONObject(content).getString("IDENTIFIER");
             e.author = new JSONObject(content).getString("AUTHOR");
             e.version = new JSONObject(content).getString("VERSION");
             e.description = new JSONObject(content).getString("DESCRIPTION");
@@ -48,10 +50,10 @@ public class InjectorAPI {
         }
     }
 
-    public Extension getExtension(String name) {
+    public Extension getExtension(String identifier) {
         Extension url = new Extension();
         for(Extension e : extensions) {
-            if(e.name.equals(name)) {
+            if(e.identifier.equals(identifier)) {
                 url = e;
             }
         }

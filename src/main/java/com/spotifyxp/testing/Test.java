@@ -35,6 +35,7 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        System.out.println("Update Available: " + new Updater().updateAvailable().updateAvailable);
+        InjectorStore store = new InjectorStore();
+        store.open();
     }
 }
