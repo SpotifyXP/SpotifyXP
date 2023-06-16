@@ -11,6 +11,7 @@ import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
@@ -1966,6 +1967,7 @@ public class ContentPanel extends JPanel {
         JMenuItem logout = new JMenuItem(PublicValues.language.translate("ui.legacy.logout"));
         JMenuItem about = new JMenuItem(PublicValues.language.translate("ui.legacy.about"));
         JMenuItem settings = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
+        JMenuItem extensions = new JMenuItem("Open ExtensionStore");
         bar.add(file);
         bar.add(edit);
         bar.add(account);
@@ -1973,7 +1975,14 @@ public class ContentPanel extends JPanel {
         file.add(exit);
         edit.add(settings);
         account.add(logout);
+        help.add(extensions);
         help.add(about);
+        extensions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new InjectorStore().open();
+            }
+        });
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

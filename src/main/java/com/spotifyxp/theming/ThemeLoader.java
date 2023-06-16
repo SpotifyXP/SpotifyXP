@@ -14,12 +14,7 @@ public class ThemeLoader {
     public static ArrayList<Theme> availableThemes = new ArrayList<>(); //Extensions can add their themes here
 
     public ThemeLoader() {
-        availableThemes.add(new Dark());
-        availableThemes.add(new Light());
         availableThemes.add(new DarkGreen());
-        availableThemes.add(new MacOS());
-        availableThemes.add(new Ugly());
-        availableThemes.add(new Windows());
         availableThemes.add(new Legacy());
     }
 

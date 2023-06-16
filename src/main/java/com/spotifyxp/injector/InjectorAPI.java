@@ -29,6 +29,7 @@ public class InjectorAPI {
         public String name;
         public String author;
         public String version;
+        public String description;
     }
 
     public void parseExtensions() {
@@ -42,6 +43,7 @@ public class InjectorAPI {
             e.name = new JSONObject(content).getString("NAME");
             e.author = new JSONObject(content).getString("AUTHOR");
             e.version = new JSONObject(content).getString("VERSION");
+            e.description = new JSONObject(content).getString("DESCRIPTION");
             extensions.add(e);
         }
     }

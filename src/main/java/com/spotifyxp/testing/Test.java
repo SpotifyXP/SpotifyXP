@@ -9,6 +9,7 @@ import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.injector.InjectorAPI;
+import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lib.libBrowser;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.HomePanel;
@@ -34,14 +35,6 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        InjectorAPI api = new InjectorAPI();
-        api.parseExtensions();
-        long size = api.getExtensionSize(api.getExtension("Hello").location);
-        api.downloadExtension(api.getExtension("Hello").location, new InjectorAPI.ProgressRunnable() {
-            @Override
-            public void run(long filesizeDownloaded) {
-                System.out.println("Downloaded " + filesizeDownloaded + "/" + size);
-            }
-        });
+        System.out.println("Update Available: " + new Updater().updateAvailable().updateAvailable);
     }
 }

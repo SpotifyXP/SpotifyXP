@@ -21,7 +21,6 @@ import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.LinuxSupportModule;
 import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
-import com.spotifyxp.theming.themes.Ugly;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.updater.UpdaterDialog;

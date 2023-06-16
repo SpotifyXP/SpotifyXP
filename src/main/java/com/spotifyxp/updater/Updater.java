@@ -33,18 +33,22 @@ public class Updater {
                 Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
             }catch (Exception ignored) {
             }
-            if (Releasemain > Thismain) {
-                info.updateAvailable = true;
-            } else {
-                if (Releasesub > Thissub) {
+            if(!isNightly()) {
+                if (Releasemain > Thismain) {
                     info.updateAvailable = true;
                 } else {
-                    if (Releaselast > Thislast) {
+                    if (Releasesub > Thissub) {
                         info.updateAvailable = true;
                     } else {
-                        info.updateAvailable = false;
+                        if (Releaselast > Thislast) {
+                            info.updateAvailable = true;
+                        } else {
+                            info.updateAvailable = false;
+                        }
                     }
                 }
+            }else{
+                info.updateAvailable = false;
             }
             info.url = release.downloadURL;
             info.version = release.version;
