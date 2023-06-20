@@ -44,28 +44,7 @@ On december 2022 Spotify shutdown it's last version for Windows XP so this appli
 ## Built With
 
 SpotifyXP is build with
-- librespot-java
-- commons-io:commons-io
-- org.json:json
-- commons-httpclient:commons-httpclient
-- lc.kra.system:system-hook
-- com.formdev:flatlaf
-- com.jtattoo:JTattoo
-- com.electronwill.night-config:toml
-- com.lmax:disruptor
-- xyz.gianlu.zeroconf:zeroconf
-- com.squareup.okhttp3:okhttp
-- commons-net:commons-net
-- org.jcraft:jorbis
-- com.google.protobuf:protobuf-java
-- com.google.code.gson:gson
-- com.neovisionaries:nv-i18n
-- com.fasterxml.jackson.core:jackson-databind
-- org.apache.httpcomponents.core5:httpcore5
-- org.apache.httpcomponents.client5:httpclient5
-- org.apache.httpcomponents.client5:httpclient5-cache
-- org.slf4j:slf4j-api
-- org.jetbrains:annotations
+![](./opensource.svg)
 
 ## Getting Started
 
