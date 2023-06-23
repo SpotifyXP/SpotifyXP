@@ -17,6 +17,7 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.crypto;
 
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.DataInputStream;
@@ -92,6 +93,7 @@ public class CipherPair {
                 if (!Arrays.equals(mac, expectedMac)) throw new GeneralSecurityException("MACs don't match!");
                 return new Packet(cmd, payloadBytes);
             }catch (EOFException e) {
+                System.out.println("DataIn = " + IOUtils.toString(in));
                 throw new EOFException();
             }
         }

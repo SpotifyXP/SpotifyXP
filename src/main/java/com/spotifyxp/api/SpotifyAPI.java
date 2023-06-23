@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.ApResolver;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -49,26 +50,47 @@ public class SpotifyAPI {
         int times = 0;
 
         public void retry() {
-            player = PlayerUtils.buildPlayer();
+            try {
+                player = PlayerUtils.buildPlayer();
+            }catch (EOFException e) {
+                handleEOFBug();
+                return;
+            }
             try {
                 player.waitReady();
             } catch (InterruptedException e) {
                 ConsoleLogging.Throwable(e);
                 ExceptionDialog.open(e);
+            } catch (NullPointerException e) {
+                handleEOFBug();
+                return;
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));
             PublicValues.spotifyplayer = player;
         }
 
+        void handleEOFBug() {
+            ApResolver.eof = true;
+            retry();
+        }
+
         public Player(SpotifyAPI a) {
             api = a;
-            player = PlayerUtils.buildPlayer();
+            try {
+                player = PlayerUtils.buildPlayer();
+            }catch (EOFException e) {
+                handleEOFBug();
+                return;
+            }
             try {
                 player.waitReady();
             } catch (InterruptedException e) {
                 ConsoleLogging.Throwable(e);
                 ExceptionDialog.open(e);
+            } catch (NullPointerException e) {
+                handleEOFBug();
+                return;
             }
             ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
             player.addEventsListener(new PlayerListener(this, api));

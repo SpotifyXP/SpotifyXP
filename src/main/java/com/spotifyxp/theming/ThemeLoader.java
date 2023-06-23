@@ -18,6 +18,20 @@ public class ThemeLoader {
         availableThemes.add(new Legacy());
     }
 
+    public void tryLoadTheme(String name) throws UnknownThemeException {
+        boolean found = false;
+        for(Theme theme : availableThemes) {
+            if(Utils.getClassName(theme.getClass()).toLowerCase().contains(name.toLowerCase())) {
+                executeTheme(theme);
+                PublicValues.theme = theme;
+                found = true;
+            }
+        }
+        if(!found) {
+            throw new UnknownThemeException(name);
+        }
+    }
+
     public void loadTheme(String name) throws UnknownThemeException {
         boolean found = false;
         for(Theme theme : availableThemes) {

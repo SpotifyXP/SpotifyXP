@@ -319,6 +319,8 @@ public final class Session implements Closeable {
                 throw new IllegalStateException("Read unknown data!");
             }
         } catch (SocketTimeoutException ignored) {
+        }catch (EOFException e) {
+            //EOF Bug! Trying another
         } finally {
             conn.socket.setSoTimeout(0);
         }
@@ -338,7 +340,7 @@ public final class Session implements Closeable {
      * Authenticates with the server and creates all the necessary components.
      * All of them should be initialized inside the synchronized block and MUST NOT call any method on this {@link Session} object.
      */
-    private void authenticate(@NotNull Authentication.LoginCredentials credentials) throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
+    private void authenticate(@NotNull Authentication.LoginCredentials credentials) throws EOFException, IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
         authenticatePartial(credentials, false);
 
         synchronized (authLock) {

@@ -121,10 +121,9 @@ public class Initiator {
         try {
             loader.loadTheme(PublicValues.config.get(ConfigValues.theme.name));
         } catch (ThemeLoader.UnknownThemeException e) {
-            ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.get(ConfigValues.theme.name) + "'! Trying to load theme differently");
             try {
-                loader.loadTheme("Ugly");
+                loader.tryLoadTheme(PublicValues.config.get(ConfigValues.theme.name));
             }catch (Exception e2) {
                 GraphicalMessage.bug("Can't load any theme");
             }
