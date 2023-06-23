@@ -93,7 +93,6 @@ public class CipherPair {
                 if (!Arrays.equals(mac, expectedMac)) throw new GeneralSecurityException("MACs don't match!");
                 return new Packet(cmd, payloadBytes);
             }catch (EOFException e) {
-                System.out.println("DataIn = " + IOUtils.toString(in));
                 throw new EOFException();
             }
         }

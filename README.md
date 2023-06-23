@@ -1,4 +1,5 @@
 <br/>
+<h2>Due to a librespot-java bug this project will not work until this is fixed 'https://github.com/librespot-org/librespot-java/issues/681'</h2>
 <p align="center">
   <a href="https://github.com/Werwolf2303/SpotifyXP">
     <img src="https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/src/main/resources/spotifyxp.png" alt="Logo" width="80" height="80">

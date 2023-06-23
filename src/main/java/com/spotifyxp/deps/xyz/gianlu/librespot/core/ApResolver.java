@@ -117,24 +117,13 @@ public final class ApResolver {
     public static boolean eof = false;
 
     private String returnPort80(String url, String type) {
-        if(eof) {
-            if (!url.contains(":80") || !url.contains(":443")) {
-                return url;
-            }else{
-                waitForPool();
-                List<String> urls = pool.get(type);
-                if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-                return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
-            }
-        }else {
-            if (url.contains(":80") || url.contains(":443")) {
-                return url;
-            } else {
-                waitForPool();
-                List<String> urls = pool.get(type);
-                if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-                return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
-            }
+        if (url.contains(":80") || url.contains(":443")) {
+            return url;
+        } else {
+            waitForPool();
+            List<String> urls = pool.get(type);
+            if (urls == null || urls.isEmpty()) throw new IllegalStateException();
+            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }
     }
 
