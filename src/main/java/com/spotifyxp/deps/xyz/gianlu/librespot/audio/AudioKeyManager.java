@@ -78,7 +78,7 @@ public final class AudioKeyManager implements PacketsReceiver {
             else throw new AesKeyException(String.format("Failed fetching audio key! {gid: %s, fileId: %s}",
                     Utils.bytesToHex(gid), Utils.bytesToHex(fileId)));
         }
-        
+
         return key;
     }
 
