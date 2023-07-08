@@ -164,7 +164,7 @@ public final class PlayOriginOuterClass {
       externalReferrer_ = "";
       referrerIdentifier_ = "";
       deviceIdentifier_ = "";
-      featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -634,7 +634,7 @@ public final class PlayOriginOuterClass {
         bitField0_ = (bitField0_ & ~0x00000010);
         deviceIdentifier_ = "";
         bitField0_ = (bitField0_ & ~0x00000020);
-        featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
         bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
@@ -1236,7 +1236,7 @@ public final class PlayOriginOuterClass {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
       private void ensureFeatureClassesIsMutable() {
         if ((bitField0_ & 0x00000040) == 0) {
@@ -1325,7 +1325,7 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearFeatureClasses() {
-        featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
         bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;

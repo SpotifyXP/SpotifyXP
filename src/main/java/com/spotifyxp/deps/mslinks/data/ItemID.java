@@ -110,10 +110,6 @@ public class ItemID implements Serializable {
 
 	protected int typeFlags;
 
-	/**
-	 * @Deprecated Instances of this class should not be created directly. The class is going to be abstract
-	 */
-	@Deprecated()
 	public ItemID(int flags) {
 		this.typeFlags = flags;
 
@@ -266,7 +262,7 @@ public class ItemID implements Serializable {
 	/**
 	 * @Deprecated Use {@link ItemIDDrive} or {@link ItemIDFS}
 	 */
-	@Deprecated()
+
 	public String getName() {
 		if (internalItemId instanceof ItemIDDrive) {
 			return ((ItemIDDrive)internalItemId).getName();
@@ -280,7 +276,7 @@ public class ItemID implements Serializable {
 	/**
 	 * @Deprecated Use {@link ItemIDDrive} or {@link ItemIDFS}
 	 */
-	@Deprecated()
+
 	public ItemID setName(String s) throws ShellLinkException {
 		if (internalItemId instanceof ItemIDDrive) {
 			((ItemIDDrive)internalItemId).setName(s);
@@ -295,7 +291,7 @@ public class ItemID implements Serializable {
 	/**
 	 * @Deprecated Use {@link ItemIDFS}
 	 */
-	@Deprecated()
+
 	public int getSize() {
 		if (internalItemId instanceof ItemIDFS) {
 			return ((ItemIDFS)internalItemId).getSize();
@@ -306,7 +302,7 @@ public class ItemID implements Serializable {
 	/**
 	 * @Deprecated Use {@link ItemIDFS}
 	 */
-	@Deprecated()
+
 	public ItemID setSize(int s) throws ShellLinkException {
 		if (internalItemId instanceof ItemIDFS) {
 			((ItemIDFS)internalItemId).setSize(s);

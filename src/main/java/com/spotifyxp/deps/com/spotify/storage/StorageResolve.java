@@ -74,7 +74,7 @@ public final class StorageResolve {
     }
     private StorageResolveResponse() {
       result_ = 0;
-      cdnurl_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
       fileid_ = com.google.protobuf.ByteString.EMPTY;
     }
 
@@ -401,7 +401,7 @@ public final class StorageResolve {
         super.clear();
         result_ = 0;
 
-        cdnurl_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
         fileid_ = com.google.protobuf.ByteString.EMPTY;
 
@@ -528,7 +528,7 @@ public final class StorageResolve {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList cdnurl_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
       private void ensureCdnurlIsMutable() {
         if ((bitField0_ & 0x00000001) == 0) {
@@ -617,7 +617,7 @@ public final class StorageResolve {
        * @return This builder for chaining.
        */
       public Builder clearCdnurl() {
-        cdnurl_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;

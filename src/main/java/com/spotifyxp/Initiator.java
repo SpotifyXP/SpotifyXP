@@ -1,14 +1,8 @@
 package com.spotifyxp;
 
 
-import ch.randelshofer.quaqua.QuaquaLookAndFeel;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.spotifyxp.analytics.Analytics;
-import com.spotifyxp.api.GitHubAPI;
-import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
-import com.spotifyxp.designs.Theme;
 import com.spotifyxp.beamngintegration.HttpService;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.injector.Injector;
@@ -23,8 +17,6 @@ import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
-import com.spotifyxp.updater.UpdaterDialog;
-import com.spotifyxp.utils.DoubleArrayList;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
@@ -33,20 +25,19 @@ import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
-import javax.swing.*;
 import java.io.File;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
     static SpotifyAPI api = null;
     public static StartupTime startupTime;
-    static DefThread hook = new DefThread(new Runnable() {
-        @Override
-        public void run() {
-            ContentPanel.saveCurrentState();
-        }
-    });
+    static DefThread hook = new DefThread(ContentPanel::saveCurrentState);
     public static DefThread thread = new DefThread(new Runnable() {
         @Override
         public void run() {
@@ -65,6 +56,12 @@ public class Initiator {
     });
     public static boolean past = false;
     public static void main(String[] args) {
+        try {
+            new File(PublicValues.appLocation, "LOCK").createNewFile();
+            new File(PublicValues.appLocation, "LOCK").deleteOnExit();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         new SplashPanel().show();
         SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
@@ -101,17 +98,9 @@ public class Initiator {
         if(new File("pom.xml").exists()) {
             PublicValues.debug = true;
             ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-            if(!System.getProperty("os.name").toLowerCase().contains("xp")) {
-                modules.setColored(true);
-            }else{
-                modules.setColored(false);
-            }
+            modules.setColored(!System.getProperty("os.name").toLowerCase().contains("xp"));
             modules.setShowTime(false);
-            if(!System.getProperty("os.name").toLowerCase().contains("xp")) {
-                PublicValues.logger.setColored(true);
-            }else{
-                PublicValues.logger.setColored(false);
-            }
+            PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("xp"));
             PublicValues.foundSetupArgument = true;
         }
         SplashPanel.linfo.setText("Initializing config...");
@@ -139,6 +128,12 @@ public class Initiator {
         if(!PublicValues.foundSetupArgument) {
             new Setup(); //Start setup because the argument "--setup-complete" was not found
             startupTime = new StartupTime();
+        }
+        try {
+            Files.copy(new Resources().readToInputStream("SpotifyXP-Updater.jar"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar"), StandardCopyOption.REPLACE_EXISTING);
+        }catch (Exception e) {
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
         }
         SplashPanel.linfo.setText("Checking login...");
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
@@ -173,7 +168,7 @@ public class Initiator {
         if(info.updateAvailable) {
             String version = info.version;
             ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-            new UpdaterDialog();
+            new Updater().invoke();
         }else{
             if(new Updater().isNightly()) {
                 ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));

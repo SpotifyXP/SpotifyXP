@@ -134,15 +134,15 @@ public class ContentPanel extends JPanel {
     public static JTabbedPane legacyswitch = new JTabbedPane();  //For Legacy theme
     public static JMenuBar bar = new JMenuBar(); //For Legacy theme
     public static JSVGPanel heart;
-    public static ArrayList<String> searchsonglistcache = new ArrayList<>();
-    public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
-    public static ArrayList<String> hotlistsonglistcache = new ArrayList<>();
-    public static ArrayList<String> libraryuricache = new ArrayList<>();
-    public static ArrayList<String> queueuricache = new ArrayList<>();
+    public static ArrayList<String> searchsonglistcache = new ArrayList<String>();
+    public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<String>();
+    public static ArrayList<String> hotlistsonglistcache = new ArrayList<String>();
+    public static ArrayList<String> libraryuricache = new ArrayList<String>();
+    public static ArrayList<String> queueuricache = new ArrayList<String>();
     public static DefaultListModel<String> queuelistmodel = new DefaultListModel<>();
-    public static ArrayList<String> playlistsuricache = new ArrayList<>();
-    public static ArrayList<String> playlistssonguricache = new ArrayList<>();
-    public static ArrayList<String> searchplaylistsongscache = new ArrayList<>();
+    public static ArrayList<String> playlistsuricache = new ArrayList<String>();
+    public static ArrayList<String> playlistssonguricache = new ArrayList<String>();
+    public static ArrayList<String> searchplaylistsongscache = new ArrayList<String>();
     public static JSVGPanel userbutton;
     public static JSVGPanel settingsbutton;
     public static JSVGPanel threepointbutton;
@@ -2024,7 +2024,7 @@ public class ContentPanel extends JPanel {
             }
         });
     }
-    public static ArrayList<String> advanceduricache = new ArrayList<>();
+    public static ArrayList<String> advanceduricache = new ArrayList<String>();
     void createAdvancedPanel() {
         advancedsongpanel = new JPanel();
         advancedsongpanel.setBounds(0, 0, 784, 421);
@@ -2739,6 +2739,11 @@ public class ContentPanel extends JPanel {
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
+        }
+        try {
+            new File(PublicValues.appLocation, "LOCK").delete();
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
     void fetchHotlist() {

@@ -440,7 +440,7 @@ public final class Metadata {
       singleGroup_ = java.util.Collections.emptyList();
       compilationGroup_ = java.util.Collections.emptyList();
       appearsOnGroup_ = java.util.Collections.emptyList();
-      genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
         externalId_ = java.util.Collections.emptyList();
       portrait_ = java.util.Collections.emptyList();
       biography_ = java.util.Collections.emptyList();
@@ -1263,7 +1263,7 @@ public final class Metadata {
         } else {
           appearsOnGroupBuilder_.clear();
         }
-        genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000100);
         if (externalIdBuilder_ == null) {
           externalId_ = java.util.Collections.emptyList();
@@ -2890,7 +2890,7 @@ public final class Metadata {
         return appearsOnGroupBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureGenreIsMutable() {
         if ((bitField0_ & 0x00000100) == 0) {
@@ -2979,7 +2979,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearGenre() {
-        genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000100);
         onChanged();
         return this;
@@ -5566,11 +5566,11 @@ public final class Metadata {
       artist_ = java.util.Collections.emptyList();
       type_ = 1;
       label_ = "";
-      genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
         cover_ = java.util.Collections.emptyList();
       externalId_ = java.util.Collections.emptyList();
       disc_ = java.util.Collections.emptyList();
-      review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      review_ = com.google.protobuf.LazyStringArrayList.emptyList();
         copyright_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
       related_ = java.util.Collections.emptyList();
@@ -6603,7 +6603,7 @@ public final class Metadata {
         bitField0_ = (bitField0_ & ~0x00000020);
         popularity_ = 0;
         bitField0_ = (bitField0_ & ~0x00000040);
-        genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000080);
         if (coverBuilder_ == null) {
           cover_ = java.util.Collections.emptyList();
@@ -6623,7 +6623,7 @@ public final class Metadata {
         } else {
           discBuilder_.clear();
         }
-        review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        review_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000800);
         if (copyrightBuilder_ == null) {
           copyright_ = java.util.Collections.emptyList();
@@ -7517,7 +7517,7 @@ public final class Metadata {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureGenreIsMutable() {
         if ((bitField0_ & 0x00000080) == 0) {
@@ -7606,7 +7606,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearGenre() {
-        genre_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
@@ -8344,7 +8344,7 @@ public final class Metadata {
         return discBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList review_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureReviewIsMutable() {
         if ((bitField0_ & 0x00000800) == 0) {
@@ -8433,7 +8433,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearReview() {
-        review_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        review_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
         return this;
@@ -10460,7 +10460,7 @@ public final class Metadata {
       alternative_ = java.util.Collections.emptyList();
       salePeriod_ = java.util.Collections.emptyList();
       preview_ = java.util.Collections.emptyList();
-      tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
         availability_ = java.util.Collections.emptyList();
     }
 
@@ -11231,7 +11231,7 @@ public final class Metadata {
         } else {
           previewBuilder_.clear();
         }
-        tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00008000);
         earliestLiveTimestamp_ = 0L;
         bitField0_ = (bitField0_ & ~0x00010000);
@@ -13546,7 +13546,7 @@ public final class Metadata {
         return previewBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureTagsIsMutable() {
         if ((bitField0_ & 0x00008000) == 0) {
@@ -13635,7 +13635,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearTags() {
-        tags_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00008000);
         onChanged();
         return this;
@@ -14451,7 +14451,7 @@ public final class Metadata {
       episode_ = java.util.Collections.emptyList();
       copyright_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
-      keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
         mediaType_ = 0;
       consumptionOrder_ = 1;
       availability_ = java.util.Collections.emptyList();
@@ -15366,7 +15366,7 @@ public final class Metadata {
         } else {
           restrictionBuilder_.clear();
         }
-        keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000800);
         mediaType_ = 0;
         bitField0_ = (bitField0_ & ~0x00001000);
@@ -16822,7 +16822,7 @@ public final class Metadata {
         return restrictionBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureKeywordIsMutable() {
         if ((bitField0_ & 0x00000800) == 0) {
@@ -16911,7 +16911,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearKeyword() {
-        keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
         return this;
@@ -17799,7 +17799,7 @@ public final class Metadata {
       videoPreview_ = java.util.Collections.emptyList();
       audioPreview_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
-      keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
         availability_ = java.util.Collections.emptyList();
       externalUrl_ = "";
       type_ = 0;
@@ -18776,7 +18776,7 @@ public final class Metadata {
           freezeFrameBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00010000);
-        keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00020000);
         allowBackgroundPlayback_ = false;
         bitField0_ = (bitField0_ & ~0x00040000);
@@ -21103,7 +21103,7 @@ public final class Metadata {
         return freezeFrameBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureKeywordIsMutable() {
         if ((bitField0_ & 0x00020000) == 0) {
@@ -21192,7 +21192,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearKeyword() {
-        keyword_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00020000);
         onChanged();
         return this;
@@ -28562,7 +28562,7 @@ public final class Metadata {
     private Restriction() {
       catalogue_ = java.util.Collections.emptyList();
       type_ = 0;
-      catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -29150,7 +29150,7 @@ public final class Metadata {
         bitField0_ = (bitField0_ & ~0x00000001);
         type_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
         countryRestrictionCase_ = 0;
         countryRestriction_ = null;
@@ -29383,7 +29383,7 @@ public final class Metadata {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureCatalogueStrIsMutable() {
         if ((bitField0_ & 0x00000004) == 0) {
@@ -29472,7 +29472,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearCatalogueStr() {
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
@@ -29802,7 +29802,7 @@ public final class Metadata {
       super(builder);
     }
     private Availability() {
-      catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -30017,7 +30017,7 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         if (startBuilder_ == null) {
           start_ = null;
@@ -30105,7 +30105,7 @@ public final class Metadata {
       }
       private int bitField0_;
 
-      private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureCatalogueStrIsMutable() {
         if ((bitField0_ & 0x00000001) == 0) {
@@ -30194,7 +30194,7 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearCatalogueStr() {
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;

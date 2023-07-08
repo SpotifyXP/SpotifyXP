@@ -2,6 +2,7 @@ package com.spotifyxp.updater;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -91,6 +92,26 @@ public class Updater {
             }
         }catch (Exception e) {
             return true;
+        }
+    }
+
+    public void invoke() {
+        if(!System.getProperty("os.name").toLowerCase().contains("win")) {
+            try {
+                ProcessBuilder builder = new ProcessBuilder("bash", "-c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", PublicValues.version, "\"" + PublicValues.appLocation + "\"");
+                builder.start();
+            }catch (Exception e) {
+                ConsoleLogging.Throwable(e);
+                ExceptionDialog.open(e);
+            }
+            return;
+        }
+        try {
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", PublicValues.version, "\"" + PublicValues.appLocation + "\"");
+            builder.start();
+        }catch (Exception e) {
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
         }
     }
 

@@ -1,19 +1,10 @@
 package com.spotifyxp.beamngintegration;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.SpotifyAPI;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.HttpUtils;
-import com.spotifyxp.utils.WebUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.awt.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -36,7 +27,7 @@ public class HttpService {
         while(server == null) {
             try {
                 Thread.sleep(99);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
             }
         }
     }
@@ -61,7 +52,6 @@ public class HttpService {
                         exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
                         exchange.sendResponseHeaders(204, -1);
                     }
-                    System.out.println("OUt: " + out);
                     OutputStream os = exchange.getResponseBody();
                     os.write(out.getBytes());
                     os.close();
@@ -133,8 +123,7 @@ public class HttpService {
                 }
             });
             server.start();
-        }catch (Exception e) {
-            e.printStackTrace();
+        }catch (Exception ignored) {
         }
     }
     void cors(HttpExchange exchange) {
@@ -145,9 +134,8 @@ public class HttpService {
                 exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
                 exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
                 exchange.sendResponseHeaders(204, -1);
-                return;
             }
-        }catch (Exception e) {
+        }catch (Exception ignored) {
         }
     }
     public void stop() {

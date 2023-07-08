@@ -1,6 +1,7 @@
 package com.spotifyxp.api;
 
 
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.httpclient.Header;
@@ -155,7 +156,9 @@ public class UnofficialSpotifyAPI {
         try {
             return URLEncoder.encode(url, StandardCharsets.UTF_8.toString()).replace("%3D", "=").replace("%26", "&");
         } catch (UnsupportedEncodingException e) {
-            return URLEncoder.encode(url).replace("%3D", "=").replace("%26", "&");
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
+            return "";
         }
     }
 

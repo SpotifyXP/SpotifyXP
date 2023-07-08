@@ -5982,7 +5982,7 @@ public final class ClientToken {
     }
     private EvaluateJSParameters() {
       code_ = "";
-      libraries_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -6207,7 +6207,7 @@ public final class ClientToken {
         super.clear();
         code_ = "";
 
-        libraries_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -6356,7 +6356,7 @@ public final class ClientToken {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList libraries_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringList libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
 
         private void ensureLibrariesIsMutable() {
         if ((bitField0_ & 0x00000001) == 0) {
@@ -6445,7 +6445,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearLibraries() {
-        libraries_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
