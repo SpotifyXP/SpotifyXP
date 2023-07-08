@@ -358,7 +358,7 @@ public class ContentPanel extends JPanel {
                 }
                 cache.append(s);
             }
-            String opensourcelist = URLUtils.getURLResponseAsString("https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/opensource.svg");
+            String opensourcelist = URLUtils.getURLResponseAsString("https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/opensourcelist.txt");
             StringBuilder finalhtml = new StringBuilder();
             finalhtml.append(cache.toString().split("<insertOpenSourceList>")[0]);
             finalhtml.append(opensourcelist);

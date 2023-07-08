@@ -2,18 +2,15 @@ package com.spotifyxp.setup;
 
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.updater.Updater;
-import com.spotifyxp.utils.FileUtils;
 import com.spotifyxp.utils.Resources;
-import mslinks.ShellLink;
-import mslinks.ShellLinkException;
-import mslinks.ShellLinkHelper;
-import org.json.JSONException;
+import com.spotifyxp.deps.mslinks.ShellLink;
+import com.spotifyxp.deps.mslinks.ShellLinkException;
+import com.spotifyxp.deps.mslinks.ShellLinkHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
