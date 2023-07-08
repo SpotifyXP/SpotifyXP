@@ -320,7 +320,7 @@ public final class Session implements Closeable {
             }
         } catch (SocketTimeoutException ignored) {
         }catch (EOFException e) {
-            //EOF Bug! Trying another
+            //EOF Bug!
         } finally {
             conn.socket.setSoTimeout(0);
         }
