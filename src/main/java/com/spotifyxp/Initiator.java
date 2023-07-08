@@ -79,8 +79,6 @@ public class Initiator {
         PublicValues.language.setNoAutoFindLanguage("en");
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
-        SplashPanel.linfo.setText("Parsing arguments...");
-        PublicValues.argParser.parseArguments(args);
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             //Is not Windows
@@ -88,6 +86,8 @@ public class Initiator {
             new LinuxSupportModule();
             args = new String[]{"--setup-complete"};
         }
+        SplashPanel.linfo.setText("Parsing arguments...");
+        PublicValues.argParser.parseArguments(args);
         SplashPanel.linfo.setText("Storing program arguments...");
         PublicValues.args = args;
         SplashPanel.linfo.setText("Checking required folders...");

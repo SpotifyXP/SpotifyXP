@@ -784,7 +784,7 @@ public class UnofficialSpotifyAPI {
                             content = new JSONObject(item.getJSONObject("content").toString());
                             data = new JSONObject(content.getJSONObject("data").toString());
                             HomeTabEpisodeOrChapter eoc = new HomeTabEpisodeOrChapter();
-                            if (data.getString("__typename").equals("GenericError")) {
+                            if (data.getString("__typename").equals("GenericError") || data.getString("__typename").equals("RestrictedContent")) {
                                 break;
                             }
                             eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
