@@ -836,4 +836,8 @@ public class UnofficialSpotifyAPI {
         //---
         return tab;
     }
+
+    public String getCanvasURLForTrack(String id) {
+        
+    }
 }
