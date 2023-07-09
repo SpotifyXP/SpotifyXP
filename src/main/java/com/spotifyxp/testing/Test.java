@@ -33,6 +33,6 @@ import java.util.TimeZone;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        new Updater().invoke();
+        PublicValues.language.translate("");
     }
 }

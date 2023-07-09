@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -34,26 +35,26 @@ public class ArtistPanel extends JPanel {
     public ContextMenu artistpopularsonglistcontextmenu;
     public ContextMenu artistalbumcontextmenu;
     public ArtistPanel() {
-        contentPanel = new JScrollPane();
+        contentPanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         contentPanel.setViewportView(this);
         setLayout(null);
         setPreferredSize(new Dimension(800, 975));
 
-        JLabel artistpopularlabel = new JLabel("Popular");
+        JLabel artistpopularlabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Popular"));
         artistpopularlabel.setBounds(10, 291, 137, 27);
         add(artistpopularlabel);
 
         artistpopularlabel.setForeground(PublicValues.globalFontColor);
 
-        artistpopularscrollpane = new JScrollPane();
+        artistpopularscrollpane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         artistpopularscrollpane.setBounds(10, 320, 780, 277);
         add(artistpopularscrollpane);
 
-        artistpopularsonglist = new JTable() {
+        artistpopularsonglist = (JTable) JComponentFactory.createJComponent(new JTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         artistpopularscrollpane.setViewportView(artistpopularsonglist);
 
         artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
@@ -64,37 +65,37 @@ public class ArtistPanel extends JPanel {
             }
         });
 
-        artistalbumscrollpanel = new JScrollPane();
+        artistalbumscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         artistalbumscrollpanel.setBounds(10, 667, 780, 295);
         add(artistalbumscrollpanel);
 
-        artistalbumalbumtable = new JTable() {
+        artistalbumalbumtable = (JTable) JComponentFactory.createJComponent(new JTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         artistalbumscrollpanel.setViewportView(artistalbumalbumtable);
 
         contentPanel.getVerticalScrollBar().setUnitIncrement(20);
 
-        JLabel artistalbumlabel = new JLabel("Albums");
+        JLabel artistalbumlabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Albums"));
         artistalbumlabel.setBounds(10, 642, 102, 14);
         add(artistalbumlabel);
 
         artistalbumlabel.setForeground(PublicValues.globalFontColor);
 
-        artistimage = new JImagePanel();
+        artistimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         artistimage.setBounds(288, 11, 155, 153);
         add(artistimage, new Integer(3));
 
-        artisttitle = new JLabel("");
+        artisttitle = (JLabel) JComponentFactory.createJComponent(new JLabel(""));
         artisttitle.setHorizontalAlignment(SwingConstants.CENTER);
         artisttitle.setBounds(0, 213, 780, 64);
         add(artisttitle, new Integer(2));
 
         artisttitle.setForeground(PublicValues.globalFontColor);
 
-        artistbackgroundimage = new JImagePanel();
+        artistbackgroundimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         artistbackgroundimage.setBounds(0, 0, 780, 277);
         add(artistbackgroundimage, new Integer(1));
 

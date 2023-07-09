@@ -7,7 +7,6 @@ import com.spotifyxp.theming.themes.Legacy;
 
 public class SteamDeckSupportModule {
     public SteamDeckSupportModule() {
-        ContentPanel.frame.setAntiAliasingActive(false);
         ContentPanel.frame.setUndecorated(true);
         if(PublicValues.theme instanceof Legacy) {
             ContentPanel.frame.setJMenuBar(null);

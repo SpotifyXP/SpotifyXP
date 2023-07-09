@@ -5,6 +5,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.threading.DefThread;
@@ -30,7 +31,7 @@ public class HomePanel {
     }
 
     public void initializeLayout() {
-        content = new JPanel();
+        content = (JPanel) JComponentFactory.createJComponent(new JPanel());
         content.setPreferredSize(new Dimension(784, 337 * tab.sections.size()));
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -55,22 +56,22 @@ public class HomePanel {
 
     public void addModule(UnofficialSpotifyAPI.HomeTabSection section) {
         ArrayList<String> uricache = new ArrayList<>();
-        JLabel homepanelmoduletext = new JLabel(section.name);
+        JLabel homepanelmoduletext = (JLabel) JComponentFactory.createJComponent(new JLabel(section.name));
         homepanelmoduletext.setFont(new Font("Tahoma", Font.PLAIN, 16));
         homepanelmoduletext.setBounds(0, addCache + 11, 375, 24);
         content.add(homepanelmoduletext);
 
         homepanelmoduletext.setForeground(PublicValues.globalFontColor);
 
-        JScrollPane homepanelmodulescrollpanel = new JScrollPane();
+        JScrollPane homepanelmodulescrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
         content.add(homepanelmodulescrollpanel);
 
-        JTable homepanelmodulecontenttable = new JTable()  {
+        JTable homepanelmodulecontenttable = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         homepanelmodulescrollpanel.setViewportView(homepanelmodulecontenttable);
         homepanelmodulecontenttable.setForeground(PublicValues.globalFontColor);
         homepanelmodulecontenttable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -187,15 +188,15 @@ public class HomePanel {
         content.setLayout(null);
         ArrayList<String> usersuricache = new ArrayList<>();
 
-        JScrollPane homepaneluserscrollpanel = new JScrollPane();
+        JScrollPane homepaneluserscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         homepaneluserscrollpanel.setBounds(0, 39, 777, 261);
         content.add(homepaneluserscrollpanel);
 
-        JTable homepanelusertable = new JTable()  {
+        JTable homepanelusertable = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         homepaneluserscrollpanel.setViewportView(homepanelusertable);
         homepanelusertable.setForeground(PublicValues.globalFontColor);
         homepanelusertable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -273,7 +274,7 @@ public class HomePanel {
             }
         });
 
-        JLabel homepanelgreetingstext = new JLabel(tab.greeting);
+        JLabel homepanelgreetingstext = (JLabel) JComponentFactory.createJComponent(new JLabel(tab.greeting));
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 16));
         homepanelgreetingstext.setBounds(0, 11, 375, 24);
         content.add(homepanelgreetingstext);

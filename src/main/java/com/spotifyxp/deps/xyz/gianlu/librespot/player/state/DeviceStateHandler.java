@@ -267,19 +267,30 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
      *
      * @param req The {@link Connect.PutStateRequest}
      */
+
+    Connect.PutStateRequest lastReq;
+    int a = 0;
     private void putConnectState(@NotNull Connect.PutStateRequest req) {
+        if(lastReq.getPutStateReason() == req.getPutStateReason()) {
+            //Same put state spam fix
+            if(a > 5) {
+                return;
+            }
+            a++;
+        }
         try {
             session.api().putConnectState(connectionId, req);
             if (ConsoleLoggingModules.isTraceEnabled()) {
                 ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}, request: {}}", req.getClientSideTimestamp(),
                         Utils.truncateMiddle(connectionId, 10), req.getPutStateReason(), TextFormat.shortDebugString(putState));
-            } else {
+            } else
                 ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}}", req.getClientSideTimestamp(),
                         Utils.truncateMiddle(connectionId, 10), req.getPutStateReason());
-            }
         } catch (IOException | MercuryClient.MercuryException ex) {
             ConsoleLoggingModules.error("Failed updating state.", ex);
         }
+        lastReq = req;
+        a = 0;
     }
 
     public enum Endpoint {
