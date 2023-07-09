@@ -1,13 +1,11 @@
 package com.spotifyxp.panels;
 
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.api.GitHubAPI;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.custom.StoppableThreadRunnable;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
-import com.spotifyxp.designs.Theme;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
+import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -24,11 +22,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.*;
-import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.TraceMethod;
-import org.apache.commons.io.FileUtils;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +42,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -131,8 +124,8 @@ public class ContentPanel extends JPanel {
     public static boolean queueVisible = false;
     public static boolean hotlistVisible = false;
     public static boolean libraryVisble = false;
-    public static JTabbedPane legacyswitch = new JTabbedPane();  //For Legacy theme
-    public static JMenuBar bar = new JMenuBar(); //For Legacy theme
+    public static JTabbedPane legacyswitch = (JTabbedPane) JComponentFactory.createJComponent(new JTabbedPane());  //For Legacy theme
+    public static JMenuBar bar = (JMenuBar) JComponentFactory.createJComponent(new JMenuBar()); //For Legacy theme
     public static JSVGPanel heart;
     public static ArrayList<String> searchsonglistcache = new ArrayList<String>();
     public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<String>();
@@ -289,6 +282,8 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
+
+        JComponentFactory.addJComponent(settingsbutton.getJComponent());
     }
     void createUserButton() {
         userbutton = new JSVGPanel();
@@ -305,6 +300,7 @@ public class ContentPanel extends JPanel {
                 System.exit(0);
             }
         });
+        JComponentFactory.addJComponent(userbutton.getJComponent());
     }
     void createThreePointButton() {
         threepointbutton = new JSVGPanel();
@@ -324,6 +320,7 @@ public class ContentPanel extends JPanel {
                 System.exit(0);
             }
         });
+        JComponentFactory.addJComponent(threepointbutton.getJComponent());
     }
     void openAbout() {
         HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
@@ -398,6 +395,8 @@ public class ContentPanel extends JPanel {
         playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
         playerarea.add(playerareashufflebutton.getJComponent());
 
+        JComponentFactory.addJComponent(playerareashufflebutton.getJComponent());
+
         playerarearepeatingbutton = new JSVGPanel();
         playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
         playerarea.add(playerarearepeatingbutton.getJComponent());
@@ -453,6 +452,8 @@ public class ContentPanel extends JPanel {
             }
         });
 
+        JComponentFactory.addJComponent(playerarearepeatingbutton.getJComponent());
+
         playerimage = new JImagePanel();
         playerimage.setBounds(10, 11, 78, 78);
         playerarea.add(playerimage);
@@ -494,6 +495,8 @@ public class ContentPanel extends JPanel {
             }
         });
 
+        JComponentFactory.addJComponent(playerarealyricsbutton.getJComponent());
+
         playerareavolumeicon = new JSVGPanel();
         if(PublicValues.theme instanceof Legacy) {
             playerareavolumeicon.setSVG(false);
@@ -501,11 +504,13 @@ public class ContentPanel extends JPanel {
         playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
         playerarea.add(playerareavolumeicon.getJComponent());
 
-        playerareavolumecurrent = new JLabel();
+        JComponentFactory.addJComponent(playerareavolumeicon.getJComponent());
+
+        playerareavolumecurrent = (JLabel) JComponentFactory.createJComponent(new JLabel());
         playerareavolumecurrent.setBounds(489, 75, 35, 14);
         playerarea.add(playerareavolumecurrent);
 
-        playerareavolumeslider = new JSlider();
+        playerareavolumeslider = (JSlider) JComponentFactory.createJComponent(new JSlider());
         playerareavolumeslider.setBounds(334, 76, 145, 13);
         playerarea.add(playerareavolumeslider);
 
@@ -597,13 +602,13 @@ public class ContentPanel extends JPanel {
 
         });
 
-        playertitle = new JScrollText(l.translate("ui.player.title"));
+        playertitle = (JScrollText) JComponentFactory.createJComponent(new JScrollText(l.translate("ui.player.title")));
         playertitle.setBounds(109, 11, 168, 14);
         playerarea.add(playertitle);
 
         playertitle.setForeground(PublicValues.globalFontColor);
 
-        playerdescription = new JLabel(l.translate("ui.player.description"));
+        playerdescription = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.player.description")));
         playerdescription.setBounds(109, 40, 138, 20);
         playerarea.add(playerdescription);
 
@@ -611,11 +616,11 @@ public class ContentPanel extends JPanel {
 
         playerarea.setDebug(true);
 
-        playerplaypreviousbutton = new JImageButton();
+        playerplaypreviousbutton = (JImageButton) JComponentFactory.createJComponent(new JImageButton());
         playerplaypreviousbutton.setBounds(287, 11, 70, 36);
         playerarea.add(playerplaypreviousbutton);
 
-        playerplaypausebutton = new JImageButton();
+        playerplaypausebutton = (JImageButton) JComponentFactory.createJComponent(new JImageButton());
         playerplaypausebutton.setBounds(369, 11, 69, 36);
         playerplaypausebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -624,23 +629,23 @@ public class ContentPanel extends JPanel {
         });
         playerarea.add(playerplaypausebutton);
 
-        playerplaynextbutton = new JImageButton();
+        playerplaynextbutton = (JImageButton) JComponentFactory.createJComponent(new JImageButton());
         playerplaynextbutton.setBounds(448, 11, 69, 36);
         playerarea.add(playerplaynextbutton);
 
-        playercurrenttime = new JSlider();
+        playercurrenttime = (JSlider) JComponentFactory.createJComponent(new JSlider());
         playercurrenttime.setValue(0);
         playercurrenttime.setBounds(306, 54, 200, 13);
         playerarea.add(playercurrenttime);
 
-        playerplaytime = new JLabel("00:00");
+        playerplaytime = (JLabel) JComponentFactory.createJComponent(new JLabel("00:00"));
         playerplaytime.setHorizontalAlignment(SwingConstants.RIGHT);
         playerplaytime.setBounds(244, 54, 57, 14);
         playerarea.add(playerplaytime);
 
         playerplaytime.setForeground(PublicValues.globalFontColor);
 
-        playerplaytimetotal = new JLabel("00:00");
+        playerplaytimetotal = (JLabel) JComponentFactory.createJComponent(new JLabel("00:00"));
         playerplaytimetotal.setBounds(506, 54, 49, 14);
         playerarea.add(playerplaytimetotal);
 
@@ -669,6 +674,8 @@ public class ContentPanel extends JPanel {
         });
 
         heart.setImage(new Resources().readToInputStream("icons/heart.svg"));
+
+        JComponentFactory.addJComponent(heart.getJComponent());
 
         playerarea.add(heart.getJComponent());
 
@@ -717,36 +724,36 @@ public class ContentPanel extends JPanel {
         });
     }
     void createLibrary() {
-        librarypane = new JPanel();
+        librarypane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         librarypane.setBounds(0, 0, 784, 421);
         tabpanel.add(librarypane);
         librarypane.setLayout(null);
 
-        librarybutton = new JToggleButton(l.translate("ui.navigation.library"));
+        librarybutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.library")));
         librarybutton.setBounds(230, 111, 107, 23);
         add(librarybutton);
 
-        libraryshufflebutton = new JButton(l.translate("ui.library.shuffle"));
+        libraryshufflebutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.library.shuffle")));
         libraryshufflebutton.setBounds(41, 398, 321, 23);
         librarypane.add(libraryshufflebutton);
 
         libraryshufflebutton.setForeground(PublicValues.globalFontColor);
 
-        libraryplaybutton = new JButton(l.translate("ui.library.play"));
+        libraryplaybutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.library.play")));
         libraryplaybutton.setBounds(408, 398, 321, 23);
         librarypane.add(libraryplaybutton);
 
         libraryplaybutton.setForeground(PublicValues.globalFontColor);
 
-        libraryscrollpane = new JScrollPane();
+        libraryscrollpane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         libraryscrollpane.setBounds(0, 0, 784, 398);
         librarypane.add(libraryscrollpane);
 
-        librarysonglist = new JTable()  {
+        librarysonglist = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         librarysonglist.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
@@ -845,28 +852,28 @@ public class ContentPanel extends JPanel {
         });
     }
     void createPlaylist() {
-        playlistsbutton = new JToggleButton(l.translate("ui.navigation.playlists"));
+        playlistsbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.playlists")));
         playlistsbutton.setBounds(118, 111, 107, 23);
         add(playlistsbutton);
-        playlistspane = new JPanel();
+        playlistspane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         playlistspane.setBounds(0, 0, 784, 421);
         tabpanel.add(playlistspane);
         playlistspane.setLayout(null);
 
-        playlistsplaylistslist = new JPanel();
+        playlistsplaylistslist = (JPanel) JComponentFactory.createJComponent(new JPanel());
         playlistsplaylistslist.setBounds(0, 0, 259, 421);
         playlistspane.add(playlistsplaylistslist);
         playlistsplaylistslist.setLayout(null);
 
-        playlistsplaylistsscroll = new JScrollPane();
+        playlistsplaylistsscroll = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         playlistsplaylistsscroll.setBounds(0, 0, 259, 421);
         playlistsplaylistslist.add(playlistsplaylistsscroll);
 
-        playlistsplayliststable = new JTable()  {
+        playlistsplayliststable = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         playlistsplayliststable.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
@@ -881,20 +888,20 @@ public class ContentPanel extends JPanel {
         playlistsplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistsplaylistsscroll.setViewportView(playlistsplayliststable);
 
-        playlistssonglist = new JPanel();
+        playlistssonglist = (JPanel) JComponentFactory.createJComponent(new JPanel());
         playlistssonglist.setBounds(260, 0, 524, 421);
         playlistspane.add(playlistssonglist);
         playlistssonglist.setLayout(null);
 
-        playlistssongsscroll = new JScrollPane();
+        playlistssongsscroll = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         playlistssongsscroll.setBounds(0, 0, 524, 421);
         playlistssonglist.add(playlistssongsscroll);
 
-        playlistssongtable = new JTable()  {
+        playlistssongtable = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         playlistssongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistssongtable.setModel(new DefaultTableModel(
                 new Object[][] {
@@ -1010,10 +1017,10 @@ public class ContentPanel extends JPanel {
         });
     }
     void createSearch() {
-        searchbutton = new JToggleButton(l.translate("ui.navigation.search"));
+        searchbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.search")));
         searchbutton.setBounds(338, 111, 107, 23);
         add(searchbutton);
-        searchpane = new JPanel();
+        searchpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         searchpane.setBounds(0, 0, 784, 421);
         tabpanel.add(searchpane);
         searchpane.setLayout(null);
@@ -1023,28 +1030,28 @@ public class ContentPanel extends JPanel {
                 setSearchVisible();
             }
         });
-        searchsearchfieldspanel = new JPanel();
+        searchsearchfieldspanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         searchsearchfieldspanel.setBorder(new TitledBorder(null, l.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         searchsearchfieldspanel.setBounds(0, 0, 784, 128);
         searchpane.add(searchsearchfieldspanel);
         searchsearchfieldspanel.setLayout(null);
         searchsearchfieldspanel.setForeground(PublicValues.globalFontColor);
 
-        searchartistlabel = new JLabel(l.translate("ui.search.searchfield.artist"));
+        searchartistlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.search.searchfield.artist")));
         searchartistlabel.setHorizontalAlignment(SwingConstants.RIGHT);
         searchartistlabel.setBounds(30, 25, 46, 14);
         searchsearchfieldspanel.add(searchartistlabel);
 
         searchartistlabel.setForeground(PublicValues.globalFontColor);
 
-        searchsongtitlelabel = new JLabel(l.translate("ui.search.searchfield.title"));
+        searchsongtitlelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.search.searchfield.title")));
         searchsongtitlelabel.setHorizontalAlignment(SwingConstants.RIGHT);
         searchsongtitlelabel.setBounds(10, 62, 66, 14);
         searchsearchfieldspanel.add(searchsongtitlelabel);
 
         searchsongtitlelabel.setForeground(PublicValues.globalFontColor);
 
-        searchclearfieldsbutton = new JButton(l.translate("ui.search.searchfield.button.clear"));
+        searchclearfieldsbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.search.searchfield.button.clear")));
         searchclearfieldsbutton.setBounds(30, 94, 194, 23);
         searchsearchfieldspanel.add(searchclearfieldsbutton);
 
@@ -1058,13 +1065,13 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        searchfinditbutton = new JButton(l.translate("ui.search.searchfield.button.findit"));
+        searchfinditbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.search.searchfield.button.findit")));
         searchfinditbutton.setBounds(234, 94, 194, 23);
         searchsearchfieldspanel.add(searchfinditbutton);
 
         searchfinditbutton.setForeground(PublicValues.globalFontColor);
 
-        searchartistfield = new JTextField();
+        searchartistfield = (JTextField) JComponentFactory.createJComponent(new JTextField());
         searchartistfield.setBounds(86, 22, 356, 20);
         searchsearchfieldspanel.add(searchartistfield);
         searchartistfield.setColumns(10);
@@ -1079,7 +1086,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        searchsongtitlefield = new JTextField();
+        searchsongtitlefield = (JTextField) JComponentFactory.createJComponent(new JTextField());
         searchsongtitlefield.setColumns(10);
         searchsongtitlefield.setBounds(86, 59, 356, 20);
         searchsearchfieldspanel.add(searchsongtitlefield);
@@ -1094,25 +1101,25 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        searchsearchfilterpanel = new JPanel();
+        searchsearchfilterpanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         searchsearchfilterpanel.setLayout(null);
         searchsearchfilterpanel.setBorder(new TitledBorder(null, l.translate("ui.search.searchfield.filters.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         searchsearchfilterpanel.setBounds(452, 11, 322, 106);
         searchsearchfieldspanel.add(searchsearchfilterpanel);
 
-        searchfilterexcludeexplicit = new JRadioButton(l.translate("ui.search.searchfield.filters.excludeexplicit"));
+        searchfilterexcludeexplicit = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(l.translate("ui.search.searchfield.filters.excludeexplicit")));
         searchfilterexcludeexplicit.setBounds(6, 24, 130, 23);
         searchsearchfilterpanel.add(searchfilterexcludeexplicit);
 
         searchfilterexcludeexplicit.setForeground(PublicValues.globalFontColor);
 
-        searchfilterartist = new JRadioButton("Search Artists");
+        searchfilterartist = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Artists"));
         searchfilterartist.setBounds(160, 23, 130, 23);
         searchsearchfilterpanel.add(searchfilterartist);
 
         searchfilterartist.setForeground(PublicValues.globalFontColor);
 
-        searchfiltertrack = new JRadioButton("Search Tracks");
+        searchfiltertrack = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Tracks"));
         searchfiltertrack.setBounds(6, 50, 130, 23);
         searchsearchfilterpanel.add(searchfiltertrack);
 
@@ -1120,19 +1127,19 @@ public class ContentPanel extends JPanel {
 
         searchfiltertrack.setSelected(true);
 
-        searchfilteralbum = new JRadioButton("Search Albums");
+        searchfilteralbum = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Albums"));
         searchfilteralbum.setBounds(160, 50, 130, 23);
         searchsearchfilterpanel.add(searchfilteralbum);
 
         searchfilteralbum.setForeground(PublicValues.globalFontColor);
 
-        searchfilterplaylist = new JRadioButton("Search Playlists");
+        searchfilterplaylist = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Playlists"));
         searchfilterplaylist.setBounds(6, 75, 130, 23);
         searchsearchfilterpanel.add(searchfilterplaylist);
 
         searchfilterplaylist.setForeground(PublicValues.globalFontColor);
 
-        searchfiltershow = new JRadioButton("Search Shows");
+        searchfiltershow = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Shows"));
         searchfiltershow.setBounds(160, 75, 130, 23);
         searchsearchfilterpanel.add(searchfiltershow);
 
@@ -1232,13 +1239,13 @@ public class ContentPanel extends JPanel {
                                 if(searchtitle.equals("")) {
                                     searchtitle = searchartist;
                                 }
-                                for(Artist a : api.getSpotifyApi().searchArtists(searchtitle).limit(50).build().execute().getItems()) {
+                                for(Artist a : api.getSpotifyApi().searchArtists(searchtitle).build().execute().getItems()) {
                                     searchsonglistcache.add(a.getUri());
                                     api.addArtistToList(a, searchsonglist);
                                 }
                             }
                             if(album) {
-                                for(AlbumSimplified a : api.getSpotifyApi().searchAlbums(searchtitle).limit(50).build().execute().getItems()) {
+                                for(AlbumSimplified a : api.getSpotifyApi().searchAlbums(searchtitle).build().execute().getItems()) {
                                     if(!searchartist.equals("")) {
                                         if(!TrackUtils.trackHasArtist(a.getArtists(), searchartist, true)) {
                                             continue;
@@ -1249,7 +1256,7 @@ public class ContentPanel extends JPanel {
                                 }
                             }
                             if(show) {
-                                for(ShowSimplified s : api.getSpotifyApi().searchShows(searchtitle).limit(50).build().execute().getItems()) {
+                                for(ShowSimplified s : api.getSpotifyApi().searchShows(searchtitle).build().execute().getItems()) {
                                     if(!searchartist.equals("")) {
                                         if(!s.getPublisher().equalsIgnoreCase(searchartist)) {
                                             continue;
@@ -1260,7 +1267,7 @@ public class ContentPanel extends JPanel {
                                 }
                             }
                             if(playlist) {
-                                for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchtitle).limit(50).build().execute().getItems()) {
+                                for (PlaylistSimplified t : api.getSpotifyApi().searchPlaylists(searchtitle).build().execute().getItems()) {
                                     if(!searchartist.equals("")) {
                                         if(!t.getOwner().getDisplayName().equalsIgnoreCase(searchartist)) {
                                             continue;
@@ -1278,17 +1285,17 @@ public class ContentPanel extends JPanel {
                 thread1.start();
             }
         });
-        searchscrollpanel = new JScrollPane();
+        searchscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         searchscrollpanel.setBounds(0, 139, 784, 282);
         searchpane.add(searchscrollpanel);
 
-        searchsonglist = new JTable() {
+        searchsonglist = (JTable) JComponentFactory.createJComponent(new JTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         searchsonglist.getTableHeader().setReorderingAllowed(false);
-        artistPanelBackButton = new JButton("Back");
+        artistPanelBackButton = (JButton) JComponentFactory.createJComponent(new JButton("Back"));
         artistPanelBackButton.setBounds(0, 0, 89, 23);
         artistPanelBackButton.setForeground(PublicValues.globalFontColor);
         artistPanelBackButton.addActionListener(new ActionListener() {
@@ -1315,11 +1322,11 @@ public class ContentPanel extends JPanel {
             }
         });
         tabpanel.add(artistPanelBackButton);
-
         artistPanel = new ArtistPanel();
         artistPanel.contentPanel.setBounds(0, 21, 784, 400);
         tabpanel.add(artistPanel.contentPanel);
         artistPanel.contentPanel.setVisible(false);
+        JComponentFactory.addJComponent(artistPanel.contentPanel);
         searchsonglist.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -1332,9 +1339,28 @@ public class ContentPanel extends JPanel {
                             ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
                             try {
                                 Playlist pl = api.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                for(PlaylistTrack track : pl.getTracks().getItems()) {
-                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                    searchplaylistsongscache.add(track.getTrack().getUri());
+                                if(pl.getTracks().getTotal() > 100) {
+                                    int parsed = 0;
+                                    int offset = 100;
+                                    for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        searchplaylistsongscache.add(track.getTrack().getUri());
+                                        parsed++;
+                                    }
+                                    while(parsed != pl.getTracks().getTotal()) {
+                                        Paging<PlaylistTrack> tracks = api.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                        for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                            searchplaylistsongscache.add(track.getTrack().getUri());
+                                            parsed++;
+                                        }
+                                        offset = offset + 100;
+                                    }
+                                }else {
+                                    for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        searchplaylistsongscache.add(track.getTrack().getUri());
+                                    }
                                 }
                             } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                 ConsoleLogging.Throwable(ex);
@@ -1389,9 +1415,28 @@ public class ContentPanel extends JPanel {
                                     ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
                                     try {
                                         Show show = api.getSpotifyApi().getShow(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                        for(EpisodeSimplified episode : show.getEpisodes().getItems()) {
-                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
-                                            searchplaylistsongscache.add(episode.getUri());
+                                        if(show.getEpisodes().getTotal() > 50) {
+                                            int parsed = 0;
+                                            int offset = 50;
+                                            for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
+                                                searchplaylistsongscache.add(episode.getUri());
+                                                parsed++;
+                                            }
+                                            while(parsed != show.getEpisodes().getTotal()) {
+                                                Paging<EpisodeSimplified> tracks = api.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                                for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
+                                                    searchplaylistsongscache.add(episode.getUri());
+                                                    parsed++;
+                                                }
+                                                offset = offset + 50;
+                                            }
+                                        }else {
+                                            for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
+                                                searchplaylistsongscache.add(episode.getUri());
+                                            }
                                         }
                                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                         ConsoleLogging.Throwable(ex);
@@ -1404,9 +1449,28 @@ public class ContentPanel extends JPanel {
                                         ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
                                         try {
                                             Album album = api.getSpotifyApi().getAlbum(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                            for(TrackSimplified simplified : album.getTracks().getItems()) {
-                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                                searchplaylistsongscache.add(simplified.getUri());
+                                            int parsed = 0;
+                                            int offset = 50;
+                                            if(album.getTracks().getTotal() > 50) {
+                                                for(TrackSimplified simplified : album.getTracks().getItems()) {
+                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                                    searchplaylistsongscache.add(simplified.getUri());
+                                                    parsed++;
+                                                }
+                                                while(parsed != album.getTracks().getTotal()) {
+                                                    Paging<TrackSimplified> tracks = api.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                                    for(TrackSimplified simplified : tracks.getItems()) {
+                                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                                        searchplaylistsongscache.add(simplified.getUri());
+                                                        parsed++;
+                                                    }
+                                                    offset = offset + 50;
+                                                }
+                                            }else {
+                                                for (TrackSimplified simplified : album.getTracks().getItems()) {
+                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                                    searchplaylistsongscache.add(simplified.getUri());
+                                                }
                                             }
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
@@ -1447,26 +1511,26 @@ public class ContentPanel extends JPanel {
         searchsonglist.setColumnSelectionAllowed(true);
         searchscrollpanel.setViewportView(searchsonglist);
 
-        searchplaylistpanel = new JPanel();
+        searchplaylistpanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         searchplaylistpanel.setBounds(0, 0, 784, 421);
         tabpanel.add(searchplaylistpanel);
         searchplaylistpanel.setLayout(null);
 
-        searchbackbutton = new JButton("Back");
+        searchbackbutton = (JButton) JComponentFactory.createJComponent(new JButton("Back"));
         searchbackbutton.setBounds(0, 0, 89, 23);
         searchplaylistpanel.add(searchbackbutton);
 
         searchbackbutton.setForeground(PublicValues.globalFontColor);
 
-        searchplaylistscrollpanel = new JScrollPane();
+        searchplaylistscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
         searchplaylistpanel.add(searchplaylistscrollpanel);
 
-        searchplaylisttable = new JTable() {
+        searchplaylisttable = (JTable) JComponentFactory.createJComponent(new JTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         searchplaylistscrollpanel.setViewportView(searchplaylisttable);
         searchplaylisttable.setForeground(PublicValues.globalFontColor);
         searchplaylisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -1529,28 +1593,28 @@ public class ContentPanel extends JPanel {
         });
     }
     void createHotList() {
-        hotlistbutton = new JToggleButton(l.translate("ui.navigation.hotlist"));
+        hotlistbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.hotlist")));
         hotlistbutton.setBounds(447, 111, 107, 23);
         add(hotlistbutton);
-        hotlistpane = new JPanel();
+        hotlistpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         hotlistpane.setBounds(0, 0, 784, 421);
         tabpanel.add(hotlistpane);
         hotlistpane.setLayout(null);
 
-        hotlistplaylistspanel = new JPanel();
+        hotlistplaylistspanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         hotlistplaylistspanel.setBounds(0, 0, 259, 421);
         hotlistpane.add(hotlistplaylistspanel);
         hotlistplaylistspanel.setLayout(null);
 
-        hotlistplaylistsscrollpanel = new JScrollPane();
+        hotlistplaylistsscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         hotlistplaylistsscrollpanel.setBounds(0, 0, 259, 421);
         hotlistplaylistspanel.add(hotlistplaylistsscrollpanel);
 
-        hotlistplayliststable = new JTable()  {
+        hotlistplayliststable = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         hotlistplayliststable.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
@@ -1565,12 +1629,12 @@ public class ContentPanel extends JPanel {
         hotlistplayliststable.setColumnSelectionAllowed(true);
         hotlistplaylistsscrollpanel.setViewportView(hotlistplayliststable);
 
-        hotlistsonglistpanel = new JPanel();
+        hotlistsonglistpanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         hotlistsonglistpanel.setBounds(260, 0, 524, 421);
         hotlistpane.add(hotlistsonglistpanel);
         hotlistsonglistpanel.setLayout(null);
 
-        hotslistsongscrollpanel = new JScrollPane();
+        hotslistsongscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         hotslistsongscrollpanel.setBounds(0, 0, 524, 421);
         hotlistsonglistpanel.add(hotslistsongscrollpanel);
 
@@ -1586,11 +1650,11 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        hotlistsongstable = new JTable()  {
+        hotlistsongstable = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
         hotlistsongstable.setModel(new DefaultTableModel(
                 new Object[][] {
                 },
@@ -1654,7 +1718,7 @@ public class ContentPanel extends JPanel {
         });
     }
     void createQueue() {
-        queuebutton = new JToggleButton(l.translate("ui.navigation.queue"));
+        queuebutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.queue")));
         queuebutton.setBounds(557, 111, 107, 23);
         add(queuebutton);
         queuepane = new JPanel();
@@ -1662,13 +1726,13 @@ public class ContentPanel extends JPanel {
         tabpanel.add(queuepane);
         queuepane.setLayout(null);
 
-        queueremovebutton = new JButton(l.translate("ui.queue.remove"));
+        queueremovebutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.queue.remove")));
         queueremovebutton.setBounds(0, 398, 784, 23);
         queuepane.add(queueremovebutton);
 
         queueremovebutton.setForeground(PublicValues.globalFontColor);
 
-        queuescrollpane = new JScrollPane();
+        queuescrollpane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         queuescrollpane.setBounds(0, 0, 784, 395);
         queuepane.add(queuescrollpane);
 
@@ -1717,62 +1781,62 @@ public class ContentPanel extends JPanel {
         });
     }
     void createFeedback() {
-        feedbackbutton = new JToggleButton(l.translate("ui.navigation.feedback"));
+        feedbackbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.feedback")));
         feedbackbutton.setBounds(667, 111, 107, 23);
         add(feedbackbutton);
-        feedbackpane = new JPanel();
+        feedbackpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         feedbackpane.setBounds(0, 0, 784, 421);
         tabpanel.add(feedbackpane);
         feedbackpane.setLayout(null);
 
-        feedbackmakesurelabel = new JLabel(l.translate("ui.feedback.makesure"));
+        feedbackmakesurelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.feedback.makesure")));
         feedbackmakesurelabel.setBounds(10, 23, 690, 25);
         feedbackpane.add(feedbackmakesurelabel);
 
         feedbackmakesurelabel.setForeground(PublicValues.globalFontColor);
 
-        feedbackissuepanel = new JPanel();
+        feedbackissuepanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         feedbackissuepanel.setBorder(new TitledBorder(null, l.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         feedbackissuepanel.setBounds(0, 333, 426, 88);
         feedbackpane.add(feedbackissuepanel);
         feedbackissuepanel.setLayout(null);
 
-        feedbackviewissuesbutton = new JButton(l.translate("ui.feedback.issues.view"));
+        feedbackviewissuesbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.feedback.issues.view")));
         feedbackviewissuesbutton.setBounds(10, 21, 188, 56);
         feedbackissuepanel.add(feedbackviewissuesbutton);
 
         feedbackviewissuesbutton.setForeground(PublicValues.globalFontColor);
 
-        feedbackcreateissuebutton = new JButton(l.translate("ui.feedback.issues.create"));
+        feedbackcreateissuebutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.feedback.issues.create")));
         feedbackcreateissuebutton.setBounds(227, 21, 188, 56);
         feedbackissuepanel.add(feedbackcreateissuebutton);
 
         feedbackcreateissuebutton.setForeground(PublicValues.globalFontColor);
 
-        feedbackgithubbutton = new JButton(l.translate("ui.feedback.github.open"));
+        feedbackgithubbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.feedback.github.open")));
         feedbackgithubbutton.setBounds(466, 355, 250, 55);
         feedbackpane.add(feedbackgithubbutton);
 
         feedbackgithubbutton.setForeground(PublicValues.globalFontColor);
 
-        feedbackupdatespanel = new JPanel();
+        feedbackupdatespanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         feedbackupdatespanel.setBorder(new TitledBorder(null, l.translate("ui.updater.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         feedbackupdatespanel.setBounds(10, 59, 566, 249);
         feedbackpane.add(feedbackupdatespanel);
         feedbackupdatespanel.setLayout(null);
 
-        feedbackupdaterversionfield = new JTextField();
+        feedbackupdaterversionfield = (JTextField) JComponentFactory.createJComponent(new JTextField());
         feedbackupdaterversionfield.setBounds(10, 85, 230, 20);
         feedbackupdatespanel.add(feedbackupdaterversionfield);
         feedbackupdaterversionfield.setColumns(10);
 
-        feedbackwillbemovedlabel = new JLabel("The Updater will be moved to an other place");
+        feedbackwillbemovedlabel = (JLabel) JComponentFactory.createJComponent(new JLabel("The Updater will be moved to an other place"));
         feedbackwillbemovedlabel.setBounds(10, 29, 327, 14);
         feedbackupdatespanel.add(feedbackwillbemovedlabel);
 
         feedbackwillbemovedlabel.setForeground(PublicValues.globalFontColor);
 
-        feedbackupdaterdownloadbutton = new JButton(l.translate("ui.updater.downloadnewest"));
+        feedbackupdaterdownloadbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.updater.downloadnewest")));
         feedbackupdaterdownloadbutton.setBounds(10, 149, 230, 23);
         feedbackupdatespanel.add(feedbackupdaterdownloadbutton);
 
@@ -2026,12 +2090,12 @@ public class ContentPanel extends JPanel {
     }
     public static ArrayList<String> advanceduricache = new ArrayList<String>();
     void createAdvancedPanel() {
-        advancedsongpanel = new JPanel();
+        advancedsongpanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         advancedsongpanel.setBounds(0, 0, 784, 421);
         tabpanel.add(advancedsongpanel);
         advancedsongpanel.setLayout(null);
 
-        advancedbackbutton = new JButton("Back");
+        advancedbackbutton = (JButton) JComponentFactory.createJComponent(new JButton("Back"));
         advancedbackbutton.setBounds(0, 0, 89, 23);
         advancedsongpanel.add(advancedbackbutton);
 
@@ -2048,11 +2112,11 @@ public class ContentPanel extends JPanel {
         });
 
 
-        advancedsongtable = new JTable() {
+        advancedsongtable = (JTable) JComponentFactory.createJComponent(new JTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        });
 
         advancedsongtable.setModel(new DefaultTableModel(
                 new Object[][] {
@@ -2064,7 +2128,7 @@ public class ContentPanel extends JPanel {
         advancedsongtable.setForeground(PublicValues.globalFontColor);
         advancedsongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
-        advancedscrollpanel = new JScrollPane();
+        advancedscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         advancedscrollpanel.setBounds(0, 22, 784, 399);
         advancedsongpanel.add(advancedscrollpanel);
 
@@ -2260,14 +2324,14 @@ public class ContentPanel extends JPanel {
             toggle = false;
             return;
         }
-        panel = new JPanel() {
+        panel = (JPanel) JComponentFactory.createJComponent(new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(Color.black);
                 StringUtils.drawCenteredString(g, "Toggle", new Rectangle(w, h), g.getFont());
             }
-        };
+        });
         overlay = new JFrame();
         al = new ActionListener() {
 
@@ -2886,7 +2950,6 @@ public class ContentPanel extends JPanel {
         mainframe.add(settingsPanel, BorderLayout.CENTER);
         mainframe.add(this, BorderLayout.CENTER);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        mainframe.setResizable(false);
         mainframe.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -2895,15 +2958,17 @@ public class ContentPanel extends JPanel {
         });
         mainframe.setForeground(Color.blue);
         mainframe.setVisible(true);
+        mainframe.setResizable(false);
         mainframe.pack();
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;
         mainframe.setLocation(w / 2 - mainframe.getWidth() / 2, h / 2 - mainframe.getHeight() / 2);
-        mainframe.setAlwaysOnTop(true);
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(2));
         } catch (InterruptedException ignored) {
         }
         mainframe.setAlwaysOnTop(false);
+        JComponentFactory.applyDPI();
+        JComponentFactory.enableResizing();
     }
 }
