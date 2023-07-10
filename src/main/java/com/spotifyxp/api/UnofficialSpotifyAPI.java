@@ -4,6 +4,7 @@ package com.spotifyxp.api;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.URLUtils;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -12,9 +13,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.temporal.ValueRange;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TimeZone;
 
 public class UnofficialSpotifyAPI {
@@ -837,7 +842,19 @@ public class UnofficialSpotifyAPI {
         return tab;
     }
 
-    public String getCanvasURLForTrack(String id) {
-        
+    public static String getCanvasURLForTrack(String artist, String album, String track) {
+        track = track.replace(" ", "%20");
+        album = album.replace(" ", "%20");
+        artist = artist.replace(" ", "%20");
+        HttpClient client = new HttpClient();
+        GetMethod method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+        try {
+            client.executeMethod(method);
+            return method.getResponseBodyAsString();
+        } catch (IOException e) {
+            ExceptionDialog.open(e);
+            ConsoleLogging.Throwable(e);
+            return "ERROR";
+        }
     }
 }

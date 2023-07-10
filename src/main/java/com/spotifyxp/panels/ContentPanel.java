@@ -1,6 +1,7 @@
 package com.spotifyxp.panels;
 
 import com.neovisionaries.i18n.CountryCode;
+import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.dialogs.HTMLDialog;
@@ -24,6 +25,7 @@ import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.*;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
+import org.checkerframework.checker.units.qual.C;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
@@ -720,6 +722,19 @@ public class ContentPanel extends JPanel {
             @Override
             public void stateChanged(ChangeEvent e) {
                 ContentPanel.playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(player.getPlayer().time()));
+            }
+        });
+
+        ContextMenu menu = new ContextMenu(playerarea);
+        menu.addItem("Open Canvas", new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().equals("")) {
+                        GraphicalMessage.bug(UnofficialSpotifyAPI.getCanvasURLForTrack(PublicValues.spotifyplayer.currentMetadata().getArtist(), PublicValues.spotifyplayer.currentMetadata().getAlbumName(), PublicValues.spotifyplayer.currentMetadata().getName()));
+                    }
+                }catch (Exception ignored) {
+                }
             }
         });
     }

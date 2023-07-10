@@ -143,6 +143,26 @@ public class SpotifyAPI {
             }
             return ret;
         }
+
+        public String makePost(String url, String body) {
+            if(!url.contains("https")) {
+                url = "https://api.spotify.com" + url;
+            }
+            String ret = "FAILED";
+            try {
+                HttpClient client = new HttpClient();
+                PostMethod post = new PostMethod(url);
+                post.addRequestHeader("Authorization", "Bearer " + token);
+                post.setRequestBody(body);
+                client.executeMethod(post);
+                ret = post.getResponseBodyAsString();
+            } catch (IOException e) {
+                ExceptionDialog.open(e);
+                ConsoleLogging.Throwable(e);
+            }
+            return ret;
+        }
+
         public String makeGet(String url) {
             if(!url.contains("https")) {
                 url = "https://api.spotify.com" + url;

@@ -2953,7 +2953,7 @@ public final class CanvazOuterClass {
       private Entity(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
-      private Entity() {
+      public Entity() {
         entityUri_ = "";
         etag_ = "";
       }
