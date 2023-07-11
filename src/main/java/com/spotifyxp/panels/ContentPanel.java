@@ -23,6 +23,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.*;
+import com.spotifyxp.video.CanvasPlayer;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
 import org.checkerframework.checker.units.qual.C;
@@ -729,12 +730,22 @@ public class ContentPanel extends JPanel {
         menu.addItem("Open Canvas", new Runnable() {
             @Override
             public void run() {
-                try {
-                    if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().equals("")) {
-                        GraphicalMessage.bug(UnofficialSpotifyAPI.getCanvasURLForTrack(PublicValues.spotifyplayer.currentMetadata().getArtist(), PublicValues.spotifyplayer.currentMetadata().getAlbumName(), PublicValues.spotifyplayer.currentMetadata().getName()));
+                DefThread thread = new DefThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().equals("")) {
+                                PublicValues.canvasPlayer.show();
+                                PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(PublicValues.spotifyplayer.currentMetadata().getArtist(), PublicValues.spotifyplayer.currentMetadata().getAlbumName(), PublicValues.spotifyplayer.currentMetadata().getName()));
+                                if(!PublicValues.spotifyplayer.isPaused()) {
+                                    PublicValues.canvasPlayer.play();
+                                }
+                            }
+                        }catch (Exception ignored) {
+                        }
                     }
-                }catch (Exception ignored) {
-                }
+                });
+                thread.start();
             }
         });
     }
@@ -1346,165 +1357,171 @@ public class ContentPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
-                    if(player.getPlayer().isReady()) {
-                        if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("playlist")) {
+                    switch (searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1]) {
+                        case "playlist":
+                        case "album":
+                        case "show":
                             searchpane.setVisible(false);
                             searchplaylistpanel.setVisible(true);
                             searchplaylistsongscache.clear();
                             ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
-                            try {
-                                Playlist pl = api.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                if(pl.getTracks().getTotal() > 100) {
-                                    int parsed = 0;
-                                    int offset = 100;
-                                    for (PlaylistTrack track : pl.getTracks().getItems()) {
-                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                        searchplaylistsongscache.add(track.getTrack().getUri());
-                                        parsed++;
-                                    }
-                                    while(parsed != pl.getTracks().getTotal()) {
-                                        Paging<PlaylistTrack> tracks = api.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
-                                        for (PlaylistTrack track : pl.getTracks().getItems()) {
-                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                            searchplaylistsongscache.add(track.getTrack().getUri());
-                                            parsed++;
-                                        }
-                                        offset = offset + 100;
-                                    }
-                                }else {
-                                    for (PlaylistTrack track : pl.getTracks().getItems()) {
-                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                        searchplaylistsongscache.add(track.getTrack().getUri());
-                                    }
-                                }
-                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                                ConsoleLogging.Throwable(ex);
-                            }
-                        }else {
-                            if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("artist")) {
-                                artistPanel.artistpopularuricache.clear();
-                                artistPanel.artistalbumuricache.clear();
-                                ((DefaultTableModel)artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                                ((DefaultTableModel)artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                                artistPanel.artisttitle.setText("");
-                                try {
-                                    Artist a = api.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                            break;
+                        case "artist":
+                            artistPanel.artistpopularuricache.clear();
+                            artistPanel.artistalbumuricache.clear();
+                            ((DefaultTableModel)artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                            ((DefaultTableModel)artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                            artistPanel.artisttitle.setText("");
+                            artistPanel.contentPanel.setVisible(true);
+                            artistPanelBackButton.setVisible(true);
+                            searchpane.setVisible(false);
+                            break;
+                    }
+                    DefThread thread = new DefThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(player.getPlayer().isReady()) {
+                                if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("playlist")) {
                                     try {
-                                        artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
-                                    } catch (ArrayIndexOutOfBoundsException exception) {
-                                        //No artist image (when this is raised it's a bug)
-                                    }
-                                    artistPanel.artisttitle.setText(a.getName());
-                                    DefThread trackthread = new DefThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            try {
-                                                for (Track t : api.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], countryCode).build().execute()) {
-                                                    artistPanel.artistpopularuricache.add(t.getUri());
-                                                    api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
-                                                }
-                                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                                                ConsoleLogging.Throwable(ex);
-                                            }
-                                        }
-                                    });
-                                    DefThread albumthread = new DefThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            api.addAllAlbumsToList(artistPanel.artistalbumuricache, a.getUri(), artistPanel.artistalbumalbumtable);
-                                        }
-                                    });
-                                    albumthread.start();
-                                    trackthread.start();
-                                } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                                    ConsoleLogging.Throwable(ex);
-                                }
-                                artistPanel.contentPanel.setVisible(true);
-                                artistPanelBackButton.setVisible(true);
-                                searchpane.setVisible(false);
-                            }else {
-                                if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("show")) {
-                                    searchpane.setVisible(false);
-                                    searchplaylistpanel.setVisible(true);
-                                    searchplaylistsongscache.clear();
-                                    ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
-                                    try {
-                                        Show show = api.getSpotifyApi().getShow(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                        if(show.getEpisodes().getTotal() > 50) {
+                                        Playlist pl = api.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                        if(pl.getTracks().getTotal() > 100) {
                                             int parsed = 0;
-                                            int offset = 50;
-                                            for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
-                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
-                                                searchplaylistsongscache.add(episode.getUri());
+                                            int offset = 100;
+                                            for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                                searchplaylistsongscache.add(track.getTrack().getUri());
                                                 parsed++;
                                             }
-                                            while(parsed != show.getEpisodes().getTotal()) {
-                                                Paging<EpisodeSimplified> tracks = api.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
-                                                for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
-                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
-                                                    searchplaylistsongscache.add(episode.getUri());
+                                            while(parsed != pl.getTracks().getTotal()) {
+                                                Paging<PlaylistTrack> tracks = api.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                                for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                                    searchplaylistsongscache.add(track.getTrack().getUri());
                                                     parsed++;
                                                 }
-                                                offset = offset + 50;
+                                                offset = offset + 100;
                                             }
                                         }else {
-                                            for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
-                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
-                                                searchplaylistsongscache.add(episode.getUri());
+                                            for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                                searchplaylistsongscache.add(track.getTrack().getUri());
                                             }
                                         }
                                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                         ConsoleLogging.Throwable(ex);
                                     }
-                                }else{
-                                    if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("album")) {
-                                        searchpane.setVisible(false);
-                                        searchplaylistpanel.setVisible(true);
-                                        searchplaylistsongscache.clear();
-                                        ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
+                                }else {
+                                    if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("artist")) {
                                         try {
-                                            Album album = api.getSpotifyApi().getAlbum(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                            int parsed = 0;
-                                            int offset = 50;
-                                            if(album.getTracks().getTotal() > 50) {
-                                                for(TrackSimplified simplified : album.getTracks().getItems()) {
-                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                                    searchplaylistsongscache.add(simplified.getUri());
-                                                    parsed++;
-                                                }
-                                                while(parsed != album.getTracks().getTotal()) {
-                                                    Paging<TrackSimplified> tracks = api.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
-                                                    for(TrackSimplified simplified : tracks.getItems()) {
-                                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                                        searchplaylistsongscache.add(simplified.getUri());
-                                                        parsed++;
-                                                    }
-                                                    offset = offset + 50;
-                                                }
-                                            }else {
-                                                for (TrackSimplified simplified : album.getTracks().getItems()) {
-                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                                    searchplaylistsongscache.add(simplified.getUri());
-                                                }
+                                            Artist a = api.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                            try {
+                                                artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                            } catch (ArrayIndexOutOfBoundsException exception) {
+                                                //No artist image (when this is raised it's a bug)
                                             }
+                                            artistPanel.artisttitle.setText(a.getName());
+                                            DefThread trackthread = new DefThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    try {
+                                                        for (Track t : api.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], countryCode).build().execute()) {
+                                                            artistPanel.artistpopularuricache.add(t.getUri());
+                                                            api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
+                                                        }
+                                                    } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                        ConsoleLogging.Throwable(ex);
+                                                    }
+                                                }
+                                            });
+                                            DefThread albumthread = new DefThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    api.addAllAlbumsToList(artistPanel.artistalbumuricache, a.getUri(), artistPanel.artistalbumalbumtable);
+                                                }
+                                            });
+                                            albumthread.start();
+                                            trackthread.start();
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
-                                    }else{
-                                        player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle);
+                                    }else {
+                                        if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("show")) {
+                                            try {
+                                                Show show = api.getSpotifyApi().getShow(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                                if(show.getEpisodes().getTotal() > 50) {
+                                                    int parsed = 0;
+                                                    int offset = 50;
+                                                    for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
+                                                        searchplaylistsongscache.add(episode.getUri());
+                                                        parsed++;
+                                                    }
+                                                    while(parsed != show.getEpisodes().getTotal()) {
+                                                        Paging<EpisodeSimplified> tracks = api.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                                        for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
+                                                            searchplaylistsongscache.add(episode.getUri());
+                                                            parsed++;
+                                                        }
+                                                        offset = offset + 50;
+                                                    }
+                                                }else {
+                                                    for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                        ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
+                                                        searchplaylistsongscache.add(episode.getUri());
+                                                    }
+                                                }
+                                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                ConsoleLogging.Throwable(ex);
+                                            }
+                                        }else{
+                                            if(searchsonglistcache.get(searchsonglist.getSelectedRow()).contains("album")) {
+                                                try {
+                                                    Album album = api.getSpotifyApi().getAlbum(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                                    int parsed = 0;
+                                                    int offset = 50;
+                                                    if(album.getTracks().getTotal() > 50) {
+                                                        for(TrackSimplified simplified : album.getTracks().getItems()) {
+                                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                                            searchplaylistsongscache.add(simplified.getUri());
+                                                            parsed++;
+                                                        }
+                                                        while(parsed != album.getTracks().getTotal()) {
+                                                            Paging<TrackSimplified> tracks = api.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                                            for(TrackSimplified simplified : tracks.getItems()) {
+                                                                ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                                                searchplaylistsongscache.add(simplified.getUri());
+                                                                parsed++;
+                                                            }
+                                                            offset = offset + 50;
+                                                        }
+                                                    }else {
+                                                        for (TrackSimplified simplified : album.getTracks().getItems()) {
+                                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                                            searchplaylistsongscache.add(simplified.getUri());
+                                                        }
+                                                    }
+                                                } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                                    ConsoleLogging.Throwable(ex);
+                                                }
+                                            }else{
+                                                player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle);
+                                            }
+                                        }
                                     }
+                                }
+                            }else{
+                                player.retry();
+                                if(player.getPlayer().isReady()) {
+                                    player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle);
+                                }else{
+                                    GraphicalMessage.sorryError();
+                                    System.exit(0);
                                 }
                             }
                         }
-                    }else{
-                        player.retry();
-                        if(player.getPlayer().isReady()) {
-                            player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle);
-                        }else{
-                            GraphicalMessage.sorryError();
-                            System.exit(0);
-                        }
-                    }
+                    });
+                    thread.start();
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
                 }else{
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
@@ -2202,11 +2219,10 @@ public class ContentPanel extends JPanel {
         createThreePointButton();
         createUserButton();
         createHome();
+        SplashPanel.linfo.setText("Creating CanvasPlayer...");
+        PublicValues.canvasPlayer = new CanvasPlayer();
         SplashPanel.linfo.setText("Creating advancedPanel...");
         createAdvancedPanel();
-
-        SplashPanel.linfo.setText("Checking premium account...");
-
         SplashPanel.linfo.setText("Changing component visibility...");
         searchpane.setVisible(false); //Not show searchpane when window is opened
         librarypane.setVisible(false); //Not show librarypane when window is opened
@@ -2951,6 +2967,7 @@ public class ContentPanel extends JPanel {
         try {
             mainframe.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
         } catch (IOException e) {
+            ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
         settingsPanel = new SettingsPanel();

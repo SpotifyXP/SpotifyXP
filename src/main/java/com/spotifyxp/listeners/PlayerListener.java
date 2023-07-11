@@ -1,6 +1,9 @@
 package com.spotifyxp.listeners;
 
+import com.spotifyxp.api.UnofficialSpotifyAPI;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.PublicValues;
@@ -10,6 +13,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.theming.themes.Legacy;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.video.CanvasPlayer;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -85,9 +89,10 @@ public class PlayerListener implements Player.EventsListener {
                 //---
                 StringBuilder artists = new StringBuilder();
                 if(playableId.toSpotifyUri().contains("episode")) {
-                    ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                    ContentPanel.playertitle.setText(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                    artists.append(a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute().getShow().getPublisher());
+                    Episode episode = a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                    ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
+                    ContentPanel.playertitle.setText(episode.getName());
+                    artists.append(episode.getShow().getPublisher());
                     JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/episodes/" + playableId.toSpotifyUri().split(":")[2]));
                     for (Object object : root.getJSONArray("images")) {
                         JSONObject urls = new JSONObject(object.toString());
@@ -97,9 +102,10 @@ public class PlayerListener implements Player.EventsListener {
                 }
                 else{
                     if(playableId.toSpotifyUri().contains("track")) {
-                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                        ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                        for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
+                        Track track = a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
+                        ContentPanel.playertitle.setText(track.getName());
+                        for (ArtistSimplified artist : track.getArtists()) {
                             if (artists.toString().equals("")) {
                                 artists.append(artist.getName());
                             } else {
@@ -112,12 +118,16 @@ public class PlayerListener implements Player.EventsListener {
                             JSONObject urls = new JSONObject(object.toString());
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                             break;
+                        }
+                        if(PublicValues.canvasPlayer.isShown()) {
+                            PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(artists.toString().split(", ")[0], track.getAlbum().getName(), track.getName()));
                         }
                     }else{
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
-                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getDurationMs()));
-                        ContentPanel.playertitle.setText(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName());
-                        for (ArtistSimplified artist : a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()) {
+                        Track track = a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        ContentPanel.playerplaytimetotal.setText(String.valueOf(track.getDurationMs()));
+                        ContentPanel.playertitle.setText(track.getName());
+                        for (ArtistSimplified artist : track.getArtists()) {
                             if (artists.toString().equals("")) {
                                 artists.append(artist.getName());
                             } else {
@@ -130,6 +140,9 @@ public class PlayerListener implements Player.EventsListener {
                             JSONObject urls = new JSONObject(object.toString());
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                             break;
+                        }
+                        if(PublicValues.canvasPlayer.isShown()) {
+                            PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(artists.toString().split(", ")[0], track.getAlbum().getName(), track.getName()));
                         }
                     }
                 }
@@ -159,6 +172,9 @@ public class PlayerListener implements Player.EventsListener {
             }
         }
         //timer.cancel();
+        if(PublicValues.canvasPlayer.isShown()) {
+            PublicValues.canvasPlayer.pause();
+        }
     }
 
     @Override
@@ -171,6 +187,9 @@ public class PlayerListener implements Player.EventsListener {
             }else{
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
             }
+        }
+        if(PublicValues.canvasPlayer.isShown()) {
+            PublicValues.canvasPlayer.play();
         }
         //timer.schedule(new PlayerThread(), 0, 1000);
     }
@@ -185,6 +204,9 @@ public class PlayerListener implements Player.EventsListener {
     public void onTrackSeeked(@NotNull Player player, long l) {
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
+        }
+        if(PublicValues.canvasPlayer.isShown()) {
+            PublicValues.canvasPlayer.play();
         }
         locked = false;
     }

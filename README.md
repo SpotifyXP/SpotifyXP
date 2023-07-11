@@ -87,6 +87,8 @@ SpotifyXP is build with
             <a>org.slf4j:slf4j-api</a>
             <br>
             <a>org.jetbrains:annotations</a>
+            <br>
+            <a>uk.co.caprica:vlcj</a>
         </div>
 
 ## Getting Started

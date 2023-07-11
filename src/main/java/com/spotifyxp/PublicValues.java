@@ -15,6 +15,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.video.CanvasPlayer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -49,4 +50,5 @@ public class PublicValues {
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
     public static boolean isSteamDeckMode = false;
     public static String tempPath = System.getenv("temp");
+    public static CanvasPlayer canvasPlayer;
 }

@@ -11,6 +11,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
@@ -236,16 +237,22 @@ public class SpotifyAPI {
         }
     }
     public void addAllAlbumsToList(ArrayList<String> uricache, String fromuri, JTable totable) {
-        int offset = 0;
-        int limit = 50;
-        while(uricache.size()!=new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
-            for(Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
-                JSONObject object = new JSONObject(o.toString());
-                uricache.add(object.getString("uri"));
-                ((DefaultTableModel) totable.getModel()).addRow(new Object[] {object.getString("name")});
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                int offset = 0;
+                int limit = 50;
+                while(uricache.size()!=new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
+                    for(Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
+                        JSONObject object = new JSONObject(o.toString());
+                        uricache.add(object.getString("uri"));
+                        ((DefaultTableModel) totable.getModel()).addRow(new Object[] {object.getString("name")});
+                    }
+                    offset=offset+50;
+                }
             }
-            offset=offset+50;
-        }
+        });
+        thread.start();
     }
     public void addAlbumToList(AlbumSimplified simplified, JTable table) {
         ((DefaultTableModel) table.getModel()).addRow(new Object[] {simplified.getName()});

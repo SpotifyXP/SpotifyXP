@@ -129,6 +129,11 @@
             <artifactId>protobuf-java-util</artifactId>
             <version>3.21.5</version>
         </dependency>
+        <dependency>
+            <groupId>uk.co.caprica</groupId>
+            <artifactId>vlcj</artifactId>
+            <version>4.4.0</version>
+        </dependency>
     </dependencies>
 
     <repositories>

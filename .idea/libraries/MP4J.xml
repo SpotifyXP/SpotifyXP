@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MP4J">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deps/MP4J.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -843,11 +843,21 @@ public class UnofficialSpotifyAPI {
     }
 
     public static String getCanvasURLForTrack(String artist, String album, String track) {
-        track = track.replace(" ", "%20");
-        album = album.replace(" ", "%20");
-        artist = artist.replace(" ", "%20");
         HttpClient client = new HttpClient();
-        GetMethod method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+
+        GetMethod method = null;
+        try {
+            track =  URLEncoder.encode(track, StandardCharsets.UTF_8.displayName());
+            album = URLEncoder.encode(album, StandardCharsets.UTF_8.displayName());
+            artist = URLEncoder.encode(artist, StandardCharsets.UTF_8.displayName());
+            track = track.replaceAll("\\+", "%20");
+            album = album.replaceAll("\\+", "%20");
+            artist = artist.replaceAll("\\+", "%20");
+            System.out.println("Generated URL: " + "http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+            method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+        } catch (UnsupportedEncodingException e) {
+            method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+        }
         try {
             client.executeMethod(method);
             return method.getResponseBodyAsString();
