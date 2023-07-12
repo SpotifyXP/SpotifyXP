@@ -26,7 +26,7 @@
 * [Contributing](#contributing)
 * [License](#license)
 * [Authors](#authors)
-* [Acknowledgements](#acknowledgements)
+* [Special thanks](#Special thanks)
 
 ## About The Project
 
