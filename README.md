@@ -123,7 +123,7 @@ License is coming soon
 
 * **Werwolf2303** - ** - [Werwolf2303](https://github.com/Werwolf2303/) - **
 
-## Acknowledgements
+## Special thanks
 
 * [skippster1337](https://github.com/skipster1337) - For listing SpotifyXP on his site
-
+* <a href="https://www.yourkit.com/"><img src="https://www.yourkit.com/images/yklogo.png" height="20"></a> that provided a free license for their [Java Profiler](https://www.yourkit.com/java/profiler/)
