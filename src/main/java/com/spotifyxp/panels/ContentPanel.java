@@ -7,6 +7,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -2220,7 +2221,11 @@ public class ContentPanel extends JPanel {
         createUserButton();
         createHome();
         SplashPanel.linfo.setText("Creating CanvasPlayer...");
-        PublicValues.canvasPlayer = new CanvasPlayer();
+        if(!System.getProperty("os.name").toLowerCase().contains("mac")) {
+            PublicValues.canvasPlayer = new CanvasPlayer();
+        }else{
+            PublicValues.canvasPlayer = new DummyCanvasPlayer(false);
+        }
         SplashPanel.linfo.setText("Creating advancedPanel...");
         createAdvancedPanel();
         SplashPanel.linfo.setText("Changing component visibility...");

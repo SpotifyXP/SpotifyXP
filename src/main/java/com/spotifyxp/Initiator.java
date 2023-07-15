@@ -13,6 +13,7 @@ import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.LinuxSupportModule;
+import com.spotifyxp.support.MacOSSupportModule;
 import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
@@ -56,12 +57,6 @@ public class Initiator {
     });
     public static boolean past = false;
     public static void main(String[] args) {
-        try {
-            new File(PublicValues.appLocation, "LOCK").createNewFile();
-            new File(PublicValues.appLocation, "LOCK").deleteOnExit();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
         new SplashPanel().show();
         SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
@@ -78,10 +73,14 @@ public class Initiator {
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
-            //Is not Windows
-            SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
-            new LinuxSupportModule();
-            args = new String[]{"--setup-complete"};
+            if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
+                new MacOSSupportModule();
+            }else {
+                //Is not Windows
+                SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
+                new LinuxSupportModule();
+                args = new String[]{"--setup-complete"};
+            }
         }
         SplashPanel.linfo.setText("Parsing arguments...");
         PublicValues.argParser.parseArguments(args);
@@ -92,6 +91,11 @@ public class Initiator {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
                 ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
+            }
+        }
+        if(!new File(PublicValues.appLocation).exists()) {
+            if(!new File(PublicValues.appLocation).mkdir()) {
+                ConsoleLogging.error("Failed to create app location");
             }
         }
         SplashPanel.linfo.setText("Detecting debugging...");
@@ -134,6 +138,12 @@ public class Initiator {
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
+        }
+        try {
+            new File(PublicValues.appLocation, "LOCK").createNewFile();
+            new File(PublicValues.appLocation, "LOCK").deleteOnExit();
+        }catch (Exception e) {
+            e.printStackTrace();
         }
         SplashPanel.linfo.setText("Checking login...");
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {

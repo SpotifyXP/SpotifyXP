@@ -34,49 +34,51 @@ public class CanvasPlayer {
     private JPanel referencePanel;
     private boolean trackValid = false;
     public CanvasPlayer() {
-        frame = new JFrame("SpotifyXP - Canvas");
-        frame.setPreferredSize(new Dimension(294, 526));
-        frame.setBackground(Color.black);
-        frame.getContentPane().setBackground(Color.white);
-        try {
-            frame.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
-        } catch (IOException e) {
-            ExceptionDialog.open(e);
-            ConsoleLogging.Throwable(e);
-        }
-        referencePanel = new JPanel();
-        referencePanel.setBackground(Color.black);
-        frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(referencePanel);
-        factory = new MediaPlayerFactory();
-        mediaPlayer = factory.mediaPlayers().newEmbeddedMediaPlayer();
-        window = new Window(frame);
-        window.setBackground(Color.black);
-        videoSurface = factory.videoSurfaces().newVideoSurface(window);
-        mediaPlayer.videoSurface().set(videoSurface);
-        window.setBounds(0, 0, 294, 526);
-        window.setIgnoreRepaint(true);
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new FlowLayout());
-        frame.getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                hide();
+        if(!System.getProperty("os.name").toLowerCase().contains("mac")) {
+            frame = new JFrame("SpotifyXP - Canvas");
+            frame.setPreferredSize(new Dimension(294, 526));
+            frame.setBackground(Color.black);
+            frame.getContentPane().setBackground(Color.white);
+            try {
+                frame.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
+            } catch (IOException e) {
+                ExceptionDialog.open(e);
+                ConsoleLogging.Throwable(e);
             }
-        });
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            referencePanel = new JPanel();
+            referencePanel.setBackground(Color.black);
+            frame.getContentPane().setLayout(new BorderLayout());
+            frame.getContentPane().add(referencePanel);
+            factory = new MediaPlayerFactory();
+            mediaPlayer = factory.mediaPlayers().newEmbeddedMediaPlayer();
+            window = new Window(frame);
+            window.setBackground(Color.black);
+            videoSurface = factory.videoSurfaces().newVideoSurface(window);
+            mediaPlayer.videoSurface().set(videoSurface);
+            window.setBounds(0, 0, 294, 526);
+            window.setIgnoreRepaint(true);
+            JPanel buttonsPanel = new JPanel();
+            buttonsPanel.setLayout(new FlowLayout());
+            frame.getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
+            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    hide();
+                }
+            });
+            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        frame.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentMoved(ComponentEvent e) {
-                syncVideoSurface();
-            }
-        });
-        frame.setResizable(false);
-        mediaPlayer.controls().setRepeat(true);
-        frame.pack();
+            frame.addComponentListener(new ComponentAdapter() {
+                @Override
+                public void componentMoved(ComponentEvent e) {
+                    syncVideoSurface();
+                }
+            });
+            frame.setResizable(false);
+            mediaPlayer.controls().setRepeat(true);
+            frame.pack();
+        }
     }
 
     void syncVideoSurface() {
