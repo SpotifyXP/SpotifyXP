@@ -10,5 +10,7 @@ public class MacOSSupportModule {
         PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
         PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
         PublicValues.tempPath = System.getProperty("java.io.tmpdir");
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
     }
 }
