@@ -7,6 +7,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.updater.Updater;
+import com.spotifyxp.utils.LinuxAppUtil;
 import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.deps.mslinks.ShellLink;
@@ -201,8 +202,37 @@ public class Setup {
             }
         }
 
-        void beginInstallUnix() {
-
+        void beginInstallLinux() {
+            try {
+                progressBar.setVisible(true);
+                //Create the SpotifyXP directory
+                if(!new File(PublicValues.appLocation).exists()) {
+                    new File(PublicValues.appLocation).mkdir();
+                }
+                copyInputStreamToFile(new Resources().readToInputStream("spotifyxp.ico"), new File(PublicValues.appLocation + "/spotifyxp.ico"));
+                progressBar.setValue(25);
+                //Get the path of the current Jar File
+                String jarPath = Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+                progressBar.setValue(50);
+                //Now copy the file there
+                Files.copy(Paths.get(jarPath), Paths.get(PublicValues.appLocation + "/SpotifyXP.jar"), REPLACE_EXISTING);
+                progressBar.setValue(75);
+                //Now create the shortcut
+                LinuxAppUtil util = new LinuxAppUtil("SpotifyXP");
+                util.setVersion(PublicValues.version);
+                util.setComment("Listen to Spotify");
+                util.setPath(PublicValues.appLocation);
+                util.setExecutableLocation("java -jar SpotifyXP.jar --setup-complete");
+                util.setIconlocation(PublicValues.appLocation + "/spotifyxp.ico");
+                util.setCategories("Java", "Music");
+                util.create();
+                progressBar.setValue(100);
+                PublicValues.foundSetupArgument = true;
+                switchToNext();
+            } catch (URISyntaxException | IOException e) {
+                ExceptionDialog.open(e);
+                ConsoleLogging.Throwable(e);
+            }
         }
 
         void beginInstallWindows() {
@@ -252,8 +282,8 @@ public class Setup {
             if(PublicValues.isMacOS) {
                 beginInstallMacOS();
             }else{
-                if(PublicValues.isUnix) {
-                    beginInstallUnix();
+                if(PublicValues.isLinux) {
+                    beginInstallLinux();
                 }else{
                     beginInstallWindows();
                 }

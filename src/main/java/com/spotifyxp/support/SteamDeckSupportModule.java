@@ -11,6 +11,6 @@ public class SteamDeckSupportModule {
         if(PublicValues.theme instanceof Legacy) {
             ContentPanel.frame.setJMenuBar(null);
         }
-        PublicValues.isUnix = true;
+        PublicValues.isLinux = true;
     }
 }

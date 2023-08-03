@@ -119,8 +119,12 @@ public class PlayerListener implements Player.EventsListener {
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                             break;
                         }
-                        if(PublicValues.canvasPlayer.isShown()) {
-                            PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(artists.toString().split(", ")[0], track.getAlbum().getName(), track.getName()));
+                        try {
+                            if (PublicValues.canvasPlayer.isShown()) {
+                                PublicValues.canvasPlayer.play();
+                            }
+                        }catch (NullPointerException e) {
+                            //System not supported
                         }
                     }else{
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
@@ -141,8 +145,12 @@ public class PlayerListener implements Player.EventsListener {
                             ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
                             break;
                         }
-                        if(PublicValues.canvasPlayer.isShown()) {
-                            PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(artists.toString().split(", ")[0], track.getAlbum().getName(), track.getName()));
+                        try {
+                            if (PublicValues.canvasPlayer.isShown()) {
+                                PublicValues.canvasPlayer.play();
+                            }
+                        }catch (NullPointerException e) {
+                            //System not supported
                         }
                     }
                 }
@@ -172,8 +180,12 @@ public class PlayerListener implements Player.EventsListener {
             }
         }
         //timer.cancel();
-        if(PublicValues.canvasPlayer.isShown()) {
-            PublicValues.canvasPlayer.pause();
+        try {
+            if (PublicValues.canvasPlayer.isShown()) {
+                PublicValues.canvasPlayer.play();
+            }
+        }catch (NullPointerException e) {
+            //System not supported
         }
     }
 
@@ -188,8 +200,12 @@ public class PlayerListener implements Player.EventsListener {
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
             }
         }
-        if(PublicValues.canvasPlayer.isShown()) {
-            PublicValues.canvasPlayer.play();
+        try {
+            if (PublicValues.canvasPlayer.isShown()) {
+                PublicValues.canvasPlayer.play();
+            }
+        }catch (NullPointerException e) {
+            //System not supported
         }
         //timer.schedule(new PlayerThread(), 0, 1000);
     }
@@ -205,8 +221,12 @@ public class PlayerListener implements Player.EventsListener {
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
         }
-        if(PublicValues.canvasPlayer.isShown()) {
-            PublicValues.canvasPlayer.play();
+        try {
+            if (PublicValues.canvasPlayer.isShown()) {
+                PublicValues.canvasPlayer.play();
+            }
+        }catch (NullPointerException e) {
+            //System not supported
         }
         locked = false;
     }

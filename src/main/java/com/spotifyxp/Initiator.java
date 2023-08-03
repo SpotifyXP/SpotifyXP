@@ -71,10 +71,8 @@ public class Initiator {
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
                 new MacOSSupportModule();
             }else {
-                //Is not Windows
                 SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
                 new LinuxSupportModule();
-                args = new String[]{"--setup-complete"};
             }
         }
         SplashPanel.linfo.setText("Checking required folders...");
