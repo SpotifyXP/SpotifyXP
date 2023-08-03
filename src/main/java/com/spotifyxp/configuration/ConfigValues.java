@@ -9,6 +9,7 @@ public enum ConfigValues {
     disableplayerstats("settings.performance.displayplayerstats"),
     username("user.settings.username"),
     password("user.settings.password"),
+    language("user.settings.language"),
     hideExceptions("general.exception.visibility");
     public final String name;
     ConfigValues(String n) {

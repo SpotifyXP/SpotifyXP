@@ -40,6 +40,8 @@ public class PublicValues {
     public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
     public static String deviceName = "SpotifyXP";
     public static String releaseCandidate = "Public Beta";
+    public static boolean isMacOS = false;
+    public static boolean isUnix = false;
     public static Theme theme = null;
     public static boolean foundSetupArgument = false;
     public static Color globalFontColor = Color.black;

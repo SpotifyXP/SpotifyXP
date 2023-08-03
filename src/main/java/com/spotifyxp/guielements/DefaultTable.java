@@ -36,8 +36,6 @@ public class DefaultTable extends JTable {
 
     ContextMenu contextMenu;
 
-    libLanguage l = PublicValues.language;
-
     @Override
     public boolean isCellEditable(int row, int column) {
         return false;
@@ -81,7 +79,7 @@ public class DefaultTable extends JTable {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname"), l.translate("ui.search.songlist.filesize"), l.translate("ui.search.songlist.bitrate"), l.translate("ui.search.songlist.length")
+                        PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
                 }
         ));
     }
@@ -91,7 +89,7 @@ public class DefaultTable extends JTable {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname")
+                        PublicValues.language.translate("ui.search.songlist.songname")
                 }
         ));
     }
@@ -101,7 +99,7 @@ public class DefaultTable extends JTable {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname")
+                        PublicValues.language.translate("ui.search.songlist.songname")
                 }
         ));
     }
@@ -111,7 +109,7 @@ public class DefaultTable extends JTable {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname")
+                        PublicValues.language.translate("ui.search.songlist.songname")
                 }
         ));
     }
@@ -121,7 +119,7 @@ public class DefaultTable extends JTable {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.hotlist.playlistlist.playlists")
+                        PublicValues.language.translate("ui.hotlist.playlistlist.playlists")
                 }
         ));
     }

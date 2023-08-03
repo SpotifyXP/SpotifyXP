@@ -134,6 +134,11 @@
             <artifactId>vlcj</artifactId>
             <version>4.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.plist</groupId>
+            <artifactId>dd-plist</artifactId>
+            <version>1.27</version>
+        </dependency>
     </dependencies>
 
     <repositories>

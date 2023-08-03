@@ -89,6 +89,8 @@ SpotifyXP is build with
             <a>org.jetbrains:annotations</a>
             <br>
             <a>uk.co.caprica:vlcj</a>
+            <br>
+            <a>com.googlecode.plist:dd-plist</a>
         </div>
 
 ## Getting Started

@@ -9,5 +9,6 @@ public class LinuxSupportModule {
         PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
         PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
         PublicValues.tempPath = "/tmp";
+        PublicValues.isUnix = true;
     }
 }

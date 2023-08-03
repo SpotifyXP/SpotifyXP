@@ -7,6 +7,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.updater.Updater;
+import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.deps.mslinks.ShellLink;
 import com.spotifyxp.deps.mslinks.ShellLinkException;
@@ -27,9 +28,6 @@ import static org.apache.commons.io.IOUtils.DEFAULT_BUFFER_SIZE;
 public class Setup {
     public static JFrame setupframe = new JFrame();
     public Setup() {
-        if(new Updater().isNightly()) {
-            return;
-        }
         displaySetup();
     }
     public static SetupState setupState = SetupState.WELCOME;
@@ -174,7 +172,40 @@ public class Setup {
 
         }
 
-        void beginInstall() {
+        void beginInstallMacOS() {
+            try {
+                progressBar.setVisible(true);
+                //Create the SpotifyXP directory
+                if(!new File(PublicValues.appLocation).exists()) {
+                    new File(PublicValues.appLocation).mkdir();
+                }
+                copyInputStreamToFile(new Resources().readToInputStream("spotifyxp.ico"), new File(PublicValues.appLocation + "/spotifyxp.ico"));
+                progressBar.setValue(25);
+                //Get the path of the current Jar File
+                String jarPath = Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+                progressBar.setValue(50);
+                //Now copy the file there
+                Files.copy(Paths.get(jarPath), Paths.get(PublicValues.appLocation + "/SpotifyXP.jar"), REPLACE_EXISTING);
+                progressBar.setValue(75);
+                //Now create the shortcut
+                MacOSAppUtil util = new MacOSAppUtil("SpotifyXP");
+                util.setIcon("spotifyxp.icns");
+                util.setExecutableLocation(PublicValues.appLocation + "/SpotifyXP.jar");
+                util.create();
+                progressBar.setValue(100);
+                PublicValues.foundSetupArgument = true;
+                switchToNext();
+            } catch (URISyntaxException | IOException e) {
+                ExceptionDialog.open(e);
+                ConsoleLogging.Throwable(e);
+            }
+        }
+
+        void beginInstallUnix() {
+
+        }
+
+        void beginInstallWindows() {
             try {
                 progressBar.setVisible(true);
                 //Create the SpotifyXP directory
@@ -214,6 +245,18 @@ public class Setup {
             } catch (URISyntaxException | IOException | ShellLinkException e) {
                 ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
+            }
+        }
+
+        void beginInstall() {
+            if(PublicValues.isMacOS) {
+                beginInstallMacOS();
+            }else{
+                if(PublicValues.isUnix) {
+                    beginInstallUnix();
+                }else{
+                    beginInstallWindows();
+                }
             }
         }
 

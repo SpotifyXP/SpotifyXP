@@ -33,6 +33,7 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Locale;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
@@ -65,12 +66,6 @@ public class Initiator {
         PublicValues.logger.setShowTime(false);
         SplashPanel.linfo.setText("Loading Extensions...");
         new Injector().autoInject();
-        SplashPanel.linfo.setText("Setting up multilanguage support...");
-        PublicValues.language = new libLanguage();
-        PublicValues.language.setLanguageFolder("lang");
-        PublicValues.language.setNoAutoFindLanguage("en");
-        SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
@@ -82,15 +77,11 @@ public class Initiator {
                 args = new String[]{"--setup-complete"};
             }
         }
-        SplashPanel.linfo.setText("Parsing arguments...");
-        PublicValues.argParser.parseArguments(args);
-        SplashPanel.linfo.setText("Storing program arguments...");
-        PublicValues.args = args;
         SplashPanel.linfo.setText("Checking required folders...");
         if(!new File(PublicValues.fileslocation).exists()) {
             if(!new File(PublicValues.fileslocation).mkdir()) {
                 ConsoleLogging.changeName("SpotifyAPI");
-                ConsoleLogging.error(PublicValues.language.translate("error.configuration.failedcreate"));
+                ConsoleLogging.error("Failed to create files");
             }
         }
         if(!new File(PublicValues.appLocation).exists()) {
@@ -98,6 +89,14 @@ public class Initiator {
                 ConsoleLogging.error("Failed to create app location");
             }
         }
+        SplashPanel.linfo.setText("Initializing config...");
+        PublicValues.config = new Config();
+        SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
+        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+        SplashPanel.linfo.setText("Parsing arguments...");
+        PublicValues.argParser.parseArguments(args);
+        SplashPanel.linfo.setText("Storing program arguments...");
+        PublicValues.args = args;
         SplashPanel.linfo.setText("Detecting debugging...");
         if(new File("pom.xml").exists()) {
             PublicValues.debug = true;
@@ -107,8 +106,10 @@ public class Initiator {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("xp"));
             PublicValues.foundSetupArgument = true;
         }
-        SplashPanel.linfo.setText("Initializing config...");
-        PublicValues.config = new Config();
+        SplashPanel.linfo.setText("Init Language...");
+        PublicValues.language = new libLanguage();
+        PublicValues.language.setLanguageFolder("lang");
+        PublicValues.language.setNoAutoFindLanguage(libLanguage.Language.getCodeFromName(PublicValues.config.get(ConfigValues.language.name)));
         SplashPanel.linfo.setText("Init Themes...");
         ThemeLoader loader = new ThemeLoader();
         try {
@@ -143,7 +144,8 @@ public class Initiator {
             new File(PublicValues.appLocation, "LOCK").createNewFile();
             new File(PublicValues.appLocation, "LOCK").deleteOnExit();
         }catch (Exception e) {
-            e.printStackTrace();
+            ExceptionDialog.open(e);
+            ConsoleLoggingModules.Throwable(e);
         }
         SplashPanel.linfo.setText("Checking login...");
         if(PublicValues.config.get(ConfigValues.username.name).equals("")) {

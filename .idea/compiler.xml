@@ -9,5 +9,8 @@
         <module name="SpotifyXP" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="HelloWorldExtension" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

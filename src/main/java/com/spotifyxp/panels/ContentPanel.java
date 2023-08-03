@@ -226,7 +226,6 @@ public class ContentPanel extends JPanel {
             playlistsbutton.setEnabled(true);
         }
     });
-    libLanguage l = PublicValues.language;
     public static boolean shuffle = false;
     enum LastTypes {
         Playlists,
@@ -606,13 +605,13 @@ public class ContentPanel extends JPanel {
 
         });
 
-        playertitle = (JScrollText) JComponentFactory.createJComponent(new JScrollText(l.translate("ui.player.title")));
+        playertitle = (JScrollText) JComponentFactory.createJComponent(new JScrollText(PublicValues.language.translate("ui.player.title")));
         playertitle.setBounds(109, 11, 168, 14);
         playerarea.add(playertitle);
 
         playertitle.setForeground(PublicValues.globalFontColor);
 
-        playerdescription = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.player.description")));
+        playerdescription = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.player.description")));
         playerdescription.setBounds(109, 40, 138, 20);
         playerarea.add(playerdescription);
 
@@ -756,17 +755,17 @@ public class ContentPanel extends JPanel {
         tabpanel.add(librarypane);
         librarypane.setLayout(null);
 
-        librarybutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.library")));
+        librarybutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.library")));
         librarybutton.setBounds(230, 111, 107, 23);
         add(librarybutton);
 
-        libraryshufflebutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.library.shuffle")));
+        libraryshufflebutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.library.shuffle")));
         libraryshufflebutton.setBounds(41, 398, 321, 23);
         librarypane.add(libraryshufflebutton);
 
         libraryshufflebutton.setForeground(PublicValues.globalFontColor);
 
-        libraryplaybutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.library.play")));
+        libraryplaybutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.library.play")));
         libraryplaybutton.setBounds(408, 398, 321, 23);
         librarypane.add(libraryplaybutton);
 
@@ -785,7 +784,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.library.songlist.songname"), l.translate("ui.library.songlist.filesize"), l.translate("ui.library.songlist.bitrate"), l.translate("ui.library.songlist.length")
+                        PublicValues.language.translate("ui.library.songlist.songname"), PublicValues.language.translate("ui.library.songlist.filesize"), PublicValues.language.translate("ui.library.songlist.bitrate"), PublicValues.language.translate("ui.library.songlist.length")
                 }
         ));
         librarysonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -879,7 +878,7 @@ public class ContentPanel extends JPanel {
         });
     }
     void createPlaylist() {
-        playlistsbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.playlists")));
+        playlistsbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.playlists")));
         playlistsbutton.setBounds(118, 111, 107, 23);
         add(playlistsbutton);
         playlistspane = (JPanel) JComponentFactory.createJComponent(new JPanel());
@@ -905,7 +904,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.playlists.playlists.playlistname")
+                        PublicValues.language.translate("ui.playlists.playlists.playlistname")
                 }
         ));
         playlistsplayliststable.setForeground(PublicValues.globalFontColor);
@@ -934,7 +933,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.playlists.songslist.songtitle"), l.translate("ui.playlists.songslist.filesize"), l.translate("ui.playlists.songslist.bitrate"), l.translate("ui.playlists.songslist.length")
+                        PublicValues.language.translate("ui.playlists.songslist.songtitle"), PublicValues.language.translate("ui.playlists.songslist.filesize"), PublicValues.language.translate("ui.playlists.songslist.bitrate"), PublicValues.language.translate("ui.playlists.songslist.length")
                 }
         ));
         playlistssongtable.setForeground(PublicValues.globalFontColor);
@@ -1044,7 +1043,7 @@ public class ContentPanel extends JPanel {
         });
     }
     void createSearch() {
-        searchbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.search")));
+        searchbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.search")));
         searchbutton.setBounds(338, 111, 107, 23);
         add(searchbutton);
         searchpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
@@ -1058,27 +1057,27 @@ public class ContentPanel extends JPanel {
             }
         });
         searchsearchfieldspanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
-        searchsearchfieldspanel.setBorder(new TitledBorder(null, l.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        searchsearchfieldspanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         searchsearchfieldspanel.setBounds(0, 0, 784, 128);
         searchpane.add(searchsearchfieldspanel);
         searchsearchfieldspanel.setLayout(null);
         searchsearchfieldspanel.setForeground(PublicValues.globalFontColor);
 
-        searchartistlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.search.searchfield.artist")));
+        searchartistlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.search.searchfield.artist")));
         searchartistlabel.setHorizontalAlignment(SwingConstants.RIGHT);
         searchartistlabel.setBounds(30, 25, 46, 14);
         searchsearchfieldspanel.add(searchartistlabel);
 
         searchartistlabel.setForeground(PublicValues.globalFontColor);
 
-        searchsongtitlelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.search.searchfield.title")));
+        searchsongtitlelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.search.searchfield.title")));
         searchsongtitlelabel.setHorizontalAlignment(SwingConstants.RIGHT);
         searchsongtitlelabel.setBounds(10, 62, 66, 14);
         searchsearchfieldspanel.add(searchsongtitlelabel);
 
         searchsongtitlelabel.setForeground(PublicValues.globalFontColor);
 
-        searchclearfieldsbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.search.searchfield.button.clear")));
+        searchclearfieldsbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.search.searchfield.button.clear")));
         searchclearfieldsbutton.setBounds(30, 94, 194, 23);
         searchsearchfieldspanel.add(searchclearfieldsbutton);
 
@@ -1092,7 +1091,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        searchfinditbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.search.searchfield.button.findit")));
+        searchfinditbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.search.searchfield.button.findit")));
         searchfinditbutton.setBounds(234, 94, 194, 23);
         searchsearchfieldspanel.add(searchfinditbutton);
 
@@ -1130,23 +1129,23 @@ public class ContentPanel extends JPanel {
 
         searchsearchfilterpanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
         searchsearchfilterpanel.setLayout(null);
-        searchsearchfilterpanel.setBorder(new TitledBorder(null, l.translate("ui.search.searchfield.filters.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        searchsearchfilterpanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.filters.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         searchsearchfilterpanel.setBounds(452, 11, 322, 106);
         searchsearchfieldspanel.add(searchsearchfilterpanel);
 
-        searchfilterexcludeexplicit = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(l.translate("ui.search.searchfield.filters.excludeexplicit")));
+        searchfilterexcludeexplicit = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.search.searchfield.filters.excludeexplicit")));
         searchfilterexcludeexplicit.setBounds(6, 24, 130, 23);
         searchsearchfilterpanel.add(searchfilterexcludeexplicit);
 
         searchfilterexcludeexplicit.setForeground(PublicValues.globalFontColor);
 
-        searchfilterartist = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Artists"));
+        searchfilterartist = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.search.filter.artist")));
         searchfilterartist.setBounds(160, 23, 130, 23);
         searchsearchfilterpanel.add(searchfilterartist);
 
         searchfilterartist.setForeground(PublicValues.globalFontColor);
 
-        searchfiltertrack = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Tracks"));
+        searchfiltertrack = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.search.filter.track")));
         searchfiltertrack.setBounds(6, 50, 130, 23);
         searchsearchfilterpanel.add(searchfiltertrack);
 
@@ -1154,19 +1153,19 @@ public class ContentPanel extends JPanel {
 
         searchfiltertrack.setSelected(true);
 
-        searchfilteralbum = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Albums"));
+        searchfilteralbum = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.search.filter.album")));
         searchfilteralbum.setBounds(160, 50, 130, 23);
         searchsearchfilterpanel.add(searchfilteralbum);
 
         searchfilteralbum.setForeground(PublicValues.globalFontColor);
 
-        searchfilterplaylist = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Playlists"));
+        searchfilterplaylist = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.search.filter.playlist")));
         searchfilterplaylist.setBounds(6, 75, 130, 23);
         searchsearchfilterpanel.add(searchfilterplaylist);
 
         searchfilterplaylist.setForeground(PublicValues.globalFontColor);
 
-        searchfiltershow = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton("Search Shows"));
+        searchfiltershow = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.search.filter.show")));
         searchfiltershow.setBounds(160, 75, 130, 23);
         searchsearchfilterpanel.add(searchfiltershow);
 
@@ -1322,7 +1321,7 @@ public class ContentPanel extends JPanel {
             }
         });
         searchsonglist.getTableHeader().setReorderingAllowed(false);
-        artistPanelBackButton = (JButton) JComponentFactory.createJComponent(new JButton("Back"));
+        artistPanelBackButton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.back")));
         artistPanelBackButton.setBounds(0, 0, 89, 23);
         artistPanelBackButton.setForeground(PublicValues.globalFontColor);
         artistPanelBackButton.addActionListener(new ActionListener() {
@@ -1535,7 +1534,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname"), l.translate("ui.search.songlist.filesize"), l.translate("ui.search.songlist.bitrate"), l.translate("ui.search.songlist.length")
+                        PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
                 }
         ));
         searchsonglist.getColumnModel().getColumn(0).setPreferredWidth(342);
@@ -1549,7 +1548,7 @@ public class ContentPanel extends JPanel {
         tabpanel.add(searchplaylistpanel);
         searchplaylistpanel.setLayout(null);
 
-        searchbackbutton = (JButton) JComponentFactory.createJComponent(new JButton("Back"));
+        searchbackbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.back")));
         searchbackbutton.setBounds(0, 0, 89, 23);
         searchplaylistpanel.add(searchbackbutton);
 
@@ -1584,7 +1583,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname"), l.translate("ui.search.songlist.filesize"), l.translate("ui.search.songlist.bitrate"), l.translate("ui.search.songlist.length")
+                        PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
                 }
         ));
 
@@ -1626,7 +1625,7 @@ public class ContentPanel extends JPanel {
         });
     }
     void createHotList() {
-        hotlistbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.hotlist")));
+        hotlistbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.hotlist")));
         hotlistbutton.setBounds(447, 111, 107, 23);
         add(hotlistbutton);
         hotlistpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
@@ -1652,7 +1651,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.hotlist.playlistlist.playlists")
+                        PublicValues.language.translate("ui.hotlist.playlistlist.playlists")
                 }
         ));
         hotlistplayliststable.setForeground(PublicValues.globalFontColor);
@@ -1692,7 +1691,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.hotlist.songlist.songtitle"), l.translate("ui.hotlist.songlist.filesize"), l.translate("ui.hotlist.songlist.bitrate"), l.translate("ui.hotlist.songlist.length")
+                        PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")
                 }
         ));
 
@@ -1751,7 +1750,7 @@ public class ContentPanel extends JPanel {
         });
     }
     void createQueue() {
-        queuebutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.queue")));
+        queuebutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.queue")));
         queuebutton.setBounds(557, 111, 107, 23);
         add(queuebutton);
         queuepane = new JPanel();
@@ -1759,7 +1758,7 @@ public class ContentPanel extends JPanel {
         tabpanel.add(queuepane);
         queuepane.setLayout(null);
 
-        queueremovebutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.queue.remove")));
+        queueremovebutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.queue.remove")));
         queueremovebutton.setBounds(0, 398, 784, 23);
         queuepane.add(queueremovebutton);
 
@@ -1814,7 +1813,7 @@ public class ContentPanel extends JPanel {
         });
     }
     void createFeedback() {
-        feedbackbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(l.translate("ui.navigation.feedback")));
+        feedbackbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.feedback")));
         feedbackbutton.setBounds(667, 111, 107, 23);
         add(feedbackbutton);
         feedbackpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
@@ -1822,38 +1821,38 @@ public class ContentPanel extends JPanel {
         tabpanel.add(feedbackpane);
         feedbackpane.setLayout(null);
 
-        feedbackmakesurelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(l.translate("ui.feedback.makesure")));
+        feedbackmakesurelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.feedback.makesure")));
         feedbackmakesurelabel.setBounds(10, 23, 690, 25);
         feedbackpane.add(feedbackmakesurelabel);
 
         feedbackmakesurelabel.setForeground(PublicValues.globalFontColor);
 
         feedbackissuepanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
-        feedbackissuepanel.setBorder(new TitledBorder(null, l.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        feedbackissuepanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         feedbackissuepanel.setBounds(0, 333, 426, 88);
         feedbackpane.add(feedbackissuepanel);
         feedbackissuepanel.setLayout(null);
 
-        feedbackviewissuesbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.feedback.issues.view")));
+        feedbackviewissuesbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.feedback.issues.view")));
         feedbackviewissuesbutton.setBounds(10, 21, 188, 56);
         feedbackissuepanel.add(feedbackviewissuesbutton);
 
         feedbackviewissuesbutton.setForeground(PublicValues.globalFontColor);
 
-        feedbackcreateissuebutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.feedback.issues.create")));
+        feedbackcreateissuebutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.feedback.issues.create")));
         feedbackcreateissuebutton.setBounds(227, 21, 188, 56);
         feedbackissuepanel.add(feedbackcreateissuebutton);
 
         feedbackcreateissuebutton.setForeground(PublicValues.globalFontColor);
 
-        feedbackgithubbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.feedback.github.open")));
+        feedbackgithubbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.feedback.github.open")));
         feedbackgithubbutton.setBounds(466, 355, 250, 55);
         feedbackpane.add(feedbackgithubbutton);
 
         feedbackgithubbutton.setForeground(PublicValues.globalFontColor);
 
         feedbackupdatespanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
-        feedbackupdatespanel.setBorder(new TitledBorder(null, l.translate("ui.updater.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        feedbackupdatespanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.updater.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         feedbackupdatespanel.setBounds(10, 59, 566, 249);
         feedbackpane.add(feedbackupdatespanel);
         feedbackupdatespanel.setLayout(null);
@@ -1869,7 +1868,7 @@ public class ContentPanel extends JPanel {
 
         feedbackwillbemovedlabel.setForeground(PublicValues.globalFontColor);
 
-        feedbackupdaterdownloadbutton = (JButton) JComponentFactory.createJComponent(new JButton(l.translate("ui.updater.downloadnewest")));
+        feedbackupdaterdownloadbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.updater.downloadnewest")));
         feedbackupdaterdownloadbutton.setBounds(10, 149, 230, 23);
         feedbackupdatespanel.add(feedbackupdaterdownloadbutton);
 
@@ -2128,7 +2127,7 @@ public class ContentPanel extends JPanel {
         tabpanel.add(advancedsongpanel);
         advancedsongpanel.setLayout(null);
 
-        advancedbackbutton = (JButton) JComponentFactory.createJComponent(new JButton("Back"));
+        advancedbackbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.back")));
         advancedbackbutton.setBounds(0, 0, 89, 23);
         advancedsongpanel.add(advancedbackbutton);
 
@@ -2155,7 +2154,7 @@ public class ContentPanel extends JPanel {
                 new Object[][] {
                 },
                 new String[] {
-                        l.translate("ui.search.songlist.songname"), l.translate("ui.search.songlist.filesize"), l.translate("ui.search.songlist.bitrate"), l.translate("ui.search.songlist.length")
+                        PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
                 }
         ));
         advancedsongtable.setForeground(PublicValues.globalFontColor);
@@ -2187,7 +2186,7 @@ public class ContentPanel extends JPanel {
     boolean dragging = false;
     boolean toggle = false;
     public ContentPanel(SpotifyAPI.Player p, SpotifyAPI a) {
-        ConsoleLogging.info(l.translate("debug.buildcontentpanelbegin"));
+        ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
         api = a;
         player = p;
         SplashPanel.linfo.setText("Setting window size...");
@@ -2238,7 +2237,7 @@ public class ContentPanel extends JPanel {
         homepane.getComponent().setVisible(false); //Not show homepane when window is opened
 
         ContextMenu menu = new ContextMenu(this);
-        menu.addItem("Overlay Mode", new Runnable() {
+        menu.addItem(PublicValues.language.translate("ui.menu.overlay"), new Runnable() {
             @Override
             public void run() {
                 createOverlay();
@@ -2303,7 +2302,7 @@ public class ContentPanel extends JPanel {
             }
         }
         SplashPanel.linfo.setText("Done building contentPanel");
-        ConsoleLogging.info(l.translate("debug.buildcontentpanelend"));
+        ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelend"));
     }
     class LastPlayState {
         public String uri;
@@ -2365,7 +2364,7 @@ public class ContentPanel extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(Color.black);
-                StringUtils.drawCenteredString(g, "Toggle", new Rectangle(w, h), g.getFont());
+                StringUtils.drawCenteredString(g, PublicValues.language.translate("ui.overlay.toggle"), new Rectangle(w, h), g.getFont());
             }
         });
         overlay = new JFrame();

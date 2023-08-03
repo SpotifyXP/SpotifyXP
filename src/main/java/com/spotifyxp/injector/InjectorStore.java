@@ -105,7 +105,7 @@ public class InjectorStore {
 
         public void addModule(InjectorAPI.Extension ex) {
 
-            JButton extensioninstallremovebutton = new JButton("Install");
+            JButton extensioninstallremovebutton = new JButton(PublicValues.language.translate("extension.install"));
             extensioninstallremovebutton.setBounds(260, ycache + 57, 89, 23);
             modulesholder.add(extensioninstallremovebutton);
 
@@ -113,14 +113,14 @@ public class InjectorStore {
 
             for(InjectorAPI.Extension extension : installedExtensions) {
                 if(extension.name.equals(ex.name)) {
-                    extensioninstallremovebutton.setText("Remove");
+                    extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
                 }
             }
 
             extensioninstallremovebutton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(extensioninstallremovebutton.getText().equals("Remove")) {
+                    if(extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
                         //Remove extension
                         extensioninstallremovebutton.setEnabled(false);
                         for(Injector.InjectionEntry entry : PublicValues.injector.injectedJars) {
@@ -149,7 +149,7 @@ public class InjectorStore {
                                 ExceptionDialog.open(e2);
                             }
                             extensioninstallremovebutton.setEnabled(true);
-                            extensioninstallremovebutton.setText("Install");
+                            extensioninstallremovebutton.setText(PublicValues.language.translate("extension.install"));
                         }
                     }else{
                         //Install extension
@@ -160,7 +160,7 @@ public class InjectorStore {
                                 if(filesizeDownloaded == size) {
                                     FileUtils.appendToFile(new File(PublicValues.appLocation, "extensionstore.store").getAbsolutePath(), ex.identifier);
                                     extensioninstallremovebutton.setEnabled(true);
-                                    extensioninstallremovebutton.setText("Remove");
+                                    extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
                                 }else{
                                     extensioninstallremovebutton.setEnabled(false);
                                 }
@@ -209,7 +209,7 @@ public class InjectorStore {
     public static JFrame main;
 
     public void open() {
-        main = new JFrame("SpotifyXP - Extension Store");
+        main = new JFrame(PublicValues.language.translate("extension.title"));
         main.getContentPane().add(new ContentPanel());
         main.setPreferredSize(new Dimension(377, 526));
         main.setVisible(true);

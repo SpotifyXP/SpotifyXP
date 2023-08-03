@@ -15,39 +15,45 @@ public class JScrollText extends JLabel implements Runnable {
     public void run() {
         long startofexec;
         long last = 0;
-        FontMetrics metrics = getFontMetrics(getFont());
-        while(animate) {
-            //Hsync
-            startofexec = System.currentTimeMillis();
-            //---
-            if (!isVisible()) {
-                return;
-            }
-            int hgt = metrics.getHeight();
-            int adv = metrics.stringWidth(getText());
-            Dimension size = new Dimension(adv+2, hgt+2);
-            if(!(size.width > getWidth())) {
-                animate = false;
-                break;
-            }
-            String oldText = getText();
-            String newText = oldText.substring(1) + oldText.charAt(0);
-            super.setText(newText);
-            //HSync
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException ignored) {
-            }
-            if(!(last == 0)) {
-                if(System.currentTimeMillis() != startofexec + 400) {
-                    try {
-                        Thread.sleep(System.currentTimeMillis() - startofexec);
-                    } catch (InterruptedException ignored) {
+        FontMetrics metrics = null;
+        try {
+            metrics = getFontMetrics(getFont());
+        }catch (NullPointerException ignored) {
+        }
+        if(metrics != null) {
+            while (animate) {
+                //Hsync
+                startofexec = System.currentTimeMillis();
+                //---
+                if (!isVisible()) {
+                    return;
+                }
+                int hgt = metrics.getHeight();
+                int adv = metrics.stringWidth(getText());
+                Dimension size = new Dimension(adv + 2, hgt + 2);
+                if (!(size.width > getWidth())) {
+                    animate = false;
+                    break;
+                }
+                String oldText = getText();
+                String newText = oldText.substring(1) + oldText.charAt(0);
+                super.setText(newText);
+                //HSync
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException ignored) {
+                }
+                if (!(last == 0)) {
+                    if (System.currentTimeMillis() != startofexec + 400) {
+                        try {
+                            Thread.sleep(System.currentTimeMillis() - startofexec);
+                        } catch (InterruptedException ignored) {
+                        }
                     }
                 }
+                last = System.currentTimeMillis() - startofexec;
+                //---
             }
-            last = System.currentTimeMillis() - startofexec;
-            //---
         }
     }
 

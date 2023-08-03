@@ -12,6 +12,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/HelloWorldExtension/pom.xml" />
         <option value="$PROJECT_DIR$/deps/librespot-java/api/pom.xml" />
         <option value="$PROJECT_DIR$/deps/librespot-java/dacp/pom.xml" />
         <option value="$PROJECT_DIR$/deps/librespot-java/decoder-api/pom.xml" />

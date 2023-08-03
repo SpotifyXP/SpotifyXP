@@ -26,29 +26,24 @@ public class Config {
             properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.password.name, "");
             properties.put(ConfigValues.hideExceptions.name, "false");
+            properties.put(ConfigValues.language.name, "English");
             try {
                 if(!new File(PublicValues.configfilepath).createNewFile()) {
                     ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
                 }
             } catch (IOException e) {
-                ExceptionDialog.open(e);
-                ConsoleLogging.Throwable(e);
-                ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
+                e.printStackTrace();
             }
             try {
-                properties.store(new FileWriter(PublicValues.configfilepath), PublicValues.language.translate("configuration.comment"));
+                properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Config");
             } catch (IOException e) {
-                ExceptionDialog.open(e);
-                ConsoleLogging.Throwable(e);
-                ConsoleLogging.error(PublicValues.language.translate("configuration.error.writefail"));
+                e.printStackTrace();
             }
         }
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
-            ExceptionDialog.open(e);
-            ConsoleLogging.Throwable(e);
-            ConsoleLogging.error(PublicValues.language.translate("configuration.error.loadfail"));
+            e.printStackTrace();
         }
     }
     public void write(String name, String value) {

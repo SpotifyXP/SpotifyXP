@@ -17,6 +17,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Locale;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SettingsPanel extends JPanel {
@@ -28,6 +30,9 @@ public class SettingsPanel extends JPanel {
     public static JComboBox settingsplaybackselectquality;
     public static JButton settingsplaybackopenequalizerbutton;
     public static JRadioButton settingsdisableexceptions;
+    public static JLabel settingslanguagelabel;
+    public static JLabel settingslanguageselectlabel;
+    public static JComboBox settingslanguageselect;
 
     public SettingsPanel() {
         setBounds(100, 100, 800, 600);
@@ -109,16 +114,13 @@ public class SettingsPanel extends JPanel {
 
         settingsplaybackselectqualitylabel.setForeground(PublicValues.globalFontColor);
 
-        //settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.equalizer.open"));
-        settingsplaybackopenequalizerbutton = (JButton) JComponentFactory.createJComponent(new JButton("Uninstall SpotifyXP"));
+        settingsplaybackopenequalizerbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.settings.uninstall")));
         settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
         add(settingsplaybackopenequalizerbutton);
 
         settingsplaybackopenequalizerbutton.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackopenequalizerbutton.addActionListener(e -> triggerUninstall());
-
-        //settingsplaybackopenequalizerbutton.setVisible(false); //Equalizer will be implemented in the fure but propably first when I learned how this works
 
         settingspathsetbutton.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
@@ -130,11 +132,50 @@ public class SettingsPanel extends JPanel {
             settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
         });
 
+        settingslanguagelabel = new JLabel(PublicValues.language.translate("ui.settings.language"));
+        settingslanguagelabel.setBounds(28, 320, 140, 20);
+        add(settingslanguagelabel);
+
+        settingslanguagelabel.setForeground(PublicValues.globalFontColor);
+
+        settingslanguageselect = new JComboBox();
+        settingslanguageselect.setBounds(162, 352, 199, 27);
+        add(settingslanguageselect);
+
+        settingslanguageselectlabel = new JLabel(PublicValues.language.translate("ui.settings.langselect"));
+        settingslanguageselectlabel.setBounds(28, 356, 140, 16);
+        add(settingslanguageselectlabel);
+
+        settingslanguageselectlabel.setForeground(PublicValues.globalFontColor);
+
+        ArrayList<String> selectcache = new ArrayList<>();
+
+        for(Locale locale : Locale.getAvailableLocales()) {
+            if(locale.getDisplayLanguage().equals("")) {
+                continue;
+            }
+            if(selectcache.contains(locale.getDisplayLanguage())) {
+                continue;
+            }
+            if(new Resources(true).readToInputStream("lang/" + locale.getLanguage() + ".json") != null) {
+                selectcache.add(locale.getDisplayLanguage());
+            }
+        }
+
+        for(String s : selectcache) {
+            ((DefaultComboBoxModel) settingslanguageselect.getModel()).addElement(s);
+        }
+
+        settingslanguageselect.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.language.name));
         settingsdisableexceptions.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.hideExceptions.name)));
         settingsuidisableplayerstats.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.disableplayerstats.name)));
         settingsbrowserpath.setText(PublicValues.config.get(ConfigValues.mypalpath.name));
         settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.theme.name));
         settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.audioquality.name));
+
+        if(settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
+            settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
+        }
     }
 
     public static void applySettings() {
@@ -149,6 +190,7 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
                 break;
         }
+        PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
         PublicValues.config.write(ConfigValues.hideExceptions.name, String.valueOf(settingsdisableexceptions.isSelected()));
         PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());

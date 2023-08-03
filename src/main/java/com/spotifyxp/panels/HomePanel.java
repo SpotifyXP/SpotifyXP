@@ -300,8 +300,6 @@ public class HomePanel {
         for(UnofficialSpotifyAPI.HomeTabSection section : tab.sections) {
             addModule(section);
         }
-
-        libLanguage l = PublicValues.language;
     }
 
 
