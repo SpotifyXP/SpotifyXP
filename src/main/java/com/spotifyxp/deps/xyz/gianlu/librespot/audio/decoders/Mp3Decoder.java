@@ -162,7 +162,9 @@ public final class Mp3Decoder extends Decoder {
                 }
 
                 //Here
-
+                if(PublicValues.visualizer.isVisible()) {
+                    PublicValues.visualizer.update(buffer.array());
+                }
                 //---
 
                 bitstream.closeFrame();

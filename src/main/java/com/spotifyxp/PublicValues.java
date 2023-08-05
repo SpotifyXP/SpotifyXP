@@ -16,6 +16,8 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.video.CanvasPlayer;
+import com.spotifyxp.visuals.AudioVisualizer;
+import org.checkerframework.checker.units.qual.A;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -49,6 +51,8 @@ public class PublicValues {
     public static Injector injector = new Injector();
     public static ContentPanel contentPanel;
     public static ArgParser argParser = new ArgParser();
+    public static  boolean customSaveDir = false;
+    public static AudioVisualizer visualizer = new AudioVisualizer();
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
     public static boolean isSteamDeckMode = false;
     public static String tempPath = System.getenv("temp");

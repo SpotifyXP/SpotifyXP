@@ -117,5 +117,9 @@
   "ui.overlay.toggle": "Toggle",
   "ui.settings.language": "Language",
   "ui.settings.langselect": "Select language",
-  "ui.settings.nolang": "English"
+  "ui.settings.nolang": "English",
+  "ui.legacy.extensionstore": "Open ExtensionStore",
+  "ui.legacy.view": "View",
+  "ui.legacy.view.audiovisualizer": "AudioVisualizer",
+  "ui.audiovisualizer.title": "SpotifyXP - Audio Visualizer"
 }

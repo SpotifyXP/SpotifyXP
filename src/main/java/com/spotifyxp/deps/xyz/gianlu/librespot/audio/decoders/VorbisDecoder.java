@@ -224,6 +224,10 @@ public final class VorbisDecoder extends Decoder {
             written += c;
             jorbisDspState.synthesis_read(range);
 
+            if(PublicValues.visualizer.isVisible()) {
+                PublicValues.visualizer.update(convertedBuffer);
+            }
+
             long granulepos = joggPacket.granulepos;
             if (granulepos != -1 && joggPacket.e_o_s == 0) {
                 granulepos -= samples;

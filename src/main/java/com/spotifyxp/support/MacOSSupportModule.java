@@ -13,10 +13,12 @@ import java.net.URL;
 
 public class MacOSSupportModule {
     public MacOSSupportModule() {
-        PublicValues.fileslocation = System.getProperty("user.home")+"/SpotifyXP";
-        PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
-        PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
-        PublicValues.tempPath = System.getProperty("java.io.tmpdir");
+        if(!PublicValues.customSaveDir) {
+            PublicValues.fileslocation = System.getProperty("user.home") + "/SpotifyXP";
+            PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
+            PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
+            PublicValues.tempPath = System.getProperty("java.io.tmpdir");
+        }
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
         PublicValues.isMacOS = true;

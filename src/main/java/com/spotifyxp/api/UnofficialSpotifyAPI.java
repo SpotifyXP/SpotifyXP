@@ -483,174 +483,286 @@ public class UnofficialSpotifyAPI {
             if (counter == 0) {
                 HomeTabSectionNoName userlist = new HomeTabSectionNoName();
                 JSONObject section = new JSONObject(o.toString());
-                userlist.uri = section.getString("uri");
-                userlist.totalCount = section.getJSONObject("sectionItems").getInt("totalCount");
+                try {
+                    userlist.uri = section.getString("uri");
+                } catch (JSONException e) {
+                    ConsoleLogging.error("[HomeTab] Couldnt get uri for section");
+                }
+                try {
+                    userlist.totalCount = section.getJSONObject("sectionItems").getInt("totalCount");
+                } catch (JSONException e) {
+                    ConsoleLogging.error("[HomeTab] Couldnt get totalcount for section");
+                }
                 int ic = 0;
-                for (Object i : new JSONObject(o.toString()).getJSONObject("sectionItems").getJSONArray("items")) {
-                    if (ic == 0) {
-                        ic++;
-                        continue; //Guess: The first item always contains nothing
-                    }
-                    JSONObject item = new JSONObject(i.toString());
-                    SectionItemTypes itemTypeName = SectionItemTypes.valueOf(item.getJSONObject("content").getString("__typename"));
-                    JSONObject content;
-                    JSONObject data;
-                    HomeTabImage imageData;
-                    switch (itemTypeName) {
-                        case UnknownType:
-                            continue;
-                        case AlbumResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabAlbum album = new HomeTabAlbum();
-                            album.name = data.getString("name");
-                            album.uri = data.getString("uri");
-                            imageData = new HomeTabImage();
-                            for (Object image : data.getJSONObject("coverArt").getJSONArray("sources")) {
-                                JSONObject sourceData = new JSONObject(image.toString());
-                                HomeTabImageSource imageSource = new HomeTabImageSource();
+                try {
+                    for (Object i : new JSONObject(o.toString()).getJSONObject("sectionItems").getJSONArray("items")) {
+                        if (ic == 0) {
+                            ic++;
+                            continue; //Guess: The first item always contains nothing
+                        }
+                        JSONObject item = new JSONObject(i.toString());
+                        SectionItemTypes itemTypeName = SectionItemTypes.valueOf(item.getJSONObject("content").getString("__typename"));
+                        JSONObject content;
+                        JSONObject data;
+                        HomeTabImage imageData;
+                        switch (itemTypeName) {
+                            case UnknownType:
+                                continue;
+                            case AlbumResponseWrapper:
+                                content = new JSONObject(item.getJSONObject("content").toString());
+                                data = new JSONObject(content.getJSONObject("data").toString());
+                                HomeTabAlbum album = new HomeTabAlbum();
                                 try {
-                                    imageSource.width = sourceData.getString("width");
-                                } catch (JSONException ignored) {
+                                    album.name = data.getString("name");
+                                }catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for album");
                                 }
                                 try {
-                                    imageSource.height = sourceData.getString("height");
-                                } catch (JSONException ignored) {
+                                    album.uri = data.getString("uri");
+                                }catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for album");
                                 }
-                                try {
-                                    imageSource.url = sourceData.getString("url");
-                                } catch (JSONException ignored) {
-                                }
-                                imageData.sources.add(imageSource);
-                            }
-                            album.images.add(imageData);
-                            for (Object artist : data.getJSONObject("artists").getJSONArray("items")) {
-                                JSONObject artistSource = new JSONObject(artist.toString());
-                                HomeTabArtistNoImage artistData = new HomeTabArtistNoImage();
-                                artistData.name = artistSource.getJSONObject("profile").getString("name");
-                                artistData.uri = artistSource.getString("uri");
-                                album.artists.add(artistData);
-                            }
-                            userlist.albums.add(album);
-                            break;
-                        case ArtistResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabArtist artist = new HomeTabArtist();
-                            imageData = new HomeTabImage();
-                            try {
-                                for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
-                                    JSONObject sourceData = new JSONObject();
+                                imageData = new HomeTabImage();
+                                for (Object image : data.getJSONObject("coverArt").getJSONArray("sources")) {
+                                    JSONObject sourceData = new JSONObject(image.toString());
                                     HomeTabImageSource imageSource = new HomeTabImageSource();
-                                    try {
-                                        imageSource.height = sourceData.getString("height");
-                                    } catch (JSONException ignored) {
-                                    }
                                     try {
                                         imageSource.width = sourceData.getString("width");
                                     } catch (JSONException ignored) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                    }
+                                    try {
+                                        imageSource.height = sourceData.getString("height");
+                                    } catch (JSONException ignored) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
                                     }
                                     try {
                                         imageSource.url = sourceData.getString("url");
                                     } catch (JSONException ignored) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
                                     }
                                     imageData.sources.add(imageSource);
                                 }
-                            } catch (JSONException ignored) {
-                                //No images
-                            }
-                            artist.images.add(imageData);
-                            try {
-                                artist.name = data.getJSONObject("profile").getString("name");
-                            } catch (JSONException ignored) {
-                            }
-                            try {
-                                artist.uri = data.getString("uri");
-                            } catch (JSONException ignored) {
-                            }
-                            userlist.artists.add(artist);
-                            break;
-                        case PlaylistResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabPlaylist playlist = new HomeTabPlaylist();
-                            try {
-                                for (Object image : data.getJSONObject("images").getJSONArray("items")) {
-                                    HomeTabImage images = new HomeTabImage();
-                                    for (Object imageSource : new JSONObject(image.toString()).getJSONArray("sources")) {
-                                        JSONObject sourceData = new JSONObject(imageSource.toString());
-                                        HomeTabImageSource imagesSource = new HomeTabImageSource();
-                                        try {
-                                            imagesSource.height = sourceData.getString("height");
-                                        } catch (JSONException ignored) {
-                                            //Image height not available
-                                        }
-                                        try {
-                                            imagesSource.width = sourceData.getString("width");
-                                        } catch (JSONException ignored) {
-                                            //Image width not available
-                                        }
-                                        imagesSource.url = sourceData.getString("url");
-                                        images.sources.add(imagesSource);
+                                album.images.add(imageData);
+                                for (Object artist : data.getJSONObject("artists").getJSONArray("items")) {
+                                    JSONObject artistSource = new JSONObject(artist.toString());
+                                    HomeTabArtistNoImage artistData = new HomeTabArtistNoImage();
+                                    try {
+                                        artistData.name = artistSource.getJSONObject("profile").getString("name");
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
                                     }
-                                    playlist.images.add(images);
-                                } //Get images
-                            } catch (JSONException e) {
-                                //No images
-                            }
-                            playlist.description = data.getString("description"); //Get description
-                            playlist.name = data.getString("name"); //Get Name
-                            playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
-                            playlist.uri = item.getString("uri"); //Get Uri
-                            userlist.playlists.add(playlist);
-                            break;
-                        case EpisodeOrChapterResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabEpisodeOrChapter eoc = new HomeTabEpisodeOrChapter();
-                            if (data.getString("__typename").equals("GenericError")) {
+                                    try {
+                                        artistData.uri = artistSource.getString("uri");
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
+                                    }
+                                    album.artists.add(artistData);
+                                }
+                                userlist.albums.add(album);
                                 break;
-                            }
-                            eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
-                            eoc.uri = item.getString("uri");
-                            eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
-                            eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
-                            eoc.EpisodeOrChapterName = data.getString("name");
-                            eoc.description = data.getString("description");
-                            for (Object source : data.getJSONObject("coverArt").getJSONArray("sources")) {
-                                JSONObject coverSource = new JSONObject(source.toString());
-                                HomeTabImage coverImage = new HomeTabImage();
-                                HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                coverImageSource.width = String.valueOf(coverSource.getInt("width"));
-                                coverImageSource.height = String.valueOf(coverSource.getInt("height"));
-                                coverImageSource.url = coverSource.getString("url");
-                                coverImage.sources.add(coverImageSource);
-                                eoc.EpisodeOrChapterImages.add(coverImage);
-                            }
-                            try {
-                                JSONObject podcastV2 = data.getJSONObject("podcastV2").getJSONObject("data");
-                                eoc.name = podcastV2.getString("name");
-                                eoc.publisherName = podcastV2.getJSONObject("publisher").getString("name");
-                                for (Object source : podcastV2.getJSONObject("coverArt").getJSONArray("sources")) {
+                            case ArtistResponseWrapper:
+                                content = new JSONObject(item.getJSONObject("content").toString());
+                                data = new JSONObject(content.getJSONObject("data").toString());
+                                HomeTabArtist artist = new HomeTabArtist();
+                                imageData = new HomeTabImage();
+                                try {
+                                    for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
+                                        JSONObject sourceData = new JSONObject();
+                                        HomeTabImageSource imageSource = new HomeTabImageSource();
+                                        try {
+                                            imageSource.height = sourceData.getString("height");
+                                        } catch (JSONException ignored) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
+                                        }
+                                        try {
+                                            imageSource.width = sourceData.getString("width");
+                                        } catch (JSONException ignored) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                        }
+                                        try {
+                                            imageSource.url = sourceData.getString("url");
+                                        } catch (JSONException ignored) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                        }
+                                        imageData.sources.add(imageSource);
+                                    }
+                                } catch (JSONException ignored) {
+                                    //No images
+                                }
+                                artist.images.add(imageData);
+                                try {
+                                    artist.name = data.getJSONObject("profile").getString("name");
+                                } catch (JSONException ignored) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
+                                }
+                                try {
+                                    artist.uri = data.getString("uri");
+                                } catch (JSONException ignored) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
+                                }
+                                userlist.artists.add(artist);
+                                break;
+                            case PlaylistResponseWrapper:
+                                content = new JSONObject(item.getJSONObject("content").toString());
+                                data = new JSONObject(content.getJSONObject("data").toString());
+                                HomeTabPlaylist playlist = new HomeTabPlaylist();
+                                try {
+                                    for (Object image : data.getJSONObject("images").getJSONArray("items")) {
+                                        HomeTabImage images = new HomeTabImage();
+                                        for (Object imageSource : new JSONObject(image.toString()).getJSONArray("sources")) {
+                                            JSONObject sourceData = new JSONObject(imageSource.toString());
+                                            HomeTabImageSource imagesSource = new HomeTabImageSource();
+                                            try {
+                                                imagesSource.height = sourceData.getString("height");
+                                            } catch (JSONException ignored) {
+                                                ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
+                                            }
+                                            try {
+                                                imagesSource.width = sourceData.getString("width");
+                                            } catch (JSONException ignored) {
+                                                ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                            }
+                                            try {
+                                                imagesSource.url = sourceData.getString("url");
+                                            } catch (JSONException e) {
+                                                ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                            }
+                                            images.sources.add(imagesSource);
+                                        }
+                                        playlist.images.add(images);
+                                    } //Get images
+                                } catch (JSONException e) {
+                                    //No images
+                                }
+                                try {
+                                    playlist.description = data.getString("description"); //Get description
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get description for playlist");
+                                }
+                                try {
+                                    playlist.name = data.getString("name"); //Get Name
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for playlist");
+                                }
+                                try {
+                                    playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get owner of playlist");
+                                }
+                                try {
+                                    playlist.uri = item.getString("uri"); //Get Uri
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for playlist");
+                                }
+                                userlist.playlists.add(playlist);
+                                break;
+                            case EpisodeOrChapterResponseWrapper:
+                                content = new JSONObject(item.getJSONObject("content").toString());
+                                data = new JSONObject(content.getJSONObject("data").toString());
+                                HomeTabEpisodeOrChapter eoc = new HomeTabEpisodeOrChapter();
+                                if (data.getString("__typename").equals("GenericError")) {
+                                    break;
+                                }
+                                try {
+                                    eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
+                                } catch (JSONException exception) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get duration for episode/chapter");
+                                }
+                                try {
+                                    eoc.uri = item.getString("uri");
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for episode/chapter");
+                                }
+                                try {
+                                    eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get isodate for episode/chapter");
+                                }
+                                try {
+                                    eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get play position for episode/chapter");
+                                }
+                                try {
+                                    eoc.EpisodeOrChapterName = data.getString("name");
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for episode/chapter");
+                                }
+                                try {
+                                    eoc.description = data.getString("description");
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get description for episode/chapter");
+                                }
+                                for (Object source : data.getJSONObject("coverArt").getJSONArray("sources")) {
                                     JSONObject coverSource = new JSONObject(source.toString());
                                     HomeTabImage coverImage = new HomeTabImage();
                                     HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                    coverImageSource.width = String.valueOf(coverSource.getInt("width"));
-                                    coverImageSource.height = String.valueOf(coverSource.getInt("height"));
-                                    coverImageSource.url = coverSource.getString("url");
+                                    try {
+                                        coverImageSource.width = String.valueOf(coverSource.getInt("width"));
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                    }
+                                    try {
+                                        coverImageSource.height = String.valueOf(coverSource.getInt("height"));
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
+                                    }
+                                    try {
+                                        coverImageSource.url = coverSource.getString("url");
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                    }
                                     coverImage.sources.add(coverImageSource);
-                                    eoc.coverImages.add(coverImage);
+                                    eoc.EpisodeOrChapterImages.add(coverImage);
                                 }
-                            } catch (JSONException e) {
-                                ConsoleLogging.error("HomeTab -> Can't parse podcastV2 element (JSONData)-> " + data);
-                            }
-                            userlist.episodeOrChapters.add(eoc);
-                            break;
+                                try {
+                                    JSONObject podcastV2 = data.getJSONObject("podcastV2").getJSONObject("data");
+                                    try {
+                                        eoc.name = podcastV2.getString("name");
+                                    }catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get name for podcast");
+                                    }
+                                    try {
+                                        eoc.publisherName = podcastV2.getJSONObject("publisher").getString("name");
+                                    }catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get name of publisher for podcast");
+                                    }
+                                    for (Object source : podcastV2.getJSONObject("coverArt").getJSONArray("sources")) {
+                                        JSONObject coverSource = new JSONObject(source.toString());
+                                        HomeTabImage coverImage = new HomeTabImage();
+                                        HomeTabImageSource coverImageSource = new HomeTabImageSource();
+                                        try {
+                                            coverImageSource.width = String.valueOf(coverSource.getInt("width"));
+                                        } catch (JSONException e) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                        }
+                                        try {
+                                            coverImageSource.height = String.valueOf(coverSource.getInt("height"));
+                                        } catch (JSONException e) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
+                                        }
+                                        try {
+                                            coverImageSource.url = coverSource.getString("url");
+                                        } catch (JSONException e) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                        }
+                                        coverImage.sources.add(coverImageSource);
+                                        eoc.coverImages.add(coverImage);
+                                    }
+                                } catch (JSONException e) {
+                                    ConsoleLogging.error("HomeTab -> Can't parse podcastV2 element (JSONData)-> " + data);
+                                }
+                                userlist.episodeOrChapters.add(eoc);
+                                break;
+                        }
                     }
+                    tab.firstSection = userlist;
+                    counter++;
+                    continue;
+                } catch (JSONException e) {
+                    ConsoleLogging.warning("[HomeTab] Couldnt parse section");
                 }
-                tab.firstSection = userlist;
-                counter++;
-                continue;
             }
             JSONObject section = new JSONObject(o.toString());
             JSONObject sectionItems = new JSONObject(section.getJSONObject("sectionItems").toString());
@@ -658,14 +770,17 @@ public class UnofficialSpotifyAPI {
             try {
                 homeTabSection.name = section.getJSONObject("data").getJSONObject("title").getString("text");
             } catch (JSONException ignored) {
+                ConsoleLogging.warning("[HomeTab] Couldnt get name of section");
             }
             try {
                 homeTabSection.uri = section.getString("uri");
             } catch (JSONException ignored) {
+                ConsoleLogging.warning("[HomeTab] Couldnt get uri of section");
             }
             try {
                 homeTabSection.totalCount = section.getJSONObject("sectionItems").getInt("totalCount");
             } catch (JSONException ignored) {
+                ConsoleLogging.warning("[HomeTab] Couldnt get totalcount of section");
             }
             for (Object i : sectionItems.getJSONArray("items")) {
                 JSONObject item = new JSONObject(i.toString());
@@ -687,8 +802,16 @@ public class UnofficialSpotifyAPI {
                             content = new JSONObject(item.getJSONObject("content").toString());
                             data = new JSONObject(content.getJSONObject("data").toString());
                             HomeTabAlbum album = new HomeTabAlbum();
-                            album.name = data.getString("name");
-                            album.uri = data.getString("uri");
+                            try {
+                                album.name = data.getString("name");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get name for album");
+                            }
+                            try {
+                                album.uri = data.getString("uri");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get uri for album");
+                            }
                             imageData = new HomeTabImage();
                             for (Object image : data.getJSONObject("coverArt").getJSONArray("sources")) {
                                 JSONObject sourceData = new JSONObject(image.toString());
@@ -696,14 +819,17 @@ public class UnofficialSpotifyAPI {
                                 try {
                                     imageSource.width = sourceData.getString("width");
                                 } catch (JSONException ignored) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
                                 }
                                 try {
                                     imageSource.height = sourceData.getString("height");
                                 } catch (JSONException ignored) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
                                 }
                                 try {
                                     imageSource.url = sourceData.getString("url");
                                 } catch (JSONException ignored) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
                                 }
                                 imageData.sources.add(imageSource);
                             }
@@ -711,8 +837,16 @@ public class UnofficialSpotifyAPI {
                             for (Object artist : data.getJSONObject("artists").getJSONArray("items")) {
                                 JSONObject artistSource = new JSONObject(artist.toString());
                                 HomeTabArtistNoImage artistData = new HomeTabArtistNoImage();
-                                artistData.name = artistSource.getJSONObject("profile").getString("name");
-                                artistData.uri = artistSource.getString("uri");
+                                try {
+                                    artistData.name = artistSource.getJSONObject("profile").getString("name");
+                                }catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
+                                }
+                                try {
+                                    artistData.uri = artistSource.getString("uri");
+                                }catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
+                                }
                                 album.artists.add(artistData);
                             }
                             homeTabSection.albums.add(album);
@@ -729,14 +863,17 @@ public class UnofficialSpotifyAPI {
                                     try {
                                         imageSource.height = sourceData.getString("height");
                                     } catch (JSONException ignored) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
                                     }
                                     try {
                                         imageSource.width = sourceData.getString("width");
                                     } catch (JSONException ignored) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
                                     }
                                     try {
                                         imageSource.url = sourceData.getString("url");
                                     } catch (JSONException ignored) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
                                     }
                                     imageData.sources.add(imageSource);
                                 }
@@ -747,10 +884,12 @@ public class UnofficialSpotifyAPI {
                             try {
                                 artist.name = data.getJSONObject("profile").getString("name");
                             } catch (JSONException ignored) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
                             }
                             try {
                                 artist.uri = data.getString("uri");
                             } catch (JSONException ignored) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
                             }
                             homeTabSection.artists.add(artist);
                             break;
@@ -767,14 +906,18 @@ public class UnofficialSpotifyAPI {
                                         try {
                                             imagesSource.height = sourceData.getString("height");
                                         } catch (JSONException ignored) {
-                                            //Image height not available
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
                                         }
                                         try {
                                             imagesSource.width = sourceData.getString("width");
                                         } catch (JSONException ignored) {
-                                            //Image width not available
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
                                         }
-                                        imagesSource.url = sourceData.getString("url");
+                                        try {
+                                            imagesSource.url = sourceData.getString("url");
+                                        }catch (JSONException e) {
+                                            ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                        }
                                         images.sources.add(imagesSource);
                                     }
                                     playlist.images.add(images);
@@ -782,10 +925,26 @@ public class UnofficialSpotifyAPI {
                             } catch (JSONException e) {
                                 //No images
                             }
-                            playlist.description = data.getString("description"); //Get description
-                            playlist.name = data.getString("name"); //Get Name
-                            playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
-                            playlist.uri = item.getString("uri"); //Get Uri
+                            try {
+                                playlist.description = data.getString("description"); //Get description
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get description for playlist");
+                            }
+                            try {
+                                playlist.name = data.getString("name"); //Get Name
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get name for playlist");
+                            }
+                            try {
+                                playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get owner of playlist");
+                            }
+                            try {
+                                playlist.uri = item.getString("uri"); //Get Uri
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get uri of playlist");
+                            }
                             homeTabSection.playlists.add(playlist);
                             break;
                         case EpisodeOrChapterResponseWrapper:
@@ -795,19 +954,55 @@ public class UnofficialSpotifyAPI {
                             if (data.getString("__typename").equals("GenericError") || data.getString("__typename").equals("RestrictedContent")) {
                                 break;
                             }
-                            eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
-                            eoc.uri = item.getString("uri");
-                            eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
-                            eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
-                            eoc.EpisodeOrChapterName = data.getString("name");
-                            eoc.description = data.getString("description");
+                            try {
+                                eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get total milliseconds for episode/chapter");
+                            }
+                            try {
+                                eoc.uri = item.getString("uri");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get uri for episode/chapter");
+                            }
+                            try {
+                                eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get isodate for episode/chapter");
+                            }
+                            try {
+                                eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get play position for episode/chapter");
+                            }
+                            try {
+                                eoc.EpisodeOrChapterName = data.getString("name");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get name for episode/chapter");
+                            }
+                            try {
+                                eoc.description = data.getString("description");
+                            }catch (JSONException e) {
+                                ConsoleLogging.warning("[HomeTab] Couldnt get description for episode/chapter");
+                            }
                             for (Object source : data.getJSONObject("coverArt").getJSONArray("sources")) {
                                 JSONObject coverSource = new JSONObject(source.toString());
                                 HomeTabImage coverImage = new HomeTabImage();
                                 HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                coverImageSource.width = String.valueOf(coverSource.getInt("width"));
-                                coverImageSource.height = String.valueOf(coverSource.getInt("height"));
-                                coverImageSource.url = coverSource.getString("url");
+                                try {
+                                    coverImageSource.width = String.valueOf(coverSource.getInt("width"));
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                }
+                                try {
+                                    coverImageSource.height = String.valueOf(coverSource.getInt("height"));
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
+                                }
+                                try {
+                                    coverImageSource.url = coverSource.getString("url");
+                                } catch (JSONException e) {
+                                    ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                }
                                 coverImage.sources.add(coverImageSource);
                                 eoc.EpisodeOrChapterImages.add(coverImage);
                             }
@@ -819,9 +1014,21 @@ public class UnofficialSpotifyAPI {
                                     JSONObject coverSource = new JSONObject(source.toString());
                                     HomeTabImage coverImage = new HomeTabImage();
                                     HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                    coverImageSource.width = String.valueOf(coverSource.getInt("width"));
-                                    coverImageSource.height = String.valueOf(coverSource.getInt("height"));
-                                    coverImageSource.url = coverSource.getString("url");
+                                    try {
+                                        coverImageSource.width = String.valueOf(coverSource.getInt("width"));
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get width for image");
+                                    }
+                                    try {
+                                        coverImageSource.height = String.valueOf(coverSource.getInt("height"));
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get height for image");
+                                    }
+                                    try {
+                                        coverImageSource.url = coverSource.getString("url");
+                                    } catch (JSONException e) {
+                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
+                                    }
                                     coverImage.sources.add(coverImageSource);
                                     eoc.coverImages.add(coverImage);
                                 }
@@ -844,7 +1051,6 @@ public class UnofficialSpotifyAPI {
 
     public static String getCanvasURLForTrack(String artist, String album, String track) {
         HttpClient client = new HttpClient();
-
         GetMethod method = null;
         try {
             track =  URLEncoder.encode(track, StandardCharsets.UTF_8.displayName());
@@ -853,7 +1059,6 @@ public class UnofficialSpotifyAPI {
             track = track.replaceAll("\\+", "%20");
             album = album.replaceAll("\\+", "%20");
             artist = artist.replaceAll("\\+", "%20");
-            System.out.println("Generated URL: " + "http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
             method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
         } catch (UnsupportedEncodingException e) {
             method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);

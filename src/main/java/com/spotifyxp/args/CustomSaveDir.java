@@ -10,6 +10,7 @@ public class CustomSaveDir implements Argument{
             public void run() {
                 PublicValues.fileslocation = parameter1;
                 PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
+                PublicValues.customSaveDir = true;
             }
         };
     }

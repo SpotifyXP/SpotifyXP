@@ -2057,22 +2057,32 @@ public class ContentPanel extends JPanel {
         });
         JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
         JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
+        JMenu view = new JMenu(PublicValues.language.translate("ui.legacy.view"));
         JMenu account = new JMenu(PublicValues.language.translate("ui.legacy.account"));
         JMenu help = new JMenu(PublicValues.language.translate("ui.legacy.help"));
         JMenuItem exit = new JMenuItem(PublicValues.language.translate("ui.legacy.exit"));
         JMenuItem logout = new JMenuItem(PublicValues.language.translate("ui.legacy.logout"));
         JMenuItem about = new JMenuItem(PublicValues.language.translate("ui.legacy.about"));
         JMenuItem settings = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
-        JMenuItem extensions = new JMenuItem("Open ExtensionStore");
+        JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
+        JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
         bar.add(file);
         bar.add(edit);
+        bar.add(view);
         bar.add(account);
         bar.add(help);
         file.add(exit);
         edit.add(settings);
+        view.add(audiovisualizer);
         account.add(logout);
         help.add(extensions);
         help.add(about);
+        audiovisualizer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.visualizer.open();
+            }
+        });
         extensions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

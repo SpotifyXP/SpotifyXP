@@ -91,6 +91,8 @@ SpotifyXP is build with
             <a>uk.co.caprica:vlcj</a>
             <br>
             <a>com.googlecode.plist:dd-plist</a>
+            <br>
+            <a>org.apache.commons:commons-math3</a>
         </div>
 
 ## Getting Started

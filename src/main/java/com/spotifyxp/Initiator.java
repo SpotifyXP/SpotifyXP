@@ -66,9 +66,12 @@ public class Initiator {
         PublicValues.logger.setShowTime(false);
         SplashPanel.linfo.setText("Loading Extensions...");
         new Injector().autoInject();
+        SplashPanel.linfo.setText("Parsing arguments...");
+        PublicValues.argParser.parseArguments(args);
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
+                SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
                 new MacOSSupportModule();
             }else {
                 SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
@@ -91,8 +94,6 @@ public class Initiator {
         PublicValues.config = new Config();
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
-        SplashPanel.linfo.setText("Parsing arguments...");
-        PublicValues.argParser.parseArguments(args);
         SplashPanel.linfo.setText("Storing program arguments...");
         PublicValues.args = args;
         SplashPanel.linfo.setText("Detecting debugging...");
