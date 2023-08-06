@@ -17,6 +17,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -199,14 +201,13 @@ public class SettingsPanel extends JPanel {
     }
 
     public static void triggerUninstall() {
-        if(new File(PublicValues.tempPath, "SpotifyXP-Uninstaller.jar").exists()) {
-            new File(PublicValues.tempPath, "SpotifyXP-Uninstaller.jar").delete();
-        }
-        try {
-            Files.copy(new Resources(false).readToInputStream("SpotifyXP-Uninstaller.jar"), new File(PublicValues.tempPath, "SpotifyXP-Uninstaller.jar").toPath());
-        }catch (Exception ignored) {
-        }
         ProcessBuilder builder;
+        try {
+            Files.copy(new Resources().readToInputStream("JavaSetupTool.jar"), Paths.get(PublicValues.tempPath + File.separator + "SpotifyXP-Uninstaller.jar"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Paths.get(PublicValues.appLocation + File.separator + "uninstaller.xml"), Paths.get(PublicValues.tempPath + File.separator + "uninstaller.xml"), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(System.getProperty("os.name").toLowerCase().contains("win")) {
             builder = new ProcessBuilder("cmd.exe", "/c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
         }else{
@@ -215,7 +216,7 @@ public class SettingsPanel extends JPanel {
         try {
             builder.start();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         System.exit(0);
     }
