@@ -120,6 +120,8 @@ public class SettingsPanel extends JPanel {
         settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
         add(settingsplaybackopenequalizerbutton);
 
+        settingsplaybackopenequalizerbutton.setEnabled(false);
+
         settingsplaybackopenequalizerbutton.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackopenequalizerbutton.addActionListener(e -> triggerUninstall());

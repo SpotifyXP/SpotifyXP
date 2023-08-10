@@ -12,6 +12,7 @@ import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.LinuxSupportModule;
 import com.spotifyxp.support.MacOSSupportModule;
@@ -27,11 +28,6 @@ import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.*;
-import de.werwolf2303.javasetuptool.Setup;
-import de.werwolf2303.javasetuptool.components.AcceptComponent;
-import de.werwolf2303.javasetuptool.components.HTMLComponent;
-import de.werwolf2303.javasetuptool.components.InstallProgressComponent;
-import de.werwolf2303.javasetuptool.uninstaller.Uninstaller;
 import org.apache.commons.io.IOUtils;
 import org.apache.xmlgraphics.io.Resource;
 
@@ -131,150 +127,7 @@ public class Initiator {
         }
         SplashPanel.linfo.setText("Checking setup...");
         if(!PublicValues.foundSetupArgument) {
-            //Diskspace 60mb
-            Setup setup = new Setup();
-            ArrayList<String> files = new ArrayList<>();
-            ArrayList<String> folders = new ArrayList<>();
-            AcceptComponent thirdparty = new AcceptComponent();
-            thirdparty.load(new Resources().readToString("setup/thirdparty.html"));
-            InstallProgressComponent install = new InstallProgressComponent();
-            if(!PublicValues.isMacOS && !PublicValues.isLinux) {
-                install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                        .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR)
-                        .setTo(PublicValues.appLocation));
-                install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                        .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM)
-                        .setFrom(new Resources().readToInputStream("spotifyxp.ico"))
-                        .setTo(PublicValues.appLocation + "/spotifyxp.ico"));
-                try {
-                    install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                            .setFrom(Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath())
-                            .setTo(PublicValues.appLocation + "/SpotifyXP.jar")
-                            .setType(InstallProgressComponent.FileOperationTypes.COPY));
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
-                install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                        .setType(InstallProgressComponent.FileOperationTypes.CUSTOM).setCustom(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    ShellLink shellLink = new ShellLink();
-                                    shellLink.setIconLocation(PublicValues.appLocation + "/SpotifyXP.ico");
-                                    shellLink.setCMDArgs("--setup-complete");
-                                    ShellLinkHelper helper = new ShellLinkHelper(shellLink);
-                                    helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
-                                    helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
-                                } catch (IOException | ShellLinkException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }));
-                install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                        .setType(InstallProgressComponent.FileOperationTypes.COPY)
-                        .setFrom(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk")
-                        .setTo(PublicValues.startmenupath + "/SpotifyXP.lnk"));
-                folders.add(PublicValues.fileslocation);
-                files.add(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
-                files.add(PublicValues.startmenupath + "/SpotifyXP.lnk");
-            }else{
-                if(PublicValues.isLinux) {
-                    install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                            .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR)
-                            .setTo(PublicValues.appLocation));
-                    install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                            .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM)
-                            .setFrom(new Resources().readToInputStream("spotifyxp.ico"))
-                            .setTo(PublicValues.appLocation + "/spotifyxp.ico"));
-                    try {
-                        install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                                .setFrom(Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath())
-                                .setTo(PublicValues.appLocation + "/SpotifyXP.jar")
-                                .setType(InstallProgressComponent.FileOperationTypes.COPY));
-                    } catch (URISyntaxException e) {
-                        e.printStackTrace();
-                    }
-                    install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                            .setType(InstallProgressComponent.FileOperationTypes.CUSTOM).setCustom(new Runnable() {
-                                @Override
-                                public void run() {
-                                    LinuxAppUtil util = new LinuxAppUtil("SpotifyXP");
-                                    util.setVersion(PublicValues.version);
-                                    util.setComment("Listen to Spotify");
-                                    util.setPath(PublicValues.appLocation);
-                                    util.setExecutableLocation("java -jar SpotifyXP.jar --setup-complete");
-                                    util.setIconlocation(PublicValues.appLocation + "/spotifyxp.ico");
-                                    util.setCategories("Java", "Music");
-                                    util.create();
-                                }
-                            }));
-                    folders.add(PublicValues.fileslocation);
-                    files.add(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
-                    files.add(PublicValues.startmenupath + "/SpotifyXP.lnk");
-                    files.add("/usr/share/applications/" + "SpotifyXP.desktop");
-                    files.add(System.getProperty("user.home") + "/Schreibtisch" +  "/SpotifyXP.desktop");
-                    files.add(System.getProperty("user.home") + "/Desktop" + "/SpotifyXP.desktop");
-                }else{
-                    if(PublicValues.isMacOS) {
-                        install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                                .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR)
-                                .setTo(PublicValues.appLocation));
-                        install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                                .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM)
-                                .setFrom(new Resources().readToInputStream("spotifyxp.ico"))
-                                .setTo(PublicValues.appLocation + "/spotifyxp.ico"));
-                        try {
-                            install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                                    .setFrom(Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath())
-                                    .setTo(PublicValues.appLocation + "/SpotifyXP.jar")
-                                    .setType(InstallProgressComponent.FileOperationTypes.COPY));
-                        } catch (URISyntaxException e) {
-                            e.printStackTrace();
-                        }
-                        install.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                                .setType(InstallProgressComponent.FileOperationTypes.CUSTOM).setCustom(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        MacOSAppUtil util = new MacOSAppUtil("SpotifyXP");
-                                        util.setIcon("spotifyxp.icns");
-                                        util.setExecutableLocation(PublicValues.appLocation + "/SpotifyXP.jar");
-                                        util.create();
-                                    }
-                                }));
-                        folders.add(PublicValues.fileslocation);
-                        files.add(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
-                        folders.add(System.getProperty("user.home") + "/Applications/SpotifyXP.app");
-                    }
-                }
-            }
-            final boolean[] hold = {true};
-            setup.open(new Setup.SetupBuilder()
-                    .setProgramVersion(PublicValues.version)
-                    .setProgramName("SpotifyXP")
-                    .setProgramImage(new Resources().readToInputStream("spotifyxp.png"))
-                    .addComponent(thirdparty)
-                    .setInstallComponent(install)
-                    .setOnFinish(new Runnable() {
-                        @Override
-                        public void run() {
-                            PublicValues.foundSetupArgument = true;
-                            hold[0] = false;
-                            try {
-                                new Uninstaller().buildUninstaller(files, folders, "SpotifyXP", PublicValues.version, PublicValues.appLocation + File.separator + "uninstaller.xml");
-                            } catch (ParserConfigurationException e) {
-                                ConsoleLogging.Throwable(e);
-                                GraphicalMessage.bug("Failed to create uninstaller");
-                            }
-                        }
-                    })
-                    .build()
-            );
-            while(hold[0]) {
-                try {
-                    Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-                } catch (InterruptedException ignored) {
-                }
-            }
+            new Setup();
             startupTime = new StartupTime();
         }
         SplashPanel.linfo.setText("Init Themes...");

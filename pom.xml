@@ -144,13 +144,6 @@
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
         </dependency>
-        <dependency>
-            <groupId>de.werwolf2303</groupId>
-            <artifactId>JavaSetupTool</artifactId>
-            <version>1.0-ALPHA</version>
-            <systemPath>${project.basedir}/libs/JavaSetupTool.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
     </dependencies>
 
     <repositories>
