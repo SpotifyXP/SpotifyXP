@@ -1,5 +1,7 @@
 package com.spotifyxp.dialogs;
 
+import com.spotifyxp.logging.ConsoleLogging;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -48,7 +50,7 @@ public class SystemTrayDialog {
             try {
                 systemTray.add(trayIcon);
             } catch (AWTException awtException) {
-                awtException.printStackTrace();
+                ConsoleLogging.Throwable(awtException);
             }
         }
     }
@@ -61,7 +63,7 @@ public class SystemTrayDialog {
             try {
                 systemTray.add(trayIcon);
             } catch (AWTException awtException) {
-                awtException.printStackTrace();
+                ConsoleLogging.Throwable(awtException);
             }
         }
     }
@@ -91,7 +93,7 @@ public class SystemTrayDialog {
             try {
                 systemTray.add(trayIcon);
             } catch (AWTException awtException) {
-                awtException.printStackTrace();
+                ConsoleLogging.Throwable(awtException);
             }
         }
     }
@@ -103,7 +105,7 @@ public class SystemTrayDialog {
             try {
                 systemTray.add(trayIcon);
             } catch (AWTException awtException) {
-                awtException.printStackTrace();
+                ConsoleLogging.Throwable(awtException);
             }
         }
     }

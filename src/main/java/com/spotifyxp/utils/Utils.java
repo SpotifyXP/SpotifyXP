@@ -23,7 +23,7 @@ public class Utils {
             fis.close();
             fos.close();
         }catch (IOException ioe) {
-            ioe.printStackTrace();
+            ConsoleLogging.Throwable(ioe);
         }
     }
     public static int calculateRest(int from, int by) {

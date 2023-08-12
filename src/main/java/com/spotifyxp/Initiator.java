@@ -71,12 +71,16 @@ public class Initiator {
         SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
         SplashPanel.linfo.setText("Setting up logging...");
-        PublicValues.logger.setColored(false);
+        PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
         PublicValues.logger.setShowTime(false);
         SplashPanel.linfo.setText("Loading Extensions...");
         new Injector().autoInject();
         SplashPanel.linfo.setText("Parsing arguments...");
         PublicValues.argParser.parseArguments(args);
+        SplashPanel.linfo.setText("Checking debugging...");
+        ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
+        modules.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
+        modules.setShowTime(false);
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
@@ -88,32 +92,12 @@ public class Initiator {
             }
         }
         SplashPanel.linfo.setText("Checking required folders...");
-        if(!new File(PublicValues.fileslocation).exists()) {
-            if(!new File(PublicValues.fileslocation).mkdir()) {
-                ConsoleLogging.changeName("SpotifyAPI");
-                ConsoleLogging.error("Failed to create files");
-            }
-        }
-        if(!new File(PublicValues.appLocation).exists()) {
-            if(!new File(PublicValues.appLocation).mkdir()) {
-                ConsoleLogging.error("Failed to create app location");
-            }
-        }
         SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         SplashPanel.linfo.setText("Storing program arguments...");
         PublicValues.args = args;
-        SplashPanel.linfo.setText("Detecting debugging...");
-        if(new File("pom.xml").exists()) {
-            PublicValues.debug = true;
-            ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-            modules.setColored(!System.getProperty("os.name").toLowerCase().contains("xp"));
-            modules.setShowTime(false);
-            PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("xp"));
-            PublicValues.foundSetupArgument = true;
-        }
         SplashPanel.linfo.setText("Init Language...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
@@ -139,7 +123,7 @@ public class Initiator {
             try {
                 loader.tryLoadTheme(PublicValues.config.get(ConfigValues.theme.name));
             }catch (Exception e2) {
-                GraphicalMessage.bug("Can't load any theme");
+                ConsoleLogging.error("Loading no theme");
             }
         }
         try {

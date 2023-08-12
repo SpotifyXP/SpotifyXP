@@ -2852,7 +2852,7 @@ public class ContentPanel extends JPanel {
         try {
             new File(PublicValues.appLocation, "LOCK").delete();
         }catch (Exception e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
     }
     void fetchHotlist() {

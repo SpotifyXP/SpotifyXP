@@ -259,7 +259,7 @@ public class Setup {
                         Files.copy(Paths.get(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk"), Paths.get(PublicValues.startmenupath + "/SpotifyXP.lnk"), REPLACE_EXISTING);
                     }
                 } catch (Exception r) {
-                    r.printStackTrace();
+                    ConsoleLogging.Throwable(r);
                 }
                 progressBar.setValue(100);
                 PublicValues.foundSetupArgument = true;
@@ -289,8 +289,8 @@ public class Setup {
                     showThirdPartyLicenses();
                     break;
                 case THIRD_PARTY_LICENSES:
-                    setupState = SetupState.WELCOME;
-                    showWelcome();
+                    setupState = SetupState.FILE_INFO;
+                    showFileInfo();
                     break;
                 case FILE_INFO:
                     setupState = SetupState.COMPLETE;

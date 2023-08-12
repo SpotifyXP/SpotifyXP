@@ -1,5 +1,6 @@
 package com.spotifyxp.utils;
 
+import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
@@ -90,7 +91,7 @@ public class LinuxAppUtil {
             try {
                 Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/.local/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                e.printStackTrace();
+                ConsoleLogging.Throwable(e);
             }
         }else{
             if(new File("/usr/share/applications").exists()) {

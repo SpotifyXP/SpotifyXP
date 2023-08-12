@@ -142,10 +142,10 @@ public class HTMLDialog {
                 ConsoleLogging.error("LookAndFeel not found: " + classname);
             } catch (InstantiationException e) {
                 ConsoleLogging.error("Unknown Instantation Error");
-                e.printStackTrace();
+                ConsoleLogging.Throwable(e);
             } catch (IllegalAccessException e) {
                 ConsoleLogging.error("Unknown IllegalAccess Error");
-                e.printStackTrace();
+                ConsoleLogging.Throwable(e);
             }
         }else{
             ConsoleLogging.error("Cant set LookAndFeel! Call open after setLookAndFeel");

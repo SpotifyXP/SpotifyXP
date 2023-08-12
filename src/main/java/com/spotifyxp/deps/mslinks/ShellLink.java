@@ -34,6 +34,7 @@ import com.spotifyxp.deps.mslinks.extra.EnvironmentVariable;
 import com.spotifyxp.deps.mslinks.extra.Stub;
 import com.spotifyxp.deps.mslinks.extra.Tracker;
 import com.spotifyxp.deps.mslinks.extra.VistaIDList;
+import com.spotifyxp.logging.ConsoleLogging;
 
 public class ShellLink {
 
@@ -117,8 +118,8 @@ public class ShellLink {
 				else
 					extra.put(sign, new Stub(data, size, sign));
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException | NoSuchMethodException	| SecurityException e) {	
-				e.printStackTrace();
+					| InvocationTargetException | NoSuchMethodException	| SecurityException e) {
+				ConsoleLogging.Throwable(e);
 			}
 		}
 	}
@@ -328,7 +329,7 @@ public class ShellLink {
 				extra.put(signature, block);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException | NoSuchMethodException	| SecurityException e) {
-				e.printStackTrace();
+				ConsoleLogging.Throwable(e);
 			}
 		}
 		return block;

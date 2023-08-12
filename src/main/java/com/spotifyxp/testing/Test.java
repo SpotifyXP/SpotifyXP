@@ -2,6 +2,7 @@ package com.spotifyxp.testing;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.lib.libLanguage;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.support.MacOSSupportModule;
 import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.video.CanvasPlayer;
@@ -28,7 +29,7 @@ public class Test {
         try {
             builder.inheritIO().start();
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
     }
 }

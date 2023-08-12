@@ -212,8 +212,10 @@ public final class VorbisDecoder extends Decoder {
                     else if (value < 0) value = value | 32768;
 
                     convertedBuffer[sampleIndex] = (byte) (value);
+                    if(PublicValues.visualizer.isVisible()) {
+                        PublicValues.visualizer.update(convertedBuffer);
+                    }
                     convertedBuffer[sampleIndex + 1] = (byte) (value >>> 8);
-
                     sampleIndex += 2 * jorbisInfo.channels;
                 }
             }
@@ -223,10 +225,6 @@ public final class VorbisDecoder extends Decoder {
             out.flush();
             written += c;
             jorbisDspState.synthesis_read(range);
-
-            if(PublicValues.visualizer.isVisible()) {
-                PublicValues.visualizer.update(convertedBuffer);
-            }
 
             long granulepos = joggPacket.granulepos;
             if (granulepos != -1 && joggPacket.e_o_s == 0) {

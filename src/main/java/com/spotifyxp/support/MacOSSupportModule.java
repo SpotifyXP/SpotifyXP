@@ -22,9 +22,6 @@ public class MacOSSupportModule {
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
         PublicValues.isMacOS = true;
-    }
-
-    public static void iconSupport() {
         try {
             Class util = Class.forName("com.apple.eawt.Application");
             Method getApplication = util.getMethod("getApplication", new Class[0]);
@@ -36,7 +33,7 @@ public class MacOSSupportModule {
             Image image = Toolkit.getDefaultToolkit().getImage(url);
             setDockIconImage.invoke(application, image);
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            //Java versions above 8 dont have com.apple.eawt.Application
         }
     }
 }

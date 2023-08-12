@@ -27,23 +27,34 @@ public class Config {
             properties.put(ConfigValues.password.name, "");
             properties.put(ConfigValues.hideExceptions.name, "false");
             properties.put(ConfigValues.language.name, "English");
+            if(!new File(PublicValues.fileslocation).exists()) {
+                if(!new File(PublicValues.fileslocation).mkdir()) {
+                    ConsoleLogging.changeName("SpotifyAPI");
+                    ConsoleLogging.error("Failed to create files");
+                }
+            }
+            if(!new File(PublicValues.appLocation).exists()) {
+                if(!new File(PublicValues.appLocation).mkdir()) {
+                    ConsoleLogging.error("Failed to create app location");
+                }
+            }
             try {
                 if(!new File(PublicValues.configfilepath).createNewFile()) {
                     ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                ConsoleLogging.Throwable(e);
             }
             try {
                 properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Config");
             } catch (IOException e) {
-                e.printStackTrace();
+                ConsoleLogging.Throwable(e);
             }
         }
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
     }
     public void write(String name, String value) {

@@ -79,7 +79,6 @@ public class Injector {
                 classLoader.close();
             }
         }catch (Exception e) {
-            e.printStackTrace();
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
             entry.failed = true;

@@ -14,6 +14,8 @@
 
 package com.spotifyxp.deps.javazoom.jl.decoder;
 
+import com.spotifyxp.logging.ConsoleLogging;
+
 import java.io.PrintStream;
 
 /**
@@ -51,7 +53,7 @@ public class JavaLayerException extends Exception {
 		if (exception == null)
 			super.printStackTrace(ps);
 		else
-			exception.printStackTrace();
+			ConsoleLogging.Throwable(exception);
 	}
 
 }

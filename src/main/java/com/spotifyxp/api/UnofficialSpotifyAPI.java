@@ -49,7 +49,7 @@ public class UnofficialSpotifyAPI {
             client.executeMethod(post);
             System.out.println(post.getResponseBodyAsString());
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
         System.out.println("End of function");
     }
@@ -67,7 +67,7 @@ public class UnofficialSpotifyAPI {
             client.executeMethod(post);
             return post.getResponseBodyAsString();
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
         return "FAILED";
     }
@@ -85,7 +85,7 @@ public class UnofficialSpotifyAPI {
             client.executeMethod(post);
             return post.getResponseBodyAsString();
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
         return "FAILED";
     }

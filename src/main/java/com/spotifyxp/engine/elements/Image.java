@@ -33,7 +33,7 @@ public class Image implements Element {
         try {
             image = ImageIO.read(new File(filename));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         ep.triggerRepaint();
     }
@@ -41,7 +41,7 @@ public class Image implements Element {
         try {
             image = ImageIO.read(file);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         ep.triggerRepaint();
     }
@@ -49,7 +49,7 @@ public class Image implements Element {
         try {
             image = ImageIO.read(url);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         ep.triggerRepaint();
     }
@@ -57,7 +57,7 @@ public class Image implements Element {
         try {
             image = ImageIO.read(inputStream);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         ep.triggerRepaint();
     }
@@ -65,7 +65,7 @@ public class Image implements Element {
         try {
             image = ImageIO.read(imageInputStream);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         ep.triggerRepaint();
     }

@@ -49,7 +49,7 @@ public class URLUtils {
             client.executeMethod(get);
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
             return false;
         }
     }

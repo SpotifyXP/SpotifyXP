@@ -26,7 +26,7 @@ public class JImagePanel extends JPanel {
         try {
             image = ImageIO.read(new File(filename));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         refresh();
     }
@@ -34,7 +34,7 @@ public class JImagePanel extends JPanel {
         try {
             image = ImageIO.read(file);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         refresh();
     }
@@ -46,7 +46,7 @@ public class JImagePanel extends JPanel {
         try {
             image = ImageIO.read(url);
         }catch (IOException ex) {
-            ex.printStackTrace();
+            ConsoleLogging.Throwable(ex);
         }
         refresh();
     }

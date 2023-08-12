@@ -3,6 +3,7 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.Resources;
@@ -208,7 +209,7 @@ public class SettingsPanel extends JPanel {
             Files.copy(new Resources().readToInputStream("JavaSetupTool.jar"), Paths.get(PublicValues.tempPath + File.separator + "SpotifyXP-Uninstaller.jar"), StandardCopyOption.REPLACE_EXISTING);
             Files.copy(Paths.get(PublicValues.appLocation + File.separator + "uninstaller.xml"), Paths.get(PublicValues.tempPath + File.separator + "uninstaller.xml"), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
         if(System.getProperty("os.name").toLowerCase().contains("win")) {
             builder = new ProcessBuilder("cmd.exe", "/c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
@@ -218,7 +219,7 @@ public class SettingsPanel extends JPanel {
         try {
             builder.start();
         } catch (IOException e) {
-            e.printStackTrace();
+            ConsoleLogging.Throwable(e);
         }
         System.exit(0);
     }
