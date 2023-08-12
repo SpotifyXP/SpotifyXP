@@ -1,5 +1,7 @@
 package com.spotifyxp.video;
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.Resources;
@@ -34,7 +36,7 @@ public class CanvasPlayer {
     private JPanel referencePanel;
     private boolean trackValid = false;
     public CanvasPlayer() {
-        if(System.getProperty("os.name").toLowerCase().contains("win")) {
+        try {
             frame = new JFrame("SpotifyXP - Canvas");
             frame.setPreferredSize(new Dimension(294, 526));
             frame.setBackground(Color.black);
@@ -62,22 +64,23 @@ public class CanvasPlayer {
             frame.getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             frame.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    hide();
-                }
-            });
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        hide();
+                    }
+                });
             frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
             frame.addComponentListener(new ComponentAdapter() {
-                @Override
-                public void componentMoved(ComponentEvent e) {
-                    syncVideoSurface();
-                }
-            });
+                    @Override
+                    public void componentMoved(ComponentEvent e) {syncVideoSurface();
+                    }
+                });
             frame.setResizable(false);
             mediaPlayer.controls().setRepeat(true);
             frame.pack();
+        }catch (Exception e) {
+            PublicValues.canvasPlayer = new DummyCanvasPlayer(false);
+            ConsoleLogging.warning("Couldn't create canvasplayer! Is VLC installed?");
         }
     }
 
