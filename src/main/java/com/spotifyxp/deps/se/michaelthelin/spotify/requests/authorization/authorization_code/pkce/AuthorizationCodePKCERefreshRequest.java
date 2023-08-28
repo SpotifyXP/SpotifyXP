@@ -53,8 +53,6 @@ public class AuthorizationCodePKCERefreshRequest extends AbstractRequest<Authori
      * @return An {@link AuthorizationCodePKCERefreshRequest.Builder}.
      */
     public Builder grant_type(final String grant_type) {
-      assert (grant_type != null);
-      assert (grant_type.equals("refresh_token"));
       return setBodyParameter("grant_type", grant_type);
     }
 
@@ -65,8 +63,6 @@ public class AuthorizationCodePKCERefreshRequest extends AbstractRequest<Authori
      * @return An {@link AuthorizationCodePKCERefreshRequest.Builder}.
      */
     public Builder refresh_token(final String refresh_token) {
-      assert (refresh_token != null);
-      assert (!refresh_token.equals(""));
       return setBodyParameter("refresh_token", refresh_token);
     }
 
@@ -77,8 +73,6 @@ public class AuthorizationCodePKCERefreshRequest extends AbstractRequest<Authori
      * @return An {@link AuthorizationCodePKCERefreshRequest.Builder}.
      */
     public Builder client_id(final String client_id) {
-      assert (client_id != null);
-      assert (!client_id.equals(""));
       return setBodyParameter("client_id", client_id);
     }
 

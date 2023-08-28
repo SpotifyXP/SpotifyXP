@@ -186,7 +186,8 @@ public abstract class AbsChunkedInputStream extends SeekableInputStream implemen
             if (retry) {
                 try {
                     Thread.sleep((long) (Math.log10(retries[chunk]) * 1000));
-                } catch (InterruptedException ignored) {
+                } catch (InterruptedException ex) {
+                    throw new IOException(ex);
                 }
 
                 checkAvailability(chunk, true, true); // We must exit the synchronized block!

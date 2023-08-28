@@ -2971,7 +2971,7 @@ public class ContentPanel extends JPanel {
 
         advancedsongpanel.setVisible(true);
     }
-    public static JFrame2 frame = new JFrame2("SpotifyXP - v" + PublicValues.version + " " + PublicValues.releaseCandidate);
+    public static JFrame2 frame = new JFrame2("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static SettingsPanel settingsPanel = null;
     public void open()
     {

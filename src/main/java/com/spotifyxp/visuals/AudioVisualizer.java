@@ -53,7 +53,7 @@ public class AudioVisualizer extends JPanel {
                     gr.fillRect(0, 0, getWidth(), getHeight());
                     SpectrumAnalyzer analyzer = new SpectrumAnalyzer();
                     double[] spectrumData = analyzer.analyzeAudio(converted);
-                    ArrayList<Color> colors = new ArrayList<>();
+                    colors.clear();
                     for (int r = 0; r < 100; r++) colors.add(new Color(r * 255 / 100, 255, 0));
                     for (int g = 100; g > 0; g--) colors.add(new Color(255, g * 255 / 100, 0));
                     for (int b = 0; b < 100; b++) colors.add(new Color(255, 0, b * 255 / 100));

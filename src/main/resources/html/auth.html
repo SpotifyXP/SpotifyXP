@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=300, initial-scale=2">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.3.1/sha.js"></script>
+</head>
+
+<body>
+    <div style="width:300px;height:120px;background-color:grey">
+        <h2>The password is your Spotify password</h2>
+        <form>
+            <input id="authpass" style="width:240px;color:lightblue" type="text" value="Password"
+                onclick="this.style.color='black';this.value='';this.type='password'" type="text">
+            <button style="background-color: greenyellow;" onclick="auth(); return false;">Login</button>
+        </form>
+    </div>
+    <script>
+        function auth() {
+            var pass = document.getElementById("authpass").value;
+            pass = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" }).update(pass).getHash("HEX");
+            console.log(pass)
+            const req = new XMLHttpRequest();
+            req.onload = function () {
+                location.reload();
+            }
+            req.open("GET", "http://" + location.host + "/doLogin"  + "?key=" + pass);
+            req.send();
+        }
+    </script>
+</body>
+
+</html>

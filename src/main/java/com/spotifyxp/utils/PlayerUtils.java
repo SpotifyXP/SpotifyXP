@@ -21,8 +21,7 @@ public class PlayerUtils {
                 .setPreferredLocale("en")
                 .setDeviceType(Connect.DeviceType.COMPUTER)
                 .setDeviceName(PublicValues.deviceName)
-                .setClientToken("")
-                .setDeviceId(null);
+                .setClientToken("");
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
                 .setAutoplayEnabled(true)
                 .setCrossfadeDuration(0)

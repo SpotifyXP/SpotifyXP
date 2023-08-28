@@ -2,6 +2,7 @@ package com.spotifyxp.args;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.ApplicationUtils;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class ArgParser {
         arguments.add(new Help());
     }
     public void printHelp() {
-        System.out.println("SpotifyXP - " + PublicValues.version + "\n");
+        System.out.println("SpotifyXP - " + ApplicationUtils.getVersion() + "\n");
         System.out.println("Usage java -jar SpotifyXP.jar <argument>..." + "\n\n");
         for(Argument a : arguments) {
             if(a.hasParameter()) {

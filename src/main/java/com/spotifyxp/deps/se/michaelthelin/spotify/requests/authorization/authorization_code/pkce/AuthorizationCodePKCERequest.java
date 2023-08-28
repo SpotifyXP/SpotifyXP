@@ -50,8 +50,6 @@ public class AuthorizationCodePKCERequest extends AbstractRequest<AuthorizationC
      * @return An {@link AuthorizationCodePKCERequest.Builder}.
      */
     public Builder client_id(final String client_id) {
-      assert (client_id != null);
-      assert (!client_id.equals(""));
       return setBodyParameter("client_id", client_id);
     }
 
@@ -63,8 +61,6 @@ public class AuthorizationCodePKCERequest extends AbstractRequest<AuthorizationC
      * @return An {@link AuthorizationCodePKCERequest.Builder}.
      */
     public Builder grant_type(final String grant_type) {
-      assert (grant_type != null);
-      assert (grant_type.equals("authorization_code"));
       return setBodyParameter("grant_type", grant_type);
     }
 
@@ -76,8 +72,6 @@ public class AuthorizationCodePKCERequest extends AbstractRequest<AuthorizationC
      * @return An {@link AuthorizationCodePKCERequest.Builder}.
      */
     public Builder code(final String code) {
-      assert (code != null);
-      assert (!code.equals(""));
       return setBodyParameter("code", code);
     }
 
@@ -90,7 +84,6 @@ public class AuthorizationCodePKCERequest extends AbstractRequest<AuthorizationC
      * @return An {@link AuthorizationCodePKCERequest.Builder}.
      */
     public Builder redirect_uri(final URI redirect_uri) {
-      assert (redirect_uri != null);
       return setBodyParameter("redirect_uri", redirect_uri.toString());
     }
 
@@ -103,8 +96,6 @@ public class AuthorizationCodePKCERequest extends AbstractRequest<AuthorizationC
      *      Authorization Code Flow with Proof Key for Code Exchange (PKCE)</a>
      */
     public Builder code_verifier(String code_verifier) {
-      assert (code_verifier != null);
-      assert (!code_verifier.equals(""));
       return setBodyParameter("code_verifier", code_verifier);
     }
 

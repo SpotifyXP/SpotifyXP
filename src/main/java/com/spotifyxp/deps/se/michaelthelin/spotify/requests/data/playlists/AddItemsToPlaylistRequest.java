@@ -71,8 +71,6 @@ public class AddItemsToPlaylistRequest extends AbstractDataRequest<SnapshotResul
      * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
      */
     public Builder playlist_id(final String playlist_id) {
-      assert (playlist_id != null);
-      assert (!playlist_id.equals(""));
       return setPathParameter("playlist_id", playlist_id);
     }
 
@@ -88,9 +86,6 @@ public class AddItemsToPlaylistRequest extends AbstractDataRequest<SnapshotResul
      * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
      */
     public Builder uris(final String uris) {
-      assert (uris != null);
-      assert (!uris.equals(""));
-      assert (uris.split(",").length <= 100);
       return setQueryParameter("uris", uris);
     }
 
@@ -116,9 +111,6 @@ public class AddItemsToPlaylistRequest extends AbstractDataRequest<SnapshotResul
      * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
      */
     public Builder uris(final JsonArray uris) {
-      assert (uris != null);
-      assert (!uris.isJsonNull());
-      assert (uris.size() <= 100);
       return setBodyParameter("uris", uris);
     }
 
@@ -133,8 +125,6 @@ public class AddItemsToPlaylistRequest extends AbstractDataRequest<SnapshotResul
      * @return An {@link AddItemsToPlaylistRequest.Builder}.
      */
     public Builder position(final Integer position, final Boolean use_body) {
-      assert (position >= 0);
-
       if (use_body) {
         return setBodyParameter("position", position);
       } else {

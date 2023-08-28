@@ -671,9 +671,7 @@ public class AudioAnalysisTrack extends AbstractModelObject {
    */
   public static final class JsonUtil extends AbstractModelObject.JsonUtil<AudioAnalysisTrack> {
     public AudioAnalysisTrack createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
+      if (jsonObject == null || jsonObject.isJsonNull()) return null;
 
       return new AudioAnalysisTrack.Builder()
         .setAnalysisChannels(

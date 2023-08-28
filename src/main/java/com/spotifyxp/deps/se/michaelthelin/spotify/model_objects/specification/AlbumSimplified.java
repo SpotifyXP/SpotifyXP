@@ -384,9 +384,7 @@ public class AlbumSimplified extends AbstractModelObject implements ISearchModel
    */
   public static final class JsonUtil extends AbstractModelObject.JsonUtil<AlbumSimplified> {
     public AlbumSimplified createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
+      if (jsonObject == null || jsonObject.isJsonNull()) return null;
 
       return new AlbumSimplified.Builder()
         .setAlbumGroup(

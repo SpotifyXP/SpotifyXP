@@ -74,15 +74,13 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
 
   public void initializeBody() {
     if (body == null && contentType != null) {
-      switch (contentType.getMimeType()) {
-        case "application/json":
-          body = new StringEntity(
-            bodyParametersToJson(bodyParameters),
-            ContentType.APPLICATION_JSON);
-          break;
-        case "application/x-www-form-urlencoded":
-          body = new UrlEncodedFormEntity(bodyParameters);
-          break;
+      if(contentType.getMimeType().equals("application/json")) {
+        body = new StringEntity(
+                bodyParametersToJson(bodyParameters),
+                ContentType.APPLICATION_JSON);
+      }
+      if(contentType.getMimeType().equals("application/x-www-form-urlencoded")) {
+        body = new UrlEncodedFormEntity(bodyParameters);
       }
     }
   }
@@ -205,36 +203,27 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     }
 
     public BT setHttpManager(final IHttpManager httpManager) {
-      assert (httpManager != null);
       this.httpManager = httpManager;
       return self();
     }
 
     public BT setScheme(final String scheme) {
-      assert (scheme != null);
-      assert (!scheme.equals(""));
       this.scheme = scheme;
       return self();
     }
 
     public BT setHost(final String host) {
-      assert (host != null);
       assert (!scheme.equals(""));
       this.host = host;
       return self();
     }
 
     public BT setPort(final Integer port) {
-      assert (port != null);
-      assert (port >= 0);
       this.port = port;
       return self();
     }
 
     public BT setPath(final String path) {
-      assert (path != null);
-      assert (!path.equals(""));
-
       String builtPath = path;
 
       for (NameValuePair nameValuePair : pathParameters) {
@@ -248,9 +237,6 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     }
 
     public BT setPathParameter(final String name, final String value) {
-      assert (name != null && value != null);
-      assert (!name.equals("") && !value.equals(""));
-
       listAddOnce(this.pathParameters, new BasicNameValuePair(name, value));
       return self();
     }
@@ -268,17 +254,11 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     }
 
     public <X> BT setQueryParameter(final String name, final X value) {
-      assert (name != null);
-      assert (!name.equals(""));
-      assert (value != null);
       listAddOnce(this.queryParameters, new BasicNameValuePair(name, String.valueOf(value)));
       return self();
     }
 
     public <X> BT setHeader(final String name, final X value) {
-      assert (name != null);
-      assert (!name.equals(""));
-      assert (value != null);
       listAddOnce(this.headers, new BasicHeader(name, String.valueOf(value)));
       return self();
     }
@@ -295,9 +275,6 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     }
 
     public <X> BT setBodyParameter(final String name, final X value) {
-      assert (name != null);
-      assert (!name.equals(""));
-      assert (value != null);
       listAddOnce(this.bodyParameters, new BasicNameValuePair(name, String.valueOf(value)));
       return self();
     }

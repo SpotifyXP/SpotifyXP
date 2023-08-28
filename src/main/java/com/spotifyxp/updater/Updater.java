@@ -6,6 +6,7 @@ import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.DoubleArrayList;
 import org.json.JSONObject;
 
@@ -27,11 +28,11 @@ public class Updater {
                 Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
             }catch (Exception ignored) {
             }
-            int Thismain = Integer.parseInt(PublicValues.version.split("\\.")[0]);
-            int Thissub = Integer.parseInt(PublicValues.version.split("\\.")[1]);
+            int Thismain = Integer.parseInt(ApplicationUtils.getVersion().split("\\.")[0]);
+            int Thissub = Integer.parseInt(ApplicationUtils.getVersion().split("\\.")[1]);
             int Thislast = 0;
             try {
-                Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+                Thislast = Integer.parseInt(ApplicationUtils.getVersion().split("\\.")[2]);
             }catch (Exception ignored) {
             }
             if(!isNightly()) {
@@ -70,11 +71,11 @@ public class Updater {
                 Releaselast = Integer.parseInt(release.version.replace("v", "").split("\\.")[2]);
             }catch (Exception ignored) {
             }
-            int Thismain = Integer.parseInt(PublicValues.version.split("\\.")[0]);
-            int Thissub = Integer.parseInt(PublicValues.version.split("\\.")[1]);
+            int Thismain = Integer.parseInt(ApplicationUtils.getVersion().split("\\.")[0]);
+            int Thissub = Integer.parseInt(ApplicationUtils.getVersion().split("\\.")[1]);
             int Thislast = 0;
             try {
-                Thislast = Integer.parseInt(PublicValues.version.split("\\.")[2]);
+                Thislast = Integer.parseInt(ApplicationUtils.getVersion().split("\\.")[2]);
             }catch (Exception ignored) {
             }
             if (Releasemain < Thismain) {
@@ -98,7 +99,7 @@ public class Updater {
     public void invoke() {
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             try {
-                ProcessBuilder builder = new ProcessBuilder("bash", "-c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", PublicValues.version, "\"" + PublicValues.appLocation + "\"");
+                ProcessBuilder builder = new ProcessBuilder("bash", "-c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", ApplicationUtils.getVersion(), "\"" + PublicValues.appLocation + "\"");
                 builder.start();
             }catch (Exception e) {
                 ConsoleLogging.Throwable(e);
@@ -107,7 +108,7 @@ public class Updater {
             return;
         }
         try {
-            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", PublicValues.version, "\"" + PublicValues.appLocation + "\"");
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", ApplicationUtils.getVersion(), "\"" + PublicValues.appLocation + "\"");
             builder.start();
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);

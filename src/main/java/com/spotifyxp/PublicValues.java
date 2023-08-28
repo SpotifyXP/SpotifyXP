@@ -17,15 +17,13 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.video.CanvasPlayer;
 import com.spotifyxp.visuals.AudioVisualizer;
-import org.checkerframework.checker.units.qual.A;
-
 import java.awt.*;
 import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
+    public static String apikey = "";
     public static libLanguage language = null;
-    public static String version = "2.0.0";
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
     public static String startmenupath = System.getenv("appdata") + "/Microsoft/Windows/Start Menu/Programs";
     public static String configlocation = fileslocation + "/config.toml";
@@ -41,7 +39,6 @@ public class PublicValues {
     public static String[] args = null;
     public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
     public static String deviceName = "SpotifyXP";
-    public static String releaseCandidate = "Public Beta";
     public static boolean isMacOS = false;
     public static boolean isLinux = false;
     public static Theme theme = null;

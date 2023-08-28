@@ -32,4 +32,16 @@ public class HttpUtils {
             return false;
         }
     }
+
+    public static boolean sendHTML(String html, HttpExchange exchange) {
+        try {
+            exchange.sendResponseHeaders(200, html.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(html.getBytes());
+            os.close();
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -86,26 +86,21 @@ public class ArtistPanel extends JPanel {
 
         artistimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         artistimage.setBounds(288, 11, 155, 153);
-        add(artistimage, new Integer(3));
+        add(artistimage, 3);
 
         artisttitle = (JLabel) JComponentFactory.createJComponent(new JLabel(""));
         artisttitle.setHorizontalAlignment(SwingConstants.CENTER);
         artisttitle.setBounds(0, 213, 780, 64);
-        add(artisttitle, new Integer(2));
+        add(artisttitle, 2);
 
         artisttitle.setForeground(PublicValues.globalFontColor);
 
         artistbackgroundimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         artistbackgroundimage.setBounds(0, 0, 780, 277);
-        add(artistbackgroundimage, new Integer(1));
+        add(artistbackgroundimage, 1);
 
         artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
-        artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
-            @Override
-            public void run() {
-                ClipboardUtil.set(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()));
-            }
-        });
+        artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow())));
 
         artistalbumalbumtable.setForeground(PublicValues.globalFontColor);
         artistalbumalbumtable.getTableHeader().setForeground(PublicValues.globalFontColor);

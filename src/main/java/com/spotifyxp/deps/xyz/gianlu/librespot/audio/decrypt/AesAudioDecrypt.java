@@ -18,12 +18,14 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decrypt;
 
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.awt.*;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.GeneralSecurityException;
@@ -49,6 +51,7 @@ public final class AesAudioDecrypt implements AudioDecrypt {
             this.secretKeySpec = new SecretKeySpec(key, "AES");
             this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
         } catch (NoSuchAlgorithmException | NoSuchPaddingException ex) {
+            GraphicalMessage.sorryError();
             throw new IllegalStateException(ex); // This should never happen
         }
     }

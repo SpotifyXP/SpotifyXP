@@ -64,8 +64,6 @@ public class AddItemToUsersPlaybackQueueRequest extends AbstractDataRequest<Stri
      * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
      */
     public Builder device_id(final String device_id) {
-      assert (device_id != null);
-      assert (!device_id.equals(""));
       return setQueryParameter("device_id", device_id);
     }
 
@@ -78,8 +76,6 @@ public class AddItemToUsersPlaybackQueueRequest extends AbstractDataRequest<Stri
      * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
      */
     public Builder uri(final String uri) {
-      assert (uri != null);
-      assert (!uri.equals(""));
       return setQueryParameter("uri", uri);
     }
 

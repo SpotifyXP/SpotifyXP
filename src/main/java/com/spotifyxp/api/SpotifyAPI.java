@@ -111,6 +111,7 @@ public class SpotifyAPI {
                 TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
                 token = provider.accessToken;
                 spotifyApi.setAccessToken(token);
+                PublicValues.apikey = provider.accessToken;
             } catch (IOException | MercuryClient.MercuryException e) {
                 ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
@@ -121,11 +122,11 @@ public class SpotifyAPI {
                 TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
                 token = provider.accessToken;
                 spotifyApi.setAccessToken(token);
+                PublicValues.apikey = provider.accessToken;
             } catch (IOException | MercuryClient.MercuryException e) {
                 ExceptionDialog.open(e);
                 ConsoleLogging.Throwable(e);
             }
-            System.out.println("Triggered refresh");
         }
         public String makePost(String url) {
             if(!url.contains("https")) {

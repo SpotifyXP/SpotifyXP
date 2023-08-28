@@ -5,6 +5,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import java.util.ArrayList;
 
 public class ArrayListUtils {
+    private ArrayListUtils() {
+    }
     public static String ArrayListtoString(ArrayList<String> list) {
         StringBuilder builder = new StringBuilder();
         for(String s : list) {

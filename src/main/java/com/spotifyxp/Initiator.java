@@ -2,10 +2,7 @@ package com.spotifyxp;
 
 
 import com.spotifyxp.audio.Quality;
-import com.spotifyxp.beamngintegration.HttpService;
-import com.spotifyxp.deps.mslinks.ShellLink;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
-import com.spotifyxp.deps.mslinks.ShellLinkHelper;
+import com.spotifyxp.webController.HttpService;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
@@ -28,21 +25,10 @@ import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.*;
-import org.apache.commons.io.IOUtils;
-import org.apache.xmlgraphics.io.Resource;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.charset.Charset;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("Convert2Lambda")
 public class Initiator {
@@ -133,8 +119,9 @@ public class Initiator {
             ExceptionDialog.open(e);
         }
         try {
-            new File(PublicValues.appLocation, "LOCK").createNewFile();
-            new File(PublicValues.appLocation, "LOCK").deleteOnExit();
+            if(new File(PublicValues.appLocation, "LOCK").createNewFile()) {
+                new File(PublicValues.appLocation, "LOCK").deleteOnExit();
+            }
         }catch (Exception e) {
             ExceptionDialog.open(e);
             ConsoleLoggingModules.Throwable(e);

@@ -7,6 +7,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.updater.Updater;
+import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.LinuxAppUtil;
 import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.utils.Resources;
@@ -211,7 +212,7 @@ public class Setup {
                 progressBar.setValue(75);
                 //Now create the shortcut
                 LinuxAppUtil util = new LinuxAppUtil("SpotifyXP");
-                util.setVersion(PublicValues.version);
+                util.setVersion(ApplicationUtils.getVersion());
                 util.setComment("Listen to Spotify");
                 util.setPath(PublicValues.appLocation);
                 util.setExecutableLocation("java -jar SpotifyXP.jar --setup-complete");
@@ -320,7 +321,7 @@ public class Setup {
 
     void displaySetup() {
         content = new Content();
-        setupframe.setTitle("SpotifyXP Setup for version: " + PublicValues.version);
+        setupframe.setTitle("SpotifyXP Setup for version: " + ApplicationUtils.getVersion());
         setupframe.setPreferredSize(new Dimension(500, 400));
         setupframe.getContentPane().add(getContent());
         setupframe.setVisible(true);

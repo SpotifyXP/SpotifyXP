@@ -72,6 +72,7 @@ public class JImagePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(image!=null) {
+            if(!isVisible()) return;
             Graphics2D graphics2D = (Graphics2D) g;
             if(!(rad.equals(""))) {
                 graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);

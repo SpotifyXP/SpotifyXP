@@ -477,9 +477,7 @@ public class Album extends AbstractModelObject {
    */
   public static final class JsonUtil extends AbstractModelObject.JsonUtil<Album> {
     public Album createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
+      if (jsonObject == null || jsonObject.isJsonNull()) return null;
 
       return new Album.Builder()
         .setAlbumType(
