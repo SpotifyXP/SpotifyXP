@@ -2313,44 +2313,47 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        for (int i = 0; i < bar.getMenuCount(); i++) {
-            JMenu menu1 = bar.getMenu(i);
-            JFrame window = new JFrame();
-            window.setTitle(menu1.getText());
-            ArrayList<JMenuItem> items = new ArrayList<>();
-            JTable table = new JTable() {
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
-            table.setModel(new DefaultTableModel(
-                    new Object[][] {
-                    },
-                    new String[] {
-                            ""
+        if(steamdeck) {
+
+            for (int i = 0; i < bar.getMenuCount(); i++) {
+                JMenu menu1 = bar.getMenu(i);
+                JFrame window = new JFrame();
+                window.setTitle(menu1.getText());
+                ArrayList<JMenuItem> items = new ArrayList<>();
+                JTable table = new JTable() {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
                     }
-            ));
-            window.add(table, BorderLayout.CENTER);
-            for (int j = 0; j < menu1.getMenuComponentCount(); j++) {
-                java.awt.Component comp = menu1.getMenuComponent(j);
-                if (comp instanceof JMenuItem) {
-                    JMenuItem menuItem1 = (JMenuItem) comp;
-                    items.add(menuItem1);
-                    ((DefaultTableModel) table.getModel()).addRow(new Object[]{menuItem1.getText()});
+                };
+                table.setModel(new DefaultTableModel(
+                        new Object[][]{
+                        },
+                        new String[]{
+                                ""
+                        }
+                ));
+                window.add(table, BorderLayout.CENTER);
+                for (int j = 0; j < menu1.getMenuComponentCount(); j++) {
+                    java.awt.Component comp = menu1.getMenuComponent(j);
+                    if (comp instanceof JMenuItem) {
+                        JMenuItem menuItem1 = (JMenuItem) comp;
+                        items.add(menuItem1);
+                        ((DefaultTableModel) table.getModel()).addRow(new Object[]{menuItem1.getText()});
+                    }
                 }
+                table.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        super.mouseClicked(e);
+                        if (e.getClickCount() == 2) {
+                            items.get(table.getSelectedRow()).doClick();
+                        }
+                    }
+                });
+                window.setPreferredSize(new Dimension(300, 300));
+                window.setVisible(true);
+                window.pack();
             }
-            table.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    if(e.getClickCount() == 2) {
-                        items.get(table.getSelectedRow()).doClick();
-                    }
-                }
-            });
-            window.setPreferredSize(new Dimension(300, 300));
-            window.setVisible(true);
-            window.pack();
         }
     }
     public static ArrayList<String> advanceduricache = new ArrayList<String>();
