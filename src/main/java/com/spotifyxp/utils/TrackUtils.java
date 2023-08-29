@@ -113,6 +113,7 @@ public class TrackUtils {
     }
     public static void addAllToQueue(ArrayList<String> cache, JTable addintable) {
         try {
+            ContentPanel.player.getPlayer().tracks(true).previous.clear();
             ContentPanel.player.getPlayer().tracks(true).next.clear();
         }catch (NullPointerException exc) {
             if (PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {

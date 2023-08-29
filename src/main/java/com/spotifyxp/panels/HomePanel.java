@@ -113,7 +113,7 @@ public class HomePanel {
                     try {
                         switch (ct) {
                             case track:
-                                PublicValues.spotifyplayer.load(uri, true, false);
+                                PublicValues.spotifyplayer.load(uri, true, false, false);
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
@@ -152,7 +152,7 @@ public class HomePanel {
                                 ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
                             case episode:
-                                PublicValues.spotifyplayer.load(uri, true, ContentPanel.shuffle);
+                                PublicValues.spotifyplayer.load(uri, true, ContentPanel.shuffle, false);
                                 break;
                             default:
                                 ContentPanel.showAdvancedSongPanel(uri, ct);
@@ -220,7 +220,7 @@ public class HomePanel {
                     try {
                         switch (ct) {
                             case track:
-                                PublicValues.spotifyplayer.load(uri, true, false);
+                                PublicValues.spotifyplayer.load(uri, true, false, false);
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);

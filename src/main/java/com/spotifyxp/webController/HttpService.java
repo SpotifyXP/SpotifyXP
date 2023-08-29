@@ -115,7 +115,7 @@ public class HttpService {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         try {
-                            PublicValues.spotifyplayer.load(ContentPanel.api.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle);
+                            PublicValues.spotifyplayer.load(ContentPanel.api.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle, false);
                         } catch (Exception ignored) {
                         }
                     }else{
@@ -127,7 +127,7 @@ public class HttpService {
                             cors(exchange);
                             HttpUtils.sendResource("OK.html", exchange);
                             try {
-                                PublicValues.spotifyplayer.load(ContentPanel.api.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle);
+                                PublicValues.spotifyplayer.load(ContentPanel.api.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle, false);
                             } catch (Exception ignored) {
                             }
                         } else {
@@ -286,7 +286,7 @@ public class HttpService {
                     if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
-                        PublicValues.spotifyplayer.load(exchange.getRequestURI().toString().split("\\?key=")[1], true, ContentPanel.shuffle);
+                        PublicValues.spotifyplayer.load(exchange.getRequestURI().toString().split("\\?key=")[1], true, ContentPanel.shuffle, false);
                     }else{
                         if (ips.isEmpty()) {
                             HttpUtils.sendResource("auth.html", exchange);
@@ -295,7 +295,7 @@ public class HttpService {
                         if (ips.contains(exchange.getRemoteAddress().getAddress().toString())) {
                             cors(exchange);
                             HttpUtils.sendResource("OK.html", exchange);
-                            PublicValues.spotifyplayer.load(exchange.getRequestURI().toString().split("\\?key=")[1], true, ContentPanel.shuffle);
+                            PublicValues.spotifyplayer.load(exchange.getRequestURI().toString().split("\\?key=")[1], true, ContentPanel.shuffle, false);
                         } else {
                             HttpUtils.sendResource("auth.html", exchange);
                         }

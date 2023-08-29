@@ -11,6 +11,8 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.theming.themes.Legacy;
+import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
 import com.spotifyxp.video.CanvasPlayer;
@@ -25,6 +27,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
+
+import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -254,6 +258,7 @@ public class PlayerListener implements Player.EventsListener {
             //ContentPanel is not visible yet
         }
     }
+
 
     @Override
     public void onPanicState(@NotNull Player player) {

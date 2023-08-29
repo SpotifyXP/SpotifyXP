@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
+    public static boolean playingFromLibrary = false;
     public static String apikey = "";
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";

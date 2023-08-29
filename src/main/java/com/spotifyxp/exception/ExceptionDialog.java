@@ -2,6 +2,7 @@ package com.spotifyxp.exception;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;
@@ -10,7 +11,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ExceptionDialog {
-    public static void open(Throwable e) {
+    public ExceptionDialog(Throwable ex) {
+        e = ex;
+        exceptiontext = new JTextPane();
+        exceptiontext.setText("[" + e.toString() + "]" + " ");
+    }
+    static Throwable e;
+    JTextPane exceptiontext;
+
+    public String getPreview() {
+        return exceptiontext.getText();
+    }
+
+    public void openReal() {
         if(PublicValues.config.get(ConfigValues.hideExceptions.name).equals("true")) {
             return;
         }
@@ -31,7 +44,7 @@ public class ExceptionDialog {
         exceptionscrollpane.setBounds(0, 37, 589, 339);
         contentPane.add(exceptionscrollpane);
 
-        JTextPane exceptiontext = new JTextPane();
+        exceptiontext = new JTextPane();
         exceptionscrollpane.setViewportView(exceptiontext);
 
         exceptiontext.setEditable(false);
@@ -56,5 +69,8 @@ public class ExceptionDialog {
         frame.setPreferredSize(new Dimension(605, 439));
         frame.setVisible(true);
         frame.pack();
+    }
+    public static void open(Throwable ex) {
+        ContentPanel.errorQueue.add(new ExceptionDialog(ex));
     }
 }

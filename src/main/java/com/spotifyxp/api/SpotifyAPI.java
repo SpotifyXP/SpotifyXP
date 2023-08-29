@@ -13,8 +13,10 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
+import kotlin.reflect.KParameter;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -182,16 +184,26 @@ public class SpotifyAPI {
             }
             return ret;
         }
-        public String makeGet(String url, NameValuePair[] pairs) {
+        public String makeGet(String url, NameValuePair... pairs) {
             if(!url.contains("https")) {
                 url = "https://api.spotify.com" + url;
             }
             String ret = "FAILED";
             try {
+                StringBuilder builder = new StringBuilder();
                 HttpClient client = new HttpClient();
                 GetMethod post = new GetMethod(url);
                 post.addRequestHeader("Authorization", "Bearer " + token);
-                post.setQueryString(pairs);
+                int i = 0;
+                for(NameValuePair pair : pairs) {
+                    if(i == 0) {
+                        builder.append("?").append(pair.getName()).append("=").append(pair.getValue());
+                    }else{
+                        builder.append("&").append(pair.getName()).append("=").append(pair.getValue());
+                    }
+                    i++;
+                }
+                post.setURI(new URI(url + builder.toString()));
                 client.executeMethod(post);
                 ret = post.getResponseBodyAsString();
             } catch (IOException e) {

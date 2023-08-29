@@ -27,6 +27,7 @@ import com.spotifyxp.utils.*;
 import com.spotifyxp.video.CanvasPlayer;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
+import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.C;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +45,8 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -51,6 +54,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @SuppressWarnings({"CanBeFinal", "rawtypes", "Convert2Lambda"})
 public class ContentPanel extends JPanel {
@@ -173,40 +177,46 @@ public class ContentPanel extends JPanel {
     public static ContextMenu searchcontextmenu;
     public static ContextMenu hotlistplaylistspanelrightclickmenu;
     public static ContextMenu hotlistsongstablecontextmenu;
-    public static DefThread librarythread = new DefThread(new Runnable() {
-        public void run() {
-            hotlistbutton.setEnabled(false); //Lock user due to spotifys api rate limit
-            searchbutton.setEnabled(false);
-            queuebutton.setEnabled(false);
-            playlistsbutton.setEnabled(false);
-            JSONObject list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/tracks", new NameValuePair[]{new NameValuePair("limit", "50")}));
-            for(Object o : list.getJSONArray("items")) {
+    public static JButton errorDisplay;
+    public static ArrayList<ExceptionDialog> errorQueue;
+    private static int libraryOffset = 28;
+    private static boolean libraryLoadingInProgress = false;
+    public static void loadNext() {
+        if(libraryLoadingInProgress) {
+            return;
+        }
+        libraryLoadingInProgress = true;
+        int visibleCount = 19;
+        JSONObject list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/tracks", new NameValuePair[]{new NameValuePair("limit", String.valueOf(visibleCount)), new NameValuePair("offset", String.valueOf(libraryOffset))}));
+        if(list.getInt("total") > libraryOffset) {
+            for (Object o : list.getJSONArray("items")) {
                 libraryuricache.add(new JSONObject(new JSONObject(o.toString()).getJSONObject("track").toString()).getString("uri"));
             }
             int i = 0;
-            while(true) {
-                if(i==7) {
-                    try {
-                        Thread.sleep(TimeUnit.SECONDS.toMillis(2));
-                    } catch (InterruptedException e) {
-                        ExceptionDialog.open(e);
-                        ConsoleLogging.Throwable(e);
-                    }
-                    i=0;
-                }
-                String url = list.getString("next");
-                list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/tracks", new NameValuePair[]{new NameValuePair("offset", url.split("\\?")[1].split("&")[0].replace("offset=", "")), new NameValuePair("limit", url.split("\\?")[1].split("&")[1].replace("limit=", ""))}));
-                for(Object o : list.getJSONArray("items")) {
-                    libraryuricache.add(new JSONObject(new JSONObject(o.toString()).getJSONObject("track").toString()).getString("uri"));
+            for (String s : libraryuricache) {
+                if (i != libraryOffset) {
+                    i++;
+                    continue;
                 }
                 try {
-                    if (list.getString("next").equals("")) {
-                        break;
-                    }
-                }catch (JSONException exc) {
-                    break;
+                    Track track = api.getSpotifyApi().getTrack(s.split(":")[2]).build().execute();
+                    String a = TrackUtils.getArtists(track.getArtists());
+                    ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
-                i++;
+            }
+            libraryOffset += 19;
+        }
+        libraryLoadingInProgress = false;
+    }
+    public static DefThread librarythread = new DefThread(new Runnable() {
+        public void run() {
+            libraryLoadingInProgress = true;
+            int visibleCount = 28;
+            JSONObject list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/tracks", new NameValuePair[]{new NameValuePair("limit", String.valueOf(visibleCount))}));
+            for(Object o : list.getJSONArray("items")) {
+                libraryuricache.add(new JSONObject(new JSONObject(o.toString()).getJSONObject("track").toString()).getString("uri"));
             }
             for(String s : libraryuricache) {
                 try {
@@ -220,10 +230,7 @@ public class ContentPanel extends JPanel {
                     playlistsbutton.setEnabled(true);
                 }
             }
-            hotlistbutton.setEnabled(true);
-            searchbutton.setEnabled(true);
-            queuebutton.setEnabled(true);
-            playlistsbutton.setEnabled(true);
+            libraryLoadingInProgress = false;
         }
     });
     public static boolean shuffle = false;
@@ -775,6 +782,35 @@ public class ContentPanel extends JPanel {
         libraryscrollpane.setBounds(0, 0, 784, 398);
         librarypane.add(libraryscrollpane);
 
+        final boolean[] inProg = {false};
+
+        libraryscrollpane.addMouseWheelListener(new MouseWheelListener() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                if(!inProg[0]) {
+                    inProg[0] = true;
+                    BoundedRangeModel m = (BoundedRangeModel) libraryscrollpane.getVerticalScrollBar().getModel();
+                    int extent = m.getExtent();
+                    int maximum = m.getMaximum();
+                    int value = m.getValue();
+                    if (value + extent >= maximum / 1.3) {
+                        if (libraryVisble) {
+                            if (!libraryLoadingInProgress) {
+                                DefThread thread = new DefThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        loadNext();
+                                    }
+                                });
+                                thread.start();
+                            }
+                        }
+                    }
+                    inProg[0] = false;
+                }
+            }
+        });
+
         librarysonglist = (JTable) JComponentFactory.createJComponent(new JTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -821,7 +857,7 @@ public class ContentPanel extends JPanel {
                     @Override
                     public void run() {
                         int i = 0;
-                        player.getPlayer().load(libraryuricache.get(0), true, true);
+                        player.getPlayer().load(libraryuricache.get(0), true, true, false);
                         for(ContextTrackOuterClass.ContextTrack track : player.getPlayer().tracks(true).next) {
                             player.getPlayer().removeFromQueue(track.getUri());
                         }
@@ -842,7 +878,7 @@ public class ContentPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
-                    player.getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, shuffle);
+                    player.getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, shuffle, true);
                     DefThread thread1 = new DefThread(new Runnable() {
                         @Override
                         public void run() {
@@ -1030,7 +1066,7 @@ public class ContentPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2) {
-                    player.getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, shuffle);
+                    player.getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, shuffle, false);
                     TrackUtils.addAllToQueue(playlistssonguricache, playlistssongtable);
                 }
             }
@@ -1505,7 +1541,7 @@ public class ContentPanel extends JPanel {
                                                     ConsoleLogging.Throwable(ex);
                                                 }
                                             }else{
-                                                player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle);
+                                                player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle, false);
                                             }
                                         }
                                     }
@@ -1513,7 +1549,7 @@ public class ContentPanel extends JPanel {
                             }else{
                                 player.retry();
                                 if(player.getPlayer().isReady()) {
-                                    player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle);
+                                    player.getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, shuffle, false);
                                 }else{
                                     GraphicalMessage.sorryError();
                                     System.exit(0);
@@ -1572,7 +1608,7 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if(e.getClickCount()==2) {
-                    player.getPlayer().load(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()), true, shuffle);
+                    player.getPlayer().load(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()), true, shuffle, false);
                     searchplaylisttable.setColumnSelectionInterval(0, searchplaylisttable.getColumnCount() - 1);
                     TrackUtils.addAllToQueue(searchplaylistsongscache, searchplaylisttable);
                 }
@@ -1623,6 +1659,93 @@ public class ContentPanel extends JPanel {
                 ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow()));
             }
         });
+    }
+    void createErrorDisplay() {
+        errorDisplay = (JButton) JComponentFactory.createJComponent(new JButton() {
+            @Override
+            public void setText(String text) {
+                if(text.equals("Default")) {
+                    text = PublicValues.language.translate("ui.errorqueue.button");
+                    super.setText(text);
+                    return;
+                }
+                if(!text.contains(PublicValues.language.translate("ui.errorqueue.button"))) {
+                    text = PublicValues.language.translate("ui.errorqueue.button") + " " + text;
+                }
+                if(errorDisplay != null) errorDisplay.setVisible(true);
+                if(text.equals(String.valueOf(0))) {
+                    errorDisplay.setVisible(false);
+                }
+                super.setText(text);
+                if(errorDisplay != null) errorDisplay.setBounds(10, 10, errorDisplay.getWidth(), errorDisplay.getHeight());
+            }
+        });
+        errorDisplay.setText("Default");
+        errorQueue = new ArrayList<ExceptionDialog>() {
+            @Override
+            public boolean add(ExceptionDialog exceptionDialog) {
+                super.add(exceptionDialog);
+                errorDisplay.setText(String.valueOf(errorQueue.size()));
+                return true;
+            }
+        };
+        errorDisplay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog dialog = new JDialog();
+                dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
+                JScrollPane pane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
+                JTable table = (JTable) JComponentFactory.createJComponent(new JTable()  {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                });
+                table.setModel(new DefaultTableModel(
+                        new Object[][] {
+                        },
+                        new String[] {
+                                ""
+                        }
+                ));
+                pane.setViewportView(table);
+                int i = 10;
+                for(ExceptionDialog exd : errorQueue) {
+                    ((DefaultTableModel) table.getModel()).addRow(new Object[]{exd.getPreview()});
+                    i += 10;
+                }
+                table.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        super.mouseClicked(e);
+                        errorQueue.get(table.getSelectedRow()).openReal();
+                        errorQueue.remove(errorQueue.size() - 1);
+                        errorDisplay.setText(String.valueOf(errorQueue.size()));
+                        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+                        if(((DefaultTableModel) table.getModel()).getRowCount() == 0) {
+                            errorDisplay.setVisible(false);
+                        }
+                    }
+                });
+                JButton remove = new JButton(PublicValues.language.translate("ui.errorqueue.clear"));
+                remove.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        errorQueue.clear();
+                        ((DefaultTableModel) table.getModel()).setRowCount(0);
+                        errorDisplay.setVisible(false);
+                    }
+                });
+                dialog.add(remove, BorderLayout.SOUTH);
+                dialog.setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
+                dialog.add(pane, BorderLayout.CENTER);
+                dialog.setVisible(true);
+                dialog.pack();
+            }
+        });
+        errorDisplay.setVisible(false);
+        add(errorDisplay);
+        errorDisplay.setBackground(Color.decode("#BB0000"));
+        errorDisplay.setBounds(5, 5, 100, 40);
     }
     void createHotList() {
         hotlistbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.hotlist")));
@@ -1719,7 +1842,7 @@ public class ContentPanel extends JPanel {
                 hotlistsongstable.setColumnSelectionInterval(0, hotlistsongstable.getColumnCount() - 1);
                 if(e.getClickCount()==2) {
                     //player.getPlayer().tracks(true).next.clear();
-                    player.getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, shuffle);
+                    player.getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, shuffle, false);
                     TrackUtils.addAllToQueue(hotlistsonglistcache, hotlistsongstable);
                 }
             }
@@ -2181,7 +2304,7 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if(e.getClickCount()==2) {
-                    player.getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, shuffle);
+                    player.getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, shuffle, false);
                     advancedsongtable.setColumnSelectionInterval(0, advancedsongtable.getColumnCount() - 1);
                     TrackUtils.addAllToQueue(advanceduricache, advancedsongtable);
                 }
@@ -2204,6 +2327,8 @@ public class ContentPanel extends JPanel {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
+        SplashPanel.linfo.setText("Creating errorDisplay...");
+        createErrorDisplay();
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setBounds(0, 140, 784, 421);
@@ -2297,7 +2422,7 @@ public class ContentPanel extends JPanel {
                     playerplaytime.setText(lastPlayState.playtime);
                     playerplaytimetotal.setText(lastPlayState.playtimetotal);
                     playercurrenttime.setMaximum(Integer.parseInt(lastPlayState.playerslidermax));
-                    PublicValues.spotifyplayer.load(lastPlayState.uri, false, shuffle);
+                    PublicValues.spotifyplayer.load(lastPlayState.uri, false, shuffle, false);
                     PlayerListener.locked = true;
                     while(PlayerListener.locked) {
                         Thread.sleep(99);

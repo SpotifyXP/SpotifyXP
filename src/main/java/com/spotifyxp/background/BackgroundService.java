@@ -3,6 +3,7 @@ package com.spotifyxp.background;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.dialogs.SystemTrayDialog;
+import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.Resources;

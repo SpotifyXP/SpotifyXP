@@ -18,6 +18,7 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.player;
 
 import com.google.gson.JsonObject;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass;
@@ -28,6 +29,11 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.TrackUtils;
+import com.sun.xml.internal.ws.api.server.SDDocument;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -256,7 +262,8 @@ public class Player implements Closeable {
         handleSeek(pos);
     }
 
-    public void load(@NotNull String uri, boolean play, boolean shuffle) {
+    public void load(@NotNull String uri, boolean play, boolean shuffle, boolean playingFromLibrary) {
+        PublicValues.playingFromLibrary = playingFromLibrary;
         try {
             String sessionId = state.loadContext(uri);
             events.contextChanged();

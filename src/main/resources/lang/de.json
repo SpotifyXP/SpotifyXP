@@ -121,5 +121,8 @@
   "ui.legacy.extensionstore": "ExtensionStore öffnen",
   "ui.legacy.view": "Ansicht",
   "ui.legacy.view.audiovisualizer": "AudioVisualizer",
-  "ui.audiovisualizer.title": "SpotifyXP - Audio Visualizer"
+  "ui.audiovisualizer.title": "SpotifyXP - Audio Visualizer",
+  "ui.errorqueue.button" : "Fehler",
+  "ui.errorqueue.title" : "Fehlerwarteschlange",
+  "ui.errorqueue.clear" : "Fehler löschen"
 }
