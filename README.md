@@ -35,7 +35,7 @@ Stable version
 ![Screen Shot](SpotifyXPShowStable.png)
 
 
-I programmed SpotifyXP for my daily driver that runs Windows XP. My daily driver is an Amilo Pa 1510
+I programmed SpotifyXP for my old daily driver that runs Windows XP. My daily driver is now an MacBook Pro (2022)
 
 <h5>Why use SpotifyXP:</h5>
 
