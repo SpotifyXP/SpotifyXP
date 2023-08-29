@@ -32,7 +32,7 @@
 ## About The Project
 
 Stable version
-![Screen Shot](SpotifyXPShowStable.PNG)
+![Screen Shot](SpotifyXPShowStable.png)
 
 
 I programmed SpotifyXP for my daily driver that runs Windows XP. My daily driver is an Amilo Pa 1510
