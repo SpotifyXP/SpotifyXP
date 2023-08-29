@@ -20,6 +20,7 @@
 ## Table Of Contents
 
 * [About the Project](#about-the-project)
+* [System Requirements](#system-requirements)
 * [Built With](#built-with)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
@@ -31,7 +32,7 @@
 ## About The Project
 
 Stable version
-![Screen Shot](https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/SpotifyXPShowStable.PNG)
+![Screen Shot](SpotifyXPShowStable.PNG)
 
 
 I programmed SpotifyXP for my daily driver that runs Windows XP. My daily driver is an Amilo Pa 1510
@@ -39,6 +40,14 @@ I programmed SpotifyXP for my daily driver that runs Windows XP. My daily driver
 <h5>Why use SpotifyXP:</h5>
 
 On december 2022 Spotify shutdown it's last version for Windows XP so this application is the only way to listen to Spotify
+
+## System Requirements
+
+* OS: Windows XP (Unofficial: Windows 2000)
+* Processor: Anything that can handle SNES Emulation
+* RAM: 128MB (Maybe 64MB?)
+* Storage (Without cache): 60MB
+* Storage (With cache): My folder is 700MB
 
 ## Built With
 
