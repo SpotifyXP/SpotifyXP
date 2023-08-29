@@ -27,13 +27,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewSessionIdEvent;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.TrackUtils;
-import com.sun.xml.internal.ws.api.server.SDDocument;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -57,8 +51,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewPlaybackIdEvent
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
-
-import javax.swing.*;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.*;
