@@ -73,8 +73,14 @@ public class Initiator {
                 SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
                 new MacOSSupportModule();
             }else {
-                SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
-                new LinuxSupportModule();
+                if(System.getProperty("os.name").toLowerCase().contains("steamos")) {
+                    SplashPanel.linfo.setText("Found SteamOS! Applying SteamDeck patch...");
+                    new LinuxSupportModule();
+                    new SteamDeckSupportModule();
+                }else {
+                    SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
+                    new LinuxSupportModule();
+                }
             }
         }
         SplashPanel.linfo.setText("Checking required folders...");

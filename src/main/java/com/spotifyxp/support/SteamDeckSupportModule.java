@@ -7,9 +7,13 @@ import com.spotifyxp.theming.themes.Legacy;
 
 public class SteamDeckSupportModule {
     public SteamDeckSupportModule() {
-        ContentPanel.frame.setUndecorated(true);
-        if(PublicValues.theme instanceof Legacy) {
+        try {
+            ContentPanel.frame.setUndecorated(true);
+        }catch (Exception ignored) {
+        }
+        if(PublicValues.theme.hasLegacyUI()) {
             ContentPanel.frame.setJMenuBar(null);
+            ContentPanel.steamDeck();
         }
         PublicValues.isLinux = true;
     }
