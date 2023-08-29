@@ -7,6 +7,7 @@ public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
         ConsoleLogging.Throwable(throwable);
+        throwable.printStackTrace();
         ExceptionDialog.open(throwable);
     }
 }

@@ -71,6 +71,8 @@ public class ExceptionDialog {
         frame.pack();
     }
     public static void open(Throwable ex) {
-        ContentPanel.errorQueue.add(new ExceptionDialog(ex));
+        if(ContentPanel.errorQueue != null) {
+            ContentPanel.errorQueue.add(new ExceptionDialog(ex));
+        }
     }
 }

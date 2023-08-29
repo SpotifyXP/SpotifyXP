@@ -28,4 +28,9 @@ public class DarkGreen implements Theme {
         }
         PublicValues.globalFontColor = Color.green;
     }
+
+    @Override
+    public boolean hasLegacyUI() {
+        return true;
+    }
 }

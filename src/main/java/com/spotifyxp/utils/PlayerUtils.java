@@ -10,6 +10,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.EOFException;
 import java.io.File;
@@ -46,14 +47,11 @@ public class PlayerUtils {
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             return player;
-        }catch (Session.SpotifyAuthenticationException e) {
-            new LoginDialog().openWithInvalidAuth();
-        }catch (UnknownHostException e) {
-            GraphicalMessage.sorryError();
-            System.exit(0);
         }catch(Exception e) {
+            e.printStackTrace();
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.sorryError("Failed to build player");
+            System.exit(0);
         }
         return null;
     }

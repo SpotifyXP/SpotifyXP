@@ -178,6 +178,7 @@ public class ContentPanel extends JPanel {
     public static ContextMenu hotlistplaylistspanelrightclickmenu;
     public static ContextMenu hotlistsongstablecontextmenu;
     public static JButton errorDisplay;
+    private boolean artistPanelVisible = false;
     public static ArrayList<ExceptionDialog> errorQueue;
     private static int libraryOffset = 28;
     private static boolean libraryLoadingInProgress = false;
@@ -294,6 +295,20 @@ public class ContentPanel extends JPanel {
         });
 
         JComponentFactory.addJComponent(settingsbutton.getJComponent());
+    }
+    public static void blockTabSwitch() {
+        if(PublicValues.theme.hasLegacyUI()) {
+            legacyswitch.setEnabled(false);
+        }else{
+            makeButtonsHidden();
+        }
+    }
+    public static void enableTabSwitch() {
+        if(PublicValues.theme.hasLegacyUI()) {
+            legacyswitch.setEnabled(true);
+        }else{
+            makeButtonsVisible();
+        }
     }
     void createUserButton() {
         userbutton = new JSVGPanel();
@@ -1368,17 +1383,22 @@ public class ContentPanel extends JPanel {
                         if(isLastArtist) {
                             ContentPanel.artistPanel.contentPanel.setVisible(true);
                             ContentPanel.searchplaylistpanel.setVisible(false);
+                            artistPanelVisible = true;
                             isLastArtist = false;
                         }else {
                             artistPanel.contentPanel.setVisible(false);
                             artistPanelBackButton.setVisible(false);
                             searchpane.setVisible(true);
+                            artistPanelVisible = false;
+                            ContentPanel.enableTabSwitch();
                         }
                         break;
                     case Home:
                         homepane.getComponent().setVisible(true);
                         artistPanelBackButton.setVisible(false);
                         artistPanel.contentPanel.setVisible(false);
+                        artistPanelVisible = false;
+                        ContentPanel.enableTabSwitch();
                 }
 
             }
@@ -1398,6 +1418,7 @@ public class ContentPanel extends JPanel {
                         case "album":
                         case "show":
                             searchpane.setVisible(false);
+                            ContentPanel.blockTabSwitch();
                             searchplaylistpanel.setVisible(true);
                             searchplaylistsongscache.clear();
                             ((DefaultTableModel)searchplaylisttable.getModel()).setRowCount(0);
@@ -1410,7 +1431,9 @@ public class ContentPanel extends JPanel {
                             artistPanel.artisttitle.setText("");
                             artistPanel.contentPanel.setVisible(true);
                             artistPanelBackButton.setVisible(true);
+                            artistPanelVisible = true;
                             searchpane.setVisible(false);
+                            ContentPanel.blockTabSwitch();
                             break;
                     }
                     DefThread thread = new DefThread(new Runnable() {
@@ -1424,11 +1447,17 @@ public class ContentPanel extends JPanel {
                                             int parsed = 0;
                                             int offset = 100;
                                             for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                                if(!searchplaylisttable.isVisible()) {
+                                                    break;
+                                                }
                                                 ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
                                                 searchplaylistsongscache.add(track.getTrack().getUri());
                                                 parsed++;
                                             }
                                             while(parsed != pl.getTracks().getTotal()) {
+                                                if(!searchplaylisttable.isVisible()) {
+                                                    break;
+                                                }
                                                 Paging<PlaylistTrack> tracks = api.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
                                                 for (PlaylistTrack track : pl.getTracks().getItems()) {
                                                     ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
@@ -1439,6 +1468,9 @@ public class ContentPanel extends JPanel {
                                             }
                                         }else {
                                             for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                                if(!searchplaylisttable.isVisible()) {
+                                                    break;
+                                                }
                                                 ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
                                                 searchplaylistsongscache.add(track.getTrack().getUri());
                                             }
@@ -1461,6 +1493,9 @@ public class ContentPanel extends JPanel {
                                                 public void run() {
                                                     try {
                                                         for (Track t : api.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], countryCode).build().execute()) {
+                                                            if(!artistPanel.isVisible()) {
+                                                                break;
+                                                            }
                                                             artistPanel.artistpopularuricache.add(t.getUri());
                                                             api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
                                                         }
@@ -1488,11 +1523,17 @@ public class ContentPanel extends JPanel {
                                                     int parsed = 0;
                                                     int offset = 50;
                                                     for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                        if(!searchplaylisttable.isVisible()) {
+                                                            break;
+                                                        }
                                                         ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
                                                         searchplaylistsongscache.add(episode.getUri());
                                                         parsed++;
                                                     }
                                                     while(parsed != show.getEpisodes().getTotal()) {
+                                                        if(!searchplaylisttable.isVisible()) {
+                                                            break;
+                                                        }
                                                         Paging<EpisodeSimplified> tracks = api.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
                                                         for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
                                                             ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
@@ -1503,6 +1544,9 @@ public class ContentPanel extends JPanel {
                                                     }
                                                 }else {
                                                     for (EpisodeSimplified episode : show.getEpisodes().getItems()) {
+                                                        if(!searchplaylisttable.isVisible()) {
+                                                            break;
+                                                        }
                                                         ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
                                                         searchplaylistsongscache.add(episode.getUri());
                                                     }
@@ -1518,11 +1562,17 @@ public class ContentPanel extends JPanel {
                                                     int offset = 50;
                                                     if(album.getTracks().getTotal() > 50) {
                                                         for(TrackSimplified simplified : album.getTracks().getItems()) {
+                                                            if(!searchplaylisttable.isVisible()) {
+                                                                break;
+                                                            }
                                                             ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                                                             searchplaylistsongscache.add(simplified.getUri());
                                                             parsed++;
                                                         }
                                                         while(parsed != album.getTracks().getTotal()) {
+                                                            if(!searchplaylisttable.isVisible()) {
+                                                                break;
+                                                            }
                                                             Paging<TrackSimplified> tracks = api.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
                                                             for(TrackSimplified simplified : tracks.getItems()) {
                                                                 ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
@@ -1533,6 +1583,9 @@ public class ContentPanel extends JPanel {
                                                         }
                                                     }else {
                                                         for (TrackSimplified simplified : album.getTracks().getItems()) {
+                                                            if(!searchplaylisttable.isVisible()) {
+                                                                break;
+                                                            }
                                                             ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                                                             searchplaylistsongscache.add(simplified.getUri());
                                                         }
@@ -1639,6 +1692,9 @@ public class ContentPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 searchplaylistpanel.setVisible(false);
                 searchpane.setVisible(true);
+                if(!artistPanelVisible) {
+                    enableTabSwitch();
+                }
             }
         });
         searchcontextmenu = new ContextMenu(searchsonglist);
@@ -2273,6 +2329,7 @@ public class ContentPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 advancedsongpanel.setVisible(false);
                 homepane.getComponent().setVisible(true);
+                ContentPanel.enableTabSwitch();
             }
         });
 
@@ -2797,6 +2854,24 @@ public class ContentPanel extends JPanel {
         feedbackbutton.setVisible(false);
         homebutton.setVisible(false);
     }
+    public static void makeButtonsHidden() {
+        librarybutton.setVisible(false);
+        playlistsbutton.setVisible(false);
+        searchbutton.setVisible(false);
+        hotlistbutton.setVisible(false);
+        queuebutton.setVisible(false);
+        feedbackbutton.setVisible(false);
+        homebutton.setVisible(false);
+    }
+    public static void makeButtonsVisible() {
+        librarybutton.setVisible(true);
+        playlistsbutton.setVisible(true);
+        searchbutton.setVisible(true);
+        hotlistbutton.setVisible(true);
+        queuebutton.setVisible(true);
+        feedbackbutton.setVisible(true);
+        homebutton.setVisible(true);
+    }
     public void setButtonsVisible() {
         playerarea.setVisible(true);
         librarybutton.setVisible(true);
@@ -3095,6 +3170,7 @@ public class ContentPanel extends JPanel {
         }
 
         advancedsongpanel.setVisible(true);
+        blockTabSwitch();
     }
     public static JFrame2 frame = new JFrame2("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static SettingsPanel settingsPanel = null;

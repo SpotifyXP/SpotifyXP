@@ -74,7 +74,6 @@ public class SpotifyAPI {
         }
 
         void handleEOFBug() {
-            ApResolver.eof = true;
             retry();
         }
 
@@ -256,6 +255,9 @@ public class SpotifyAPI {
                 int offset = 0;
                 int limit = 50;
                 while(uricache.size()!=new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
+                    if(!totable.isVisible()) {
+                        break;
+                    }
                     for(Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
                         JSONObject object = new JSONObject(o.toString());
                         uricache.add(object.getString("uri"));

@@ -3,6 +3,7 @@ package com.spotifyxp.testing;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.setup.Setup;
 import com.spotifyxp.support.MacOSSupportModule;
 import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.video.CanvasPlayer;
@@ -24,12 +25,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        new MacOSSupportModule();
-        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
-        try {
-            builder.inheritIO().start();
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
+       new Setup();
     }
 }

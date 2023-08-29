@@ -28,8 +28,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,7 +89,16 @@ public final class ApResolver {
         try (Response response = client.newCall(request).execute()) {
             ResponseBody body = response.body();
             if (body == null) throw new IOException("No body");
-            JsonObject obj = JsonParser.parseReader(body.charStream()).getAsJsonObject();
+            byte[] resp = IOUtils.toByteArray(body.byteStream());
+            try {
+                if (IOUtils.toString(resp).split("<title>")[1].replace("</title>", "").contains("502")) {
+                    GraphicalMessage.sorryError("Spotify APResolve responded with 502");
+                    System.exit(2);
+                }
+            }catch (ArrayIndexOutOfBoundsException e) {
+                //200 OK
+            }
+            JsonObject obj = JsonParser.parseString(IOUtils.toString(resp)).getAsJsonObject();
             HashMap<String, List<String>> map = new HashMap<>();
             for (String type : types)
                 map.put(type, getUrls(obj, type));

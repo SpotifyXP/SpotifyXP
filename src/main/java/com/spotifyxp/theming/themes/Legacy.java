@@ -25,4 +25,9 @@ public class Legacy implements Theme {
             ConsoleLogging.Throwable(e);
         }
     }
+
+    @Override
+    public boolean hasLegacyUI() {
+        return true;
+    }
 }
