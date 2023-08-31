@@ -83,7 +83,8 @@ public class DealerClient implements Closeable {
 
             try {
                 msgListeners.wait();
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -171,7 +172,8 @@ public class DealerClient implements Closeable {
                 } finally {
                     try {
                         in.close();
-                    } catch (IOException ignored) {
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }

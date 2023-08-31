@@ -4,6 +4,8 @@ package com.spotifyxp.configuration;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class Config {
         if(!new File(PublicValues.configfilepath).exists()) {
             properties.put(ConfigValues.sendanalytics.name, "true");
             properties.put(ConfigValues.audioquality.name, "NORMAL");
-            properties.put(ConfigValues.theme.name, "DARK");
+            properties.put(ConfigValues.theme.name, "DarkGreen");
             properties.put(ConfigValues.disableplayerstats.name, "false");
             properties.put(ConfigValues.showallrecommendations.name, "false");
             properties.put(ConfigValues.username.name, "");
@@ -29,13 +31,12 @@ public class Config {
             properties.put(ConfigValues.language.name, "English");
             if(!new File(PublicValues.fileslocation).exists()) {
                 if(!new File(PublicValues.fileslocation).mkdir()) {
-                    ConsoleLogging.changeName("SpotifyAPI");
-                    ConsoleLogging.error("Failed to create files");
+                    GraphicalMessage.sorryErrorExit("Failed creating important directory");
                 }
             }
             if(!new File(PublicValues.appLocation).exists()) {
                 if(!new File(PublicValues.appLocation).mkdir()) {
-                    ConsoleLogging.error("Failed to create app location");
+                    GraphicalMessage.sorryErrorExit("Failed creating important directory");
                 }
             }
             try {
@@ -48,13 +49,13 @@ public class Config {
             try {
                 properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Config");
             } catch (IOException e) {
-                ConsoleLogging.Throwable(e);
+                GraphicalMessage.sorryErrorExit("Failed creating important directory");
             }
         }
         try {
             properties.load(Files.newInputStream(Paths.get(PublicValues.configfilepath)));
         } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
+            GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }
     }
     public void write(String name, String value) {

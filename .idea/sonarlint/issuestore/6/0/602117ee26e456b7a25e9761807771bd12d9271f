@@ -1,0 +1,21 @@
+
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŸÚÐçúÿÿÿÿ8ê‹Æ”¤1
+
+java:S1319"kThe type of "jcomponents" should be an interface such as "List" rather than the implementation "ArrayList".(ŸÚÐçúÿÿÿÿ8ê‹Æ”¤1
+y
+java:S1104"WMake jcomponents a static final constant or non-public and provide accessors if needed.(ŸÚÐçúÿÿÿÿ8ê‹Æ”¤1
+S
+java:S1444"1Make this "public static jcomponents" field final(ŸÚÐçúÿÿÿÿ8ê‹Æ”¤1
+?
+java:S2386"Make this member "protected".(ŸÚÐçúÿÿÿÿ8ì‹Æ”¤1
+W
+java:S1118":Add a private constructor to hide the implicit public one.(¡§Ó‰8í‹Æ”¤1
+[
+java:S1128">Remove this unused import 'com.spotifyxp.panels.ContentPanel'.(ž™éš8î‹Æ”¤1
+B
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8î‹Æ”¤1
+Y
+java:S1128"<Remove this unused import 'java.awt.event.ComponentAdapter'.(å¯Ùõ8î‹Æ”¤1
+\
+java:S1128":Remove this unused import 'java.awt.event.ComponentEvent'.(ë˜±Êþÿÿÿÿ8î‹Æ”¤1

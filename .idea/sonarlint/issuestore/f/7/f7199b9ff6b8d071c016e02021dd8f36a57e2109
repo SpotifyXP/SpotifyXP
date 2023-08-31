@@ -1,0 +1,30 @@
+
+x
+java:S1104"VMake trayDialog a static final constant or non-public and provide accessors if needed.(·å­ÿÿÿÿÿ8…‰÷£1
+R
+java:S1444"0Make this "public static trayDialog" field final(·å­ÿÿÿÿÿ8…‰÷£1
+S
+java:S2696"6Make the enclosing method "static" or remove this set.(’‚¤ 8£…‰÷£1
+T
+java:S1128"7Remove this unused import 'com.spotifyxp.PublicValues'.(ä¶úƒ8ßÒ‹÷£1
+a
+java:S1128"DRemove this unused import 'com.spotifyxp.exception.ExceptionDialog'.(éõëã8š±®ø£1
+[
+java:S1128
+"9Remove this unused import 'com.spotifyxp.utils.URLUtils'.(Óæß›ÿÿÿÿÿ8ßÒ‹÷£1
+B
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8ßÒ‹÷£1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ßÒ‹÷£1
+X
+java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8ßÒ‹÷£1
+K
+java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8ßÒ‹÷£1
+P
+java:S1128"3Remove this unused import 'java.net.URLConnection'.(š¿šó8ßÒ‹÷£1
+]
+java:S1128";Remove this unused import 'java.util.concurrent.Executors'.(äåÒÛÿÿÿÿÿ8ßÒ‹÷£1
+l
+java:S1128"JRemove this unused import 'java.util.concurrent.ScheduledExecutorService'.(Êßˆÿÿÿÿÿ8ßÒ‹÷£1
+W
+java:S1128":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8ßÒ‹÷£1

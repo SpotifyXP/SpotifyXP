@@ -472,7 +472,7 @@ public final class Header {
 	 */
 	public int max_number_of_frames (int streamsize) // E.B
 	{
-		if (h_vbr == true)
+		if (h_vbr)
 			return h_vbr_frames;
 		else if (framesize + 4 - h_padding_bit == 0)
 			return 0;
@@ -487,7 +487,7 @@ public final class Header {
 	 */
 	public int min_number_of_frames (int streamsize) // E.B
 	{
-		if (h_vbr == true)
+		if (h_vbr)
 			return h_vbr_frames;
 		else if (framesize + 5 - h_padding_bit == 0)
 			return 0;
@@ -501,7 +501,7 @@ public final class Header {
 	 */
 	public float ms_per_frame () // E.B
 	{
-		if (h_vbr == true) {
+		if (h_vbr) {
 			double tpf = h_vbr_time_per_frame[layer()] / frequency();
 			if (h_version == MPEG2_LSF || h_version == MPEG25_LSF) tpf /= 2;
 			return (float)(tpf * 1000);
@@ -576,7 +576,7 @@ public final class Header {
 	 * @return bitrate in bps
 	 */
 	public String bitrate_string () {
-		if (h_vbr == true)
+		if (h_vbr)
 			return Integer.toString(bitrate() / 1000) + " kb/s";
 		else
 			return bitrate_str[h_version][h_layer - 1][h_bitrate_index];
@@ -587,7 +587,7 @@ public final class Header {
 	 * @return bitrate in bps and average bitrate for VBR header
 	 */
 	public int bitrate () {
-		if (h_vbr == true)
+		if (h_vbr)
 			return (int)(h_vbr_bytes * 8 / (ms_per_frame() * h_vbr_frames)) * 1000;
 		else
 			return bitrates[h_version][h_layer - 1][h_bitrate_index];

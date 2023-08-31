@@ -320,7 +320,7 @@ public final class Session implements Closeable {
             }
         } catch (SocketTimeoutException ignored) {
         }catch (EOFException e) {
-            //EOF Bug!
+            throw new RuntimeException(e);
         } finally {
             conn.socket.setSoTimeout(0);
         }
@@ -532,7 +532,8 @@ public final class Session implements Closeable {
         while(conn == null) {
             try {
                 Thread.sleep(TimeUnit.SECONDS.toMillis(2));
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
         cipherPair.sendEncoded(conn.out, cmd.val, payload);

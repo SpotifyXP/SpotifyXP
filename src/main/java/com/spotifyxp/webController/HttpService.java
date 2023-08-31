@@ -53,7 +53,7 @@ public class HttpService {
             server.createContext("/playpause", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         PublicValues.spotifyplayer.playPause();
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
@@ -75,7 +75,7 @@ public class HttpService {
             server.createContext("/search", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if (exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
                         String out = PublicValues.elevated.makeGet("https://api.spotify.com/v1/search?type=track&q=" + exchange.getRequestURI().toString().split("\\?key=")[1] + "market=" + ContentPanel.countryCode + "&limit=6");
                         if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
@@ -111,7 +111,7 @@ public class HttpService {
             server.createContext("/load", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         try {
@@ -167,7 +167,7 @@ public class HttpService {
             server.createContext("/volumeup", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         if (!(ContentPanel.playerareavolumeslider.getValue() == 10)) {
@@ -193,7 +193,7 @@ public class HttpService {
             server.createContext("/volumedown", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         if (!(ContentPanel.playerareavolumeslider.getValue() == 0)) {
@@ -219,7 +219,7 @@ public class HttpService {
             server.createContext("/next", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         PublicValues.spotifyplayer.next();
@@ -241,7 +241,7 @@ public class HttpService {
             server.createContext("/prev", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         PublicValues.spotifyplayer.previous();
@@ -263,7 +263,7 @@ public class HttpService {
             server.createContext("/apikey", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendHTML(PublicValues.apikey, exchange);
                     }else{
@@ -283,7 +283,7 @@ public class HttpService {
             server.createContext("/loadId", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                    if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         PublicValues.spotifyplayer.load(exchange.getRequestURI().toString().split("\\?key=")[1], true, ContentPanel.shuffle, false);
@@ -305,28 +305,15 @@ public class HttpService {
             server.createContext("/testConnection", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
-                    if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
-                        cors(exchange);
-                        HttpUtils.sendResource("OK.html", exchange);
-                    }else{
-                        if (ips.isEmpty()) {
-                            HttpUtils.sendResource("auth.html", exchange);
-                            return;
-                        }
-                        if (ips.contains(exchange.getRemoteAddress().getAddress().toString())) {
-                            cors(exchange);
-                            HttpUtils.sendResource("OK.html", exchange);
-                        } else {
-                            HttpUtils.sendResource("auth.html", exchange);
-                        }
-                    }
+                    cors(exchange);
+                    HttpUtils.sendResource("OK.html", exchange);
                 }
             });
             server.createContext("/", new HttpHandler() {
                 @Override
                 public void handle(HttpExchange exchange) throws IOException {
                     if(enablePassAuth) {
-                        if(exchange.getRemoteAddress().getAddress().toString().equals("/127.0.0.1")) {
+                        if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                             //Skipping password authentication for localhost
                             if (!exchange.getRequestURI().toString().equals("/") && !exchange.getRequestURI().toString().equals("/favicon.ico")) {
                                 HttpUtils.sendResource(exchange.getRequestURI().toString().replaceFirst("/", ""), exchange);

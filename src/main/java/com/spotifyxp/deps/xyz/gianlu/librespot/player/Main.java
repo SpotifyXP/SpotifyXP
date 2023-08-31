@@ -71,7 +71,8 @@ public class Main {
                 try {
                     server.closeSession();
                     server.close();
-                } catch (IOException ignored) {
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }));
         } else {
@@ -82,7 +83,8 @@ public class Main {
                 try {
                     player.close();
                     session.close();
-                } catch (IOException ignored) {
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }));
 

@@ -76,9 +76,7 @@ public class Uninstaller {
                     }
                 }
             }
-        } catch (ParserConfigurationException e) {
-        } catch (SAXException e2) {
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
         lblNewLabel.setText(lblNewLabel.getText().replace("%progname%", programname));

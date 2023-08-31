@@ -17,6 +17,7 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
 import com.google.protobuf.ByteString;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.PacketsReceiver;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
@@ -75,8 +76,11 @@ public final class AudioKeyManager implements PacketsReceiver {
         byte[] key = callback.waitResponse();
         if (key == null) {
             if (retry) return getAudioKey(gid, fileId, false);
-            else throw new AesKeyException(String.format("Failed fetching audio key! {gid: %s, fileId: %s}",
-                    Utils.bytesToHex(gid), Utils.bytesToHex(fileId)));
+            else {
+                PublicValues.spotifyplayer.next();
+                throw new AesKeyException(String.format("Failed fetching audio key! {gid: %s, fileId: %s}",
+                        Utils.bytesToHex(gid), Utils.bytesToHex(fileId)));
+            }
         }
 
         return key;

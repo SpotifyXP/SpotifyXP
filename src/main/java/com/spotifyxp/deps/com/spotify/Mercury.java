@@ -4,6 +4,7 @@
 package com.spotifyxp.deps.com.spotify;
 
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.utils.GraphicalMessage;
 
 public final class Mercury {
   private Mercury() {}
@@ -110,8 +111,10 @@ public final class Mercury {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        GraphicalMessage.sorryErrorExit("Mercury.java Line 112");
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
+        GraphicalMessage.sorryErrorExit("Mercury.java Line 112");
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {

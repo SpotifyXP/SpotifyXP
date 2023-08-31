@@ -11,6 +11,7 @@ import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.injector.InjectingPoints;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -710,7 +711,7 @@ public class ContentPanel extends JPanel {
         playercurrenttime.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(playercurrenttime.getValue()*1000));
+                playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(playercurrenttime.getValue()* 1000L));
             }
         });
 
@@ -2088,7 +2089,6 @@ public class ContentPanel extends JPanel {
     public static void steamDeck() {
         steamdeck = true;
     }
-    static boolean tnitoggle = false;
     void createLegacy() {
         JFrame dialog = new JFrame();
         playerarea.addMouseListener(new MouseAdapter() {
@@ -2535,9 +2535,10 @@ public class ContentPanel extends JPanel {
                     while(PlayerListener.locked) {
                         Thread.sleep(99);
                     }
-                    playercurrenttime.setValue(Integer.parseInt(lastPlayState.playtime));
+                    playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
                 }
-            }catch (Exception ignored) {
+            }catch (Exception e) {
+                new RuntimeException(e);
             }
         }
         SplashPanel.linfo.setText("Done building contentPanel");
@@ -2549,6 +2550,7 @@ public class ContentPanel extends JPanel {
         public String playtime;
         public String playerslider;
         public String playerslidermax;
+        public String playervolume;
     }
     LastPlayState lastPlayState;
     void parseLastPlayState() {
@@ -2574,6 +2576,9 @@ public class ContentPanel extends JPanel {
                         break;
                     case 4:
                         state.playerslidermax = data;
+                        break;
+                    case 5:
+                        state.playervolume = data;
                         break;
                 }
                 read++;
@@ -3090,7 +3095,7 @@ public class ContentPanel extends JPanel {
         }
         try {
             FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
-            writer.write(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum());
+            writer.write(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum() + "\n" + playerareavolumecurrent.getText());
             writer.close();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
@@ -3251,6 +3256,7 @@ public class ContentPanel extends JPanel {
             }
         });
         mainframe.setForeground(Color.blue);
+        InjectingPoints.INTERNALinvokeOnFrameReady();
         mainframe.setVisible(true);
         mainframe.setResizable(false);
         mainframe.pack();

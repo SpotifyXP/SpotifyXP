@@ -1280,7 +1280,7 @@ i++;
 		// 31 alias-reduction operations between each pair of sub-bands
 		// with 8 butterflies between each pair
 
-		if (gr_info.window_switching_flag != 0 && gr_info.block_type == 2 && !(gr_info.mixed_block_flag != 0)) return;
+		if (gr_info.window_switching_flag != 0 && gr_info.block_type == 2 && gr_info.mixed_block_flag == 0) return;
 
 		if (gr_info.window_switching_flag != 0 && gr_info.mixed_block_flag != 0 && gr_info.block_type == 2)
 			sb18lim = 18;

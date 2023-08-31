@@ -1,0 +1,1238 @@
+
+h	java:S112Ï"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¿©¡”¤1
+w
+java:S2293Š"YReplace the type specification in this constructor call with the diamond operator ("<>").(ûÒµ¢8Ã©¡”¤1
+|
+java:S2293‹"YReplace the type specification in this constructor call with the diamond operator ("<>").(˜‰”Œúÿÿÿÿ8Ã©¡”¤1
+|
+java:S2293Œ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¡ ¿îüÿÿÿÿ8Ã©¡”¤1
+|
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(É Îõúÿÿÿÿ8Ã©¡”¤1
+w
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(•âÜ³8Ã©¡”¤1
+w
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÖÁ‡8Ã©¡”¤1
+|
+java:S2293‘"YReplace the type specification in this constructor call with the diamond operator ("<>").(†Ù¡³üÿÿÿÿ8Ã©¡”¤1
+v
+java:S2293’"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ÷ò8Ã©¡”¤1
+w
+java:S2293·"YReplace the type specification in this constructor call with the diamond operator ("<>").(‹²Üà8Å©¡”¤1
+{	java:S135¸"YReduce the total number of break and continue statements in this loop to use at most one.(ˆš†®ıÿÿÿÿ8Æ©¡”¤1
+R
+java:S1066­"/Merge this if statement with the enclosing one.(‹×°Éüÿÿÿÿ8Ç©¡”¤1
+M
+java:S1066®"/Merge this if statement with the enclosing one.(Ÿ§í¦8Ç©¡”¤1
+M
+java:S1066“
+"/Merge this if statement with the enclosing one.(ÇÇ÷€8Ç©¡”¤1
+R
+java:S1066°
+"/Merge this if statement with the enclosing one.(š…Âüÿÿÿÿ8Ç©¡”¤1
+M
+java:S1066»
+"/Merge this if statement with the enclosing one.(½Œ†›8Ç©¡”¤1
+R
+java:S1066Æ
+"/Merge this if statement with the enclosing one.(ÑªÑœùÿÿÿÿ8Ç©¡”¤1
+‘
+java:S1319Š"sThe type of "searchsonglistcache" should be an interface such as "List" rather than the implementation "ArrayList".(ûÒµ¢8Ç©¡”¤1
+›
+java:S1319‹"xThe type of "hotlistplaylistlistcache" should be an interface such as "List" rather than the implementation "ArrayList".(˜‰”Œúÿÿÿÿ8Ç©¡”¤1
+—
+java:S1319Œ"tThe type of "hotlistsonglistcache" should be an interface such as "List" rather than the implementation "ArrayList".(¡ ¿îüÿÿÿÿ8Ç©¡”¤1
+’
+java:S1319"oThe type of "libraryuricache" should be an interface such as "List" rather than the implementation "ArrayList".(É Îõúÿÿÿÿ8Ç©¡”¤1
+‹
+java:S1319"mThe type of "queueuricache" should be an interface such as "List" rather than the implementation "ArrayList".(•âÜ³8Ç©¡”¤1
+
+java:S1319"qThe type of "playlistsuricache" should be an interface such as "List" rather than the implementation "ArrayList".(ÖÁ‡8Ç©¡”¤1
+˜
+java:S1319‘"uThe type of "playlistssonguricache" should be an interface such as "List" rather than the implementation "ArrayList".(†Ù¡³üÿÿÿÿ8Ç©¡”¤1
+•
+java:S1319’"xThe type of "searchplaylistsongscache" should be an interface such as "List" rather than the implementation "ArrayList".(Ñ÷ò8Ç©¡”¤1
+
+java:S1319¶"jThe type of "errorQueue" should be an interface such as "List" rather than the implementation "ArrayList".(ß°œöıÿÿÿÿ8Ç©¡”¤1
+
+java:S1319·"pThe type of "advanceduricache" should be an interface such as "List" rather than the implementation "ArrayList".(‹²Üà8È©¡”¤1
+X
+java:S1141Î"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8È©¡”¤1
+X
+java:S1141å"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8È©¡”¤1
+F
+java:S1604×"(Make this anonymous inner class a lambda(Š„ç…8É©¡”¤1
+F
+java:S1604À"(Make this anonymous inner class a lambda(‘Ú 8É©¡”¤1
+F
+java:S1604Ñ"(Make this anonymous inner class a lambda(ÈÃ€8É©¡”¤1
+F
+java:S1604×"(Make this anonymous inner class a lambda(ë´ëã8É©¡”¤1
+E
+java:S1604–"(Make this anonymous inner class a lambda(¤¹48É©¡”¤1
+F
+java:S1604©"(Make this anonymous inner class a lambda(˜£Şü8É©¡”¤1
+K
+java:S1604‹"(Make this anonymous inner class a lambda(¥—’¸øÿÿÿÿ8É©¡”¤1
+F
+java:S1604Æ"(Make this anonymous inner class a lambda(ÉÑš8É©¡”¤1
+F
+java:S1604Ü"(Make this anonymous inner class a lambda(£´ü¦8É©¡”¤1
+F
+java:S1604ã"(Make this anonymous inner class a lambda(óÁÃ8É©¡”¤1
+F
+java:S1604é"(Make this anonymous inner class a lambda(ÉÑš8É©¡”¤1
+K
+java:S1604ô"(Make this anonymous inner class a lambda(ÍÒŒúÿÿÿÿ8É©¡”¤1
+K
+java:S1604ñ"(Make this anonymous inner class a lambda(òÚİ‚úÿÿÿÿ8É©¡”¤1
+K
+java:S1604¯"(Make this anonymous inner class a lambda(ÍÒŒúÿÿÿÿ8É©¡”¤1
+F
+java:S1604£"(Make this anonymous inner class a lambda(÷…ÖŞ8É©¡”¤1
+F
+java:S1604Ñ"(Make this anonymous inner class a lambda(ëÃĞ8É©¡”¤1
+F
+java:S1604×"(Make this anonymous inner class a lambda(ëÃĞ8É©¡”¤1
+F
+java:S1604ß"(Make this anonymous inner class a lambda(ëÃĞ8É©¡”¤1
+K
+java:S1604è"(Make this anonymous inner class a lambda(¸‰÷ãüÿÿÿÿ8É©¡”¤1
+K
+java:S1604å"(Make this anonymous inner class a lambda(‡äıÆúÿÿÿÿ8É©¡”¤1
+K
+java:S1604‚"(Make this anonymous inner class a lambda(¸‰÷ãüÿÿÿÿ8É©¡”¤1
+F
+java:S1604"(Make this anonymous inner class a lambda(É×”8É©¡”¤1
+F
+java:S1604“"(Make this anonymous inner class a lambda(ÉäÚÂ8É©¡”¤1
+K
+java:S1604›"(Make this anonymous inner class a lambda(ˆŒƒ—ùÿÿÿÿ8É©¡”¤1
+K
+java:S1604é"(Make this anonymous inner class a lambda(ÍÒŒúÿÿÿÿ8É©¡”¤1
+F
+java:S1604æ"(Make this anonymous inner class a lambda(…¶‘‘8É©¡”¤1
+F
+java:S1604”"(Make this anonymous inner class a lambda(”šµì8É©¡”¤1
+F
+java:S1604"(Make this anonymous inner class a lambda(”šµì8Ê©¡”¤1
+F
+java:S1604Â"(Make this anonymous inner class a lambda(…¶‘‘8Ê©¡”¤1
+K
+java:S1604Ñ"(Make this anonymous inner class a lambda(¢»÷äúÿÿÿÿ8Ê©¡”¤1
+E
+java:S1604ò"(Make this anonymous inner class a lambda(—î„S8Ê©¡”¤1
+F
+java:S1604Ê	"(Make this anonymous inner class a lambda(ÅƒÊæ8Ê©¡”¤1
+K
+java:S1604Ô	"(Make this anonymous inner class a lambda(¡ïã£şÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604Ş	"(Make this anonymous inner class a lambda(îæ×©8Ê©¡”¤1
+F
+java:S1604è	"(Make this anonymous inner class a lambda(‰Šà»8Ê©¡”¤1
+K
+java:S1604ò	"(Make this anonymous inner class a lambda(íì†úÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604ş	"(Make this anonymous inner class a lambda(¸‰÷ãüÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604û	"(Make this anonymous inner class a lambda(¼Á†Äùÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604ã
+"(Make this anonymous inner class a lambda(ÀÏ—œ8Ê©¡”¤1
+K
+java:S1604Ô"(Make this anonymous inner class a lambda(¾ì™øÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604ä"(Make this anonymous inner class a lambda(×Ãßıÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604 "(Make this anonymous inner class a lambda(ÍÒŒúÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604“"(Make this anonymous inner class a lambda(É¬ß™ıÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604›"(Make this anonymous inner class a lambda(‡›“‰8Ê©¡”¤1
+K
+java:S1604¦"(Make this anonymous inner class a lambda(æË“áÿÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604±"(Make this anonymous inner class a lambda(ıò±üÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604û"(Make this anonymous inner class a lambda(îÎºÇ8Ê©¡”¤1
+K
+java:S1604Õ"(Make this anonymous inner class a lambda(øø¨‡şÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604¾"(Make this anonymous inner class a lambda(×ÓêÑ8Ê©¡”¤1
+F
+java:S1604×"(Make this anonymous inner class a lambda(ÖÖƒÿ8Ê©¡”¤1
+K
+java:S1604…"(Make this anonymous inner class a lambda(×¦¤­ıÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604¢"(Make this anonymous inner class a lambda(í°ÏÒ8Ê©¡”¤1
+F
+java:S1604­"(Make this anonymous inner class a lambda(—±¯Ô8Ê©¡”¤1
+F
+java:S1604¨"(Make this anonymous inner class a lambda(í°ÏÒ8Ê©¡”¤1
+K
+java:S1604Â"(Make this anonymous inner class a lambda( èúÙúÿÿÿÿ8Ê©¡”¤1
+K
+java:S1604ˆ"(Make this anonymous inner class a lambda(ı˜È³şÿÿÿÿ8Ê©¡”¤1
+F
+java:S1604"(Make this anonymous inner class a lambda(ƒ…Ö•8Ê©¡”¤1
+F
+java:S1604•"(Make this anonymous inner class a lambda(„  ã8Ê©¡”¤1
+F
+java:S1604›"(Make this anonymous inner class a lambda(ªö¦°8Ê©¡”¤1
+F
+java:S1604¡"(Make this anonymous inner class a lambda(«ãÒ¿8Ê©¡”¤1
+F
+java:S1604‹"(Make this anonymous inner class a lambda(Âş’ö8Ê©¡”¤1
+F
+java:S1604×"(Make this anonymous inner class a lambda(¥îùÓ8Ê©¡”¤1
+F
+java:S1604İ"(Make this anonymous inner class a lambda(ëÈéš8Ê©¡”¤1
+F
+java:S1604ã"(Make this anonymous inner class a lambda(Ò·”©8Ê©¡”¤1
+F
+java:S1604ö"(Make this anonymous inner class a lambda(ùõù8Ê©¡”¤1
+K
+java:S1604ÿ"(Make this anonymous inner class a lambda(ï×øÿÿÿÿ8Ë©¡”¤1
+F
+java:S1604…"(Make this anonymous inner class a lambda(¯ı©8Ë©¡”¤1
+K
+java:S1604Æ"(Make this anonymous inner class a lambda(«¾à…úÿÿÿÿ8Ë©¡”¤1
+F
+java:S1604¯"(Make this anonymous inner class a lambda(ÃÏ·´8Ë©¡”¤1
+K
+java:S1604Ã"(Make this anonymous inner class a lambda(€á€‹şÿÿÿÿ8Ë©¡”¤1
+K
+java:S1604¤"(Make this anonymous inner class a lambda(€á€‹şÿÿÿÿ8Ë©¡”¤1
+n
+java:S1301æ
+"KReplace this "switch" statement by "if" statements to increase readability.(¦ûÁÓùÿÿÿÿ8Ë©¡”¤1
+}
+java:S1104="[Make librarysonglist a static final constant or non-public and provide accessors if needed.(“ÜÜ³ùÿÿÿÿ8Í©¡”¤1
+q
+java:S1104>"OMake api a static final constant or non-public and provide accessors if needed.(ÜÈø¼üÿÿÿÿ8Í©¡”¤1
+o
+java:S1104?"RMake player a static final constant or non-public and provide accessors if needed.(¿âàÉ8Í©¡”¤1
+w
+java:S1104@"ZMake searchsonglist a static final constant or non-public and provide accessors if needed.(ÎßÃ›8Í©¡”¤1
+
+java:S1104A"]Make searchartistfield a static final constant or non-public and provide accessors if needed.(ŠŠ½Êıÿÿÿÿ8Í©¡”¤1
+}
+java:S1104B"`Make searchsongtitlefield a static final constant or non-public and provide accessors if needed.(‘•¬¶8Í©¡”¤1
+~
+java:S1104C"aMake hotlistplayliststable a static final constant or non-public and provide accessors if needed.(üìÀ8Í©¡”¤1
+
+java:S1104D"]Make hotlistsongstable a static final constant or non-public and provide accessors if needed.(“Š¿ıøÿÿÿÿ8Í©¡”¤1
+…
+java:S1104E"cMake playlistsplayliststable a static final constant or non-public and provide accessors if needed.(Şø¸˜şÿÿÿÿ8Í©¡”¤1
+{
+java:S1104F"^Make playlistssongtable a static final constant or non-public and provide accessors if needed.(¾ÿ¬¯8Í©¡”¤1
+„
+java:S1104G"gMake feedbackupdaterversionfield a static final constant or non-public and provide accessors if needed.(ÖÖü‹8Í©¡”¤1
+x
+java:S1104H"VMake playerarea a static final constant or non-public and provide accessors if needed.(—ê‰´şÿÿÿÿ8Í©¡”¤1
+t
+java:S1104I"WMake playerimage a static final constant or non-public and provide accessors if needed.(ŠŞ¶8Í©¡”¤1
+t
+java:S1104J"WMake playertitle a static final constant or non-public and provide accessors if needed.(›’ı8Í©¡”¤1
+z
+java:S1104K"]Make playerdescription a static final constant or non-public and provide accessors if needed.(ğ…×8Í©¡”¤1
+†
+java:S1104L"dMake playerplaypreviousbutton a static final constant or non-public and provide accessors if needed.(°…•Ãüÿÿÿÿ8Í©¡”¤1
+ƒ
+java:S1104M"aMake playerplaypausebutton a static final constant or non-public and provide accessors if needed.(¹Üæçıÿÿÿÿ8Í©¡”¤1
+‚
+java:S1104N"`Make playerplaynextbutton a static final constant or non-public and provide accessors if needed.(¨øû¯ıÿÿÿÿ8Í©¡”¤1
+
+java:S1104O"]Make playercurrenttime a static final constant or non-public and provide accessors if needed.(‹µ”Üúÿÿÿÿ8Í©¡”¤1
+|
+java:S1104P"ZMake playerplaytime a static final constant or non-public and provide accessors if needed.(¯—Éóùÿÿÿÿ8Í©¡”¤1
+|
+java:S1104Q"_Make playerplaytimetotal a static final constant or non-public and provide accessors if needed.(ÏûĞÊ8Í©¡”¤1
+q
+java:S1104R"TMake tabpanel a static final constant or non-public and provide accessors if needed.(ûğÊ¢8Í©¡”¤1
+y
+java:S1104S"WMake librarypane a static final constant or non-public and provide accessors if needed.(è˜¯†şÿÿÿÿ8Í©¡”¤1
+}
+java:S1104T"`Make libraryshufflebutton a static final constant or non-public and provide accessors if needed.(‡ŒÕİ8Í©¡”¤1
+
+java:S1104U"]Make libraryplaybutton a static final constant or non-public and provide accessors if needed.(ÿ’«Ñÿÿÿÿÿ8Í©¡”¤1
+z
+java:S1104V"]Make libraryscrollpane a static final constant or non-public and provide accessors if needed.(ŒÛÓÒ8Í©¡”¤1
+q
+java:S1104W"TMake homepane a static final constant or non-public and provide accessors if needed.(‚ÒÃ8Í©¡”¤1
+†
+java:S1104X"dMake librarydefaulttablemodel a static final constant or non-public and provide accessors if needed.(ò¥ÿ©ıÿÿÿÿ8Í©¡”¤1
+}
+java:S1104Y"[Make playlistsbutton a static final constant or non-public and provide accessors if needed.(ëú”£úÿÿÿÿ8Í©¡”¤1
+{
+java:S1104Z"YMake librarybutton a static final constant or non-public and provide accessors if needed.(“È‘üÿÿÿÿ8Í©¡”¤1
+u
+java:S1104["XMake searchbutton a static final constant or non-public and provide accessors if needed.(áëıû8Í©¡”¤1
+v
+java:S1104\"YMake hotlistbutton a static final constant or non-public and provide accessors if needed.(ùŒ¯8Í©¡”¤1
+y
+java:S1104]"WMake queuebutton a static final constant or non-public and provide accessors if needed.(Øà‘Ùúÿÿÿÿ8Í©¡”¤1
+v
+java:S1104^"ZMake feedbackbutton a static final constant or non-public and provide accessors if needed.(ÛöÀ8Í©¡”¤1
+x
+java:S1104_"VMake homebutton a static final constant or non-public and provide accessors if needed.(û÷¸şÿÿÿÿ8Í©¡”¤1
+x
+java:S1104`"VMake searchpane a static final constant or non-public and provide accessors if needed.(¦ë†àÿÿÿÿÿ8Í©¡”¤1
+t
+java:S1104a"WMake hotlistpane a static final constant or non-public and provide accessors if needed.(íÊÁ‚8Í©¡”¤1
+~
+java:S1104b"aMake hotlistplaylistspanel a static final constant or non-public and provide accessors if needed.(ê²¯£8Í©¡”¤1
+„
+java:S1104c"gMake hotlistplaylistsscrollpanel a static final constant or non-public and provide accessors if needed.(õ¡Øî8Í©¡”¤1
+‚
+java:S1104d"`Make hotlistsonglistpanel a static final constant or non-public and provide accessors if needed.(ÅüìÎøÿÿÿÿ8Í©¡”¤1
+
+java:S1104e"cMake hotslistsongscrollpanel a static final constant or non-public and provide accessors if needed.(Í‡‘8Í©¡”¤1
+{
+java:S1104f"YMake playlistspane a static final constant or non-public and provide accessors if needed.(–…äÌøÿÿÿÿ8Í©¡”¤1
+„
+java:S1104g"bMake playlistsplaylistslist a static final constant or non-public and provide accessors if needed.(Ø—Àşùÿÿÿÿ8Í©¡”¤1
+
+java:S1104h"dMake playlistsplaylistsscroll a static final constant or non-public and provide accessors if needed.(æÙİ8Í©¡”¤1
+
+java:S1104i"]Make playlistssonglist a static final constant or non-public and provide accessors if needed.(Û·Ì¶ûÿÿÿÿ8Í©¡”¤1
+}
+java:S1104j"`Make playlistssongsscroll a static final constant or non-public and provide accessors if needed.(¤Ä³ö8Í©¡”¤1
+r
+java:S1104k"UMake queuepane a static final constant or non-public and provide accessors if needed.(ßã³8Í©¡”¤1
+
+java:S1104l"]Make queueremovebutton a static final constant or non-public and provide accessors if needed.(öó‰Şşÿÿÿÿ8Í©¡”¤1
+y
+java:S1104m"WMake homeVisible a static final constant or non-public and provide accessors if needed.(ªŞØğøÿÿÿÿ8Í©¡”¤1
+}
+java:S1104n"[Make queuescrollpane a static final constant or non-public and provide accessors if needed.(¦¹ÅÓúÿÿÿÿ8Í©¡”¤1
+r
+java:S1104o"UMake queuelist a static final constant or non-public and provide accessors if needed.(æ“Â8Í©¡”¤1
+u
+java:S1104p"XMake feedbackpane a static final constant or non-public and provide accessors if needed.(×‘œÆ8Í©¡”¤1
+ƒ
+java:S1104q"aMake feedbackmakesurelabel a static final constant or non-public and provide accessors if needed.(Ëì¬èùÿÿÿÿ8Í©¡”¤1
+{
+java:S1104r"^Make feedbackissuepanel a static final constant or non-public and provide accessors if needed.(·«Äú8Í©¡”¤1
+
+java:S1104s"dMake feedbackviewissuesbutton a static final constant or non-public and provide accessors if needed.(Ù¦öÃ8Í©¡”¤1
+‚
+java:S1104t"eMake feedbackcreateissuebutton a static final constant or non-public and provide accessors if needed.(Šó®Œ8Î©¡”¤1
+‚
+java:S1104u"`Make feedbackgithubbutton a static final constant or non-public and provide accessors if needed.(Ëµòèøÿÿÿÿ8Î©¡”¤1
+‚
+java:S1104v"`Make feedbackupdatespanel a static final constant or non-public and provide accessors if needed.(¡­ˆØıÿÿÿÿ8Î©¡”¤1
+†
+java:S1104w"dMake feedbackwillbemovedlabel a static final constant or non-public and provide accessors if needed.(ÿìø€ûÿÿÿÿ8Î©¡”¤1
+‹
+java:S1104x"iMake feedbackupdaterdownloadbutton a static final constant or non-public and provide accessors if needed.(²ôò±ıÿÿÿÿ8Î©¡”¤1
+…
+java:S1104y"cMake searchsearchfieldspanel a static final constant or non-public and provide accessors if needed.(Ğßı£şÿÿÿÿ8Î©¡”¤1
+z
+java:S1104z"]Make searchartistlabel a static final constant or non-public and provide accessors if needed.(úğ®˜8Î©¡”¤1
+‚
+java:S1104{"`Make searchsongtitlelabel a static final constant or non-public and provide accessors if needed.(ö…µùÿÿÿÿ8Î©¡”¤1
+…
+java:S1104|"cMake searchclearfieldsbutton a static final constant or non-public and provide accessors if needed.(¡À ™øÿÿÿÿ8Î©¡”¤1
+€
+java:S1104}"^Make searchfinditbutton a static final constant or non-public and provide accessors if needed.(öÖãšúÿÿÿÿ8Î©¡”¤1
+€
+java:S1104~"cMake searchsearchfilterpanel a static final constant or non-public and provide accessors if needed.(ğ¯á›8Î©¡”¤1
+‰
+java:S1104"gMake searchfilterexcludeexplicit a static final constant or non-public and provide accessors if needed.(ëÄ«îüÿÿÿÿ8Î©¡”¤1
+€
+java:S1104€"]Make searchscrollpanel a static final constant or non-public and provide accessors if needed.(Û¨àƒÿÿÿÿÿ8Î©¡”¤1
+w
+java:S1104"YMake searchVisible a static final constant or non-public and provide accessors if needed.(‚Ïœ8Î©¡”¤1
+
+java:S1104‚"\Make playlistsVisible a static final constant or non-public and provide accessors if needed.(µíÀøÿÿÿÿ8Î©¡”¤1
+y
+java:S1104ƒ"[Make feedbackVisible a static final constant or non-public and provide accessors if needed.(æ°€æ8Î©¡”¤1
+v
+java:S1104„"XMake queueVisible a static final constant or non-public and provide accessors if needed.(Á©ùÆ8Î©¡”¤1
+}
+java:S1104…"ZMake hotlistVisible a static final constant or non-public and provide accessors if needed.(ÒÇ¾Üşÿÿÿÿ8Î©¡”¤1
+w
+java:S1104†"YMake libraryVisble a static final constant or non-public and provide accessors if needed.(Ã³ãğ8Î©¡”¤1
+{
+java:S1104‡"XMake legacyswitch a static final constant or non-public and provide accessors if needed.(óíÆèıÿÿÿÿ8Î©¡”¤1
+m
+java:S1104ˆ"OMake bar a static final constant or non-public and provide accessors if needed.(ÚĞ’•8Î©¡”¤1
+o
+java:S1104‰"QMake heart a static final constant or non-public and provide accessors if needed.(ÃÏæ¹8Î©¡”¤1
+}
+java:S1104Š"_Make searchsonglistcache a static final constant or non-public and provide accessors if needed.(ûÒµ¢8Î©¡”¤1
+‡
+java:S1104‹"dMake hotlistplaylistlistcache a static final constant or non-public and provide accessors if needed.(˜‰”Œúÿÿÿÿ8Î©¡”¤1
+ƒ
+java:S1104Œ"`Make hotlistsonglistcache a static final constant or non-public and provide accessors if needed.(¡ ¿îüÿÿÿÿ8Î©¡”¤1
+~
+java:S1104"[Make libraryuricache a static final constant or non-public and provide accessors if needed.(É Îõúÿÿÿÿ8Î©¡”¤1
+w
+java:S1104"YMake queueuricache a static final constant or non-public and provide accessors if needed.(•âÜ³8Î©¡”¤1
+x
+java:S1104"ZMake queuelistmodel a static final constant or non-public and provide accessors if needed.(¾êÊË8Î©¡”¤1
+{
+java:S1104"]Make playlistsuricache a static final constant or non-public and provide accessors if needed.(ÖÁ‡8Î©¡”¤1
+„
+java:S1104‘"aMake playlistssonguricache a static final constant or non-public and provide accessors if needed.(†Ù¡³üÿÿÿÿ8Î©¡”¤1
+
+java:S1104’"dMake searchplaylistsongscache a static final constant or non-public and provide accessors if needed.(Ñ÷ò8Î©¡”¤1
+y
+java:S1104“"VMake userbutton a static final constant or non-public and provide accessors if needed.(ïÈ´ıûÿÿÿÿ8Î©¡”¤1
+}
+java:S1104”"ZMake settingsbutton a static final constant or non-public and provide accessors if needed.(—È—üÿÿÿÿ8Î©¡”¤1
+
+java:S1104•"\Make threepointbutton a static final constant or non-public and provide accessors if needed.(… Œ‘üÿÿÿÿ8Î©¡”¤1
+{
+java:S1104–"XMake userdropdown a static final constant or non-public and provide accessors if needed.(Ïù‚Ãùÿÿÿÿ8Î©¡”¤1
+|
+java:S1104—"^Make threepointdropdown a static final constant or non-public and provide accessors if needed.(Íœêá8Î©¡”¤1
+ƒ
+java:S1104˜"`Make playerareavolumeicon a static final constant or non-public and provide accessors if needed.(Ø£÷Ïüÿÿÿÿ8Î©¡”¤1
+€
+java:S1104™"bMake playerareavolumeslider a static final constant or non-public and provide accessors if needed.(Ãºú°8Î©¡”¤1
+
+java:S1104š"cMake playerareavolumecurrent a static final constant or non-public and provide accessors if needed.(ª”ß8Î©¡”¤1
+‚
+java:S1104›"_Make searchplaylistpanel a static final constant or non-public and provide accessors if needed.(Şãò×ÿÿÿÿÿ8Î©¡”¤1
+
+java:S1104œ"\Make searchbackbutton a static final constant or non-public and provide accessors if needed.(íáçúÿÿÿÿ8Î©¡”¤1
+‚
+java:S1104"_Make searchplaylisttable a static final constant or non-public and provide accessors if needed.(şœ­–üÿÿÿÿ8Î©¡”¤1
+~
+java:S1104"`Make searchfilterplaylist a static final constant or non-public and provide accessors if needed.(ÔµÑù8Î©¡”¤1
+€
+java:S1104Ÿ"]Make searchfilteralbum a static final constant or non-public and provide accessors if needed.(ÎÆÏÉøÿÿÿÿ8Î©¡”¤1
+z
+java:S1104 "\Make searchfiltershow a static final constant or non-public and provide accessors if needed.(ÓÛÍœ8Î©¡”¤1
+€
+java:S1104¡"]Make searchfiltertrack a static final constant or non-public and provide accessors if needed.(ËŞ”ùÿÿÿÿ8Î©¡”¤1
+ƒ
+java:S1104¢"eMake searchplaylistscrollpanel a static final constant or non-public and provide accessors if needed.(î‘´¤8Î©¡”¤1
+
+java:S1104£"^Make searchfilterartist a static final constant or non-public and provide accessors if needed.(šò±ùÿÿÿÿ8Î©¡”¤1
+u
+java:S1104¤"WMake artistPanel a static final constant or non-public and provide accessors if needed.(÷åè¾8Î©¡”¤1
+v
+java:S1104¥"XMake isLastArtist a static final constant or non-public and provide accessors if needed.(Ø•—Ñ8Î©¡”¤1
+t
+java:S1104¦"WMake countryCode a static final constant or non-public and provide accessors if needed.(·Ë)8Î©¡”¤1
+{
+java:S1104§"]Make advancedsongtable a static final constant or non-public and provide accessors if needed.(‡ë­8Î©¡”¤1
+„
+java:S1104¨"aMake artistPanelBackButton a static final constant or non-public and provide accessors if needed.(Öó™Üûÿÿÿÿ8Î©¡”¤1
+
+java:S1104©"cMake playerareashufflebutton a static final constant or non-public and provide accessors if needed.(ÚÏ¸õ8Î©¡”¤1
+€
+java:S1104ª"]Make advancedsongpanel a static final constant or non-public and provide accessors if needed.(¢èªÙûÿÿÿÿ8Î©¡”¤1
+‚
+java:S1104«"_Make advancedscrollpanel a static final constant or non-public and provide accessors if needed.(µ‚¹€ùÿÿÿÿ8Î©¡”¤1
+|
+java:S1104¬"^Make advancedbackbutton a static final constant or non-public and provide accessors if needed.(á¤Ö8Î©¡”¤1
+‚
+java:S1104­"eMake playerarearepeatingbutton a static final constant or non-public and provide accessors if needed.(à¦Ú8Î©¡”¤1
+€
+java:S1104®"bMake playerarealyricsbutton a static final constant or non-public and provide accessors if needed.(Ïãû×8Î©¡”¤1
+‚
+java:S1104¯"_Make noconnectionmessage a static final constant or non-public and provide accessors if needed.(¾¾µçùÿÿÿÿ8Î©¡”¤1
+
+java:S1104°"jMake searchplaylistsongscontextmenu a static final constant or non-public and provide accessors if needed.(»Ÿ¾şÿÿÿÿ8Î©¡”¤1
+{
+java:S1104±"]Make searchcontextmenu a static final constant or non-public and provide accessors if needed.(ƒîÈÍ8Î©¡”¤1
+’
+java:S1104²"oMake hotlistplaylistspanelrightclickmenu a static final constant or non-public and provide accessors if needed.(¥Ş‚øÿÿÿÿ8Î©¡”¤1
+†
+java:S1104³"hMake hotlistsongstablecontextmenu a static final constant or non-public and provide accessors if needed.(«º³¢8Î©¡”¤1
+{
+java:S1104´"XMake errorDisplay a static final constant or non-public and provide accessors if needed.(÷ı½ şÿÿÿÿ8Î©¡”¤1
+y
+java:S1104¶"VMake errorQueue a static final constant or non-public and provide accessors if needed.(ß°œöıÿÿÿÿ8Ï©¡”¤1
+w
+java:S1104×"YMake librarythread a static final constant or non-public and provide accessors if needed.(Š„ç…8Ï©¡”¤1
+q
+java:S1104î"SMake shuffle a static final constant or non-public and provide accessors if needed.(Ş›ÄŞ8Ï©¡”¤1
+r
+java:S1104ø"TMake lastmenu a static final constant or non-public and provide accessors if needed.(àÖ™ş8Ï©¡”¤1
+z
+java:S1104·"\Make advanceduricache a static final constant or non-public and provide accessors if needed.(‹²Üà8Ï©¡”¤1
+t
+java:S1104ò"WMake pressedCTRL a static final constant or non-public and provide accessors if needed.(æ¢ªx8Ï©¡”¤1
+r
+java:S1104ó"OMake uri a static final constant or non-public and provide accessors if needed.(è‡¸âıÿÿÿÿ8Ï©¡”¤1
+|
+java:S1104ô"YMake playtimetotal a static final constant or non-public and provide accessors if needed.( …ú‡ıÿÿÿÿ8Ï©¡”¤1
+w
+java:S1104õ"TMake playtime a static final constant or non-public and provide accessors if needed.(¹şÅªüÿÿÿÿ8Ï©¡”¤1
+v
+java:S1104ö"XMake playerslider a static final constant or non-public and provide accessors if needed.(×•½È8Ï©¡”¤1
+y
+java:S1104÷"[Make playerslidermax a static final constant or non-public and provide accessors if needed.(šÜ¾á8Ï©¡”¤1
+t
+java:S1104–"QMake frame a static final constant or non-public and provide accessors if needed.(œ©í«øÿÿÿÿ8Ï©¡”¤1
+|
+java:S1104—"YMake settingsPanel a static final constant or non-public and provide accessors if needed.(ÚúØéşÿÿÿÿ8Ï©¡”¤1
+W
+java:S1444="5Make this "public static librarysonglist" field final(“ÜÜ³ùÿÿÿÿ8Ï©¡”¤1
+K
+java:S1444>")Make this "public static api" field final(ÜÈø¼üÿÿÿÿ8Ï©¡”¤1
+I
+java:S1444?",Make this "public static player" field final(¿âàÉ8Ï©¡”¤1
+Q
+java:S1444@"4Make this "public static searchsonglist" field final(ÎßÃ›8Ï©¡”¤1
+Y
+java:S1444A"7Make this "public static searchartistfield" field final(ŠŠ½Êıÿÿÿÿ8Ï©¡”¤1
+W
+java:S1444B":Make this "public static searchsongtitlefield" field final(‘•¬¶8Ï©¡”¤1
+X
+java:S1444C";Make this "public static hotlistplayliststable" field final(üìÀ8Ï©¡”¤1
+Y
+java:S1444D"7Make this "public static hotlistsongstable" field final(“Š¿ıøÿÿÿÿ8Ï©¡”¤1
+_
+java:S1444E"=Make this "public static playlistsplayliststable" field final(Şø¸˜şÿÿÿÿ8Ï©¡”¤1
+U
+java:S1444F"8Make this "public static playlistssongtable" field final(¾ÿ¬¯8Ï©¡”¤1
+^
+java:S1444G"AMake this "public static feedbackupdaterversionfield" field final(ÖÖü‹8Ï©¡”¤1
+R
+java:S1444H"0Make this "public static playerarea" field final(—ê‰´şÿÿÿÿ8Ï©¡”¤1
+N
+java:S1444I"1Make this "public static playerimage" field final(ŠŞ¶8Ï©¡”¤1
+N
+java:S1444J"1Make this "public static playertitle" field final(›’ı8Ï©¡”¤1
+T
+java:S1444K"7Make this "public static playerdescription" field final(ğ…×8Ï©¡”¤1
+`
+java:S1444L">Make this "public static playerplaypreviousbutton" field final(°…•Ãüÿÿÿÿ8Ï©¡”¤1
+]
+java:S1444M";Make this "public static playerplaypausebutton" field final(¹Üæçıÿÿÿÿ8Ï©¡”¤1
+\
+java:S1444N":Make this "public static playerplaynextbutton" field final(¨øû¯ıÿÿÿÿ8Ï©¡”¤1
+Y
+java:S1444O"7Make this "public static playercurrenttime" field final(‹µ”Üúÿÿÿÿ8Ï©¡”¤1
+V
+java:S1444P"4Make this "public static playerplaytime" field final(¯—Éóùÿÿÿÿ8Ï©¡”¤1
+V
+java:S1444Q"9Make this "public static playerplaytimetotal" field final(ÏûĞÊ8Ï©¡”¤1
+K
+java:S1444R".Make this "public static tabpanel" field final(ûğÊ¢8Ï©¡”¤1
+S
+java:S1444S"1Make this "public static librarypane" field final(è˜¯†şÿÿÿÿ8Ï©¡”¤1
+W
+java:S1444T":Make this "public static libraryshufflebutton" field final(‡ŒÕİ8Ï©¡”¤1
+Y
+java:S1444U"7Make this "public static libraryplaybutton" field final(ÿ’«Ñÿÿÿÿÿ8Ï©¡”¤1
+T
+java:S1444V"7Make this "public static libraryscrollpane" field final(ŒÛÓÒ8Ğ©¡”¤1
+K
+java:S1444W".Make this "public static homepane" field final(‚ÒÃ8Ğ©¡”¤1
+`
+java:S1444X">Make this "public static librarydefaulttablemodel" field final(ò¥ÿ©ıÿÿÿÿ8Ğ©¡”¤1
+W
+java:S1444Y"5Make this "public static playlistsbutton" field final(ëú”£úÿÿÿÿ8Ğ©¡”¤1
+U
+java:S1444Z"3Make this "public static librarybutton" field final(“È‘üÿÿÿÿ8Ğ©¡”¤1
+O
+java:S1444["2Make this "public static searchbutton" field final(áëıû8Ğ©¡”¤1
+P
+java:S1444\"3Make this "public static hotlistbutton" field final(ùŒ¯8Ğ©¡”¤1
+S
+java:S1444]"1Make this "public static queuebutton" field final(Øà‘Ùúÿÿÿÿ8Ğ©¡”¤1
+P
+java:S1444^"4Make this "public static feedbackbutton" field final(ÛöÀ8Ğ©¡”¤1
+R
+java:S1444_"0Make this "public static homebutton" field final(û÷¸şÿÿÿÿ8Ğ©¡”¤1
+R
+java:S1444`"0Make this "public static searchpane" field final(¦ë†àÿÿÿÿÿ8Ğ©¡”¤1
+N
+java:S1444a"1Make this "public static hotlistpane" field final(íÊÁ‚8Ğ©¡”¤1
+X
+java:S1444b";Make this "public static hotlistplaylistspanel" field final(ê²¯£8Ğ©¡”¤1
+^
+java:S1444c"AMake this "public static hotlistplaylistsscrollpanel" field final(õ¡Øî8Ğ©¡”¤1
+\
+java:S1444d":Make this "public static hotlistsonglistpanel" field final(ÅüìÎøÿÿÿÿ8Ğ©¡”¤1
+Y
+java:S1444e"=Make this "public static hotslistsongscrollpanel" field final(Í‡‘8Ğ©¡”¤1
+U
+java:S1444f"3Make this "public static playlistspane" field final(–…äÌøÿÿÿÿ8Ğ©¡”¤1
+^
+java:S1444g"<Make this "public static playlistsplaylistslist" field final(Ø—Àşùÿÿÿÿ8Ğ©¡”¤1
+[
+java:S1444h">Make this "public static playlistsplaylistsscroll" field final(æÙİ8Ğ©¡”¤1
+Y
+java:S1444i"7Make this "public static playlistssonglist" field final(Û·Ì¶ûÿÿÿÿ8Ğ©¡”¤1
+W
+java:S1444j":Make this "public static playlistssongsscroll" field final(¤Ä³ö8Ğ©¡”¤1
+L
+java:S1444k"/Make this "public static queuepane" field final(ßã³8Ğ©¡”¤1
+Y
+java:S1444l"7Make this "public static queueremovebutton" field final(öó‰Şşÿÿÿÿ8Ğ©¡”¤1
+S
+java:S1444m"1Make this "public static homeVisible" field final(ªŞØğøÿÿÿÿ8Ğ©¡”¤1
+W
+java:S1444n"5Make this "public static queuescrollpane" field final(¦¹ÅÓúÿÿÿÿ8Ğ©¡”¤1
+L
+java:S1444o"/Make this "public static queuelist" field final(æ“Â8Ğ©¡”¤1
+O
+java:S1444p"2Make this "public static feedbackpane" field final(×‘œÆ8Ğ©¡”¤1
+]
+java:S1444q";Make this "public static feedbackmakesurelabel" field final(Ëì¬èùÿÿÿÿ8Ğ©¡”¤1
+U
+java:S1444r"8Make this "public static feedbackissuepanel" field final(·«Äú8Ğ©¡”¤1
+[
+java:S1444s">Make this "public static feedbackviewissuesbutton" field final(Ù¦öÃ8Ğ©¡”¤1
+\
+java:S1444t"?Make this "public static feedbackcreateissuebutton" field final(Šó®Œ8Ğ©¡”¤1
+\
+java:S1444u":Make this "public static feedbackgithubbutton" field final(Ëµòèøÿÿÿÿ8Ğ©¡”¤1
+\
+java:S1444v":Make this "public static feedbackupdatespanel" field final(¡­ˆØıÿÿÿÿ8Ğ©¡”¤1
+`
+java:S1444w">Make this "public static feedbackwillbemovedlabel" field final(ÿìø€ûÿÿÿÿ8Ğ©¡”¤1
+e
+java:S1444x"CMake this "public static feedbackupdaterdownloadbutton" field final(²ôò±ıÿÿÿÿ8Ğ©¡”¤1
+_
+java:S1444y"=Make this "public static searchsearchfieldspanel" field final(Ğßı£şÿÿÿÿ8Ğ©¡”¤1
+T
+java:S1444z"7Make this "public static searchartistlabel" field final(úğ®˜8Ğ©¡”¤1
+\
+java:S1444{":Make this "public static searchsongtitlelabel" field final(ö…µùÿÿÿÿ8Ğ©¡”¤1
+_
+java:S1444|"=Make this "public static searchclearfieldsbutton" field final(¡À ™øÿÿÿÿ8Ğ©¡”¤1
+Z
+java:S1444}"8Make this "public static searchfinditbutton" field final(öÖãšúÿÿÿÿ8Ğ©¡”¤1
+Z
+java:S1444~"=Make this "public static searchsearchfilterpanel" field final(ğ¯á›8Ğ©¡”¤1
+c
+java:S1444"AMake this "public static searchfilterexcludeexplicit" field final(ëÄ«îüÿÿÿÿ8Ğ©¡”¤1
+Z
+java:S1444€"7Make this "public static searchscrollpanel" field final(Û¨àƒÿÿÿÿÿ8Ğ©¡”¤1
+Q
+java:S1444"3Make this "public static searchVisible" field final(‚Ïœ8Ğ©¡”¤1
+Y
+java:S1444‚"6Make this "public static playlistsVisible" field final(µíÀøÿÿÿÿ8Ğ©¡”¤1
+S
+java:S1444ƒ"5Make this "public static feedbackVisible" field final(æ°€æ8Ğ©¡”¤1
+P
+java:S1444„"2Make this "public static queueVisible" field final(Á©ùÆ8Ğ©¡”¤1
+W
+java:S1444…"4Make this "public static hotlistVisible" field final(ÒÇ¾Üşÿÿÿÿ8Ğ©¡”¤1
+Q
+java:S1444†"3Make this "public static libraryVisble" field final(Ã³ãğ8Ğ©¡”¤1
+U
+java:S1444‡"2Make this "public static legacyswitch" field final(óíÆèıÿÿÿÿ8Ğ©¡”¤1
+G
+java:S1444ˆ")Make this "public static bar" field final(ÚĞ’•8Ğ©¡”¤1
+I
+java:S1444‰"+Make this "public static heart" field final(ÃÏæ¹8Ğ©¡”¤1
+W
+java:S1444Š"9Make this "public static searchsonglistcache" field final(ûÒµ¢8Ğ©¡”¤1
+a
+java:S1444‹">Make this "public static hotlistplaylistlistcache" field final(˜‰”Œúÿÿÿÿ8Ğ©¡”¤1
+]
+java:S1444Œ":Make this "public static hotlistsonglistcache" field final(¡ ¿îüÿÿÿÿ8Ğ©¡”¤1
+X
+java:S1444"5Make this "public static libraryuricache" field final(É Îõúÿÿÿÿ8Ğ©¡”¤1
+Q
+java:S1444"3Make this "public static queueuricache" field final(•âÜ³8Ğ©¡”¤1
+R
+java:S1444"4Make this "public static queuelistmodel" field final(¾êÊË8Ğ©¡”¤1
+U
+java:S1444"7Make this "public static playlistsuricache" field final(ÖÁ‡8Ğ©¡”¤1
+^
+java:S1444‘";Make this "public static playlistssonguricache" field final(†Ù¡³üÿÿÿÿ8Ğ©¡”¤1
+[
+java:S1444’">Make this "public static searchplaylistsongscache" field final(Ñ÷ò8Ğ©¡”¤1
+S
+java:S1444“"0Make this "public static userbutton" field final(ïÈ´ıûÿÿÿÿ8Ğ©¡”¤1
+W
+java:S1444”"4Make this "public static settingsbutton" field final(—È—üÿÿÿÿ8Ğ©¡”¤1
+Y
+java:S1444•"6Make this "public static threepointbutton" field final(… Œ‘üÿÿÿÿ8Ğ©¡”¤1
+U
+java:S1444–"2Make this "public static userdropdown" field final(Ïù‚Ãùÿÿÿÿ8Ğ©¡”¤1
+V
+java:S1444—"8Make this "public static threepointdropdown" field final(Íœêá8Ğ©¡”¤1
+]
+java:S1444˜":Make this "public static playerareavolumeicon" field final(Ø£÷Ïüÿÿÿÿ8Ğ©¡”¤1
+Z
+java:S1444™"<Make this "public static playerareavolumeslider" field final(Ãºú°8Ğ©¡”¤1
+[
+java:S1444š"=Make this "public static playerareavolumecurrent" field final(ª”ß8Ğ©¡”¤1
+\
+java:S1444›"9Make this "public static searchplaylistpanel" field final(Şãò×ÿÿÿÿÿ8Ğ©¡”¤1
+Y
+java:S1444œ"6Make this "public static searchbackbutton" field final(íáçúÿÿÿÿ8Ğ©¡”¤1
+\
+java:S1444"9Make this "public static searchplaylisttable" field final(şœ­–üÿÿÿÿ8Ğ©¡”¤1
+X
+java:S1444":Make this "public static searchfilterplaylist" field final(ÔµÑù8Ğ©¡”¤1
+Z
+java:S1444Ÿ"7Make this "public static searchfilteralbum" field final(ÎÆÏÉøÿÿÿÿ8Ğ©¡”¤1
+T
+java:S1444 "6Make this "public static searchfiltershow" field final(ÓÛÍœ8Ğ©¡”¤1
+Z
+java:S1444¡"7Make this "public static searchfiltertrack" field final(ËŞ”ùÿÿÿÿ8Ñ©¡”¤1
+]
+java:S1444¢"?Make this "public static searchplaylistscrollpanel" field final(î‘´¤8Ñ©¡”¤1
+[
+java:S1444£"8Make this "public static searchfilterartist" field final(šò±ùÿÿÿÿ8Ñ©¡”¤1
+O
+java:S1444¤"1Make this "public static artistPanel" field final(÷åè¾8Ñ©¡”¤1
+P
+java:S1444¥"2Make this "public static isLastArtist" field final(Ø•—Ñ8Ñ©¡”¤1
+N
+java:S1444¦"1Make this "public static countryCode" field final(·Ë)8Ñ©¡”¤1
+U
+java:S1444§"7Make this "public static advancedsongtable" field final(‡ë­8Ñ©¡”¤1
+^
+java:S1444¨";Make this "public static artistPanelBackButton" field final(Öó™Üûÿÿÿÿ8Ñ©¡”¤1
+[
+java:S1444©"=Make this "public static playerareashufflebutton" field final(ÚÏ¸õ8Ñ©¡”¤1
+Z
+java:S1444ª"7Make this "public static advancedsongpanel" field final(¢èªÙûÿÿÿÿ8Ñ©¡”¤1
+\
+java:S1444«"9Make this "public static advancedscrollpanel" field final(µ‚¹€ùÿÿÿÿ8Ñ©¡”¤1
+V
+java:S1444¬"8Make this "public static advancedbackbutton" field final(á¤Ö8Ñ©¡”¤1
+\
+java:S1444­"?Make this "public static playerarearepeatingbutton" field final(à¦Ú8Ñ©¡”¤1
+Z
+java:S1444®"<Make this "public static playerarealyricsbutton" field final(Ïãû×8Ñ©¡”¤1
+\
+java:S1444¯"9Make this "public static noconnectionmessage" field final(¾¾µçùÿÿÿÿ8Ñ©¡”¤1
+g
+java:S1444°"DMake this "public static searchplaylistsongscontextmenu" field final(»Ÿ¾şÿÿÿÿ8Ñ©¡”¤1
+U
+java:S1444±"7Make this "public static searchcontextmenu" field final(ƒîÈÍ8Ñ©¡”¤1
+l
+java:S1444²"IMake this "public static hotlistplaylistspanelrightclickmenu" field final(¥Ş‚øÿÿÿÿ8Ñ©¡”¤1
+`
+java:S1444³"BMake this "public static hotlistsongstablecontextmenu" field final(«º³¢8Ñ©¡”¤1
+U
+java:S1444´"2Make this "public static errorDisplay" field final(÷ı½ şÿÿÿÿ8Ñ©¡”¤1
+S
+java:S1444¶"0Make this "public static errorQueue" field final(ß°œöıÿÿÿÿ8Ñ©¡”¤1
+Q
+java:S1444×"3Make this "public static librarythread" field final(Š„ç…8Ñ©¡”¤1
+K
+java:S1444î"-Make this "public static shuffle" field final(Ş›ÄŞ8Ñ©¡”¤1
+L
+java:S1444ø".Make this "public static lastmenu" field final(àÖ™ş8Ñ©¡”¤1
+T
+java:S1444·"6Make this "public static advanceduricache" field final(‹²Üà8Ñ©¡”¤1
+N
+java:S1444ò"1Make this "public static pressedCTRL" field final(æ¢ªx8Ñ©¡”¤1
+N
+java:S1444–"+Make this "public static frame" field final(œ©í«øÿÿÿÿ8Ñ©¡”¤1
+V
+java:S1444—"3Make this "public static settingsPanel" field final(ÚúØéşÿÿÿÿ8Ñ©¡”¤1
+E
+java:S5411˜
+"(Use a primitive boolean expression here.(Ü«¶I8Ó©¡”¤1
+d
+java:S2184É"FCast one of the operands of this multiplication operation to a "long".(½ôø8×©¡”¤1
+m
+java:S2259Æ"JA "NullPointerException" could be thrown; "errorDisplay" is nullable here.(æ¥Ô¡ùÿÿÿÿ8Ò­¡”¤1
+k
+java:S2095”"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(—ı‡±ıÿÿÿÿ8Ò­¡”¤1
+S
+java:S2387ö"0"visible" is the name of a field in "Component".(ÜĞµÖüÿÿÿÿ8×­¡”¤1
+;
+java:S2386Š"Make this member "protected".(ûÒµ¢8Ù­¡”¤1
+@
+java:S2386‹"Make this member "protected".(˜‰”Œúÿÿÿÿ8Ù­¡”¤1
+@
+java:S2386Œ"Make this member "protected".(¡ ¿îüÿÿÿÿ8Ù­¡”¤1
+@
+java:S2386"Make this member "protected".(É Îõúÿÿÿÿ8Ù­¡”¤1
+;
+java:S2386"Make this member "protected".(•âÜ³8Ù­¡”¤1
+;
+java:S2386"Make this member "protected".(ÖÁ‡8Ú­¡”¤1
+@
+java:S2386‘"Make this member "protected".(†Ù¡³üÿÿÿÿ8Ú­¡”¤1
+:
+java:S2386’"Make this member "protected".(Ñ÷ò8Ú­¡”¤1
+;
+java:S2386·"Make this member "protected".(‹²Üà8Ú­¡”¤1
+R
+java:S1948ù"/Make "lastPlayState" transient or serializable.(–ÓŞàşÿÿÿÿ8Ú­¡”¤1
+B
+java:S1948"$Make "al" transient or serializable.(ÄçÇ8Ú­¡”¤1
+M
+java:S1948 "/Make "windowAdapter" transient or serializable.(œŸ®‡8Ú­¡”¤1
+[
+java:S3878¿"8Remove this array creation and simply pass the elements.(Æ‹Ù¸ûÿÿÿÿ8ß­¡”¤1
+T
+java:S2696Ù"6Make the enclosing method "static" or remove this set.(®‘ÓÏ8á­¡”¤1
+[
+java:S3878Û"8Remove this array creation and simply pass the elements.(Úÿ„™ÿÿÿÿÿ8á­¡”¤1
+T
+java:S2696ë"6Make the enclosing method "static" or remove this set.(ô‹ÕÄ8â­¡”¤1
+Y
+java:S2696ú"6Make the enclosing method "static" or remove this set.(Î§Üüıÿÿÿÿ8â­¡”¤1
+{	java:S131‰"YComplete cases by adding the missing enum constants or add a default case to this switch.(¦ûÁÓùÿÿÿÿ8ä­¡”¤1
+T
+java:S2696»"6Make the enclosing method "static" or remove this set.(İ£¦Ñ8å­¡”¤1
+S
+java:S2696¿"6Make the enclosing method "static" or remove this set.(üƒI8å­¡”¤1
+T
+java:S2696Ì"6Make the enclosing method "static" or remove this set.(·§¡¿8æ­¡”¤1
+T
+java:S2696Ğ"6Make the enclosing method "static" or remove this set.(äÄ¹8æ­¡”¤1
+¤
+java:S1186â"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼¡á˜ÿÿÿÿÿ8ç­¡”¤1
+Ÿ
+java:S1186ç"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(´ª„8ç­¡”¤1
+Ÿ
+java:S1186ì"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñàÉù8ç­¡”¤1
+Ÿ
+java:S1186ñ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(­‘”8ç­¡”¤1
+S
+java:S2696’"6Make the enclosing method "static" or remove this set.(Ë£Œ}8é­¡”¤1
+Y
+java:S2696”"6Make the enclosing method "static" or remove this set.(‡´¯¶úÿÿÿÿ8ê­¡”¤1
+v
+java:S3776"SRefactor this method to reduce its Cognitive Complexity from 102 to the 15 allowed.(‹¹È•ıÿÿÿÿ8ë­¡”¤1
+Y
+java:S2696Ÿ"6Make the enclosing method "static" or remove this set.(±³„íşÿÿÿÿ8ë­¡”¤1
+T
+java:S2696¤"6Make the enclosing method "static" or remove this set.(²¶º8ì­¡”¤1
+T
+java:S2696ª"6Make the enclosing method "static" or remove this set.(ûüÓŒ8ì­¡”¤1
+T
+java:S2696³"6Make the enclosing method "static" or remove this set.(Ü“ä8ì­¡”¤1
+T
+java:S2696Å"6Make the enclosing method "static" or remove this set.(‹¬8í­¡”¤1
+T
+java:S2696ã"6Make the enclosing method "static" or remove this set.(”ô°¼8î­¡”¤1
+Y
+java:S2696ç"6Make the enclosing method "static" or remove this set.(¼˜¿™şÿÿÿÿ8î­¡”¤1
+T
+java:S2696ñ"6Make the enclosing method "static" or remove this set.(ßî8ï­¡”¤1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(Ï“îÈ8ğ­¡”¤1
+Y
+java:S2696—"6Make the enclosing method "static" or remove this set.(é”°÷üÿÿÿÿ8ğ­¡”¤1
+Y
+java:S2696›"6Make the enclosing method "static" or remove this set.(í£˜äúÿÿÿÿ8ñ­¡”¤1
+D	java:S131Ğ""Add a default case to this switch.(•õÔØúÿÿÿÿ8ó­¡”¤1
+S
+java:S2696÷"6Make the enclosing method "static" or remove this set.(©Í¹a8ô­¡”¤1
+Y
+java:S2696ı"6Make the enclosing method "static" or remove this set.(¸Õ’øÿÿÿÿ8ô­¡”¤1
+T
+java:S2696…"6Make the enclosing method "static" or remove this set.(Û’Æ8õ­¡”¤1
+T
+java:S2696‰"6Make the enclosing method "static" or remove this set.(ëÿ˜µ8õ­¡”¤1
+Y
+java:S2696’"6Make the enclosing method "static" or remove this set.(¾û‘…ıÿÿÿÿ8õ­¡”¤1
+Y
+java:S2696–"6Make the enclosing method "static" or remove this set.(ÙšÚşÿÿÿÿ8õ­¡”¤1
+Y
+java:S2696›"6Make the enclosing method "static" or remove this set.(ŠÓ–àşÿÿÿÿ8ö­¡”¤1
+Y
+java:S2696¢"6Make the enclosing method "static" or remove this set.(ÛÇ¶œøÿÿÿÿ8ö­¡”¤1
+T
+java:S2696©"6Make the enclosing method "static" or remove this set.(ƒæ¨Ã8ö­¡”¤1
+Y
+java:S2696Ñ"6Make the enclosing method "static" or remove this set.(Ö›ó¯üÿÿÿÿ8ø­¡”¤1
+Y
+java:S2696×"6Make the enclosing method "static" or remove this set.(¯ÒŒ’úÿÿÿÿ8ø­¡”¤1
+K	java:S108ÿ")Either remove or fill this block of code.(Æ¸Û‚øÿÿÿÿ8ú­¡”¤1
+u
+java:S3776‡"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(ÍŒèŞşÿÿÿÿ8ú­¡”¤1
+T
+java:S2696ˆ"6Make the enclosing method "static" or remove this set.(í£œ§8û­¡”¤1
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(±«™ëúÿÿÿÿ8û­¡”¤1
+T
+java:S2696‘"6Make the enclosing method "static" or remove this set.(ËŞ­ó8û­¡”¤1
+Y
+java:S2696—"6Make the enclosing method "static" or remove this set.(ÇÿèÑüÿÿÿÿ8û­¡”¤1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(è÷–Ş8ü­¡”¤1
+R
+java:S1905¨"4Remove this unnecessary cast to "BoundedRangeModel".(Ñ™Ôú8ü­¡”¤1
+T
+java:S2696¾"6Make the enclosing method "static" or remove this set.(À°àö8ı­¡”¤1
+X
+java:S1161¿":Add the "@Override" annotation above this method signature(ÚÎ€÷8€®¡”¤1
+Y
+java:S2696Ì"6Make the enclosing method "static" or remove this set.(°¸°’üÿÿÿÿ8®¡”¤1
+p
+java:S3776¤"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(Í‡„æ8„®¡”¤1
+T
+java:S2696¥"6Make the enclosing method "static" or remove this set.(»Ñ‰ö8„®¡”¤1
+Y
+java:S2696¨"6Make the enclosing method "static" or remove this set.(­²ÂÍıÿÿÿÿ8…®¡”¤1
+S
+java:S2696­"6Make the enclosing method "static" or remove this set.(§‘•#8…®¡”¤1
+Y
+java:S2696²"6Make the enclosing method "static" or remove this set.(Ä„í»üÿÿÿÿ8…®¡”¤1
+T
+java:S2696¶"6Make the enclosing method "static" or remove this set.(“å½½8…®¡”¤1
+X
+java:S1161·":Add the "@Override" annotation above this method signature(ÚÎ€÷8…®¡”¤1
+Y
+java:S2696É"6Make the enclosing method "static" or remove this set.(Ê«Îşÿÿÿÿ8†®¡”¤1
+T
+java:S2696Î"6Make the enclosing method "static" or remove this set.(óğÒ¤8†®¡”¤1
+Y
+java:S2696Ò"6Make the enclosing method "static" or remove this set.(ö·«•şÿÿÿÿ8†®¡”¤1
+X
+java:S1161Ó":Add the "@Override" annotation above this method signature(ÚÎ€÷8†®¡”¤1
+U
+java:S3878ì"8Remove this array creation and simply pass the elements.(§× !8ˆ®¡”¤1
+[
+java:S3878ö"8Remove this array creation and simply pass the elements.(æ×»ôûÿÿÿÿ8ˆ®¡”¤1
+F	java:S108ú")Either remove or fill this block of code.(Şï †8‰®¡”¤1
+K	java:S108ˆ")Either remove or fill this block of code.(‘°ªàûÿÿÿÿ8‰®¡”¤1
+K	java:S108²")Either remove or fill this block of code.(±øªıÿÿÿÿ8Œ®¡”¤1
+q
+java:S3776É"SRefactor this method to reduce its Cognitive Complexity from 447 to the 15 allowed.(‹ÒİÙ8®¡”¤1
+Y
+java:S2696Ê"6Make the enclosing method "static" or remove this set.(õÀ¶–øÿÿÿÿ8®¡”¤1
+T
+java:S2696Í"6Make the enclosing method "static" or remove this set.(ğ¹ù—8®¡”¤1
+T
+java:S2696×"6Make the enclosing method "static" or remove this set.(ı÷“³8®¡”¤1
+Y
+java:S2696Ş"6Make the enclosing method "static" or remove this set.(ˆ‰Ìşÿÿÿÿ8®¡”¤1
+Y
+java:S2696å"6Make the enclosing method "static" or remove this set.(Ü“ÑÕüÿÿÿÿ8®¡”¤1
+Y
+java:S2696ì"6Make the enclosing method "static" or remove this set.(Ö¬ç€ÿÿÿÿÿ8®¡”¤1
+Y
+java:S2696ú"6Make the enclosing method "static" or remove this set.(âÛùˆúÿÿÿÿ8®¡”¤1
+T
+java:S2696€	"6Make the enclosing method "static" or remove this set.(ïœóì8®¡”¤1
+T
+java:S2696	"6Make the enclosing method "static" or remove this set.(¹æ‰•8‘®¡”¤1
+T
+java:S2696	"6Make the enclosing method "static" or remove this set.(í€­Ê8’®¡”¤1
+T
+java:S2696¤	"6Make the enclosing method "static" or remove this set.(İ¡Õµ8’®¡”¤1
+T
+java:S2696ª	"6Make the enclosing method "static" or remove this set.(·ÑÂĞ8’®¡”¤1
+Y
+java:S2696°	"6Make the enclosing method "static" or remove this set.(„Îõ‚üÿÿÿÿ8’®¡”¤1
+Y
+java:S2696¸	"6Make the enclosing method "static" or remove this set.(Œ–™ûüÿÿÿÿ8“®¡”¤1
+S
+java:S2696¾	"6Make the enclosing method "static" or remove this set.(±Ü•8“®¡”¤1
+S
+java:S2696Ä	"6Make the enclosing method "static" or remove this set.(ÀÆÚX8“®¡”¤1
+Y
+java:S2696Ö
+"6Make the enclosing method "static" or remove this set.(ñÈô¬úÿÿÿÿ8š®¡”¤1
+Y
+java:S2696Ú
+"6Make the enclosing method "static" or remove this set.(îóŠŒøÿÿÿÿ8š®¡”¤1
+X
+java:S1161Û
+":Add the "@Override" annotation above this method signature(ÚÎ€÷8š®¡”¤1
+Y
+java:S2696à
+"6Make the enclosing method "static" or remove this set.(ıó¥¦úÿÿÿÿ8š®¡”¤1
+{	java:S131æ
+"YComplete cases by adding the missing enum constants or add a default case to this switch.(¦ûÁÓùÿÿÿÿ8›®¡”¤1
+T
+java:S2696ì
+"6Make the enclosing method "static" or remove this set.(¬ğ® 8›®¡”¤1
+T
+java:S2696€"6Make the enclosing method "static" or remove this set.(œøŞ“8›®¡”¤1
+>	java:S131‰""Add a default case to this switch.(ÑÕ·d8œ®¡”¤1
+]
+java:S1854¶":Remove this useless assignment to local variable "tracks".(ü¥ûúÿÿÿÿ8Ÿ®¡”¤1
+X
+java:S1854‚":Remove this useless assignment to local variable "tracks".(ü™™8Ÿ®¡”¤1
+N
+java:S1481¶"+Remove this unused "tracks" local variable.(ü¥ûúÿÿÿÿ8¡®¡”¤1
+I
+java:S1481‚"+Remove this unused "tracks" local variable.(ü™™8§®¡”¤1
+Y
+java:S2696ä"6Make the enclosing method "static" or remove this set.(Šá²¼úÿÿÿÿ8¬®¡”¤1
+Y
+java:S2696é"6Make the enclosing method "static" or remove this set.(š¥Ê»şÿÿÿÿ8¬®¡”¤1
+T
+java:S2696ï"6Make the enclosing method "static" or remove this set.(ÅàæÔ8­®¡”¤1
+T
+java:S2696ó"6Make the enclosing method "static" or remove this set.(›®8­®¡”¤1
+X
+java:S1161ô":Add the "@Override" annotation above this method signature(ÚÎ€÷8­®¡”¤1
+T
+java:S2696’"6Make the enclosing method "static" or remove this set.(ì±ç€8®®¡”¤1
+T
+java:S2696¥"6Make the enclosing method "static" or remove this set.(ÎÁÅ8¯®¡”¤1
+G
+java:S1940¬")Use the opposite operator ("!=") instead.(¾ËóÔ8¯®¡”¤1
+\
+java:S1155¬">Use isEmpty() to check whether the collection is empty or not.(¾ËóÔ8¯®¡”¤1
+S
+java:S2696¹"6Make the enclosing method "static" or remove this set.(Œï©_8°®¡”¤1
+H
+java:S2386Í"%Make member "errorQueue" "protected".(Š¢‚°øÿÿÿÿ8±®¡”¤1
+Y
+java:S2696Í"6Make the enclosing method "static" or remove this set.(Š¢‚°øÿÿÿÿ8±®¡”¤1
+X
+java:S1161Ü":Add the "@Override" annotation above this method signature(ÚÎ€÷8²®¡”¤1
+I
+java:S1481è"&Remove this unused "i" local variable.(¨Û•¨üÿÿÿÿ8²®¡”¤1
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(¦í‚’ıÿÿÿÿ8´®¡”¤1
+T
+java:S2696“"6Make the enclosing method "static" or remove this set.(‘ò—û8´®¡”¤1
+T
+java:S2696˜"6Make the enclosing method "static" or remove this set.(¡Á Ã8´®¡”¤1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(æ‚õ8µ®¡”¤1
+Y
+java:S2696¡"6Make the enclosing method "static" or remove this set.(ª¥Û¸øÿÿÿÿ8µ®¡”¤1
+X
+java:S1161¢":Add the "@Override" annotation above this method signature(ÚÎ€÷8µ®¡”¤1
+Y
+java:S2696´"6Make the enclosing method "static" or remove this set.(©±Ø†ıÿÿÿÿ8µ®¡”¤1
+Y
+java:S2696¹"6Make the enclosing method "static" or remove this set.(Æª»µıÿÿÿÿ8µ®¡”¤1
+Y
+java:S2696½"6Make the enclosing method "static" or remove this set.(¼Ô“§øÿÿÿÿ8¶®¡”¤1
+Y
+java:S2696É"6Make the enclosing method "static" or remove this set.(©£ËÚıÿÿÿÿ8¶®¡”¤1
+X
+java:S1161Ê":Add the "@Override" annotation above this method signature(ÚÎ€÷8¶®¡”¤1
+T
+java:S2696Ö"6Make the enclosing method "static" or remove this set.(¤÷É©8·®¡”¤1
+Y	java:S125í"<This block of commented-out lines of code should be removed.(‹Ê©8¸®¡”¤1
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(¡ù–×ûÿÿÿÿ8º®¡”¤1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(Â­ÂÀ8º®¡”¤1
+T
+java:S2696•"6Make the enclosing method "static" or remove this set.(Æ¸êŸ8º®¡”¤1
+T
+java:S2696›"6Make the enclosing method "static" or remove this set.(Ê’ÌÔ8º®¡”¤1
+Y
+java:S2696 "6Make the enclosing method "static" or remove this set.(¸¡¥Şùÿÿÿÿ8º®¡”¤1
+T
+java:S2696Ì"6Make the enclosing method "static" or remove this set.(ö¯ã”8Ä®¡”¤1
+S
+java:S2696Ï"6Make the enclosing method "static" or remove this set.(ï½l8Ä®¡”¤1
+Y
+java:S2696Ô"6Make the enclosing method "static" or remove this set.(ª¢ã×üÿÿÿÿ8Ä®¡”¤1
+T
+java:S2696Ú"6Make the enclosing method "static" or remove this set.(¯ŞÈœ8Å®¡”¤1
+T
+java:S2696à"6Make the enclosing method "static" or remove this set.(¸Å´Ï8Å®¡”¤1
+Y
+java:S2696æ"6Make the enclosing method "static" or remove this set.(œ“óàÿÿÿÿÿ8Å®¡”¤1
+T
+java:S2696ì"6Make the enclosing method "static" or remove this set.(Õİ­¨8Æ®¡”¤1
+Y
+java:S2696ò"6Make the enclosing method "static" or remove this set.(Ÿú²Ìıÿÿÿÿ8Æ®¡”¤1
+S
+java:S2696ø"6Make the enclosing method "static" or remove this set.(ÔàÛ8Æ®¡”¤1
+Y
+java:S2696ı"6Make the enclosing method "static" or remove this set.(Å¦âúşÿÿÿÿ8Æ®¡”¤1
+Y
+java:S2696ƒ"6Make the enclosing method "static" or remove this set.(Ú˜­õøÿÿÿÿ8Ç®¡”¤1
+u
+java:S3776¬"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(§äÌÊûÿÿÿÿ8È®¡”¤1
+Y
+java:S1117è";Rename "panel" which hides the field declared at line 2588.(ïÒè³8Ó®¡”¤1
+X
+java:S1161”":Add the "@Override" annotation above this method signature(ÚÎ€÷8Õ®¡”¤1
+S
+java:S2696¹"6Make the enclosing method "static" or remove this set.(ä‡¨u8Ö®¡”¤1
+S
+java:S2696¾"6Make the enclosing method "static" or remove this set.(ç«İ8Ö®¡”¤1
+T
+java:S2696Ğ"6Make the enclosing method "static" or remove this set.(»‰Ë÷8×®¡”¤1
+X
+java:S1161Ñ":Add the "@Override" annotation above this method signature(ÚÎ€÷8×®¡”¤1
+T
+java:S2696à"6Make the enclosing method "static" or remove this set.(îùË„8Ø®¡”¤1
+p
+java:S3776ù"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¯Âèñ8Ù®¡”¤1
+C
+java:S3010û" Remove this assignment of "api".(ûçö–ıÿÿÿÿ8Ù®¡”¤1
+F
+java:S3010ü"#Remove this assignment of "player".(’‚—Ğüÿÿÿÿ8Ù®¡”¤1
+H
+java:S3010…"%Remove this assignment of "tabpanel".(ø’¬æüÿÿÿÿ8Ù®¡”¤1
+F
+java:S3010Ğ"(Remove this assignment of "countryCode".(°İ¶º8Ù®¡”¤1
+K
+java:S3010Ô"(Remove this assignment of "countryCode".(˜‰Ãóúÿÿÿÿ8Ù®¡”¤1
+
+java:S2142ì"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(Æ¸Û‚øÿÿÿÿ8ß®¡”¤1
+K	java:S108ì")Either remove or fill this block of code.(Æ¸Û‚øÿÿÿÿ8à®¡”¤1
+D	java:S131‚""Add a default case to this switch.(¡—¦Ûÿÿÿÿÿ8á®¡”¤1
+u
+java:S3776¡"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÍÂÎ¼ÿÿÿÿÿ8â®¡”¤1
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(´ûµşÿÿÿÿ8î®¡”¤1
+Y
+java:S2696­"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8ï®¡”¤1
+T
+java:S2696®"6Make the enclosing method "static" or remove this set.(À³º×8ï®¡”¤1
+Y
+java:S2696¯"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8ï®¡”¤1
+Y
+java:S2696°"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8ï®¡”¤1
+S
+java:S2696±"6Make the enclosing method "static" or remove this set.(Ğ–º8ï®¡”¤1
+S
+java:S2696²"6Make the enclosing method "static" or remove this set.(ïûí8ï®¡”¤1
+T
+java:S2696³"6Make the enclosing method "static" or remove this set.(›“”º8ï®¡”¤1
+Y
+java:S2696·"6Make the enclosing method "static" or remove this set.(ŠŠ‰ûÿÿÿÿ8ï®¡”¤1
+Y
+java:S2696Å"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8ï®¡”¤1
+T
+java:S2696Ç"6Make the enclosing method "static" or remove this set.(À³º×8ğ®¡”¤1
+Y
+java:S2696È"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8ğ®¡”¤1
+T
+java:S2696É"6Make the enclosing method "static" or remove this set.(Ê¡‚ä8ğ®¡”¤1
+Y
+java:S2696Ê"6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8ğ®¡”¤1
+S
+java:S2696Ë"6Make the enclosing method "static" or remove this set.(ïûí8ğ®¡”¤1
+T
+java:S2696Ì"6Make the enclosing method "static" or remove this set.(›“”º8ğ®¡”¤1
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8ò®¡”¤1
+T
+java:S2696…"6Make the enclosing method "static" or remove this set.(À³º×8ò®¡”¤1
+Y
+java:S2696†"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8ò®¡”¤1
+Y
+java:S2696‡"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8ò®¡”¤1
+Y
+java:S2696ˆ"6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8ò®¡”¤1
+S
+java:S2696‰"6Make the enclosing method "static" or remove this set.(ïûí8ò®¡”¤1
+T
+java:S2696Š"6Make the enclosing method "static" or remove this set.(›“”º8ò®¡”¤1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(äõÍ¬8ò®¡”¤1
+Y
+java:S2696š"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8ó®¡”¤1
+T
+java:S2696"6Make the enclosing method "static" or remove this set.(À³º×8ó®¡”¤1
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8ó®¡”¤1
+Y
+java:S2696Ÿ"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8ó®¡”¤1
+Y
+java:S2696 "6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8ó®¡”¤1
+Y
+java:S2696¡"6Make the enclosing method "static" or remove this set.(ÄŠˆŒúÿÿÿÿ8ó®¡”¤1
+T
+java:S2696¢"6Make the enclosing method "static" or remove this set.(›“”º8ó®¡”¤1
+T
+java:S2696®"6Make the enclosing method "static" or remove this set.(ş‰ª8ô®¡”¤1
+Y
+java:S2696¶"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8ô®¡”¤1
+T
+java:S2696¾"6Make the enclosing method "static" or remove this set.(À³º×8ô®¡”¤1
+Y
+java:S2696¿"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8ô®¡”¤1
+Y
+java:S2696À"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8ô®¡”¤1
+Y
+java:S2696Á"6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8ô®¡”¤1
+S
+java:S2696Â"6Make the enclosing method "static" or remove this set.(ïûí8ô®¡”¤1
+T
+java:S2696Ã"6Make the enclosing method "static" or remove this set.(ÃŞãÓ8ô®¡”¤1
+Y
+java:S2696Æ"6Make the enclosing method "static" or remove this set.(ùşüÿÿÿÿ8ô®¡”¤1
+Y
+java:S2696Ó"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8õ®¡”¤1
+T
+java:S2696Ö"6Make the enclosing method "static" or remove this set.(À³º×8õ®¡”¤1
+T
+java:S2696×"6Make the enclosing method "static" or remove this set.(àúŒ›8õ®¡”¤1
+Y
+java:S2696Ø"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8õ®¡”¤1
+Y
+java:S2696Ù"6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8õ®¡”¤1
+S
+java:S2696Ú"6Make the enclosing method "static" or remove this set.(ïûí8õ®¡”¤1
+T
+java:S2696Û"6Make the enclosing method "static" or remove this set.(›“”º8õ®¡”¤1
+T
+java:S2696Ş"6Make the enclosing method "static" or remove this set.(©å8õ®¡”¤1
+Y
+java:S2696ë"6Make the enclosing method "static" or remove this set.(øªÌ’şÿÿÿÿ8ö®¡”¤1
+Y
+java:S2696î"6Make the enclosing method "static" or remove this set.(Ìø•œûÿÿÿÿ8ö®¡”¤1
+Y
+java:S2696ï"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8ö®¡”¤1
+Y
+java:S2696ğ"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8ö®¡”¤1
+Y
+java:S2696ñ"6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8ö®¡”¤1
+S
+java:S2696ò"6Make the enclosing method "static" or remove this set.(ïûí8ö®¡”¤1
+T
+java:S2696ó"6Make the enclosing method "static" or remove this set.(›“”º8ö®¡”¤1
+S
+java:S2696ö"6Make the enclosing method "static" or remove this set.(»¥¸N8ö®¡”¤1
+Y
+java:S2696ş"6Make the enclosing method "static" or remove this set.(Şû±€üÿÿÿÿ8ö®¡”¤1
+T
+java:S2696†"6Make the enclosing method "static" or remove this set.(À³º×8÷®¡”¤1
+Y
+java:S2696‡"6Make the enclosing method "static" or remove this set.(Ä»ªâøÿÿÿÿ8÷®¡”¤1
+Y
+java:S2696ˆ"6Make the enclosing method "static" or remove this set.(Ü’€õúÿÿÿÿ8÷®¡”¤1
+Y
+java:S2696‰"6Make the enclosing method "static" or remove this set.(£¯ù†ıÿÿÿÿ8÷®¡”¤1
+S
+java:S2696Š"6Make the enclosing method "static" or remove this set.(ïûí8÷®¡”¤1
+T
+java:S2696‹"6Make the enclosing method "static" or remove this set.(›“”º8÷®¡”¤1
+]	java:S899œ";Do something with the "boolean" value returned by "delete".(İ•œ’üÿÿÿÿ8ø®¡”¤1
+q
+java:S4042œ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(İ•œ’üÿÿÿÿ8ø®¡”¤1
+u
+java:S3776¡"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(ÈÏÙ–øÿÿÿÿ8ø®¡”¤1
+<
+java:S2119µ"Save and re-use this "Random".(¨²øÏ8ú®¡”¤1
+V
+java:S3878à"8Remove this array creation and simply pass the elements.(óÅíµ8û®¡”¤1
+T
+java:S2696š"6Make the enclosing method "static" or remove this set.(ÌãÊ…8€¯¡”¤1
+Y
+java:S2696£"6Make the enclosing method "static" or remove this set.(Û×øÿÿÿÿ8¯¡”¤1
+Z
+java:S1117¹"7Rename "w" which hides the field declared at line 2420.(Éç€³øÿÿÿÿ8¯¡”¤1
+Z
+java:S1117º"7Rename "h" which hides the field declared at line 2421.(ßè±Ëıÿÿÿÿ8‚¯¡”¤1
+
+java:S2142¾"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(®ûºöÿÿÿÿÿ8‚¯¡”¤1
+K	java:S108¾")Either remove or fill this block of code.(®ûºöÿÿÿÿÿ8‚¯¡”¤1
+\
+java:S1128":Remove this unused import 'com.spotifyxp.lib.libLanguage'.(À€Åıÿÿÿÿ8‚¯¡”¤1
+h
+java:S1128"FRemove this unused import 'org.checkerframework.checker.units.qual.A'.(¿‚áñøÿÿÿÿ8‚¯¡”¤1
+c
+java:S1128"FRemove this unused import 'org.checkerframework.checker.units.qual.C'.(ÏıÁÊ8‚¯¡”¤1
+X
+java:S11280";Remove this unused import 'java.beans.PropertyChangeEvent'.(’¢œ§8‚¯¡”¤1
+`
+java:S11281">Remove this unused import 'java.beans.PropertyChangeListener'.(ş¼ÃÀùÿÿÿÿ8‚¯¡”¤1
+Z
+java:S11289"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8‚¯¡”¤1
+ä
+java:S6541€
+"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 82 to 64, Complexity from 24 to 14, Nesting Level from 5 to 2, Number of Variables from 15 to 6.(“–ış8ƒ¯¡”¤1
+å
+java:S6541¢"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 170 to 64, Complexity from 31 to 14, Nesting Level from 9 to 2, Number of Variables from 29 to 6.(“–ış8ƒ¯¡”¤1
+é
+java:S6541¡"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 80 to 64, Complexity from 15 to 14, Nesting Level from 3 to 2, Number of Variables from 29 to 6.(ÈÏÙ–øÿÿÿÿ8ƒ¯¡”¤1

@@ -73,7 +73,8 @@ public class CircularBuffer implements Closeable {
             }
 
             awaitData.signal();
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }
@@ -94,7 +95,8 @@ public class CircularBuffer implements Closeable {
                 tail = 0;
 
             awaitData.signal();
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }
@@ -117,7 +119,7 @@ public class CircularBuffer implements Closeable {
 
             awaitSpace.signal();
             return dest - off;
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
             if (closed) return -1;
             else return 0;
         } finally {

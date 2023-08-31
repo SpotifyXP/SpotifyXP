@@ -151,11 +151,12 @@ public final class Bitstream {
 			size = readID3v2Header(in);
 			header_pos = size;
 		} catch (IOException e) {
+			throw new RuntimeException(e);
 		} finally {
 			try {
 				// Unread ID3v2 header (10 bytes).
 				in.reset();
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 		// Load ID3v2 tags.
@@ -165,7 +166,7 @@ public final class Bitstream {
 				in.read(rawid3v2, 0, rawid3v2.length);
 				parseID3v2Frames(rawid3v2);
 			}
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 		}
 	}
 
@@ -271,7 +272,7 @@ public final class Bitstream {
 		try {
 			String[] ENC_TYPES = {"ISO-8859-1", "UTF16", "UTF-16BE", "UTF-8"};
 			value = new String(bframes, offset + skip, size - skip, ENC_TYPES[bframes[offset]]);
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException ignored) {
 		}
 		return value;
 	}
@@ -301,7 +302,7 @@ public final class Bitstream {
 		try {
 			result = readNextFrame();
 			// E.B, Parse VBR (if any) first frame.
-			if (firstframe == true) {
+			if (firstframe) {
 				result.parseVBR(frame_bytes);
 				firstframe = false;
 			}
@@ -373,7 +374,7 @@ public final class Bitstream {
 
 		try {
 			source.unread(syncbuf, 0, read);
-		} catch (IOException ex) {
+		} catch (IOException ignored) {
 		}
 
 		boolean sync = false;

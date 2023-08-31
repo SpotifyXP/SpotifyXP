@@ -30,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-@SuppressWarnings("Convert2Lambda")
 public class Initiator {
     static SpotifyAPI api = null;
     public static StartupTime startupTime;
@@ -56,17 +55,88 @@ public class Initiator {
         new SplashPanel().show();
         SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
-        SplashPanel.linfo.setText("Setting up logging...");
-        PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
-        PublicValues.logger.setShowTime(false);
-        SplashPanel.linfo.setText("Loading Extensions...");
-        new Injector().autoInject();
+        if(PublicValues.debug) {
+            PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
+            PublicValues.logger.setShowTime(false);
+            ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
+            modules.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
+            modules.setShowTime(false);
+        }else{
+            System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
+                @Override public void write(int b) {}
+            }) {
+                @Override public void flush() {}
+                @Override public void close() {}
+                @Override public void write(int b) {}
+                @Override public void write(byte[] b) {}
+                @Override public void write(byte[] buf, int off, int len) {}
+                @Override public void print(boolean b) {}
+                @Override public void print(char c) {}
+                @Override public void print(int i) {}
+                @Override public void print(long l) {}
+                @Override public void print(float f) {}
+                @Override public void print(double d) {}
+                @Override public void print(char[] s) {}
+                @Override public void print(String s) {}
+                @Override public void print(Object obj) {}
+                @Override public void println() {}
+                @Override public void println(boolean x) {}
+                @Override public void println(char x) {}
+                @Override public void println(int x) {}
+                @Override public void println(long x) {}
+                @Override public void println(float x) {}
+                @Override public void println(double x) {}
+                @Override public void println(char[] x) {}
+                @Override public void println(String x) {}
+                @Override public void println(Object x) {}
+                @Override public java.io.PrintStream printf(String format, Object... args) { return this; }
+                @Override public java.io.PrintStream printf(java.util.Locale l, String format, Object... args) { return this; }
+                @Override public java.io.PrintStream format(String format, Object... args) { return this; }
+                @Override public java.io.PrintStream format(java.util.Locale l, String format, Object... args) { return this; }
+                @Override public java.io.PrintStream append(CharSequence csq) { return this; }
+                @Override public java.io.PrintStream append(CharSequence csq, int start, int end) { return this; }
+                @Override public java.io.PrintStream append(char c) { return this; }
+            });
+            System.setErr(new java.io.PrintStream(new java.io.OutputStream() {
+                @Override public void write(int b) {}
+            }) {
+                @Override public void flush() {}
+                @Override public void close() {}
+                @Override public void write(int b) {}
+                @Override public void write(byte[] b) {}
+                @Override public void write(byte[] buf, int off, int len) {}
+                @Override public void print(boolean b) {}
+                @Override public void print(char c) {}
+                @Override public void print(int i) {}
+                @Override public void print(long l) {}
+                @Override public void print(float f) {}
+                @Override public void print(double d) {}
+                @Override public void print(char[] s) {}
+                @Override public void print(String s) {}
+                @Override public void print(Object obj) {}
+                @Override public void println() {}
+                @Override public void println(boolean x) {}
+                @Override public void println(char x) {}
+                @Override public void println(int x) {}
+                @Override public void println(long x) {}
+                @Override public void println(float x) {}
+                @Override public void println(double x) {}
+                @Override public void println(char[] x) {}
+                @Override public void println(String x) {}
+                @Override public void println(Object x) {}
+                @Override public java.io.PrintStream printf(String format, Object... args) { return this; }
+                @Override public java.io.PrintStream printf(java.util.Locale l, String format, Object... args) { return this; }
+                @Override public java.io.PrintStream format(String format, Object... args) { return this; }
+                @Override public java.io.PrintStream format(java.util.Locale l, String format, Object... args) { return this; }
+                @Override public java.io.PrintStream append(CharSequence csq) { return this; }
+                @Override public java.io.PrintStream append(CharSequence csq, int start, int end) { return this; }
+                @Override public java.io.PrintStream append(char c) { return this; }
+            });
+        }
         SplashPanel.linfo.setText("Parsing arguments...");
         PublicValues.argParser.parseArguments(args);
-        SplashPanel.linfo.setText("Checking debugging...");
-        ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-        modules.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
-        modules.setShowTime(false);
+        SplashPanel.linfo.setText("Loading Extensions...");
+        new Injector().autoInject();
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
@@ -115,7 +185,7 @@ public class Initiator {
             try {
                 loader.tryLoadTheme(PublicValues.config.get(ConfigValues.theme.name));
             }catch (Exception e2) {
-                ConsoleLogging.error("Loading no theme");
+                ConsoleLogging.warning("Failed loading theme! SpotifyXP is now ugly");
             }
         }
         try {
@@ -123,6 +193,7 @@ public class Initiator {
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
+            Updater.disable = true; //Disabling updater
         }
         try {
             if(new File(PublicValues.appLocation, "LOCK").createNewFile()) {
@@ -130,10 +201,11 @@ public class Initiator {
             }
         }catch (Exception e) {
             ExceptionDialog.open(e);
-            ConsoleLoggingModules.Throwable(e);
+            ConsoleLogging.Throwable(e);
+            ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be instable");
         }
         SplashPanel.linfo.setText("Checking login...");
-        if(PublicValues.config.get(ConfigValues.username.name).equals("")) {
+        if(PublicValues.config.get(ConfigValues.username.name).isEmpty()) {
             new LoginDialog().open(); //Show login dialog if no username is set
             startupTime = new StartupTime();
         }

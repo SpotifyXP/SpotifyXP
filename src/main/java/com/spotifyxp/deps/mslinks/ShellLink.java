@@ -363,7 +363,9 @@ public class ShellLink {
 				if (parts.length == 2)
 					helper.setLocalTarget(parts[0], parts[1]);
 			}
-		} catch (ShellLinkException e) {}
+		} catch (ShellLinkException e) {
+			throw new RuntimeException(e);
+		}
 		
 		return this;
 	}

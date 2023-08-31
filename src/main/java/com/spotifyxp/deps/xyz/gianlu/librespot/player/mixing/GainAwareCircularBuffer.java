@@ -51,7 +51,8 @@ class GainAwareCircularBuffer extends CircularBuffer {
             }
 
             awaitSpace.signal();
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }

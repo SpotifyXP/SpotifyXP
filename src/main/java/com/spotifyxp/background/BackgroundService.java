@@ -6,12 +6,15 @@ import com.spotifyxp.dialogs.SystemTrayDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.URLUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;

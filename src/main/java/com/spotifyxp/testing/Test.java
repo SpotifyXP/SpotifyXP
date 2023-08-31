@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -25,6 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-       new Setup();
+
     }
 }

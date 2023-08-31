@@ -20,6 +20,9 @@ public class KeyListener {
         if(PublicValues.appLocation.startsWith("/")) {
             return; //Operating system is Linux KeyListener not supported > Missing library files
         }
+        if(PublicValues.isMacOS) {
+            return; //Same as Linux
+        }
         GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook();
         try {
             keyboardHook.addKeyListener(new GlobalKeyListener() {

@@ -11,6 +11,8 @@ import com.spotifyxp.utils.DoubleArrayList;
 import org.json.JSONObject;
 
 public class Updater {
+    public static boolean disable = false;
+
     public static class UpdateInfo {
         public String version = "";
         public boolean updateAvailable = false;
@@ -97,6 +99,9 @@ public class Updater {
     }
 
     public void invoke() {
+        if(disable) {
+            return;
+        }
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             try {
                 ProcessBuilder builder = new ProcessBuilder("bash", "-c", "java", "-jar", PublicValues.appLocation + "/SpotifyXP-Updater.jar", ApplicationUtils.getVersion(), "\"" + PublicValues.appLocation + "\"");

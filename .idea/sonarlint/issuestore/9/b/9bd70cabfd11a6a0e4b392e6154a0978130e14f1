@@ -1,0 +1,12 @@
+
+W
+java:S1118":Add a private constructor to hide the implicit public one.(‡Ôâ¿8ë½‚Ž¤1
+[
+java:S1128
+">Remove this unused import 'com.spotifyxp.dialogs.LoginDialog'.(‘¹žõ8ó½‚Ž¤1
+a
+java:S1128"DRemove this unused import 'com.spotifyxp.exception.ExceptionDialog'.(éõëã8Œä‚Ž¤1
+e
+java:S1128"HRemove this unused import 'com.spotifyxp.logging.ConsoleLoggingModules'.(ñÜ±¡8Æž„Ž¤1
+\
+java:S1128":Remove this unused import 'java.net.UnknownHostException'.(Ú·¬˜úÿÿÿÿ8ó½‚Ž¤1

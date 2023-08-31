@@ -1,0 +1,63 @@
+
+K
+java:S10660"/Merge this if statement with the enclosing one.(‹Êh8¶íô£1
+W
+java:S1141~"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¶íô£1
+X
+java:S1141˜"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¶íô£1
+s
+java:S1104+"VMake pauseTimer a static final constant or non-public and provide accessors if needed.(äÊÀş8Ÿ¶íô£1
+o
+java:S1104,"RMake locked a static final constant or non-public and provide accessors if needed.(ÜÌİ8Ÿ¶íô£1
+s
+java:S1104;"QMake timer a static final constant or non-public and provide accessors if needed.(ì‘Ôõûÿÿÿÿ8Ÿ¶íô£1
+M
+java:S1444+"0Make this "public static pauseTimer" field final(äÊÀş8Ÿ¶íô£1
+I
+java:S1444,",Make this "public static locked" field final(ÜÌİ8Ÿ¶íô£1
+M
+java:S1444;"+Make this "public static timer" field final(ì‘Ôõûÿÿÿÿ8Ÿ¶íô£1
+£
+java:S1186A"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ç±™Åøÿÿÿÿ8á¶íô£1
+¤
+java:S1186ï"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚËêäşÿÿÿÿ8Ÿ¥ùô£1
+Ÿ
+java:S1186ô"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ãùğß8Ÿ¥ùô£1
+Ÿ
+java:S1186ù"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ü»Åô8Ÿ¥ùô£1
+Ÿ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÎÓ¸¬8Ÿ¥ùô£1
+Ÿ
+java:S1186’"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(íï÷‰8Ÿ¥ùô£1
+t
+java:S3776H"RRefactor this method to reduce its Cognitive Complexity from 60 to the 15 allowed.(ë˜´Æÿÿÿÿÿ8ã¶íô£1
+]	java:S125Z"<This block of commented-out lines of code should be removed.(Æ‰ã¾ûÿÿÿÿ8ä¶íô£1
+R
+java:S1751h"5Remove this "break" statement or make it conditional.(›ûä·8ç¶íô£1
+R
+java:S1751|"5Remove this "break" statement or make it conditional.(›ûä·8è¶íô£1
+S
+java:S1751–"5Remove this "break" statement or make it conditional.(›ûä·8é¶íô£1
+Y
+java:S2696§"6Make the enclosing method "static" or remove this set.(ÔÜ·Áûÿÿÿÿ8ê¶íô£1
+^	java:S125¬"<This block of commented-out lines of code should be removed.(¤œêûÿÿÿÿ8ê¶íô£1
+^	java:S125º"<This block of commented-out lines of code should be removed.(¤œêûÿÿÿÿ8«¥ùô£1
+Y	java:S125Ö"<This block of commented-out lines of code should be removed.(«©Ù€8«¥ùô£1
+Y
+java:S2696ë"6Make the enclosing method "static" or remove this set.(ÔÜ·Áûÿÿÿÿ8¬¥ùô£1
+`
+java:S1128"CRemove this unused import 'com.spotifyxp.api.UnofficialSpotifyAPI'.(Î¸‡8Œ¿üô£1
+
+java:S1128"rRemove this unused import 'com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack'.(ĞºÖp8Œ¿üô£1
+`
+java:S1128">Remove this unused import 'com.spotifyxp.threading.DefThread'.(±æğÕûÿÿÿÿ8ñ „õ£1
+^
+java:S1128"ARemove this unused import 'com.spotifyxp.utils.GraphicalMessage'.(ƒšÅÛ8©¬ˆõ£1
+Z
+java:S1128"=Remove this unused import 'com.spotifyxp.video.CanvasPlayer'.(Âƒ˜ş8¿üô£1
+b
+java:S1128"@Remove this unused import 'javax.swing.table.DefaultTableModel'.(è†åûÿÿÿÿ8›Ò‚õ£1
+M
+java:S1128""0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¿üô£1
+è
+java:S6541H"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 87 to 64, Complexity from 15 to 14, Nesting Level from 6 to 2, Number of Variables from 24 to 6.(ë˜´Æÿÿÿÿÿ8ì¶íô£1

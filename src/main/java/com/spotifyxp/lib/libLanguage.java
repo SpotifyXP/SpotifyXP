@@ -287,7 +287,8 @@ public class libLanguage {
                     }
                 });
                 jsoncache = object.toString();
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
         if(afl) {
@@ -325,7 +326,8 @@ public class libLanguage {
                     });
                     jsoncache = object.toString();
                     return ret[0];
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
             }
             try {

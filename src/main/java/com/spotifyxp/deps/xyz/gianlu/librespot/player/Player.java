@@ -782,6 +782,11 @@ public class Player implements Closeable {
         return new Tracks(state.getPrevTracks(), state.getCurrentTrack(), state.getNextTracks(withQueue));
     }
 
+    public void clearQueue() {
+        state.getNextTracks(true).clear();
+        state.getPrevTracks().clear();
+    }
+
     /**
      * @return The metadata for the current entry or {@code null} if not available.
      */

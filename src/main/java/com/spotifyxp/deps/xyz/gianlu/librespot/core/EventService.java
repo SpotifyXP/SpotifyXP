@@ -101,7 +101,8 @@ public final class EventService implements Closeable {
 
         try {
             asyncWorker.awaitTermination(1, TimeUnit.SECONDS);
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -365,7 +365,8 @@ public class CdnManager {
                 if (cacheHandler != null) {
                     try {
                         cacheHandler.close();
-                    } catch (IOException ignored) {
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }

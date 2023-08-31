@@ -1,0 +1,14 @@
+
+v	java:S135¦"YReduce the total number of break and continue statements in this loop to use at most one.(¶Ì§ô8ŞÆíõ£1
+X
+java:S1141Ê"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ßÆíõ£1
+t
+java:S3077N"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ö¶ìà8ƒüçõ£1
+t
+java:S3776n"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(±ä—–ıÿÿÿÿ8†üçõ£1
+p
+java:S3776‘"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(“–ış8Ò±íõ£1
+
+java:S2142«"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(è®ã¶øÿÿÿÿ8¹Èíõ£1
+K	java:S108Í")Either remove or fill this block of code.(ÿæ÷Ïüÿÿÿÿ8ºÈíõ£1
+E	java:S108")Either remove or fill this block of code.(”ã‰G8»Èíõ£1

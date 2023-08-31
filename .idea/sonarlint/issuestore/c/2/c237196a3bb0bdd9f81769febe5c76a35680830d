@@ -1,0 +1,36 @@
+
+{	java:S135ó"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ8ãïúõ£1
+s	java:S117¹"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·’€Ùşÿÿÿÿ8äïúõ£1
+[
+java:S2589Ø"8Remove this expression which always evaluates to "false"(Á‡„øÿÿÿÿ8¢òúõ£1
+p
+java:S1871©"MThis branch's code block is the same as the block for the branch on line 168.(ø†œ›ùÿÿÿÿ8©òúõ£1
+b
+java:S2886"DSynchronize this method to match the synchronization on "getVolume".(È×ªÜ8°òúõ£1
+u
+java:S3776Š"RRefactor this method to reduce its Cognitive Complexity from 62 to the 15 allowed.(›Ÿàîÿÿÿÿÿ8°òúõ£1
+u
+java:S3776ë"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(Ã¡ÖÀùÿÿÿÿ8¾òúõ£1
+|
+java:S4276ï"YRefactor this code to use the more specialised Functional Interface 'ToIntFunction<List>'(®Šçìşÿÿÿÿ8Íòúõ£1
+u
+java:S3776Ö	"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ã­¨Çşÿÿÿÿ8Ğòúõ£1
+u
+java:S3776ş	"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(î×¿şşÿÿÿÿ8Òòúõ£1
+u
+java:S3776ğ
+"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(›ÔÅ­úÿÿÿÿ8Ôòúõ£1
+Y	java:S125ñ
+"<This block of commented-out lines of code should be removed.(§ç Ê8Ôòúõ£1
+^	java:S125õ
+"<This block of commented-out lines of code should be removed.(ë°ú‰ÿÿÿÿÿ8Ôòúõ£1
+L
+java:S5413×")Verify that "remove()" is used correctly.(Á˜’İıÿÿÿÿ8×òúõ£1
+Z
+java:S1117ï"<Rename "counter" which hides the field declared at line 330.(™·³›8×òúõ£1
+T
+java:S1128"7Remove this unused import 'com.spotifyxp.PublicValues'.(ä¶úƒ8Øòúõ£1
+H
+java:S3398Ñ"%Move this method into "TracksKeeper".(Äáæ¢şÿÿÿÿ8Øòúõ£1
+C
+java:S3398›"%Move this method into "TracksKeeper".(Á¶¶¦8Øòúõ£1

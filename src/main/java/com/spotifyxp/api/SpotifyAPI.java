@@ -56,6 +56,10 @@ public class SpotifyAPI {
             try {
                 player = PlayerUtils.buildPlayer();
             }catch (EOFException e) {
+                if(times > 5) {
+                    GraphicalMessage.sorryErrorExit("Couldn't build player");
+                    return;
+                }
                 handleEOFBug();
                 return;
             }
@@ -74,6 +78,7 @@ public class SpotifyAPI {
         }
 
         void handleEOFBug() {
+            times++;
             retry();
         }
 

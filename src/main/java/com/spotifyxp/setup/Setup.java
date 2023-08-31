@@ -24,6 +24,8 @@ import java.nio.file.Paths;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Setup {
+
+    @SuppressWarnings("all")
     public Setup() {
         SplashPanel.frame.setVisible(false);
         AcceptComponent thirdparty = new AcceptComponent();
