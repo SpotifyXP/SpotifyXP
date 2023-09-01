@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.threading.DefThread;
@@ -26,7 +27,7 @@ public class HomePanel {
     UnofficialSpotifyAPI.HomeTab tab;
 
     public HomePanel() {
-        tab = new UnofficialSpotifyAPI(ContentPanel.api.getSpotifyApi().getAccessToken()).getHomeTab();
+        tab = Factory.getUnofficialSpotifyApi().getHomeTab();
         initializeLayout();
     }
 
@@ -123,7 +124,7 @@ public class HomePanel {
                                 ((DefaultTableModel)ContentPanel.artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
                                 ContentPanel.artistPanel.artisttitle.setText("");
                                 try {
-                                    Artist a = ContentPanel.api.getSpotifyApi().getArtist(id).build().execute();
+                                    Artist a = Factory.getSpotifyApi().getArtist(id).build().execute();
                                     try {
                                         ContentPanel.artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
@@ -133,16 +134,16 @@ public class HomePanel {
                                     DefThread trackthread = new DefThread(new Runnable() {
                                         public void run() {
                                             try {
-                                                for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                                for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
                                                     ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                    ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                    Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
                                                 }
                                             } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                                 ConsoleLogging.Throwable(ex);
                                             }
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(new Runnable() { public void run() { ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable); }});
+                                    DefThread albumthread = new DefThread(new Runnable() { public void run() { Factory.getSpotifyAPI().addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable); }});
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
@@ -230,7 +231,7 @@ public class HomePanel {
                                 ((DefaultTableModel)ContentPanel.artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
                                 ContentPanel.artistPanel.artisttitle.setText("");
                                 try {
-                                    Artist a = ContentPanel.api.getSpotifyApi().getArtist(id).build().execute();
+                                    Artist a = Factory.getSpotifyApi().getArtist(id).build().execute();
                                     try {
                                         ContentPanel.artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
@@ -241,9 +242,9 @@ public class HomePanel {
                                         @Override
                                         public void run() {
                                             try {
-                                                for (Track t : ContentPanel.api.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                                for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
                                                     ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                    ContentPanel.api.addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                    Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
                                                 }
                                             } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                                 ConsoleLogging.Throwable(ex);
@@ -253,7 +254,7 @@ public class HomePanel {
                                     DefThread albumthread = new DefThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            ContentPanel.api.addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable);
+                                            Factory.getSpotifyAPI().addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable);
                                         }
                                     });
                                     albumthread.start();

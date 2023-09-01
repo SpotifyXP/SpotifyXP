@@ -5,6 +5,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.E
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
@@ -38,8 +39,7 @@ import java.util.TimerTask;
 
 @SuppressWarnings("CanBeFinal")
 public class PlayerListener implements Player.EventsListener {
-    private final SpotifyAPI.Player pl;
-    private final SpotifyAPI a;
+    private final com.spotifyxp.api.Player pl;
     public static boolean pauseTimer = false;
     public static boolean locked = true;
     class PlayerThread extends TimerTask {
@@ -57,9 +57,8 @@ public class PlayerListener implements Player.EventsListener {
         }
     }
     public static Timer timer = new Timer();
-    public PlayerListener(SpotifyAPI.Player p, SpotifyAPI api) {
+    public PlayerListener(com.spotifyxp.api.Player p) {
         pl = p;
-        a = api;
     }
     @Override
     public void onContextChanged(@NotNull Player player, @NotNull String s) {
@@ -93,7 +92,7 @@ public class PlayerListener implements Player.EventsListener {
                 //---
                 StringBuilder artists = new StringBuilder();
                 if(playableId.toSpotifyUri().contains("episode")) {
-                    Episode episode = a.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                    Episode episode = Factory.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
                     ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
                     ContentPanel.playertitle.setText(episode.getName());
                     artists.append(episode.getShow().getPublisher());
@@ -106,7 +105,7 @@ public class PlayerListener implements Player.EventsListener {
                 }
                 else{
                     if(playableId.toSpotifyUri().contains("track")) {
-                        Track track = a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
                         ContentPanel.playertitle.setText(track.getName());
                         for (ArtistSimplified artist : track.getArtists()) {
@@ -132,7 +131,7 @@ public class PlayerListener implements Player.EventsListener {
                         }
                     }else{
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
-                        Track track = a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
                         ContentPanel.playerplaytimetotal.setText(String.valueOf(track.getDurationMs()));
                         ContentPanel.playertitle.setText(track.getName());
                         for (ArtistSimplified artist : track.getArtists()) {

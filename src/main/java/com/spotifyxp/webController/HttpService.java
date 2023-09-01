@@ -2,6 +2,7 @@ package com.spotifyxp.webController;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.HttpUtils;
@@ -115,7 +116,7 @@ public class HttpService {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         try {
-                            PublicValues.spotifyplayer.load(ContentPanel.api.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle, false);
+                            PublicValues.spotifyplayer.load(Factory.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle, false);
                         } catch (Exception ignored) {
                         }
                     }else{
@@ -127,7 +128,7 @@ public class HttpService {
                             cors(exchange);
                             HttpUtils.sendResource("OK.html", exchange);
                             try {
-                                PublicValues.spotifyplayer.load(ContentPanel.api.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle, false);
+                                PublicValues.spotifyplayer.load(Factory.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, ContentPanel.shuffle, false);
                             } catch (Exception ignored) {
                             }
                         } else {
@@ -265,7 +266,7 @@ public class HttpService {
                 public void handle(HttpExchange exchange) throws IOException {
                     if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                         cors(exchange);
-                        HttpUtils.sendHTML(PublicValues.apikey, exchange);
+                        HttpUtils.sendHTML(Factory.getSpotifyApi().getAccessToken(), exchange);
                     }else{
                         if (ips.isEmpty()) {
                             HttpUtils.sendResource("auth.html", exchange);
@@ -273,7 +274,7 @@ public class HttpService {
                         }
                         if (ips.contains(exchange.getRemoteAddress().getAddress().toString())) {
                             cors(exchange);
-                            HttpUtils.sendHTML(PublicValues.apikey, exchange);
+                            HttpUtils.sendHTML(Factory.getSpotifyApi().getAccessToken(), exchange);
                         } else {
                             HttpUtils.sendResource("auth.html", exchange);
                         }

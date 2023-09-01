@@ -104,6 +104,22 @@ public class SpotifyApi {
   private String accessToken;
   private String refreshToken;
 
+  public SpotifyApi() {
+    this.httpManager = null;
+    this.scheme = null;
+    this.host = null;
+    this.port = null;
+    this.proxyUrl = null;
+    this.proxyPort = null;
+    this.proxyUsername = null;
+    this.proxyPassword = null;
+    this.clientId = null;
+    this.clientSecret = null;
+    this.redirectUri = null;
+    this.accessToken = null;
+    this.refreshToken = null;
+  }
+
   private SpotifyApi(Builder builder) {
     assert (builder.httpManager != null);
 

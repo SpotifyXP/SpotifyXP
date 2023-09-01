@@ -5,6 +5,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.designs.Theme;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.Resources;
@@ -47,9 +48,9 @@ public class LyricsDialog {
         area.setText("");
         try {
             if (frame.isVisible()) {
-                lyrics = new UnofficialSpotifyAPI(ContentPanel.api.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
             } else {
-                lyrics = new UnofficialSpotifyAPI(ContentPanel.api.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
                 area.setEditable(false);
                 frame.add(pane, BorderLayout.CENTER);
                 frame.addWindowListener(new WindowAdapter() {

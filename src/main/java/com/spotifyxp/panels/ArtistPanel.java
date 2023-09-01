@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
@@ -116,7 +117,7 @@ public class ArtistPanel extends JPanel {
                     ContentPanel.searchplaylistsongscache.clear();
                     ((DefaultTableModel)ContentPanel.searchplaylisttable.getModel()).setRowCount(0);
                     try {
-                        Album album = ContentPanel.api.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
+                        Album album = Factory.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
                         for(TrackSimplified simplified : album.getTracks().getItems()) {
                             ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                             ContentPanel.searchplaylistsongscache.add(simplified.getUri());

@@ -2,6 +2,7 @@ package com.spotifyxp;
 
 
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
@@ -23,14 +24,13 @@ import java.util.ArrayList;
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static boolean playingFromLibrary = false;
-    public static String apikey = "";
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
     public static String startmenupath = System.getenv("appdata") + "/Microsoft/Windows/Start Menu/Programs";
     public static String configlocation = fileslocation + "/config.toml";
     public static Player spotifyplayer = null;
     public static ConsoleLogging logger = new ConsoleLogging("SpotifyXP");
-    public static SpotifyAPI.OAuthPKCE elevated = null;
+    public static OAuthPKCE elevated = null;
     public static String configfilepath = fileslocation + "/config.properties";
     public static Config config = null;
     public static Session session;

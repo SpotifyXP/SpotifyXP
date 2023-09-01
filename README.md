@@ -21,6 +21,7 @@
 
 * [About the Project](#about-the-project)
 * [System Requirements](#system-requirements)
+* [Translating](#translating)
 * [Built With](#built-with)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
@@ -48,6 +49,13 @@ On december 2022 Spotify shutdown it's last version for Windows XP so this appli
 * RAM: 128MB (Maybe 64MB?)
 * Storage (Without cache): 60MB
 * Storage (With cache): My folder is 700MB
+
+## Translating
+
+<p>If you want to translate this project look into src/main/resources/lang/skeleton.json</p>
+<p>Make sure you have run 'python3 i18nhelper.py -skeleton' to make sure the skeleton is up to date</p>
+<p>Rename skeleton.json to [2DigitLanguageCode].json</p>
+
 
 ## Built With
 
@@ -130,7 +138,7 @@ Just make your desired changes and open a pull request
 
 ## License
 
-License is coming soon
+Not compatible with any license
 
 ## Authors
 

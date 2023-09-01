@@ -2,6 +2,7 @@ package com.spotifyxp.guielements;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
@@ -129,7 +130,7 @@ public class DefaultTable extends JTable {
             return null;
         }
         try {
-            return ContentPanel.api.getSpotifyApi().getTrack(uricache.get(row)).build().execute();
+            return Factory.getSpotifyApi().getTrack(uricache.get(row)).build().execute();
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
             return null;

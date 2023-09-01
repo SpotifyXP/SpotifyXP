@@ -1,7 +1,10 @@
 package com.spotifyxp;
 
 
+import com.spotifyxp.api.OAuthPKCE;
+import com.spotifyxp.api.Player;
 import com.spotifyxp.audio.Quality;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.webController.HttpService;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.injector.Injector;
@@ -31,7 +34,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class Initiator {
-    static SpotifyAPI api = null;
     public static StartupTime startupTime;
     static DefThread hook = new DefThread(ContentPanel::saveCurrentState);
     public static DefThread thread = new DefThread(new Runnable() {
@@ -55,6 +57,8 @@ public class Initiator {
         new SplashPanel().show();
         SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
+        SplashPanel.linfo.setText("Parsing arguments...");
+        PublicValues.argParser.parseArguments(args);
         if(PublicValues.debug) {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
             PublicValues.logger.setShowTime(false);
@@ -133,8 +137,6 @@ public class Initiator {
                 @Override public java.io.PrintStream append(char c) { return this; }
             });
         }
-        SplashPanel.linfo.setText("Parsing arguments...");
-        PublicValues.argParser.parseArguments(args);
         SplashPanel.linfo.setText("Loading Extensions...");
         new Injector().autoInject();
         SplashPanel.linfo.setText("Detecting operating system...");
@@ -213,15 +215,16 @@ public class Initiator {
         Runtime.getRuntime().addShutdownHook(hook.getRawThread()); //Gets executed when SpotifyXP is closing
         SplashPanel.linfo.setText("Creating api...");
         thread.start();
-        api = new SpotifyAPI();
-        SpotifyAPI.Player player = new SpotifyAPI.Player(api);
+        Factory.getSpotifyAPI();
+        Player player = Factory.getPlayer();
         past = true;
         SplashPanel.linfo.setText("Creating keylistener...");
         new KeyListener().start();
         SplashPanel.linfo.setText("Create advanced api key...");
-        PublicValues.elevated = new SpotifyAPI.OAuthPKCE();
+        PublicValues.elevated = Factory.getPkce();
+        Factory.getUnofficialSpotifyApi();
         SplashPanel.linfo.setText("Creating contentPanel...");
-        ContentPanel panel = new ContentPanel(player, api);
+        ContentPanel panel = new ContentPanel(player);
         SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
         SplashPanel.linfo.setText("Check updater...");

@@ -10,9 +10,6 @@ public class Debug implements Argument{
             @Override
             public void run() {
                 PublicValues.debug = true;
-                ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
-                modules.setColored(false);
-                modules.setShowTime(false);
             }
         };
     }

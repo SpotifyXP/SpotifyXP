@@ -2,10 +2,12 @@ package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
@@ -333,7 +335,7 @@ public class SpotifyHttpManager implements IHttpManager {
         //Refresh token
         PublicValues.elevated.refresh();
         base.removeHeaders("Authorization");
-        base.addHeader("Authorization", "Bearer " + SpotifyAPI.OAuthPKCE.token);
+        base.addHeader("Authorization", "Bearer " + Factory.getPkce().getToken());
         switch (method) {
           case "get":
             triggerTokenExpire = false;

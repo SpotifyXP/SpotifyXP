@@ -2,6 +2,7 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -197,12 +198,12 @@ public class TrackUtils {
         return false;
     }
     public static void removeLovedTrack(JTable table, ArrayList<String> uricache) {
-        ContentPanel.api.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
+        Factory.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
         ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
     }
     public static void removeFollowedPlaylist(JTable table, ArrayList<String> uricache) {
-        ContentPanel.api.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
+        Factory.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
         ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
     }

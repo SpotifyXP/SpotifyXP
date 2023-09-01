@@ -85,6 +85,13 @@ public class Player implements Closeable {
         initState();
     }
 
+    public Player() {
+        this.conf = null;
+        this.session = null;
+        this.events = null;
+        this.sink = null;
+    }
+
     public void addEventsListener(@NotNull EventsListener listener) {
         events.listeners.add(listener);
     }
