@@ -80,6 +80,27 @@ public final class VorbisDecoder extends Decoder {
         setAudioFormat(new OutputAudioFormat(jorbisInfo.rate, 16, jorbisInfo.channels, true, false));
     }
 
+    public VorbisDecoder(@NotNull SeekableInputStream audioIn, float normalizationFactor, int duration, boolean module) throws IOException, DecoderException {
+        super(audioIn, normalizationFactor, duration);
+
+        this.joggSyncState.init();
+        this.joggSyncState.buffer(Decoder.BUFFER_SIZE);
+        this.buffer = joggSyncState.data;
+
+        readHeader();
+        seekZero = audioIn.position();
+
+        convertedBuffer = new byte[CONVERTED_BUFFER_SIZE];
+
+        jorbisDspState.synthesis_init(jorbisInfo);
+        jorbisBlock.init(jorbisDspState);
+
+        pcmInfo = new float[1][][];
+        pcmIndex = new int[jorbisInfo.channels];
+
+        setAudioFormat(new OutputAudioFormat(jorbisInfo.rate, 16, jorbisInfo.channels, true, false));
+    }
+
     /**
      * Get the track time. Be aware that after a seek operation this value won't be updated immediately,
      * if the playback is paused you'll need to wait once it's resumed.

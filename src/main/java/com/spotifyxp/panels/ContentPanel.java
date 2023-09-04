@@ -2458,6 +2458,7 @@ public class ContentPanel extends JPanel {
         createHome();
         SplashPanel.linfo.setText("Creating CanvasPlayer...");
         if(!System.getProperty("os.name").toLowerCase().contains("mac")) {
+            GraphicalMessage.bug("Mac");
             PublicValues.canvasPlayer = new CanvasPlayer();
         }else{
             PublicValues.canvasPlayer = new DummyCanvasPlayer(false);

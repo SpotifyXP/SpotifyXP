@@ -54,5 +54,6 @@ public class PublicValues {
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
     public static boolean isSteamDeckMode = false;
     public static String tempPath = System.getenv("temp");
+    public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
     public static CanvasPlayer canvasPlayer;
 }

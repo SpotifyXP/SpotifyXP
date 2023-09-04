@@ -169,7 +169,7 @@ public final class Session implements Closeable {
 
         builder.addInterceptor(chain -> {
             Request original = chain.request();
-            RequestBody body;
+            RequestBody body  ;
             if ((body = original.body()) == null || original.header("Content-Encoding") != null)
                 return chain.proceed(original);
 

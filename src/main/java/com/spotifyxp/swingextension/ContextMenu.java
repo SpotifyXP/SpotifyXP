@@ -28,6 +28,7 @@ public class ContextMenu {
             i.addActionListener(e -> item.torun.run());
             holder.add(i);
         }
+        PublicValues.contextMenus.add(this);
     }
     public ContextMenu(JComponent component) {
         component.addMouseListener(new MouseAdapter() {
@@ -44,6 +45,7 @@ public class ContextMenu {
             i.addActionListener(e -> item.torun.run());
             holder.add(i);
         }
+        PublicValues.contextMenus.add(this);
     }
     public void addItem(String text, Runnable onClick) {
         JMenuItem item = new JMenuItem(text);

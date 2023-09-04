@@ -499,6 +499,7 @@ public class Player implements Closeable {
      * @param play  Whether the playback should start immediately
      * @param trans A {@link TransitionInfo} object containing information about this track change
      */
+
     private void loadTrack(boolean play, @NotNull TransitionInfo trans) {
         endMetrics(playerSession.currentPlaybackId(), trans.endedReason, playerSession.currentMetrics(), trans.endedWhen);
 
@@ -506,7 +507,6 @@ public class Player implements Closeable {
         String playbackId = playerSession.play(state.getCurrentPlayableOrThrow(), state.getPosition(), trans.startedReason);
         state.setPlaybackId(playbackId);
         session.eventService().sendEvent(new NewPlaybackIdEvent(state.getSessionId(), playbackId));
-
         if (play) sink.resume();
         else sink.pause(false);
 

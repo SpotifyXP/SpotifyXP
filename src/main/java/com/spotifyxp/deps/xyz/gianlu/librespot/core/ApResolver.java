@@ -35,6 +35,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +75,8 @@ public final class ApResolver {
         return list;
     }
 
+    int times = 0;
+
     private void request(@NotNull String... types) throws IOException {
         if (types.length == 0) throw new IllegalArgumentException();
 
@@ -92,8 +95,7 @@ public final class ApResolver {
             byte[] resp = IOUtils.toByteArray(body.byteStream());
             try {
                 if (IOUtils.toString(resp).split("<title>")[1].replace("</title>", "").contains("502")) {
-                    GraphicalMessage.sorryError("Spotify APResolve responded with 502");
-                    System.exit(2);
+                    GraphicalMessage.sorryErrorExit("Spotify APResolve responded with 502");
                 }
             }catch (ArrayIndexOutOfBoundsException e) {
                 //200 OK
@@ -110,6 +112,13 @@ public final class ApResolver {
             }
 
             ConsoleLoggingModules.info("Loaded aps into pool: " + pool);
+            times = 0;
+        }catch (SocketTimeoutException e) {
+            if(times > 10) {
+                GraphicalMessage.sorryErrorExit("Socket timeout");
+            }
+            request(types);
+            times++;
         }
     }
 

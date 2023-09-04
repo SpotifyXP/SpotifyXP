@@ -189,7 +189,7 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.audioquality.name, "NORMAL");
                 break;
             case "High":
-                PublicValues.config.write(ConfigValues.audioquality.name, "HIGHT");
+                PublicValues.config.write(ConfigValues.audioquality.name, "HIGH");
                 break;
             case "Very_High":
                 PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
