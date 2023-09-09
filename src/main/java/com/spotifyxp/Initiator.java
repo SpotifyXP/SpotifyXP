@@ -227,21 +227,26 @@ public class Initiator {
         ContentPanel panel = new ContentPanel(player);
         SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
-        SplashPanel.linfo.setText("Check updater...");
+        SplashPanel.hide();
         Updater.UpdateInfo info = new Updater().updateAvailable();
-        if(info.updateAvailable) {
-            String version = info.version;
-            ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-            new Updater().invoke();
-        }else{
-            if(new Updater().isNightly()) {
-                ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
-                ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
-            } else {
-                ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                if(info.updateAvailable) {
+                    String version = info.version;
+                    ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
+                    new Updater().invoke();
+                }else{
+                    if(new Updater().isNightly()) {
+                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
+                        ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
+                    } else {
+                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
+                    }
+                }
             }
-        }
-        SplashPanel.linfo.setText("Showing startup time...");
+        });
+        thread.start();
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide();
         panel.open();

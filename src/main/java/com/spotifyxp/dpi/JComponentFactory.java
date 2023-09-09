@@ -22,8 +22,36 @@ public class JComponentFactory {
         jcomponents.add(jcomponent);
     }
 
+    static int oldw;
+    static int oldh;
     public static void enableResizing() {
-        //Learning how to do this
+        oldw = ContentPanel.frame.getWidth();
+        oldh = ContentPanel.frame.getHeight();
+        ContentPanel.frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int rw = ContentPanel.frame.getWidth() - oldw;
+                int rh = ContentPanel.frame.getHeight() - oldh;
+                for(JComponent component : jcomponents) {
+                    if (rw > 0) {
+                        // +
+                        component.setSize(component.getWidth() + rw, component.getHeight());
+                    }else{
+                        // -
+                        component.setSize(component.getWidth() - rw, component.getHeight());
+                    }
+                    if (rw > 0) {
+                        // +
+                        component.setSize(component.getWidth(), component.getHeight() + rh);
+                    }else{
+                        // -
+                        component.setSize(component.getWidth(), component.getHeight() - rh);
+                    }
+                }
+                oldw = ContentPanel.frame.getWidth();
+                oldh = ContentPanel.frame.getHeight();
+            }
+        });
     }
 
     public static void applyDPI() {

@@ -2,7 +2,6 @@ package com.spotifyxp.swingextension;
 
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.designs.Theme;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;

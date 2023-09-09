@@ -9,6 +9,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
@@ -51,7 +52,7 @@ public class ArtistPanel extends JPanel {
         artistpopularscrollpane.setBounds(10, 320, 780, 277);
         add(artistpopularscrollpane);
 
-        artistpopularsonglist = (JTable) JComponentFactory.createJComponent(new JTable() {
+        artistpopularsonglist = (JTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -70,7 +71,7 @@ public class ArtistPanel extends JPanel {
         artistalbumscrollpanel.setBounds(10, 667, 780, 295);
         add(artistalbumscrollpanel);
 
-        artistalbumalbumtable = (JTable) JComponentFactory.createJComponent(new JTable() {
+        artistalbumalbumtable = (JTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }

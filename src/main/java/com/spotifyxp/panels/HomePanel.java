@@ -7,8 +7,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.factory.Factory;
-import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
@@ -68,7 +68,7 @@ public class HomePanel {
         homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
         content.add(homepanelmodulescrollpanel);
 
-        JTable homepanelmodulecontenttable = (JTable) JComponentFactory.createJComponent(new JTable()  {
+        JTable homepanelmodulecontenttable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -193,7 +193,7 @@ public class HomePanel {
         homepaneluserscrollpanel.setBounds(0, 39, 777, 261);
         content.add(homepaneluserscrollpanel);
 
-        JTable homepanelusertable = (JTable) JComponentFactory.createJComponent(new JTable()  {
+        JTable homepanelusertable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }

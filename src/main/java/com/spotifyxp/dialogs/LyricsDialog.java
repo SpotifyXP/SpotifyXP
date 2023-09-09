@@ -3,7 +3,6 @@ package com.spotifyxp.dialogs;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.designs.Theme;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;

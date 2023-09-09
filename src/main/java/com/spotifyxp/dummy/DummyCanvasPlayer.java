@@ -1,5 +1,6 @@
 package com.spotifyxp.dummy;
 
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.video.CanvasPlayer;
 
 public class DummyCanvasPlayer extends CanvasPlayer {
@@ -9,6 +10,11 @@ public class DummyCanvasPlayer extends CanvasPlayer {
 
     @Override
     public void play() {
+
+    }
+
+    @Override
+    public void show() {
 
     }
 
