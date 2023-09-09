@@ -1063,12 +1063,40 @@ public class ContentPanel extends JPanel {
                     playlistssonguricache.clear();
                     ((DefaultTableModel)playlistssongtable.getModel()).setRowCount(0);
                     try {
-                        for (PlaylistTrack track : Factory.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getItems()) {
-                            playlistssonguricache.add(track.getTrack().getUri());
-                            ((DefaultTableModel)playlistssongtable.getModel()).addRow(new Object[] {track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                        Playlist pl = Factory.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute();
+                        if(pl.getTracks().getTotal() > 100) {
+                            int parsed = 0;
+                            int offset = 100;
+                            for (PlaylistTrack track : pl.getTracks().getItems()) {
+                                if(!playlistsplayliststable.isVisible()) {
+                                    break;
+                                }
+                                playlistssonguricache.add(track.getTrack().getUri());
+                                ((DefaultTableModel)playlistssongtable.getModel()).addRow(new Object[] {track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                            }
+                            while(true) {
+                                if(!searchplaylisttable.isVisible()) {
+                                    break;
+                                }
+                                if(parsed == pl.getTracks().getTotal()) {
+                                    break;
+                                }
+                                Paging<PlaylistTrack> tracks = Factory.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).build().execute();
+                                for (PlaylistTrack track : tracks.getItems()) {
+                                    playlistssonguricache.add(track.getTrack().getUri());
+                                    ((DefaultTableModel)playlistssongtable.getModel()).addRow(new Object[] {track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                    parsed++;
+                                }
+                                offset = offset + 100;
+                            }
+                        }else {
+                            for (PlaylistTrack track : Factory.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getItems()) {
+                                playlistssonguricache.add(track.getTrack().getUri());
+                                ((DefaultTableModel)playlistssongtable.getModel()).addRow(new Object[] {track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                            }
                         }
-                    } catch (IOException | SpotifyWebApiException | ParseException ignored) {
-
+                    } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                        ConsoleLogging.Throwable(ex);
                     }
                 }
             }
