@@ -2273,11 +2273,11 @@ public class ContentPanel extends JPanel {
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog();
+                JFrame dialog = new JFrame();
                 dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
-                SettingsPanel panel = new SettingsPanel();
-                dialog.setPreferredSize(new Dimension(793, 600));
-                dialog.getContentPane().add(panel);
+                dialog.getContentPane().add(new SettingsPanel());
+                dialog.setPreferredSize(new Dimension(422, 506));
+                dialog.setResizable(false);
                 dialog.setVisible(true);
                 dialog.pack();
                 dialog.addWindowListener(new WindowAdapter() {

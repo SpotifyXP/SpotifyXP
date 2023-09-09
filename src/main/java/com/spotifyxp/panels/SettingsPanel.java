@@ -12,6 +12,8 @@ import org.apache.xmlgraphics.io.Resource;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -36,51 +38,85 @@ public class SettingsPanel extends JPanel {
     public static JLabel settingslanguagelabel;
     public static JLabel settingslanguageselectlabel;
     public static JComboBox settingslanguageselect;
+    public static JLabel settingsbrowserlabel;
+    public static JLabel settingsbrowserpathlable;
+    public static JLabel settingsuilabel;
+    public static JLabel settingsuithemelabel;
+    public static JLabel settingsplaybacklabel;
+    public static JLabel settingsplaybackselectqualitylabel;
+
+    //Borders
+    public static JPanel browsersettingsborder;
+    public static JPanel settingsuiborder;
+    public static JPanel playbackborder;
+    //
 
     public SettingsPanel() {
-        setBounds(100, 100, 800, 600);
+        if(PublicValues.theme.hasLegacyUI()) {
+            setBounds(100, 100, 422, 506);
+        }else {
+            setBounds(100, 100, 800, 600);
+        }
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
-        JLabel settingsbrowserlabel =(JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.browser.label")));
-        settingsbrowserlabel.setBounds(10, 11, 206, 29);
-        add(settingsbrowserlabel);
+        // Initiate and add borders
+        browsersettingsborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        browsersettingsborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.browser.label")));
+        browsersettingsborder.setBounds(20, 6, 382, 104);
+        browsersettingsborder.setLayout(null);
+        add(browsersettingsborder);
+        settingsuiborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        settingsuiborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.ui.label")));
+        settingsuiborder.setBounds(19, 122, 382, 178);
+        settingsuiborder.setLayout(null);
+        add(settingsuiborder);
+        playbackborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        playbackborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.playback.label")));
+        playbackborder.setBounds(20, 312, 382, 121);
+        playbackborder.setLayout(null);
+        add(playbackborder);
+        //
+
+        settingsbrowserlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.browser.label")));
+        settingsbrowserlabel.setBounds(10, 451, 206, 29);
+        //add(settingsbrowserlabel);
 
         settingsbrowserlabel.setForeground(PublicValues.globalFontColor);
 
         settingsbrowserpath = (JTextField) JComponentFactory.createJComponent(new JTextField());
-        settingsbrowserpath.setBounds(81, 54, 364, 20);
-        add(settingsbrowserpath);
+        settingsbrowserpath.setBounds(6, 39, 370, 26);
+        browsersettingsborder.add(settingsbrowserpath);
         settingsbrowserpath.setColumns(10);
 
-        JLabel settingsbrowserpathlable = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label")));
-        settingsbrowserpathlable.setHorizontalAlignment(SwingConstants.RIGHT);
-        settingsbrowserpathlable.setBounds(10, 57, 46, 14);
-        add(settingsbrowserpathlable);
+        settingsbrowserpathlable = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label")));
+        settingsbrowserpathlable.setBounds(17, 17, 348, 16);
+        browsersettingsborder.add(settingsbrowserpathlable);
+        settingsbrowserpathlable.setHorizontalAlignment(SwingConstants.LEFT);
 
         settingsbrowserpathlable.setForeground(PublicValues.globalFontColor);
 
         settingspathsetbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.settings.mypal.path.choosebutton")));
-        settingspathsetbutton.setBounds(478, 53, 89, 23);
-        add(settingspathsetbutton);
+        settingspathsetbutton.setBounds(100, 69, 175, 29);
+        browsersettingsborder.add(settingspathsetbutton);
 
         settingspathsetbutton.setForeground(PublicValues.globalFontColor);
 
-        JLabel settingsuilabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.ui.label")));
-        settingsuilabel.setBounds(10, 122, 89, 14);
-        add(settingsuilabel);
+        settingsuilabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.ui.label")));
+        settingsuilabel.setBounds(10, 435, 290, 14);
+        //add(settingsuilabel);
 
         settingsuilabel.setForeground(PublicValues.globalFontColor);
 
         settingsdisableexceptions = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("general.exception.hide")));
-        settingsdisableexceptions.setBounds(160, 155, 140, 23);
-        add(settingsdisableexceptions);
+        settingsdisableexceptions.setBounds(6, 18, 370, 23);
+        settingsuiborder.add(settingsdisableexceptions);
 
         settingsdisableexceptions.setForeground(PublicValues.globalFontColor);
 
         settingsuidisableplayerstats = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats")));
-        settingsuidisableplayerstats.setBounds(28, 155, 199, 23);
-        add(settingsuidisableplayerstats);
+        settingsuidisableplayerstats.setBounds(6, 53, 370, 23);
+        settingsuiborder.add(settingsuidisableplayerstats);
 
         settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
@@ -88,37 +124,37 @@ public class SettingsPanel extends JPanel {
         for(Theme theme : ThemeLoader.availableThemes) {
             ((DefaultComboBoxModel)settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
         }
-        settingsuiselecttheme.setBounds(442, 155, 230, 22);
-        add(settingsuiselecttheme);
+        settingsuiselecttheme.setBounds(159, 85, 217, 30);
+        settingsuiborder.add(settingsuiselecttheme);
 
-        JLabel settingsuithemelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.theme")));
+        settingsuithemelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.theme")));
+        settingsuithemelabel.setBounds(6, 90, 151, 16);
+        settingsuiborder.add(settingsuithemelabel);
         settingsuithemelabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        settingsuithemelabel.setBounds(287, 159, 120, 14);
-        add(settingsuithemelabel);
 
         settingsuithemelabel.setForeground(PublicValues.globalFontColor);
 
-        JLabel settingsplaybacklabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.playback.label")));
-        settingsplaybacklabel.setBounds(10, 224, 71, 14);
-        add(settingsplaybacklabel);
+        settingsplaybacklabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.playback.label")));
+        settingsplaybacklabel.setBounds(10, 448, 269, 14);
+        //add(settingsplaybacklabel);
 
         settingsplaybacklabel.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackselectquality = (JComboBox) JComponentFactory.createJComponent(new JComboBox(new String[] {
                 "Normal", "High", "Very_High"
         }));
-        settingsplaybackselectquality.setBounds(178, 255, 206, 22);
-        add(settingsplaybackselectquality);
+        settingsplaybackselectquality.setBounds(167, 57, 206, 22);
+        playbackborder.add(settingsplaybackselectquality);
 
-        JLabel settingsplaybackselectqualitylabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.quality")));
+        settingsplaybackselectqualitylabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.quality")));
+        settingsplaybackselectqualitylabel.setBounds(6, 60, 149, 14);
+        playbackborder.add(settingsplaybackselectqualitylabel);
         settingsplaybackselectqualitylabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        settingsplaybackselectqualitylabel.setBounds(28, 259, 120, 14);
-        add(settingsplaybackselectqualitylabel);
 
         settingsplaybackselectqualitylabel.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackopenequalizerbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.settings.uninstall")));
-        settingsplaybackopenequalizerbutton.setBounds(478, 255, 146, 23);
+        settingsplaybackopenequalizerbutton.setBounds(205, 445, 197, 23);
         add(settingsplaybackopenequalizerbutton);
 
         settingsplaybackopenequalizerbutton.setEnabled(false);
@@ -134,22 +170,23 @@ public class SettingsPanel extends JPanel {
             chooser.setFileFilter(filter);
             chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
             chooser.showOpenDialog(panel);
-            settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
+            if(chooser.getSelectedFile() != null) settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
         });
 
         settingslanguagelabel = new JLabel(PublicValues.language.translate("ui.settings.language"));
-        settingslanguagelabel.setBounds(28, 320, 140, 20);
-        add(settingslanguagelabel);
+        settingslanguagelabel.setBounds(6, 118, 370, 20);
+        settingslanguagelabel.setFont(new Font(settingslanguagelabel.getFont().getName(), Font.BOLD, settingslanguagelabel.getFont().getSize()));
+        settingsuiborder.add(settingslanguagelabel);
 
         settingslanguagelabel.setForeground(PublicValues.globalFontColor);
 
         settingslanguageselect = new JComboBox();
-        settingslanguageselect.setBounds(162, 352, 199, 27);
-        add(settingslanguageselect);
+        settingslanguageselect.setBounds(159, 146, 217, 27);
+        settingsuiborder.add(settingslanguageselect);
 
         settingslanguageselectlabel = new JLabel(PublicValues.language.translate("ui.settings.langselect"));
-        settingslanguageselectlabel.setBounds(28, 356, 140, 16);
-        add(settingslanguageselectlabel);
+        settingslanguageselectlabel.setBounds(6, 150, 140, 16);
+        settingsuiborder.add(settingslanguageselectlabel);
 
         settingslanguageselectlabel.setForeground(PublicValues.globalFontColor);
 
