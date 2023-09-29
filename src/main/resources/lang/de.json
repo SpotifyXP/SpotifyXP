@@ -124,5 +124,8 @@
   "ui.audiovisualizer.title": "SpotifyXP - Audio Visualizer",
   "ui.errorqueue.button" : "Fehler",
   "ui.errorqueue.title" : "Fehlerwarteschlange",
-  "ui.errorqueue.clear" : "Fehler löschen"
+  "ui.errorqueue.clear" : "Fehler löschen",
+  "ui.legacy.playuri" : "Song mit URI abspielen",
+  "ui.playtrackuri.title" : "Song mit URI abspielen",
+  "ui.playtrackuri.message" : "URI eingeben"
 }

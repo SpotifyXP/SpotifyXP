@@ -20,18 +20,34 @@ public class libDetect {
         }
         return detectedOS;
     }
+
+    /**
+     * Returns true if the operating system is Windows
+     */
     public static boolean isWindows() {
         detectedOS = getOperatingSystemType();
         return detectedOS == OSType.Windows;
     }
+
+    /**
+     * Returns true if the operating system is Linux
+     */
     public static boolean isLinux() {
         detectedOS = getOperatingSystemType();
         return detectedOS == OSType.Linux;
     }
+
+    /**
+     * Returns true if the operating system is MacOS
+     */
     public static boolean isMacOS() {
         detectedOS = getOperatingSystemType();
         return detectedOS == OSType.MacOS;
     }
+
+    /**
+     * Returns true if the operating system is Other (unspecified)
+     */
     public static boolean isOther() {
         detectedOS = getOperatingSystemType();
         return detectedOS == OSType.Other;

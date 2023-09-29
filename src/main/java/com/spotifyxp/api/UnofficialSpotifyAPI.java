@@ -1,6 +1,7 @@
 package com.spotifyxp.api;
 
 
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -30,28 +31,13 @@ public class UnofficialSpotifyAPI {
         api = apitoken;
     }
 
+
+    /**
+     * Refreshes the api token with new given one
+     * @param token token in format of a Spotify API token
+     */
     public void refresh(String token) {
         api = token;
-    }
-
-    public static void test(String api) {
-        //https://spclient.wg.spotify.com/extended-metadata/v0/extended-metadata
-        //Content-Type application/protobuf
-        //Authorization: Bearer TOKEN
-
-        HttpClient client = new HttpClient();
-        GetMethod post = new GetMethod("https://spclient.wg.spotify.com/color-lyrics/v2/track/0m1F05fy6JmrTrJShFHPm4?format=json&vocalRemoval=false");
-        post.setRequestHeader("Authorization", "Bearer " + api);
-        post.setRequestHeader("App-Platform", "Win32");
-        post.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
-
-        try {
-            client.executeMethod(post);
-            System.out.println(post.getResponseBodyAsString());
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-        System.out.println("End of function");
     }
 
     String makeGet(String url, Header... headers) {
@@ -90,6 +76,7 @@ public class UnofficialSpotifyAPI {
         return "FAILED";
     }
 
+
     public static class Lyrics {
         public String syncType = "";
         public ArrayList<LyricsLine> lines = new ArrayList<>();
@@ -105,6 +92,12 @@ public class UnofficialSpotifyAPI {
         public long endTimeMs = 0; //Usually 0
     }
 
+    /**
+     * Returns lyrics for a track
+     * @param uri uri of track
+     * @return instance of Lyrics
+     * @see Lyrics
+     */
     public Lyrics getLyrics(String uri) {
         JSONObject object = new JSONObject(makeGet("https://spclient.wg.spotify.com/color-lyrics/v2/track/" + uri.split(":")[2] + "?format=json&vocalRemoval=false"));
         JSONObject lyricsroot = new JSONObject(object.getJSONObject("lyrics").toString());
@@ -180,6 +173,12 @@ public class UnofficialSpotifyAPI {
         }
     }
 
+    /**
+     * Returns instance of HomeTabSection for the given section
+     * @param sectionURL url of section
+     * @return instance of HomeTabSection
+     * @see HomeTabSection
+     */
     public HomeTabSection getSectionData(String sectionURL) {
         if (!sectionURL.contains("0JQ5DA")) {
             return new HomeTabSection();
@@ -464,6 +463,11 @@ public class UnofficialSpotifyAPI {
 
     int times = 0;
 
+    /**
+     * Gets the complete HomeTab (Used in the tab Home)
+     * @return instance of HomeTab
+     * @see HomeTab
+     */
     public HomeTab getHomeTab() {
         JSONObject root = new JSONObject();
         try {
@@ -1049,6 +1053,14 @@ public class UnofficialSpotifyAPI {
         return tab;
     }
 
+
+    /**
+     * Gets a canvas url for the given track
+     * @param artist artist name
+     * @param album album name
+     * @param track track name
+     * @return url of canvas (file)
+     */
     public static String getCanvasURLForTrack(String artist, String album, String track) {
         HttpClient client = new HttpClient();
         GetMethod method = null;

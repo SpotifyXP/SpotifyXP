@@ -6,6 +6,15 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 
+/**
+ * This class is a factory
+ *
+ * @apiNote
+ * get[insertName] -> Gets an instance of the specified class
+ * <br>set[insertName] -> Sets the instance of the specified class
+ * <br> Get Example: getUnofficialSpotifyApi()
+ * <br> Set Example: setUnofficialSpotifyApi( [instance of UnofficialSpotifyAPI] )
+ */
 public class Factory {
     static SpotifyAPI api;
     static SpotifyApi sapi;

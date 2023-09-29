@@ -10,6 +10,9 @@ import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This api is my private one from <a href="https://api.werwolf2303.de">https://api.werwolf2303.de</a>
+ */
 public class Werwolf2303API {
     String apikey;
     boolean suc = false;

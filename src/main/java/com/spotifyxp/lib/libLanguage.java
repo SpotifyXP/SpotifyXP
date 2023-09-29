@@ -7,6 +7,9 @@ import org.json.JSONObject;
 
 import java.util.function.BiConsumer;
 
+/**
+ * <a style="color:red">In use by SpotifyXP. !!!DO NOT USE!!!</a>
+ */
 @SuppressWarnings("Convert2Lambda")
 public class libLanguage {
     /*

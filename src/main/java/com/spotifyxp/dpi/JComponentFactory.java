@@ -13,17 +13,30 @@ public class JComponentFactory {
     static int frameh = 0;
     public static ArrayList<JComponent> jcomponents = new ArrayList<JComponent>();
 
+    /**
+     * Creates the given JComponent and adds that to a list of components
+     * @param tocreate instance of a JComponent
+     * @return instance of JComponent
+     */
     public static JComponent createJComponent(JComponent tocreate) {
         jcomponents.add(tocreate);
         return tocreate;
     }
 
+    /**
+     * Adds the given JComponent to alist
+     * @param jcomponent instance of JComponent
+     */
     public static void addJComponent(JComponent jcomponent) {
         jcomponents.add(jcomponent);
     }
 
     static int oldw;
     static int oldh;
+
+    /**
+     * Very broken resizing feature
+     */
     public static void enableResizing() {
         oldw = ContentPanel.frame.getWidth();
         oldh = ContentPanel.frame.getHeight();
@@ -54,6 +67,9 @@ public class JComponentFactory {
         });
     }
 
+    /**
+     * Still learning how to do this
+     */
     public static void applyDPI() {
         //Learning how to do this
     }

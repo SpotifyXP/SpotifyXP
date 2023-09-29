@@ -15,6 +15,9 @@ public class Player {
     SpotifyAPI api;
     int times = 0;
 
+    /**
+     * Retries building a working librespot-player instance
+     */
     public void retry() {
         try {
             player = PlayerUtils.buildPlayer();
@@ -71,6 +74,10 @@ public class Player {
         PublicValues.spotifyplayer = player;
     }
 
+    /**
+     * Returns an instance of librespot-player
+     * @return    an instance of librespot-player
+     */
     public com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getPlayer() {
         return player;
     }

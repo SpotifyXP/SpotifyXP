@@ -40,6 +40,12 @@ public class libWget {
             ExceptionDialog.open(ioe);
         }
     }
+
+    /**
+     * Downloads the file at the given url
+     * @param url url of the file
+     * @apiNote downloades the file in the ukf format when it doesnt know which name it has
+     */
     public void download(String url) {
         url = url.replace("\\", "/");
         try {

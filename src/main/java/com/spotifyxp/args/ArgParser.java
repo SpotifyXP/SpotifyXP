@@ -18,6 +18,10 @@ public class ArgParser {
         arguments.add(new NoConnection());
         arguments.add(new Help());
     }
+
+    /**
+     * Prints an argument help containing a list of all commands available
+     */
     public void printHelp() {
         System.out.println("SpotifyXP - " + ApplicationUtils.getVersion() + "\n");
         System.out.println("Usage java -jar SpotifyXP.jar <argument>..." + "\n\n");
@@ -29,6 +33,11 @@ public class ArgParser {
             }
         }
     }
+
+    /**
+     * Parses all the given arguments
+     * @param args
+     */
     public void parseArguments(String[] args) {
         boolean isvalid = false;
         for(String s : args) {

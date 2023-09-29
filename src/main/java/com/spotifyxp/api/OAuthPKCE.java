@@ -34,10 +34,18 @@ public class OAuthPKCE {
         }
     }
 
+    /**
+     * Returns the Spotify api token that was generated from the spotify server
+     * @return     API Token
+     */
     public String getToken() {
         return token;
     }
 
+
+    /**
+     * Refreshes the Spotify api token and forwards that to all programm parts that needs it
+     */
     public void refresh() {
         try {
             TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
@@ -48,6 +56,12 @@ public class OAuthPKCE {
             ConsoleLogging.Throwable(e);
         }
     }
+
+    /**
+     * Makes a post request with the Spotify api token to the api endpoint specified with the url
+     * @param  url the api endpoint
+     * @return     The response of the request
+     */
     public String makePost(String url) {
         if(!url.contains("https")) {
             url = "https://api.spotify.com" + url;
@@ -66,6 +80,12 @@ public class OAuthPKCE {
         return ret;
     }
 
+    /**
+     * Makes a post request with the Spotify api token to the api endpoint specified with the url
+     * @param  url the api endpoint
+     * @param body The body to send to the requested endpoint
+     * @return     The response of the request
+     */
     public String makePost(String url, String body) {
         if(!url.contains("https")) {
             url = "https://api.spotify.com" + url;
@@ -85,6 +105,11 @@ public class OAuthPKCE {
         return ret;
     }
 
+    /**
+     * Makes a get request with the Spotify api token to the api endpoint specified with the url
+     * @param  url the api endpoint
+     * @return     The response of the request
+     */
     public String makeGet(String url) {
         if(!url.contains("https")) {
             url = "https://api.spotify.com" + url;
@@ -102,6 +127,13 @@ public class OAuthPKCE {
         }
         return ret;
     }
+
+    /**
+     * Makes a post request with the Spotify api token to the api endpoint specified with the url
+     * @param  url the api endpoint
+     * @param pairs The headers to send
+     * @return     The response of the request
+     */
     public String makeGet(String url, NameValuePair... pairs) {
         if(!url.contains("https")) {
             url = "https://api.spotify.com" + url;
@@ -130,6 +162,12 @@ public class OAuthPKCE {
         }
         return ret;
     }
+
+    /**
+     * Makes a put request with the Spotify api token to the api endpoint specified with the url
+     * @param  url the api endpoint
+     * @return     The response of the request
+     */
     @SuppressWarnings("UnusedReturnValue")
     public String makePut(String url) {
         if(!url.contains("https")) {
@@ -148,6 +186,12 @@ public class OAuthPKCE {
         }
         return ret;
     }
+
+    /**
+     * Makes a delete request with the Spotify api token to the api endpoint specified with the url
+     * @param  url the api endpoint
+     * @return     The response of the request
+     */
     @SuppressWarnings("UnusedReturnValue")
     public String makeDelete(String url) {
         if(!url.contains("https")) {

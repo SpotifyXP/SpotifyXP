@@ -19,10 +19,17 @@ public class ExceptionDialog {
     static Throwable e;
     JTextPane exceptiontext;
 
+    /**
+     * Gets a preview string of the exception (used inside the exception counter dialog)
+     * @return string preview for the excpetion
+     */
     public String getPreview() {
         return exceptiontext.getText();
     }
 
+    /**
+     * Opens a real exception window
+     */
     public void openReal() {
         if(PublicValues.config.get(ConfigValues.hideExceptions.name).equals("true")) {
             return;
@@ -70,6 +77,11 @@ public class ExceptionDialog {
         frame.setVisible(true);
         frame.pack();
     }
+
+    /**
+     * Adds an exception to the list (add to the exception counter)
+     * @param ex instance of an Exception
+     */
     public static void open(Throwable ex) {
         if(ContentPanel.errorQueue != null) {
             ContentPanel.errorQueue.add(new ExceptionDialog(ex));

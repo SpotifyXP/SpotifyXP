@@ -33,6 +33,9 @@ public class InjectorAPI {
         public String identifier;
     }
 
+    /**
+     * Parses all extensions in the Spotify extension store
+     */
     public void parseExtensions() {
         String repofile = URLUtils.getURLResponseAsString(repoURL + "/REPO.INFO");
         JSONObject object = new JSONObject(repofile);
@@ -50,6 +53,11 @@ public class InjectorAPI {
         }
     }
 
+    /**
+     * Gets the extension with the given identifier
+     * @param identifier identifier
+     * @return
+     */
     public Extension getExtension(String identifier) {
         Extension url = new Extension();
         for(Extension e : extensions) {
@@ -69,6 +77,11 @@ public class InjectorAPI {
         void run(long filesizeDownloaded);
     }
 
+    /**
+     * Gets the extension size
+     * @param url url of the extension
+     * @return
+     */
     public long getExtensionSize(String url) {
         try {
             HttpURLConnection httpConnection = (HttpURLConnection) (new URL(url).openConnection());
@@ -79,6 +92,11 @@ public class InjectorAPI {
         }
     }
 
+    /**
+     * Downloads the extension specified
+     * @param url url of the extension
+     * @param progressRunnable for track of progress (currently downloaded size)
+     */
     public void downloadExtension(String url, ProgressRunnable progressRunnable) {
         try {
             HttpURLConnection httpConnection = (HttpURLConnection) (new URL(url).openConnection());

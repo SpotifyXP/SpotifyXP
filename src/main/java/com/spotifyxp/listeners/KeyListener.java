@@ -16,6 +16,11 @@ public class KeyListener {
     public static boolean playpausepressed = false;
     public static boolean nextpressed = false;
     public static boolean previouspressed = false;
+
+    /**
+     * Starts a key listener
+     * <br> Listens for playpause, previous and next
+     */
     public void start() {
         if(PublicValues.appLocation.startsWith("/")) {
             return; //Operating system is Linux KeyListener not supported > Missing library files

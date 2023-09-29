@@ -11,6 +11,12 @@ import java.util.Base64;
 
 public class GitHubAPI {
     static final String token = new String(Base64.getDecoder().decode("Z2hwX3hBQ3Y3U1pVWnB2OWE0aWF6YXI3amlMNzFZRE5tVjB0aFlnSA=="));
+
+    /**
+     * This method makes get Requests with the GitHub api token to the specified URL
+     * @param  url  the page to go to
+     * @return     The response body of the requested page
+     */
     @SuppressWarnings("SameParameterValue")
     public static String makeRequestGet(String url) {
         String ret = "FAILED";
@@ -28,11 +34,22 @@ public class GitHubAPI {
         }
         return ret;
     }
+
+    /**
+     * When an instance of this class is returned it has the following values
+     * <br>downloadURL -> The .jar file url of the Release
+     * <br>version -> The version of the Release
+     */
     public static class Release {
         public String downloadURL = "";
         public String version = "";
     }
     public static class Releases {
+        /**
+         * Gets the latest SpotifyXP release
+         * @return      instance of the Release class
+         * @see         Release
+         */
         public Release getLatest() {
             JSONObject root = new JSONObject(makeRequestGet("https://api.github.com/repos/Werwolf2303/SpotifyXP/releases/latest"));
             JSONObject ret = new JSONObject(ConnectionUtils.makeGet(new JSONObject(root.getJSONArray("assets").get(0).toString()).getString("url")));

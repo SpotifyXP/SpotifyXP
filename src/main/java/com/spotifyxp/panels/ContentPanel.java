@@ -307,6 +307,7 @@ public class ContentPanel extends JPanel {
             makeButtonsVisible();
         }
     }
+
     void createUserButton() {
         userbutton = new JSVGPanel();
         userbutton.getJComponent().setBounds(702, 11, 23, 23);
@@ -415,7 +416,7 @@ public class ContentPanel extends JPanel {
 
         playerareashufflebutton = new JSVGPanel();
         playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
-        playerarea.add(playerareashufflebutton.getJComponent());
+        //playerarea.add(playerareashufflebutton.getJComponent());
 
         JComponentFactory.addJComponent(playerareashufflebutton.getJComponent());
 
@@ -2281,11 +2282,13 @@ public class ContentPanel extends JPanel {
         JMenuItem settings = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
         JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
         JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
+        JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
         bar.add(file);
         bar.add(edit);
         bar.add(view);
         bar.add(account);
         bar.add(help);
+        file.add(playuri);
         file.add(exit);
         edit.add(settings);
         view.add(audiovisualizer);
@@ -2344,7 +2347,13 @@ public class ContentPanel extends JPanel {
                 System.exit(0);
             }
         });
-
+        playuri.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
+                PublicValues.spotifyplayer.load(uri, true, false, false);
+            }
+        });
         if(steamdeck) {
 
             for (int i = 0; i < bar.getMenuCount(); i++) {
@@ -2511,14 +2520,6 @@ public class ContentPanel extends JPanel {
         hotlistpane.setVisible(false); //Not show hotlistpane when window is opened
         homepane.getComponent().setVisible(false); //Not show homepane when window is opened
 
-        ContextMenu menu = new ContextMenu(this);
-        menu.addItem(PublicValues.language.translate("ui.menu.overlay"), new Runnable() {
-            @Override
-            public void run() {
-                createOverlay();
-            }
-        });
-
 
         SplashPanel.linfo.setText("Adding window mouse listener...");
         addMouseListener(new MouseAdapter() {
@@ -2628,109 +2629,10 @@ public class ContentPanel extends JPanel {
             ConsoleLogging.Throwable(e);
         }
     }
-    JPanel panel;
-    JFrame overlay;
-    ActionListener al;
-    Timer timer;
-    WindowAdapter windowAdapter;
-    void createOverlay() {
-        if(toggle) {
-            visible = false;
-            frame.setAlwaysOnTop(false);
-            overlay.dispose();
-            toggle = false;
-            return;
-        }
-        panel = (JPanel) JComponentFactory.createJComponent(new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(Color.black);
-                StringUtils.drawCenteredString(g, PublicValues.language.translate("ui.overlay.toggle"), new Rectangle(w, h), g.getFont());
-            }
-        });
-        overlay = new JFrame();
-        al = new ActionListener() {
-
-            Point lastPoint;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Point p = MouseInfo.getPointerInfo().getLocation();
-                if (!p.equals(lastPoint)) {
-                    if(clicked) {
-                        dragging = true;
-                        overlay.setLocation(p);
-                    }else{
-                        dragging = false;
-                    }
-                }
-                lastPoint = p;
-            }
-        };
-        timer = new Timer(40, al);
-        windowAdapter = new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                if(toggle) {
-                    overlay.setVisible(true);
-                }
-            }
-            @Override
-            public void windowOpened(WindowEvent e) {
-                if(toggle) {
-                    visible = true;
-                    repaint();
-                }
-            }
-        };
-        toggle = true;
-        frame.setAlwaysOnTop(true);
-        w = 60;
-        h = 20;
-        overlay.setLocation(frame.getX(), frame.getY());
-        overlay.setPreferredSize(new Dimension(60,20));
-        overlay.setAlwaysOnTop(true);
-        frame.addWindowListener(windowAdapter);
-        panel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                clicked = true;
-                timer.start();
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-                clicked = false;
-                timer.stop();
-            }
-        });
-        overlay.add(panel, BorderLayout.CENTER);
-        panel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                if(SwingUtilities.isRightMouseButton(e)) {
-                    if (frame.isVisible()) {
-                        frame.setVisible(false);
-                        overlay.setVisible(true);
-                    } else {
-                        frame.setLocation(overlay.getX(), overlay.getY());
-                        frame.setVisible(true);
-                        overlay.setVisible(false);
-                    }
-                }
-            }
-        });
-        overlay.setUndecorated(true);
-        overlay.setOpacity(0.4f);
-        overlay.pack();
-    }
     int playerareawidth = 0;
     int playerareaheight = 0;
 
-    //These are the position for the popup window
+    //These are the positions for the popup window
     void changePlayerToWindowStyle() {
         playerareashufflebutton.getJComponent().setBounds(20, 293, 20, 20);
         playerarearepeatingbutton.getJComponent().setBounds(280, 293, 20, 20);
@@ -3150,7 +3052,9 @@ public class ContentPanel extends JPanel {
         StringBuilder genres = new StringBuilder();
         StringBuilder tracks = new StringBuilder();
         StringBuilder artists = new StringBuilder();
+        System.out.println("Line 3153: " + stuff);
         for(Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/player/recently-played?limit=10")).getJSONArray("items")) {
+            System.err.println("Line 3154: " + o.toString());
             JSONObject track = new JSONObject(new JSONObject(o.toString()).get("track").toString());
             tracks.append(track.getString("uri").split(":")[2]).append(",");
         }
@@ -3209,6 +3113,7 @@ public class ContentPanel extends JPanel {
         }
         try {
             JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations", new NameValuePair[]{new NameValuePair("seed_artists", fiveartists.toString()), new NameValuePair("seed_genres", fivegenres.toString()), new NameValuePair("seed_tracks", fivetracks.toString())}));
+            System.out.println("Line 3213: " + recommendations);
             for (Object o : recommendations.getJSONArray("tracks")) {
                 JSONObject album = new JSONObject(new JSONObject(o.toString()).get("album").toString());
                 String uri = album.getString("uri").split(":")[2];

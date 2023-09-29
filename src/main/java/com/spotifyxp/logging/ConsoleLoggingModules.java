@@ -11,6 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Logs a message in the console (in module prefix)
+ */
 public class ConsoleLoggingModules {
     static class ColorMap {
         // Reset

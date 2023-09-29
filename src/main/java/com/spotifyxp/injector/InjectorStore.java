@@ -208,6 +208,9 @@ public class InjectorStore {
 
     public static JFrame main;
 
+    /**
+     * Opens the extension store
+     */
     public void open() {
         main = new JFrame(PublicValues.language.translate("extension.title"));
         main.getContentPane().add(new ContentPanel());

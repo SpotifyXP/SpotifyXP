@@ -224,6 +224,9 @@ public class Initiator {
         PublicValues.elevated = Factory.getPkce();
         Factory.getUnofficialSpotifyApi();
         SplashPanel.linfo.setText("Creating contentPanel...");
+        if(PublicValues.isSteamDeckMode) {
+            new SteamDeckSupportModule();
+        }
         ContentPanel panel = new ContentPanel(player);
         SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
@@ -251,8 +254,5 @@ public class Initiator {
         SplashPanel.hide();
         panel.open();
         new HttpService();
-        if(PublicValues.isSteamDeckMode) {
-            new SteamDeckSupportModule();
-        }
     }
 }

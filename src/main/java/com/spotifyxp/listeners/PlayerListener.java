@@ -37,6 +37,9 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class is the binding class between the UI and librespot
+ */
 @SuppressWarnings("CanBeFinal")
 public class PlayerListener implements Player.EventsListener {
     private final com.spotifyxp.api.Player pl;

@@ -11,6 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Logs a message in the console
+ */
 public class ConsoleLogging {
     static class ColorMap {
         // Reset

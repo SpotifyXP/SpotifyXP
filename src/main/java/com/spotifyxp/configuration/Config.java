@@ -58,6 +58,12 @@ public class Config {
             GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }
     }
+
+    /**
+     * Writes a new entry with the name and value to the config file
+     * @param name
+     * @param value
+     */
     public void write(String name, String value) {
         properties.put(name, value);
         try {
@@ -75,6 +81,12 @@ public class Config {
             ConsoleLogging.error(PublicValues.language.translate("configuration.error.loadfail"));
         }
     }
+
+    /**
+     * Returns the value of the given entry inside the config
+     * @param name name of the entry
+     * @return value of given entry
+     */
     public String get(String name) {
         String ret = properties.getProperty(name);
         if(ret==null) {

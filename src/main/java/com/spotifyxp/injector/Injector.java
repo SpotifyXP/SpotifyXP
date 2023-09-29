@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Injector {
+    /**
+     * Injects all extensions found inside the Extensions folder
+     */
     public void autoInject() {
         if(!new File(PublicValues.appLocation, "Extensions").exists()) {
             new File(PublicValues.appLocation, "Extensions").mkdir();
@@ -31,6 +34,11 @@ public class Injector {
             }
         }
     }
+
+    /**
+     * Opens a file selection window. Selection of custom jar to inject
+     * @param path Path to start with
+     */
     public void openInjectWindow(String path) {
         String openpath = path;
         if(path.equals("")) {
@@ -48,6 +56,10 @@ public class Injector {
         }
     }
 
+    /**
+     * Load extension jar file at the path
+     * @param path path of jar file
+     */
     public void loadJarAt(String path) {
         InjectionEntry entry = new InjectionEntry();
         boolean fi = false;
@@ -96,6 +108,11 @@ public class Injector {
         return injectedJars;
     }
 
+    /**
+     * DEPRECATION_
+     * Throws UnsupportedOperationException
+     */
+    @Deprecated
     public void unload() {
         throw new UnsupportedOperationException();
     }

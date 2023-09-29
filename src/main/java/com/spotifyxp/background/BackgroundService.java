@@ -27,6 +27,10 @@ import java.util.concurrent.TimeUnit;
 
 public class BackgroundService {
     public static SystemTrayDialog trayDialog;
+
+    /**
+     * Creates the tray icon
+     */
     public void start() {
         try {
             trayDialog = new SystemTrayDialog();
