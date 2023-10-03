@@ -45,7 +45,7 @@ public class HomePanel {
 
     int cache = 0;
 
-    enum ContentTypes {
+    public enum ContentTypes {
         show,
         track,
         album,
@@ -149,6 +149,8 @@ public class HomePanel {
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
+                                ContentPanel.artistPanel.openPanel();
+                                ContentPanel.artistPanel.isFirst = true;
                                 ContentPanel.artistPanel.contentPanel.setVisible(true);
                                 ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
@@ -262,6 +264,8 @@ public class HomePanel {
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
+                                ContentPanel.artistPanel.openPanel();
+                                ContentPanel.artistPanel.isFirst = true;
                                 ContentPanel.artistPanel.contentPanel.setVisible(true);
                                 ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;

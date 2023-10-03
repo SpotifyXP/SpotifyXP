@@ -5,6 +5,7 @@ import com.spotifyxp.utils.Resources;
 import org.apache.hc.client5.http.impl.cookie.LaxMaxAgeHandler;
 import org.json.JSONObject;
 
+import java.util.Locale;
 import java.util.function.BiConsumer;
 
 /**
@@ -240,6 +241,11 @@ public class libLanguage {
     boolean afl = false;
     String languageCode = System.getProperty("user.language");
     String lf = "";
+
+    public Locale getLocale() {
+        return Locale.forLanguageTag(Language.getNameFromCode(languageCode));
+    }
+
     public void setNoAutoFindLanguage(String code) {
         afl = false;
         languageCode = code;

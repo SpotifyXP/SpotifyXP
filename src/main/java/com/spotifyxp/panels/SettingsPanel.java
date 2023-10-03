@@ -3,7 +3,11 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.lastfm.LFMValues;
+import com.spotifyxp.lastfm.LastFM;
+import com.spotifyxp.lastfm.LastFMLogin;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.JScrollText;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.Resources;
@@ -17,6 +21,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -44,11 +50,15 @@ public class SettingsPanel extends JPanel {
     public static JLabel settingsuithemelabel;
     public static JLabel settingsplaybacklabel;
     public static JLabel settingsplaybackselectqualitylabel;
+    public static JScrollText settingslastfmloginlabel;
+    public static JButton settingslastfmlogout;
+    public static JButton settingslastfmlogin;
 
     //Borders
     public static JPanel browsersettingsborder;
     public static JPanel settingsuiborder;
     public static JPanel playbackborder;
+    public static JPanel lastfmborder;
     //
 
     public SettingsPanel() {
@@ -73,10 +83,52 @@ public class SettingsPanel extends JPanel {
         add(settingsuiborder);
         playbackborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
         playbackborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.playback.label")));
-        playbackborder.setBounds(20, 312, 382, 121);
+        playbackborder.setBounds(20, 312, 382, 60);
         playbackborder.setLayout(null);
         add(playbackborder);
+        lastfmborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        lastfmborder.setLayout(null);
+        lastfmborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.lastfm.settings.border")));
+        lastfmborder.setBounds(20, 382, 382, 60);
+        add(lastfmborder);
         //
+
+        settingslastfmloginlabel = (JScrollText) JComponentFactory.createJComponent(new JScrollText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", LFMValues.username + "  ")));
+        settingslastfmloginlabel.setBounds(10, 25, 120, 20);
+        lastfmborder.add(settingslastfmloginlabel);
+
+        settingslastfmlogin = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.login")));
+        settingslastfmlogin.setBounds(190, 25, 85, 20);
+        lastfmborder.add(settingslastfmlogin);
+
+        settingslastfmlogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LastFMLogin().open(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) settingslastfmlogout.setEnabled(true);
+                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
+                    }
+                });
+            }
+        });
+
+        settingslastfmlogout = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.logout")));
+        settingslastfmlogout.setBounds(285, 25, 85, 20);
+        lastfmborder.add(settingslastfmlogout);
+
+        settingslastfmlogout.setEnabled(false);
+
+        settingslastfmlogout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.lastfmusername.name, "");
+                PublicValues.config.write(ConfigValues.lastfmpassword.name, "");
+                settingslastfmlogout.setEnabled(false);
+                settingslastfmlogin.setEnabled(true);
+            }
+        });
 
         settingsbrowserlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.browser.label")));
         settingsbrowserlabel.setBounds(10, 451, 206, 29);
@@ -143,11 +195,11 @@ public class SettingsPanel extends JPanel {
         settingsplaybackselectquality = (JComboBox) JComponentFactory.createJComponent(new JComboBox(new String[] {
                 "Normal", "High", "Very_High"
         }));
-        settingsplaybackselectquality.setBounds(167, 57, 206, 22);
+        settingsplaybackselectquality.setBounds(167, 28, 206, 22);
         playbackborder.add(settingsplaybackselectquality);
 
         settingsplaybackselectqualitylabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.quality")));
-        settingsplaybackselectqualitylabel.setBounds(6, 60, 149, 14);
+        settingsplaybackselectqualitylabel.setBounds(6, 30, 149, 14);
         playbackborder.add(settingsplaybackselectqualitylabel);
         settingsplaybackselectqualitylabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -217,6 +269,12 @@ public class SettingsPanel extends JPanel {
 
         if(settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
+        }
+
+        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) {
+            settingslastfmlogout.setEnabled(true);
+        }else{
+            settingslastfmlogin.setEnabled(false);
         }
     }
 

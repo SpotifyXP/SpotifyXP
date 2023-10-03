@@ -16,6 +16,7 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.injector.InjectingPoints;
 import com.spotifyxp.injector.InjectorStore;
+import com.spotifyxp.lastfm.LastFMDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
 import com.spotifyxp.theming.themes.DarkGreen;
@@ -174,7 +175,7 @@ public class ContentPanel extends JPanel {
     public static ContextMenu hotlistplaylistspanelrightclickmenu;
     public static ContextMenu hotlistsongstablecontextmenu;
     public static JButton errorDisplay;
-    private boolean artistPanelVisible = false;
+    public static boolean artistPanelVisible = false;
     public static ArrayList<ExceptionDialog> errorQueue;
     private static int libraryOffset = 28;
     private static boolean libraryLoadingInProgress = false;
@@ -1410,9 +1411,14 @@ public class ContentPanel extends JPanel {
         artistPanelBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(PublicValues.blockArtistPanelBackButton) {
+                    return;
+                }
                 switch (lastmenu) {
                     case Search:
                         if(isLastArtist) {
+                            ContentPanel.artistPanel.openPanel();
+                            ContentPanel.artistPanel.isFirst = true;
                             ContentPanel.artistPanel.contentPanel.setVisible(true);
                             ContentPanel.searchplaylistpanel.setVisible(false);
                             artistPanelVisible = true;
@@ -1461,6 +1467,8 @@ public class ContentPanel extends JPanel {
                             ((DefaultTableModel)artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
                             ((DefaultTableModel)artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
                             artistPanel.artisttitle.setText("");
+                            ContentPanel.artistPanel.openPanel();
+                            ContentPanel.artistPanel.isFirst = true;
                             artistPanel.contentPanel.setVisible(true);
                             artistPanelBackButton.setVisible(true);
                             artistPanelVisible = true;
@@ -2274,6 +2282,7 @@ public class ContentPanel extends JPanel {
         JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
         JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
         JMenu view = new JMenu(PublicValues.language.translate("ui.legacy.view"));
+        JMenu lastfm = new JMenu("Last.fm");
         JMenu account = new JMenu(PublicValues.language.translate("ui.legacy.account"));
         JMenu help = new JMenu(PublicValues.language.translate("ui.legacy.help"));
         JMenuItem exit = new JMenuItem(PublicValues.language.translate("ui.legacy.exit"));
@@ -2283,15 +2292,18 @@ public class ContentPanel extends JPanel {
         JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
         JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
         JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
+        JMenuItem lastfmdashboard = new JMenuItem("Dashboard");
         bar.add(file);
         bar.add(edit);
         bar.add(view);
+        bar.add(lastfm);
         bar.add(account);
         bar.add(help);
         file.add(playuri);
         file.add(exit);
         edit.add(settings);
         view.add(audiovisualizer);
+        lastfm.add(lastfmdashboard);
         account.add(logout);
         help.add(extensions);
         help.add(about);
@@ -2352,6 +2364,12 @@ public class ContentPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
                 PublicValues.spotifyplayer.load(uri, true, false, false);
+            }
+        });
+        lastfmdashboard.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LastFMDialog().open();
             }
         });
         if(steamdeck) {
@@ -2463,6 +2481,81 @@ public class ContentPanel extends JPanel {
     boolean visible = false;
     boolean dragging = false;
     boolean toggle = false;
+
+    public static void showArtistPanel(String fromuri) {
+        if(advancedSongPanelVisible) {
+            homepane.getComponent().setVisible(true);
+            advancedSongPanelVisible = false;
+            advancedsongpanel.setVisible(false);
+        }
+        switch(lastmenu) {
+            case Home:
+                artistPanel.artistpopularuricache.clear();
+                artistPanel.artistalbumuricache.clear();
+                ((DefaultTableModel)artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                ((DefaultTableModel)artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                artistPanel.artisttitle.setText("");
+                ContentPanel.artistPanel.openPanel();
+                ContentPanel.artistPanel.isFirst = true;
+                artistPanel.contentPanel.setVisible(true);
+                artistPanelBackButton.setVisible(true);
+                artistPanelVisible = true;
+                homepane.getComponent().setVisible(false);
+                ContentPanel.blockTabSwitch();
+                break;
+            case Search:
+                artistPanel.artistpopularuricache.clear();
+                artistPanel.artistalbumuricache.clear();
+                ((DefaultTableModel)artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                ((DefaultTableModel)artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                artistPanel.artisttitle.setText("");
+                ContentPanel.artistPanel.openPanel();
+                ContentPanel.artistPanel.isFirst = true;
+                artistPanel.contentPanel.setVisible(true);
+                artistPanelBackButton.setVisible(true);
+                artistPanelVisible = true;
+                searchpane.setVisible(false);
+                ContentPanel.blockTabSwitch();
+                break;
+        }
+        try {
+            Artist a = Factory.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
+            try {
+                artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+            } catch (ArrayIndexOutOfBoundsException exception) {
+                //No artist image (when this is raised it's a bug)
+            }
+            artistPanel.artisttitle.setText(a.getName());
+            DefThread trackthread = new DefThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], countryCode).build().execute()) {
+                            if(!artistPanel.isVisible()) {
+                                break;
+                            }
+                            artistPanel.artistpopularuricache.add(t.getUri());
+                            Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
+                        }
+                    } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                        ConsoleLogging.Throwable(ex);
+                    }
+                }
+            });
+            DefThread albumthread = new DefThread(new Runnable() {
+                @Override
+                public void run() {
+                    Factory.getSpotifyAPI().addAllAlbumsToList(artistPanel.artistalbumuricache, a.getUri(), artistPanel.artistalbumalbumtable);
+                }
+            });
+            albumthread.start();
+            trackthread.start();
+            artistPanel.openPanel();
+        } catch (IOException | ParseException | SpotifyWebApiException ex) {
+            ConsoleLogging.Throwable(ex);
+        }
+    }
+
     public ContentPanel(Player p) {
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
         player = p;
@@ -3113,7 +3206,6 @@ public class ContentPanel extends JPanel {
         }
         try {
             JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations", new NameValuePair[]{new NameValuePair("seed_artists", fiveartists.toString()), new NameValuePair("seed_genres", fivegenres.toString()), new NameValuePair("seed_tracks", fivetracks.toString())}));
-            System.out.println("Line 3213: " + recommendations);
             for (Object o : recommendations.getJSONArray("tracks")) {
                 JSONObject album = new JSONObject(new JSONObject(o.toString()).get("album").toString());
                 String uri = album.getString("uri").split(":")[2];
@@ -3130,10 +3222,19 @@ public class ContentPanel extends JPanel {
             ExceptionDialog.open(exception);
         }
     }
+
+    static boolean advancedSongPanelVisible = false;
+
     public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {
         homepane.getComponent().setVisible(false);
         ((DefaultTableModel) advancedsongtable.getModel()).setRowCount(0);
         advanceduricache.clear();
+
+        advancedSongPanelVisible = true;
+
+        if(artistPanelVisible) {
+            artistPanelBackButton.doClick();
+        }
 
         try {
             switch (contentType) {
@@ -3213,6 +3314,6 @@ public class ContentPanel extends JPanel {
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
         JComponentFactory.applyDPI();
-        JComponentFactory.enableResizing();
+        //JComponentFactory.enableResizing();
     }
 }

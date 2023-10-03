@@ -2,29 +2,41 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import org.apache.commons.io.IOUtils;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class JImagePanel extends JPanel {
     private BufferedImage image = null;
+    private byte[] imagebytes;
     public boolean isFilled = false;
     private String rad = "";
 
     void refresh() {
+        try {
+            image = ImageIO.read(new ByteArrayInputStream(imagebytes));
+        } catch (IOException ex) {
+            ConsoleLogging.Throwable(ex);
+        }
         this.repaint();
     }
 
     public void setImage(String filename) {
         try {
-            image = ImageIO.read(new File(filename));
+            imagebytes = Files.readAllBytes(Paths.get(filename));
         } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
@@ -32,7 +44,7 @@ public class JImagePanel extends JPanel {
     }
     public void setImage(File file) {
         try {
-            image = ImageIO.read(file);
+            imagebytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
         }catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
@@ -44,7 +56,7 @@ public class JImagePanel extends JPanel {
     }
     public void setImage(URL url) {
         try {
-            image = ImageIO.read(url);
+            imagebytes = IOUtils.toByteArray(url);
         }catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
@@ -52,7 +64,7 @@ public class JImagePanel extends JPanel {
     }
     public void setImage(InputStream inputStream) {
         try {
-            image = ImageIO.read(inputStream);
+            imagebytes = IOUtils.toByteArray(inputStream);
         }catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
             ExceptionDialog.open(ex);
@@ -61,11 +73,19 @@ public class JImagePanel extends JPanel {
     }
     public void setImage(ImageInputStream imageInputStream) {
         try {
-            image = ImageIO.read(imageInputStream);
-        }catch (IOException ex) {
-            ex.printStackTrace();
+            imageInputStream.readFully(imagebytes);
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            ExceptionDialog.open(e);
         }
         refresh();
+    }
+
+    public InputStream getImageStream() {
+        if(imagebytes == null || imagebytes.length == 0) {
+            return null;
+        }
+        return new ByteArrayInputStream(imagebytes);
     }
 
     @Override

@@ -56,4 +56,5 @@ public class PublicValues {
     public static String tempPath = System.getenv("temp");
     public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
     public static CanvasPlayer canvasPlayer;
+    public static boolean blockArtistPanelBackButton = false;
 }

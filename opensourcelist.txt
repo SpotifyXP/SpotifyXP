@@ -48,4 +48,6 @@
             <a>com.googlecode.plist:dd-plist</a>
             <br>
             <a>org.apache.commons:commons-math3</a>
+            <br>
+            <a>de.u-mass:lastfm-java:0.1.2</a>
         </div>

@@ -5,6 +5,7 @@ import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.api.Player;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.factory.Factory;
+import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.webController.HttpService;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.injector.Injector;
@@ -223,6 +224,8 @@ public class Initiator {
         SplashPanel.linfo.setText("Create advanced api key...");
         PublicValues.elevated = Factory.getPkce();
         Factory.getUnofficialSpotifyApi();
+        SplashPanel.linfo.setText("Init Last.fm");
+        new LastFM();
         SplashPanel.linfo.setText("Creating contentPanel...");
         if(PublicValues.isSteamDeckMode) {
             new SteamDeckSupportModule();

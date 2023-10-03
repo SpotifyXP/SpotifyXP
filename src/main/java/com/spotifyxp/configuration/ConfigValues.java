@@ -10,7 +10,11 @@ public enum ConfigValues {
     username("user.settings.username"),
     password("user.settings.password"),
     language("user.settings.language"),
-    hideExceptions("general.exception.visibility");
+    hideExceptions("general.exception.visibility"),
+    lastfmusername("lastfm.user.settings.username"),
+    lastfmpassword("lastfm.user.settings.password"),
+    lastfmtracklimit("lastfm.user.settings.tracklimit"),
+    lastfmartistlimit("lastfm.user.settings.artistlimit");
     public final String name;
     ConfigValues(String n) {
         name = n;

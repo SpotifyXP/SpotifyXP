@@ -25,6 +25,10 @@ public class Config {
             properties.put(ConfigValues.disableplayerstats.name, "false");
             properties.put(ConfigValues.showallrecommendations.name, "false");
             properties.put(ConfigValues.username.name, "");
+            properties.put(ConfigValues.lastfmpassword, "");
+            properties.put(ConfigValues.lastfmusername, "");
+            properties.put(ConfigValues.lastfmtracklimit, "20");
+            properties.put(ConfigValues.lastfmartistlimit, "10");
             properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.password.name, "");
             properties.put(ConfigValues.hideExceptions.name, "false");
@@ -90,7 +94,7 @@ public class Config {
     public String get(String name) {
         String ret = properties.getProperty(name);
         if(ret==null) {
-            ret = name;
+            ret = "";
         }
         return ret;
     }
