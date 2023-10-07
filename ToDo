@@ -1,1 +1,3 @@
-Make the Settings dialog not hurt anyones eyes
+Last.fm
+
+- Implement "Load more" function (We shouldn't load 1000 songs at once)

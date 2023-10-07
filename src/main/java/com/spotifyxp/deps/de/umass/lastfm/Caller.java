@@ -191,6 +191,10 @@ public class Caller {
 		return call(method, apiKey, params, null);
 	}
 
+	public String callRaw(String method, String apiKey, Map<String, String> params) throws CallException {
+		return callRaw(method, apiKey, params, null);
+	}
+
 	public Result call(String method, Session session, String... params) {
 		return call(method, session.getApiKey(), map(params), session);
 	}
@@ -302,6 +306,35 @@ public class Caller {
 		} catch (SAXException e) {
 			throw new CallException(e);
 		}
+	}
+
+	private String callRaw(String method, String apiKey, Map<String, String> params, Session session) {
+		params = new HashMap<String, String>(params); // create new Map in case params is an immutable Map
+		InputStream inputStream = null;
+
+		// try to load from cache
+		String cacheEntryName = Cache.createCacheEntryName(method, params);
+		if (session == null && cache != null) {
+			inputStream = getStreamFromCache(cacheEntryName);
+		}
+
+		// no entry in cache, load from web
+		if (inputStream == null) {
+			// fill parameter map with apiKey and session info
+			params.put(PARAM_API_KEY, apiKey);
+			if (session != null) {
+				params.put("sk", session.getKey());
+				params.put("api_sig", Authenticator.createSignature(method, params, session.getSecret()));
+			}
+			try {
+				HttpURLConnection urlConnection = openPostConnection(method, params);
+				inputStream = getInputStreamFromConnection(urlConnection);
+				return IOUtils.toString(inputStream);
+			} catch (IOException e) {
+				throw new CallException(e);
+			}
+		}
+		return "ERROR";
 	}
 
 	private InputStream getStreamFromCache(String cacheEntryName) {

@@ -2,6 +2,9 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.io.IOUtils;
 
 import javax.imageio.ImageIO;
@@ -91,13 +94,13 @@ public class JImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(image!=null) {
-            if(!isVisible()) return;
-            Graphics2D graphics2D = (Graphics2D) g;
-            if(!(rad.equals(""))) {
-                graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
-            }
-            graphics2D.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
+        if(image == null) {
+            return;
         }
+        Graphics2D graphics2D = (Graphics2D) g;
+        if(!(rad.equals(""))) {
+            graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
+        }
+        graphics2D.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
     }
 }

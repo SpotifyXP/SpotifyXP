@@ -193,6 +193,11 @@ public class Chart<T extends MusicEntry> {
 		return ResponseBuilder.buildPaginatedResult(result, Artist.class);
 	}
 
+	public static PaginatedResult<Artist> getTopArtists(int limit, int page, String apiKey) {
+		Result result = Caller.getInstance().call("chart.getTopArtists", apiKey, "page", String.valueOf(page), "limit", String.valueOf(limit));
+		return ResponseBuilder.buildPaginatedResult(result, Artist.class);
+	}
+
 	/**
 	 * Get the top tags chart.
 	 *
@@ -234,6 +239,11 @@ public class Chart<T extends MusicEntry> {
 	 */
 	public static PaginatedResult<Track> getTopTracks(int page, String apiKey) {
 		Result result = Caller.getInstance().call("chart.getTopTracks", apiKey, "page", String.valueOf(page));
+		return ResponseBuilder.buildPaginatedResult(result, Track.class);
+	}
+
+	public static PaginatedResult<Track> getTopTracks(int limit, int page, String apiKey) {
+		Result result = Caller.getInstance().call("chart.getTopTracks", apiKey, "page", String.valueOf(page), "limit", String.valueOf(limit));
 		return ResponseBuilder.buildPaginatedResult(result, Track.class);
 	}
 

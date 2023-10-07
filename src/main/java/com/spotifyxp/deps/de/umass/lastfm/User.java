@@ -199,6 +199,14 @@ public class User extends ImageHolder {
 		return ResponseBuilder.buildPaginatedResult(result, Track.class);
 	}
 
+	public static String getRawRecentTracks(String user, int page, int limit, String apiKey) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("user", user);
+		params.put("limit", String.valueOf(limit));
+		params.put("page", String.valueOf(page));
+		return Caller.getInstance().callRaw("user.getRecentTracks", apiKey, params);
+	}
+
 	public static Collection<Album> getTopAlbums(String user, String apiKey) {
 		return getTopAlbums(user, Period.OVERALL, apiKey);
 	}

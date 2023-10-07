@@ -39,17 +39,14 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Test {
+    static int i = 0;
     public static void main(String[] args) throws Exception {
-        new MacOSSupportModule();
-        new CustomSaveDir().runArgument(new File("data").getAbsolutePath()).run();
-        PublicValues.config = new Config();
-        new LastFM();
-        PublicValues.language = new libLanguage();
-        PublicValues.language.setLanguageFolder("lang");
-        PublicValues.language.setNoAutoFindLanguage("en");
-        new ThemeLoader().loadTheme("DarkGreen");
-        //new LastFMDialog().open();
-        new LastFMUserDialog().open();
-        //System.out.println(User.getRawInfo(Authenticator.getMobileSession(LFMValues.username, PublicValues.config.get(ConfigValues.lastfmpassword.name), LFMValues.apikey, LFMValues.apisecret)));
+        System.out.println("Before: " + i);
+        add(i);
+        System.out.println("After: " + i);
+    }
+
+    static void add(int inc) {
+        inc++;
     }
 }
