@@ -36,6 +36,9 @@ public class CanvasPlayer {
     private JPanel referencePanel;
     private boolean trackValid = false;
     public CanvasPlayer() {
+        if(!System.getProperty("os.name").toLowerCase().contains("win")) {
+            return;
+        }
         try {
             frame = new JFrame("SpotifyXP - Canvas");
             frame.setPreferredSize(new Dimension(294, 526));
