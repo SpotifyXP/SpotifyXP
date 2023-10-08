@@ -29,13 +29,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.apache.commons.io.IOUtils;
+import org.apache.hc.client5.http.classic.HttpClient;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.io.IOException;
-import java.net.SocketTimeoutException;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -138,7 +141,15 @@ public final class ApResolver {
     public static boolean eof = false;
 
     private String returnPort80(String url, String type) {
+        if(!isBlocked(url)) {
+            return url;
+        }else{
+            ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
+        }
         if (url.contains(":80") || url.contains(":443")) {
+            if(isBlocked(url)) {
+                GraphicalMessage.sorryErrorExit("Port 80 is blocked by your firewall");
+            }
             return url;
         } else {
             waitForPool();
@@ -146,6 +157,16 @@ public final class ApResolver {
             if (urls == null || urls.isEmpty()) throw new IllegalStateException();
             return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }
+    }
+
+    public boolean isBlocked(String url) {
+        Socket socket = new Socket();
+        try {
+            socket.connect(new InetSocketAddress(url.split(":")[0], Integer.parseInt(url.split(":")[1])));
+        } catch (IOException e) {
+            return true;
+        }
+        return false;
     }
 
     int counter = 0;
