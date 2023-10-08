@@ -7,6 +7,7 @@ import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
+import com.spotifyxp.dialogs.CancelDialog;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.injector.Injector;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
+    public static CancelDialog facebookcanceldialog;
     public static boolean playingFromLibrary = false;
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";

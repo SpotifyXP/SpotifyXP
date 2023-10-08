@@ -5,10 +5,15 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.deps.com.spotify.connectstate.Connect;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lastfm.LastFMDialog;
 import com.spotifyxp.lastfm.LastFMUserDialog;
 import com.spotifyxp.lib.libLanguage;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.support.MacOSSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.URLUtils;
@@ -31,22 +36,17 @@ import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.protocol.HttpContext;
+import org.checkerframework.checker.units.qual.C;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Test {
-    static int i = 0;
-    public static void main(String[] args) throws Exception {
-        System.out.println("Before: " + i);
-        add(i);
-        System.out.println("After: " + i);
-    }
-
-    static void add(int inc) {
-        inc++;
+    public static void main(String[] args) throws IOException, GeneralSecurityException, Session.SpotifyAuthenticationException, MercuryClient.MercuryException {
+        new LoginDialog().open();
     }
 }

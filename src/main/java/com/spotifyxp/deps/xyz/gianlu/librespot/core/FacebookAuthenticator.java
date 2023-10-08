@@ -19,58 +19,88 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
-import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.NetUtils;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
-
-import javax.net.ssl.SSLSocketFactory;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * @author Gianlu
+ * @author devgianlu
  */
 public final class FacebookAuthenticator implements Closeable {
-    private static final URL LOGIN_SPOTIFY;
-    
-    private static final byte[] EOL = new byte[]{'\r', '\n'};
-
-    static {
-        try {
-            LOGIN_SPOTIFY = new URL("https://login2.spotify.com/v1/config");
-        } catch (MalformedURLException ex) {
-            throw new IllegalArgumentException(ex);
-        }
-    }
-
-    private final String credentialsUrl;
+    private static final int REDIRECT_PORT = 4381;
+    private static final String REDIRECT_URI = "http://127.0.0.1:4381/login";
     private final Object credentialsLock = new Object();
-    private HttpPolling polling;
+    private final HttpServer httpServer;
+    private final String codeChallenge;
+    private final OkHttpClient client = new OkHttpClient();
     private Authentication.LoginCredentials credentials = null;
 
-    FacebookAuthenticator() throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) LOGIN_SPOTIFY.openConnection();
-        try (Reader reader = new InputStreamReader(conn.getInputStream())) {
-            conn.connect();
-            JsonObject obj = JsonParser.parseReader(reader).getAsJsonObject();
-            credentialsUrl = obj.get("credentials_url").getAsString();
-            String loginUrl = obj.get("login_url").getAsString();
-            ConsoleLoggingModules.info("Visit {} in your browser.", loginUrl);
-            startPolling();
-        } finally {
-            conn.disconnect();
-        }
-    }
+    FacebookAuthenticator() throws IOException, NoSuchAlgorithmException {
+        codeChallenge = Utils.randomString(ThreadLocalRandom.current(), 48);
 
-    private void startPolling() throws IOException {
-        polling = new HttpPolling();
-        new Thread(polling, "facebook-auth-polling").start();
+        HttpUrl authUrl = HttpUrl.get("https://accounts.spotify.com/authorize").newBuilder()
+                .addQueryParameter("client_id", MercuryRequests.KEYMASTER_CLIENT_ID)
+                .addQueryParameter("response_type", "code")
+                .addQueryParameter("redirect_uri", REDIRECT_URI)
+                .addQueryParameter("scope", "app-remote-control,playlist-modify,playlist-modify-private,playlist-modify-public,playlist-read,playlist-read-collaborative,playlist-read-private,streaming,ugc-image-upload,user-follow-modify,user-follow-read,user-library-modify,user-library-read,user-modify,user-modify-playback-state,user-modify-private,user-personalized,user-read-birthdate,user-read-currently-playing,user-read-email,user-read-play-history,user-read-playback-position,user-read-playback-state,user-read-private,user-read-recently-played,user-top-read")
+                .addQueryParameter("code_challenge", Utils.toBase64(MessageDigest.getInstance("SHA-256").digest(codeChallenge.getBytes(StandardCharsets.UTF_8)), true, false))
+                .addQueryParameter("code_challenge_method", "S256")
+                .build();
+
+        HttpUrl url = HttpUrl.get("https://accounts.spotify.com/login").newBuilder()
+                .addQueryParameter("continue", authUrl.toString())
+                .addQueryParameter("method", "facebook")
+                .addQueryParameter("utm_source", "librespot-java")
+                .addQueryParameter("utm_medium", "desktop")
+                .build();
+
+        String browserPath = "";
+
+        if(!PublicValues.isLinux && !PublicValues.isMacOS) {
+            FileDialog dialog = new FileDialog(new JFrame(), "Select Browser Exe");
+            dialog.setFilenameFilter(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.toLowerCase().endsWith(".exe");
+                }
+            });
+            dialog.setMode(FileDialog.LOAD);
+            dialog.setVisible(true);
+            browserPath = dialog.getFile();
+        }
+
+        try {
+            if(!PublicValues.isMacOS || !PublicValues.isLinux) {
+                if(Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().browse(url.uri());
+                }else{
+                    ConsoleLogging.error("[Facebook Auth] Function is not supported on your OS: 'java.awt.Desktop'");
+                    System.exit(0);
+                }
+            }else{
+                new ProcessBuilder().command("cmd", "/c \"" + browserPath + "\"").inheritIO().start();
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        httpServer = new HttpServer();
+        new Thread(httpServer, "facebook-auth-server").start();
     }
 
     @NotNull
@@ -83,95 +113,106 @@ public final class FacebookAuthenticator implements Closeable {
 
     @Override
     public void close() throws IOException {
-        if (polling != null) polling.stop();
+        if (httpServer != null) httpServer.stop();
     }
 
-    private void authData(@NotNull String json) {
-        JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
-        if (!obj.get("error").isJsonNull()) {
-            ConsoleLoggingModules.error("Error during authentication: " + obj.get("error"));
-            return;
-        }
-
-        JsonObject data = obj.getAsJsonObject("credentials");
-        credentials = Authentication.LoginCredentials.newBuilder()
-                .setUsername(data.get("username").getAsString())
-                .setTyp(Authentication.AuthenticationType.forNumber(data.get("auth_type").getAsInt()))
-                .setAuthData(ByteString.copyFrom(Utils.fromBase64(data.get("encoded_auth_blob").getAsString())))
-                .build();
-
-        synchronized (credentialsLock) {
-            credentialsLock.notifyAll();
-        }
-    }
-
-    private class HttpPolling implements Runnable {
-        private final String host;
-        private final String path;
-        private final Socket socket;
+    private class HttpServer implements Runnable {
+        private final ServerSocket serverSocket;
         private volatile boolean shouldStop = false;
+        private volatile Socket currentClient = null;
 
-        HttpPolling() throws IOException {
-            URL url = new URL(credentialsUrl);
-            path = url.getPath() + "?" + url.getQuery();
-            host = url.getHost();
-
-            socket = SSLSocketFactory.getDefault().createSocket(host, url.getDefaultPort());
+        HttpServer() throws IOException {
+            serverSocket = new ServerSocket(REDIRECT_PORT);
         }
 
         private void stop() throws IOException {
             shouldStop = true;
-            socket.close();
+            if (currentClient != null) currentClient.close();
         }
 
         @Override
         public void run() {
-            try {
-                OutputStream out = socket.getOutputStream();
-                DataInputStream in = new DataInputStream(socket.getInputStream());
+            while (!shouldStop) {
+                try {
+                    currentClient = serverSocket.accept();
+                    handle(currentClient);
+                    currentClient.close();
+                } catch (IOException ex) {
+                    if (shouldStop) break;
 
-                while (!shouldStop) {
-                    out.write("GET ".getBytes());
-                    out.write(path.getBytes());
-                    out.write(" HTTP/1.1".getBytes());
-                    out.write(EOL);
-                    out.write("Host: ".getBytes());
-                    out.write(host.getBytes());
-                    out.write(EOL);
-                    out.write("User-Agent: ".getBytes());
-                    out.write(Version.versionString().getBytes());
-                    out.write(EOL);
-                    out.write("Accept: */*".getBytes());
-                    out.write(EOL);
-                    out.write(EOL);
-                    out.flush();
-
-                    NetUtils.StatusLine sl = NetUtils.parseStatusLine(Utils.readLine(in));
-                    int length = 0;
-                    String header;
-                    while (!(header = Utils.readLine(in)).isEmpty()) {
-                        if (header.startsWith("Content-Length") && sl.statusCode == 200)
-                            length = Integer.parseInt(header.substring(16));
-                    }
-
-                    if (sl.statusCode == 200) {
-                        String json;
-                        if (length != 0) {
-                            byte[] buffer = new byte[length];
-                            in.readFully(buffer);
-                            json = new String(buffer);
-                        } else {
-                            json = Utils.readLine(in);
-                        }
-
-                        ConsoleLoggingModules.debug("Received authentication data: " + json);
-                        authData(json);
-                        break;
-                    }
+                    ConsoleLoggingModules.error("Failed handling incoming connection.", ex);
                 }
-            } catch (IOException ex) {
-                ConsoleLoggingModules.error("Failed polling Spotify credentials URL!", ex);
             }
+        }
+
+        private void handle(@NotNull Socket socket) throws IOException {
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            OutputStream out = socket.getOutputStream();
+
+            String[] requestLine = Utils.split(Utils.readLine(in), ' ');
+            if (requestLine.length != 3) {
+                ConsoleLoggingModules.warning("Unexpected request line: " + Arrays.toString(requestLine));
+                return;
+            }
+
+            String method = requestLine[0];
+            String path = requestLine[1];
+            String httpVersion = requestLine[2];
+
+            //noinspection StatementWithEmptyBody
+            while (!Utils.readLine(in).isEmpty()) ;
+
+            if (method.equals("GET") && path.startsWith("/login")) {
+                String[] split = path.split("\\?code=");
+                if (split.length != 2) {
+                    ConsoleLoggingModules.warning("Missing code parameter in request: {}", path);
+                    return;
+                }
+
+                handleLogin(httpVersion, out, split[1]);
+            } else if (!path.equals("/favicon.ico")) {
+                ConsoleLoggingModules.warning("Received unknown request: {} {}", method, path);
+                out.write(String.format("%s 404 Not Found\r\n\r\n", httpVersion).getBytes(StandardCharsets.UTF_8));
+            }
+        }
+
+        private void handleLogin(String httpVersion, OutputStream out, String code) throws IOException {
+            JsonObject credentialsJson;
+            try (Response resp = client.newCall(new Request.Builder().url("https://accounts.spotify.com/api/token")
+                    .post(new FormBody.Builder()
+                            .add("grant_type", "authorization_code")
+                            .add("client_id", MercuryRequests.KEYMASTER_CLIENT_ID)
+                            .add("redirect_uri", REDIRECT_URI)
+                            .add("code_verifier", codeChallenge)
+                            .add("code", code)
+                            .build()).build()).execute()) {
+                if (resp.code() != 200) {
+                    ConsoleLoggingModules.error("Bad response code from token endpoint: {}", resp.code());
+                    return;
+                }
+
+                ResponseBody body = resp.body();
+                if (body == null) throw new IOException("Empty body!");
+
+                credentialsJson = JsonParser.parseString(body.string()).getAsJsonObject();
+            } catch (IOException ex) {
+                ConsoleLoggingModules.error("Token endpoint request failed.", ex);
+                out.write(String.format("%s 500 Internal Server Error\r\n\r\n", httpVersion).getBytes(StandardCharsets.UTF_8));
+                return;
+            }
+
+            credentials = Authentication.LoginCredentials.newBuilder()
+                    .setTyp(Authentication.AuthenticationType.AUTHENTICATION_SPOTIFY_TOKEN)
+                    .setAuthData(ByteString.copyFrom(credentialsJson.get("access_token").getAsString(), StandardCharsets.UTF_8))
+                    .build();
+
+            synchronized (credentialsLock) {
+                credentialsLock.notifyAll();
+            }
+
+            PublicValues.facebookcanceldialog.closeIt();
+
+            out.write(String.format("%s 302 Found\r\nLocation: https://open.spotify.com/desktop/auth/success\r\n\r\n", httpVersion).getBytes(StandardCharsets.UTF_8));
         }
     }
 }

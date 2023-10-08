@@ -43,7 +43,12 @@ public class PlayerUtils {
                 .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
         try {
-            Session session = builder.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();
+            Session session;
+            if(PublicValues.config.get(ConfigValues.facebook.name).equalsIgnoreCase("false") || PublicValues.config.get(ConfigValues.facebook.name).equalsIgnoreCase("")) {
+                session = builder.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();
+            }else{
+                session = builder.facebook().create();
+            }
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             return player;

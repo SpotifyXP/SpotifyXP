@@ -18,6 +18,7 @@ import java.io.File;
 public class LoginDialog {
     private static CustomLengthTextField spotifyusernamefield;
     private static CustomLengthTextField usernamepasswordfield;
+    private static JButton facebook;
     private static JButton spotifyokbutton;
     private static JButton spotifycancelbutton;
     private static class ContentPanel extends JPanel {
@@ -32,6 +33,9 @@ public class LoginDialog {
             usernamepasswordfield.setColumns(10);
             usernamepasswordfield.setBounds(10, 179, 314, 39);
             add(usernamepasswordfield);
+            facebook = new JButton("Facebook");
+            facebook.setBounds(10, 228, 314, 20);
+            add(facebook);
             spotifyokbutton = new JButton("Ok");
             spotifyokbutton.setBounds(10, 275, 139, 31);
             add(spotifyokbutton);
@@ -77,6 +81,16 @@ public class LoginDialog {
                 dialog.dispose();
             }
         });
+        facebook.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.facebook.name, "true");
+                SplashPanel.frame.setAlwaysOnTop(false);
+                PublicValues.facebookcanceldialog = new CancelDialog();
+                PublicValues.facebookcanceldialog.showIt();
+                dialog.dispose();
+            }
+        });
         spotifycancelbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,6 +132,17 @@ public class LoginDialog {
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
                 PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
+                PublicValues.config.write(ConfigValues.facebook.name, "true");
+                dialog.dispose();
+            }
+        });
+        facebook.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.facebook.name, "true");
+                SplashPanel.frame.setAlwaysOnTop(false);
+                PublicValues.facebookcanceldialog = new CancelDialog();
+                PublicValues.facebookcanceldialog.showIt();
                 dialog.dispose();
             }
         });

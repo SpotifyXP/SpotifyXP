@@ -19,6 +19,7 @@ public class Config {
     public Config() {
         properties = new Properties();
         if(!new File(PublicValues.configfilepath).exists()) {
+            properties.put(ConfigValues.facebook.name, "false");
             properties.put(ConfigValues.sendanalytics.name, "true");
             properties.put(ConfigValues.audioquality.name, "NORMAL");
             properties.put(ConfigValues.theme.name, "DarkGreen");

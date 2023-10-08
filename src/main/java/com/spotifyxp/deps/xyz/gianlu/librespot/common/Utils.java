@@ -315,6 +315,44 @@ public final class Utils {
     }
 
     @NotNull
+    public static String toBase64(@NotNull byte[] bytes, boolean url, boolean padding) {
+        byte[] encodedBytes;
+        try {
+            Class<?> clazz = Class.forName(JAVA_UTIL_BASE_64);
+
+            Method getEncoder;
+            if (url) getEncoder = clazz.getDeclaredMethod("getUrlEncoder");
+            else getEncoder = clazz.getDeclaredMethod("getEncoder");
+
+            Class<?> encoderClazz = Class.forName("java.util.Base64$Encoder");
+            Object encoder = getEncoder.invoke(null);
+
+            if (!padding) {
+                Method withoutPadding = encoderClazz.getDeclaredMethod("withoutPadding");
+                encoder = withoutPadding.invoke(encoder);
+            }
+
+            final Method encode = encoderClazz.getDeclaredMethod("encode", byte[].class);
+            encodedBytes = (byte[]) encode.invoke(encoder, bytes);
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+            try {
+                Class<?> clazz = Class.forName(ANDROID_UTIL_BASE_64);
+                final Method encode = clazz.getDeclaredMethod("encode", byte[].class, int.class);
+                int flags = 2; // Base64.NO_WRAP
+                if (!padding)
+                    flags |= 1; // Base64.NO_PADDING
+                if (url)
+                    flags |= 8; // Base64.URL_SAFE
+                encodedBytes = (byte[]) encode.invoke(null, bytes, flags); // Base64.NO_WRAP | Base64.NO_PADDING
+            } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored2) {
+                throw new NoClassDefFoundError("Base64 not available");
+            }
+        }
+
+        return new String(encodedBytes, StandardCharsets.UTF_8);
+    }
+
+    @NotNull
     public static String toBase64(@NotNull byte[] bytes, boolean padding) {
         byte[] encodedBytes;
         try {
