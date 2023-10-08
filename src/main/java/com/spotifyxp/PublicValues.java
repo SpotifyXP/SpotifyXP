@@ -51,7 +51,7 @@ public class PublicValues {
     public static Injector injector = new Injector();
     public static ContentPanel contentPanel;
     public static ArgParser argParser = new ArgParser();
-    public static  boolean customSaveDir = false;
+    public static boolean customSaveDir = false;
     public static AudioVisualizer visualizer = new AudioVisualizer();
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
     public static boolean isSteamDeckMode = false;

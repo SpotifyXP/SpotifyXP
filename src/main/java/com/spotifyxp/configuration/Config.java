@@ -26,10 +26,10 @@ public class Config {
             properties.put(ConfigValues.disableplayerstats.name, "false");
             properties.put(ConfigValues.showallrecommendations.name, "false");
             properties.put(ConfigValues.username.name, "");
-            properties.put(ConfigValues.lastfmpassword, "");
-            properties.put(ConfigValues.lastfmusername, "");
-            properties.put(ConfigValues.lastfmtracklimit, "20");
-            properties.put(ConfigValues.lastfmartistlimit, "10");
+            properties.put(ConfigValues.lastfmpassword.name, "");
+            properties.put(ConfigValues.lastfmusername.name, "");
+            properties.put(ConfigValues.lastfmtracklimit.name, "20");
+            properties.put(ConfigValues.lastfmartistlimit.name, "10");
             properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.password.name, "");
             properties.put(ConfigValues.hideExceptions.name, "false");

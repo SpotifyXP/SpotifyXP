@@ -138,27 +138,33 @@ public class Initiator {
                 @Override public java.io.PrintStream append(char c) { return this; }
             });
         }
-        SplashPanel.linfo.setText("Loading Extensions...");
-        new Injector().autoInject();
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
-                SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
-                new MacOSSupportModule();
+                if(!PublicValues.customSaveDir) {
+                    SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
+                    new MacOSSupportModule();
+                }
             }else {
                 if(System.getProperty("os.name").toLowerCase().contains("steamos")) {
                     SplashPanel.linfo.setText("Found SteamOS! Applying SteamDeck patch...");
-                    new LinuxSupportModule();
+                    if(!PublicValues.customSaveDir) {
+                        new LinuxSupportModule();
+                    }
                     new SteamDeckSupportModule();
                 }else {
-                    SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
-                    new LinuxSupportModule();
+                    if(!PublicValues.customSaveDir) {
+                        SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
+                        new LinuxSupportModule();
+                    }
                 }
             }
         }
         SplashPanel.linfo.setText("Checking required folders...");
         SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
+        SplashPanel.linfo.setText("Loading Extensions...");
+        new Injector().autoInject();
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         SplashPanel.linfo.setText("Storing program arguments...");
