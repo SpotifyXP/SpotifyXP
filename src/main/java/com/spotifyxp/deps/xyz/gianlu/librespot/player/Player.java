@@ -458,7 +458,8 @@ public class Player implements Closeable {
 
             @Override
             public @Nullable PlayableId nextPlayable() {
-                NextPlayable next = state.nextPlayable(conf.autoplayEnabled);
+                //Prevent exeception when next queue
+                /*NextPlayable next = state.nextPlayable(conf.autoplayEnabled);
                 if (next == NextPlayable.AUTOPLAY) {
                     loadAutoplay();
                     return null;
@@ -467,6 +468,42 @@ public class Player implements Closeable {
                 if (next.isOk()) {
                     if (next != NextPlayable.OK_PLAY && next != NextPlayable.OK_REPEAT)
                         sink.pause(false);
+
+                    return state.getCurrentPlayableOrThrow();
+                } else {
+                    ConsoleLoggingModules.error("Failed loading next song: " + next);
+                    panicState(PlaybackMetrics.Reason.END_PLAY);
+                    return null;
+                }*/
+                NextPlayable next = state.nextPlayable(conf.autoplayEnabled);
+                if (next == NextPlayable.AUTOPLAY) {
+                    loadAutoplay();
+                    return null;
+                }
+
+                if (next.isOk()) {
+                    if (next != NextPlayable.OK_PLAY && next != NextPlayable.OK_REPEAT) {
+                        /*
+                        10/1/2023 tagdara -
+                        This is an attempt to remediate librespot moving to the next track in the queue when there is no next track
+                        in the queue.  In adddition to re-queueing the current track, this introduces several race conditions when another
+                        track replaces it, causing metadata conflicts and multiple playbackEnded events.
+
+                        This is a two part change, which also requires a change in the PlayerSession advanceTo function.
+
+                        Removing the pause and returning null instead of returning state.getCurrentPlayableOrThrow() (the same track) as the
+                        next playable prevents player confusion about what track is truly up next.
+
+                        This might have an impact on clicking play again on the only track in the queue, but have not experienced this side effect
+                        in testing.
+
+                        sink.pause(false);
+                        return state.getCurrentPlayableOrThrow();
+
+                        */
+                        ConsoleLoggingModules.info("PLAYER.NEXTPLAYABLE - [CODE CHANGE TEST] - sending null on pause to prevent advance");
+                        return null;
+                    }
 
                     return state.getCurrentPlayableOrThrow();
                 } else {

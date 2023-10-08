@@ -78,6 +78,7 @@ public class LoginDialog {
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
                 PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
+                PublicValues.config.write(ConfigValues.facebook.name, "false");
                 dialog.dispose();
             }
         });
@@ -132,7 +133,7 @@ public class LoginDialog {
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
                 PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
-                PublicValues.config.write(ConfigValues.facebook.name, "true");
+                PublicValues.config.write(ConfigValues.facebook.name, "false");
                 dialog.dispose();
             }
         });

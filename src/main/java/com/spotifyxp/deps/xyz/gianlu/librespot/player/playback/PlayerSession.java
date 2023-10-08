@@ -107,12 +107,37 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
      * @return Whether the operation was successful
      */
     private boolean advanceTo(@NotNull PlayableId id) {
-        do {
+        /*do {
             PlayerQueueEntry entry = queue.head();
             if (entry == null) return false;
             if (entry.playable.equals(id)) {
                 PlayerQueueEntry next = queue.next();
                 if (next == null || !next.playable.equals(id))
+                    return true;
+            }
+        } while (queue.advance());
+        return false; */
+        do {
+            PlayerQueueEntry entry = queue.head();
+            if (entry == null) return false;
+            if (entry.playable.equals(id)) {
+                PlayerQueueEntry next = queue.next();
+                /*
+                        10/1/2023 tagdara -
+                        This is an attempt to remediate librespot moving to the next track in the queue when there is no next track
+                        in the queue.  In adddition to re-queueing the current track, this introduces several race conditions when another
+                        track replaces it, causing metadata conflicts and multiple playbackEnded events.
+
+                        This is a two part change, which also requires a modification to nextPlayable in the Player object.
+
+                        In the 1.64 code, if next === null, indicating there is no next track in the queue, it was returning true.  Instead
+                        since AdvanceTo should not advance to a non-existent next track, we will now return false.
+                */
+                if (next == null) {
+                    ConsoleLoggingModules.info("PLAYERSESSION.advanceTo {}. queue head is already {} and next is null: {}. [CODE CHANGE] returning false", id, next);
+                    return false;
+                }
+                if (!next.playable.equals(id))
                     return true;
             }
         } while (queue.advance());
