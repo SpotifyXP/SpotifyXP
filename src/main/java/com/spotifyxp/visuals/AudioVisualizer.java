@@ -1,17 +1,19 @@
 package com.spotifyxp.visuals;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.utils.FpsCounter;
 import com.spotifyxp.utils.SpectrumAnalyzer;
-import org.checkerframework.checker.units.qual.A;
-
 import javax.swing.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class AudioVisualizer extends JPanel {
     byte[] converted = null;
     JFrame frame = null;
     ArrayList<Color> colors = new ArrayList<>();
     public void open() {
+        counter.start();
         frame = new JFrame(PublicValues.language.translate("ui.audiovisualizer.title"));
         setPreferredSize(new Dimension(800, 400));
         setBackground(Color.black);
@@ -28,6 +30,7 @@ public class AudioVisualizer extends JPanel {
     }
 
     public void close() {
+        counter.stop();
         frame.dispose();
     }
 
@@ -42,6 +45,18 @@ public class AudioVisualizer extends JPanel {
     double[] lastspectrumdata = null;
 
     boolean rainbow = false;
+
+    FpsCounter counter = new FpsCounter();
+
+    void drawFPS(Graphics g) {
+        g.setColor(Color.cyan);
+        g.drawString("FPS " + new DecimalFormat("#").format(counter.getAverageFps()),
+                getWidth() - 10 - SwingUtilities.computeStringWidth(getFontMetrics(getFont()),
+                        "FPS " + new DecimalFormat("#").format(counter.getAverageFps())),
+                10);
+        g.setColor(Color.black);
+        counter.nextFrame();
+    }
 
     @Override
     public void paint(Graphics gr) {
@@ -79,6 +94,7 @@ public class AudioVisualizer extends JPanel {
                         gr.drawLine(i, getHeight(), i, (int) amp);
                         c++;
                     }
+                    drawFPS(gr);
                     lastspectrumdata = spectrumData;
                 } catch (IllegalArgumentException ignored) {
                 }
@@ -111,6 +127,7 @@ public class AudioVisualizer extends JPanel {
                         }
                         a++;
                     }
+                    drawFPS(gr);
                 }catch (IllegalArgumentException ignored) {
                 }
             }

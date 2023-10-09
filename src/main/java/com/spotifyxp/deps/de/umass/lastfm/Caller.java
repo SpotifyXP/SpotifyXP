@@ -256,7 +256,7 @@ public class Caller {
 		if (session == null && cache != null) {
 			inputStream = getStreamFromCache(cacheEntryName);
 		}
-		
+
 		// no entry in cache, load from web
 		if (inputStream == null) {
 			// fill parameter map with apiKey and session info

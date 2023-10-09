@@ -1,6 +1,7 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -195,6 +196,10 @@ public class ArtistPanel extends JPanel {
         lastfmartisttable.setForeground(PublicValues.globalFontColor);
         lastfmartisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
+        JLabel lastfmsimilarartistslabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Last.fm  Similar Artists"));
+        lastfmsimilarartistslabel.setBounds(5, 1000, 212, 18);
+        add(lastfmsimilarartistslabel);
+
         lastfmartisttable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -227,15 +232,29 @@ public class ArtistPanel extends JPanel {
                         });
                         albumthread.start();
                         trackthread.start();
+                        lastfmsimilarartistslabel.setEnabled(false);
+                        lastfmartisttable.setEnabled(false);
                         PublicValues.blockArtistPanelBackButton = true;
+                        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                contentPanel.getVerticalScrollBar().setValue(0);
+                            }
+                        });
                         ContentPanel.artistPanelBackButton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 if(!PublicValues.blockArtistPanelBackButton) {
                                     return;
                                 }
+                                lastfmsimilarartistslabel.setEnabled(true);
+                                lastfmartisttable.setEnabled(false);
                                 restoreCache();
                                 clearCache();
+                                javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                                    public void run() {
+                                        contentPanel.getVerticalScrollBar().setValue(0);
+                                    }
+                                });
                                 DefThread thread = new DefThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -258,10 +277,6 @@ public class ArtistPanel extends JPanel {
                 }
             }
         });
-
-        JLabel lastfmsimilarartistslabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Last.fm  Similar Artists"));
-        lastfmsimilarartistslabel.setBounds(5, 1000, 212, 18);
-        add(lastfmsimilarartistslabel);
 
         lastfmsimilarartistslabel.setForeground(PublicValues.globalFontColor);
 
@@ -310,6 +325,7 @@ public class ArtistPanel extends JPanel {
     }
 
     public void restoreTable(JTable table, ArrayList<ArrayList<Object>> rows) {
+        ((DefaultTableModel) table.getModel()).setRowCount(0);
         for(ArrayList<Object> o : rows) {
             ((DefaultTableModel) table.getModel()).addRow(o.toArray());
         }
@@ -354,6 +370,9 @@ public class ArtistPanel extends JPanel {
         DefThread thread = new DefThread(new Runnable() {
             @Override
             public void run() {
+                if(PublicValues.config.get(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
+                    return;
+                }
                 for(Artist a : Artist.getSimilar(artisttitle.getText(), 10, LFMValues.apikey)) {
                     ((DefaultTableModel) lastfmartisttable.getModel()).addRow(new Object[]{a.getName()});
                     lastfmartisturicache.add(LastFMConverter.getArtistURIfromName(a.getName()));
@@ -361,5 +380,10 @@ public class ArtistPanel extends JPanel {
             }
         });
         thread.start();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                contentPanel.getVerticalScrollBar().setValue(0);
+            }
+        });
     }
 }

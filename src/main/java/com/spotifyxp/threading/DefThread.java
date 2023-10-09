@@ -1,5 +1,7 @@
 package com.spotifyxp.threading;
 
+import com.spotifyxp.PublicValues;
+
 public class DefThread {
     String name;
     Thread t;
@@ -16,6 +18,7 @@ public class DefThread {
         name = threadName;
         t = new Thread(runnable);
         t.setDaemon(isDaemon);
+        PublicValues.threads.add(t);
         toRun = runnable;
     }
     public DefThread(Runnable runnable, String threadName, boolean daemon) {
@@ -23,11 +26,13 @@ public class DefThread {
         name = threadName;
         t = new Thread(runnable);
         t.setDaemon(isDaemon);
+        PublicValues.threads.add(t);
         toRun = runnable;
     }
     public DefThread(Runnable runnable) {
         t = new Thread(runnable);
         t.setDaemon(true);
+        PublicValues.threads.add(t);
     }
     public boolean isAlive() {
         return t.isAlive();
@@ -35,6 +40,7 @@ public class DefThread {
     void restart() {
         t = new Thread(toRun);
         t.setDaemon(isDaemon);
+        PublicValues.threads.add(t);
         t.start();
     }
     //Only for shutdownHook

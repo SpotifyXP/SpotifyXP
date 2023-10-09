@@ -32,6 +32,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.de.umass.lastfm.Caller;
 import com.spotifyxp.deps.de.umass.lastfm.Session;
 import com.spotifyxp.deps.de.umass.lastfm.Track;
@@ -56,7 +57,7 @@ public class FileSystemCache extends Cache implements ScrobbleCache {
 	private File cacheDir;
 
 	public FileSystemCache() {
-		this(new File(System.getProperty("user.home") + "/.last.fm-cache"));
+		this(new File(PublicValues.appLocation + "/last.fm-cache"));
 	}
 
 	public FileSystemCache(File cacheDir) {

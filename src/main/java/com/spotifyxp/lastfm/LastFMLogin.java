@@ -5,6 +5,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.swingextension.CustomLengthPasswordField;
 import com.spotifyxp.swingextension.CustomLengthTextField;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.deps.de.umass.lastfm.Authenticator;
@@ -18,7 +19,7 @@ import java.io.File;
 @SuppressWarnings("Convert2Lambda")
 public class LastFMLogin {
     private static CustomLengthTextField lastfmusernamefield;
-    private static CustomLengthTextField usernamepasswordfield;
+    private static CustomLengthPasswordField usernamepasswordfield;
     private static JButton lastfmokbutton;
     private static JButton lastfmcancelbutton;
     private static class ContentPanel extends JPanel {
@@ -29,7 +30,7 @@ public class LastFMLogin {
             lastfmusernamefield.setColumns(10);
             setBorder(new EmptyBorder(5, 5, 5, 5));
             setLayout(new BorderLayout());
-            usernamepasswordfield = new CustomLengthTextField(60);
+            usernamepasswordfield = new CustomLengthPasswordField(60);
             usernamepasswordfield.setColumns(10);
             usernamepasswordfield.setBounds(10, 179, 314, 39);
             add(usernamepasswordfield);
@@ -74,9 +75,9 @@ public class LastFMLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Authenticator.getMobileSession(lastfmusernamefield.getText(), usernamepasswordfield.getText(), LFMValues.apikey, LFMValues.apisecret).getKey();
+                    Authenticator.getMobileSession(lastfmusernamefield.getText(), new String(usernamepasswordfield.getPassword()), LFMValues.apikey, LFMValues.apisecret).getKey();
                     PublicValues.config.write(ConfigValues.lastfmusername.name, lastfmusernamefield.getText());
-                    PublicValues.config.write(ConfigValues.lastfmpassword.name, usernamepasswordfield.getText());
+                    PublicValues.config.write(ConfigValues.lastfmpassword.name, new String(usernamepasswordfield.getPassword()));
                 }catch (NullPointerException ex) {
                     openWithInvalidAuth(runnable);
                     dialog.dispose();
@@ -106,9 +107,9 @@ public class LastFMLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Authenticator.getMobileSession(lastfmusernamefield.getText(), usernamepasswordfield.getText(), LFMValues.apikey, LFMValues.apisecret).getKey();
+                    Authenticator.getMobileSession(lastfmusernamefield.getText(), new String(usernamepasswordfield.getPassword()), LFMValues.apikey, LFMValues.apisecret).getKey();
                     PublicValues.config.write(ConfigValues.lastfmusername.name, lastfmusernamefield.getText());
-                    PublicValues.config.write(ConfigValues.lastfmpassword.name, usernamepasswordfield.getText());
+                    PublicValues.config.write(ConfigValues.lastfmpassword.name, new String(usernamepasswordfield.getPassword()));
                 }catch (NullPointerException ex) {
                     openWithInvalidAuth(runnable);
                     dialog.dispose();

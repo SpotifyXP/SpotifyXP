@@ -190,6 +190,11 @@ public class Player implements Closeable {
         setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
     }
 
+    public int getVolume() {
+        if (state == null) return 0;
+        return state.getVolume();
+    }
+
     public void volumeDown() {
         this.volumeDown(1);
     }

@@ -5,6 +5,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.swingextension.CustomLengthPasswordField;
 import com.spotifyxp.swingextension.CustomLengthTextField;
 import com.spotifyxp.utils.StartupTime;
 
@@ -13,11 +14,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.Arrays;
 
 @SuppressWarnings("Convert2Lambda")
 public class LoginDialog {
     private static CustomLengthTextField spotifyusernamefield;
-    private static CustomLengthTextField usernamepasswordfield;
+    private static CustomLengthPasswordField usernamepasswordfield;
     private static JButton facebook;
     private static JButton spotifyokbutton;
     private static JButton spotifycancelbutton;
@@ -29,7 +31,7 @@ public class LoginDialog {
             spotifyusernamefield.setColumns(10);
             setBorder(new EmptyBorder(5, 5, 5, 5));
             setLayout(new BorderLayout());
-            usernamepasswordfield = new CustomLengthTextField(60);
+            usernamepasswordfield = new CustomLengthPasswordField(60);
             usernamepasswordfield.setColumns(10);
             usernamepasswordfield.setBounds(10, 179, 314, 39);
             add(usernamepasswordfield);
@@ -77,7 +79,7 @@ public class LoginDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
-                PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
+                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
                 PublicValues.config.write(ConfigValues.facebook.name, "false");
                 dialog.dispose();
             }
@@ -132,7 +134,7 @@ public class LoginDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
-                PublicValues.config.write(ConfigValues.password.name, usernamepasswordfield.getText());
+                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getText()));
                 PublicValues.config.write(ConfigValues.facebook.name, "false");
                 dialog.dispose();
             }

@@ -3300,7 +3300,13 @@ public class ContentPanel extends JPanel {
             }
         });
         mainframe.setForeground(Color.blue);
-        InjectingPoints.INTERNALinvokeOnFrameReady();
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                InjectingPoints.INTERNALinvokeOnFrameReady();
+            }
+        });
+        thread.start();
         mainframe.setVisible(true);
         mainframe.setResizable(false);
         mainframe.pack();

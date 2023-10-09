@@ -107,8 +107,9 @@ public class SettingsPanel extends JPanel {
                 new LastFMLogin().open(new Runnable() {
                     @Override
                     public void run() {
-                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) settingslastfmlogout.setEnabled(true);
-                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
+                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogout.setEnabled(true);
+                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogin.setEnabled(false);
+                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
                     }
                 });
             }
@@ -127,6 +128,7 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.lastfmpassword.name, "");
                 settingslastfmlogout.setEnabled(false);
                 settingslastfmlogin.setEnabled(true);
+                settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
             }
         });
 
@@ -273,8 +275,10 @@ public class SettingsPanel extends JPanel {
 
         if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) {
             settingslastfmlogout.setEnabled(true);
-        }else{
             settingslastfmlogin.setEnabled(false);
+        }else{
+            settingslastfmlogin.setEnabled(true);
+            settingslastfmlogout.setEnabled(false);
         }
     }
 

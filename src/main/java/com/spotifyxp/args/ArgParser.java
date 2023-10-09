@@ -16,6 +16,8 @@ public class ArgParser {
         arguments.add(new SteamDeckMode());
         arguments.add(new InvokeUpdater());
         arguments.add(new NoConnection());
+        arguments.add(new NoGUI());
+        arguments.add(new RESTApi());
         arguments.add(new Help());
     }
 

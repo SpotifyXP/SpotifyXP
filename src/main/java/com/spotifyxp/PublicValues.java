@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
+    public static ArrayList<Thread> threads = new ArrayList<>();
     public static CancelDialog facebookcanceldialog;
     public static boolean playingFromLibrary = false;
     public static libLanguage language = null;
@@ -59,4 +60,5 @@ public class PublicValues {
     public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
     public static CanvasPlayer canvasPlayer;
     public static boolean blockArtistPanelBackButton = false;
+    public static boolean nogui = false;
 }

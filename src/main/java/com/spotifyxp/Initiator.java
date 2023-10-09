@@ -3,6 +3,7 @@ package com.spotifyxp;
 
 import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.api.Player;
+import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.lastfm.LastFM;
@@ -29,7 +30,12 @@ import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.*;
+
+import java.awt.*;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -37,6 +43,7 @@ import java.nio.file.StandardCopyOption;
 public class Initiator {
     public static StartupTime startupTime;
     static DefThread hook = new DefThread(ContentPanel::saveCurrentState);
+
     public static DefThread thread = new DefThread(new Runnable() {
         @Override
         public void run() {
@@ -55,11 +62,13 @@ public class Initiator {
     });
     public static boolean past = false;
     public static void main(String[] args) {
-        new SplashPanel().show();
-        SplashPanel.linfo.setText("Storing startup millis...");
         startupTime = new StartupTime();
-        SplashPanel.linfo.setText("Parsing arguments...");
         PublicValues.argParser.parseArguments(args);
+        if(!PublicValues.nogui) {
+            new SplashPanel().show();
+        }else{
+            new SplashPanel();
+        }
         if(PublicValues.debug) {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
             PublicValues.logger.setShowTime(false);
@@ -145,6 +154,22 @@ public class Initiator {
                     SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
                     new MacOSSupportModule();
                 }
+                System.setProperty("apple.laf.useScreenMenuBar", "true");
+                System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
+                PublicValues.isMacOS = true;
+                try {
+                    Class util = Class.forName("com.apple.eawt.Application");
+                    Method getApplication = util.getMethod("getApplication", new Class[0]);
+                    Object application = getApplication.invoke(util);
+                    Class params[] = new Class[1];
+                    params[0] = Image.class;
+                    Method setDockIconImage = util.getMethod("setDockIconImage", params);
+                    URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
+                    Image image = Toolkit.getDefaultToolkit().getImage(url);
+                    setDockIconImage.invoke(application, image);
+                } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    //Java versions above 8 dont have com.apple.eawt.Application
+                }
             }else {
                 if(System.getProperty("os.name").toLowerCase().contains("steamos")) {
                     SplashPanel.linfo.setText("Found SteamOS! Applying SteamDeck patch...");
@@ -185,16 +210,18 @@ public class Initiator {
             new Setup();
             startupTime = new StartupTime();
         }
-        SplashPanel.linfo.setText("Init Themes...");
-        ThemeLoader loader = new ThemeLoader();
-        try {
-            loader.loadTheme(PublicValues.config.get(ConfigValues.theme.name));
-        } catch (ThemeLoader.UnknownThemeException e) {
-            ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.get(ConfigValues.theme.name) + "'! Trying to load theme differently");
+        if(!PublicValues.nogui) {
+            SplashPanel.linfo.setText("Init Themes...");
+            ThemeLoader loader = new ThemeLoader();
             try {
-                loader.tryLoadTheme(PublicValues.config.get(ConfigValues.theme.name));
-            }catch (Exception e2) {
-                ConsoleLogging.warning("Failed loading theme! SpotifyXP is now ugly");
+                loader.loadTheme(PublicValues.config.get(ConfigValues.theme.name));
+            } catch (ThemeLoader.UnknownThemeException e) {
+                ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.get(ConfigValues.theme.name) + "'! Trying to load theme differently");
+                try {
+                    loader.tryLoadTheme(PublicValues.config.get(ConfigValues.theme.name));
+                } catch (Exception e2) {
+                    ConsoleLogging.warning("Failed loading theme! SpotifyXP is now ugly");
+                }
             }
         }
         try {
@@ -213,55 +240,73 @@ public class Initiator {
             ConsoleLogging.Throwable(e);
             ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be instable");
         }
-        SplashPanel.linfo.setText("Checking login...");
-        if(PublicValues.config.get(ConfigValues.username.name).isEmpty()) {
-            new LoginDialog().open(); //Show login dialog if no username is set
-            startupTime = new StartupTime();
+        if(!PublicValues.nogui) {
+            SplashPanel.linfo.setText("Checking login...");
+            if (PublicValues.config.get(ConfigValues.username.name).isEmpty()) {
+                new LoginDialog().open(); //Show login dialog if no username is set
+                startupTime = new StartupTime();
+            }
         }
         SplashPanel.linfo.setText("Add shutdown hook...");
         Runtime.getRuntime().addShutdownHook(hook.getRawThread()); //Gets executed when SpotifyXP is closing
-        SplashPanel.linfo.setText("Creating api...");
-        thread.start();
-        Factory.getSpotifyAPI();
-        Player player = Factory.getPlayer();
-        past = true;
-        SplashPanel.linfo.setText("Creating keylistener...");
-        new KeyListener().start();
-        SplashPanel.linfo.setText("Create advanced api key...");
-        PublicValues.elevated = Factory.getPkce();
-        Factory.getUnofficialSpotifyApi();
-        SplashPanel.linfo.setText("Init Last.fm");
-        new LastFM();
-        SplashPanel.linfo.setText("Creating contentPanel...");
-        if(PublicValues.isSteamDeckMode) {
-            new SteamDeckSupportModule();
+        Player player = null;
+        if(!PublicValues.nogui) {
+            SplashPanel.linfo.setText("Creating api...");
+            thread.start();
+            Factory.getSpotifyAPI();
+            player = Factory.getPlayer();
         }
-        ContentPanel panel = new ContentPanel(player);
+        past = true;
+        if(!PublicValues.nogui) {
+            SplashPanel.linfo.setText("Creating keylistener...");
+            new KeyListener().start();
+        }
+        ContentPanel panel = null;
+        if(!PublicValues.nogui) {
+            SplashPanel.linfo.setText("Create advanced api key...");
+            PublicValues.elevated = Factory.getPkce();
+            Factory.getUnofficialSpotifyApi();
+            SplashPanel.linfo.setText("Init Last.fm");
+            new LastFM();
+            SplashPanel.linfo.setText("Creating contentPanel...");
+            if (PublicValues.isSteamDeckMode) {
+                new SteamDeckSupportModule();
+            }
+            panel = new ContentPanel(player);
+        }
         SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
-        SplashPanel.hide();
-        Updater.UpdateInfo info = new Updater().updateAvailable();
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                if(info.updateAvailable) {
-                    String version = info.version;
-                    ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-                    new Updater().invoke();
-                }else{
-                    if(new Updater().isNightly()) {
-                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
-                        ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
+        if(!PublicValues.nogui) {
+            Updater.UpdateInfo info = new Updater().updateAvailable();
+            DefThread thread = new DefThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (info.updateAvailable) {
+                        String version = info.version;
+                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
+                        new Updater().invoke();
                     } else {
-                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
+                        if (new Updater().isNightly()) {
+                            ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
+                            ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
+                        } else {
+                            ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
+                        }
                     }
                 }
-            }
-        });
-        thread.start();
+            });
+            thread.start();
+        }
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
-        SplashPanel.hide();
-        panel.open();
+        if(!PublicValues.nogui) {
+            SplashPanel.hide();
+        }
+        if(!PublicValues.nogui) {
+            panel.open();
+        }
         new HttpService();
+        if(PublicValues.nogui) {
+            new RestAPI().start();
+        }
     }
 }

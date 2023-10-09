@@ -2,6 +2,7 @@ package com.spotifyxp.testing;
 
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
@@ -13,6 +14,7 @@ import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lastfm.LastFMDialog;
 import com.spotifyxp.lastfm.LastFMUserDialog;
 import com.spotifyxp.lib.libLanguage;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.support.MacOSSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
@@ -47,6 +49,6 @@ import java.util.Base64;
 
 public class Test {
     public static void main(String[] args) throws IOException, GeneralSecurityException, Session.SpotifyAuthenticationException, MercuryClient.MercuryException {
-        new LoginDialog().open();
+
     }
 }

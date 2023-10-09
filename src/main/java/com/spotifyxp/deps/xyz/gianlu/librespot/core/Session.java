@@ -1257,7 +1257,7 @@ public final class Session implements Closeable {
     }
 
     public static class SpotifyAuthenticationException extends Exception {
-        private SpotifyAuthenticationException(Keyexchange.@NotNull APLoginFailed loginFailed) {
+        public SpotifyAuthenticationException(Keyexchange.@NotNull APLoginFailed loginFailed) {
             super(loginFailed.getErrorCode().name());
         }
     }
