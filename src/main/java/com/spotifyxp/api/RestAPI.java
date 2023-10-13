@@ -7,6 +7,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.enums.HttpStatusCodes;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.PlayerUtils;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Token;
@@ -15,17 +16,13 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.json.JSONObject;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.EOFException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.security.Key;
@@ -44,9 +41,7 @@ public class RestAPI implements Runnable {
     static ArrayList<String> authIps = new ArrayList<>();
     static String username;
     static String password;
-    static String hashpass = "xm9AR48qKvtCKQUCNfcfhCUJ";
     private static final String ALGORITHM = "AES";
-    private static final byte[] keyValue = hashpass.getBytes();
 
 
     public RestAPI() {
@@ -93,8 +88,6 @@ public class RestAPI implements Runnable {
     api.initlogin
     api.iplogout
     api.logout
-    page.getlogin
-    page.get
     player.getmetadata
     player.playpause
     player.next
@@ -107,10 +100,8 @@ public class RestAPI implements Runnable {
     player.volumedown
     player.currenttime
 
-
-    Secure Responses
-    If the parameter 'secure=true' is added the parameters will be decrypted
-    with a password that only the server and the client knows
+    api.initlogin
+    Pass the parameter 'secure=true' and hash the username and passwort AES with the password 'xm9AR48qKvtCKQUCNfcfhCUJ"'
 
     JSON Response
 
@@ -421,7 +412,7 @@ public class RestAPI implements Runnable {
     }
 
     static String decode(String todecode) throws Exception {
-        return decrypt(todecode, hashpass);
+        return decrypt(todecode, "xm9AR48qKvtCKQUCNfcfhCUJ");
     }
 
     public static String decrypt(String encrypted, String password) throws Exception {
@@ -486,7 +477,6 @@ public class RestAPI implements Runnable {
 
         return derivedBytes; // key + iv
     }
-
 
     static void respondWithError(HttpExchange exchange) {
         WebUtils.sendCode(exchange, HttpStatusCodes.BAD_REQUEST.getValue(), makeJSONResponse("Bad Request").toString());
