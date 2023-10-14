@@ -26,6 +26,7 @@ import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.threading.DefThread;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,6 +48,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
 import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Gianlu
@@ -268,7 +270,47 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
      * @param req The {@link Connect.PutStateRequest}
      */
 
+    ArrayList<Connect.PutStateRequest> stateRequestQueue = new ArrayList<>();
+    Connect.PutStateRequest lastReq = null;
+    DefThread queueworker = new DefThread(new Runnable() {
+        @Override
+        public void run() {
+            while(stateRequestQueue.size() != 0) {
+                try {
+                    session.api().putConnectState(connectionId, stateRequestQueue.get(0));
+                    if (ConsoleLoggingModules.isTraceEnabled()) {
+                        ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}, request: {}}", stateRequestQueue.get(0).getClientSideTimestamp(),
+                                Utils.truncateMiddle(connectionId, 10), stateRequestQueue.get(0).getPutStateReason(), TextFormat.shortDebugString(putState));
+                    } else {
+                        ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}}", stateRequestQueue.get(0).getClientSideTimestamp(),
+                                Utils.truncateMiddle(connectionId, 10), stateRequestQueue.get(0).getPutStateReason());
+                    }
+                    stateRequestQueue.remove(0);
+                } catch (IOException | MercuryClient.MercuryException ex) {
+                    ConsoleLoggingModules.error("Failed updating state.", ex);
+                }
+                try {
+                    Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+                }catch (Exception ignored) {
+                }
+            }
+        }
+    });
+
     private void putConnectState(@NotNull Connect.PutStateRequest req) {
+        if(lastReq == null) {
+            lastReq = req;
+        }else {
+            if(lastReq.getPutStateReason() == req.getPutStateReason()) {
+                stateRequestQueue.add(req);
+                if(!queueworker.isAlive()) {
+                    queueworker.start();
+                }
+                lastReq = req;
+                return;
+            }
+            lastReq = req;
+        }
         try {
             session.api().putConnectState(connectionId, req);
             if (ConsoleLoggingModules.isTraceEnabled()) {

@@ -15,6 +15,7 @@ import com.spotifyxp.utils.WebUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import javax.crypto.Cipher;
@@ -32,6 +33,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 
 public class RestAPI implements Runnable {
@@ -110,6 +112,8 @@ public class RestAPI implements Runnable {
      */
 
     public static void handleRoot(HttpExchange exchange) {
+        sendCors(exchange);
+        sendAdditionalHeaders(exchange);
         try {
             ArrayList<BasicNameValuePair> params = parseParameters(exchange.getRequestURI().getQuery());
             String method = getParams(params, "method");
@@ -286,7 +290,7 @@ public class RestAPI implements Runnable {
         if(Hashing.sha512().hashString(username, Charset.defaultCharset()).toString().equals(gotusername)) {
             if(Hashing.sha512().hashString(password, Charset.defaultCharset()).toString().equals(gotpassword)) {
                 if(hasIp(exchange.getRemoteAddress().getAddress().toString())) {
-                    WebUtils.sendCode(exchange, HttpStatusCodes.LOCKED.getValue(), makeJSONResponse("LoggedIn"));
+                    WebUtils.sendCode(exchange, HttpStatusCodes.OK.getValue(), makeJSONResponse("LoggedIn", new BasicNameValuePair("User", PublicValues.session.username())));
                     return;
                 }
                 authIps.add(exchange.getRemoteAddress().getAddress().toString());
@@ -444,6 +448,17 @@ public class RestAPI implements Runnable {
 
     public static byte[] evpKDF(byte[] password, int keySize, int ivSize, byte[] salt, byte[] resultKey, byte[] resultIv) throws NoSuchAlgorithmException {
         return evpKDF(password, keySize, ivSize, salt, 1, "MD5", resultKey, resultIv);
+    }
+
+    public static void sendCors(HttpExchange exchange) {
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Credentials", "true");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,HEAD");
+    }
+
+    public static void sendAdditionalHeaders(HttpExchange exchange) {
+        exchange.getResponseHeaders().add("Content-Type", "application/json");
     }
 
     public static byte[] evpKDF(byte[] password, int keySize, int ivSize, byte[] salt, int iterations, String hashAlgorithm, byte[] resultKey, byte[] resultIv) throws NoSuchAlgorithmException {
