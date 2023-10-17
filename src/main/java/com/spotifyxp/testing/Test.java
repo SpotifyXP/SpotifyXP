@@ -10,6 +10,7 @@ import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.dialogs.LoginDialog;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lastfm.LastFMDialog;
 import com.spotifyxp.lastfm.LastFMUserDialog;
@@ -40,6 +41,8 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.protocol.HttpContext;
 import org.checkerframework.checker.units.qual.C;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -48,7 +51,21 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Test {
-    public static void main(String[] args) throws IOException, GeneralSecurityException, Session.SpotifyAuthenticationException, MercuryClient.MercuryException {
-
+    public static void main(String[] args) throws Exception {
+        DefTable table = new DefTable();
+        table.setModel(new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "Column"
+                }
+        ));
+        for(int i = 0; i < 7796; i++) {
+            ((DefaultTableModel) table.getModel()).addRow(new Object[]{"Row " + i});
+        }
+        for(int i = 0; i < table.getModel().getRowCount(); i++) {
+            Object row = table.getModel().getValueAt(i, 0);
+            System.out.println(row);
+        }
     }
 }

@@ -27,6 +27,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewSessionIdEvent;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
+import com.spotifyxp.events.Events;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -1024,6 +1025,9 @@ public class Player implements Closeable {
         public static TransitionInfo skippedPrev(@NotNull StateWrapper state) {
             TransitionInfo trans = new TransitionInfo(PlaybackMetrics.Reason.BACK_BTN, PlaybackMetrics.Reason.BACK_BTN);
             if (state.getCurrentPlayable() != null) trans.endedWhen = state.getPosition();
+
+            Events.INTERNALtriggerQueueRegressEvents();
+
             return trans;
         }
 

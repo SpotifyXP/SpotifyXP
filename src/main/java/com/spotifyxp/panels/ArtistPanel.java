@@ -37,9 +37,9 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class ArtistPanel extends JPanel {
-    public JTable artistpopularsonglist;
-    public JTable artistalbumalbumtable;
-    public JTable lastfmartisttable;
+    public DefTable artistpopularsonglist;
+    public DefTable artistalbumalbumtable;
+    public DefTable lastfmartisttable;
     public JScrollPane artistpopularscrollpane;
     public JScrollPane artistalbumscrollpanel;
     public JScrollPane contentPanel;
@@ -69,7 +69,7 @@ public class ArtistPanel extends JPanel {
         artistpopularscrollpane.setBounds(5, 320, 760, 277);
         add(artistpopularscrollpane);
 
-        artistpopularsonglist = (JTable) JComponentFactory.createJComponent(new DefTable() {
+        artistpopularsonglist = (DefTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -88,7 +88,7 @@ public class ArtistPanel extends JPanel {
         artistalbumscrollpanel.setBounds(5, 667, 760, 295);
         add(artistalbumscrollpanel);
 
-        artistalbumalbumtable = (JTable) JComponentFactory.createJComponent(new DefTable() {
+        artistalbumalbumtable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -137,8 +137,13 @@ public class ArtistPanel extends JPanel {
                     try {
                         Album album = Factory.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
                         for (TrackSimplified simplified : album.getTracks().getItems()) {
-                            ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                            ContentPanel.searchplaylistsongscache.add(simplified.getUri());
+                            artistalbumalbumtable.addModifyAction(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                    ContentPanel.searchplaylistsongscache.add(simplified.getUri());
+                                }
+                            });
                         }
                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
                         ExceptionDialog.open(ex);
@@ -177,7 +182,7 @@ public class ArtistPanel extends JPanel {
             }
         });
 
-        lastfmartisttable = (JTable) JComponentFactory.createJComponent(new DefTable() {
+        lastfmartisttable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -312,7 +317,7 @@ public class ArtistPanel extends JPanel {
         contentPanel.getHorizontalScrollBar().setValue(contentPanel.getHorizontalScrollBar().getMinimum());
     }
 
-    ArrayList<ArrayList<Object>> parseTable(JTable table) {
+    ArrayList<ArrayList<Object>> parseTable(DefTable table) {
         ArrayList<ArrayList<Object>> objects = new ArrayList<>();
         for(int row = 0; row < table.getModel().getRowCount(); row++) {
             ArrayList<Object> rows = new ArrayList<>();
@@ -324,10 +329,15 @@ public class ArtistPanel extends JPanel {
         return objects;
     }
 
-    public void restoreTable(JTable table, ArrayList<ArrayList<Object>> rows) {
+    public void restoreTable(DefTable table, ArrayList<ArrayList<Object>> rows) {
         ((DefaultTableModel) table.getModel()).setRowCount(0);
         for(ArrayList<Object> o : rows) {
-            ((DefaultTableModel) table.getModel()).addRow(o.toArray());
+            table.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) table.getModel()).addRow(o.toArray());
+                }
+            });
         }
     }
 
@@ -374,8 +384,13 @@ public class ArtistPanel extends JPanel {
                     return;
                 }
                 for(Artist a : Artist.getSimilar(artisttitle.getText(), 10, LFMValues.apikey)) {
-                    ((DefaultTableModel) lastfmartisttable.getModel()).addRow(new Object[]{a.getName()});
-                    lastfmartisturicache.add(LastFMConverter.getArtistURIfromName(a.getName()));
+                    lastfmartisttable.addModifyAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((DefaultTableModel) lastfmartisttable.getModel()).addRow(new Object[]{a.getName()});
+                            lastfmartisturicache.add(LastFMConverter.getArtistURIfromName(a.getName()));
+                        }
+                    });
                 }
             }
         });

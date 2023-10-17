@@ -14,7 +14,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
-public class DefaultTable extends JTable {
+public class DefaultTable extends DefTable {
     //DefaultTable
     //
     // The default table consists of two elements

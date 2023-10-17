@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.events.Events;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.guielements.DefTable;
@@ -68,7 +69,7 @@ public class HomePanel {
         homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
         content.add(homepanelmodulescrollpanel);
 
-        JTable homepanelmodulecontenttable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        DefTable homepanelmodulecontenttable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -88,19 +89,39 @@ public class HomePanel {
 
         for(UnofficialSpotifyAPI.HomeTabAlbum album : section.albums) {
             uricache.add(album.uri);
-            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{album.name, artistParser(album.artists)});
+            homepanelmodulecontenttable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{album.name, artistParser(album.artists)});
+                }
+            });
         }
         for(UnofficialSpotifyAPI.HomeTabEpisodeOrChapter episodeOrChapter : section.episodeOrChapters) {
             uricache.add(episodeOrChapter.uri);
-            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{episodeOrChapter.EpisodeOrChapterName, episodeOrChapter.name + " - " + episodeOrChapter.publisherName});
+            homepanelmodulecontenttable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{episodeOrChapter.EpisodeOrChapterName, episodeOrChapter.name + " - " + episodeOrChapter.publisherName});
+                }
+            });
         }
         for(UnofficialSpotifyAPI.HomeTabPlaylist playlist : section.playlists) {
             uricache.add(playlist.uri);
-            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{playlist.name, playlist.ownerName});
+            homepanelmodulecontenttable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{playlist.name, playlist.ownerName});
+                }
+            });
         }
         for(UnofficialSpotifyAPI.HomeTabArtist artist : section.artists) {
             uricache.add(artist.uri);
-            ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{artist.name, ""});
+            homepanelmodulecontenttable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{artist.name, ""});
+                }
+            });
         }
 
         homepanelmodulecontenttable.addMouseListener(new MouseAdapter() {
@@ -115,6 +136,7 @@ public class HomePanel {
                         switch (ct) {
                             case track:
                                 PublicValues.spotifyplayer.load(uri, true, false, false);
+                                Events.INTERNALtriggerQueueUpdateEvents();
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
@@ -156,6 +178,7 @@ public class HomePanel {
                                 break;
                             case episode:
                                 PublicValues.spotifyplayer.load(uri, true, ContentPanel.shuffle, false);
+                                Events.INTERNALtriggerQueueUpdateEvents();
                                 break;
                             default:
                                 ContentPanel.showAdvancedSongPanel(uri, ct);
@@ -195,7 +218,7 @@ public class HomePanel {
         homepaneluserscrollpanel.setBounds(0, 39, 777, 261);
         content.add(homepaneluserscrollpanel);
 
-        JTable homepanelusertable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        DefTable homepanelusertable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -224,6 +247,7 @@ public class HomePanel {
                         switch (ct) {
                             case track:
                                 PublicValues.spotifyplayer.load(uri, true, false, false);
+                                Events.INTERNALtriggerQueueUpdateEvents();
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
@@ -287,19 +311,39 @@ public class HomePanel {
 
         for(UnofficialSpotifyAPI.HomeTabAlbum album : tab.firstSection.albums) {
             usersuricache.add(album.uri);
-            ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{album.name, artistParser(album.artists)});
+            homepanelusertable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{album.name, artistParser(album.artists)});
+                }
+            });
         }
         for(UnofficialSpotifyAPI.HomeTabEpisodeOrChapter episodeOrChapter : tab.firstSection.episodeOrChapters) {
             usersuricache.add(episodeOrChapter.uri);
-            ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{episodeOrChapter.EpisodeOrChapterName, episodeOrChapter.name + " - " + episodeOrChapter.publisherName});
+            homepanelusertable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{episodeOrChapter.EpisodeOrChapterName, episodeOrChapter.name + " - " + episodeOrChapter.publisherName});
+                }
+            });
         }
         for(UnofficialSpotifyAPI.HomeTabPlaylist playlist : tab.firstSection.playlists) {
             usersuricache.add(playlist.uri);
-            ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{playlist.name, playlist.ownerName});
+            homepanelusertable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{playlist.name, playlist.ownerName});
+                }
+            });
         }
         for(UnofficialSpotifyAPI.HomeTabArtist artist : tab.firstSection.artists) {
             usersuricache.add(artist.uri);
-            ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{artist.name, ""});
+            homepanelusertable.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{artist.name, ""});
+                }
+            });
         }
 
         for(UnofficialSpotifyAPI.HomeTabSection section : tab.sections) {

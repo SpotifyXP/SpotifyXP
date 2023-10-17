@@ -7,11 +7,34 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class JComponentFactory {
     static int framew = 0;
     static int frameh = 0;
     public static ArrayList<JComponent> jcomponents = new ArrayList<JComponent>();
+    public static ArrayList<HashMap<ResizeRule, JComponent>> jcomponentswr = new ArrayList<>();
+
+
+    // ---- By ChatGPT ----
+    public static enum ResizeRule {
+        X,
+        Y,
+        W,
+        H,
+        XY,
+        XW,
+        XH,
+        YW,
+        YH,
+        WH,
+        XYW,
+        XYH,
+        XWH,
+        YWH,
+        XYWH,
+    }
+    //----------------------
 
     /**
      * Creates the given JComponent and adds that to a list of components
@@ -21,6 +44,10 @@ public class JComponentFactory {
     public static JComponent createJComponent(JComponent tocreate) {
         jcomponents.add(tocreate);
         return tocreate;
+    }
+
+    public static JComponent createJComponent(JComponent tocreate, ResizeRule resizeRule) {
+        return null;
     }
 
     /**
@@ -48,17 +75,18 @@ public class JComponentFactory {
                 for(JComponent component : jcomponents) {
                     if (rw > 0) {
                         // +
-                        component.setSize(component.getWidth() + rw, component.getHeight());
+                        component.setBounds(component.getX() + rw, component.getY(), component.getWidth() + rw, component.getHeight());
                     }else{
                         // -
-                        component.setSize(component.getWidth() - rw, component.getHeight());
+                        component.setBounds(component.getX() - rw, component.getY(), component.getWidth() - rw, component.getHeight());
                     }
-                    if (rw > 0) {
+
+                    if (rh > 0) {
                         // +
-                        component.setSize(component.getWidth(), component.getHeight() + rh);
+                        component.setBounds(component.getX(), component.getY() + rh, component.getWidth(), component.getHeight() + rh);
                     }else{
                         // -
-                        component.setSize(component.getWidth(), component.getHeight() - rh);
+                        component.setBounds(component.getX(), component.getY() - rh, component.getWidth(), component.getHeight() - rh);
                     }
                 }
                 oldw = ContentPanel.frame.getWidth();

@@ -10,6 +10,7 @@ import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.engine.EnginePanel;
+import com.spotifyxp.events.Events;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
@@ -56,15 +57,15 @@ import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"CanBeFinal", "rawtypes", "Convert2Lambda"})
 public class ContentPanel extends JPanel {
-    public static JTable librarysonglist;
+    public static DefTable librarysonglist;
     public static Player player = null;
-    public static JTable searchsonglist;
+    public static DefTable searchsonglist;
     public static JTextField searchartistfield;
     public static JTextField searchsongtitlefield;
-    public static JTable hotlistplayliststable;
-    public static JTable hotlistsongstable;
-    public static JTable playlistsplayliststable;
-    public static JTable playlistssongtable;
+    public static DefTable hotlistplayliststable;
+    public static DefTable hotlistsongstable;
+    public static DefTable playlistsplayliststable;
+    public static DefTable playlistssongtable;
     public static JTextField feedbackupdaterversionfield;
     public static EnginePanel playerarea;
     public static JImagePanel playerimage;
@@ -151,7 +152,7 @@ public class ContentPanel extends JPanel {
     public static JLabel playerareavolumecurrent;
     public static JPanel searchplaylistpanel;
     public static JButton searchbackbutton;
-    public static JTable searchplaylisttable;
+    public static DefTable searchplaylisttable;
     public static JRadioButton searchfilterplaylist;
     public static JRadioButton searchfilteralbum;
     public static JRadioButton searchfiltershow;
@@ -161,7 +162,7 @@ public class ContentPanel extends JPanel {
     public static ArtistPanel artistPanel;
     public static boolean isLastArtist = false;
     public static CountryCode countryCode;
-    public static JTable advancedsongtable;
+    public static DefTable advancedsongtable;
     public static JButton artistPanelBackButton;
     public static JSVGPanel playerareashufflebutton;
     public static JPanel advancedsongpanel;
@@ -199,7 +200,12 @@ public class ContentPanel extends JPanel {
                 try {
                     Track track = Factory.getSpotifyApi().getTrack(s.split(":")[2]).build().execute();
                     String a = TrackUtils.getArtists(track.getArtists());
-                    ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+                    librarysonglist.addModifyAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+                        }
+                    });
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -221,7 +227,12 @@ public class ContentPanel extends JPanel {
                 try {
                     Track track = Factory.getSpotifyApi().getTrack(s.split(":")[2]).build().execute();
                     String a = TrackUtils.getArtists(track.getArtists());
-                    ((DefaultTableModel)librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+                    librarysonglist.addModifyAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((DefaultTableModel)librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+                        }
+                    });
                 } catch (IOException | ParseException | SpotifyWebApiException e) {
                     hotlistbutton.setEnabled(true);
                     searchbutton.setEnabled(true);
@@ -410,7 +421,7 @@ public class ContentPanel extends JPanel {
         add(homebutton);
     }
     void createPlayerArea() {
-        playerarea = new EnginePanel();
+        playerarea = (EnginePanel) JComponentFactory.createJComponent(new EnginePanel());
         playerarea.setBounds(72, 0, 565, 100);
         add(playerarea);
         playerarea.setLayout(null);
@@ -478,7 +489,7 @@ public class ContentPanel extends JPanel {
 
         JComponentFactory.addJComponent(playerarearepeatingbutton.getJComponent());
 
-        playerimage = new JImagePanel();
+        playerimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         playerimage.setBounds(10, 11, 78, 78);
         playerarea.add(playerimage);
 
@@ -825,7 +836,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        librarysonglist = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        librarysonglist = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -945,7 +956,7 @@ public class ContentPanel extends JPanel {
         playlistsplaylistsscroll.setBounds(0, 0, 259, 421);
         playlistsplaylistslist.add(playlistsplaylistsscroll);
 
-        playlistsplayliststable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        playlistsplayliststable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -973,7 +984,7 @@ public class ContentPanel extends JPanel {
         playlistssongsscroll.setBounds(0, 0, 524, 421);
         playlistssonglist.add(playlistssongsscroll);
 
-        playlistssongtable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        playlistssongtable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -1399,7 +1410,7 @@ public class ContentPanel extends JPanel {
         searchscrollpanel.setBounds(0, 139, 784, 282);
         searchpane.add(searchscrollpanel);
 
-        searchsonglist = (JTable) JComponentFactory.createJComponent(new DefTable() {
+        searchsonglist = (DefTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -1690,7 +1701,7 @@ public class ContentPanel extends JPanel {
         searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
         searchplaylistpanel.add(searchplaylistscrollpanel);
 
-        searchplaylisttable = (JTable) JComponentFactory.createJComponent(new DefTable() {
+        searchplaylisttable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -1794,7 +1805,7 @@ public class ContentPanel extends JPanel {
                 JDialog dialog = new JDialog();
                 dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
                 JScrollPane pane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
-                JTable table = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+                DefTable table = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
                     public boolean isCellEditable(int row, int column) {
                         return false;
                     }
@@ -1864,7 +1875,7 @@ public class ContentPanel extends JPanel {
         hotlistplaylistsscrollpanel.setBounds(0, 0, 259, 421);
         hotlistplaylistspanel.add(hotlistplaylistsscrollpanel);
 
-        hotlistplayliststable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        hotlistplayliststable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -1904,7 +1915,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        hotlistsongstable = (JTable) JComponentFactory.createJComponent(new DefTable()  {
+        hotlistsongstable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -1993,6 +2004,60 @@ public class ContentPanel extends JPanel {
         //noinspection unchecked
         queuelist = new JList(queuelistmodel);
         queuescrollpane.setViewportView(queuelist);
+
+        Events.registerToQueueUpdateEvent(new Runnable() {
+            @Override
+            public void run() {
+                if(queuelistmodel.isEmpty()) {
+                    return;
+                }
+                queueuricache.clear();
+                ((DefaultListModel) queuelist.getModel()).clear();
+                try {
+                    for (ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+                        Track track = Factory.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute();
+                        queueuricache.add(t.getUri());
+                        String a = TrackUtils.getArtists(track.getArtists());
+                        queuelistmodel.addElement(track.getName() + " - " + a);
+                    }
+                }catch (ArrayIndexOutOfBoundsException e) {
+                    //This happens when (psst... i dont know)
+                }catch (Exception e) {
+                    throw new RuntimeException("Failed to list tracks in queue");
+                }
+            }
+        });
+
+        Events.registerToQueueAdvanceEvent(new Runnable() {
+            @Override
+            public void run() {
+                if(queuelistmodel.isEmpty()) {
+                    return;
+                }
+                queueuricache.remove(0);
+                queuelistmodel.remove(0);
+            }
+        });
+
+        Events.registerToQueueRegressEvent(new Runnable() {
+            @Override
+            public void run() {
+                if(queuelistmodel.isEmpty()) {
+                    return;
+                }
+                if(!queuelistmodel.get(0).equalsIgnoreCase(PublicValues.spotifyplayer.tracks(true).current.getUri())) {
+                    try {
+                        Track t = Factory.getSpotifyApi().getTrack(PublicValues.spotifyplayer.tracks(true).current.getUri().split(":")[2]).build().execute();
+                        String a = TrackUtils.getArtists(t.getArtists());
+                        queueuricache.add(0, t.getUri());
+                        queuelistmodel.add(0, t.getName() + " - " + a);
+                    }catch (Exception e) {
+                        throw new RuntimeException("Cant regress queue");
+                    }
+                }
+            }
+        });
+
         queuebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -2364,12 +2429,13 @@ public class ContentPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
                 PublicValues.spotifyplayer.load(uri, true, false, false);
+                Events.INTERNALtriggerQueueUpdateEvents();
             }
         });
         lastfmdashboard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LastFMDialog().open();
+                LastFMDialog.openWhenLoggedIn();
             }
         });
         if(steamdeck) {
@@ -2379,7 +2445,7 @@ public class ContentPanel extends JPanel {
                 JFrame window = new JFrame();
                 window.setTitle(menu1.getText());
                 ArrayList<JMenuItem> items = new ArrayList<>();
-                JTable table = new DefTable() {
+                DefTable table = new DefTable() {
                     public boolean isCellEditable(int row, int column) {
                         return false;
                     }
@@ -2440,7 +2506,7 @@ public class ContentPanel extends JPanel {
         });
 
 
-        advancedsongtable = (JTable) JComponentFactory.createJComponent(new DefTable() {
+        advancedsongtable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }

@@ -16,6 +16,7 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.events.Events;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -138,6 +139,8 @@ final class PlayerQueue implements Closeable {
     synchronized boolean advance() {
         if (head == null || head.next == null)
             return false;
+
+        Events.INTERNALtriggerQueueAdvanceEvents();
 
         PlayerQueueEntry tmp = head.next;
         head.next = null;

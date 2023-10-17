@@ -2,7 +2,9 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.events.Events;
 import com.spotifyxp.factory.Factory;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -112,10 +114,14 @@ public class TrackUtils {
             return m + ":" + s; //Return as 00:00:00
         }
     }
-    public static void addAllToQueue(ArrayList<String> cache, JTable addintable) {
+    public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
         try {
-            ContentPanel.player.getPlayer().tracks(true).previous.clear();
-            ContentPanel.player.getPlayer().tracks(true).next.clear();
+            if(!ContentPanel.player.getPlayer().tracks(true).previous.isEmpty()) {
+                ContentPanel.player.getPlayer().tracks(true).previous.clear();
+            }
+            if(!ContentPanel.player.getPlayer().tracks(true).next.isEmpty()) {
+                ContentPanel.player.getPlayer().tracks(true).next.clear();
+            }
         }catch (NullPointerException exc) {
             if (PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {
                 JOptionPane.showConfirmDialog(null, PublicValues.language.translate("queue.failed.text"), PublicValues.language.translate("queue.failed.title"), JOptionPane.OK_CANCEL_OPTION);
@@ -153,6 +159,7 @@ public class TrackUtils {
         if(ContentPanel.shuffle) {
             Shuffle.makeShuffle();
         }
+        Events.INTERNALtriggerQueueUpdateEvents();
     }
     public static Integer roundVolumeToNormal(float volume) {
         return Integer.parseInt(String.valueOf(Math.round(volume*10)));
@@ -197,14 +204,24 @@ public class TrackUtils {
         }
         return false;
     }
-    public static void removeLovedTrack(JTable table, ArrayList<String> uricache) {
+    public static void removeLovedTrack(DefTable table, ArrayList<String> uricache) {
         Factory.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
-        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+        table.addModifyAction(new Runnable() {
+            @Override
+            public void run() {
+                ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+            }
+        });
     }
-    public static void removeFollowedPlaylist(JTable table, ArrayList<String> uricache) {
+    public static void removeFollowedPlaylist(DefTable table, ArrayList<String> uricache) {
         Factory.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
-        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+        table.addModifyAction(new Runnable() {
+            @Override
+            public void run() {
+                ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+            }
+        });
     }
 }
