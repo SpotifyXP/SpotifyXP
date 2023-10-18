@@ -1,7 +1,6 @@
 package com.spotifyxp;
 
 
-import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.api.Player;
 import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.audio.Quality;
@@ -22,7 +21,6 @@ import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
-import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
@@ -225,7 +223,7 @@ public class Initiator {
             }
         }
         try {
-            Files.copy(new Resources().readToInputStream("SpotifyXP-Updater.jar"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(new Resources().readToInputStream("SpotifyXP-Updater.jar.bak"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar.bak"), StandardCopyOption.REPLACE_EXISTING);
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
