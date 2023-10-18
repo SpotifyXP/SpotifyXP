@@ -8,6 +8,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.ApResolver;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -57,23 +58,25 @@ public class SpotifyAPI {
         DefThread thread = new DefThread(new Runnable() {
             @Override
             public void run() {
-                int offset = 0;
-                int limit = 50;
-                while(uricache.size()!=new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getInt("total")) {
-                    if(!totable.isVisible()) {
-                        break;
+                try {
+                    int offset = 0;
+                    int limit = 50;
+                    int parsed = 0;
+                    int total = Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
+                    while(parsed != total) {
+                        for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                            totable.addModifyAction(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((DefaultTableModel) totable.getModel()).addRow(new Object[]{album.getName()});
+                                }
+                            });
+                            parsed++;
+                        }
+                        offset += limit;
                     }
-                    for(Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/artists/" + fromuri.split(":")[2] + "/albums?offset=" + offset + "&limit=" + limit + "&include_groups=album,single,compilation,appears_on&market=" + ContentPanel.countryCode.toString())).getJSONArray("items")) {
-                        JSONObject object = new JSONObject(o.toString());
-                        uricache.add(object.getString("uri"));
-                        totable.addModifyAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                ((DefaultTableModel) totable.getModel()).addRow(new Object[] {object.getString("name")});
-                            }
-                        });
-                    }
-                    offset=offset+50;
+                }catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

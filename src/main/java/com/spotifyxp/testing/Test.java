@@ -52,20 +52,6 @@ import java.util.Base64;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        DefTable table = new DefTable();
-        table.setModel(new DefaultTableModel(
-                new Object[][] {
-                },
-                new String[] {
-                        "Column"
-                }
-        ));
-        for(int i = 0; i < 7796; i++) {
-            ((DefaultTableModel) table.getModel()).addRow(new Object[]{"Row " + i});
-        }
-        for(int i = 0; i < table.getModel().getRowCount(); i++) {
-            Object row = table.getModel().getValueAt(i, 0);
-            System.out.println(row);
-        }
+
     }
 }

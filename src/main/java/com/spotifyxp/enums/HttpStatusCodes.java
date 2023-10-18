@@ -1,7 +1,6 @@
 package com.spotifyxp.enums;
 
 public enum HttpStatusCodes {
-
     //1xx: Informational
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),
