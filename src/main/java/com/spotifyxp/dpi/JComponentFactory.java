@@ -13,7 +13,7 @@ public class JComponentFactory {
     static int framew = 0;
     static int frameh = 0;
     public static ArrayList<JComponent> jcomponents = new ArrayList<JComponent>();
-    public static ArrayList<HashMap<ResizeRule, JComponent>> jcomponentswr = new ArrayList<>();
+    public static ArrayList<HashMap<ResizeRule, JComponent>> jcompodnentswr = new ArrayList<>();
 
 
     // ---- By ChatGPT ----
