@@ -21,12 +21,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.TextFormat;
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.threading.DefThread;
+import org.htmlunit.xpath.operations.Bool;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -298,6 +301,9 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
     });
 
     private void putConnectState(@NotNull Connect.PutStateRequest req) {
+        if(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.spconnect.name))) {
+            return;
+        }
         if(lastReq == null) {
             lastReq = req;
         }else {

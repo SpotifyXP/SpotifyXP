@@ -15,6 +15,7 @@ public enum ConfigValues {
     lastfmpassword("lastfm.user.settings.password"),
     lastfmtracklimit("lastfm.user.settings.tracklimit"),
     facebook("user.settings.isfacebook"),
+    spconnect("user.settings.spconnect"),
     lastfmartistlimit("lastfm.user.settings.artistlimit");
     public final String name;
     ConfigValues(String n) {

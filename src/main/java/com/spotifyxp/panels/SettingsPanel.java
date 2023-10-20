@@ -53,6 +53,7 @@ public class SettingsPanel extends JPanel {
     public static JScrollText settingslastfmloginlabel;
     public static JButton settingslastfmlogout;
     public static JButton settingslastfmlogin;
+    public static JRadioButton settingsturnoffspotifyconnect;
 
     //Borders
     public static JPanel browsersettingsborder;
@@ -83,13 +84,13 @@ public class SettingsPanel extends JPanel {
         add(settingsuiborder);
         playbackborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
         playbackborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.playback.label")));
-        playbackborder.setBounds(20, 312, 382, 60);
+        playbackborder.setBounds(20, 312, 382, 83);
         playbackborder.setLayout(null);
         add(playbackborder);
         lastfmborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
         lastfmborder.setLayout(null);
         lastfmborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.lastfm.settings.border")));
-        lastfmborder.setBounds(20, 382, 382, 60);
+        lastfmborder.setBounds(20, 405, 382, 60);
         add(lastfmborder);
         //
 
@@ -205,11 +206,19 @@ public class SettingsPanel extends JPanel {
         playbackborder.add(settingsplaybackselectqualitylabel);
         settingsplaybackselectqualitylabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        settingsplaybackselectqualitylabel.setForeground(PublicValues.globalFontColor);
+        settingsturnoffspotifyconnect = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.settings.spconnect")));
+        settingsturnoffspotifyconnect.setForeground(PublicValues.globalFontColor);
+
+        settingsturnoffspotifyconnect.setBounds(120, 55, 200, 20);
+
+        playbackborder.add(settingsturnoffspotifyconnect);
+
+
+        settingsplaybackselectquality.setForeground(PublicValues.globalFontColor);
 
         settingsplaybackopenequalizerbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.settings.uninstall")));
         settingsplaybackopenequalizerbutton.setBounds(205, 445, 197, 23);
-        add(settingsplaybackopenequalizerbutton);
+        //add(settingsplaybackopenequalizerbutton);
 
         settingsplaybackopenequalizerbutton.setEnabled(false);
 
@@ -268,6 +277,7 @@ public class SettingsPanel extends JPanel {
         settingsbrowserpath.setText(PublicValues.config.get(ConfigValues.mypalpath.name));
         settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.theme.name));
         settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.audioquality.name));
+        settingsturnoffspotifyconnect.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.spconnect.name)));
 
         if(settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
@@ -294,6 +304,7 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
                 break;
         }
+        PublicValues.config.write(ConfigValues.spconnect.name, String.valueOf(settingsturnoffspotifyconnect.isSelected()));
         PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
         PublicValues.config.write(ConfigValues.hideExceptions.name, String.valueOf(settingsdisableexceptions.isSelected()));
         PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);

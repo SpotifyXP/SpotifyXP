@@ -199,7 +199,7 @@ public class Initiator {
         SplashPanel.linfo.setText("Parsing audio quality info...");
         try {
             PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
-        }catch (IllegalArgumentException exception) {
+        }catch (Exception exception) {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
         }

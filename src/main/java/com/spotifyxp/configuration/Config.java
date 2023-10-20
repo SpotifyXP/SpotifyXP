@@ -5,16 +5,20 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
+import org.apache.commons.httpclient.NameValuePair;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Properties;
 
 @SuppressWarnings("CanBeFinal")
 public class Config {
+    ArrayList<String> retcache = new ArrayList<>();
+    ArrayList<String> fastcache = new ArrayList<>();
     Properties properties;
     public Config() {
         properties = new Properties();
@@ -33,6 +37,7 @@ public class Config {
             properties.put(ConfigValues.mypalpath.name, "");
             properties.put(ConfigValues.password.name, "");
             properties.put(ConfigValues.hideExceptions.name, "false");
+            properties.put(ConfigValues.spconnect.name, "false");
             properties.put(ConfigValues.language.name, "English");
             if(!new File(PublicValues.fileslocation).exists()) {
                 if(!new File(PublicValues.fileslocation).mkdir()) {
@@ -64,12 +69,19 @@ public class Config {
         }
     }
 
+
+    void invalidateCache() {
+        retcache.clear();
+        fastcache.clear();
+    }
+
     /**
      * Writes a new entry with the name and value to the config file
      * @param name
      * @param value
      */
     public void write(String name, String value) {
+        invalidateCache();
         properties.put(name, value);
         try {
             properties.store(new FileWriter(PublicValues.configfilepath), "SpotifyXP Configuration file");
@@ -93,10 +105,16 @@ public class Config {
      * @return value of given entry
      */
     public String get(String name) {
-        String ret = properties.getProperty(name);
-        if(ret==null) {
-            ret = "";
+        if(fastcache.contains(name)) {
+            return retcache.get(fastcache.indexOf(name));
+        }else {
+            String ret = properties.getProperty(name);
+            if (ret == null) {
+                ret = "";
+            }
+            fastcache.add(name);
+            retcache.add(ret);
+            return ret;
         }
-        return ret;
     }
 }
