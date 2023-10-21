@@ -54,7 +54,7 @@ public class Playlist {
 	private int size;
 	private String creator;
 
-	private List<Track> tracks = new ArrayList<Track>();
+	private final List<Track> tracks = new ArrayList<>();
 
 	private Playlist() {
 	}

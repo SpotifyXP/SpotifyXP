@@ -14,9 +14,9 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
-import com.spotifyxp.deps.mslinks.Serializable;
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -114,7 +114,7 @@ public class HotKeyFlags implements Serializable {
 	}
 	
 	public HotKeyFlags setKey(String k) {
-		if (k != null && !k.equals(""))
+		if (k != null && !k.isEmpty())
 			low = keysr.get(k);
 		return this;
 	}

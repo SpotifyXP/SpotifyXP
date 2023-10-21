@@ -5,14 +5,13 @@ import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.utils.StreamUtils;
 
 import javax.swing.*;
-import java.awt.Component;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
 public class HTMLComponent extends JPanel implements com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.Component {
-    String defaultHTML = "<a>Load HTML with the 'load()' function</a>";
-    JEditorPane pane;
+    final String defaultHTML = "<a>Load HTML with the 'load()' function</a>";
+    final JEditorPane pane;
 
     public HTMLComponent() {
         pane = new JEditorPane();
@@ -55,7 +54,7 @@ public class HTMLComponent extends JPanel implements com.spotifyxp.deps.de.werwo
         try {
             pane.setText(StreamUtils.inputStreamToString(url.openStream()));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

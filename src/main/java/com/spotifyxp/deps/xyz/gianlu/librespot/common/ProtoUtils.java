@@ -341,14 +341,14 @@ public final class ProtoUtils {
     }
 
     public static void putFilesAsMetadata(@NotNull Player.ProvidedTrack.Builder builder, @NotNull List<Metadata.AudioFile> files) {
-        if (files.size() == 0) return;
+        if (files.isEmpty()) return;
 
         JsonArray formats = new JsonArray(files.size());
         for (Metadata.AudioFile file : files) {
             if (file.hasFormat()) formats.add(file.getFormat().name());
         }
 
-        if (formats.size() > 0) builder.putMetadata("available_file_formats", formats.toString());
+        if (!formats.isEmpty()) builder.putMetadata("available_file_formats", formats.toString());
     }
 
     public static int getTrackCount(@NotNull Metadata.Album album) {

@@ -16,12 +16,7 @@ import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.utils.Resources;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Setup {
 
@@ -77,14 +72,11 @@ public class Setup {
                     .setTo(PublicValues.appLocation + File.separator + "SpotifyXP.jar")
                     .setType(InstallProgressComponent.FileOperationTypes.COPY));
             macos.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setCustom(new Runnable() {
-                        @Override
-                        public void run() {
-                            MacOSAppUtil util = new MacOSAppUtil("SpotifyXP");
-                            util.setIcon("spotifyxp.icns");
-                            util.setExecutableLocation(PublicValues.appLocation + "/SpotifyXP.jar");
-                            util.create();
-                        }
+                    .setCustom(() -> {
+                        MacOSAppUtil util = new MacOSAppUtil("SpotifyXP");
+                        util.setIcon("spotifyxp.icns");
+                        util.setExecutableLocation(PublicValues.appLocation + "/SpotifyXP.jar");
+                        util.create();
                     })
                     .setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
@@ -110,19 +102,16 @@ public class Setup {
                     .setTo(PublicValues.appLocation + "/SpotifyXP.jar")
                     .setType(InstallProgressComponent.FileOperationTypes.COPY));
             win.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setCustom(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                ShellLink shellLink = new ShellLink();
-                                shellLink.setIconLocation(PublicValues.appLocation + "/SpotifyXP.ico");
-                                shellLink.setCMDArgs("--setup-complete");
-                                ShellLinkHelper helper = new ShellLinkHelper(shellLink);
-                                helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
-                                helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
-                            }catch (Exception e) {
-                                ConsoleLogging.Throwable(e);
-                            }
+                    .setCustom(() -> {
+                        try {
+                            ShellLink shellLink = new ShellLink();
+                            shellLink.setIconLocation(PublicValues.appLocation + "/SpotifyXP.ico");
+                            shellLink.setCMDArgs("--setup-complete");
+                            ShellLinkHelper helper = new ShellLinkHelper(shellLink);
+                            helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
+                            helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
+                        }catch (Exception e) {
+                            ConsoleLogging.Throwable(e);
                         }
                     }).setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
@@ -148,18 +137,15 @@ public class Setup {
                     .setTo(PublicValues.appLocation + File.separator + "SpotifyXP.jar")
                     .setType(InstallProgressComponent.FileOperationTypes.COPY));
             linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setCustom(new Runnable() {
-                        @Override
-                        public void run() {
-                            LinuxAppUtil util = new LinuxAppUtil("SpotifyXP");
-                            util.setVersion(ApplicationUtils.getVersion());
-                            util.setComment("Listen to Spotify");
-                            util.setPath(PublicValues.appLocation);
-                            util.setExecutableLocation("java -jar SpotifyXP.jar --setup-complete");
-                            util.setIconlocation(PublicValues.appLocation + "/spotifyxp.ico");
-                            util.setCategories("Java", "Music");
-                            util.create();
-                        }
+                    .setCustom(() -> {
+                        LinuxAppUtil util = new LinuxAppUtil("SpotifyXP");
+                        util.setVersion(ApplicationUtils.getVersion());
+                        util.setComment("Listen to Spotify");
+                        util.setPath(PublicValues.appLocation);
+                        util.setExecutableLocation("java -jar SpotifyXP.jar --setup-complete");
+                        util.setIconlocation(PublicValues.appLocation + "/spotifyxp.ico");
+                        util.setCategories("Java", "Music");
+                        util.create();
                     }).setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
             ExceptionDialog.open(e);

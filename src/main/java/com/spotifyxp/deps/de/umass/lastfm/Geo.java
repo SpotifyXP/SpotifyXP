@@ -26,11 +26,11 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import java.util.*;
-
 import com.spotifyxp.deps.de.umass.util.MapUtilities;
 import com.spotifyxp.deps.de.umass.util.StringUtilities;
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+
+import java.util.*;
 
 /**
  * Provides nothing more than a namespace for the API methods starting with geo.
@@ -45,8 +45,8 @@ public class Geo {
 	 * @see Geo#getMetros(String, String)
 	 */
 	public static class Metro {
-		private String name;
-		private String country;
+		private final String name;
+		private final String country;
 
 		public Metro(String name, String country) {
 			this.name = name;
@@ -84,11 +84,9 @@ public class Geo {
 			Collection<Event> pageResults = result.getPageResults();
 			if (events == null) {
 				// events is initialized here to initialize it with the right size and avoid array copying later on
-				events = new ArrayList<Event>(total * pageResults.size());
+				events = new ArrayList<>(total * pageResults.size());
 			}
-			for (Event artist : pageResults) {
-				events.add(artist);
-			}
+			events.addAll(pageResults);
 			page++;
 		} while (page <= total);
 		return events;
@@ -122,7 +120,7 @@ public class Geo {
 	}
 
 	public static PaginatedResult<Event> getEvents(String location, String distance, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("page", String.valueOf(page));
 		MapUtilities.nullSafePut(params, "location", location);
 		MapUtilities.nullSafePut(params, "distance", distance);
@@ -145,7 +143,7 @@ public class Geo {
 	}
 
 	public static PaginatedResult<Event> getEvents(double latitude, double longitude, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("page", String.valueOf(page));
 		params.put("lat", String.valueOf(latitude));
 		params.put("long", String.valueOf(longitude));
@@ -171,7 +169,7 @@ public class Geo {
 	 * @return a {@link PaginatedResult} containing a list of events
 	 */
 	public static PaginatedResult<Event> getEvents(double latitude, double longitude, String distance, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("lat", String.valueOf(latitude));
 		params.put("long", String.valueOf(longitude));
 		params.put("distance", distance);
@@ -224,13 +222,13 @@ public class Geo {
 	 * @return a List of {@link Metro}s
 	 */
 	public static Collection<Metro> getMetros(String country, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		MapUtilities.nullSafePut(params, "country", country);
 		Result result = Caller.getInstance().call("geo.getMetros", apiKey, params);
 		if (!result.isSuccessful())
 			return Collections.emptyList();
 		Collection<DomElement> children = result.getContentElement().getChildren("metro");
-		Collection<Metro> metros = new ArrayList<Metro>(children.size());
+		Collection<Metro> metros = new ArrayList<>(children.size());
 		for (DomElement child : children) {
 			metros.add(new Metro(child.getChildText("name"), child.getChildText("country")));
 		}
@@ -242,7 +240,7 @@ public class Geo {
 	 *
 	 * @param metro The name of the metro, or <code>null</code>
 	 * @param apiKey A Last.fm API key
-	 * @return a list of available charts as a Map
+	 * @return a map of available charts as a Map
 	 */
 	public static LinkedHashMap<String, String> getMetroWeeklyChartList(String metro, String apiKey) {
 		return Chart.getWeeklyChartList("geo.getMetroWeeklyChartList", "metro", metro, apiKey);

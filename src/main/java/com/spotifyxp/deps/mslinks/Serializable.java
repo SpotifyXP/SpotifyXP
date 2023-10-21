@@ -14,9 +14,9 @@
 */
 package com.spotifyxp.deps.mslinks;
 
-import java.io.IOException;
-
 import com.spotifyxp.deps.io.ByteWriter;
+
+import java.io.IOException;
 
 public interface Serializable {
 	void serialize(ByteWriter bw) throws IOException;

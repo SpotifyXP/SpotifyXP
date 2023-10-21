@@ -52,7 +52,7 @@ public class DefaultExpirationPolicy implements ExpirationPolicy {
 	/**
 	 * Contains the lower case method names for all requests that should be cached 1 week
 	 */
-	protected static final Set<String> ONE_WEEK_METHODS = new HashSet<String>();
+	protected static final Set<String> ONE_WEEK_METHODS = new HashSet<>();
 
 	static {
 		// similar data

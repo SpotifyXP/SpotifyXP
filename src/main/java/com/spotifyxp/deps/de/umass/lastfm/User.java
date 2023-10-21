@@ -26,24 +26,25 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import java.util.*;
-
 import com.spotifyxp.deps.de.umass.util.MapUtilities;
 import com.spotifyxp.deps.de.umass.util.StringUtilities;
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+
+import java.util.*;
 
 /**
  * Contains user information and provides bindings to the methods in the user. namespace.
  *
  * @author Janni Kovacs
  */
+@SuppressWarnings("RedundantTypeArguments")
 public class User extends ImageHolder {
 
 	static final ItemFactory<User> FACTORY = new UserFactory();
 
 	private String id;
-	private String name;
-	private String url;
+	private final String name;
+	private final String url;
 
 	private String realname;
 
@@ -157,7 +158,7 @@ public class User extends ImageHolder {
 	 * @return a list of Tracks
 	 */
 	public static PaginatedResult<Track> getArtistTracks(String user, String artist, int page, long startTimestamp, long endTimestamp, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		params.put("artist", artist);
 		params.put("page", String.valueOf(page));
@@ -191,7 +192,7 @@ public class User extends ImageHolder {
 	}
 
 	public static PaginatedResult<Track> getRecentTracks(String user, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		params.put("limit", String.valueOf(limit));
 		params.put("page", String.valueOf(page));
@@ -200,7 +201,7 @@ public class User extends ImageHolder {
 	}
 
 	public static String getRawRecentTracks(String user, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		params.put("limit", String.valueOf(limit));
 		params.put("page", String.valueOf(page));
@@ -254,7 +255,7 @@ public class User extends ImageHolder {
 	}
 
 	public static Collection<Tag> getTopTags(String user, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		MapUtilities.nullSafePut(params, "limit", limit);
 		Result result = Caller.getInstance().call("user.getTopTags", apiKey, params);
@@ -301,7 +302,8 @@ public class User extends ImageHolder {
 		return Chart.getWeeklyChartList("user.getWeeklyChartList", "user", user, apiKey);
 	}
 
-	public static Collection<Chart> getWeeklyChartListAsCharts(String user, String apiKey) {
+	@SuppressWarnings("rawtypes")
+    public static Collection<Chart> getWeeklyChartListAsCharts(String user, String apiKey) {
 		return Chart.getWeeklyChartListAsCharts("user", user, apiKey);
 	}
 
@@ -339,7 +341,7 @@ public class User extends ImageHolder {
 	 * @return a list of upcoming events
 	 */
 	public static PaginatedResult<Event> getEvents(String user, boolean festivalsOnly, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		MapUtilities.nullSafePut(params, "user", user);
 		MapUtilities.nullSafePut(params, "page", page);
 		MapUtilities.nullSafePut(params, "limit", limit);
@@ -370,7 +372,7 @@ public class User extends ImageHolder {
 	 * @return a list of past {@link Event}s
 	 */
 	public static PaginatedResult<Event> getPastEvents(String user, int page, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		MapUtilities.nullSafePut(params, "page", page);
 		Result result = Caller.getInstance().call("user.getPastEvents", apiKey, params);
@@ -399,7 +401,7 @@ public class User extends ImageHolder {
 		Result result = Caller.getInstance().call("user.getPlaylists", apiKey, "user", user);
 		if (!result.isSuccessful())
 			return Collections.emptyList();
-		Collection<Playlist> playlists = new ArrayList<Playlist>();
+		Collection<Playlist> playlists = new ArrayList<>();
 		for (DomElement element : result.getContentElement().getChildren("playlist")) {
 			playlists.add(ResponseBuilder.buildItem(element, Playlist.class));
 		}
@@ -573,7 +575,7 @@ public class User extends ImageHolder {
 	 * @return a page of <code>Shout</code>s
 	 */
 	public static PaginatedResult<Shout> getShouts(String user, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		MapUtilities.nullSafePut(params, "limit", limit);
 		MapUtilities.nullSafePut(params, "page", page);
@@ -639,7 +641,7 @@ public class User extends ImageHolder {
 
 		Result result = Caller.getInstance().call("user.getPersonalTags", apiKey, params);
 		if (!result.isSuccessful())
-			return new PaginatedResult<T>(0, 0, Collections.<T>emptyList());
+			return new PaginatedResult<>(0, 0, Collections.<T>emptyList());
 
 		String childElementName = params.get(taggingTypeParam) + "s";
 		DomElement contentElement = result.getContentElement();

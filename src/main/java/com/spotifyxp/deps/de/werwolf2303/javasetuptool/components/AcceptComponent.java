@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 
 public class AcceptComponent extends JPanel implements Component {
-    JScrollPane pane;
-    JEditorPane content;
+    final JScrollPane pane;
+    final JEditorPane content;
     boolean scrolldown = false;
 
     @Override
@@ -37,7 +37,7 @@ public class AcceptComponent extends JPanel implements Component {
             content.setContentType("text/html");
             content.setText(StreamUtils.inputStreamToString(url.openStream()));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     public void setText(String text) {
@@ -69,21 +69,15 @@ public class AcceptComponent extends JPanel implements Component {
         custom1.setEnabled(false);
         custom2.setText("Decline");
         custom2.setVisible(true);
-        custom2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        custom2.addActionListener(e -> System.exit(0));
         next.setEnabled(false);
-        pane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                if(!e.getValueIsAdjusting()){
-                    JScrollBar scrollBar = (JScrollBar) e.getAdjustable();
-                    int extent = scrollBar.getModel().getExtent();
-                    int maximum = scrollBar.getModel().getMaximum();
-                    if(extent + e.getValue() == maximum){
-                        custom1.setEnabled(true);
-                    }
+        pane.getVerticalScrollBar().addAdjustmentListener(e -> {
+            if(!e.getValueIsAdjusting()){
+                JScrollBar scrollBar = (JScrollBar) e.getAdjustable();
+                int extent = scrollBar.getModel().getExtent();
+                int maximum = scrollBar.getModel().getMaximum();
+                if(extent + e.getValue() == maximum){
+                    custom1.setEnabled(true);
                 }
             }
         });

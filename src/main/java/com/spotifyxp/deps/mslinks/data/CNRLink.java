@@ -14,17 +14,18 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
+import com.spotifyxp.deps.io.ByteReader;
+import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
+import com.spotifyxp.deps.mslinks.ShellLinkException;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.charset.CharsetEncoder;
 import java.nio.charset.StandardCharsets;
 
-import com.spotifyxp.deps.mslinks.Serializable;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
-import com.spotifyxp.deps.io.ByteReader;
-import com.spotifyxp.deps.io.ByteWriter;
-
+@SuppressWarnings({"IfStatementWithIdenticalBranches", "UnusedAssignment"})
 public class CNRLink implements Serializable {
 	
 	public static final int WNNC_NET_AVID = 0x001A000;
@@ -122,7 +123,7 @@ public class CNRLink implements Serializable {
 		int mod = Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL;
 		for (Field f : this.getClass().getFields()) {
 			try {
-				if ((f.getModifiers() & mod) == mod && type == ((Integer)f.get(null)).intValue())
+				if ((f.getModifiers() & mod) == mod && type == (Integer) f.get(null))
 					return;
 			} catch (Exception e) {
 				throw new RuntimeException(e);

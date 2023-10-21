@@ -2,8 +2,8 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Disallows;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Disallows;
 
 /**
  * Retrieve information about Actions objects by building instances from this class. These objects

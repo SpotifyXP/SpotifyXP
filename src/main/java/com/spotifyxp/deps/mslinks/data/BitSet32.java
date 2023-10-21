@@ -16,10 +16,9 @@ package com.spotifyxp.deps.mslinks.data;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
 
 import java.io.IOException;
-
-import com.spotifyxp.deps.mslinks.Serializable;
 
 public class BitSet32 implements Serializable {
 	private int d;

@@ -5,14 +5,11 @@ import com.spotifyxp.PublicValues;
 public class CustomSaveDir implements Argument{
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.fileslocation = parameter1;
-                PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
-                PublicValues.customSaveDir = true;
-                PublicValues.appLocation = PublicValues.fileslocation;
-            }
+        return () -> {
+            PublicValues.fileslocation = parameter1;
+            PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
+            PublicValues.customSaveDir = true;
+            PublicValues.appLocation = PublicValues.fileslocation;
         };
     }
 

@@ -26,12 +26,8 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.cache;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,8 +39,8 @@ import java.util.Map;
  */
 public class MemoryCache extends Cache {
 
-	private Map<String, String> data = new HashMap<String, String>();
-	private Map<String, Long> expirations = new HashMap<String, Long>();
+	private final Map<String, String> data = new HashMap<>();
+	private final Map<String, Long> expirations = new HashMap<>();
 
 	public boolean contains(String cacheEntryName) {
 		boolean contains = data.containsKey(cacheEntryName);
@@ -54,13 +50,8 @@ public class MemoryCache extends Cache {
 
 	public InputStream load(String cacheEntryName) {
 		System.out.println("MemoryCache.load: " + cacheEntryName);
-		try {
-			return new ByteArrayInputStream(data.get(cacheEntryName).getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        return new ByteArrayInputStream(data.get(cacheEntryName).getBytes(StandardCharsets.UTF_8));
+    }
 
 	public void remove(String cacheEntryName) {
 		System.out.println("MemoryCache.remove: " + cacheEntryName);
@@ -72,13 +63,13 @@ public class MemoryCache extends Cache {
 		System.out.println("MemoryCache.store: " + cacheEntryName + " Expires at: " + new Date(expirationDate));
 		StringBuilder b = new StringBuilder();
 		try {
-			BufferedReader r = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+			BufferedReader r = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 			String l;
 			while ((l = r.readLine()) != null) {
 				b.append(l);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		data.put(cacheEntryName, b.toString());
 		expirations.put(cacheEntryName, expirationDate);

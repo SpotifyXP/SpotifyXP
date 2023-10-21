@@ -1,6 +1,5 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.SplashPanel;
 
@@ -48,10 +47,6 @@ public class GraphicalMessage {
         if(SplashPanel.frame.isVisible()) {
             SplashPanel.frame.setAlwaysOnTop(false);
         }
-        if(JOptionPane.showConfirmDialog(null, PublicValues.language.translate("message.stuck.text"), PublicValues.language.translate("message.stuck.title"), JOptionPane.YES_NO_OPTION) == 0) {
-            return true;
-        }else{
-            return false;
-        }
+        return JOptionPane.showConfirmDialog(null, PublicValues.language.translate("message.stuck.text"), PublicValues.language.translate("message.stuck.title"), JOptionPane.YES_NO_OPTION) == 0;
     }
 }

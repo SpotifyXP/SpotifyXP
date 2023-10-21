@@ -1,11 +1,9 @@
 package com.spotifyxp.api;
 
 
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.URLUtils;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -13,24 +11,17 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.ZoneId;
-import java.time.temporal.ValueRange;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.TimeZone;
 
 public class UnofficialSpotifyAPI {
     //This API is used in the Official Spotify Client
-    String api = "";
+    String api;
 
     public UnofficialSpotifyAPI(String apitoken) {
         api = apitoken;
@@ -84,7 +75,7 @@ public class UnofficialSpotifyAPI {
 
     public static class Lyrics {
         public String syncType = "";
-        public ArrayList<LyricsLine> lines = new ArrayList<>();
+        public final ArrayList<LyricsLine> lines = new ArrayList<>();
         public String language = "";
         public String providerDisplayName = "";
         public String provider = "";
@@ -148,7 +139,6 @@ public class UnofficialSpotifyAPI {
         public String imageURL = "";
     }
 
-    //ToDo: Find out for what the 256hash is
     public void getArtist(String uri) {
         //b82fd661d09d47afff0d0239b165e01c7b21926923064ecc7e63f0cde2b12f4e
         JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=queryArtistOverview&variables={\"uri\":\"" + uri + "\",\"locale\":\"\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"\"}}"))).toString());
@@ -261,7 +251,7 @@ public class UnofficialSpotifyAPI {
                         imageData = new HomeTabImage();
                         try {
                             for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
-                                JSONObject sourceData = new JSONObject();
+                                JSONObject sourceData = new JSONObject(image.toString());
                                 HomeTabImageSource imageSource = new HomeTabImageSource();
                                 try {
                                     imageSource.height = sourceData.getString("height");
@@ -377,12 +367,12 @@ public class UnofficialSpotifyAPI {
 
     public static class HomeTab {
         public String greeting = "";
-        public ArrayList<HomeTabSection> sections = new ArrayList<>();
+        public final ArrayList<HomeTabSection> sections = new ArrayList<>();
         public HomeTabSectionNoName firstSection = new HomeTabSectionNoName(); //Holds user liked songs thingy and more
     }
 
     public static class HomeTabImage {
-        public ArrayList<HomeTabImageSource> sources = new ArrayList<>();
+        public final ArrayList<HomeTabImageSource> sources = new ArrayList<>();
     }
 
     public static class HomeTabImageSource {
@@ -396,13 +386,13 @@ public class UnofficialSpotifyAPI {
         public String description = "";
         public String uri = "";
         public String ownerName = "";
-        public ArrayList<HomeTabImage> images = new ArrayList<>();
+        public final ArrayList<HomeTabImage> images = new ArrayList<>();
     }
 
     public static class HomeTabArtist {
         public String name = "";
         public String uri = "";
-        public ArrayList<HomeTabImage> images = new ArrayList<>();
+        public final ArrayList<HomeTabImage> images = new ArrayList<>();
     }
 
     public static class HomeTabArtistNoImage {
@@ -413,8 +403,8 @@ public class UnofficialSpotifyAPI {
     public static class HomeTabAlbum {
         public String name = "";
         public String uri = "";
-        public ArrayList<HomeTabArtistNoImage> artists = new ArrayList<>();
-        public ArrayList<HomeTabImage> images = new ArrayList<>();
+        public final ArrayList<HomeTabArtistNoImage> artists = new ArrayList<>();
+        public final ArrayList<HomeTabImage> images = new ArrayList<>();
     }
 
     public static class HomeTabEpisodeOrChapter {
@@ -425,39 +415,39 @@ public class UnofficialSpotifyAPI {
         public String description = "";
         //public String contentRating = ""; Don't know what the possible values are
         public String uri = "";
-        public ArrayList<HomeTabImage> EpisodeOrChapterImages = new ArrayList<>();
+        public final ArrayList<HomeTabImage> EpisodeOrChapterImages = new ArrayList<>();
         public String name = "";
         public String publisherName = "";
-        public ArrayList<HomeTabImage> coverImages = new ArrayList<>();
+        public final ArrayList<HomeTabImage> coverImages = new ArrayList<>();
     }
 
     public static class HomeTabSectionNoName {
         //Has liked songs and some stuff
         public int totalCount = 0;
         public String uri = "";
-        public ArrayList<HomeTabAlbum> albums = new ArrayList<>();
-        public ArrayList<HomeTabArtist> artists = new ArrayList<>();
-        public ArrayList<HomeTabPlaylist> playlists = new ArrayList<>();
-        public ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
+        public final ArrayList<HomeTabAlbum> albums = new ArrayList<>();
+        public final ArrayList<HomeTabArtist> artists = new ArrayList<>();
+        public final ArrayList<HomeTabPlaylist> playlists = new ArrayList<>();
+        public final ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
     }
 
     public static class HomeTabSection {
         public int totalCount = 0;
         public String name = "";
         public String uri = "";
-        public ArrayList<HomeTabAlbum> albums = new ArrayList<>();
-        public ArrayList<HomeTabArtist> artists = new ArrayList<>();
-        public ArrayList<HomeTabPlaylist> playlists = new ArrayList<>();
-        public ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
+        public final ArrayList<HomeTabAlbum> albums = new ArrayList<>();
+        public final ArrayList<HomeTabArtist> artists = new ArrayList<>();
+        public final ArrayList<HomeTabPlaylist> playlists = new ArrayList<>();
+        public final ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
     }
 
-    static enum SectionTypes {
+    enum SectionTypes {
         HomeShortsSectionData,
         HomeGenericSectionData,
         HomeRecentlyPlayedSectionData,
     }
 
-    static enum SectionItemTypes {
+    enum SectionItemTypes {
         UnknownType,
         PlaylistResponseWrapper,
         ArtistResponseWrapper,
@@ -579,7 +569,7 @@ public class UnofficialSpotifyAPI {
                                 imageData = new HomeTabImage();
                                 try {
                                     for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
-                                        JSONObject sourceData = new JSONObject();
+                                        JSONObject sourceData = new JSONObject(image);
                                         HomeTabImageSource imageSource = new HomeTabImageSource();
                                         try {
                                             imageSource.height = sourceData.getString("height");
@@ -869,7 +859,7 @@ public class UnofficialSpotifyAPI {
                             imageData = new HomeTabImage();
                             try {
                                 for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
-                                    JSONObject sourceData = new JSONObject();
+                                    JSONObject sourceData = new JSONObject(image.toString());
                                     HomeTabImageSource imageSource = new HomeTabImageSource();
                                     try {
                                         imageSource.height = sourceData.getString("height");
@@ -1070,7 +1060,7 @@ public class UnofficialSpotifyAPI {
      */
     public static String getCanvasURLForTrack(String artist, String album, String track) {
         HttpClient client = new HttpClient();
-        GetMethod method = null;
+        GetMethod method;
         try {
             track =  URLEncoder.encode(track, StandardCharsets.UTF_8.displayName());
             album = URLEncoder.encode(album, StandardCharsets.UTF_8.displayName());

@@ -20,17 +20,15 @@ public final class RunnableQueue {
 
     public RunnableQueue(ExecutorService executorService) {
         m_executorService = executorService;
-        m_runnables = new LinkedList<Runnable>();
+        m_runnables = new LinkedList<>();
 
-        m_loop = new Runnable() {
-            public void run() {
+        m_loop = () -> {
 
-                Runnable l_runnable = current();
+            Runnable l_runnable = current();
 
-                while(l_runnable != null) {
-                    l_runnable.run();
-                    l_runnable = next();
-                }
+            while(l_runnable != null) {
+                l_runnable.run();
+                l_runnable = next();
             }
         };
     }

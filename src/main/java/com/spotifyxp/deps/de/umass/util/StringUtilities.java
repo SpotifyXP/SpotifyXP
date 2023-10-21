@@ -28,6 +28,7 @@ package com.spotifyxp.deps.de.umass.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ import java.util.regex.Pattern;
 public final class StringUtilities {
 
 	private static MessageDigest digest;
-	private static Pattern MBID_PATTERN = Pattern
+	private static final Pattern MBID_PATTERN = Pattern
 			.compile("^[0-9a-f]{8}\\-[0-9a-f]{4}\\-[0-9a-f]{4}\\-[0-9a-f]{4}\\-[0-9a-f]{12}$",
 					Pattern.CASE_INSENSITIVE);
 	private static final Pattern MD5_PATTERN = Pattern.compile("[a-fA-F0-9]{32}");
@@ -62,21 +63,16 @@ public final class StringUtilities {
 	 * @return the md5 hash
 	 */
 	public static String md5(String s) {
-		try {
-			byte[] bytes = digest.digest(s.getBytes("UTF-8"));
-			StringBuilder b = new StringBuilder(32);
-			for (byte aByte : bytes) {
-				String hex = Integer.toHexString((int) aByte & 0xFF);
-				if (hex.length() == 1)
-					b.append('0');
-				b.append(hex);
-			}
-			return b.toString();
-		} catch (UnsupportedEncodingException e) {
-			// utf-8 always available
-		}
-		return null;
-	}
+        byte[] bytes = digest.digest(s.getBytes(StandardCharsets.UTF_8));
+        StringBuilder b = new StringBuilder(32);
+        for (byte aByte : bytes) {
+            String hex = Integer.toHexString((int) aByte & 0xFF);
+            if (hex.length() == 1)
+                b.append('0');
+            b.append(hex);
+        }
+        return b.toString();
+    }
 
 	/**
 	 * URL Encodes the given String <code>s</code> using the UTF-8 character encoding.
@@ -133,7 +129,7 @@ public final class StringUtilities {
 	public static Map<String, String> map(String... strings) {
 		if (strings.length % 2 != 0)
 			throw new IllegalArgumentException("strings.length % 2 != 0");
-		Map<String, String> mp = new HashMap<String, String>();
+		Map<String, String> mp = new HashMap<>();
 		for (int i = 0; i < strings.length; i += 2) {
 			mp.put(strings[i], strings[i + 1]);
 		}

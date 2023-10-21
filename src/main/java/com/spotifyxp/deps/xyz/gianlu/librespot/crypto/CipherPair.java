@@ -17,7 +17,6 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.crypto;
 
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
-import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.DataInputStream;
@@ -70,7 +69,7 @@ public class CipherPair {
     }
 
     @NotNull
-    public Packet receiveEncoded(DataInputStream in) throws IOException, GeneralSecurityException, EOFException {
+    public Packet receiveEncoded(DataInputStream in) throws IOException, GeneralSecurityException {
         synchronized (recvCipher) {
             recvCipher.nonce(Utils.toByteArray(recvNonce.getAndIncrement()));
 

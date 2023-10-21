@@ -1,38 +1,17 @@
 package com.spotifyxp.api;
 
-import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.ApResolver;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.dialogs.LoginDialog;
-import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
-import com.spotifyxp.listeners.PlayerListener;
-import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.*;
-import kotlin.reflect.KParameter;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.URI;
-import org.apache.commons.httpclient.methods.DeleteMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.PutMethod;
-import java.io.*;
-import java.util.ArrayList;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import org.json.JSONObject;
+import com.spotifyxp.utils.TrackUtils;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class SpotifyAPI {
@@ -55,40 +34,32 @@ public class SpotifyAPI {
      * @param totable the table to store all albums found
      */
     public void addAllAlbumsToList(ArrayList<String> uricache, String fromuri, DefTable totable) {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    int offset = 0;
-                    int limit = 50;
-                    int parsed = 0;
-                    int total = Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
-                    int counter = 0;
-                    int last = 0;
-                    while(parsed != total) {
-                        for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
-                            totable.addModifyAction(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ((DefaultTableModel) totable.getModel()).addRow(new Object[]{album.getName()});
-                                }
-                            });
-                            parsed++;
-                        }
-                        if(last == parsed) {
-                            if(counter > 1) {
-                                break;
-                            }
-                            counter++;
-                        }else{
-                            counter = 0;
-                        }
-                        last = parsed;
-                        offset += limit;
+        DefThread thread = new DefThread(() -> {
+            try {
+                int offset = 0;
+                int limit = 50;
+                int parsed = 0;
+                int total = Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
+                int counter = 0;
+                int last = 0;
+                while(parsed != total) {
+                    for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                        totable.addModifyAction(() -> ((DefaultTableModel) totable.getModel()).addRow(new Object[]{album.getName()}));
+                        parsed++;
                     }
-                }catch (Exception e) {
-                    throw new RuntimeException(e);
+                    if(last == parsed) {
+                        if(counter > 1) {
+                            break;
+                        }
+                        counter++;
+                    }else{
+                        counter = 0;
+                    }
+                    last = parsed;
+                    offset += limit;
                 }
+            }catch (Exception e) {
+                throw new RuntimeException(e);
             }
         });
         thread.start();
@@ -101,12 +72,7 @@ public class SpotifyAPI {
      * @see AlbumSimplified
      */
     public void addAlbumToList(AlbumSimplified simplified, DefTable table) {
-        table.addModifyAction(new Runnable() {
-            @Override
-            public void run() {
-                ((DefaultTableModel) table.getModel()).addRow(new Object[] {simplified.getName()});
-            }
-        });
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[] {simplified.getName()}));
     }
 
     /**
@@ -116,12 +82,7 @@ public class SpotifyAPI {
      * @see Artist
      */
     public void addArtistToList(Artist artist, DefTable table) {
-        table.addModifyAction(new Runnable() {
-            @Override
-            public void run() {
-                ((DefaultTableModel) table.getModel()).addRow(new Object[]{artist.getName()});
-            }
-        });
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{artist.getName()}));
     }
 
     /**
@@ -132,12 +93,7 @@ public class SpotifyAPI {
      * @see Track
      */
     public void addSongToList(String artists, Track track, DefTable table) {
-        table.addModifyAction(new Runnable() {
-            @Override
-            public void run() {
-                ((DefaultTableModel) table.getModel()).addRow(new Object[]{track.getName() + " - " + track.getAlbum().getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
-            }
-        });
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{track.getName() + " - " + track.getAlbum().getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(track.getDurationMs())}));
     }
 
     /**
@@ -147,11 +103,6 @@ public class SpotifyAPI {
      * @see PlaylistSimplified
      */
     public void addPlaylistToList(PlaylistSimplified simplified, DefTable table) {
-        table.addModifyAction(new Runnable() {
-            @Override
-            public void run() {
-                ((DefaultTableModel) table.getModel()).addRow(new Object[]{simplified.getName() + " - " + simplified.getOwner().getDisplayName()});
-            }
-        });
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{simplified.getName() + " - " + simplified.getOwner().getDisplayName()}));
     }
 }

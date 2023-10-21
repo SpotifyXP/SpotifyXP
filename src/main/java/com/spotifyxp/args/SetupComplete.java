@@ -2,15 +2,13 @@ package com.spotifyxp.args;
 
 import com.spotifyxp.PublicValues;
 
+@SuppressWarnings("ConstantValue")
 public class SetupComplete implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.foundSetupArgument = true;
-                System.out.println("Found setup argument => " + PublicValues.foundSetupArgument);
-            }
+        return () -> {
+            PublicValues.foundSetupArgument = true;
+            System.out.println("Found setup argument => " + PublicValues.foundSetupArgument);
         };
     }
 

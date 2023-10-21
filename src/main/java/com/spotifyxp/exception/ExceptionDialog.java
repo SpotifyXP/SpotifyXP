@@ -7,8 +7,6 @@ import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ExceptionDialog {
     public ExceptionDialog(Throwable ex) {
@@ -65,12 +63,7 @@ public class ExceptionDialog {
         exceptionokbutton.setBounds(0, 377, 589, 23);
         contentPane.add(exceptionokbutton);
 
-        exceptionokbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
-        });
+        exceptionokbutton.addActionListener(e -> frame.dispose());
 
         frame.getContentPane().add(contentPane);
         frame.setPreferredSize(new Dimension(605, 439));

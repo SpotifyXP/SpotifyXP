@@ -26,17 +26,11 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import com.spotifyxp.deps.de.umass.util.MapUtilities;
 import com.spotifyxp.deps.de.umass.util.StringUtilities;
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+
+import java.util.*;
 
 /**
  * Bean that contains artist information.<br/> This class contains static methods that executes API methods relating to artists.<br/> Method
@@ -48,7 +42,7 @@ public class Artist extends MusicEntry {
 
 	static final ItemFactory<Artist> FACTORY = new ArtistFactory();
 
-	private Collection<Artist> similar = new ArrayList<Artist>();
+	private final Collection<Artist> similar = new ArrayList<>();
 
 	protected Artist(String name, String url) {
 		super(name, url);
@@ -106,13 +100,13 @@ public class Artist extends MusicEntry {
 	 * @return detailed artist info
 	 */
 	public static Artist getInfo(String artistOrMbid, Locale locale, String username, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(artistOrMbid)) {
 			params.put("mbid", artistOrMbid);
 		} else {
 			params.put("artist", artistOrMbid);
 		}
-		if (locale != null && locale.getLanguage().length() != 0) {
+		if (locale != null && !locale.getLanguage().isEmpty()) {
 			params.put("lang", locale.getLanguage());
 		}
 		MapUtilities.nullSafePut(params, "username", username);
@@ -155,7 +149,7 @@ public class Artist extends MusicEntry {
 	public static Collection<Artist> search(String name, String apiKey) {
 		Result result = Caller.getInstance().call("artist.search", apiKey, "artist", name);
 		Collection<DomElement> children = result.getContentElement().getChild("artistmatches").getChildren("artist");
-		List<Artist> list = new ArrayList<Artist>(children.size());
+		List<Artist> list = new ArrayList<>(children.size());
 		for (DomElement c : children) {
 			list.add(FACTORY.createItemFromElement(c));
 		}
@@ -259,7 +253,7 @@ public class Artist extends MusicEntry {
 		if (!result.isSuccessful())
 			return Collections.emptyList();
 		DomElement element = result.getContentElement();
-		Collection<String> tags = new ArrayList<String>();
+		Collection<String> tags = new ArrayList<>();
 		for (DomElement domElement : element.getChildren("tag")) {
 			tags.add(domElement.getChildText("name"));
 		}
@@ -288,7 +282,7 @@ public class Artist extends MusicEntry {
 	 * @return a list of events
 	 */
 	public static PaginatedResult<Event> getEvents(String artistOrMbid, boolean festivalsOnly, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(artistOrMbid)) {
 			params.put("mbid", artistOrMbid);
 		} else {
@@ -324,7 +318,7 @@ public class Artist extends MusicEntry {
 	 * @return a list of past events
 	 */
 	public static PaginatedResult<Event> getPastEvents(String artistOrMbid, boolean festivalsOnly, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(artistOrMbid)) {
 			params.put("mbid", artistOrMbid);
 		} else {
@@ -359,7 +353,7 @@ public class Artist extends MusicEntry {
 	 * @return a list of {@link Image}s
 	 */
 	public static PaginatedResult<Image> getImages(String artistOrMbid, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(artistOrMbid)) {
 			params.put("mbid", artistOrMbid);
 		} else {
@@ -435,7 +429,7 @@ public class Artist extends MusicEntry {
 	 * @return a page of <code>Shout</code>s
 	 */
 	public static PaginatedResult<Shout> getShouts(String artistOrMbid, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(artistOrMbid)) {
 			params.put("mbid", artistOrMbid);
 		} else {

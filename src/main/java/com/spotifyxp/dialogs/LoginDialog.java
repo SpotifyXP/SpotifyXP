@@ -1,4 +1,5 @@
 package com.spotifyxp.dialogs;
+
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
@@ -14,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.Arrays;
 
 @SuppressWarnings("Convert2Lambda")
 public class LoginDialog {
@@ -66,6 +66,7 @@ public class LoginDialog {
             });
         }
     }
+    @SuppressWarnings("BusyWait")
     public void openWithInvalidAuth() {
         JDialog dialog = new JDialog();
         dialog.setTitle("Invalid Login! Try again");
@@ -134,7 +135,7 @@ public class LoginDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
-                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getText()));
+                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
                 PublicValues.config.write(ConfigValues.facebook.name, "false");
                 dialog.dispose();
             }

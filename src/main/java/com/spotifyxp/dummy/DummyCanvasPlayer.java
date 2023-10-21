@@ -1,6 +1,5 @@
 package com.spotifyxp.dummy;
 
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.video.CanvasPlayer;
 
 public class DummyCanvasPlayer extends CanvasPlayer {

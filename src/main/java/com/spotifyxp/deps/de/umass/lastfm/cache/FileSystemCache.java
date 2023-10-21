@@ -26,12 +26,6 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.cache;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Properties;
-
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.de.umass.lastfm.Caller;
 import com.spotifyxp.deps.de.umass.lastfm.Session;
@@ -41,6 +35,12 @@ import com.spotifyxp.deps.de.umass.lastfm.scrobble.ScrobbleResult;
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.Scrobbler;
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.SubmissionData;
 import com.spotifyxp.deps.de.umass.util.StringUtilities;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Standard {@link Cache} implementation which is used by default by the {@link Caller} class.

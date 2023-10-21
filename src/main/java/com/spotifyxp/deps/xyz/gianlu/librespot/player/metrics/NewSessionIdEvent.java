@@ -16,10 +16,10 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.EventService;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TimeProvider;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.StateWrapper;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Event structure for a new session ID.

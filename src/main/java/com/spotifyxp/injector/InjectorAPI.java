@@ -3,16 +3,17 @@ package com.spotifyxp.injector;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.URLUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import javax.swing.*;
 import java.io.BufferedOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+@SuppressWarnings("JavadocDeclaration")
 public class InjectorAPI {
     //The extension repo filesystem
     // Extension INFO     /repo/{EXTENSION_NAME-EXTENSION_AUTHOR-EXTENSION_VERSION}.json
@@ -20,9 +21,9 @@ public class InjectorAPI {
 
     //No Deletion or Upload API
 
-    String repoRootURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main";
-    String repoURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main/repo";
-    public ArrayList<Extension> extensions = new ArrayList<>();
+    final String repoRootURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main";
+    final String repoURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main/repo";
+    public final ArrayList<Extension> extensions = new ArrayList<>();
 
     public static class Extension {
         public String location;
@@ -73,7 +74,7 @@ public class InjectorAPI {
     }
 
     @FunctionalInterface
-    public static interface ProgressRunnable {
+    public interface ProgressRunnable {
         void run(long filesizeDownloaded);
     }
 
@@ -85,8 +86,7 @@ public class InjectorAPI {
     public long getExtensionSize(String url) {
         try {
             HttpURLConnection httpConnection = (HttpURLConnection) (new URL(url).openConnection());
-            long completeFileSize = httpConnection.getContentLength();
-            return completeFileSize;
+            return httpConnection.getContentLength();
         }catch (Exception e) {
             return -1;
         }
@@ -108,17 +108,12 @@ public class InjectorAPI {
                     fos, 1024);
             byte[] data = new byte[1024];
             long downloadedFileSize = 0;
-            int x = 0;
+            int x;
             while ((x = in.read(data, 0, 1024)) >= 0) {
                 downloadedFileSize += x;
                 final int currentProgress = (int) ((((double) downloadedFileSize) / ((double) completeFileSize)) * 100000d);
                 long finalDownloadedFileSize = downloadedFileSize;
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressRunnable.run(finalDownloadedFileSize);
-                    }
-                });
+                SwingUtilities.invokeLater(() -> progressRunnable.run(finalDownloadedFileSize));
                 bout.write(data, 0, x);
             }
             bout.close();

@@ -13,6 +13,9 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 */
 package com.spotifyxp.deps.mslinks;
+
+import com.spotifyxp.deps.mslinks.data.*;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -21,18 +24,11 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import com.spotifyxp.deps.mslinks.data.GUID;
-import com.spotifyxp.deps.mslinks.data.ItemID;
-import com.spotifyxp.deps.mslinks.data.ItemIDDrive;
-import com.spotifyxp.deps.mslinks.data.ItemIDFS;
-import com.spotifyxp.deps.mslinks.data.ItemIDRoot;
-import com.spotifyxp.deps.mslinks.data.Registry;
-import com.spotifyxp.deps.mslinks.data.VolumeID;
-
 /**
  * Helper class to manipulate ShellLink properties in batches for common tasks
  * ShellLink can be used directly without helper for more detailed set up
  */
+@SuppressWarnings("JavadocDeclaration")
 public class ShellLinkHelper {
 
 	public enum Options {
@@ -41,7 +37,7 @@ public class ShellLinkHelper {
 		ForceTypeFile,
 	}
 
-	protected ShellLink link;
+	protected final ShellLink link;
 
 	public ShellLinkHelper(ShellLink l) {
 		link = l;
@@ -52,18 +48,16 @@ public class ShellLinkHelper {
 	/**
 	 * Sets LAN target path
 	 * @param path is an absolute in the form '\\host\share\path\to\target'
-	 * @throws ShellLinkException
-	 */
-	public ShellLinkHelper setNetworkTarget(String path) throws ShellLinkException {
+     */
+	public ShellLinkHelper setNetworkTarget(String path) {
 		return setNetworkTarget(path, Options.None);
 	}
 	
 	/**
 	 * Sets LAN target path
 	 * @param path is an absolute in the form '\\host\share\path\to\target'
-	 * @throws ShellLinkException
-	 */
-	public ShellLinkHelper setNetworkTarget(String path, Options options) throws ShellLinkException {
+     */
+	public ShellLinkHelper setNetworkTarget(String path, Options options) {
 		if (!path.startsWith("\\"))
 			path = "\\" + path;
 		if (!path.startsWith("\\\\"))

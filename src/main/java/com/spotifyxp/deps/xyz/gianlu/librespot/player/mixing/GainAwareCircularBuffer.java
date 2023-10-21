@@ -19,7 +19,7 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({"SameParameterValue", "lossy-conversions"})
 class GainAwareCircularBuffer extends CircularBuffer {
     GainAwareCircularBuffer(int bufferSize) {
         super(bufferSize);

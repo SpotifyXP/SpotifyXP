@@ -19,7 +19,6 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.AsyncWorker;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.RawMercuryRequest;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.jetbrains.annotations.NotNull;

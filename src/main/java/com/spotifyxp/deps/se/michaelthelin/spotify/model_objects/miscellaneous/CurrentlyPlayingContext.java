@@ -3,13 +3,13 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.CurrentlyPlayingType;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IPlaylistItem;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.Actions;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Context;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Disallows;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IPlaylistItem;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.Actions;
 
 /**
  * Retrieve information about

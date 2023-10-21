@@ -4,14 +4,19 @@ package com.spotifyxp;
 import com.spotifyxp.api.Player;
 import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.audio.Quality;
-import com.spotifyxp.factory.Factory;
-import com.spotifyxp.lastfm.LastFM;
-import com.spotifyxp.webController.HttpService;
+import com.spotifyxp.background.BackgroundService;
+import com.spotifyxp.configuration.Config;
+import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.injector.Injector;
+import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lib.libLanguage;
+import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
@@ -21,13 +26,10 @@ import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
-import com.spotifyxp.background.BackgroundService;
-import com.spotifyxp.configuration.Config;
-import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.dialogs.LoginDialog;
-import com.spotifyxp.listeners.KeyListener;
-import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.utils.*;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Resources;
+import com.spotifyxp.utils.StartupTime;
+import com.spotifyxp.webController.HttpService;
 
 import java.awt.*;
 import java.io.File;
@@ -38,11 +40,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+@SuppressWarnings({"all", "RedundantArrayCreation"})
 public class Initiator {
     public static StartupTime startupTime;
-    static DefThread hook = new DefThread(ContentPanel::saveCurrentState);
+    static final DefThread hook = new DefThread(ContentPanel::saveCurrentState);
 
-    public static DefThread thread = new DefThread(new Runnable() {
+    public static final DefThread thread = new DefThread(new Runnable() {
         @Override
         public void run() {
             while (!past) {
@@ -59,6 +62,7 @@ public class Initiator {
         }
     });
     public static boolean past = false;
+    @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
         startupTime = new StartupTime();
         PublicValues.argParser.parseArguments(args);
@@ -159,7 +163,7 @@ public class Initiator {
                     Class util = Class.forName("com.apple.eawt.Application");
                     Method getApplication = util.getMethod("getApplication", new Class[0]);
                     Object application = getApplication.invoke(util);
-                    Class params[] = new Class[1];
+                    Class[] params = new Class[1];
                     params[0] = Image.class;
                     Method setDockIconImage = util.getMethod("setDockIconImage", params);
                     URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
@@ -276,20 +280,17 @@ public class Initiator {
         new BackgroundService().start();
         if(!PublicValues.nogui) {
             Updater.UpdateInfo info = new Updater().updateAvailable();
-            DefThread thread = new DefThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (info.updateAvailable) {
-                        String version = info.version;
-                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-                        new Updater().invoke();
+            DefThread thread = new DefThread(() -> {
+                if (info.updateAvailable) {
+                    String version = info.version;
+                    ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
+                    new Updater().invoke();
+                } else {
+                    if (new Updater().isNightly()) {
+                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
+                        ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
                     } else {
-                        if (new Updater().isNightly()) {
-                            ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
-                            ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
-                        } else {
-                            ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
-                        }
+                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
                     }
                 }
             });

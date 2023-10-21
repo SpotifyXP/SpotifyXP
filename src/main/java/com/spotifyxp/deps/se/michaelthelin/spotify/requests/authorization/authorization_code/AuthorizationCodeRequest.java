@@ -1,12 +1,12 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.authorization.authorization_code;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.ParseException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.authorization.AbstractAuthorizationRequest;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 import java.net.URI;
@@ -68,7 +68,7 @@ public class AuthorizationCodeRequest extends AbstractAuthorizationRequest<Autho
      */
     public Builder code(final String code) {
       assert (code != null);
-      assert (!code.equals(""));
+      assert (!code.isEmpty());
       return setBodyParameter("code", code);
     }
 

@@ -21,12 +21,13 @@ import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -73,12 +74,7 @@ public final class FacebookAuthenticator implements Closeable {
 
         if(!PublicValues.isLinux && !PublicValues.isMacOS) {
             FileDialog dialog = new FileDialog(new JFrame(), "Select Browser Exe");
-            dialog.setFilenameFilter(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.toLowerCase().endsWith(".exe");
-                }
-            });
+            dialog.setFilenameFilter((dir, name) -> name.toLowerCase().endsWith(".exe"));
             dialog.setMode(FileDialog.LOAD);
             dialog.setVisible(true);
             browserPath = dialog.getFile();

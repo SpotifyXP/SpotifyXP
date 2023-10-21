@@ -75,7 +75,7 @@ public class Library {
 	 * @return a {@link PaginatedResult} of the artists
 	 */
 	public static PaginatedResult<Artist> getArtists(String user, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		params.put("page", String.valueOf(page));
 		if (limit > 0)
@@ -101,7 +101,7 @@ public class Library {
 			Collection<Artist> pageResults = result.getPageResults();
 			if (artists == null) {
 				// artists is initialized here to initialize it with the right size and avoid array copying later on
-				artists = new ArrayList<Artist>(total * pageResults.size());
+				artists = new ArrayList<>(total * pageResults.size());
 			}
 			artists.addAll(pageResults);
 			page++;
@@ -143,7 +143,7 @@ public class Library {
 	 * @return a {@link PaginatedResult} of the albums
 	 */
 	public static PaginatedResult<Album> getAlbums(String user, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		params.put("page", String.valueOf(page));
 		if (limit > 0)
@@ -169,7 +169,7 @@ public class Library {
 			Collection<Album> pageResults = result.getPageResults();
 			if (albums == null) {
 				// albums is initialized here to initialize it with the right size and avoid array copying later on
-				albums = new ArrayList<Album>(total * pageResults.size());
+				albums = new ArrayList<>(total * pageResults.size());
 			}
 			albums.addAll(pageResults);
 			page++;
@@ -211,7 +211,7 @@ public class Library {
 	 * @return a {@link PaginatedResult} of the tracks
 	 */
 	public static PaginatedResult<Track> getTracks(String user, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("user", user);
 		params.put("page", String.valueOf(page));
 		if (limit > 0)
@@ -237,7 +237,7 @@ public class Library {
 			Collection<Track> pageResults = result.getPageResults();
 			if (tracks == null) {
 				// tracks is initialized here to initialize it with the right size and avoid array copying later on
-				tracks = new ArrayList<Track>(total * pageResults.size());
+				tracks = new ArrayList<>(total * pageResults.size());
 			}
 			tracks.addAll(pageResults);
 			page++;

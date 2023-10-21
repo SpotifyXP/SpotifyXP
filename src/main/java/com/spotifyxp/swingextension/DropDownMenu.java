@@ -5,7 +5,8 @@ import com.spotifyxp.panels.ContentPanel;
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DropDownMenu {
     final JPopupMenu popupMenu = new JPopupMenu();

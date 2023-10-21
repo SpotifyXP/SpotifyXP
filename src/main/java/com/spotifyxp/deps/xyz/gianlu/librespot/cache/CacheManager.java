@@ -23,6 +23,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;

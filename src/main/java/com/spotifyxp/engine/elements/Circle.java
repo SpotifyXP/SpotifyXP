@@ -1,7 +1,5 @@
 package com.spotifyxp.engine.elements;
 
-import com.spotifyxp.engine.EnginePanel;
-
 import java.awt.*;
 
 public class Circle {

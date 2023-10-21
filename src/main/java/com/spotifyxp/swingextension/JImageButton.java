@@ -1,7 +1,6 @@
 package com.spotifyxp.swingextension;
 
 
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
@@ -12,7 +11,6 @@ import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.svg.SVGDocument;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -21,13 +19,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
+@SuppressWarnings("BusyWait")
 public class JImageButton extends JSVGCanvas {
     //This will create a new type of jbutton that is not really a jbutton
     //but looks like one and acts like one
     private final BufferedImage image = null;
     public boolean isFilled = false;
     private String rad = "";
-    JSVGCanvas canvas = this;
+    final JSVGCanvas canvas = this;
     void refresh() {
         this.repaint();
     }
@@ -36,8 +35,6 @@ public class JImageButton extends JSVGCanvas {
     ActionListener l;
     public JImageButton() {
         JImageButton button = this;
-        //graphics2D.drawImage(image.getScaledInstance(this.getWidth() / 4,this.getHeight() /2, Image.SCALE_SMOOTH), this.getWidth()/3 + 3, this.getHeight()/4, null);
-        //canvas.setBounds(canvas.getWidth() / 2, canvas.getHeight() / 2, canvas.getX() - canvas.getWidth() / 2, canvas.getY() - canvas.getHeight() / 2);
         canvas.setBackground(getBackground());
         canvas.addMouseListener(new MouseAdapter() {
             @Override
@@ -74,7 +71,7 @@ public class JImageButton extends JSVGCanvas {
         setContentAreaFilled(true);
     }
 
-    boolean first = false;
+    final boolean first = false;
     public void setImage(InputStream inputStream) {
         try {
             String parser = XMLResourceDescriptor.getXMLParserClassName();
@@ -91,7 +88,7 @@ public class JImageButton extends JSVGCanvas {
         refresh();
     }
 
-    Color oldColor = ContentPanel.frame.getBackground();
+    final Color oldColor = ContentPanel.frame.getBackground();
 
     public void addActionListener(ActionListener listener) {
         l = listener;
@@ -146,21 +143,18 @@ public class JImageButton extends JSVGCanvas {
             g.setColor(oldColor.brighter());
             g.drawRoundRect(getX(), getY(), getWidth(), getHeight(), 15 ,15);
         }
-        if(!(rad.equals(""))) {
+        if(!(rad.isEmpty())) {
             ((Graphics2D)g).rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
         }
     }
 
-    DefThread t = new DefThread(new Runnable() {
-        @Override
-        public void run() {
-            while(!ContentPanel.frame.isVisible()) {
-                try {
-                    Thread.sleep(99);
-                } catch (InterruptedException ignored) {
-                }
+    final DefThread t = new DefThread(() -> {
+        while(!ContentPanel.frame.isVisible()) {
+            try {
+                Thread.sleep(99);
+            } catch (InterruptedException ignored) {
             }
-            canvas.setBounds(canvas.getBounds());
         }
+        canvas.setBounds(canvas.getBounds());
     });
 }

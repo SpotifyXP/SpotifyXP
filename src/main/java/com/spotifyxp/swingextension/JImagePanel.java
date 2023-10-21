@@ -2,9 +2,6 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.panels.SplashPanel;
-import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.io.IOUtils;
 
 import javax.imageio.ImageIO;
@@ -18,9 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class JImagePanel extends JPanel {
     private BufferedImage image = null;
@@ -98,7 +93,7 @@ public class JImagePanel extends JPanel {
             return;
         }
         Graphics2D graphics2D = (Graphics2D) g;
-        if(!(rad.equals(""))) {
+        if(!(rad.isEmpty())) {
             graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
         }
         graphics2D.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);

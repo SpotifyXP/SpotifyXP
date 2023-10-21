@@ -1,16 +1,16 @@
 package com.spotifyxp.swingextension;
 
-import java.awt.KeyboardFocusManager;
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import java.awt.*;
 
 public class CustomLengthPasswordField extends JPasswordField {
 
-    protected boolean upper = false;
-    protected int maxlength = 0;
+    protected final boolean upper;
+    protected int maxlength;
 
     public CustomLengthPasswordField() {
         this(-1);
@@ -80,11 +80,6 @@ public class CustomLengthPasswordField extends JPasswordField {
 
             if (charLength <= maxlength) {
                 super.replace(fb, offs, length, str, a);
-                if (charLength == maxlength) {
-
-                }
-            } else {
-
             }
         }
 

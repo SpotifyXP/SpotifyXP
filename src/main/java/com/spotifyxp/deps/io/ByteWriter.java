@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteOrder;
 
+@SuppressWarnings({"NegativeIntConstantInLongContext", "NullableProblems"})
 public class ByteWriter extends OutputStream {
 	private boolean le = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
 

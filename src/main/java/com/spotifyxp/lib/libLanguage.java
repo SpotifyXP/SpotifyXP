@@ -2,7 +2,6 @@ package com.spotifyxp.lib;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.Resources;
-import org.apache.hc.client5.http.impl.cookie.LaxMaxAgeHandler;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -31,7 +30,8 @@ public class libLanguage {
        "hello.world2" : "Hello World 2"
      }
      */
-    public static enum Language {
+    @SuppressWarnings("NonAsciiCharacters")
+    public enum Language {
         ABKHAZIAN("Abkhazian", "ab"),
         AFAR("Afar", "aa"),
         AFRIKAANS("Afrikaans", "af"),
@@ -215,8 +215,8 @@ public class libLanguage {
         ZHUANG("Zhuang", "za"),
         ZULU("Zulu", "zu");
 
-        String sc = "";
-        String sn = "";
+        final String sc;
+        final String sn;
         Language(String name, String code) {
             sc = code;
             sn = name;
@@ -284,7 +284,7 @@ public class libLanguage {
     }
     public String translate(String key) {
         final String[] ret = {key};
-        if(!jsoncache.equals("")) {
+        if(!jsoncache.isEmpty()) {
             try {
                 JSONObject object = new JSONObject(jsoncache);
                 object.toMap().forEach(new BiConsumer<String, Object>() {
@@ -322,7 +322,7 @@ public class libLanguage {
                 return translate(key);
             }
         }else{
-            if(!jsoncache.equals("")) {
+            if(!jsoncache.isEmpty()) {
                 try {
                     JSONObject object = new JSONObject(jsoncache);
                     object.toMap().forEach(new BiConsumer<String, Object>() {

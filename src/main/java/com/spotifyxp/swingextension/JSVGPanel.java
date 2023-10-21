@@ -7,11 +7,11 @@ import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.swing.JSVGCanvas;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.svg.SVGDocument;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -63,7 +63,7 @@ public class JSVGPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D graphics2D = (Graphics2D) g;
-            if(!(rad.equals(""))) {
+            if(!(rad.isEmpty())) {
                 graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
             }
             g.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_SMOOTH), this.getWidth()/8, this.getHeight()/8, null);
@@ -71,7 +71,7 @@ public class JSVGPanel {
     }
 
     public static class DrawImage implements DrawMethods {
-        RealDrawImage realDrawImage = new RealDrawImage();
+        final RealDrawImage realDrawImage = new RealDrawImage();
         @Override
         public void draw() {
             realDrawImage.repaint();

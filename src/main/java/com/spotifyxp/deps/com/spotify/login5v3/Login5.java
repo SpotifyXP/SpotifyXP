@@ -7066,7 +7066,7 @@ public final class Login5 {
       if (challenges_ != null) {
         output.writeMessage(3, getChallenges());
       }
-      if (getWarningsList().size() > 0) {
+      if (!getWarningsList().isEmpty()) {
         output.writeUInt32NoTag(34);
         output.writeUInt32NoTag(warningsMemoizedSerializedSize);
       }

@@ -3,11 +3,11 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.simplif
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.AlbumSimplifiedSpecial;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.AlbumSimplifiedSpecial;
 
 import java.io.IOException;
 
@@ -66,7 +66,7 @@ public class SearchAlbumsSpecialRequest extends AbstractDataRequest<Paging<Album
      */
     public Builder q(final String q) {
       assert (q != null);
-      assert (!q.equals(""));
+      assert (!q.isEmpty());
       return setQueryParameter("q", q);
     }
 

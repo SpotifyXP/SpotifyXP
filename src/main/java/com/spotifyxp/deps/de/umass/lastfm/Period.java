@@ -38,7 +38,7 @@ public enum Period {
 	SIX_MONTHS("6month"),
 	TWELVE_MONTHS("12month");
 
-	private String string;
+	private final String string;
 
 	Period(String string) {
 		this.string = string;

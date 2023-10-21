@@ -1,17 +1,11 @@
 package com.spotifyxp.args;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 
 public class Debug implements Argument{
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.debug = true;
-            }
-        };
+        return () -> PublicValues.debug = true;
     }
 
     @Override

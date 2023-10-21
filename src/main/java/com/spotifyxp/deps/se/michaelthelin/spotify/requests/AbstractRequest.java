@@ -1,6 +1,9 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests;
 
 import com.google.gson.*;
+import com.spotifyxp.deps.se.michaelthelin.spotify.IHttpManager;
+import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
+import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApiThreading;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
@@ -10,9 +13,6 @@ import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
-import com.spotifyxp.deps.se.michaelthelin.spotify.IHttpManager;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApiThreading;
 
 import java.io.IOException;
 import java.net.URI;
@@ -34,7 +34,7 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
   protected AbstractRequest(Builder<T, ?> builder) {
     assert (builder != null);
     assert (builder.path != null);
-    assert (!builder.path.equals(""));
+    assert (!builder.path.isEmpty());
 
     this.httpManager = builder.httpManager;
 
@@ -44,7 +44,7 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
       .setHost(builder.host)
       .setPort(builder.port)
       .setPath(builder.path);
-    if (builder.queryParameters.size() > 0) {
+    if (!builder.queryParameters.isEmpty()) {
       uriBuilder
         .setParameters(builder.queryParameters);
     }
@@ -150,7 +150,7 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
       ConsoleLoggingModules.debug(
         "The httpManager returned json == null.");
       return null;
-    } else if (json.equals("")) {
+    } else if (json.isEmpty()) {
       ConsoleLoggingModules.debug(
         "The httpManager returned json == \"\".");
       return null;
@@ -213,7 +213,7 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     }
 
     public BT setHost(final String host) {
-      assert (!scheme.equals(""));
+      assert (!scheme.isEmpty());
       this.host = host;
       return self();
     }

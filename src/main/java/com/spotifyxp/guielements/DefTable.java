@@ -1,34 +1,25 @@
 package com.spotifyxp.guielements;
 
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.RunnableQueue;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class DefTable extends JTable {
-    ArrayList<Runnable> modifyactions = new ArrayList<>();
-    volatile boolean execute = true;
-    RunnableQueue queue = new RunnableQueue(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>()));
+    final ArrayList<Runnable> modifyactions = new ArrayList<>();
+    final boolean execute = true;
+    final RunnableQueue queue = new RunnableQueue(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>()));
 
-    Thread modifyactionsworker = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            for(Runnable run : modifyactions) {
-                if(!execute) {
-                    break;
-                }
-                run.run();
-                modifyactions.remove(0);
+    Thread modifyactionsworker = new Thread(() -> {
+        for(Runnable run : modifyactions) {
+            if(!execute) {
+                break;
             }
+            run.run();
+            modifyactions.remove(0);
         }
     });
 
@@ -46,10 +37,6 @@ public class DefTable extends JTable {
     }
 
     public void addModifyAction(Runnable runnable) {
-        //execute = false;
-        //modifyactions.add(runnable);
-        //execute = true;
-        //modifyactionsworker.start();
         queue.enqueue(runnable);
     }
 }

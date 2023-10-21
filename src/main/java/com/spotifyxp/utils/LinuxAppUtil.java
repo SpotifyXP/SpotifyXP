@@ -6,7 +6,6 @@ import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -55,15 +54,15 @@ public class LinuxAppUtil {
     }
 
     public static class DesktopEntry {
-        public String header = "[Desktop Entry]";
-        public String type = "Application";
+        public final String header = "[Desktop Entry]";
+        public final String type = "Application";
         public String version;
         public String name;
         public String comment;
         public String path;
         public String exec;
         public String icon;
-        public boolean terminal = false;
+        public final boolean terminal = false;
         public String categories;
     }
 

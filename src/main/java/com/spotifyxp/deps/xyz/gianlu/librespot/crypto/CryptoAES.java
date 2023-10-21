@@ -2,15 +2,16 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.crypto;
 
 import com.spotifyxp.deps.se.michaelthelin.spotify.Base64;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
+@SuppressWarnings("UnusedAssignment")
 public class CryptoAES {
     public CryptoAES(String password) {
         key = password.getBytes();
@@ -21,12 +22,10 @@ public class CryptoAES {
             SecretKeySpec key = createKey(password);
             Cipher cipher = Cipher.getInstance(CipherMode);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-            byte[] result = cipher.doFinal(content);
-            return result;
+            return cipher.doFinal(content);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public static String decrypt(byte[] content, String password) {
@@ -37,21 +36,19 @@ public class CryptoAES {
             byte[] result = cipher.doFinal(content);
             return new String(result);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public static String encrypt(String content, String password) {
         byte[] data = null;
         try {
-            data = content.getBytes("UTF-8");
+            data = content.getBytes(StandardCharsets.UTF_8);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         data = encrypt(data, password);
-        String result = byte2hex(data);
-        return result;
+        return byte2hex(data);
     }
 
     private static SecretKeySpec createKey(String password) {
@@ -59,7 +56,7 @@ public class CryptoAES {
         if (password == null) {
             password = "";
         }
-        StringBuffer sb = new StringBuffer(32);
+        StringBuilder sb = new StringBuilder(32);
         sb.append(password);
         while (sb.length() < 32) {
             sb.append("0");
@@ -68,20 +65,16 @@ public class CryptoAES {
             sb.setLength(32);
         }
 
-        try {
-            data = sb.toString().getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        data = sb.toString().getBytes(StandardCharsets.UTF_8);
         return new SecretKeySpec(data, "AES");
     }
 
     public static String byte2hex(byte[] b) { // ???????
-        StringBuffer sb = new StringBuffer(b.length * 2);
-        String tmp = "";
-        for (int n = 0; n < b.length; n++) {
+        StringBuilder sb = new StringBuilder(b.length * 2);
+        String tmp;
+        for (byte value : b) {
             // ?????????????
-            tmp = (java.lang.Integer.toHexString(b[n] & 0XFF));
+            tmp = (Integer.toHexString(value & 0XFF));
             if (tmp.length() == 1) {
                 sb.append("0");
             }
@@ -91,7 +84,7 @@ public class CryptoAES {
     }
 
 
-     byte[]  key = "!@#$!@#$%^&**&^%".getBytes();
+     final byte[]  key;
     final String algorithm="AES";
 
     public String encrypt(String data){
@@ -100,29 +93,20 @@ public class CryptoAES {
         Cipher c = null;
         try {
             c = Cipher.getInstance(algorithm);
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            throw new RuntimeException(e);
         }
         SecretKeySpec k =  new SecretKeySpec(key, algorithm);
         try {
             c.init(Cipher.ENCRYPT_MODE, k);
         } catch (InvalidKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         byte[] encryptedData = "".getBytes();
         try {
             encryptedData = c.doFinal(dataToSend);
-        } catch (IllegalBlockSizeException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (IllegalBlockSizeException | BadPaddingException e) {
+            throw new RuntimeException(e);
         }
         byte[] encryptedByteValue = Base64.encode(encryptedData).getBytes();
         return  new String(encryptedByteValue);//.toString();
@@ -134,30 +118,21 @@ public class CryptoAES {
         Cipher c = null;
         try {
             c = Cipher.getInstance(algorithm);
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            throw new RuntimeException(e);
         }
         SecretKeySpec k =
                 new SecretKeySpec(key, algorithm);
         try {
             c.init(Cipher.DECRYPT_MODE, k);
         } catch (InvalidKeyException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            throw new RuntimeException(e1);
         }
         byte[] decrypted = null;
         try {
             decrypted = c.doFinal(encryptedData);
-        } catch (IllegalBlockSizeException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (IllegalBlockSizeException | BadPaddingException e) {
+            throw new RuntimeException(e);
         }
         return new String(decrypted);
     }

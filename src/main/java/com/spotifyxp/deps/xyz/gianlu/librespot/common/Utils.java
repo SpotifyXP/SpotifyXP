@@ -43,7 +43,7 @@ import java.util.*;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
+@SuppressWarnings({"NullableProblems", "PrimitiveArrayArgumentToVarargsMethod"})
 public final class Utils {
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
     

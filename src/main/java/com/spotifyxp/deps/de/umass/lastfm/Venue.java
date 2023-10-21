@@ -26,13 +26,13 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.util.MapUtilities;
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.spotifyxp.deps.de.umass.util.MapUtilities;
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * Venue information bean.
@@ -59,7 +59,7 @@ public class Venue extends ImageHolder {
 	}
 
 	/**
-	 * Returns a last.fm URL to this venue, e.g.: https://www.last.fm/venue/&lt;id&gt;-&lt;venue name&gt;
+	 * Returns a last.fm URL to this venue, e.g.: <a href="https://www.last.fm/venue/&lt;id&gt;-&lt;venue">...</a> name&gt;
 	 *
 	 * @return last.fm url
 	 * @see #getWebsite()
@@ -133,7 +133,7 @@ public class Venue extends ImageHolder {
 	 * @return a list of venues
 	 */
 	public static Collection<Venue> search(String venue, String country, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("venue", venue);
 		MapUtilities.nullSafePut(params, "country", country);
 		Result result = Caller.getInstance().call("venue.search", apiKey, params);
@@ -191,7 +191,7 @@ public class Venue extends ImageHolder {
 	 * @return a paginated list of events
 	 */
 	public static PaginatedResult<Event> getPastEvents(String venueId, boolean festivalsOnly, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("venue", venueId);
 		params.put("festivalsonly", festivalsOnly ? "1" : "0");
 		MapUtilities.nullSafePut(params, "page", page);
@@ -216,7 +216,7 @@ public class Venue extends ImageHolder {
 			venue.postal = l.getChildText("postalcode");
 			venue.timezone = l.getChildText("timezone");
 			DomElement p = l.getChild("geo:point");
-			if (p.getChildText("geo:lat").length() != 0) { // some venues don't have geo information applied
+			if (!p.getChildText("geo:lat").isEmpty()) { // some venues don't have geo information applied
 				venue.latitude = Float.parseFloat(p.getChildText("geo:lat"));
 				venue.longitude = Float.parseFloat(p.getChildText("geo:long"));
 			}

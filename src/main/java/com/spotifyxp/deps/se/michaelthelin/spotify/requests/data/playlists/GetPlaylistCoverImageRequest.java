@@ -2,9 +2,9 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.playlists;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Image;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Image;
 
 import java.io.IOException;
 
@@ -61,7 +61,7 @@ public class GetPlaylistCoverImageRequest extends AbstractDataRequest<Image[]> {
      */
     public Builder playlist_id(final String playlist_id) {
       assert (playlist_id != null);
-      assert (!playlist_id.equals(""));
+      assert (!playlist_id.isEmpty());
       return setPathParameter("playlist_id", playlist_id);
     }
 

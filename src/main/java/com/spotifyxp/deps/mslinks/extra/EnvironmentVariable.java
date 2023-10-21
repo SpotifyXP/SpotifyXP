@@ -16,12 +16,12 @@ package com.spotifyxp.deps.mslinks.extra;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
-
-import java.io.IOException;
-
 import com.spotifyxp.deps.mslinks.Serializable;
 import com.spotifyxp.deps.mslinks.ShellLinkException;
 
+import java.io.IOException;
+
+@SuppressWarnings("NegativeIntConstantInLongContext")
 public class EnvironmentVariable implements Serializable {
 
 	public static final int signature = 0xA0000001;
@@ -44,7 +44,7 @@ public class EnvironmentVariable implements Serializable {
 		pos = br.getPosition();
 		String unicodeStr = br.readUnicodeStringNullTerm(260);
 		br.seekTo(pos + 520);
-		if (unicodeStr != null && !unicodeStr.equals(""))
+		if (unicodeStr != null && !unicodeStr.isEmpty())
 			variable = unicodeStr;
 	}
 	

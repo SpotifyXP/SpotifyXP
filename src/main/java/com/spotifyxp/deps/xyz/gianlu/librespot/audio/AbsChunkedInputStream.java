@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ import static com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManag
 /**
  * @author devgianlu
  */
-@SuppressWarnings("NullableProblems")
+@SuppressWarnings({"NullableProblems", "lossy-conversions"})
 public abstract class AbsChunkedInputStream extends SeekableInputStream implements HaltListener {
     private static final int PRELOAD_AHEAD = 3;
     private static final int PRELOAD_CHUNK_RETRIES = 2;

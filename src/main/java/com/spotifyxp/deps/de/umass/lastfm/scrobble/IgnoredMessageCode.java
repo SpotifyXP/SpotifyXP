@@ -44,12 +44,12 @@ public enum IgnoredMessageCode {
 	/**
 	 * The ignored message error id returned by the Last.fm API.
 	 */
-	private int codeId;
+	private final int codeId;
 
 	/**
 	 * A map which maps error codes against their corresponding enums for lookups by code.
 	 */
-	private static Map<Integer, IgnoredMessageCode> idToCodeMap = new HashMap<Integer, IgnoredMessageCode>();
+	private static final Map<Integer, IgnoredMessageCode> idToCodeMap = new HashMap<>();
 
 	static {
 		for (IgnoredMessageCode code : IgnoredMessageCode.values()) {
@@ -57,7 +57,7 @@ public enum IgnoredMessageCode {
 		}
 	}
 
-	private IgnoredMessageCode(int code) {
+	IgnoredMessageCode(int code) {
 		this.codeId = code;
 	}
 

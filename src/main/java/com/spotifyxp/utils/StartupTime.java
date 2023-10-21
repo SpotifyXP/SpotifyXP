@@ -53,10 +53,10 @@ public class StartupTime {
         if(s.startsWith("0")) {
             s = s.replace("0", "");
         }
-        if(s.equals("")) {
+        if(s.isEmpty()) {
             return m + " Minutes";
         }
-        if(m.equals("")) {
+        if(m.isEmpty()) {
             return s + " Seconds";
         }
         return m + " Minutes " + s + " Seconds";

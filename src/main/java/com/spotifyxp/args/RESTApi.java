@@ -6,17 +6,7 @@ import com.spotifyxp.injector.InjectingPoints;
 public class RESTApi implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                InjectingPoints.registerOnFrameReady(new Runnable() {
-                    @Override
-                    public void run() {
-                        new RestAPI().start();
-                    }
-                });
-            }
-        };
+        return () -> InjectingPoints.registerOnFrameReady(() -> new RestAPI().start());
     }
 
     @Override

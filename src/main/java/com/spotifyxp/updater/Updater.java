@@ -41,11 +41,7 @@ public class Updater {
                     if (Releasesub > Thissub) {
                         info.updateAvailable = true;
                     } else {
-                        if (Releaselast > Thislast) {
-                            info.updateAvailable = true;
-                        } else {
-                            info.updateAvailable = false;
-                        }
+                        info.updateAvailable = Releaselast > Thislast;
                     }
                 }
             }else{
@@ -83,11 +79,7 @@ public class Updater {
                 if (Releasesub < Thissub) {
                     return true;
                 } else {
-                    if (Releaselast < Thislast) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return Releaselast < Thislast;
                 }
             }
         }catch (Exception e) {

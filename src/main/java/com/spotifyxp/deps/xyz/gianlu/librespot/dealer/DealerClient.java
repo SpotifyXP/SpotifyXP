@@ -173,7 +173,7 @@ public class DealerClient implements Closeable {
                     try {
                         in.close();
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        ConsoleLoggingModules.Throwable(e);
                     }
                 }
             }

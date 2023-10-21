@@ -3,7 +3,7 @@ package com.spotifyxp.injector;
 import java.util.ArrayList;
 
 public class InjectingPoints {
-    private static ArrayList<Runnable> onFrameReady = new ArrayList<>();
+    private static final ArrayList<Runnable> onFrameReady = new ArrayList<>();
 
 
     /**

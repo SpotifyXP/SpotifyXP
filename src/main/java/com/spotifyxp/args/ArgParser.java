@@ -1,13 +1,11 @@
 package com.spotifyxp.args;
 
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.utils.ApplicationUtils;
 
 import java.util.ArrayList;
 
 public class ArgParser {
-    public ArrayList<Argument> arguments = new ArrayList<>();
+    public final ArrayList<Argument> arguments = new ArrayList<>();
     public ArgParser() {
         arguments.add(new CustomSaveDir());
         arguments.add(new Debug());
@@ -38,7 +36,7 @@ public class ArgParser {
 
     /**
      * Parses all the given arguments
-     * @param args
+     * @param args Array of all arguments passed to SpotifyXP
      */
     public void parseArguments(String[] args) {
         boolean isvalid = false;

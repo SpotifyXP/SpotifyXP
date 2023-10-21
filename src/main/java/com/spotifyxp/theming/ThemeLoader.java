@@ -2,7 +2,8 @@ package com.spotifyxp.theming;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.theming.themes.*;
+import com.spotifyxp.theming.themes.DarkGreen;
+import com.spotifyxp.theming.themes.Legacy;
 import com.spotifyxp.utils.Utils;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class ThemeLoader {
     public static String extraSearchPath = ""; //Injector entry point
     public static Theme loadedTheme = null;
     static String loadedThemePath = "";
-    public static ArrayList<Theme> availableThemes = new ArrayList<>(); //Extensions can add their themes here
+    public static final ArrayList<Theme> availableThemes = new ArrayList<>(); //Extensions can add their themes here
 
     public ThemeLoader() {
         availableThemes.add(new DarkGreen());

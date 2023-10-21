@@ -27,10 +27,11 @@ package com.spotifyxp.deps.javazoom.jl.decoder;
  * 
  * @since 0.0
  */
+@SuppressWarnings({"IfStatementWithIdenticalBranches", "PointlessArithmeticExpression", "ManualMinMaxCalculation", "NonStrictComparisonCanBeEquality", "ClassEscapesDefinedScope", "ConstantValue", "DataFlowIssue", "UnusedAssignment"})
 public final class LayerIIIDecoder implements FrameDecoder {
 	final double d43 = 4.0 / 3.0;
 
-	public int[] scalefac_buffer;
+	public final int[] scalefac_buffer;
 
 	private int CheckSumHuff = 0;
 	private final int[] is_1d;
@@ -672,10 +673,10 @@ public final class LayerIIIDecoder implements FrameDecoder {
 	/**
 	 *
 	 */
-	int[] x = {0};
-	int[] y = {0};
-	int[] v = {0};
-	int[] w = {0};
+    final int[] x = {0};
+	final int[] y = {0};
+	final int[] v = {0};
+	final int[] w = {0};
 
 	private void huffman_decode (int ch, int gr) {
 		x[0] = 0;
@@ -799,9 +800,8 @@ public final class LayerIIIDecoder implements FrameDecoder {
 		int cb_width = 0;
 		int index = 0, t_index, j;
 		float g_gain;
-		float[][] xr_1d = xr;
 
-		// choose correct scalefactor band per block type, initalize boundary
+        // choose correct scalefactor band per block type, initalize boundary
 
 		if (gr_info.window_switching_flag != 0 && gr_info.block_type == 2) {
 			if (gr_info.mixed_block_flag != 0)
@@ -823,21 +823,21 @@ public final class LayerIIIDecoder implements FrameDecoder {
 			int reste = j % SSLIMIT;
 			int quotien = ((j - reste) / SSLIMIT);
 			if (is_1d[j] == 0)
-				xr_1d[quotien][reste] = 0.0f;
+				xr[quotien][reste] = 0.0f;
 			else {
 				int abv = is_1d[j];
 				// Pow Array fix (11/17/04)
 				if (abv < t_43.length) {
 					if (is_1d[j] > 0)
-						xr_1d[quotien][reste] = g_gain * t_43[abv];
+						xr[quotien][reste] = g_gain * t_43[abv];
 					else if (-abv < t_43.length)
-						xr_1d[quotien][reste] = -g_gain * t_43[-abv];
+						xr[quotien][reste] = -g_gain * t_43[-abv];
 					else
-						xr_1d[quotien][reste] = -g_gain * (float)Math.pow(-abv, d43);
+						xr[quotien][reste] = -g_gain * (float)Math.pow(-abv, d43);
 				} else if (is_1d[j] > 0)
-					xr_1d[quotien][reste] = g_gain * (float)Math.pow(abv, d43);
+					xr[quotien][reste] = g_gain * (float)Math.pow(abv, d43);
 				else
-					xr_1d[quotien][reste] = -g_gain * (float)Math.pow(-abv, d43);
+					xr[quotien][reste] = -g_gain * (float)Math.pow(-abv, d43);
 			}
 		}
 
@@ -898,7 +898,7 @@ public final class LayerIIIDecoder implements FrameDecoder {
 				int idx = scalefac[ch].s[t_index][cb] << gr_info.scalefac_scale;
 				idx += gr_info.subblock_gain[t_index] << 2;
 
-				xr_1d[quotien][reste] *= two_to_negative_half_pow[idx];
+				xr[quotien][reste] *= two_to_negative_half_pow[idx];
 
 			} else { // LONG block types 0,1,3 & 1st 2 subbands of switched blocks
 				/*
@@ -909,7 +909,7 @@ public final class LayerIIIDecoder implements FrameDecoder {
 				if (gr_info.preflag != 0) idx += pretab[cb];
 
 				idx = idx << gr_info.scalefac_scale;
-				xr_1d[quotien][reste] *= two_to_negative_half_pow[idx];
+				xr[quotien][reste] *= two_to_negative_half_pow[idx];
 			}
 			index++;
 		}
@@ -920,10 +920,8 @@ public final class LayerIIIDecoder implements FrameDecoder {
 			int quotien = ((j - reste) / SSLIMIT);
 			if (reste < 0) reste = 0;
 			if (quotien < 0) quotien = 0;
-			xr_1d[quotien][reste] = 0.0f;
+			xr[quotien][reste] = 0.0f;
 		}
-
-		return;
 	}
 
 	/**
@@ -935,9 +933,8 @@ public final class LayerIIIDecoder implements FrameDecoder {
 		int index;
 		int sfb, sfb_start, sfb_lines;
 		int src_line, des_line;
-		float[][] xr_1d = xr;
 
-		if (gr_info.window_switching_flag != 0 && gr_info.block_type == 2) {
+        if (gr_info.window_switching_flag != 0 && gr_info.block_type == 2) {
 
 			for (index = 0; index < 576; index++)
 				out_1d[index] = 0.0f;
@@ -948,7 +945,7 @@ public final class LayerIIIDecoder implements FrameDecoder {
 					// Modif E.B 02/22/99
 					int reste = index % SSLIMIT;
 					int quotien = ((index - reste) / SSLIMIT);
-					out_1d[index] = xr_1d[quotien][reste];
+					out_1d[index] = xr[quotien][reste];
 				}
 				// REORDERING FOR REST SWITCHED SHORT
 				/*
@@ -969,21 +966,21 @@ public final class LayerIIIDecoder implements FrameDecoder {
 						int reste = src_line % SSLIMIT;
 						int quotien = ((src_line - reste) / SSLIMIT);
 
-						out_1d[des_line] = xr_1d[quotien][reste];
+						out_1d[des_line] = xr[quotien][reste];
 						src_line += sfb_lines;
 						des_line++;
 
 						reste = src_line % SSLIMIT;
 						quotien = ((src_line - reste) / SSLIMIT);
 
-						out_1d[des_line] = xr_1d[quotien][reste];
+						out_1d[des_line] = xr[quotien][reste];
 						src_line += sfb_lines;
 						des_line++;
 
 						reste = src_line % SSLIMIT;
 						quotien = ((src_line - reste) / SSLIMIT);
 
-						out_1d[des_line] = xr_1d[quotien][reste];
+						out_1d[des_line] = xr[quotien][reste];
 					}
 				}
 
@@ -992,14 +989,14 @@ public final class LayerIIIDecoder implements FrameDecoder {
 					int j = reorder_table[sfreq][index];
 					int reste = j % SSLIMIT;
 					int quotien = ((j - reste) / SSLIMIT);
-					out_1d[index] = xr_1d[quotien][reste];
+					out_1d[index] = xr[quotien][reste];
 				}
 		} else
 			for (index = 0; index < 576; index++) {
 				// Modif E.B 02/22/99
 				int reste = index % SSLIMIT;
 				int quotien = ((index - reste) / SSLIMIT);
-				out_1d[index] = xr_1d[quotien][reste];
+				out_1d[index] = xr[quotien][reste];
 			}
 	}
 
@@ -1007,8 +1004,8 @@ public final class LayerIIIDecoder implements FrameDecoder {
 	 *
 	 */
 
-	int[] is_pos = new int[576];
-	float[] is_ratio = new float[576];
+    final int[] is_pos = new int[576];
+	final float[] is_ratio = new float[576];
 
 	private void stereo (int gr) {
 		int sb, ss;
@@ -1304,8 +1301,8 @@ i++;
 
 	// MDM: tsOutCopy and rawout do not need initializing, so the arrays
 	// can be reused.
-	float[] tsOutCopy = new float[18];
-	float[] rawout = new float[36];
+    final float[] tsOutCopy = new float[18];
+	final float[] rawout = new float[36];
 
 	private void hybrid (int ch, int gr) {
 		int bt;
@@ -1320,13 +1317,11 @@ i++;
 
 			tsOut = out_1d;
 			// Modif E.B 02/22/99
-			for (int cc = 0; cc < 18; cc++)
-				tsOutCopy[cc] = tsOut[cc + sb18];
+            System.arraycopy(tsOut, 0 + sb18, tsOutCopy, 0, 18);
 
 			inv_mdct(tsOutCopy, rawout, bt);
 
-			for (int cc = 0; cc < 18; cc++)
-				tsOut[cc + sb18] = tsOutCopy[cc];
+            System.arraycopy(tsOutCopy, 0, tsOut, 0 + sb18, 18);
 			// Fin Modif
 
 			// overlap addition
@@ -1394,7 +1389,7 @@ i++;
 		float tmpf_0, tmpf_1, tmpf_2, tmpf_3, tmpf_4, tmpf_5, tmpf_6, tmpf_7, tmpf_8, tmpf_9;
 		float tmpf_10, tmpf_11, tmpf_12, tmpf_13, tmpf_14, tmpf_15, tmpf_16, tmpf_17;
 
-		tmpf_0 = tmpf_1 = tmpf_2 = tmpf_3 = tmpf_4 = tmpf_5 = tmpf_6 = tmpf_7 = tmpf_8 = tmpf_9 = tmpf_10 = tmpf_11 = tmpf_12 = tmpf_13 = tmpf_14 = tmpf_15 = tmpf_16 = tmpf_17 = 0.0f;
+		tmpf_0 = tmpf_1 = tmpf_2 = tmpf_3 = tmpf_4 = tmpf_5 = tmpf_6 = tmpf_7 = tmpf_8 = tmpf_9 = tmpf_10 = tmpf_11 = tmpf_12 = tmpf_13 = tmpf_14 = tmpf_15 = tmpf_16 = 0.0f;
 
 		if (block_type == 2) {
 
@@ -1714,13 +1709,12 @@ i++;
 	// This may be adjusted for performance without any problems.
 	// public static final int POW_TABLE_LIMIT=512;
 
-	/************************************************************/
-	/* L3TABLE */
+    /* L3TABLE */
 	/************************************************************/
 
 	static class SBI {
-		public int[] l;
-		public int[] s;
+		public final int[] l;
+		public final int[] s;
 
 		public SBI () {
 			l = new int[23];
@@ -1741,8 +1735,8 @@ i++;
 		public int window_switching_flag = 0;
 		public int block_type = 0;
 		public int mixed_block_flag = 0;
-		public int[] table_select;
-		public int[] subblock_gain;
+		public final int[] table_select;
+		public final int[] subblock_gain;
 		public int region0_count = 0;
 		public int region1_count = 0;
 		public int preflag = 0;
@@ -1759,8 +1753,8 @@ i++;
 	}
 
 	static class temporaire {
-		public int[] scfsi;
-		public gr_info_s[] gr;
+		public final int[] scfsi;
+		public final gr_info_s[] gr;
 
 		/**
 		 * Dummy Constructor
@@ -1777,7 +1771,7 @@ i++;
 
 		public int main_data_begin = 0;
 		public int private_bits = 0;
-		public temporaire[] ch;
+		public final temporaire[] ch;
 
 		/**
 		 * Dummy Constructor
@@ -1790,8 +1784,8 @@ i++;
 	}
 
 	static class temporaire2 {
-		public int[] l; /* [cb] */
-		public int[][] s; /* [window][cb] */
+		public final int[] l; /* [cb] */
+		public final int[][] s; /* [window][cb] */
 
 		/**
 		 * Dummy Constructor
@@ -1880,20 +1874,13 @@ i++;
 	private static final float[] ca = {-0.5144957554270f, -0.4717319685650f, -0.3133774542040f, -0.1819131996110f,
 		-0.0945741925262f, -0.0409655828852f, -0.0141985685725f, -0.00369997467375f};
 
-	/************************************************************/
-	/* END OF L3TABLE */
-	/************************************************************/
+    /* END OF L3TABLE */
 
-	/************************************************************/
-	/* L3TYPE */
-	/************************************************************/
+    /* L3TYPE */
 
-	/***************************************************************/
-	/* END OF L3TYPE */
-	/***************************************************************/
+    /* END OF L3TYPE */
 
-	/***************************************************************/
-	/* INV_MDCT */
+    /* INV_MDCT */
 	/***************************************************************/
 	public static final float[][] win = {
 		{-1.6141214951E-02f, -5.3603178919E-02f, -1.0070713296E-01f, -1.6280817573E-01f, -4.9999999679E-01f, -3.8388735032E-01f,
@@ -1924,13 +1911,12 @@ i++;
 			-2.1596714708E-01f, -2.0004979098E-01f, -1.8449493497E-01f, -1.6905846094E-01f, -1.5350360518E-01f, -1.3758624925E-01f,
 			-1.2103922149E-01f, -2.0710679058E-01f, -8.4752577594E-02f, -6.4157525656E-02f, -4.1131172614E-02f, -1.4790705759E-02f}};
 
-	/***************************************************************/
-	/* END OF INV_MDCT */
+    /* END OF INV_MDCT */
 	/***************************************************************/
 
-	class Sftable {
-		public int[] l;
-		public int[] s;
+	static class Sftable {
+		public final int[] l;
+		public final int[] s;
 
 		public Sftable () {
 			l = new int[5];
@@ -1943,7 +1929,7 @@ i++;
 		}
 	}
 
-	public Sftable sftable;
+	public final Sftable sftable;
 
 	public static final int[][][] nr_of_sfb_block = { { {6, 5, 5, 5}, {9, 9, 9, 9}, {6, 9, 9, 9}},
 		{ {6, 5, 7, 3}, {9, 9, 12, 6}, {6, 9, 12, 6}}, { {11, 10, 0, 0}, {18, 18, 0, 0}, {15, 18, 0, 0}},

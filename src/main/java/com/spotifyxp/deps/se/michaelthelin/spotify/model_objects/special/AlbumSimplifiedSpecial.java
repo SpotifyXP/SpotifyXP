@@ -7,12 +7,12 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.AlbumType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ReleaseDatePrecision;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ExternalUrl;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Image;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 
 import java.util.Arrays;
 import java.util.Objects;

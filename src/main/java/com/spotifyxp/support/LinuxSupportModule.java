@@ -1,7 +1,6 @@
 package com.spotifyxp.support;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.utils.GraphicalMessage;
 
 public class LinuxSupportModule {
     public LinuxSupportModule() {

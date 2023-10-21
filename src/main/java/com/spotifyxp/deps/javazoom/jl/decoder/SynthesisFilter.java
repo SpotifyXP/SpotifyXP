@@ -34,6 +34,7 @@ import java.lang.reflect.Array;
  * A class for the synthesis filter bank. This class does a fast downsampling from 32, 44.1 or 48 kHz to 8 kHz, if ULAW is
  * defined. Frequencies above 4 kHz are removed by ignoring higher subbands.
  */
+@SuppressWarnings("PointlessArithmeticExpression")
 public  final class SynthesisFilter {
 	private final float[] v1;
 	private final float[] v2;
@@ -43,10 +44,7 @@ public  final class SynthesisFilter {
 	private final int channel;
 	private final float scalefactor;
 
-	/**
-	 * Quality value for controlling CPU usage/quality tradeoff.
-	 */
-	/*
+    /*
 	 * private int quality;
 	 * 
 	 * private int v_inc;
@@ -114,8 +112,7 @@ public  final class SynthesisFilter {
 	}
 
 	public void input_samples (float[] s) {
-		for (int i = 31; i >= 0; i--)
-			samples[i] = s[i];
+        System.arraycopy(s, 0, samples, 0, 32);
 	}
 
 	/**
@@ -474,8 +471,7 @@ public  final class SynthesisFilter {
 	private void compute_pcm_samples0 (OutputBuffer buffer) {
 		final float[] vp = actual_v;
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -486,7 +482,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[6 + dvp] * dp[10] + vp[5 + dvp] * dp[11] + vp[4 + dvp] * dp[12] + vp[3 + dvp] * dp[13] + vp[2 + dvp]
 				* dp[14] + vp[1 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -495,8 +491,7 @@ public  final class SynthesisFilter {
 	private void compute_pcm_samples1 (OutputBuffer buffer) {
 		final float[] vp = actual_v;
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -508,7 +503,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[7 + dvp] * dp[10] + vp[6 + dvp] * dp[11] + vp[5 + dvp] * dp[12] + vp[4 + dvp] * dp[13] + vp[3 + dvp]
 				* dp[14] + vp[2 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -518,8 +513,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -531,7 +525,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[8 + dvp] * dp[10] + vp[7 + dvp] * dp[11] + vp[6 + dvp] * dp[12] + vp[5 + dvp] * dp[13] + vp[4 + dvp]
 				* dp[14] + vp[3 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -541,8 +535,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -554,7 +547,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[9 + dvp] * dp[10] + vp[8 + dvp] * dp[11] + vp[7 + dvp] * dp[12] + vp[6 + dvp] * dp[13] + vp[5 + dvp]
 				* dp[14] + vp[4 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -564,8 +557,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -577,7 +569,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[10 + dvp] * dp[10] + vp[9 + dvp] * dp[11] + vp[8 + dvp] * dp[12] + vp[7 + dvp] * dp[13] + vp[6 + dvp]
 				* dp[14] + vp[5 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -587,8 +579,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -600,7 +591,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[11 + dvp] * dp[10] + vp[10 + dvp] * dp[11] + vp[9 + dvp] * dp[12] + vp[8 + dvp] * dp[13] + vp[7 + dvp]
 				* dp[14] + vp[6 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -609,8 +600,7 @@ public  final class SynthesisFilter {
 	private void compute_pcm_samples6 (OutputBuffer buffer) {
 		final float[] vp = actual_v;
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -622,7 +612,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[12 + dvp] * dp[10] + vp[11 + dvp] * dp[11] + vp[10 + dvp] * dp[12] + vp[9 + dvp] * dp[13] + vp[8 + dvp]
 				* dp[14] + vp[7 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -632,8 +622,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -645,7 +634,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[13 + dvp] * dp[10] + vp[12 + dvp] * dp[11] + vp[11 + dvp] * dp[12] + vp[10 + dvp] * dp[13] + vp[9 + dvp]
 				* dp[14] + vp[8 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -655,8 +644,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -668,7 +656,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[14 + dvp] * dp[10] + vp[13 + dvp] * dp[11] + vp[12 + dvp] * dp[12] + vp[11 + dvp] * dp[13]
 				+ vp[10 + dvp] * dp[14] + vp[9 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -678,8 +666,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -691,7 +678,7 @@ public  final class SynthesisFilter {
 				+ vp[15 + dvp] * dp[10] + vp[14 + dvp] * dp[11] + vp[13 + dvp] * dp[12] + vp[12 + dvp] * dp[13] + vp[11 + dvp]
 				* dp[14] + vp[10 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -700,8 +687,7 @@ public  final class SynthesisFilter {
 	private void compute_pcm_samples10 (OutputBuffer buffer) {
 		final float[] vp = actual_v;
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -713,7 +699,7 @@ public  final class SynthesisFilter {
 				+ vp[0 + dvp] * dp[10] + vp[15 + dvp] * dp[11] + vp[14 + dvp] * dp[12] + vp[13 + dvp] * dp[13] + vp[12 + dvp]
 				* dp[14] + vp[11 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -723,8 +709,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -736,7 +721,7 @@ public  final class SynthesisFilter {
 				+ vp[1 + dvp] * dp[10] + vp[0 + dvp] * dp[11] + vp[15 + dvp] * dp[12] + vp[14 + dvp] * dp[13] + vp[13 + dvp] * dp[14] + vp[12 + dvp]
 				* dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -745,8 +730,7 @@ public  final class SynthesisFilter {
 	private void compute_pcm_samples12 (OutputBuffer buffer) {
 		final float[] vp = actual_v;
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -758,7 +742,7 @@ public  final class SynthesisFilter {
 				+ vp[2 + dvp] * dp[10] + vp[1 + dvp] * dp[11] + vp[0 + dvp] * dp[12] + vp[15 + dvp] * dp[13] + vp[14 + dvp] * dp[14] + vp[13 + dvp]
 				* dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -768,8 +752,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -781,7 +764,7 @@ public  final class SynthesisFilter {
 				+ vp[3 + dvp] * dp[10] + vp[2 + dvp] * dp[11] + vp[1 + dvp] * dp[12] + vp[0 + dvp] * dp[13] + vp[15 + dvp] * dp[14] + vp[14 + dvp]
 				* dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -791,8 +774,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -804,7 +786,7 @@ public  final class SynthesisFilter {
 				+ vp[4 + dvp] * dp[10] + vp[3 + dvp] * dp[11] + vp[2 + dvp] * dp[12] + vp[1 + dvp] * dp[13] + vp[0 + dvp] * dp[14] + vp[15 + dvp]
 				* dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 
 			dvp += 16;
 		} // for
@@ -814,8 +796,7 @@ public  final class SynthesisFilter {
 		final float[] vp = actual_v;
 
 		// int inc = v_inc;
-		final float[] tmpOut = _tmpOut;
-		int dvp = 0;
+        int dvp = 0;
 
 		// fat chance of having this loop unroll
 		for (int i = 0; i < 32; i++) {
@@ -826,7 +807,7 @@ public  final class SynthesisFilter {
 				* dp[9] + vp[5 + dvp] * dp[10] + vp[4 + dvp] * dp[11] + vp[3 + dvp] * dp[12] + vp[2 + dvp] * dp[13] + vp[1 + dvp]
 				* dp[14] + vp[0 + dvp] * dp[15]) * scalefactor);
 
-			tmpOut[i] = pcm_sample;
+			_tmpOut[i] = pcm_sample;
 			dvp += 16;
 		} // for
 	}
@@ -967,7 +948,8 @@ public  final class SynthesisFilter {
 	 * Loads the data for the d[] from the resource SFd.ser.
 	 * @return the loaded values for d[].
 	 */
-	static private float[] load_d () {
+	@SuppressWarnings("rawtypes")
+    static private float[] load_d () {
 		try {
 			Class elemType = Float.TYPE;
 			Object o = deserializeArray(SynthesisFilter.class.getResourceAsStream("/sfd.ser"), elemType, 512);
@@ -985,7 +967,8 @@ public  final class SynthesisFilter {
 	 * @param elemType The class denoting the type of the array elements.
 	 * @param length The expected length of the array, or -1 if any length is expected.
 	 */
-	static private Object deserializeArray (InputStream in, Class elemType, int length) throws IOException {
+	@SuppressWarnings("rawtypes")
+    static private Object deserializeArray (InputStream in, Class elemType, int length) throws IOException {
 		if (elemType == null) throw new NullPointerException("elemType");
 
 		if (length < -1) throw new IllegalArgumentException("length");
@@ -1053,8 +1036,7 @@ public  final class SynthesisFilter {
 		if (len < 0) len = 0;
 
 		float[] subarray = new float[len];
-		for (int i = 0; i < len; i++)
-			subarray[i] = array[offs + i];
+        System.arraycopy(array, offs + 0, subarray, 0, len);
 		return subarray;
 	}
 }

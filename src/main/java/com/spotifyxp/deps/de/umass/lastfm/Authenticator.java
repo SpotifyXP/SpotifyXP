@@ -26,16 +26,14 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import com.spotifyxp.deps.de.umass.xml.DomElement;
-
-import static com.spotifyxp.deps.de.umass.util.StringUtilities.isMD5;
-import static com.spotifyxp.deps.de.umass.util.StringUtilities.map;
-import static com.spotifyxp.deps.de.umass.util.StringUtilities.md5;
+import static com.spotifyxp.deps.de.umass.util.StringUtilities.*;
 
 /**
  * Provides bindings for the authentication methods of the last.fm API.
@@ -94,7 +92,7 @@ public class Authenticator {
 	 */
 	public static Session getSession(String token, String apiKey, String secret) {
 		String m = "auth.getSession";
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("api_key", apiKey);
 		params.put("token", token);
 		params.put("api_sig", createSignature(m, params, secret));
@@ -103,7 +101,7 @@ public class Authenticator {
 	}
 
 	static String createSignature(String method, Map<String, String> params, String secret) {
-		params = new TreeMap<String, String>(params);
+		params = new TreeMap<>(params);
 		params.put("method", method);
 		StringBuilder b = new StringBuilder(100);
 		for (Entry<String, String> entry : params.entrySet()) {

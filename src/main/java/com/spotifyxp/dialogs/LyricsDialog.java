@@ -14,8 +14,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -23,12 +21,12 @@ import java.util.ArrayList;
 import static com.spotifyxp.panels.ContentPanel.playerarealyricsbutton;
 
 public class LyricsDialog {
-    JFrame frame = new JFrame("SpotifyXP - Song Lyrics");
+    final JFrame frame = new JFrame("SpotifyXP - Song Lyrics");
     UnofficialSpotifyAPI.Lyrics lyrics;
-    JTextArea area = new JTextArea();
-    JScrollPane pane = new JScrollPane(area);
+    final JTextArea area = new JTextArea();
+    final JScrollPane pane = new JScrollPane(area);
 
-    LyricsMode mode = LyricsMode.LIVE;
+    final LyricsMode mode = LyricsMode.LIVE;
 
     static class LyricsWord {
         public int column;
@@ -36,7 +34,7 @@ public class LyricsDialog {
         public long ms;
     }
 
-    ArrayList<LyricsWord> words = new ArrayList<>();
+    final ArrayList<LyricsWord> words = new ArrayList<>();
 
     public enum LyricsMode {
         LIVE,

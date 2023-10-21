@@ -5,10 +5,7 @@ import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.Resources;
-import com.spotifyxp.utils.StringUtils;
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
-import uk.co.caprica.vlcj.media.*;
-import uk.co.caprica.vlcj.player.base.State;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.videosurface.VideoSurface;
 
@@ -28,8 +25,6 @@ public class CanvasPlayer {
     private EmbeddedMediaPlayer mediaPlayer;
 
     private Window window;
-
-    private VideoSurface videoSurface;
 
     private JFrame frame;
 
@@ -58,7 +53,7 @@ public class CanvasPlayer {
             mediaPlayer = factory.mediaPlayers().newEmbeddedMediaPlayer();
             window = new Window(frame);
             window.setBackground(Color.black);
-            videoSurface = factory.videoSurfaces().newVideoSurface(window);
+            VideoSurface videoSurface = factory.videoSurfaces().newVideoSurface(window);
             mediaPlayer.videoSurface().set(videoSurface);
             window.setBounds(0, 0, 294, 526);
             window.setIgnoreRepaint(true);

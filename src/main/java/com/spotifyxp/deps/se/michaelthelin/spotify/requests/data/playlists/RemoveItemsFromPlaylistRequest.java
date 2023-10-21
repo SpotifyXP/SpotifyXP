@@ -3,10 +3,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.playlists;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonArray;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.SnapshotResult;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.SnapshotResult;
 
 import java.io.IOException;
 
@@ -69,7 +69,7 @@ public class RemoveItemsFromPlaylistRequest extends AbstractDataRequest<Snapshot
      */
     public Builder playlist_id(final String playlist_id) {
       assert (playlist_id != null);
-      assert (!playlist_id.equals(""));
+      assert (!playlist_id.isEmpty());
       return setPathParameter("playlist_id", playlist_id);
     }
 
@@ -113,7 +113,7 @@ public class RemoveItemsFromPlaylistRequest extends AbstractDataRequest<Snapshot
      */
     public Builder snapshotId(final String snapshotId) {
       assert (snapshotId != null);
-      assert (!snapshotId.equals(""));
+      assert (!snapshotId.isEmpty());
       return setBodyParameter("snapshot_id", snapshotId);
     }
 

@@ -6,12 +6,7 @@ public class SteamDeckMode implements Argument {
 
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.isSteamDeckMode = true;
-            }
-        };
+        return () -> PublicValues.isSteamDeckMode = true;
     }
 
     @Override

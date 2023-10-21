@@ -14,14 +14,15 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
-import com.spotifyxp.deps.mslinks.Serializable;
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+@SuppressWarnings("LongLiteralEndingWithLowercaseL")
 public class Filetime extends GregorianCalendar implements Serializable {
 	private long residue;
 	

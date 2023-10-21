@@ -14,16 +14,11 @@
 */
 package com.spotifyxp.deps.mslinks;
 
-import com.spotifyxp.deps.mslinks.data.LinkFlags;
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.data.*;
 
 import java.io.IOException;
-
-import com.spotifyxp.deps.mslinks.data.FileAttributesFlags;
-import com.spotifyxp.deps.mslinks.data.Filetime;
-import com.spotifyxp.deps.mslinks.data.GUID;
-import com.spotifyxp.deps.mslinks.data.HotKeyFlags;
 
 public class ShellLinkHeader implements Serializable {
 	private static final int headerSize = 0x0000004C;

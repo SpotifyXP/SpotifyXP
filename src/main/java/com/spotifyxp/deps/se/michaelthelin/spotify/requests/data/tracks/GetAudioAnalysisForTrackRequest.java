@@ -2,9 +2,9 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.tracks;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.AudioAnalysis;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.AudioAnalysis;
 
 import java.io.IOException;
 
@@ -60,7 +60,7 @@ public class GetAudioAnalysisForTrackRequest extends AbstractDataRequest<AudioAn
      */
     public Builder id(final String id) {
       assert (id != null);
-      assert (!id.equals(""));
+      assert (!id.isEmpty());
       return setPathParameter("id", id);
     }
 

@@ -26,13 +26,13 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.util.MapUtilities;
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import com.spotifyxp.deps.de.umass.util.MapUtilities;
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * Bean for Events.
@@ -115,7 +115,7 @@ public class Event extends ImageHolder {
 	}
 
 	/**
-	 * Returns the last.fm event url, i.e. https://www.last.fm/event/event-id
+	 * Returns the last.fm event url, i.e. <a href="<a">href="https://www.last.fm/event</a>/event-id">...</a>
 	 *
 	 * @return last.fm url
 	 */
@@ -228,7 +228,7 @@ public class Event extends ImageHolder {
 	 * @return a page of <code>Shout</code>s
 	 */
 	public static PaginatedResult<Shout> getShouts(String eventId, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("event", eventId);
 		MapUtilities.nullSafePut(params, "limit", limit);
 		MapUtilities.nullSafePut(params, "page", page);
@@ -239,15 +239,15 @@ public class Event extends ImageHolder {
 	/**
 	 * Enumeration for the attendance status parameter of the <code>attend</code> operation.
 	 */
-	public static enum AttendanceStatus {
+	public enum AttendanceStatus {
 
 		ATTENDING(0),
 		MAYBE_ATTENDING(1),
 		NOT_ATTENDING(2);
 
-		private int id;
+		private final int id;
 
-		private AttendanceStatus(int id) {
+		AttendanceStatus(int id) {
 			this.id = id;
 		}
 
@@ -265,8 +265,8 @@ public class Event extends ImageHolder {
 	}
 
 	public static class TicketSupplier {
-		private String name;
-		private String website;
+		private final String name;
+		private final String website;
 
 		public TicketSupplier(String name, String website) {
 			this.name = name;
@@ -284,8 +284,6 @@ public class Event extends ImageHolder {
 
 	private static class EventFactory implements ItemFactory<Event> {
 		public Event createItemFromElement(DomElement element) {
-//			if (element == null)
-//				return null;
 			Event event = new Event();
 			loadImages(event, element);
 			event.id = Integer.parseInt(element.getChildText("id"));
@@ -305,12 +303,12 @@ public class Event extends ImageHolder {
 				// Date format not valid !?, should definitely not happen.
 			}
 			event.headliner = element.getChild("artists").getChildText("headliner");
-			event.artists = new ArrayList<String>();
+			event.artists = new ArrayList<>();
 			for (DomElement artist : element.getChild("artists").getChildren("artist")) {
 				event.artists.add(artist.getText());
 			}
 			event.website = element.getChildText("website");
-			event.tickets = new ArrayList<TicketSupplier>();
+			event.tickets = new ArrayList<>();
 			if (element.hasChild("tickets")) {
 				for (DomElement ticket : element.getChild("tickets").getChildren("ticket")) {
 					event.tickets.add(new TicketSupplier(ticket.getAttribute("supplier"), ticket.getText()));

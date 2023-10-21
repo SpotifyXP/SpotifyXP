@@ -6,15 +6,12 @@ import com.spotifyxp.factory.Factory;
 public class NoConnection implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                Factory.setPkce(new DummyOAuthPKCE());
-                Factory.setPlayer(new DummyPlayer());
-                Factory.setSpotifyAPI(new DummySpotifyAPI());
-                Factory.setSpotifyApi(new DummySpapi());
-                Factory.setUnofficialSpotifyAPI(new DummyUnofficialSpotifyAPI());
-            }
+        return () -> {
+            Factory.setPkce(new DummyOAuthPKCE());
+            Factory.setPlayer(new DummyPlayer());
+            Factory.setSpotifyAPI(new DummySpotifyAPI());
+            Factory.setSpotifyApi(new DummySpapi());
+            Factory.setUnofficialSpotifyAPI(new DummyUnofficialSpotifyAPI());
         };
     }
 

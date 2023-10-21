@@ -2,6 +2,7 @@ package com.spotifyxp.deps.de.werwolf2303.javasetuptool.uninstaller;
 
 
 import com.spotifyxp.Initiator;
+import com.spotifyxp.logging.ConsoleLogging;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,8 +18,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -30,8 +29,8 @@ public class Uninstaller {
     static String programname;
     static String programversion;
 
-    public static ArrayList<String> fi = new ArrayList<String>();
-    public static ArrayList<String> fo = new ArrayList<String>();
+    public static final ArrayList<String> fi = new ArrayList<>();
+    public static final ArrayList<String> fo = new ArrayList<>();
 
     public static void open() {
         final JFrame frame = new JFrame("Uninstaller");
@@ -48,14 +47,11 @@ public class Uninstaller {
         progressBar.setBounds(6, 60, 363, 20);
         frame.add(progressBar);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        InputStream is = null;
+        InputStream is;
         try {
             is = new FileInputStream(new File(new File(Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getAbsolutePath(), "uninstaller.xml"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return;
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException | URISyntaxException e) {
+            ConsoleLogging.Throwable(e);
             return;
         }
         try {
@@ -77,28 +73,26 @@ public class Uninstaller {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         lblNewLabel.setText(lblNewLabel.getText().replace("%progname%", programname));
         frame.setVisible(true);
         frame.pack();
 
-        uninstall.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                progressBar.setValue(0);
-                progressBar.setMaximum(fi.size() + fo.size());
-                progressBar.setValue(progressBar.getMaximum());
-                for(String f : fi) {
-                    new File(f).delete();
-                    progressBar.setValue(progressBar.getMaximum() - 1);
-                }
-                for(String f : fo) {
-                    deleteFolder(new File(f));
-                    progressBar.setValue(progressBar.getMaximum() - 1);
-                }
-                frame.dispose();
-                JOptionPane.showMessageDialog(null, "Uninstall Complete", "Complete", JOptionPane.INFORMATION_MESSAGE);
+        uninstall.addActionListener(e -> {
+            progressBar.setValue(0);
+            progressBar.setMaximum(fi.size() + fo.size());
+            progressBar.setValue(progressBar.getMaximum());
+            for(String f : fi) {
+                new File(f).delete();
+                progressBar.setValue(progressBar.getMaximum() - 1);
             }
+            for(String f : fo) {
+                deleteFolder(new File(f));
+                progressBar.setValue(progressBar.getMaximum() - 1);
+            }
+            frame.dispose();
+            JOptionPane.showMessageDialog(null, "Uninstall Complete", "Complete", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 
@@ -160,10 +154,8 @@ public class Uninstaller {
         try {
             FileOutputStream output = new FileOutputStream(path);
             writeXml(doc, output);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
+        } catch (IOException | TransformerException e) {
+            throw new RuntimeException(e);
         }
     }
 }

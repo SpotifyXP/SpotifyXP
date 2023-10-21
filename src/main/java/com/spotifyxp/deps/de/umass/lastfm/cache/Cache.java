@@ -26,13 +26,13 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.cache;
 
+import com.spotifyxp.deps.de.umass.lastfm.Caller;
+import com.spotifyxp.deps.de.umass.util.StringUtilities;
+
 import java.io.InputStream;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
-import com.spotifyxp.deps.de.umass.lastfm.Caller;
-import com.spotifyxp.deps.de.umass.util.StringUtilities;
 
 /**
  * The <code>Cache</code> handles storing and loading to a permanent storage for last.fm api requests. This could be
@@ -154,7 +154,7 @@ public abstract class Cache {
 	 */
 	public static String createCacheEntryName(String method, Map<String, String> params) {
 		if (!(params instanceof SortedMap)) {
-			params = new TreeMap<String, String>(params);
+			params = new TreeMap<>(params);
 		}
 		StringBuilder b = new StringBuilder(100);
 		b.append(method.toLowerCase());

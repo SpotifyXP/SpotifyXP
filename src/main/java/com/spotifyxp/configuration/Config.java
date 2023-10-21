@@ -5,7 +5,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
-import org.apache.commons.httpclient.NameValuePair;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -77,8 +76,8 @@ public class Config {
 
     /**
      * Writes a new entry with the name and value to the config file
-     * @param name
-     * @param value
+     * @param name Name of entry
+     * @param value Value of entry
      */
     public void write(String name, String value) {
         invalidateCache();

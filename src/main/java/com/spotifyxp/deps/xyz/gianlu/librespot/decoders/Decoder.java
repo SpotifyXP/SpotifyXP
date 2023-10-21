@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.decoders;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.Closeable;
 import java.io.IOException;

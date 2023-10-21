@@ -2,8 +2,6 @@ package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.OAuthPKCE;
-import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -25,6 +23,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.util.Timeout;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -147,7 +146,7 @@ public class SpotifyHttpManager implements IHttpManager {
           SpotifyWebApiException,
     ParseException {
     assert (uri != null);
-    assert (!uri.toString().equals(""));
+    assert (!uri.toString().isEmpty());
 
     final HttpGet httpGet = new HttpGet(uri);
     httpGet.setHeaders(headers);
@@ -172,7 +171,7 @@ public class SpotifyHttpManager implements IHttpManager {
     SpotifyWebApiException,
     ParseException {
     assert (uri != null);
-    assert (!uri.toString().equals(""));
+    assert (!uri.toString().isEmpty());
 
     final HttpPost httpPost = new HttpPost(uri);
 
@@ -200,7 +199,7 @@ public class SpotifyHttpManager implements IHttpManager {
     ParseException
     {
     assert (uri != null);
-    assert (!uri.toString().equals(""));
+    assert (!uri.toString().isEmpty());
 
     final HttpPut httpPut = new HttpPut(uri);
 
@@ -226,7 +225,7 @@ public class SpotifyHttpManager implements IHttpManager {
     SpotifyWebApiException,
     ParseException {
     assert (uri != null);
-    assert (!uri.toString().equals(""));
+    assert (!uri.toString().isEmpty());
 
     final HttpDelete httpDelete = new HttpDelete(uri);
 
@@ -301,7 +300,7 @@ public class SpotifyHttpManager implements IHttpManager {
     ConsoleLoggingModules.debug(
       "The http response has body " + responseBody);
 
-    if (responseBody != null && !responseBody.equals("")) {
+    if (responseBody != null && !responseBody.isEmpty()) {
       try {
         final JsonElement jsonElement = JsonParser.parseString(responseBody);
 

@@ -15,9 +15,11 @@
  */
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output;
+
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
 import javax.sound.sampled.*;
 import java.util.ArrayList;
 import java.util.Arrays;

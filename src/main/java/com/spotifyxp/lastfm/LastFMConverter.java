@@ -1,9 +1,7 @@
 package com.spotifyxp.lastfm;
 
-import com.spotifyxp.deps.de.umass.lastfm.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.factory.Factory;
-import com.spotifyxp.deps.de.umass.lastfm.Artist;
 import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;

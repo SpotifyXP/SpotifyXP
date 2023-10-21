@@ -16,14 +16,15 @@ package com.spotifyxp.deps.mslinks.data;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
+import com.spotifyxp.deps.mslinks.ShellLinkException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.CharsetEncoder;
 import java.nio.charset.StandardCharsets;
-import com.spotifyxp.deps.mslinks.Serializable;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
 
+@SuppressWarnings({"DeprecatedIsStillUsed", "ExtractMethodRecommender", "JavadocDeclaration"})
 public class ItemID implements Serializable {
 
 	// from NT\shell\shell32\shitemid.h
@@ -265,10 +266,10 @@ public class ItemID implements Serializable {
 
 	public String getName() {
 		if (internalItemId instanceof ItemIDDrive) {
-			return ((ItemIDDrive)internalItemId).getName();
+			return internalItemId.getName();
 		}
 		else if (internalItemId instanceof ItemIDFS) {
-			return ((ItemIDFS)internalItemId).getName();
+			return internalItemId.getName();
 		}
 		return "";
 	}
@@ -282,7 +283,7 @@ public class ItemID implements Serializable {
 			((ItemIDDrive)internalItemId).setName(s);
 		}
 		else if (internalItemId instanceof ItemIDFS) {
-			((ItemIDFS)internalItemId).setName(s);
+			internalItemId.setName(s);
 		}
 
 		return this;
@@ -294,7 +295,7 @@ public class ItemID implements Serializable {
 
 	public int getSize() {
 		if (internalItemId instanceof ItemIDFS) {
-			return ((ItemIDFS)internalItemId).getSize();
+			return internalItemId.getSize();
 		}
 		return 0;
 	}
@@ -333,7 +334,7 @@ public class ItemID implements Serializable {
 
 		if (t == TYPE_FILE || t == TYPE_DIRECTORY || t == TYPE_FILE_OLD || t == TYPE_DIRECTORY_OLD) {
 			if (internalItemId instanceof ItemIDFS) {
-				((ItemIDFS)internalItemId).setTypeFlags(t & ItemID.ID_TYPE_INGROUPMASK);
+				internalItemId.setTypeFlags(t & ItemID.ID_TYPE_INGROUPMASK);
 			}
 			else if (internalItemId instanceof ItemIDDrive) {
 				ItemIDDrive driveId = (ItemIDDrive)internalItemId;
@@ -347,7 +348,7 @@ public class ItemID implements Serializable {
 
 		if (t == TYPE_DRIVE || t == TYPE_DRIVE_OLD) {
 			if (internalItemId instanceof ItemIDDrive) {
-				((ItemIDDrive)internalItemId).setTypeFlags(t & ItemID.ID_TYPE_INGROUPMASK);
+				internalItemId.setTypeFlags(t & ItemID.ID_TYPE_INGROUPMASK);
 			}
 			else if (internalItemId instanceof ItemIDFS) {
 				ItemIDFS fsId = (ItemIDFS)internalItemId;

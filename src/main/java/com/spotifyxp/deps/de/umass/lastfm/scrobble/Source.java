@@ -63,7 +63,7 @@ public enum Source {
 	 */
 	UNKNOWN("U");
 
-	private String code;
+	private final String code;
 
 	Source(String code) {
 		this.code = code;

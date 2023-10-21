@@ -39,9 +39,9 @@ public class Shout {
 	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss", Locale.ENGLISH);
 	static final ItemFactory<Shout> FACTORY = new ShoutFactory();
 
-	private String body;
-	private String author;
-	private Date date;
+	private final String body;
+	private final String author;
+	private final Date date;
 
 	public Shout(String body, String author, Date date) {
 		this.body = body;
@@ -63,7 +63,7 @@ public class Shout {
 
 	private static class ShoutFactory implements ItemFactory<Shout> {
 		public Shout createItemFromElement(DomElement element) {
-			Date date = null;
+			Date date;
 			try {
 				date = DATE_FORMAT.parse(element.getChildText("date"));
 			} catch (ParseException e) {

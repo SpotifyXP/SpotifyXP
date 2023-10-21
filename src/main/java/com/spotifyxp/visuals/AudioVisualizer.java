@@ -1,17 +1,18 @@
 package com.spotifyxp.visuals;
+
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.FpsCounter;
 import com.spotifyxp.utils.SpectrumAnalyzer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class AudioVisualizer extends JPanel {
     byte[] converted = null;
     JFrame frame = null;
-    ArrayList<Color> colors = new ArrayList<>();
+    final ArrayList<Color> colors = new ArrayList<>();
     public void open() {
         counter.start();
         frame = new JFrame(PublicValues.language.translate("ui.audiovisualizer.title"));
@@ -44,9 +45,9 @@ public class AudioVisualizer extends JPanel {
 
     double[] lastspectrumdata = null;
 
-    boolean rainbow = false;
+    final boolean rainbow = false;
 
-    FpsCounter counter = new FpsCounter();
+    final FpsCounter counter = new FpsCounter();
 
     void drawFPS(Graphics g) {
         g.setColor(Color.cyan);

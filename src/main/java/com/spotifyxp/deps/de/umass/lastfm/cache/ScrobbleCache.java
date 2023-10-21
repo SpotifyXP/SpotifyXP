@@ -26,11 +26,11 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.cache;
 
-import java.io.IOException;
-import java.util.Collection;
-
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.Scrobbler;
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.SubmissionData;
+
+import java.io.IOException;
+import java.util.Collection;
 
 /**
  * A <code>ScrobbleCache</code> is able to cache {@link SubmissionData} instances for later submission
@@ -40,7 +40,7 @@ import com.spotifyxp.deps.de.umass.lastfm.scrobble.SubmissionData;
  * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
  *             API.
  */
-@Deprecated
+@SuppressWarnings("DeprecatedIsStillUsed")
 public interface ScrobbleCache {
 
 	/**
@@ -48,21 +48,21 @@ public interface ScrobbleCache {
 	 *
 	 * @param submissions The submissions
 	 */
-	public void cacheScrobble(SubmissionData... submissions);
+    void cacheScrobble(SubmissionData... submissions);
 
 	/**
 	 * Caches a collection of {@link SubmissionData}.
 	 *
 	 * @param submissions The submissions
 	 */
-	public void cacheScrobble(Collection<SubmissionData> submissions);
+    void cacheScrobble(Collection<SubmissionData> submissions);
 
 	/**
 	 * Checks if the cache contains any scrobbles.
 	 *
 	 * @return <code>true</code> if this cache is empty
 	 */
-	public boolean isEmpty();
+    boolean isEmpty();
 
 	/**
 	 * Tries to scrobble all cached scrobbles. If it succeeds the cache will be empty afterwards.
@@ -72,10 +72,10 @@ public interface ScrobbleCache {
 	 * @throws java.io.IOException on I/O errors
 	 * @throws IllegalStateException if the {@link Scrobbler} is not fully initialized (i.e. no handshake performed)
 	 */
-	public void scrobble(Scrobbler scrobbler) throws IOException;
+    void scrobble(Scrobbler scrobbler) throws IOException;
 
 	/**
 	 * Clears all cached scrobbles from this cache.
 	 */
-	public void clearScrobbleCache();
+    void clearScrobbleCache();
 }

@@ -14,11 +14,11 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
-import java.io.IOException;
-
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.mslinks.ShellLinkException;
 import com.spotifyxp.deps.mslinks.UnsupportedItemIDException;
+
+import java.io.IOException;
 
 public class ItemIDRoot extends ItemIDRegItem {
 

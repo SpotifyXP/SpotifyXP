@@ -26,12 +26,12 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.util.MapUtilities;
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import com.spotifyxp.deps.de.umass.util.MapUtilities;
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * Provides access to the Last.fm radio streaming service.<br/>
@@ -47,7 +47,7 @@ public class Radio {
 	private String stationUrl;
 	private boolean supportsDiscovery;
 
-	private Session session;
+	private final Session session;
 	private int expiry = -1;
 
 	private Radio(Session session) {
@@ -130,9 +130,9 @@ public class Radio {
 	 * @return a Radio instance
 	 */
 	public static Radio tune(String station, Locale locale, Session session) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("station", station);
-		if (locale != null && locale.getLanguage().length() != 0) {
+		if (locale != null && !locale.getLanguage().isEmpty()) {
 			params.put("lang", locale.getLanguage());
 		}
 
@@ -181,7 +181,7 @@ public class Radio {
 	 * @return a new Playlist
 	 */
 	public Playlist getPlaylist(boolean discovery, boolean rtp, boolean buyLinks, double speedMultiplier, int bitrate) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("discovery", String.valueOf(discovery));
 		params.put("rtp", String.valueOf(rtp));
 		params.put("buylinks", String.valueOf(buyLinks));
@@ -203,8 +203,8 @@ public class Radio {
 	}
 
 	public static class RadioStation {
-		private String name;
-		private String url;
+		private final String name;
+		private final String url;
 
 		public RadioStation(String url) {
 			this(url, null);

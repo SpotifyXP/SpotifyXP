@@ -3,10 +3,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.playlists;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonArray;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.SnapshotResult;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.SnapshotResult;
 
 import java.io.IOException;
 

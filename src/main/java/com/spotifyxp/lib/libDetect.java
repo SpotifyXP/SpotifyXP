@@ -2,6 +2,7 @@ package com.spotifyxp.lib;
 
 import java.util.Locale;
 
+@SuppressWarnings("ClassEscapesDefinedScope")
 public class libDetect {
     enum OSType {
         Windows, MacOS, Linux, Other

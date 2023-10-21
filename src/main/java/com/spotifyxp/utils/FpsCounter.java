@@ -86,22 +86,22 @@ public final class FpsCounter {
         public double getAggregateFps() {
             return this.aggregateFps;
         }
-        private double averageFps;
-        private double aggregateFps;
+        private final double averageFps;
+        private final double aggregateFps;
     }
 
     /**
      * The listener interface for receiving FPSCounter events. Classes that are interested in the average or aggregated
      * FPS can implement this interface to receive events.
      */
-    public static interface Listener extends EventListener {
+    public interface Listener extends EventListener {
 
         /**
          * Invoked by the FPSCounter when the nextFrame method is called.
          *
          * @param e The FPSCounter event, which can be used to retrieve the average/aggregated frames per second.
          */
-        public void averageFramesElapsed(Event e);
+        void averageFramesElapsed(Event e);
     }
 
     /**
@@ -180,7 +180,7 @@ public final class FpsCounter {
      * @return all of the registered FPSCounter listeners or an empty array if no listeners are currently registered
      */
     public Listener[] getFPSCounterListeners() {
-        return this.listeners.toArray(new Listener[this.listeners.size()]);
+        return this.listeners.toArray(new Listener[0]);
     }
 
     /**
@@ -228,7 +228,7 @@ public final class FpsCounter {
         this.fpsSum += fps;
 
         if (frameCount >= getAverageFrameCount()) {
-            this.aggFps = (double) this.frameCount / ((double) this.passedTime / 1.e9);
+            this.aggFps = (double) this.frameCount / (this.passedTime / 1.e9);
             this.avgFps = this.fpsSum / (double) this.frameCount;
             Event event = new Event(this);
             for (Listener listener : this.listeners) {
@@ -248,5 +248,5 @@ public final class FpsCounter {
     private double passedTime;      // measured nanos since the last averageFrameCount occurence
     private double fpsSum;
     private double aggFps, avgFps;
-    private ArrayList<Listener> listeners = new ArrayList<>();
+    private final ArrayList<Listener> listeners = new ArrayList<>();
 }

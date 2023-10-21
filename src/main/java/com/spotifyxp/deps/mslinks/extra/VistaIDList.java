@@ -16,12 +16,11 @@ package com.spotifyxp.deps.mslinks.extra;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
+import com.spotifyxp.deps.mslinks.ShellLinkException;
 
 import java.io.IOException;
 import java.util.LinkedList;
-
-import com.spotifyxp.deps.mslinks.Serializable;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
 
 public class VistaIDList implements Serializable {
 
@@ -64,7 +63,7 @@ public class VistaIDList implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (byte[] b : list)
-			sb.append(new String(b) + "\n");
+			sb.append(new String(b)).append("\n");
 		return sb.toString();
 	}
 }

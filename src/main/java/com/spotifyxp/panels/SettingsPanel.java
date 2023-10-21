@@ -4,7 +4,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.lastfm.LFMValues;
-import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lastfm.LastFMLogin;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JScrollText;
@@ -12,7 +11,6 @@ import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
-import org.apache.xmlgraphics.io.Resource;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -21,8 +19,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,7 +27,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Locale;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
+@SuppressWarnings({"unchecked", "rawtypes", "resource"})
 public class SettingsPanel extends JPanel {
     final SettingsPanel panel = this;
     public static JTextField settingsbrowserpath;
@@ -102,19 +98,11 @@ public class SettingsPanel extends JPanel {
         settingslastfmlogin.setBounds(190, 25, 85, 20);
         lastfmborder.add(settingslastfmlogin);
 
-        settingslastfmlogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new LastFMLogin().open(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogout.setEnabled(true);
-                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogin.setEnabled(false);
-                        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
-                    }
-                });
-            }
-        });
+        settingslastfmlogin.addActionListener(e -> new LastFMLogin().open(() -> {
+            if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogout.setEnabled(true);
+            if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogin.setEnabled(false);
+            if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
+        }));
 
         settingslastfmlogout = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.logout")));
         settingslastfmlogout.setBounds(285, 25, 85, 20);
@@ -122,15 +110,12 @@ public class SettingsPanel extends JPanel {
 
         settingslastfmlogout.setEnabled(false);
 
-        settingslastfmlogout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.lastfmusername.name, "");
-                PublicValues.config.write(ConfigValues.lastfmpassword.name, "");
-                settingslastfmlogout.setEnabled(false);
-                settingslastfmlogin.setEnabled(true);
-                settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
-            }
+        settingslastfmlogout.addActionListener(e -> {
+            PublicValues.config.write(ConfigValues.lastfmusername.name, "");
+            PublicValues.config.write(ConfigValues.lastfmpassword.name, "");
+            settingslastfmlogout.setEnabled(false);
+            settingslastfmlogin.setEnabled(true);
+            settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
         });
 
         settingsbrowserlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.browser.label")));
@@ -256,7 +241,7 @@ public class SettingsPanel extends JPanel {
         ArrayList<String> selectcache = new ArrayList<>();
 
         for(Locale locale : Locale.getAvailableLocales()) {
-            if(locale.getDisplayLanguage().equals("")) {
+            if(locale.getDisplayLanguage().isEmpty()) {
                 continue;
             }
             if(selectcache.contains(locale.getDisplayLanguage())) {
@@ -283,7 +268,7 @@ public class SettingsPanel extends JPanel {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
         }
 
-        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).equals("")) {
+        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) {
             settingslastfmlogout.setEnabled(true);
             settingslastfmlogin.setEnabled(false);
         }else{

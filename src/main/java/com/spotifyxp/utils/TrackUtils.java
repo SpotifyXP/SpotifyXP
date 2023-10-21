@@ -2,19 +2,19 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-@SuppressWarnings({"SameReturnValue", "IntegerDivisionInFloatingPointContext"})
+@SuppressWarnings({"SameReturnValue", "IntegerDivisionInFloatingPointContext", "BooleanMethodIsAlwaysInverted"})
 public class TrackUtils {
     public static String calculateFileSizeKb(Track t) {
         long minutes = getMMofTrack(t.getDurationMs());
@@ -33,7 +33,7 @@ public class TrackUtils {
                 toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
                 break;
         }
-        if(toret.equals("") || toret.equals("0")) {
+        if(toret.isEmpty() || toret.equals("0")) {
             toret = "N/A";
         }
         return toret + " KB";
@@ -55,7 +55,7 @@ public class TrackUtils {
                 toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
                 break;
         }
-        if(toret.equals("") || toret.equals("0")) {
+        if(toret.isEmpty() || toret.equals("0")) {
             toret = "N/A";
         }
         return toret + " KB";
@@ -77,7 +77,7 @@ public class TrackUtils {
                 toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
                 break;
         }
-        if(toret.equals("") || toret.equals("0")) {
+        if(toret.isEmpty() || toret.equals("0")) {
             toret = "N/A";
         }
         return toret + " KB";
@@ -207,21 +207,11 @@ public class TrackUtils {
     public static void removeLovedTrack(DefTable table, ArrayList<String> uricache) {
         Factory.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
-        table.addModifyAction(new Runnable() {
-            @Override
-            public void run() {
-                ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
-            }
-        });
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
     public static void removeFollowedPlaylist(DefTable table, ArrayList<String> uricache) {
         Factory.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
-        table.addModifyAction(new Runnable() {
-            @Override
-            public void run() {
-                ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
-            }
-        });
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
 }

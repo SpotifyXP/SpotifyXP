@@ -1,20 +1,18 @@
 package com.spotifyxp.lastfm;
-import com.spotifyxp.Initiator;
+
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.SplashPanel;
+import com.spotifyxp.deps.de.umass.lastfm.Authenticator;
 import com.spotifyxp.swingextension.CustomLengthPasswordField;
 import com.spotifyxp.swingextension.CustomLengthTextField;
-import com.spotifyxp.utils.StartupTime;
-import com.spotifyxp.deps.de.umass.lastfm.Authenticator;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("Convert2Lambda")
 public class LastFMLogin {
@@ -94,7 +92,7 @@ public class LastFMLogin {
             }
         });
     }
-    @SuppressWarnings("BusyWait")
+
     public void open(Runnable runnable) {
         JDialog dialog = new JDialog();
         dialog.setTitle("Enter Last.fm Credentials");

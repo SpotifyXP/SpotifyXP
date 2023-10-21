@@ -3,10 +3,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.personalization.interfaces.IArtistTrackModelObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.personalization.interfaces.IArtistTrackModelObject;
+import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
 
 import java.util.Arrays;
 import java.util.Objects;

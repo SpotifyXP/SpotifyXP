@@ -38,7 +38,8 @@ import java.util.Map;
 final class ItemFactoryBuilder {
 
 	private static final ItemFactoryBuilder INSTANCE = new ItemFactoryBuilder();
-	private Map<Class, ItemFactory> factories = new HashMap<Class, ItemFactory>();
+	@SuppressWarnings("rawtypes")
+    private final Map<Class, ItemFactory> factories = new HashMap<>();
 
 	private ItemFactoryBuilder() {
 		// register default factories

@@ -1,7 +1,9 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.personalization;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -11,8 +13,6 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.personalization
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopArtistsRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopTracksRequest;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 
 import java.io.IOException;
 

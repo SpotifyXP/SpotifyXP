@@ -15,10 +15,9 @@
 package com.spotifyxp.deps.mslinks.data;
 
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
 
 import java.io.IOException;
-
-import com.spotifyxp.deps.mslinks.Serializable;
 
 public class Size implements Serializable{
 	private int x, y;

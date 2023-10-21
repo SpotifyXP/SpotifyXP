@@ -25,21 +25,14 @@
  */
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.IgnoredMessageCode;
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.ScrobbleData;
 import com.spotifyxp.deps.de.umass.lastfm.scrobble.ScrobbleResult;
 import com.spotifyxp.deps.de.umass.util.MapUtilities;
 import com.spotifyxp.deps.de.umass.util.StringUtilities;
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+
+import java.util.*;
 
 /**
  * Bean that contains information related to <code>Track</code>s and provides bindings to methods
@@ -75,7 +68,7 @@ public class Track extends MusicEntry {
 	protected int duration;		// protected for use in Playlist.playlistFromElement
 	protected String location;		// protected for use in Playlist.playlistFromElement
 
-	protected Map<String, String> lastFmExtensionInfos = new HashMap<String, String>();		// protected for use in Playlist.playlistFromElement
+	protected final Map<String, String> lastFmExtensionInfos = new HashMap<>();		// protected for use in Playlist.playlistFromElement
 
 
 	protected Track(String name, String url, String artist) {
@@ -204,7 +197,7 @@ public class Track extends MusicEntry {
 	 * @return a list of possible matches
 	 */
 	public static Collection<Track> search(String artist, String track, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("track", track);
 		params.put("limit", String.valueOf(limit));
 		MapUtilities.nullSafePut(params, "artist", artist);
@@ -226,7 +219,7 @@ public class Track extends MusicEntry {
 	 * @return list of tags
 	 */
 	public static Collection<Tag> getTopTags(String artist, String trackOrMbid, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(trackOrMbid)) {
 			params.put("mbid", trackOrMbid);
 		} else {
@@ -247,7 +240,7 @@ public class Track extends MusicEntry {
 	 * @return list of fans
 	 */
 	public static Collection<User> getTopFans(String artist, String trackOrMbid, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(trackOrMbid)) {
 			params.put("mbid", trackOrMbid);
 		} else {
@@ -375,7 +368,7 @@ public class Track extends MusicEntry {
 	 * @return a list of similar <code>Track</code>s
 	 */
 	public static Collection<Track> getSimilar(String artist, String trackOrMbid, String apiKey, int limit) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(trackOrMbid)) {
 			params.put("mbid", trackOrMbid);
 		} else {
@@ -401,7 +394,7 @@ public class Track extends MusicEntry {
 	public static Collection<String> getTags(String artist, String track, Session session) {
 		Result result = Caller.getInstance().call("track.getTags", session, "artist", artist, "track", track);
 		DomElement element = result.getContentElement();
-		Collection<String> tags = new ArrayList<String>();
+		Collection<String> tags = new ArrayList<>();
 		for (DomElement domElement : element.getChildren("tag")) {
 			tags.add(domElement.getChildText("name"));
 		}
@@ -431,14 +424,14 @@ public class Track extends MusicEntry {
 	 * @return Track information
 	 */
 	public static Track getInfo(String artist, String trackOrMbid, Locale locale, String username, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(trackOrMbid)) {
 			params.put("mbid", trackOrMbid);
 		} else {
 			params.put("artist", artist);
 			params.put("track", trackOrMbid);
 		}
-		if (locale != null && locale.getLanguage().length() != 0) {
+		if (locale != null && !locale.getLanguage().isEmpty()) {
 			params.put("lang", locale.getLanguage());
 		}
 		MapUtilities.nullSafePut(params, "username", username);
@@ -450,7 +443,7 @@ public class Track extends MusicEntry {
 		Track track = FACTORY.createItemFromElement(content);
 		if (album != null) {
 			String pos = album.getAttribute("position");
-			if ((pos != null) && pos.length() != 0) {
+			if ((pos != null) && !pos.isEmpty()) {
 				track.position = Integer.parseInt(pos);
 			}
 			track.album = album.getChildText("title");
@@ -470,7 +463,7 @@ public class Track extends MusicEntry {
 	 * @return a Collection of {@link BuyLink}s
 	 */
 	public static Collection<BuyLink> getBuylinks(String artist, String albumOrMbid, String country, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(albumOrMbid)) {
 			params.put("mbid", albumOrMbid);
 		} else {
@@ -484,7 +477,7 @@ public class Track extends MusicEntry {
 		DomElement element = result.getContentElement();
 		DomElement physicals = element.getChild("physicals");
 		DomElement downloads = element.getChild("downloads");
-		Collection<BuyLink> links = new ArrayList<BuyLink>();
+		Collection<BuyLink> links = new ArrayList<>();
 		for (DomElement e : physicals.getChildren("affiliation")) {
 			links.add(BuyLink.linkFromElement(BuyLink.StoreType.PHYSICAl, e));
 		}
@@ -550,7 +543,7 @@ public class Track extends MusicEntry {
 	 * @return a page of <code>Shout</code>s
 	 */
 	public static PaginatedResult<Shout> getShouts(String artist, String trackOrMbid, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(trackOrMbid)) {
 			params.put("mbid", trackOrMbid);
 		} else {
@@ -571,7 +564,7 @@ public class Track extends MusicEntry {
 	 * @return A ScrobbleResult containing the original Result information plus extra fields specific to scrobble and now playing results.
 	 */
 	private static List<ScrobbleResult> convertToScrobbleResults(Result result, ScrobbleResultType scrobbleResultType) {
-		List<ScrobbleResult> scrobbleResults = new ArrayList<ScrobbleResult>();
+		List<ScrobbleResult> scrobbleResults = new ArrayList<>();
 		if (!result.isSuccessful()) {
 			// if result failed then we have no extra information
 			ScrobbleResult scrobbleResult = new ScrobbleResult(result);
@@ -636,7 +629,7 @@ public class Track extends MusicEntry {
 	}
 
 	public static ScrobbleResult scrobble(ScrobbleData scrobbleData, Session session) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		// required params
 		params.put("artist", scrobbleData.getArtist());
 		params.put("track", scrobbleData.getTrack());
@@ -660,7 +653,7 @@ public class Track extends MusicEntry {
 	}
 
 	public static List<ScrobbleResult> scrobble(List<ScrobbleData> scrobbleData, Session session) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		for (int i = 0; i < scrobbleData.size(); i++) {
 			ScrobbleData scrobble = scrobbleData.get(i);
 			// required params
@@ -682,7 +675,7 @@ public class Track extends MusicEntry {
 	}
 
 	public static ScrobbleResult updateNowPlaying(ScrobbleData scrobbleData, Session session) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		// required params
 		params.put("artist", scrobbleData.getArtist());
 		params.put("track", scrobbleData.getTrack());
@@ -712,7 +705,8 @@ public class Track extends MusicEntry {
 	}
 
 	private static class TrackFactory implements ItemFactory<Track> {
-		public Track createItemFromElement(DomElement element) {
+		@SuppressWarnings("UnnecessaryBoxing")
+        public Track createItemFromElement(DomElement element) {
 			Track track = new Track(null, null, null);
 			loadStandardInfo(track, element);
 			final String nowPlayingAttr = element.getAttribute("nowplaying");
@@ -720,7 +714,7 @@ public class Track extends MusicEntry {
 				track.nowPlaying = Boolean.valueOf(nowPlayingAttr);
 			if (element.hasChild("duration")) {
 				String duration = element.getChildText("duration");
-				if(duration.length() != 0) {
+				if(!duration.isEmpty()) {
 					int durationLength = Integer.parseInt(duration);
 					// So it seems last.fm couldn't decide which format to send the duration in.
 					// It's supplied in milliseconds for Playlist.fetch and Track.getInfo but Artist.getTopTracks returns (much saner) seconds

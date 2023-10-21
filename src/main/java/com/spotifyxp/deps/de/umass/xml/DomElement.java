@@ -25,12 +25,12 @@
  */
 package com.spotifyxp.deps.de.umass.xml;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <code>DomElement</code> wraps around an {@link Element} and provides convenience methods.
@@ -38,7 +38,7 @@ import org.w3c.dom.NodeList;
  * @author Janni Kovacs
  */
 public class DomElement {
-	private Element e;
+	private final Element e;
 
 	/**
 	 * Creates a new wrapper around the given {@link Element}.
@@ -146,7 +146,7 @@ public class DomElement {
 	 * @return all matching children
 	 */
 	public List<DomElement> getChildren(String name) {
-		List<DomElement> l = new ArrayList<DomElement>();
+		List<DomElement> l = new ArrayList<>();
 		NodeList list = e.getElementsByTagName(name);
 		for (int i = 0; i < list.getLength(); i++) {
 			Node node = list.item(i);

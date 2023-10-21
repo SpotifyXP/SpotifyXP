@@ -14,13 +14,13 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
 import com.spotifyxp.deps.mslinks.ShellLinkException;
 import com.spotifyxp.deps.mslinks.UnsupportedItemIDException;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 public class ItemIDFS extends ItemID {
 
@@ -206,7 +206,7 @@ public class ItemIDFS extends ItemID {
 	}
 
 	public short getAttributes() { return attributes; }
-	public ItemIDFS setAttributes(short attr) throws ShellLinkException {
+	public ItemIDFS setAttributes(short attr) {
 		attributes = attr;
 		if ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) {
 			typeFlags |= TYPE_FS_DIRECTORY;
@@ -219,7 +219,7 @@ public class ItemIDFS extends ItemID {
 	}
 
 	public String getName() {
-		if (longname != null && !longname.equals(""))
+		if (longname != null && !longname.isEmpty())
 			return longname;
 		return shortname;
 	}

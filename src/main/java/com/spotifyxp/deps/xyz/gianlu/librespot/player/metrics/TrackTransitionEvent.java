@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.EventService;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author devgianlu

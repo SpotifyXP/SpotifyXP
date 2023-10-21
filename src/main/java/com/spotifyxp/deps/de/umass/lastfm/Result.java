@@ -25,9 +25,8 @@
  */
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import org.w3c.dom.Document;
-
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+import org.w3c.dom.Document;
 
 /**
  * The <code>Result</code> class contains the response sent by the server, i.e. the status (either ok or failed),

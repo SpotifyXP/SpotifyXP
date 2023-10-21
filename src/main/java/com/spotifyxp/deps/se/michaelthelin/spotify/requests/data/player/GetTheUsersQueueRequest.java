@@ -1,15 +1,13 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player;
 
-import java.io.IOException;
-
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IPlaylistItem;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.PlaybackQueue;
+import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ParseException;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.PlaybackQueue;
+import java.io.IOException;
 
 /**
  * Get the list of objects that make up the user's queue.

@@ -195,7 +195,7 @@ public class CdnManager {
         }
     }
 
-    @SuppressWarnings("NullableProblems")
+    @SuppressWarnings({"NullableProblems", "ClassEscapesDefinedScope", "KotlinInternalInJava"})
     public class Streamer implements DecodedAudioStream, GeneralWritableStream {
         private final StreamId streamId;
         private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "cdn-async-" + r.hashCode()));

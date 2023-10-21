@@ -26,18 +26,6 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.Proxy;
-import java.net.URL;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.spotifyxp.deps.de.umass.lastfm.Result.Status;
 import com.spotifyxp.deps.de.umass.lastfm.cache.Cache;
 import com.spotifyxp.deps.de.umass.lastfm.cache.FileSystemCache;
@@ -47,6 +35,19 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.Proxy;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.spotifyxp.deps.de.umass.util.StringUtilities.*;
 
@@ -59,6 +60,7 @@ import static com.spotifyxp.deps.de.umass.util.StringUtilities.*;
  *
  * @author Janni Kovacs
  */
+@SuppressWarnings("DataFlowIssue")
 public class Caller {
 
 	private static final String PARAM_API_KEY = "api_key";
@@ -248,7 +250,7 @@ public class Caller {
 	 * @return the result of the operation
 	 */
 	private Result call(String method, String apiKey, Map<String, String> params, Session session) {
-		params = new HashMap<String, String>(params); // create new Map in case params is an immutable Map
+		params = new HashMap<>(params); // create new Map in case params is an immutable Map
 		InputStream inputStream = null;
 		
 		// try to load from cache
@@ -301,15 +303,13 @@ public class Caller {
 			}
 			this.lastResult = result;
 			return result;
-		} catch (IOException e) {
-			throw new CallException(e);
-		} catch (SAXException e) {
+		} catch (IOException | SAXException e) {
 			throw new CallException(e);
 		}
-	}
+    }
 
 	private String callRaw(String method, String apiKey, Map<String, String> params, Session session) {
-		params = new HashMap<String, String>(params); // create new Map in case params is an immutable Map
+		params = new HashMap<>(params); // create new Map in case params is an immutable Map
 		InputStream inputStream = null;
 
 		// try to load from cache
@@ -389,7 +389,7 @@ public class Caller {
 	}
 
 	private Result createResultFromInputStream(InputStream inputStream) throws SAXException, IOException {
-		Document document = newDocumentBuilder().parse(new InputSource(new InputStreamReader(inputStream, "UTF-8")));
+		Document document = newDocumentBuilder().parse(new InputSource(new InputStreamReader(inputStream, StandardCharsets.UTF_8)));
 		Element root = document.getDocumentElement(); // lfm element
 		String statusString = root.getAttribute("status");
 		Status status = "ok".equals(statusString) ? Status.OK : Status.FAILED;
@@ -442,7 +442,7 @@ public class Caller {
 	}
 
 	private String createSignature(Map<String, String> params, String secret) {
-		Set<String> sorted = new TreeSet<String>(params.keySet());
+		Set<String> sorted = new TreeSet<>(params.keySet());
 		StringBuilder builder = new StringBuilder(50);
 		for (String s : sorted) {
 			builder.append(s);

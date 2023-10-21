@@ -28,17 +28,18 @@ package com.spotifyxp.deps.javazoom.jl.decoder;
 /**
  * Class to implements Huffman decoder.
  */
+@SuppressWarnings("IfStatementWithIdenticalBranches")
 final class huffcodetab {
 	private static final int MXOFF = 250;
 	private static final int HTN = 34;
 
-	private char tablename0 = ' '; /* string, containing table_description */
-	private char tablename1 = ' '; /* string, containing table_description */
+	private final char tablename0; /* string, containing table_description */
+	private final char tablename1; /* string, containing table_description */
 
     private final int xlen; /* max. x-index+ */
 	private final int ylen; /* max. y-index+ */
 	private final int linbits; /* number of linbits */
-	private int[][] val = null; /* decoder tree */
+	private final int[][] val; /* decoder tree */
 	private final int treelen; /* length of decoder tree */
 
 	private static final int[][] ValTab0 = {{0, 0} // dummy

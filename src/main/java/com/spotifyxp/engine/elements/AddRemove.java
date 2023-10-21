@@ -3,6 +3,7 @@ package com.spotifyxp.engine.elements;
 import com.spotifyxp.engine.Element;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.logging.ConsoleLogging;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 

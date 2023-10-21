@@ -7,15 +7,12 @@ import java.awt.*;
 
 public class CanvasComponent extends JPanel implements Component {
     @FunctionalInterface
-    public static interface DrawEvent {
+    public interface DrawEvent {
         void trigger(Graphics g);
     }
 
-    DrawEvent event = new DrawEvent() {
-        @Override
-        public void trigger(Graphics g) {
+    DrawEvent event = g -> {
 
-        }
     };
 
     public String getName() {

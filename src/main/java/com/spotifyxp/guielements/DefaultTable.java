@@ -3,15 +3,10 @@ package com.spotifyxp.guielements;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.factory.Factory;
-import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 public class DefaultTable extends DefTable {
@@ -23,8 +18,8 @@ public class DefaultTable extends DefTable {
 
     // How does the uri cache work?
     // When you click on a row in the table the row number gets passed to the song cache z.b cache.get(ROW_NUMBER) and it gives back the uri of the spotify thingy you selected
-    ArrayList<String> uricache = new ArrayList<>();
-    Type type;
+    final ArrayList<String> uricache = new ArrayList<>();
+    final Type type;
     boolean hasContextMenu = false;
 
     public enum Type {
@@ -35,12 +30,7 @@ public class DefaultTable extends DefTable {
         PLAYLIST
     }
 
-    ContextMenu contextMenu;
-
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        return false;
-    }
+    final ContextMenu contextMenu;
 
     public DefaultTable(Type tableType) {
         type = tableType;

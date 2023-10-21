@@ -26,13 +26,13 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * An <code>Image</code> contains metadata and URLs for an artist's image. Metadata contains title, votes, format and other.
@@ -97,7 +97,7 @@ public class Image extends ImageHolder {
 			try {
 				i.dateAdded = DATE_ADDED_FORMAT.parse(element.getChildText("dateadded"));
 			} catch (ParseException e1) {
-				e1.printStackTrace();
+				throw new RuntimeException(e1);
 			}
 			DomElement owner = element.getChild("owner");
 			if (owner != null)

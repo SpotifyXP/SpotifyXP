@@ -43,6 +43,6 @@ public interface ExpirationPolicy {
 	 * @param params The parameters sent
 	 * @return the time the request should be cached in milliseconds
 	 */
-	public long getExpirationTime(String method, Map<String, String> params);
+    long getExpirationTime(String method, Map<String, String> params);
 
 }

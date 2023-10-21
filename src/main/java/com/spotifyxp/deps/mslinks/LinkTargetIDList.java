@@ -16,18 +16,13 @@ package com.spotifyxp.deps.mslinks;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.data.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import com.spotifyxp.deps.mslinks.data.ItemID;
-import com.spotifyxp.deps.mslinks.data.ItemIDDrive;
-import com.spotifyxp.deps.mslinks.data.ItemIDFS;
-import com.spotifyxp.deps.mslinks.data.ItemIDRoot;
-import com.spotifyxp.deps.mslinks.data.ItemIDUnknown;
-import com.spotifyxp.deps.mslinks.data.Registry;
-
+@SuppressWarnings("JavadocDeclaration")
 public class LinkTargetIDList extends LinkedList<ItemID> implements Serializable {
 	
 	public LinkTargetIDList() {}

@@ -16,14 +16,14 @@ package com.spotifyxp.deps.mslinks.extra;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
+import com.spotifyxp.deps.mslinks.ShellLinkException;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 
-import com.spotifyxp.deps.mslinks.Serializable;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
-
+@SuppressWarnings("NegativeIntConstantInLongContext")
 public class ConsoleFEData implements Serializable {
 	public static final int signature = 0xA0000004;
 	public static final int size = 0xc;

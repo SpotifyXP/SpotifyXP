@@ -3,9 +3,9 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.browse;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import org.apache.hc.core5.http.ParseException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Recommendations;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -489,7 +489,7 @@ public class GetRecommendationsRequest extends AbstractDataRequest<Recommendatio
     public Builder seed_artists(final String seed_artists) {
       assert (seed_artists != null);
       assert (seed_artists.split(",").length <= 5);
-      return setQueryParameter("seed_artists", seed_artists);
+      return setQueryParameter("seed_artists", seed_artists.replaceAll("\\[", "").replaceAll("]", ""));
     }
 
     /**
@@ -503,7 +503,7 @@ public class GetRecommendationsRequest extends AbstractDataRequest<Recommendatio
     public Builder seed_genres(final String seed_genres) {
       assert (seed_genres != null);
       assert (seed_genres.split(",").length <= 5);
-      return setQueryParameter("seed_genres", seed_genres);
+      return setQueryParameter("seed_genres", seed_genres.replaceAll("\\[", "").replaceAll("]", ""));
     }
 
     /**
@@ -517,7 +517,7 @@ public class GetRecommendationsRequest extends AbstractDataRequest<Recommendatio
     public Builder seed_tracks(final String seed_tracks) {
       assert (seed_tracks != null);
       assert (seed_tracks.split(",").length <= 5);
-      return setQueryParameter("seed_tracks", seed_tracks);
+      return setQueryParameter("seed_tracks", seed_tracks.replaceAll("\\[", "").replaceAll("]", ""));
     }
 
     /**

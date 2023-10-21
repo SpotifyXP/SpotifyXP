@@ -25,11 +25,11 @@ import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.utils.OverwriteFactory;
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
+import com.spotifyxp.utils.OverwriteFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -37,7 +37,7 @@ import java.io.OutputStream;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("StatementWithEmptyBody")
+@SuppressWarnings({"StatementWithEmptyBody", "lossy-conversions"})
 public final class VorbisDecoder extends Decoder {
     private static final int CONVERTED_BUFFER_SIZE = Decoder.BUFFER_SIZE * 2;
     private final StreamState joggStreamState = new StreamState();

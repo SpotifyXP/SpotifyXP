@@ -1,9 +1,9 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.spotifyxp.deps.se.michaelthelin.spotify.IHttpManager;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import org.apache.hc.core5.http.*;
-import com.spotifyxp.deps.se.michaelthelin.spotify.IHttpManager;
 
 import java.io.IOException;
 import java.net.URI;

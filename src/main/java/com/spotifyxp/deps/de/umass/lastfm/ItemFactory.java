@@ -44,6 +44,6 @@ interface ItemFactory<T> {
 	 * @param element the XML element
 	 * @return a new object
 	 */
-	public T createItemFromElement(DomElement element);
+    T createItemFromElement(DomElement element);
 
 }

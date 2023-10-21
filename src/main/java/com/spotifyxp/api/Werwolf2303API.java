@@ -1,6 +1,5 @@
 package com.spotifyxp.api;
 
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.httpclient.HttpClient;
@@ -18,7 +17,7 @@ public class Werwolf2303API {
     boolean suc = false;
     public Werwolf2303API() {
         String key = requestAPIKey();
-        if(!key.equals("")) {
+        if(!key.isEmpty()) {
             apikey = key;
             suc = true;
         }

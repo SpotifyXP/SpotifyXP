@@ -7,7 +7,6 @@ import com.spotifyxp.deps.de.werwolf2303.javasetuptool.uninstaller.Uninstaller;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -18,16 +17,16 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 public class InstallProgressComponent extends JPanel implements Component {
-    ArrayList<FileOperation> fileOperations = new ArrayList<FileOperation>();
-    JProgressBar progress;
-    JTextArea operationlog;
-    JLabel operationpath;
-    JScrollPane pane;
+    final ArrayList<FileOperation> fileOperations = new ArrayList<>();
+    final JProgressBar progress;
+    final JTextArea operationlog;
+    final JLabel operationpath;
+    final JScrollPane pane;
     static FeatureSelectionComponent component;
     Setup.SetupBuilder builder;
     Uninstaller uninstaller;
-    ArrayList<String> files = new ArrayList<>();
-    ArrayList<String> folders = new ArrayList<>();
+    final ArrayList<String> files = new ArrayList<>();
+    final ArrayList<String> folders = new ArrayList<>();
     boolean bu = false;
 
     public InstallProgressComponent() {
@@ -70,11 +69,11 @@ public class InstallProgressComponent extends JPanel implements Component {
         progress.setMinimum(0);
         progress.setValue(0);
         add(operationpath);
-        this.component = component;
+        InstallProgressComponent.component = component;
     }
 
     public static class FileOperationBuilder {
-        private FileOperation internal = new FileOperation();
+        private final FileOperation internal = new FileOperation();
 
         public FileOperationBuilder setType(FileOperationTypes type) {
             internal.operationType = type;
@@ -258,7 +257,7 @@ public class InstallProgressComponent extends JPanel implements Component {
                                 fos, 1024);
                         byte[] data = new byte[1024];
                         long downloadedFileSize = 0;
-                        int x = 0;
+                        int x;
                         float last = 0;
                         while ((x = in.read(data, 0, 1024)) >= 0) {
                             downloadedFileSize += x;
@@ -293,8 +292,8 @@ public class InstallProgressComponent extends JPanel implements Component {
                 try {
                     uninstaller.buildUninstaller(files, folders, builder.progname, builder.progversion, builder.uxmlat);
                 } catch (ParserConfigurationException e) {
-                    e.printStackTrace();
                     operationlog.append("Failed building uninstaller\n");
+                    throw new RuntimeException(e);
                 }
             }
             operationpath.setText("Install Finished");
@@ -314,12 +313,7 @@ public class InstallProgressComponent extends JPanel implements Component {
     }
 
     public void nowVisible() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                doOperations();
-            }
-        });
+        Thread t = new Thread(this::doOperations);
         t.start();
     }
 
@@ -350,11 +344,7 @@ public class InstallProgressComponent extends JPanel implements Component {
         for (ActionListener l : this.next.getActionListeners()) {
             this.next.removeActionListener(l);
         }
-        this.next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fin.run();
-            }
-        });
+        this.next.addActionListener(e -> fin.run());
     }
 
     public enum FileOperationTypes {

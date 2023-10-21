@@ -2,9 +2,9 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 
 /**
  * Retrieve information about <a href="https://developer.spotify.com/web-api/console/get-featured-playlists">

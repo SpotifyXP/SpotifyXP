@@ -26,14 +26,6 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.threading.DefThread;
-import org.htmlunit.xpath.operations.Bool;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-
 import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.AsyncWorker;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtoUtils;
@@ -44,6 +36,11 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient.RequestResult;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.threading.DefThread;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -56,7 +53,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
+@SuppressWarnings({"NullableProblems", "IfStatementWithIdenticalBranches", "JavadocDeclaration", "BusyWait"})
 public final class DeviceStateHandler implements Closeable, DealerClient.MessageListener, DealerClient.RequestListener {
 
     static {
@@ -273,12 +270,12 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
      * @param req The {@link Connect.PutStateRequest}
      */
 
-    ArrayList<Connect.PutStateRequest> stateRequestQueue = new ArrayList<>();
+    final ArrayList<Connect.PutStateRequest> stateRequestQueue = new ArrayList<>();
     Connect.PutStateRequest lastReq = null;
-    DefThread queueworker = new DefThread(new Runnable() {
+    final DefThread queueworker = new DefThread(new Runnable() {
         @Override
         public void run() {
-            while(stateRequestQueue.size() != 0) {
+            while(!stateRequestQueue.isEmpty()) {
                 try {
                     session.api().putConnectState(connectionId, stateRequestQueue.get(0));
                     if (ConsoleLoggingModules.isTraceEnabled()) {

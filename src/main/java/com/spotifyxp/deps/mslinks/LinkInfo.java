@@ -14,11 +14,11 @@
 */
 package com.spotifyxp.deps.mslinks;
 
+import com.spotifyxp.deps.io.ByteReader;
+import com.spotifyxp.deps.io.ByteWriter;
 import com.spotifyxp.deps.mslinks.data.CNRLink;
 import com.spotifyxp.deps.mslinks.data.LinkInfoFlags;
 import com.spotifyxp.deps.mslinks.data.VolumeID;
-import com.spotifyxp.deps.io.ByteReader;
-import com.spotifyxp.deps.io.ByteWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.nio.charset.CharsetEncoder;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("DataFlowIssue")
 public class LinkInfo implements Serializable {
 	private final LinkInfoFlags lif;
 	private VolumeID vid;
@@ -136,12 +137,10 @@ public class LinkInfo implements Serializable {
 		if (hsize > 28) {
 			if (lif.hasVolumeIDAndLocalBasePath()) {
 				bw.write4bytes(off); // LocalBasePathOffsetUnicode
-				off += localBasePath.length() * 2 + 2;
 				bw.write4bytes(size - 2); // fake CommonPathSuffixUnicode offset
 			} else  {
 				bw.write4bytes(0);
 				bw.write4bytes(off); // CommonPathSuffixUnicode offset 
-				off += commonPathSuffix.length() * 2 + 2;
 			}
 		}
 		
@@ -228,7 +227,7 @@ public class LinkInfo implements Serializable {
 	public String buildPath() {
 		if (localBasePath != null) {
 			String path = localBasePath;
-			if (commonPathSuffix != null && !commonPathSuffix.equals("")) {
+			if (commonPathSuffix != null && !commonPathSuffix.isEmpty()) {
 				if (path.charAt(path.length() - 1) != File.separatorChar)
 					path += File.separatorChar;
 				path += commonPathSuffix;

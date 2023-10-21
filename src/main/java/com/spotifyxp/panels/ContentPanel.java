@@ -1,9 +1,12 @@
 package com.spotifyxp.panels;
 
 import com.neovisionaries.i18n.CountryCode;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.Player;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
@@ -18,21 +21,17 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.injector.InjectingPoints;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lastfm.LastFMDialog;
+import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
 import com.spotifyxp.theming.themes.DarkGreen;
 import com.spotifyxp.theming.themes.Legacy;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.*;
 import com.spotifyxp.video.CanvasPlayer;
-import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
-import org.json.JSONObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -46,7 +45,10 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -3148,6 +3150,27 @@ public class ContentPanel extends JPanel {
         }
     }
 
+    int count = 0;
+
+    String[] getRandomValues(ArrayList<String> inputList, int count) {
+        if (count <= 0) {
+            return new String[] {}; // Return an empty list if count is zero or negative.
+        }
+
+        // Create a copy of the input list to avoid modifying the original list.
+        ArrayList<String> copyList = new ArrayList<>(inputList);
+
+        // Shuffle the copy list to randomize the order.
+        Collections.shuffle(copyList);
+
+        // Ensure that count does not exceed the size of the copy list.
+        count = Math.min(count, copyList.size());
+
+        // Create a sublist containing the first 'count' elements from the shuffled list.
+
+        return new String[] {copyList.subList(0, count).toString().replaceAll("\\[", "").replaceAll("]", "")};
+    }
+
     void fetchHotlist() {
         try {
             Artist[] artist = Factory.getSpotifyApi().getUsersTopArtists().build().execute().getItems();
@@ -3160,57 +3183,18 @@ public class ContentPanel extends JPanel {
             }
             for (Artist a : artist) {
                 genres.addAll(Arrays.asList(a.getGenres()));
-                artists.add(a.getUri());
+                artists.add(a.getUri().split(":")[2]);
             }
-            int gcr = new Random().nextInt(genres.size());
-            int gc = 0;
-            int ac = 0;
-            int tc = 0;
-            StringBuilder fivegenres = new StringBuilder();
-            StringBuilder fiveartists = new StringBuilder();
-            StringBuilder fivetracks = new StringBuilder();
-            for (String s : genres) {
-                if (gc == 2) {
-                    break;
-                }
-                if (fivegenres.length() > 0) {
-                    fivegenres.append(",");
-                }
-                fivegenres.append(s);
-                gc++;
-            }
-            for (String s : artists) {
-                if (ac == 2) {
-                    break;
-                }
-                if (fiveartists.length() > 0) {
-                    fiveartists.append(",");
-                }
-                fiveartists.append(s);
-                ac++;
-            }
-            for (String s : tracks) {
-                if (tc == 1) {
-                    break;
-                }
-                if (fivetracks.length() > 0) {
-                    fivetracks.append(",");
-                }
-                fivetracks.append(s);
-                tc++;
-            }
-            JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations",
-                    new NameValuePair("seed_artists", fiveartists.toString()),
-                    new NameValuePair("seed_genres", fivegenres.toString()),
-                    new NameValuePair("seed_tracks", fivetracks.toString())));
-            for (Object o : recommendations.getJSONArray("tracks")) {
-                JSONObject album = new JSONObject(new JSONObject(o.toString()).get("album").toString());
-                String uri = album.getString("uri").split(":")[2];
-                hotlistplaylistlistcache.add(uri);
+            String[] fiveartists = getRandomValues(artists, 2);
+            String[] fivegenres = getRandomValues(genres, 2);
+            String[] fivetracks = getRandomValues(tracks, 1);
+            TrackSimplified[] finaltracks = Factory.getSpotifyApi().getRecommendations().seed_artists(Arrays.toString(fiveartists).replace("  ", ",").replace(" ", "")).seed_genres(Arrays.toString(fivegenres).replace("  ", ",").replace(" ", "")).seed_tracks(Arrays.toString(fivetracks).replace("  ", ",").replace(" ", "")).build().execute().getTracks();
+            for(TrackSimplified t : finaltracks) {
                 try {
-                    Album albumreq = Factory.getSpotifyApi().getAlbum(uri).build().execute();
+                    AlbumSimplified albumreq = Factory.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute().getAlbum();
                     String a = TrackUtils.getArtists(albumreq.getArtists());
                     ((DefaultTableModel) hotlistplayliststable.getModel()).addRow(new Object[]{albumreq.getName() + " - " + a});
+                    hotlistplaylistlistcache.add(albumreq.getUri().split(":")[2]);
                 } catch (IOException | ParseException | SpotifyWebApiException e) {
                     ConsoleLogging.Throwable(e);
                 }

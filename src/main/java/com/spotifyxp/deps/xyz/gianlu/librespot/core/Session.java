@@ -74,7 +74,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("resource")
+@SuppressWarnings({"resource", "BusyWait", "KotlinInternalInJava"})
 public final class Session implements Closeable {
     private static final byte[] serverKey = new byte[]{
             (byte) 0xac, (byte) 0xe0, (byte) 0x46, (byte) 0x0b, (byte) 0xff, (byte) 0xc2, (byte) 0x30, (byte) 0xaf, (byte) 0xf4, (byte) 0x6b, (byte) 0xfe, (byte) 0xc3,
@@ -340,7 +340,7 @@ public final class Session implements Closeable {
      * Authenticates with the server and creates all the necessary components.
      * All of them should be initialized inside the synchronized block and MUST NOT call any method on this {@link Session} object.
      */
-    private void authenticate(@NotNull Authentication.LoginCredentials credentials) throws EOFException, IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
+    private void authenticate(@NotNull Authentication.LoginCredentials credentials) throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
         authenticatePartial(credentials, false);
 
         synchronized (authLock) {
@@ -398,7 +398,7 @@ public final class Session implements Closeable {
      *                   {@code false} for {@link Session#authenticate(Authentication.LoginCredentials)},
      *                   {@code true} for {@link Session#reconnect()}.
      */
-    private void authenticatePartial(@NotNull Authentication.LoginCredentials credentials, boolean removeLock) throws IOException, EOFException, GeneralSecurityException, SpotifyAuthenticationException {
+    private void authenticatePartial(@NotNull Authentication.LoginCredentials credentials, boolean removeLock) throws IOException, GeneralSecurityException, SpotifyAuthenticationException {
         if (conn == null || cipherPair == null) throw new IllegalStateException("Connection not established!");
 
         Authentication.ClientResponseEncrypted clientResponseEncrypted = Authentication.ClientResponseEncrypted.newBuilder()
@@ -525,10 +525,6 @@ public final class Session implements Closeable {
     }
 
     private void sendUnchecked(Packet.Type cmd, byte[] payload) throws IOException {
-        //if (conn == null) {
-            //throw new IOException("Cannot write to missing connection.");
-
-        //}
         while(conn == null) {
             try {
                 Thread.sleep(TimeUnit.SECONDS.toMillis(2));
@@ -1057,7 +1053,7 @@ public final class Session implements Closeable {
          * Creates a connected and fully authenticated {@link Session} object.
          */
         @NotNull
-        public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, EOFException, MercuryClient.MercuryException {
+        public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
             if (loginCredentials == null)
                 throw new IllegalStateException("You must select an authentication method.");
 

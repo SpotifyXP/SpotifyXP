@@ -1,26 +1,22 @@
 package com.spotifyxp.utils;
 
 import com.dd.plist.NSDictionary;
-import com.dd.plist.NSObject;
 import com.dd.plist.XMLPropertyListWriter;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class MacOSAppUtil {
-    String appName;
+    final String appName;
     String copyname;
     int copyyear;
     String executableLocation;
-    String applicationsfolderpath = System.getProperty("user.home") + "/Applications";
+    final String applicationsfolderpath = System.getProperty("user.home") + "/Applications";
     String iconpath;
     //
     // Hello.app

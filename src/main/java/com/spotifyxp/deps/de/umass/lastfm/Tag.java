@@ -26,13 +26,13 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.util.StringUtilities;
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import com.spotifyxp.deps.de.umass.util.StringUtilities;
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * Bean for Tag data and provides methods for global tags.
@@ -48,7 +48,7 @@ public class Tag implements Comparable<Tag> {
 
 	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss ZZZZ", Locale.ENGLISH);
 
-	private String name;
+	private final String name;
 	private String url;
 	private int count;
 
@@ -129,7 +129,7 @@ public class Tag implements Comparable<Tag> {
 	 * @return the filtered list of tags
 	 */
 	public static List<Tag> filter(Collection<Tag> tags, double percentage) {
-		ArrayList<Tag> tops = new ArrayList<Tag>();
+		ArrayList<Tag> tops = new ArrayList<>();
 		long total = getTagCountSum(tags);
 		double cutOff = total / 100.0 * percentage;
 		for (Tag tag : tags) {
@@ -179,7 +179,7 @@ public class Tag implements Comparable<Tag> {
 	public static Collection<Tag> search(String tag, int limit, String apiKey) {
 		Result result = Caller.getInstance().call("tag.search", apiKey, "tag", tag, "limit", String.valueOf(limit));
 		Collection<DomElement> children = result.getContentElement().getChild("tagmatches").getChildren("tag");
-		List<Tag> tags = new ArrayList<Tag>(children.size());
+		List<Tag> tags = new ArrayList<>(children.size());
 		for (DomElement s : children) {
 			tags.add(FACTORY.createItemFromElement(s));
 		}
@@ -202,7 +202,8 @@ public class Tag implements Comparable<Tag> {
 		return Chart.getWeeklyChartList("tag.getWeeklyChartList", "tag", tag, apiKey);
 	}
 
-	public static Collection<Chart> getWeeklyChartListAsCharts(String tag, String apiKey) {
+	@SuppressWarnings("rawtypes")
+    public static Collection<Chart> getWeeklyChartListAsCharts(String tag, String apiKey) {
 		return Chart.getWeeklyChartListAsCharts("tag", tag, apiKey);
 	}
 
@@ -226,9 +227,9 @@ public class Tag implements Comparable<Tag> {
 	 * @return Tag metdata such as Wiki Text, reach and tag count
 	 */
 	public static Tag getInfo(String tag, Locale locale, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put("tag", tag);
-		if (locale != null && locale.getLanguage().length() != 0) {
+		if (locale != null && !locale.getLanguage().isEmpty()) {
 			params.put("lang", locale.getLanguage());
 		}
 		Result result = Caller.getInstance().call("tag.getInfo", apiKey, params);

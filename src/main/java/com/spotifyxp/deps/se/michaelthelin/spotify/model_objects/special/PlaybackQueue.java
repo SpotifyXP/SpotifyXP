@@ -1,18 +1,17 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IModelObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IPlaylistItem;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Get the list of items that make up the user's queue.

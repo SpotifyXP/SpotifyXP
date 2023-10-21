@@ -14,6 +14,7 @@
 */
 package com.spotifyxp.deps.io;
 
+@SuppressWarnings("NegativeIntConstantInLongContext")
 public final class Bytes {
 
 	private Bytes() {}

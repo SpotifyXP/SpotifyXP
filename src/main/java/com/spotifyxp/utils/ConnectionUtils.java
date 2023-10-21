@@ -81,7 +81,7 @@ public class ConnectionUtils {
         }else {
             browserpath = PublicValues.config.get(ConfigValues.mypalpath.name);
         }
-        if(browserpath.equals(""))  {
+        if(browserpath.isEmpty())  {
             JOptionPane.showConfirmDialog(null, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
             return;
         }

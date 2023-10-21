@@ -5,12 +5,7 @@ import com.spotifyxp.PublicValues;
 public class Language implements Argument{
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.language.setNoAutoFindLanguage(parameter1);
-            }
-        };
+        return () -> PublicValues.language.setNoAutoFindLanguage(parameter1);
     }
 
     @Override

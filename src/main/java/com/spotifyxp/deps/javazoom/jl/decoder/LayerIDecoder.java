@@ -22,6 +22,7 @@ package com.spotifyxp.deps.javazoom.jl.decoder;
 /**
  * Implements decoding of MPEG Audio Layer I frames.
  */
+@SuppressWarnings({"ClassEscapesDefinedScope", "ConstantValue"})
 public class LayerIDecoder implements FrameDecoder {
 	protected Bitstream stream;
 	protected Header header;
@@ -32,7 +33,7 @@ public class LayerIDecoder implements FrameDecoder {
 
 	protected int num_subbands;
 	protected Subband[] subbands;
-	protected Crc16 crc = null; // new Crc16[1] to enable CRC checking.
+	protected final Crc16 crc; // new Crc16[1] to enable CRC checking.
 
 	public LayerIDecoder () {
 		crc = new Crc16();
@@ -175,7 +176,7 @@ public class LayerIDecoder implements FrameDecoder {
 			(1.0f / 4096.0f - 1.0f) * 8192.0f / 8191.0f, (1.0f / 8192.0f - 1.0f) * 16384.0f / 16383.0f,
 			(1.0f / 16384.0f - 1.0f) * 32768.0f / 32767.0f};
 
-		protected int subbandnumber;
+		protected final int subbandnumber;
 		protected int samplenumber;
 		protected int allocation;
 		protected float scalefactor;
@@ -237,9 +238,9 @@ public class LayerIDecoder implements FrameDecoder {
 			}
 			return true;
 		}
-	};
+	}
 
-	/**
+    /**
 	 * Class for layer I subbands in joint stereo mode.
 	 */
 	static class SubbandLayer1IntensityStereo extends SubbandLayer1 {
@@ -296,9 +297,9 @@ public class LayerIDecoder implements FrameDecoder {
 			}
 			return true;
 		}
-	};
+	}
 
-	/**
+    /**
 	 * Class for layer I subbands in stereo mode.
 	 */
 	static class SubbandLayer1Stereo extends SubbandLayer1 {
@@ -318,7 +319,7 @@ public class LayerIDecoder implements FrameDecoder {
 		/**
 	   *
 	   */
-		public void read_allocation (Bitstream stream, Header header, Crc16 crc) throws DecoderException {
+		public void read_allocation (Bitstream stream, Header header, Crc16 crc) {
 			allocation = stream.get_bits(4);
 			channel2_allocation = stream.get_bits(4);
 			if (crc != null) {
@@ -368,6 +369,6 @@ public class LayerIDecoder implements FrameDecoder {
 			}
 			return true;
 		}
-	};
+	}
 
 }

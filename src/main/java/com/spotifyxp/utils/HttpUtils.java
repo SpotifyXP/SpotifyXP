@@ -2,7 +2,6 @@ package com.spotifyxp.utils;
 
 import com.sun.net.httpserver.HttpExchange;
 import org.apache.commons.io.IOUtils;
-import org.apache.xmlgraphics.io.Resource;
 
 import java.io.File;
 import java.io.OutputStream;

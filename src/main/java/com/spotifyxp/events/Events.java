@@ -1,21 +1,17 @@
 package com.spotifyxp.events;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Events {
-    static ArrayList<Runnable> queueUpdateEvents = new ArrayList<>();
-    static ArrayList<Runnable> queueAdvanceEvents = new ArrayList<>();
-    static ArrayList<Runnable> queueRegressEvents = new ArrayList<>();
-    static ArrayList<Runnable> playerLockReleaseEvents = new ArrayList<>();
+    static final ArrayList<Runnable> queueUpdateEvents = new ArrayList<>();
+    static final ArrayList<Runnable> queueAdvanceEvents = new ArrayList<>();
+    static final ArrayList<Runnable> queueRegressEvents = new ArrayList<>();
+    static final ArrayList<Runnable> playerLockReleaseEvents = new ArrayList<>();
 
     private static void createThreadWith(ArrayList<Runnable> toWorkOn) {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for(Runnable run : toWorkOn) {
-                    run.run();
-                }
+        Thread t = new Thread(() -> {
+            for(Runnable run : toWorkOn) {
+                run.run();
             }
         });
         t.start();

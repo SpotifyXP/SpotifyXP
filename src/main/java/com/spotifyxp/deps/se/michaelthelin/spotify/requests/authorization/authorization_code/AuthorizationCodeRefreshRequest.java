@@ -1,12 +1,12 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.authorization.authorization_code;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.ParseException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.authorization.AbstractAuthorizationRequest;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -65,7 +65,7 @@ public class AuthorizationCodeRefreshRequest extends AbstractAuthorizationReques
      */
     public Builder refresh_token(final String refresh_token) {
       assert (refresh_token != null);
-      assert (!refresh_token.equals(""));
+      assert (!refresh_token.isEmpty());
       return setBodyParameter("refresh_token", refresh_token);
     }
 

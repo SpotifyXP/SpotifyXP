@@ -1,39 +1,32 @@
 package com.spotifyxp.listeners;
 
-import com.spotifyxp.api.UnofficialSpotifyAPI;
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.EpisodeSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.theming.themes.Legacy;
-import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.TrackUtils;
-import com.spotifyxp.video.CanvasPlayer;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 
-import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -86,46 +79,27 @@ public class PlayerListener implements Player.EventsListener {
         if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
             timer.schedule(new PlayerThread(), 0, 1000);
             try {
-                //        HH MM SS
-                //Display 00:00:00
-
-                //Removed feature announce song name
-                //if(!ContentPanel.frame.isVisible()) {
-                //BackgroundService.trayDialog.getTrayIcon().displayMessage("SpotifyXP: Now Playing", a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getName() + " - " + TrackUtils.getArtists(a.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute().getArtists()), TrayIcon.MessageType.INFO);
-                //}
-                //---
                 StringBuilder artists = new StringBuilder();
-                if(playableId.toSpotifyUri().contains("episode")) {
-                    Episode episode = Factory.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                    ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
-                    ContentPanel.playertitle.setText(episode.getName());
-                    artists.append(episode.getShow().getPublisher());
-                    JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/episodes/" + playableId.toSpotifyUri().split(":")[2]));
-                    for (Object object : root.getJSONArray("images")) {
-                        JSONObject urls = new JSONObject(object.toString());
-                        ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
+                switch (playableId.toSpotifyUri().split(":")[1]) {
+                    case "episode":
+                        Episode episode = Factory.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
+                        ContentPanel.playertitle.setText(episode.getName());
+                        artists.append(episode.getShow().getPublisher());
+                        ContentPanel.playerimage.setImage(new URL(episode.getImages()[0].getUrl()).openStream());
                         break;
-                    }
-                }
-                else{
-                    if(playableId.toSpotifyUri().contains("track")) {
+                    case "track":
                         Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
                         ContentPanel.playertitle.setText(track.getName());
                         for (ArtistSimplified artist : track.getArtists()) {
-                            if (artists.toString().equals("")) {
+                            if (artists.toString().isEmpty()) {
                                 artists.append(artist.getName());
                             } else {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
-                        JSONObject album = new JSONObject(root.get("album").toString());
-                        for (Object object : album.getJSONArray("images")) {
-                            JSONObject urls = new JSONObject(object.toString());
-                            ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
-                            break;
-                        }
+                        ContentPanel.playerimage.setImage(new URL(track.getAlbum().getImages()[0].getUrl()).openStream());
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
                                 PublicValues.canvasPlayer.play();
@@ -133,25 +107,20 @@ public class PlayerListener implements Player.EventsListener {
                         }catch (NullPointerException e) {
                             //System not supported
                         }
-                    }else{
+                        break;
+                    default:
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
-                        Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                        ContentPanel.playerplaytimetotal.setText(String.valueOf(track.getDurationMs()));
-                        ContentPanel.playertitle.setText(track.getName());
-                        for (ArtistSimplified artist : track.getArtists()) {
-                            if (artists.toString().equals("")) {
+                        Track t = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        ContentPanel.playerplaytimetotal.setText(String.valueOf(t.getDurationMs()));
+                        ContentPanel.playertitle.setText(t.getName());
+                        for (ArtistSimplified artist : t.getArtists()) {
+                            if (artists.toString().isEmpty()) {
                                 artists.append(artist.getName());
                             } else {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        JSONObject root = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/tracks/" + playableId.toSpotifyUri().split(":")[2]));
-                        JSONObject album = new JSONObject(root.get("album").toString());
-                        for (Object object : album.getJSONArray("images")) {
-                            JSONObject urls = new JSONObject(object.toString());
-                            ContentPanel.playerimage.setImage(new URL(urls.getString("url")).openStream());
-                            break;
-                        }
+                        ContentPanel.playerimage.setImage(new URL(t.getAlbum().getImages()[0].getUrl()).openStream());
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
                                 PublicValues.canvasPlayer.play();
@@ -159,7 +128,6 @@ public class PlayerListener implements Player.EventsListener {
                         }catch (NullPointerException e) {
                             //System not supported
                         }
-                    }
                 }
                 ContentPanel.playerdescription.setText(artists.toString());
             } catch (IOException | ParseException | SpotifyWebApiException | JSONException e) {
@@ -173,7 +141,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackEnded(@NotNull Player player) {
-        //timer.cancel();
+
     }
 
     @Override
@@ -187,7 +155,6 @@ public class PlayerListener implements Player.EventsListener {
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
             }
         }
-        //timer.cancel();
         try {
             if (PublicValues.canvasPlayer.isShown()) {
                 PublicValues.canvasPlayer.play();
@@ -215,7 +182,6 @@ public class PlayerListener implements Player.EventsListener {
         }catch (NullPointerException e) {
             //System not supported
         }
-        //timer.schedule(new PlayerThread(), 0, 1000);
     }
 
     @Override

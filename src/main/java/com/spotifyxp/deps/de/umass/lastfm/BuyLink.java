@@ -40,14 +40,14 @@ import com.spotifyxp.deps.de.umass.xml.DomElement;
  */
 public class BuyLink {
 
-	public static enum StoreType {
+	public enum StoreType {
 		PHYSICAl,
 		DIGITAL
 	}
 
-	private StoreType type;
-	private String name;
-	private String link;
+	private final StoreType type;
+	private final String name;
+	private final String link;
 	private String icon;
 	private boolean search;
 
@@ -115,7 +115,7 @@ public class BuyLink {
 		BuyLink link = new BuyLink(element.getChildText("supplierName"), type, element.getChildText("buyLink"));
 		link.search = "1".equals(element.getChildText("isSearch"));
 		link.icon = element.getChildText("supplierIcon");
-		if (link.icon != null && link.icon.length() == 0)
+		if (link.icon != null && link.icon.isEmpty())
 			link.icon = null;
 		if (element.hasChild("price")) {
 			DomElement child = element.getChild("price");

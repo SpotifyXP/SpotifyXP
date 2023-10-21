@@ -1,10 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.logging.ConsoleLogging;
-
-import java.io.IOException;
 
 public class Token {
     public static String getDefaultToken() {

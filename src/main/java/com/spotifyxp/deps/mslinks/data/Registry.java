@@ -1,14 +1,15 @@
 package com.spotifyxp.deps.mslinks.data;
 
+import com.spotifyxp.deps.mslinks.ShellLinkException;
+import com.spotifyxp.deps.mslinks.UnsupportedCLSIDException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.spotifyxp.deps.mslinks.UnsupportedCLSIDException;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
-
 public class Registry {
-	private static class RegistryEnumeration implements Iterable<GUID> {
+	@SuppressWarnings("NullableProblems")
+    private static class RegistryEnumeration implements Iterable<GUID> {
 		@Override
 		public Iterator<GUID> iterator() {
 			return new RegistryIterator();

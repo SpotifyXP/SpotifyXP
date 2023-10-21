@@ -3,7 +3,6 @@
 
 package com.spotifyxp.deps.com.spotify;
 
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.utils.GraphicalMessage;
 
 public final class Mercury {

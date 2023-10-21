@@ -10,7 +10,7 @@ public class ArrayListUtils {
     public static String ArrayListtoString(ArrayList<String> list) {
         StringBuilder builder = new StringBuilder();
         for(String s : list) {
-            if(builder.toString().equals("")) {
+            if(builder.toString().isEmpty()) {
                 builder.append(s);
             }else{
                 builder.append(", ").append(s);
@@ -21,7 +21,7 @@ public class ArrayListUtils {
     public static String ArtistSimplifiedtoString(ArtistSimplified[] list) {
         StringBuilder builder = new StringBuilder();
         for(ArtistSimplified s : list) {
-            if(builder.toString().equals("")) {
+            if(builder.toString().isEmpty()) {
                 builder.append(s.getName());
             }else{
                 builder.append(", ").append(s.getName());

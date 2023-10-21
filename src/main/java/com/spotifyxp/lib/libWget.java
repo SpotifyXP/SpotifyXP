@@ -1,13 +1,7 @@
 package com.spotifyxp.lib;
 
 import com.spotifyxp.exception.ExceptionDialog;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.ParseException;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +9,10 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 import java.util.Random;
 
+@SuppressWarnings("DuplicateExpressions")
 public class libWget {
     /**
      Usage:
@@ -50,7 +46,7 @@ public class libWget {
         url = url.replace("\\", "/");
         try {
             InputStream in = new URL(url).openStream();
-            if(url.split("/")[url.split("/").length-1]!=url.split("/")[0]) {
+            if(!Objects.equals(url.split("/")[url.split("/").length - 1], url.split("/")[0])) {
                 Files.copy(in, Paths.get(url.split("/")[url.split("/").length-1]));
             }else {
                 if (new File("DownloadedFile.ukf").exists()) {

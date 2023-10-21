@@ -26,9 +26,9 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import java.util.*;
-
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+
+import java.util.*;
 
 /**
  * Abstract superclass for all items that may contain images (such as {@link Artist}s, {@link Album}s or {@link Track}s).
@@ -37,7 +37,7 @@ import com.spotifyxp.deps.de.umass.xml.DomElement;
  */
 public abstract class ImageHolder {
 
-	protected Map<ImageSize, String> imageUrls = new HashMap<ImageSize, String>();
+	protected final Map<ImageSize, String> imageUrls = new HashMap<>();
 
 	/**
 	 * Returns a Set of all {@link ImageSize}s available.

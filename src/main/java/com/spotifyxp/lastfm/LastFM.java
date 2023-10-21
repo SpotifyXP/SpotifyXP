@@ -2,9 +2,6 @@ package com.spotifyxp.lastfm;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.deps.de.umass.lastfm.*;
-
-import java.util.ArrayList;
 
 public class LastFM {
     public LastFM() {

@@ -17,11 +17,10 @@ package com.spotifyxp.deps.mslinks.data;
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
 import com.spotifyxp.deps.io.Bytes;
+import com.spotifyxp.deps.mslinks.Serializable;
 
 import java.io.IOException;
 import java.util.Random;
-
-import com.spotifyxp.deps.mslinks.Serializable;
 
 public class GUID implements Serializable {
 	private static final Random r = new Random();
@@ -95,6 +94,7 @@ public class GUID implements Serializable {
 		return d1 == g.d1 && d2 == g.d2 && d3 == g.d3 && d4 == g.d4 && d5 == g.d5;
 	}
 
+	@SuppressWarnings("LongLiteralEndingWithLowercaseL")
 	@Override
 	public int hashCode()
 	{

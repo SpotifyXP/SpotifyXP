@@ -11,12 +11,12 @@ import java.util.Arrays;
 
 public class SetupTypeComponent extends JPanel implements Component {
     //https://i.stack.imgur.com/845qn.jpg
-    Setup setup;
+    final Setup setup;
     JButton next;
     JButton prev;
-    ArrayList<Component> typicalcomponents = new ArrayList<>();
-    ArrayList<Component> customcomponents = new ArrayList<>();
-    ArrayList<Component> completecomponents = new ArrayList<>();
+    final ArrayList<Component> typicalcomponents = new ArrayList<>();
+    final ArrayList<Component> customcomponents = new ArrayList<>();
+    final ArrayList<Component> completecomponents = new ArrayList<>();
     Setup.SetupBuilder builder;
     JButton custom1;
     JButton custom2;
@@ -24,9 +24,9 @@ public class SetupTypeComponent extends JPanel implements Component {
     Runnable fin;
     int current = 0;
     int ycache = 8;
-    JCheckBox typical = new JCheckBox("Typical");
-    JCheckBox complete = new JCheckBox("Complete");
-    JCheckBox custom = new JCheckBox("Custom");
+    final JCheckBox typical = new JCheckBox("Typical");
+    final JCheckBox complete = new JCheckBox("Complete");
+    final JCheckBox custom = new JCheckBox("Custom");
 
     public SetupTypeComponent(Setup setup) {
         this.setup = setup;
@@ -345,8 +345,8 @@ public class SetupTypeComponent extends JPanel implements Component {
         return this;
     }
 
-    ActionListener nextlistener = e -> next();
-    ActionListener prevlistener = e -> previous();
+    final ActionListener nextlistener = e -> next();
+    final ActionListener prevlistener = e -> previous();
 
     boolean first = true;
 

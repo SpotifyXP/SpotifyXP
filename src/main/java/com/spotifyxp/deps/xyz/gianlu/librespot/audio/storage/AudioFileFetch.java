@@ -17,7 +17,7 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage;
 
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
-import com.spotifyxp.deps.xyz.gianlu.librespot.cache. CacheManager;
+import com.spotifyxp.deps.xyz.gianlu.librespot.cache.CacheManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;

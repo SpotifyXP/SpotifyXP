@@ -2,8 +2,8 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AudioFeatures;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AudioFeatures;
 
 import java.util.Arrays;
 

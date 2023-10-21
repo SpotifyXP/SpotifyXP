@@ -26,10 +26,10 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
-import java.util.*;
-
 import com.spotifyxp.deps.de.umass.util.MapUtilities;
 import com.spotifyxp.deps.de.umass.xml.DomElement;
+
+import java.util.*;
 
 /**
  * Bean for Chart information. Contains a start date, an end date and a list of entries.
@@ -38,8 +38,9 @@ import com.spotifyxp.deps.de.umass.xml.DomElement;
  */
 public class Chart<T extends MusicEntry> {
 
-	private Date from, to;
-	private Collection<T> entries;
+	private final Date from;
+    private final Date to;
+	private final Collection<T> entries;
 
 	public Chart(Date from, Date to, Collection<T> entries) {
 		this.from = from;
@@ -75,7 +76,7 @@ public class Chart<T extends MusicEntry> {
 	static <T extends MusicEntry> Chart<T> getChart(String method, String sourceType, String source,
 													String target, String from, String to, int limit,
 													String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		params.put(sourceType, source);
 		return getChart(method, target, params, from, to, limit, apiKey);
 	}
@@ -92,7 +93,7 @@ public class Chart<T extends MusicEntry> {
 	 * @param apiKey A Last.fm API key.
 	 * @return a Chart
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	static <T extends MusicEntry> Chart<T> getChart(String method, String target, Map<String, String> params, String from, String to,
 												 	int limit, String apiKey) {
 		if (from != null && to != null) {
@@ -134,14 +135,14 @@ public class Chart<T extends MusicEntry> {
 	 * @param paramName The name of the parameter which is passed to the specified method, e.g. <code>user</code>
 	 * @param paramValue The value of the parameter which is passed to the specified method, e.g. the user name
 	 * @param apiKey A Last.fm API key.
-	 * @return a list of available charts as a Map
+	 * @return a map of available charts as a Map
 	 */
 	static LinkedHashMap<String, String> getWeeklyChartList(String methodName, String paramName, String paramValue, String apiKey) {
 		Result result = Caller.getInstance().call(methodName, apiKey, paramName, paramValue);
 		if (!result.isSuccessful())
-			return new LinkedHashMap<String, String>(0);
+			return new LinkedHashMap<>(0);
 		DomElement element = result.getContentElement();
-		LinkedHashMap<String, String> list = new LinkedHashMap<String, String>();
+		LinkedHashMap<String, String> list = new LinkedHashMap<>();
 		for (DomElement domElement : element.getChildren("chart")) {
 			list.put(domElement.getAttribute("from"), domElement.getAttribute("to"));
 		}
@@ -156,13 +157,13 @@ public class Chart<T extends MusicEntry> {
 	 * @param apiKey A Last.fm API key.
 	 * @return a list of available charts as a Collection of Charts
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	static Collection<Chart> getWeeklyChartListAsCharts(String sourceType, String source, String apiKey) {
 		Result result = Caller.getInstance().call(sourceType + ".getWeeklyChartList", apiKey, sourceType, source);
 		if (!result.isSuccessful())
 			return Collections.emptyList();
 		DomElement element = result.getContentElement();
-		List<Chart> list = new ArrayList<Chart>();
+		List<Chart> list = new ArrayList<>();
 		for (DomElement domElement : element.getChildren("chart")) {
 			long fromTime = 1000 * Long.parseLong(domElement.getAttribute("from"));
 			long toTime = 1000 * Long.parseLong(domElement.getAttribute("to"));

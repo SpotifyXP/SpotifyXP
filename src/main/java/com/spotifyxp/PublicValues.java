@@ -3,22 +3,22 @@ package com.spotifyxp;
 
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import com.spotifyxp.api.OAuthPKCE;
-import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.dialogs.CancelDialog;
-import com.spotifyxp.theming.Theme;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.theming.Theme;
 import com.spotifyxp.video.CanvasPlayer;
 import com.spotifyxp.visuals.AudioVisualizer;
+
 import java.awt.*;
 import java.util.ArrayList;
 

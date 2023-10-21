@@ -14,14 +14,14 @@ public class FeatureSelectionComponent extends JPanel implements Component {
     public static class Feature {
         public String name;
         public boolean selected = true;
-        public boolean required = false;
+        public final boolean required = false;
     }
 
-    JCheckBoxTree tree = new JCheckBoxTree();
-    JScrollPane pane = new JScrollPane();
-    JLabel l = new JLabel("Select features to install");
+    final JCheckBoxTree tree = new JCheckBoxTree();
+    final JScrollPane pane = new JScrollPane();
+    final JLabel l = new JLabel("Select features to install");
     Setup.SetupBuilder builder;
-    ArrayList<Feature> features = new ArrayList<>();
+    final ArrayList<Feature> features = new ArrayList<>();
     DefaultMutableTreeNode root;
     DefaultTreeModel model;
 
@@ -55,23 +55,20 @@ public class FeatureSelectionComponent extends JPanel implements Component {
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(feature.name);
             root.add(node);
         }
-        tree.addCheckActionListener(new JCheckBoxTree.CheckBoxListener() {
-            @Override
-            public void onTrigger(JCheckBox checkBox) {
-                for(Feature feature : features) {
-                    if(feature.name.equals(checkBox.getText())) {
-                        if(feature.required) {
-                            if(!checkBox.isSelected()) {
-                                next.setEnabled(false);
-                                JOptionPane.showMessageDialog(PublicValues.INTERNALContentManager, feature.name + " is required");
-                            }else{
-                                next.setEnabled(true);
-                            }
-                        }else {
-                            feature.selected = checkBox.isSelected();
+        tree.addCheckActionListener(checkBox -> {
+            for(Feature feature : features) {
+                if(feature.name.equals(checkBox.getText())) {
+                    if(feature.required) {
+                        if(!checkBox.isSelected()) {
+                            next.setEnabled(false);
+                            JOptionPane.showMessageDialog(PublicValues.INTERNALContentManager, feature.name + " is required");
+                        }else{
+                            next.setEnabled(true);
                         }
-                        break;
+                    }else {
+                        feature.selected = checkBox.isSelected();
                     }
+                    break;
                 }
             }
         });

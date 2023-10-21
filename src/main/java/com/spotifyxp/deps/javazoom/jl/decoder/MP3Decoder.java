@@ -22,11 +22,9 @@ package com.spotifyxp.deps.javazoom.jl.decoder;
  * @version 0.0.7 12/12/99
  * @since 0.0.5
  */
+@SuppressWarnings("PointlessArithmeticExpression")
 public class MP3Decoder {
-	/**
-	 * The Bistream from which the MPEG audio frames are read.
-	 */
-	// private Bitstream stream;
+    // private Bitstream stream;
 	/**
 	 * The Obuffer instance that will receive the decoded PCM samples.
 	 */
@@ -62,7 +60,7 @@ public class MP3Decoder {
 	 * Decodes one frame from an MPEG audio bitstream.
 	 * 
 	 * @param header The header describing the frame to decode.
-	 * @param bitstream The bistream that provides the bits for te body of the frame.
+	 * @param stream The bistream that provides the bits for te body of the frame.
 	 * 
 	 * @return A SampleBuffer containing the decoded samples.
 	 */
@@ -88,8 +86,6 @@ public class MP3Decoder {
 	/**
 	 * Retrieves the sample frequency of the PCM samples output by this decoder. This typically corresponds to the sample rate
 	 * encoded in the MPEG audio stream.
-	 * 
-	 * @param the sample rate (in Hz) of the samples written to the output buffer when decoding.
 	 */
 	public int getOutputFrequency () {
 		return outputFrequency;
@@ -147,7 +143,7 @@ public class MP3Decoder {
 		return decoder;
 	}
 
-	private void initialize (Header header) throws DecoderException {
+	private void initialize (Header header) {
 
 		// REVIEW: allow customizable scale factor
 		float scalefactor = 32700.0f;
@@ -171,7 +167,7 @@ public class MP3Decoder {
 	}
 
 	/**
-	 * The first decoder error code. See the {@link DecoderErrors DecoderErrors} interface for other decoder error codes.
+	 * The first decoder error code
 	 */
 	static public final int DECODER_ERROR = 0x200;
 

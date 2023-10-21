@@ -26,11 +26,11 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * This utility class can be used to generically generate Result objects (usually Lists or {@link PaginatedResult}s) from an XML response
@@ -38,6 +38,7 @@ import com.spotifyxp.deps.de.umass.xml.DomElement;
  *
  * @author Janni Kovacs
  */
+@SuppressWarnings({"RedundantTypeArguments", "ClassEscapesDefinedScope"})
 public final class ResponseBuilder {
 
 	private ResponseBuilder() {
@@ -65,7 +66,7 @@ public final class ResponseBuilder {
 		if (element == null)
 			return Collections.emptyList();
 		Collection<DomElement> children = element.getChildren();
-		Collection<T> items = new ArrayList<T>(children.size());
+		Collection<T> items = new ArrayList<>(children.size());
 		for (DomElement child : children) {
 			items.add(factory.createItemFromElement(child));
 		}
@@ -78,7 +79,7 @@ public final class ResponseBuilder {
 
 	public static <T> PaginatedResult<T> buildPaginatedResult(Result result, ItemFactory<T> factory) {
 		if (!result.isSuccessful()) {
-			return new PaginatedResult<T>(0, 0, Collections.<T>emptyList());
+			return new PaginatedResult<>(0, 0, Collections.<T>emptyList());
 		}
 
 		DomElement contentElement = result.getContentElement();
@@ -99,7 +100,7 @@ public final class ResponseBuilder {
 		int page = Integer.parseInt(contentElement.getAttribute("page"));
 		int totalPages = Integer.parseInt(totalPagesAttribute);
 
-		return new PaginatedResult<T>(page, totalPages, items);
+		return new PaginatedResult<>(page, totalPages, items);
 	}
 
 	public static <T> T buildItem(Result result, Class<T> itemClass) {

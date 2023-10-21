@@ -1,9 +1,11 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.threading.DefThread;
+
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("BusyWait")
 public class JScrollText extends JLabel implements Runnable {
     public JScrollText(String text) {
         super.setText(text);

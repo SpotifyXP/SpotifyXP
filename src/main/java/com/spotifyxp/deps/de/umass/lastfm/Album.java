@@ -26,14 +26,14 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.util.MapUtilities;
+import com.spotifyxp.deps.de.umass.util.StringUtilities;
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import com.spotifyxp.deps.de.umass.util.MapUtilities;
-import com.spotifyxp.deps.de.umass.util.StringUtilities;
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * Wrapper class for Album related API calls and Album Bean.
@@ -106,7 +106,7 @@ public class Album extends MusicEntry {
 	 * @return Album metadata
 	 */
 	public static Album getInfo(String artist, String albumOrMbid, String username, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(albumOrMbid)) {
 			params.put("mbid", albumOrMbid);
 		} else {
@@ -159,7 +159,7 @@ public class Album extends MusicEntry {
 		if (!result.isSuccessful())
 			return Collections.emptyList();
 		DomElement element = result.getContentElement();
-		Collection<String> tags = new ArrayList<String>();
+		Collection<String> tags = new ArrayList<>();
 		for (DomElement domElement : element.getChildren("tag")) {
 			tags.add(domElement.getChildText("name"));
 		}
@@ -177,7 +177,7 @@ public class Album extends MusicEntry {
 		Result result = Caller.getInstance().call("album.search", apiKey, "album", album);
 		DomElement matches = result.getContentElement().getChild("albummatches");
 		Collection<DomElement> children = matches.getChildren("album");
-		Collection<Album> albums = new ArrayList<Album>(children.size());
+		Collection<Album> albums = new ArrayList<>(children.size());
 		for (DomElement element : children) {
 			albums.add(FACTORY.createItemFromElement(element));
 		}
@@ -194,7 +194,7 @@ public class Album extends MusicEntry {
 	 * @return a Collection of {@link BuyLink}s
 	 */
 	public static Collection<BuyLink> getBuylinks(String artist, String albumOrMbid, String country, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(albumOrMbid)) {
 			params.put("mbid", albumOrMbid);
 		} else {
@@ -208,7 +208,7 @@ public class Album extends MusicEntry {
 		DomElement element = result.getContentElement();
 		DomElement physicals = element.getChild("physicals");
 		DomElement downloads = element.getChild("downloads");
-		Collection<BuyLink> links = new ArrayList<BuyLink>();
+		Collection<BuyLink> links = new ArrayList<>();
 		for (DomElement e : physicals.getChildren("affiliation")) {
 			links.add(BuyLink.linkFromElement(BuyLink.StoreType.PHYSICAl, e));
 		}
@@ -228,7 +228,7 @@ public class Album extends MusicEntry {
 	 * @return list of top tags
 	 */
 	public static Collection<Tag> getTopTags(String artist, String albumOrMbid, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(albumOrMbid)) {
 			params.put("mbid", albumOrMbid);
 		} else {
@@ -275,7 +275,7 @@ public class Album extends MusicEntry {
 	 * @return a page of <code>Shout</code>s
 	 */
 	public static PaginatedResult<Shout> getShouts(String artist, String albumOrMbid, int page, int limit, String apiKey) {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<>();
 		if (StringUtilities.isMbid(albumOrMbid)) {
 			params.put("mbid", albumOrMbid);
 		} else {

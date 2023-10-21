@@ -3,7 +3,6 @@ package com.spotifyxp.dpi;
 import com.spotifyxp.panels.ContentPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
@@ -12,12 +11,12 @@ import java.util.HashMap;
 public class JComponentFactory {
     static int framew = 0;
     static int frameh = 0;
-    public static ArrayList<JComponent> jcomponents = new ArrayList<JComponent>();
+    public static final ArrayList<JComponent> jcomponents = new ArrayList<>();
     public static ArrayList<HashMap<ResizeRule, JComponent>> jcompodnentswr = new ArrayList<>();
 
 
     // ---- By ChatGPT ----
-    public static enum ResizeRule {
+    public enum ResizeRule {
         X,
         Y,
         W,

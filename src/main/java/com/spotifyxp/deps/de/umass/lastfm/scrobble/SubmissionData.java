@@ -41,18 +41,19 @@ import static com.spotifyxp.deps.de.umass.util.StringUtilities.encode;
  * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
  *             API.
  */
-@Deprecated
+
+@SuppressWarnings("DeprecatedIsStillUsed")
 public class SubmissionData {
 
-	private String artist;
-	private String track;
-	private String album;
-	private long startTime;
-	private Source source;
-	private Rating rating;
+	private final String artist;
+	private final String track;
+	private final String album;
+	private final long startTime;
+	private final Source source;
+	private final Rating rating;
 	private String recommendationKey;
-	private int length;
-	private int tracknumber;
+	private final int length;
+	private final int tracknumber;
 
 	public SubmissionData(String artist, String track, String album, int length, int tracknumber, Source source,
 						  long startTime) {
@@ -82,17 +83,18 @@ public class SubmissionData {
 	 *
 	 * @param s A String
 	 */
+	@SuppressWarnings("UnnecessaryBoxing")
 	public SubmissionData(String s) {
 		String[] parts = s.split("&", 9);
 		artist = decode(parts[0]);
 		track = decode(parts[1]);
-		startTime = parts[2].length() == 0 ? 0 : Long.valueOf(parts[2]);
+		startTime = parts[2].isEmpty() ? 0 : Long.valueOf(parts[2]);
 		source = Source.valueOf(parts[3]);
-		recommendationKey = parts[4].length() == 0 ? null : parts[4];
-		rating = parts[5].length() == 0 ? null : Rating.valueOf(parts[5]);
-		length = parts[6].length() == 0 ? -1 : Integer.valueOf(parts[6]);
-		album = parts[7].length() == 0 ? null : decode(parts[7]);
-		tracknumber = parts[8].length() == 0 ? -1 : Integer.valueOf(parts[8]);
+		recommendationKey = parts[4].isEmpty() ? null : parts[4];
+		rating = parts[5].isEmpty() ? null : Rating.valueOf(parts[5]);
+		length = parts[6].isEmpty() ? -1 : Integer.valueOf(parts[6]);
+		album = parts[7].isEmpty() ? null : decode(parts[7]);
+		tracknumber = parts[8].isEmpty() ? -1 : Integer.valueOf(parts[8]);
 	}
 
 	/**

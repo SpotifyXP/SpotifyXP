@@ -2,6 +2,7 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.deps.de.umass.lastfm.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -9,25 +10,20 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.T
 import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.lastfm.LFMValues;
 import com.spotifyxp.lastfm.LastFMConverter;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ClipboardUtil;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.TrackUtils;
-import com.spotifyxp.utils.Utils;
-import com.spotifyxp.deps.de.umass.lastfm.Artist;
 import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -36,22 +32,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("BusyWait")
 public class ArtistPanel extends JPanel {
-    public DefTable artistpopularsonglist;
-    public DefTable artistalbumalbumtable;
-    public DefTable lastfmartisttable;
-    public JScrollPane artistpopularscrollpane;
-    public JScrollPane artistalbumscrollpanel;
-    public JScrollPane contentPanel;
-    public JScrollPane lastfmartistscrollpanel;
-    public JLabel artisttitle;
-    public JImagePanel artistbackgroundimage;
-    public JImagePanel artistimage;
+    public final DefTable artistpopularsonglist;
+    public final DefTable artistalbumalbumtable;
+    public final DefTable lastfmartisttable;
+    public final JScrollPane artistpopularscrollpane;
+    public final JScrollPane artistalbumscrollpanel;
+    public final JScrollPane contentPanel;
+    public final JScrollPane lastfmartistscrollpanel;
+    public final JLabel artisttitle;
+    public final JImagePanel artistbackgroundimage;
+    public final JImagePanel artistimage;
     public ArrayList<String> artistpopularuricache = new ArrayList<>();
     public ArrayList<String> artistalbumuricache = new ArrayList<>();
     public ArrayList<String> lastfmartisturicache = new ArrayList<>();
-    public ContextMenu artistpopularsonglistcontextmenu;
-    public ContextMenu artistalbumcontextmenu;
+    public final ContextMenu artistpopularsonglistcontextmenu;
+    public final ContextMenu artistalbumcontextmenu;
     boolean isFirst = false;
     public ArtistPanel() {
         contentPanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
@@ -70,28 +67,17 @@ public class ArtistPanel extends JPanel {
         add(artistpopularscrollpane);
 
         artistpopularsonglist = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
         });
         artistpopularscrollpane.setViewportView(artistpopularsonglist);
 
         artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
-        artistpopularsonglistcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), new Runnable() {
-            @Override
-            public void run() {
-                ClipboardUtil.set(artistpopularuricache.get(artistpopularsonglist.getSelectedRow()));
-            }
-        });
+        artistpopularsonglistcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(artistpopularuricache.get(artistpopularsonglist.getSelectedRow())));
 
         artistalbumscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
         artistalbumscrollpanel.setBounds(5, 667, 760, 295);
         add(artistalbumscrollpanel);
 
         artistalbumalbumtable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
         });
         artistalbumscrollpanel.setViewportView(artistalbumalbumtable);
 
@@ -137,12 +123,9 @@ public class ArtistPanel extends JPanel {
                     try {
                         Album album = Factory.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
                         for (TrackSimplified simplified : album.getTracks().getItems()) {
-                            artistalbumalbumtable.addModifyAction(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                    ContentPanel.searchplaylistsongscache.add(simplified.getUri());
-                                }
+                            artistalbumalbumtable.addModifyAction(() -> {
+                                ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                ContentPanel.searchplaylistsongscache.add(simplified.getUri());
                             });
                         }
                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
@@ -183,9 +166,6 @@ public class ArtistPanel extends JPanel {
         });
 
         lastfmartisttable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
         });
 
         lastfmartisttable.setModel(new DefaultTableModel(
@@ -218,62 +198,42 @@ public class ArtistPanel extends JPanel {
                             //No artist image (when this is raised it's a bug)
                         }
                         artisttitle.setText(a.getName());
-                        DefThread trackthread = new DefThread(new Runnable() {
-                            public void run() {
-                                try {
-                                    for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2], ContentPanel.countryCode).build().execute()) {
-                                        artistpopularuricache.add(t.getUri());
-                                        Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistpopularsonglist);
-                                    }
-                                } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                                    ConsoleLogging.Throwable(ex);
+                        DefThread trackthread = new DefThread(() -> {
+                            try {
+                                for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2], ContentPanel.countryCode).build().execute()) {
+                                    artistpopularuricache.add(t.getUri());
+                                    Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistpopularsonglist);
                                 }
+                            } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                ConsoleLogging.Throwable(ex);
                             }
                         });
-                        DefThread albumthread = new DefThread(new Runnable() {
-                            public void run() {
-                                Factory.getSpotifyAPI().addAllAlbumsToList(artistalbumuricache, lastfmartisturicache.get(lastfmartisttable.getSelectedRow()), artistalbumalbumtable);
-                            }
-                        });
+                        DefThread albumthread = new DefThread(() -> Factory.getSpotifyAPI().addAllAlbumsToList(artistalbumuricache, lastfmartisturicache.get(lastfmartisttable.getSelectedRow()), artistalbumalbumtable));
                         albumthread.start();
                         trackthread.start();
                         lastfmsimilarartistslabel.setEnabled(false);
                         lastfmartisttable.setEnabled(false);
                         PublicValues.blockArtistPanelBackButton = true;
-                        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                            public void run() {
-                                contentPanel.getVerticalScrollBar().setValue(0);
+                        javax.swing.SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
+                        ContentPanel.artistPanelBackButton.addActionListener(e1 -> {
+                            if(!PublicValues.blockArtistPanelBackButton) {
+                                return;
                             }
-                        });
-                        ContentPanel.artistPanelBackButton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                if(!PublicValues.blockArtistPanelBackButton) {
-                                    return;
+                            lastfmsimilarartistslabel.setEnabled(true);
+                            lastfmartisttable.setEnabled(false);
+                            restoreCache();
+                            clearCache();
+                            SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
+                            DefThread thread = new DefThread(() -> {
+                                while(ContentPanel.artistPanelBackButton.getModel().isPressed()) {
+                                    try {
+                                        Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+                                    }catch (Exception ignored) {
+                                    }
                                 }
-                                lastfmsimilarartistslabel.setEnabled(true);
-                                lastfmartisttable.setEnabled(false);
-                                restoreCache();
-                                clearCache();
-                                javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                                    public void run() {
-                                        contentPanel.getVerticalScrollBar().setValue(0);
-                                    }
-                                });
-                                DefThread thread = new DefThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        while(ContentPanel.artistPanelBackButton.getModel().isPressed()) {
-                                            try {
-                                                Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-                                            }catch (Exception ignored) {
-                                            }
-                                        }
-                                        PublicValues.blockArtistPanelBackButton = false;
-                                    }
-                                });
-                                thread.start();
-                            }
+                                PublicValues.blockArtistPanelBackButton = false;
+                            });
+                            thread.start();
                         });
                         finalizeSwitch();
                     }catch (Exception e2) {
@@ -332,12 +292,7 @@ public class ArtistPanel extends JPanel {
     public void restoreTable(DefTable table, ArrayList<ArrayList<Object>> rows) {
         ((DefaultTableModel) table.getModel()).setRowCount(0);
         for(ArrayList<Object> o : rows) {
-            table.addModifyAction(new Runnable() {
-                @Override
-                public void run() {
-                    ((DefaultTableModel) table.getModel()).addRow(o.toArray());
-                }
-            });
+            table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(o.toArray()));
         }
     }
 
@@ -377,28 +332,18 @@ public class ArtistPanel extends JPanel {
     public void openPanel() {
         lastfmartisturicache.clear();
         ((DefaultTableModel) lastfmartisttable.getModel()).setRowCount(0);
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                if(PublicValues.config.get(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
-                    return;
-                }
-                for(Artist a : Artist.getSimilar(artisttitle.getText(), 10, LFMValues.apikey)) {
-                    lastfmartisttable.addModifyAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((DefaultTableModel) lastfmartisttable.getModel()).addRow(new Object[]{a.getName()});
-                            lastfmartisturicache.add(LastFMConverter.getArtistURIfromName(a.getName()));
-                        }
-                    });
-                }
+        DefThread thread = new DefThread(() -> {
+            if(PublicValues.config.get(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
+                return;
+            }
+            for(Artist a : Artist.getSimilar(artisttitle.getText(), 10, LFMValues.apikey)) {
+                lastfmartisttable.addModifyAction(() -> {
+                    ((DefaultTableModel) lastfmartisttable.getModel()).addRow(new Object[]{a.getName()});
+                    lastfmartisturicache.add(LastFMConverter.getArtistURIfromName(a.getName()));
+                });
             }
         });
         thread.start();
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                contentPanel.getVerticalScrollBar().setValue(0);
-            }
-        });
+        javax.swing.SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
     }
 }

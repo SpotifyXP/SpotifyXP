@@ -22,36 +22,39 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.contexts.AbsSpotifyContext;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewSessionIdEvent;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.Range;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dacp.DacpMetadataPipe;
+import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.StationsWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.ImageId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.StateWrapper.NextPlayable;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.contexts.AbsSpotifyContext;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewPlaybackIdEvent;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewSessionIdEvent;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.threading.DefThread;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.*;
@@ -60,7 +63,7 @@ import java.util.concurrent.*;
 /**
  * @author Gianlu
  */
-@SuppressWarnings({"JavadocBlankLines", "NullableProblems"})
+@SuppressWarnings({"JavadocBlankLines", "NullableProblems", "BooleanMethodIsAlwaysInverted", "DataFlowIssue"})
 public class Player implements Closeable {
     public static final int VOLUME_MAX = 65536;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory((r) -> "release-line-scheduler-" + r.hashCode()));
@@ -183,12 +186,24 @@ public class Player implements Closeable {
     // ================================ //
 
     public void volumeUp() {
-        this.volumeUp(1);
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                volumeUp(1);
+            }
+        });
+        thread.start();
     }
 
     public void volumeUp(int steps) {
-        if (state == null) return;
-        setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                if (state == null) return;
+                setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
+            }
+        });
+        thread.start();
     }
 
     public int getVolume() {
@@ -197,12 +212,24 @@ public class Player implements Closeable {
     }
 
     public void volumeDown() {
-        this.volumeDown(1);
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                volumeDown(1);
+            }
+        });
+        thread.start();
     }
 
     public void volumeDown(int steps) {
-        if (state == null) return;
-        setVolume(Math.max(0, state.getVolume() - steps * oneVolumeStep()));
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                if (state == null) return;
+                setVolume(Math.max(0, state.getVolume() - steps * oneVolumeStep()));
+            }
+        });
+        thread.start();
     }
 
     private int oneVolumeStep() {
@@ -210,11 +237,17 @@ public class Player implements Closeable {
     }
 
     public void setVolume(int val) {
-        if (val < 0 || val > VOLUME_MAX)
-            throw new IllegalArgumentException(String.valueOf(val));
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                if (val < 0 || val > VOLUME_MAX)
+                    throw new IllegalArgumentException(String.valueOf(val));
 
-        if (state == null) return;
-        state.setVolume(val);
+                if (state == null) return;
+                state.setVolume(val);
+            }
+        });
+        thread.start();
     }
 
     public void setShuffle(boolean val) {
@@ -239,12 +272,24 @@ public class Player implements Closeable {
     }
 
     public void play() {
-        handleResume();
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                handleResume();
+            }
+        });
+        thread.start();
     }
 
     public void playPause() {
-        if (state.isPaused()) handleResume();
-        else handlePause();
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                if (state.isPaused()) handleResume();
+                else handlePause();
+            }
+        });
+        thread.start();
     }
 
     public boolean isPaused() {
@@ -252,19 +297,43 @@ public class Player implements Closeable {
     }
 
     public void pause() {
-        handlePause();
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                handlePause();
+            }
+        });
+        thread.start();
     }
 
     public void next() {
-        handleSkipNext(null, TransitionInfo.skippedNext(state));
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                handleSkipNext(null, TransitionInfo.skippedNext(state));
+            }
+        });
+        thread.start();
     }
 
     public void previous() {
-        handleSkipPrev();
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                handleSkipPrev();
+            }
+        });
+        thread.start();
     }
 
     public void seek(int pos) {
-        handleSeek(pos);
+        DefThread thread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                handleSeek(pos);
+            }
+        });
+        thread.start();
     }
 
     public void load(@NotNull String uri, boolean play, boolean shuffle, boolean playingFromLibrary) {
@@ -464,23 +533,6 @@ public class Player implements Closeable {
 
             @Override
             public @Nullable PlayableId nextPlayable() {
-                //Prevent exeception when next queue
-                /*NextPlayable next = state.nextPlayable(conf.autoplayEnabled);
-                if (next == NextPlayable.AUTOPLAY) {
-                    loadAutoplay();
-                    return null;
-                }
-
-                if (next.isOk()) {
-                    if (next != NextPlayable.OK_PLAY && next != NextPlayable.OK_REPEAT)
-                        sink.pause(false);
-
-                    return state.getCurrentPlayableOrThrow();
-                } else {
-                    ConsoleLoggingModules.error("Failed loading next song: " + next);
-                    panicState(PlaybackMetrics.Reason.END_PLAY);
-                    return null;
-                }*/
                 NextPlayable next = state.nextPlayable(conf.autoplayEnabled);
                 if (next == NextPlayable.AUTOPLAY) {
                     loadAutoplay();

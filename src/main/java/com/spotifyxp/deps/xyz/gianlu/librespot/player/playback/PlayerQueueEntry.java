@@ -16,11 +16,6 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
@@ -30,17 +25,20 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.Decoders;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.VorbisOnlyAudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.LocalId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.StateWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade.CrossfadeController;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.File;

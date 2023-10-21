@@ -26,22 +26,15 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.scrobble;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.Proxy;
-import java.util.Collection;
-import java.util.Collections;
-
 import com.spotifyxp.deps.de.umass.lastfm.Authenticator;
 import com.spotifyxp.deps.de.umass.lastfm.Caller;
 import com.spotifyxp.deps.de.umass.lastfm.Session;
 import com.spotifyxp.deps.de.umass.lastfm.Track;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.util.Collection;
+import java.util.Collections;
 
 import static com.spotifyxp.deps.de.umass.util.StringUtilities.encode;
 import static com.spotifyxp.deps.de.umass.util.StringUtilities.md5;
@@ -65,7 +58,7 @@ import static com.spotifyxp.deps.de.umass.util.StringUtilities.md5;
  * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
  *             API.
  */
-@Deprecated
+@SuppressWarnings("DeprecatedIsStillUsed")
 public class Scrobbler {
 
 	private static final String DEFAULT_HANDSHAKE_URL = "http://post.audioscrobbler.com/";

@@ -14,12 +14,13 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
 import com.spotifyxp.deps.mslinks.ShellLinkException;
 import com.spotifyxp.deps.mslinks.UnsupportedItemIDException;
+
+import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class ItemIDDrive extends ItemID {
 

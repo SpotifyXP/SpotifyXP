@@ -4,13 +4,9 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.FileUtils;
-import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -18,7 +14,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 public class InjectorStore {
@@ -67,8 +62,8 @@ public class InjectorStore {
     }
 
     static class ContentPanel extends JPanel {
-        JScrollPane scrollPane;
-        JPanel modulesholder;
+        final JScrollPane scrollPane;
+        final JPanel modulesholder;
         public ContentPanel() {
             setLayout(null);
             scrollPane = new JScrollPane();
@@ -117,57 +112,51 @@ public class InjectorStore {
                 }
             }
 
-            extensioninstallremovebutton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
-                        //Remove extension
-                        extensioninstallremovebutton.setEnabled(false);
-                        for(Injector.InjectionEntry entry : PublicValues.injector.injectedJars) {
-                            if(entry.filename.equals((ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""))) {
-                                try {
-                                    entry.loader.close();
-                                } catch (IOException exc) {
-                                    ConsoleLogging.Throwable(exc);
-                                    ExceptionDialog.open(exc);
-                                }
-                            }
-                        }
-                        if(new File(PublicValues.appLocation + "/Extensions", (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", "")).delete()) {
+            extensioninstallremovebutton.addActionListener(e -> {
+                if(extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
+                    //Remove extension
+                    extensioninstallremovebutton.setEnabled(false);
+                    for(Injector.InjectionEntry entry : PublicValues.injector.injectedJars) {
+                        if(entry.filename.equals((ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""))) {
                             try {
-                                StringBuilder builder = new StringBuilder();
-                                for(String s : Files.readAllLines(new File(PublicValues.appLocation, "extensionstore.store").toPath())) {
-                                    if(!s.replace("\n", "").equals(ex.identifier)) {
-                                        builder.append(s);
-                                    }
-                                }
-                                FileWriter w = new FileWriter(new File(PublicValues.appLocation, "extensionstore.store"));
-                                w.write(builder.toString());
-                                w.close();
-                            }catch (Exception e2) {
-                                ConsoleLogging.Throwable(e2);
-                                ExceptionDialog.open(e2);
+                                entry.loader.close();
+                            } catch (IOException exc) {
+                                ConsoleLogging.Throwable(exc);
+                                ExceptionDialog.open(exc);
                             }
-                            extensioninstallremovebutton.setEnabled(true);
-                            extensioninstallremovebutton.setText(PublicValues.language.translate("extension.install"));
                         }
-                    }else{
-                        //Install extension
-                        long size = api.getExtensionSize(ex.location);
-                        api.downloadExtension(ex.location, new InjectorAPI.ProgressRunnable() {
-                            @Override
-                            public void run(long filesizeDownloaded) {
-                                if(filesizeDownloaded == size) {
-                                    FileUtils.appendToFile(new File(PublicValues.appLocation, "extensionstore.store").getAbsolutePath(), ex.identifier);
-                                    extensioninstallremovebutton.setEnabled(true);
-                                    extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
-                                }else{
-                                    extensioninstallremovebutton.setEnabled(false);
+                    }
+                    if(new File(PublicValues.appLocation + "/Extensions", (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", "")).delete()) {
+                        try {
+                            StringBuilder builder = new StringBuilder();
+                            for(String s : Files.readAllLines(new File(PublicValues.appLocation, "extensionstore.store").toPath())) {
+                                if(!s.replace("\n", "").equals(ex.identifier)) {
+                                    builder.append(s);
                                 }
                             }
-                        });
-                        PublicValues.injector.loadJarAt(PublicValues.appLocation + "/Extensions/" + (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""));
+                            FileWriter w = new FileWriter(new File(PublicValues.appLocation, "extensionstore.store"));
+                            w.write(builder.toString());
+                            w.close();
+                        }catch (Exception e2) {
+                            ConsoleLogging.Throwable(e2);
+                            ExceptionDialog.open(e2);
+                        }
+                        extensioninstallremovebutton.setEnabled(true);
+                        extensioninstallremovebutton.setText(PublicValues.language.translate("extension.install"));
                     }
+                }else{
+                    //Install extension
+                    long size = api.getExtensionSize(ex.location);
+                    api.downloadExtension(ex.location, filesizeDownloaded -> {
+                        if(filesizeDownloaded == size) {
+                            FileUtils.appendToFile(new File(PublicValues.appLocation, "extensionstore.store").getAbsolutePath(), ex.identifier);
+                            extensioninstallremovebutton.setEnabled(true);
+                            extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
+                        }else{
+                            extensioninstallremovebutton.setEnabled(false);
+                        }
+                    });
+                    PublicValues.injector.loadJarAt(PublicValues.appLocation + "/Extensions/" + (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""));
                 }
             });
 

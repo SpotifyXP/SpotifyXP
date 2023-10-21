@@ -14,13 +14,13 @@
 */
 package com.spotifyxp.deps.mslinks.data;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
-import com.spotifyxp.deps.mslinks.Serializable;
-import com.spotifyxp.deps.mslinks.ShellLinkException;
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.Serializable;
+import com.spotifyxp.deps.mslinks.ShellLinkException;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class VolumeID implements Serializable {
 	public static final int DRIVE_UNKNOWN = 0;
@@ -102,7 +102,6 @@ public class VolumeID implements Serializable {
 		if (u) {
 			off++;
 			bw.write4bytes(off);
-			off += label.length() * 2 + 2;
 		}
 		
 		bw.write(label_b);

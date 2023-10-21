@@ -3,9 +3,9 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;
 
 import java.io.IOException;
 

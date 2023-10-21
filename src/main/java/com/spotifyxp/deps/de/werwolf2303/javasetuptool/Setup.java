@@ -1,11 +1,10 @@
 package com.spotifyxp.deps.de.werwolf2303.javasetuptool;
 
-import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.*;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.Component;
+import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,11 +12,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+@SuppressWarnings("ClassEscapesDefinedScope")
 public class Setup {
-    Setup setup = this;
+    final Setup setup = this;
     public static SetupBuilder currentBuilder;
+    @SuppressWarnings("ClassEscapesDefinedScope")
     public static class SetupBuilder {
-        SetupBuilder builder = this;
+        final SetupBuilder builder = this;
         public String brandname = "";
         public String brandicon = "";
         public String title = "";
@@ -28,7 +29,7 @@ public class Setup {
         public boolean buxml = false;
         public InputStream imageStream = null;
         InstallProgressComponent installProgressComponent = null;
-        public ArrayList<Component> components = new ArrayList<Component>();
+        public final ArrayList<Component> components = new ArrayList<>();
         public SetupBuilder setBrandName(String name) {
             this.brandname = name;
             return this;
@@ -96,8 +97,8 @@ public class Setup {
     }
 
     private class SetupFrame extends JPanel {
-        ContentManager manager = new ContentManager();
-        JFrame frame;
+        final ContentManager manager = new ContentManager();
+        final JFrame frame;
         public SetupFrame() {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -126,23 +127,19 @@ public class Setup {
 
         private class ContentManager extends JPanel {
             int at = 0;
-            JPanel navigation;
-            JButton nextinstall;
-            JButton back;
-            JButton cancel;
-            WelcomeComponent welcomeComponent;
-            FinishComponent component;
-            JPanel content = new JPanel();
-            JSeparator separator;
-            JPanel usercontrolablebuttons;
-            JButton custom1;
-            JButton custom2;
-            Runnable onExit = new Runnable() {
-                public void run() {
-                    System.exit(0);
-                }
-            };
-            Runnable fin = new Runnable() {
+            final JPanel navigation;
+            final JButton nextinstall;
+            final JButton back;
+            final JButton cancel;
+            final WelcomeComponent welcomeComponent;
+            final FinishComponent component;
+            final JPanel content = new JPanel();
+            final JSeparator separator;
+            final JPanel usercontrolablebuttons;
+            final JButton custom1;
+            final JButton custom2;
+            Runnable onExit = () -> System.exit(0);
+            final Runnable fin = new Runnable() {
                 public void run() {
                     currentBuilder.installProgressComponent.setVisible(false);
                     component.nowVisible();
@@ -153,11 +150,9 @@ public class Setup {
                     for(ActionListener l : cancel.getActionListeners()) {
                         cancel.removeActionListener(l);
                     }
-                    cancel.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            frame.dispose();
-                            onExit.run();
-                        }
+                    cancel.addActionListener(e -> {
+                        frame.dispose();
+                        onExit.run();
                     });
                 }
             };
@@ -184,21 +179,9 @@ public class Setup {
                 cancel = new JButton("Cancel");
                 nextinstall = new JButton("Next >");
                 back = new JButton("< Back");
-                cancel.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        System.exit(0);
-                    }
-                });
-                nextinstall.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        next();
-                    }
-                });
-                back.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        previous();
-                    }
-                });
+                cancel.addActionListener(e -> System.exit(0));
+                nextinstall.addActionListener(e -> next());
+                back.addActionListener(e -> previous());
                 back.setVisible(false);
                 navigation.add(separator);
                 navigation.add(back);
@@ -213,7 +196,7 @@ public class Setup {
                     try {
                         org.apache.commons.io.IOUtils.copy(getProgramImage(), baos);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                     byte[] bytes = baos.toByteArray();
                     welcomeComponent = new WelcomeComponent(setup);
@@ -239,24 +222,9 @@ public class Setup {
                 usercontrolablebuttons.add(custom1);
                 usercontrolablebuttons.add(custom2);
                 add(navigation);
-                PublicValues.install = new Runnable() {
-                    @Override
-                    public void run() {
-                        install();
-                    }
-                };
-                PublicValues.resetNext = new Runnable() {
-                    @Override
-                    public void run() {
-                       setNormalButtonsVisible();
-                    }
-                };
-                PublicValues.changeinstall = new Runnable() {
-                    @Override
-                    public void run() {
-                        nextinstall.setText("Install");
-                    }
-                };
+                PublicValues.install = this::install;
+                PublicValues.resetNext = this::setNormalButtonsVisible;
+                PublicValues.changeinstall = () -> nextinstall.setText("Install");
             }
 
             void setInstallVisible() {
@@ -359,7 +327,7 @@ public class Setup {
         }
 
         private class PrivateComponentAdapter implements Component {
-            PrivateComponent component;
+            final PrivateComponent component;
 
             public PrivateComponentAdapter(PrivateComponent component) {
                 this.component = component;

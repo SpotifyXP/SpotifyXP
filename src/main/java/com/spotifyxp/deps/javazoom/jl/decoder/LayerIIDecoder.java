@@ -410,19 +410,19 @@ public class LayerIIDecoder extends LayerIDecoder implements FrameDecoder {
 			0.06250000000f, 0.03125000000f, 0.01562500000f, 0.00781250000f, 0.00390625000f, 0.00195312500f, 0.00097656250f,
 			0.00048828125f, 0.00024414063f, 0.00012207031f, 0.00006103516f};
 
-		protected int subbandnumber;
+		protected final int subbandnumber;
 		protected int allocation;
 		protected int scfsi;
 		protected float scalefactor1, scalefactor2, scalefactor3;
-		protected int[] codelength = {0};
-		protected float[][] groupingtable = new float[2][];
+		protected final int[] codelength = {0};
+		protected final float[][] groupingtable = new float[2][];
 		// protected float[][] groupingtable = {{0},{0}} ;
-		protected float[] factor = {0.0f};
+		protected final float[] factor = {0.0f};
 		protected int groupnumber;
 		protected int samplenumber;
-		protected float[] samples = new float[3];
-		protected float[] c = {0};
-		protected float[] d = {0};
+		protected final float[] samples = new float[3];
+		protected final float[] c = {0};
+		protected final float[] d = {0};
 
 		/**
 		 * Constructor
@@ -598,10 +598,7 @@ public class LayerIIDecoder extends LayerIDecoder implements FrameDecoder {
 			}
 
 			samplenumber = 0;
-			if (++groupnumber == 12)
-				return true;
-			else
-				return false;
+            return ++groupnumber == 12;
 		}
 
 		/**
@@ -621,14 +618,11 @@ public class LayerIIDecoder extends LayerIDecoder implements FrameDecoder {
 				filter1.input_sample(sample, subbandnumber);
 			}
 
-			if (++samplenumber == 3)
-				return true;
-			else
-				return false;
+            return ++samplenumber == 3;
 		}
-	};
+	}
 
-	/**
+    /**
 	 * Class for layer II subbands in joint stereo mode.
 	 */
 	static class SubbandLayer2IntensityStereo extends SubbandLayer2 {
@@ -742,14 +736,11 @@ public class LayerIIDecoder extends LayerIDecoder implements FrameDecoder {
 				}
 			}
 
-			if (++samplenumber == 3)
-				return true;
-			else
-				return false;
+            return ++samplenumber == 3;
 		}
-	};
+	}
 
-	/**
+    /**
 	 * Class for layer II subbands in stereo mode.
 	 */
 	static class SubbandLayer2Stereo extends SubbandLayer2 {
@@ -757,12 +748,12 @@ public class LayerIIDecoder extends LayerIDecoder implements FrameDecoder {
 		protected int channel2_scfsi;
 		protected float channel2_scalefactor1, channel2_scalefactor2, channel2_scalefactor3;
 		// protected boolean channel2_grouping; ???? Never used!
-		protected int[] channel2_codelength = {0};
+		protected final int[] channel2_codelength = {0};
 		// protected float[][] channel2_groupingtable = {{0},{0}};
-		protected float[] channel2_factor = {0};
-		protected float[] channel2_samples;
-		protected float[] channel2_c = {0};
-		protected float[] channel2_d = {0};
+		protected final float[] channel2_factor = {0};
+		protected final float[] channel2_samples;
+		protected final float[] channel2_c = {0};
+		protected final float[] channel2_d = {0};
 
 		/**
 		 * Constructor

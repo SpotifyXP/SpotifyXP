@@ -5,12 +5,9 @@ import com.spotifyxp.updater.Updater;
 public class InvokeUpdater implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                new Updater().invoke();
-                System.exit(0);
-            }
+        return () -> {
+            new Updater().invoke();
+            System.exit(0);
         };
     }
 

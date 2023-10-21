@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("IntegerDivisionInFloatingPointContext")
+@SuppressWarnings({"IntegerDivisionInFloatingPointContext", "MathRoundingWithIntArgument", "DataFlowIssue"})
 public class Utils {
     public static void replaceFileString(String old, String newstring, String filelocation) {
         try {
@@ -30,6 +30,7 @@ public class Utils {
         return from - Math.round(from/by);
     }
 
+    @SuppressWarnings("rawtypes")
     public static Set<Class> findAllClassesUsingClassLoader(String packageName) {
         InputStream stream = ClassLoader.getSystemClassLoader()
                 .getResourceAsStream(packageName.replaceAll("[.]", "/"));
@@ -40,6 +41,7 @@ public class Utils {
                 .collect(Collectors.toSet());
     }
 
+    @SuppressWarnings("rawtypes")
     private static Class getClass(String className, String packageName) {
         try {
             return Class.forName(packageName + "."
@@ -51,6 +53,7 @@ public class Utils {
         return null;
     }
 
+    @SuppressWarnings("rawtypes")
     public static String getClassName(Class c) {
         return c.getName().split("\\.")[c.getName().split("\\.").length-1];
     }

@@ -29,6 +29,7 @@ package com.spotifyxp.deps.javazoom.jl.decoder;
 /**
  * Class for extracting information from a frame header.
  */
+@SuppressWarnings({"JavadocDeclaration", "DuplicateExpressions", "UnusedAssignment"})
 public final class Header {
 	public static final int[][] frequencies = { {22050, 24000, 16000, 1}, {44100, 48000, 32000, 1}, {11025, 12000, 8000, 1}};
 	// SZD:
@@ -79,7 +80,7 @@ public final class Header {
 	}
 
 	public String toString () {
-		StringBuffer buffer = new StringBuffer(200);
+		StringBuilder buffer = new StringBuilder(200);
 		buffer.append("Layer ");
 		buffer.append(layer_string());
 		buffer.append(" frame ");
@@ -94,8 +95,7 @@ public final class Header {
 		buffer.append(' ');
 		buffer.append(bitrate_string());
 
-		String s = buffer.toString();
-		return s;
+        return buffer.toString();
 	}
 
 	/**
@@ -175,13 +175,6 @@ public final class Header {
 			crcp[0] = crc;
 		} else
 			crcp[0] = null;
-		if (h_sample_frequency == FOURTYFOUR_POINT_ONE) {
-			/*
-			 * if (offset == null) { int max = max_number_of_frames(stream); offset = new int[max]; for(int i=0; i<max; i++)
-			 * offset[i] = 0; } // E.B : Investigate more int cf = stream.current_frame(); int lf = stream.last_frame(); if ((cf > 0)
-			 * && (cf == lf)) { offset[cf] = offset[cf-1] + h_padding_bit; } else { offset[0] = h_padding_bit; }
-			 */
-		}
 	}
 
 	/**
@@ -330,10 +323,7 @@ public final class Header {
 	 * Returns Protection bit.
 	 */
 	public boolean checksums () {
-		if (h_protection_bit == 0)
-			return true;
-		else
-			return false;
+        return h_protection_bit == 0;
 	}
 
 	/**
@@ -386,10 +376,7 @@ public final class Header {
 	 * Returns Layer III Padding bit.
 	 */
 	public boolean padding () {
-		if (h_padding_bit == 0)
-			return false;
-		else
-			return true;
+        return h_padding_bit != 0;
 	}
 
 	/**
@@ -577,7 +564,7 @@ public final class Header {
 	 */
 	public String bitrate_string () {
 		if (h_vbr)
-			return Integer.toString(bitrate() / 1000) + " kb/s";
+			return (bitrate() / 1000) + " kb/s";
 		else
 			return bitrate_str[h_version][h_layer - 1][h_bitrate_index];
 	}

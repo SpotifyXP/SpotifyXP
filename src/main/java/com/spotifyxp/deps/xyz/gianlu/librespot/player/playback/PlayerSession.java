@@ -16,24 +16,22 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade.CrossfadeController;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Reason;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.util.Map;
@@ -47,6 +45,7 @@ import java.util.concurrent.Executors;
  *
  * @author devgianlu
  */
+@SuppressWarnings({"ClassEscapesDefinedScope", "ConstantValue"})
 public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
     
     private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "player-session-" + r.hashCode()));
@@ -107,16 +106,6 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
      * @return Whether the operation was successful
      */
     private boolean advanceTo(@NotNull PlayableId id) {
-        /*do {
-            PlayerQueueEntry entry = queue.head();
-            if (entry == null) return false;
-            if (entry.playable.equals(id)) {
-                PlayerQueueEntry next = queue.next();
-                if (next == null || !next.playable.equals(id))
-                    return true;
-            }
-        } while (queue.advance());
-        return false; */
         do {
             PlayerQueueEntry entry = queue.head();
             if (entry == null) return false;

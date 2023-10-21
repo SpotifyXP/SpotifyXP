@@ -1,13 +1,13 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingCursorbasedRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import org.apache.hc.core5.http.ParseException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
 
 import java.io.IOException;
 import java.util.Date;

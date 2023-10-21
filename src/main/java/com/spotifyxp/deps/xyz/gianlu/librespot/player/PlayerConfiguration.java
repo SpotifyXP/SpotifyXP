@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 
 import java.io.File;
 

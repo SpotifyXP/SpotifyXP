@@ -48,8 +48,8 @@ public class ResponseStatus {
 	public static final int BADSESSION = 4;
 	public static final int FAILED = 5;
 
-	private int status;
-	private String message;
+	private final int status;
+	private final String message;
 
 	public ResponseStatus(int status) {
 		this(status, null);

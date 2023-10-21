@@ -1,7 +1,6 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -153,7 +152,7 @@ public class OAuthPKCE {
                 }
                 i++;
             }
-            post.setURI(new URI(url + builder.toString()));
+            post.setURI(new URI(url + builder));
             client.executeMethod(post);
             ret = post.getResponseBodyAsString();
         } catch (IOException e) {

@@ -6,12 +6,7 @@ public class NoGUI implements Argument {
 
     @Override
     public Runnable runArgument(String parameter1) {
-        return new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.nogui = true;
-            }
-        };
+        return () -> PublicValues.nogui = true;
     }
 
     @Override

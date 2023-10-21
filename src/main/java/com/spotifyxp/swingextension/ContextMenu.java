@@ -1,7 +1,6 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player.PauseUsersPlaybackRequest;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

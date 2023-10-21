@@ -51,7 +51,7 @@ public enum Rating {
 	 */
 	SKIP("S");
 
-	private String code;
+	private final String code;
 
 	Rating(String code) {
 		this.code = code;

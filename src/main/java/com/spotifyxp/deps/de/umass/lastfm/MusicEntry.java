@@ -62,7 +62,7 @@ public abstract class MusicEntry extends ImageHolder {
 	 */
 	protected int percentageChange;
 
-	protected Collection<String> tags = new ArrayList<String>();
+	protected final Collection<String> tags = new ArrayList<>();
 	private Date wikiLastChanged;
 	private String wikiSummary;
 	private String wikiText;
@@ -204,15 +204,15 @@ public abstract class MusicEntry extends ImageHolder {
 		if (element.hasChild("percentagechange")) {
 			entry.percentageChange = Integer.parseInt(element.getChildText("percentagechange"));
 		}
-		int playcount = playcountString == null || playcountString.length() == 0 ? -1 : Integer
+		int playcount = playcountString == null || playcountString.isEmpty() ? -1 : Integer
 				.parseInt(playcountString);
-		int userPlaycount = userPlaycountString == null || userPlaycountString.length() == 0 ? -1 : Integer
+		int userPlaycount = userPlaycountString == null || userPlaycountString.isEmpty() ? -1 : Integer
 				.parseInt(userPlaycountString);
-		int listeners = listenersString == null || listenersString.length() == 0 ? -1 : Integer
+		int listeners = listenersString == null || listenersString.isEmpty() ? -1 : Integer
 				.parseInt(listenersString);
 		// streamable
 		String s = element.getChildText("streamable");
-		boolean streamable = s != null && s.length() != 0 && Integer.valueOf(1).equals(maybeParseInt(s));
+		boolean streamable = s != null && !s.isEmpty() && Integer.valueOf(1).equals(maybeParseInt(s));
 		// copy
 		entry.name = element.getChildText("name");
 		entry.url = element.getChildText("url");

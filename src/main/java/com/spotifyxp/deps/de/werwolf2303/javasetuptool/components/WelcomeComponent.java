@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class WelcomeComponent extends JPanel implements PrivateComponent {
-    Setup setup;
-    JEditorPane pane;
-    JLabel image;
+    final Setup setup;
+    final JEditorPane pane;
+    final JLabel image;
     InputStream imageStream = null;
     Setup.SetupBuilder builder;
     public WelcomeComponent(Setup setup) {

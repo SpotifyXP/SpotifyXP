@@ -4,14 +4,11 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.swingextension.JFrame2;
 import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.io.*;
+import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -19,6 +16,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@SuppressWarnings({"DataFlowIssue", "UnusedAssignment"})
 public class Injector {
     /**
      * Injects all extensions found inside the Extensions folder
@@ -41,7 +39,7 @@ public class Injector {
      */
     public void openInjectWindow(String path) {
         String openpath = path;
-        if(path.equals("")) {
+        if(path.isEmpty()) {
             openpath = System.getProperty("user.dir");
         }
         JFileChooser chooser = new JFileChooser();
@@ -102,7 +100,7 @@ public class Injector {
         }
     }
 
-    public ArrayList<InjectionEntry> injectedJars = new ArrayList<>();
+    public final ArrayList<InjectionEntry> injectedJars = new ArrayList<>();
 
     public ArrayList<InjectionEntry> getInjectedJars() {
         return injectedJars;

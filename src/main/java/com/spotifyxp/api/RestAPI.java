@@ -2,45 +2,35 @@ package com.spotifyxp.api;
 
 import ch.randelshofer.quaqua.ext.base64.Base64;
 import com.google.common.hash.Hashing;
-import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.enums.HttpStatusCodes;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.PlayerUtils;
-import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Token;
 import com.spotifyxp.utils.WebUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.EOFException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
-import java.security.Key;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
 
 public class RestAPI implements Runnable {
     HttpServer server;
-    Thread t = new Thread(this);
-    int port = 4090;
-    static ArrayList<String> authIps = new ArrayList<>();
+    final Thread t = new Thread(this);
+    final int port = 4090;
+    static final ArrayList<String> authIps = new ArrayList<>();
     static String username;
     static String password;
     private static final String ALGORITHM = "AES";
@@ -55,8 +45,6 @@ public class RestAPI implements Runnable {
         if(!PublicValues.config.get(ConfigValues.username.name).equalsIgnoreCase("")) {
             try {
                 PublicValues.spotifyplayer = PlayerUtils.buildPlayer(true);
-            } catch (EOFException e) {
-                throw new RuntimeException(e);
             } catch (Session.SpotifyAuthenticationException e) {
                 username = "";
                 password = "";
@@ -311,8 +299,6 @@ public class RestAPI implements Runnable {
         try {
             PublicValues.spotifyplayer = PlayerUtils.buildPlayer(true);
             WebUtils.sendCode(exchange, HttpStatusCodes.OK.getValue(), makeJSONResponse("LoggedIn", new BasicNameValuePair("User", PublicValues.session.username())));
-        } catch (EOFException e) {
-            throw new RuntimeException(e);
         } catch (Session.SpotifyAuthenticationException e) {
             WebUtils.sendCode(exchange, HttpStatusCodes.FORBIDDEN.getValue(), "BadCredentials");
         }
@@ -425,10 +411,6 @@ public class RestAPI implements Runnable {
         // Start by decoding the encrypted string (Base64)
         // Here I used the Android implementation (other Java implementations might exist)
         byte[] cipherText = Base64.decode(encrypted);
-        // prefix (first 8 bytes) is not actually useful for decryption, but you should probably check that it is equal to the string "Salted__"
-        byte[] prefix = new byte[8];
-        System.arraycopy(cipherText, 0, prefix, 0, 8);
-        // Check here that prefix is equal to "Salted__"
         // Extract salt (next 8 bytes)
         byte[] salt = new byte[8];
         System.arraycopy(cipherText, 8, salt, 0, 8);
@@ -437,13 +419,13 @@ public class RestAPI implements Runnable {
         System.arraycopy(cipherText, 16, trueCipherText, 0, cipherText.length - 16);
         byte[] javaKey = new byte[keySize * 4];
         byte[] javaIv = new byte[ivSize * 4];
-        evpKDF(password.getBytes("UTF-8"), keySize, ivSize, salt, javaKey, javaIv);
+        evpKDF(password.getBytes(StandardCharsets.UTF_8), keySize, ivSize, salt, javaKey, javaIv);
         Cipher aesCipherForEncryption = Cipher.getInstance("AES/CBC/PKCS5Padding");
         IvParameterSpec ivSpec = new IvParameterSpec(javaIv);
         aesCipherForEncryption.init(Cipher.DECRYPT_MODE, new SecretKeySpec(javaKey, "AES"), ivSpec);
 
         byte[] byteMsg = aesCipherForEncryption.doFinal(trueCipherText);
-        return new String(byteMsg, "UTF-8");
+        return new String(byteMsg, StandardCharsets.UTF_8);
     }
 
     public static byte[] evpKDF(byte[] password, int keySize, int ivSize, byte[] salt, byte[] resultKey, byte[] resultIv) throws NoSuchAlgorithmException {
@@ -494,7 +476,7 @@ public class RestAPI implements Runnable {
     }
 
     static void respondWithError(HttpExchange exchange) {
-        WebUtils.sendCode(exchange, HttpStatusCodes.BAD_REQUEST.getValue(), makeJSONResponse("Bad Request").toString());
+        WebUtils.sendCode(exchange, HttpStatusCodes.BAD_REQUEST.getValue(), makeJSONResponse("Bad Request"));
     }
 
     public void start() {

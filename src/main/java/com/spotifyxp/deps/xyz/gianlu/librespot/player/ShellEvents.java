@@ -16,15 +16,13 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
-
-
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 
 import java.io.IOException;
 

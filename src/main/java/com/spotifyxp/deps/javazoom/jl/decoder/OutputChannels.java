@@ -16,8 +16,7 @@ package com.spotifyxp.deps.javazoom.jl.decoder;
 
 /**
  * A Type-safe representation of the the supported output channel constants.
- * 
- * This class is immutable and, hence, is thread safe.
+ * <p> This class is immutable and, hence, is thread safe.
  * 
  * @author Mat McGowan 12/12/99
  * @since 0.0.7
@@ -95,8 +94,7 @@ public class OutputChannels {
 	 *         other types.
 	 */
 	public int getChannelCount () {
-		int count = outputChannels == BOTH_CHANNELS ? 2 : 1;
-		return count;
+        return outputChannels == BOTH_CHANNELS ? 2 : 1;
 	}
 
 	public boolean equals (Object o) {

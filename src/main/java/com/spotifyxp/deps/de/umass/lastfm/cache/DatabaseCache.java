@@ -26,7 +26,10 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.cache;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 
 /**
@@ -51,9 +54,9 @@ import java.sql.*;
 public class DatabaseCache extends Cache {
 
 	protected static final String DEFAULT_TABLE_NAME = "LASTFM_CACHE";
-	protected String tableName;
+	protected final String tableName;
 
-	protected Connection connection;
+	protected final Connection connection;
 
 	public DatabaseCache(Connection connection) throws SQLException {
 		this(connection, DEFAULT_TABLE_NAME);
@@ -121,15 +124,13 @@ public class DatabaseCache extends Cache {
 			if (result.next()) {
 				String s = result.getString("response");
 				stmt.close();
-				return new ByteArrayInputStream(s.getBytes("UTF-8"));
+				return new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8));
 			}
 			stmt.close();
 		} catch (SQLException e) {
 			// ignore
-		} catch (UnsupportedEncodingException e) {
-			// won't happen
 		}
-		return null;
+        return null;
 	}
 
 	public void remove(String cacheEntryName) {
@@ -149,17 +150,13 @@ public class DatabaseCache extends Cache {
 					"INSERT INTO " + tableName + " (id, expiration_date, response) VALUES(?, ?, ?)");
 			stmt.setString(1, cacheEntryName);
 			stmt.setTimestamp(2, new Timestamp(expirationDate));
-			stmt.setCharacterStream(3, new InputStreamReader(inputStream, "UTF-8"), -1);
+			stmt.setCharacterStream(3, new InputStreamReader(inputStream, StandardCharsets.UTF_8), -1);
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			// ignore
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-//			won't happen
+			throw new RuntimeException(e);
 		}
-	}
+    }
 
 	public boolean isExpired(String cacheEntryName) {
 		try {

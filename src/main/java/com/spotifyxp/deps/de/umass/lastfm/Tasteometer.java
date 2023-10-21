@@ -26,11 +26,11 @@
 
 package com.spotifyxp.deps.de.umass.lastfm;
 
+import com.spotifyxp.deps.de.umass.xml.DomElement;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import com.spotifyxp.deps.de.umass.xml.DomElement;
 
 /**
  * Provides the binding for the "tasteometer.compare" method.
@@ -60,7 +60,7 @@ public class Tasteometer {
 		DomElement element = result.getContentElement();
 		DomElement re = element.getChild("result");
 		float score = Float.parseFloat(re.getChildText("score"));
-		List<Artist> artists = new ArrayList<Artist>();
+		List<Artist> artists = new ArrayList<>();
 		for (DomElement domElement : re.getChild("artists").getChildren("artist")) {
 			artists.add(ResponseBuilder.buildItem(domElement, Artist.class));
 		}
@@ -73,8 +73,8 @@ public class Tasteometer {
 	 */
 	public static class ComparisonResult {
 
-		private float score;
-		private Collection<Artist> matches;
+		private final float score;
+		private final Collection<Artist> matches;
 
 		ComparisonResult(float score, Collection<Artist> matches) {
 			this.score = score;

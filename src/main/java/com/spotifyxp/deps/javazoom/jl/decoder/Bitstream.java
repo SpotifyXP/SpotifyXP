@@ -34,20 +34,20 @@ import java.io.*;
 
 /**
  * The <code>Bistream</code> class is responsible for parsing an MPEG audio bitstream.
- * 
  * <b>REVIEW:</b> much of the parsing currently occurs in the various decoders. This should be moved into this class and
  * associated inner classes.
  */
+@SuppressWarnings({"JavadocDeclaration", "PointlessArithmeticExpression"})
 public final class Bitstream {
 	/**
 	 * Synchronization control constant for the initial synchronization to the start of a frame.
 	 */
-	static byte INITIAL_SYNC = 0;
+	static final byte INITIAL_SYNC = 0;
 
 	/**
 	 * Synchronization control constant for non-initial frame synchronizations.
 	 */
-	static byte STRICT_SYNC = 1;
+	static final byte STRICT_SYNC = 1;
 
 	// max. 1730 bytes per frame: 144 * 384kbit/s / 32000 Hz + 2 Bytes CRC
 	/**
@@ -112,7 +112,7 @@ public final class Bitstream {
 
 	private byte[] rawid3v2 = null;
 
-	private boolean firstframe = true;
+	private boolean firstframe;
 
 	/**
 	 * Construct a IBitstream that reads data from a given InputStream.
@@ -144,7 +144,7 @@ public final class Bitstream {
 	 * @author JavaZOOM
 	 */
 	private void loadID3v2 (InputStream in) {
-		int size = -1;
+		int size;
 		try {
 			// Read ID3v2 header (10 bytes).
 			in.mark(10);
@@ -198,28 +198,27 @@ public final class Bitstream {
 		if (rawid3v2 == null)
 			return null;
 		else {
-			ByteArrayInputStream bain = new ByteArrayInputStream(rawid3v2);
-			return bain;
+            return new ByteArrayInputStream(rawid3v2);
 		}
 	}
 
 	private void parseID3v2Frames (byte[] bframes) {
 		if (bframes == null) return;
 		if (!"ID3".equals(new String(bframes, 0, 3))) return;
-		int v2version = (int)(bframes[3] & 0xFF);
+		int v2version = bframes[3] & 0xFF;
 		if (v2version < 2 || v2version > 4) {
 			return;
 		}
 		try {
 			Float replayGain = null, replayGainPeak = null;
 			int size;
-			String value = null;
+			String value;
 			for (int i = 10; i < bframes.length && bframes[i] > 0; i += size) {
 				if (v2version == 3 || v2version == 4) {
 					// ID3v2.3 & ID3v2.4
 					String code = new String(bframes, i, 4);
-					size = (int)(bframes[i + 4] << 24 & 0xFF000000 | bframes[i + 5] << 16 & 0x00FF0000 | bframes[i + 6] << 8
-						& 0x0000FF00 | bframes[i + 7] & 0x000000FF);
+					size = bframes[i + 4] << 24 & 0xFF000000 | bframes[i + 5] << 16 & 0x00FF0000 | bframes[i + 6] << 8
+						& 0x0000FF00 | bframes[i + 7] & 0x000000FF;
 					i += 10;
 					if (code.equals("TXXX")) {
 						value = parseText(bframes, i, size, 1);
@@ -239,7 +238,7 @@ public final class Bitstream {
 				} else {
 					// ID3v2.2
 					String scode = new String(bframes, i, 3);
-					size = (int)0x00000000 + (bframes[i + 3] << 16) + (bframes[i + 4] << 8) + bframes[i + 5];
+					size = 0x00000000 + (bframes[i + 3] << 16) + (bframes[i + 4] << 8) + bframes[i + 5];
 					i += 6;
 					if (scode.equals("TXXX")) {
 						value = parseText(bframes, i, size, 1);
@@ -402,11 +401,11 @@ public final class Bitstream {
 		return get_bits(n);
 	}
 
-	protected BitstreamException newBitstreamException (int errorcode) {
+	BitstreamException newBitstreamException(int errorcode) {
 		return new BitstreamException(errorcode, null);
 	}
 
-	protected BitstreamException newBitstreamException (int errorcode, Throwable throwable) {
+	private BitstreamException newBitstreamException(int errorcode, Throwable throwable) {
 		return new BitstreamException(errorcode, throwable);
 	}
 
@@ -439,7 +438,7 @@ public final class Bitstream {
 	}
 
 	public boolean isSyncMark (int headerstring, int syncmode, int word) {
-		boolean sync = false;
+		boolean sync;
 
 		if (syncmode == INITIAL_SYNC) // sync = ((headerstring & 0xFFF00000) == 0xFFF00000);
 			sync = (headerstring & 0xFFE00000) == 0xFFE00000; // SZD: MPEG 2.5
@@ -460,7 +459,7 @@ public final class Bitstream {
 	 * Reads the data for the next frame. The frame is not parsed until parse frame is called.
 	 */
 	int read_frame_data (int bytesize) throws BitstreamException {
-		int numread = 0;
+		int numread;
 		numread = readFully(frame_bytes, 0, bytesize);
 		framesize = bytesize;
 		wordpointer = -1;
@@ -471,7 +470,7 @@ public final class Bitstream {
 	/**
 	 * Parses the data previously read with read_frame_data().
 	 */
-	void parse_frame () throws BitstreamException {
+	void parse_frame () {
 		// Convert Bytes read to int
 		int b = 0;
 		byte[] byteread = frame_bytes;
@@ -480,7 +479,7 @@ public final class Bitstream {
 		// Check ID3v1 TAG (True only if last frame).
 
 		for (int k = 0; k < bytesize; k = k + 4) {
-			byte b0 = 0;
+			byte b0;
 			byte b1 = 0;
 			byte b2 = 0;
 			byte b3 = 0;
@@ -499,7 +498,7 @@ public final class Bitstream {
 	 * number_of_bits <= 16)
 	 */
 	public int get_bits (int number_of_bits) {
-		int returnvalue = 0;
+		int returnvalue;
 		int sum = bitindex + number_of_bits;
 
 		// E.B
@@ -589,9 +588,8 @@ public final class Bitstream {
 		}
 		return totalBytesRead;
 	}
-
 	/**
-	 * The first bitstream error code. See the {@link DecoderErrors DecoderErrors} interface for other bitstream error codes.
+	 * The first bitstream error code.
 	 */
 	static public final int BITSTREAM_ERROR = 0x100;
 

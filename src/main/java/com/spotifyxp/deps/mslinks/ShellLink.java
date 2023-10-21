@@ -16,6 +16,9 @@ package com.spotifyxp.deps.mslinks;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
+import com.spotifyxp.deps.mslinks.data.LinkFlags;
+import com.spotifyxp.deps.mslinks.extra.*;
+import com.spotifyxp.logging.ConsoleLogging;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,15 +30,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
-import com.spotifyxp.deps.mslinks.data.LinkFlags;
-import com.spotifyxp.deps.mslinks.extra.ConsoleData;
-import com.spotifyxp.deps.mslinks.extra.ConsoleFEData;
-import com.spotifyxp.deps.mslinks.extra.EnvironmentVariable;
-import com.spotifyxp.deps.mslinks.extra.Stub;
-import com.spotifyxp.deps.mslinks.extra.Tracker;
-import com.spotifyxp.deps.mslinks.extra.VistaIDList;
-import com.spotifyxp.logging.ConsoleLogging;
-
+@SuppressWarnings("JavadocDeclaration")
 public class ShellLink {
 
 	public static final String VERSION = "1.1.0";

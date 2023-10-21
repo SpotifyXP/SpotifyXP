@@ -4,10 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.PlayerUtils;
-
-import java.io.EOFException;
 
 public class Player {
     int wait;
@@ -19,16 +16,7 @@ public class Player {
      * Retries building a working librespot-player instance
      */
     public void retry() {
-        try {
-            player = PlayerUtils.buildPlayer();
-        }catch (EOFException e) {
-            if(times > 5) {
-                GraphicalMessage.sorryErrorExit("Couldn't build player");
-                return;
-            }
-            handleEOFBug();
-            return;
-        }
+        player = PlayerUtils.buildPlayer();
         try {
             player.waitReady();
         } catch (InterruptedException e) {
@@ -54,12 +42,7 @@ public class Player {
 
     public Player(SpotifyAPI a) {
         api = a;
-        try {
-            player = PlayerUtils.buildPlayer();
-        }catch (EOFException e) {
-            handleEOFBug();
-            return;
-        }
+        player = PlayerUtils.buildPlayer();
         try {
             player.waitReady();
         } catch (InterruptedException e) {

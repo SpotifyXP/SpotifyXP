@@ -29,7 +29,6 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.gianlu.zeroconf.Service;
-import com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer;
 import xyz.gianlu.zeroconf.Zeroconf;
 
 import javax.crypto.Cipher;

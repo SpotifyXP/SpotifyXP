@@ -16,13 +16,13 @@ package com.spotifyxp.deps.mslinks.extra;
 
 import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
-
-import java.io.IOException;
-
 import com.spotifyxp.deps.mslinks.Serializable;
 import com.spotifyxp.deps.mslinks.ShellLinkException;
 import com.spotifyxp.deps.mslinks.data.GUID;
 
+import java.io.IOException;
+
+@SuppressWarnings("NegativeIntConstantInLongContext")
 public class Tracker implements Serializable {
 	
 	public static final int signature = 0xA0000003;
