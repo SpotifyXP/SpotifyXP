@@ -1,6 +1,6 @@
 if [ "$1" = "--refresh-nightly" ]; then "$(pwd)/scripts/utils/reporefresh.sh"; exit; fi
-if [ "$1" = "--build" ]; then "$(pwd)/scripts/build.sh"; exit; fi
-if [ "$1" = "--buildandrun" ]; then "$(pwd)/scripts/buildandrun.sh"; exit; fi
+if [ "$1" = "--build" ]; then "$(pwd)/scripts/build.sh" "$2"; exit; fi
+if [ "$1" = "--buildandrun" ]; then "$(pwd)/scripts/buildandrun.sh" "$2"; exit; fi
 echo "SpotifyXP Build Script v1.0"
 echo ""
 echo "build.sh [OPTION] [ADDITIONAL]"

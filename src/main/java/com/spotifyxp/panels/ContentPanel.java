@@ -31,10 +31,8 @@ import com.spotifyxp.utils.*;
 import com.spotifyxp.video.CanvasPlayer;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.hc.core5.http.ParseException;
-import org.json.JSONException;
 import org.json.JSONObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -50,10 +48,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"CanBeFinal", "rawtypes", "Convert2Lambda"})
@@ -134,15 +129,15 @@ public class ContentPanel extends JPanel {
     public static JTabbedPane legacyswitch = (JTabbedPane) JComponentFactory.createJComponent(new JTabbedPane());  //For Legacy theme
     public static JMenuBar bar = (JMenuBar) JComponentFactory.createJComponent(new JMenuBar()); //For Legacy theme
     public static JSVGPanel heart;
-    public static ArrayList<String> searchsonglistcache = new ArrayList<String>();
-    public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<String>();
-    public static ArrayList<String> hotlistsonglistcache = new ArrayList<String>();
-    public static ArrayList<String> libraryuricache = new ArrayList<String>();
-    public static ArrayList<String> queueuricache = new ArrayList<String>();
+    public static ArrayList<String> searchsonglistcache = new ArrayList<>();
+    public static ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
+    public static ArrayList<String> hotlistsonglistcache = new ArrayList<>();
+    public static ArrayList<String> libraryuricache = new ArrayList<>();
+    public static ArrayList<String> queueuricache = new ArrayList<>();
     public static DefaultListModel<String> queuelistmodel = new DefaultListModel<>();
-    public static ArrayList<String> playlistsuricache = new ArrayList<String>();
-    public static ArrayList<String> playlistssonguricache = new ArrayList<String>();
-    public static ArrayList<String> searchplaylistsongscache = new ArrayList<String>();
+    public static ArrayList<String> playlistsuricache = new ArrayList<>();
+    public static ArrayList<String> playlistssonguricache = new ArrayList<>();
+    public static ArrayList<String> searchplaylistsongscache = new ArrayList<>();
     public static JSVGPanel userbutton;
     public static JSVGPanel settingsbutton;
     public static JSVGPanel threepointbutton;
@@ -179,7 +174,6 @@ public class ContentPanel extends JPanel {
     public static JButton errorDisplay;
     public static boolean artistPanelVisible = false;
     public static ArrayList<ExceptionDialog> errorQueue;
-    private static int libraryOffset = 28;
     private static boolean libraryLoadingInProgress = false;
 
     public static void loadNext() {
@@ -187,32 +181,41 @@ public class ContentPanel extends JPanel {
             return;
         }
         libraryLoadingInProgress = true;
-        int visibleCount = 19;
-        JSONObject list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/tracks", new NameValuePair[]{new NameValuePair("limit", String.valueOf(visibleCount)), new NameValuePair("offset", String.valueOf(libraryOffset))}));
-        if (list.getInt("total") > libraryOffset) {
-            for (Object o : list.getJSONArray("items")) {
-                libraryuricache.add(new JSONObject(new JSONObject(o.toString()).getJSONObject("track").toString()).getString("uri"));
-            }
-            int i = 0;
-            for (String s : libraryuricache) {
-                if (i != libraryOffset) {
-                    i++;
-                    continue;
-                }
-                try {
-                    Track track = Factory.getSpotifyApi().getTrack(s.split(":")[2]).build().execute();
-                    String a = TrackUtils.getArtists(track.getArtists());
-                    librarysonglist.addModifyAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+        try {
+            int visibleCount = 19;
+            int total = Factory.getSpotifyApi().getUsersSavedTracks().build().execute().getTotal();
+            int parsed = 0;
+            int counter = 0;
+            int last = 0;
+            if (total != libraryuricache.size()) {
+                while (parsed != 19) {
+                    SavedTrack[] track = Factory.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).offset(libraryuricache.size()).build().execute().getItems();
+                    for (SavedTrack t : track) {
+                        libraryuricache.add(t.getTrack().getUri());
+                        String a = TrackUtils.getArtists(t.getTrack().getArtists());
+                        librarysonglist.addModifyAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())});
+                            }
+                        });
+                        parsed++;
+                    }
+                    if (last == parsed) {
+                        if (counter > 1) {
+                            break;
                         }
-                    });
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+                        counter++;
+                    } else {
+                        counter = 0;
+                    }
+                    last = parsed;
                 }
             }
-            libraryOffset += 19;
+        } catch (Exception e) {
+            libraryLoadingInProgress = true;
+            ConsoleLogging.error("Error loading users library! Library now locked");
+            throw new RuntimeException(e);
         }
         libraryLoadingInProgress = false;
     }
@@ -220,30 +223,42 @@ public class ContentPanel extends JPanel {
     static boolean steamdeck = false;
     public static DefThread librarythread = new DefThread(new Runnable() {
         public void run() {
-            libraryLoadingInProgress = true;
-            int visibleCount = 28;
-            JSONObject list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/tracks", new NameValuePair[]{new NameValuePair("limit", String.valueOf(visibleCount))}));
-            for (Object o : list.getJSONArray("items")) {
-                libraryuricache.add(new JSONObject(new JSONObject(o.toString()).getJSONObject("track").toString()).getString("uri"));
-            }
-            for (String s : libraryuricache) {
-                try {
-                    Track track = Factory.getSpotifyApi().getTrack(s.split(":")[2]).build().execute();
-                    String a = TrackUtils.getArtists(track.getArtists());
-                    librarysonglist.addModifyAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+            try {
+                libraryLoadingInProgress = true;
+                int visibleCount = 28;
+                int total = Factory.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getTotal();
+                int counter = 0;
+                int last = 0;
+                int parsed = 0;
+                while (parsed != visibleCount) {
+                    SavedTrack[] track = Factory.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getItems();
+                    for (SavedTrack t : track) {
+                        libraryuricache.add(t.getTrack().getUri());
+                        String a = TrackUtils.getArtists(t.getTrack().getArtists());
+                        librarysonglist.addModifyAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())});
+                            }
+                        });
+                        parsed++;
+                    }
+                    if (parsed == last) {
+                        if (counter > 1) {
+                            break;
                         }
-                    });
-                } catch (IOException | ParseException | SpotifyWebApiException e) {
-                    hotlistbutton.setEnabled(true);
-                    searchbutton.setEnabled(true);
-                    queuebutton.setEnabled(true);
-                    playlistsbutton.setEnabled(true);
+                        counter++;
+                    } else {
+                        counter = 0;
+                    }
+                    last = parsed;
                 }
+                libraryLoadingInProgress = false;
+            } catch (Exception e) {
+                ConsoleLogging.error("Error loading users library! Library now locked");
+                libraryLoadingInProgress = true;
+                throw new RuntimeException(e);
             }
-            libraryLoadingInProgress = false;
         }
     });
     public static boolean shuffle = false;
@@ -258,7 +273,7 @@ public class ContentPanel extends JPanel {
         Home
     }
 
-    public static LastTypes lastmenu = LastTypes.HotList;
+    static LastTypes lastmenu = LastTypes.HotList;
 
     void createSettingsButton() {
         settingsbutton = new JSVGPanel();
@@ -352,12 +367,7 @@ public class ContentPanel extends JPanel {
         add(threepointbutton.getJComponent());
 
         threepointdropdown = new DropDownMenu(threepointbutton, false);
-        threepointdropdown.addItem(PublicValues.language.translate("ui.menu.help.about"), new Runnable() {
-            @Override
-            public void run() {
-                openAbout();
-            }
-        });
+        threepointdropdown.addItem(PublicValues.language.translate("ui.menu.help.about"), this::openAbout);
         threepointdropdown.addItem(PublicValues.language.translate("ui.menu.file.exit"), new Runnable() {
             @Override
             public void run() {
@@ -401,11 +411,10 @@ public class ContentPanel extends JPanel {
                 cache.append(s);
             }
             String opensourcelist = URLUtils.getURLResponseAsString("https://raw.githubusercontent.com/werwolf2303/SpotifyXP/main/opensourcelist.txt");
-            StringBuilder finalhtml = new StringBuilder();
-            finalhtml.append(cache.toString().split("<insertOpenSourceList>")[0]);
-            finalhtml.append(opensourcelist);
-            finalhtml.append(cache.toString().split("</insertOpenSourceList>")[1]);
-            dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml.toString());
+            String finalhtml = cache.toString().split("<insertOpenSourceList>")[0] +
+                    opensourcelist +
+                    cache.toString().split("</insertOpenSourceList>")[1];
+            dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml);
         } catch (Exception ex) {
             ExceptionDialog.open(ex);
             ConsoleLogging.Throwable(ex);
@@ -778,14 +787,15 @@ public class ContentPanel extends JPanel {
                     @Override
                     public void run() {
                         try {
-                            if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().equals("")) {
+                            if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().isEmpty()) {
                                 PublicValues.canvasPlayer.show();
-                                PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(PublicValues.spotifyplayer.currentMetadata().getArtist(), PublicValues.spotifyplayer.currentMetadata().getAlbumName(), PublicValues.spotifyplayer.currentMetadata().getName()));
+                                PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getArtist(), Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getAlbumName(), Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName()));
                                 if (!PublicValues.spotifyplayer.isPaused()) {
                                     PublicValues.canvasPlayer.play();
                                 }
                             }
                         } catch (Exception ignored) {
+
                         }
                     }
                 });
@@ -827,19 +837,14 @@ public class ContentPanel extends JPanel {
             public void mouseWheelMoved(MouseWheelEvent e) {
                 if (!inProg[0]) {
                     inProg[0] = true;
-                    BoundedRangeModel m = (BoundedRangeModel) libraryscrollpane.getVerticalScrollBar().getModel();
+                    BoundedRangeModel m = libraryscrollpane.getVerticalScrollBar().getModel();
                     int extent = m.getExtent();
                     int maximum = m.getMaximum();
                     int value = m.getValue();
                     if (value + extent >= maximum / 2) {
                         if (libraryVisble) {
                             if (!libraryLoadingInProgress) {
-                                DefThread thread = new DefThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadNext();
-                                    }
-                                });
+                                DefThread thread = new DefThread(ContentPanel::loadNext);
                                 thread.start();
                             }
                         }
@@ -849,11 +854,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        librarysonglist = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        librarysonglist = (DefTable) JComponentFactory.createJComponent(new DefTable());
         librarysonglist.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
@@ -894,16 +895,11 @@ public class ContentPanel extends JPanel {
                 DefThread thread1 = new DefThread(new Runnable() {
                     @Override
                     public void run() {
-                        int i = 0;
-                        player.getPlayer().load(libraryuricache.get(0), true, true, false);
-                        for (ContextTrackOuterClass.ContextTrack track : player.getPlayer().tracks(true).next) {
-                            player.getPlayer().removeFromQueue(track.getUri());
-                        }
-                        for (String s : libraryuricache) {
-                            if (i == 0) {
-                                i++;
-                                continue;
-                            }
+                        ArrayList<String> random = new ArrayList<>();
+                        Collections.copy(random, libraryuricache);
+                        PublicValues.spotifyplayer.load(libraryuricache.get(0), true, false, false);
+                        Collections.shuffle(random);
+                        for (String s : random) {
                             player.getPlayer().addToQueue(s);
                         }
                     }
@@ -970,11 +966,7 @@ public class ContentPanel extends JPanel {
         playlistsplaylistsscroll.setBounds(0, 0, 259, 421);
         playlistsplaylistslist.add(playlistsplaylistsscroll);
 
-        playlistsplayliststable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        playlistsplayliststable = (DefTable) JComponentFactory.createJComponent(new DefTable());
         playlistsplayliststable.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
@@ -998,11 +990,7 @@ public class ContentPanel extends JPanel {
         playlistssongsscroll.setBounds(0, 0, 524, 421);
         playlistssonglist.add(playlistssongsscroll);
 
-        playlistssongtable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        playlistssongtable = (DefTable) JComponentFactory.createJComponent(new DefTable());
         playlistssongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistssongtable.setModel(new DefaultTableModel(
                 new Object[][]{
@@ -1024,36 +1012,32 @@ public class ContentPanel extends JPanel {
                 DefThread thread = new DefThread(new Runnable() {
                     @Override
                     public void run() {
-                        JSONObject list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/playlists", new NameValuePair[]{new NameValuePair("limit", "50")}));
-                        for (Object o : list.getJSONArray("items")) {
-                            playlistsuricache.add(new JSONObject(o.toString()).getString("uri"));
-                        }
-
-                        boolean con = true;
-
-                        while (con) {
-                            try {
-                                String url = list.getString("next");
-                                list = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/playlists", new NameValuePair[]{new NameValuePair("offset", url.split("\\?")[1].split("&")[0].replace("offset=", "")), new NameValuePair("limit", url.split("\\?")[1].split("&")[1].replace("limit=", ""))}));
-                                for (Object o : list.getJSONArray("items")) {
-                                    playlistsuricache.add(new JSONObject(o.toString()).getString("uri"));
-                                }
-                            } catch (JSONException ignored) {
-                            }
-                            try {
-                                if (list.isNull("next")) {
-                                    con = false;
-                                }
-                            } catch (JSONException exc) {
-                                con = false;
-                            }
-                        }
                         try {
-                            for (String s : playlistsuricache) {
-                                ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{Factory.getSpotifyApi().getPlaylist(s.split(":")[2]).build().execute().getName()});
+                            int total = Factory.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
+                            int parsed = 0;
+                            int counter = 0;
+                            int last = 0;
+                            int offset = 0;
+                            while (parsed != total) {
+                                PlaylistSimplified[] playlists = Factory.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
+                                for (PlaylistSimplified simplified : playlists) {
+                                    playlistsuricache.add(simplified.getUri());
+                                    ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{simplified.getName()});
+                                    parsed++;
+                                }
+                                if (parsed == last) {
+                                    if (counter > 1) {
+                                        break;
+                                    }
+                                    counter++;
+                                } else {
+                                    counter = 0;
+                                }
+                                last = parsed;
+                                offset += 50;
                             }
-                        } catch (ParseException | IOException | SpotifyWebApiException ignored) {
-
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
                         }
                     }
                 });
@@ -1095,6 +1079,8 @@ public class ContentPanel extends JPanel {
                             try {
                                 int offset = 0;
                                 int parsed = 0;
+                                int counter = 0;
+                                int last = 0;
                                 int total = Factory.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
                                 while (parsed != total) {
                                     Paging<PlaylistTrack> ptracks = Factory.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
@@ -1103,6 +1089,15 @@ public class ContentPanel extends JPanel {
                                         playlistssonguricache.add(track.getTrack().getUri());
                                         parsed++;
                                     }
+                                    if (last == parsed) {
+                                        if (counter > 1) {
+                                            break;
+                                        }
+                                        counter++;
+                                    } else {
+                                        counter = 0;
+                                    }
+                                    last = parsed;
                                     offset += 100;
                                 }
                             } catch (Exception e) {
@@ -1326,7 +1321,7 @@ public class ContentPanel extends JPanel {
                         boolean playlist = searchfilterplaylist.isSelected();
                         searchsonglistcache.clear();
                         ((DefaultTableModel) searchsonglist.getModel()).setRowCount(0);
-                        if (searchtitle.equals("") && searchartist.equals("")) {
+                        if (searchtitle.isEmpty() && searchartist.isEmpty()) {
                             return; //User didn't type anything in so we just return
                         }
                         try {
@@ -1352,7 +1347,7 @@ public class ContentPanel extends JPanel {
                             if (artist) {
                                 artistPanel.artistalbumuricache.clear();
                                 artistPanel.artistpopularuricache.clear();
-                                if (searchtitle.equals("")) {
+                                if (searchtitle.isEmpty()) {
                                     searchtitle = searchartist;
                                 }
                                 for (Artist a : Factory.getSpotifyApi().searchArtists(searchtitle).build().execute().getItems()) {
@@ -1362,7 +1357,7 @@ public class ContentPanel extends JPanel {
                             }
                             if (album) {
                                 for (AlbumSimplified a : Factory.getSpotifyApi().searchAlbums(searchtitle).build().execute().getItems()) {
-                                    if (!searchartist.equals("")) {
+                                    if (!searchartist.isEmpty()) {
                                         if (!TrackUtils.trackHasArtist(a.getArtists(), searchartist, true)) {
                                             continue;
                                         }
@@ -1373,7 +1368,7 @@ public class ContentPanel extends JPanel {
                             }
                             if (show) {
                                 for (ShowSimplified s : Factory.getSpotifyApi().searchShows(searchtitle).build().execute().getItems()) {
-                                    if (!searchartist.equals("")) {
+                                    if (!searchartist.isEmpty()) {
                                         if (!s.getPublisher().equalsIgnoreCase(searchartist)) {
                                             continue;
                                         }
@@ -1384,7 +1379,7 @@ public class ContentPanel extends JPanel {
                             }
                             if (playlist) {
                                 for (PlaylistSimplified t : Factory.getSpotifyApi().searchPlaylists(searchtitle).build().execute().getItems()) {
-                                    if (!searchartist.equals("")) {
+                                    if (!searchartist.isEmpty()) {
                                         if (!t.getOwner().getDisplayName().equalsIgnoreCase(searchartist)) {
                                             continue;
                                         }
@@ -1405,11 +1400,7 @@ public class ContentPanel extends JPanel {
         searchscrollpanel.setBounds(0, 139, 784, 282);
         searchpane.add(searchscrollpanel);
 
-        searchsonglist = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        searchsonglist = (DefTable) JComponentFactory.createJComponent(new DefTable());
         searchsonglist.getTableHeader().setReorderingAllowed(false);
         artistPanelBackButton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.back")));
         artistPanelBackButton.setBounds(0, 0, 89, 23);
@@ -1491,6 +1482,8 @@ public class ContentPanel extends JPanel {
                                         Playlist pl = Factory.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
                                         int parsed = 0;
                                         int offset = 0;
+                                        int counter = 0;
+                                        int last = 0;
                                         int total = pl.getTracks().getTotal();
                                         while (parsed != total) {
                                             for (PlaylistTrack track : Factory.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute().getItems()) {
@@ -1498,6 +1491,15 @@ public class ContentPanel extends JPanel {
                                                 searchplaylistsongscache.add(track.getTrack().getUri());
                                                 parsed++;
                                             }
+                                            if (last == parsed) {
+                                                if (counter > 1) {
+                                                    break;
+                                                }
+                                                counter++;
+                                            } else {
+                                                counter = 0;
+                                            }
+                                            last = parsed;
                                             offset += 100;
                                         }
                                     } catch (Exception e) {
@@ -1545,6 +1547,8 @@ public class ContentPanel extends JPanel {
                                     try {
                                         int parsed = 0;
                                         int offset = 0;
+                                        int last = 0;
+                                        int counter = 0;
                                         int total = Factory.getSpotifyApi().getShow(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getEpisodes().getTotal();
                                         while (parsed != total) {
                                             for (EpisodeSimplified episode : Factory.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(50).build().execute().getItems()) {
@@ -1552,6 +1556,15 @@ public class ContentPanel extends JPanel {
                                                 searchplaylistsongscache.add(episode.getUri());
                                                 parsed++;
                                             }
+                                            if (last == parsed) {
+                                                if (counter > 1) {
+                                                    break;
+                                                }
+                                                counter++;
+                                            } else {
+                                                counter = 0;
+                                            }
+                                            last = parsed;
                                             offset += 50;
                                         }
                                     } catch (Exception e) {
@@ -1562,6 +1575,8 @@ public class ContentPanel extends JPanel {
                                     try {
                                         int parsed = 0;
                                         int offset = 0;
+                                        int last = 0;
+                                        int counter = 0;
                                         int total = Factory.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getTotal();
                                         while (parsed != total) {
                                             for (TrackSimplified simplified : Factory.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(50).build().execute().getItems()) {
@@ -1569,6 +1584,15 @@ public class ContentPanel extends JPanel {
                                                 searchplaylistsongscache.add(simplified.getUri());
                                                 parsed++;
                                             }
+                                            if (last == parsed) {
+                                                if (counter > 1) {
+                                                    break;
+                                                }
+                                                counter++;
+                                            } else {
+                                                counter = 0;
+                                            }
+                                            last = parsed;
                                             offset += 50;
                                         }
                                     } catch (Exception e) {
@@ -1619,11 +1643,7 @@ public class ContentPanel extends JPanel {
         searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
         searchplaylistpanel.add(searchplaylistscrollpanel);
 
-        searchplaylisttable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        searchplaylisttable = (DefTable) JComponentFactory.createJComponent(new DefTable());
         searchplaylistscrollpanel.setViewportView(searchplaylisttable);
         searchplaylisttable.setForeground(PublicValues.globalFontColor);
         searchplaylisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -1676,7 +1696,7 @@ public class ContentPanel extends JPanel {
                 heart.isFilled = true;
                 heart.setImage(new Resources().readToInputStream("icons/heartfilled.svg"));
                 PublicValues.elevated.makePut("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
-                if (!(libraryuricache.size() == 0)) {
+                if (!libraryuricache.isEmpty()) {
                     fetchOnlyFirstSongsFromUserLibrary();
                 }
             }
@@ -1703,7 +1723,12 @@ public class ContentPanel extends JPanel {
                 }
                 if (errorDisplay != null) errorDisplay.setVisible(true);
                 if (text.equals(String.valueOf(0))) {
-                    errorDisplay.setVisible(false);
+                    try {
+                        Objects.requireNonNull(errorDisplay);
+                        errorDisplay.setVisible(false);
+                    } catch (NullPointerException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 super.setText(text);
                 if (errorDisplay != null)
@@ -1725,11 +1750,7 @@ public class ContentPanel extends JPanel {
                 JDialog dialog = new JDialog();
                 dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
                 JScrollPane pane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
-                DefTable table = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                });
+                DefTable table = (DefTable) JComponentFactory.createJComponent(new DefTable());
                 table.setModel(new DefaultTableModel(
                         new Object[][]{
                         },
@@ -1751,7 +1772,7 @@ public class ContentPanel extends JPanel {
                         errorQueue.remove(errorQueue.size() - 1);
                         errorDisplay.setText(String.valueOf(errorQueue.size()));
                         ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
-                        if (((DefaultTableModel) table.getModel()).getRowCount() == 0) {
+                        if (table.getModel().getRowCount() == 0) {
                             errorDisplay.setVisible(false);
                         }
                     }
@@ -1796,11 +1817,7 @@ public class ContentPanel extends JPanel {
         hotlistplaylistsscrollpanel.setBounds(0, 0, 259, 421);
         hotlistplaylistspanel.add(hotlistplaylistsscrollpanel);
 
-        hotlistplayliststable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        hotlistplayliststable = (DefTable) JComponentFactory.createJComponent(new DefTable());
         hotlistplayliststable.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
@@ -1836,11 +1853,7 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        hotlistsongstable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        hotlistsongstable = (DefTable) JComponentFactory.createJComponent(new DefTable());
         hotlistsongstable.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
@@ -2370,11 +2383,7 @@ public class ContentPanel extends JPanel {
                 JFrame window = new JFrame();
                 window.setTitle(menu1.getText());
                 ArrayList<JMenuItem> items = new ArrayList<>();
-                DefTable table = new DefTable() {
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
+                DefTable table = new DefTable();
                 table.setModel(new DefaultTableModel(
                         new Object[][]{
                         },
@@ -2407,7 +2416,7 @@ public class ContentPanel extends JPanel {
         }
     }
 
-    public static ArrayList<String> advanceduricache = new ArrayList<String>();
+    public static ArrayList<String> advanceduricache = new ArrayList<>();
 
     void createAdvancedPanel() {
         advancedsongpanel = (JPanel) JComponentFactory.createJComponent(new JPanel());
@@ -2433,11 +2442,7 @@ public class ContentPanel extends JPanel {
         });
 
 
-        advancedsongtable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
+        advancedsongtable = (DefTable) JComponentFactory.createJComponent(new DefTable());
 
         advancedsongtable.setModel(new DefaultTableModel(
                 new Object[][]{
@@ -2550,6 +2555,7 @@ public class ContentPanel extends JPanel {
         }
     }
 
+    @SuppressWarnings("Busy")
     public ContentPanel(Player p) {
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
         player = p;
@@ -2620,12 +2626,7 @@ public class ContentPanel extends JPanel {
         });
 
         if (!(PublicValues.theme instanceof Legacy) && !(PublicValues.theme instanceof DarkGreen)) {
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    setHotlistVisible();
-                }
-            });
+            Thread t = new Thread(this::setHotlistVisible);
             t.start();
             add(tabpanel);
         } else {
@@ -2648,30 +2649,30 @@ public class ContentPanel extends JPanel {
         if (new File(PublicValues.fileslocation, "play.state").exists()) {
             parseLastPlayState();
             try {
-                if (!lastPlayState.uri.equals("")) {
+                if (!lastPlayState.uri.isEmpty()) {
                     playerplaytime.setText(lastPlayState.playtime);
                     playerplaytimetotal.setText(lastPlayState.playtimetotal);
                     playercurrenttime.setMaximum(Integer.parseInt(lastPlayState.playerslidermax));
                     PublicValues.spotifyplayer.load(lastPlayState.uri, false, shuffle, false);
-                    PlayerListener.locked = true;
-                    while (PlayerListener.locked) {
-                        Thread.sleep(99);
-                    }
-                    PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider) * 1000);
-                    while (PlayerListener.locked) {
-                        Thread.sleep(99);
-                    }
-                    playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
+                    Runnable event = new Runnable() {
+                        @Override
+                        public void run() {
+                            PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider) * 1000);
+                            playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
+                            Events.remove(this);
+                        }
+                    };
+                    Events.registerPlayerLockReleaseEvent(event);
                 }
             } catch (Exception e) {
-                new RuntimeException(e);
+                throw new RuntimeException(e);
             }
         }
         SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelend"));
     }
 
-    class LastPlayState {
+    static class LastPlayState {
         public String uri;
         public String playtimetotal;
         public String playtime;
@@ -3021,12 +3022,7 @@ public class ContentPanel extends JPanel {
         hotlistVisible = true;
         feedbackVisible = false;
         if (hotlistplayliststable.getRowCount() == 0) {
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    fetchHotlist();
-                }
-            });
+            Thread t = new Thread(this::fetchHotlist);
             t.start();
         }
     }
@@ -3133,13 +3129,13 @@ public class ContentPanel extends JPanel {
 
     public static void saveCurrentState() {
         try {
-            PublicValues.spotifyplayer.currentPlayable().toSpotifyUri();
+            Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri();
         } catch (Exception e) {
             return;
         }
         try {
             FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
-            writer.write(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum() + "\n" + playerareavolumecurrent.getText());
+            writer.write(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum() + "\n" + playerareavolumecurrent.getText());
             writer.close();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
@@ -3153,71 +3149,60 @@ public class ContentPanel extends JPanel {
     }
 
     void fetchHotlist() {
-        JSONObject stuff = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/top/artists"));
-        StringBuilder genres = new StringBuilder();
-        StringBuilder tracks = new StringBuilder();
-        StringBuilder artists = new StringBuilder();
-        System.out.println("Line 3153: " + stuff);
-        for (Object o : new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/me/player/recently-played?limit=10")).getJSONArray("items")) {
-            System.err.println("Line 3154: " + o.toString());
-            JSONObject track = new JSONObject(new JSONObject(o.toString()).get("track").toString());
-            tracks.append(track.getString("uri").split(":")[2]).append(",");
-        }
-        for (Object o : stuff.getJSONArray("items")) {
-            JSONObject found = new JSONObject(o.toString());
-            for (Object o2 : found.getJSONArray("genres")) {
-                genres.append(o2.toString()).append(",");
-            }
-            String likeduri = found.getString("uri").split(":")[2];
-            artists.append(likeduri).append(",");
-        }
-        StringBuilder fivegenres = new StringBuilder();
-        StringBuilder fiveartists = new StringBuilder();
-        StringBuilder fivetracks = new StringBuilder();
-        int gcr = new Random().nextInt(genres.toString().split(",").length);
-        int gc = 0;
-        int gcs = 0;
-        for (String s : genres.toString().split(",")) {
-            if (gcs != gcr) {
-                gcs++;
-                continue;
-            }
-            if (gc == 2) {
-                break;
-            }
-            if (fivegenres.toString().equals("")) {
-                fivegenres.append(s);
-            } else {
-                fivegenres.append(",").append(s);
-            }
-            gc++;
-        }
-        int ac = 0;
-        for (String s : artists.toString().split(",")) {
-            if (ac == 2) {
-                break;
-            }
-            if (fiveartists.toString().equals("")) {
-                fiveartists.append(s);
-            } else {
-                fiveartists.append(",").append(s);
-            }
-            ac++;
-        }
-        int tc = 0;
-        for (String s : tracks.toString().split(",")) {
-            if (tc == 1) {
-                break;
-            }
-            if (fivetracks.toString().equals("")) {
-                fivetracks.append(s);
-            } else {
-                fivetracks.append(",").append(s);
-            }
-            tc++;
-        }
         try {
-            JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations", new NameValuePair[]{new NameValuePair("seed_artists", fiveartists.toString()), new NameValuePair("seed_genres", fivegenres.toString()), new NameValuePair("seed_tracks", fivetracks.toString())}));
+            Artist[] artist = Factory.getSpotifyApi().getUsersTopArtists().build().execute().getItems();
+            PlayHistory[] history = Factory.getSpotifyApi().getCurrentUsersRecentlyPlayedTracks().limit(10).build().execute().getItems();
+            ArrayList<String> genres = new ArrayList<>();
+            ArrayList<String> tracks = new ArrayList<>();
+            ArrayList<String> artists = new ArrayList<>();
+            for (PlayHistory h : history) {
+                tracks.add(h.getTrack().getUri().split(":")[2]);
+            }
+            for (Artist a : artist) {
+                genres.addAll(Arrays.asList(a.getGenres()));
+                artists.add(a.getUri());
+            }
+            int gcr = new Random().nextInt(genres.size());
+            int gc = 0;
+            int ac = 0;
+            int tc = 0;
+            StringBuilder fivegenres = new StringBuilder();
+            StringBuilder fiveartists = new StringBuilder();
+            StringBuilder fivetracks = new StringBuilder();
+            for (String s : genres) {
+                if (gc == 2) {
+                    break;
+                }
+                if (fivegenres.length() > 0) {
+                    fivegenres.append(",");
+                }
+                fivegenres.append(s);
+                gc++;
+            }
+            for (String s : artists) {
+                if (ac == 2) {
+                    break;
+                }
+                if (fiveartists.length() > 0) {
+                    fiveartists.append(",");
+                }
+                fiveartists.append(s);
+                ac++;
+            }
+            for (String s : tracks) {
+                if (tc == 1) {
+                    break;
+                }
+                if (fivetracks.length() > 0) {
+                    fivetracks.append(",");
+                }
+                fivetracks.append(s);
+                tc++;
+            }
+            JSONObject recommendations = new JSONObject(PublicValues.elevated.makeGet("https://api.spotify.com/v1/recommendations",
+                    new NameValuePair("seed_artists", fiveartists.toString()),
+                    new NameValuePair("seed_genres", fivegenres.toString()),
+                    new NameValuePair("seed_tracks", fivetracks.toString())));
             for (Object o : recommendations.getJSONArray("tracks")) {
                 JSONObject album = new JSONObject(new JSONObject(o.toString()).get("album").toString());
                 String uri = album.getString("uri").split(":")[2];
@@ -3230,7 +3215,7 @@ public class ContentPanel extends JPanel {
                     ConsoleLogging.Throwable(e);
                 }
             }
-        } catch (JSONException exception) {
+        } catch (Exception exception) {
             ExceptionDialog.open(exception);
         }
     }
@@ -3269,7 +3254,7 @@ public class ContentPanel extends JPanel {
                     }
                     break;
                 default:
-                    GraphicalMessage.bug("tried to invoke showAdvancedSongPanel with incompatible type -> " + contentType.toString());
+                    GraphicalMessage.bug("tried to invoke showAdvancedSongPanel with incompatible type -> " + contentType);
                     break;
             }
         } catch (Exception e) {
@@ -3313,12 +3298,7 @@ public class ContentPanel extends JPanel {
             }
         });
         mainframe.setForeground(Color.blue);
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                InjectingPoints.INTERNALinvokeOnFrameReady();
-            }
-        });
+        DefThread thread = new DefThread(InjectingPoints::INTERNALinvokeOnFrameReady);
         thread.start();
         mainframe.setVisible(true);
         mainframe.setResizable(false);

@@ -9,19 +9,19 @@ for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1)
 rem Prepare a file "X" with only one dot
 <nul > X set /p ".=."
 
-"%cd%\scripts\getModules.bat"
-"%cd%\scripts\buildModules.bat"
-
-CALL :color 03 "Building SpotifyXP"
-echo.
-echo Please wait...
-
 IF EXIST "%cd%/target/" CALL "%cd%\scripts\utils\clean.bat"
 IF EXIST "%cd%/build/" CALL "%cd%\scripts\utils\clean.bat"
 
+CALL "%cd%\scripts\getModules.bat"
+CALL "%cd%\scripts\buildModules.bat"
+
+
+CALL :color 03 "Building SpotifyXP"
+echo.
+
 REM CALL mvn clean package
-IF "%2" == "--debug" CALL "%cd%\scripts\bin\maven\bin\mvn.cmd" clean package
-IF NOT "%2" == "--debug" CALL "%cd%\scripts\bin\maven\bin\mvn.cmd" -q clean package
+IF "%1" == "--debug" CALL "%cd%\scripts\bin\maven\bin\mvn.cmd" clean package
+IF NOT "%1" == "--debug" CALL "%cd%\scripts\bin\maven\bin\mvn.cmd" -q clean package
 
 MKDIR build
 

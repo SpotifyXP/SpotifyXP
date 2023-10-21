@@ -63,6 +63,8 @@ public class SpotifyAPI {
                     int limit = 50;
                     int parsed = 0;
                     int total = Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
+                    int counter = 0;
+                    int last = 0;
                     while(parsed != total) {
                         for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                             totable.addModifyAction(new Runnable() {
@@ -73,6 +75,15 @@ public class SpotifyAPI {
                             });
                             parsed++;
                         }
+                        if(last == parsed) {
+                            if(counter > 1) {
+                                break;
+                            }
+                            counter++;
+                        }else{
+                            counter = 0;
+                        }
+                        last = parsed;
                         offset += limit;
                     }
                 }catch (Exception e) {

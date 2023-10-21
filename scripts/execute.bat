@@ -1,7 +1,7 @@
 IF NOT EXIST "%cd%/scripts/bin/" MKDIR "%cd%/scripts/bin"
 IF %1 == "--refresh-nightly" "%cd%/scripts/utils/reporefresh.bat"
-IF %1 == "--build" "%cd%/scripts/build.bat"
-IF %1 == "--buildandrun" "%cd%/scripts/buildandrun.bat"
+IF %1 == "--build" "%cd%/scripts/build.bat" %2
+IF %1 == "--buildandrun" "%cd%/scripts/buildandrun.bat" %2
 echo SpotifyXP Build Script v1.0
 echo.
 echo build.bat [OPTION] [ADDITIONAL]

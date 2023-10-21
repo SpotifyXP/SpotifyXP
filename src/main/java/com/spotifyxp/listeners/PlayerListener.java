@@ -4,6 +4,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.events.Events;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -167,6 +168,7 @@ public class PlayerListener implements Player.EventsListener {
             }
         }
         locked = false;
+        Events.INTERNALtriggerPlayerLockReleaseEvents();
     }
 
     @Override
@@ -235,6 +237,7 @@ public class PlayerListener implements Player.EventsListener {
             //System not supported
         }
         locked = false;
+        Events.INTERNALtriggerPlayerLockReleaseEvents();
     }
 
     @Override

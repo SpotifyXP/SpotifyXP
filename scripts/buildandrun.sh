@@ -1,1 +1,1 @@
-sh "$(pwd)/scripts/build.sh" "--buildandrun"
+sh "$(pwd)/scripts/build.sh" "--buildandrun" "$1"
