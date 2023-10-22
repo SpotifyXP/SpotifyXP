@@ -3,6 +3,7 @@ package com.spotifyxp.swingextension;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.Resources;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.swing.JSVGCanvas;
 import org.apache.batik.util.XMLResourceDescriptor;
@@ -95,6 +96,10 @@ public class JSVGPanel {
 
     public void setImage(InputStream stream) {
         method.setImage(stream);
+    }
+
+    public void setImage(String resourcePath) {
+        method.setImage(new Resources().readToInputStream(resourcePath));
     }
 
     public JComponent getJComponent() {

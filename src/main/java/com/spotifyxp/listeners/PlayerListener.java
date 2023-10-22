@@ -145,7 +145,7 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
         if(PublicValues.theme instanceof Legacy) {
-            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplay.svg"));
+            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplaydark.svg"));
         }else{
             if(PublicValues.theme.isLight()) {
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.svg"));
@@ -165,7 +165,7 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
         if(PublicValues.theme instanceof Legacy) {
-            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpause.svg"));
+            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpausedark.svg"));
         }else{
             if(PublicValues.theme.isLight()) {
                 ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.svg"));

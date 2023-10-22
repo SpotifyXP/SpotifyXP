@@ -2,6 +2,7 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.Resources;
 import org.apache.commons.io.IOUtils;
 
 import javax.imageio.ImageIO;
@@ -34,7 +35,7 @@ public class JImagePanel extends JPanel {
 
     public void setImage(String filename) {
         try {
-            imagebytes = Files.readAllBytes(Paths.get(filename));
+            imagebytes = IOUtils.toByteArray(new Resources().readToInputStream(filename));
         } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }

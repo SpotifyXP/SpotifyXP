@@ -21,16 +21,12 @@ public class DarkGreen implements Theme {
 
     @Override
     public void initTheme() {
+        PublicValues.borderColor = Color.gray;
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException e) {
             ConsoleLogging.Throwable(e);
         }
         PublicValues.globalFontColor = Color.green;
-    }
-
-    @Override
-    public boolean hasLegacyUI() {
-        return true;
     }
 }

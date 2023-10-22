@@ -59,11 +59,7 @@ public class SettingsPanel extends JPanel {
     //
 
     public SettingsPanel() {
-        if(PublicValues.theme.hasLegacyUI()) {
-            setBounds(100, 100, 422, 506);
-        }else {
-            setBounds(100, 100, 800, 600);
-        }
+        setBounds(100, 100, 422, 506);
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 

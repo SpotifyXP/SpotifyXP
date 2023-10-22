@@ -5,6 +5,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.Resources;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.swing.JSVGCanvas;
 import org.apache.batik.util.XMLResourceDescriptor;
@@ -86,6 +87,10 @@ public class JImageButton extends JSVGCanvas {
             ConsoleLogging.Throwable(e);
         }
         refresh();
+    }
+
+    public void setImage(String resourcePath) {
+        setImage(new Resources().readToInputStream(resourcePath));
     }
 
     final Color oldColor = ContentPanel.frame.getBackground();
