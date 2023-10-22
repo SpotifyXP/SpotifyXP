@@ -36,10 +36,7 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -53,6 +50,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
 
 @SuppressWarnings({"CanBeFinal", "rawtypes", "Convert2Lambda"})
@@ -325,8 +323,18 @@ public class ContentPanel extends JPanel {
                     };
                     Events.registerPlayerLockReleaseEvent(event);
                 }
+                if(!lastPlayState.queue.isEmpty()) {
+                    try {
+                        PublicValues.spotifyplayer.clearQueue();
+                        for(String s : lastPlayState.queue) {
+                            PublicValues.spotifyplayer.addToQueue(s);
+                        }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                //Failed to load last play state! Dont notify user because its not that important
             }
         }
         SplashPanel.linfo.setText("Done building contentPanel");
@@ -508,7 +516,11 @@ public class ContentPanel extends JPanel {
         }
         try {
             FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
-            writer.write(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum() + "\n" + playerareavolumecurrent.getText());
+            StringBuilder queue = new StringBuilder();
+            for(ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+                queue.append(t.getUri()).append("\n");
+            }
+            writer.write(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum() + "\n" + playerareavolumecurrent.getText() + "\n" + StringUtils.replaceLast(queue.toString(), "\n", ""));
             writer.close();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
@@ -2271,11 +2283,19 @@ public class ContentPanel extends JPanel {
                 }
                 read++;
             }
+            String out = IOUtils.toString(new FileInputStream(new File(PublicValues.fileslocation, "play.state")));
+            for(int i = 0; i < out.split("\n").length; i++) {
+                if(i > 5) {
+                    state.queue.add(out.split("\n")[i]);
+                }
+            }
             scan.close();
             lastPlayState = state;
         } catch (FileNotFoundException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -2653,5 +2673,6 @@ public class ContentPanel extends JPanel {
         public String playerslider;
         public String playerslidermax;
         public String playervolume;
+        public ArrayList<String> queue = new ArrayList<>();
     }
 }

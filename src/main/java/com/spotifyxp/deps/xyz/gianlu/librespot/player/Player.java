@@ -885,8 +885,8 @@ public class Player implements Closeable {
     }
 
     public void clearQueue() {
-        state.getNextTracks(true).clear();
-        state.getPrevTracks().clear();
+        tracks(true).next.clear();
+        tracks(true).previous.clear();
     }
 
     /**

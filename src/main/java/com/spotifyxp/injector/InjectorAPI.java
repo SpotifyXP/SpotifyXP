@@ -2,9 +2,12 @@ package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.URLUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -25,6 +28,8 @@ public class InjectorAPI {
     final String repoURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main/repo";
     public final ArrayList<Extension> extensions = new ArrayList<>();
 
+    public static String compatibleMinVersion = "2.0.0";
+
     public static class Extension {
         public String location;
         public String name;
@@ -32,25 +37,41 @@ public class InjectorAPI {
         public String version;
         public String description;
         public String identifier;
+        public String minVersion;
     }
 
     /**
      * Parses all extensions in the Spotify extension store
      */
+
+    int retryCounter = 0;
+
     public void parseExtensions() {
         String repofile = URLUtils.getURLResponseAsString(repoURL + "/REPO.INFO");
-        JSONObject object = new JSONObject(repofile);
-        for(Object o : new JSONArray(object.getJSONObject("REPO").getJSONArray("EXTENSIONS"))) {
-            JSONObject extension = new JSONObject(o.toString());
-            String content = URLUtils.getURLResponseAsString(repoRootURL + extension.getString("LOCATION"));
-            Extension e = new Extension();
-            e.location = repoRootURL + new JSONObject(content).getString("FILE");
-            e.name = new JSONObject(content).getString("NAME");
-            e.identifier = new JSONObject(content).getString("IDENTIFIER");
-            e.author = new JSONObject(content).getString("AUTHOR");
-            e.version = new JSONObject(content).getString("VERSION");
-            e.description = new JSONObject(content).getString("DESCRIPTION");
-            extensions.add(e);
+        try {
+            JSONObject object = new JSONObject(repofile);
+            for (Object o : new JSONArray(object.getJSONObject("REPO").getJSONArray("EXTENSIONS"))) {
+                JSONObject extension = new JSONObject(o.toString());
+                String content = URLUtils.getURLResponseAsString(repoRootURL + extension.getString("LOCATION"));
+                JSONObject contentJ = new JSONObject(content);
+                Extension e = new Extension();
+                e.location = repoRootURL + contentJ.getString("FILE");
+                e.name = contentJ.getString("NAME");
+                e.identifier = contentJ.getString("IDENTIFIER");
+                e.author = contentJ.getString("AUTHOR");
+                e.version = contentJ.getString("VERSION");
+                e.description = contentJ.getString("DESCRIPTION");
+                e.minVersion = contentJ.getString("MINVERSION");
+                extensions.add(e);
+            }
+        }catch (JSONException e) {
+            //Connection failed
+            if(retryCounter > 3) {
+                GraphicalMessage.sorryError("Connection failed!");
+                return;
+            }
+            retryCounter++;
+            parseExtensions();
         }
     }
 

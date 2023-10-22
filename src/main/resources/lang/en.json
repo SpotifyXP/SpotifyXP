@@ -104,6 +104,7 @@
   "ui.updater.downloadnewest": "Download newest Version",
   "ui.updater.nightly": "No updates on nightly versions",
   "ui.updater.notavailable": "No update available",
+  "extension.install.incompatible" : "Incompatible",
   "extension.install": "Install",
   "extension.remove": "Remove",
   "extension.title": "SpotifyXP - Extension Store",

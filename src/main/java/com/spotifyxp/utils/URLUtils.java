@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 public class URLUtils {
     public static String getURLResponseAsString(String url) {
-        ConsoleLogging.debug("Try to connect to: " + url);
+        ConsoleLogging.debug("Trying to connect to: " + url);
         try {
             URLConnection connection = new URL(url).openConnection();
             connection.setRequestProperty("User-Agent",
