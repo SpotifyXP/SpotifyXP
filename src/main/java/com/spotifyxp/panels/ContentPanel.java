@@ -280,7 +280,10 @@ public class ContentPanel extends JPanel {
     void createSettingsButton() {
         settingsbutton = new JSVGPanel();
         settingsbutton.getJComponent().setBounds(669, 11, 23, 23);
-        add(settingsbutton.getJComponent());
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(settingsbutton.getJComponent());
+        }
 
         settingsbutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
@@ -326,7 +329,9 @@ public class ContentPanel extends JPanel {
             }
         });
 
-        JComponentFactory.addJComponent(settingsbutton.getJComponent());
+        if(!PublicValues.theme.hasLegacyUI()) {
+            JComponentFactory.addJComponent(settingsbutton.getJComponent());
+        }
     }
 
     public static void blockTabSwitch() {
@@ -348,7 +353,10 @@ public class ContentPanel extends JPanel {
     void createUserButton() {
         userbutton = new JSVGPanel();
         userbutton.getJComponent().setBounds(702, 11, 23, 23);
-        add(userbutton.getJComponent());
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(userbutton.getJComponent());
+        }
 
         userdropdown = new DropDownMenu(userbutton, false);
         userdropdown.addItem(PublicValues.language.translate("ui.menu.logout"), new Runnable() {
@@ -360,13 +368,19 @@ public class ContentPanel extends JPanel {
                 System.exit(0);
             }
         });
-        JComponentFactory.addJComponent(userbutton.getJComponent());
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            JComponentFactory.addJComponent(userbutton.getJComponent());
+        }
     }
 
     void createThreePointButton() {
         threepointbutton = new JSVGPanel();
         threepointbutton.getJComponent().setBounds(735, 11, 23, 23);
-        add(threepointbutton.getJComponent());
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(threepointbutton.getJComponent());
+        }
 
         threepointdropdown = new DropDownMenu(threepointbutton, false);
         threepointdropdown.addItem(PublicValues.language.translate("ui.menu.help.about"), this::openAbout);
@@ -376,7 +390,10 @@ public class ContentPanel extends JPanel {
                 System.exit(0);
             }
         });
-        JComponentFactory.addJComponent(threepointbutton.getJComponent());
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            JComponentFactory.addJComponent(threepointbutton.getJComponent());
+        }
     }
 
     void openAbout() {
@@ -440,7 +457,10 @@ public class ContentPanel extends JPanel {
                 setHomeVisible();
             }
         });
-        add(homebutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(homebutton);
+        }
     }
 
     void createPlayerArea() {
@@ -814,7 +834,10 @@ public class ContentPanel extends JPanel {
 
         librarybutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.library")));
         librarybutton.setBounds(230, 111, 107, 23);
-        add(librarybutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(librarybutton);
+        }
 
         libraryshufflebutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.library.shuffle")));
         libraryshufflebutton.setBounds(41, 398, 321, 23);
@@ -953,7 +976,11 @@ public class ContentPanel extends JPanel {
     void createPlaylist() {
         playlistsbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.playlists")));
         playlistsbutton.setBounds(118, 111, 107, 23);
-        add(playlistsbutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(playlistsbutton);
+        }
+
         playlistspane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         playlistspane.setBounds(0, 0, 784, 421);
         tabpanel.add(playlistspane);
@@ -1132,7 +1159,11 @@ public class ContentPanel extends JPanel {
     void createSearch() {
         searchbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.search")));
         searchbutton.setBounds(338, 111, 107, 23);
-        add(searchbutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(searchbutton);
+        }
+
         searchpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         searchpane.setBounds(0, 0, 784, 421);
         tabpanel.add(searchpane);
@@ -1512,7 +1543,7 @@ public class ContentPanel extends JPanel {
                                     try {
                                         Artist a = Factory.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
                                         try {
-                                            artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                            artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                         } catch (ArrayIndexOutOfBoundsException exception) {
                                             //No artist image (when this is raised it's a bug)
                                         }
@@ -1804,7 +1835,11 @@ public class ContentPanel extends JPanel {
     void createHotList() {
         hotlistbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.hotlist")));
         hotlistbutton.setBounds(447, 111, 107, 23);
-        add(hotlistbutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(hotlistbutton);
+        }
+
         hotlistpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         hotlistpane.setBounds(0, 0, 784, 421);
         tabpanel.add(hotlistpane);
@@ -1922,7 +1957,11 @@ public class ContentPanel extends JPanel {
     void createQueue() {
         queuebutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.queue")));
         queuebutton.setBounds(557, 111, 107, 23);
-        add(queuebutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(queuebutton);
+        }
+
         queuepane = new JPanel();
         queuepane.setBounds(0, 0, 784, 421);
         tabpanel.add(queuepane);
@@ -2040,7 +2079,11 @@ public class ContentPanel extends JPanel {
     void createFeedback() {
         feedbackbutton = (JToggleButton) JComponentFactory.createJComponent(new JToggleButton(PublicValues.language.translate("ui.navigation.feedback")));
         feedbackbutton.setBounds(667, 111, 107, 23);
-        add(feedbackbutton);
+
+        if(!PublicValues.theme.hasLegacyUI()) {
+            add(feedbackbutton);
+        }
+
         feedbackpane = (JPanel) JComponentFactory.createJComponent(new JPanel());
         feedbackpane.setBounds(0, 0, 784, 421);
         tabpanel.add(feedbackpane);
@@ -2522,7 +2565,7 @@ public class ContentPanel extends JPanel {
         try {
             Artist a = Factory.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
             try {
-                artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
             } catch (ArrayIndexOutOfBoundsException exception) {
                 //No artist image (when this is raised it's a bug)
             }

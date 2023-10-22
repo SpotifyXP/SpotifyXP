@@ -227,10 +227,9 @@ public class Initiator {
             }
         }
         try {
-            Files.copy(new Resources().readToInputStream("SpotifyXP-Updater.jar.bak"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar.bak"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(new Resources(true).readToInputStream("SpotifyXP-Updater.jar"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar"), StandardCopyOption.REPLACE_EXISTING);
         }catch (Exception e) {
-            ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            //Build without SpotifyXP-Updater
             Updater.disable = true; //Disabling updater
         }
         try {

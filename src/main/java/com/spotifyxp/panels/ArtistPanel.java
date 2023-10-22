@@ -18,6 +18,7 @@ import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ClipboardUtil;
+import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 
@@ -91,18 +92,18 @@ public class ArtistPanel extends JPanel {
 
         artistimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         artistimage.setBounds(288, 11, 155, 153);
-        add(artistimage, 3);
+        add(artistimage);
 
         artisttitle = (JLabel) JComponentFactory.createJComponent(new JLabel(""));
         artisttitle.setHorizontalAlignment(SwingConstants.CENTER);
         artisttitle.setBounds(0, 213, 780, 64);
-        add(artisttitle, 2);
+        add(artisttitle);
 
         artisttitle.setForeground(PublicValues.globalFontColor);
 
         artistbackgroundimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
         artistbackgroundimage.setBounds(0, 0, 780, 277);
-        add(artistbackgroundimage, 1);
+        add(artistbackgroundimage);
 
         artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
         artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow())));
@@ -193,7 +194,7 @@ public class ArtistPanel extends JPanel {
                     try {
                         com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist a = Factory.getSpotifyApi().getArtist(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2]).build().execute();
                         try {
-                            artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                            artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                         } catch (ArrayIndexOutOfBoundsException exception) {
                             //No artist image (when this is raised it's a bug)
                         }

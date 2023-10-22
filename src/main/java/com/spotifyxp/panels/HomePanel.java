@@ -11,6 +11,8 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.SpotifyUtils;
+import com.spotifyxp.utils.StringUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 
@@ -127,7 +129,7 @@ public class HomePanel {
                                 try {
                                     Artist a = Factory.getSpotifyApi().getArtist(id).build().execute();
                                     try {
-                                        ContentPanel.artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                        ContentPanel.artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
                                         //No artist image (when this is raised it's a bug)
                                     }
@@ -184,8 +186,9 @@ public class HomePanel {
             }
             read++;
         }
-        return builder.toString();
+        return StringUtils.replaceLast(builder.toString(), ",", "");
     }
+
 
     public void initializeContent() {
         content.setLayout(null);
@@ -233,7 +236,7 @@ public class HomePanel {
                                 try {
                                     Artist a = Factory.getSpotifyApi().getArtist(id).build().execute();
                                     try {
-                                        ContentPanel.artistPanel.artistimage.setImage(new URL(a.getImages()[0].getUrl()).openStream());
+                                        ContentPanel.artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
                                         //No artist image (when this is raised it's a bug)
                                     }

@@ -5,7 +5,6 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.EpisodeSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
@@ -17,14 +16,13 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.theming.themes.Legacy;
 import com.spotifyxp.utils.Resources;
+import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
 import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -86,7 +84,7 @@ public class PlayerListener implements Player.EventsListener {
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
                         ContentPanel.playertitle.setText(episode.getName());
                         artists.append(episode.getShow().getPublisher());
-                        ContentPanel.playerimage.setImage(new URL(episode.getImages()[0].getUrl()).openStream());
+                        ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
                         break;
                     case "track":
                         Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
@@ -99,7 +97,7 @@ public class PlayerListener implements Player.EventsListener {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        ContentPanel.playerimage.setImage(new URL(track.getAlbum().getImages()[0].getUrl()).openStream());
+                        ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
                                 PublicValues.canvasPlayer.play();
@@ -120,7 +118,7 @@ public class PlayerListener implements Player.EventsListener {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        ContentPanel.playerimage.setImage(new URL(t.getAlbum().getImages()[0].getUrl()).openStream());
+                        ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
                                 PublicValues.canvasPlayer.play();
