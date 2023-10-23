@@ -45,6 +45,7 @@ public class SpotifyAPI {
                 while(parsed != total) {
                     for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                         totable.addModifyAction(() -> ((DefaultTableModel) totable.getModel()).addRow(new Object[]{album.getName()}));
+                        uricache.add(album.getUri());
                         parsed++;
                     }
                     if(last == parsed) {
