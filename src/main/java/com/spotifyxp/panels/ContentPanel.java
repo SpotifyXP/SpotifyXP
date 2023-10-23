@@ -2021,6 +2021,9 @@ public class ContentPanel extends JPanel {
         legacyswitch.setUI(new BasicTabbedPaneUI() {
             @Override
             protected int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
+                if(!(PublicValues.theme instanceof DarkGreen)) {
+                    return frame.getWidth() / legacyswitch.getTabCount() - 3;
+                }
                 return frame.getWidth() / legacyswitch.getTabCount();
             }
         });
