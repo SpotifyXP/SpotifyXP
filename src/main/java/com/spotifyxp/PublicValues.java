@@ -62,4 +62,5 @@ public class PublicValues {
     public static boolean blockArtistPanelBackButton = false;
     public static boolean nogui = false;
     public static Color borderColor = Color.black;
+    public static boolean autoLoadHotList = false;
 }

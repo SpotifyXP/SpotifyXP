@@ -285,13 +285,12 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        if (!(PublicValues.theme instanceof Legacy) && !(PublicValues.theme instanceof DarkGreen)) {
+        if (PublicValues.autoLoadHotList) {
             Thread t = new Thread(this::setHotlistVisible);
             t.start();
             add(tabpanel);
-        } else {
-            createLegacy();
         }
+        createLegacy();
         try {
             if (!(Factory.getSpotifyApi().getCurrentUsersProfile() == null)) {
                 countryCode = Factory.getSpotifyApi().getCurrentUsersProfile().build().execute().getCountry();
@@ -330,7 +329,6 @@ public class ContentPanel extends JPanel {
                             PublicValues.spotifyplayer.addToQueue(s);
                         }
                     }catch (Exception e) {
-                        e.printStackTrace();
                     }
                 }
             } catch (Exception e) {
@@ -629,10 +627,12 @@ public class ContentPanel extends JPanel {
         playerarea.setLayout(null);
         playerareashufflebutton = new JSVGPanel();
         playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
+        playerareashufflebutton.getJComponent().setBackground(frame.getBackground());
         // playerarea.add(playerareashufflebutton.getJComponent());
         JComponentFactory.addJComponent(playerareashufflebutton.getJComponent());
         playerarearepeatingbutton = new JSVGPanel();
         playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
+        playerarearepeatingbutton.getJComponent().setBackground(frame.getBackground());
         playerarea.add(playerarearepeatingbutton.getJComponent());
         playerareashufflebutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
@@ -682,6 +682,7 @@ public class ContentPanel extends JPanel {
         playerarea.add(playerimage);
         playerarealyricsbutton = new JSVGPanel();
         playerarealyricsbutton.getJComponent().setBounds(280, 75, 14, 14);
+        playerarealyricsbutton.getJComponent().setBackground(frame.getBackground());
         playerarea.add(playerarealyricsbutton.getJComponent());
         playerarealyricsbutton.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
@@ -709,10 +710,8 @@ public class ContentPanel extends JPanel {
         });
         JComponentFactory.addJComponent(playerarealyricsbutton.getJComponent());
         playerareavolumeicon = new JSVGPanel();
-        if (PublicValues.theme instanceof Legacy) {
-            playerareavolumeicon.setSVG(false);
-        }
         playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
+        playerareavolumeicon.getJComponent().setBackground(frame.getBackground());
         playerarea.add(playerareavolumeicon.getJComponent());
         JComponentFactory.addJComponent(playerareavolumeicon.getJComponent());
         playerareavolumecurrent = (JLabel) JComponentFactory.createJComponent(new JLabel());
@@ -731,50 +730,50 @@ public class ContentPanel extends JPanel {
             @Override
             public void stateChanged(ChangeEvent e) {
                 playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
-                if (playerareavolumeslider.getValue() == 0) {
-                    playerareavolumeicon.setImage(Graphics.VOLUMEMUTE.getPath());
-                } else {
-                    if (playerareavolumeslider.getValue() == 10) {
-                        playerareavolumeicon.setImage(Graphics.VOLUMEFULL.getPath());
-                    } else {
-                        if (playerareavolumeslider.getValue() < 10 && playerareavolumeslider.getValue() > 4) {
-                            playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
-                        }
-                    }
-                }
                 switch (playerareavolumeslider.getValue()) {
                     case 0:
                         player.getPlayer().setVolume(0);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEMUTE.getPath());
                         break;
                     case 1:
                         player.getPlayer().setVolume(6553);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 2:
                         player.getPlayer().setVolume(13107);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 3:
                         player.getPlayer().setVolume(19660);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 4:
                         player.getPlayer().setVolume(26214);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 5:
                         player.getPlayer().setVolume(32768);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 6:
                         player.getPlayer().setVolume(39321);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 7:
                         player.getPlayer().setVolume(45875);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 8:
                         player.getPlayer().setVolume(52428);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 9:
                         player.getPlayer().setVolume(58982);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                         break;
                     case 10:
                         player.getPlayer().setVolume(65536);
+                        playerareavolumeicon.setImage(Graphics.VOLUMEFULL.getPath());
                         break;
                 }
             }
@@ -790,8 +789,10 @@ public class ContentPanel extends JPanel {
         playerarea.setDebug(true);
         playerplaypreviousbutton = (JImageButton) JComponentFactory.createJComponent(new JImageButton());
         playerplaypreviousbutton.setBounds(287, 11, 70, 36);
+        playerplaypreviousbutton.setColor(frame.getBackground());
         playerarea.add(playerplaypreviousbutton);
         playerplaypausebutton = (JImageButton) JComponentFactory.createJComponent(new JImageButton());
+        playerplaypausebutton.setColor(frame.getBackground());
         playerplaypausebutton.setBounds(369, 11, 69, 36);
         playerplaypausebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -800,6 +801,7 @@ public class ContentPanel extends JPanel {
         });
         playerarea.add(playerplaypausebutton);
         playerplaynextbutton = (JImageButton) JComponentFactory.createJComponent(new JImageButton());
+        playerplaynextbutton.setColor(frame.getBackground());
         playerplaynextbutton.setBounds(448, 11, 69, 36);
         playerarea.add(playerplaynextbutton);
         playercurrenttime = (JSlider) JComponentFactory.createJComponent(new JSlider());
@@ -816,6 +818,7 @@ public class ContentPanel extends JPanel {
         playerarea.add(playerplaytimetotal);
         playerplaytimetotal.setForeground(PublicValues.globalFontColor);
         heart = new JSVGPanel();
+        heart.getJComponent().setBackground(frame.getBackground());
         heart.getJComponent().setBounds(525, 20, 24, 24);
         heart.getJComponent().addMouseListener(new MouseAdapter() {
             @Override
@@ -2006,9 +2009,6 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        if (PublicValues.theme instanceof DarkGreen) {
-            legacyswitch.setBackground(new Color(63, 63, 63));
-        }
         legacyswitch.setForeground(PublicValues.globalFontColor);
         legacyswitch.setBounds(0, 111, 784, 450);
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
@@ -2024,15 +2024,6 @@ public class ContentPanel extends JPanel {
                 return frame.getWidth() / legacyswitch.getTabCount();
             }
         });
-        if (!(PublicValues.theme instanceof DarkGreen)) {
-            legacyswitch.setBackgroundAt(0, Color.white);
-            legacyswitch.setBackgroundAt(1, Color.white);
-            legacyswitch.setBackgroundAt(2, Color.white);
-            legacyswitch.setBackgroundAt(3, Color.white);
-            legacyswitch.setBackgroundAt(4, Color.white);
-            legacyswitch.setBackgroundAt(5, Color.white);
-            legacyswitch.setBackgroundAt(6, Color.white);
-        }
         add(legacyswitch);
         legacyswitch.setSelectedIndex(0);
         setHomeVisible();
@@ -2646,8 +2637,7 @@ public class ContentPanel extends JPanel {
             }
         });
         mainframe.setForeground(Color.blue);
-        DefThread thread = new DefThread(InjectingPoints::INTERNALinvokeOnFrameReady);
-        thread.start();
+        InjectingPoints.INTERNALinvokeOnFrameReady();
         mainframe.setVisible(true);
         mainframe.setResizable(false);
         mainframe.pack();

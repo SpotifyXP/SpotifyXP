@@ -12,6 +12,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
+import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.theming.themes.Legacy;
@@ -66,10 +67,10 @@ public class PlayerListener implements Player.EventsListener {
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
         if (!ContentPanel.libraryuricache.contains(playableId.toSpotifyUri())) {
             ContentPanel.heart.isFilled = false;
-            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heart.svg"));
+            ContentPanel.heart.setImage(Graphics.HEART.getPath());
         } else {
             ContentPanel.heart.isFilled = true;
-            ContentPanel.heart.setImage(new Resources().readToInputStream("icons/heartfilled.svg"));
+            ContentPanel.heart.setImage(Graphics.HEARTFILLED.getPath());
         }
         if(ContentPanel.playerarealyricsbutton.isFilled) {
             PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
@@ -144,15 +145,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
-        if(PublicValues.theme instanceof Legacy) {
-            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerplaydark.svg"));
-        }else{
-            if(PublicValues.theme.isLight()) {
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaydark.svg"));
-            }else{
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerplaywhite.svg"));
-            }
-        }
+        ContentPanel.playerplaypausebutton.setImage(Graphics.PLAYERPlAY.getPath());
         try {
             if (PublicValues.canvasPlayer.isShown()) {
                 PublicValues.canvasPlayer.play();
@@ -164,15 +157,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
-        if(PublicValues.theme instanceof Legacy) {
-            ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("legacyicons/playerpausedark.svg"));
-        }else{
-            if(PublicValues.theme.isLight()) {
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausedark.svg"));
-            }else{
-                ContentPanel.playerplaypausebutton.setImage(new Resources().readToInputStream("icons/playerpausewhite.svg"));
-            }
-        }
+        ContentPanel.playerplaypausebutton.setImage(Graphics.PLAYERPAUSE.getPath());
         try {
             if (PublicValues.canvasPlayer.isShown()) {
                 PublicValues.canvasPlayer.play();

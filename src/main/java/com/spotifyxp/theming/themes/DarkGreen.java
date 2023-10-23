@@ -2,7 +2,9 @@ package com.spotifyxp.theming.themes;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.injector.InjectingPoints;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.theming.Theme;
 
 import javax.swing.*;
@@ -21,7 +23,9 @@ public class DarkGreen implements Theme {
 
     @Override
     public void initTheme() {
-        PublicValues.borderColor = Color.gray;
+        ContentPanel.frame.setBackground(Color.getColor("#3c3f41"));
+        ContentPanel.legacyswitch.setBackground(new Color(63, 63, 63));
+        PublicValues.borderColor = Color.black;
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException e) {

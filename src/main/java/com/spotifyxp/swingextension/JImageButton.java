@@ -93,7 +93,7 @@ public class JImageButton extends JSVGCanvas {
         setImage(new Resources().readToInputStream(resourcePath));
     }
 
-    final Color oldColor = ContentPanel.frame.getBackground();
+    Color oldColor = ContentPanel.frame.getBackground();
 
     public void addActionListener(ActionListener listener) {
         l = listener;
@@ -116,6 +116,10 @@ public class JImageButton extends JSVGCanvas {
             canvas.setBorder(BorderFactory.createEmptyBorder());
             repaint();
         }
+    }
+
+    public void setColor(Color c) {
+        oldColor = c;
     }
 
     public void setContentAreaFilled(boolean value) {
