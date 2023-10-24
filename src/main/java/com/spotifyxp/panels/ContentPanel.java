@@ -1669,6 +1669,13 @@ public class ContentPanel extends JPanel {
         errorDisplay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(errorQueue.size() > 100) {
+                    if(!(SystemUtils.getUsableRAMmb() > 512)) {
+                        errorQueue.clear();
+                        GraphicalMessage.sorryError("Too many errors! Out of memory");
+                        return;
+                    }
+                }
                 JDialog dialog = new JDialog();
                 dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
                 JScrollPane pane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());

@@ -4,6 +4,8 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.themes.DarkGreen;
 import com.spotifyxp.theming.themes.Legacy;
+import com.spotifyxp.theming.themes.MacOS;
+import com.spotifyxp.theming.themes.Ugly;
 import com.spotifyxp.utils.Utils;
 
 import java.util.ArrayList;
@@ -17,6 +19,11 @@ public class ThemeLoader {
     public ThemeLoader() {
         availableThemes.add(new DarkGreen());
         availableThemes.add(new Legacy());
+        if(!PublicValues.isMacOS) {
+            //Unsupported byte count: 16
+            availableThemes.add(new MacOS());
+        }
+        availableThemes.add(new Ugly());
     }
 
     public void tryLoadTheme(String name) throws UnknownThemeException {
