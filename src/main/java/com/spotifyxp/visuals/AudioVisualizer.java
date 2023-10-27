@@ -1,11 +1,16 @@
 package com.spotifyxp.visuals;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.FpsCounter;
 import com.spotifyxp.utils.SpectrumAnalyzer;
 
+import com.jcraft.jorbis.Info;
 import javax.swing.*;
 import java.awt.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -13,6 +18,8 @@ public class AudioVisualizer extends JPanel {
     byte[] converted = null;
     JFrame frame = null;
     final ArrayList<Color> colors = new ArrayList<>();
+    int buffersize = 0;
+    int gain = 0;
     public void open() {
         counter.start();
         frame = new JFrame(PublicValues.language.translate("ui.audiovisualizer.title"));
@@ -78,8 +85,8 @@ public class AudioVisualizer extends JPanel {
                     for (int b = 100; b > 0; b--) colors.add(new Color(0, 255, b * 255 / 100));
                     colors.add(new Color(0, 255, 0));
                     int c = 0;
-                    if (spectrumData == null) {
-                        if (lastspectrumdata == null) {
+                    if (spectrumData == null || spectrumData.length == 0) {
+                        if (lastspectrumdata == null || lastspectrumdata.length == 0) {
                             return;
                         }
                         spectrumData = lastspectrumdata;
@@ -92,7 +99,7 @@ public class AudioVisualizer extends JPanel {
                             gr.setColor(colors.get(c));
                         }
                         double amp = spectrumData[i];
-                        gr.drawLine(i, getHeight(), i, (int) amp);
+                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(ContentPanel.playerareavolumecurrent.getText()))));
                         c++;
                     }
                     drawFPS(gr);
@@ -121,7 +128,7 @@ public class AudioVisualizer extends JPanel {
                         }
                         double amp = spectrumData[i];
                         gr.setColor(colors.get(c));
-                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * 2)));
+                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(ContentPanel.playerareavolumecurrent.getText()))));
                         if(a == 5) {
                             c++;
                             a = 0;
@@ -129,14 +136,15 @@ public class AudioVisualizer extends JPanel {
                         a++;
                     }
                     drawFPS(gr);
+                    lastspectrumdata = spectrumData;
                 }catch (IllegalArgumentException ignored) {
                 }
             }
         }
     }
 
-
-    public void update(byte[] converted)  {
+    public void update(byte[] converted, int buffersize)  {
+        this.buffersize = buffersize;
         this.converted = converted;
         repaint();
     }

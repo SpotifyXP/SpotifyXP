@@ -2,6 +2,7 @@ package com.spotifyxp.api;
 
 
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.httpclient.Header;
@@ -10,7 +11,6 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -34,6 +34,24 @@ public class UnofficialSpotifyAPI {
      */
     public void refresh(String token) {
         api = token;
+    }
+
+    private static String makeGetStatic(String url, Header... headers) {
+        HttpClient client = new HttpClient();
+        GetMethod post = new GetMethod(url);
+        post.setRequestHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        post.setRequestHeader("App-Platform", "Win32");
+        post.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
+        for (Header header : headers) {
+            post.setRequestHeader(header);
+        }
+        try {
+            client.executeMethod(post);
+            return post.getResponseBodyAsString();
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+        }
+        return "FAILED";
     }
 
     String makeGet(String url, Header... headers) {
@@ -113,6 +131,11 @@ public class UnofficialSpotifyAPI {
         return lyrics;
     }
 
+    public static String getHomeTabJSON() {
+        String url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}") + "&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
+        return makeGetStatic(url);
+    }
+
     public static class Artist {
         public String id = "";
         public String uri = "";
@@ -122,14 +145,6 @@ public class UnofficialSpotifyAPI {
         public String artistImage = "";
         public String artistBackgroundImage = "";
         public String a = "";
-    }
-
-    public static class ArtistAlbum {
-
-    }
-
-    public static class ArtistTopTrack {
-
     }
 
     public static class ArtistPlaylist {

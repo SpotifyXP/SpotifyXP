@@ -25,17 +25,12 @@ import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 import com.spotifyxp.utils.OverwriteFactory;
-import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * @author Gianlu
@@ -225,6 +220,11 @@ public final class VorbisDecoder extends Decoder {
             if(PublicValues.lyricsDialog!=null) {
                 PublicValues.lyricsDialog.triggerRefresh();
             }
+
+            if(PublicValues.visualizer.isVisible()) {
+                PublicValues.visualizer.update(convertedBuffer, convertedBuffer.length);
+            }
+
             for (int i = 0; i < jorbisInfo.channels; i++) {
                 int sampleIndex = i * 2;
                 for (int j = 0; j < range; j++) {
@@ -235,10 +235,9 @@ public final class VorbisDecoder extends Decoder {
                     else if (value < -32768) value = -32768;
                     else if (value < 0) value = value | 32768;
 
+
+
                     convertedBuffer[sampleIndex] = (byte) (value);
-                    if(PublicValues.visualizer.isVisible()) {
-                        PublicValues.visualizer.update(convertedBuffer);
-                    }
                     convertedBuffer[sampleIndex + 1] = (byte) (value >>> 8);
                     sampleIndex += 2 * jorbisInfo.channels;
                 }

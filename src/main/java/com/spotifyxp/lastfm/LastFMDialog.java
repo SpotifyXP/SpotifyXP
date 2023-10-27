@@ -108,7 +108,7 @@ public class LastFMDialog extends JFrame2 {
                                 });
                             }
                             if(User.getRecentTracks(LFMValues.username, scrobblescurrent, LFMValues.tracklimit, LFMValues.apikey).getTotalPages() != scrobblescurrent) {
-                                scrobblestable.addModifyAction(() -> ((DefaultTableModel) scrobblestable.getModel()).addRow(new Object[] {"Load More", "Load More", "Load More"}));
+                                scrobblestable.addModifyAction(() -> ((DefaultTableModel) scrobblestable.getModel()).addRow(new Object[] {PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                             }
                         });
                         return;
@@ -152,7 +152,7 @@ public class LastFMDialog extends JFrame2 {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount() == 2) {
-                    if(userchartsartists.getModel().getValueAt(userchartsartists.getSelectedRow(), 1).toString().equalsIgnoreCase("load more")) {
+                    if(userchartsartists.getModel().getValueAt(userchartsartists.getSelectedRow(), 1).toString().equals(PublicValues.language.translate("ui.general.loadmore"))) {
                         DefThread thread = new DefThread(() -> {
                             userchartsartistscurrent++;
                             ((DefaultTableModel) userchartsartists.getModel()).setRowCount(userchartsartists.getRowCount() - 1);
@@ -163,7 +163,7 @@ public class LastFMDialog extends JFrame2 {
                                 });
                             }
                             if(User.getTopArtists(LFMValues.username, Period.OVERALL, LFMValues.tracklimit, userchartsartistscurrent, LFMValues.apikey).getTotalPages() != userchartsartistscurrent) {
-                                userchartsartists.addModifyAction(() -> ((DefaultTableModel) userchartsartists.getModel()).addRow(new Object[]{"Load More", "Load More"}));
+                                userchartsartists.addModifyAction(() -> ((DefaultTableModel) userchartsartists.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                             }
                         });
                         thread.start();
@@ -201,7 +201,7 @@ public class LastFMDialog extends JFrame2 {
         userchartsalbums.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(userchartsalbums.getModel().getValueAt(userchartsalbums.getSelectedRow(), 2).toString().equalsIgnoreCase("load more")) {
+                if(userchartsalbums.getModel().getValueAt(userchartsalbums.getSelectedRow(), 2).toString().equals(PublicValues.language.translate("ui.general.loadmore"))) {
                     DefThread thread = new DefThread(() -> {
                         userchartsalbumscurrent++;
                         ((DefaultTableModel) userchartsalbums.getModel()).setRowCount(userchartsalbums.getRowCount() - 1);
@@ -212,7 +212,7 @@ public class LastFMDialog extends JFrame2 {
                             });
                         }
                         if(User.getTopAlbums(LFMValues.username, Period.OVERALL, LFMValues.tracklimit, userchartsalbumscurrent, LFMValues.apikey).getTotalPages() != userchartsalbumscurrent) {
-                            userchartsalbums.addModifyAction(() -> ((DefaultTableModel) userchartsalbums.getModel()).addRow(new Object[]{"Load More", "Load More", "Load More"}));
+                            userchartsalbums.addModifyAction(() -> ((DefaultTableModel) userchartsalbums.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                         }
                     });
                     thread.start();
@@ -238,7 +238,7 @@ public class LastFMDialog extends JFrame2 {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount() == 2) {
-                    if(userchartstracks.getModel().getValueAt(userchartstracks.getSelectedRow(), 2).toString().equalsIgnoreCase("load more")) {
+                    if(userchartstracks.getModel().getValueAt(userchartstracks.getSelectedRow(), 2).toString().equals(PublicValues.language.translate("ui.general.loadmore"))) {
                         DefThread thread = new DefThread(() -> {
                             userchartstrackscurrent++;
                             ((DefaultTableModel) userchartstracks.getModel()).setRowCount(userchartstracks.getRowCount() - 1);
@@ -249,7 +249,7 @@ public class LastFMDialog extends JFrame2 {
                                 });
                             }
                             if(User.getTopTracks(LFMValues.username, Period.OVERALL, LFMValues.tracklimit, userchartstrackscurrent, LFMValues.apikey).getTotalPages() != userchartstrackscurrent) {
-                                userchartstracks.addModifyAction(() -> ((DefaultTableModel) userchartstracks.getModel()).addRow(new Object[]{"Load More", "Load More", "Load More"}));
+                                userchartstracks.addModifyAction(() -> ((DefaultTableModel) userchartstracks.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                             }
                         });
                         thread.start();
@@ -283,7 +283,7 @@ public class LastFMDialog extends JFrame2 {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount() == 2) {
-                    if(chartsartists.getModel().getValueAt(chartsartists.getSelectedRow(), 1).toString().equalsIgnoreCase("load more")) {
+                    if(chartsartists.getModel().getValueAt(chartsartists.getSelectedRow(), 1).toString().equals(PublicValues.language.translate("ui.general.loadmore"))) {
                         DefThread thread = new DefThread(() -> {
                             chartsartistscurrent++;
                             ((DefaultTableModel) chartsartists.getModel()).setRowCount(chartsartists.getRowCount() - 1);
@@ -294,7 +294,7 @@ public class LastFMDialog extends JFrame2 {
                                 });
                             }
                             if(Chart.getTopArtists(LFMValues.tracklimit, chartsartistscurrent, LFMValues.apikey).getTotalPages() != chartsartistscurrent) {
-                                chartsartists.addModifyAction(() -> ((DefaultTableModel) chartsartists.getModel()).addRow(new Object[]{"Load More", "Load More"}));
+                                chartsartists.addModifyAction(() -> ((DefaultTableModel) chartsartists.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                             }
                         });
                         thread.start();
@@ -326,7 +326,7 @@ public class LastFMDialog extends JFrame2 {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount() == 2) {
-                    if(chartstracks.getModel().getValueAt(chartstracks.getSelectedRow(), 2).toString().equalsIgnoreCase("load more")) {
+                    if(chartstracks.getModel().getValueAt(chartstracks.getSelectedRow(), 2).toString().equals(PublicValues.language.translate("ui.general.loadmore"))) {
                         DefThread thread = new DefThread(() -> {
                             chartstrackscurrent++;
                             ((DefaultTableModel) chartstracks.getModel()).setRowCount(chartstracks.getRowCount() - 1);
@@ -337,7 +337,7 @@ public class LastFMDialog extends JFrame2 {
                                 });
                             }
                             if(Chart.getTopTracks(LFMValues.tracklimit, chartstrackscurrent, LFMValues.apikey).getTotalPages() != chartstrackscurrent) {
-                                chartstracks.addModifyAction(() -> ((DefaultTableModel) chartstracks.getModel()).addRow(new Object[]{"Load More", "Load More", "Load More"}));
+                                chartstracks.addModifyAction(() -> ((DefaultTableModel) chartstracks.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                             }
                         });
                         thread.start();
@@ -392,7 +392,7 @@ public class LastFMDialog extends JFrame2 {
                 });
             }
             if(User.getRecentTracks(LFMValues.username, scrobblescurrent, LFMValues.tracklimit, LFMValues.apikey).getTotalPages() != scrobblescurrent) {
-                scrobblestable.addModifyAction(() -> ((DefaultTableModel) scrobblestable.getModel()).addRow(new Object[] {"Load More", "Load More", "Load More"}));
+                scrobblestable.addModifyAction(() -> ((DefaultTableModel) scrobblestable.getModel()).addRow(new Object[] {PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             }
         });
         t.start();
@@ -411,7 +411,7 @@ public class LastFMDialog extends JFrame2 {
                 });
             }
             if(User.getTopArtists(LFMValues.username, Period.OVERALL, LFMValues.tracklimit, userchartsartistscurrent, LFMValues.apikey).getTotalPages() != userchartsartistscurrent) {
-                userchartsartists.addModifyAction(() -> ((DefaultTableModel) userchartsartists.getModel()).addRow(new Object[]{"Load More", "Load More"}));
+                userchartsartists.addModifyAction(() -> ((DefaultTableModel) userchartsartists.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             }
         });
         artistthread.start();
@@ -425,7 +425,7 @@ public class LastFMDialog extends JFrame2 {
                 });
             }
             if(User.getTopAlbums(LFMValues.username, Period.OVERALL, LFMValues.tracklimit, userchartsalbumscurrent, LFMValues.apikey).getTotalPages() != userchartsalbumscurrent) {
-                userchartsalbums.addModifyAction(() -> ((DefaultTableModel) userchartsalbums.getModel()).addRow(new Object[]{"Load More", "Load More", "Load More"}));
+                userchartsalbums.addModifyAction(() -> ((DefaultTableModel) userchartsalbums.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             }
         });
         albumthread.start();
@@ -439,7 +439,7 @@ public class LastFMDialog extends JFrame2 {
                 });
             }
             if(User.getTopTracks(LFMValues.username, Period.OVERALL, LFMValues.tracklimit, userchartstrackscurrent, LFMValues.apikey).getTotalPages() != userchartstrackscurrent) {
-                userchartstracks.addModifyAction(() -> ((DefaultTableModel) userchartstracks.getModel()).addRow(new Object[]{"Load More", "Load More", "Load More"}));
+                userchartstracks.addModifyAction(() -> ((DefaultTableModel) userchartstracks.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             }
         });
         trackthread.start();
@@ -458,7 +458,7 @@ public class LastFMDialog extends JFrame2 {
                 });
             }
             if(Chart.getTopArtists(LFMValues.tracklimit, chartsartistscurrent, LFMValues.apikey).getTotalPages() != chartsartistscurrent) {
-                chartsartists.addModifyAction(() -> ((DefaultTableModel) chartsartists.getModel()).addRow(new Object[]{"Load More", "Load More"}));
+                chartsartists.addModifyAction(() -> ((DefaultTableModel) chartsartists.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             }
         });
         artistthread.start();
@@ -472,7 +472,7 @@ public class LastFMDialog extends JFrame2 {
                 });
             }
             if(Chart.getTopTracks(LFMValues.tracklimit, chartstrackscurrent, LFMValues.apikey).getTotalPages() != chartstrackscurrent) {
-                chartstracks.addModifyAction(() -> ((DefaultTableModel) chartstracks.getModel()).addRow(new Object[]{"Load More", "Load More", "Load More"}));
+                chartstracks.addModifyAction(() -> ((DefaultTableModel) chartstracks.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             }
         });
         trackthread.start();

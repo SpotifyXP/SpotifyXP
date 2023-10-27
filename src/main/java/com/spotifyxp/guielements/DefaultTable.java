@@ -40,6 +40,10 @@ public class DefaultTable extends DefTable {
         initializeTableContents();
     }
 
+    void initContextMenu() {
+
+    }
+
     public void clear() {
         uricache.clear();
         ((DefaultTableModel) getModel()).setRowCount(0);

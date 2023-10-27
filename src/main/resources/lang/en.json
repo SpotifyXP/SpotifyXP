@@ -30,6 +30,7 @@
   "ui.feedback.makesure": "Before clicking any button make sure you have mypal 68 downloaded and set the path to mypal 68 in settings",
   "ui.general.addtolibrary": "Add to library",
   "ui.general.copyuri": "Copy URI",
+  "ui.general.loadmore" : "Load More",
   "ui.general.refresh": "Refresh",
   "ui.general.remove": "Remove",
   "ui.general.remove.playlist": "Remove Playlist",
