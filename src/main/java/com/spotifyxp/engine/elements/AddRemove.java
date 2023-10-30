@@ -75,9 +75,7 @@ public class AddRemove implements Element {
             graphics2D.drawLine(x, y + s, x + s*2, y + s);
         }
         if(d) {
-            ConsoleLogging.changeName("DrawingEngine");
             ConsoleLogging.info("Drawing: '" + name + "' with x:" + x + " | y:" + y + " | width:" + w + " | height:" + h);
-            ConsoleLogging.changeName("SpotifyXP");
         }
         graphics2D.setColor(Color.black);
     }

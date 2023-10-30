@@ -8,6 +8,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.T
 import com.spotifyxp.events.Events;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 
 import javax.swing.*;
@@ -24,13 +25,13 @@ public class TrackUtils {
         String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*720)));
+                toret = String.valueOf(minutes*720);
                 break;
             case HIGH:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*1200)));
+                toret = String.valueOf(minutes*1200);
                 break;
             case VERY_HIGH:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
+                toret = String.valueOf(minutes*2400);
                 break;
         }
         if(toret.isEmpty() || toret.equals("0")) {
@@ -46,13 +47,13 @@ public class TrackUtils {
         String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*720)));
+                toret = String.valueOf(minutes*720);
                 break;
             case HIGH:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*1200)));
+                toret = String.valueOf(minutes*1200);
                 break;
             case VERY_HIGH:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
+                toret = String.valueOf(minutes*2400);
                 break;
         }
         if(toret.isEmpty() || toret.equals("0")) {
@@ -68,13 +69,13 @@ public class TrackUtils {
         String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*720)));
+                toret = String.valueOf(minutes*720);
                 break;
             case HIGH:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*1200)));
+                toret = String.valueOf(minutes*1200);
                 break;
             case VERY_HIGH:
-                toret = String.valueOf(Integer.parseInt(String.valueOf(minutes*2400)));
+                toret = String.valueOf(minutes*2400);
                 break;
         }
         if(toret.isEmpty() || toret.equals("0")) {
@@ -123,9 +124,8 @@ public class TrackUtils {
                 ContentPanel.player.getPlayer().tracks(true).next.clear();
             }
         }catch (NullPointerException exc) {
-            if (PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {
-                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("queue.failed.text"), PublicValues.language.translate("queue.failed.title"), JOptionPane.OK_CANCEL_OPTION);
-            }
+            ConsoleLogging.warning("Couldn't queue tracks");
+            ConsoleLogging.Throwable(exc);
             return;
         }
         int counter = 0;

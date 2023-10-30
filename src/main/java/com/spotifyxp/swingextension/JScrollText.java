@@ -32,14 +32,17 @@ public class JScrollText extends JLabel implements Runnable {
                 }
                 int hgt = metrics.getHeight();
                 int adv = metrics.stringWidth(getText());
+
+                //Check if the text is completely visible (Dont need to scroll)
                 Dimension size = new Dimension(adv + 2, hgt + 2);
                 if (!(size.width > getWidth())) {
                     animate = false;
                     break;
                 }
+                //----
+
                 String oldText = getText();
                 String newText = oldText.substring(1) + oldText.charAt(0);
-                super.setText(newText);
                 //HSync
                 try {
                     Thread.sleep(400);
@@ -55,6 +58,7 @@ public class JScrollText extends JLabel implements Runnable {
                 }
                 last = System.currentTimeMillis() - startofexec;
                 //---
+                super.setText(newText);
             }
         }
     }

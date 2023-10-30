@@ -18,10 +18,7 @@ public class KeyListener {
      */
     public void start() {
         if(PublicValues.appLocation.startsWith("/")) {
-            return; //Linux system is not supported > Missing library files
-        }
-        if(PublicValues.isMacOS) {
-            return; //Same as Linux
+            return; //Operating system is not supported
         }
         GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook();
         try {

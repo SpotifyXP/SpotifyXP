@@ -28,7 +28,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -92,7 +91,7 @@ public final class ApResolver {
             if (body == null) throw new IOException("No body");
             byte[] resp = IOUtils.toByteArray(body.byteStream());
             try {
-                if (IOUtils.toString(resp).split("<title>")[1].replace("</title>", "").contains("502")) {
+                if (new String(resp).split("<title>")[1].replace("</title>", "").contains("502")) {
                     GraphicalMessage.sorryErrorExit("Spotify APResolve responded with 502");
                 }
             }catch (ArrayIndexOutOfBoundsException e) {

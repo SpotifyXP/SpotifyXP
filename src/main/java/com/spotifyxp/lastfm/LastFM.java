@@ -5,8 +5,8 @@ import com.spotifyxp.configuration.ConfigValues;
 
 public class LastFM {
     public LastFM() {
-        LFMValues.username = PublicValues.config.get(ConfigValues.lastfmusername.name);
-        if(!PublicValues.config.get(ConfigValues.lastfmartistlimit.name).isEmpty()) LFMValues.artistlimit = Integer.parseInt(PublicValues.config.get(ConfigValues.lastfmartistlimit.name));
-        if(!PublicValues.config.get(ConfigValues.lastfmtracklimit.name).isEmpty()) LFMValues.tracklimit = Integer.parseInt(PublicValues.config.get(ConfigValues.lastfmtracklimit.name));
+        LFMValues.username = PublicValues.config.getString(ConfigValues.lastfmusername.name);
+        if(PublicValues.config.getInt(ConfigValues.lastfmartistlimit.name) != 0) LFMValues.artistlimit = PublicValues.config.getInt(ConfigValues.lastfmartistlimit.name);
+        if(PublicValues.config.getInt(ConfigValues.lastfmtracklimit.name) != 0) LFMValues.tracklimit = PublicValues.config.getInt(ConfigValues.lastfmtracklimit.name);
     }
 }

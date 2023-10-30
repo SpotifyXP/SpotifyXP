@@ -26,6 +26,8 @@
 
 package com.spotifyxp.deps.de.umass.lastfm.cache;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -44,23 +46,23 @@ public class MemoryCache extends Cache {
 
 	public boolean contains(String cacheEntryName) {
 		boolean contains = data.containsKey(cacheEntryName);
-		System.out.println("MemoryCache.contains: " + cacheEntryName + " ? " + contains);
+		ConsoleLoggingModules.debug("MemoryCache.contains: " + cacheEntryName + " ? " + contains);
 		return contains;
 	}
 
 	public InputStream load(String cacheEntryName) {
-		System.out.println("MemoryCache.load: " + cacheEntryName);
+		ConsoleLoggingModules.debug("MemoryCache.load: " + cacheEntryName);
         return new ByteArrayInputStream(data.get(cacheEntryName).getBytes(StandardCharsets.UTF_8));
     }
 
 	public void remove(String cacheEntryName) {
-		System.out.println("MemoryCache.remove: " + cacheEntryName);
+		ConsoleLoggingModules.debug("MemoryCache.remove: " + cacheEntryName);
 		data.remove(cacheEntryName);
 		expirations.remove(cacheEntryName);
 	}
 
 	public void store(String cacheEntryName, InputStream inputStream, long expirationDate) {
-		System.out.println("MemoryCache.store: " + cacheEntryName + " Expires at: " + new Date(expirationDate));
+		ConsoleLoggingModules.debug("MemoryCache.store: " + cacheEntryName + " Expires at: " + new Date(expirationDate));
 		StringBuilder b = new StringBuilder();
 		try {
 			BufferedReader r = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
@@ -77,7 +79,7 @@ public class MemoryCache extends Cache {
 
 	public boolean isExpired(String cacheEntryName) {
 		boolean exp = expirations.get(cacheEntryName) < System.currentTimeMillis();
-		System.out.println("MemoryCache.isExpired: " + cacheEntryName + " ? " + exp);
+		ConsoleLoggingModules.debug("MemoryCache.isExpired: " + cacheEntryName + " ? " + exp);
 		return exp;
 	}
 

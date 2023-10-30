@@ -3,15 +3,17 @@ package com.spotifyxp.utils;
 import java.io.InputStream;
 
 public class OverwriteFactory {
-    static OverwriteEnum overwriteWith = stream -> {
-        //Dummy
-    };
+    static OverwriteEnum overwriteWith;
 
     public static void setOverwrite(OverwriteEnum overwrite) {
+        Utils.checkPermission();
         overwriteWith = overwrite;
     }
 
     public static void run(InputStream stream) {
+        if(overwriteWith == null) {
+            return;
+        }
         overwriteWith.execute(stream);
     }
 

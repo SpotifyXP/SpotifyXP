@@ -1,14 +1,19 @@
 package com.spotifyxp.audio;
 
 public enum Quality {
-    NORMAL("Normal"),
-    HIGH("High"),
-    VERY_HIGH("VeryHigh");
-    final String s;
-    Quality(String toselect) {
-        s = toselect;
+    NORMAL("Normal", "NORMAL"),
+    HIGH("High", "HIGH"),
+    VERY_HIGH("VeryHigh", "VERYHIGH");
+    private String s;
+    private String configValue;
+    Quality(String toselect, String configValue) {
+        this.s = toselect;
+        this.configValue = configValue;
     }
-    String getAsString() {
+    public String getAsString() {
         return s;
+    }
+    public String configValue() {
+        return configValue;
     }
 }

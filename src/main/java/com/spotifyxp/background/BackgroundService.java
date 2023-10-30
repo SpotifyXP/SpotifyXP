@@ -8,6 +8,8 @@ import com.spotifyxp.utils.Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -26,6 +28,12 @@ public class BackgroundService {
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
                     ContentPanel.frame.setVisible(true);
+                }
+            });
+            trayDialog.addEntry("Exit", new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ContentPanel.frame.dispose();
                 }
             });
         }

@@ -73,10 +73,8 @@ public class Initiator {
         }
         if(PublicValues.debug) {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
-            PublicValues.logger.setShowTime(false);
-            ConsoleLoggingModules modules = new ConsoleLoggingModules("Module");
+            ConsoleLoggingModules modules = new ConsoleLoggingModules();
             modules.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
-            modules.setShowTime(false);
         }else{
             System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
                 @Override public void write(int b) {}
@@ -199,10 +197,10 @@ public class Initiator {
         SplashPanel.linfo.setText("Init Language...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
-        PublicValues.language.setNoAutoFindLanguage(libLanguage.Language.getCodeFromName(PublicValues.config.get(ConfigValues.language.name)));
+        PublicValues.language.setNoAutoFindLanguage(libLanguage.Language.getCodeFromName(PublicValues.config.getString(ConfigValues.language.name)));
         SplashPanel.linfo.setText("Parsing audio quality info...");
         try {
-            PublicValues.quality = Quality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name));
+            PublicValues.quality = Quality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name));
         }catch (Exception exception) {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
@@ -216,11 +214,11 @@ public class Initiator {
             SplashPanel.linfo.setText("Init Themes...");
             ThemeLoader loader = new ThemeLoader();
             try {
-                loader.loadTheme(PublicValues.config.get(ConfigValues.theme.name));
+                loader.loadTheme(PublicValues.config.getString(ConfigValues.theme.name));
             } catch (ThemeLoader.UnknownThemeException e) {
-                ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.get(ConfigValues.theme.name) + "'! Trying to load theme differently");
+                ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.getString(ConfigValues.theme.name) + "'! Trying to load theme differently");
                 try {
-                    loader.tryLoadTheme(PublicValues.config.get(ConfigValues.theme.name));
+                    loader.tryLoadTheme(PublicValues.config.getString(ConfigValues.theme.name));
                 } catch (Exception e2) {
                     ConsoleLogging.warning("Failed loading theme! SpotifyXP is now ugly");
                 }
@@ -243,7 +241,7 @@ public class Initiator {
         }
         if(!PublicValues.nogui) {
             SplashPanel.linfo.setText("Checking login...");
-            if (PublicValues.config.get(ConfigValues.username.name).isEmpty()) {
+            if (PublicValues.config.getString(ConfigValues.username.name).isEmpty()) {
                 new LoginDialog().open(); //Show login dialog if no username is set
                 startupTime = new StartupTime();
             }

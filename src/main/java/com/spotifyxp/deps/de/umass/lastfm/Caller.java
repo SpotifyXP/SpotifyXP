@@ -43,6 +43,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.Map.Entry;
@@ -228,7 +229,7 @@ public class Caller {
 		}
 
 		try {
-			return IOUtils.toString(inputStream);
+			return IOUtils.toString(inputStream, Charset.defaultCharset());
 		} catch (IOException e) {
 			throw new CallException(e);
 		}
@@ -329,7 +330,7 @@ public class Caller {
 			try {
 				HttpURLConnection urlConnection = openPostConnection(method, params);
 				inputStream = getInputStreamFromConnection(urlConnection);
-				return IOUtils.toString(inputStream);
+				return IOUtils.toString(inputStream, Charset.defaultCharset());
 			} catch (IOException e) {
 				throw new CallException(e);
 			}

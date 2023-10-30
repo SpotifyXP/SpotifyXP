@@ -3,6 +3,7 @@ package com.spotifyxp.deps.de.werwolf2303.javasetuptool.uninstaller;
 
 import com.spotifyxp.Initiator;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -51,7 +52,7 @@ public class Uninstaller {
         try {
             is = new FileInputStream(new File(new File(Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getAbsolutePath(), "uninstaller.xml"));
         } catch (FileNotFoundException | URISyntaxException e) {
-            ConsoleLogging.Throwable(e);
+            ConsoleLoggingModules.Throwable(e);
             return;
         }
         try {

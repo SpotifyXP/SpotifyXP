@@ -4,84 +4,97 @@ package com.spotifyxp.utils;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.DeleteMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.http.Header;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import javax.swing.*;
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 
 public class ConnectionUtils {
     public static String makeGet(String url) {
         try {
-            HttpClient client = new HttpClient();
-            GetMethod get = new GetMethod(url);
-            client.executeMethod(get);
-            return get.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url);
+            return EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             return "FAILED";
         }
     }
+
     public static String makeGet(String url, NameValuePair[] topost, Header... headers) {
         try {
-            HttpClient client = new HttpClient();
-            GetMethod get = new GetMethod(url);
-            get.setQueryString(topost);
-            for (Header header : headers) {
-                get.addRequestHeader(header.getName(), header.getValue());
+            HttpClient client = HttpClients.createDefault();
+            StringBuilder queries = new StringBuilder();
+            queries.append("?");
+            for(NameValuePair pair : topost) {
+                queries.append("&").append(pair.getName()).append("=").append(pair.getValue());
             }
-            client.executeMethod(get);
-            return get.getResponseBodyAsString();
+            HttpGet get = new HttpGet(url + queries.toString().replace("?&", "?"));
+            for(Header header : headers) {
+                get.addHeader(header);
+            }
+            return EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             return "FAILED";
         }
     }
+
     public static String makePost(String url, NameValuePair[] topost, Header... headers) {
         try {
-            HttpClient client = new HttpClient();
-            PostMethod get = new PostMethod(url);
-            get.setQueryString(topost);
-            if(!(headers.length==0)) {
-                for (Header header : headers) {
-                    get.addRequestHeader(header.getName(), header.getValue());
-                }
+            HttpClient client = HttpClients.createDefault();
+            StringBuilder queries = new StringBuilder();
+            queries.append("?");
+            for(NameValuePair pair : topost) {
+                queries.append("&").append(pair.getName()).append("=").append(pair.getValue());
             }
-            client.executeMethod(get);
-            return get.getResponseBodyAsString();
+            HttpPost post = new HttpPost(url + queries.toString().replace("?&", "?"));
+            for(Header header : headers) {
+                post.addHeader(header);
+            }
+            return EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             return "FAILED";
         }
     }
+
     public static String makeDelete(String url, NameValuePair[] topost, Header... headers) {
         try {
-            HttpClient client = new HttpClient();
-            DeleteMethod get = new DeleteMethod(url);
-            get.setQueryString(topost);
-            for (Header header : headers) {
-                get.addRequestHeader(header.getName(), header.getValue());
+            HttpClient client = HttpClients.createDefault();
+            StringBuilder queries = new StringBuilder();
+            queries.append("?");
+            for(NameValuePair pair : topost) {
+                queries.append("&").append(pair.getName()).append("=").append(pair.getValue());
             }
-            client.executeMethod(get);
-            return get.getResponseBodyAsString();
+            HttpDelete delete = new HttpDelete(url + queries.toString().replace("?&", "?"));
+            for(Header header : headers) {
+                delete.addHeader(header);
+            }
+            return EntityUtils.toString(client.execute(delete).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             return "FAILED";
         }
     }
+
     public static void openBrowser(String url) {
-        String browserpath;
-        if(new File("pom.xml").exists()) {
-            browserpath="C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-        }else {
-            browserpath = PublicValues.config.get(ConfigValues.mypalpath.name);
-        }
+        String browserpath = PublicValues.config.getString(ConfigValues.mypalpath.name);
         if(browserpath.isEmpty())  {
+            if(Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                }catch (Exception ignored) {
+                }
+            }
             JOptionPane.showConfirmDialog(null, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
             return;
         }
@@ -90,17 +103,6 @@ public class ConnectionUtils {
             builder.start();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-        }
-    }
-    public static boolean makePingToServer() {
-        try {
-            HttpClient client = new HttpClient();
-            GetMethod get = new GetMethod("http://192.168.2.30/ping.html");
-            get.setRequestHeader("Content-Type", "text/html");
-            client.executeMethod(get);
-            return get.getResponseBodyAsString().replace("\n", "").equals("Pong from Werwolf2303.de");
-        } catch (Exception e) {
-            return false;
         }
     }
 }

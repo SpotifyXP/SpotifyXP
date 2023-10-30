@@ -4,13 +4,12 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.PlayerUtils;
 
 public class Player {
-    int wait;
     com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;
     SpotifyAPI api;
-    int times = 0;
 
     /**
      * Retries building a working librespot-player instance
@@ -23,17 +22,11 @@ public class Player {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
         } catch (NullPointerException e) {
-            handleEOFBug();
-            return;
+            GraphicalMessage.sorryErrorExit("Failed building player");
         }
         ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
         player.addEventsListener(new PlayerListener(this));
         PublicValues.spotifyplayer = player;
-    }
-
-    void handleEOFBug() {
-        times++;
-        retry();
     }
 
     public Player() {
@@ -49,8 +42,7 @@ public class Player {
             ConsoleLogging.Throwable(e);
             ExceptionDialog.open(e);
         } catch (NullPointerException e) {
-            handleEOFBug();
-            return;
+            GraphicalMessage.sorryErrorExit("Failed building player");
         }
         ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
         player.addEventsListener(new PlayerListener(this));

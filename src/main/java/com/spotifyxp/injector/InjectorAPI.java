@@ -24,8 +24,8 @@ public class InjectorAPI {
 
     //No Deletion or Upload API
 
-    final String repoRootURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main";
-    final String repoURL = "https://raw.githubusercontent.com/werwolf2303/SpotifyXP-Repo/main/repo";
+    final String repoRootURL = "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main";
+    final String repoURL = "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo";
     public final ArrayList<Extension> extensions = new ArrayList<>();
 
     public static String compatibleMinVersion = "2.0.0";

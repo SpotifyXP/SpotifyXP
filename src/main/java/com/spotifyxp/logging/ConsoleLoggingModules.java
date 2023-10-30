@@ -1,21 +1,8 @@
 package com.spotifyxp.logging;
 
-import com.spotifyxp.lib.libDetect;
-import com.spotifyxp.utils.FileUtils;
-import com.spotifyxp.utils.UniversalPath;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-/**
- * Logs a message in the console (in module prefix)
- */
 public class ConsoleLoggingModules {
-    static class ColorMap {
+    //All colors available in the console
+    private static class ColorMap {
         // Reset
         public static final String RESET = "\033[0m";  // Text Reset
         // Regular Colors
@@ -85,92 +72,80 @@ public class ConsoleLoggingModules {
             System.out.print(RESET);
         }
     }
-    static String n = "";
-    static boolean st = true;
-    static boolean c = false;
-    static boolean i = false;
-    static boolean lfe = false;
-    static String lfp = "";
-    static String ca = "";
-    public ConsoleLoggingModules(String name) {
-        n = name;
-        i = true;
+    //----------------------------------------
+
+    private static enum Prefixes {
+        INFO("[INFO::{CLASSNAME} ] "),
+        ERROR("[ERROR::{CLASSNAME} ] "),
+        THROWABLE("[THROWABLE ] "),
+        WARNING("[WARNING::{CLASSNAME} ] "),
+        DEBUG("[DEBUG::{CLASSNAME} ] ");
+
+        private final String prefix;
+
+        Prefixes(String prefix) {
+            this.prefix = prefix;
+        }
+
+        public String getPrefix() {
+            return this.prefix;
+        }
     }
-    public static void changeName(String name) {
-        n = name;
+
+    private static enum ColoredPrefixes {
+        INFO(ColorMap.WHITE + "[" + ColorMap.BLUE_BOLD + "INFO::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
+        ERROR(ColorMap.WHITE + "[" + ColorMap.RED + "ERROR::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
+        THROWABLE(ColorMap.WHITE + "[" + ColorMap.RED_BOLD + "THROWABLE" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
+        WARNING(ColorMap.WHITE + "[" + ColorMap.YELLOW + "WARNING::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
+        DEBUG(ColorMap.WHITE + "[" + ColorMap.YELLOW + "DEBUG::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " ");
+
+        private final String prefix;
+
+        ColoredPrefixes(String prefix) {
+            this.prefix = prefix;
+        }
+
+        public String getPrefix() {
+            return this.prefix;
+        }
     }
+
+    private static enum PrefixTypes {
+        INFO,
+        ERROR,
+        THROWABLE,
+        WARNING,
+        DEBUG;
+    }
+
+    private static boolean isColored = false;
+    private static boolean showClassName = false;
+
     public void setColored(boolean colored) {
-        c = colored;
-        if(colored) {
-            n = ColorMap.CYAN + n + ColorMap.RESET;
-        }
+        isColored = colored;
     }
-    public void setLogFileEnabled() {
-        if(lfe) {
-            return; //Logfile already created
-        }
-        String path = UniversalPath.getTempDirectory();
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_hh#mm#ss");
-        String time = dateFormat.format(date);
-        if(libDetect.isWindows()) {
-            if (!new File(UniversalPath.getTempDirectory() + "\\libwerwolf").exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                new File(UniversalPath.getTempDirectory() + "\\libwerwolf").mkdir();
+
+    public void setShowClassName(boolean show) {
+        showClassName = show;
+    }
+
+    private static String getPrefix(PrefixTypes type) {
+        if(isColored) {
+            String toOut = ColoredPrefixes.valueOf(type.name()).getPrefix();
+            if(!showClassName) {
+                toOut = toOut.replace("::{CLASSNAME}", "::Module");
             }
-            if(!new File(UniversalPath.getTempDirectory() + "\\libwerwolf\\logs").exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                new File(UniversalPath.getTempDirectory() + "\\libwerwolf\\logs").mkdir();
-            }
+            return toOut;
         }else{
-            if (!new File(UniversalPath.getTempDirectory() + "/libwerwolf").exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                new File(UniversalPath.getTempDirectory() + "/libwerwolf").mkdir();
+            String toOut = Prefixes.valueOf(type.name()).getPrefix();
+            if(!showClassName) {
+                toOut = toOut.replace("::{CLASSNAME}", "::Module");
             }
-            if(!new File(UniversalPath.getTempDirectory() + "/libwerwolf/logs").exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                new File(UniversalPath.getTempDirectory() + "/libwerwolf/logs").mkdir();
-            }
+            return toOut;
         }
-        String additional = "/libwerwolf/logs/log" + time + ".lwlogfile";
-        if(libDetect.isWindows()) {
-            //noinspection ResultOfMethodCallIgnored
-            additional.replace("/", "\\");
-        }
-        File f = new File(path + additional);
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            f.createNewFile();
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-        lfe = true;
-        lfp = path + "/libwerwolf/logs/log" + time + ".lwlogfile";
     }
-    public void setLogFileEnabled(String path) {
-        if(lfe) {
-            return; //Logfile already created
-        }
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_hh#mm#ss");
-        String time = dateFormat.format(date);
-        File f = new File(path + "/log" + time + ".lwlogfile");
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            f.createNewFile();
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-        lfe = true;
-        lfp = path + "/libwerwolf/log" + time + ".lwlogfile";
-    }
-    public void setShowTime(boolean showTime) {
-        st = showTime;
-    }
-    static void setLine(int number) {
-        ca = n;
-        n = n + ":" + number;
-    }
+
+    //Logging with {} values
     public static void info(String message, Object... object) {
         int counter = 0;
         StringBuilder builder = new StringBuilder();
@@ -183,57 +158,6 @@ public class ConsoleLoggingModules {
             counter++;
         }
         info(builder.toString());
-    }
-    public static void info(String message, int linenumber) {
-        setLine(linenumber);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [INFO ] " + message);
-                }else{
-                    System.out.println(n + " [INFO ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.BLUE_BOLD + "INFO " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.BLUE_BOLD + "INFO " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        n = ca;
-        log(time + " " + n + " [INFO ] " + message);
-    }
-    static void log(String tolog) {
-        if(lfe) {
-            FileUtils.appendToFile(lfp, tolog);
-        }
-    }
-    public static void error(String message, int linenumber) {
-        setLine(linenumber);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [ERROR ] " + message);
-                }else{
-                    System.out.println(n + " [ERROR ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.RED + "ERROR " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.RED + "ERROR " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        n = ca;
-        log(time + " " + n + " [ERROR ] " + message);
     }
     public static void error(String message, Object... object) {
         int counter = 0;
@@ -248,56 +172,6 @@ public class ConsoleLoggingModules {
         }
         error(builder.toString());
     }
-    @SuppressWarnings("SameReturnValue")
-    public static boolean isTraceEnabled() {
-        return true; //For logger compatibility (Because I replaced Log4J with my logger)
-    }
-    public static void Throwable(Throwable throwable, int linenumber) {
-        setLine(linenumber);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        for(StackTraceElement s : throwable.getStackTrace()) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [THROWABLE ] " + s);
-                }else{
-                    System.out.println(n + " [THROWABLE ] " + s);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.RED_BOLD + "THROWABLE " + ColorMap.WHITE + "] " + ColorMap.RESET + s);
-                }else{
-                    System.out.println(n + " [" + ColorMap.RED_BOLD + "THROWABLE " + ColorMap.WHITE + "] " + ColorMap.RESET + s);
-                }
-            }
-            log(time + " " + n + " [THROWABLE ] " + s);
-        }
-        n = ca;
-    }
-    public static void warning(String message, int linenumber) {
-        setLine(linenumber);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [WARNING ] " + message);
-                }else{
-                    System.out.println(n + " [WARNING ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.YELLOW + "WARNING " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.YELLOW + "WARNING " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        n = ca;
-        log(time + " " + n + " [WARNING ] " + message);
-    }
     public static void warning(String message, Object... object) {
         int counter = 0;
         StringBuilder builder = new StringBuilder();
@@ -310,29 +184,6 @@ public class ConsoleLoggingModules {
             counter++;
         }
         warning(builder.toString());
-    }
-    public static void debug(String message, int linenumber) {
-        setLine(linenumber);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [DEBUG ] " + message);
-                }else{
-                    System.out.println(n + " [DEBUG ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.YELLOW + "DEBUG " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.YELLOW + "DEBUG " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        n = ca;
-        log(time + " " + n + " [DEBUG ] " + message);
     }
     public static void debug(String message, Object... object) {
         int counter = 0;
@@ -347,109 +198,32 @@ public class ConsoleLoggingModules {
         }
         debug(builder.toString());
     }
-    public static void info(String message) {
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [INFO ] " + message);
-                }else{
-                    System.out.println(n + " [INFO ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.BLUE_BOLD + "INFO " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.BLUE_BOLD + "INFO " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        log(time + " " + n + " [INFO ] " + message);
-    }
-    public static void debug(String message) {
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [DEBUG ] " + message);
-                }else{
-                    System.out.println(n + " [DEBUG ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.BLUE_BOLD + "DEBUG " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.BLUE_BOLD + "DEBUG " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        log(time + " " + n + " [DEBUG ] " + message);
-    }
-    public static void error(String message) {
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [ERROR ] " + message);
-                }else{
-                    System.out.println(n + " [ERROR ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.RED + "ERROR " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.RED + "ERROR " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        log(time + " " + n + " [ERROR ] " + message);
-    }
+    //-------------------------
+
     public static void Throwable(Throwable throwable) {
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
         for(StackTraceElement s : throwable.getStackTrace()) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [THROWABLE ] " + s);
-                }else{
-                    System.out.println(n + " [THROWABLE ] " + s);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.RED_BOLD + "THROWABLE " + ColorMap.WHITE + "] " + ColorMap.RESET + s);
-                }else{
-                    System.out.println(n + " [" + ColorMap.RED_BOLD + "THROWABLE " + ColorMap.WHITE + "] " + ColorMap.RESET + s);
-                }
-            }
-            log(time + " " + n + " [THROWABLE ] " + s);
+            System.out.println(getPrefix(PrefixTypes.THROWABLE) + s);
         }
     }
+
+    public static void info(String message) {
+        System.out.println(getPrefix(PrefixTypes.INFO).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
+    }
+
+    public static void error(String message) {
+        System.out.println(getPrefix(PrefixTypes.ERROR).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
+    }
+
+    public static void debug(String message) {
+        System.out.println(getPrefix(PrefixTypes.DEBUG).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
+    }
+
     public static void warning(String message) {
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String time = dateFormat.format(date);
-        if(i) {
-            if(!c) {
-                if(st) {
-                    System.out.println(time + " " + n + " [WARNING ] " + message);
-                }else{
-                    System.out.println(n + " [WARNING ] " + message);
-                }
-            }else{
-                if(st) {
-                    System.out.println(ColorMap.BLUE + time + ColorMap.WHITE + " " + n + " [" + ColorMap.YELLOW + "WARNING " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }else{
-                    System.out.println(n + " [" + ColorMap.YELLOW + "WARNING " + ColorMap.WHITE + "] " + ColorMap.RESET + message);
-                }
-            }
-        }
-        log(time + " " + n + " [WARNING ] " + message);
+        System.out.println(getPrefix(PrefixTypes.WARNING).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
+    }
+
+    //Log4JSupport
+    public static boolean isTraceEnabled() {
+        return true;
     }
 }

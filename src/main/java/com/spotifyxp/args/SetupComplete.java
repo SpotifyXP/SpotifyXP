@@ -1,6 +1,7 @@
 package com.spotifyxp.args;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.logging.ConsoleLogging;
 
 @SuppressWarnings("ConstantValue")
 public class SetupComplete implements Argument {
@@ -8,7 +9,7 @@ public class SetupComplete implements Argument {
     public Runnable runArgument(String parameter1) {
         return () -> {
             PublicValues.foundSetupArgument = true;
-            System.out.println("Found setup argument => " + PublicValues.foundSetupArgument);
+            ConsoleLogging.info("Found setup argument => " + PublicValues.foundSetupArgument);
         };
     }
 

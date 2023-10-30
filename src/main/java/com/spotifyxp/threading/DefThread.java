@@ -7,7 +7,7 @@ public class DefThread {
     Thread t;
     boolean wasStarted = false;
     Runnable toRun;
-    boolean isDaemon = true;
+    boolean isDaemon;
     public String getName() {
         return name;
     }
@@ -15,33 +15,29 @@ public class DefThread {
         return isDaemon;
     }
     public DefThread(Runnable runnable, String threadName) {
-        name = threadName;
-        t = new Thread(runnable);
-        t.setDaemon(isDaemon);
-        PublicValues.threads.add(t);
-        toRun = runnable;
+        this(runnable, threadName, false);
     }
+    public DefThread(Runnable runnable) {
+        this(runnable, "Thread-" + PublicValues.threadManager.getThreadCount(), false);
+    }
+
     public DefThread(Runnable runnable, String threadName, boolean daemon) {
         isDaemon = daemon;
         name = threadName;
         t = new Thread(runnable);
         t.setDaemon(isDaemon);
-        PublicValues.threads.add(t);
         toRun = runnable;
+        PublicValues.threadManager.addThread(this);
     }
-    public DefThread(Runnable runnable) {
-        t = new Thread(runnable);
-        t.setDaemon(true);
-        PublicValues.threads.add(t);
-    }
+
     public boolean isAlive() {
         return t.isAlive();
     }
     void restart() {
         t = new Thread(toRun);
         t.setDaemon(isDaemon);
-        PublicValues.threads.add(t);
         t.start();
+        PublicValues.threadManager.addThread(this);
     }
     //Only for shutdownHook
     public Thread getRawThread() {

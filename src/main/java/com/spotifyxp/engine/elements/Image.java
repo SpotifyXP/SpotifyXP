@@ -90,9 +90,7 @@ public class Image implements Element {
         if(image!=null) {
             graphics2D.drawImage(image.getScaledInstance(w,h, java.awt.Image.SCALE_REPLICATE), x, y, null);
             if(d) {
-                ConsoleLogging.changeName("DrawingEngine");
                 ConsoleLogging.info("Drawing: '" + name + "' with x:" + x + " | y:" + y + " | width:" + w + " | height:" + h);
-                ConsoleLogging.changeName("SpotifyXP");
             }
         }
     }

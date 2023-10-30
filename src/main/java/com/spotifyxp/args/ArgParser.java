@@ -5,7 +5,37 @@ import com.spotifyxp.utils.ApplicationUtils;
 import java.util.ArrayList;
 
 public class ArgParser {
-    public final ArrayList<Argument> arguments = new ArrayList<>();
+    public static ArrayList<Argument> passedArguments = new ArrayList<>();
+    public final ArrayList<com.spotifyxp.args.Argument> arguments = new ArrayList<>();
+
+    public static class Argument {
+        private com.spotifyxp.args.Argument argument;
+        private String name;
+        private String description;
+        private boolean hasParameter;
+        private String parameter;
+
+        public void execute() {
+            argument.runArgument(parameter);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getParameter() {
+            return parameter;
+        }
+
+        public boolean hasParameter() {
+            return hasParameter;
+        }
+    }
+
     public ArgParser() {
         arguments.add(new CustomSaveDir());
         arguments.add(new Debug());
@@ -25,7 +55,7 @@ public class ArgParser {
     public void printHelp() {
         System.out.println("SpotifyXP - " + ApplicationUtils.getVersion() + "\n");
         System.out.println("Usage java -jar SpotifyXP.jar <argument>..." + "\n\n");
-        for(Argument a : arguments) {
+        for(com.spotifyxp.args.Argument a : arguments) {
             if(a.hasParameter()) {
                 System.out.println("--" + a.getName() + "=<parameter>" + "   =>   " + a.getDescription());
             }else {
@@ -51,10 +81,17 @@ public class ArgParser {
                 parameter = s.split("=")[1];
             }catch (Exception ignored) {
             }
-            for(Argument a : arguments) {
+            for(com.spotifyxp.args.Argument a : arguments) {
                 if(a.getName().equals(argument)) {
                     isvalid = true;
                     a.runArgument(parameter).run();
+                    Argument arg = new Argument();
+                    arg.hasParameter = a.hasParameter();
+                    arg.argument = a;
+                    arg.name = a.getName();
+                    arg.description = a.getDescription();
+                    arg.parameter = parameter;
+                    passedArguments.add(arg);
                     break;
                 }
             }

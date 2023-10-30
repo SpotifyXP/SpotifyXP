@@ -11,10 +11,9 @@ import com.spotifyxp.utils.Utils;
 import java.util.ArrayList;
 
 public class ThemeLoader {
-    public static String extraSearchPath = ""; //Injector entry point
     public static Theme loadedTheme = null;
     static String loadedThemePath = "";
-    public static final ArrayList<Theme> availableThemes = new ArrayList<>(); //Extensions can add their themes here
+    private static final ArrayList<Theme> availableThemes = new ArrayList<>();
 
     public ThemeLoader() {
         availableThemes.add(new DarkGreen());
@@ -24,6 +23,15 @@ public class ThemeLoader {
             availableThemes.add(new MacOS());
         }
         availableThemes.add(new Ugly());
+    }
+
+    public static boolean hasTheme(String name) {
+        for(Theme t : availableThemes) {
+            if(Utils.getClassName(t.getClass()).equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void tryLoadTheme(String name) throws UnknownThemeException {
@@ -52,6 +60,14 @@ public class ThemeLoader {
         if(!found) {
             throw new UnknownThemeException(name);
         }
+    }
+
+    public static ArrayList<Theme> getAvailableThemes() {
+        return availableThemes;
+    }
+
+    public static void addTheme(Theme theme) {
+        availableThemes.add(theme);
     }
 
     void executeTheme(Theme theme) {

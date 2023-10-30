@@ -8,6 +8,4 @@ public class LFMValues {
     public static String username = "";
     public static int artistlimit = 10;
     public static int tracklimit = 20;
-    public static final String candidate = "ALPHA";
-    public static final String version = "0.0.1";
 }

@@ -2,8 +2,9 @@ package com.spotifyxp.utils;
 
 
 import com.spotifyxp.logging.ConsoleLogging;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,9 +48,9 @@ public class URLUtils {
     }
     public static boolean isURLReachable(String url, int port) {
         try {
-            HttpClient client = new HttpClient();
-            GetMethod get = new GetMethod(url + ":" + port);
-            client.executeMethod(get);
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url + ":" + port);
+            client.execute(get);
             return true;
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);

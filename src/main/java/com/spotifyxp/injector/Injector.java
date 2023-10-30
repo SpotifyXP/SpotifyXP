@@ -106,15 +106,6 @@ public class Injector {
         return injectedJars;
     }
 
-    /**
-     * DEPRECATION_
-     * Throws UnsupportedOperationException
-     */
-    @Deprecated
-    public void unload() {
-        throw new UnsupportedOperationException();
-    }
-
     public static class InjectionEntry {
         public String filename = "";
         public String identifier = "";

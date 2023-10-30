@@ -85,7 +85,7 @@ public final class FacebookAuthenticator implements Closeable {
                 if(Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().browse(url.uri());
                 }else{
-                    ConsoleLogging.error("[Facebook Auth] Function is not supported on your OS: 'java.awt.Desktop'");
+                    ConsoleLoggingModules.error("[Facebook Auth] Function is not supported on your OS: 'java.awt.Desktop'");
                     System.exit(0);
                 }
             }else{

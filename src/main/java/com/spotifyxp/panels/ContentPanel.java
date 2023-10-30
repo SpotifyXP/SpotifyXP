@@ -19,7 +19,6 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
-import com.spotifyxp.injector.InjectingPoints;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lastfm.LastFMDialog;
 import com.spotifyxp.listeners.PlayerListener;
@@ -36,6 +35,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
@@ -2375,7 +2375,7 @@ public class ContentPanel extends JPanel {
                 }
                 read++;
             }
-            String out = IOUtils.toString(new FileInputStream(new File(PublicValues.fileslocation, "play.state")));
+            String out = IOUtils.toString(new FileInputStream(new File(PublicValues.fileslocation, "play.state")), Charset.defaultCharset());
             for(int i = 0; i < out.split("\n").length; i++) {
                 if(i > 5) {
                     state.queue.add(out.split("\n")[i]);
@@ -2738,7 +2738,7 @@ public class ContentPanel extends JPanel {
             }
         });
         mainframe.setForeground(Color.blue);
-        InjectingPoints.INTERNALinvokeOnFrameReady();
+        Events.INTERNALtriggerOnFrameReadyEvents();
         mainframe.setVisible(true);
         mainframe.setResizable(false);
         mainframe.pack();

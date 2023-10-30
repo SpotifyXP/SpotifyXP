@@ -3,10 +3,11 @@ package com.spotifyxp.api;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-
 import java.io.IOException;
 
 public class GitHubAPI {
@@ -19,12 +20,11 @@ public class GitHubAPI {
     public static String makeRequestGet(String url) {
         String ret = "FAILED";
         try {
-            HttpClient client = new HttpClient();
-            GetMethod post = new GetMethod(url);
-            post.addRequestHeader("Accept", "application/vnd.github+json");
-            post.addRequestHeader("X-GitHub-Api-Version", "2022-11-28");
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url);
+            get.addHeader("Accept", "application/vnd.github+json");
+            get.addHeader("X-GitHub-Api-Version", "2022-11-28");
+            ret = EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);

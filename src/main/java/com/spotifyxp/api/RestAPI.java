@@ -27,22 +27,20 @@ import java.util.Objects;
 
 
 public class RestAPI implements Runnable {
-    HttpServer server;
-    final Thread t = new Thread(this);
-    final int port = 4090;
-    static final ArrayList<String> authIps = new ArrayList<>();
-    static String username;
-    static String password;
+    private final Thread t = new Thread(this);
+    private static final ArrayList<String> authIps = new ArrayList<>();
+    private static String username;
+    private static String password;
     private static final String ALGORITHM = "AES";
 
 
     public RestAPI() {
-        username = PublicValues.config.get(ConfigValues.username.name);
-        password = PublicValues.config.get(ConfigValues.password.name);
+        username = PublicValues.config.getString(ConfigValues.username.name);
+        password = PublicValues.config.getString(ConfigValues.password.name);
         if(PublicValues.spotifyplayer != null) {
             return;
         }
-        if(!PublicValues.config.get(ConfigValues.username.name).equalsIgnoreCase("")) {
+        if(!PublicValues.config.getString(ConfigValues.username.name).equalsIgnoreCase("")) {
             try {
                 PublicValues.spotifyplayer = PlayerUtils.buildPlayer(true);
             } catch (Session.SpotifyAuthenticationException e) {
@@ -55,7 +53,8 @@ public class RestAPI implements Runnable {
     @Override
     public void run() {
         try {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
+            int port = 4090;
+            HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
             server.createContext("/", RestAPI::handleRoot);
             server.start();
         }catch (Exception e) {
@@ -290,7 +289,7 @@ public class RestAPI implements Runnable {
     }
 
     static void handleInitialLogin(HttpExchange exchange, ArrayList<BasicNameValuePair> pairs) throws Exception {
-        if(!PublicValues.config.get(ConfigValues.username.name).equalsIgnoreCase("")) {
+        if(!PublicValues.config.getString(ConfigValues.username.name).equalsIgnoreCase("")) {
             WebUtils.sendCode(exchange, HttpStatusCodes.BAD_REQUEST.getValue(), makeJSONResponse("LoggedIn", new BasicNameValuePair("User", PublicValues.session.username())));
             return;
         }

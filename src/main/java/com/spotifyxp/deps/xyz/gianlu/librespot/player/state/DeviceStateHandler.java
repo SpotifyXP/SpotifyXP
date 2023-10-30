@@ -298,7 +298,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
     });
 
     private void putConnectState(@NotNull Connect.PutStateRequest req) {
-        if(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.spconnect.name))) {
+        if(Boolean.parseBoolean(PublicValues.config.getString(ConfigValues.spconnect.name))) {
             return;
         }
         if(lastReq == null) {

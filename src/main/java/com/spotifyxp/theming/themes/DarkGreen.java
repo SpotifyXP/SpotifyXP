@@ -2,7 +2,6 @@ package com.spotifyxp.theming.themes;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.injector.InjectingPoints;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.theming.Theme;

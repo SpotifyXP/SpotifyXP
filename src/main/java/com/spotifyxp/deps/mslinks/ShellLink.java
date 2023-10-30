@@ -19,6 +19,7 @@ import com.spotifyxp.deps.io.ByteWriter;
 import com.spotifyxp.deps.mslinks.data.LinkFlags;
 import com.spotifyxp.deps.mslinks.extra.*;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.File;
 import java.io.IOException;
@@ -114,7 +115,7 @@ public class ShellLink {
 					extra.put(sign, new Stub(data, size, sign));
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException	| SecurityException e) {
-				ConsoleLogging.Throwable(e);
+				ConsoleLoggingModules.Throwable(e);
 			}
 		}
 	}
@@ -324,7 +325,7 @@ public class ShellLink {
 				extra.put(signature, block);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException | NoSuchMethodException	| SecurityException e) {
-				ConsoleLogging.Throwable(e);
+				ConsoleLoggingModules.Throwable(e);
 			}
 		}
 		return block;

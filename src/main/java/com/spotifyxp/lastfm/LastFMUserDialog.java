@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class LastFMUserDialog extends JFrame2 {
     public LastFMUserDialog() {
-        User user = User.getInfo(Authenticator.getMobileSession(LFMValues.username, PublicValues.config.get(ConfigValues.lastfmpassword.name), LFMValues.apikey, LFMValues.apisecret));
+        User user = User.getInfo(Authenticator.getMobileSession(LFMValues.username, PublicValues.config.getString(ConfigValues.lastfmpassword.name), LFMValues.apikey, LFMValues.apisecret));
 
         setPreferredSize(new Dimension(350, 600));
         setLayout(null);

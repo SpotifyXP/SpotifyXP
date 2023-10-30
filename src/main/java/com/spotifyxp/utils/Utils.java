@@ -57,4 +57,15 @@ public class Utils {
     public static String getClassName(Class c) {
         return c.getName().split("\\.")[c.getName().split("\\.").length-1];
     }
+
+    @SuppressWarnings("all")
+    public static void checkPermission(Class... expectedCallerClasses) {
+        StackTraceElement callerTrace = Thread.currentThread().getStackTrace()[3];
+        for (Class expectedClass : expectedCallerClasses) {
+            if (callerTrace.getClassName().equals(expectedClass.getName())) {
+                return;
+            }
+        }
+        throw new RuntimeException("A suspicious class tried to call ThreadManager.addThread! Blocking access...");
+    }
 }

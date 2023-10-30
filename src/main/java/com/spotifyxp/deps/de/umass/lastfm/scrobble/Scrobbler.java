@@ -30,6 +30,7 @@ import com.spotifyxp.deps.de.umass.lastfm.Authenticator;
 import com.spotifyxp.deps.de.umass.lastfm.Caller;
 import com.spotifyxp.deps.de.umass.lastfm.Session;
 import com.spotifyxp.deps.de.umass.lastfm.Track;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -191,7 +192,7 @@ public class Scrobbler {
 		String body = String
 				.format("s=%s&a=%s&t=%s&b=%s&l=%s&n=%s&m=", sessionId, encode(artist), encode(track), b, l, n);
 		if (Caller.getInstance().isDebugMode())
-			System.out.println("now playing: " + body);
+			ConsoleLoggingModules.debug("now playing: " + body);
 		HttpURLConnection urlConnection = Caller.getInstance().openConnection(nowPlayingUrl);
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoOutput(true);
@@ -259,7 +260,7 @@ public class Scrobbler {
 		}
 		String body = builder.toString();
 		if (Caller.getInstance().isDebugMode())
-			System.out.println("submit: " + body);
+			ConsoleLoggingModules.debug("submit: " + body);
 		HttpURLConnection urlConnection = Caller.getInstance().openConnection(submissionUrl);
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoOutput(true);

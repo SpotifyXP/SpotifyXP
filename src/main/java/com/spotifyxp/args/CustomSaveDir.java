@@ -7,7 +7,7 @@ public class CustomSaveDir implements Argument{
     public Runnable runArgument(String parameter1) {
         return () -> {
             PublicValues.fileslocation = parameter1;
-            PublicValues.configfilepath = PublicValues.fileslocation + "/config.properties";
+            PublicValues.configfilepath = PublicValues.fileslocation + "/config.json";
             PublicValues.customSaveDir = true;
             PublicValues.appLocation = PublicValues.fileslocation;
         };

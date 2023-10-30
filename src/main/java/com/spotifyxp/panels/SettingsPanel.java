@@ -95,9 +95,9 @@ public class SettingsPanel extends JPanel {
         lastfmborder.add(settingslastfmlogin);
 
         settingslastfmlogin.addActionListener(e -> new LastFMLogin().open(() -> {
-            if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogout.setEnabled(true);
-            if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogin.setEnabled(false);
-            if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
+            if(!PublicValues.config.getString(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogout.setEnabled(true);
+            if(!PublicValues.config.getString(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmlogin.setEnabled(false);
+            if(!PublicValues.config.getString(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.getString(ConfigValues.lastfmusername.name) + "  "));
         }));
 
         settingslastfmlogout = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.logout")));
@@ -111,7 +111,7 @@ public class SettingsPanel extends JPanel {
             PublicValues.config.write(ConfigValues.lastfmpassword.name, "");
             settingslastfmlogout.setEnabled(false);
             settingslastfmlogin.setEnabled(true);
-            settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.get(ConfigValues.lastfmusername.name) + "  "));
+            settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.getString(ConfigValues.lastfmusername.name) + "  "));
         });
 
         settingsbrowserlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.browser.label")));
@@ -157,7 +157,7 @@ public class SettingsPanel extends JPanel {
         settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
         settingsuiselecttheme = (JComboBox) JComponentFactory.createJComponent(new JComboBox());
-        for(Theme theme : ThemeLoader.availableThemes) {
+        for(Theme theme : ThemeLoader.getAvailableThemes()) {
             ((DefaultComboBoxModel)settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
         }
         settingsuiselecttheme.setBounds(159, 85, 217, 30);
@@ -252,19 +252,19 @@ public class SettingsPanel extends JPanel {
             ((DefaultComboBoxModel) settingslanguageselect.getModel()).addElement(s);
         }
 
-        settingslanguageselect.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.language.name));
-        settingsdisableexceptions.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.hideExceptions.name)));
-        settingsuidisableplayerstats.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.disableplayerstats.name)));
-        settingsbrowserpath.setText(PublicValues.config.get(ConfigValues.mypalpath.name));
-        settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.theme.name));
-        settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.get(ConfigValues.audioquality.name));
-        settingsturnoffspotifyconnect.setSelected(Boolean.parseBoolean(PublicValues.config.get(ConfigValues.spconnect.name)));
+        settingslanguageselect.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.language.name));
+        settingsdisableexceptions.setSelected(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name));
+        settingsuidisableplayerstats.setSelected(PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name));
+        settingsbrowserpath.setText(PublicValues.config.getString(ConfigValues.mypalpath.name));
+        settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.theme.name));
+        settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
+        settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
 
         if(settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
         }
 
-        if(!PublicValues.config.get(ConfigValues.lastfmusername.name).isEmpty()) {
+        if(!PublicValues.config.getString(ConfigValues.lastfmusername.name).isEmpty()) {
             settingslastfmlogout.setEnabled(true);
             settingslastfmlogin.setEnabled(false);
         }else{

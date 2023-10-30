@@ -5,10 +5,12 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.http.Header;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -37,53 +39,50 @@ public class UnofficialSpotifyAPI {
     }
 
     private static String makeGetStatic(String url, Header... headers) {
-        HttpClient client = new HttpClient();
-        GetMethod post = new GetMethod(url);
-        post.setRequestHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
-        post.setRequestHeader("App-Platform", "Win32");
-        post.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
+        HttpClient client = HttpClients.createDefault();
+        HttpGet get = new HttpGet(url);
+        get.setHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        get.setHeader("App-Platform", "Win32");
+        get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
         for (Header header : headers) {
-            post.setRequestHeader(header);
+            get.setHeader(header);
         }
         try {
-            client.executeMethod(post);
-            return post.getResponseBodyAsString();
+            return EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
         return "FAILED";
     }
 
-    String makeGet(String url, Header... headers) {
-        HttpClient client = new HttpClient();
-        GetMethod post = new GetMethod(url);
-        post.setRequestHeader("Authorization", "Bearer " + api);
-        post.setRequestHeader("App-Platform", "Win32");
-        post.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
+    private String makeGet(String url, Header... headers) {
+        HttpClient client = HttpClients.createDefault();
+        HttpGet get = new HttpGet(url);
+        get.setHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        get.setHeader("App-Platform", "Win32");
+        get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
         for (Header header : headers) {
-            post.setRequestHeader(header);
+            get.setHeader(header);
         }
         try {
-            client.executeMethod(post);
-            return post.getResponseBodyAsString();
+            return EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
         return "FAILED";
     }
 
-    String makePost(String url, Header... headers) {
-        HttpClient client = new HttpClient();
-        PostMethod post = new PostMethod(url);
-        post.setRequestHeader("Authorization", "Bearer " + api);
-        post.setRequestHeader("App-Platform", "Win32");
-        post.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
+    private String makePost(String url, Header... headers) {
+        HttpClient client = HttpClients.createDefault();
+        HttpPost post = new HttpPost(url);
+        post.setHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        post.setHeader("App-Platform", "Win32");
+        post.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
         for (Header header : headers) {
-            post.setRequestHeader(header);
+            post.setHeader(header);
         }
         try {
-            client.executeMethod(post);
-            return post.getResponseBodyAsString();
+            return EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
@@ -157,7 +156,6 @@ public class UnofficialSpotifyAPI {
     public void getArtist(String uri) {
         //b82fd661d09d47afff0d0239b165e01c7b21926923064ecc7e63f0cde2b12f4e
         JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=queryArtistOverview&variables={\"uri\":\"" + uri + "\",\"locale\":\"\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"\"}}"))).toString());
-        System.out.println(root);
     }
 
     String encodeURL(String url) {
@@ -374,7 +372,7 @@ public class UnofficialSpotifyAPI {
                         break;
                 }
             } catch (IllegalArgumentException e) {
-                System.out.println("Found unsupported SectionType: " + item.getJSONObject("content").getString("__typename"));
+                ConsoleLogging.error("Found unsupported SectionType: " + item.getJSONObject("content").getString("__typename"));
             }
         }
         return homeTabSection;
@@ -1074,8 +1072,8 @@ public class UnofficialSpotifyAPI {
      * @return url of canvas (file)
      */
     public static String getCanvasURLForTrack(String artist, String album, String track) {
-        HttpClient client = new HttpClient();
-        GetMethod method;
+        HttpClient client = HttpClients.createDefault();
+        HttpGet method;
         try {
             track =  URLEncoder.encode(track, StandardCharsets.UTF_8.displayName());
             album = URLEncoder.encode(album, StandardCharsets.UTF_8.displayName());
@@ -1083,13 +1081,12 @@ public class UnofficialSpotifyAPI {
             track = track.replaceAll("\\+", "%20");
             album = album.replaceAll("\\+", "%20");
             artist = artist.replaceAll("\\+", "%20");
-            method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+            method = new HttpGet("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
         } catch (UnsupportedEncodingException e) {
-            method = new GetMethod("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
+            method = new HttpGet("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
         }
         try {
-            client.executeMethod(method);
-            return method.getResponseBodyAsString();
+            return EntityUtils.toString(client.execute(method).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);

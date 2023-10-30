@@ -25,7 +25,7 @@ public class SplashPanel {
             frame.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
-            if(PublicValues.config.get(ConfigValues.hideExceptions.name).equals("false")) {
+            if(PublicValues.config.getString(ConfigValues.hideExceptions.name).equals("false")) {
                 ExceptionDialog.open(e);
             }
         }

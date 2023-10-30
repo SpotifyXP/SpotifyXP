@@ -32,7 +32,7 @@ public class PlayerUtils {
                 .setOutput(PlayerConfiguration.AudioOutput.MIXER)
                 .setOutputClass("")
                 .setOutputPipe(new File(""))
-                .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name)))
+                .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name)))
                 .setPreloadEnabled(true)
                 .setReleaseLineDelay(20)
                 .setVolumeSteps(64)
@@ -41,8 +41,8 @@ public class PlayerUtils {
                 .build();
         try {
             Session session;
-            if (PublicValues.config.get(ConfigValues.facebook.name).equalsIgnoreCase("false") || PublicValues.config.get(ConfigValues.facebook.name).equalsIgnoreCase("")) {
-                session = builder.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();
+            if (PublicValues.config.getString(ConfigValues.facebook.name).equalsIgnoreCase("false") || PublicValues.config.getString(ConfigValues.facebook.name).equalsIgnoreCase("")) {
+                session = builder.userPass(PublicValues.config.getString(ConfigValues.username.name), PublicValues.config.getString(ConfigValues.password.name)).create();
             } else {
                 session = builder.facebook().create();
             }
@@ -78,7 +78,7 @@ public class PlayerUtils {
                 .setOutput(PlayerConfiguration.AudioOutput.MIXER)
                 .setOutputClass("")
                 .setOutputPipe(new File(""))
-                .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.get(ConfigValues.audioquality.name)))
+                .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name)))
                 .setPreloadEnabled(true)
                 .setReleaseLineDelay(20)
                 .setVolumeSteps(64)
@@ -87,8 +87,8 @@ public class PlayerUtils {
                 .build();
         try {
             Session session;
-            if (PublicValues.config.get(ConfigValues.facebook.name).equalsIgnoreCase("false") || PublicValues.config.get(ConfigValues.facebook.name).equalsIgnoreCase("")) {
-                session = builder.userPass(PublicValues.config.get(ConfigValues.username.name), PublicValues.config.get(ConfigValues.password.name)).create();
+            if (PublicValues.config.getString(ConfigValues.facebook.name).equalsIgnoreCase("false") || PublicValues.config.getString(ConfigValues.facebook.name).equalsIgnoreCase("")) {
+                session = builder.userPass(PublicValues.config.getString(ConfigValues.username.name), PublicValues.config.getString(ConfigValues.password.name)).create();
             } else {
                 session = builder.facebook().create();
             }

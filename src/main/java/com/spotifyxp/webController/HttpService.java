@@ -30,6 +30,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.HttpUtils;
 import com.sun.net.httpserver.HttpExchange;
@@ -149,7 +150,7 @@ public class HttpService {
             server.createContext("/doLogin", exchange -> {
                 cors(exchange);
                 try {
-                    if (exchange.getRequestURI().toString().split("\\?key=")[1].equals(get_SHA_512_SecurePassword(PublicValues.config.get(ConfigValues.password.name)))) {
+                    if (exchange.getRequestURI().toString().split("\\?key=")[1].equals(get_SHA_512_SecurePassword(PublicValues.config.getString(ConfigValues.password.name)))) {
                         HttpUtils.sendResource("OK.html", exchange);
                         ips.add(String.valueOf(exchange.getRemoteAddress().getAddress().toString()));
                     } else {
@@ -165,7 +166,7 @@ public class HttpService {
                 if(ips.isEmpty()) {
                     return;
                 }
-                System.out.println("Deauth: " + exchange.getRemoteAddress().getAddress().toString());
+                ConsoleLoggingModules.debug("Deauth: " + exchange.getRemoteAddress().getAddress().toString());
                 ips.remove(exchange.getRemoteAddress().getAddress().toString());
             });
             server.createContext("/volumeup", exchange -> {

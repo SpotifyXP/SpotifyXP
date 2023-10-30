@@ -97,9 +97,7 @@ public class Heart implements Element {
         //Reset colors
         graphics2D.setColor(Color.BLACK);
         if(d) {
-            ConsoleLogging.changeName("DrawingEngine");
             ConsoleLogging.info("Drawing: '" + name + "' with x:" + x + " | y:" + y + " | width:" + w + " | height:" + h);
-            ConsoleLogging.changeName("SpotifyXP");
         }
     }
 }

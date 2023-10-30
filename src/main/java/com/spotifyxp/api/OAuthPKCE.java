@@ -6,15 +6,19 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.URI;
-import org.apache.commons.httpclient.methods.DeleteMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.PutMethod;
+import com.spotifyxp.utils.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class OAuthPKCE {
     private String token = "";
@@ -67,11 +71,10 @@ public class OAuthPKCE {
         }
         String ret = "FAILED";
         try {
-            HttpClient client = new HttpClient();
-            PostMethod post = new PostMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpPost post = new HttpPost(url);
+            post.addHeader("Authorization", "Bearer " + token);
+            ret = EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
@@ -91,12 +94,12 @@ public class OAuthPKCE {
         }
         String ret = "FAILED";
         try {
-            HttpClient client = new HttpClient();
-            PostMethod post = new PostMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + token);
-            post.setRequestBody(body);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpPost post = new HttpPost(url);
+            StringEntity requestEntity = new StringEntity(body);
+            post.setEntity(requestEntity);
+            post.addHeader("Authorization", "Bearer " + token);
+            ret = EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
@@ -115,11 +118,10 @@ public class OAuthPKCE {
         }
         String ret = "FAILED";
         try {
-            HttpClient client = new HttpClient();
-            GetMethod post = new GetMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpGet post = new HttpGet(url);
+            post.addHeader("Authorization", "Bearer " + token);
+            ret = EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
@@ -140,9 +142,9 @@ public class OAuthPKCE {
         String ret = "FAILED";
         try {
             StringBuilder builder = new StringBuilder();
-            HttpClient client = new HttpClient();
-            GetMethod post = new GetMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + token);
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url);
+            get.setHeader("Authorization", "Bearer " + token);
             int i = 0;
             for(NameValuePair pair : pairs) {
                 if(i == 0) {
@@ -152,12 +154,13 @@ public class OAuthPKCE {
                 }
                 i++;
             }
-            post.setURI(new URI(url + builder));
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            get.setURI(new URI(url + builder));
+            ret = EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
         return ret;
     }
@@ -174,11 +177,10 @@ public class OAuthPKCE {
         }
         String ret = "FAILED";
         try {
-            HttpClient client = new HttpClient();
-            PutMethod post = new PutMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpPut put = new HttpPut(url);
+            put.addHeader("Authorization", "Bearer " + token);
+            ret = EntityUtils.toString(client.execute(put).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
@@ -198,11 +200,10 @@ public class OAuthPKCE {
         }
         String ret = "FAILED";
         try {
-            HttpClient client = new HttpClient();
-            DeleteMethod post = new DeleteMethod(url);
-            post.addRequestHeader("Authorization", "Bearer " + token);
-            client.executeMethod(post);
-            ret = post.getResponseBodyAsString();
+            HttpClient client = HttpClients.createDefault();
+            HttpDelete delete = new HttpDelete(url);
+            delete.setHeader("Authorization", "Bearer " + token);
+            ret = EntityUtils.toString(client.execute(delete).getEntity());
         } catch (IOException e) {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);

@@ -1,7 +1,7 @@
 package com.spotifyxp.theming.themes;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.injector.InjectingPoints;
+import com.spotifyxp.events.Events;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.theming.Theme;
@@ -29,7 +29,7 @@ public class Legacy implements Theme {
                  InstantiationException | IllegalAccessException e) {
             ConsoleLogging.Throwable(e);
         }
-        InjectingPoints.registerOnFrameReady(new Runnable() {
+        Events.registerOnFrameReadyEvent(new Runnable() {
             @Override
             public void run() {
                 ContentPanel.legacyswitch.setBackgroundAt(0, Color.white);

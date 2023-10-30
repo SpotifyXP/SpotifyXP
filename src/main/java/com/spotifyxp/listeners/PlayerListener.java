@@ -15,8 +15,6 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.theming.themes.Legacy;
-import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
@@ -75,7 +73,7 @@ public class PlayerListener implements Player.EventsListener {
         if(ContentPanel.playerarealyricsbutton.isFilled) {
             PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
         }
-        if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
+        if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
             timer.schedule(new PlayerThread(), 0, 1000);
             try {
                 StringBuilder artists = new StringBuilder();
@@ -175,7 +173,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackSeeked(@NotNull Player player, long l) {
-        if(!PublicValues.config.get(ConfigValues.disableplayerstats.name).equals("true")) {
+        if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
             ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
         }
         try {

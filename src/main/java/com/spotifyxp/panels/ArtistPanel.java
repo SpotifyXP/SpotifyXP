@@ -334,7 +334,7 @@ public class ArtistPanel extends JPanel {
         lastfmartisturicache.clear();
         ((DefaultTableModel) lastfmartisttable.getModel()).setRowCount(0);
         DefThread thread = new DefThread(() -> {
-            if(PublicValues.config.get(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
+            if(PublicValues.config.getString(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
                 return;
             }
             for(Artist a : Artist.getSimilar(artisttitle.getText(), 10, LFMValues.apikey)) {

@@ -2,6 +2,7 @@ package com.spotifyxp.dialogs;
 
 
 
+
 import com.spotifyxp.events.HtmlDialogEvents;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.logging.ConsoleLogging;

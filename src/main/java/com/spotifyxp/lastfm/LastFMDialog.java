@@ -58,7 +58,7 @@ public class LastFMDialog extends JFrame2 {
 
     public LastFMDialog() {
         setPreferredSize(new Dimension(800, 600));
-        setTitle("Last.fm - Dashboard v" + LFMValues.version + " " + LFMValues.candidate);
+        setTitle("Last.fm - Dashboard");
         setLayout(null);
         scrobblespanel = new JPanel();
         userchartspanel = new JPanel();
@@ -479,7 +479,7 @@ public class LastFMDialog extends JFrame2 {
     }
 
     public static void openWhenLoggedIn() {
-        if(PublicValues.config.get(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
+        if(PublicValues.config.getString(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
             new LastFMLogin().open(() -> {
                 LastFMDialog dialog = new LastFMDialog();
                 dialog.open();

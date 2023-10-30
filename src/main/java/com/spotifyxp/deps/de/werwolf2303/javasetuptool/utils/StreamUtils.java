@@ -1,6 +1,7 @@
 package com.spotifyxp.deps.de.werwolf2303.javasetuptool.utils;
 
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class StreamUtils {
             }
             return result.toString();
         }catch (IOException e) {
-            ConsoleLogging.Throwable(e);
+            ConsoleLoggingModules.Throwable(e);
             return "";
         }
     }
