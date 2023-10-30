@@ -5,7 +5,7 @@ import com.spotifyxp.utils.ApplicationUtils;
 import java.util.ArrayList;
 
 public class ArgParser {
-    public static ArrayList<Argument> passedArguments = new ArrayList<>();
+    public static final ArrayList<Argument> passedArguments = new ArrayList<>();
     public final ArrayList<com.spotifyxp.args.Argument> arguments = new ArrayList<>();
 
     public static class Argument {
@@ -39,6 +39,7 @@ public class ArgParser {
     public ArgParser() {
         arguments.add(new CustomSaveDir());
         arguments.add(new Debug());
+        arguments.add(new Development());
         arguments.add(new Language());
         arguments.add(new SetupComplete());
         arguments.add(new SteamDeckMode());

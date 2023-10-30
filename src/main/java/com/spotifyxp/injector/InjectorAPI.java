@@ -2,7 +2,6 @@ package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.URLUtils;
@@ -28,7 +27,7 @@ public class InjectorAPI {
     final String repoURL = "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo";
     public final ArrayList<Extension> extensions = new ArrayList<>();
 
-    public static String compatibleMinVersion = "2.0.0";
+    public static final String compatibleMinVersion = "2.0.0";
 
     public static class Extension {
         public String location;

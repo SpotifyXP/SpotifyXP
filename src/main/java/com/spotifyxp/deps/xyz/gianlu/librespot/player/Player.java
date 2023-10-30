@@ -45,7 +45,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.events.Events;
-import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.threading.DefThread;
 import okhttp3.Request;
@@ -186,22 +185,14 @@ public class Player implements Closeable {
     // ================================ //
 
     public void volumeUp() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                volumeUp(1);
-            }
-        });
+        DefThread thread = new DefThread(() -> volumeUp(1));
         thread.start();
     }
 
     public void volumeUp(int steps) {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                if (state == null) return;
-                setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
-            }
+        DefThread thread = new DefThread(() -> {
+            if (state == null) return;
+            setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
         });
         thread.start();
     }
@@ -212,22 +203,14 @@ public class Player implements Closeable {
     }
 
     public void volumeDown() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                volumeDown(1);
-            }
-        });
+        DefThread thread = new DefThread(() -> volumeDown(1));
         thread.start();
     }
 
     public void volumeDown(int steps) {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                if (state == null) return;
-                setVolume(Math.max(0, state.getVolume() - steps * oneVolumeStep()));
-            }
+        DefThread thread = new DefThread(() -> {
+            if (state == null) return;
+            setVolume(Math.max(0, state.getVolume() - steps * oneVolumeStep()));
         });
         thread.start();
     }
@@ -237,15 +220,12 @@ public class Player implements Closeable {
     }
 
     public void setVolume(int val) {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                if (val < 0 || val > VOLUME_MAX)
-                    throw new IllegalArgumentException(String.valueOf(val));
+        DefThread thread = new DefThread(() -> {
+            if (val < 0 || val > VOLUME_MAX)
+                throw new IllegalArgumentException(String.valueOf(val));
 
-                if (state == null) return;
-                state.setVolume(val);
-            }
+            if (state == null) return;
+            state.setVolume(val);
         });
         thread.start();
     }
@@ -272,22 +252,14 @@ public class Player implements Closeable {
     }
 
     public void play() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                handleResume();
-            }
-        });
+        DefThread thread = new DefThread(this::handleResume);
         thread.start();
     }
 
     public void playPause() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                if (state.isPaused()) handleResume();
-                else handlePause();
-            }
+        DefThread thread = new DefThread(() -> {
+            if (state.isPaused()) handleResume();
+            else handlePause();
         });
         thread.start();
     }
@@ -297,42 +269,22 @@ public class Player implements Closeable {
     }
 
     public void pause() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                handlePause();
-            }
-        });
+        DefThread thread = new DefThread(this::handlePause);
         thread.start();
     }
 
     public void next() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                handleSkipNext(null, TransitionInfo.skippedNext(state));
-            }
-        });
+        DefThread thread = new DefThread(() -> handleSkipNext(null, TransitionInfo.skippedNext(state)));
         thread.start();
     }
 
     public void previous() {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                handleSkipPrev();
-            }
-        });
+        DefThread thread = new DefThread(this::handleSkipPrev);
         thread.start();
     }
 
     public void seek(int pos) {
-        DefThread thread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                handleSeek(pos);
-            }
-        });
+        DefThread thread = new DefThread(() -> handleSeek(pos));
         thread.start();
     }
 

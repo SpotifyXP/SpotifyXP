@@ -14,7 +14,6 @@
 
 package com.spotifyxp.deps.javazoom.jl.decoder;
 
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.PrintStream;

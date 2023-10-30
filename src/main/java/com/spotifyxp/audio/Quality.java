@@ -4,8 +4,8 @@ public enum Quality {
     NORMAL("Normal", "NORMAL"),
     HIGH("High", "HIGH"),
     VERY_HIGH("VeryHigh", "VERYHIGH");
-    private String s;
-    private String configValue;
+    private final String s;
+    private final String configValue;
     Quality(String toselect, String configValue) {
         this.s = toselect;
         this.configValue = configValue;

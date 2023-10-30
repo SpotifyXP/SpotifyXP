@@ -1,6 +1,5 @@
 package com.spotifyxp.api;
 
-
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -13,6 +12,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

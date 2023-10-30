@@ -1,12 +1,13 @@
 package com.spotifyxp.testing;
 
-import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.args.CustomSaveDir;
+import com.spotifyxp.history.PlaybackHistory;
+
+import java.io.File;
 
 public class Test {
     public static void main(String[] args) {
-        ConsoleLoggingModules v2 = new ConsoleLoggingModules();
-        v2.setColored(true);
+        new CustomSaveDir().runArgument(new File("data").getAbsolutePath()).run();
 
-        ConsoleLoggingModules.warning("This is a warning");
     }
 }

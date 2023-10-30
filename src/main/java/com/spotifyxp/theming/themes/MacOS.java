@@ -3,8 +3,8 @@ package com.spotifyxp.theming.themes;
 import ch.randelshofer.quaqua.QuaquaLookAndFeel;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.Theme;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+
+import javax.swing.*;
 
 public class MacOS implements Theme {
     public MacOS() {

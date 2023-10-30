@@ -1,7 +1,5 @@
 package com.spotifyxp.configuration;
 
-import com.spotifyxp.audio.Quality;
-
 import java.util.NoSuchElementException;
 
 public enum ConfigValueTypes {

@@ -10,6 +10,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.dialogs.CancelDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
+import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -63,5 +64,10 @@ public class PublicValues {
     public static boolean nogui = false;
     public static Color borderColor = Color.black;
     public static boolean autoLoadHotList = false;
+    public static PlaybackHistory history;
     public static ThreadManager threadManager = new ThreadManager();
+    public static boolean devMode = false;
+    //Devstuff
+    public static boolean locationFinderActive = false;
+    //----
 }

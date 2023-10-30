@@ -74,7 +74,7 @@ public class ConsoleLogging {
     }
     //----------------------------------------
 
-    private static enum Prefixes {
+    private enum Prefixes {
         INFO("[INFO::{CLASSNAME} ] "),
         ERROR("[ERROR::{CLASSNAME} ] "),
         THROWABLE("[THROWABLE ] "),
@@ -92,7 +92,7 @@ public class ConsoleLogging {
         }
     }
 
-    private static enum ColoredPrefixes {
+    private enum ColoredPrefixes {
         INFO(ColorMap.WHITE + "[" + ColorMap.BLUE_BOLD + "INFO::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
         ERROR(ColorMap.WHITE + "[" + ColorMap.RED + "ERROR::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
         THROWABLE(ColorMap.WHITE + "[" + ColorMap.RED_BOLD + "THROWABLE" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
@@ -110,12 +110,12 @@ public class ConsoleLogging {
         }
     }
 
-    private static enum PrefixTypes {
+    private enum PrefixTypes {
         INFO,
         ERROR,
         THROWABLE,
         WARNING,
-        DEBUG;
+        DEBUG
     }
 
     private static boolean isColored = false;

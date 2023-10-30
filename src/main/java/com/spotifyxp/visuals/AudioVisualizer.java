@@ -5,12 +5,8 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.FpsCounter;
 import com.spotifyxp.utils.SpectrumAnalyzer;
 
-import com.jcraft.jorbis.Info;
 import javax.swing.*;
 import java.awt.*;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 

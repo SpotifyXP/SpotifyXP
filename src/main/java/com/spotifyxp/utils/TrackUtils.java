@@ -1,7 +1,6 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
@@ -11,7 +10,6 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 

@@ -4,9 +4,26 @@
     <inspection_tool class="AutoCloseableResource" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,org.apache.hc.client5.http.impl.classic.HttpClientBuilder,build,xyz.gianlu.librespot.audio.storage.AudioFileStreaming,requestHeaders,io.undertow.server.HttpServerExchange,startBlocking,xyz.gianlu.librespot.player.mixing.output.LineHelper,findMixer,java.util.Map,remove,okhttp3.Call,execute,xyz.gianlu.librespot.ZeroconfServer.Builder,create,xyz.gianlu.librespot.core.Session,channel|mercury|dealer,xyz.gianlu.librespot.audio.DecodedAudioStream,stream,com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream,stream,com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer.Builder,create,com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.LineHelper,findMixer,com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.AudioFileStreaming,requestHeaders,org.apache.hc.client5.http.impl.classic.HttpClients,createDefault,java.net.URLClassLoader,newInstance,org.apache.http.impl.client.HttpClients,createDefault" />
     </inspection_tool>
+    <inspection_tool class="CommandLineInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Deprecation" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="EmptyMethod" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="GrazieInspection" enabled="false" level="GRAMMAR_ERROR" enabled_by_default="false" />
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="7">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="insertOpenSourceList" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
     <inspection_tool class="IgnoreResultOfCall" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="m_reportAllNonLibraryCalls" value="false" />
       <option name="callCheckString" value="java.io.File,.*,java.io.InputStream,read|skip|available|markSupported,java.io.Reader,read|skip|ready|markSupported,java.lang.AbstractStringBuilder,capacity|codePointAt|codePointBefore|codePointCount|indexOf|lastIndexOf|offsetByCodePoints|substring|subSequence,java.lang.Boolean,.*,java.lang.Byte,.*,java.lang.Character,.*,java.lang.Double,.*,java.lang.Float,.*,java.lang.Integer,.*,java.lang.Long,.*,java.lang.Math,.*,java.lang.Object,equals|hashCode|toString,java.lang.Short,.*,java.lang.StrictMath,.*,java.lang.String,.*,java.lang.Thread,interrupted,java.math.BigDecimal,.*,java.math.BigInteger,.*,java.net.InetAddress,.*,java.net.URI,.*,java.nio.channels.AsynchronousChannelGroup,.*,java.util.Arrays,.*,java.util.Collections,(?!addAll).*,java.util.List,of,java.util.Map,of|ofEntries|entry,java.util.Set,of,java.util.UUID,.*,java.util.concurrent.BlockingQueue,offer|remove,java.util.concurrent.CountDownLatch,await|getCount,java.util.concurrent.ExecutorService,awaitTermination|isShutdown|isTerminated,java.util.concurrent.ForkJoinPool,awaitQuiescence,java.util.concurrent.Semaphore,tryAcquire|availablePermits|isFair|hasQueuedThreads|getQueueLength|getQueuedThreads,java.util.concurrent.locks.Condition,await|awaitNanos|awaitUntil,java.util.concurrent.locks.Lock,tryLock|newCondition,java.util.regex.Matcher,pattern|toMatchResult|start|end|group|groupCount|matches|find|lookingAt|quoteReplacement|replaceAll|replaceFirst|regionStart|regionEnd|hasTransparentBounds|hasAnchoringBounds|hitEnd|requireEnd,java.util.regex.Pattern,.*,java.util.stream.BaseStream,.*,java.util.stream.DoubleStream,.*,java.util.stream.IntStream,.*,java.util.stream.LongStream,.*,java.util.stream.Stream,.*" />
@@ -23,6 +40,89 @@
         </list>
       </option>
     </inspection_tool>
+    <inspection_tool class="PoetryPackageVersionsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyAbstractClassInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyArgumentListInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyAssignmentToLoopOrWithParameterInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyAsyncCallInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyAttributeOutsideInitInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyBroadExceptionInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyByteLiteralInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyCallingNonCallableInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyChainedComparisonsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyClassHasNoInitInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyClassVarInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyComparisonWithNoneInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDataclassInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDecoratorInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDefaultArgumentInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDeprecationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDictCreationInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDictDuplicateKeysInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDocstringTypesInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyDunderSlotsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyExceptClausesOrderInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyExceptionInheritInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyFinalInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyFromFutureImportInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyGlobalUndefinedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyInconsistentIndentationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyIncorrectDocstringInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyInitNewSignatureInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyListCreationInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyMethodFirstArgAssignmentInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyMethodMayBeStaticInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyMethodOverridingInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyMethodParametersInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyMissingConstructorInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyNamedTupleInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyNestedDecoratorsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyNonAsciiCharInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyNoneFunctionAssignmentInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyOldStyleClassesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyOverloadsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredPackages">
+        <value>
+          <list size="0" />
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPandasSeriesToListInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPep8Inspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPep8NamingInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPropertyAccessInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPropertyDefinitionInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyProtectedMemberInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyProtocolInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyRedeclarationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyRedundantParenthesesInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyRelativeImportInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyReturnFromInitInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PySetFunctionToLiteralInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyShadowingNamesInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PySimplifyBooleanCheckInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PySingleQuotedDocstringInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyStatementEffectInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyStringFormatInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyStubPackagesAdvertiser" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyStubPackagesCompatibilityInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PySuperArgumentsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTestParametrizedInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTrailingSemicolonInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTupleAssignmentBalanceInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTupleItemAssignmentInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTypeCheckerInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTypeHintsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyTypedDictInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnboundLocalVariableInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnnecessaryBackslashInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnreachableCodeInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnusedLocalInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyprojectInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="RegExpRedundantEscape" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SameParameterValue" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SameReturnValue" enabled="false" level="WARNING" enabled_by_default="false" />

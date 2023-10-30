@@ -3,11 +3,11 @@ package com.spotifyxp.threading;
 import com.spotifyxp.PublicValues;
 
 public class DefThread {
-    String name;
+    final String name;
     Thread t;
     boolean wasStarted = false;
-    Runnable toRun;
-    boolean isDaemon;
+    final Runnable toRun;
+    final boolean isDaemon;
     public String getName() {
         return name;
     }

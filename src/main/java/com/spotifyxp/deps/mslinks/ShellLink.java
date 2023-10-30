@@ -18,7 +18,6 @@ import com.spotifyxp.deps.io.ByteReader;
 import com.spotifyxp.deps.io.ByteWriter;
 import com.spotifyxp.deps.mslinks.data.LinkFlags;
 import com.spotifyxp.deps.mslinks.extra.*;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.File;

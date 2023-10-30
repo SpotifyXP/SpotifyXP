@@ -1,1 +1,18 @@
-[ ] Fix hotlist
+[ ] Implement treeview for PlaybackHistory
+
+TreeView Example:
+
+{} Artist
+    {} Album name
+        - Song
+        - Song
+    {} Album2 name
+        - Song
+        - Song
+{} Artist2
+    {} Album name
+        - Song
+        - Song
+    {} Album2 name
+        - Song
+        - Song

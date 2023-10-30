@@ -1,8 +1,6 @@
 package com.spotifyxp.deps.de.werwolf2303.javasetuptool.uninstaller;
 
-
 import com.spotifyxp.Initiator;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

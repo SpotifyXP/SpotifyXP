@@ -74,7 +74,7 @@ public class ConsoleLoggingModules {
     }
     //----------------------------------------
 
-    private static enum Prefixes {
+    private enum Prefixes {
         INFO("[INFO::{CLASSNAME} ] "),
         ERROR("[ERROR::{CLASSNAME} ] "),
         THROWABLE("[THROWABLE ] "),
@@ -92,7 +92,7 @@ public class ConsoleLoggingModules {
         }
     }
 
-    private static enum ColoredPrefixes {
+    private enum ColoredPrefixes {
         INFO(ColorMap.WHITE + "[" + ColorMap.BLUE_BOLD + "INFO::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
         ERROR(ColorMap.WHITE + "[" + ColorMap.RED + "ERROR::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
         THROWABLE(ColorMap.WHITE + "[" + ColorMap.RED_BOLD + "THROWABLE" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
@@ -110,12 +110,12 @@ public class ConsoleLoggingModules {
         }
     }
 
-    private static enum PrefixTypes {
+    private enum PrefixTypes {
         INFO,
         ERROR,
         THROWABLE,
         WARNING,
-        DEBUG;
+        DEBUG
     }
 
     private static boolean isColored = false;
@@ -133,13 +133,13 @@ public class ConsoleLoggingModules {
         if(isColored) {
             String toOut = ColoredPrefixes.valueOf(type.name()).getPrefix();
             if(!showClassName) {
-                toOut = toOut.replace("::{CLASSNAME}", "::Module");
+                toOut = toOut.replace("{CLASSNAME}", "Module");
             }
             return toOut;
         }else{
             String toOut = Prefixes.valueOf(type.name()).getPrefix();
             if(!showClassName) {
-                toOut = toOut.replace("::{CLASSNAME}", "::Module");
+                toOut = toOut.replace("{CLASSNAME}", "Module");
             }
             return toOut;
         }

@@ -6,6 +6,8 @@ public enum Graphics {
     DOTS("dots"),
     HEART("heart"),
     HEARTFILLED("heartfilled"),
+    HISTORY("history"),
+    HISTORYSELECTED("historyselected"),
     MICROPHONE("microphone"),
     MICROPHONESELECTED("microphoneselected"),
     NOTHINGPLAYING("nothingplaying"),
@@ -26,6 +28,7 @@ public enum Graphics {
     Graphics(String resourcePath) {
         String fullPath = "/icons/" + resourcePath;
         switch (resourcePath) {
+            case "historyselected":
             case "heartfilled":
             case "microphonefilled":
             case "microphoneselected":

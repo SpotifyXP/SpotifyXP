@@ -23,14 +23,16 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.Closeable;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;

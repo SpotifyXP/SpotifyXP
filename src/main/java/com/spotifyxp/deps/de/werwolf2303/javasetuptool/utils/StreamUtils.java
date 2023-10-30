@@ -1,6 +1,5 @@
 package com.spotifyxp.deps.de.werwolf2303.javasetuptool.utils;
 
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.io.BufferedReader;
