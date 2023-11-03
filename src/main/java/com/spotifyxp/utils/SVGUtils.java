@@ -1,0 +1,62 @@
+package com.spotifyxp.utils;
+
+
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.transcoder.Transcoder;
+import org.apache.batik.transcoder.TranscoderException;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.batik.util.XMLResourceDescriptor;
+import org.apache.commons.io.IOUtils;
+import org.w3c.dom.Document;
+import javax.swing.*;
+import java.awt.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class SVGUtils {
+    public static ImageIcon svgToImageIcon(InputStream stream, int width, int height) {
+        try {
+            String svgContent = IOUtils.toString(stream);
+            // Create a transcoder for PNG output
+            Transcoder transcoder = new PNGTranscoder();
+
+            // Set the width and height for the output image
+            transcoder.addTranscodingHint(PNGTranscoder.KEY_WIDTH, (float) width);
+            transcoder.addTranscodingHint(PNGTranscoder.KEY_HEIGHT, (float) height);
+
+            // Create a document from the SVG content
+            String parser = XMLResourceDescriptor.getXMLParserClassName();
+            SAXSVGDocumentFactory factory = new SAXSVGDocumentFactory(parser);
+            Document document = factory.createDocument(null, new ByteArrayInputStream(svgContent.getBytes()));
+
+            // Create a transcoder input
+            TranscoderInput transcoderInput = new TranscoderInput(document);
+
+            // Create a transcoder output
+            TranscoderOutput transcoderOutput = new TranscoderOutput(new java.io.ByteArrayOutputStream());
+
+            // Perform the transcoding (SVG to PNG)
+            transcoder.transcode(transcoderInput, transcoderOutput);
+
+            // Get the PNG data
+            byte[] pngImageData = ((java.io.ByteArrayOutputStream) transcoderOutput.getOutputStream()).toByteArray();
+
+            // Create an ImageIcon from the PNG data
+            return new ImageIcon(pngImageData);
+        } catch (IOException | TranscoderException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @SuppressWarnings("all")
+    public static ImageIcon svgToImageIconSameSize(InputStream stream, Dimension size) {
+        return svgToImageIcon(stream, size.height, size.height);
+    }
+
+    public static ImageIcon svgToImageIcon(InputStream stream, Dimension size) {
+        return svgToImageIcon(stream, size.width, size.height);
+    }
+}

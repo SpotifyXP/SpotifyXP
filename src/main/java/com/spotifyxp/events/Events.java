@@ -8,6 +8,8 @@ public class Events {
     static final ArrayList<Runnable> queueRegressEvents = new ArrayList<>();
     static final ArrayList<Runnable> playerLockReleaseEvents = new ArrayList<>();
     static final ArrayList<Runnable> onFrameReadyEvents = new ArrayList<>();
+    static final ArrayList<Runnable> trackNextEvents = new ArrayList<>();
+    static final ArrayList<Runnable> trackLoadEvents = new ArrayList<>();
 
 
     private static void createThreadWith(ArrayList<Runnable> toWorkOn) {
@@ -63,11 +65,30 @@ public class Events {
     public static void INTERNALtriggerOnFrameReadyEvents() {
         createThreadWith(getCopy(onFrameReadyEvents));
     }
+
+    public static void registerOnTrackLoadEvent(Runnable runnable) {
+        trackLoadEvents.add(runnable);
+    }
+
+    public static void INTERNALtriggerOnTrackLoadEvents() {
+        createThreadWith(getCopy(trackLoadEvents));
+    }
+
+    public static void registerOnTrackNextEvent(Runnable runnable) {
+        trackNextEvents.add(runnable);
+    }
+
+    public static void INTERNALtriggerOnTrackNextEvents() {
+        createThreadWith(getCopy(trackNextEvents));
+    }
+
     public static void remove(Runnable runnable) {
         queueRegressEvents.remove(runnable);
         queueUpdateEvents.remove(runnable);
         queueAdvanceEvents.remove(runnable);
         playerLockReleaseEvents.remove(runnable);
         onFrameReadyEvents.remove(runnable);
+        trackLoadEvents.remove(runnable);
+        trackNextEvents.remove(runnable);
     }
 }

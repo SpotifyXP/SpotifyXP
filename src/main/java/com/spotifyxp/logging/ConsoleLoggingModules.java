@@ -1,5 +1,7 @@
 package com.spotifyxp.logging;
 
+import com.spotifyxp.exception.ExceptionDialog;
+
 public class ConsoleLoggingModules {
     //All colors available in the console
     private static class ColorMap {
@@ -77,7 +79,7 @@ public class ConsoleLoggingModules {
     private enum Prefixes {
         INFO("[INFO::{CLASSNAME} ] "),
         ERROR("[ERROR::{CLASSNAME} ] "),
-        THROWABLE("[THROWABLE ] "),
+        THROWABLE("[THROWABLE (EXCEPTIONCLASS)] "),
         WARNING("[WARNING::{CLASSNAME} ] "),
         DEBUG("[DEBUG::{CLASSNAME} ] ");
 
@@ -95,7 +97,7 @@ public class ConsoleLoggingModules {
     private enum ColoredPrefixes {
         INFO(ColorMap.WHITE + "[" + ColorMap.BLUE_BOLD + "INFO::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
         ERROR(ColorMap.WHITE + "[" + ColorMap.RED + "ERROR::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
-        THROWABLE(ColorMap.WHITE + "[" + ColorMap.RED_BOLD + "THROWABLE" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
+        THROWABLE(ColorMap.WHITE + "[" + ColorMap.RED_BOLD + "THROWABLE" + ColorMap.WHITE + " (EXCEPTIONCLASS)]" + ColorMap.RESET + " "),
         WARNING(ColorMap.WHITE + "[" + ColorMap.YELLOW + "WARNING::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " "),
         DEBUG(ColorMap.WHITE + "[" + ColorMap.YELLOW + "DEBUG::{CLASSNAME}" + ColorMap.WHITE + " ]" + ColorMap.RESET + " ");
 
@@ -202,8 +204,9 @@ public class ConsoleLoggingModules {
 
     public static void Throwable(Throwable throwable) {
         for(StackTraceElement s : throwable.getStackTrace()) {
-            System.out.println(getPrefix(PrefixTypes.THROWABLE) + s);
+            System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + s);
         }
+        ExceptionDialog.open(throwable);
     }
 
     public static void info(String message) {
@@ -212,6 +215,7 @@ public class ConsoleLoggingModules {
 
     public static void error(String message) {
         System.out.println(getPrefix(PrefixTypes.ERROR).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
+        ExceptionDialog.open(new Throwable(message));
     }
 
     public static void debug(String message) {

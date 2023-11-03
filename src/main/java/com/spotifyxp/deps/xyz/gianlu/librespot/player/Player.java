@@ -22,6 +22,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
@@ -45,11 +46,14 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.factory.Factory;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.threading.DefThread;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
@@ -289,7 +293,10 @@ public class Player implements Closeable {
     }
 
     public void load(@NotNull String uri, boolean play, boolean shuffle, boolean playingFromLibrary) {
+        Events.INTERNALtriggerOnTrackLoadEvents();
+
         PublicValues.playingFromLibrary = playingFromLibrary;
+
         try {
             String sessionId = state.loadContext(uri);
             events.contextChanged();
@@ -548,6 +555,7 @@ public class Player implements Closeable {
      */
 
     private void loadTrack(boolean play, @NotNull TransitionInfo trans) {
+        Events.INTERNALtriggerOnTrackNextEvents();
         endMetrics(playerSession.currentPlaybackId(), trans.endedReason, playerSession.currentMetrics(), trans.endedWhen);
 
         ConsoleLoggingModules.debug("Loading track, id: {}, session: {}, playback: {}, play: {}", state.getCurrentPlayable(), playerSession.sessionId(), playerSession.currentPlaybackId(), play);

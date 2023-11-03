@@ -175,6 +175,8 @@ public class ContentPanel extends JPanel {
     static LastTypes lastmenu = LastTypes.HotList;
     static boolean advancedSongPanelVisible = false;
     private static boolean libraryLoadingInProgress = false;
+    private static boolean doneLastParsing = false;
+
     public static final DefThread librarythread = new DefThread(new Runnable() {
         public void run() {
             try {
@@ -234,6 +236,20 @@ public class ContentPanel extends JPanel {
         createErrorDisplay();
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
+        Events.registerOnTrackNextEvent(new Runnable() {
+            @Override
+            public void run() {
+                if(PublicValues.spotifyplayer.currentPlayable() == null) return;
+                if(!doneLastParsing) return;
+                if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
+                    try {
+                        PublicValues.history.addSong(Factory.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
+                    } catch (IOException | ParseException | SpotifyWebApiException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                }
+            }
+        });
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setLayout(null);
@@ -312,6 +328,7 @@ public class ContentPanel extends JPanel {
                             PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider) * 1000);
                             playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
                             Events.remove(this);
+                            doneLastParsing = true;
                         }
                     };
                     Events.registerPlayerLockReleaseEvent(event);
@@ -559,7 +576,6 @@ public class ContentPanel extends JPanel {
             }
         } catch (Exception e) {
             ConsoleLogging.Throwable(e);
-            GraphicalMessage.bug("ContentPanel showAdvancedSongPanel");
         }
         advancedsongpanel.setVisible(true);
         blockTabSwitch();

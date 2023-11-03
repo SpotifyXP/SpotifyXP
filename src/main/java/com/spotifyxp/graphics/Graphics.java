@@ -1,6 +1,8 @@
 package com.spotifyxp.graphics;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.utils.Resources;
+import java.io.InputStream;
 
 public enum Graphics {
     DOTS("dots"),
@@ -23,7 +25,12 @@ public enum Graphics {
     USER("user"),
     VOLUMEFULL("volumefull"),
     VOLUMEHALF("volumehalf"),
-    VOLUMEMUTE("volumemute");
+    VOLUMEMUTE("volumemute"),
+    ACCOUNT("account"),
+    TRACK("track"),
+    ALBUM("album"),
+    PLAYLIST("playlist"),
+    SHOW("podcast");
     final String path;
     Graphics(String resourcePath) {
         String fullPath = "/icons/" + resourcePath;
@@ -50,5 +57,9 @@ public enum Graphics {
 
     public String getPath() {
         return path;
+    }
+
+    public InputStream getInputStream() {
+        return new Resources().readToInputStream(path);
     }
 }
