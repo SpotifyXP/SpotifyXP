@@ -18,7 +18,6 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.SVGUtils;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
-import com.spotifyxp.utils.URLUtils;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

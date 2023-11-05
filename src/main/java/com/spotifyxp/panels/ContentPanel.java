@@ -33,6 +33,7 @@ import com.spotifyxp.utils.*;
 import com.spotifyxp.video.CanvasPlayer;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

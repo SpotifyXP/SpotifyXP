@@ -2,6 +2,7 @@ package com.spotifyxp.graphics;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.Resources;
+
 import java.io.InputStream;
 
 public enum Graphics {

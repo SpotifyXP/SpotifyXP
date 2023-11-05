@@ -1,6 +1,5 @@
 package com.spotifyxp.utils;
 
-
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.transcoder.Transcoder;
 import org.apache.batik.transcoder.TranscoderException;
@@ -10,6 +9,7 @@ import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.ByteArrayInputStream;

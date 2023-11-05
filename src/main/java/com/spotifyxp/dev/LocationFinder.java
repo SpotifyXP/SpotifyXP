@@ -2,6 +2,7 @@ package com.spotifyxp.dev;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.ContentPanel;
+
 import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

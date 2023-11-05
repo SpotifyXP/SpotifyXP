@@ -1,10 +1,5 @@
 package com.spotifyxp;
 
-
-import com.apple.eawt.AboutHandler;
-import com.apple.eawt.AppEvent;
-import com.apple.eawt.AppEventListener;
-import com.apple.eawt.Application;
 import com.spotifyxp.api.Player;
 import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.audio.Quality;
@@ -36,7 +31,6 @@ import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.webController.HttpService;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;

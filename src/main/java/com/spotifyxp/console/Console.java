@@ -2,8 +2,6 @@ package com.spotifyxp.console;
 
 import com.spotifyxp.console.commands.Command;
 import com.spotifyxp.console.commands.HelpCommand;
-import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import java.util.ArrayList;
 import java.util.Scanner;
