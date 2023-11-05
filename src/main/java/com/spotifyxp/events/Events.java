@@ -10,6 +10,7 @@ public class Events {
     static final ArrayList<Runnable> onFrameReadyEvents = new ArrayList<>();
     static final ArrayList<Runnable> trackNextEvents = new ArrayList<>();
     static final ArrayList<Runnable> trackLoadEvents = new ArrayList<>();
+    static final ArrayList<Runnable> trackLoadFinishedEvents = new ArrayList<>();
 
 
     private static void createThreadWith(ArrayList<Runnable> toWorkOn) {
@@ -80,6 +81,14 @@ public class Events {
 
     public static void INTERNALtriggerOnTrackNextEvents() {
         createThreadWith(getCopy(trackNextEvents));
+    }
+
+    public static void registerOnTrackLoadFinished(Runnable runnable) {
+        trackLoadFinishedEvents.add(runnable);
+    }
+
+    public static void INTERNALtriggerOnTrackLoadFinishedEvents() {
+        createThreadWith(getCopy(trackLoadFinishedEvents));
     }
 
     public static void remove(Runnable runnable) {

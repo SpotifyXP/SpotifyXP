@@ -25,7 +25,7 @@ public class Injector {
         if(!new File(PublicValues.appLocation, "Extensions").exists()) {
             new File(PublicValues.appLocation, "Extensions").mkdir();
         }else{
-            for(File f : new File(PublicValues.appLocation, "Extensions").listFiles()) {
+            for(java.io.File f : new File(PublicValues.appLocation, "Extensions").listFiles()) {
                 if(f.isFile()) {
                     loadJarAt(f.getAbsolutePath());
                 }

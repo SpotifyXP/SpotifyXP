@@ -56,6 +56,40 @@ public class SVGUtils {
         return svgToImageIcon(stream, size.height, size.height);
     }
 
+    public static InputStream svgToImageInputStreamSameSize(InputStream stream, Dimension size) {
+        try {
+            String svgContent = IOUtils.toString(stream);
+            // Create a transcoder for PNG output
+            Transcoder transcoder = new PNGTranscoder();
+
+            // Set the width and height for the output image
+            transcoder.addTranscodingHint(PNGTranscoder.KEY_WIDTH, (float) size.width);
+            transcoder.addTranscodingHint(PNGTranscoder.KEY_HEIGHT, (float) size.height);
+
+            // Create a document from the SVG content
+            String parser = XMLResourceDescriptor.getXMLParserClassName();
+            SAXSVGDocumentFactory factory = new SAXSVGDocumentFactory(parser);
+            Document document = factory.createDocument(null, new ByteArrayInputStream(svgContent.getBytes()));
+
+            // Create a transcoder input
+            TranscoderInput transcoderInput = new TranscoderInput(document);
+
+            // Create a transcoder output
+            TranscoderOutput transcoderOutput = new TranscoderOutput(new java.io.ByteArrayOutputStream());
+
+            // Perform the transcoding (SVG to PNG)
+            transcoder.transcode(transcoderInput, transcoderOutput);
+
+            // Get the PNG data
+            byte[] pngImageData = ((java.io.ByteArrayOutputStream) transcoderOutput.getOutputStream()).toByteArray();
+
+            // Create an ImageIcon from the PNG data
+            return new ByteArrayInputStream(pngImageData);
+        } catch (IOException | TranscoderException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
     public static ImageIcon svgToImageIcon(InputStream stream, Dimension size) {
         return svgToImageIcon(stream, size.width, size.height);
     }

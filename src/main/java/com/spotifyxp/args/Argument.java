@@ -1,7 +1,7 @@
 package com.spotifyxp.args;
 
 public interface Argument {
-    Runnable runArgument(String parameter1);
+    Runnable runArgument(String commands);
     String getName();
     String getDescription();
     boolean hasParameter();

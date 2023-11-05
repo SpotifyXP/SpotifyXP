@@ -15,8 +15,10 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.SVGUtils;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.utils.URLUtils;
 import org.apache.hc.core5.http.ParseException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -84,7 +86,12 @@ public class PlayerListener implements Player.EventsListener {
                         ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
                         ContentPanel.playertitle.setText(episode.getName());
                         artists.append(episode.getShow().getPublisher());
-                        ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
+                        try {
+                            ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
+                        }catch (Exception e) {
+                            ConsoleLogging.warning("Failed to load cover for track");
+                            ContentPanel.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), ContentPanel.playerimage.getSize()));
+                        }
                         break;
                     case "track":
                         Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
@@ -97,7 +104,12 @@ public class PlayerListener implements Player.EventsListener {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
+                        try {
+                            ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
+                        }catch (Exception e) {
+                            ConsoleLogging.warning("Failed to load cover for track");
+                            ContentPanel.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), ContentPanel.playerimage.getSize()));
+                        }
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
                                 PublicValues.canvasPlayer.play();
@@ -118,7 +130,12 @@ public class PlayerListener implements Player.EventsListener {
                                 artists.append(", ").append(artist.getName());
                             }
                         }
-                        ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
+                        try {
+                            ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
+                        }catch (Exception e) {
+                            ConsoleLogging.warning("Failed to load cover for track");
+                            ContentPanel.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), ContentPanel.playerimage.getSize()));
+                        }
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
                                 PublicValues.canvasPlayer.play();
@@ -166,8 +183,13 @@ public class PlayerListener implements Player.EventsListener {
         }
     }
 
+    int retryCounter = 0;
+
     @Override
     public void onPlaybackFailed(@NotNull Player player, @NotNull Exception e) {
+        if(retryCounter > 5) {
+            return;
+        }
         ConsoleLogging.error("Player failed! retry");
         pl.retry();
     }
@@ -216,15 +238,18 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onPanicState(@NotNull Player player) {
         ExceptionDialog.open(new UnknownError("PanicState in PlayerListener"));
+        PublicValues.blockLoading = false;
+        retryCounter = 0;
     }
 
     @Override
     public void onStartedLoading(@NotNull Player player) {
-
+        PublicValues.blockLoading = true;
     }
 
     @Override
     public void onFinishedLoading(@NotNull Player player) {
-
+        retryCounter = 0;
+        Events.INTERNALtriggerOnTrackLoadFinishedEvents();
     }
 }

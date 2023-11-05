@@ -43,9 +43,19 @@ On december 2022 Spotify shutdown it's last version for Windows XP so this appli
 
 ## System Requirements
 
-* OS: Windows XP (Unofficial: Windows 2000)
+<h4>Recommended</h4>
+
+* OS: Windows XP or above
 * Processor: Anything that can handle SNES Emulation
-* RAM: 128MB (Maybe 64MB?)
+* RAM: 512MB
+* Storage (Without cache): 60MB
+* Storage (With cache): My folder is 700MB
+
+<h4>Minimum</h4>
+
+* OS: Windows 98 (KernelEx)
+* Processor: Anything that can handle SNES Emulation
+* RAM: 256MB
 * Storage (Without cache): 60MB
 * Storage (With cache): My folder is 700MB
 

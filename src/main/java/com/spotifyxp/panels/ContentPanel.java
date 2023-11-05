@@ -250,6 +250,12 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
+        Events.registerOnTrackLoadFinished(new Runnable() {
+            @Override
+            public void run() {
+                PublicValues.blockLoading = false;
+            }
+        });
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setLayout(null);
@@ -581,7 +587,7 @@ public class ContentPanel extends JPanel {
         blockTabSwitch();
     }
 
-    void openAbout() {
+    public static void openAbout() {
         HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
             @Override
             public void log(String s) {
@@ -889,6 +895,7 @@ public class ContentPanel extends JPanel {
                     historybutton.isFilled = false;
                     historybutton.setImage(Graphics.HISTORY.getPath());
                     PublicValues.history.dispose();
+                    PublicValues.history = new PlaybackHistory();
                 }else{
                     historybutton.isFilled = true;
                     historybutton.setImage(Graphics.HISTORYSELECTED.getPath());
@@ -2066,12 +2073,7 @@ public class ContentPanel extends JPanel {
             JMenuItem locationfinder = new JMenuItem("Location Finder");
             bar.add(developer);
             developer.add(locationfinder);
-            locationfinder.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new LocationFinder();
-                }
-            });
+            locationfinder.addActionListener(e -> new LocationFinder());
         }
         file.add(playuri);
         file.add(exit);
@@ -2115,7 +2117,15 @@ public class ContentPanel extends JPanel {
             PublicValues.spotifyplayer.load(uri, true, false, false);
             Events.INTERNALtriggerQueueUpdateEvents();
         });
-        lastfmdashboard.addActionListener(e -> LastFMDialog.openWhenLoggedIn());
+        lastfmdashboard.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(LastFMDialog.isOpen()) {
+                    return;
+                }
+                LastFMDialog.openWhenLoggedIn();
+            }
+        });
         if (steamdeck) {
             for (int i = 0; i < bar.getMenuCount(); i++) {
                 JMenu menu1 = bar.getMenu(i);
@@ -2146,6 +2156,8 @@ public class ContentPanel extends JPanel {
                 window.setVisible(true);
                 window.pack();
             }
+        }else{
+            PublicValues.menuBar = bar;
         }
     }
 
@@ -2577,9 +2589,11 @@ public class ContentPanel extends JPanel {
             ExceptionDialog.open(e);
             ConsoleLogging.Throwable(e);
         }
-        mainframe.setJMenuBar(bar);
+        if(!steamdeck) {
+            mainframe.setJMenuBar(bar);
+        }
         mainframe.setPreferredSize(new Dimension(784, 590));
-        mainframe.setContentPane(this);
+        mainframe.getContentPane().add(this);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.addWindowListener(new WindowAdapter() {
             @Override
@@ -2589,9 +2603,7 @@ public class ContentPanel extends JPanel {
         });
         mainframe.setForeground(Color.blue);
         Events.INTERNALtriggerOnFrameReadyEvents();
-        mainframe.setVisible(true);
-        mainframe.setResizable(false);
-        mainframe.pack();
+        mainframe.open();
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;
         mainframe.setLocation(w / 2 - mainframe.getWidth() / 2, h / 2 - mainframe.getHeight() / 2);

@@ -38,6 +38,7 @@ public class ArgParser {
 
     public ArgParser() {
         arguments.add(new CustomSaveDir());
+        arguments.add(new ConsoleMode());
         arguments.add(new Debug());
         arguments.add(new Development());
         arguments.add(new Language());

@@ -1,10 +1,11 @@
 package com.spotifyxp.swingextension;
 
+import com.spotifyxp.PublicValues;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class JFrame2 extends JFrame {
-
     public JFrame2(String title) {
         super.setTitle(title);
     }
@@ -31,6 +32,12 @@ public class JFrame2 extends JFrame {
     }
 
     public void open() {
+        setJMenuBar(PublicValues.menuBar);
+        this.setVisible(true);
+        this.pack();
+    }
+
+    public void openMain() {
         this.setVisible(true);
         this.pack();
     }

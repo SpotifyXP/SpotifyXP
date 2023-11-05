@@ -1,12 +1,17 @@
 package com.spotifyxp;
 
 
+import com.apple.eawt.AboutHandler;
+import com.apple.eawt.AppEvent;
+import com.apple.eawt.AppEventListener;
+import com.apple.eawt.Application;
 import com.spotifyxp.api.Player;
 import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.console.Console;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
@@ -31,6 +36,7 @@ import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.webController.HttpService;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -167,8 +173,19 @@ public class Initiator {
                     URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
                     Image image = Toolkit.getDefaultToolkit().getImage(url);
                     setDockIconImage.invoke(application, image);
-                } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                    //Java versions above 8 dont have com.apple.eawt.Application
+                }catch (Exception ignored) {
+                    try {
+                        Class util = Class.forName("java.awt.Taskbar");
+                        Method getApplication = util.getMethod("getTaskbar", new Class[0]);
+                        Object application = getApplication.invoke(util);
+                        Class[] params = new Class[1];
+                        params[0] = Image.class;
+                        Method setDockIconImage = util.getMethod("setIconImage", params);
+                        URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
+                        Image image = Toolkit.getDefaultToolkit().getImage(url);
+                        setDockIconImage.invoke(application, image);
+                    } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    }
                 }
             }else {
                 if(System.getProperty("os.name").toLowerCase().contains("steamos")) {
@@ -303,6 +320,9 @@ public class Initiator {
         new HttpService();
         if(PublicValues.nogui) {
             new RestAPI().start();
+        }
+        if(PublicValues.consoleMode) {
+            new Console().start();
         }
     }
 }

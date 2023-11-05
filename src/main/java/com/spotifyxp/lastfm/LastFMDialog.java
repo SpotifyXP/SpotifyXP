@@ -55,6 +55,7 @@ public class LastFMDialog extends JFrame2 {
     int userchartstrackscurrent = 0;
     int chartsartistscurrent = 0;
     int chartstrackscurrent = 0;
+    private static JFrame2 frame;
 
     public LastFMDialog() {
         setPreferredSize(new Dimension(800, 600));
@@ -369,10 +370,19 @@ public class LastFMDialog extends JFrame2 {
         });
         setJMenuBar(bar);
         parseScrobbles();
+        frame = this;
     }
 
     public static String formatDate(Date d) {
         return d.getDay() + " " + Month.of(d.getMonth()).getDisplayName(TextStyle.FULL, PublicValues.language.getLocale()) + " " + d.getHours() + ":" + d.getMinutes();
+    }
+
+    public static boolean isOpen() {
+        try {
+            return frame.isVisible();
+        }catch (NullPointerException e) {
+            return false;
+        }
     }
 
     void parseScrobbles() {
@@ -479,6 +489,12 @@ public class LastFMDialog extends JFrame2 {
     }
 
     public static void openWhenLoggedIn() {
+        try {
+            if (frame.isVisible()) {
+                return;
+            }
+        }catch (NullPointerException ignored) {
+        }
         if(PublicValues.config.getString(ConfigValues.lastfmusername.name).equalsIgnoreCase("")) {
             new LastFMLogin().open(() -> {
                 LastFMDialog dialog = new LastFMDialog();

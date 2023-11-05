@@ -3,6 +3,7 @@ package com.spotifyxp.history;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
@@ -20,6 +21,8 @@ import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -122,6 +125,16 @@ public class PlaybackHistory extends JFrame2 {
                         tree.expandRow(0);
                     }
                 }
+            }
+        });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                ContentPanel.historybutton.isFilled = false;
+                ContentPanel.historybutton.setImage(Graphics.HISTORY.getInputStream());
+                PublicValues.history = new PlaybackHistory();
             }
         });
     }
@@ -301,10 +314,6 @@ public class PlaybackHistory extends JFrame2 {
 
     @Override
     public void open() {
-        addedAlbums.clear();
-        addedArtists.clear();
-        root.removeAllChildren();
-
         DefThread fetchhistory = new DefThread(() -> {
             try {
                 for (SongEntry entry : get15Songs(0)) {

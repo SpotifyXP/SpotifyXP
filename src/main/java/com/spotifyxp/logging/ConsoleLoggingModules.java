@@ -1,8 +1,12 @@
 package com.spotifyxp.logging;
 
+import com.spotifyxp.args.ConsoleMode;
 import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.utils.Utils;
 
 public class ConsoleLoggingModules {
+    private static boolean killSwitch = false;
+
     //All colors available in the console
     private static class ColorMap {
         // Reset
@@ -203,6 +207,7 @@ public class ConsoleLoggingModules {
     //-------------------------
 
     public static void Throwable(Throwable throwable) {
+        if(killSwitch) return;
         for(StackTraceElement s : throwable.getStackTrace()) {
             System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + s);
         }
@@ -210,20 +215,29 @@ public class ConsoleLoggingModules {
     }
 
     public static void info(String message) {
+        if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.INFO).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 
     public static void error(String message) {
+        if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.ERROR).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
         ExceptionDialog.open(new Throwable(message));
     }
 
     public static void debug(String message) {
+        if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.DEBUG).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 
     public static void warning(String message) {
+        if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.WARNING).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
+    }
+
+    public static void killLogging() {
+        Utils.checkPermission(ConsoleMode.class);
+        killSwitch = true;
     }
 
     //Log4JSupport

@@ -256,11 +256,17 @@ public class Player implements Closeable {
     }
 
     public void play() {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         DefThread thread = new DefThread(this::handleResume);
         thread.start();
     }
 
     public void playPause() {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         DefThread thread = new DefThread(() -> {
             if (state.isPaused()) handleResume();
             else handlePause();
@@ -273,26 +279,41 @@ public class Player implements Closeable {
     }
 
     public void pause() {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         DefThread thread = new DefThread(this::handlePause);
         thread.start();
     }
 
     public void next() {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         DefThread thread = new DefThread(() -> handleSkipNext(null, TransitionInfo.skippedNext(state)));
         thread.start();
     }
 
     public void previous() {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         DefThread thread = new DefThread(this::handleSkipPrev);
         thread.start();
     }
 
     public void seek(int pos) {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         DefThread thread = new DefThread(() -> handleSeek(pos));
         thread.start();
     }
 
     public void load(@NotNull String uri, boolean play, boolean shuffle, boolean playingFromLibrary) {
+        if(PublicValues.blockLoading) {
+            return;
+        }
         Events.INTERNALtriggerOnTrackLoadEvents();
 
         PublicValues.playingFromLibrary = playingFromLibrary;

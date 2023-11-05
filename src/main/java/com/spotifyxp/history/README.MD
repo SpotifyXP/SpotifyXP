@@ -10,10 +10,10 @@
 Example:
 
 <pre>
-SongURI::SongName::ArtistName::AlbumName::SongLength
-SongURI::Song2Name::ArtistName::AlbumName::SongLength
+SongURI::SongName::ArtistName::ArtistURI::AlbumName::AlbumURI::SongLength
+SongURI::Song2Name::ArtistName::ArtistURI::AlbumName::AlbumURI::SongLength
 </pre>
 
-<h5>The file consists of 4 variables: The song name, artist name, album name and song length.<br>
+<h5>The file consists of 7 variables: The song name, song uri, artist name, artist uri, album name, album uri and song length.<br>
 
 The parser reads 15 songs and stops because this file can be very large (>1Gb)
