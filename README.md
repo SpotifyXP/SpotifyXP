@@ -69,57 +69,7 @@ On december 2022 Spotify shutdown it's last version for Windows XP so this appli
 ## Built With
 
 SpotifyXP is build with
-<div xmlns="http://www.w3.org/1999/xhtml">
-            <a>librespot-java</a>
-            <br>
-            <a>commons-io:commons-io</a>
-            <br>
-            <a>org.json:json</a>
-            <br>
-            <a>commons-httpclient:commons-httpclient</a>
-            <br>
-            <a>lc.kra.system:system-hook</a>
-            <br>
-            <a>com.formdev:flatlaf</a>
-            <br>
-            <a>com.jtattoo:JTattoo</a>
-            <br>
-            <a>com.electronwill.night-config:toml</a>
-            <br>
-            <a>com.lmax:disruptor</a>
-            <br>
-            <a>xyz.gianlu.zeroconf:zeroconf</a>
-            <br>
-            <a>com.squareup.okhttp3:okhttp</a>
-            <br>
-            <a>commons-net:commons-net</a>
-            <br>
-            <a>org.jcraft:jorbis</a>
-            <br>
-            <a>com.google.protobuf:protobuf-java</a>
-            <br>
-            <a>com.google.code.gson:gson</a>
-            <br>
-            <a>com.neovisionaries:nv-i18n</a>
-            <br>
-            <a>com.fasterxml.jackson.core:jackson-databind</a>
-            <br>
-            <a>org.apache.httpcomponents.core5:httpcore5</a>
-            <br>
-            <a>org.apache.httpcomponents.client5:httpclient5</a>
-            <br>
-            <a>org.apache.httpcomponents.client5:httpclient5-cache</a>
-            <br>
-            <a>org.slf4j:slf4j-api</a>
-            <br>
-            <a>org.jetbrains:annotations</a>
-            <br>
-            <a>uk.co.caprica:vlcj</a>
-            <br>
-            <a>com.googlecode.plist:dd-plist</a>
-            <br>
-            <a>org.apache.commons:commons-math3</a>
-        </div>
+<br><h4><a href="https://github.com/SpotifyXP/SpotifyXP/blob/main/src/main/resources/setup/thirdparty.html">Thirdparty.html</a></h4>
 
 ## Getting Started
 
