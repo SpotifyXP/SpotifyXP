@@ -20,10 +20,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -59,7 +56,6 @@ public class PlaybackHistory extends JFrame2 {
     private static URITree tree;
     private static DefaultMutableTreeNode root;
     private static final ArrayList<PlaybackHistory.TreeEntry> addedArtists = new ArrayList<>();
-    private static final ArrayList<PlaybackHistory.TreeEntry> addedAlbums = new ArrayList<>();
     private static int offset = 0;
 
     public PlaybackHistory() {
@@ -89,13 +85,30 @@ public class PlaybackHistory extends JFrame2 {
         }
 
         setPreferredSize(new Dimension(300, 400));
-        setTitle("SpotifyXP - Playback History"); //ToDo: Translate
+        setTitle(PublicValues.language.translate("ui.history.title"));
 
-        root = new DefaultMutableTreeNode("Playback History"); //ToDo: Translate
+        root = new DefaultMutableTreeNode(PublicValues.language.translate("ui.history.tree.root"));
         tree = new URITree(root);
 
         JScrollPane pane = new JScrollPane(tree);
         add(pane, BorderLayout.CENTER);
+
+        JButton removeall = new JButton(PublicValues.language.translate("ui.history.removeall"));
+
+        removeall.addActionListener(e -> {
+            try {
+                removeAllSongs();
+                dispose();
+                ContentPanel.historybutton.isFilled = false;
+                ContentPanel.historybutton.setImage(Graphics.HISTORY.getInputStream());
+                PublicValues.history = new PlaybackHistory();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        });
+
+        add(removeall, BorderLayout.SOUTH);
 
 
 
@@ -154,7 +167,6 @@ public class PlaybackHistory extends JFrame2 {
                     DefaultMutableTreeNode album = new DefaultMutableTreeNode(new URITree.TreeNodeData(entry.albumName, entry.albumURI, URITree.NodeType.ALBUM));
                     addedTo.add(album);
                     addedTo = album;
-                    addedAlbums.add(new TreeEntry(entry.albumName, entry.albumURI, addedTo));
                     DefaultMutableTreeNode track = new DefaultMutableTreeNode(new URITree.TreeNodeData(entry.songName, entry.songURI, URITree.NodeType.TRACK));
                     addedTo.add(track);
                     offset++;
@@ -166,7 +178,7 @@ public class PlaybackHistory extends JFrame2 {
                     }
                 }
                 if(getCounter() > offset) {
-                    root.add(new DefaultMutableTreeNode(new URITree.TreeNodeData("Load More", "", URITree.NodeType.LOADMORE))); //ToDo: Translate
+                    root.add(new DefaultMutableTreeNode(new URITree.TreeNodeData(PublicValues.language.translate("ui.general.loadmore"), "", URITree.NodeType.LOADMORE)));
                 }
                 ((DefaultTreeModel) tree.getModel()).reload();
             }catch (Exception e) {
@@ -327,7 +339,6 @@ public class PlaybackHistory extends JFrame2 {
                     DefaultMutableTreeNode album = new DefaultMutableTreeNode(new URITree.TreeNodeData(entry.albumName, entry.albumURI, URITree.NodeType.ALBUM));
                     addedTo.add(album);
                     addedTo = album;
-                    addedAlbums.add(new TreeEntry(entry.albumName, entry.albumURI, addedTo));
                     DefaultMutableTreeNode track = new DefaultMutableTreeNode(new URITree.TreeNodeData(entry.songName, entry.songURI, URITree.NodeType.TRACK));
                     addedTo.add(track);
                     offset++;
@@ -339,7 +350,7 @@ public class PlaybackHistory extends JFrame2 {
                     }
                 }
                 if(getCounter() > offset) {
-                    root.add(new DefaultMutableTreeNode(new URITree.TreeNodeData("Load More", "", URITree.NodeType.LOADMORE))); //ToDo: Translate
+                    root.add(new DefaultMutableTreeNode(new URITree.TreeNodeData(PublicValues.language.translate("ui.general.loadmore"), "", URITree.NodeType.LOADMORE)));
                 }
                 tree.expandRow(0);
             }catch (Exception e) {

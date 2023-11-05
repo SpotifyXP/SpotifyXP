@@ -19,6 +19,22 @@ public class JFrame2 extends JFrame {
     public void setAntiAliasingActive(boolean value) {
         aa = value;
     }
+
+    private JMenuBar copyJMenuBar(JMenuBar originalMenuBar) {
+        JMenuBar newMenuBar = new JMenuBar();
+        for (int i = 0; i < originalMenuBar.getMenuCount(); i++) {
+            JMenu originalMenu = originalMenuBar.getMenu(i);
+            JMenu newMenu = new JMenu(originalMenu.getText());
+            for (int j = 0; j < originalMenu.getItemCount(); j++) {
+                JMenuItem originalMenuItem = originalMenu.getItem(j);
+                JMenuItem newMenuItem = new JMenuItem(originalMenuItem.getText());
+                newMenu.add(newMenuItem);
+            }
+            newMenuBar.add(newMenu);
+        }
+        return newMenuBar;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         if(aa) {
@@ -32,7 +48,7 @@ public class JFrame2 extends JFrame {
     }
 
     public void open() {
-        setJMenuBar(PublicValues.menuBar);
+        setJMenuBar(copyJMenuBar(PublicValues.menuBar));
         this.setVisible(true);
         this.pack();
     }

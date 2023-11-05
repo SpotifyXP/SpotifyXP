@@ -165,5 +165,8 @@
   "ui.lastfm.chartstracks": "Track Charts",
   "ui.lastfm.account": "User Profile",
   "ui.lastfm.account.open": "Open",
-  "ui.settings.spconnect": "Disable Spotify Connect"
+  "ui.settings.spconnect": "Disable Spotify Connect",
+  "ui.history.title" : "SpotifyXP - Playback History",
+  "ui.history.tree.root" : "Playback History",
+  "ui.history.removeall" : "Remove all"
 }
