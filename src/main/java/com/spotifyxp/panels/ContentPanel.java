@@ -2570,7 +2570,7 @@ public class ContentPanel extends JPanel {
                     AlbumSimplified albumreq = Factory.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute().getAlbum();
                     String a = TrackUtils.getArtists(albumreq.getArtists());
                     ((DefaultTableModel) hotlistplayliststable.getModel()).addRow(new Object[]{albumreq.getName() + " - " + a});
-                    hotlistplaylistlistcache.add(albumreq.getUri().split(":")[2]);
+                    hotlistplaylistlistcache.add(albumreq.getUri());
                 } catch (IOException | ParseException | SpotifyWebApiException e) {
                     ConsoleLogging.Throwable(e);
                 }
