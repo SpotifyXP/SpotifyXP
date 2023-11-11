@@ -48,6 +48,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -245,7 +246,7 @@ public class ContentPanel extends JPanel {
                 if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
                     try {
                         PublicValues.history.addSong(Factory.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
-                    } catch (IOException | ParseException | SpotifyWebApiException e) {
+                    } catch (SQLException | IOException | SpotifyWebApiException | ParseException e) {
                         ConsoleLogging.Throwable(e);
                     }
                 }

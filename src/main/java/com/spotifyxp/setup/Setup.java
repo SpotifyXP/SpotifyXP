@@ -26,7 +26,7 @@ public class Setup {
         AcceptComponent thirdparty = new AcceptComponent();
         thirdparty.load(new Resources().readToString("setup/thirdparty.html"));
         new com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup().open(new SetupBuilder()
-                .setProgramImage(new Resources(true).readToInputStream("spotifyxp.png"))
+                .setProgramImage(new Resources(true).readToInputStream("setup.png"))
                 .setProgramName(ApplicationUtils.getName())
                 .setProgramVersion(ApplicationUtils.getVersion())
                 .setOnFinish(new Runnable() {
