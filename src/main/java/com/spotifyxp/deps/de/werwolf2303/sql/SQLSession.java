@@ -1,8 +1,5 @@
 package com.spotifyxp.deps.de.werwolf2303.sql;
 
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.SystemUtils;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

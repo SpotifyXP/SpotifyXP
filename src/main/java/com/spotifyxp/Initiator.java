@@ -6,7 +6,6 @@ import com.spotifyxp.audio.Quality;
 import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.console.Console;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
@@ -62,7 +61,7 @@ public class Initiator {
         }
     });
 
-    
+
 
     public static boolean past = false;
     @SuppressWarnings("rawtypes")
@@ -199,7 +198,6 @@ public class Initiator {
                 }
             }
         }
-        SplashPanel.linfo.setText("Checking required folders...");
         SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
         SplashPanel.linfo.setText("Loading Extensions...");
@@ -317,9 +315,6 @@ public class Initiator {
         new HttpService();
         if(PublicValues.nogui) {
             new RestAPI().start();
-        }
-        if(PublicValues.consoleMode) {
-            new Console().start();
         }
     }
 }

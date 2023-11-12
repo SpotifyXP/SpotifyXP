@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class JFrame2 extends JFrame {
     public JFrame2(String title) {
@@ -28,6 +29,9 @@ public class JFrame2 extends JFrame {
             for (int j = 0; j < originalMenu.getItemCount(); j++) {
                 JMenuItem originalMenuItem = originalMenu.getItem(j);
                 JMenuItem newMenuItem = new JMenuItem(originalMenuItem.getText());
+                for(ActionListener listener : originalMenuItem.getActionListeners()) {
+                    newMenuItem.addActionListener(listener);
+                }
                 newMenu.add(newMenuItem);
             }
             newMenuBar.add(newMenu);

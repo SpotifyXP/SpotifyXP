@@ -10,6 +10,7 @@ import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.threading.DefThread;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -311,6 +312,5 @@ public class PlaybackHistory extends JFrame2 {
                 new SQLInsert(t.getAlbum().getName(), SQLEntryTypes.STRING),
                 new SQLInsert(t.getAlbum().getUri(), SQLEntryTypes.STRING),
                 new SQLInsert(sqlTable.getRowCount(), SQLEntryTypes.INTEGER));
-        loadMore();
     }
 }

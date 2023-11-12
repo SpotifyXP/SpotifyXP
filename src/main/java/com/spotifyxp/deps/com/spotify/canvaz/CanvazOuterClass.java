@@ -4047,7 +4047,7 @@ public final class CanvazOuterClass {
       ".spotify.canvazcache.EntityCanvazRespons" +
       "e.Canvaz\022\026\n\016ttl_in_seconds\030\002 \001(\003\032\350\001\n\006Can" +
       "vaz\022\n\n\002id\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\022\017\n\007file_id\030" +
-      "\003 \001(\t\022&\n\004type\030\004 \001(\0162\030.com.spotifyxp.deps.com.spotify.canvaz" +
+      "\003 \001(\t\022&\n\004type\030\004 \001(\0162\030.com.spotify.canvaz" +
       ".Type\022\022\n\nentity_uri\030\005 \001(\t\022/\n\006artist\030\006 \001(" +
       "\0132\037.com.spotify.canvazcache.Artist\022\020\n\010ex" +
       "plicit\030\007 \001(\010\022\023\n\013uploaded_by\030\010 \001(\t\022\014\n\004eta" +

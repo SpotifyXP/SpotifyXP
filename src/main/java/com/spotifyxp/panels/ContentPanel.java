@@ -875,7 +875,7 @@ public class ContentPanel extends JPanel {
                 try {
                     if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().isEmpty()) {
                         PublicValues.canvasPlayer.show();
-                        PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getArtist(), Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getAlbumName(), Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName()));
+                        PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri()));
                         if (!PublicValues.spotifyplayer.isPaused()) {
                             PublicValues.canvasPlayer.play();
                         }
@@ -2591,7 +2591,7 @@ public class ContentPanel extends JPanel {
             ConsoleLogging.Throwable(e);
         }
         if(!steamdeck) {
-            mainframe.setJMenuBar(bar);
+            mainframe.setJMenuBar(copyJMenuBar(PublicValues.menuBar));
         }
         mainframe.setPreferredSize(new Dimension(784, 590));
         mainframe.getContentPane().add(this);
@@ -2628,5 +2628,23 @@ public class ContentPanel extends JPanel {
         public String playerslidermax;
         public String playervolume;
         public final ArrayList<String> queue = new ArrayList<>();
+    }
+
+    private JMenuBar copyJMenuBar(JMenuBar originalMenuBar) {
+        JMenuBar newMenuBar = new JMenuBar();
+        for (int i = 0; i < originalMenuBar.getMenuCount(); i++) {
+            JMenu originalMenu = originalMenuBar.getMenu(i);
+            JMenu newMenu = new JMenu(originalMenu.getText());
+            for (int j = 0; j < originalMenu.getItemCount(); j++) {
+                JMenuItem originalMenuItem = originalMenu.getItem(j);
+                JMenuItem newMenuItem = new JMenuItem(originalMenuItem.getText());
+                for(ActionListener listener : originalMenuItem.getActionListeners()) {
+                    newMenuItem.addActionListener(listener);
+                }
+                newMenu.add(newMenuItem);
+            }
+            newMenuBar.add(newMenu);
+        }
+        return newMenuBar;
     }
 }

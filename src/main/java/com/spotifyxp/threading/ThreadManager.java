@@ -1,7 +1,5 @@
 package com.spotifyxp.threading;
 
-import com.spotifyxp.utils.Utils;
-
 import java.util.ArrayList;
 
 public class ThreadManager {

@@ -1,5 +1,8 @@
 package com.spotifyxp.api;
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -1064,33 +1067,13 @@ public class UnofficialSpotifyAPI {
     }
 
 
-    /**
-     * Gets a canvas url for the given track
-     * @param artist artist name
-     * @param album album name
-     * @param track track name
-     * @return url of canvas (file)
-     */
-    public static String getCanvasURLForTrack(String artist, String album, String track) {
-        HttpClient client = HttpClients.createDefault();
-        HttpGet method;
+    public static String getCanvasURLForTrack(String uri) {
         try {
-            track =  URLEncoder.encode(track, StandardCharsets.UTF_8.displayName());
-            album = URLEncoder.encode(album, StandardCharsets.UTF_8.displayName());
-            artist = URLEncoder.encode(artist, StandardCharsets.UTF_8.displayName());
-            track = track.replaceAll("\\+", "%20");
-            album = album.replaceAll("\\+", "%20");
-            artist = artist.replaceAll("\\+", "%20");
-            method = new HttpGet("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
-        } catch (UnsupportedEncodingException e) {
-            method = new HttpGet("http://werwolf2303.de:6070/?artist=" + artist + "&album=" + album + "&track=" + track);
-        }
-        try {
-            return EntityUtils.toString(client.execute(method).getEntity());
-        } catch (IOException e) {
-            ExceptionDialog.open(e);
-            ConsoleLogging.Throwable(e);
-            return "ERROR";
+            return PublicValues.session.api().getCanvases(CanvazOuterClass.EntityCanvazRequest.newBuilder().addEntities(CanvazOuterClass.EntityCanvazRequest.Entity.newBuilder().setEntityUri(uri).buildPartial()).build()).getCanvases(0).getUrl();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "";
+        } catch (IOException | MercuryClient.MercuryException e) {
+            throw new RuntimeException(e);
         }
     }
 }

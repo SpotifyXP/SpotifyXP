@@ -15,8 +15,6 @@ public class JScrollText extends JLabel implements Runnable {
     boolean animate = true;
 
     public void run() {
-        long startofexec;
-        long last = 0;
         FontMetrics metrics = null;
         try {
             metrics = getFontMetrics(getFont());
@@ -24,9 +22,6 @@ public class JScrollText extends JLabel implements Runnable {
         }
         if(metrics != null) {
             while (animate) {
-                //Hsync
-                startofexec = System.currentTimeMillis();
-                //---
                 if (!isVisible()) {
                     return;
                 }
@@ -43,21 +38,10 @@ public class JScrollText extends JLabel implements Runnable {
 
                 String oldText = getText();
                 String newText = oldText.substring(1) + oldText.charAt(0);
-                //HSync
                 try {
                     Thread.sleep(400);
                 } catch (InterruptedException ignored) {
                 }
-                if (!(last == 0)) {
-                    if (System.currentTimeMillis() != startofexec + 400) {
-                        try {
-                            Thread.sleep(System.currentTimeMillis() - startofexec);
-                        } catch (InterruptedException ignored) {
-                        }
-                    }
-                }
-                last = System.currentTimeMillis() - startofexec;
-                //---
                 super.setText(newText);
             }
         }

@@ -1,6 +1,5 @@
 package com.spotifyxp.logging;
 
-import com.spotifyxp.args.ConsoleMode;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.utils.Utils;
 
@@ -233,11 +232,6 @@ public class ConsoleLoggingModules {
     public static void warning(String message) {
         if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.WARNING).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
-    }
-
-    public static void killLogging() {
-        Utils.checkPermission(ConsoleMode.class);
-        killSwitch = true;
     }
 
     //Log4JSupport

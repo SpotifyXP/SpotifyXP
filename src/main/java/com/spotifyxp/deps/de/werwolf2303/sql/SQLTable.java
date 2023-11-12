@@ -1,7 +1,5 @@
 package com.spotifyxp.deps.de.werwolf2303.sql;
 
-import com.spotifyxp.utils.GraphicalMessage;
-
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,9 +1,11 @@
 package com.spotifyxp.testing;
 
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 
-public class Test extends JFrame2 {
-    public static void main(String[] args) {
+import java.io.IOException;
+
+public class Test {
+    public static void main(String[] args) throws IOException, MercuryClient.MercuryException, InterruptedException {
 
     }
 }
