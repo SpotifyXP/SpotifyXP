@@ -897,7 +897,6 @@ public class ContentPanel extends JPanel {
                     historybutton.isFilled = false;
                     historybutton.setImage(Graphics.HISTORY.getPath());
                     PublicValues.history.dispose();
-                    PublicValues.history = new PlaybackHistory();
                 }else{
                     historybutton.isFilled = true;
                     historybutton.setImage(Graphics.HISTORYSELECTED.getPath());

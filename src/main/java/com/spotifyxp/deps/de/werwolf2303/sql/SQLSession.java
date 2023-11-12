@@ -1,8 +1,12 @@
 package com.spotifyxp.deps.de.werwolf2303.sql;
 
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.SystemUtils;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SQLSession {
     private static SQLSession itself;
@@ -11,6 +15,7 @@ public class SQLSession {
     private static String database = "";
     private static String username = "";
     private static String password = "";
+    private static ArrayList<SQLElement> elements = new ArrayList<>();
 
     public SQLSession(String username, String password, String database) {
         SQLSession.database = database;
@@ -25,6 +30,7 @@ public class SQLSession {
     }
 
     public void initSQLElement(SQLElement element) {
+        elements.add(element);
         element.provideSession(new SQLSessionPrivate());
     }
 
@@ -45,6 +51,9 @@ public class SQLSession {
             connection = DriverManager.getConnection(sqlBaseURL);
         }else{
             connection = DriverManager.getConnection(sqlBaseURL, username, password);
+        }
+        for(SQLElement element : elements) {
+            element.provideSession(new SQLSessionPrivate());
         }
         return isConnected();
     }
@@ -68,6 +77,17 @@ public class SQLSession {
         }
     }
 
+    public void disconnect() throws SQLException {
+        connection.close();
+    }
+
+    public void tryDisconnect() {
+        try {
+            disconnect();
+        }catch (SQLException ignored) {
+        }
+    }
+
     public static class SQLSessionPrivate {
         public void initSQLElement(SQLElement element) {
             element.provideSession(this);
@@ -83,6 +103,17 @@ public class SQLSession {
 
         public boolean connect() throws SQLException {
             return itself.connect();
+        }
+
+        public void disconnect() throws SQLException {
+            itself.disconnect();
+        }
+
+        public void tryDisconnect() {
+            try {
+                itself.disconnect();
+            }catch (SQLException ignored) {
+            }
         }
 
         public boolean tryConnect() {

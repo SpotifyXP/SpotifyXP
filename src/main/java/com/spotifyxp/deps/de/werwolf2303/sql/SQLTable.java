@@ -1,5 +1,7 @@
 package com.spotifyxp.deps.de.werwolf2303.sql;
 
+import com.spotifyxp.utils.GraphicalMessage;
+
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,10 +17,14 @@ public class SQLTable implements SQLElement {
     }
 
     public boolean exists() throws SQLException {
+        boolean ret = false;
+        sqlSession.connect();
         DatabaseMetaData metaData = sqlSession.getConnection().getMetaData();
         try (ResultSet resultSet = metaData.getTables(null, null, name, null)) {
-            return resultSet.next();
+            ret = true;
         }
+        sqlSession.disconnect();
+        return ret;
     }
 
     public boolean tryExists() {
@@ -30,6 +36,7 @@ public class SQLTable implements SQLElement {
     }
 
     public boolean create(SQLEntryPair... pairs) throws SQLException {
+        sqlSession.connect();
         StringBuilder command = new StringBuilder();
         command.append("CREATE TABLE ").append(name).append("(");
         int counter = 1;
@@ -47,6 +54,7 @@ public class SQLTable implements SQLElement {
         }
         command.append(");");
         sqlSession.getConnection().createStatement().execute(command.toString());
+        sqlSession.disconnect();
         return exists();
     }
 
@@ -59,6 +67,7 @@ public class SQLTable implements SQLElement {
     }
 
     public ArrayList<SQLEntryPair> getTableDefinition() throws SQLException {
+        sqlSession.connect();
         ArrayList<SQLEntryPair> pairs = new ArrayList<>();
         DatabaseMetaData metaData = sqlSession.getConnection().getMetaData();
         try (ResultSet resultSet = metaData.getColumns(null, null, name, null)) {
@@ -68,6 +77,7 @@ public class SQLTable implements SQLElement {
                 pairs.add(new SQLEntryPair(columnName, resultSet.getInt("NULLABLE") == DatabaseMetaData.columnNullable, dataType));
             }
         }
+        sqlSession.disconnect();
         return pairs;
     }
 
@@ -80,8 +90,10 @@ public class SQLTable implements SQLElement {
     }
 
     public ArrayList<SQLEntryPair> parseTable(int amount, int offset) throws SQLException {
+        sqlSession.connect();
         ArrayList<SQLEntryPair> pairs = new ArrayList<>();
         ArrayList<SQLEntryPair> tableDefinition = getTableDefinition();
+        sqlSession.connect();
         ResultSet resultSet = sqlSession.getConnection().createStatement().executeQuery("SELECT * FROM " + name);
         int counter = 0;
         while(resultSet.next()) {
@@ -110,6 +122,7 @@ public class SQLTable implements SQLElement {
             }
             counter++;
         }
+        sqlSession.disconnect();
         return pairs;
     }
 
@@ -122,10 +135,12 @@ public class SQLTable implements SQLElement {
     }
 
     public void insertIntoTable(SQLInsert... inserts) throws SQLException {
+        sqlSession.connect();
         StringBuilder sqlcom = new StringBuilder();
         sqlcom.append("INSERT INTO ").append(name).append(" (");
         int counter = 1;
         ArrayList<SQLEntryPair> defs = getTableDefinition();
+        sqlSession.connect();
         for(SQLEntryPair p : defs) {
             if(counter == defs.size()) {
                 sqlcom.append(p.getName());
@@ -163,6 +178,7 @@ public class SQLTable implements SQLElement {
             counter++;
         }
         statement.executeUpdate();
+        sqlSession.disconnect();
     }
 
     public void tryInsertIntoTable(SQLInsert... inserts) {
@@ -173,7 +189,9 @@ public class SQLTable implements SQLElement {
     }
 
     public void clearTable() throws SQLException {
+        sqlSession.connect();
         sqlSession.getConnection().createStatement().executeQuery("DELETE FROM " + name);
+        sqlSession.disconnect();
     }
 
     public void tryClearTable() {
@@ -184,8 +202,10 @@ public class SQLTable implements SQLElement {
     }
 
     public ArrayList<SQLEntryPair> parseTableBackwards(int amount, int offset, String counterName) throws SQLException {
+        sqlSession.connect();
         ArrayList<SQLEntryPair> pairs = new ArrayList<>();
         ArrayList<SQLEntryPair> tableDefinition = getTableDefinition();
+        sqlSession.connect();
         ResultSet resultSet = sqlSession.getConnection().createStatement().executeQuery("SELECT * FROM " + name + " ORDER BY " + counterName + " DESC");
         int counter = 0;
         while(resultSet.next()) {
@@ -214,6 +234,7 @@ public class SQLTable implements SQLElement {
             }
             counter++;
         }
+        sqlSession.disconnect();
         return pairs;
     }
 
@@ -226,13 +247,16 @@ public class SQLTable implements SQLElement {
     }
 
     public int getRowCount() throws SQLException {
+        sqlSession.connect();
+        int ret = 0;
         String query = "SELECT COUNT(*) AS row_count FROM " + name;
         try (ResultSet resultSet = sqlSession.getConnection().createStatement().executeQuery(query)) {
             if (resultSet.next()) {
-                return resultSet.getInt("row_count");
+                ret = resultSet.getInt("row_count");
             }
-            return 0;
         }
+        sqlSession.disconnect();
+        return ret;
     }
 
     public int tryGetRowCount() {

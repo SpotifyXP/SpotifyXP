@@ -66,30 +66,33 @@ public class URITree extends JTree {
                 if (node.getUserObject() instanceof TreeNodeData) {
                     TreeNodeData data = (TreeNodeData) node.getUserObject();
                     setText(data.getText());
-                    switch (data.nodetype) {
-                        case PLAYLIST:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.PLAYLIST.getInputStream(), getPreferredSize()));
-                            break;
-                        case TRACK:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.TRACK.getInputStream(), getPreferredSize()));
-                            break;
-                        case ALBUM:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.ALBUM.getInputStream(), getPreferredSize()));
-                            break;
-                        case SHOW:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.SHOW.getInputStream(), getPreferredSize()));
-                            break;
-                        case ARTIST:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.ACCOUNT.getInputStream(), getPreferredSize()));
-                            break;
-                        case EPISODE:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.MICROPHONE.getInputStream(), getPreferredSize()));
-                            break;
-                        case LOADMORE:
-                            setIcon(SVGUtils.svgToImageIconSameSize(Graphics.DOTS.getInputStream(), getPreferredSize()));
-                            break;
-                        default:
-                            ConsoleLogging.warning("[URITree] Invalid nodeType! Falling back to folder icon");
+                    try {
+                        switch (data.nodetype) {
+                            case PLAYLIST:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.PLAYLIST.getInputStream(), getPreferredSize()));
+                                break;
+                            case TRACK:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.TRACK.getInputStream(), getPreferredSize()));
+                                break;
+                            case ALBUM:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.ALBUM.getInputStream(), getPreferredSize()));
+                                break;
+                            case SHOW:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.SHOW.getInputStream(), getPreferredSize()));
+                                break;
+                            case ARTIST:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.ACCOUNT.getInputStream(), getPreferredSize()));
+                                break;
+                            case EPISODE:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.MICROPHONE.getInputStream(), getPreferredSize()));
+                                break;
+                            case LOADMORE:
+                                setIcon(SVGUtils.svgToImageIconSameSize(Graphics.DOTS.getInputStream(), getPreferredSize()));
+                                break;
+                            default:
+                                ConsoleLogging.warning("[URITree] Invalid nodeType! Falling back to folder icon");
+                        }
+                    }catch (NullPointerException ignored) {
                     }
                 }
             }

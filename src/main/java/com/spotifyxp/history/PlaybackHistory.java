@@ -10,8 +10,6 @@ import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.GraphicalMessage;
-
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -21,7 +19,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -49,7 +46,7 @@ public class PlaybackHistory extends JFrame2 {
 
     private static URITree tree;
     private static DefaultMutableTreeNode root;
-    private static final ArrayList<PlaybackHistory.TreeEntry> addedArtists = new ArrayList<>();
+    private static ArrayList<PlaybackHistory.TreeEntry> addedArtists = new ArrayList<>();
     private static int offset = 0;
     private static String databasePath;
     private static SQLSession sqlSession;
@@ -86,7 +83,6 @@ public class PlaybackHistory extends JFrame2 {
                     PublicValues.history = null;
                     return;
                 }
-
             }
         } catch (SQLException e) {
             PublicValues.history = null;
@@ -156,7 +152,6 @@ public class PlaybackHistory extends JFrame2 {
                 dispose();
                 ContentPanel.historybutton.isFilled = false;
                 ContentPanel.historybutton.setImage(Graphics.HISTORY.getInputStream());
-                PublicValues.history = new PlaybackHistory();
             }
         });
     }
@@ -248,17 +243,23 @@ public class PlaybackHistory extends JFrame2 {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassCastException ignored) {
-            ignored.printStackTrace();
         }
         return songs;
     }
 
     public void removeAllSongs() throws SQLException {
         sqlTable.clearTable();
+        root.removeAllChildren();
+        ((DefaultTreeModel) tree.getModel()).reload();
     }
 
     @Override
     public void open() {
+        offset = 0;
+        addedArtists = new ArrayList<>();
+        root.removeAllChildren();
+        ((DefaultTreeModel) tree.getModel()).reload();
+
         DefThread fetchhistory = new DefThread(() -> {
             try {
                 for (PlaybackHistory.SongEntry entry : get15Songs(0)) {
@@ -310,5 +311,6 @@ public class PlaybackHistory extends JFrame2 {
                 new SQLInsert(t.getAlbum().getName(), SQLEntryTypes.STRING),
                 new SQLInsert(t.getAlbum().getUri(), SQLEntryTypes.STRING),
                 new SQLInsert(sqlTable.getRowCount(), SQLEntryTypes.INTEGER));
+        loadMore();
     }
 }
