@@ -28,7 +28,7 @@ public class BackgroundService {
                     ContentPanel.frame.setVisible(true);
                 }
             });
-            trayDialog.addEntry("Exit", e -> ContentPanel.frame.dispose());
+            trayDialog.addEntry("Exit", e -> System.exit(0));
         }
         catch (Exception e) {
             ConsoleLogging.Throwable(e);
