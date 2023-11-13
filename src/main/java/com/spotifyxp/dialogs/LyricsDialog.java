@@ -7,17 +7,16 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.RAWTextArea;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 import static com.spotifyxp.panels.ContentPanel.playerarealyricsbutton;
 
@@ -27,26 +26,10 @@ public class LyricsDialog {
     final RAWTextArea area = new RAWTextArea();
     final JScrollPane pane = new JScrollPane(area);
 
-    final LyricsMode mode = LyricsMode.LIVE;
-
-    static class LyricsWord {
-        public int column;
-        public String word;
-        public long ms;
-    }
-
-    final ArrayList<LyricsWord> words = new ArrayList<>();
-
-    public enum LyricsMode {
-        LIVE,
-        SPOTIFY,
-    }
-
     int oldw = 0;
     int oldh = 0;
 
     public boolean open(String uri) {
-        words.clear();
         area.setText("");
         try {
             if (frame.isVisible()) {
@@ -74,20 +57,15 @@ public class LyricsDialog {
                         ExceptionDialog.open(e);
                     }
                 }
+                ContextMenu menu = new ContextMenu(area);
+                menu.addItem(PublicValues.language.translate("ui.general.copy"), area::copyText);
                 frame.setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
                 frame.setVisible(true);
                 frame.pack();
             }
 
-            int counter = 0;
             for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
-                LyricsWord lyricsWord = new LyricsWord();
-                lyricsWord.word = line.words;
-                lyricsWord.ms = line.startTimeMs;
-                lyricsWord.column = counter;
-                words.add(lyricsWord);
                 area.append(line.words + "\n");
-                counter++;
             }
             return true;
         }catch (JSONException e) {
@@ -98,12 +76,6 @@ public class LyricsDialog {
     public void close() {
         frame.setVisible(false);
     }
-
-    public void setLyricsMode(LyricsMode lyricsMode) {
-        //mode = lyricsMode;
-    }
-
-    int c = 0;
 
     public void triggerRefresh() {
         if(lyrics == null) {
@@ -125,6 +97,5 @@ public class LyricsDialog {
             }
             counter++;
         }
-        c++;
     }
 }

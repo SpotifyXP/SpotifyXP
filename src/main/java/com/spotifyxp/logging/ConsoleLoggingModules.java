@@ -1,7 +1,6 @@
 package com.spotifyxp.logging;
 
 import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.utils.Utils;
 
 public class ConsoleLoggingModules {
     private static boolean killSwitch = false;
