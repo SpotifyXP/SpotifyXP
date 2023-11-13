@@ -7,6 +7,7 @@ import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.swingextension.RAWTextArea;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONException;
 
@@ -23,7 +24,7 @@ import static com.spotifyxp.panels.ContentPanel.playerarealyricsbutton;
 public class LyricsDialog {
     final JFrame frame = new JFrame("SpotifyXP - Song Lyrics");
     UnofficialSpotifyAPI.Lyrics lyrics;
-    final JTextArea area = new JTextArea();
+    final RAWTextArea area = new RAWTextArea();
     final JScrollPane pane = new JScrollPane(area);
 
     final LyricsMode mode = LyricsMode.LIVE;
@@ -52,7 +53,6 @@ public class LyricsDialog {
                 lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
             } else {
                 lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
-                area.setEditable(false);
                 frame.add(pane, BorderLayout.CENTER);
                 frame.addWindowListener(new WindowAdapter() {
                     @Override
@@ -99,14 +99,6 @@ public class LyricsDialog {
         frame.setVisible(false);
     }
 
-    void removeLast() {
-        try {
-            area.setText(area.getText(1, area.getText().length()));
-        } catch (BadLocationException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void setLyricsMode(LyricsMode lyricsMode) {
         //mode = lyricsMode;
     }
@@ -117,39 +109,21 @@ public class LyricsDialog {
         if(lyrics == null) {
             return;
         }
-        if(mode!=LyricsMode.SPOTIFY) {
-            int counter = 0;
-            for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
-                try {
-                    if (line.startTimeMs < PublicValues.spotifyplayer.time() && lyrics.lines.get(counter + 1).startTimeMs > PublicValues.spotifyplayer.time()) {
-                        if (!area.getText().equals(line.words)) {
-                            area.setText(line.words + "\n" + lyrics.lines.get(counter + 1).words);
-                        }
-                        break;
+        int counter = 0;
+        for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
+            try {
+                if (line.startTimeMs < PublicValues.spotifyplayer.time() && lyrics.lines.get(counter + 1).startTimeMs > PublicValues.spotifyplayer.time()) {
+                    if (!area.getText().equals(line.words)) {
+                        area.setText(line.words + "\n" + lyrics.lines.get(counter + 1).words);
                     }
-                } catch (IndexOutOfBoundsException e) {
-                    //End of song
-                    area.setText(lyrics.lines.get(lyrics.lines.size() - 1).words);
                     break;
                 }
-                counter++;
+            } catch (IndexOutOfBoundsException e) {
+                //End of song
+                area.setText(lyrics.lines.get(lyrics.lines.size() - 1).words);
+                break;
             }
-        }else{
-            //Spotify Mode
-            int counter = 0;
-            for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
-                try {
-                    if (line.startTimeMs < PublicValues.spotifyplayer.time() && lyrics.lines.get(counter + 1).startTimeMs > PublicValues.spotifyplayer.time()) {
-                        //Found current playing word
-                        removeLast();
-                    }
-                } catch (IndexOutOfBoundsException e) {
-                    //End of song
-                    //area.setText(lyrics.lines.get(lyrics.lines.size() - 1).words);
-                    break;
-                }
-                counter++;
-            }
+            counter++;
         }
         c++;
     }
