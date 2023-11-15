@@ -29,7 +29,7 @@ public class ExceptionDialog {
      * Opens a real exception window
      */
     public void openReal() {
-        if(PublicValues.config.getString(ConfigValues.hideExceptions.name).equals("true")) {
+        if(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name)) {
             return;
         }
         if(SplashPanel.frame.isVisible()) {

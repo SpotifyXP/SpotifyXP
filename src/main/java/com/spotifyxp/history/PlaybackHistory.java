@@ -10,6 +10,7 @@ import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -63,6 +64,7 @@ public class PlaybackHistory extends JFrame2 {
         try {
             sqlSession.connect();
         }catch (SQLException e) {
+            e.printStackTrace();
             ConsoleLogging.error("Can't establish a connection to the playback history database");
             PublicValues.history = null;
             return;

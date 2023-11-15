@@ -28,7 +28,7 @@ class LicenseEntry:
 
 tofind = []
 
-with open("licenses.xml") as f:
+with open("src/main/resources/licenses.xml") as f:
     out = BeautifulSoup(f.read(), features="xml")
     for s in out.find_all("dependency"):
         soup = BeautifulSoup(str(s), features="xml")

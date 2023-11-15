@@ -19,7 +19,12 @@ public class SQLTable implements SQLElement {
         sqlSession.connect();
         DatabaseMetaData metaData = sqlSession.getConnection().getMetaData();
         try (ResultSet resultSet = metaData.getTables(null, null, name, null)) {
-            ret = true;
+            try {
+                if (resultSet.getString("TABLE_NAME").equals(name)) {
+                    ret = true;
+                }
+            }catch (NullPointerException ignored) {
+            }
         }
         sqlSession.disconnect();
         return ret;

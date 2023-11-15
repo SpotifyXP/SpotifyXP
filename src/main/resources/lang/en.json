@@ -12,6 +12,7 @@
   "exception.dialog.label": "An error occurred",
   "exception.dialog.title": "SpotifyXP - Exception",
   "general.exception.hide": "Hide Exceptions",
+  "general.exception.visibility": "VISIBILITY",
   "joptionpane.info": "Info",
   "message.stuck.text": "It looks like SpotifyXP is stuck. Do you want to close SpotifyXP?",
   "message.stuck.title": "Message",
