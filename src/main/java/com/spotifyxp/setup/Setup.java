@@ -1,5 +1,6 @@
 package com.spotifyxp.setup;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup.SetupBuilder;
@@ -15,6 +16,7 @@ import com.spotifyxp.utils.LinuxAppUtil;
 import com.spotifyxp.utils.MacOSAppUtil;
 import com.spotifyxp.utils.Resources;
 
+import javax.swing.*;
 import java.io.File;
 import java.net.URISyntaxException;
 

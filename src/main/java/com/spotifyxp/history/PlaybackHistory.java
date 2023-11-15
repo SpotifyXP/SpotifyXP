@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class PlaybackHistory extends JFrame2 {
     private static SQLTable sqlTable;
 
     public PlaybackHistory() {
-        databasePath = PublicValues.fileslocation + "/playbackhistory.db";
+        databasePath = new File(PublicValues.fileslocation, "playbackhistory.db").getAbsolutePath();
 
         sqlSession = new SQLSession(databasePath);
         sqlSession.loadDriver("org.sqlite.JDBC", "jdbc", "sqlite");

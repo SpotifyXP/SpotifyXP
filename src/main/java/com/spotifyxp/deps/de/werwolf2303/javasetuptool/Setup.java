@@ -2,7 +2,6 @@ package com.spotifyxp.deps.de.werwolf2303.javasetuptool;
 
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.Component;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -111,7 +110,9 @@ public class Setup {
         }
 
         public void open() {
-            frame.setResizable(false);
+            if(com.spotifyxp.PublicValues.isMacOS) {
+                frame.setResizable(false);
+            }
             frame.setVisible(true);
             frame.pack();
             for(Component component : currentBuilder.components) {
