@@ -25,6 +25,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder.Loade
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -33,11 +34,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * @author Gianlu
  */
 public final class CdnFeedHelper {
+    private static ArrayList<String> blockedCDNs = new ArrayList<>();
+    private static int retryCount = 0;
     
 
     private CdnFeedHelper() {
@@ -45,6 +49,16 @@ public final class CdnFeedHelper {
 
     @NotNull
     private static HttpUrl getUrl(@NotNull Session session, @NotNull StorageResolveResponse resp) {
+        for(String s : blockedCDNs) {
+            if(s.equals(resp.getCdnurl(session.random().nextInt(resp.getCdnurlCount())))) {
+                retryCount++;
+                if(retryCount == 30) {
+                    GraphicalMessage.sorryErrorExit("Failed to get suitable cdn");
+                }
+                return getUrl(session, resp);
+            }
+        }
+        retryCount = 0;
         return HttpUrl.get(resp.getCdnurl(session.random().nextInt(resp.getCdnurlCount())));
     }
 
@@ -79,6 +93,11 @@ public final class CdnFeedHelper {
             CdnManager.Streamer streamer = session.cdn().streamExternalEpisode(episode, url, haltListener);
             return new LoadedStream(episode, streamer, null, new PlayableContentFeeder.Metrics(null, false, -1));
         }
+    }
+
+    public static void blockCurrentCDN(String cdnURL) {
+        ConsoleLoggingModules.warning("Blocking '" + cdnURL + "' because of https://github.com/librespot-org/librespot-java/issues/742");
+        blockedCDNs.add(cdnURL);
     }
 
     public static @NotNull LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, @NotNull Metadata.AudioFile file, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {

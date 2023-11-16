@@ -35,6 +35,7 @@ import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.net.ssl.SSLPeerUnverifiedException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -316,9 +317,14 @@ public class CdnManager {
                 }
             }
 
+            String respURL;
+
             try {
                 InternalResponse resp = request(index);
                 writeChunk(resp.buffer, index, false);
+            } catch (SSLPeerUnverifiedException ex) {
+                CdnFeedHelper.blockCurrentCDN(cdnUrl.url.uri().toString());
+                requestChunk(index);
             } catch (IOException | CdnException ex) {
                 ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
                 internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
