@@ -52,7 +52,9 @@ public class JFrame2 extends JFrame {
     }
 
     public void open() {
-        setJMenuBar(copyJMenuBar(PublicValues.menuBar));
+        if(!(PublicValues.menuBar == null)) {
+            setJMenuBar(copyJMenuBar(PublicValues.menuBar));
+        }
         this.setVisible(true);
         this.pack();
     }

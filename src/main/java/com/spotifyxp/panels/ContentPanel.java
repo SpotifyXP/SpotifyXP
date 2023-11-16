@@ -1704,6 +1704,12 @@ public class ContentPanel extends JPanel {
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
                         errorQueue.get(table.getSelectedRow()).openReal();
+                    }
+                });
+                ContextMenu menu = new ContextMenu(pane);
+                menu.addItem(PublicValues.language.translate("ui.general.remove"), new Runnable() {
+                    @Override
+                    public void run() {
                         errorQueue.remove(errorQueue.size() - 1);
                         errorDisplay.setText(String.valueOf(errorQueue.size()));
                         ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());

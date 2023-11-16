@@ -2,10 +2,7 @@ package com.spotifyxp.theming;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.theming.themes.DarkGreen;
-import com.spotifyxp.theming.themes.Legacy;
-import com.spotifyxp.theming.themes.MacOS;
-import com.spotifyxp.theming.themes.Ugly;
+import com.spotifyxp.theming.themes.*;
 import com.spotifyxp.utils.Utils;
 
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ public class ThemeLoader {
             availableThemes.add(new MacOS());
         }
         availableThemes.add(new Ugly());
+        availableThemes.add(new CustomTheme());
     }
 
     public static boolean hasTheme(String name) {

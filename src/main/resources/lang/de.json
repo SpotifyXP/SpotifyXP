@@ -165,10 +165,19 @@
   "ui.lastfm.chartsartists": "Artist Charts",
   "ui.lastfm.chartsalbums": "Album Charts",
   "ui.lastfm.chartstracks": "Track Charts",
+  "ui.lastfm.chartstracks": "Track Charts"
   "ui.lastfm.account": "Account",
   "ui.lastfm.account.open": "Benutzerprofil",
   "ui.settings.spconnect": "Spotify Connect deaktivieren",
   "ui.history.title" : "SpotifyXP - Wiedergabeverlauf",
   "ui.history.tree.root" : "Wiedergabeverlauf",
-  "ui.history.removeall" : "Alles entfernen"
+  "ui.history.removeall" : "Alles entfernen",
+  "ui.theme.menu": "Design",
+  "ui.theme.change": "Farben ändern",
+  "theme.bgfield": "Hintergrundfarbe",
+  "theme.button": "Farbe wählen",
+  "theme.borderfield": "Grenzfarbe",
+  "theme.tabpanelfield": "TabPanel Hintergrundfarbe",
+  "theme.fontfield": "Schriftfarbe",
+  "theme.touse":"Designstil"
 }

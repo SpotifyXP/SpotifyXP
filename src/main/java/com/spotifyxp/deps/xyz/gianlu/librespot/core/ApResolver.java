@@ -134,24 +134,41 @@ public final class ApResolver {
 
     boolean retry = false;
     public static boolean eof = false;
+    boolean ret80 = true;
+    int retryCounter = 0;
 
     private String returnPort80(String url, String type) {
+        if(retryCounter > 15) {
+            GraphicalMessage.sorryErrorExit("Can't find a suitable " + type);
+        }
+        retryCounter++;
         if(!isBlocked(url)) {
             return url;
         }else{
             ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
         }
-        if (url.contains(":80") || url.contains(":443")) {
-            if(isBlocked(url)) {
-                GraphicalMessage.sorryErrorExit("Port 80 is blocked by your firewall");
+        if(ret80) {
+            if (url.contains(":80") || url.contains(":443")) {
+                if (isBlocked(url)) {
+                    ConsoleLoggingModules.warning("Port 80 is blocked by your firewall! Trying other ports");
+                    ret80 = false;
+                    waitForPool();
+                    List<String> urls = pool.get(type);
+                    if (urls == null || urls.isEmpty()) throw new IllegalStateException();
+                    return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+                }
+                return url;
+            } else {
+                waitForPool();
+                List<String> urls = pool.get(type);
+                if (urls == null || urls.isEmpty()) throw new IllegalStateException();
+                return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
             }
-            return url;
-        } else {
-            waitForPool();
-            List<String> urls = pool.get(type);
-            if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }
+        waitForPool();
+        List<String> urls = pool.get(type);
+        if (urls == null || urls.isEmpty()) throw new IllegalStateException();
+        return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
     }
 
     public boolean isBlocked(String url) {

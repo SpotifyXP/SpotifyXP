@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SQLTable implements SQLElement {
     private SQLSession.SQLSessionPrivate sqlSession;
-    private String name;
+    private final String name;
 
     public SQLTable(String name) {
         this.name = name;

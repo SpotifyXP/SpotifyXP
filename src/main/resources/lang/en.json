@@ -170,5 +170,13 @@
   "ui.settings.spconnect": "Disable Spotify Connect",
   "ui.history.title" : "SpotifyXP - Playback History",
   "ui.history.tree.root" : "Playback History",
-  "ui.history.removeall" : "Remove all"
+  "ui.history.removeall" : "Remove all",
+  "ui.theme.menu": "Theme",
+  "ui.theme.change": "Change Color",
+  "theme.bgfield": "Background Color",
+  "theme.button": "Select Color",
+  "theme.borderfield": "Border Color",
+  "theme.tabpanelfield": "TabPanel Background Color",
+  "theme.fontfield": "Font Color",
+  "theme.touse":"Theme to use"
 }

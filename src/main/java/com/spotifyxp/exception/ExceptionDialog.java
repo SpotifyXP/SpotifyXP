@@ -2,11 +2,14 @@ package com.spotifyxp.exception;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.SplashPanel;
-
+import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.utils.ClipboardUtil;
+import com.spotifyxp.utils.Utils;
 import javax.swing.*;
 import java.awt.*;
+
+import static com.spotifyxp.panels.ContentPanel.errorQueue;
 
 public class ExceptionDialog {
     public ExceptionDialog(Throwable ex) {
@@ -59,6 +62,9 @@ public class ExceptionDialog {
             exceptiontext.setText(exceptiontext.getText() + trace + "\n");
         }
 
+        ContextMenu menu = new ContextMenu(contentPane);
+        menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(getExcpetionName() + " -> " + getExcptionMessage()));
+
         JButton exceptionokbutton = new JButton(PublicValues.language.translate("exception.dialog.button.text"));
         exceptionokbutton.setBounds(0, 377, 589, 23);
         contentPane.add(exceptionokbutton);
@@ -71,13 +77,25 @@ public class ExceptionDialog {
         frame.pack();
     }
 
+    public String getExcptionMessage() {
+        StringBuilder builder = new StringBuilder();
+        for(StackTraceElement element : e.getStackTrace()) {
+            builder.append(element.toString()).append("\n");
+        }
+        return builder.toString();
+    }
+
+    public String getExcpetionName() {
+        return Utils.getClassName(e.getClass());
+    }
+
     /**
      * Adds an exception to the list (add to the exception counter)
      * @param ex instance of an Exception
      */
     public static void open(Throwable ex) {
-        if(ContentPanel.errorQueue != null) {
-            ContentPanel.errorQueue.add(new ExceptionDialog(ex));
+        if(errorQueue != null) {
+            errorQueue.add(new ExceptionDialog(ex));
         }
     }
 }
