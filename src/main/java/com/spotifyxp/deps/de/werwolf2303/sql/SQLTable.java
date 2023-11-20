@@ -193,7 +193,7 @@ public class SQLTable implements SQLElement {
 
     public void clearTable() throws SQLException {
         sqlSession.connect();
-        sqlSession.getConnection().createStatement().executeQuery("DELETE FROM " + name);
+        sqlSession.getConnection().createStatement().executeUpdate("DELETE FROM " + name);
         sqlSession.disconnect();
     }
 

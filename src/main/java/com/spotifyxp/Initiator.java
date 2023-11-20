@@ -316,5 +316,6 @@ public class Initiator {
         if(PublicValues.nogui) {
             new RestAPI().start();
         }
+        throw new RuntimeException();
     }
 }

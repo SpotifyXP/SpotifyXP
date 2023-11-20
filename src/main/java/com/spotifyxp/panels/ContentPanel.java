@@ -534,8 +534,11 @@ public class ContentPanel extends JPanel {
         try {
             FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
             StringBuilder queue = new StringBuilder();
+            int counter = 0;
             for(ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+                if(counter == 50) break;
                 queue.append(t.getUri()).append("\n");
+                counter++;
             }
             writer.write(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri() + "\n" + playercurrenttime.getValue() + "\n" + playerplaytime.getText() + "\n" + playerplaytimetotal.getText() + "\n" + playercurrenttime.getMaximum() + "\n" + playerareavolumecurrent.getText() + "\n" + StringUtils.replaceLast(queue.toString(), "\n", ""));
             writer.close();
