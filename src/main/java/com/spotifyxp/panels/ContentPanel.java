@@ -8,6 +8,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
@@ -238,26 +239,18 @@ public class ContentPanel extends JPanel {
         createErrorDisplay();
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
-        Events.registerOnTrackNextEvent(new Runnable() {
-            @Override
-            public void run() {
-                if(PublicValues.spotifyplayer.currentPlayable() == null) return;
-                if(!doneLastParsing) return;
-                if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
-                    try {
-                        PublicValues.history.addSong(Factory.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
-                    } catch (SQLException | IOException | SpotifyWebApiException | ParseException e) {
-                        ConsoleLogging.Throwable(e);
-                    }
+        Events.registerOnTrackNextEvent(() -> {
+            if(PublicValues.spotifyplayer.currentPlayable() == null) return;
+            if(!doneLastParsing) return;
+            if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
+                try {
+                    PublicValues.history.addSong(Factory.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
+                } catch (SQLException | IOException | SpotifyWebApiException | ParseException e) {
+                    ConsoleLogging.Throwable(e);
                 }
             }
         });
-        Events.registerOnTrackLoadFinished(new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.blockLoading = false;
-            }
-        });
+        Events.registerOnTrackLoadFinished(() -> PublicValues.blockLoading = false);
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setLayout(null);
@@ -1710,15 +1703,12 @@ public class ContentPanel extends JPanel {
                     }
                 });
                 ContextMenu menu = new ContextMenu(pane);
-                menu.addItem(PublicValues.language.translate("ui.general.remove"), new Runnable() {
-                    @Override
-                    public void run() {
-                        errorQueue.remove(errorQueue.size() - 1);
-                        errorDisplay.setText(String.valueOf(errorQueue.size()));
-                        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
-                        if (table.getModel().getRowCount() == 0) {
-                            errorDisplay.setVisible(false);
-                        }
+                menu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
+                    errorQueue.remove(errorQueue.size() - 1);
+                    errorDisplay.setText(String.valueOf(errorQueue.size()));
+                    ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+                    if (table.getModel().getRowCount() == 0) {
+                        errorDisplay.setVisible(false);
                     }
                 });
                 JButton remove = new JButton(PublicValues.language.translate("ui.errorqueue.clear"));
@@ -1927,6 +1917,7 @@ public class ContentPanel extends JPanel {
         feedbackcreateissuebutton.addActionListener(e -> ConnectionUtils.openBrowser("https://github.com/werwolf2303/SpotifyXP/issues/new"));
     }
 
+    @SuppressWarnings("all")
     void createLegacy() {
         JFrame dialog = new JFrame();
         playerarea.addMouseListener(new MouseAdapter() {
@@ -2081,8 +2072,11 @@ public class ContentPanel extends JPanel {
         if(PublicValues.devMode) {
             JMenu developer = new JMenu("Developer");
             JMenuItem locationfinder = new JMenuItem("Location Finder");
+            JMenuItem errorsimulator = new JMenuItem("Error Generator");
             bar.add(developer);
+            developer.add(errorsimulator);
             developer.add(locationfinder);
+            errorsimulator.addActionListener(e -> new ErrorSimulator().open());
             locationfinder.addActionListener(e -> new LocationFinder());
         }
         file.add(playuri);
@@ -2172,7 +2166,7 @@ public class ContentPanel extends JPanel {
     }
 
     @FunctionalInterface
-    public static interface PaintOverwrite {
+    public interface PaintOverwrite {
         void run(java.awt.Graphics g);
     }
 
