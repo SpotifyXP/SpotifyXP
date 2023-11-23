@@ -5,6 +5,7 @@ import com.spotifyxp.PublicValues;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ContextMenu {
     public static class GlobalContextMenuItem {
@@ -12,6 +13,34 @@ public class ContextMenu {
         public String name;
     }
     final JPopupMenu holder = new JPopupMenu();
+    public ContextMenu(JComponent container, JComponent click) {
+        click.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(SwingUtilities.isRightMouseButton(e)) {
+                    for(MouseListener listener : container.getMouseListeners()) {
+                        listener.mouseClicked(e);
+                    }
+                }
+            }
+        });
+        container.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(SwingUtilities.isRightMouseButton(e)) {
+                    holder.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+        for(GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            JMenuItem i = new JMenuItem(item.name);
+            i.addActionListener(e -> item.torun.run());
+            holder.add(i);
+        }
+        PublicValues.contextMenus.add(this);
+    }
     public ContextMenu(JPanel panel) {
         panel.addMouseListener(new MouseAdapter() {
             @Override

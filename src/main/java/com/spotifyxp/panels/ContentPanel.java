@@ -1699,10 +1699,13 @@ public class ContentPanel extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
+                        if(SwingUtilities.isRightMouseButton(e)) return;
+                        if(e.getClickCount() != 2) return;
                         errorQueue.get(table.getSelectedRow()).openReal();
                     }
                 });
-                ContextMenu menu = new ContextMenu(pane);
+                ContextMenu menu = new ContextMenu(pane, table);
+                menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(errorQueue.get(table.getSelectedRow()).getAsFormattedText()));
                 menu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
                     errorQueue.remove(errorQueue.size() - 1);
                     errorDisplay.setText(String.valueOf(errorQueue.size()));

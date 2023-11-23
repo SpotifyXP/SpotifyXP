@@ -62,7 +62,7 @@ public class ExceptionDialog {
             exceptiontext.setText(exceptiontext.getText() + trace + "\n");
         }
 
-        ContextMenu menu = new ContextMenu(exceptiontext);
+        ContextMenu menu = new ContextMenu(contentPane, exceptiontext);
         menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(exceptiontext.getText()));
 
         JButton exceptionokbutton = new JButton(PublicValues.language.translate("exception.dialog.button.text"));
@@ -79,6 +79,15 @@ public class ExceptionDialog {
 
     public String getExcptionMessage() {
         StringBuilder builder = new StringBuilder();
+        for(StackTraceElement element : e.getStackTrace()) {
+            builder.append(element.toString()).append("\n");
+        }
+        return builder.toString();
+    }
+
+    public String getAsFormattedText() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[").append(e.toString()).append("] ");
         for(StackTraceElement element : e.getStackTrace()) {
             builder.append(element.toString()).append("\n");
         }
