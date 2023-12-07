@@ -1,7 +1,6 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -20,7 +19,7 @@ public class Player {
             player.waitReady();
         } catch (InterruptedException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         } catch (NullPointerException e) {
             GraphicalMessage.sorryErrorExit("Failed building player");
         }
@@ -40,7 +39,7 @@ public class Player {
             player.waitReady();
         } catch (InterruptedException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         } catch (NullPointerException e) {
             GraphicalMessage.sorryErrorExit("Failed building player");
         }

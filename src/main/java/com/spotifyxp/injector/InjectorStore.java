@@ -1,9 +1,9 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.FileUtils;
+import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +35,7 @@ public class InjectorStore {
                 new File(PublicValues.appLocation, "extensionstore.store").createNewFile();
             } catch (Exception e) {
                 ConsoleLogging.Throwable(e);
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
             }
         }
         try {
@@ -56,7 +56,7 @@ public class InjectorStore {
             }
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         }
     }
 
@@ -138,7 +138,7 @@ public class InjectorStore {
                             entry.loader.close();
                         } catch (IOException exc) {
                             ConsoleLogging.Throwable(exc);
-                            ExceptionDialog.open(exc);
+                            GraphicalMessage.openException(exc);
                         }
                     }
                 }
@@ -155,7 +155,7 @@ public class InjectorStore {
                         w.close();
                     } catch (Exception e2) {
                         ConsoleLogging.Throwable(e2);
-                        ExceptionDialog.open(e2);
+                        GraphicalMessage.openException(e2);
                     }
                     extensioninstallremovebutton.setEnabled(true);
                     extensioninstallremovebutton.setText(PublicValues.language.translate("extension.install.incompatible"));
@@ -209,7 +209,7 @@ public class InjectorStore {
                                 entry.loader.close();
                             } catch (IOException exc) {
                                 ConsoleLogging.Throwable(exc);
-                                ExceptionDialog.open(exc);
+                                GraphicalMessage.openException(exc);
                             }
                         }
                     }
@@ -226,7 +226,7 @@ public class InjectorStore {
                             w.close();
                         } catch (Exception e2) {
                             ConsoleLogging.Throwable(e2);
-                            ExceptionDialog.open(e2);
+                            GraphicalMessage.openException(e2);
                         }
                         extensioninstallremovebutton.setEnabled(true);
                         extensioninstallremovebutton.setText(PublicValues.language.translate("extension.install"));

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -111,7 +111,7 @@ public class SavedTrack extends AbstractModelObject {
               : null)
           .build();
       } catch (ParseException e) {
-        ExceptionDialog.open(e);
+        GraphicalMessage.openException(e);
         ConsoleLoggingModules.Throwable(e);
         return null;
       }

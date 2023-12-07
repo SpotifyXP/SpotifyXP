@@ -2,13 +2,16 @@ package com.spotifyxp.video;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.dummy.DummyCanvasPlayer;
-import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.base.MediaPlayer;
+import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.videosurface.VideoSurface;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -31,9 +34,6 @@ public class CanvasPlayer {
     private JPanel referencePanel;
     private boolean trackValid = false;
     public CanvasPlayer() {
-        if(!System.getProperty("os.name").toLowerCase().contains("win")) {
-            return;
-        }
         try {
             frame = new JFrame("SpotifyXP - Canvas");
             frame.setPreferredSize(new Dimension(294, 526));
@@ -42,7 +42,7 @@ public class CanvasPlayer {
             try {
                 frame.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
             } catch (IOException e) {
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
             }
             referencePanel = new JPanel();
@@ -76,6 +76,13 @@ public class CanvasPlayer {
             frame.setResizable(false);
             mediaPlayer.controls().setRepeat(true);
             frame.pack();
+            Events.subscribe(SpotifyXPEvents.trackLoad.getName(), new Runnable() {
+                @Override
+                public void run() {
+                    stop();
+                    frame.setVisible(false);
+                }
+            });
         }catch (Exception e) {
             PublicValues.canvasPlayer = new DummyCanvasPlayer(false);
             ConsoleLogging.warning("Couldn't create canvasplayer! Is VLC installed?");
@@ -91,7 +98,8 @@ public class CanvasPlayer {
     }
 
     public void switchMedia(String url) {
-        if(!url.contains("https")) {
+        System.out.println("Switchmedia: " + url);
+        if(url.equals("")) {
             //No canvas available for track
             trackValid = false;
             return;

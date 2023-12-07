@@ -7,6 +7,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dpi.JComponentFactory;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -117,7 +118,7 @@ public class HomePanel {
                         switch (ct) {
                             case track:
                                 PublicValues.spotifyplayer.load(uri, true, false, false);
-                                Events.INTERNALtriggerQueueUpdateEvents();
+                                Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
@@ -157,7 +158,7 @@ public class HomePanel {
                                 break;
                             case episode:
                                 PublicValues.spotifyplayer.load(uri, true, ContentPanel.shuffle, false);
-                                Events.INTERNALtriggerQueueUpdateEvents();
+                                Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             default:
                                 ContentPanel.showAdvancedSongPanel(uri, ct);
@@ -224,7 +225,7 @@ public class HomePanel {
                         switch (ct) {
                             case track:
                                 PublicValues.spotifyplayer.load(uri, true, false, false);
-                                Events.INTERNALtriggerQueueUpdateEvents();
+                                Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);

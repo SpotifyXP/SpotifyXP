@@ -3,7 +3,6 @@ package com.spotifyxp.api;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -166,7 +165,7 @@ public class UnofficialSpotifyAPI {
             return URLEncoder.encode(url, StandardCharsets.UTF_8.toString()).replace("%3D", "=").replace("%26", "&");
         } catch (UnsupportedEncodingException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             return "";
         }
     }

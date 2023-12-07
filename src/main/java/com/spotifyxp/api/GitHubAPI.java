@@ -1,8 +1,8 @@
 package com.spotifyxp.api;
 
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
@@ -27,7 +27,7 @@ public class GitHubAPI {
             get.addHeader("X-GitHub-Api-Version", "2022-11-28");
             ret = EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;

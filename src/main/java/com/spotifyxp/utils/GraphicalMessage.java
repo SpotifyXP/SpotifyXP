@@ -1,6 +1,8 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;
@@ -55,5 +57,15 @@ public class GraphicalMessage {
             SplashPanel.frame.setAlwaysOnTop(false);
         }
         return JOptionPane.showConfirmDialog(null, PublicValues.language.translate("message.stuck.text"), PublicValues.language.translate("message.stuck.title"), JOptionPane.YES_NO_OPTION) == 0;
+    }
+
+    /**
+     * Adds an exception to the list (add to the exception counter)
+     * @param ex instance of an Exception
+     */
+    public static void openException(Throwable ex) {
+        if(ContentPanel.errorQueue != null) {
+            ContentPanel.errorQueue.add(new ExceptionDialog(ex));
+        }
     }
 }

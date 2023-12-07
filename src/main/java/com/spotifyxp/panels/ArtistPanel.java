@@ -8,7 +8,6 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.dpi.JComponentFactory;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.lastfm.LFMValues;
@@ -18,6 +17,7 @@ import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ClipboardUtil;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
@@ -130,7 +130,7 @@ public class ArtistPanel extends JPanel {
                             });
                         }
                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
-                        ExceptionDialog.open(ex);
+                        GraphicalMessage.openException(ex);
                         ConsoleLogging.Throwable(ex);
                     }
                 }

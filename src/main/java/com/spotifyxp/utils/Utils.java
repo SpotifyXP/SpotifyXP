@@ -1,6 +1,5 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.io.IOUtils;
 
@@ -48,7 +47,7 @@ public class Utils {
                     + className.substring(0, className.lastIndexOf('.')));
         } catch (ClassNotFoundException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         }
         return null;
     }

@@ -1,6 +1,6 @@
 package com.spotifyxp.logging;
 
-import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.utils.GraphicalMessage;
 
 public class ConsoleLogging {
     private static boolean killSwitch = false;
@@ -209,7 +209,7 @@ public class ConsoleLogging {
         for(StackTraceElement s : throwable.getStackTrace()) {
             System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + s);
         }
-        ExceptionDialog.open(throwable);
+        GraphicalMessage.openException(throwable);
     }
 
     public static void info(String message) {
@@ -220,7 +220,7 @@ public class ConsoleLogging {
     public static void error(String message) {
         if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.ERROR).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
-        ExceptionDialog.open(new Throwable(message));
+        GraphicalMessage.openException(new Throwable(message));
     }
 
     public static void debug(String message) {

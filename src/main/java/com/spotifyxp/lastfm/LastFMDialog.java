@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.de.umass.lastfm.*;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
@@ -115,7 +116,7 @@ public class LastFMDialog extends JFrame2 {
                         return;
                     }
                     PublicValues.spotifyplayer.load(scrobblesuricache.get(scrobblestable.getSelectedRow()), true, false, false);
-                    Events.INTERNALtriggerQueueUpdateEvents();
+                    Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                 }
             }
         });
@@ -257,7 +258,7 @@ public class LastFMDialog extends JFrame2 {
                         return;
                     }
                     PublicValues.spotifyplayer.load(userchartstracksuricache.get(userchartstracks.getSelectedRow()), true, false, false);
-                    Events.INTERNALtriggerQueueUpdateEvents();
+                    Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                 }
             }
         });
@@ -345,7 +346,7 @@ public class LastFMDialog extends JFrame2 {
                         return;
                     }
                     PublicValues.spotifyplayer.load(chartstracksuricache.get(chartstracks.getSelectedRow()), true, false, false);
-                    Events.INTERNALtriggerQueueUpdateEvents();
+                    Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                 }
             }
         });

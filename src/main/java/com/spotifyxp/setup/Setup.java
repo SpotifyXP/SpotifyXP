@@ -1,6 +1,5 @@
 package com.spotifyxp.setup;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup.SetupBuilder;
@@ -8,15 +7,10 @@ import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.AcceptComponen
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.InstallProgressComponent;
 import com.spotifyxp.deps.mslinks.ShellLink;
 import com.spotifyxp.deps.mslinks.ShellLinkHelper;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
-import com.spotifyxp.utils.ApplicationUtils;
-import com.spotifyxp.utils.LinuxAppUtil;
-import com.spotifyxp.utils.MacOSAppUtil;
-import com.spotifyxp.utils.Resources;
+import com.spotifyxp.utils.*;
 
-import javax.swing.*;
 import java.io.File;
 import java.net.URISyntaxException;
 
@@ -82,7 +76,7 @@ public class Setup {
                     })
                     .setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return macos;
@@ -117,7 +111,7 @@ public class Setup {
                         }
                     }).setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return win;
@@ -150,7 +144,7 @@ public class Setup {
                         util.create();
                     }).setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return linux;

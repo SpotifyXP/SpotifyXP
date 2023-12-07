@@ -1,7 +1,7 @@
 package com.spotifyxp.swingextension;
 
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import org.apache.commons.io.IOUtils;
 
@@ -66,7 +66,7 @@ public class JImagePanel extends JPanel {
             imagebytes = IOUtils.toByteArray(inputStream);
         }catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
-            ExceptionDialog.open(ex);
+            GraphicalMessage.openException(ex);
         }
         refresh();
     }
@@ -75,7 +75,7 @@ public class JImagePanel extends JPanel {
             imageInputStream.readFully(imagebytes);
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         }
         refresh();
     }

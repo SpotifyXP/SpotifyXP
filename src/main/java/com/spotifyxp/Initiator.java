@@ -7,7 +7,8 @@ import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
-import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lastfm.LastFM;
@@ -198,6 +199,9 @@ public class Initiator {
                 }
             }
         }
+        for(SpotifyXPEvents s : SpotifyXPEvents.values()) {
+            Events.register(s.getName(), true);
+        }
         SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
         SplashPanel.linfo.setText("Loading Extensions...");
@@ -247,7 +251,7 @@ public class Initiator {
                 new File(PublicValues.appLocation, "LOCK").deleteOnExit();
             }
         }catch (Exception e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
             ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be instable");
         }

@@ -4,9 +4,9 @@ import com.google.gson.*;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.cache.CacheResponseStatus;
@@ -278,7 +278,7 @@ public class SpotifyHttpManager implements IHttpManager {
         }
       }
     } catch (Exception e) {
-      ExceptionDialog.open(e);
+      GraphicalMessage.openException(e);
       ConsoleLoggingModules.Throwable(e);
     }
 

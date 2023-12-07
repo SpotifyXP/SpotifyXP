@@ -3,9 +3,9 @@ package com.spotifyxp.api;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -32,7 +32,7 @@ public class OAuthPKCE {
             TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
             token = provider.accessToken;
         } catch (IOException | MercuryClient.MercuryException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
     }
@@ -55,7 +55,7 @@ public class OAuthPKCE {
             token = provider.accessToken;
             Factory.getSpotifyApi().setAccessToken(token);
         } catch (IOException | MercuryClient.MercuryException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
     }
@@ -76,7 +76,7 @@ public class OAuthPKCE {
             post.addHeader("Authorization", "Bearer " + token);
             ret = EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -101,7 +101,7 @@ public class OAuthPKCE {
             post.addHeader("Authorization", "Bearer " + token);
             ret = EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -123,7 +123,7 @@ public class OAuthPKCE {
             post.addHeader("Authorization", "Bearer " + token);
             ret = EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -157,7 +157,7 @@ public class OAuthPKCE {
             get.setURI(new URI(url + builder));
             ret = EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
@@ -182,7 +182,7 @@ public class OAuthPKCE {
             put.addHeader("Authorization", "Bearer " + token);
             ret = EntityUtils.toString(client.execute(put).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;
@@ -205,7 +205,7 @@ public class OAuthPKCE {
             delete.setHeader("Authorization", "Bearer " + token);
             ret = EntityUtils.toString(client.execute(delete).getEntity());
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         return ret;

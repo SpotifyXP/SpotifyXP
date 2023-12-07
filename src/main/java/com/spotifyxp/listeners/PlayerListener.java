@@ -10,11 +10,12 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.events.Events;
-import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.SVGUtils;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
@@ -145,12 +146,12 @@ public class PlayerListener implements Player.EventsListener {
                 }
                 ContentPanel.playerdescription.setText(artists.toString());
             } catch (IOException | ParseException | SpotifyWebApiException | JSONException e) {
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
             }
         }
         locked = false;
-        Events.INTERNALtriggerPlayerLockReleaseEvents();
+        Events.triggerEvent(SpotifyXPEvents.playerLockRelease.getName());
     }
 
     @Override
@@ -206,7 +207,7 @@ public class PlayerListener implements Player.EventsListener {
             //System not supported
         }
         locked = false;
-        Events.INTERNALtriggerPlayerLockReleaseEvents();
+        Events.triggerEvent(SpotifyXPEvents.playerLockRelease.getName());
     }
 
     @Override
@@ -236,7 +237,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPanicState(@NotNull Player player) {
-        ExceptionDialog.open(new UnknownError("PanicState in PlayerListener"));
+        GraphicalMessage.openException(new UnknownError("PanicState in PlayerListener"));
         PublicValues.blockLoading = false;
         retryCounter = 0;
     }
@@ -249,6 +250,6 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onFinishedLoading(@NotNull Player player) {
         retryCounter = 0;
-        Events.INTERNALtriggerOnTrackLoadFinishedEvents();
+        Events.triggerEvent(SpotifyXPEvents.trackLoadFinished.getName());
     }
 }

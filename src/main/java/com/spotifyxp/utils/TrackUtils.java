@@ -5,6 +5,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -157,7 +158,7 @@ public class TrackUtils {
         if(ContentPanel.shuffle) {
             Shuffle.makeShuffle();
         }
-        Events.INTERNALtriggerQueueUpdateEvents();
+        Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
     }
     public static Integer roundVolumeToNormal(float volume) {
         return Integer.parseInt(String.valueOf(Math.round(volume*10)));

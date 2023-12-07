@@ -5,17 +5,19 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.theming.Theme;
-import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -223,7 +225,7 @@ public class CustomTheme implements Theme {
             throw new RuntimeException(e);
         }
         PublicValues.globalFontColor = Color.decode(config.get("fontcolor"));
-        Events.registerOnFrameReadyEvent(() -> {
+        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), () -> {
             JMenu menu = new JMenu(PublicValues.language.translate("ui.theme.menu"));
             JMenuItem change = new JMenuItem(PublicValues.language.translate("ui.theme.change"));
             menu.add(change);

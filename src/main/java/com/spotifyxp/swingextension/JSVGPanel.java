@@ -1,8 +1,8 @@
 package com.spotifyxp.swingextension;
 
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.swing.JSVGCanvas;
@@ -53,7 +53,7 @@ public class JSVGPanel {
                 SVGDocument document = factory.createSVGDocument("", stream);
                 setSVGDocument(document);
             } catch (IOException e) {
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
             }
         }

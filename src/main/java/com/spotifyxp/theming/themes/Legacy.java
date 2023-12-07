@@ -2,6 +2,7 @@ package com.spotifyxp.theming.themes;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.theming.Theme;
@@ -29,7 +30,7 @@ public class Legacy implements Theme {
                  InstantiationException | IllegalAccessException e) {
             ConsoleLogging.Throwable(e);
         }
-        Events.registerOnFrameReadyEvent(() -> {
+        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), () -> {
             ContentPanel.legacyswitch.setBackgroundAt(0, Color.white);
             ContentPanel.legacyswitch.setBackgroundAt(1, Color.white);
             ContentPanel.legacyswitch.setBackgroundAt(2, Color.white);

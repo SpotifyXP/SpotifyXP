@@ -3,12 +3,12 @@ package com.spotifyxp.dialogs;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.RAWTextArea;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONException;
 
@@ -54,7 +54,7 @@ public class LyricsDialog {
                 }catch (Exception e) {
                     ConsoleLogging.Throwable(e);
                     if(PublicValues.config.getString(ConfigValues.hideExceptions.name).equals("false")) {
-                        ExceptionDialog.open(e);
+                        GraphicalMessage.openException(e);
                     }
                 }
                 ContextMenu menu = new ContextMenu(area);

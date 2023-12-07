@@ -45,6 +45,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.threading.DefThread;
 import okhttp3.Request;
@@ -310,7 +311,7 @@ public class Player implements Closeable {
         if(PublicValues.blockLoading) {
             return;
         }
-        Events.INTERNALtriggerOnTrackLoadEvents();
+        Events.triggerEvent(SpotifyXPEvents.trackLoad.getName());
 
         PublicValues.playingFromLibrary = playingFromLibrary;
 
@@ -552,7 +553,7 @@ public class Player implements Closeable {
      */
 
     private void loadTrack(boolean play, @NotNull TransitionInfo trans) {
-        Events.INTERNALtriggerOnTrackNextEvents();
+        Events.triggerEvent(SpotifyXPEvents.trackNext.getName());
         endMetrics(playerSession.currentPlaybackId(), trans.endedReason, playerSession.currentMetrics(), trans.endedWhen);
 
         ConsoleLoggingModules.debug("Loading track, id: {}, session: {}, playback: {}, play: {}", state.getCurrentPlayable(), playerSession.sessionId(), playerSession.currentPlaybackId(), play);
@@ -1035,7 +1036,7 @@ public class Player implements Closeable {
             TransitionInfo trans = new TransitionInfo(PlaybackMetrics.Reason.BACK_BTN, PlaybackMetrics.Reason.BACK_BTN);
             if (state.getCurrentPlayable() != null) trans.endedWhen = state.getPosition();
 
-            Events.INTERNALtriggerQueueRegressEvents();
+            Events.triggerEvent(SpotifyXPEvents.queueRegress.getName());
 
             return trans;
         }

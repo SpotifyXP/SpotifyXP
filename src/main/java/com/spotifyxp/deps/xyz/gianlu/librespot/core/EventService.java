@@ -54,7 +54,7 @@ public final class EventService implements Closeable {
                 if(passes>10) {
                     GraphicalMessage.sorryError();
                 }
-                //ExceptionDialog.open(ex); Shut up
+                //GraphicalMessage.openException(ex); Shut up
                 ConsoleLoggingModules.error("Failed sending event: " + eventBuilder, ex);
                 passes++;
                 retry(session);
@@ -78,7 +78,7 @@ public final class EventService implements Closeable {
                 if(passes>10) {
                     GraphicalMessage.sorryError();
                 }
-                //ExceptionDialog.open(ex); Shut up
+                //GraphicalMessage.openException(ex); Shut up
                 ConsoleLoggingModules.error("Failed sending event: " + eventBuilder, ex);
                 passes++;
                 retry(session);

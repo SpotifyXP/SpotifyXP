@@ -1,6 +1,5 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import java.io.BufferedWriter;
@@ -19,7 +18,7 @@ public class FileUtils {
             br.close();
             fr.close();
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
     }

@@ -3,11 +3,11 @@ package com.spotifyxp.dialogs;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.CustomLengthPasswordField;
 import com.spotifyxp.swingextension.CustomLengthTextField;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
 
 import javax.swing.*;
@@ -113,7 +113,7 @@ public class LoginDialog {
             try {
                 Thread.sleep(99);
             } catch (InterruptedException e) {
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
             }
         }
@@ -171,7 +171,7 @@ public class LoginDialog {
             try {
                 Thread.sleep(99);
             } catch (InterruptedException e) {
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
             }
         }

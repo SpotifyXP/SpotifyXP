@@ -1,9 +1,9 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
@@ -89,7 +89,7 @@ public class Injector {
                 classLoader.close();
             }
         }catch (Exception e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
             entry.failed = true;
         }

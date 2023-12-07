@@ -2,7 +2,6 @@ package com.spotifyxp.utils;
 
 import com.dd.plist.NSDictionary;
 import com.dd.plist.XMLPropertyListWriter;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.io.IOUtils;
 
@@ -54,7 +53,7 @@ public class MacOSAppUtil {
                 XMLPropertyListWriter.write(root, new File(dp + "/Contents", "Info.plist"));
             } catch (IOException e) {
                 ConsoleLogging.Throwable(e);
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
             }
             File macos = new File(dp + "/Contents", "MacOS");
             if(macos.mkdir()) {
@@ -67,7 +66,7 @@ public class MacOSAppUtil {
                     new ProcessBuilder().command("/bin/sh", "-c", "chmod +x \"" + applicationsfolderpath + "/" + appName + ".app/Contents/MacOS/" + appName + "\"").inheritIO().start();
                 }catch (IOException e) {
                     ConsoleLogging.Throwable(e);
-                    ExceptionDialog.open(e);
+                    GraphicalMessage.openException(e);
                 }
             }
             File resources = new File(dp + "/Contents", "Resources");
@@ -75,7 +74,7 @@ public class MacOSAppUtil {
                 try {
                     Files.copy(new Resources().readToInputStream(iconpath), new File(dp + "/Contents/Resources", "AppIcon.icns").toPath());
                 } catch (IOException e) {
-                    ExceptionDialog.open(e);
+                    GraphicalMessage.openException(e);
                     ConsoleLogging.Throwable(e);
                 }
             }

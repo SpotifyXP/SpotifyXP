@@ -17,6 +17,7 @@ import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.LoggerEvent;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
@@ -239,7 +240,7 @@ public class ContentPanel extends JPanel {
         createErrorDisplay();
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
-        Events.registerOnTrackNextEvent(() -> {
+        Events.subscribe(SpotifyXPEvents.trackNext.getName(), () -> {
             if(PublicValues.spotifyplayer.currentPlayable() == null) return;
             if(!doneLastParsing) return;
             if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
@@ -250,7 +251,7 @@ public class ContentPanel extends JPanel {
                 }
             }
         });
-        Events.registerOnTrackLoadFinished(() -> PublicValues.blockLoading = false);
+        Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), () -> PublicValues.blockLoading = false);
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setLayout(null);
@@ -271,7 +272,7 @@ public class ContentPanel extends JPanel {
         createSearch();
         createHome();
         SplashPanel.linfo.setText("Creating CanvasPlayer...");
-        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+        if (System.getProperty("os.name").toLowerCase().contains("win") || System.getProperty("os.name").toLowerCase().contains("mac")) {
             PublicValues.canvasPlayer = new CanvasPlayer();
         } else {
             PublicValues.canvasPlayer = new DummyCanvasPlayer(false);
@@ -328,11 +329,11 @@ public class ContentPanel extends JPanel {
                         public void run() {
                             PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider) * 1000);
                             playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
-                            Events.remove(this);
+                            Events.unsubscribe(SpotifyXPEvents.playerLockRelease.getName(), this);
                             doneLastParsing = true;
                         }
                     };
-                    Events.registerPlayerLockReleaseEvent(event);
+                    Events.subscribe(SpotifyXPEvents.playerLockRelease.getName(), event);
                 }
                 if(!lastPlayState.queue.isEmpty()) {
                     try {
@@ -537,7 +538,7 @@ public class ContentPanel extends JPanel {
             writer.close();
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         }
         try {
             new File(PublicValues.appLocation, "LOCK").delete();
@@ -618,7 +619,7 @@ public class ContentPanel extends JPanel {
             String finalhtml = cache.toString().split("<insertOpenSourceList>")[0] + opensourcelist + cache.toString().split("</insertOpenSourceList>")[1];
             dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml);
         } catch (Exception ex) {
-            ExceptionDialog.open(ex);
+            GraphicalMessage.openException(ex);
             ConsoleLogging.Throwable(ex);
         }
         dialog.getDialog().addWindowListener(new WindowAdapter() {
@@ -662,7 +663,7 @@ public class ContentPanel extends JPanel {
                         }
                     } catch (Exception e2) {
                         ConsoleLogging.Throwable(e2);
-                        ExceptionDialog.open(e2);
+                        GraphicalMessage.openException(e2);
                     }
                     playerareashufflebutton.setImage(Graphics.SHUFFLE.getPath());
                     playerareashufflebutton.isFilled = false;
@@ -1690,24 +1691,21 @@ public class ContentPanel extends JPanel {
                 DefTable table = (DefTable) JComponentFactory.createJComponent(new DefTable());
                 table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{""}));
                 pane.setViewportView(table);
-                int i = 10;
                 for (ExceptionDialog exd : errorQueue) {
                     ((DefaultTableModel) table.getModel()).addRow(new Object[]{exd.getPreview()});
-                    i += 10;
                 }
                 table.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
                         if(SwingUtilities.isRightMouseButton(e)) return;
-                        if(e.getClickCount() != 2) return;
-                        errorQueue.get(table.getSelectedRow()).openReal();
+                        if(e.getClickCount() == 2) errorQueue.get(table.getSelectedRow()).openReal();
                     }
                 });
                 ContextMenu menu = new ContextMenu(pane, table);
                 menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(errorQueue.get(table.getSelectedRow()).getAsFormattedText()));
                 menu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
-                    errorQueue.remove(errorQueue.size() - 1);
+                    errorQueue.remove(table.getSelectedRow());
                     errorDisplay.setText(String.valueOf(errorQueue.size()));
                     ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
                     if (table.getModel().getRowCount() == 0) {
@@ -1822,7 +1820,7 @@ public class ContentPanel extends JPanel {
         queuepane.add(queuescrollpane);
         queuelist = new JList<>(queuelistmodel);
         queuescrollpane.setViewportView(queuelist);
-        Events.registerToQueueUpdateEvent(() -> {
+        Events.subscribe(SpotifyXPEvents.queueUpdate.getName(), () -> {
             if (queuelistmodel.isEmpty()) {
                 return;
             }
@@ -1841,14 +1839,14 @@ public class ContentPanel extends JPanel {
                 throw new RuntimeException("Failed to list tracks in queue");
             }
         });
-        Events.registerToQueueAdvanceEvent(() -> {
+        Events.subscribe(SpotifyXPEvents.queueAdvance.getName(), () -> {
             if (queuelistmodel.isEmpty()) {
                 return;
             }
             queueuricache.remove(0);
             queuelistmodel.remove(0);
         });
-        Events.registerToQueueRegressEvent(() -> {
+        Events.subscribe(SpotifyXPEvents.queueRegress.getName(), () -> {
             if (queuelistmodel.isEmpty()) {
                 return;
             }
@@ -2122,7 +2120,7 @@ public class ContentPanel extends JPanel {
         playuri.addActionListener(e -> {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
             PublicValues.spotifyplayer.load(uri, true, false, false);
-            Events.INTERNALtriggerQueueUpdateEvents();
+            Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
         });
         lastfmdashboard.addActionListener(new ActionListener() {
             @Override
@@ -2263,7 +2261,7 @@ public class ContentPanel extends JPanel {
             scan.close();
             lastPlayState = state;
         } catch (FileNotFoundException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -2582,7 +2580,7 @@ public class ContentPanel extends JPanel {
                 }
             }
         } catch (Exception exception) {
-            ExceptionDialog.open(exception);
+            GraphicalMessage.openException(exception);
         }
     }
 
@@ -2593,7 +2591,7 @@ public class ContentPanel extends JPanel {
         try {
             mainframe.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
         } catch (IOException e) {
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         if(!steamdeck) {
@@ -2609,7 +2607,7 @@ public class ContentPanel extends JPanel {
             }
         });
         mainframe.setForeground(Color.blue);
-        Events.INTERNALtriggerOnFrameReadyEvents();
+        Events.triggerEvent(SpotifyXPEvents.onFrameReady.getName());
         mainframe.open();
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;

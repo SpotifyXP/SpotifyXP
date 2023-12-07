@@ -1,103 +1,127 @@
 package com.spotifyxp.events;
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.logging.ConsoleLogging;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Events {
-    static final ArrayList<Runnable> queueUpdateEvents = new ArrayList<>();
-    static final ArrayList<Runnable> queueAdvanceEvents = new ArrayList<>();
-    static final ArrayList<Runnable> queueRegressEvents = new ArrayList<>();
-    static final ArrayList<Runnable> playerLockReleaseEvents = new ArrayList<>();
-    static final ArrayList<Runnable> onFrameReadyEvents = new ArrayList<>();
-    static final ArrayList<Runnable> trackNextEvents = new ArrayList<>();
-    static final ArrayList<Runnable> trackLoadEvents = new ArrayList<>();
-    static final ArrayList<Runnable> trackLoadFinishedEvents = new ArrayList<>();
-
-
-    private static void createThreadWith(ArrayList<Runnable> toWorkOn) {
-        Thread t = new Thread(() -> {
-            for(Runnable run : toWorkOn) {
-                run.run();
+    private static class PrivateEvent {
+        public final String name;
+        public final boolean isProtected;
+        public PrivateEvent(String name, boolean isProtected) {
+            this.name = name;
+            this.isProtected = isProtected;
+        }
+        public ArrayList<Runnable> subscribers = new ArrayList<>();
+        public void trigger() {
+            for(Runnable runnable : new ArrayList<>(subscribers)) {
+                runnable.run();
             }
-        });
-        t.start();
+        }
     }
 
-    private static ArrayList<Runnable> getCopy(ArrayList<Runnable> runnables) {
-        //Prevents the concurrentModificationException issue when runnables are trying to remove themselfes
-        return new ArrayList<>(runnables);
+    public static class Event {
+        private final String name;
+        private final boolean isProtected;
+        public Event(String name, boolean isProtected, ArrayList<Runnable> subscribers) {
+            this.name = name;
+            this.isProtected = isProtected;
+            this.subscribers = subscribers;
+        }
+        private final ArrayList<Runnable> subscribers;
+
+        public ArrayList<Runnable> getSubscribers() {
+            return subscribers;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public boolean isProtected() {
+            return isProtected;
+        }
     }
 
-    public static void registerToQueueUpdateEvent(Runnable runnable) {
-        queueUpdateEvents.add(runnable);
+    private static final boolean debug = PublicValues.debug;
+    private static final ArrayList<PrivateEvent> registeredEvents = new ArrayList<>();
+
+    private static boolean containsEventWithName(String name) {
+        for(PrivateEvent e : registeredEvents) {
+            if(e.name.equals(name)) return true;
+        }
+        return false;
     }
 
-    public static void INTERNALtriggerQueueUpdateEvents() {
-        createThreadWith(getCopy(queueUpdateEvents));
+    private static PrivateEvent getEventWithName(String name) {
+        for(PrivateEvent e : registeredEvents) {
+            if(e.name.equals(name)) return e;
+        }
+        return null;
     }
 
-    public static void registerToQueueAdvanceEvent(Runnable runnable) {
-        queueAdvanceEvents.add(runnable);
+    private static int getArrayNumberOfEventWithName(String name) {
+        for(int i = 0; i < registeredEvents.size(); i++) {
+            if(registeredEvents.get(i).name.equals(name)) return i;
+        }
+        return -1;
     }
 
-    public static void INTERNALtriggerQueueAdvanceEvents() {
-        createThreadWith(getCopy(queueAdvanceEvents));
+    private static Event convertPrivateToPublic(PrivateEvent event) {
+        return new Event(event.name, event.isProtected, event.subscribers);
     }
 
-    public static void registerToQueueRegressEvent(Runnable runnable) {
-        queueRegressEvents.add(runnable);
+    //Events Version 2.0
+
+    //Public Methods
+    // - register (String:name)
+    // - subscribe (String:name, Runnable)
+    // - unsubscribe (String:name, Runnable)
+    // - getListOfEvents
+    // - unregister (String:name)
+
+    //Private Methods
+    // - trigger (String:name)
+
+    public static void register(String name, boolean isProtected) {
+        if(debug) ConsoleLogging.debug("[Events] Registering event with name:" + name + " protected:" + isProtected);
+        if(containsEventWithName(name)) return;
+        registeredEvents.add(new PrivateEvent(name, isProtected));
     }
 
-    public static void INTERNALtriggerQueueRegressEvents() {
-        createThreadWith(getCopy(queueRegressEvents));
+    public static void unregister(String name) {
+        if(debug) ConsoleLogging.debug("[Events] Unregistering event with name:" + name);
+        if(Objects.requireNonNull(getEventWithName(name)).isProtected) {
+            ConsoleLogging.error("[Events] Illegal operation performed! Tried to remove protected event");
+            return;
+        }
+        int result = getArrayNumberOfEventWithName(name);
+        if(result == -1) return;
+        registeredEvents.remove(result);
     }
 
-    public static void registerPlayerLockReleaseEvent(Runnable runnable) {
-        playerLockReleaseEvents.add(runnable);
+    public static void subscribe(String name, Runnable runnable) {
+        if(debug) ConsoleLogging.debug("[Events] Subscribing to " + name);
+        Objects.requireNonNull(getEventWithName(name)).subscribers.add(runnable);
     }
 
-    public static void INTERNALtriggerPlayerLockReleaseEvents() {
-        createThreadWith(getCopy(playerLockReleaseEvents));
+    public static void unsubscribe(String name, Runnable runnable) {
+        if(debug) ConsoleLogging.debug("[Events] Unsubscribing from " + name);
+        Objects.requireNonNull(getEventWithName(name)).subscribers.remove(runnable);
     }
 
-    public static void registerOnFrameReadyEvent(Runnable runnable) {
-        onFrameReadyEvents.add(runnable);
+    public static ArrayList<Event> getEventsList() {
+        ArrayList<Event> events = new ArrayList<>();
+        for(PrivateEvent e : registeredEvents) {
+            events.add(convertPrivateToPublic(e));
+        }
+        return events;
     }
 
-    public static void INTERNALtriggerOnFrameReadyEvents() {
-        createThreadWith(getCopy(onFrameReadyEvents));
-    }
-
-    public static void registerOnTrackLoadEvent(Runnable runnable) {
-        trackLoadEvents.add(runnable);
-    }
-
-    public static void INTERNALtriggerOnTrackLoadEvents() {
-        createThreadWith(getCopy(trackLoadEvents));
-    }
-
-    public static void registerOnTrackNextEvent(Runnable runnable) {
-        trackNextEvents.add(runnable);
-    }
-
-    public static void INTERNALtriggerOnTrackNextEvents() {
-        createThreadWith(getCopy(trackNextEvents));
-    }
-
-    public static void registerOnTrackLoadFinished(Runnable runnable) {
-        trackLoadFinishedEvents.add(runnable);
-    }
-
-    public static void INTERNALtriggerOnTrackLoadFinishedEvents() {
-        createThreadWith(getCopy(trackLoadFinishedEvents));
-    }
-
-    public static void remove(Runnable runnable) {
-        queueRegressEvents.remove(runnable);
-        queueUpdateEvents.remove(runnable);
-        queueAdvanceEvents.remove(runnable);
-        playerLockReleaseEvents.remove(runnable);
-        onFrameReadyEvents.remove(runnable);
-        trackLoadEvents.remove(runnable);
-        trackNextEvents.remove(runnable);
+    public static void triggerEvent(String name) {
+        if(debug) ConsoleLogging.debug("[Events] Triggering event:" + name);
+        Objects.requireNonNull(getEventWithName(name)).trigger();
     }
 }

@@ -2,9 +2,9 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JImagePanel;
+import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 
 import javax.imageio.ImageIO;
@@ -26,7 +26,7 @@ public class SplashPanel {
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
             if(PublicValues.config.getString(ConfigValues.hideExceptions.name).equals("false")) {
-                ExceptionDialog.open(e);
+                GraphicalMessage.openException(e);
             }
         }
         frame.add(linfo, BorderLayout.SOUTH);

@@ -5,8 +5,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.IHttpManager;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApiThreading;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.StringEntity;
@@ -52,7 +52,7 @@ public abstract class AbstractRequest<T> implements IRequest<T> {
     try {
       this.uri = uriBuilder.build();
     } catch (URISyntaxException e) {
-      ExceptionDialog.open(e);
+      GraphicalMessage.openException(e);
       ConsoleLoggingModules.Throwable(e);
     }
 

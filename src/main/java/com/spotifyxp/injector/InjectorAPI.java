@@ -1,7 +1,6 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.URLUtils;
@@ -140,7 +139,7 @@ public class InjectorAPI {
             in.close();
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
-            ExceptionDialog.open(e);
+            GraphicalMessage.openException(e);
         }
     }
 }

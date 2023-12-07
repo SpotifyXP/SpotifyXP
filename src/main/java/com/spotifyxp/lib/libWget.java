@@ -1,6 +1,6 @@
 package com.spotifyxp.lib;
 
-import com.spotifyxp.exception.ExceptionDialog;
+import com.spotifyxp.utils.GraphicalMessage;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class libWget {
                 }
             }
         }catch (IOException ioe) {
-            ExceptionDialog.open(ioe);
+            GraphicalMessage.openException(ioe);
         }
     }
 
@@ -56,7 +56,7 @@ public class libWget {
                 }
             }
         }catch (IOException ioe) {
-            ExceptionDialog.open(ioe);
+            GraphicalMessage.openException(ioe);
         }
     }
 }
