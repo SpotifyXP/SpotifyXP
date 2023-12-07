@@ -63,7 +63,6 @@ public class PlaybackHistory extends JFrame2 {
         try {
             sqlSession.connect();
         }catch (SQLException e) {
-            e.printStackTrace();
             ConsoleLogging.error("Can't establish a connection to the playback history database");
             PublicValues.history = null;
             return;
@@ -108,7 +107,6 @@ public class PlaybackHistory extends JFrame2 {
                 dispose();
                 ContentPanel.historybutton.isFilled = false;
                 ContentPanel.historybutton.setImage(com.spotifyxp.graphics.Graphics.HISTORY.getInputStream());
-                PublicValues.history = new PlaybackHistory();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
