@@ -1,17 +1,18 @@
 package com.spotifyxp.video;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
-import uk.co.caprica.vlcj.player.base.MediaPlayer;
-import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.videosurface.VideoSurface;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.Objects;
 
 public class CanvasPlayer {
     private MediaPlayerFactory factory;
@@ -29,13 +31,13 @@ public class CanvasPlayer {
 
     private Window window;
 
-    private JFrame frame;
+    private JFrame2 frame;
 
     private JPanel referencePanel;
     private boolean trackValid = false;
     public CanvasPlayer() {
         try {
-            frame = new JFrame("SpotifyXP - Canvas");
+            frame = new JFrame2("SpotifyXP - Canvas");
             frame.setPreferredSize(new Dimension(294, 526));
             frame.setBackground(Color.black);
             frame.getContentPane().setBackground(Color.white);
@@ -76,12 +78,22 @@ public class CanvasPlayer {
             frame.setResizable(false);
             mediaPlayer.controls().setRepeat(true);
             frame.pack();
-            Events.subscribe(SpotifyXPEvents.trackLoad.getName(), new Runnable() {
-                @Override
-                public void run() {
-                    stop();
-                    frame.setVisible(false);
+            Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), () -> {
+                try {
+                    if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().isEmpty()) {
+                        String url = UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri()));
+                        if(url.isEmpty()) return;
+                        PublicValues.canvasPlayer.switchMedia(url);
+                        play();
+                        if (!PublicValues.spotifyplayer.isPaused()) {
+                            PublicValues.canvasPlayer.play();
+                        }
+                        return;
+                    }
+                } catch (Exception ignored) {
                 }
+                stop();
+                frame.setVisible(false);
             });
         }catch (Exception e) {
             PublicValues.canvasPlayer = new DummyCanvasPlayer(false);
@@ -98,8 +110,7 @@ public class CanvasPlayer {
     }
 
     public void switchMedia(String url) {
-        System.out.println("Switchmedia: " + url);
-        if(url.equals("")) {
+        if(url.isEmpty()) {
             //No canvas available for track
             trackValid = false;
             return;
@@ -126,6 +137,7 @@ public class CanvasPlayer {
     }
 
     public void hide() {
+        stop();
         frame.setVisible(false);
         window.setVisible(false);
     }

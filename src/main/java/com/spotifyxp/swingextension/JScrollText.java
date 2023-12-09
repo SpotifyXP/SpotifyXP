@@ -7,7 +7,9 @@ import java.awt.*;
 
 @SuppressWarnings("BusyWait")
 public class JScrollText extends JLabel implements Runnable {
+    String text;
     public JScrollText(String text) {
+        this.text = text;
         super.setText(text);
     }
 
@@ -48,7 +50,13 @@ public class JScrollText extends JLabel implements Runnable {
     }
 
     @Override
+    public String getText() {
+        return text;
+    }
+
+    @Override
     public void setText(String text) {
+        this.text = text;
         text = text + "       ";
         super.setText(text);
         animate = true;

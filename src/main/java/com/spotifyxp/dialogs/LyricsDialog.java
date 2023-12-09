@@ -7,6 +7,7 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.swingextension.RAWTextArea;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
@@ -21,7 +22,7 @@ import java.awt.event.WindowEvent;
 import static com.spotifyxp.panels.ContentPanel.playerarealyricsbutton;
 
 public class LyricsDialog {
-    final JFrame frame = new JFrame("SpotifyXP - Song Lyrics");
+    final JFrame2 frame = new JFrame2("SpotifyXP - Song Lyrics");
     UnofficialSpotifyAPI.Lyrics lyrics;
     final RAWTextArea area = new RAWTextArea();
     final JScrollPane pane = new JScrollPane(area);

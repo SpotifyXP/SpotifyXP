@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.Utils;
 
@@ -38,7 +39,7 @@ public class ExceptionDialog {
         if(SplashPanel.frame.isVisible()) {
             SplashPanel.frame.setAlwaysOnTop(false);
         }
-        JFrame frame = new JFrame(PublicValues.language.translate("exception.dialog.title"));
+        JFrame2 frame = new JFrame2(PublicValues.language.translate("exception.dialog.title"));
         JPanel contentPane = new JPanel();
         JLabel exceptionlabel = new JLabel(PublicValues.language.translate("exception.dialog.label"));
         exceptionlabel.setFont(new Font("Tahoma", Font.PLAIN, 17));

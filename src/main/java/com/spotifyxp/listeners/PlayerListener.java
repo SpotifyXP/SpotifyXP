@@ -32,7 +32,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * This class is the binding class between the UI and librespot
+ * This class is the binding between the UI and librespot
  */
 @SuppressWarnings("CanBeFinal")
 public class PlayerListener implements Player.EventsListener {

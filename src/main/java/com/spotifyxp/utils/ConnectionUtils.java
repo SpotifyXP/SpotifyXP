@@ -4,6 +4,7 @@ package com.spotifyxp.utils;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.ContentPanel;
 import org.apache.http.Header;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -95,7 +96,7 @@ public class ConnectionUtils {
                 }catch (Exception ignored) {
                 }
             }
-            JOptionPane.showConfirmDialog(null, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(ContentPanel.frame, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
             return;
         }
         ProcessBuilder builder = new ProcessBuilder("\"" + browserpath + "\"", url);

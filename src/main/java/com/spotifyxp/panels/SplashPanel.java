@@ -3,6 +3,7 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
@@ -12,10 +13,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SplashPanel {
-    public static JFrame frame;
+    public static JFrame2 frame;
     public static JLabel linfo = new JLabel();
     public void show() {
-        frame = new JFrame();
+        frame = new JFrame2();
         JImagePanel image = new JImagePanel();
         linfo = new JLabel("Please wait...");
         image.setImage(new Resources().readToInputStream("spotifyxp.png"));

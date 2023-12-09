@@ -2,6 +2,7 @@ package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.utils.FileUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class InjectorStore {
-    public static JFrame main;
+    public static JFrame2 main;
     // (Extension Store)
     //Features:
     // Download and Install Extensions
@@ -64,7 +65,7 @@ public class InjectorStore {
      * Opens the extension store
      */
     public void open() {
-        main = new JFrame(PublicValues.language.translate("extension.title"));
+        main = new JFrame2(PublicValues.language.translate("extension.title"));
         main.getContentPane().add(new ContentPanel());
         main.setPreferredSize(new Dimension(377, 526));
         main.setVisible(true);
@@ -72,7 +73,7 @@ public class InjectorStore {
         main.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
+                JOptionPane.showConfirmDialog(com.spotifyxp.panels.ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
             }
         });
         main.pack();

@@ -18,6 +18,7 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.threading.ThreadManager;
+import com.spotifyxp.utils.Utils;
 import com.spotifyxp.video.CanvasPlayer;
 import com.spotifyxp.visuals.AudioVisualizer;
 
@@ -71,6 +72,7 @@ public class PublicValues {
     public static boolean blockLoading = false;
     public static boolean devMode = false;
     public static JMenuBar menuBar;
+    public static int screenNumber = Utils.getDefaultScreenNumber();
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

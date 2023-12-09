@@ -190,7 +190,7 @@ public class CustomTheme implements Theme {
             public void windowClosing(WindowEvent e) {
                 saveSettings();
                 frame.dispose();
-                JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
+                JOptionPane.showConfirmDialog(com.spotifyxp.panels.ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
             }
         });
         frame.pack();

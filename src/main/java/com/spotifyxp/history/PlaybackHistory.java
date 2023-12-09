@@ -104,9 +104,6 @@ public class PlaybackHistory extends JFrame2 {
         removeall.addActionListener(e -> {
             try {
                 removeAllSongs();
-                dispose();
-                ContentPanel.historybutton.isFilled = false;
-                ContentPanel.historybutton.setImage(com.spotifyxp.graphics.Graphics.HISTORY.getInputStream());
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }

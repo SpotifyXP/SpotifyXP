@@ -2,6 +2,7 @@ package com.spotifyxp.deps.de.werwolf2303.javasetuptool;
 
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.Component;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.*;
+import com.spotifyxp.swingextension.JFrame2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,14 +99,14 @@ public class Setup {
 
     private class SetupFrame extends JPanel {
         final ContentManager manager = new ContentManager();
-        final JFrame frame;
+        final JFrame2 frame;
         public SetupFrame() {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             }catch (UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException |
                     ClassNotFoundException ignored) {
             }
-            frame = new JFrame(currentBuilder.title);
+            frame = new JFrame2(currentBuilder.title);
             frame.getContentPane().add(manager);
             frame.setPreferredSize(new Dimension(PublicValues.setup_width, PublicValues.setup_height));
         }

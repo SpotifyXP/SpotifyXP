@@ -2,7 +2,6 @@ package com.spotifyxp.testing;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.events.Events;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.video.CanvasPlayer;
 

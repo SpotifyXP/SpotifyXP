@@ -20,6 +20,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.OkHttpClient;
@@ -139,7 +140,7 @@ public final class ApResolver {
 
     private String returnPort80(String url, String type) {
         if(retryCounter > 15) {
-            GraphicalMessage.sorryErrorExit("Can't find a suitable " + type);
+            throw new RuntimeException("Can't find a suitable " + type);
         }
         retryCounter++;
         if(!isBlocked(url)) {

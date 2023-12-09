@@ -49,6 +49,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.P
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager.Action;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.panels.ContentPanel;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -331,7 +332,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             device.updateState(Connect.PutStateReason.PLAYER_STATE_CHANGED, player.time(), state.build());
         }catch (IllegalStateException e) {
             if(counter==5) {
-                JOptionPane.showConfirmDialog(null, "Please restart SpotifyXP", "Something went wrong", JOptionPane.OK_CANCEL_OPTION);
+                JOptionPane.showConfirmDialog(ContentPanel.frame, "Please restart SpotifyXP", "Something went wrong", JOptionPane.OK_CANCEL_OPTION);
                 return;
             }
             counter++;

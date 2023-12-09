@@ -1,6 +1,10 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,5 +66,13 @@ public class JFrame2 extends JFrame {
     public void openMain() {
         this.setVisible(true);
         this.pack();
+    }
+
+    @Override
+    public void pack() {
+        if(ContentPanel.frame.isVisible()) {
+            Utils.moveToScreen(this, PublicValues.screenNumber);
+        }
+        super.pack();
     }
 }

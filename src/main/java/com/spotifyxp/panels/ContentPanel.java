@@ -833,11 +833,19 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (heart.isFilled) {
-                    Factory.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]);
+                    try {
+                        Factory.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
+                    }catch (IOException | ParseException | SpotifyWebApiException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     heart.setImage(Graphics.HEART.getPath());
                     heart.isFilled = false;
                 } else {
-                    Factory.getSpotifyApi().saveTracksForUser(Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]);
+                    try {
+                        Factory.getSpotifyApi().saveTracksForUser(Objects.requireNonNull(player.getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
+                    }catch (IOException | ParseException | SpotifyWebApiException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     heart.setImage(Graphics.HEARTFILLED.getPath());
                     heart.isFilled = true;
                 }
@@ -871,8 +879,10 @@ public class ContentPanel extends JPanel {
             DefThread thread = new DefThread(() -> {
                 try {
                     if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().isEmpty()) {
+                        String url = UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri()));
+                        if(url.isEmpty()) return;
                         PublicValues.canvasPlayer.show();
-                        PublicValues.canvasPlayer.switchMedia(UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri()));
+                        PublicValues.canvasPlayer.switchMedia(url);
                         if (!PublicValues.spotifyplayer.isPaused()) {
                             PublicValues.canvasPlayer.play();
                         }
@@ -1920,7 +1930,7 @@ public class ContentPanel extends JPanel {
 
     @SuppressWarnings("all")
     void createLegacy() {
-        JFrame dialog = new JFrame();
+        JFrame2 dialog = new JFrame2();
         playerarea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -2093,7 +2103,7 @@ public class ContentPanel extends JPanel {
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame dialog = new JFrame();
+                JFrame2 dialog = new JFrame2();
                 dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
                 dialog.getContentPane().add(new SettingsPanel());
                 dialog.setPreferredSize(new Dimension(422, 506));
@@ -2112,7 +2122,7 @@ public class ContentPanel extends JPanel {
         logout.addActionListener(e -> {
             PublicValues.config.write(ConfigValues.username.name, "");
             PublicValues.config.write(ConfigValues.password.name, "");
-            JOptionPane.showConfirmDialog(null, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
         });
         about.addActionListener(e -> openAbout());
@@ -2134,7 +2144,7 @@ public class ContentPanel extends JPanel {
         if (steamdeck) {
             for (int i = 0; i < bar.getMenuCount(); i++) {
                 JMenu menu1 = bar.getMenu(i);
-                JFrame window = new JFrame();
+                JFrame2 window = new JFrame2();
                 window.setTitle(menu1.getText());
                 ArrayList<JMenuItem> items = new ArrayList<>();
                 DefTable table = new DefTable();
@@ -2597,6 +2607,13 @@ public class ContentPanel extends JPanel {
         if(!steamdeck) {
             mainframe.setJMenuBar(copyJMenuBar(PublicValues.menuBar));
         }
+        mainframe.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                PublicValues.screenNumber = Utils.getDisplayNumber(mainframe);
+                super.componentMoved(e);
+            }
+        });
         mainframe.setPreferredSize(new Dimension(784, 590));
         mainframe.getContentPane().add(this);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
