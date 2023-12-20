@@ -20,7 +20,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.OkHttpClient;
@@ -29,7 +28,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -134,42 +132,41 @@ public final class ApResolver {
     }
 
     boolean retry = false;
-    public static boolean eof = false;
     boolean ret80 = true;
     int retryCounter = 0;
 
-    private String returnPort80(String url, String type) {
+    private String returnPortSafe(String url, String type) {
         if(retryCounter > 15) {
             throw new RuntimeException("Can't find a suitable " + type);
         }
         retryCounter++;
-        if(!isBlocked(url)) {
-            return url;
-        }else{
-            ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
-        }
         if(ret80) {
-            if (url.contains(":80") || url.contains(":443")) {
+            if(url.contains(":80") || url.contains(":443")) {
                 if (isBlocked(url)) {
                     ConsoleLoggingModules.warning("Port 80 is blocked by your firewall! Trying other ports");
                     ret80 = false;
                     waitForPool();
                     List<String> urls = pool.get(type);
                     if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-                    return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+                    return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
                 }
                 return url;
-            } else {
+            }else{
                 waitForPool();
                 List<String> urls = pool.get(type);
                 if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-                return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+                return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
             }
+        }
+        if(!isBlocked(url)) {
+            return url;
+        }else{
+            ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
         }
         waitForPool();
         List<String> urls = pool.get(type);
         if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-        return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+        return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
     }
 
     public boolean isBlocked(String url) {
@@ -186,19 +183,19 @@ public final class ApResolver {
 
     @NotNull
     private String getRandomOf(@NotNull String type) {
-        if(counter>200) {
-            GraphicalMessage.sorryError();
+        if(counter>50) {
+            throw new RuntimeException("Error in getRandomOf! 50 tries. StackOverflowError");
         }
         waitForPool();
 
         List<String> urls = pool.get(type);
         if (urls == null || urls.isEmpty()) throw new IllegalStateException();
         try {
-            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+            return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }catch (StackOverflowError error) {
             //Just retry eventually it will work
             counter++;
-            return returnPort80(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+            return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
         }
     }
 

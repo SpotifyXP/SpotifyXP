@@ -1,5 +1,6 @@
 package com.spotifyxp.panels;
 
+import com.google.gson.JsonArray;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.Player;
@@ -7,6 +8,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.Device;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
@@ -35,6 +37,10 @@ import com.spotifyxp.utils.*;
 import com.spotifyxp.video.CanvasPlayer;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -2064,6 +2070,7 @@ public class ContentPanel extends JPanel {
         JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
         JMenu view = new JMenu(PublicValues.language.translate("ui.legacy.view"));
         JMenu lastfm = new JMenu("Last.fm");
+        JMenu playback = new JMenu(PublicValues.language.translate("ui.playback.menu"));
         JMenu account = new JMenu(PublicValues.language.translate("ui.legacy.account"));
         JMenu help = new JMenu(PublicValues.language.translate("ui.legacy.help"));
         JMenuItem exit = new JMenuItem(PublicValues.language.translate("ui.legacy.exit"));
@@ -2074,6 +2081,7 @@ public class ContentPanel extends JPanel {
         JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
         JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
         JMenuItem lastfmdashboard = new JMenuItem("Dashboard");
+        JMenuItem changedevice = new JMenuItem(PublicValues.language.translate("ui.playback.changedevice"));
         bar.add(file);
         bar.add(edit);
         bar.add(view);
@@ -2098,6 +2106,36 @@ public class ContentPanel extends JPanel {
         account.add(logout);
         help.add(extensions);
         help.add(about);
+        playback.add(changedevice);
+        changedevice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<String> devices = new ArrayList<>();
+                Device[] devicelist;
+                try {
+                    devicelist = Factory.getSpotifyApi().getUsersAvailableDevices().setHeader("Authorization", "Bearer " + Token.getToken("user-read-playback-state")).build().execute();
+                    for(Device d : devicelist) {
+                        devices.add(d.getName());
+                    }
+                    HttpClient client = HttpClients.createDefault();
+                    HttpGet get = new HttpGet("https://api.spotify.com/v1/me/player/devices");
+                    get.setHeader("Authorization", "Bearer " + PublicValues.session.tokens().getToken("user-read-playback-state", "user-read-private").accessToken);
+                    System.out.println(EntityUtils.toString(client.execute(get).getEntity()));
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                int retvalue = JOptionPane.showOptionDialog(frame, PublicValues.language.translate("ui.playback.changedevice.message"), PublicValues.language.translate("ui.playback.changedevice.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, devices.toArray(), PublicValues.session.deviceName());
+                if(retvalue != JOptionPane.CLOSED_OPTION) {
+                    JsonArray array = new JsonArray();
+                    array.add(devicelist[retvalue].getId());
+                    try {
+                        Factory.getSpotifyApi().transferUsersPlayback(array).play(!PublicValues.spotifyplayer.isPaused()).build().execute();
+                    }catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        });
         audiovisualizer.addActionListener(e -> PublicValues.visualizer.open());
         extensions.addActionListener(e -> new InjectorStore().open());
         settings.addActionListener(new ActionListener() {

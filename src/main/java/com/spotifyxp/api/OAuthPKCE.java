@@ -7,6 +7,7 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.NameValuePair;
+import com.spotifyxp.utils.Token;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -22,19 +23,12 @@ import java.net.URISyntaxException;
 
 public class OAuthPKCE {
     private String token = "";
-    private final String scopes = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private";
     public OAuthPKCE() {
 
     }
 
     public OAuthPKCE(boolean init) {
-        try {
-            TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
-            token = provider.accessToken;
-        } catch (IOException | MercuryClient.MercuryException e) {
-            GraphicalMessage.openException(e);
-            ConsoleLogging.Throwable(e);
-        }
+        token = Token.getDefaultToken();
     }
 
     /**
@@ -50,14 +44,8 @@ public class OAuthPKCE {
      * Refreshes the Spotify api token and forwards that to all programm parts that needs it
      */
     public void refresh() {
-        try {
-            TokenProvider.StoredToken provider = PublicValues.session.tokens().getToken(scopes.split(" "));
-            token = provider.accessToken;
-            Factory.getSpotifyApi().setAccessToken(token);
-        } catch (IOException | MercuryClient.MercuryException e) {
-            GraphicalMessage.openException(e);
-            ConsoleLogging.Throwable(e);
-        }
+        token = Token.getDefaultToken();
+        Factory.getSpotifyApi().setAccessToken(token);
     }
 
     /**

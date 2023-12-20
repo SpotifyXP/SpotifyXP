@@ -116,13 +116,13 @@ public class TrackUtils {
     }
     public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
         try {
-            if(!ContentPanel.player.getPlayer().tracks(true).previous.isEmpty()) {
-                ContentPanel.player.getPlayer().tracks(true).previous.clear();
+            if(!Factory.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
+                Factory.getPlayer().getPlayer().tracks(true).previous.clear();
             }
-            if(!ContentPanel.player.getPlayer().tracks(true).next.isEmpty()) {
-                ContentPanel.player.getPlayer().tracks(true).next.clear();
+            if(!Factory.getPlayer().getPlayer().tracks(true).next.isEmpty()) {
+                Factory.getPlayer().getPlayer().tracks(true).next.clear();
             }
-        }catch (NullPointerException exc) {
+        }catch (Exception exc) {
             ConsoleLogging.warning("Couldn't queue tracks");
             ConsoleLogging.Throwable(exc);
             return;

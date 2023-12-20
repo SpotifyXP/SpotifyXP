@@ -13,4 +13,14 @@ public class Token {
             return "FAILED";
         }
     }
+
+    public static String getToken(String... scopes) {
+        try {
+            return PublicValues.session.tokens().getToken(scopes).accessToken;
+        }catch (Exception e) {
+            ConsoleLogging.Throwable(e);
+            GraphicalMessage.bug("Couldn't get default token");
+            return "FAILED";
+        }
+    }
 }
