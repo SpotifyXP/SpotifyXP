@@ -5,7 +5,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;

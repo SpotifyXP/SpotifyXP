@@ -14,7 +14,7 @@ import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
-import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.engine.EnginePanel;
 import com.spotifyxp.events.Events;
@@ -2673,8 +2673,6 @@ public class ContentPanel extends JPanel {
         }
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
-        JComponentFactory.applyDPI();
-        // JComponentFactory.enableResizing();
     }
 
     enum LastTypes {Playlists, Library, Search, HotList, Queue, Feedback, Home}

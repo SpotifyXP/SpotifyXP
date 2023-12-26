@@ -2,7 +2,7 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.lastfm.LFMValues;
 import com.spotifyxp.lastfm.LastFMLogin;
 import com.spotifyxp.logging.ConsoleLogging;

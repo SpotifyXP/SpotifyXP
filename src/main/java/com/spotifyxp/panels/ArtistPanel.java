@@ -7,7 +7,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
-import com.spotifyxp.dpi.JComponentFactory;
+import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.lastfm.LFMValues;
