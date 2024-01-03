@@ -15,6 +15,8 @@ import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.Library;
+import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.SVGUtils;
 import com.spotifyxp.utils.SpotifyUtils;
@@ -44,8 +46,8 @@ public class PlayerListener implements Player.EventsListener {
             if(!pauseTimer) {
                 if(!PublicValues.spotifyplayer.isPaused()) {
                     try {
-                        ContentPanel.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
-                        ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
+                        PlayerArea.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
+                        PlayerArea.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
                     } catch (NullPointerException ex) {
                         //No song is playing
                     }
@@ -66,14 +68,14 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
-        if (!ContentPanel.libraryuricache.contains(playableId.toSpotifyUri())) {
-            ContentPanel.heart.isFilled = false;
-            ContentPanel.heart.setImage(Graphics.HEART.getPath());
+        if (!Library.libraryuricache.contains(playableId.toSpotifyUri())) {
+            PlayerArea.heart.isFilled = false;
+            PlayerArea.heart.setImage(Graphics.HEART.getPath());
         } else {
-            ContentPanel.heart.isFilled = true;
-            ContentPanel.heart.setImage(Graphics.HEARTFILLED.getPath());
+            PlayerArea.heart.isFilled = true;
+            PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
         }
-        if(ContentPanel.playerarealyricsbutton.isFilled) {
+        if(PlayerArea.playerarealyricsbutton.isFilled) {
             PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
         }
         if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
@@ -83,20 +85,20 @@ public class PlayerListener implements Player.EventsListener {
                 switch (playableId.toSpotifyUri().split(":")[1]) {
                     case "episode":
                         Episode episode = Factory.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
-                        ContentPanel.playertitle.setText(episode.getName());
+                        PlayerArea.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
+                        PlayerArea.playertitle.setText(episode.getName());
                         artists.append(episode.getShow().getPublisher());
                         try {
-                            ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
+                            PlayerArea.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
                         }catch (Exception e) {
                             ConsoleLogging.warning("Failed to load cover for track");
-                            ContentPanel.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), ContentPanel.playerimage.getSize()));
+                            PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
                         }
                         break;
                     case "track":
                         Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                        ContentPanel.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
-                        ContentPanel.playertitle.setText(track.getName());
+                        PlayerArea.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
+                        PlayerArea.playertitle.setText(track.getName());
                         for (ArtistSimplified artist : track.getArtists()) {
                             if (artists.toString().isEmpty()) {
                                 artists.append(artist.getName());
@@ -105,10 +107,10 @@ public class PlayerListener implements Player.EventsListener {
                             }
                         }
                         try {
-                            ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
+                            PlayerArea.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
                         }catch (Exception e) {
                             ConsoleLogging.warning("Failed to load cover for track");
-                            ContentPanel.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), ContentPanel.playerimage.getSize()));
+                            PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
                         }
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
@@ -121,8 +123,8 @@ public class PlayerListener implements Player.EventsListener {
                     default:
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
                         Track t = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                        ContentPanel.playerplaytimetotal.setText(String.valueOf(t.getDurationMs()));
-                        ContentPanel.playertitle.setText(t.getName());
+                        PlayerArea.playerplaytimetotal.setText(String.valueOf(t.getDurationMs()));
+                        PlayerArea.playertitle.setText(t.getName());
                         for (ArtistSimplified artist : t.getArtists()) {
                             if (artists.toString().isEmpty()) {
                                 artists.append(artist.getName());
@@ -131,10 +133,10 @@ public class PlayerListener implements Player.EventsListener {
                             }
                         }
                         try {
-                            ContentPanel.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
+                            PlayerArea.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
                         }catch (Exception e) {
                             ConsoleLogging.warning("Failed to load cover for track");
-                            ContentPanel.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), ContentPanel.playerimage.getSize()));
+                            PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
                         }
                         try {
                             if (PublicValues.canvasPlayer.isShown()) {
@@ -144,7 +146,7 @@ public class PlayerListener implements Player.EventsListener {
                             //System not supported
                         }
                 }
-                ContentPanel.playerdescription.setText(artists.toString());
+                PlayerArea.playerdescription.setText(artists.toString());
             } catch (IOException | ParseException | SpotifyWebApiException | JSONException e) {
                 GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
@@ -161,7 +163,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
-        ContentPanel.playerplaypausebutton.setImage(Graphics.PLAYERPlAY.getPath());
+        PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPlAY.getPath());
         try {
             if (PublicValues.canvasPlayer.isShown()) {
                 PublicValues.canvasPlayer.play();
@@ -173,7 +175,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
-        ContentPanel.playerplaypausebutton.setImage(Graphics.PLAYERPAUSE.getPath());
+        PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPAUSE.getPath());
         try {
             if (PublicValues.canvasPlayer.isShown()) {
                 PublicValues.canvasPlayer.play();
@@ -197,7 +199,7 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onTrackSeeked(@NotNull Player player, long l) {
         if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
-            ContentPanel.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
+            PlayerArea.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
         }
         try {
             if (PublicValues.canvasPlayer.isShown()) {
@@ -228,7 +230,7 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onVolumeChanged(@NotNull Player player, @Range(from = 0L, to = 1L) float v) {
         try {
-            ContentPanel.playerareavolumeslider.setValue(TrackUtils.roundVolumeToNormal(v));
+            PlayerArea.playerareavolumeslider.setValue(TrackUtils.roundVolumeToNormal(v));
         }catch (NullPointerException ex) {
             //ContentPanel is not visible yet
         }

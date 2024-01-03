@@ -43,7 +43,6 @@ public class DefThread {
     }
     //Only for shutdownHook
     public Thread getRawThread() {
-        Utils.checkPermission(Initiator.class);
         return t;
     }
     public void start() {

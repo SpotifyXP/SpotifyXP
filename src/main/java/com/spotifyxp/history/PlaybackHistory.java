@@ -7,6 +7,7 @@ import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
+import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.threading.DefThread;
@@ -148,8 +149,8 @@ public class PlaybackHistory extends JFrame2 {
             @Override
             public void windowClosing(WindowEvent e) {
                 dispose();
-                ContentPanel.historybutton.isFilled = false;
-                ContentPanel.historybutton.setImage(Graphics.HISTORY.getInputStream());
+                PlayerArea.historybutton.isFilled = false;
+                PlayerArea.historybutton.setImage(Graphics.HISTORY.getInputStream());
             }
         });
     }

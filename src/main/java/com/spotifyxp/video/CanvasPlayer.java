@@ -26,15 +26,12 @@ import java.util.Objects;
 public class CanvasPlayer {
     private MediaPlayerFactory factory;
     private final Rectangle bounds = new Rectangle();
-
     private EmbeddedMediaPlayer mediaPlayer;
-
     private Window window;
-
     private JFrame2 frame;
-
     private JPanel referencePanel;
     private boolean trackValid = false;
+
     public CanvasPlayer() {
         try {
             frame = new JFrame2("SpotifyXP - Canvas");

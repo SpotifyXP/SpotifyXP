@@ -2,7 +2,6 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.lastfm.LFMValues;
 import com.spotifyxp.lastfm.LastFMLogin;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -11,7 +10,6 @@ import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -64,33 +62,33 @@ public class SettingsPanel extends JPanel {
         setLayout(null);
 
         // Initiate and add borders
-        browsersettingsborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        browsersettingsborder = new JPanel();
         browsersettingsborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.browser.label")));
         browsersettingsborder.setBounds(20, 6, 382, 104);
         browsersettingsborder.setLayout(null);
         add(browsersettingsborder);
-        settingsuiborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        settingsuiborder = new JPanel();
         settingsuiborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.ui.label")));
         settingsuiborder.setBounds(19, 122, 382, 178);
         settingsuiborder.setLayout(null);
         add(settingsuiborder);
-        playbackborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        playbackborder = new JPanel();
         playbackborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.playback.label")));
         playbackborder.setBounds(20, 312, 382, 83);
         playbackborder.setLayout(null);
         add(playbackborder);
-        lastfmborder = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        lastfmborder = new JPanel();
         lastfmborder.setLayout(null);
         lastfmborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.lastfm.settings.border")));
         lastfmborder.setBounds(20, 405, 382, 60);
         add(lastfmborder);
         //
 
-        settingslastfmloginlabel = (JScrollText) JComponentFactory.createJComponent(new JScrollText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", LFMValues.username + "  ")));
+        settingslastfmloginlabel = new JScrollText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", LFMValues.username + "  "));
         settingslastfmloginlabel.setBounds(10, 25, 120, 20);
         lastfmborder.add(settingslastfmloginlabel);
 
-        settingslastfmlogin = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.login")));
+        settingslastfmlogin = new JButton(PublicValues.language.translate("ui.login"));
         settingslastfmlogin.setBounds(190, 25, 85, 20);
         lastfmborder.add(settingslastfmlogin);
 
@@ -100,7 +98,7 @@ public class SettingsPanel extends JPanel {
             if(!PublicValues.config.getString(ConfigValues.lastfmusername.name).isEmpty()) settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.getString(ConfigValues.lastfmusername.name) + "  "));
         }));
 
-        settingslastfmlogout = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.logout")));
+        settingslastfmlogout = new JButton(PublicValues.language.translate("ui.logout"));
         settingslastfmlogout.setBounds(285, 25, 85, 20);
         lastfmborder.add(settingslastfmlogout);
 
@@ -114,80 +112,80 @@ public class SettingsPanel extends JPanel {
             settingslastfmloginlabel.setText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", PublicValues.config.getString(ConfigValues.lastfmusername.name) + "  "));
         });
 
-        settingsbrowserlabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.browser.label")));
+        settingsbrowserlabel = new JLabel(PublicValues.language.translate("ui.settings.browser.label"));
         settingsbrowserlabel.setBounds(10, 451, 206, 29);
         //add(settingsbrowserlabel);
 
         settingsbrowserlabel.setForeground(PublicValues.globalFontColor);
 
-        settingsbrowserpath = (JTextField) JComponentFactory.createJComponent(new JTextField());
+        settingsbrowserpath = new JTextField();
         settingsbrowserpath.setBounds(6, 39, 370, 26);
         browsersettingsborder.add(settingsbrowserpath);
         settingsbrowserpath.setColumns(10);
 
-        settingsbrowserpathlable = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label")));
+        settingsbrowserpathlable = new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label"));
         settingsbrowserpathlable.setBounds(17, 17, 348, 16);
         browsersettingsborder.add(settingsbrowserpathlable);
         settingsbrowserpathlable.setHorizontalAlignment(SwingConstants.LEFT);
 
         settingsbrowserpathlable.setForeground(PublicValues.globalFontColor);
 
-        settingspathsetbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.settings.mypal.path.choosebutton")));
+        settingspathsetbutton = new JButton(PublicValues.language.translate("ui.settings.mypal.path.choosebutton"));
         settingspathsetbutton.setBounds(100, 69, 175, 29);
         browsersettingsborder.add(settingspathsetbutton);
 
         settingspathsetbutton.setForeground(PublicValues.globalFontColor);
 
-        settingsuilabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.ui.label")));
+        settingsuilabel = new JLabel(PublicValues.language.translate("ui.settings.ui.label"));
         settingsuilabel.setBounds(10, 435, 290, 14);
         //add(settingsuilabel);
 
         settingsuilabel.setForeground(PublicValues.globalFontColor);
 
-        settingsdisableexceptions = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("general.exception.hide")));
+        settingsdisableexceptions = new JRadioButton(PublicValues.language.translate("general.exception.hide"));
         settingsdisableexceptions.setBounds(6, 18, 370, 23);
         settingsuiborder.add(settingsdisableexceptions);
 
         settingsdisableexceptions.setForeground(PublicValues.globalFontColor);
 
-        settingsuidisableplayerstats = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats")));
+        settingsuidisableplayerstats = new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats"));
         settingsuidisableplayerstats.setBounds(6, 53, 370, 23);
         settingsuiborder.add(settingsuidisableplayerstats);
 
         settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
-        settingsuiselecttheme = (JComboBox) JComponentFactory.createJComponent(new JComboBox());
+        settingsuiselecttheme = new JComboBox();
         for(Theme theme : ThemeLoader.getAvailableThemes()) {
             ((DefaultComboBoxModel)settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
         }
         settingsuiselecttheme.setBounds(159, 85, 217, 30);
         settingsuiborder.add(settingsuiselecttheme);
 
-        settingsuithemelabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.theme")));
+        settingsuithemelabel = new JLabel(PublicValues.language.translate("ui.settings.theme"));
         settingsuithemelabel.setBounds(6, 90, 151, 16);
         settingsuiborder.add(settingsuithemelabel);
         settingsuithemelabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         settingsuithemelabel.setForeground(PublicValues.globalFontColor);
 
-        settingsplaybacklabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.playback.label")));
+        settingsplaybacklabel = new JLabel(PublicValues.language.translate("ui.settings.playback.label"));
         settingsplaybacklabel.setBounds(10, 448, 269, 14);
         //add(settingsplaybacklabel);
 
         settingsplaybacklabel.setForeground(PublicValues.globalFontColor);
 
-        settingsplaybackselectquality = (JComboBox) JComponentFactory.createJComponent(new JComboBox(new String[] {
+        settingsplaybackselectquality = new JComboBox(new String[] {
                 "Normal", "High", "Very_High"
-        }));
+        });
         settingsplaybackselectquality.setBounds(167, 28, 206, 22);
         playbackborder.add(settingsplaybackselectquality);
 
-        settingsplaybackselectqualitylabel = (JLabel) JComponentFactory.createJComponent(new JLabel(PublicValues.language.translate("ui.settings.quality")));
+        settingsplaybackselectqualitylabel = new JLabel(PublicValues.language.translate("ui.settings.quality"));
         settingsplaybackselectqualitylabel.setBounds(6, 30, 149, 14);
         playbackborder.add(settingsplaybackselectqualitylabel);
         settingsplaybackselectqualitylabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        settingsturnoffspotifyconnect = (JRadioButton) JComponentFactory.createJComponent(new JRadioButton(PublicValues.language.translate("ui.settings.spconnect")));
+        settingsturnoffspotifyconnect = new JRadioButton(PublicValues.language.translate("ui.settings.spconnect"));
         settingsturnoffspotifyconnect.setForeground(PublicValues.globalFontColor);
 
         settingsturnoffspotifyconnect.setBounds(120, 55, 200, 20);
@@ -197,7 +195,7 @@ public class SettingsPanel extends JPanel {
 
         settingsplaybackselectquality.setForeground(PublicValues.globalFontColor);
 
-        settingsplaybackopenequalizerbutton = (JButton) JComponentFactory.createJComponent(new JButton(PublicValues.language.translate("ui.settings.uninstall")));
+        settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.uninstall"));
         settingsplaybackopenequalizerbutton.setBounds(205, 445, 197, 23);
         //add(settingsplaybackopenequalizerbutton);
 

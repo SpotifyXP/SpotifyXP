@@ -17,6 +17,8 @@ import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.Feedback;
+import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
@@ -29,7 +31,7 @@ import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
-import com.spotifyxp.webController.HttpService;
+import com.spotifyxp.web.WebInterface;
 
 import java.awt.*;
 import java.io.File;
@@ -43,7 +45,7 @@ import java.nio.file.StandardCopyOption;
 @SuppressWarnings({"all", "RedundantArrayCreation"})
 public class Initiator {
     public static StartupTime startupTime;
-    static final DefThread hook = new DefThread(ContentPanel::saveCurrentState);
+    static final DefThread hook = new DefThread(PlayerArea::saveCurrentState);
 
     public static final DefThread thread = new DefThread(new Runnable() {
         @Override
@@ -152,6 +154,7 @@ public class Initiator {
         }
         SplashPanel.linfo.setText("Detecting operating system...");
         if(!System.getProperty("os.name").toLowerCase().contains("win")) {
+            PublicValues.isWindows = false;
             if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
                 if(!PublicValues.customSaveDir) {
                     SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
@@ -287,7 +290,7 @@ public class Initiator {
             if (PublicValues.isSteamDeckMode) {
                 new SteamDeckSupportModule();
             }
-            panel = new ContentPanel(player);
+            panel = new ContentPanel();
         }
         SplashPanel.linfo.setText("Starting background services...");
         new BackgroundService().start();
@@ -296,14 +299,14 @@ public class Initiator {
             DefThread thread = new DefThread(() -> {
                 if (info.updateAvailable) {
                     String version = info.version;
-                    ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
+                    Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
                     new Updater().invoke();
                 } else {
                     if (new Updater().isNightly()) {
-                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
-                        ContentPanel.feedbackupdaterdownloadbutton.setVisible(false);
+                        Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
+                        Feedback.feedbackupdaterdownloadbutton.setVisible(false);
                     } else {
-                        ContentPanel.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
+                        Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
                     }
                 }
             });
@@ -316,7 +319,7 @@ public class Initiator {
         if(!PublicValues.nogui) {
             panel.open();
         }
-        new HttpService();
+        new WebInterface();
         if(PublicValues.nogui) {
             new RestAPI().start();
         }

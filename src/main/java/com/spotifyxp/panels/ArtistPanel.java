@@ -7,7 +7,6 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
-import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.lastfm.LFMValues;
@@ -21,7 +20,6 @@ import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -52,56 +50,56 @@ public class ArtistPanel extends JPanel {
     public final ContextMenu artistalbumcontextmenu;
     boolean isFirst = false;
     public ArtistPanel() {
-        contentPanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
+        contentPanel = new JScrollPane();
         contentPanel.setViewportView(this);
         setLayout(null);
         setPreferredSize(new Dimension(800, 1335));
 
-        JLabel artistpopularlabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Popular"));
+        JLabel artistpopularlabel = new JLabel("Popular");
         artistpopularlabel.setBounds(5, 291, 137, 27);
         add(artistpopularlabel);
 
         artistpopularlabel.setForeground(PublicValues.globalFontColor);
 
-        artistpopularscrollpane = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
+        artistpopularscrollpane = new JScrollPane();
         artistpopularscrollpane.setBounds(5, 320, 760, 277);
         add(artistpopularscrollpane);
 
-        artistpopularsonglist = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-        });
+        artistpopularsonglist = new DefTable() {
+        };
         artistpopularscrollpane.setViewportView(artistpopularsonglist);
 
         artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
         artistpopularsonglistcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(artistpopularuricache.get(artistpopularsonglist.getSelectedRow())));
 
-        artistalbumscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
+        artistalbumscrollpanel = new JScrollPane();
         artistalbumscrollpanel.setBounds(5, 667, 760, 295);
         add(artistalbumscrollpanel);
 
-        artistalbumalbumtable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-        });
+        artistalbumalbumtable = new DefTable() {
+        };
         artistalbumscrollpanel.setViewportView(artistalbumalbumtable);
 
         contentPanel.getVerticalScrollBar().setUnitIncrement(20);
 
-        JLabel artistalbumlabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Albums"));
+        JLabel artistalbumlabel = new JLabel("Albums");
         artistalbumlabel.setBounds(5, 642, 102, 14);
         add(artistalbumlabel);
 
         artistalbumlabel.setForeground(PublicValues.globalFontColor);
 
-        artistimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
+        artistimage = new JImagePanel();
         artistimage.setBounds(288, 11, 155, 153);
         add(artistimage);
 
-        artisttitle = (JLabel) JComponentFactory.createJComponent(new JLabel(""));
+        artisttitle = new JLabel("");
         artisttitle.setHorizontalAlignment(SwingConstants.CENTER);
         artisttitle.setBounds(0, 213, 780, 64);
         add(artisttitle);
 
         artisttitle.setForeground(PublicValues.globalFontColor);
 
-        artistbackgroundimage = (JImagePanel) JComponentFactory.createJComponent(new JImagePanel());
+        artistbackgroundimage = new JImagePanel();
         artistbackgroundimage.setBounds(0, 0, 780, 277);
         add(artistbackgroundimage);
 
@@ -118,15 +116,15 @@ public class ArtistPanel extends JPanel {
                 if (e.getClickCount() == 2) {
                     ContentPanel.isLastArtist = true;
                     ContentPanel.artistPanel.contentPanel.setVisible(false);
-                    ContentPanel.searchplaylistpanel.setVisible(true);
-                    ContentPanel.searchplaylistsongscache.clear();
-                    ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).setRowCount(0);
+                    Search.searchplaylistpanel.setVisible(true);
+                    Search.searchplaylistsongscache.clear();
+                    ((DefaultTableModel) Search.searchplaylisttable.getModel()).setRowCount(0);
                     try {
                         Album album = Factory.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
                         for (TrackSimplified simplified : album.getTracks().getItems()) {
                             artistalbumalbumtable.addModifyAction(() -> {
-                                ((DefaultTableModel) ContentPanel.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                ContentPanel.searchplaylistsongscache.add(simplified.getUri());
+                                ((DefaultTableModel) Search.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                                Search.searchplaylistsongscache.add(simplified.getUri());
                             });
                         }
                     } catch (IOException | ParseException | SpotifyWebApiException ex) {
@@ -160,14 +158,14 @@ public class ArtistPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    ContentPanel.player.getPlayer().load(artistpopularuricache.get(artistpopularsonglist.getSelectedRow()), true, false, false);
+                    Factory.getPlayer().getPlayer().load(artistpopularuricache.get(artistpopularsonglist.getSelectedRow()), true, false, false);
                     TrackUtils.addAllToQueue(artistpopularuricache, artistpopularsonglist);
                 }
             }
         });
 
-        lastfmartisttable = (DefTable) JComponentFactory.createJComponent(new DefTable() {
-        });
+        lastfmartisttable = new DefTable() {
+        };
 
         lastfmartisttable.setModel(new DefaultTableModel(
                 new Object[][]{
@@ -182,7 +180,7 @@ public class ArtistPanel extends JPanel {
         lastfmartisttable.setForeground(PublicValues.globalFontColor);
         lastfmartisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
-        JLabel lastfmsimilarartistslabel = (JLabel) JComponentFactory.createJComponent(new JLabel("Last.fm  Similar Artists"));
+        JLabel lastfmsimilarartistslabel = new JLabel("Last.fm  Similar Artists");
         lastfmsimilarartistslabel.setBounds(5, 1000, 212, 18);
         add(lastfmsimilarartistslabel);
 
@@ -201,7 +199,7 @@ public class ArtistPanel extends JPanel {
                         artisttitle.setText(a.getName());
                         DefThread trackthread = new DefThread(() -> {
                             try {
-                                for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2], ContentPanel.countryCode).build().execute()) {
+                                for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2], PublicValues.countryCode).build().execute()) {
                                     artistpopularuricache.add(t.getUri());
                                     Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistpopularsonglist);
                                 }
@@ -331,6 +329,7 @@ public class ArtistPanel extends JPanel {
     }
 
     public void openPanel() {
+        ContentPanel.artistPanelVisible = true;
         lastfmartisturicache.clear();
         ((DefaultTableModel) lastfmartisttable.getModel()).setRowCount(0);
         DefThread thread = new DefThread(() -> {

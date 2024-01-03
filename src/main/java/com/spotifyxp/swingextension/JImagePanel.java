@@ -1,19 +1,14 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.Resources;
+import com.spotifyxp.utils.*;
 import org.apache.commons.io.IOUtils;
-
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;

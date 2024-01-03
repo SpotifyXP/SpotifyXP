@@ -2,6 +2,7 @@ package com.spotifyxp;
 
 
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
@@ -73,6 +74,9 @@ public class PublicValues {
     public static boolean devMode = false;
     public static JMenuBar menuBar;
     public static int screenNumber = Utils.getDefaultScreenNumber();
+    public static boolean shuffle = false;
+    public static CountryCode countryCode;
+    public static boolean isWindows = true;
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

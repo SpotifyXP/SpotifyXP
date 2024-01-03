@@ -73,18 +73,6 @@ public class Events {
         return new Event(event.name, event.isProtected, event.subscribers);
     }
 
-    //Events Version 2.0
-
-    //Public Methods
-    // - register (String:name)
-    // - subscribe (String:name, Runnable)
-    // - unsubscribe (String:name, Runnable)
-    // - getListOfEvents
-    // - unregister (String:name)
-
-    //Private Methods
-    // - trigger (String:name)
-
     public static void register(String name, boolean isProtected) {
         if(debug) ConsoleLogging.debug("[Events] Registering event with name:" + name + " protected:" + isProtected);
         if(containsEventWithName(name)) return;

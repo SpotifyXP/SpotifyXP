@@ -1,9 +1,7 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Utils;
 
 import javax.swing.*;

@@ -1,5 +1,6 @@
 package com.spotifyxp.utils;
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -144,11 +145,11 @@ public class SpotifyUtils {
         ArrayList<Track> tracks = new ArrayList<>();
         try {
             int parsed = 0;
-            int total = Factory.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], ContentPanel.countryCode).build().execute().length;
+            int total = Factory.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute().length;
             int counter = 0;
             int last = 0;
             while(parsed != total) {
-                for(Track track : Factory.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], ContentPanel.countryCode).build().execute()) {
+                for(Track track : Factory.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute()) {
                     tracks.add(track);
                     parsed++;
                 }

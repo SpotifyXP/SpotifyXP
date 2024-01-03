@@ -19,7 +19,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static com.spotifyxp.panels.ContentPanel.playerarealyricsbutton;
+import static com.spotifyxp.panels.PlayerArea.playerarealyricsbutton;
 
 public class LyricsDialog {
     final JFrame2 frame = new JFrame2("SpotifyXP - Song Lyrics");

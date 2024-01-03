@@ -1,8 +1,5 @@
 package com.spotifyxp.api;
 
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;

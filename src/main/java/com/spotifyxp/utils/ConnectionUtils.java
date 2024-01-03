@@ -93,6 +93,7 @@ public class ConnectionUtils {
             if(Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new URI(url));
+                    return;
                 }catch (Exception ignored) {
                 }
             }

@@ -1,7 +1,7 @@
 package com.spotifyxp.visuals;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.utils.FpsCounter;
 import com.spotifyxp.utils.SpectrumAnalyzer;
@@ -96,7 +96,7 @@ public class AudioVisualizer extends JPanel {
                             gr.setColor(colors.get(c));
                         }
                         double amp = spectrumData[i];
-                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(ContentPanel.playerareavolumecurrent.getText()))));
+                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerareavolumecurrent.getText()))));
                         c++;
                     }
                     drawFPS(gr);
@@ -125,7 +125,7 @@ public class AudioVisualizer extends JPanel {
                         }
                         double amp = spectrumData[i];
                         gr.setColor(colors.get(c));
-                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(ContentPanel.playerareavolumecurrent.getText()))));
+                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerareavolumecurrent.getText()))));
                         if(a == 5) {
                             c++;
                             a = 0;

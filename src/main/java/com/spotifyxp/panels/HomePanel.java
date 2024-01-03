@@ -5,7 +5,6 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.factory.JComponentFactory;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
@@ -16,7 +15,6 @@ import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.StringUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -38,7 +36,7 @@ public class HomePanel {
     }
 
     public void initializeLayout() {
-        content = (JPanel) JComponentFactory.createJComponent(new JPanel());
+        content = new JPanel();
         content.setPreferredSize(new Dimension(784, 337 * tab.sections.size()));
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -63,19 +61,19 @@ public class HomePanel {
 
     public void addModule(UnofficialSpotifyAPI.HomeTabSection section) {
         ArrayList<String> uricache = new ArrayList<>();
-        JLabel homepanelmoduletext = (JLabel) JComponentFactory.createJComponent(new JLabel(section.name));
+        JLabel homepanelmoduletext = new JLabel(section.name);
         homepanelmoduletext.setFont(new Font("Tahoma", Font.PLAIN, 16));
         homepanelmoduletext.setBounds(0, addCache + 11, 375, 24);
         content.add(homepanelmoduletext);
 
         homepanelmoduletext.setForeground(PublicValues.globalFontColor);
 
-        JScrollPane homepanelmodulescrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
+        JScrollPane homepanelmodulescrollpanel = new JScrollPane();
         homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
         content.add(homepanelmodulescrollpanel);
 
-        DefTable homepanelmodulecontenttable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
-        });
+        DefTable homepanelmodulecontenttable = new DefTable()  {
+        };
         homepanelmodulescrollpanel.setViewportView(homepanelmodulecontenttable);
         homepanelmodulecontenttable.setForeground(PublicValues.globalFontColor);
         homepanelmodulecontenttable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -137,7 +135,7 @@ public class HomePanel {
                                     ContentPanel.artistPanel.artisttitle.setText(a.getName());
                                     DefThread trackthread = new DefThread(() -> {
                                         try {
-                                            for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                            for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
                                                 ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
                                                 Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
                                             }
@@ -157,7 +155,7 @@ public class HomePanel {
                                 ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
                             case episode:
-                                PublicValues.spotifyplayer.load(uri, true, ContentPanel.shuffle, false);
+                                PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle, false);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             default:
@@ -195,12 +193,12 @@ public class HomePanel {
         content.setLayout(null);
         ArrayList<String> usersuricache = new ArrayList<>();
 
-        JScrollPane homepaneluserscrollpanel = (JScrollPane) JComponentFactory.createJComponent(new JScrollPane());
+        JScrollPane homepaneluserscrollpanel = new JScrollPane();
         homepaneluserscrollpanel.setBounds(0, 39, 777, 261);
         content.add(homepaneluserscrollpanel);
 
-        DefTable homepanelusertable = (DefTable) JComponentFactory.createJComponent(new DefTable()  {
-        });
+        DefTable homepanelusertable = new DefTable()  {
+        };
         homepaneluserscrollpanel.setViewportView(homepanelusertable);
         homepanelusertable.setForeground(PublicValues.globalFontColor);
         homepanelusertable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -244,7 +242,7 @@ public class HomePanel {
                                     ContentPanel.artistPanel.artisttitle.setText(a.getName());
                                     DefThread trackthread = new DefThread(() -> {
                                         try {
-                                            for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(id, ContentPanel.countryCode).build().execute()) {
+                                            for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
                                                 ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
                                                 Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
                                             }
@@ -273,7 +271,7 @@ public class HomePanel {
             }
         });
 
-        JLabel homepanelgreetingstext = (JLabel) JComponentFactory.createJComponent(new JLabel(tab.greeting));
+        JLabel homepanelgreetingstext = new JLabel(tab.greeting);
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 16));
         homepanelgreetingstext.setBounds(0, 11, 375, 24);
         content.add(homepanelgreetingstext);

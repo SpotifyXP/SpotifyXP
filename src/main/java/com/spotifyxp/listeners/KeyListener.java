@@ -1,10 +1,12 @@
 package com.spotifyxp.listeners;
 
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.NativeHookException;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import lc.kra.system.keyboard.GlobalKeyboardHook;
-import lc.kra.system.keyboard.event.GlobalKeyEvent;
-import lc.kra.system.keyboard.event.GlobalKeyListener;
 
 @SuppressWarnings("CanBeFinal")
 public class KeyListener {
@@ -17,62 +19,63 @@ public class KeyListener {
      * <br> Listens for playpause, previous and next
      */
     public void start() {
-        if(PublicValues.appLocation.startsWith("/")) {
-            return; //Operating system is not supported
-        }
-        GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook();
         try {
-            keyboardHook.addKeyListener(new GlobalKeyListener() {
+            GlobalScreen.registerNativeHook();
+            GlobalScreen.addNativeKeyListener(new NativeKeyListener() {
                 @Override
-                public void keyPressed(GlobalKeyEvent globalKeyEvent) {
-                    switch (globalKeyEvent.getVirtualKeyCode()) {
-                        case 179:
+                public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
+                    switch (nativeEvent.getKeyCode()) {
+                        case NativeKeyEvent.VC_MEDIA_PLAY:
                             //PlayPause
                             playpausepressed = true;
                             PublicValues.spotifyplayer.playPause();
                             break;
-                        case 176:
+                        case NativeKeyEvent.VC_MEDIA_NEXT:
                             //Next
                             nextpressed = true;
                             PublicValues.spotifyplayer.next();
                             break;
-                        case 177:
+                        case NativeKeyEvent.VC_MEDIA_PREVIOUS:
                             //Previous
                             previouspressed = true;
                             PublicValues.spotifyplayer.previous();
                             break;
-                    }
-                    if (globalKeyEvent.isControlPressed()) {
-                        if(!ContentPanel.pressedCTRL) ContentPanel.frame.setResizable(true);
-                        ContentPanel.pressedCTRL = true;
+                        }
+                    if (nativeEvent.getKeyCode() == NativeKeyEvent.VC_CONTROL) {
+                       if(!ContentPanel.pressedCTRL) ContentPanel.frame.setResizable(true);
+                       ContentPanel.pressedCTRL = true;
                     }
                 }
 
                 @Override
-                public void keyReleased(GlobalKeyEvent globalKeyEvent) {
-                    switch (globalKeyEvent.getVirtualKeyCode()) {
-                        case 179:
+                public void nativeKeyReleased(NativeKeyEvent nativeEvent) {
+                    switch (nativeEvent.getKeyCode()) {
+                        case NativeKeyEvent.VC_MEDIA_PLAY:
                             //PlayPause
                             playpausepressed = false;
                             break;
-                        case 176:
+                        case NativeKeyEvent.VC_MEDIA_NEXT:
                             //Next
                             nextpressed = false;
                             break;
-                        case 177:
+                        case NativeKeyEvent.VC_MEDIA_PREVIOUS:
                             //Previous
                             previouspressed = false;
                             break;
-                    }
+                        }
                     if(ContentPanel.pressedCTRL) {
                         ContentPanel.frame.setResizable(false);
                         ContentPanel.pressedCTRL = false;
                     }
                 }
             });
-        }catch (IllegalStateException ex) {
-            keyboardHook.shutdownHook();
-            start();
+        }catch (Exception ex) {
+            try {
+                GlobalScreen.unregisterNativeHook();
+            } catch (NativeHookException e) {
+                throw new RuntimeException(e);
+            }
+            ConsoleLogging.Throwable(ex);
         }
     }
 }
