@@ -73,8 +73,18 @@ SpotifyXP is build with
 
 ## Getting Started
 
+### Prerequisites:
+
+- VLC Media Player version 3.0.20 
+- Java 8 151 (Click ok on the dialog)
+
+### ***!! Important !!***
+- VLC needs to be the same architecture as the java version e.g. **x64** or **x86**
+
+### Install instructions
+
 1. Download the Stable version under Releases or download the nightly version under the Actions tab
-2. Just run <pre>java -jar SpotifyXP.jar</pre>
+2. Double click **SpotifyXP.jar** or run this in the directory where **SpotifyXP.jar** is downloaded: <pre>java -jar SpotifyXP.jar</pre>
 
 ## Usage
 
@@ -105,5 +115,6 @@ Not compatible with any license
 
 ## Special thanks
 
+* [StapleBacon5037](https://github.com/StapleBacon5037) - For improving the readme
 * [skippster1337](https://github.com/skipster1337) - For listing SpotifyXP on his site
 * <a href="https://www.yourkit.com/"><img src="https://www.yourkit.com/images/yklogo.png" height="20"></a> that provided a free license for their [Java Profiler](https://www.yourkit.com/java/profiler/)
