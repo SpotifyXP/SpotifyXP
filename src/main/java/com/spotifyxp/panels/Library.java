@@ -18,12 +18,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Library extends JPanel {
     public static DefTable librarysonglist;
-    public static JButton libraryshufflebutton;
-    public static JButton libraryplaybutton;
     public static JScrollPane libraryscrollpane;
     public static DefaultTableModel librarydefaulttablemodel;
     public static final ArrayList<String> libraryuricache = new ArrayList<>();
@@ -67,16 +64,8 @@ public class Library extends JPanel {
     public Library() {
         setBounds(0, 0, 784, 421);
         setLayout(null);
-        libraryshufflebutton = new JButton(PublicValues.language.translate("ui.library.shuffle"));
-        libraryshufflebutton.setBounds(41, 398, 321, 23);
-        add(libraryshufflebutton);
-        libraryshufflebutton.setForeground(PublicValues.globalFontColor);
-        libraryplaybutton = new JButton(PublicValues.language.translate("ui.library.play"));
-        libraryplaybutton.setBounds(408, 398, 321, 23);
-        add(libraryplaybutton);
-        libraryplaybutton.setForeground(PublicValues.globalFontColor);
         libraryscrollpane = new JScrollPane();
-        libraryscrollpane.setBounds(0, 0, 784, 398);
+        libraryscrollpane.setBounds(0, 0, 784, 421);
         add(libraryscrollpane);
         final boolean[] inProg = {false};
         libraryscrollpane.addMouseWheelListener(e -> {
@@ -106,18 +95,6 @@ public class Library extends JPanel {
         librarysonglist.getColumnModel().getColumn(3).setPreferredWidth(51);
         librarysonglist.setFillsViewportHeight(true);
         libraryscrollpane.setViewportView(librarysonglist);
-        libraryshufflebutton.addActionListener(e -> {
-            DefThread thread1 = new DefThread(() -> {
-                ArrayList<String> random = new ArrayList<>();
-                Collections.copy(random, libraryuricache);
-                PublicValues.spotifyplayer.load(libraryuricache.get(0), true, false, false);
-                Collections.shuffle(random);
-                for (String s : random) {
-                    Factory.getPlayer().getPlayer().addToQueue(s);
-                }
-            });
-            thread1.start();
-        });
         librarysonglist.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

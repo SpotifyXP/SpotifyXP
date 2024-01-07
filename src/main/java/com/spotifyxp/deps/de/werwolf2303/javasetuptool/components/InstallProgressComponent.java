@@ -90,7 +90,7 @@ public class InstallProgressComponent extends JPanel implements Component {
 
         public FileOperationBuilder setForFeature(FeatureSelectionComponent.Feature feature) {
             if (component == null) {
-                throw new UnsupportedOperationException("setForFeature is only supported with the combination of FeatureSelectionComponent");
+                throw new UnsupportedOperationException("setForFeature is only supported with the combination of the FeatureSelectionComponent");
             }
             internal.feature = feature;
             return this;

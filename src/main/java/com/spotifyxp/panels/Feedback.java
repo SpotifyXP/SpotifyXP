@@ -27,7 +27,7 @@ public class Feedback extends JPanel {
         add(feedbackmakesurelabel);
         feedbackmakesurelabel.setForeground(PublicValues.globalFontColor);
         feedbackissuepanel = new JPanel();
-        feedbackissuepanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        feedbackissuepanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, PublicValues.globalFontColor));
         feedbackissuepanel.setBounds(0, 333, 426, 88);
         add(feedbackissuepanel);
         feedbackissuepanel.setLayout(null);
@@ -44,12 +44,13 @@ public class Feedback extends JPanel {
         add(feedbackgithubbutton);
         feedbackgithubbutton.setForeground(PublicValues.globalFontColor);
         feedbackupdatespanel = new JPanel();
-        feedbackupdatespanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.updater.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        feedbackupdatespanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.updater.border"), TitledBorder.LEADING, TitledBorder.TOP, null, PublicValues.globalFontColor));
         feedbackupdatespanel.setBounds(10, 59, 566, 249);
         add(feedbackupdatespanel);
         feedbackupdatespanel.setLayout(null);
         feedbackupdaterversionfield = new JTextField();
         feedbackupdaterversionfield.setBounds(10, 85, 230, 20);
+        feedbackupdaterversionfield.setForeground(PublicValues.globalFontColor);
         feedbackupdatespanel.add(feedbackupdaterversionfield);
         feedbackupdaterversionfield.setColumns(10);
         feedbackwillbemovedlabel = new JLabel("The Updater will be moved to an other place");

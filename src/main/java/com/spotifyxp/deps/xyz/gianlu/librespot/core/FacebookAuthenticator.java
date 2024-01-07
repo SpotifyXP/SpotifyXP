@@ -19,12 +19,14 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
+import com.leacox.process.FinalizedProcessBuilder;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -83,15 +85,17 @@ public final class FacebookAuthenticator implements Closeable {
         }
 
         try {
-            if(!PublicValues.isMacOS || !PublicValues.isLinux) {
+            if(PublicValues.isMacOS || PublicValues.isLinux) {
                 if(Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().browse(url.uri());
                 }else{
+                    GraphicalMessage.sorryError("[Facebook Auth] Function is not supported on your OS: 'java.awt.Desktop'");
                     ConsoleLoggingModules.error("[Facebook Auth] Function is not supported on your OS: 'java.awt.Desktop'");
                     System.exit(0);
                 }
             }else{
-                new ProcessBuilder().command("cmd", "/c \"" + browserPath + "\"").inheritIO().start();
+                FinalizedProcessBuilder builder = new FinalizedProcessBuilder(browserPath, url.uri().toString());
+                builder.start();
             }
         }catch (Exception e) {
             throw new RuntimeException(e);

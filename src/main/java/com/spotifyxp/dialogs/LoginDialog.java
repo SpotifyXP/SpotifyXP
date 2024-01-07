@@ -37,7 +37,7 @@ public class LoginDialog {
             add(usernamepasswordfield);
             facebook = new JButton("Facebook");
             facebook.setBounds(10, 228, 314, 20);
-            add(facebook);
+            //add(facebook);
             spotifyokbutton = new JButton("Ok");
             spotifyokbutton.setBounds(10, 275, 139, 31);
             add(spotifyokbutton);

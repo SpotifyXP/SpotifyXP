@@ -31,6 +31,7 @@ public class Queue extends JPanel {
         queuescrollpane.setBounds(0, 0, 784, 395);
         add(queuescrollpane);
         queuelist = new JList<>(queuelistmodel);
+        queuelist.setForeground(PublicValues.globalFontColor);
         queuescrollpane.setViewportView(queuelist);
         Events.subscribe(SpotifyXPEvents.queueUpdate.getName(), () -> {
             if (queuelistmodel.isEmpty()) {

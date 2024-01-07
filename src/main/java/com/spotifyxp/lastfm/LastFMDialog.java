@@ -6,11 +6,11 @@ import com.spotifyxp.deps.de.umass.lastfm.*;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -404,9 +404,9 @@ public class LastFMDialog extends JFrame2 {
                         ((DefaultTableModel) scrobblestable.getModel()).addRow(new Object[]{t1.getName(), t1.getArtist(), formatDate(t1.getPlayedWhen())});
                         scrobblesuricache.add(LastFMConverter.getTrackURIfromName(t1.getName()));
                     }catch (NullPointerException e) {
-                        GraphicalMessage.bug(User.getRawRecentTracks(LFMValues.username, scrobblescurrent, LFMValues.tracklimit, LFMValues.apikey));
+                        ConsoleLogging.Throwable(e);
                     }
-                });
+                    });
             }
             if(User.getRecentTracks(LFMValues.username, scrobblescurrent, LFMValues.tracklimit, LFMValues.apikey).getTotalPages() != scrobblescurrent) {
                 scrobblestable.addModifyAction(() -> ((DefaultTableModel) scrobblestable.getModel()).addRow(new Object[] {PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
