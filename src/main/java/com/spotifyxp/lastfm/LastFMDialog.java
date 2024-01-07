@@ -18,7 +18,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.Month;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Date;
@@ -375,7 +376,12 @@ public class LastFMDialog extends JFrame2 {
     }
 
     public static String formatDate(Date d) {
-        return d.getDay() + " " + Month.of(d.getMonth()).getDisplayName(TextStyle.FULL, PublicValues.language.getLocale()) + " " + d.getHours() + ":" + d.getMinutes();
+        LocalDateTime dateTime = LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault());
+        int dayOfMonth = dateTime.getDayOfMonth();
+        String monthName = dateTime.getMonth().getDisplayName(TextStyle.FULL, PublicValues.language.getLocale());
+        int hours = dateTime.getHour();
+        int minutes = dateTime.getMinute();
+        return String.format("%d %s %02d:%02d", dayOfMonth, monthName, hours, minutes);
     }
 
     public static boolean isOpen() {

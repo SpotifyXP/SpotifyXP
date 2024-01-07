@@ -9,6 +9,7 @@ import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.utils.HttpUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;

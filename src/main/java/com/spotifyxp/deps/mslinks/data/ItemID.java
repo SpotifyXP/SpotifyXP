@@ -212,37 +212,37 @@ public class ItemID implements Serializable {
 	////////////// Deprecated old API ////////////////////
 	//////////////////////////////////////////////////////
 
-	@Deprecated()
+	
 	public static final int TYPE_UNKNOWN = 0;
-	@Deprecated()
+	
 	public static final int TYPE_FILE_OLD      = GROUP_FS       | TYPE_FS_UNICODE | TYPE_FS_FILE;
-	@Deprecated()
+	
 	public static final int TYPE_DIRECTORY_OLD = GROUP_FS       | TYPE_FS_UNICODE | TYPE_FS_DIRECTORY;
-	@Deprecated()
+	
 	public static final int TYPE_FILE          = GROUP_FS       | TYPE_FS_FILE;
-	@Deprecated()
+	
 	public static final int TYPE_DIRECTORY     = GROUP_FS       | TYPE_FS_DIRECTORY;
-	@Deprecated()
+	
 	public static final int TYPE_DRIVE_OLD     = GROUP_COMPUTER | TYPE_DRIVE_FIXED;
-	@Deprecated()
+	
 	public static final int TYPE_DRIVE         = GROUP_COMPUTER | TYPE_DRIVE_MISC;
-	@Deprecated()
+	
 	public static final int TYPE_CLSID         = GROUP_ROOT     | TYPE_ROOT_REGITEM;
 
-	@Deprecated()
+	
 	private ItemID internalItemId;
 
 	/**
 	 * @Deprecated Instances of this class should not be created directly. The class is going to be abstract
 	 */
-	@Deprecated()
+	
 	public ItemID() {
 	}
 	
 	/**
 	 * @Deprecated Instances of this class should not be created directly. The class is going to be abstract
 	 */
-	@Deprecated()
+	
 	public ItemID(byte[] d) throws IOException, ShellLinkException {
 		ByteReader br = new ByteReader(new ByteArrayInputStream(d));
 		int flags = br.read();
@@ -253,7 +253,7 @@ public class ItemID implements Serializable {
 	/**
 	 * @Deprecated Instances of this class should not be created directly. The class is going to be abstract
 	 */
-	@Deprecated()
+	
 	public ItemID(ByteReader br, int maxSize) throws IOException, ShellLinkException {
 		int flags = br.read();
 		internalItemId = ItemID.createItem(flags);
@@ -315,7 +315,7 @@ public class ItemID implements Serializable {
 	/**
 	 * @Deprecated Use {@link #getTypeFlags()}
 	 */
-	@Deprecated()
+	
 	public int getType() {
 		return getTypeFlags();
 	}
@@ -325,7 +325,7 @@ public class ItemID implements Serializable {
 	 * of an appropriate class extending this one and use {@code setTypeFlags(int flags)} only to set
 	 * type-specific flags corresponding to the {@link #ID_TYPE_INGROUPMASK}
 	 */
-	@Deprecated()
+	
 	public ItemID setType(int t) throws ShellLinkException {
 		if (t == TYPE_CLSID) {
 			internalItemId = new ItemIDRoot().setClsid(Registry.CLSID_COMPUTER);

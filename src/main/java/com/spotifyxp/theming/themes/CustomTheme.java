@@ -18,6 +18,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -259,7 +260,7 @@ public class CustomTheme implements Theme {
 
         void load() {
             try {
-                rootCache = new JSONObject(IOUtils.toString(Files.newInputStream(configFile.toPath())));
+                rootCache = new JSONObject(IOUtils.toString(Files.newInputStream(configFile.toPath()), Charset.defaultCharset()));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

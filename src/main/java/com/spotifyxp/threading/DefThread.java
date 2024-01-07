@@ -1,8 +1,6 @@
 package com.spotifyxp.threading;
 
-import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.utils.Utils;
 
 public class DefThread {
     final String name;

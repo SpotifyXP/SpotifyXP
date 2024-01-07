@@ -34,7 +34,7 @@ package com.spotifyxp.deps.de.umass.lastfm.scrobble;
  * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
  *             API.
  */
-@Deprecated
+
 public enum Source {
 
 	/**

@@ -220,7 +220,6 @@ public class ConsoleLogging {
     public static void error(String message) {
         if(killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.ERROR).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
-        GraphicalMessage.openException(new Throwable(message));
     }
 
     public static void debug(String message) {

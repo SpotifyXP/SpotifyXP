@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -58,7 +59,7 @@ public class Config {
             }
         }
         try {
-            properties = new JSONObject(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath))));
+            properties = new JSONObject(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath)), Charset.defaultCharset()));
         } catch (IOException e) {
             GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }

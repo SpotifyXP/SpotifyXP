@@ -98,7 +98,7 @@ public final class ApResolver {
             }catch (ArrayIndexOutOfBoundsException e) {
                 //200 OK
             }
-            JsonObject obj = JsonParser.parseString(IOUtils.toString(resp)).getAsJsonObject();
+            JsonObject obj = JsonParser.parseString(new String(resp)).getAsJsonObject();
             HashMap<String, List<String>> map = new HashMap<>();
             for (String type : types)
                 map.put(type, getUrls(obj, type));

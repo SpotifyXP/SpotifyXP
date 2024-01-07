@@ -38,7 +38,7 @@ import com.spotifyxp.deps.de.umass.lastfm.Track;
  * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
  *             API.
  */
-@Deprecated
+
 public class ResponseStatus {
 
 	public static final int OK = 0;

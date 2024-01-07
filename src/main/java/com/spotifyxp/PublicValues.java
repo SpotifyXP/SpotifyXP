@@ -19,8 +19,8 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.threading.ThreadManager;
+import com.spotifyxp.utils.ArchitectureDetection;
 import com.spotifyxp.utils.Utils;
-import com.spotifyxp.video.CanvasPlayer;
 import com.spotifyxp.visuals.AudioVisualizer;
 
 import javax.swing.*;
@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
+    public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
     public static CancelDialog facebookcanceldialog;
     public static boolean playingFromLibrary = false;
     public static libLanguage language = null;
@@ -62,7 +63,6 @@ public class PublicValues {
     public static boolean isSteamDeckMode = false;
     public static String tempPath = System.getenv("temp");
     public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
-    public static CanvasPlayer canvasPlayer;
     public static boolean blockArtistPanelBackButton = false;
     public static boolean nogui = false;
     public static Color borderColor = Color.black;

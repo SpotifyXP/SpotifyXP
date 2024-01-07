@@ -11,7 +11,6 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*
 import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.HTMLDialog;
-import com.spotifyxp.dummy.DummyCanvasPlayer;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -27,12 +26,12 @@ import com.spotifyxp.swingextension.JFrame2;
 import com.spotifyxp.theming.themes.DarkGreen;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
-import com.spotifyxp.video.CanvasPlayer;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -123,12 +122,6 @@ public class ContentPanel extends JPanel {
         createArtistPanel();
         SplashPanel.linfo.setText("Creating home...");
         createHome();
-        SplashPanel.linfo.setText("Creating CanvasPlayer...");
-        if (System.getProperty("os.name").toLowerCase().contains("win") || System.getProperty("os.name").toLowerCase().contains("mac")) {
-            PublicValues.canvasPlayer = new CanvasPlayer();
-        } else {
-            PublicValues.canvasPlayer = new DummyCanvasPlayer(false);
-        }
         SplashPanel.linfo.setText("Creating advancedPanel...");
         createAdvancedPanel();
         SplashPanel.linfo.setText("Adding window mouse listener...");

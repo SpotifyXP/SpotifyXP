@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.dialogs.LyricsDialog;
@@ -13,13 +12,13 @@ import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Shuffle;
 import com.spotifyxp.utils.StringUtils;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -287,24 +286,6 @@ public class PlayerArea extends JPanel {
         playerplaynextbutton.addActionListener(e -> Factory.getPlayer().getPlayer().next());
         playerplaypreviousbutton.addActionListener(e -> PublicValues.spotifyplayer.previous());
         playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(Factory.getPlayer().getPlayer().time())));
-        ContextMenu menu = new ContextMenu(this);
-        menu.addItem("Open Canvas", () -> {
-            DefThread thread = new DefThread(() -> {
-                try {
-                    if (Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).isTrack() && !Objects.requireNonNull(PublicValues.spotifyplayer.currentMetadata()).getName().isEmpty()) {
-                        String url = UnofficialSpotifyAPI.getCanvasURLForTrack(Objects.requireNonNull(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri()));
-                        if(url.isEmpty()) return;
-                        PublicValues.canvasPlayer.show();
-                        PublicValues.canvasPlayer.switchMedia(url);
-                        if (!PublicValues.spotifyplayer.isPaused()) {
-                            PublicValues.canvasPlayer.play();
-                        }
-                    }
-                } catch (Exception ignored) {
-                }
-            });
-            thread.start();
-        });
 
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();

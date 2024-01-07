@@ -14,7 +14,6 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.Library;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -112,13 +111,6 @@ public class PlayerListener implements Player.EventsListener {
                             ConsoleLogging.warning("Failed to load cover for track");
                             PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
                         }
-                        try {
-                            if (PublicValues.canvasPlayer.isShown()) {
-                                PublicValues.canvasPlayer.play();
-                            }
-                        }catch (NullPointerException e) {
-                            //System not supported
-                        }
                         break;
                     default:
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
@@ -137,13 +129,6 @@ public class PlayerListener implements Player.EventsListener {
                         }catch (Exception e) {
                             ConsoleLogging.warning("Failed to load cover for track");
                             PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
-                        }
-                        try {
-                            if (PublicValues.canvasPlayer.isShown()) {
-                                PublicValues.canvasPlayer.play();
-                            }
-                        }catch (NullPointerException e) {
-                            //System not supported
                         }
                 }
                 PlayerArea.playerdescription.setText(artists.toString());
@@ -164,25 +149,11 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
         PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPlAY.getPath());
-        try {
-            if (PublicValues.canvasPlayer.isShown()) {
-                PublicValues.canvasPlayer.play();
-            }
-        }catch (NullPointerException e) {
-            //System not supported
-        }
     }
 
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
         PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPAUSE.getPath());
-        try {
-            if (PublicValues.canvasPlayer.isShown()) {
-                PublicValues.canvasPlayer.play();
-            }
-        }catch (NullPointerException e) {
-            //System not supported
-        }
     }
 
     int retryCounter = 0;
@@ -200,13 +171,6 @@ public class PlayerListener implements Player.EventsListener {
     public void onTrackSeeked(@NotNull Player player, long l) {
         if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
             PlayerArea.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
-        }
-        try {
-            if (PublicValues.canvasPlayer.isShown()) {
-                PublicValues.canvasPlayer.play();
-            }
-        }catch (NullPointerException e) {
-            //System not supported
         }
         locked = false;
         Events.triggerEvent(SpotifyXPEvents.playerLockRelease.getName());

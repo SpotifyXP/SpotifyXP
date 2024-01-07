@@ -72,7 +72,7 @@ public class LinkTargetIDList extends LinkedList<ItemID> implements Serializable
 	/**
 	 * @Deprecated Equivalent of {@link #canBuildPath()} method
 	 */
-	@Deprecated()
+	
 	public boolean isCorrect() {
 		return canBuildPath();
 	}

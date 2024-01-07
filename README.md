@@ -75,7 +75,7 @@ SpotifyXP is build with
 
 ### Prerequisites:
 
-- VLC Media Player version 3.0.20 
+- VLC Media Player version 3.0.20 (Stable versions)
 - Java 8 151 (Click ok on the dialog)
 
 ### ***!! Important !!***

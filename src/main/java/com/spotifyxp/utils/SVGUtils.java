@@ -15,11 +15,12 @@ import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
 public class SVGUtils {
     public static ImageIcon svgToImageIcon(InputStream stream, int width, int height) {
         try {
-            String svgContent = IOUtils.toString(stream);
+            String svgContent = IOUtils.toString(stream, Charset.defaultCharset());
             // Create a transcoder for PNG output
             Transcoder transcoder = new PNGTranscoder();
 
@@ -58,7 +59,7 @@ public class SVGUtils {
 
     public static InputStream svgToImageInputStreamSameSize(InputStream stream, Dimension size) {
         try {
-            String svgContent = IOUtils.toString(stream);
+            String svgContent = IOUtils.toString(stream, Charset.defaultCharset());
             // Create a transcoder for PNG output
             Transcoder transcoder = new PNGTranscoder();
 

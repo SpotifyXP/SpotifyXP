@@ -9,6 +9,7 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

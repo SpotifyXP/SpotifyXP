@@ -333,7 +333,7 @@ public class ShellLink {
 	/**
 	 * @Deprecated Use new ShellLinkHelper API: {@link ShellLinkHelper#saveTo(String path) }
 	 */
-	@Deprecated()
+	
 	public ShellLink saveTo(String path) throws IOException {
 		new ShellLinkHelper(this).saveTo(path);
 		return this;
@@ -344,7 +344,7 @@ public class ShellLink {
 	 * Environment variables are accepted but resolved here and aren't kept in the link.
 	 * @Deprecated Use new ShellLinkHelper API: {@link ShellLinkHelper#setNetworkTarget(String path)} or {@link ShellLinkHelper#setLocalTarget(String drive, String absolutePath)}
 	 */
-	@Deprecated()
+	
 	public ShellLink setTarget(String target) {
 		target = ShellLinkHelper.resolveEnvVariables(target);
 		String targetAbsPath = Paths.get(target).toAbsolutePath().toString();
@@ -368,7 +368,7 @@ public class ShellLink {
 	/**
 	 * @Deprecated Use new ShellLinkHelper API: {@link ShellLinkHelper#setNetworkTarget(String path)} or {@link ShellLinkHelper#setLocalTarget(String drive, String absolutePath)}
 	 */
-	@Deprecated()
+	
 	public static ShellLink createLink(String target) {
 		ShellLink sl = new ShellLink();
 		sl.setTarget( target );
@@ -378,7 +378,7 @@ public class ShellLink {
 	/**
 	 * @Deprecated Use new ShellLinkHelper API: {@link ShellLinkHelper#createLink(String target, String linkpath)}
 	 */
-	@Deprecated()
+	
 	public static ShellLink createLink(String target, String linkpath) throws IOException {
 		return createLink(target).saveTo(linkpath);
 	}

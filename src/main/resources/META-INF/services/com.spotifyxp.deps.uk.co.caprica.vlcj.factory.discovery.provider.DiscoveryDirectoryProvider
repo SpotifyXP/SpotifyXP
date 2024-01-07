@@ -1,0 +1,6 @@
+com.spotifyxp.deps.uk.co.caprica.vlcj.factory.discovery.provider.JnaLibraryPathDirectoryProvider
+com.spotifyxp.deps.uk.co.caprica.vlcj.factory.discovery.provider.LinuxWellKnownDirectoryProvider
+com.spotifyxp.deps.uk.co.caprica.vlcj.factory.discovery.provider.OsxWellKnownDirectoryProvider
+com.spotifyxp.deps.uk.co.caprica.vlcj.factory.discovery.provider.SystemPathDirectoryProvider
+com.spotifyxp.deps.uk.co.caprica.vlcj.factory.discovery.provider.UserDirDirectoryProvider
+com.spotifyxp.deps.uk.co.caprica.vlcj.factory.discovery.provider.WindowsInstallDirectoryProvider
