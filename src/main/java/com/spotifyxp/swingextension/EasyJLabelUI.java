@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class EasyJLabelUI extends JFrame2 {
+public class EasyJLabelUI extends JFrame {
     private static final ArrayList<JLabel> labels = new ArrayList<>();
     private static JPanel panel;
 

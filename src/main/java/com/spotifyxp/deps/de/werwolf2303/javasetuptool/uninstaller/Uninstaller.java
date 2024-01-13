@@ -3,7 +3,7 @@ package com.spotifyxp.deps.de.werwolf2303.javasetuptool.uninstaller;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -34,7 +34,7 @@ public class Uninstaller {
     public static final ArrayList<String> fo = new ArrayList<>();
 
     public static void open() {
-        final JFrame2 frame = new JFrame2("Uninstaller");
+        final JFrame frame = new JFrame("Uninstaller");
         frame.setPreferredSize(new Dimension(375, 169));
         final JButton uninstall = new JButton("Uninstall");
         uninstall.setBounds(127, 106, 117, 29);

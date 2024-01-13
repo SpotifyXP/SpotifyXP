@@ -2,7 +2,7 @@ package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.FileUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class InjectorStore {
-    public static JFrame2 main;
+    public static JFrame main;
     // (Extension Store)
     //Features:
     // Download and Install Extensions
@@ -65,7 +65,7 @@ public class InjectorStore {
      * Opens the extension store
      */
     public void open() {
-        main = new JFrame2(PublicValues.language.translate("extension.title"));
+        main = new JFrame(PublicValues.language.translate("extension.title"));
         main.getContentPane().add(new ContentPanel());
         main.setPreferredSize(new Dimension(377, 526));
         main.setVisible(true);

@@ -1,12 +1,12 @@
 package com.spotifyxp.dialogs;
 
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class CancelDialog extends JPanel {
-    final JFrame2 frame = new JFrame2("Cancel login?");
+    final JFrame frame = new JFrame("Cancel login?");
     final JButton b = new JButton("Cancel Login");
     public CancelDialog() {
         setLayout(null);

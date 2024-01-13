@@ -3,7 +3,7 @@ package com.spotifyxp.utils;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import org.apache.commons.io.IOUtils;
 
 import java.awt.*;
@@ -72,7 +72,7 @@ public class Utils {
         throw new RuntimeException("A suspicious class tried to call ThreadManager.addThread! Blocking access...");
     }
 
-    public static int getDisplayNumber(JFrame2 frame) {
+    public static int getDisplayNumber(JFrame frame) {
         // Get the graphics configuration of the JFrame
         GraphicsConfiguration config = frame.getGraphicsConfiguration();
 
@@ -94,7 +94,7 @@ public class Utils {
         return -1;
     }
 
-    public static void moveToScreen(JFrame2 frame, int targetDisplayNumber) {
+    public static void moveToScreen(JFrame frame, int targetDisplayNumber) {
         // Get the graphics configuration of the JFrame
         GraphicsConfiguration config = frame.getGraphicsConfiguration();
 

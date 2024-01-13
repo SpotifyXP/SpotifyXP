@@ -2,7 +2,7 @@ package com.spotifyxp.visuals;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.PlayerArea;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.FpsCounter;
 import com.spotifyxp.utils.SpectrumAnalyzer;
 
@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 public class AudioVisualizer extends JPanel {
     byte[] converted = null;
-    JFrame2 frame = null;
+    JFrame frame = null;
     final ArrayList<Color> colors = new ArrayList<>();
     int buffersize = 0;
     int gain = 0;
     public void open() {
         counter.start();
-        frame = new JFrame2(PublicValues.language.translate("ui.audiovisualizer.title"));
+        frame = new JFrame(PublicValues.language.translate("ui.audiovisualizer.title"));
         setPreferredSize(new Dimension(800, 400));
         setBackground(Color.black);
         frame.getContentPane().add(this);

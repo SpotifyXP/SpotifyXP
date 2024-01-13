@@ -12,6 +12,7 @@ import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.*;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Shuffle;
 import com.spotifyxp.utils.StringUtils;
@@ -54,7 +55,7 @@ public class PlayerArea extends JPanel {
     private static LastPlayState lastPlayState;
     private static boolean doneLastParsing = false;
 
-    public PlayerArea(JFrame2 frame) {
+    public PlayerArea(JFrame frame) {
         playerarea = this;
         setBounds(72, 0, 565, 100);
         setLayout(null);
@@ -320,7 +321,7 @@ public class PlayerArea extends JPanel {
         });
         ContentPanel.frame.add(historybutton.getJComponent());
 
-        JFrame2 dialog = new JFrame2();
+        JFrame dialog = new JFrame();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

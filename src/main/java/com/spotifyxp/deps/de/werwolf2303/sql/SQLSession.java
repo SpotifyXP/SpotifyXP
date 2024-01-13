@@ -12,7 +12,7 @@ public class SQLSession {
     private static String database = "";
     private static String username = "";
     private static String password = "";
-    private static ArrayList<SQLElement> elements = new ArrayList<>();
+    private static final ArrayList<SQLElement> elements = new ArrayList<>();
 
     public SQLSession(String username, String password, String database) {
         SQLSession.database = database;

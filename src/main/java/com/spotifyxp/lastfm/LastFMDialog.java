@@ -9,7 +9,7 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.threading.DefThread;
 
 import javax.swing.*;
@@ -24,7 +24,7 @@ import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class LastFMDialog extends JFrame2 {
+public class LastFMDialog extends JFrame {
     final JPanel scrobblespanel;
     final JPanel userchartspanel;
     final JPanel chartspanel;
@@ -57,7 +57,7 @@ public class LastFMDialog extends JFrame2 {
     int userchartstrackscurrent = 0;
     int chartsartistscurrent = 0;
     int chartstrackscurrent = 0;
-    private static JFrame2 frame;
+    private static JFrame frame;
 
     public LastFMDialog() {
         setPreferredSize(new Dimension(800, 600));

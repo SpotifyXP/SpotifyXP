@@ -159,6 +159,7 @@
   "ui.lastfm.scrobbles": "Scrobbles",
   "ui.lastfm.usercharts": "User Charts",
   "ui.lastfm.charts": "Charts",
+  "ui.lastfm.userinfo": "Account info",
   "ui.lastfm.userchartsartists": "User Artist Charts",
   "ui.lastfm.userchartsalbums": "User Album Charts",
   "ui.lastfm.userchartstracks": "User Track Charts",
@@ -182,5 +183,7 @@
   "theme.borderfield": "Border Color",
   "theme.tabpanelfield": "TabPanel Background Color",
   "theme.fontfield": "Font Color",
-  "theme.touse":"Theme to use"
+  "theme.touse":"Theme to use",
+  "generic.no": "No",
+  "generic.yes": "Yes"
 }

@@ -8,7 +8,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.PlayerArea;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.threading.DefThread;
 
@@ -25,7 +25,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlaybackHistory extends JFrame2 {
+public class PlaybackHistory extends JFrame {
     public static class SongEntry {
         public String songURI;
         public String songName;

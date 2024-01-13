@@ -1,11 +1,11 @@
 package com.spotifyxp.dev;
 
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ErrorSimulator extends JFrame2 {
+public class ErrorSimulator extends JFrame {
     private static JTextField exceptionDescriptionOptional;
     @SuppressWarnings("all")
     private static JButton submit;

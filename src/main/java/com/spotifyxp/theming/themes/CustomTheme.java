@@ -7,7 +7,7 @@ import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.theming.Theme;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -25,7 +25,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 public class CustomTheme implements Theme {
-    private static final JFrame2 frame = new JFrame2();
+    private static final JFrame frame = new JFrame();
     private static JPanel content;
     private static ThemeConfig config;
 

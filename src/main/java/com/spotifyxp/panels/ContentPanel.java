@@ -20,9 +20,10 @@ import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lastfm.LastFMDialog;
+import com.spotifyxp.lastfm.LastFMUserDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.theming.themes.DarkGreen;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
@@ -77,7 +78,7 @@ public class ContentPanel extends JPanel {
     public static ArrayList<ExceptionDialog> errorQueue;
     public static final ArrayList<String> advanceduricache = new ArrayList<>();
     public static boolean pressedCTRL = false;
-    public static final JFrame2 frame = new JFrame2("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
+    public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static SettingsPanel settingsPanel = null;
     static boolean steamdeck = false;
     static LastTypes lastmenu = LastTypes.HotList;
@@ -484,7 +485,7 @@ public class ContentPanel extends JPanel {
                     return;
                 }
                 errorDisplayVisible = true;
-                JFrame2 dialog = new JFrame2();
+                JFrame dialog = new JFrame();
                 dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
                 JScrollPane pane = new JScrollPane();
                 DefTable table = new DefTable();
@@ -638,6 +639,7 @@ public class ContentPanel extends JPanel {
         JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
         JMenuItem lastfmdashboard = new JMenuItem("Dashboard");
         JMenuItem changedevice = new JMenuItem(PublicValues.language.translate("ui.playback.changedevice"));
+        JMenuItem lastfmuserinfo = new JMenuItem(PublicValues.language.translate("ui.lastfm.userinfo"));
         bar.add(file);
         bar.add(edit);
         bar.add(view);
@@ -659,10 +661,17 @@ public class ContentPanel extends JPanel {
         edit.add(settings);
         view.add(audiovisualizer);
         lastfm.add(lastfmdashboard);
+        lastfm.add(lastfmuserinfo);
         account.add(logout);
         help.add(extensions);
         help.add(about);
         playback.add(changedevice);
+        lastfmuserinfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LastFMUserDialog().open();
+            }
+        });
         changedevice.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -697,7 +706,7 @@ public class ContentPanel extends JPanel {
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame2 dialog = new JFrame2();
+                JFrame dialog = new JFrame();
                 dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
                 dialog.getContentPane().add(new SettingsPanel());
                 dialog.setPreferredSize(new Dimension(422, 506));
@@ -738,7 +747,7 @@ public class ContentPanel extends JPanel {
         if (steamdeck) {
             for (int i = 0; i < bar.getMenuCount(); i++) {
                 JMenu menu1 = bar.getMenu(i);
-                JFrame2 window = new JFrame2();
+                JFrame window = new JFrame();
                 window.setTitle(menu1.getText());
                 ArrayList<JMenuItem> items = new ArrayList<>();
                 DefTable table = new DefTable();
@@ -1035,7 +1044,7 @@ public class ContentPanel extends JPanel {
 
     public void open() {
         PublicValues.contentPanel = this;
-        JFrame2 mainframe;
+        JFrame mainframe;
         mainframe = frame;
         try {
             mainframe.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
