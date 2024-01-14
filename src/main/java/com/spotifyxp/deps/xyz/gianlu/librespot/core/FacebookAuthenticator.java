@@ -25,7 +25,7 @@ import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.swingextension.JFrame2;
+import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -77,7 +77,7 @@ public final class FacebookAuthenticator implements Closeable {
         String browserPath = "";
 
         if(!PublicValues.isLinux && !PublicValues.isMacOS) {
-            FileDialog dialog = new FileDialog(new JFrame2(), "Select Browser Exe");
+            FileDialog dialog = new FileDialog(new JFrame(), "Select Browser Exe");
             dialog.setFilenameFilter((dir, name) -> name.toLowerCase().endsWith(".exe"));
             dialog.setMode(FileDialog.LOAD);
             dialog.setVisible(true);
