@@ -41,7 +41,11 @@ public class Injector {
             }).length;
             boolean firstGoThrough = true;
             while(loadedExtensions != availableExtensions) {
+                System.out.println(availableExtensions);
                 if(availableExtensions < 0) {
+                    break;
+                }
+                if(availableExtensions == 0) {
                     break;
                 }
                 if(firstGoThrough) {
