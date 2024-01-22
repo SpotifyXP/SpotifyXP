@@ -206,6 +206,7 @@ public class ConsoleLogging {
 
     public static void Throwable(Throwable throwable) {
         if(killSwitch) return;
+        System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + throwable.getMessage());
         for(StackTraceElement s : throwable.getStackTrace()) {
             System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + s);
         }

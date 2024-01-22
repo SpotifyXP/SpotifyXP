@@ -5,6 +5,7 @@ import com.spotifyxp.dialogs.SystemTrayDialog;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.Resources;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 

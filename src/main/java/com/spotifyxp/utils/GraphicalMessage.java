@@ -21,6 +21,13 @@ public class GraphicalMessage {
         JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("critical.sorry.text"), PublicValues.language.translate("critical.sorry.title"), JOptionPane.OK_CANCEL_OPTION);
     }
 
+    public static void pleaseRestart() {
+        if (SplashPanel.frame.isVisible()) {
+            SplashPanel.frame.setAlwaysOnTop(false);
+        }
+        JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
+    }
+
     public static void debug(Object o) {
         if(SplashPanel.frame.isVisible()) {
             SplashPanel.frame.setAlwaysOnTop(false);

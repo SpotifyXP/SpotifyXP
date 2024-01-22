@@ -354,7 +354,7 @@ public class ContentPanel extends JPanel {
                 }
                 cache.append(s);
             }
-            String opensourcelist = URLUtils.getURLResponseAsString("https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/setup/thirdparty.html");
+            String opensourcelist = ConnectionUtils.makeGet("https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/setup/thirdparty.html");
             String finalhtml = cache.toString().split("<insertOpenSourceList>")[0] + opensourcelist + cache.toString().split("</insertOpenSourceList>")[1];
             dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml);
         } catch (Exception ex) {
@@ -1070,6 +1070,18 @@ public class ContentPanel extends JPanel {
         });
         mainframe.setForeground(Color.blue);
         Events.triggerEvent(SpotifyXPEvents.onFrameReady.getName());
+        JMenu helpMenu = null;
+        for(int i = 0; i < bar.getMenuCount(); i++) {
+            JMenu menu = bar.getMenu(i);
+            if(menu.getText().equals(PublicValues.language.translate("ui.legacy.help"))) {
+                helpMenu = menu;
+                break;
+            }
+        }
+        if(helpMenu != null) {
+            bar.remove(helpMenu);
+            bar.add(helpMenu);
+        }
         mainframe.open();
         int w = Toolkit.getDefaultToolkit().getScreenSize().width;
         int h = Toolkit.getDefaultToolkit().getScreenSize().height;

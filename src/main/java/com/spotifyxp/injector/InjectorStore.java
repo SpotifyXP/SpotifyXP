@@ -1,6 +1,8 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.FileUtils;
@@ -24,12 +26,11 @@ public class InjectorStore {
     // Download and Install Extensions
     // Remove Extensions
     static InjectorAPI api;
-    static ArrayList<InjectorAPI.Extension> installedExtensions;
+    static ArrayList<InjectorAPI.ExtensionSimplified> installedExtensions;
     static int exnum = 0;
 
     public InjectorStore() {
         api = new InjectorAPI();
-        api.parseExtensions();
         installedExtensions = new ArrayList<>();
         if (!new File(PublicValues.appLocation, "extensionstore.store").exists()) {
             try {
@@ -43,14 +44,14 @@ public class InjectorStore {
             int iter = 0;
             for (String s : Files.readAllLines(new File(PublicValues.appLocation, "extensionstore.store").toPath())) {
                 File f = Objects.requireNonNull(new File(PublicValues.appLocation, "Extensions").listFiles())[iter];
-                InjectorAPI.Extension e = new InjectorAPI.Extension();
-                e.location = "N/A";
-                e.identifier = s;
-                e.name = f.getName().split("-")[0].replace(" ", "");
-                e.author = f.getName().split("-")[1].replace(" ", "");
-                e.version = f.getName().split("-")[2].replace(" ", "").replace(".jar", "");
-                e.description = api.getExtension(e.identifier).description;
-                e.minVersion = api.getExtension(e.identifier).minVersion;
+                InjectorAPI.ExtensionSimplified e = new InjectorAPI.ExtensionSimplified(
+                        "N/A",
+                        "N/A",
+                        f.getName().split("-")[0].replace(" ", ""),
+                        f.getName().split("-")[1].replace(" ", ""),
+                        f.getName().split("-")[2].replace(" ", "").replace(".jar", ""),
+                        "N/A",
+                        "N/A");
                 installedExtensions.add(e);
                 exnum++;
                 iter++;
@@ -94,36 +95,38 @@ public class InjectorStore {
             scrollPane.setViewportView(modulesholder);
             modulesholder.setLayout(null);
             boolean found = false;
-            for (InjectorAPI.Extension ex : installedExtensions) {
-                addModule(ex);
-            }
-            for (InjectorAPI.Extension e : api.extensions) {
-                for (InjectorAPI.Extension ex : installedExtensions) {
-                    if (e.identifier.equals(ex.identifier)) {
-                        found = true;
-                        break;
-                    }
+            for(InjectorAPI.APIInjectorRepository repository : api.getRepositories()) {
+                for (InjectorAPI.ExtensionSimplified ex : installedExtensions) {
+                    addModule(repository, ex);
                 }
-                if (!found) {
-                    if (!Objects.equals(e.minVersion, InjectorAPI.compatibleMinVersion)) {
+                for (InjectorAPI.ExtensionSimplified e : api.getExtensions(repository)) {
+                    for (InjectorAPI.ExtensionSimplified ex : installedExtensions) {
+                        if (e.getName().equals(ex.getName()) && e.getAuthor().equals(ex.getAuthor()) && e.getVersion().equals(ex.getVersion())) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        if (!Objects.equals(e.getMinVersion(), InjectorAPI.compatibleMinVersion)) {
+                            exnum++;
+                            addModuleNotCompatible(e);
+                            continue;
+                        }
                         exnum++;
-                        addModuleNotCompatible(e);
-                        continue;
+                        addModule(repository, e);
                     }
-                    exnum++;
-                    addModule(e);
+                    found = false;
                 }
-                found = false;
             }
         }
 
-        public void addModuleNotCompatible(InjectorAPI.Extension ex) {
+        public void addModuleNotCompatible(InjectorAPI.ExtensionSimplified ex) {
             JButton extensioninstallremovebutton = new JButton(PublicValues.language.translate("extension.install.incompatible"));
             extensioninstallremovebutton.setBounds(260, ycache + 41, 105, 23);
             modulesholder.add(extensioninstallremovebutton);
             extensioninstallremovebutton.setForeground(PublicValues.globalFontColor);
-            for (InjectorAPI.Extension extension : installedExtensions) {
-                if (extension.name.equals(ex.name)) {
+            for (InjectorAPI.ExtensionSimplified extension : installedExtensions) {
+                if (extension.getIdentifier().equals(ex.getIdentifier())) {
                     extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
                 }
             }
@@ -134,7 +137,7 @@ public class InjectorStore {
                 //Remove extension
                 extensioninstallremovebutton.setEnabled(false);
                 for (Injector.InjectionEntry entry : PublicValues.injector.injectedJars) {
-                    if (entry.filename.equals((ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""))) {
+                    if (entry.filename.equals((ex.getName() + "-" + ex.getAuthor()+ "-" + ex.getVersion() + ".jar").replace(" ", ""))) {
                         try {
                             entry.loader.close();
                         } catch (IOException exc) {
@@ -143,11 +146,11 @@ public class InjectorStore {
                         }
                     }
                 }
-                if (new File(PublicValues.appLocation + "/Extensions", (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", "")).delete()) {
+                if (new File(PublicValues.appLocation + "/Extensions", (ex.getName() + "-" + ex.getAuthor() + "-" + ex.getVersion() + ".jar").replace(" ", "")).delete()) {
                     try {
                         StringBuilder builder = new StringBuilder();
                         for (String s : Files.readAllLines(new File(PublicValues.appLocation, "extensionstore.store").toPath())) {
-                            if (!s.replace("\n", "").equals(ex.identifier)) {
+                            if (!s.replace("\n", "").equals(ex.getName())) {
                                 builder.append(s);
                             }
                         }
@@ -162,11 +165,11 @@ public class InjectorStore {
                     extensioninstallremovebutton.setText(PublicValues.language.translate("extension.install.incompatible"));
                 }
             });
-            JLabel extensiontitle = new JLabel(ex.name + " from " + ex.author + " - " + ex.version);
+            JLabel extensiontitle = new JLabel(ex.getName() + " from " + ex.getAuthor() + " - " + ex.getVersion());
             extensiontitle.setBounds(10, ycache + 11, 339, 14);
             modulesholder.add(extensiontitle);
             extensiontitle.setForeground(PublicValues.globalFontColor);
-            JTextArea extensiondescription = new JTextArea(ex.description);
+            JTextArea extensiondescription = new JTextArea(ex.getDescription());
             extensiondescription.setBackground(main.getBackground());
             extensiondescription.setBounds(10, ycache + 36, 240, 64);
             modulesholder.add(extensiondescription);
@@ -190,13 +193,13 @@ public class InjectorStore {
             modulesholder.add(separator);
         }
 
-        public void addModule(InjectorAPI.Extension ex) {
+        public void addModule(InjectorAPI.APIInjectorRepository repository, InjectorAPI.ExtensionSimplified ex) {
             JButton extensioninstallremovebutton = new JButton(PublicValues.language.translate("extension.install"));
             extensioninstallremovebutton.setBounds(260, ycache + 41, 105, 23);
             modulesholder.add(extensioninstallremovebutton);
             extensioninstallremovebutton.setForeground(PublicValues.globalFontColor);
-            for (InjectorAPI.Extension extension : installedExtensions) {
-                if (extension.name.equals(ex.name)) {
+            for (InjectorAPI.ExtensionSimplified extension : installedExtensions) {
+                if (extension.getIdentifier().equals(ex.getIdentifier())) {
                     extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
                 }
             }
@@ -205,7 +208,7 @@ public class InjectorStore {
                     //Remove extension
                     extensioninstallremovebutton.setEnabled(false);
                     for (Injector.InjectionEntry entry : PublicValues.injector.injectedJars) {
-                        if (entry.filename.equals((ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""))) {
+                        if (entry.filename.equals((ex.getName() + "-" + ex.getAuthor() + "-" + ex.getVersion() + ".jar").replace(" ", ""))) {
                             try {
                                 entry.loader.close();
                             } catch (IOException exc) {
@@ -214,11 +217,11 @@ public class InjectorStore {
                             }
                         }
                     }
-                    if (new File(PublicValues.appLocation + "/Extensions", (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", "")).delete()) {
+                    if (new File(PublicValues.appLocation + "/Extensions", (ex.getName() + "-" + ex.getAuthor() + "-" + ex.getVersion() + ".jar").replace(" ", "")).delete()) {
                         try {
                             StringBuilder builder = new StringBuilder();
                             for (String s : Files.readAllLines(new File(PublicValues.appLocation, "extensionstore.store").toPath())) {
-                                if (!s.replace("\n", "").equals(ex.identifier)) {
+                                if (!s.replace("\n", "").equals(ex.getIdentifier())) {
                                     builder.append(s);
                                 }
                             }
@@ -234,24 +237,40 @@ public class InjectorStore {
                     }
                 } else {
                     //Install extension
-                    long size = api.getExtensionSize(ex.location);
-                    api.downloadExtension(ex.location, filesizeDownloaded -> {
-                        if (filesizeDownloaded == size) {
-                            FileUtils.appendToFile(new File(PublicValues.appLocation, "extensionstore.store").getAbsolutePath(), ex.identifier);
-                            extensioninstallremovebutton.setEnabled(true);
-                            extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
-                        } else {
-                            extensioninstallremovebutton.setEnabled(false);
+                    InjectorAPI.Extension extension = api.getExtensionFromSimplified(ex, repository);
+                    try {
+                        long size = api.getSizeOfExtension(repository, extension);
+                        for(InjectorAPI.ExtensionSimplified dependency : extension.getDependencies()) {
+                            api.downloadExtension(extension, repository, filesizeDownloaded -> {
+                                if (filesizeDownloaded == size) {
+                                    FileUtils.appendToFile(new File(PublicValues.appLocation, "extensionstore.store").getAbsolutePath(), dependency.getIdentifier());
+                                    extensioninstallremovebutton.setEnabled(true);
+                                    extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
+                                } else {
+                                    extensioninstallremovebutton.setEnabled(false);
+                                }
+                            });
                         }
-                    });
-                    PublicValues.injector.loadJarAt(PublicValues.appLocation + "/Extensions/" + (ex.name + "-" + ex.author + "-" + ex.version + ".jar").replace(" ", ""));
+                        api.downloadExtension(extension, repository, filesizeDownloaded -> {
+                            if (filesizeDownloaded == size) {
+                                FileUtils.appendToFile(new File(PublicValues.appLocation, "extensionstore.store").getAbsolutePath(), ex.getIdentifier());
+                                extensioninstallremovebutton.setEnabled(true);
+                                extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
+                            } else {
+                                extensioninstallremovebutton.setEnabled(false);
+                            }
+                        });
+                    } catch (IOException exc) {
+                        throw new RuntimeException(exc);
+                    }
+                    GraphicalMessage.pleaseRestart();
                 }
             });
-            JLabel extensiontitle = new JLabel(ex.name + " from " + ex.author + " - " + ex.version);
+            JLabel extensiontitle = new JLabel(ex.getName() + " from " + ex.getAuthor() + " - " + ex.getVersion());
             extensiontitle.setBounds(10, ycache + 11, 339, 14);
             modulesholder.add(extensiontitle);
             extensiontitle.setForeground(PublicValues.globalFontColor);
-            JTextArea extensiondescription = new JTextArea(ex.description);
+            JTextArea extensiondescription = new JTextArea(ex.getDescription());
             extensiondescription.setBackground(main.getBackground());
             extensiondescription.setBounds(10, ycache + 36, 240, 64);
             modulesholder.add(extensiondescription);

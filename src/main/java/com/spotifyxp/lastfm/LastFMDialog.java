@@ -376,12 +376,16 @@ public class LastFMDialog extends JFrame {
     }
 
     public static String formatDate(Date d) {
-        LocalDateTime dateTime = LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault());
-        int dayOfMonth = dateTime.getDayOfMonth();
-        String monthName = dateTime.getMonth().getDisplayName(TextStyle.FULL, PublicValues.language.getLocale());
-        int hours = dateTime.getHour();
-        int minutes = dateTime.getMinute();
-        return String.format("%d %s %02d:%02d", dayOfMonth, monthName, hours, minutes);
+        try {
+            LocalDateTime dateTime = LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault());
+            int dayOfMonth = dateTime.getDayOfMonth();
+            String monthName = dateTime.getMonth().getDisplayName(TextStyle.FULL, PublicValues.language.getLocale());
+            int hours = dateTime.getHour();
+            int minutes = dateTime.getMinute();
+            return String.format("%d %s %02d:%02d", dayOfMonth, monthName, hours, minutes);
+        }catch (NullPointerException e) {
+            return "N/A";
+        }
     }
 
     public static boolean isOpen() {

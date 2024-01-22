@@ -56,10 +56,8 @@ import static com.spotifyxp.deps.de.umass.util.StringUtilities.md5;
  * @see Track#scrobble(ScrobbleData, Session)
  * @see Track#scrobble(String, String, int, Session)
  * @see Track#scrobble(java.util.List, Session)
- * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
- *             API.
  */
-@SuppressWarnings("DeprecatedIsStillUsed")
+
 public class Scrobbler {
 
 	private static final String DEFAULT_HANDSHAKE_URL = "http://post.audioscrobbler.com/";

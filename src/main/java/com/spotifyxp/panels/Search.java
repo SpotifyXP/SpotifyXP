@@ -181,6 +181,11 @@ public class Search extends JPanel {
                 boolean album = searchfilteralbum.isSelected();
                 boolean show = searchfiltershow.isSelected();
                 boolean playlist = searchfilterplaylist.isSelected();
+                if(!track & !artist & !album & !show & !playlist) {
+                    //No search filter was selected! Selecting tracks
+                    searchfiltertrack.setSelected(true);
+                    track = true;
+                }
                 searchCacheTitle = searchtitle;
                 searchCacheArtist = searchartist;
                 excludeExplicit = searchfilterexcludeexplicit.isSelected();
@@ -254,10 +259,10 @@ public class Search extends JPanel {
                             Factory.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
                         }
                     }
-                    ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")});
                 } catch (IOException | SpotifyWebApiException | ParseException ex) {
                     ConsoleLogging.Throwable(ex);
                 }
+                searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             });
             thread1.start();
         });
@@ -345,10 +350,10 @@ public class Search extends JPanel {
                                             Factory.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
                                         }
                                     }
-                                    ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")});
                                 } catch (IOException | SpotifyWebApiException | ParseException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
+                                searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
                             });
                             thread1.start();
                             return;

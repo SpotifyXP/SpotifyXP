@@ -166,7 +166,6 @@ public class Caller {
 	/**
 	 * @see com.spotifyxp.deps.de.umass.lastfm.Caller#getLogger()
 	 * @return the debugMode property
-	 * @deprecated Use the Logger instead
 	 */
 	public boolean isDebugMode() {
 		return debugMode;

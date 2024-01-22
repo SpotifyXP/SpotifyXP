@@ -28,6 +28,7 @@ import com.spotifyxp.support.SteamDeckSupportModule;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
+import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
@@ -76,6 +77,9 @@ public class Initiator {
         }else{
             new SplashPanel();
         }
+        //Setting java user agent
+        System.setProperty("http.agent", ApplicationUtils.getUserAgent());
+        //-----------------------
         if(PublicValues.debug) {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
             ConsoleLoggingModules modules = new ConsoleLoggingModules();
@@ -164,7 +168,7 @@ public class Initiator {
                 System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
                 PublicValues.isMacOS = true;
                 try {
-                    Class util = Class.forName("com.apple.eawt.Application");
+                    Class<?> util = Class.forName("com.apple.eawt.Application");
                     Method getApplication = util.getMethod("getApplication", new Class[0]);
                     Object application = getApplication.invoke(util);
                     Class[] params = new Class[1];
@@ -175,7 +179,7 @@ public class Initiator {
                     setDockIconImage.invoke(application, image);
                 }catch (Exception ignored) {
                     try {
-                        Class util = Class.forName("java.awt.Taskbar");
+                        Class<?> util = Class.forName("java.awt.Taskbar");
                         Method getApplication = util.getMethod("getTaskbar", new Class[0]);
                         Object application = getApplication.invoke(util);
                         Class[] params = new Class[1];

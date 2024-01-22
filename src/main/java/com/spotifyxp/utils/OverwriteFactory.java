@@ -6,7 +6,6 @@ public class OverwriteFactory {
     static OverwriteEnum overwriteWith;
 
     public static void setOverwrite(OverwriteEnum overwrite) {
-        Utils.checkPermission();
         overwriteWith = overwrite;
     }
 

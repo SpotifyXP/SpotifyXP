@@ -1,7 +1,5 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.crypto;
 
-import com.spotifyxp.deps.se.michaelthelin.spotify.Base64;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -10,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 @SuppressWarnings("UnusedAssignment")
 public class CryptoAES {
@@ -88,7 +87,6 @@ public class CryptoAES {
     final String algorithm="AES";
 
     public String encrypt(String data){
-
         byte[] dataToSend = data.getBytes();
         Cipher c = null;
         try {
@@ -108,32 +106,30 @@ public class CryptoAES {
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             throw new RuntimeException(e);
         }
-        byte[] encryptedByteValue = Base64.encode(encryptedData).getBytes();
-        return  new String(encryptedByteValue);//.toString();
+        byte[] encryptedByteValue = Base64.getEncoder().encode(encryptedData);
+        return  new String(encryptedByteValue);
     }
 
     public String decrypt(String data){
-
-        byte[] encryptedData  = Base64.decode(data);
+        byte[] encryptedByteValue = java.util.Base64.getDecoder().decode(data.getBytes());
         Cipher c = null;
         try {
             c = Cipher.getInstance(algorithm);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException(e);
         }
-        SecretKeySpec k =
-                new SecretKeySpec(key, algorithm);
+        SecretKeySpec k =  new SecretKeySpec(key, algorithm);
         try {
             c.init(Cipher.DECRYPT_MODE, k);
-        } catch (InvalidKeyException e1) {
-            throw new RuntimeException(e1);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
-        byte[] decrypted = null;
+        byte[] decryptedData = "".getBytes();
         try {
-            decrypted = c.doFinal(encryptedData);
+            decryptedData = c.doFinal(encryptedByteValue);
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             throw new RuntimeException(e);
         }
-        return new String(decrypted);
+        return  new String(decryptedData);
     }
 }

@@ -8,7 +8,8 @@ public enum SpotifyXPEvents {
     onFrameReady("frameReady", "Fires when the main JFrame finished building itself (before opening)"),
     trackNext("trackNext", "Fires when next track plays"),
     trackLoad("trackLoad", "Fires when the next track loads"),
-    trackLoadFinished("trackLoadFinished", "Fires when the track loading is finished");
+    trackLoadFinished("trackLoadFinished", "Fires when the track loading is finished"),
+    injectorAPIReady("injectorAPIReady", "Fires when the injector api class has finished initializing");
 
     public String getName() {
         return name;

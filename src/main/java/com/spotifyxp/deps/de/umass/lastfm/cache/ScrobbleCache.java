@@ -37,8 +37,6 @@ import java.util.Collection;
  * to the Last.fm servers.
  *
  * @author Janni Kovacs
- * @deprecated The 1.2.x scrobble protocol has now been deprecated in favour of the 2.0 protocol which is part of the Last.fm web services
- *             API.
  */
 @SuppressWarnings("DeprecatedIsStillUsed")
 public interface ScrobbleCache {

@@ -16,17 +16,55 @@ import org.apache.http.util.EntityUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URI;
 
 public class ConnectionUtils {
+
     public static String makeGet(String url) {
         try {
             HttpClient client = HttpClients.createDefault();
             HttpGet get = new HttpGet(url);
+            get.setHeader("User-Agent", ApplicationUtils.getUserAgent());
             return EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             return "FAILED";
+        }
+    }
+
+    public static boolean isURLReachable(String url) {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(url.split(":")[0], Integer.parseInt(url.split(":")[1])), 6);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public static boolean isWebsiteReachable(String url) {
+        try {
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url);
+            get.setHeader("User-Agent", ApplicationUtils.getUserAgent());
+            client.execute(get).getEntity();
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isURLReachable(String url, int port) {
+        try {
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url + ":" + port);
+            get.setHeader("User-Agent", ApplicationUtils.getUserAgent());
+            client.execute(get);
+            return true;
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            return false;
         }
     }
 
@@ -42,6 +80,7 @@ public class ConnectionUtils {
             for(Header header : headers) {
                 get.addHeader(header);
             }
+            get.setHeader("User-Agent", ApplicationUtils.getUserAgent());
             return EntityUtils.toString(client.execute(get).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
@@ -61,6 +100,7 @@ public class ConnectionUtils {
             for(Header header : headers) {
                 post.addHeader(header);
             }
+            post.setHeader("User-Agent", ApplicationUtils.getUserAgent());
             return EntityUtils.toString(client.execute(post).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
@@ -80,6 +120,7 @@ public class ConnectionUtils {
             for(Header header : headers) {
                 delete.addHeader(header);
             }
+            delete.setHeader("User-Agent", ApplicationUtils.getUserAgent());
             return EntityUtils.toString(client.execute(delete).getEntity());
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);

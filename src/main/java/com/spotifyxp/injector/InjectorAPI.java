@@ -1,95 +1,187 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.URLUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
+import com.spotifyxp.utils.ConnectionUtils;
 import org.json.JSONObject;
-
 import javax.swing.*;
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
+
 import java.net.URL;
 import java.util.ArrayList;
 
-@SuppressWarnings("JavadocDeclaration")
 public class InjectorAPI {
-    //The extension repo filesystem
-    // Extension INFO     /repo/{EXTENSION_NAME-EXTENSION_AUTHOR-EXTENSION_VERSION}.json
-    // Extension FILE     /repo/storage/{EXTENSION_NAME-EXTENSION_AUTHOR-EXTENSION_VERSION}.jar
+    public static ArrayList<InjectorRepository> injectorRepos = new ArrayList<>();
+    public static class InjectorRepository {
+        private final String url;
+        private final boolean isAvailable;
 
-    //No Deletion or Upload API
+        public InjectorRepository(String url) {
+            this.url = url;
+            this.isAvailable = ConnectionUtils.isWebsiteReachable(this.url);
+            if(!this.isAvailable) {
+                ConsoleLogging.error("Repository with url '" + this.url + "' is not reachable");
+            }
+        }
 
-    final String repoRootURL = "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main";
-    final String repoURL = "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo";
-    public final ArrayList<Extension> extensions = new ArrayList<>();
+        public String getUrl() {
+            return this.url;
+        }
 
-    public static final String compatibleMinVersion = "2.0.0";
+        public boolean isAvailable() {
+            return this.isAvailable;
+        }
+    }
+    public static class APIInjectorRepository {
+        private String name;
+        private String url;
+        private final ArrayList<String> extensionURLs = new ArrayList<>();
 
+        public APIInjectorRepository buildFromResponse(String response, String url) {
+            try {
+                this.url = url;
+                JSONObject root = new JSONObject(response);
+                this.name = root.getString("name");
+                for(Object o : root.getJSONArray("extensions")) {
+                    this.extensionURLs.add(new JSONObject(o.toString()).getString("location"));
+                }
+            }catch (Exception e) {
+                ConsoleLogging.Throwable(e);
+            }
+            return this;
+        }
+
+        public String getUrl() {
+            return this.url;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public ArrayList<String> getExtensionURLs() {
+            return this.extensionURLs;
+        }
+    }
+    private final ArrayList<InjectorAPI.Extension> extensions = new ArrayList<>();
+    public static String compatibleMinVersion = "2.0.3";
+    private static final ArrayList<APIInjectorRepository> apiInjectorRepositories = new ArrayList<>();
     public static class Extension {
-        public String location;
-        public String name;
-        public String author;
-        public String version;
-        public String description;
-        public String identifier;
-        public String minVersion;
-    }
+        private final String location;
+        private final String name;
+        private final String author;
+        private final String version;
+        private final String description;
+        private final String identifier;
+        private final ArrayList<ExtensionSimplified> dependencies;
+        private final String minVersion;
 
-    /**
-     * Parses all extensions in the Spotify extension store
-     */
+        public Extension(String location,
+                         String identifier,
+                         String name,
+                         String author,
+                         String version,
+                         String description,
+                         ArrayList<ExtensionSimplified> dependencies,
+                         String minVersion) {
+            this.location = location;
+            this.name = name;
+            this.author = author;
+            this.version = version;
+            this.description = description;
+            this.identifier = identifier;
+            this.dependencies = dependencies;
+            this.minVersion = minVersion;
+        }
 
-    int retryCounter = 0;
+        public String getLocation() {
+            return this.location;
+        }
 
-    public void parseExtensions() {
-        String repofile = URLUtils.getURLResponseAsString(repoURL + "/REPO.INFO");
-        try {
-            JSONObject object = new JSONObject(repofile);
-            for (Object o : new JSONArray(object.getJSONObject("REPO").getJSONArray("EXTENSIONS"))) {
-                JSONObject extension = new JSONObject(o.toString());
-                String content = URLUtils.getURLResponseAsString(repoRootURL + extension.getString("LOCATION"));
-                JSONObject contentJ = new JSONObject(content);
-                Extension e = new Extension();
-                e.location = repoRootURL + contentJ.getString("FILE");
-                e.name = contentJ.getString("NAME");
-                e.identifier = contentJ.getString("IDENTIFIER");
-                e.author = contentJ.getString("AUTHOR");
-                e.version = contentJ.getString("VERSION");
-                e.description = contentJ.getString("DESCRIPTION");
-                e.minVersion = contentJ.getString("MINVERSION");
-                extensions.add(e);
-            }
-        }catch (JSONException e) {
-            //Connection failed
-            if(retryCounter > 3) {
-                GraphicalMessage.sorryError("Connection failed!");
-                return;
-            }
-            retryCounter++;
-            parseExtensions();
+        public String getAuthor() {
+            return this.author;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public String getVersion() {
+            return this.version;
+        }
+
+        public String getDescription() {
+            return this.description;
+        }
+
+        public String getIdentifier() {
+            return this.identifier;
+        }
+
+        public ArrayList<ExtensionSimplified> getDependencies() {
+            return this.dependencies;
+        }
+
+        public String getMinVersion() {
+            return this.minVersion;
         }
     }
+    public static class ExtensionSimplified {
+        private final String location;
+        private final String name;
+        private final String author;
+        private final String version;
+        private final String description;
+        private final String identifier;
+        private final String minVersion;
 
-    /**
-     * Gets the extension with the given identifier
-     * @param identifier identifier
-     * @return
-     */
-    public Extension getExtension(String identifier) {
-        Extension url = new Extension();
-        for(Extension e : extensions) {
-            if(e.identifier.equals(identifier)) {
-                url = e;
-            }
+        public ExtensionSimplified(String location,
+                                   String identifier,
+                                   String name,
+                                   String author,
+                                   String version,
+                                   String description,
+                                   String minVersion) {
+            this.location = location;
+            this.name = name;
+            this.author = author;
+            this.version = version;
+            this.description = description;
+            this.identifier = identifier;
+            this.minVersion = minVersion;
         }
-        return url;
-    }
 
-    String getFileName(String url) {
-        return url.split("/")[url.split("/").length-1];
+        public String getLocation() {
+            return this.location;
+        }
+
+        public String getAuthor() {
+            return this.author;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public String getVersion() {
+            return this.version;
+        }
+
+        public String getDescription() {
+            return this.description;
+        }
+
+        public String getIdentifier() {
+            return this.identifier;
+        }
+
+        public String getMinVersion() {
+            return this.minVersion;
+        }
     }
 
     @FunctionalInterface
@@ -97,49 +189,113 @@ public class InjectorAPI {
         void run(long filesizeDownloaded);
     }
 
-    /**
-     * Gets the extension size
-     * @param url url of the extension
-     * @return
-     */
-    public long getExtensionSize(String url) {
-        try {
-            HttpURLConnection httpConnection = (HttpURLConnection) (new URL(url).openConnection());
-            return httpConnection.getContentLength();
-        }catch (Exception e) {
-            return -1;
+    public InjectorAPI() {
+        injectorRepos.add(new InjectorRepository(
+                "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo"));
+        Events.triggerEvent(SpotifyXPEvents.injectorAPIReady.getName());
+        for(InjectorRepository repository : injectorRepos) {
+            apiInjectorRepositories.add(new APIInjectorRepository().buildFromResponse(ConnectionUtils.makeGet(repository.url + "/repo.json"), repository.url));
         }
     }
 
-    /**
-     * Downloads the extension specified
-     * @param url url of the extension
-     * @param progressRunnable for track of progress (currently downloaded size)
-     */
-    public void downloadExtension(String url, ProgressRunnable progressRunnable) {
-        try {
-            HttpURLConnection httpConnection = (HttpURLConnection) (new URL(url).openConnection());
-            long completeFileSize = httpConnection.getContentLength();
+    public APIInjectorRepository getRepository(int index) throws ArrayIndexOutOfBoundsException {
+        return apiInjectorRepositories.get(index);
+    }
 
-            java.io.BufferedInputStream in = new java.io.BufferedInputStream(httpConnection.getInputStream());
-            java.io.FileOutputStream fos = new java.io.FileOutputStream(PublicValues.appLocation + "/Extensions/" + getFileName(url));
-            java.io.BufferedOutputStream bout = new BufferedOutputStream(
-                    fos, 1024);
-            byte[] data = new byte[1024];
-            long downloadedFileSize = 0;
-            int x;
-            while ((x = in.read(data, 0, 1024)) >= 0) {
-                downloadedFileSize += x;
-                final int currentProgress = (int) ((((double) downloadedFileSize) / ((double) completeFileSize)) * 100000d);
-                long finalDownloadedFileSize = downloadedFileSize;
-                SwingUtilities.invokeLater(() -> progressRunnable.run(finalDownloadedFileSize));
-                bout.write(data, 0, x);
-            }
-            bout.close();
-            in.close();
-        }catch (Exception e) {
-            ConsoleLogging.Throwable(e);
-            GraphicalMessage.openException(e);
+    public ArrayList<APIInjectorRepository> getRepositories() throws ArrayIndexOutOfBoundsException {
+        return new ArrayList<>(apiInjectorRepositories);
+    }
+
+    public int getSizeOfExtension(APIInjectorRepository repository, Extension e) throws IOException {
+        return new URL(repository.url + e.location).openStream().available();
+    }
+
+    public int getSizeOfExtension(APIInjectorRepository repository, ExtensionSimplified e) throws IOException {
+        return new URL(repository.url + e.location).openStream().available();
+    }
+
+    public Extension getExtension(String extensionURL, APIInjectorRepository repository) {
+        JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + extensionURL));
+        ArrayList<ExtensionSimplified> dependencies = new ArrayList<>();
+        for(Object o : root.getJSONArray("dependencies")) {
+            JSONObject dependency = new JSONObject(o.toString());
+            Extension dependencyExtension = getExtension(dependency.getString("location"), repository);
+            ExtensionSimplified simplified = new ExtensionSimplified(
+                    dependency.getString("location"),
+                    dependency.getString("identifier"),
+                    dependency.getString("name"),
+                    dependency.getString("author"),
+                    dependency.getString("version"),
+                    dependency.getString("description"),
+                    dependency.getString("minversion"));
+            dependencies.add(simplified);
+            dependencies.addAll(dependencyExtension.dependencies);
         }
+        return new Extension(
+                root.getString("location"),
+                root.getString("identifier"),
+                root.getString("name"),
+                root.getString("author"),
+                root.getString("version"),
+                root.getString("description"),
+                dependencies,
+                root.getString("minversion")
+        );
+    }
+
+    public ArrayList<ExtensionSimplified> getExtensions(APIInjectorRepository repository) {
+        ArrayList<ExtensionSimplified> extensions = new ArrayList<>();
+        for(String s : repository.extensionURLs) {
+            JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + s));
+            extensions.add(new ExtensionSimplified(
+                    root.getString("location"),
+                    root.getString("identifier"),
+                    root.getString("name"),
+                    root.getString("author"),
+                    root.getString("version"),
+                    root.getString("description"),
+                    root.getString("minversion")
+            ));
+        }
+        return extensions;
+    }
+
+    public ArrayList<ExtensionSimplified> getExtensionWithIdentifier(String identifier, APIInjectorRepository repository) {
+        ArrayList<ExtensionSimplified> extensions = new ArrayList<>();
+        for(ExtensionSimplified simplified : getExtensions(repository)) {
+            if(simplified.getIdentifier().toLowerCase().contains(identifier)) {
+                extensions.add(simplified);
+            }
+        }
+        return extensions;
+    }
+
+    public Extension getExtensionFromSimplified(ExtensionSimplified extensionSimplified, APIInjectorRepository repository) {
+        return getExtension(extensionSimplified.location, repository);
+    }
+
+    String getFileName(String url) {
+        return url.split("/")[url.split("/").length-1];
+    }
+
+    public void downloadExtension(Extension e, APIInjectorRepository repository, InjectorAPI.ProgressRunnable progressRunnable) throws IOException {
+        HttpURLConnection httpConnection = (HttpURLConnection) (new URL(repository.url + e.location).openConnection());
+        long completeFileSize = httpConnection.getContentLength();
+        java.io.BufferedInputStream in = new java.io.BufferedInputStream(httpConnection.getInputStream());
+        java.io.FileOutputStream fos = new java.io.FileOutputStream(PublicValues.appLocation + "/Extensions/" + getFileName(e.location));
+        java.io.BufferedOutputStream bout = new BufferedOutputStream(
+                fos, 1024);
+        byte[] data = new byte[1024];
+        long downloadedFileSize = 0;
+        int x;
+        while ((x = in.read(data, 0, 1024)) >= 0) {
+            downloadedFileSize += x;
+            final int currentProgress = (int) ((((double) downloadedFileSize) / ((double) completeFileSize)) * 100000d);
+            long finalDownloadedFileSize = downloadedFileSize;
+            SwingUtilities.invokeLater(() -> progressRunnable.run(finalDownloadedFileSize));
+            bout.write(data, 0, x);
+        }
+        bout.close();
+        in.close();
     }
 }
