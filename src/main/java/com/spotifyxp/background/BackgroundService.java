@@ -21,8 +21,8 @@ public class BackgroundService {
             trayDialog.add(new ImageIcon(ImageIO.read(new Resources().readToInputStream("spotifyxp.png"))), "SpotifyXP");
             trayDialog.addEntry("Open", e -> ContentPanel.frame.setVisible(true));
             trayDialog.addEntry("Exit", e -> System.exit(0));
-        }
-        catch (Exception e) {
+            trayDialog.open();
+        } catch (Exception e) {
             ConsoleLogging.Throwable(e);
         }
     }
