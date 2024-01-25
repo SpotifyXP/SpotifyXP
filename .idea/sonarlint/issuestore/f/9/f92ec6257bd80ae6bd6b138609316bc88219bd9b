@@ -1,9 +1,0 @@
-
-Q
-java:S1121•".Extract the assignment out of this expression.(„ì–Úøÿÿÿÿ8¥üİõ£1
-R
-java:S1066·"/Merge this if statement with the enclosing one.(€ÿ¼ƒúÿÿÿÿ8¥üİõ£1
-Q
-java:S16114"/Remove the parentheses around the "r" parameter(œÄøüÿÿÿÿ8¹üİõ£1
-u
-java:S3776é"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(–å´Èùÿÿÿÿ8Àüİõ£1
