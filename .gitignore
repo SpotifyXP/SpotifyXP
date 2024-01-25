@@ -11,3 +11,10 @@ src/main/resources/SpotifyXP-Updater.jar
 **/.DS_Store
 ExternalDebugger.jar
 access_token
+.github/
+.idea/
+.classpath
+.project
+qodana.yaml
+SpotifyXP.iml
+.DS_Store
