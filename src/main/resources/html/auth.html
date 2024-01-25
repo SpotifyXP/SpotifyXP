@@ -21,7 +21,6 @@
         function auth() {
             var pass = document.getElementById("authpass").value;
             pass = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" }).update(pass).getHash("HEX");
-            console.log(pass)
             const req = new XMLHttpRequest();
             req.onload = function () {
                 location.reload();
@@ -31,5 +30,4 @@
         }
     </script>
 </body>
-
 </html>

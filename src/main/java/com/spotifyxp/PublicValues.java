@@ -34,8 +34,6 @@ public class PublicValues {
     public static boolean playingFromLibrary = false;
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
-    public static String startmenupath = System.getenv("appdata") + "/Microsoft/Windows/Start Menu/Programs";
-    public static String configlocation = fileslocation + "/config.toml";
     public static Player spotifyplayer = null;
     public static ConsoleLogging logger = new ConsoleLogging();
     public static OAuthPKCE elevated = null;
@@ -43,7 +41,6 @@ public class PublicValues {
     public static Config config = null;
     public static Session session;
     public static boolean debug = false;
-    public static GraphiteLookAndFeel windowTheme = new GraphiteLookAndFeel();
     public static Quality quality = null;
     public static String[] args = null;
     public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
@@ -68,7 +65,6 @@ public class PublicValues {
     public static Color borderColor = Color.black;
     public static boolean autoLoadHotList = false;
     public static PlaybackHistory history;
-    public static boolean consoleMode = false;
     public static ThreadManager threadManager = new ThreadManager();
     public static boolean blockLoading = false;
     public static boolean devMode = false;

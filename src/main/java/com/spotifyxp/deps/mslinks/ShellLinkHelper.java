@@ -120,9 +120,9 @@ public class ShellLinkHelper {
 		idList.add(driveItem);
 
 		// each segment of the path is directory
-		absolutePath = absolutePath.replaceAll("^(\\\\|\\/)", "");
+		absolutePath = absolutePath.replaceAll("^([\\\\/])", "");
 		String absoluteTargetPath = driveItem.getName() + absolutePath;
-		String[] path = absolutePath.split("\\\\|\\/");
+		String[] path = absolutePath.split("[\\\\/]");
 		for (String i : path)
 			idList.add(new ItemIDFS(ItemID.TYPE_FS_DIRECTORY).setName(i));
 		
@@ -160,8 +160,8 @@ public class ShellLinkHelper {
 		idList.add(new ItemIDRoot().setClsid(root));
 
 		// each segment of the path is directory
-		path = path.replaceAll("^(\\\\|\\/)", "");
-		String[] pathSegments = path.split("\\\\|\\/");
+		path = path.replaceAll("^([\\\\/])", "");
+		String[] pathSegments = path.split("[\\\\/]");
 		for (String i : pathSegments)
 			idList.add(new ItemIDFS(ItemID.TYPE_FS_DIRECTORY).setName(i));
 
@@ -191,8 +191,8 @@ public class ShellLinkHelper {
 		// no root item here
 
 		// each segment of the path is directory
-		path = path.replaceAll("^(\\\\|\\/)", "");
-		String[] pathSegments = path.split("\\\\|\\/");
+		path = path.replaceAll("^([\\\\/])", "");
+		String[] pathSegments = path.split("[\\\\/]");
 		for (String i : pathSegments)
 			idList.add(new ItemIDFS(ItemID.TYPE_FS_DIRECTORY).setName(i));
 

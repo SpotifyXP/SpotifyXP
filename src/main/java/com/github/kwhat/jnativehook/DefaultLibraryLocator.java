@@ -65,7 +65,7 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
 
         URL classLocation = GlobalScreen.class.getProtectionDomain().getCodeSource().getLocation();
 
-        File classFile = null;
+        File classFile;
         try {
             classFile = new File(classLocation.toURI());
         }
@@ -74,7 +74,7 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
             classFile = new File(classLocation.getPath());
         }
 
-        File libFile = null;
+        File libFile;
         if (classFile.isFile()) {
             // Jar Archive
             String libPath = System.getProperty("jnativehook.lib.path", classFile.getParentFile().getPath());

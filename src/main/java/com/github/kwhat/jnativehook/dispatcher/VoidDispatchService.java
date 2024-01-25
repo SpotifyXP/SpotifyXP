@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2.2
  */
 public class VoidDispatchService extends AbstractExecutorService {
-    private boolean running = false;
+    private boolean running;
 
     public VoidDispatchService() {
         running = true;

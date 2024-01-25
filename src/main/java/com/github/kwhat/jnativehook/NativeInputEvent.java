@@ -66,7 +66,7 @@ public class NativeInputEvent extends EventObject {
     /** The left shift key modifier constant.
      * @since 2.0
      */
-    public static final int SHIFT_L_MASK     = 1 << 0;
+    public static final int SHIFT_L_MASK     = 1;
 
     /** The left ctrl key modifier constant. 
      * @since 2.0

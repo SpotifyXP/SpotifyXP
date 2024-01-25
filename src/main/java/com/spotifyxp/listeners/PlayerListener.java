@@ -169,6 +169,13 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackSeeked(@NotNull Player player, long l) {
+        if(PlayerArea.playercurrenttime.getValue() < TrackUtils.getSecondsFromMS(Factory.getPlayer().getPlayer().time())) {
+            //Backwards
+            Events.triggerEvent(SpotifyXPEvents.playerSeekedBackwards.getName());
+        }else{
+            //Forwards
+            Events.triggerEvent(SpotifyXPEvents.playerSeekedForwards.getName());
+        }
         if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
             PlayerArea.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
         }
