@@ -1,3 +1,4 @@
+**/.DS_Store
 /cache/
 /out/
 /target/
@@ -8,7 +9,6 @@ XPDebuggingTools.jar
 X
 /Modules
 src/main/resources/SpotifyXP-Updater.jar
-**/.DS_Store
 ExternalDebugger.jar
 access_token
 .github/
@@ -17,4 +17,3 @@ access_token
 .project
 qodana.yaml
 SpotifyXP.iml
-.DS_Store
