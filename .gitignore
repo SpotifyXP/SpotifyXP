@@ -3,8 +3,9 @@
 /out/
 /target/
 /build/
-/scripts/bin
+/scriptsNativ/bin
 /data/
+/scripts/.venv
 XPDebuggingTools.jar
 X
 /Modules
