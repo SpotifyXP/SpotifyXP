@@ -17,7 +17,8 @@ public enum ConfigValues {
     lastfmtracklimit("lastfm.user.settings.tracklimit", ConfigValueTypes.INT, 20),
     lastfmartistlimit("lastfm.user.settings.artistlimit", ConfigValueTypes.INT, 10),
     facebook("user.settings.isfacebook", ConfigValueTypes.BOOLEAN, false),
-    spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false);
+    spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false),
+    webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true);
     public final String name;
     public final ConfigValueTypes type;
     public final Object defaultValue;
@@ -25,5 +26,14 @@ public enum ConfigValues {
         this.name = name;
         this.type = type;
         this.defaultValue = defaultValue;
+    }
+
+    public static ConfigValues get(String name) {
+        for(ConfigValues value : ConfigValues.values()) {
+            if(value.name.equals(name)) {
+                return value;
+            }
+        }
+        return null;
     }
 }

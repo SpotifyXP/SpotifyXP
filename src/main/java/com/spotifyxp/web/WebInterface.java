@@ -35,7 +35,6 @@ public class WebInterface {
     boolean enablePassAuth = true;
 
     void createHttpServer() {
-        get_SHA_512_SecurePassword("test");
         try {
             server = HttpServer.create(new InetSocketAddress(port), 0);
             server.createContext("/playpause", exchange -> {

@@ -3,7 +3,7 @@
 /out/
 /target/
 /build/
-/scriptsNativ/bin
+/scripts/bin
 /data/
 /scripts/.venv
 XPDebuggingTools.jar

@@ -6,11 +6,11 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ConnectionUtils;
 import org.json.JSONObject;
+
 import javax.swing.*;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-
 import java.net.URL;
 import java.util.ArrayList;
 

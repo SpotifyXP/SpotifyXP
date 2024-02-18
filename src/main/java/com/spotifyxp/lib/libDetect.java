@@ -4,8 +4,8 @@ import java.util.Locale;
 
 @SuppressWarnings("ClassEscapesDefinedScope")
 public class libDetect {
-    enum OSType {
-        Windows, MacOS, Linux, Other
+    public enum OSType {
+        Windows, MacOS, Linux, Other, Steamos
     }
     protected static OSType detectedOS;
     static OSType getOperatingSystemType() {
@@ -16,9 +16,16 @@ public class libDetect {
             detectedOS = OSType.Windows;
         } else if (OS.contains("nux")) {
             detectedOS = OSType.Linux;
+        } else if (OS.contains("steamos")) {
+            detectedOS = OSType.Steamos;
         } else {
             detectedOS = OSType.Other;
         }
+        return detectedOS;
+    }
+
+    public static OSType getDetectedOS() {
+        detectedOS = getOperatingSystemType();
         return detectedOS;
     }
 
@@ -42,6 +49,11 @@ public class libDetect {
      * Returns true if the operating system is MacOS
      */
     public static boolean isMacOS() {
+        detectedOS = getOperatingSystemType();
+        return detectedOS == OSType.MacOS;
+    }
+
+    public static boolean isSteamos() {
         detectedOS = getOperatingSystemType();
         return detectedOS == OSType.MacOS;
     }

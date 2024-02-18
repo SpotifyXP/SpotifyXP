@@ -10,6 +10,5 @@ public class LinuxSupportModule {
             PublicValues.configfilepath = PublicValues.fileslocation + "/config.json";
             PublicValues.tempPath = "/tmp";
         }
-        PublicValues.isLinux = true;
     }
 }

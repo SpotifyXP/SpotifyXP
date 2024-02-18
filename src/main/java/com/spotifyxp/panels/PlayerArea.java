@@ -394,6 +394,13 @@ public class PlayerArea extends JPanel {
                             PlayerArea.playerplaytimetotal.setText(lastPlayState.playtimetotal);
                             PlayerArea.playercurrenttime.setMaximum(Integer.parseInt(lastPlayState.playerslidermax));
                             PublicValues.spotifyplayer.load(lastPlayState.uri, false, PublicValues.shuffle, false);
+                            if (!TrackUtils.isTrackLiked(lastPlayState.uri.split(":")[2])) {
+                                PlayerArea.heart.isFilled = false;
+                                PlayerArea.heart.setImage(Graphics.HEART.getPath());
+                            } else {
+                                PlayerArea.heart.isFilled = true;
+                                PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
+                            }
                             Runnable event = new Runnable() {
                                 @Override
                                 public void run() {

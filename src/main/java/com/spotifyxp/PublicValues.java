@@ -12,11 +12,13 @@ import com.spotifyxp.dialogs.CancelDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.injector.Injector;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.theming.Theme;
+import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.ThreadManager;
 import com.spotifyxp.utils.ArchitectureDetection;
 import com.spotifyxp.utils.Utils;
@@ -28,6 +30,11 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
+    public static int applicationHeight = 590;
+    public static int applicationWidth = 784;
+    public static Dimension getApplicationDimensions() {
+        return new Dimension(applicationWidth, applicationHeight);
+    }
     public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
     public static CancelDialog facebookcanceldialog;
     public static boolean playingFromLibrary = false;
@@ -44,9 +51,8 @@ public class PublicValues {
     public static String[] args = null;
     public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
     public static String deviceName = "SpotifyXP";
-    public static boolean isMacOS = false;
-    public static boolean isLinux = false;
     public static Theme theme = null;
+    public static libDetect.OSType osType;
     public static boolean foundSetupArgument = false;
     public static Color globalFontColor = Color.black;
     public static LyricsDialog lyricsDialog = null;
@@ -56,7 +62,6 @@ public class PublicValues {
     public static boolean customSaveDir = false;
     public static AudioVisualizer visualizer = new AudioVisualizer();
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
-    public static boolean isSteamDeckMode = false;
     public static String tempPath = System.getenv("temp");
     public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
     public static boolean blockArtistPanelBackButton = false;
@@ -70,8 +75,8 @@ public class PublicValues {
     public static JMenuBar menuBar;
     public static int screenNumber = Utils.getDefaultScreenNumber();
     public static boolean shuffle = false;
+    public static ThemeLoader themeLoader;
     public static CountryCode countryCode;
-    public static boolean isWindows = true;
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

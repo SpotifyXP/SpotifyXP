@@ -18,12 +18,11 @@ import org.json.JSONException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ConcurrentModificationException;
 
 import static com.spotifyxp.panels.PlayerArea.playerarealyricsbutton;
 
@@ -32,18 +31,20 @@ public class LyricsDialog extends RAWTextArea {
     UnofficialSpotifyAPI.Lyrics lyrics;
     final RAWTextArea area = this;
     final JScrollPane pane = new JScrollPane(area);
-    int oldw = 0;
-    int oldh = 0;
     String uri;
 
-    boolean spotifyMode = true;
+    boolean spotifyMode = false;
 
     public void setSpotifyModeActive() {
+        setColorModeActive();
         spotifyMode = true;
+        open(uri);
     }
 
     public void setSpotifyModeDisabled() {
+        setColorModeDisabled();
         spotifyMode = false;
+        open(uri);
     }
 
     public boolean open(String uri) {
@@ -67,6 +68,22 @@ public class LyricsDialog extends RAWTextArea {
                             playerarealyricsbutton.isFilled = false;
                         }
                     });
+                    JMenuBar bar = new JMenuBar();
+                    JMenu mode = new JMenu(PublicValues.language.translate("ui.lyrics.mode.menu"));
+                    JCheckBoxMenuItem spotifymode = new JCheckBoxMenuItem(PublicValues.language.translate("ui.lyrics.mode.spotifymode"));
+                    mode.add(spotifymode);
+                    bar.add(mode);
+                    spotifymode.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if(!spotifyMode) {
+                                setSpotifyModeActive();
+                            }else{
+                                setSpotifyModeDisabled();
+                            }
+                        }
+                    });
+                    //frame.setJMenuBar(bar); For now disable spotify mode (Reason: Don't have the motivation right now)
                     try {
                         frame.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
                     } catch (Exception e) {
@@ -81,10 +98,11 @@ public class LyricsDialog extends RAWTextArea {
                     frame.setVisible(true);
                     frame.pack();
                 }
-
+                coloredLines.clear();
                 for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
                     area.append(line.words + "\n");
                 }
+                this.uri = uri;
                 return true;
             } catch (JSONException e) {
                 return false;
@@ -98,6 +116,22 @@ public class LyricsDialog extends RAWTextArea {
                 } else {
                     lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
                     frame.add(pane, BorderLayout.CENTER);
+                    JMenuBar bar = new JMenuBar();
+                    JMenu mode = new JMenu(PublicValues.language.translate("ui.lyrics.mode.menu"));
+                    JCheckBoxMenuItem spotifymode = new JCheckBoxMenuItem(PublicValues.language.translate("ui.lyrics.mode.spotifymode"));
+                    mode.add(spotifymode);
+                    bar.add(mode);
+                    spotifymode.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if(!spotifyMode) {
+                                setSpotifyModeActive();
+                            }else{
+                                setSpotifyModeDisabled();
+                            }
+                        }
+                    });
+                    frame.setJMenuBar(bar);
                     frame.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
@@ -130,16 +164,17 @@ public class LyricsDialog extends RAWTextArea {
                 for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
                     append(line.words, PublicValues.globalFontColor, line.startTimeMs);
                 }
+                int activeLine = 0;
                 for(ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
                     if(line.startTimeMS < Factory.getPlayer().getPlayer().time()) {
-                        coloredLines.remove(0);
+                        activeLine++;
                     }
                 }
                 try {
-                    coloredLines.set(0, new ColoredLyricsLine(
+                    coloredLines.set(activeLine, new ColoredLyricsLine(
                             PublicValues.globalFontColor.brighter().brighter(),
-                            coloredLines.get(0).getTextContent(),
-                            coloredLines.get(0).getStartTimeMS()
+                            coloredLines.get(activeLine).getTextContent(),
+                            coloredLines.get(activeLine).getStartTimeMS()
                     ));
                 }catch (IndexOutOfBoundsException ignored) {
                 }
@@ -170,18 +205,20 @@ public class LyricsDialog extends RAWTextArea {
                 lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
                 coloredLines.clear();
                 for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
-                    append(line.words, PublicValues.globalFontColor, line.startTimeMs);
+                    coloredLines.add(new ColoredLyricsLine(PublicValues.globalFontColor, line.words, line.startTimeMs));
                 }
+                int activeLine = 0;
                 for(ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
                     if(line.startTimeMS < Factory.getPlayer().getPlayer().time()) {
-                        coloredLines.remove(0);
+                        activeLine++;
+                        break;
                     }
                 }
                 try {
-                    coloredLines.set(0, new ColoredLyricsLine(
+                    coloredLines.set(activeLine, new ColoredLyricsLine(
                             PublicValues.globalFontColor.brighter().brighter(),
-                            coloredLines.get(0).getTextContent(),
-                            coloredLines.get(0).getStartTimeMS()
+                            coloredLines.get(activeLine).getTextContent(),
+                            coloredLines.get(activeLine).getStartTimeMS()
                     ));
                 }catch (IndexOutOfBoundsException ignored) {
                 }
@@ -219,13 +256,15 @@ public class LyricsDialog extends RAWTextArea {
             }
         }else{
             int counter = 0;
+            int coloredLine = 0;
             for (ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
                 try {
                     if (line.startTimeMS < PublicValues.spotifyplayer.time() && coloredLines.get(counter + 1).startTimeMS > PublicValues.spotifyplayer.time()) {
+                        coloredLine = counter;
                         break;
                     }else{
                         if(PublicValues.spotifyplayer.time() < coloredLines.get(0).getStartTimeMS()) continue;
-                        coloredLines.remove(0);
+                        coloredLines.set(counter, new ColoredLyricsLine(PublicValues.globalFontColor, line.getTextContent(), line.getStartTimeMS()));
                     }
                 } catch (IndexOutOfBoundsException e) {
                     break;
@@ -233,14 +272,21 @@ public class LyricsDialog extends RAWTextArea {
                 counter++;
             }
             try {
-                coloredLines.set(0, new ColoredLyricsLine(
+                coloredLines.set(counter, new ColoredLyricsLine(
                         PublicValues.globalFontColor.brighter().brighter(),
-                        coloredLines.get(0).getTextContent(),
-                        coloredLines.get(0).getStartTimeMS()
+                        coloredLines.get(coloredLine).getTextContent(),
+                        coloredLines.get(coloredLine).getStartTimeMS()
                 ));
             }catch (IndexOutOfBoundsException ignored) {
             }
             repaint();
+            try {
+                JViewport viewport = pane.getViewport();
+                Point viewPosition = viewport.getViewPosition();
+                viewPosition.y = getActiveLineY() - (getHeight() / 2);
+                viewport.setViewPosition(viewPosition);
+            }catch (Exception ignored) {
+            }
         }
     }
 
@@ -263,13 +309,32 @@ public class LyricsDialog extends RAWTextArea {
 
     private final ArrayList<ColoredLyricsLine> coloredLines = new ArrayList<>();
 
+    private int getActiveLineY() {
+        int ycache = getFontMetrics(getFont()).getHeight() + 5;
+        int counter = 0;
+        for(ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
+            if (line.startTimeMS < PublicValues.spotifyplayer.time() && coloredLines.get(counter + 1).startTimeMS > PublicValues.spotifyplayer.time()) {
+                return ycache;
+            }
+            counter++;
+            ycache += getFontMetrics(getFont()).getHeight() + 5;
+        }
+        return ycache;
+    }
+
+    private int getScrollBarValueOfY(int yvalue) {
+        int onePercent = getHeight() / 100;
+        int onePercentY = yvalue / 100;
+        return onePercent + onePercentY;
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        if(!spotifyMode) return;
         int ycache = getFontMetrics(getFont()).getHeight() + 5;
         for (ColoredLine line : new ArrayList<>(coloredLines)) {
-            g.setColor(PublicValues.globalFontColor);
-            Rectangle2D r = g.getFontMetrics().getStringBounds(line.getTextContent(), g);
+            g.setColor(line.getTextColor());
             g.drawString(line.getTextContent(), 5, ycache);
             ycache += getFontMetrics(getFont()).getHeight() + 5;
         }

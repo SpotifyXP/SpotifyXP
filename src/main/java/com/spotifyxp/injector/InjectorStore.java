@@ -1,8 +1,6 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.FileUtils;

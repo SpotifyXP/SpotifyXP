@@ -2,6 +2,7 @@ package com.spotifyxp.deps.de.werwolf2303.javasetuptool;
 
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.Component;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.*;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.swingextension.JFrame;
 
 import javax.swing.*;
@@ -112,7 +113,7 @@ public class Setup {
         }
 
         public void open() {
-            if(com.spotifyxp.PublicValues.isMacOS) {
+            if(com.spotifyxp.PublicValues.osType == libDetect.OSType.MacOS) {
                 frame.setResizable(false);
             }
             frame.setVisible(true);

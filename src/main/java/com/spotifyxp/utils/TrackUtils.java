@@ -146,6 +146,16 @@ public class TrackUtils {
         }
         return false;
     }
+
+    public static boolean isTrackLiked(String id) {
+        try {
+            return Factory.getSpotifyApi().checkUsersSavedTracks(id).build().execute()[0];
+        }catch (Exception e) {
+            ConsoleLogging.Throwable(e);
+            return false;
+        }
+    }
+
     public static void removeLovedTrack(DefTable table, ArrayList<String> uricache) {
         Factory.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());

@@ -41,7 +41,7 @@ public class PlayerUtils {
                 .build();
         try {
             Session session;
-            if (PublicValues.config.getString(ConfigValues.facebook.name).equalsIgnoreCase("false") || PublicValues.config.getString(ConfigValues.facebook.name).equalsIgnoreCase("")) {
+            if (!PublicValues.config.getBoolean(ConfigValues.facebook.name)) {
                 session = builder.userPass(PublicValues.config.getString(ConfigValues.username.name), PublicValues.config.getString(ConfigValues.password.name)).create();
             } else {
                 session = builder.facebook().create();

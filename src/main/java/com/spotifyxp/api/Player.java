@@ -1,6 +1,7 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -30,6 +31,10 @@ public class Player {
 
     public Player() {
 
+    }
+
+    public void destroy() {
+        Factory.setPlayer(null);
     }
 
     public Player(SpotifyAPI a) {

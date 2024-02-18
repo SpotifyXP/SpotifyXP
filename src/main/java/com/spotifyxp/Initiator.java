@@ -12,6 +12,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lastfm.LastFM;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -48,12 +49,21 @@ public class Initiator {
     public static StartupTime startupTime;
     static final DefThread hook = new DefThread(PlayerArea::saveCurrentState);
 
+    static int destroyCounter = 0;
+
     public static final DefThread thread = new DefThread(new Runnable() {
         @Override
         public void run() {
             while (!past) {
                 int s = Integer.parseInt(startupTime.getMMSSCoded().split(":")[1]);
                 if (s > 10) {
+                    if(!(destroyCounter > 2)) {
+                        ConsoleLogging.warning("Init of player failed! Retrying... (" + destroyCounter + ")");
+                        Factory.getPlayer().destroy();
+                        Factory.getPlayer();
+                        destroyCounter++;
+                        return;
+                    }
                     if(GraphicalMessage.stuck()) {
                         System.exit(0);
                     }else{
@@ -70,16 +80,59 @@ public class Initiator {
     public static boolean past = false;
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
-        startupTime = new StartupTime();
-        PublicValues.argParser.parseArguments(args);
+        startupTime = new StartupTime(); //Saving the time SpotifyXP was started
+        PublicValues.argParser.parseArguments(args); //Parsing the arguments
+        initSplashPanel(); //Initializing the splash panel
+        System.setProperty("http.agent", ApplicationUtils.getUserAgent()); //Setting the user agent string that SpotifyXP uses
+        checkDebug(); //Checking if debug is enabled
+        detectOS(); //Detecting the operating system
+        initEvents(); //Initializing the event support
+        initConfig(); //Initializing the configuratio
+        loadExtensions(); //Loading extensions if there are any
+        initGEH(); //Initializing the global exception handler
+        storeArguments(args); //Storing the program arguments in PublicValues.class
+        initLanguageSupport(); //Initializing the language support
+        parseAudioQuality(); //Parsing the audio quality
+
+        if(PublicValues.nogui) {
+            initNoGUI();
+            return;
+        }
+
+        initThemes(); //Initializing the theming support
+        checkingUpdater(); //Checking if the updater jar exists inside resources
+        creatingLock(); //Creating the 'LOCK' file
+        checkLogin(); //Checking if user has already entered his credentials
+        addShutdownHook(); //Adding the shudtown hook
+        initAPI(); //Initializing all the apis used
+        createKeyListener(); //Starting the key listener (For Play/Pause)
+        initTrayIcon(); //Creating the tray icon
+        initGUI(); //Initializing the GUI
+        checkingUpdate(); //Checking for available updates
+        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
+        SplashPanel.hide(); //Hiding the splash panel
+        new WebInterface(); //Starting the webinterface
+    }
+
+    static void initNoGUI() {
+        creatingLock(); //Creating the 'LOCK' file
+        checkLogin(); //Checking if user has already entered his credentials
+        addShutdownHook(); //Adding the shudtown hook
+        initAPI(); //Initializing all the apis used
+        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
+        new WebInterface(); //Starting the webinterface
+        new RestAPI().start(); //Starting the restAPI
+    }
+
+    static void initSplashPanel() {
         if(!PublicValues.nogui) {
             new SplashPanel().show();
         }else{
             new SplashPanel();
         }
-        //Setting java user agent
-        System.setProperty("http.agent", ApplicationUtils.getUserAgent());
-        //-----------------------
+    }
+
+    static void checkDebug() {
         if(PublicValues.debug) {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
             ConsoleLoggingModules modules = new ConsoleLoggingModules();
@@ -156,17 +209,25 @@ public class Initiator {
                 @Override public java.io.PrintStream append(char c) { return this; }
             });
         }
+    }
+
+    static void detectOS() {
         SplashPanel.linfo.setText("Detecting operating system...");
-        if(!System.getProperty("os.name").toLowerCase().contains("win")) {
-            PublicValues.isWindows = false;
-            if(System.getProperty("os.name").toLowerCase().toLowerCase().contains("mac")) {
+        PublicValues.osType = libDetect.getDetectedOS();
+        switch(PublicValues.osType) {
+            case Linux:
+                if(!PublicValues.customSaveDir) {
+                    SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
+                    new LinuxSupportModule();
+                }
+                break;
+            case MacOS:
                 if(!PublicValues.customSaveDir) {
                     SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
                     new MacOSSupportModule();
                 }
                 System.setProperty("apple.laf.useScreenMenuBar", "true");
                 System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
-                PublicValues.isMacOS = true;
                 try {
                     Class<?> util = Class.forName("com.apple.eawt.Application");
                     Method getApplication = util.getMethod("getApplication", new Class[0]);
@@ -191,68 +252,95 @@ public class Initiator {
                     } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                     }
                 }
-            }else {
-                if(System.getProperty("os.name").toLowerCase().contains("steamos")) {
-                    SplashPanel.linfo.setText("Found SteamOS! Applying SteamDeck patch...");
-                    if(!PublicValues.customSaveDir) {
-                        new LinuxSupportModule();
-                    }
-                    new SteamDeckSupportModule();
-                }else {
-                    if(!PublicValues.customSaveDir) {
-                        SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
-                        new LinuxSupportModule();
-                    }
+                break;
+            case Steamos:
+                SplashPanel.linfo.setText("Found SteamOS! Applying SteamDeck patch...");
+                if(!PublicValues.customSaveDir) {
+                    new LinuxSupportModule();
                 }
-            }
+                new SteamDeckSupportModule();
+                break;
         }
+    }
+
+    static void initEvents() {
         for(SpotifyXPEvents s : SpotifyXPEvents.values()) {
             Events.register(s.getName(), true);
         }
+    }
+
+    static void initConfig() {
         SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
+        PublicValues.config.checkConfig();
+    }
+
+    static void loadExtensions() {
         SplashPanel.linfo.setText("Loading Extensions...");
         new Injector().autoInject();
+    }
+
+    static void initGEH() {
         SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+    }
+
+    static void storeArguments(String[] args) {
         SplashPanel.linfo.setText("Storing program arguments...");
         PublicValues.args = args;
+    }
+
+    static void initLanguageSupport() {
         SplashPanel.linfo.setText("Init Language...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setNoAutoFindLanguage(libLanguage.Language.getCodeFromName(PublicValues.config.getString(ConfigValues.language.name)));
+    }
+
+    static void parseAudioQuality() {
         SplashPanel.linfo.setText("Parsing audio quality info...");
         try {
             PublicValues.quality = Quality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name));
         }catch (Exception exception) {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
+            ConsoleLogging.warning("Can't find the right audio quality! Defaulting to 'NORMAL'");
         }
+    }
+
+    static void checkSetup() {
         SplashPanel.linfo.setText("Checking setup...");
         if(!PublicValues.foundSetupArgument) {
             new Setup();
             startupTime = new StartupTime();
         }
-        if(!PublicValues.nogui) {
-            SplashPanel.linfo.setText("Init Themes...");
-            ThemeLoader loader = new ThemeLoader();
+    }
+
+    static void initThemes() {
+        SplashPanel.linfo.setText("Init Themes...");
+        ThemeLoader loader = PublicValues.themeLoader;
+        try {
+            loader.loadTheme(PublicValues.config.getString(ConfigValues.theme.name));
+        } catch (ThemeLoader.UnknownThemeException e) {
+            ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.getString(ConfigValues.theme.name) + "'! Trying to load theme differently");
             try {
-                loader.loadTheme(PublicValues.config.getString(ConfigValues.theme.name));
-            } catch (ThemeLoader.UnknownThemeException e) {
-                ConsoleLogging.warning("Unknown Theme: '" + PublicValues.config.getString(ConfigValues.theme.name) + "'! Trying to load theme differently");
-                try {
-                    loader.tryLoadTheme(PublicValues.config.getString(ConfigValues.theme.name));
-                } catch (Exception e2) {
-                    ConsoleLogging.warning("Failed loading theme! SpotifyXP is now ugly");
-                }
+                loader.tryLoadTheme(PublicValues.config.getString(ConfigValues.theme.name));
+            } catch (Exception e2) {
+                ConsoleLogging.warning("Failed loading theme! SpotifyXP is now ugly");
             }
         }
+    }
+
+    static void checkingUpdater() {
         try {
             Files.copy(new Resources(true).readToInputStream("SpotifyXP-Updater.jar"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar"), StandardCopyOption.REPLACE_EXISTING);
         }catch (Exception e) {
             //Build without SpotifyXP-Updater
             Updater.disable = true; //Disabling updater
         }
+    }
+
+    static void creatingLock() {
         try {
             if(new File(PublicValues.appLocation, "LOCK").createNewFile()) {
                 new File(PublicValues.appLocation, "LOCK").deleteOnExit();
@@ -262,70 +350,70 @@ public class Initiator {
             ConsoleLogging.Throwable(e);
             ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be instable");
         }
-        if(!PublicValues.nogui) {
-            SplashPanel.linfo.setText("Checking login...");
-            if (PublicValues.config.getString(ConfigValues.username.name).isEmpty()) {
-                new LoginDialog().open(); //Show login dialog if no username is set
-                startupTime = new StartupTime();
-            }
+    }
+
+    static void checkLogin() {
+        SplashPanel.linfo.setText("Checking login...");
+        if (PublicValues.config.getString(ConfigValues.username.name).isEmpty()) {
+            new LoginDialog().open(); //Show login dialog if no username is set
+            startupTime = new StartupTime();
         }
+    }
+
+    static void addShutdownHook() {
         SplashPanel.linfo.setText("Add shutdown hook...");
-        Runtime.getRuntime().addShutdownHook(hook.getRawThread()); //Gets executed when SpotifyXP is closing
+        Runtime.getRuntime().addShutdownHook(hook.getRawThread());
+    }
+
+    static void createKeyListener() {
+        SplashPanel.linfo.setText("Creating keylistener...");
+        new KeyListener().start();
+    }
+
+    static void initAPI() {
+        SplashPanel.linfo.setText("Creating api...");
         Player player = null;
-        if(!PublicValues.nogui) {
-            SplashPanel.linfo.setText("Creating api...");
-            thread.start();
-            Factory.getSpotifyAPI();
-            player = Factory.getPlayer();
-        }
+        thread.start();
+        Factory.getSpotifyAPI();
+        player = Factory.getPlayer();
         past = true;
-        if(!PublicValues.nogui) {
-            SplashPanel.linfo.setText("Creating keylistener...");
-            new KeyListener().start();
+        SplashPanel.linfo.setText("Create advanced api key...");
+        PublicValues.elevated = Factory.getPkce();
+        Factory.getUnofficialSpotifyApi();
+        SplashPanel.linfo.setText("Init Last.fm");
+        new LastFM();
+    }
+
+    static void initGUI() {
+        SplashPanel.linfo.setText("Creating contentPanel...");
+        if (PublicValues.osType == libDetect.OSType.Steamos) {
+            new SteamDeckSupportModule();
         }
-        ContentPanel panel = null;
-        if(!PublicValues.nogui) {
-            SplashPanel.linfo.setText("Create advanced api key...");
-            PublicValues.elevated = Factory.getPkce();
-            Factory.getUnofficialSpotifyApi();
-            SplashPanel.linfo.setText("Init Last.fm");
-            new LastFM();
-            SplashPanel.linfo.setText("Creating contentPanel...");
-            if (PublicValues.isSteamDeckMode) {
-                new SteamDeckSupportModule();
-            }
-            panel = new ContentPanel();
-        }
-        SplashPanel.linfo.setText("Starting background services...");
+        ContentPanel panel = new ContentPanel();
+        panel.open();
+    }
+
+    static void initTrayIcon() {
+        SplashPanel.linfo.setText("Creating the tray icon...");
         new BackgroundService().start();
-        if(!PublicValues.nogui) {
-            Updater.UpdateInfo info = new Updater().updateAvailable();
-            DefThread thread = new DefThread(() -> {
-                if (info.updateAvailable) {
-                    String version = info.version;
-                    Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-                    new Updater().invoke();
+    }
+
+    static void checkingUpdate() {
+        Updater.UpdateInfo info = new Updater().updateAvailable();
+        DefThread thread = new DefThread(() -> {
+            if (info.updateAvailable) {
+                String version = info.version;
+                Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
+                new Updater().invoke();
+            } else {
+                if (new Updater().isNightly()) {
+                    Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
+                    Feedback.feedbackupdaterdownloadbutton.setVisible(false);
                 } else {
-                    if (new Updater().isNightly()) {
-                        Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
-                        Feedback.feedbackupdaterdownloadbutton.setVisible(false);
-                    } else {
-                        Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
-                    }
+                    Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
                 }
-            });
-            thread.start();
-        }
-        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
-        if(!PublicValues.nogui) {
-            SplashPanel.hide();
-        }
-        if(!PublicValues.nogui) {
-            panel.open();
-        }
-        new WebInterface();
-        if(PublicValues.nogui) {
-            new RestAPI().start();
-        }
+            }
+        });
+        thread.start();
     }
 }

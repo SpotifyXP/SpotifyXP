@@ -115,3 +115,7 @@ function parseEpisodes(res) {
     }
     document.getElementById("result").innerHTML = out;
 }
+
+document.addEventListener("load", function() {
+    search()
+})

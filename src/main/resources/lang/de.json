@@ -178,6 +178,8 @@
   "ui.playback.changedevice": "Gerät ändern",
   "ui.playback.changedevice.message": "Wiedergabegerät auswählen",
   "ui.playback.changedevice.title": "Gerät ändern",
+  "ui.lyrics.mode.menu": "Modus ändern",
+  "ui.lyrics.mode.spotifymode": "Spotify Modus",
   "theme.bgfield": "Hintergrundfarbe",
   "theme.button": "Farbe wählen",
   "theme.borderfield": "Grenzfarbe",

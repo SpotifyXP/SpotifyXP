@@ -284,12 +284,12 @@ public class SettingsPanel extends JPanel {
                 PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
                 break;
         }
-        PublicValues.config.write(ConfigValues.spconnect.name, String.valueOf(settingsturnoffspotifyconnect.isSelected()));
+        PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
         PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
-        PublicValues.config.write(ConfigValues.hideExceptions.name, String.valueOf(settingsdisableexceptions.isSelected()));
+        PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
         PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
         PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
-        PublicValues.config.write(ConfigValues.disableplayerstats.name, String.valueOf(settingsuidisableplayerstats.isSelected()));
+        PublicValues.config.write(ConfigValues.disableplayerstats.name, settingsuidisableplayerstats.isSelected());
         JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
     }
 

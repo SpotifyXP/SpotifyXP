@@ -14,7 +14,6 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.Library;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.SVGUtils;
@@ -67,7 +66,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
-        if (!Library.libraryuricache.contains(playableId.toSpotifyUri())) {
+        if (!TrackUtils.isTrackLiked(playableId.toSpotifyUri().split(":")[2])) {
             PlayerArea.heart.isFilled = false;
             PlayerArea.heart.setImage(Graphics.HEART.getPath());
         } else {

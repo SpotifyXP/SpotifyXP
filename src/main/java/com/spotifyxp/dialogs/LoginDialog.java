@@ -81,14 +81,14 @@ public class LoginDialog {
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
                 PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
-                PublicValues.config.write(ConfigValues.facebook.name, "false");
+                PublicValues.config.write(ConfigValues.facebook.name, false);
                 dialog.dispose();
             }
         });
         facebook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.facebook.name, "true");
+                PublicValues.config.write(ConfigValues.facebook.name, true);
                 SplashPanel.frame.setAlwaysOnTop(false);
                 PublicValues.facebookcanceldialog = new CancelDialog();
                 PublicValues.facebookcanceldialog.showIt();
@@ -136,14 +136,14 @@ public class LoginDialog {
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
                 PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
-                PublicValues.config.write(ConfigValues.facebook.name, "false");
+                PublicValues.config.write(ConfigValues.facebook.name, false);
                 dialog.dispose();
             }
         });
         facebook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.facebook.name, "true");
+                PublicValues.config.write(ConfigValues.facebook.name, true);
                 SplashPanel.frame.setAlwaysOnTop(false);
                 PublicValues.facebookcanceldialog = new CancelDialog();
                 PublicValues.facebookcanceldialog.showIt();

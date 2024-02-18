@@ -1,6 +1,7 @@
 package com.spotifyxp.theming;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.themes.*;
 import com.spotifyxp.utils.Utils;
@@ -15,7 +16,7 @@ public class ThemeLoader {
     public ThemeLoader() {
         availableThemes.add(new DarkGreen());
         availableThemes.add(new Legacy());
-        if(!PublicValues.isMacOS) {
+        if(!(PublicValues.osType == libDetect.OSType.MacOS)) {
             //Unsupported byte count: 16
             availableThemes.add(new MacOS());
         }

@@ -1059,7 +1059,7 @@ public class ContentPanel extends JPanel {
                 super.componentMoved(e);
             }
         });
-        mainframe.setPreferredSize(new Dimension(784, 590));
+        mainframe.setPreferredSize(PublicValues.getApplicationDimensions());
         mainframe.getContentPane().add(this);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.addWindowListener(new WindowAdapter() {
@@ -1083,9 +1083,10 @@ public class ContentPanel extends JPanel {
             bar.add(helpMenu);
         }
         mainframe.open();
-        int w = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-        mainframe.setLocation(w / 2 - mainframe.getWidth() / 2, h / 2 - mainframe.getHeight() / 2);
+        mainframe.setLocation(
+                Toolkit.getDefaultToolkit().getScreenSize().width / 2 - PublicValues.applicationWidth / 2,
+                Toolkit.getDefaultToolkit().getScreenSize().height / 2 - PublicValues.applicationHeight / 2)
+        ;
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(2));
         } catch (InterruptedException ignored) {

@@ -1,11 +1,9 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.PublicValues;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 
 public class ApplicationUtils {
     private ApplicationUtils() {

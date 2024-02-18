@@ -24,6 +24,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -76,7 +77,7 @@ public final class FacebookAuthenticator implements Closeable {
 
         String browserPath = "";
 
-        if(!PublicValues.isLinux && !PublicValues.isMacOS) {
+        if(!(PublicValues.osType == libDetect.OSType.Linux) && !(PublicValues.osType == libDetect.OSType.MacOS)) {
             FileDialog dialog = new FileDialog(new JFrame(), "Select Browser Exe");
             dialog.setFilenameFilter((dir, name) -> name.toLowerCase().endsWith(".exe"));
             dialog.setMode(FileDialog.LOAD);
@@ -85,7 +86,7 @@ public final class FacebookAuthenticator implements Closeable {
         }
 
         try {
-            if(PublicValues.isMacOS || PublicValues.isLinux) {
+            if(PublicValues.osType == libDetect.OSType.MacOS || PublicValues.osType == libDetect.OSType.Linux) {
                 if(Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().browse(url.uri());
                 }else{

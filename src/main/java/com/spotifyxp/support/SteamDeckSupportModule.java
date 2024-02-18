@@ -11,6 +11,5 @@ public class SteamDeckSupportModule {
         }
         ContentPanel.frame.setJMenuBar(null);
         ContentPanel.steamDeck();
-        PublicValues.isLinux = true;
     }
 }

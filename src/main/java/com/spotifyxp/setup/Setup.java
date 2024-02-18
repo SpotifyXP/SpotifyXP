@@ -7,6 +7,7 @@ import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.AcceptComponen
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.InstallProgressComponent;
 import com.spotifyxp.deps.mslinks.ShellLink;
 import com.spotifyxp.deps.mslinks.ShellLinkHelper;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.utils.*;
@@ -43,10 +44,10 @@ public class Setup {
     }
 
     public InstallProgressComponent getForSystem() {
-        if(PublicValues.isLinux) {
+        if(PublicValues.osType == libDetect.OSType.Linux) {
             return buildLinux();
         }
-        if(PublicValues.isMacOS) {
+        if(PublicValues.osType == libDetect.OSType.MacOS) {
             return buildMacOS();
         }
         return buildWindows();

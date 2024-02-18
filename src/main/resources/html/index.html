@@ -30,7 +30,7 @@
     <br>
     <button onclick="load(document.getElementById('nametoload').value); return false;">Play Song</button>
     <br>
-    <label id="tosearchlabel" for="tosearch">To Search</label><input type="text" id="tosearch"/>
+    <label id="tosearchlabel" for="tosearch">To Search</label><input onkeyup="search()" type="text" id="tosearch"/>
     <br>
     <br>
     <label for="searchsong" id="searchsonglabel">Search Songs</label><input onclick="checksel(this)" checked type="checkbox" id="searchsong">

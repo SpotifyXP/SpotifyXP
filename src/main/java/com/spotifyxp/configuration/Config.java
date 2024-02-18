@@ -5,6 +5,7 @@ import com.spotifyxp.audio.Quality;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.GraphicalMessage;
+import oracle.sql.NUMBER;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
@@ -14,27 +15,41 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class Config {
-    JSONObject properties;
+    private static class JSONProperties extends JSONObject {
+        public JSONProperties() {
+        }
+
+        public JSONProperties(String source) {
+            super(source);
+        }
+
+        public void put(ConfigValues value) {
+            put(value.name, value.defaultValue);
+        }
+    }
+    JSONProperties properties;
     public Config() {
-        properties = new JSONObject();
+        properties = new JSONProperties();
         if(!new File(PublicValues.configfilepath).exists()) {
-            properties.put(ConfigValues.facebook.name, false);
-            properties.put(ConfigValues.audioquality.name, Quality.NORMAL.configValue());
-            properties.put(ConfigValues.theme.name, "DARKGREEN");
-            properties.put(ConfigValues.disableplayerstats.name, false);
-            properties.put(ConfigValues.showallrecommendations.name, false);
-            properties.put(ConfigValues.username.name, "");
-            properties.put(ConfigValues.lastfmpassword.name, "");
-            properties.put(ConfigValues.lastfmusername.name, "");
-            properties.put(ConfigValues.lastfmtracklimit.name, 20);
-            properties.put(ConfigValues.lastfmartistlimit.name, 10);
-            properties.put(ConfigValues.mypalpath.name, "");
-            properties.put(ConfigValues.password.name, "");
-            properties.put(ConfigValues.hideExceptions.name, false);
-            properties.put(ConfigValues.spconnect.name, false);
-            properties.put(ConfigValues.language.name, "English");
+            properties.put(ConfigValues.facebook);
+            properties.put(ConfigValues.audioquality);
+            properties.put(ConfigValues.theme);
+            properties.put(ConfigValues.disableplayerstats);
+            properties.put(ConfigValues.showallrecommendations);
+            properties.put(ConfigValues.username);
+            properties.put(ConfigValues.lastfmpassword);
+            properties.put(ConfigValues.lastfmusername);
+            properties.put(ConfigValues.lastfmtracklimit);
+            properties.put(ConfigValues.lastfmartistlimit);
+            properties.put(ConfigValues.mypalpath);
+            properties.put(ConfigValues.password);
+            properties.put(ConfigValues.hideExceptions);
+            properties.put(ConfigValues.spconnect);
+            properties.put(ConfigValues.language);
+            properties.put(ConfigValues.webinteface);
             if(!new File(PublicValues.fileslocation).exists()) {
                 if(!new File(PublicValues.fileslocation).mkdir()) {
                     GraphicalMessage.sorryErrorExit("Failed creating important directory");
@@ -59,7 +74,7 @@ public class Config {
             }
         }
         try {
-            properties = new JSONObject(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath)), Charset.defaultCharset()));
+            properties = new JSONProperties(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath)), Charset.defaultCharset()));
         } catch (IOException e) {
             GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }
@@ -91,7 +106,7 @@ public class Config {
                         properties.put(value.name, value.defaultValue);
                         foundInvalid = true;
                     }
-                    new ThemeLoader();
+                    PublicValues.themeLoader = new ThemeLoader();
                     if(!ThemeLoader.hasTheme(properties.getString(value.name))) {
                         ConsoleLogging.warning("Key '" + value.name + "' has an invalid value: '" + properties.get(value.name) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
@@ -99,6 +114,15 @@ public class Config {
                     }
                     break;
                 default:
+                    if(!properties.has(value.name)) {
+                        try {
+                            properties.put(Objects.requireNonNull(ConfigValues.get(value.name)));
+                            ConsoleLogging.warning("Key '" + value.name + "' not found! Creating...");
+                        }catch (NullPointerException e) {
+                            ConsoleLogging.error("Failed creating key '" + value.name + "'!");
+                        }
+                        continue;
+                    }
                     if(!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
                         ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
@@ -120,7 +144,7 @@ public class Config {
      * @param name Name of entry
      * @param value Value of entry
      */
-    public void write(String name, String value) {
+    public void write(String name, Object value) {
         properties.put(name, value);
         try {
             Files.write(Paths.get(PublicValues.configfilepath), properties.toString().getBytes(StandardCharsets.UTF_8));

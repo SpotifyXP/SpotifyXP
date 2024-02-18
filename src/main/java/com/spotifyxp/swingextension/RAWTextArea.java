@@ -2,6 +2,7 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.ClipboardUtil;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
