@@ -88,6 +88,10 @@ public class ConnectionUtils {
         }
     }
 
+    public static boolean isConnectedToInternet() {
+        return ConnectionUtils.isWebsiteReachable("http://captive.apple.com/hotspot-detect.html");
+    }
+
     public static String makePost(String url, NameValuePair[] topost, Header... headers) {
         try {
             HttpClient client = HttpClients.createDefault();

@@ -19,13 +19,17 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.dealer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.AsyncWorker;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.BytesArrayList;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.ConnectionUtils;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
@@ -357,7 +361,15 @@ public class DealerClient implements Closeable {
                         if (!receivedPong) {
                             ConsoleLoggingModules.warning("Did not receive ping in 3 seconds. Reconnecting...");
                             ConnectionHolder.this.close();
+                            if(!ConnectionUtils.isConnectedToInternet()) {
+                                //Internet connection dropped!
+                                Events.triggerEvent(SpotifyXPEvents.internetConnectionDropped.getName());
+                            }
                             return;
+                        }else{
+                            if(PublicValues.wasOffline) {
+                                Events.triggerEvent(SpotifyXPEvents.internetConnectionReconnected.getName());
+                            }
                         }
 
                         receivedPong = false;

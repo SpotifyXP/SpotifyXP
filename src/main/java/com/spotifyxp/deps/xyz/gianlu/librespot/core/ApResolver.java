@@ -21,6 +21,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -137,6 +138,9 @@ public final class ApResolver {
     int retryCounter = 0;
 
     private String returnPortSafe(String url, String type) {
+        if(!ConnectionUtils.isConnectedToInternet()) {
+            retryCounter = 0;
+        }
         if(retryCounter > 15) {
             throw new RuntimeException("Can't find a suitable " + type);
         }
@@ -144,7 +148,9 @@ public final class ApResolver {
         if(ret80) {
             if(url.contains(":80") || url.contains(":443")) {
                 if (isBlocked(url)) {
-                    ConsoleLoggingModules.warning("Port 80 is blocked by your firewall! Trying other ports");
+                    if(ConnectionUtils.isConnectedToInternet()) {
+                        ConsoleLoggingModules.warning("Port 80 is blocked by your firewall! Trying other ports");
+                    }
                     ret80 = false;
                     waitForPool();
                     List<String> urls = pool.get(type);
@@ -162,7 +168,9 @@ public final class ApResolver {
         if(!isBlocked(url)) {
             return url;
         }else{
-            ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
+            if(ConnectionUtils.isConnectedToInternet()) {
+                ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
+            }
         }
         waitForPool();
         List<String> urls = pool.get(type);

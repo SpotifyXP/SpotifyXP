@@ -1,6 +1,8 @@
 package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -63,6 +65,7 @@ public class Injector {
                 }
                 firstGoThrough = false;
             }
+            Events.triggerEvent(SpotifyXPEvents.injectorAPIReady.getName());
         }
     }
 

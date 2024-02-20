@@ -41,8 +41,6 @@ public final class Mp3Decoder extends Decoder {
     public Mp3Decoder(@NotNull SeekableInputStream audioIn, float normalizationFactor, int duration) throws IOException, BitstreamException {
         super(audioIn, normalizationFactor, duration);
 
-        OverwriteFactory.run(audioIn);
-
         skipMp3Tags(audioIn);
         this.in = new Mp3InputStream(audioIn, normalizationFactor);
 

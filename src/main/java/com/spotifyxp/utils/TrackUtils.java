@@ -1,17 +1,39 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.audio.Quality;
+import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn.CdnManager;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.Decoders;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.VorbisOnlyAudioQuality;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.LocalId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade.CrossfadeController;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.factory.Factory;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"SameReturnValue", "IntegerDivisionInFloatingPointContext", "BooleanMethodIsAlwaysInverted"})
 public class TrackUtils {
@@ -165,5 +187,32 @@ public class TrackUtils {
         Factory.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
         table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
+    }
+
+    public static void download(PlayableId id) throws CdnManager.CdnException, IOException, MercuryClient.MercuryException, PlayableContentFeeder.ContentRestrictedException, UnsupportedOperationException {
+        PublicValues.disableChunkDebug = true;
+        PlayableContentFeeder.LoadedStream stream = PublicValues.session.contentFeeder().load(id, new VorbisOnlyAudioQuality(AudioQuality.valueOf(PublicValues.quality.toString())), false, new HaltListener() {
+            @Override
+            public void streamReadHalted(int chunk, long time) {
+            }
+
+            @Override
+            public void streamReadResumed(int chunk, long time) {
+            }
+        });
+
+        MetadataWrapper metadata = stream.metadata;
+        DecodedAudioStream audioStream = stream.in;
+
+        if (metadata.isEpisode() && metadata.episode != null) {
+            ConsoleLogging.info("Downloading episode. {name: '{}', duration: {}, uri: {}, id: {}}", metadata.episode.getName(),
+                    metadata.episode.getDuration(), id.toSpotifyUri(), id);
+        } else if (metadata.isTrack() && metadata.track != null) {
+            ConsoleLogging.info("Downloading track. {name: '{}', artists: '{}', duration: {}, uri: {}, id: {}}", metadata.track.getName(),
+                    Utils.artistsToString(metadata.track.getArtistList()), metadata.track.getDuration(), id.toSpotifyUri(), id);
+        }
+
+        OverwriteFactory.run(audioStream.stream());
+        PublicValues.disableChunkDebug = false;
     }
 }

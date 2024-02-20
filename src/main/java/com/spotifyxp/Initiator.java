@@ -49,7 +49,7 @@ public class Initiator {
     public static StartupTime startupTime;
     static final DefThread hook = new DefThread(PlayerArea::saveCurrentState);
 
-    static int destroyCounter = 0;
+    static int destroyCounter = 1;
 
     public static final DefThread thread = new DefThread(new Runnable() {
         @Override
@@ -60,7 +60,13 @@ public class Initiator {
                     if(!(destroyCounter > 2)) {
                         ConsoleLogging.warning("Init of player failed! Retrying... (" + destroyCounter + ")");
                         Factory.getPlayer().destroy();
-                        Factory.getPlayer();
+                        Thread playerBuildThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Factory.getPlayer();
+                            }
+                        });
+                        playerBuildThread.start();
                         destroyCounter++;
                         return;
                     }
@@ -86,6 +92,7 @@ public class Initiator {
         System.setProperty("http.agent", ApplicationUtils.getUserAgent()); //Setting the user agent string that SpotifyXP uses
         checkDebug(); //Checking if debug is enabled
         detectOS(); //Detecting the operating system
+        checkSetup();
         initEvents(); //Initializing the event support
         initConfig(); //Initializing the configuratio
         loadExtensions(); //Loading extensions if there are any

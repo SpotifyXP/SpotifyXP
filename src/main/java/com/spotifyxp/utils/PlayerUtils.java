@@ -9,9 +9,12 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.dialogs.LoginDialog;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import java.io.File;
+import java.net.UnknownHostException;
 
 public class PlayerUtils {
     public static Player buildPlayer() {
@@ -48,16 +51,40 @@ public class PlayerUtils {
             }
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
+            Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
+            Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
             return player;
         }catch (Session.SpotifyAuthenticationException e) {
             new LoginDialog().openWithInvalidAuth();
             return buildPlayer();
+        }catch (UnknownHostException offline) {
+            GraphicalMessage.sorryErrorExit("No internet connection!");
         }catch(Exception e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.sorryError("Failed to build player");
             System.exit(0);
         }
         return null;
+    }
+
+    static Runnable connectionReconnectedListener() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                PublicValues.wasOffline = false;
+                System.out.println("Connection re established!");
+            }
+        };
+    }
+
+    static Runnable connectionDroppedListener() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                PublicValues.wasOffline = true;
+                System.out.println("Connection dropped! Reconnecting...");
+            }
+        };
     }
 
     public static Player buildPlayer(boolean ignore) throws Session.SpotifyAuthenticationException {

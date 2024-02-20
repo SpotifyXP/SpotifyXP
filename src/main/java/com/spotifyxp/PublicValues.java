@@ -76,7 +76,9 @@ public class PublicValues {
     public static int screenNumber = Utils.getDefaultScreenNumber();
     public static boolean shuffle = false;
     public static ThemeLoader themeLoader;
+    public static boolean wasOffline;
     public static CountryCode countryCode;
+    public static boolean disableChunkDebug = false;
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

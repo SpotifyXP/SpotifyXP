@@ -17,6 +17,7 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn;
 
 import com.google.protobuf.ByteString;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.*;
@@ -277,7 +278,7 @@ public class CdnManager {
                 }
             }
 
-            ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, stream: {}", chunkIndex, chunks, cached, describe());
+            if(!PublicValues.disableChunkDebug) ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, stream: {}", chunkIndex, chunks, cached, describe());
 
             buffer[chunkIndex] = chunk;
             audioDecrypt.decryptChunk(chunkIndex, chunk);

@@ -17,6 +17,7 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage;
 
 import com.google.protobuf.ByteString;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
@@ -152,6 +153,7 @@ public class AudioFileStreaming implements AudioFile, DecodedAudioStream {
         }
 
         chunksBuffer.writeChunk(buffer, chunkIndex);
+        if(PublicValues.disableChunkDebug) return;
         ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, fileId: {}", chunkIndex, chunks, cached, Utils.bytesToHex(file.getFileId()));
     }
 

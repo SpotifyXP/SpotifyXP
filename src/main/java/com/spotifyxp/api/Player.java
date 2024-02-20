@@ -34,6 +34,7 @@ public class Player {
     }
 
     public void destroy() {
+        PublicValues.spotifyplayer.close();
         Factory.setPlayer(null);
     }
 

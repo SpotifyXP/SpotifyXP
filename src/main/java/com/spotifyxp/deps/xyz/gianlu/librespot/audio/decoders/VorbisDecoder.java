@@ -64,8 +64,6 @@ public final class VorbisDecoder extends Decoder {
         this.joggSyncState.buffer(Decoder.BUFFER_SIZE);
         this.buffer = joggSyncState.data;
 
-        OverwriteFactory.run(audioIn);
-
         readHeader();
         seekZero = audioIn.position();
 
