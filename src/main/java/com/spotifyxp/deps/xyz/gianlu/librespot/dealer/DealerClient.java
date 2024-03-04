@@ -39,10 +39,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -56,10 +53,15 @@ public class DealerClient implements Closeable {
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory((r) -> "dealer-scheduler-" + r.hashCode()));
     private volatile ConnectionHolder conn = null;
     private ScheduledFuture<?> lastScheduledReconnection;
+    private CountDownLatch startLatch = new CountDownLatch(1);
 
     public DealerClient(@NotNull Session session) {
         this.session = session;
         this.asyncWorker = new AsyncWorker<>("dealer-worker", Runnable::run);
+    }
+
+    public void start() {
+        startLatch.countDown();
     }
 
     @NotNull
@@ -82,14 +84,10 @@ public class DealerClient implements Closeable {
     }
 
     private void waitForListeners() {
-        synchronized (msgListeners) {
-            if (!msgListeners.isEmpty()) return;
-
-            try {
-                msgListeners.wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            startLatch.await();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

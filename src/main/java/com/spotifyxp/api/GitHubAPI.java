@@ -18,7 +18,7 @@ public class GitHubAPI {
      * @return     The response body of the requested page
      */
     @SuppressWarnings("SameParameterValue")
-    public static String makeRequestGet(String url) {
+    public String makeRequestGet(String url) {
         String ret = "FAILED";
         try {
             HttpClient client = HttpClients.createDefault();
@@ -38,11 +38,19 @@ public class GitHubAPI {
      * <br>downloadURL -> The .jar file url of the Release
      * <br>version -> The version of the Release
      */
-    public static class Release {
+    public class Release {
         public String downloadURL = "";
         public String version = "";
+
+        public Release() {
+        }
+
+        public Release(String downloadURL, String version) {
+            this.downloadURL = downloadURL;
+            this.version = version;
+        }
     }
-    public static class Releases {
+    public class Releases {
         /**
          * Gets the latest SpotifyXP release
          * @return      instance of the Release class
@@ -56,5 +64,9 @@ public class GitHubAPI {
             release.version = root.getString("tag_name");
             return release;
         }
+    }
+
+    public Releases getReleases() {
+        return new Releases();
     }
 }

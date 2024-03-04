@@ -8,14 +8,14 @@ import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.PlayerUtils;
 
 public class Player {
-    com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;
+    com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine player;
     SpotifyAPI api;
 
     /**
      * Retries building a working librespot-player instance
      */
     public void retry() {
-        player = PlayerUtils.buildPlayer();
+        player = Factory.getPlayerUtils().buildPlayer();
         try {
             player.waitReady();
         } catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class Player {
 
     public Player(SpotifyAPI a) {
         api = a;
-        player = PlayerUtils.buildPlayer();
+        player = Factory.getPlayerUtils().buildPlayer();
         try {
             player.waitReady();
         } catch (InterruptedException e) {
@@ -58,7 +58,7 @@ public class Player {
      * Returns an instance of librespot-player
      * @return    an instance of librespot-player
      */
-    public com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getPlayer() {
+    public com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine getPlayer() {
         return player;
     }
 }

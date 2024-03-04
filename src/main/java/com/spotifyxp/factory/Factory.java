@@ -1,10 +1,8 @@
 package com.spotifyxp.factory;
 
-import com.spotifyxp.api.OAuthPKCE;
-import com.spotifyxp.api.Player;
-import com.spotifyxp.api.SpotifyAPI;
-import com.spotifyxp.api.UnofficialSpotifyAPI;
+import com.spotifyxp.api.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
+import com.spotifyxp.utils.PlayerUtils;
 
 /**
  * This class is a factory
@@ -20,7 +18,9 @@ public class Factory {
     static SpotifyApi sapi;
     static OAuthPKCE pkce;
     static Player player;
+    static GitHubAPI gitHubAPI;
     static UnofficialSpotifyAPI unofficialSpotifyAPI;
+    static PlayerUtils playerUtils;
 
     public static Player getPlayer() {
         if(player == null) {
@@ -62,6 +62,17 @@ public class Factory {
         return api;
     }
 
+    public static PlayerUtils getPlayerUtils() {
+        if(playerUtils == null) {
+            playerUtils = new PlayerUtils();
+        }
+        return playerUtils;
+    }
+
+    public static void setPlayerUtils(PlayerUtils utils) {
+        playerUtils = utils;
+    }
+
     public static void setSpotifyAPI(SpotifyAPI a) {
         api = a;
     }
@@ -76,4 +87,15 @@ public class Factory {
         }
         return sapi;
     }
-}
+
+    public static GitHubAPI getGitHubAPI() {
+        if(gitHubAPI == null) {
+            gitHubAPI = new GitHubAPI();
+        }
+        return gitHubAPI;
+    }
+
+    public static void setGitHubAPI(GitHubAPI api) {
+        gitHubAPI = api;
+    }
+ }

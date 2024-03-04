@@ -41,6 +41,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.ApiClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.Authenticator;
 import okhttp3.*;
 import okio.BufferedSink;
@@ -75,7 +76,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author Gianlu
  */
 @SuppressWarnings({"resource", "BusyWait", "KotlinInternalInJava"})
-public final class Session implements Closeable {
+public class Session implements Closeable {
     private static final byte[] serverKey = new byte[]{
             (byte) 0xac, (byte) 0xe0, (byte) 0x46, (byte) 0x0b, (byte) 0xff, (byte) 0xc2, (byte) 0x30, (byte) 0xaf, (byte) 0xf4, (byte) 0x6b, (byte) 0xfe, (byte) 0xc3,
             (byte) 0xbf, (byte) 0xbf, (byte) 0x86, (byte) 0x3d, (byte) 0xa1, (byte) 0x91, (byte) 0xc6, (byte) 0xcc, (byte) 0x33, (byte) 0x6c, (byte) 0x93, (byte) 0xa1,
@@ -100,12 +101,12 @@ public final class Session implements Closeable {
             (byte) 0xeb, (byte) 0x00, (byte) 0x06, (byte) 0xa2, (byte) 0x5a, (byte) 0xee, (byte) 0xa1, (byte) 0x1b, (byte) 0x13, (byte) 0x87, (byte) 0x3c, (byte) 0xd7,
             (byte) 0x19, (byte) 0xe6, (byte) 0x55, (byte) 0xbd
     };
-    private final ApResolver apResolver;
-    private final DiffieHellman keys;
-    private final Inner inner;
+    private ApResolver apResolver = null;
+    private DiffieHellman keys = null;
+    private Inner inner = null;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory(r -> "session-scheduler-" + r.hashCode()));
     private final AtomicBoolean authLock = new AtomicBoolean(false);
-    private final OkHttpClient client;
+    private OkHttpClient client = null;
     private final List<CloseListener> closeListeners = Collections.synchronizedList(new ArrayList<>());
     private final List<ReconnectionListener> reconnectionListeners = Collections.synchronizedList(new ArrayList<>());
     private final Map<String, String> userAttributes = Collections.synchronizedMap(new HashMap<>());
@@ -128,8 +129,9 @@ public final class Session implements Closeable {
     private volatile boolean closed = false;
     private volatile boolean closing = false;
     private volatile ScheduledFuture<?> scheduledReconnect = null;
+    private int rescheduledTimes = 0;
 
-    private Session(@NotNull Inner inner) throws IOException {
+    public Session(@NotNull Inner inner) throws IOException {
         this.inner = inner;
         this.keys = new DiffieHellman(inner.random);
         this.client = createClient(inner.conf);
@@ -138,6 +140,9 @@ public final class Session implements Closeable {
         this.conn = ConnectionHolder.create(addr, inner.conf);
 
         ConsoleLoggingModules.info("Created new session! {deviceId: " + inner.deviceId + ", ap: " + addr + ", proxy: " + inner.conf.proxyEnabled + "} ");
+    }
+
+    public Session() {
     }
 
     @NotNull
@@ -213,127 +218,160 @@ public final class Session implements Closeable {
     }
 
     private void connect() throws IOException, GeneralSecurityException, SpotifyAuthenticationException {
-        Accumulator acc = new Accumulator();
-
-        // Send ClientHello
-
-        byte[] nonce = new byte[0x10];
-        inner.random.nextBytes(nonce);
-
-        Keyexchange.ClientHello clientHello = Keyexchange.ClientHello.newBuilder()
-                .setBuildInfo(Version.standardBuildInfo())
-                .addCryptosuitesSupported(Keyexchange.Cryptosuite.CRYPTO_SUITE_SHANNON)
-                .setLoginCryptoHello(Keyexchange.LoginCryptoHelloUnion.newBuilder()
-                        .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanHello.newBuilder()
-                                .setGc(ByteString.copyFrom(keys.publicKeyArray()))
-                                .setServerKeysKnown(1)
-                                .build())
-                        .build())
-                .setClientNonce(ByteString.copyFrom(nonce))
-                .setPadding(ByteString.copyFrom(new byte[]{0x1e}))
-                .build();
-
-        byte[] clientHelloBytes = clientHello.toByteArray();
-        int length = 2 + 4 + clientHelloBytes.length;
-        conn.out.writeByte(0);
-        conn.out.writeByte(4);
-        conn.out.writeInt(length);
-        conn.out.write(clientHelloBytes);
-        conn.out.flush();
-
-        acc.writeByte(0);
-        acc.writeByte(4);
-        acc.writeInt(length);
-        acc.write(clientHelloBytes);
-
-
-        // Read APResponseMessage
-
-        length = conn.in.readInt();
-        acc.writeInt(length);
-        byte[] buffer = new byte[length - 4];
-        conn.in.readFully(buffer);
-        acc.write(buffer);
-        acc.dump();
-
-        Keyexchange.APResponseMessage apResponseMessage = Keyexchange.APResponseMessage.parseFrom(buffer);
-        byte[] sharedKey = Utils.toByteArray(keys.computeSharedKey(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray()));
-
-
-        // Check gs_signature
-
-        KeyFactory factory = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = factory.generatePublic(new RSAPublicKeySpec(new BigInteger(1, serverKey), BigInteger.valueOf(65537)));
-
-        Signature sig = Signature.getInstance("SHA1withRSA");
-        sig.initVerify(publicKey);
-        sig.update(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray());
-        if (!sig.verify(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGsSignature().toByteArray()))
-            throw new GeneralSecurityException("Failed signature check!");
-
-
-        // Solve challenge
-
-        ByteArrayOutputStream data = new ByteArrayOutputStream(0x64);
-
-        Mac mac = Mac.getInstance("HmacSHA1");
-        mac.init(new SecretKeySpec(sharedKey, "HmacSHA1"));
-        for (int i = 1; i < 6; i++) {
-            mac.update(acc.array());
-            mac.update(new byte[]{(byte) i});
-            data.write(mac.doFinal());
-            mac.reset();
-        }
-
-        byte[] dataArray = data.toByteArray();
-        mac.init(new SecretKeySpec(Arrays.copyOfRange(dataArray, 0, 0x14), "HmacSHA1"));
-        mac.update(acc.array());
-
-        byte[] challenge = mac.doFinal();
-        Keyexchange.ClientResponsePlaintext clientResponsePlaintext = Keyexchange.ClientResponsePlaintext.newBuilder()
-                .setLoginCryptoResponse(Keyexchange.LoginCryptoResponseUnion.newBuilder()
-                        .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanResponse.newBuilder()
-                                .setHmac(ByteString.copyFrom(challenge)).build())
-                        .build())
-                .setPowResponse(Keyexchange.PoWResponseUnion.newBuilder().build())
-                .setCryptoResponse(Keyexchange.CryptoResponseUnion.newBuilder().build())
-                .build();
-
-        byte[] clientResponsePlaintextBytes = clientResponsePlaintext.toByteArray();
-        length = 4 + clientResponsePlaintextBytes.length;
-        conn.out.writeInt(length);
-        conn.out.write(clientResponsePlaintextBytes);
-        conn.out.flush();
-
         try {
-            byte[] scrap = new byte[4];
-            conn.socket.setSoTimeout(300);
-            int read = conn.in.read(scrap);
-            if (read == scrap.length) {
-                length = (scrap[0] << 24) | (scrap[1] << 16) | (scrap[2] << 8) | (scrap[3] & 0xFF);
-                byte[] payload = new byte[length - 4];
-                conn.in.readFully(payload);
-                Keyexchange.APLoginFailed failed = Keyexchange.APResponseMessage.parseFrom(payload).getLoginFailed();
-                throw new SpotifyAuthenticationException(failed);
-            } else if (read > 0) {
-                throw new IllegalStateException("Read unknown data!");
+            Accumulator acc = new Accumulator();
+
+            // Send ClientHello
+
+            byte[] nonce = new byte[0x10];
+            inner.random.nextBytes(nonce);
+
+            Keyexchange.ClientHello clientHello = Keyexchange.ClientHello.newBuilder()
+                    .setBuildInfo(Version.standardBuildInfo())
+                    .addCryptosuitesSupported(Keyexchange.Cryptosuite.CRYPTO_SUITE_SHANNON)
+                    .setLoginCryptoHello(Keyexchange.LoginCryptoHelloUnion.newBuilder()
+                            .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanHello.newBuilder()
+                                    .setGc(ByteString.copyFrom(keys.publicKeyArray()))
+                                    .setServerKeysKnown(1)
+                                    .build())
+                            .build())
+                    .setClientNonce(ByteString.copyFrom(nonce))
+                    .setPadding(ByteString.copyFrom(new byte[]{0x1e}))
+                    .build();
+
+            byte[] clientHelloBytes = clientHello.toByteArray();
+            int length = 2 + 4 + clientHelloBytes.length;
+            conn.out.writeByte(0);
+            conn.out.writeByte(4);
+            conn.out.writeInt(length);
+            conn.out.write(clientHelloBytes);
+            conn.out.flush();
+
+            acc.writeByte(0);
+            acc.writeByte(4);
+            acc.writeInt(length);
+            acc.write(clientHelloBytes);
+
+
+            // Read APResponseMessage
+
+            length = conn.in.readInt();
+            acc.writeInt(length);
+            byte[] buffer = new byte[length - 4];
+            conn.in.readFully(buffer);
+            acc.write(buffer);
+            acc.dump();
+
+            Keyexchange.APResponseMessage apResponseMessage = Keyexchange.APResponseMessage.parseFrom(buffer);
+            byte[] sharedKey = Utils.toByteArray(keys.computeSharedKey(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray()));
+
+
+            // Check gs_signature
+
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PublicKey publicKey = factory.generatePublic(new RSAPublicKeySpec(new BigInteger(1, serverKey), BigInteger.valueOf(65537)));
+
+            Signature sig = Signature.getInstance("SHA1withRSA");
+            sig.initVerify(publicKey);
+            sig.update(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray());
+            if (!sig.verify(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGsSignature().toByteArray()))
+                throw new GeneralSecurityException("Failed signature check!");
+
+
+            // Solve challenge
+
+            ByteArrayOutputStream data = new ByteArrayOutputStream(0x64);
+
+            Mac mac = Mac.getInstance("HmacSHA1");
+            mac.init(new SecretKeySpec(sharedKey, "HmacSHA1"));
+            for (int i = 1; i < 6; i++) {
+                mac.update(acc.array());
+                mac.update(new byte[]{(byte) i});
+                data.write(mac.doFinal());
+                mac.reset();
             }
-        } catch (SocketTimeoutException ignored) {
-        }catch (EOFException e) {
-            throw new RuntimeException(e);
-        } finally {
-            conn.socket.setSoTimeout(0);
+
+            byte[] dataArray = data.toByteArray();
+            mac.init(new SecretKeySpec(Arrays.copyOfRange(dataArray, 0, 0x14), "HmacSHA1"));
+            mac.update(acc.array());
+
+            byte[] challenge = mac.doFinal();
+            Keyexchange.ClientResponsePlaintext clientResponsePlaintext = Keyexchange.ClientResponsePlaintext.newBuilder()
+                    .setLoginCryptoResponse(Keyexchange.LoginCryptoResponseUnion.newBuilder()
+                            .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanResponse.newBuilder()
+                                    .setHmac(ByteString.copyFrom(challenge)).build())
+                            .build())
+                    .setPowResponse(Keyexchange.PoWResponseUnion.newBuilder().build())
+                    .setCryptoResponse(Keyexchange.CryptoResponseUnion.newBuilder().build())
+                    .build();
+
+            byte[] clientResponsePlaintextBytes = clientResponsePlaintext.toByteArray();
+            length = 4 + clientResponsePlaintextBytes.length;
+            conn.out.writeInt(length);
+            conn.out.write(clientResponsePlaintextBytes);
+            conn.out.flush();
+
+            try {
+                byte[] scrap = new byte[4];
+                conn.socket.setSoTimeout(300);
+                int read = conn.in.read(scrap);
+                if (read == scrap.length) {
+                    length = (scrap[0] << 24) | (scrap[1] << 16) | (scrap[2] << 8) | (scrap[3] & 0xFF);
+                    byte[] payload = new byte[length - 4];
+                    conn.in.readFully(payload);
+                    Keyexchange.APLoginFailed failed = Keyexchange.APResponseMessage.parseFrom(payload).getLoginFailed();
+                    throw new SpotifyAuthenticationException(failed);
+                } else if (read > 0) {
+                    throw new IllegalStateException("Read unknown data!");
+                }
+            } catch (SocketTimeoutException ignored) {
+            } catch (EOFException e) {
+                throw new RuntimeException(e);
+            } finally {
+                conn.socket.setSoTimeout(0);
+            }
+
+            synchronized (authLock) {
+                // Init Shannon cipher
+                cipherPair = new CipherPair(Arrays.copyOfRange(data.toByteArray(), 0x14, 0x34),
+                        Arrays.copyOfRange(data.toByteArray(), 0x34, 0x54));
+
+                authLock.set(true);
+            }
+
+            ConsoleLoggingModules.info("Connected successfully!");
+        }catch (OutOfMemoryError e) {
+            ConsoleLoggingModules.Throwable(e);
+            if(rescheduledTimes > 10) {
+                ConsoleLoggingModules.error("Error reconnecting after OutOfMemoryError");
+                GraphicalMessage.sorryErrorExit("Error reconnecting after OutOfMemoryError");
+            }
+            ConsoleLoggingModules.info("Scheduled reconnection attempt in 10 seconds...");
+            scheduler.schedule(() -> {
+                rescheduledTimes++;
+                try {
+                    connect();
+                    rescheduledTimes = 0;
+                } catch (IOException | SpotifyAuthenticationException | GeneralSecurityException ex) {
+                    ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
+                    scheduleReconnect();
+                }
+            }, 10, TimeUnit.SECONDS);
         }
+    }
 
-        synchronized (authLock) {
-            // Init Shannon cipher
-            cipherPair = new CipherPair(Arrays.copyOfRange(data.toByteArray(), 0x14, 0x34),
-                    Arrays.copyOfRange(data.toByteArray(), 0x34, 0x54));
+    private void scheduleReconnect() {
+        ConsoleLoggingModules.info("Scheduled reconnection attempt in 10 seconds...");
+        scheduler.schedule(() -> {
+            rescheduledTimes++;
+            try {
+                connect();
+                rescheduledTimes = 0;
+            } catch (IOException | SpotifyAuthenticationException | GeneralSecurityException ex) {
+                ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
 
-            authLock.set(true);
-        }
-
-        ConsoleLoggingModules.info("Connected successfully!");
+            }
+        }, 10, TimeUnit.SECONDS);
     }
 
     /**
@@ -389,6 +427,10 @@ public final class Session implements Closeable {
                 }
             }
         }, "hm://connect-state/v1/connect/logout");
+    }
+
+    public void start() {
+        dealer().start();
     }
 
     /**
@@ -1284,6 +1326,8 @@ public final class Session implements Closeable {
 
         private ConnectionHolder(@NotNull Socket socket) throws IOException {
             this.socket = socket;
+            // Big but not infinite
+            socket.setSoTimeout(10000);
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
         }

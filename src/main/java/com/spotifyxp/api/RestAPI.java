@@ -6,6 +6,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.enums.HttpStatusCodes;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.utils.PlayerUtils;
 import com.spotifyxp.utils.Token;
 import com.spotifyxp.utils.WebUtils;
@@ -42,7 +43,7 @@ public class RestAPI implements Runnable {
         }
         if(!PublicValues.config.getString(ConfigValues.username.name).equalsIgnoreCase("")) {
             try {
-                PublicValues.spotifyplayer = PlayerUtils.buildPlayer(true);
+                PublicValues.spotifyplayer = Factory.getPlayerUtils().buildPlayer(true);
             } catch (Session.SpotifyAuthenticationException e) {
                 username = "";
                 password = "";
@@ -296,7 +297,7 @@ public class RestAPI implements Runnable {
         PublicValues.config.write(ConfigValues.username.name, getParams(pairs, "username"));
         PublicValues.config.write(ConfigValues.password.name, getParams(pairs, "password"));
         try {
-            PublicValues.spotifyplayer = PlayerUtils.buildPlayer(true);
+            PublicValues.spotifyplayer = Factory.getPlayerUtils().buildPlayer(true);
             WebUtils.sendCode(exchange, HttpStatusCodes.OK.getValue(), makeJSONResponse("LoggedIn", new BasicNameValuePair("User", PublicValues.session.username())));
         } catch (Session.SpotifyAuthenticationException e) {
             WebUtils.sendCode(exchange, HttpStatusCodes.FORBIDDEN.getValue(), "BadCredentials");

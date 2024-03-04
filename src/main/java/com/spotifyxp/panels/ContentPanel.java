@@ -32,6 +32,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.checkerframework.checker.units.qual.A;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -91,6 +92,26 @@ public class ContentPanel extends JPanel {
     boolean toggle = false;
     int count = 0;
 
+    static class TabEntry {
+        public String title;
+        public JComponent component;
+        public int count;
+
+        public TabEntry(String title, JComponent component) {
+            this.title = title;
+            this.component = component;
+            this.count = extraTabs.size() + 1;
+        }
+    }
+
+    private static ArrayList<TabEntry> extraTabs = new ArrayList<>();
+
+    public static void addComponentToTabs(String title, JComponent component) {
+        extraTabs.add(new TabEntry(title, component));
+        legacyswitch.addTab(title, new JPanel());
+        tabpanel.add(component);
+    }
+
     @SuppressWarnings("Busy")
     public ContentPanel() {
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
@@ -146,7 +167,7 @@ public class ContentPanel extends JPanel {
             if (!(Factory.getSpotifyApi().getCurrentUsersProfile() == null)) {
                 PublicValues.countryCode = Factory.getSpotifyApi().getCurrentUsersProfile().build().execute().getCountry();
             }
-        } catch (IOException | ParseException | SpotifyWebApiException e) {
+        } catch (IOException | ParseException | SpotifyWebApiException | NullPointerException e) {
             ConsoleLogging.Throwable(e);
             // Defaulting to German
             PublicValues.countryCode = CountryCode.DE;
@@ -619,7 +640,16 @@ public class ContentPanel extends JPanel {
                     setFeedbackVisible();
                     break;
                 default:
-                    GraphicalMessage.bug("Legacy JTabbedPane changeListener");
+                    int selected = legacyswitch.getSelectedIndex();
+                    if(extraTabs.isEmpty()) {
+                        ConsoleLogging.warning("JTabbedPane tried to open pane outside of the allowed range");
+                        break;
+                    }
+                    hideAllPanel();
+                    TabEntry entry = extraTabs.get(selected - 7);
+                    preventBugLegacySwitch();
+                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    entry.component.setVisible(true);
                     break;
             }
         });
@@ -895,6 +925,29 @@ public class ContentPanel extends JPanel {
         libraryVisble = false;
         hotlistVisible = false;
         feedbackVisible = false;
+        for(TabEntry entry : extraTabs) {
+            entry.component.setVisible(false);
+        }
+    }
+
+    public void hideAllPanel() {
+        librarypanel.setVisible(false);
+        searchpanel.setVisible(false);
+        hotlistpanel.setVisible(false);
+        feedbackpanel.setVisible(false);
+        playlistspanel.setVisible(false);
+        queuepanel.setVisible(false);
+        homepanel.getComponent().setVisible(false);
+        homeVisible = false;
+        queueVisible = false;
+        playlistsVisible = false;
+        searchVisible = false;
+        libraryVisble = false;
+        hotlistVisible = false;
+        feedbackVisible = false;
+        for(TabEntry entry : extraTabs) {
+            entry.component.setVisible(false);
+        }
     }
 
     public void setHotlistVisible() {

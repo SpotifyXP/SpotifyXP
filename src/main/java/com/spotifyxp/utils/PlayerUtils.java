@@ -8,6 +8,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -17,7 +18,7 @@ import java.io.File;
 import java.net.UnknownHostException;
 
 public class PlayerUtils {
-    public static Player buildPlayer() {
+    public PlayerDefine buildPlayer() {
         Session.Builder builder = new Session.Builder()
                 .setPreferredLocale("en")
                 .setDeviceType(Connect.DeviceType.COMPUTER)
@@ -67,7 +68,7 @@ public class PlayerUtils {
         return null;
     }
 
-    static Runnable connectionReconnectedListener() {
+    Runnable connectionReconnectedListener() {
         return new Runnable() {
             @Override
             public void run() {
@@ -77,7 +78,7 @@ public class PlayerUtils {
         };
     }
 
-    static Runnable connectionDroppedListener() {
+    Runnable connectionDroppedListener() {
         return new Runnable() {
             @Override
             public void run() {
@@ -87,7 +88,7 @@ public class PlayerUtils {
         };
     }
 
-    public static Player buildPlayer(boolean ignore) throws Session.SpotifyAuthenticationException {
+    public PlayerDefine buildPlayer(boolean ignore) throws Session.SpotifyAuthenticationException {
         Session.Builder builder = new Session.Builder()
                 .setPreferredLocale("en")
                 .setDeviceType(Connect.DeviceType.COMPUTER)
@@ -124,6 +125,8 @@ public class PlayerUtils {
             return player;
         }catch (Session.SpotifyAuthenticationException e) {
             throw new Session.SpotifyAuthenticationException(Keyexchange.APLoginFailed.newBuilder().setErrorCode(Keyexchange.ErrorCode.BadCredentials).build());
+        }catch (UnknownHostException e) {
+            GraphicalMessage.sorryErrorExit("No internet connection!");
         }catch(Exception e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.sorryError("Failed to build player");

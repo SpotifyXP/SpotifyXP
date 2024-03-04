@@ -35,13 +35,16 @@ import java.util.Objects;
 /**
  * @author Gianlu
  */
-public final class TokenProvider {
+public class TokenProvider {
     private final static int TOKEN_EXPIRE_THRESHOLD = 10;
-    private final Session session;
+    private Session session;
     private final List<StoredToken> tokens = new ArrayList<>();
 
-    TokenProvider(@NotNull Session session) {
+    public TokenProvider(@NotNull Session session) {
         this.session = session;
+    }
+
+    public TokenProvider() {
     }
 
     @Nullable
@@ -84,7 +87,7 @@ public final class TokenProvider {
         public final String[] scopes;
         public final long timestamp;
 
-        private StoredToken(@NotNull JsonObject obj) {
+        public StoredToken(@NotNull JsonObject obj) {
             timestamp = TimeProvider.currentTimeMillis();
             expiresIn = obj.get("expiresIn").getAsInt();
             accessToken = obj.get("accessToken").getAsString();
@@ -93,6 +96,13 @@ public final class TokenProvider {
             scopes = new String[scopesArray.size()];
             for (int i = 0; i < scopesArray.size(); i++)
                 scopes[i] = scopesArray.get(i).getAsString();
+        }
+
+        public StoredToken() {
+            timestamp = TimeProvider.currentTimeMillis();
+            expiresIn = 0;
+            accessToken = "";
+            scopes = new String[] {};
         }
 
         public boolean expired() {

@@ -27,6 +27,7 @@ import org.apache.hc.core5.util.Timeout;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 
 public class SpotifyHttpManager implements IHttpManager {
 
@@ -251,7 +252,12 @@ public class SpotifyHttpManager implements IHttpManager {
   private CloseableHttpResponse execute(CloseableHttpClient httpClient, ClassicHttpRequest method) throws
     IOException {
     HttpCacheContext context = HttpCacheContext.create();
-    CloseableHttpResponse response = httpClient.execute(method, context);
+    CloseableHttpResponse response;
+    try {
+      response = httpClient.execute(method, context);
+    }catch (UnknownHostException e) {
+      return null;
+    }
     try {
       CacheResponseStatus responseStatus = context.getCacheResponseStatus();
 

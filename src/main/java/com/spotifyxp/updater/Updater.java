@@ -2,6 +2,7 @@ package com.spotifyxp.updater;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -17,7 +18,7 @@ public class Updater {
     }
     public UpdateInfo updateAvailable() {
         try {
-            GitHubAPI.Releases releases = new GitHubAPI.Releases();
+            GitHubAPI.Releases releases = Factory.getGitHubAPI().getReleases();
             GitHubAPI.Release release = releases.getLatest();
             UpdateInfo info = new UpdateInfo();
             int Releasemain = Integer.parseInt(release.version.replace("v", "").split("\\.")[0]);
@@ -57,7 +58,7 @@ public class Updater {
 
     public boolean isNightly() {
         try {
-            GitHubAPI.Releases releases = new GitHubAPI.Releases();
+            GitHubAPI.Releases  releases = Factory.getGitHubAPI().getReleases();
             GitHubAPI.Release release = releases.getLatest();
             int Releasemain = Integer.parseInt(release.version.replace("v", "").split("\\.")[0]);
             int Releasesub = Integer.parseInt(release.version.replace("v", "").split("\\.")[1]);
@@ -111,8 +112,8 @@ public class Updater {
     }
 
     public String getChangelogForNewest() {
-        JSONObject root = new JSONObject(GitHubAPI.makeRequestGet("https://api.github.com/repos/Werwolf2303/SpotifyXP/releases/latest"));
-        GitHubAPI.Release release = new GitHubAPI.Release();
+        JSONObject root = new JSONObject(Factory.getGitHubAPI().makeRequestGet("https://api.github.com/repos/Werwolf2303/SpotifyXP/releases/latest"));
+        GitHubAPI.Release release = Factory.getGitHubAPI().getReleases().getLatest();
         return root.getString("body");
     }
 }

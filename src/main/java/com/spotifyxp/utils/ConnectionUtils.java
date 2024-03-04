@@ -34,6 +34,19 @@ public class ConnectionUtils {
         }
     }
 
+    public static String makeGet(String url, String token) {
+        try {
+            HttpClient client = HttpClients.createDefault();
+            HttpGet get = new HttpGet(url);
+            get.setHeader("User-Agent", ApplicationUtils.getUserAgent());
+            get.setHeader("Authorization", "Bearer " + token);
+            return EntityUtils.toString(client.execute(get).getEntity());
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            return "FAILED";
+        }
+    }
+
     public static boolean isURLReachable(String url) {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(url.split(":")[0], Integer.parseInt(url.split(":")[1])), 6);

@@ -160,6 +160,9 @@ public class CdnManager {
 
             if (fileId != null) {
                 String tokenStr = url.queryParameter("__token__");
+
+                String expiresStr = url.queryParameter("Expires");
+
                 if (tokenStr != null && !tokenStr.isEmpty()) {
                     Long expireAt = null;
                     String[] split = tokenStr.split("~");
@@ -180,6 +183,15 @@ public class CdnManager {
                     }
 
                     expiration = expireAt * 1000;
+                } else if( expiresStr != null && !expiresStr.isEmpty()) {
+                    String expiresStrVal = expiresStr.split("~")[0];
+                    try {
+                        expiration = Long.parseLong(expiresStrVal) * 1000;
+                        ConsoleLoggingModules.info("Expires-based expiration {} ms", expiration);
+                    } catch (NumberFormatException e) {
+                        expiration = -1;
+                        ConsoleLoggingModules.warning("Invalid Expires param in CDN url: {}", url);
+                    }
                 } else {
                     String param = url.queryParameterName(0);
                     int i = param.indexOf('_');

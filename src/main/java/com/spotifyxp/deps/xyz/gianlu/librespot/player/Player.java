@@ -64,7 +64,7 @@ import java.util.concurrent.*;
  * @author Gianlu
  */
 @SuppressWarnings({"JavadocBlankLines", "NullableProblems", "BooleanMethodIsAlwaysInverted", "DataFlowIssue"})
-public class Player implements Closeable {
+public class Player implements Closeable, PlayerDefine {
     public static final int VOLUME_MAX = 65536;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory((r) -> "release-line-scheduler-" + r.hashCode()));
     private final Session session;
@@ -87,6 +87,12 @@ public class Player implements Closeable {
         });
 
         initState();
+
+        start();
+    }
+
+    public void start() {
+        session.start();
     }
 
     public Player() {
@@ -715,6 +721,7 @@ public class Player implements Closeable {
             if (prev.isOk()) {
                 state.setPosition(0);
                 loadTrack(true, TransitionInfo.skippedPrev(state));
+                events.seeked(0);
             } else {
                 ConsoleLoggingModules.error("Failed loading previous song: " + prev);
                 panicState(null);
@@ -723,6 +730,7 @@ public class Player implements Closeable {
             playerSession.seekCurrent(0);
             state.setPosition(0);
             state.updated();
+            events.seeked(0);
         }
     }
 
