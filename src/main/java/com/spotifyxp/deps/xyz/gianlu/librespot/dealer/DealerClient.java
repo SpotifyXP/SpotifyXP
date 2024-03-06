@@ -53,15 +53,10 @@ public class DealerClient implements Closeable {
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory((r) -> "dealer-scheduler-" + r.hashCode()));
     private volatile ConnectionHolder conn = null;
     private ScheduledFuture<?> lastScheduledReconnection;
-    private CountDownLatch startLatch = new CountDownLatch(1);
 
     public DealerClient(@NotNull Session session) {
         this.session = session;
         this.asyncWorker = new AsyncWorker<>("dealer-worker", Runnable::run);
-    }
-
-    public void start() {
-        startLatch.countDown();
     }
 
     @NotNull
@@ -84,10 +79,14 @@ public class DealerClient implements Closeable {
     }
 
     private void waitForListeners() {
-        try {
-            startLatch.await();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        synchronized (msgListeners) {
+            if (!msgListeners.isEmpty()) return;
+
+            try {
+                msgListeners.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

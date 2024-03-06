@@ -87,14 +87,8 @@ public class Player implements Closeable, PlayerDefine {
         });
 
         initState();
-
-        start();
     }
-
-    public void start() {
-        session.start();
-    }
-
+    
     public Player() {
         this.conf = null;
         this.session = null;
