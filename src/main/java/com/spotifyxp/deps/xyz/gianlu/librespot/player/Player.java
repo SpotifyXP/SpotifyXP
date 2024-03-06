@@ -88,7 +88,7 @@ public class Player implements Closeable, PlayerDefine {
 
         initState();
     }
-    
+
     public Player() {
         this.conf = null;
         this.session = null;

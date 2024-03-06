@@ -429,10 +429,6 @@ public class Session implements Closeable {
         }, "hm://connect-state/v1/connect/logout");
     }
 
-    public void start() {
-        dealer().start();
-    }
-
     /**
      * Authenticates with the server. Does not create all the components unlike {@link Session#authenticate(Authentication.LoginCredentials)}.
      *
