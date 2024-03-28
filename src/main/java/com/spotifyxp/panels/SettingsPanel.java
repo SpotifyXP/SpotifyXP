@@ -2,8 +2,10 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.factory.Factory;
 import com.spotifyxp.lastfm.LFMValues;
 import com.spotifyxp.lastfm.LastFMLogin;
+import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JScrollText;
 import com.spotifyxp.theming.Theme;
@@ -235,15 +237,12 @@ public class SettingsPanel extends JPanel {
 
         ArrayList<String> selectcache = new ArrayList<>();
 
-        for(Locale locale : Locale.getAvailableLocales()) {
-            if(locale.getDisplayLanguage().isEmpty()) {
+        for(libLanguage.Language language : libLanguage.Language.values()) {
+            if(selectcache.contains(language.getName())) {
                 continue;
             }
-            if(selectcache.contains(locale.getDisplayLanguage())) {
-                continue;
-            }
-            if(new Resources(true).readToInputStream("lang/" + locale.getLanguage() + ".json") != null) {
-                selectcache.add(locale.getDisplayLanguage());
+            if(new Resources(true).readToInputStream("lang/" + language.getCode() + ".json") != null) {
+                selectcache.add(language.getName());
             }
         }
 

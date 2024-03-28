@@ -221,6 +221,12 @@ public class libLanguage {
             sc = code;
             sn = name;
         }
+        public String getName() {
+            return sn;
+        }
+        public String getCode() {
+            return sc;
+        }
         public static String getNameFromCode(String code) {
             for(Language e : Language.values()) {
                 if(e.sc.equalsIgnoreCase(code)) {
