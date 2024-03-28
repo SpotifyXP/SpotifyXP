@@ -11,6 +11,8 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -62,14 +64,14 @@ public class Utils {
     }
 
     @SuppressWarnings("all")
-    public static void checkPermission(Class... expectedCallerClasses) {
-        StackTraceElement callerTrace = Thread.currentThread().getStackTrace()[3];
+    public static void checkPermission(String functionOrClassName, ArrayList<Class<?>> expectedCallerClasses) {
+        StackTraceElement callerTrace = Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 2];
         for (Class expectedClass : expectedCallerClasses) {
             if (callerTrace.getClassName().equals(expectedClass.getName())) {
                 return;
             }
         }
-        throw new RuntimeException("A suspicious class tried to call ThreadManager.addThread! Blocking access...");
+        throw new RuntimeException("Class " + Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName() + " has no permission to access " + functionOrClassName + "! Blocking...");
     }
 
     public static int getDisplayNumber(JFrame frame) {

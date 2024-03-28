@@ -19,7 +19,9 @@ public class Resources {
         }
         InputStream stream = getClass().getResourceAsStream(path);
         if(stream==null) {
-            if(!sm) { System.err.println("File not found: " + path); }
+            if(!sm) {
+                System.err.println("File not found: " + path);
+            }
         }
         return stream;
     }
