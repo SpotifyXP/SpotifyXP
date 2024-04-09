@@ -1,11 +1,13 @@
-package com.spotifyxp.factory;
+package com.spotifyxp.manager;
 
 import com.spotifyxp.api.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.utils.PlayerUtils;
 
+import java.util.ArrayList;
+
 /**
- * This class is a factory
+ * This class is a manager
  *
  * @apiNote
  * get[insertName] -> Gets an instance of the specified class
@@ -13,7 +15,7 @@ import com.spotifyxp.utils.PlayerUtils;
  * <br> Get Example: getUnofficialSpotifyApi()
  * <br> Set Example: setUnofficialSpotifyApi( [instance of UnofficialSpotifyAPI] )
  */
-public class Factory {
+public class InstanceManager {
     static SpotifyAPI api;
     static SpotifyApi sapi;
     static OAuthPKCE pkce;
@@ -21,6 +23,7 @@ public class Factory {
     static GitHubAPI gitHubAPI;
     static UnofficialSpotifyAPI unofficialSpotifyAPI;
     static PlayerUtils playerUtils;
+    static ArrayList<Object> classInstances = new ArrayList<>();
 
     public static Player getPlayer() {
         if(player == null) {
@@ -42,7 +45,7 @@ public class Factory {
 
     public static UnofficialSpotifyAPI getUnofficialSpotifyApi() {
         if(unofficialSpotifyAPI == null) {
-            unofficialSpotifyAPI = new UnofficialSpotifyAPI(Factory.getPkce().getToken());
+            unofficialSpotifyAPI = new UnofficialSpotifyAPI(InstanceManager.getPkce().getToken());
         }
         return unofficialSpotifyAPI;
     }
@@ -97,5 +100,28 @@ public class Factory {
 
     public static void setGitHubAPI(GitHubAPI api) {
         gitHubAPI = api;
+    }
+
+    public static void destroy() {
+        classInstances.clear();
+        api = null;
+        sapi = null;
+        pkce = null;
+        player = null;
+        gitHubAPI = null;
+        unofficialSpotifyAPI = null;
+        playerUtils = null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T getInstanceOf(Class<T> classReference) throws InstantiationException, IllegalAccessException {
+        for(Object clazz : classInstances) {
+            if(classReference.isInstance(clazz)) {
+                return (T) clazz;
+            }
+        }
+        Object instance = classReference.newInstance();
+        classInstances.add(instance);
+        return (T) instance;
     }
  }

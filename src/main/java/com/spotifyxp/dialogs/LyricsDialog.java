@@ -5,7 +5,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -52,9 +52,9 @@ public class LyricsDialog extends RAWTextArea {
             area.setText("");
             try {
                 if (frame.isVisible()) {
-                    lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                    lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
                 } else {
-                    lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                    lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
                     frame.add(pane, BorderLayout.CENTER);
                     frame.addWindowListener(new WindowAdapter() {
                         @Override
@@ -111,10 +111,10 @@ public class LyricsDialog extends RAWTextArea {
             area.setColorModeActive();
             try {
                 if (frame.isVisible()) {
-                    lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                    lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
                     //New lyrics
                 } else {
-                    lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                    lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
                     frame.add(pane, BorderLayout.CENTER);
                     JMenuBar bar = new JMenuBar();
                     JMenu mode = new JMenu(PublicValues.language.translate("ui.lyrics.mode.menu"));
@@ -166,7 +166,7 @@ public class LyricsDialog extends RAWTextArea {
                 }
                 int activeLine = 0;
                 for(ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
-                    if(line.startTimeMS < Factory.getPlayer().getPlayer().time()) {
+                    if(line.startTimeMS < InstanceManager.getPlayer().getPlayer().time()) {
                         activeLine++;
                     }
                 }
@@ -202,14 +202,14 @@ public class LyricsDialog extends RAWTextArea {
         return new Runnable() {
             @Override
             public void run() {
-                lyrics = new UnofficialSpotifyAPI(Factory.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
                 coloredLines.clear();
                 for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
                     coloredLines.add(new ColoredLyricsLine(PublicValues.globalFontColor, line.words, line.startTimeMs));
                 }
                 int activeLine = 0;
                 for(ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
-                    if(line.startTimeMS < Factory.getPlayer().getPlayer().time()) {
+                    if(line.startTimeMS < InstanceManager.getPlayer().getPlayer().time()) {
                         activeLine++;
                         break;
                     }

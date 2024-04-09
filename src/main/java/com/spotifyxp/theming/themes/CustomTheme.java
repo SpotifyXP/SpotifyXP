@@ -144,12 +144,17 @@ public class CustomTheme implements Theme {
         }
 
         String openColorWheel(String color) {
-            Color defc = Color.getColor("#FFFFFF");
-            if(!color.isEmpty()) {
-                defc = Color.getColor(color);
+            try {
+                Color defc = Color.getColor("#FFFFFF");
+                if (!color.isEmpty()) {
+                    defc = Color.getColor(color);
+                }
+                Color c = JColorChooser.showDialog(this, "Choose the Color", defc); //ToDo: Translate the text
+                return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
+            }catch (NullPointerException e) {
+                //User cancelled the color selection
+                return color;
             }
-            Color c = JColorChooser.showDialog(this, "Choose the Color", defc);
-            return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
         }
     }
 
@@ -210,8 +215,6 @@ public class CustomTheme implements Theme {
                     break;
                 case "FlatLightLaf":
                     UIManager.setLookAndFeel(new FlatLightLaf());
-                    break;
-                case "Ugly":
                     break;
                 case "System":
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

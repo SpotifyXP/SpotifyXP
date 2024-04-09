@@ -5,7 +5,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
@@ -19,7 +19,7 @@ public class SpotifyAPI {
     static SpotifyApi spotifyApi = null;
 
     /**
-     * Injects a SpotifyApi instande (For debugging)
+     * Injects a SpotifyApi instance (For debugging)
      * @param api an instance of the class SpotifyApi
      * @see SpotifyApi
      */
@@ -39,11 +39,11 @@ public class SpotifyAPI {
                 int offset = 0;
                 int limit = 50;
                 int parsed = 0;
-                int total = Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
+                int total = InstanceManager.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
                 int counter = 0;
                 int last = 0;
                 while(parsed != total) {
-                    for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                    for(AlbumSimplified album : InstanceManager.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                         totable.addModifyAction(() -> ((DefaultTableModel) totable.getModel()).addRow(new Object[]{album.getName()}));
                         uricache.add(album.getUri());
                         parsed++;

@@ -9,7 +9,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lib.libDetect;
@@ -59,11 +59,11 @@ public class Initiator {
                 if (s > 10) {
                     if(!(destroyCounter > 2)) {
                         ConsoleLogging.warning("Init of player failed! Retrying... (" + destroyCounter + ")");
-                        Factory.getPlayer().destroy();
+                        InstanceManager.getPlayer().destroy();
                         Thread playerBuildThread = new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                Factory.getPlayer();
+                                InstanceManager.getPlayer();
                             }
                         });
                         playerBuildThread.start();
@@ -381,12 +381,11 @@ public class Initiator {
         SplashPanel.linfo.setText("Creating api...");
         Player player = null;
         thread.start();
-        Factory.getSpotifyAPI();
-        player = Factory.getPlayer();
+        InstanceManager.getSpotifyAPI();
+        player = InstanceManager.getPlayer();
         past = true;
         SplashPanel.linfo.setText("Create advanced api key...");
-        PublicValues.elevated = Factory.getPkce();
-        Factory.getUnofficialSpotifyApi();
+        InstanceManager.getUnofficialSpotifyApi();
         SplashPanel.linfo.setText("Init Last.fm");
         new LastFM();
     }

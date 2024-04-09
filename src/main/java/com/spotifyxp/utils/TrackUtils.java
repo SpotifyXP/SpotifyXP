@@ -1,8 +1,6 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.audio.Quality;
-import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
@@ -12,28 +10,19 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn.CdnManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.Decoders;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.VorbisOnlyAudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.LocalId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade.CrossfadeController;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.logging.ConsoleLoggingModules;
 
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"SameReturnValue", "IntegerDivisionInFloatingPointContext", "BooleanMethodIsAlwaysInverted"})
 public class TrackUtils {
@@ -81,11 +70,11 @@ public class TrackUtils {
     }
     public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
         try {
-            if(!Factory.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
-                Factory.getPlayer().getPlayer().tracks(true).previous.clear();
+            if(!InstanceManager.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
+                InstanceManager.getPlayer().getPlayer().tracks(true).previous.clear();
             }
-            if(!Factory.getPlayer().getPlayer().tracks(true).next.isEmpty()) {
-                Factory.getPlayer().getPlayer().tracks(true).next.clear();
+            if(!InstanceManager.getPlayer().getPlayer().tracks(true).next.isEmpty()) {
+                InstanceManager.getPlayer().getPlayer().tracks(true).next.clear();
             }
         }catch (Exception exc) {
             ConsoleLogging.warning("Couldn't queue tracks");
@@ -102,7 +91,7 @@ public class TrackUtils {
                 if(counter==addintable.getRowCount()) {
                     break; //User is on the last song
                 }
-                Factory.getPlayer().getPlayer().addToQueue(s);
+                InstanceManager.getPlayer().getPlayer().addToQueue(s);
             }
         }catch (ArrayIndexOutOfBoundsException exception) {
             GraphicalMessage.bug("TrackUtils line 112");
@@ -116,10 +105,10 @@ public class TrackUtils {
                 if(counter==addintable.getRowCount()) {
                     break; //User is on the last song
                 }
-                Factory.getPlayer().getPlayer().addToQueue(s);
+                InstanceManager.getPlayer().getPlayer().addToQueue(s);
             }
         }
-        Factory.getPlayer().getPlayer().setShuffle(PublicValues.shuffle);
+        InstanceManager.getPlayer().getPlayer().setShuffle(PublicValues.shuffle);
         if(PublicValues.shuffle) {
             Shuffle.makeShuffle();
         }
@@ -171,7 +160,7 @@ public class TrackUtils {
 
     public static boolean isTrackLiked(String id) {
         try {
-            return Factory.getSpotifyApi().checkUsersSavedTracks(id).build().execute()[0];
+            return InstanceManager.getSpotifyApi().checkUsersSavedTracks(id).build().execute()[0];
         }catch (Exception e) {
             ConsoleLogging.Throwable(e);
             return false;
@@ -179,12 +168,12 @@ public class TrackUtils {
     }
 
     public static void removeLovedTrack(DefTable table, ArrayList<String> uricache) {
-        Factory.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
+        InstanceManager.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
         table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
     public static void removeFollowedPlaylist(DefTable table, ArrayList<String> uricache) {
-        Factory.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
+        InstanceManager.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
         table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }

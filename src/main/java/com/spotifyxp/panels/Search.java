@@ -3,7 +3,7 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -196,7 +196,7 @@ public class Search extends JPanel {
                 }
                 try {
                     if (track) {
-                        for (Track t : Factory.getSpotifyApi().searchTracks(searchtitle + " " + searchartist).limit(50).build().execute().getItems()) {
+                        for (Track t : InstanceManager.getSpotifyApi().searchTracks(searchtitle + " " + searchartist).limit(50).build().execute().getItems()) {
                             String artists = TrackUtils.getArtists(t.getArtists());
                             if (!searchartist.equalsIgnoreCase("")) {
                                 if (!TrackUtils.trackHasArtist(t.getArtists(), searchartist, true)) {
@@ -206,11 +206,11 @@ public class Search extends JPanel {
                             if (excludeExplicit) {
                                 if (!t.getIsExplicit()) {
                                     searchsonglistcache.add(t.getUri());
-                                    Factory.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
+                                    InstanceManager.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
                                 }
                             } else {
                                 searchsonglistcache.add(t.getUri());
-                                Factory.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
+                                InstanceManager.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
                             }
                         }
                     }
@@ -220,14 +220,14 @@ public class Search extends JPanel {
                         if (searchtitle.isEmpty()) {
                             searchtitle = searchartist;
                         }
-                        for (Artist a : Factory.getSpotifyApi().searchArtists(searchtitle).build().execute().getItems()) {
+                        for (Artist a : InstanceManager.getSpotifyApi().searchArtists(searchtitle).build().execute().getItems()) {
                             searchsonglistcache.add(a.getUri());
-                            Factory.getSpotifyAPI().addArtistToList(a, searchsonglist);
+                            InstanceManager.getSpotifyAPI().addArtistToList(a, searchsonglist);
                         }
 
                     }
                     if (album) {
-                        for (AlbumSimplified a : Factory.getSpotifyApi().searchAlbums(searchtitle).build().execute().getItems()) {
+                        for (AlbumSimplified a : InstanceManager.getSpotifyApi().searchAlbums(searchtitle).build().execute().getItems()) {
                             if (!searchartist.isEmpty()) {
                                 if (!TrackUtils.trackHasArtist(a.getArtists(), searchartist, true)) {
                                     continue;
@@ -238,7 +238,7 @@ public class Search extends JPanel {
                         }
                     }
                     if (show) {
-                        for (ShowSimplified s : Factory.getSpotifyApi().searchShows(searchtitle).build().execute().getItems()) {
+                        for (ShowSimplified s : InstanceManager.getSpotifyApi().searchShows(searchtitle).build().execute().getItems()) {
                             if (!searchartist.isEmpty()) {
                                 if (!s.getPublisher().equalsIgnoreCase(searchartist)) {
                                     continue;
@@ -249,14 +249,14 @@ public class Search extends JPanel {
                         }
                     }
                     if (playlist) {
-                        for (PlaylistSimplified t : Factory.getSpotifyApi().searchPlaylists(searchtitle).build().execute().getItems()) {
+                        for (PlaylistSimplified t : InstanceManager.getSpotifyApi().searchPlaylists(searchtitle).build().execute().getItems()) {
                             if (!searchartist.isEmpty()) {
                                 if (!t.getOwner().getDisplayName().equalsIgnoreCase(searchartist)) {
                                     continue;
                                 }
                             }
                             searchsonglistcache.add(t.getUri());
-                            Factory.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
+                            InstanceManager.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
                         }
                     }
                 } catch (IOException | SpotifyWebApiException | ParseException ex) {
@@ -288,7 +288,7 @@ public class Search extends JPanel {
                                 boolean playlist = searchsonglistcache.get(0).split(":")[1].equals("playlist");
                                 try {
                                     if (track) {
-                                        for (Track t : Factory.getSpotifyApi().searchTracks(searchtitle + " " + searchartist).limit(50).offset(searchsonglistcache.size()).build().execute().getItems()) {
+                                        for (Track t : InstanceManager.getSpotifyApi().searchTracks(searchtitle + " " + searchartist).limit(50).offset(searchsonglistcache.size()).build().execute().getItems()) {
                                             String artists = TrackUtils.getArtists(t.getArtists());
                                             if (!searchartist.equalsIgnoreCase("")) {
                                                 if (!TrackUtils.trackHasArtist(t.getArtists(), searchartist, true)) {
@@ -298,11 +298,11 @@ public class Search extends JPanel {
                                             if (excludeExplicit) {
                                                 if (!t.getIsExplicit()) {
                                                     searchsonglistcache.add(t.getUri());
-                                                    Factory.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
+                                                    InstanceManager.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
                                                 }
                                             } else {
                                                 searchsonglistcache.add(t.getUri());
-                                                Factory.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
+                                                InstanceManager.getSpotifyAPI().addSongToList(artists, t, searchsonglist);
                                             }
                                         }
                                     }
@@ -312,13 +312,13 @@ public class Search extends JPanel {
                                         if (searchtitle.isEmpty()) {
                                             searchtitle = searchartist;
                                         }
-                                        for (Artist a : Factory.getSpotifyApi().searchArtists(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
+                                        for (Artist a : InstanceManager.getSpotifyApi().searchArtists(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
                                             searchsonglistcache.add(a.getUri());
-                                            Factory.getSpotifyAPI().addArtistToList(a, searchsonglist);
+                                            InstanceManager.getSpotifyAPI().addArtistToList(a, searchsonglist);
                                         }
                                     }
                                     if (album) {
-                                        for (AlbumSimplified a : Factory.getSpotifyApi().searchAlbums(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
+                                        for (AlbumSimplified a : InstanceManager.getSpotifyApi().searchAlbums(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
                                             if (!searchartist.isEmpty()) {
                                                 if (!TrackUtils.trackHasArtist(a.getArtists(), searchartist, true)) {
                                                     continue;
@@ -329,7 +329,7 @@ public class Search extends JPanel {
                                         }
                                     }
                                     if (show) {
-                                        for (ShowSimplified s : Factory.getSpotifyApi().searchShows(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
+                                        for (ShowSimplified s : InstanceManager.getSpotifyApi().searchShows(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
                                             if (!searchartist.isEmpty()) {
                                                 if (!s.getPublisher().equalsIgnoreCase(searchartist)) {
                                                     continue;
@@ -340,14 +340,14 @@ public class Search extends JPanel {
                                         }
                                     }
                                     if (playlist) {
-                                        for (PlaylistSimplified t : Factory.getSpotifyApi().searchPlaylists(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
+                                        for (PlaylistSimplified t : InstanceManager.getSpotifyApi().searchPlaylists(searchtitle).offset(searchsonglistcache.size()).build().execute().getItems()) {
                                             if (!searchartist.isEmpty()) {
                                                 if (!t.getOwner().getDisplayName().equalsIgnoreCase(searchartist)) {
                                                     continue;
                                                 }
                                             }
                                             searchsonglistcache.add(t.getUri());
-                                            Factory.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
+                                            InstanceManager.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
                                         }
                                     }
                                 } catch (IOException | SpotifyWebApiException | ParseException ex) {
@@ -389,14 +389,14 @@ public class Search extends JPanel {
                         switch (searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1].toLowerCase()) {
                             case "playlist":
                                 try {
-                                    Playlist pl = Factory.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                    Playlist pl = InstanceManager.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
                                     int parsed = 0;
                                     int offset = 0;
                                     int counter = 0;
                                     int last = 0;
                                     int total = pl.getTracks().getTotal();
                                     while (parsed != total) {
-                                        for (PlaylistTrack track : Factory.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute().getItems()) {
+                                        for (PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute().getItems()) {
                                             ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
                                             searchplaylistsongscache.add(track.getTrack().getUri());
                                             parsed++;
@@ -418,7 +418,7 @@ public class Search extends JPanel {
                                 break;
                             case "artist":
                                 try {
-                                    Artist a = Factory.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                    Artist a = InstanceManager.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
                                     try {
                                         ContentPanel.artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
@@ -427,18 +427,18 @@ public class Search extends JPanel {
                                     ContentPanel.artistPanel.artisttitle.setText(a.getName());
                                     DefThread trackthread = new DefThread(() -> {
                                         try {
-                                            for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
+                                            for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
                                                 if (!ContentPanel.artistPanel.isVisible()) {
                                                     break;
                                                 }
                                                 ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
                                             }
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> Factory.getSpotifyAPI().addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, a.getUri(), ContentPanel.artistPanel.artistalbumalbumtable));
+                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, a.getUri(), ContentPanel.artistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (Exception e1) {
@@ -451,9 +451,9 @@ public class Search extends JPanel {
                                     int offset = 0;
                                     int last = 0;
                                     int counter = 0;
-                                    int total = Factory.getSpotifyApi().getShow(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getEpisodes().getTotal();
+                                    int total = InstanceManager.getSpotifyApi().getShow(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getEpisodes().getTotal();
                                     while (parsed != total) {
-                                        for (EpisodeSimplified episode : Factory.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(50).build().execute().getItems()) {
+                                        for (EpisodeSimplified episode : InstanceManager.getSpotifyApi().getShowEpisodes(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(50).build().execute().getItems()) {
                                             ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{episode.getName(), TrackUtils.calculateFileSizeKb(episode.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(episode.getDurationMs())});
                                             searchplaylistsongscache.add(episode.getUri());
                                             parsed++;
@@ -479,9 +479,9 @@ public class Search extends JPanel {
                                     int offset = 0;
                                     int last = 0;
                                     int counter = 0;
-                                    int total = Factory.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getTotal();
+                                    int total = InstanceManager.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getTotal();
                                     while (parsed != total) {
-                                        for (TrackSimplified simplified : Factory.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(50).build().execute().getItems()) {
+                                        for (TrackSimplified simplified : InstanceManager.getSpotifyApi().getAlbumsTracks(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(50).build().execute().getItems()) {
                                             ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                                             searchplaylistsongscache.add(simplified.getUri());
                                             parsed++;
@@ -502,7 +502,7 @@ public class Search extends JPanel {
                                 }
                                 break;
                             case "track":
-                                Factory.getPlayer().getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, PublicValues.shuffle, false);
+                                InstanceManager.getPlayer().getPlayer().load(searchsonglistcache.get(searchsonglist.getSelectedRow()), true, PublicValues.shuffle, false);
                                 break;
                             default:
                                 throw new RuntimeException("Invalid uri '" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1].toLowerCase() + "'");
@@ -543,7 +543,7 @@ public class Search extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    Factory.getPlayer().getPlayer().load(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()), true, PublicValues.shuffle, false);
+                    InstanceManager.getPlayer().getPlayer().load(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()), true, PublicValues.shuffle, false);
                     searchplaylisttable.setColumnSelectionInterval(0, searchplaylisttable.getColumnCount() - 1);
                     TrackUtils.addAllToQueue(searchplaylistsongscache, searchplaylisttable);
                 }
@@ -569,7 +569,7 @@ public class Search extends JPanel {
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.addtolibrary"), () -> {
             PlayerArea.heart.isFilled = true;
             PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
-            Factory.getSpotifyApi().saveTracksForUser("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
+            InstanceManager.getSpotifyApi().saveTracksForUser("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
             if (!Library.libraryuricache.isEmpty()) {
                 Library.fetchOnlyFirstSongsFromUserLibrary();
             }

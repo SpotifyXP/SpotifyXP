@@ -3,7 +3,7 @@ package com.spotifyxp.api;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.http.Header;
@@ -19,10 +19,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.TimeZone;
 
 public class UnofficialSpotifyAPI {
     //This API is used in the Official Spotify Client
@@ -44,7 +42,7 @@ public class UnofficialSpotifyAPI {
     private static String makeGetStatic(String url, Header... headers) {
         HttpClient client = HttpClients.createDefault();
         HttpGet get = new HttpGet(url);
-        get.setHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        get.setHeader("Authorization", "Bearer " + InstanceManager.getUnofficialSpotifyApi().api);
         get.setHeader("App-Platform", "Win32");
         get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
         for (Header header : headers) {
@@ -61,7 +59,7 @@ public class UnofficialSpotifyAPI {
     private String makeGet(String url, Header... headers) {
         HttpClient client = HttpClients.createDefault();
         HttpGet get = new HttpGet(url);
-        get.setHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        get.setHeader("Authorization", "Bearer " + InstanceManager.getUnofficialSpotifyApi().api);
         get.setHeader("App-Platform", "Win32");
         get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
         for (Header header : headers) {
@@ -78,7 +76,7 @@ public class UnofficialSpotifyAPI {
     private String makePost(String url, Header... headers) {
         HttpClient client = HttpClients.createDefault();
         HttpPost post = new HttpPost(url);
-        post.setHeader("Authorization", "Bearer " + Factory.getUnofficialSpotifyApi().api);
+        post.setHeader("Authorization", "Bearer " + InstanceManager.getUnofficialSpotifyApi().api);
         post.setHeader("App-Platform", "Win32");
         post.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
         for (Header header : headers) {
@@ -93,6 +91,9 @@ public class UnofficialSpotifyAPI {
     }
 
 
+    /**
+     * Holds all the information of the lyrics for a track
+     */
     public static class Lyrics {
         public String syncType = "";
         public final ArrayList<LyricsLine> lines = new ArrayList<>();
@@ -102,6 +103,9 @@ public class UnofficialSpotifyAPI {
         public String providerLyricsId = "";
     }
 
+    /**
+     * Holds all the information of a lyrics text line
+     */
     public static class LyricsLine {
         public long startTimeMs = 0;
         public String words = "";
@@ -133,78 +137,46 @@ public class UnofficialSpotifyAPI {
         return lyrics;
     }
 
-    public static String getHomeTabJSON() {
-        String url;
-        try {
-            url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
-        } catch (UnsupportedEncodingException e) {
-            url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
-        }
-        return makeGetStatic(url);
-    }
-
+    /**
+     Holds information about an artist
+     */
     public static class Artist {
         public String id = "";
         public String uri = "";
         public boolean saved = false;
         public String name = "";
         public String biography = "";
-        public String artistImage = "";
-        public String artistBackgroundImage = "";
         public String a = "";
     }
 
-    public static class ArtistPlaylist {
-        public String uri = "";
-        public String name = "";
-        public String description = "";
-        public String imageURL = "";
-    }
-
-    public void getArtist(String uri) {
-        //b82fd661d09d47afff0d0239b165e01c7b21926923064ecc7e63f0cde2b12f4e
-        JSONObject root = new JSONObject(new JSONObject(makeGet("https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=queryArtistOverview&variables={\"uri\":\"" + uri + "\",\"locale\":\"\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"\"}}"))).toString());
-    }
-
-    String encodeURL(String url) {
-        try {
-            return URLEncoder.encode(url, StandardCharsets.UTF_8.toString()).replace("%3D", "=").replace("%26", "&");
-        } catch (UnsupportedEncodingException e) {
-            ConsoleLogging.Throwable(e);
-            GraphicalMessage.openException(e);
-            return "";
-        }
-    }
-
-    String sectionToUrl(String section) {
-        //https://api-partner.spotify.com/pathfinder/v1/query?operationName=homeSection&variables={"uri":"spotify:section:0JQ5DAIiKWzVFULQfUm85X","timeZone":"Europe/Berlin"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"ca9cf7237e096dbab38e88ef1cb0ecbb65c8039bffd1b415f7ee8bc963607158"}}
-        return "https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=homeSection&variables={\"uri\":\"" + section + "\",\"timeZone\" : \"" + TimeZone.getDefault().toZoneId() + "\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"ca9cf7237e096dbab38e88ef1cb0ecbb65c8039bffd1b415f7ee8bc963607158\"}}");
-    }
-
-    String getPathFinder(String operationName, String uri) {
-        if (uri != null) {
-            return "https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=" + operationName + "&variables={\"uri\":\"" + uri + "\",\"timeZone\":\"" + TimeZone.getDefault().toZoneId() + "\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"ca9cf7237e096dbab38e88ef1cb0ecbb65c8039bffd1b415f7ee8bc963607158\"}}");
-        } else {
-            return "https://api-partner.spotify.com/pathfinder/v1/query?" + encodeURL("operationName=" + operationName + "&variables={\"timeZone\":\"" + TimeZone.getDefault().toZoneId() + "\"}&extensions={\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"ca9cf7237e096dbab38e88ef1cb0ecbb65c8039bffd1b415f7ee8bc963607158\"}}");
-        }
-    }
-
+    /**
+     * Holds information about the HomeTab content
+     */
     public static class HomeTab {
         public String greeting = "";
         public final ArrayList<HomeTabSection> sections = new ArrayList<>();
         public HomeTabSectionNoName firstSection = new HomeTabSectionNoName(); //Holds user liked songs thingy and more
     }
 
+    /**
+     * Holds information about HomeTab images
+     */
     public static class HomeTabImage {
         public final ArrayList<HomeTabImageSource> sources = new ArrayList<>();
     }
 
+    /**
+     * Holds information about an HomeTab image
+     */
     public static class HomeTabImageSource {
         public String width = "";
         public String height = "";
         public String url = "";
     }
 
+    /**
+     * Holds information about an HomeTab playlist
+     */
     public static class HomeTabPlaylist {
         public String name = "";
         public String description = "";
@@ -213,17 +185,26 @@ public class UnofficialSpotifyAPI {
         public final ArrayList<HomeTabImage> images = new ArrayList<>();
     }
 
+    /**
+     * Holds information about an HomeTab artist
+     */
     public static class HomeTabArtist {
         public String name = "";
         public String uri = "";
         public final ArrayList<HomeTabImage> images = new ArrayList<>();
     }
 
+    /**
+     * Holds information about an HomeTab artist (with image)
+     */
     public static class HomeTabArtistNoImage {
         public String name = "";
         public String uri = "";
     }
 
+    /**
+     * Holds information about an HomeTab album
+     */
     public static class HomeTabAlbum {
         public String name = "";
         public String uri = "";
@@ -231,6 +212,9 @@ public class UnofficialSpotifyAPI {
         public final ArrayList<HomeTabImage> images = new ArrayList<>();
     }
 
+    /**
+     * Holds information about an HomeTab episode or chapter
+     */
     public static class HomeTabEpisodeOrChapter {
         public long totalMilliseconds = 0;
         public String isoDate = "";
@@ -245,6 +229,11 @@ public class UnofficialSpotifyAPI {
         public final ArrayList<HomeTabImage> coverImages = new ArrayList<>();
     }
 
+    /**
+     * Holds information:<br><br>
+     * Liked songs entry<br>
+     * Some other entries<br>
+     */
     public static class HomeTabSectionNoName {
         //Has liked songs and some stuff
         public int totalCount = 0;
@@ -255,6 +244,9 @@ public class UnofficialSpotifyAPI {
         public final ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
     }
 
+    /**
+     * Holds information about an HomeTab section
+     */
     public static class HomeTabSection {
         public int totalCount = 0;
         public String name = "";
@@ -265,13 +257,7 @@ public class UnofficialSpotifyAPI {
         public final ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
     }
 
-    enum SectionTypes {
-        HomeShortsSectionData,
-        HomeGenericSectionData,
-        HomeRecentlyPlayedSectionData,
-    }
-
-    enum SectionItemTypes {
+    private enum SectionItemTypes {
         UnknownType,
         PlaylistResponseWrapper,
         ArtistResponseWrapper,
@@ -777,7 +763,13 @@ public class UnofficialSpotifyAPI {
         return tab;
     }
 
-
+    /**
+     * Gets an url referring to a canvas mp4 file for a track<br><br>
+     * <a style="color:yellow;font:bold">!!Deprecated!! </a> Will be removed in a future version
+     * @param uri Track URI (spotify:track:xyz)
+     * @return String
+     */
+    @Deprecated
     public static String getCanvasURLForTrack(String uri) {
         try {
             return PublicValues.session.api().getCanvases(CanvazOuterClass.EntityCanvazRequest.newBuilder().addEntities(CanvazOuterClass.EntityCanvazRequest.Entity.newBuilder().setEntityUri(uri).buildPartial()).build()).getCanvases(0).getUrl();

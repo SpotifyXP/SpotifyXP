@@ -6,7 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.listeners.PlayerListener;
@@ -73,7 +73,7 @@ public class PlayerArea extends JPanel {
                 super.mouseClicked(e);
                 if (playerareashufflebutton.isFilled) {
                     PublicValues.shuffle = false;
-                    Factory.getPlayer().getPlayer().setShuffle(false);
+                    InstanceManager.getPlayer().getPlayer().setShuffle(false);
                     try {
                         PublicValues.spotifyplayer.tracks(true).next.clear();
                         for (String s : Shuffle.before) {
@@ -87,7 +87,7 @@ public class PlayerArea extends JPanel {
                     playerareashufflebutton.isFilled = false;
                 } else {
                     PublicValues.shuffle = true;
-                    Factory.getPlayer().getPlayer().setShuffle(true);
+                    InstanceManager.getPlayer().getPlayer().setShuffle(true);
                     Shuffle.makeShuffle();
                     playerareashufflebutton.isFilled = true;
                     playerareashufflebutton.setImage(Graphics.SHUFFLESELECTED.getPath());
@@ -99,11 +99,11 @@ public class PlayerArea extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (playerarearepeatingbutton.isFilled) {
-                    Factory.getPlayer().getPlayer().setRepeat(false, false);
+                    InstanceManager.getPlayer().getPlayer().setRepeat(false, false);
                     playerarearepeatingbutton.setImage(Graphics.REPEAT.getPath());
                     playerarearepeatingbutton.isFilled = false;
                 } else {
-                    Factory.getPlayer().getPlayer().setRepeat(true, false);
+                    InstanceManager.getPlayer().getPlayer().setRepeat(true, false);
                     playerarearepeatingbutton.isFilled = true;
                     playerarearepeatingbutton.setImage(Graphics.REPEATSELECTED.getPath());
                 }
@@ -155,52 +155,52 @@ public class PlayerArea extends JPanel {
         playerareavolumeslider.setMinimum(0);
         playerareavolumeslider.setMaximum(10);
         playerareavolumeslider.setValue(10);
-        Factory.getPlayer().getPlayer().setVolume(65536);
+        InstanceManager.getPlayer().getPlayer().setVolume(65536);
         playerareavolumeslider.addChangeListener(e -> {
             playerareavolumecurrent.setText(String.valueOf(playerareavolumeslider.getValue()));
             switch (playerareavolumeslider.getValue()) {
                 case 0:
-                    Factory.getPlayer().getPlayer().setVolume(0);
+                    InstanceManager.getPlayer().getPlayer().setVolume(0);
                     playerareavolumeicon.setImage(Graphics.VOLUMEMUTE.getPath());
                     break;
                 case 1:
-                    Factory.getPlayer().getPlayer().setVolume(6553);
+                    InstanceManager.getPlayer().getPlayer().setVolume(6553);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 2:
-                    Factory.getPlayer().getPlayer().setVolume(13107);
+                    InstanceManager.getPlayer().getPlayer().setVolume(13107);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 3:
-                    Factory.getPlayer().getPlayer().setVolume(19660);
+                    InstanceManager.getPlayer().getPlayer().setVolume(19660);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 4:
-                    Factory.getPlayer().getPlayer().setVolume(26214);
+                    InstanceManager.getPlayer().getPlayer().setVolume(26214);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 5:
-                    Factory.getPlayer().getPlayer().setVolume(32768);
+                    InstanceManager.getPlayer().getPlayer().setVolume(32768);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 6:
-                    Factory.getPlayer().getPlayer().setVolume(39321);
+                    InstanceManager.getPlayer().getPlayer().setVolume(39321);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 7:
-                    Factory.getPlayer().getPlayer().setVolume(45875);
+                    InstanceManager.getPlayer().getPlayer().setVolume(45875);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 8:
-                    Factory.getPlayer().getPlayer().setVolume(52428);
+                    InstanceManager.getPlayer().getPlayer().setVolume(52428);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 9:
-                    Factory.getPlayer().getPlayer().setVolume(58982);
+                    InstanceManager.getPlayer().getPlayer().setVolume(58982);
                     playerareavolumeicon.setImage(Graphics.VOLUMEHALF.getPath());
                     break;
                 case 10:
-                    Factory.getPlayer().getPlayer().setVolume(65536);
+                    InstanceManager.getPlayer().getPlayer().setVolume(65536);
                     playerareavolumeicon.setImage(Graphics.VOLUMEFULL.getPath());
                     break;
             }
@@ -220,7 +220,7 @@ public class PlayerArea extends JPanel {
         playerplaypausebutton = new JImageButton();
         playerplaypausebutton.setColor(frame.getBackground());
         playerplaypausebutton.setBounds(369, 11, 69, 36);
-        playerplaypausebutton.addActionListener(e -> Factory.getPlayer().getPlayer().playPause());
+        playerplaypausebutton.addActionListener(e -> InstanceManager.getPlayer().getPlayer().playPause());
         add(playerplaypausebutton);
         playerplaynextbutton = new JImageButton();
         playerplaynextbutton.setColor(frame.getBackground());
@@ -248,7 +248,7 @@ public class PlayerArea extends JPanel {
                 super.mouseClicked(e);
                 if (heart.isFilled) {
                     try {
-                        Factory.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(Factory.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
+                        InstanceManager.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
                     }catch (IOException | ParseException | SpotifyWebApiException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -256,7 +256,7 @@ public class PlayerArea extends JPanel {
                     heart.isFilled = false;
                 } else {
                     try {
-                        Factory.getSpotifyApi().saveTracksForUser(Objects.requireNonNull(Factory.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
+                        InstanceManager.getSpotifyApi().saveTracksForUser(Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
                     }catch (IOException | ParseException | SpotifyWebApiException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -272,7 +272,7 @@ public class PlayerArea extends JPanel {
         playercurrenttime.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Factory.getPlayer().getPlayer().pause();
+                InstanceManager.getPlayer().getPlayer().pause();
                 PlayerListener.pauseTimer = true;
             }
         });
@@ -280,13 +280,13 @@ public class PlayerArea extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 PlayerListener.pauseTimer = false;
-                Factory.getPlayer().getPlayer().seek(playercurrenttime.getValue() * 1000);
-                Factory.getPlayer().getPlayer().play();
+                InstanceManager.getPlayer().getPlayer().seek(playercurrenttime.getValue() * 1000);
+                InstanceManager.getPlayer().getPlayer().play();
             }
         });
-        playerplaynextbutton.addActionListener(e -> Factory.getPlayer().getPlayer().next());
+        playerplaynextbutton.addActionListener(e -> InstanceManager.getPlayer().getPlayer().next());
         playerplaypreviousbutton.addActionListener(e -> PublicValues.spotifyplayer.previous());
-        playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(Factory.getPlayer().getPlayer().time())));
+        playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(InstanceManager.getPlayer().getPlayer().time())));
 
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
@@ -295,7 +295,7 @@ public class PlayerArea extends JPanel {
             if(!doneLastParsing) return;
             if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
                 try {
-                    PublicValues.history.addSong(Factory.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
+                    PublicValues.history.addSong(InstanceManager.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
                 } catch (SQLException | IOException | SpotifyWebApiException | ParseException e) {
                     ConsoleLogging.Throwable(e);
                 }

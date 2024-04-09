@@ -5,10 +5,8 @@ import com.spotifyxp.audio.Quality;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.GraphicalMessage;
-import oracle.sql.NUMBER;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -34,22 +32,9 @@ public class Config {
     public Config() {
         properties = new JSONProperties();
         if(!new File(PublicValues.configfilepath).exists()) {
-            properties.put(ConfigValues.facebook);
-            properties.put(ConfigValues.audioquality);
-            properties.put(ConfigValues.theme);
-            properties.put(ConfigValues.disableplayerstats);
-            properties.put(ConfigValues.showallrecommendations);
-            properties.put(ConfigValues.username);
-            properties.put(ConfigValues.lastfmpassword);
-            properties.put(ConfigValues.lastfmusername);
-            properties.put(ConfigValues.lastfmtracklimit);
-            properties.put(ConfigValues.lastfmartistlimit);
-            properties.put(ConfigValues.mypalpath);
-            properties.put(ConfigValues.password);
-            properties.put(ConfigValues.hideExceptions);
-            properties.put(ConfigValues.spconnect);
-            properties.put(ConfigValues.language);
-            properties.put(ConfigValues.webinteface);
+            for(ConfigValues value : ConfigValues.values()) {
+                properties.put(value);
+            }
             if(!new File(PublicValues.fileslocation).exists()) {
                 if(!new File(PublicValues.fileslocation).mkdir()) {
                     GraphicalMessage.sorryErrorExit("Failed creating important directory");
@@ -80,6 +65,10 @@ public class Config {
         }
     }
 
+    /**
+     * Checks the config for errors<br>
+     * If there are any they will be replaced with their default value
+     */
     public void checkConfig() {
         //Checks config for invalid values
         boolean foundInvalid = false;
@@ -118,6 +107,7 @@ public class Config {
                         try {
                             properties.put(Objects.requireNonNull(ConfigValues.get(value.name)));
                             ConsoleLogging.warning("Key '" + value.name + "' not found! Creating...");
+                            foundInvalid = true;
                         }catch (NullPointerException e) {
                             ConsoleLogging.error("Failed creating key '" + value.name + "'!");
                         }
@@ -154,9 +144,9 @@ public class Config {
     }
 
     /**
-     * Returns the value of the given entry inside the config
+     * Returns the value of the given entry inside the config as object
      * @param name name of the entry
-     * @return value of given entry
+     * @return Object
      */
     public Object getObject(String name) {
         Object ret = properties.get(name);
@@ -166,6 +156,11 @@ public class Config {
         return ret;
     }
 
+    /**
+     * Returns the value of the given entry inside the config as String
+     * @param name name of the entry
+     * @return String
+     */
     public String getString(String name) {
         String ret = properties.getString(name);
         if (ret == null) {
@@ -174,18 +169,38 @@ public class Config {
         return ret;
     }
 
+    /**
+     * Returns the value of the given entry inside the config as Boolean
+     * @param name name of the entry
+     * @return Boolean
+     */
     public Boolean getBoolean(String name) {
         return properties.optBoolean(name);
     }
 
+    /**
+     * Returns the value of the given entry inside the config as Integer
+     * @param name name of the entry
+     * @return Integer
+     */
     public int getInt(String name) {
         return properties.optInt(name);
     }
 
+    /**
+     * Returns the value of the given entry inside the config as Double
+     * @param name name of the entry
+     * @return Double
+     */
     public Double getDouble(String name) {
         return properties.optDouble(name);
     }
 
+    /**
+     * Returns the value of the given entry inside the config as Float
+     * @param name name of the entry
+     * @return Float
+     */
     public Float getFloat(String name) {
         return properties.getFloat(name);
     }

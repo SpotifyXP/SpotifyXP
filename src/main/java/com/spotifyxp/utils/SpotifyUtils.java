@@ -2,7 +2,7 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ public class SpotifyUtils {
             int offset = 0;
             int limit = 50;
             int parsed = 0;
-            int total = Factory.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).build().execute().getTotal();
+            int total = InstanceManager.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
             while(parsed != total) {
-                for(TrackSimplified track : Factory.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                for(TrackSimplified track : InstanceManager.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     tracks.add(track);
                     parsed++;
                 }
@@ -56,11 +56,11 @@ public class SpotifyUtils {
             int offset = 0;
             int limit = 50;
             int parsed = 0;
-            int total = Factory.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).build().execute().getTotal();
+            int total = InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
             while(parsed != total) {
-                for(PlaylistTrack track : Factory.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                for(PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     tracks.add(track);
                     parsed++;
                 }
@@ -86,11 +86,11 @@ public class SpotifyUtils {
             int offset = 0;
             int limit = 50;
             int parsed = 0;
-            int total = Factory.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).build().execute().getTotal();
+            int total = InstanceManager.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
             while(parsed != total) {
-                for(EpisodeSimplified episode : Factory.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                for(EpisodeSimplified episode : InstanceManager.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     episodes.add(episode);
                     parsed++;
                 }
@@ -116,11 +116,11 @@ public class SpotifyUtils {
             int offset = 0;
             int limit = 50;
             int parsed = 0;
-            int total = Factory.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).build().execute().getTotal();
+            int total = InstanceManager.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
             while(parsed != total) {
-                for(AlbumSimplified album : Factory.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                for(AlbumSimplified album : InstanceManager.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     albums.add(album);
                     parsed++;
                 }
@@ -144,11 +144,11 @@ public class SpotifyUtils {
         ArrayList<Track> tracks = new ArrayList<>();
         try {
             int parsed = 0;
-            int total = Factory.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute().length;
+            int total = InstanceManager.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute().length;
             int counter = 0;
             int last = 0;
             while(parsed != total) {
-                for(Track track : Factory.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute()) {
+                for(Track track : InstanceManager.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute()) {
                     tracks.add(track);
                     parsed++;
                 }

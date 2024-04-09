@@ -1,17 +1,17 @@
 package com.spotifyxp.args;
 
 import com.spotifyxp.dummy.*;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 
 public class NoConnection implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
         return () -> {
-            Factory.setPkce(new DummyOAuthPKCE());
-            Factory.setPlayer(new DummyPlayer());
-            Factory.setSpotifyAPI(new DummySpotifyAPI());
-            Factory.setSpotifyApi(new DummySpapi());
-            Factory.setUnofficialSpotifyAPI(new DummyUnofficialSpotifyAPI());
+            InstanceManager.setPkce(new DummyOAuthPKCE());
+            InstanceManager.setPlayer(new DummyPlayer());
+            InstanceManager.setSpotifyAPI(new DummySpotifyAPI());
+            InstanceManager.setSpotifyApi(new DummySpapi());
+            InstanceManager.setUnofficialSpotifyAPI(new DummyUnofficialSpotifyAPI());
         };
     }
 

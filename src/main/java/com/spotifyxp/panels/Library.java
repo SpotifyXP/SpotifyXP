@@ -3,7 +3,7 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.SavedTrack;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -30,12 +30,12 @@ public class Library extends JPanel {
             try {
                 libraryLoadingInProgress = true;
                 int visibleCount = 28;
-                int total = Factory.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getTotal();
+                int total = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getTotal();
                 int counter = 0;
                 int last = 0;
                 int parsed = 0;
                 while (parsed != visibleCount) {
-                    SavedTrack[] track = Factory.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getItems();
+                    SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getItems();
                     for (SavedTrack t : track) {
                         libraryuricache.add(t.getTrack().getUri());
                         String a = TrackUtils.getArtists(t.getTrack().getArtists());
@@ -99,7 +99,7 @@ public class Library extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    Factory.getPlayer().getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, PublicValues.shuffle, true);
+                    InstanceManager.getPlayer().getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, PublicValues.shuffle, true);
                     DefThread thread1 = new DefThread(() -> TrackUtils.addAllToQueue(libraryuricache, librarysonglist));
                     thread1.start();
                 }
@@ -113,7 +113,7 @@ public class Library extends JPanel {
             librarythread.start();
         });
         librarymenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
-            Factory.getSpotifyApi().removeUsersSavedTracks(libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);
+            InstanceManager.getSpotifyApi().removeUsersSavedTracks(libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);
             libraryuricache.remove(librarysonglist.getSelectedRow());
             ((DefaultTableModel) librarysonglist.getModel()).removeRow(librarysonglist.getSelectedRow());
         });
@@ -126,13 +126,13 @@ public class Library extends JPanel {
         libraryLoadingInProgress = true;
         try {
             int visibleCount = 19;
-            int total = Factory.getSpotifyApi().getUsersSavedTracks().build().execute().getTotal();
+            int total = InstanceManager.getSpotifyApi().getUsersSavedTracks().build().execute().getTotal();
             int parsed = 0;
             int counter = 0;
             int last = 0;
             if (total != libraryuricache.size()) {
                 while (parsed != 19) {
-                    SavedTrack[] track = Factory.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).offset(libraryuricache.size()).build().execute().getItems();
+                    SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).offset(libraryuricache.size()).build().execute().getItems();
                     for (SavedTrack t : track) {
                         libraryuricache.add(t.getTrack().getUri());
                         String a = TrackUtils.getArtists(t.getTrack().getArtists());
@@ -162,7 +162,7 @@ public class Library extends JPanel {
         DefaultTableModel model = (DefaultTableModel) librarysonglist.getModel();
         try {
             int count = 0;
-            for (SavedTrack track : Factory.getSpotifyApi().getUsersSavedTracks().limit(10).build().execute().getItems()) {
+            for (SavedTrack track : InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(10).build().execute().getItems()) {
                 if (!libraryuricache.contains(track.getTrack().getUri())) {
                     String a = TrackUtils.getArtists(track.getTrack().getArtists());
                     model.insertRow(count, new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});

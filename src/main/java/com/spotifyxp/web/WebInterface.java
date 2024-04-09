@@ -2,7 +2,7 @@ package com.spotifyxp.web;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.PlayerArea;
@@ -59,7 +59,7 @@ public class WebInterface {
             server.createContext("/search", exchange -> {
                 if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                     exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-                    String out = PublicValues.elevated.makeGet("https://api.spotify.com/v1/search?type=track&q=" + exchange.getRequestURI().toString().split("\\?key=")[1] + "market=" + PublicValues.countryCode + "&limit=6");
+                    String out = InstanceManager.getPkce().makeGet("https://api.spotify.com/v1/search?type=track&q=" + exchange.getRequestURI().toString().split("\\?key=")[1] + "market=" + PublicValues.countryCode + "&limit=6");
                     if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
                         exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
                         exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
@@ -75,7 +75,7 @@ public class WebInterface {
                     }
                     if (ips.contains(exchange.getRemoteAddress().getAddress().toString())) {
                         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-                        String out = PublicValues.elevated.makeGet("https://api.spotify.com/v1/search?type=track&q=" + exchange.getRequestURI().toString().split("\\?key=")[1] + "market=" + PublicValues.countryCode + "&limit=6");
+                        String out = InstanceManager.getPkce().makeGet("https://api.spotify.com/v1/search?type=track&q=" + exchange.getRequestURI().toString().split("\\?key=")[1] + "market=" + PublicValues.countryCode + "&limit=6");
                         if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
                             exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
                             exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
@@ -94,7 +94,7 @@ public class WebInterface {
                     cors(exchange);
                     HttpUtils.sendResource("OK.html", exchange);
                     try {
-                        PublicValues.spotifyplayer.load(Factory.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, PublicValues.shuffle, false);
+                        PublicValues.spotifyplayer.load(InstanceManager.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, PublicValues.shuffle, false);
                     } catch (Exception ignored) {
                     }
                 }else{
@@ -106,7 +106,7 @@ public class WebInterface {
                         cors(exchange);
                         HttpUtils.sendResource("OK.html", exchange);
                         try {
-                            PublicValues.spotifyplayer.load(Factory.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, PublicValues.shuffle, false);
+                            PublicValues.spotifyplayer.load(InstanceManager.getSpotifyApi().searchTracks(exchange.getRequestURI().toString().split("\\?key=")[1]).build().execute().getItems()[0].getUri(), true, PublicValues.shuffle, false);
                         } catch (Exception ignored) {
                         }
                     } else {
@@ -223,7 +223,7 @@ public class WebInterface {
             server.createContext("/apikey", exchange -> {
                 if(exchange.getRemoteAddress().getAddress().toString().startsWith("/127")) {
                     cors(exchange);
-                    HttpUtils.sendHTML(Factory.getSpotifyApi().getAccessToken(), exchange);
+                    HttpUtils.sendHTML(InstanceManager.getSpotifyApi().getAccessToken(), exchange);
                 }else{
                     if (ips.isEmpty()) {
                         HttpUtils.sendResource("auth.html", exchange);
@@ -231,7 +231,7 @@ public class WebInterface {
                     }
                     if (ips.contains(exchange.getRemoteAddress().getAddress().toString())) {
                         cors(exchange);
-                        HttpUtils.sendHTML(Factory.getSpotifyApi().getAccessToken(), exchange);
+                        HttpUtils.sendHTML(InstanceManager.getSpotifyApi().getAccessToken(), exchange);
                     } else {
                         HttpUtils.sendResource("auth.html", exchange);
                     }

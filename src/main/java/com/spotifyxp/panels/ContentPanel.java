@@ -12,10 +12,9 @@ import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.events.Events;
-import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.injector.InjectorStore;
@@ -32,7 +31,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -164,8 +162,8 @@ public class ContentPanel extends JPanel {
         SplashPanel.linfo.setText("Making window interactive...");
         createLegacy();
         try {
-            if (!(Factory.getSpotifyApi().getCurrentUsersProfile() == null)) {
-                PublicValues.countryCode = Factory.getSpotifyApi().getCurrentUsersProfile().build().execute().getCountry();
+            if (!(InstanceManager.getSpotifyApi().getCurrentUsersProfile() == null)) {
+                PublicValues.countryCode = InstanceManager.getSpotifyApi().getCurrentUsersProfile().build().execute().getCountry();
             }
         } catch (IOException | ParseException | SpotifyWebApiException | NullPointerException e) {
             ConsoleLogging.Throwable(e);
@@ -236,7 +234,7 @@ public class ContentPanel extends JPanel {
                 break;
         }
         try {
-            Artist a = Factory.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
+            Artist a = InstanceManager.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
             try {
                 artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
             } catch (ArrayIndexOutOfBoundsException exception) {
@@ -245,12 +243,12 @@ public class ContentPanel extends JPanel {
             artistPanel.artisttitle.setText(a.getName());
             DefThread trackthread = new DefThread(() -> {
                 try {
-                    for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
+                    for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
                         if (!artistPanel.isVisible()) {
                             break;
                         }
                         artistPanel.artistpopularuricache.add(t.getUri());
-                        Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
+                        InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
                     }
                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                     ConsoleLogging.Throwable(ex);
@@ -347,23 +345,7 @@ public class ContentPanel extends JPanel {
     }
 
     public static void openAbout() {
-        HTMLDialog dialog = new HTMLDialog(new LoggerEvent() {
-            @Override
-            public void log(String s) {
-            }
-
-            @Override
-            public void err(String s) {
-            }
-
-            @Override
-            public void info(String s) {
-            }
-
-            @Override
-            public void crit(String s) {
-            }
-        });
+        HTMLDialog dialog = new HTMLDialog();
         dialog.getDialog().setPreferredSize(new Dimension(400, 500));
         try {
             String out = new Resources().readToString("about.html");
@@ -375,7 +357,7 @@ public class ContentPanel extends JPanel {
                 }
                 cache.append(s);
             }
-            String opensourcelist = ConnectionUtils.makeGet("https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/setup/thirdparty.html");
+            String opensourcelist = new Resources().readToString("setup/thirdparty.html");
             String finalhtml = cache.toString().split("<insertOpenSourceList>")[0] + opensourcelist + cache.toString().split("</insertOpenSourceList>")[1];
             dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml);
         } catch (Exception ex) {
@@ -708,7 +690,7 @@ public class ContentPanel extends JPanel {
                 ArrayList<String> devices = new ArrayList<>();
                 Device[] devicelist;
                 try {
-                    devicelist = Factory.getSpotifyApi().getUsersAvailableDevices().setHeader("Authorization", "Bearer " + Token.getToken("user-read-playback-state")).build().execute();
+                    devicelist = InstanceManager.getSpotifyApi().getUsersAvailableDevices().setHeader("Authorization", "Bearer " + Token.getToken("user-read-playback-state")).build().execute();
                     for(Device d : devicelist) {
                         devices.add(d.getName());
                     }
@@ -724,7 +706,7 @@ public class ContentPanel extends JPanel {
                     JsonArray array = new JsonArray();
                     array.add(devicelist[retvalue].getId());
                     try {
-                        Factory.getSpotifyApi().transferUsersPlayback(array).play(!PublicValues.spotifyplayer.isPaused()).build().execute();
+                        InstanceManager.getSpotifyApi().transferUsersPlayback(array).play(!PublicValues.spotifyplayer.isPaused()).build().execute();
                     }catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -857,7 +839,7 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    Factory.getPlayer().getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, PublicValues.shuffle, false);
+                    InstanceManager.getPlayer().getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, PublicValues.shuffle, false);
                     advancedsongtable.setColumnSelectionInterval(0, advancedsongtable.getColumnCount() - 1);
                     TrackUtils.addAllToQueue(advanceduricache, advancedsongtable);
                 }
@@ -1008,13 +990,13 @@ public class ContentPanel extends JPanel {
         feedbackVisible = false;
         DefThread thread = new DefThread(() -> {
             try {
-                int total = Factory.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
+                int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
                 int parsed = 0;
                 int counter = 0;
                 int last = 0;
                 int offset = 0;
                 while (parsed != total) {
-                    PlaylistSimplified[] playlists = Factory.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
+                    PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
                     for (PlaylistSimplified simplified : playlists) {
                         Playlists.playlistsuricache.add(simplified.getUri());
                         ((DefaultTableModel) Playlists.playlistsplayliststable.getModel()).addRow(new Object[]{simplified.getName()});
@@ -1061,8 +1043,8 @@ public class ContentPanel extends JPanel {
             Queue.queueuricache.clear();
             DefThread queueworker = new DefThread(() -> {
                 try {
-                    for (ContextTrackOuterClass.ContextTrack track : Factory.getPlayer().getPlayer().tracks(true).next) {
-                        Track t = Factory.getSpotifyApi().getTrack(track.getUri().split(":")[2]).build().execute();
+                    for (ContextTrackOuterClass.ContextTrack track : InstanceManager.getPlayer().getPlayer().tracks(true).next) {
+                        Track t = InstanceManager.getSpotifyApi().getTrack(track.getUri().split(":")[2]).build().execute();
                         String a = TrackUtils.getArtists(t.getArtists());
                         Queue.queueuricache.add(track.getUri());
                         Queue.queuelistmodel.addElement(t.getName() + " - " + a);

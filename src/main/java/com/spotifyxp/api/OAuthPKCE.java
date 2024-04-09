@@ -1,6 +1,6 @@
 package com.spotifyxp.api;
 
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.NameValuePair;
@@ -42,7 +42,7 @@ public class OAuthPKCE {
      */
     public void refresh() {
         token = Token.getDefaultToken();
-        Factory.getSpotifyApi().setAccessToken(token);
+        InstanceManager.getSpotifyApi().setAccessToken(token);
     }
 
     /**

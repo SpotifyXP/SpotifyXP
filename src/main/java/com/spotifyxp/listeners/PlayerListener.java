@@ -11,7 +11,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.PlayerArea;
@@ -82,7 +82,7 @@ public class PlayerListener implements Player.EventsListener {
                 StringBuilder artists = new StringBuilder();
                 switch (playableId.toSpotifyUri().split(":")[1]) {
                     case "episode":
-                        Episode episode = Factory.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        Episode episode = InstanceManager.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
                         PlayerArea.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
                         PlayerArea.playertitle.setText(episode.getName());
                         artists.append(episode.getShow().getPublisher());
@@ -94,7 +94,7 @@ public class PlayerListener implements Player.EventsListener {
                         }
                         break;
                     case "track":
-                        Track track = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        Track track = InstanceManager.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
                         PlayerArea.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
                         PlayerArea.playertitle.setText(track.getName());
                         for (ArtistSimplified artist : track.getArtists()) {
@@ -113,7 +113,7 @@ public class PlayerListener implements Player.EventsListener {
                         break;
                     default:
                         ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
-                        Track t = Factory.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
+                        Track t = InstanceManager.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
                         PlayerArea.playerplaytimetotal.setText(String.valueOf(t.getDurationMs()));
                         PlayerArea.playertitle.setText(t.getName());
                         for (ArtistSimplified artist : t.getArtists()) {
@@ -168,7 +168,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackSeeked(@NotNull Player player, long l) {
-        if(PlayerArea.playercurrenttime.getValue() < TrackUtils.getSecondsFromMS(Factory.getPlayer().getPlayer().time())) {
+        if(PlayerArea.playercurrenttime.getValue() < TrackUtils.getSecondsFromMS(InstanceManager.getPlayer().getPlayer().time())) {
             //Backwards
             Events.triggerEvent(SpotifyXPEvents.playerSeekedBackwards.getName());
         }else{

@@ -1,6 +1,5 @@
 package com.spotifyxp.support;
 
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.ContentPanel;
 
 public class SteamDeckSupportModule {

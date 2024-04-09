@@ -5,7 +5,7 @@ import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
@@ -41,7 +41,7 @@ public class Queue extends JPanel {
             ((DefaultListModel<?>) queuelist.getModel()).clear();
             try {
                 for (ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
-                    Track track = Factory.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute();
+                    Track track = InstanceManager.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute();
                     queueuricache.add(t.getUri());
                     String a = TrackUtils.getArtists(track.getArtists());
                     queuelistmodel.addElement(track.getName() + " - " + a);
@@ -65,7 +65,7 @@ public class Queue extends JPanel {
             }
             if (!queuelistmodel.get(0).equalsIgnoreCase(PublicValues.spotifyplayer.tracks(true).current.getUri())) {
                 try {
-                    Track t = Factory.getSpotifyApi().getTrack(PublicValues.spotifyplayer.tracks(true).current.getUri().split(":")[2]).build().execute();
+                    Track t = InstanceManager.getSpotifyApi().getTrack(PublicValues.spotifyplayer.tracks(true).current.getUri().split(":")[2]).build().execute();
                     String a = TrackUtils.getArtists(t.getArtists());
                     queueuricache.add(0, t.getUri());
                     queuelistmodel.add(0, t.getName() + " - " + a);
@@ -75,7 +75,7 @@ public class Queue extends JPanel {
             }
         });
         queueremovebutton.addActionListener(e -> {
-            Factory.getPlayer().getPlayer().removeFromQueue(queueuricache.get(queuelist.getSelectedIndex()));
+            InstanceManager.getPlayer().getPlayer().removeFromQueue(queueuricache.get(queuelist.getSelectedIndex()));
             queueuricache.remove(queueuricache.get(queuelist.getSelectedIndex()));
             ((DefaultListModel<?>) queuelist.getModel()).remove(queuelist.getSelectedIndex());
         });

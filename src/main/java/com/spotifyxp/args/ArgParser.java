@@ -5,9 +5,18 @@ import com.spotifyxp.utils.ApplicationUtils;
 import java.util.ArrayList;
 
 public class ArgParser {
+    /**
+     * Holds all passed arguments
+     */
     public static final ArrayList<Argument> passedArguments = new ArrayList<>();
+    /**
+     * Holds all registered arguments
+     */
     public final ArrayList<com.spotifyxp.args.Argument> arguments = new ArrayList<>();
 
+    /**
+     * Holds information about an argument
+     */
     public static class Argument {
         private com.spotifyxp.args.Argument argument;
         private String name;
@@ -15,22 +24,42 @@ public class ArgParser {
         private boolean hasParameter;
         private String parameter;
 
+        /**
+         * Executes the code specified in the argument
+         */
         public void execute() {
             argument.runArgument(parameter);
         }
 
+        /**
+         * Returns the name of the argument
+         * @return String
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Returns the description of the argument
+         * @return String
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * Returns the parameter given to the argument (if hasParameter is true)<br>
+         * Example: myargument=xyz
+         * @return String
+         */
         public String getParameter() {
             return parameter;
         }
 
+        /**
+         * Returns if the argument has a parameter
+         * @return Boolean
+         */
         public boolean hasParameter() {
             return hasParameter;
         }

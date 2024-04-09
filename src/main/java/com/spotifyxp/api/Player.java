@@ -1,11 +1,10 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.PlayerUtils;
 
 public class Player {
     com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine player;
@@ -15,7 +14,7 @@ public class Player {
      * Retries building a working librespot-player instance
      */
     public void retry() {
-        player = Factory.getPlayerUtils().buildPlayer();
+        player = InstanceManager.getPlayerUtils().buildPlayer();
         try {
             player.waitReady();
         } catch (InterruptedException e) {
@@ -33,14 +32,17 @@ public class Player {
 
     }
 
+    /**
+     * Destroys the librespot-player instance
+     */
     public void destroy() {
         PublicValues.spotifyplayer.close();
-        Factory.setPlayer(null);
+        InstanceManager.setPlayer(null);
     }
 
     public Player(SpotifyAPI a) {
         api = a;
-        player = Factory.getPlayerUtils().buildPlayer();
+        player = InstanceManager.getPlayerUtils().buildPlayer();
         try {
             player.waitReady();
         } catch (InterruptedException e) {

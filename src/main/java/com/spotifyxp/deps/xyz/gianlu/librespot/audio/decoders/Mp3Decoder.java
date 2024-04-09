@@ -22,7 +22,6 @@ import com.spotifyxp.deps.javazoom.jl.decoder.*;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
-import com.spotifyxp.utils.OverwriteFactory;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;

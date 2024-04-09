@@ -1,1 +1,2 @@
-Complete the spotify mode inside the lyricsDialog (You lazy fuck)
+Fix token not refreshing
+Allow application restart through function (destroy all class instances and call main)

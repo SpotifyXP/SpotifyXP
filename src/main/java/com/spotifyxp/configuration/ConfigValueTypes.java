@@ -2,6 +2,9 @@ package com.spotifyxp.configuration;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Holds all available config value types
+ */
 public enum ConfigValueTypes {
     STRING,
     BYTE,

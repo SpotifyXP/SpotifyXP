@@ -4,7 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
@@ -68,7 +68,7 @@ public class Playlists extends JPanel {
         playlistssongsscroll.setViewportView(playlistssongtable);
         ContextMenu menu = new ContextMenu(playlistsplayliststable);
         menu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
-            Factory.getSpotifyApi().unfollowPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]);
+            InstanceManager.getSpotifyApi().unfollowPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]);
             playlistsuricache.remove(playlistsuricache.get(playlistsplayliststable.getSelectedRow()));
             ((DefaultTableModel) playlistsplayliststable.getModel()).removeRow(playlistsplayliststable.getSelectedRow());
         });
@@ -90,9 +90,9 @@ public class Playlists extends JPanel {
                             int parsed = 0;
                             int counter = 0;
                             int last = 0;
-                            int total = Factory.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
+                            int total = InstanceManager.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
                             while (parsed != total) {
-                                Paging<PlaylistTrack> ptracks = Factory.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
+                                Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
                                 for (PlaylistTrack track : ptracks.getItems()) {
                                     ((DefaultTableModel) playlistssongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
                                     playlistssonguricache.add(track.getTrack().getUri());
@@ -121,7 +121,7 @@ public class Playlists extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    Factory.getPlayer().getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, PublicValues.shuffle, false);
+                    InstanceManager.getPlayer().getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, PublicValues.shuffle, false);
                     TrackUtils.addAllToQueue(playlistssonguricache, playlistssongtable);
                 }
             }

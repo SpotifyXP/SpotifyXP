@@ -2,14 +2,17 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.factory.Factory;
 import com.spotifyxp.lastfm.LFMValues;
 import com.spotifyxp.lastfm.LastFMLogin;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.JScrollText;
+import com.spotifyxp.swingextension.SettingsTable;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.PlayerUtils;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
 
@@ -17,6 +20,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -26,7 +31,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Locale;
 
 @SuppressWarnings({"unchecked", "rawtypes", "resource"})
 public class SettingsPanel extends JPanel {
@@ -51,40 +55,76 @@ public class SettingsPanel extends JPanel {
     public static JButton settingslastfmlogout;
     public static JButton settingslastfmlogin;
     public static JRadioButton settingsturnoffspotifyconnect;
+    public static SettingsTable settingsTable;
 
     //Borders
     public static JPanel browsersettingsborder;
     public static JPanel settingsuiborder;
     public static JPanel playbackborder;
     public static JPanel lastfmborder;
+    public static JPanel otherBorder;
     //
+
+
+    public static JTabbedPane switcher;
+
+    //Other settings
+    public static JCheckBox autoplayenabled;
+    public static JTextField crossfadeduration;
+    public static JCheckBox enablenormalization;
+    public static JTextField normalizationpregain;
+    public static JTextField mixersearchkeywords;
+    public static JCheckBox preloadenabled;
+    public static JTextField releaselinedelay;
+    public static JCheckBox bypasssinkvolume;
+    public static JTextField preferredlocale;
+    //
+
+
 
     public SettingsPanel() {
         setBounds(100, 100, 422, 506);
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
+        switcher = new JTabbedPane(SwingConstants.TOP);
+        switcher.setBounds(0, 0,422, 506);
+
+        switcher.setForeground(PublicValues.globalFontColor);
+
+        add(switcher);
+
         // Initiate and add borders
         browsersettingsborder = new JPanel();
-        browsersettingsborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.browser.label")));
-        browsersettingsborder.setBounds(20, 6, 382, 104);
+        browsersettingsborder.setBounds(0, 0, 422, 506);
         browsersettingsborder.setLayout(null);
-        add(browsersettingsborder);
+
+        switcher.add(browsersettingsborder, PublicValues.language.translate("ui.settings.browser.label"));
+
         settingsuiborder = new JPanel();
-        settingsuiborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.ui.label")));
-        settingsuiborder.setBounds(19, 122, 382, 178);
+        settingsuiborder.setBounds(0, 0, 422, 506);
         settingsuiborder.setLayout(null);
-        add(settingsuiborder);
+
+        switcher.add(settingsuiborder, PublicValues.language.translate("ui.settings.ui.label"));
+
         playbackborder = new JPanel();
-        playbackborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.settings.playback.label")));
-        playbackborder.setBounds(20, 312, 382, 83);
+        playbackborder.setBounds(0, 0, 422, 506);
         playbackborder.setLayout(null);
-        add(playbackborder);
+
+        switcher.add(playbackborder, PublicValues.language.translate("ui.settings.playback.label"));
+
         lastfmborder = new JPanel();
+        lastfmborder.setBounds(0, 0, 422, 506);
         lastfmborder.setLayout(null);
-        lastfmborder.setBorder(new TitledBorder(new LineBorder(new Color(171, 171, 171), 1, true), PublicValues.language.translate("ui.lastfm.settings.border")));
-        lastfmborder.setBounds(20, 405, 382, 60);
-        add(lastfmborder);
+
+        switcher.add(lastfmborder, PublicValues.language.translate("ui.lastfm.settings.border"));
+
+        otherBorder = new JPanel();
+        otherBorder.setBounds(0, 0, 422, 506);
+        otherBorder.setLayout(null);
+
+        switcher.add(PublicValues.language.translate("ui.settings.other"), otherBorder);
+
         //
 
         settingslastfmloginlabel = new JScrollText(PublicValues.language.translate("ui.lastfm.settings.loggedinas").replace("%s", LFMValues.username + "  "));
@@ -117,7 +157,7 @@ public class SettingsPanel extends JPanel {
 
         settingsbrowserlabel = new JLabel(PublicValues.language.translate("ui.settings.browser.label"));
         settingsbrowserlabel.setBounds(10, 451, 206, 29);
-        //add(settingsbrowserlabel);
+        browsersettingsborder.add(settingsbrowserlabel);
 
         settingsbrowserlabel.setForeground(PublicValues.globalFontColor);
 
@@ -141,7 +181,7 @@ public class SettingsPanel extends JPanel {
 
         settingsuilabel = new JLabel(PublicValues.language.translate("ui.settings.ui.label"));
         settingsuilabel.setBounds(10, 435, 290, 14);
-        //add(settingsuilabel);
+        settingsuiborder.add(settingsuilabel);
 
         settingsuilabel.setForeground(PublicValues.globalFontColor);
 
@@ -235,6 +275,74 @@ public class SettingsPanel extends JPanel {
 
         settingslanguageselectlabel.setForeground(PublicValues.globalFontColor);
 
+        settingsTable = new SettingsTable();
+        settingsTable.setBounds(0, 0, 422, 506);
+
+        autoplayenabled = new JCheckBox();
+
+        autoplayenabled.setSelected(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.autoplayenabled"), autoplayenabled);
+
+        crossfadeduration = new JTextField();
+
+        crossfadeduration.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name)));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.crossfadeduration"), crossfadeduration);
+
+        enablenormalization = new JCheckBox();
+
+        enablenormalization.setSelected(PublicValues.config.getBoolean(ConfigValues.other_enablenormalization.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.enablenormalization"), enablenormalization);
+
+        normalizationpregain = new JTextField();
+
+        normalizationpregain.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_normalizationpregain.name)));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.normalizationpregain"), normalizationpregain);
+
+        mixersearchkeywords = new JTextField();
+
+        mixersearchkeywords.setText(PublicValues.config.getString(ConfigValues.other_mixersearchkeywords.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.mixersearchkeywords"), mixersearchkeywords);
+
+        preloadenabled = new JCheckBox();
+
+        preloadenabled.setSelected(PublicValues.config.getBoolean(ConfigValues.other_preloadenabled.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.preloadenabled"), preloadenabled);
+
+        releaselinedelay = new JTextField();
+
+        releaselinedelay.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_releaselinedelay.name)));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.releaselinedelay"), releaselinedelay);
+
+        bypasssinkvolume = new JCheckBox();
+
+        bypasssinkvolume.setSelected(PublicValues.config.getBoolean(ConfigValues.other_bypasssinkvolume.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.bypasssinkvolume"), bypasssinkvolume);
+
+        preferredlocale = new JTextField();
+
+        preferredlocale.setText(PublicValues.config.getString(ConfigValues.other_preferredlocale.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.preferredlocale"), preferredlocale);
+
+        switcher.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(switcher.getSelectedIndex() == switcher.getTabCount() - 1) {
+                    JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.other.message"), PublicValues.language.translate("ui.settings.other.message.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
+        otherBorder.add(settingsTable);
+
         ArrayList<String> selectcache = new ArrayList<>();
 
         for(libLanguage.Language language : libLanguage.Language.values()) {
@@ -272,24 +380,37 @@ public class SettingsPanel extends JPanel {
     }
 
     public static void applySettings() {
-        switch ((String)settingsplaybackselectquality.getModel().getSelectedItem()) {
-            case "Normal":
-                PublicValues.config.write(ConfigValues.audioquality.name, "NORMAL");
-                break;
-            case "High":
-                PublicValues.config.write(ConfigValues.audioquality.name, "HIGH");
-                break;
-            case "Very_High":
-                PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
-                break;
+        try {
+            switch ((String) settingsplaybackselectquality.getModel().getSelectedItem()) {
+                case "Normal":
+                    PublicValues.config.write(ConfigValues.audioquality.name, "NORMAL");
+                    break;
+                case "High":
+                    PublicValues.config.write(ConfigValues.audioquality.name, "HIGH");
+                    break;
+                case "Very_High":
+                    PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
+                    break;
+            }
+            PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
+            PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
+            PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
+            PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
+            PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
+            PublicValues.config.write(ConfigValues.disableplayerstats.name, settingsuidisableplayerstats.isSelected());
+            PublicValues.config.write(ConfigValues.other_autoplayenabled.name, autoplayenabled.isSelected());
+            PublicValues.config.write(ConfigValues.other_crossfadeduration.name, Integer.parseInt(crossfadeduration.getText()));
+            PublicValues.config.write(ConfigValues.other_enablenormalization.name, enablenormalization.isSelected());
+            PublicValues.config.write(ConfigValues.other_normalizationpregain.name, Integer.parseInt(normalizationpregain.getText()));
+            PublicValues.config.write(ConfigValues.other_mixersearchkeywords.name, mixersearchkeywords.getText());
+            PublicValues.config.write(ConfigValues.other_preloadenabled.name, preloadenabled.isSelected());
+            PublicValues.config.write(ConfigValues.other_releaselinedelay.name, Integer.parseInt(releaselinedelay.getText()));
+            PublicValues.config.write(ConfigValues.other_bypasssinkvolume.name, bypasssinkvolume.isSelected());
+            PublicValues.config.write(ConfigValues.other_preferredlocale.name, preferredlocale.getText());
+            JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
+        }catch (NumberFormatException e) {
+            GraphicalMessage.sorryError("Failed to write settings");
         }
-        PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
-        PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
-        PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
-        PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
-        PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
-        PublicValues.config.write(ConfigValues.disableplayerstats.name, settingsuidisableplayerstats.isSelected());
-        JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
     }
 
     public static void triggerUninstall() {

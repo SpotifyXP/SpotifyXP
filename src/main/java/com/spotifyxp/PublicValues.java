@@ -2,12 +2,10 @@ package com.spotifyxp;
 
 
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.api.OAuthPKCE;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine;
 import com.spotifyxp.dialogs.CancelDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
@@ -43,7 +41,6 @@ public class PublicValues {
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
     public static PlayerDefine spotifyplayer = null;
     public static ConsoleLogging logger = new ConsoleLogging();
-    public static OAuthPKCE elevated = null;
     public static String configfilepath = fileslocation + "/config.json";
     public static Config config = null;
     public static Session session;

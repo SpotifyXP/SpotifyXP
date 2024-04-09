@@ -69,7 +69,7 @@ final class ItemFactoryBuilder {
 	}
 
 	/**
-	 * Retrieves an {@link ItemFactory} for the given type, or <code>null</code> if no such factory was registered.
+	 * Retrieves an {@link ItemFactory} for the given type, or <code>null</code> if no such manager was registered.
 	 *
 	 * @param itemClass the type's Class object
 	 * @return the <code>ItemFactory</code> or <code>null</code>

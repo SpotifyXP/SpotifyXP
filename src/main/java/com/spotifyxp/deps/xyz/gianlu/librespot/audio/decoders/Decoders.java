@@ -16,7 +16,6 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;

@@ -7,7 +7,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.lastfm.LFMValues;
 import com.spotifyxp.lastfm.LastFMConverter;
@@ -121,7 +121,7 @@ public class ArtistPanel extends JPanel {
                     Search.searchplaylistsongscache.clear();
                     ((DefaultTableModel) Search.searchplaylisttable.getModel()).setRowCount(0);
                     try {
-                        Album album = Factory.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
+                        Album album = InstanceManager.getSpotifyApi().getAlbum(artistalbumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
                         for (TrackSimplified simplified : album.getTracks().getItems()) {
                             artistalbumalbumtable.addModifyAction(() -> {
                                 ((DefaultTableModel) Search.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
@@ -159,7 +159,7 @@ public class ArtistPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    Factory.getPlayer().getPlayer().load(artistpopularuricache.get(artistpopularsonglist.getSelectedRow()), true, false, false);
+                    InstanceManager.getPlayer().getPlayer().load(artistpopularuricache.get(artistpopularsonglist.getSelectedRow()), true, false, false);
                     TrackUtils.addAllToQueue(artistpopularuricache, artistpopularsonglist);
                 }
             }
@@ -191,7 +191,7 @@ public class ArtistPanel extends JPanel {
                 if(e.getClickCount() == 2) {
                     prepareSwitch();
                     try {
-                        com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist a = Factory.getSpotifyApi().getArtist(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2]).build().execute();
+                        com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist a = InstanceManager.getSpotifyApi().getArtist(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2]).build().execute();
                         try {
                             artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -200,15 +200,15 @@ public class ArtistPanel extends JPanel {
                         artisttitle.setText(a.getName());
                         DefThread trackthread = new DefThread(() -> {
                             try {
-                                for (Track t : Factory.getSpotifyApi().getArtistsTopTracks(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2], PublicValues.countryCode).build().execute()) {
+                                for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(lastfmartisturicache.get(lastfmartisttable.getSelectedRow()).split(":")[2], PublicValues.countryCode).build().execute()) {
                                     artistpopularuricache.add(t.getUri());
-                                    Factory.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistpopularsonglist);
+                                    InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistpopularsonglist);
                                 }
                             } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                 ConsoleLogging.Throwable(ex);
                             }
                         });
-                        DefThread albumthread = new DefThread(() -> Factory.getSpotifyAPI().addAllAlbumsToList(artistalbumuricache, lastfmartisturicache.get(lastfmartisttable.getSelectedRow()), artistalbumalbumtable));
+                        DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(artistalbumuricache, lastfmartisturicache.get(lastfmartisttable.getSelectedRow()), artistalbumalbumtable));
                         albumthread.start();
                         trackthread.start();
                         lastfmsimilarartistslabel.setEnabled(false);

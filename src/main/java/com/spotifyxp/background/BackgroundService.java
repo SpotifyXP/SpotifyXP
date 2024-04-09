@@ -12,6 +12,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BackgroundService {
+    /**
+     * Holds the trayDialog after start() was called
+     */
     public static SystemTrayDialog trayDialog;
 
     /**

@@ -41,6 +41,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.ApiClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.Authenticator;
 import okhttp3.*;
@@ -346,7 +347,7 @@ public class Session implements Closeable {
                 ConsoleLoggingModules.error("Error reconnecting after OutOfMemoryError");
                 GraphicalMessage.sorryErrorExit("Error reconnecting after OutOfMemoryError");
             }
-            ConsoleLoggingModules.info("Scheduled reconnection attempt in 10 seconds...");
+            ConsoleLoggingModules.info("Scheduled reconnection attempt in 1 second...");
             scheduler.schedule(() -> {
                 rescheduledTimes++;
                 try {
@@ -356,12 +357,12 @@ public class Session implements Closeable {
                     ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
                     scheduleReconnect();
                 }
-            }, 10, TimeUnit.SECONDS);
+            }, 1, TimeUnit.SECONDS);
         }
     }
 
     private void scheduleReconnect() {
-        ConsoleLoggingModules.info("Scheduled reconnection attempt in 10 seconds...");
+        ConsoleLoggingModules.info("Scheduled reconnection attempt in 1 second...");
         scheduler.schedule(() -> {
             rescheduledTimes++;
             try {
@@ -371,7 +372,7 @@ public class Session implements Closeable {
                 ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
 
             }
-        }, 10, TimeUnit.SECONDS);
+        }, 1, TimeUnit.SECONDS);
     }
 
     /**
@@ -581,15 +582,23 @@ public class Session implements Closeable {
 
         if (closed) throw new IllegalStateException("Session is closed!");
 
-        synchronized (authLock) {
-            if (cipherPair == null || authLock.get()) {
-                try {
-                    authLock.wait();
-                } catch (InterruptedException ex) {
-                    throw new IllegalStateException(ex);
+        DefThread waitThread = new DefThread(new Runnable() {
+            @Override
+            public void run() {
+                PublicValues.blockLoading = true;
+                synchronized (authLock) {
+                    if (cipherPair == null || authLock.get()) {
+                        try {
+                            authLock.wait();
+                        } catch (InterruptedException ex) {
+                            throw new IllegalStateException(ex);
+                        }
+                    }
                 }
+                PublicValues.blockLoading = false;
             }
-        }
+        }, "authLockWait");
+        waitThread.start();
     }
 
     public void send(Packet.Type cmd, byte[] payload) throws IOException {
@@ -787,10 +796,10 @@ public class Session implements Closeable {
                 return;
 
             conn = null;
-            ConsoleLoggingModules.error("Failed reconnecting, retrying in 3 seconds... " + ex.getMessage());
+            ConsoleLoggingModules.error("Failed reconnecting, retrying in 1 second... " + ex.getMessage());
 
             try {
-                scheduler.schedule(this::reconnect, 3, TimeUnit.SECONDS);
+                scheduler.schedule(this::reconnect, 1, TimeUnit.SECONDS);
             } catch (RejectedExecutionException exx) {
                 ConsoleLoggingModules.info("Scheduler already shutdown, stopping reconnection " + exx.getMessage());
             }

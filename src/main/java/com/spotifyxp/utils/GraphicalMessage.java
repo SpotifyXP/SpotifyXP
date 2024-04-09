@@ -74,6 +74,10 @@ public class GraphicalMessage {
         return JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("message.stuck.text"), PublicValues.language.translate("message.stuck.title"), JOptionPane.YES_NO_OPTION) == 0;
     }
 
+    public static int showConfirmDialog(String titleTranslation, String messageTranslation, int options, int messageType) {
+        return JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate(messageTranslation), PublicValues.language.translate(titleTranslation), options, messageType);
+    }
+
     /**
      * Adds an exception to the list (add to the exception counter)
      * @param ex instance of an Exception

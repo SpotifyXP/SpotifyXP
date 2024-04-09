@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.Keyexchange;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
@@ -20,27 +21,27 @@ import java.net.UnknownHostException;
 public class PlayerUtils {
     public PlayerDefine buildPlayer() {
         Session.Builder builder = new Session.Builder()
-                .setPreferredLocale("en")
+                .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
                 .setDeviceType(Connect.DeviceType.COMPUTER)
                 .setDeviceName(PublicValues.deviceName)
                 .setClientToken("");
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
-                .setAutoplayEnabled(true)
-                .setCrossfadeDuration(0)
-                .setEnableNormalisation(true)
+                .setAutoplayEnabled(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name))
+                .setCrossfadeDuration(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name))
+                .setEnableNormalisation(PublicValues.config.getBoolean(ConfigValues.other_enablenormalization.name))
                 .setInitialVolume(65536)
                 .setLogAvailableMixers(true)
                 .setMetadataPipe(new File(""))
-                .setMixerSearchKeywords(new String[] {})
-                .setNormalisationPregain(3)
+                .setMixerSearchKeywords(PublicValues.config.getString(ConfigValues.other_mixersearchkeywords.name).split(","))
+                .setNormalisationPregain(PublicValues.config.getInt(ConfigValues.other_normalizationpregain.name))
                 .setOutput(PlayerConfiguration.AudioOutput.MIXER)
                 .setOutputClass("")
                 .setOutputPipe(new File(""))
                 .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name)))
-                .setPreloadEnabled(true)
-                .setReleaseLineDelay(20)
+                .setPreloadEnabled(PublicValues.config.getBoolean(ConfigValues.other_preloadenabled.name))
+                .setReleaseLineDelay(PublicValues.config.getInt(ConfigValues.other_releaselinedelay.name))
                 .setVolumeSteps(64)
-                .setBypassSinkVolume(false)
+                .setBypassSinkVolume(PublicValues.config.getBoolean(ConfigValues.other_bypasssinkvolume.name))
                 .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
         try {
@@ -90,27 +91,27 @@ public class PlayerUtils {
 
     public PlayerDefine buildPlayer(boolean ignore) throws Session.SpotifyAuthenticationException {
         Session.Builder builder = new Session.Builder()
-                .setPreferredLocale("en")
+                .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
                 .setDeviceType(Connect.DeviceType.COMPUTER)
                 .setDeviceName(PublicValues.deviceName)
                 .setClientToken("");
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
-                .setAutoplayEnabled(true)
-                .setCrossfadeDuration(0)
-                .setEnableNormalisation(true)
+                .setAutoplayEnabled(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name))
+                .setCrossfadeDuration(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name))
+                .setEnableNormalisation(PublicValues.config.getBoolean(ConfigValues.other_enablenormalization.name))
                 .setInitialVolume(65536)
                 .setLogAvailableMixers(true)
                 .setMetadataPipe(new File(""))
-                .setMixerSearchKeywords(new String[] {})
-                .setNormalisationPregain(3)
+                .setMixerSearchKeywords(PublicValues.config.getString(ConfigValues.other_mixersearchkeywords.name).split(","))
+                .setNormalisationPregain(PublicValues.config.getInt(ConfigValues.other_normalizationpregain.name))
                 .setOutput(PlayerConfiguration.AudioOutput.MIXER)
                 .setOutputClass("")
                 .setOutputPipe(new File(""))
                 .setPreferredQuality(AudioQuality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name)))
-                .setPreloadEnabled(true)
-                .setReleaseLineDelay(20)
+                .setPreloadEnabled(PublicValues.config.getBoolean(ConfigValues.other_preloadenabled.name))
+                .setReleaseLineDelay(PublicValues.config.getInt(ConfigValues.other_releaselinedelay.name))
                 .setVolumeSteps(64)
-                .setBypassSinkVolume(false)
+                .setBypassSinkVolume(PublicValues.config.getBoolean(ConfigValues.other_bypasssinkvolume.name))
                 .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
         try {

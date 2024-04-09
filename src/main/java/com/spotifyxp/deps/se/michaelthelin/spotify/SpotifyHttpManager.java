@@ -1,10 +1,9 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
-import com.spotifyxp.factory.Factory;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.hc.client5.http.auth.AuthScope;
@@ -340,9 +339,9 @@ public class SpotifyHttpManager implements IHttpManager {
         throw new BadRequestException(errorMessage);
       case HttpStatus.SC_UNAUTHORIZED:
         //Refresh token
-        PublicValues.elevated.refresh();
+        InstanceManager.getPkce().refresh();
         base.removeHeaders("Authorization");
-        base.addHeader("Authorization", "Bearer " + Factory.getPkce().getToken());
+        base.addHeader("Authorization", "Bearer " + InstanceManager.getPkce().getToken());
         switch (method) {
           case "get":
             triggerTokenExpire = false;

@@ -30,7 +30,7 @@ public class JScrollText extends JLabel implements Runnable {
                 int hgt = metrics.getHeight();
                 int adv = metrics.stringWidth(getText());
 
-                //Check if the text is completely visible (Dont need to scroll)
+                //Check if the text is completely visible (Don't need to scroll)
                 Dimension size = new Dimension(adv + 2, hgt + 2);
                 if (!(size.width > getWidth())) {
                     animate = false;

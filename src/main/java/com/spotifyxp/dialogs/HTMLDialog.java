@@ -18,35 +18,11 @@ import java.util.List;
 @SuppressWarnings("CanBeFinal")
 public class HTMLDialog {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    private final List<LoggerEvent> loggerlist = new ArrayList<>();
-    public void registerLoggerListener(LoggerEvent toAdd) {
-        loggerlist.add(toAdd);
-    }
-    public HTMLDialog(LoggerEvent event) {
-        registerLoggerListener(event);
-    }
-    private final List<HtmlDialogEvents> listeners = new ArrayList<>();
-    public void registerEventListener(HtmlDialogEvents toAdd) {
-        listeners.add(toAdd);
-    }
     JDialog dialog = new JDialog();
     JTextPane html = new JTextPane();
-    boolean sendEvents = false;
 
     public void open(JFrame frame, String title, String htmlcode) {
         try {
-            if (htmlcode.toLowerCase().contains("<script")) {
-                for (HtmlDialogEvents event1 : listeners) {
-                    event1.unsupportedHTMLTag("<script>");
-                }
-                dialog.dispose();
-            }
-            if (htmlcode.toLowerCase().contains("<link")) {
-                for (HtmlDialogEvents event1 : listeners) {
-                    event1.unsupportedHTMLTag("<link>");
-                }
-                dialog.dispose();
-            }
             dialog.setTitle(title);
             JPanel content = new JPanel();
             content.setLayout(new BorderLayout());
@@ -61,55 +37,10 @@ public class HTMLDialog {
             } else {
                 html.setText("<html>" + htmlcode + "</html>");
             }
-            dialog.addWindowListener(new WindowListener() {
-                @Override
-                public void windowOpened(java.awt.event.WindowEvent e) {
-                    for (HtmlDialogEvents event1 : listeners) {
-                        event1.open(dialog);
-                    }
-                    sendEvents = true;
-                }
-
-                @Override
-                public void windowClosing(java.awt.event.WindowEvent e) {
-                    for (HtmlDialogEvents event1 : listeners) {
-                        event1.close(dialog);
-                    }
-                    sendEvents = false;
-                }
-
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowIconified(java.awt.event.WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowDeiconified(java.awt.event.WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowActivated(java.awt.event.WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowDeactivated(java.awt.event.WindowEvent e) {
-
-                }
-            });
             dialog.addComponentListener(new ComponentListener() {
                 @Override
                 public void componentResized(ComponentEvent e) {
                     html.setMinimumSize(new Dimension(dialog.getHeight(), dialog.getWidth()));
-                    for (HtmlDialogEvents event1 : listeners) {
-                        event1.resize(dialog);
-                    }
                 }
 
                 @Override
