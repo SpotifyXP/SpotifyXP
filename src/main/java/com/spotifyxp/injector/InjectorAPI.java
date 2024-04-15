@@ -198,9 +198,8 @@ public class InjectorAPI {
     }
 
     public InjectorAPI() {
-        //injectorRepos.add(new InjectorRepository(
-        //        "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo"));
-        injectorRepos.add(new InjectorRepository("http://127.0.0.1:8000/repo"));
+        injectorRepos.add(new InjectorRepository(
+                "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo"));
         Events.triggerEvent(SpotifyXPEvents.injectorAPIReady.getName());
         for(InjectorRepository repository : injectorRepos) {
             apiInjectorRepositories.add(new APIInjectorRepository().buildFromResponse(ConnectionUtils.makeGet(repository.url + "/repo.json"), repository.url));
