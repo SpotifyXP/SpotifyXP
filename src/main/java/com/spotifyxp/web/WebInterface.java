@@ -2,9 +2,9 @@ package com.spotifyxp.web;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.utils.HttpUtils;
 import com.sun.net.httpserver.HttpExchange;

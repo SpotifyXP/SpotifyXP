@@ -4,18 +4,26 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.ConnectionUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
 import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class InjectorAPI {
     public static ArrayList<InjectorRepository> injectorRepos = new ArrayList<>();
+
     public static class InjectorRepository {
         private final String url;
         private final boolean isAvailable;
@@ -190,12 +198,35 @@ public class InjectorAPI {
     }
 
     public InjectorAPI() {
-        injectorRepos.add(new InjectorRepository(
-                "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo"));
+        //injectorRepos.add(new InjectorRepository(
+        //        "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo"));
+        injectorRepos.add(new InjectorRepository("http://127.0.0.1:8000/repo"));
         Events.triggerEvent(SpotifyXPEvents.injectorAPIReady.getName());
         for(InjectorRepository repository : injectorRepos) {
             apiInjectorRepositories.add(new APIInjectorRepository().buildFromResponse(ConnectionUtils.makeGet(repository.url + "/repo.json"), repository.url));
         }
+    }
+
+    public ExtensionSimplified getExtensionWithNameAndAuthor(String name, String author) {
+        for(APIInjectorRepository repository : getRepositories()) {
+            for (ExtensionSimplified simplified : getExtensions(repository)) {
+                if (simplified.getName().equals(name) && simplified.getAuthor().equals(author)) {
+                    return simplified;
+                }
+            }
+        }
+        return null;
+    }
+
+    public APIInjectorRepository getExtensionRepository(String name, String author) {
+        for(APIInjectorRepository repository : getRepositories()) {
+            for(ExtensionSimplified extensionSimplified : getExtensions(repository)) {
+                if(extensionSimplified.getName().equals(name) && extensionSimplified.getAuthor().equals(author)) {
+                    return repository;
+                }
+            }
+        }
+        return null;
     }
 
     public APIInjectorRepository getRepository(int index) throws ArrayIndexOutOfBoundsException {
@@ -215,7 +246,7 @@ public class InjectorAPI {
     }
 
     public Extension getExtension(String extensionURL, APIInjectorRepository repository) {
-        JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + extensionURL));
+        JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + "/" + extensionURL + ".json"));
         ArrayList<ExtensionSimplified> dependencies = new ArrayList<>();
         for(Object o : root.getJSONArray("dependencies")) {
             JSONObject dependency = new JSONObject(o.toString());
@@ -271,7 +302,7 @@ public class InjectorAPI {
     }
 
     public Extension getExtensionFromSimplified(ExtensionSimplified extensionSimplified, APIInjectorRepository repository) {
-        return getExtension(extensionSimplified.location, repository);
+        return getExtension(extensionSimplified.getName() + "-" + extensionSimplified.getAuthor(), repository);
     }
 
     String getFileName(String url) {
@@ -297,5 +328,117 @@ public class InjectorAPI {
         }
         bout.close();
         in.close();
+    }
+
+    InjectorStoreFile injectorStoreFile = null;
+
+    public InjectorStoreFile getInjectorFile() {
+        if(injectorStoreFile == null) {
+            injectorStoreFile = new InjectorStoreFile();
+        }
+        return injectorStoreFile;
+    }
+
+    public class InjectorStoreFile {
+        final String path;
+        JSONObject cache;
+
+
+        InjectorStoreFile() {
+            path = new File(PublicValues.appLocation, "InjectorStore.json").getAbsolutePath();
+            if(!new File(path).exists()) {
+                JSONObject root = new JSONObject();
+                root.put("installed", new JSONArray());
+                com.spotifyxp.utils.FileUtils.appendToFile(path, root.toString());
+            }
+            read();
+        }
+
+        public void read() {
+            try {
+                cache = new JSONObject(FileUtils.readFileToString(new File(path), Charset.defaultCharset()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        public void write(ExtensionSimplified simplified) {
+            int counter = 0;
+            for(Object o : cache.getJSONArray("installed")) {
+                JSONObject extension = new JSONObject(o.toString());
+                if(extension.getString("name").equals(simplified.getName()) && extension.getString("author").equals(simplified.getAuthor())) {
+                    extension.put("location", simplified.getLocation());
+                    extension.put("identifier", simplified.getIdentifier());
+                    extension.put("name", simplified.getName());
+                    extension.put("author", simplified.getAuthor());
+                    extension.put("version",simplified.getVersion());
+                    extension.put("description", simplified.getDescription());
+                    extension.put("minversion", simplified.getMinVersion());
+                    cache.getJSONArray("installed").remove(counter);
+                    cache.getJSONArray("installed").put(counter, extension);
+                    try {
+                        FileWriter writer = new FileWriter(path, false);
+                        writer.write(cache.toString());
+                        writer.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return;
+                }
+                counter++;
+            }
+            JSONObject extension = new JSONObject();
+            extension.put("location", simplified.getLocation());
+            extension.put("identifier", simplified.getIdentifier());
+            extension.put("name", simplified.getName());
+            extension.put("author", simplified.getAuthor());
+            extension.put("version",simplified.getVersion());
+            extension.put("description", simplified.getDescription());
+            extension.put("minversion", simplified.getMinVersion());
+            cache.getJSONArray("installed").put(extension);
+            try {
+                FileWriter writer = new FileWriter(path, false);
+                writer.write(cache.toString());
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        public ArrayList<ExtensionSimplified> getExtensions() {
+            ArrayList<ExtensionSimplified> extensions = new ArrayList<>();
+            for(Object o : cache.getJSONArray("installed")) {
+                JSONObject root = new JSONObject(o.toString());
+                extensions.add(new ExtensionSimplified(
+                   root.getString("location"),
+                   root.getString("identifier"),
+                   root.getString("name"),
+                   root.getString("author"),
+                   root.getString("version"),
+                   root.getString("description"),
+                   root.getString("minversion")
+                ));
+            }
+            return extensions;
+        }
+
+        public void remove(ExtensionSimplified ex) {
+            int counter = 0;
+            for(Object o : cache.getJSONArray("installed")) {
+                JSONObject extension = new JSONObject(o.toString());
+                if(ex.getName().equals(extension.getString("name")) && ex.getAuthor().equals(extension.getString("author"))) {
+                    break;
+                }
+                counter++;
+            }
+            cache.getJSONArray("installed").remove(counter);
+            try {
+                FileWriter writer = new FileWriter(path, false);
+                writer.write(cache.toString());
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

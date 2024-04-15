@@ -1,6 +1,7 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
+
 import javax.swing.*;
 
 public class SettingsTable extends JPanel {

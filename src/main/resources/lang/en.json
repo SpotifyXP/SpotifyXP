@@ -199,5 +199,10 @@
   "theme.fontfield": "Font Color",
   "theme.touse":"Theme to use",
   "generic.no": "No",
-  "generic.yes": "Yes"
+  "generic.yes": "Yes",
+  "extension.updateAvailable.title": "Extension Updater",
+  "extension.updateAvailable.message": "Update/s available for extension/s",
+  "extension.updateAvailable.update": "Update",
+  "extension.updater.tab": "Updater",
+  "extension.store.tab": "Store"
 }

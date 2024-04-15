@@ -69,11 +69,13 @@ public class ArgParser {
         arguments.add(new CustomSaveDir());
         arguments.add(new Debug());
         arguments.add(new Development());
-        arguments.add(new Language());
-        arguments.add(new SetupComplete());
         arguments.add(new InvokeUpdater());
+        arguments.add(new Language());
         arguments.add(new NoConnection());
         arguments.add(new NoGUI());
+        arguments.add(new SaveLog());
+        arguments.add(new SetupComplete());
+        arguments.add(new SteamDeck());
         arguments.add(new RESTApi());
         arguments.add(new Help());
     }

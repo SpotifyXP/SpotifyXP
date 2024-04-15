@@ -1,7 +1,7 @@
 package com.spotifyxp.api;
 
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.NameValuePair;
 import com.spotifyxp.utils.Token;

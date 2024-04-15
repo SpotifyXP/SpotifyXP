@@ -1,19 +1,12 @@
 package com.spotifyxp.dialogs;
 
 
-
-
-import com.spotifyxp.events.HtmlDialogEvents;
-import com.spotifyxp.events.LoggerEvent;
 import com.spotifyxp.logging.ConsoleLogging;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("CanBeFinal")
 public class HTMLDialog {

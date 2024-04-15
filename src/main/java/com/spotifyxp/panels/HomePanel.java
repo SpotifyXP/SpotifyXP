@@ -7,9 +7,9 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.StringUtils;
@@ -121,38 +121,38 @@ public class HomePanel {
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
-                                ContentPanel.artistPanel.artistpopularuricache.clear();
-                                ContentPanel.artistPanel.artistalbumuricache.clear();
-                                ((DefaultTableModel)ContentPanel.artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                                ((DefaultTableModel)ContentPanel.artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                                ContentPanel.artistPanel.artisttitle.setText("");
+                                ArtistPanel.popularuricache.clear();
+                                ArtistPanel.albumuricache.clear();
+                                ((DefaultTableModel)ArtistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                                ((DefaultTableModel)ArtistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                                ArtistPanel.artisttitle.setText("");
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(id).build().execute();
                                     try {
-                                        ContentPanel.artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
+                                        ArtistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
                                         //No artist image (when this is raised it's a bug)
                                     }
-                                    ContentPanel.artistPanel.artisttitle.setText(a.getName());
+                                    ArtistPanel.artisttitle.setText(a.getName());
                                     DefThread trackthread = new DefThread(() -> {
                                         try {
                                             for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
-                                                ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                ArtistPanel.popularuricache.add(t.getUri());
+                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
                                             }
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable));
+                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
                                 ContentPanel.artistPanel.openPanel();
-                                ContentPanel.artistPanel.isFirst = true;
-                                ContentPanel.artistPanel.contentPanel.setVisible(true);
+                                ArtistPanel.isFirst = true;
+                                ArtistPanel.contentPanel.setVisible(true);
                                 ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
                             case episode:
@@ -228,38 +228,38 @@ public class HomePanel {
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
-                                ContentPanel.artistPanel.artistpopularuricache.clear();
-                                ContentPanel.artistPanel.artistalbumuricache.clear();
-                                ((DefaultTableModel)ContentPanel.artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                                ((DefaultTableModel)ContentPanel.artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                                ContentPanel.artistPanel.artisttitle.setText("");
+                                ArtistPanel.popularuricache.clear();
+                                ArtistPanel.albumuricache.clear();
+                                ((DefaultTableModel)ArtistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                                ((DefaultTableModel)ArtistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                                ArtistPanel.artisttitle.setText("");
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(id).build().execute();
                                     try {
-                                        ContentPanel.artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
+                                        ArtistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
                                         //No artist image (when this is raised it's a bug)
                                     }
-                                    ContentPanel.artistPanel.artisttitle.setText(a.getName());
+                                    ArtistPanel.artisttitle.setText(a.getName());
                                     DefThread trackthread = new DefThread(() -> {
                                         try {
                                             for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
-                                                ContentPanel.artistPanel.artistpopularuricache.add(t.getUri());
-                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ContentPanel.artistPanel.artistpopularsonglist);
+                                                ArtistPanel.popularuricache.add(t.getUri());
+                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
                                             }
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ContentPanel.artistPanel.artistalbumuricache, uri, ContentPanel.artistPanel.artistalbumalbumtable));
+                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
                                 ContentPanel.artistPanel.openPanel();
-                                ContentPanel.artistPanel.isFirst = true;
-                                ContentPanel.artistPanel.contentPanel.setVisible(true);
+                                ArtistPanel.isFirst = true;
+                                ArtistPanel.contentPanel.setVisible(true);
                                 ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
                             default:

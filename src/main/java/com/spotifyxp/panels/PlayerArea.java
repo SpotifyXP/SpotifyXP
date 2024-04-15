@@ -6,11 +6,11 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiExcep
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.*;
 import com.spotifyxp.utils.GraphicalMessage;

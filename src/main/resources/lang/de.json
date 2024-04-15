@@ -197,5 +197,10 @@
   "theme.fontfield": "Schriftfarbe",
   "theme.touse":"Designstil",
   "generic.no": "Nein",
-  "generic.yes": "Ja"
+  "generic.yes": "Ja",
+  "extension.updateAvailable.title": "Erweiterungs Updater",
+  "extension.updateAvailable.message": "Aktualisierung für eine oder mehrer Erweiterungen verfügbar",
+  "extension.updateAvailable.update": "Update",
+  "extension.updater.tab": "Updater",
+  "extension.store.tab": "Store"
 }

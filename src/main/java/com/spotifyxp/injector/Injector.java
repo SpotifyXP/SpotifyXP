@@ -38,7 +38,7 @@ public class Injector {
             availableExtensions = new File(PublicValues.appLocation, "Extensions").listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.split("\\.")[name.split("\\.").length - 1].equalsIgnoreCase("jar");
+                    return name.endsWith(".jar");
                 }
             }).length;
             boolean firstGoThrough = true;
@@ -53,7 +53,7 @@ public class Injector {
                     for (File file : new File(PublicValues.appLocation, "Extensions").listFiles(new FilenameFilter() {
                         @Override
                         public boolean accept(File dir, String name) {
-                            return name.split("\\.")[name.split("\\.").length - 1].equalsIgnoreCase("jar");
+                            return name.endsWith(".jar");
                         }
                     })) {
                         loadJarAt(file.getAbsolutePath());

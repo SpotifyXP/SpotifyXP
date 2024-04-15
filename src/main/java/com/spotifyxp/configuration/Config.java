@@ -7,6 +7,7 @@ import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;

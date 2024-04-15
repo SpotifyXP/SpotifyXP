@@ -78,6 +78,10 @@ public class GraphicalMessage {
         return JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate(messageTranslation), PublicValues.language.translate(titleTranslation), options, messageType);
     }
 
+    public static void showMessageDialog(String titleTranslation, String messageTranslation, int messageType) {
+        JOptionPane.showMessageDialog(ContentPanel.frame, PublicValues.language.translate(messageTranslation), PublicValues.language.translate(titleTranslation), messageType);
+    }
+
     /**
      * Adds an exception to the list (add to the exception counter)
      * @param ex instance of an Exception

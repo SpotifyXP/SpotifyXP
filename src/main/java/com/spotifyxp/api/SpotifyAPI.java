@@ -5,8 +5,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
 

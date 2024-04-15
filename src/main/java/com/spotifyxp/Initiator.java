@@ -9,23 +9,20 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.injector.Injector;
-import com.spotifyxp.lastfm.LastFM;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.listeners.KeyListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.Feedback;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
-import com.spotifyxp.support.LinuxSupportModule;
-import com.spotifyxp.support.MacOSSupportModule;
-import com.spotifyxp.support.SteamDeckSupportModule;
+import com.spotifyxp.support.SupportModuleLoader;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.updater.Updater;
@@ -35,11 +32,7 @@ import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.web.WebInterface;
 
-import java.awt.*;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -87,13 +80,13 @@ public class Initiator {
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
         startupTime = new StartupTime(); //Saving the time SpotifyXP was started
+        initEvents(); //Initializing the event support
         PublicValues.argParser.parseArguments(args); //Parsing the arguments
         initSplashPanel(); //Initializing the splash panel
         System.setProperty("http.agent", ApplicationUtils.getUserAgent()); //Setting the user agent string that SpotifyXP uses
         checkDebug(); //Checking if debug is enabled
         detectOS(); //Detecting the operating system
         checkSetup();
-        initEvents(); //Initializing the event support
         initConfig(); //Initializing the configuratio
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
@@ -148,8 +141,10 @@ public class Initiator {
             System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
                 @Override public void write(int b) {}
             }) {
-                @Override public void flush() {}
-                @Override public void close() {}
+                @Override public void flush() {
+                }
+                @Override public void close() {
+                }
                 @Override public void write(int b) {}
                 @Override public void write(byte[] b) {}
                 @Override public void write(byte[] buf, int off, int len) {}
@@ -160,7 +155,8 @@ public class Initiator {
                 @Override public void print(float f) {}
                 @Override public void print(double d) {}
                 @Override public void print(char[] s) {}
-                @Override public void print(String s) {}
+                @Override public void print(String s) {
+                }
                 @Override public void print(Object obj) {}
                 @Override public void println() {}
                 @Override public void println(boolean x) {}
@@ -221,52 +217,12 @@ public class Initiator {
     static void detectOS() {
         SplashPanel.linfo.setText("Detecting operating system...");
         PublicValues.osType = libDetect.getDetectedOS();
-        switch(PublicValues.osType) {
-            case Linux:
-                if(!PublicValues.customSaveDir) {
-                    SplashPanel.linfo.setText("Found Linux! Applying Linux patch...");
-                    new LinuxSupportModule();
-                }
-                break;
-            case MacOS:
-                if(!PublicValues.customSaveDir) {
-                    SplashPanel.linfo.setText("Found MacOS! Applying MacOS patch...");
-                    new MacOSSupportModule();
-                }
-                System.setProperty("apple.laf.useScreenMenuBar", "true");
-                System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SpotifyXP");
-                try {
-                    Class<?> util = Class.forName("com.apple.eawt.Application");
-                    Method getApplication = util.getMethod("getApplication", new Class[0]);
-                    Object application = getApplication.invoke(util);
-                    Class[] params = new Class[1];
-                    params[0] = Image.class;
-                    Method setDockIconImage = util.getMethod("setDockIconImage", params);
-                    URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
-                    Image image = Toolkit.getDefaultToolkit().getImage(url);
-                    setDockIconImage.invoke(application, image);
-                }catch (Exception ignored) {
-                    try {
-                        Class<?> util = Class.forName("java.awt.Taskbar");
-                        Method getApplication = util.getMethod("getTaskbar", new Class[0]);
-                        Object application = getApplication.invoke(util);
-                        Class[] params = new Class[1];
-                        params[0] = Image.class;
-                        Method setDockIconImage = util.getMethod("setIconImage", params);
-                        URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
-                        Image image = Toolkit.getDefaultToolkit().getImage(url);
-                        setDockIconImage.invoke(application, image);
-                    } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                    }
-                }
-                break;
-            case Steamos:
-                SplashPanel.linfo.setText("Found SteamOS! Applying SteamDeck patch...");
-                if(!PublicValues.customSaveDir) {
-                    new LinuxSupportModule();
-                }
-                new SteamDeckSupportModule();
-                break;
+        try {
+            InstanceManager.getInstanceOf(SupportModuleLoader.class).loadModules();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -386,15 +342,10 @@ public class Initiator {
         past = true;
         SplashPanel.linfo.setText("Create advanced api key...");
         InstanceManager.getUnofficialSpotifyApi();
-        SplashPanel.linfo.setText("Init Last.fm");
-        new LastFM();
     }
 
     static void initGUI() {
         SplashPanel.linfo.setText("Creating contentPanel...");
-        if (PublicValues.osType == libDetect.OSType.Steamos) {
-            new SteamDeckSupportModule();
-        }
         ContentPanel panel = new ContentPanel();
         panel.open();
     }

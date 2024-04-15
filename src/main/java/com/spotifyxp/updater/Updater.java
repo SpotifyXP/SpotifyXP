@@ -2,8 +2,8 @@ package com.spotifyxp.updater;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.GitHubAPI;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import org.json.JSONObject;

@@ -14,13 +14,11 @@ import com.spotifyxp.dialogs.HTMLDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.injector.InjectorStore;
-import com.spotifyxp.lastfm.LastFMDialog;
-import com.spotifyxp.lastfm.LastFMUserDialog;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.theming.themes.DarkGreen;
@@ -31,7 +29,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -205,13 +202,13 @@ public class ContentPanel extends JPanel {
         }
         switch (lastmenu) {
             case Home:
-                artistPanel.artistpopularuricache.clear();
-                artistPanel.artistalbumuricache.clear();
+                artistPanel.popularuricache.clear();
+                artistPanel.albumuricache.clear();
                 ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
                 ((DefaultTableModel) artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
                 artistPanel.artisttitle.setText("");
                 ContentPanel.artistPanel.openPanel();
-                ContentPanel.artistPanel.isFirst = true;
+                ArtistPanel.isFirst = true;
                 artistPanel.contentPanel.setVisible(true);
                 artistPanelBackButton.setVisible(true);
                 artistPanelVisible = true;
@@ -219,13 +216,13 @@ public class ContentPanel extends JPanel {
                 ContentPanel.blockTabSwitch();
                 break;
             case Search:
-                artistPanel.artistpopularuricache.clear();
-                artistPanel.artistalbumuricache.clear();
+                artistPanel.popularuricache.clear();
+                artistPanel.albumuricache.clear();
                 ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
                 ((DefaultTableModel) artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
                 artistPanel.artisttitle.setText("");
                 ContentPanel.artistPanel.openPanel();
-                ContentPanel.artistPanel.isFirst = true;
+                ArtistPanel.isFirst = true;
                 artistPanel.contentPanel.setVisible(true);
                 artistPanelBackButton.setVisible(true);
                 artistPanelVisible = true;
@@ -247,7 +244,7 @@ public class ContentPanel extends JPanel {
                         if (!artistPanel.isVisible()) {
                             break;
                         }
-                        artistPanel.artistpopularuricache.add(t.getUri());
+                        artistPanel.popularuricache.add(t.getUri());
                         InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
                     }
                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
@@ -256,7 +253,7 @@ public class ContentPanel extends JPanel {
             });
             DefThread albumthread = new DefThread(() -> {
                 for(AlbumSimplified album : SpotifyUtils.getAllAlbumsArtist(a.getUri())) {
-                    artistPanel.artistalbumuricache.add(album.getUri());
+                    artistPanel.albumuricache.add(album.getUri());
                     ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).addRow(new Object[]{album.getName()});
                 }
             });
@@ -638,7 +635,6 @@ public class ContentPanel extends JPanel {
         JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
         JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
         JMenu view = new JMenu(PublicValues.language.translate("ui.legacy.view"));
-        JMenu lastfm = new JMenu("Last.fm");
         JMenu playback = new JMenu(PublicValues.language.translate("ui.playback.menu"));
         JMenu account = new JMenu(PublicValues.language.translate("ui.legacy.account"));
         JMenu help = new JMenu(PublicValues.language.translate("ui.legacy.help"));
@@ -649,13 +645,10 @@ public class ContentPanel extends JPanel {
         JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
         JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
         JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
-        JMenuItem lastfmdashboard = new JMenuItem("Dashboard");
         JMenuItem changedevice = new JMenuItem(PublicValues.language.translate("ui.playback.changedevice"));
-        JMenuItem lastfmuserinfo = new JMenuItem(PublicValues.language.translate("ui.lastfm.userinfo"));
         bar.add(file);
         bar.add(edit);
         bar.add(view);
-        bar.add(lastfm);
         bar.add(account);
         bar.add(help);
         if(PublicValues.devMode) {
@@ -672,18 +665,10 @@ public class ContentPanel extends JPanel {
         file.add(exit);
         edit.add(settings);
         view.add(audiovisualizer);
-        lastfm.add(lastfmdashboard);
-        lastfm.add(lastfmuserinfo);
         account.add(logout);
         help.add(extensions);
         help.add(about);
         playback.add(changedevice);
-        lastfmuserinfo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new LastFMUserDialog().open();
-            }
-        });
         changedevice.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -746,15 +731,6 @@ public class ContentPanel extends JPanel {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
             PublicValues.spotifyplayer.load(uri, true, false, false);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
-        });
-        lastfmdashboard.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(LastFMDialog.isOpen()) {
-                    return;
-                }
-                LastFMDialog.openWhenLoggedIn();
-            }
         });
         if (steamdeck) {
             for (int i = 0; i < bar.getMenuCount(); i++) {

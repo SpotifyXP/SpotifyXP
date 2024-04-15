@@ -9,8 +9,7 @@ import java.awt.*;
 public class JScrollText extends JLabel implements Runnable {
     String text;
     public JScrollText(String text) {
-        this.text = text;
-        super.setText(text);
+        setText(text);
     }
 
     DefThread t;
@@ -38,7 +37,7 @@ public class JScrollText extends JLabel implements Runnable {
                 }
                 //----
 
-                String oldText = getText();
+                String oldText = super.getText();
                 String newText = oldText.substring(1) + oldText.charAt(0);
                 try {
                     Thread.sleep(400);

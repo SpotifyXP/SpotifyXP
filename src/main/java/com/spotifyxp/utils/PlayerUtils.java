@@ -1,7 +1,6 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.Keyexchange;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;

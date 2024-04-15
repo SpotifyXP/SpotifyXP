@@ -2,8 +2,8 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 
 import java.util.ArrayList;
 

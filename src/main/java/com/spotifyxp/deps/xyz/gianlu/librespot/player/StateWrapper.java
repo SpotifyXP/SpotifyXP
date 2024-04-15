@@ -849,7 +849,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
     }
 
     @Nullable
-    public ContextTrack getCurrentTrack() {
+    public ContextTrack getCurrentTrack() throws IndexOutOfBoundsException {
         int index = tracksKeeper.getCurrentTrackIndex();
         return tracksKeeper == null || tracksKeeper.tracks.size() < index ? null : tracksKeeper.tracks.get(index);
     }

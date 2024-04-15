@@ -11,9 +11,9 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.SVGUtils;
@@ -155,14 +155,10 @@ public class PlayerListener implements Player.EventsListener {
         PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPAUSE.getPath());
     }
 
-    int retryCounter = 0;
-
     @Override
     public void onPlaybackFailed(@NotNull Player player, @NotNull Exception e) {
-        if(retryCounter > 5) {
-            return;
-        }
         ConsoleLogging.error("Player failed! retry");
+        ConsoleLogging.Throwable(e);
         pl.retry();
     }
 
@@ -211,7 +207,7 @@ public class PlayerListener implements Player.EventsListener {
     public void onPanicState(@NotNull Player player) {
         GraphicalMessage.openException(new UnknownError("PanicState in PlayerListener"));
         PublicValues.blockLoading = false;
-        retryCounter = 0;
+        pl.retry();
     }
 
     @Override
@@ -221,7 +217,6 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onFinishedLoading(@NotNull Player player) {
-        retryCounter = 0;
         Events.triggerEvent(SpotifyXPEvents.trackLoadFinished.getName());
     }
 }

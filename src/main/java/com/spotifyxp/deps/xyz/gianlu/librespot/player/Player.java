@@ -840,7 +840,7 @@ public class Player implements Closeable, PlayerDefine {
      * @return A {@link Tracks} instance with the current player queue
      */
     @NotNull
-    public Tracks tracks(boolean withQueue) {
+    public Tracks tracks(boolean withQueue) throws IndexOutOfBoundsException {
         return new Tracks(state.getPrevTracks(), state.getCurrentTrack(), state.getNextTracks(withQueue));
     }
 

@@ -16,9 +16,9 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
@@ -70,49 +70,52 @@ public class TrackUtils {
     }
     public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
         try {
-            if(!InstanceManager.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
-                InstanceManager.getPlayer().getPlayer().tracks(true).previous.clear();
+            try {
+                if (!InstanceManager.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
+                    InstanceManager.getPlayer().getPlayer().tracks(true).previous.clear();
+                }
+                if (!InstanceManager.getPlayer().getPlayer().tracks(true).next.isEmpty()) {
+                    InstanceManager.getPlayer().getPlayer().tracks(true).next.clear();
+                }
+            } catch (Exception exc) {
+                ConsoleLogging.warning("Couldn't queue tracks");
+                ConsoleLogging.Throwable(exc);
+                return;
             }
-            if(!InstanceManager.getPlayer().getPlayer().tracks(true).next.isEmpty()) {
-                InstanceManager.getPlayer().getPlayer().tracks(true).next.clear();
+            int counter = 0;
+            try {
+                for (String s : cache) {
+                    if (!(counter == addintable.getSelectedRow() + 1)) {
+                        counter++;
+                        continue;
+                    }
+                    if (counter == addintable.getRowCount()) {
+                        break; //User is on the last song
+                    }
+                    InstanceManager.getPlayer().getPlayer().addToQueue(s);
+                }
+            } catch (ArrayIndexOutOfBoundsException exception) {
+                GraphicalMessage.bug("TrackUtils line 112");
+            } catch (NullPointerException exc) {
+                //Factory.getPlayer().getPlayer().load("spotify:track:40aG6sP7TMy3x1J1zGW8su", true, false);
+                for (String s : cache) {
+                    if (!(counter == addintable.getSelectedRow() + 1)) {
+                        counter++;
+                        continue;
+                    }
+                    if (counter == addintable.getRowCount()) {
+                        break; //User is on the last song
+                    }
+                    InstanceManager.getPlayer().getPlayer().addToQueue(s);
+                }
             }
-        }catch (Exception exc) {
-            ConsoleLogging.warning("Couldn't queue tracks");
-            ConsoleLogging.Throwable(exc);
-            return;
+            InstanceManager.getPlayer().getPlayer().setShuffle(PublicValues.shuffle);
+            if (PublicValues.shuffle) {
+                Shuffle.makeShuffle();
+            }
+            Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
+        }catch (IndexOutOfBoundsException ignored) {
         }
-        int counter = 0;
-        try {
-            for (String s : cache) {
-                if (!(counter == addintable.getSelectedRow() + 1)) {
-                    counter++;
-                    continue;
-                }
-                if(counter==addintable.getRowCount()) {
-                    break; //User is on the last song
-                }
-                InstanceManager.getPlayer().getPlayer().addToQueue(s);
-            }
-        }catch (ArrayIndexOutOfBoundsException exception) {
-            GraphicalMessage.bug("TrackUtils line 112");
-        } catch (NullPointerException exc) {
-            //Factory.getPlayer().getPlayer().load("spotify:track:40aG6sP7TMy3x1J1zGW8su", true, false);
-            for (String s : cache) {
-                if (!(counter == addintable.getSelectedRow() + 1)) {
-                    counter++;
-                    continue;
-                }
-                if(counter==addintable.getRowCount()) {
-                    break; //User is on the last song
-                }
-                InstanceManager.getPlayer().getPlayer().addToQueue(s);
-            }
-        }
-        InstanceManager.getPlayer().getPlayer().setShuffle(PublicValues.shuffle);
-        if(PublicValues.shuffle) {
-            Shuffle.makeShuffle();
-        }
-        Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
     }
     public static Integer roundVolumeToNormal(float volume) {
         return Integer.parseInt(String.valueOf(Math.round(volume*10)));

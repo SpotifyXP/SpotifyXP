@@ -233,7 +233,6 @@ public class ConsoleLogging {
         System.out.println(getPrefix(PrefixTypes.WARNING).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 
-
     //Log4JSupport
     public static boolean isTraceEnabled() {
         return true;

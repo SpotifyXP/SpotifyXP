@@ -1,9 +1,9 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.GraphicalMessage;
 
 public class Player {
