@@ -202,5 +202,8 @@
   "extension.updateAvailable.message": "Aktualisierung für eine oder mehrer Erweiterungen verfügbar",
   "extension.updateAvailable.update": "Update",
   "extension.updater.tab": "Updater",
-  "extension.store.tab": "Store"
+  "extension.store.tab": "Store",
+  "playlists.create.title": "Playlist hinzufügen",
+  "playlists.create.name.label": "Playlist name",
+  "playlists.create.visibility": "Playlist öffentlich machen?"
 }

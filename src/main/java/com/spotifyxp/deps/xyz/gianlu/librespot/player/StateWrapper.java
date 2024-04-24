@@ -673,6 +673,15 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             if (index == -1) return Optional.empty();
         }
 
+        if(index > tracksKeeper.tracks.size()) {
+            //IndexOutOfBounds
+            index = PlayableId.indexOfTrack(tracksKeeper.tracks, id);
+            if(index > tracksKeeper.tracks.size()) {
+                index = PlayableId.indexOfTrack(tracksKeeper.queue, id);
+                if(index == -1) return Optional.empty();
+            }
+        }
+
         return Optional.of(tracksKeeper.tracks.get(index).getMetadataMap());
     }
 

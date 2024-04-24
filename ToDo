@@ -1,2 +1,7 @@
-Fix token not refreshing
-Allow application restart through function (destroy all class instances and call main)
+Translation ToDo (Japanese):
+
+  "playlists.create.title": "",
+  "playlists.create.name.label": ""
+  "playlists.create.visibility": ""
+
+Find out why librespot stops responding (GUI doesn't freeze.. yay)

@@ -16,6 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
@@ -37,6 +39,8 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.utils.PlayerUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -105,7 +109,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
      *
      * @throws PlayableContentFeeder.ContentRestrictedException If the content cannot be retrieved because of restrictions (this condition won't change with a retry).
      */
-    private void load(boolean preload) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, PlayableContentFeeder.ContentRestrictedException {
+    private void load(boolean preload) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, PlayableContentFeeder.ContentRestrictedException, NotFoundException {
         PlayableContentFeeder.LoadedStream stream;
         if (playable instanceof LocalId)
             stream = PlayableContentFeeder.LoadedStream.forLocalFile((LocalId) playable,
@@ -278,6 +282,12 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
             close();
             listener.loadingError(this, ex, retried);
             ConsoleLoggingModules.debug("{} terminated at loading.", this, ex);
+            return;
+        } catch (NotFoundException ex) {
+            close();
+            listener.loadingError(this, ex, retried);
+            ConsoleLoggingModules.debug("{} terminated at loading.", this, ex);
+            InstanceManager.getPlayer().getPlayer().load(playable.toSpotifyUri(), true, PublicValues.shuffle, false); //Guessing all parameters other than uri
             return;
         }
 

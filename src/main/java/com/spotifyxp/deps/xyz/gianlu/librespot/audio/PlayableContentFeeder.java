@@ -19,6 +19,7 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 import com.google.protobuf.ByteString;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn.CdnFeedHelper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn.CdnManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.AudioQualityPicker;
@@ -81,7 +82,7 @@ public final class PlayableContentFeeder {
     }
 
     @NotNull
-    public LoadedStream load(@NotNull PlayableId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws CdnManager.CdnException, ContentRestrictedException, MercuryClient.MercuryException, IOException {
+    public LoadedStream load(@NotNull PlayableId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws CdnManager.CdnException, ContentRestrictedException, MercuryClient.MercuryException, IOException, NotFoundException {
 
         if (id instanceof TrackId)
             return loadTrack((TrackId) id, audioQualityPicker, preload, haltListener);
@@ -103,7 +104,7 @@ public final class PlayableContentFeeder {
         }
     }
 
-    private @NotNull LoadedStream loadTrack(@NotNull TrackId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws IOException, MercuryClient.MercuryException, ContentRestrictedException, CdnManager.CdnException {
+    private @NotNull LoadedStream loadTrack(@NotNull TrackId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws IOException, MercuryClient.MercuryException, ContentRestrictedException, CdnManager.CdnException, NotFoundException {
         Metadata.Track original = session.api().getMetadata4Track(id);
         Metadata.Track track = pickAlternativeIfNecessary(original);
         if (track == null) {
@@ -119,7 +120,7 @@ public final class PlayableContentFeeder {
 
     @NotNull
     @Contract("_, null, null, _, _, _ -> fail")
-    private LoadedStream loadCdnStream(@NotNull Metadata.AudioFile file, @Nullable Metadata.Track track, @Nullable Metadata.Episode episode, @NotNull String urlStr, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {
+    private LoadedStream loadCdnStream(@NotNull Metadata.AudioFile file, @Nullable Metadata.Track track, @Nullable Metadata.Episode episode, @NotNull String urlStr, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, NotFoundException {
         if (track == null && episode == null)
             throw new IllegalStateException();
 
@@ -130,7 +131,7 @@ public final class PlayableContentFeeder {
 
     @NotNull
     @Contract("_, null, null, _, _ -> fail")
-    private LoadedStream loadStream(@NotNull Metadata.AudioFile file, @Nullable Metadata.Track track, @Nullable Metadata.Episode episode, boolean preload, @Nullable HaltListener haltListener) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException {
+    private LoadedStream loadStream(@NotNull Metadata.AudioFile file, @Nullable Metadata.Track track, @Nullable Metadata.Episode episode, boolean preload, @Nullable HaltListener haltListener) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, NotFoundException {
         if (track == null && episode == null)
             throw new IllegalStateException();
 
@@ -157,7 +158,7 @@ public final class PlayableContentFeeder {
     }
 
     @NotNull
-    private LoadedStream loadTrack(@NotNull Metadata.Track track, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, MercuryClient.MercuryException {
+    private LoadedStream loadTrack(@NotNull Metadata.Track track, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, MercuryClient.MercuryException, NotFoundException {
         Metadata.AudioFile file = audioQualityPicker.getFile(track.getFileList());
 
         if (file == null) {
@@ -169,7 +170,7 @@ public final class PlayableContentFeeder {
     }
 
     @NotNull
-    private LoadedStream loadEpisode(@NotNull EpisodeId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException {
+    private LoadedStream loadEpisode(@NotNull EpisodeId id, @NotNull AudioQualityPicker audioQualityPicker, boolean preload, @Nullable HaltListener haltListener) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, NotFoundException {
         Metadata.Episode episode = session.api().getMetadata4Episode(id);
 
         if (episode.hasExternalUrl()) {

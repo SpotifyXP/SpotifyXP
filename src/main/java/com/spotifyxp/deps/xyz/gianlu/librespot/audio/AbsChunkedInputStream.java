@@ -255,6 +255,10 @@ public abstract class AbsChunkedInputStream extends SeekableInputStream implemen
         requestedChunks()[index] = false;
         retries[index] += 1;
 
+        if(retries[index] > 20) {
+            throw new RuntimeException();
+        }
+
         synchronized (waitLock) {
             if (index == waitForChunk && !closed) {
                 chunkException = ex;

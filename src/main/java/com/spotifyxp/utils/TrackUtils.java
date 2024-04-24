@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
@@ -181,7 +182,7 @@ public class TrackUtils {
         table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
 
-    public static void download(PlayableId id) throws CdnManager.CdnException, IOException, MercuryClient.MercuryException, PlayableContentFeeder.ContentRestrictedException, UnsupportedOperationException {
+    public static void download(PlayableId id) throws CdnManager.CdnException, IOException, MercuryClient.MercuryException, PlayableContentFeeder.ContentRestrictedException, UnsupportedOperationException, NotFoundException {
         PublicValues.disableChunkDebug = true;
         PlayableContentFeeder.LoadedStream stream = PublicValues.session.contentFeeder().load(id, new VorbisOnlyAudioQuality(AudioQuality.valueOf(PublicValues.quality.toString())), false, new HaltListener() {
             @Override

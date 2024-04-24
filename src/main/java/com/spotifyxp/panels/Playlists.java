@@ -1,14 +1,17 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.dialogs.AddPlaylistDialog;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.TrackUtils;
+import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +20,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Playlists extends JPanel {
@@ -77,6 +81,24 @@ public class Playlists extends JPanel {
             Clipboard clipboard = toolkit.getSystemClipboard();
             StringSelection strSel = new StringSelection(playlistsuricache.get(playlistsplayliststable.getSelectedRow()));
             clipboard.setContents(strSel, null);
+        });
+        menu.addItem(PublicValues.language.translate("playlists.create.title"), () -> {
+            AddPlaylistDialog dialog = new AddPlaylistDialog();
+            dialog.show((playlistname, playlistvisibility) -> {
+                try {
+                    String uri = InstanceManager.getSpotifyApi().createPlaylist(PublicValues.session.username(), playlistname).public_(playlistvisibility).build().execute().getUri();
+                    playlistsplayliststable.addModifyAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            playlistsuricache.add(uri);
+                            ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{playlistname});
+                        }
+                    });
+                } catch (IOException | SpotifyWebApiException | ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }, () -> {
+            }, dialog::dispose);
         });
         playlistsplayliststable.addMouseListener(new MouseAdapter() {
             @Override

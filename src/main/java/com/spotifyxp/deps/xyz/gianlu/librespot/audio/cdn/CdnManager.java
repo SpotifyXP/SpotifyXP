@@ -20,6 +20,7 @@ import com.google.protobuf.ByteString;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.*;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decrypt.AesAudioDecrypt;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decrypt.AudioDecrypt;
@@ -39,6 +40,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.NotActiveException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -75,13 +77,13 @@ public class CdnManager {
     }
 
     @NotNull
-    public Streamer streamExternalEpisode(@NotNull Metadata.Episode episode, @NotNull HttpUrl externalUrl, @Nullable HaltListener haltListener) throws IOException, CdnException {
+    public Streamer streamExternalEpisode(@NotNull Metadata.Episode episode, @NotNull HttpUrl externalUrl, @Nullable HaltListener haltListener) throws IOException, CdnException, NotFoundException {
         return new Streamer(new StreamId(episode), SuperAudioFormat.MP3 /* Guaranteed */, new CdnUrl(null, externalUrl),
                 session.cache(), new NoopAudioDecrypt(), haltListener);
     }
 
     @NotNull
-    public Streamer streamFile(@NotNull Metadata.AudioFile file, @NotNull byte[] key, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnException {
+    public Streamer streamFile(@NotNull Metadata.AudioFile file, @NotNull byte[] key, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnException, NotFoundException {
         return new Streamer(new StreamId(file), SuperAudioFormat.get(file.getFormat()), new CdnUrl(file.getFileId(), url),
                 session.cache(), new AesAudioDecrypt(key), haltListener);
     }
@@ -226,7 +228,7 @@ public class CdnManager {
         private final HaltListener haltListener;
 
         private Streamer(@NotNull StreamId streamId, @NotNull SuperAudioFormat format, @NotNull CdnUrl cdnUrl, @Nullable CacheManager cache,
-                         @Nullable AudioDecrypt audioDecrypt, @Nullable HaltListener haltListener) throws IOException, CdnException {
+                         @Nullable AudioDecrypt audioDecrypt, @Nullable HaltListener haltListener) throws IOException, CdnException, NotFoundException {
             this.streamId = streamId;
             this.format = format;
             this.audioDecrypt = audioDecrypt;
@@ -330,8 +332,6 @@ public class CdnManager {
                 }
             }
 
-            String respURL;
-
             try {
                 InternalResponse resp = request(index);
                 writeChunk(resp.buffer, index, false);
@@ -341,20 +341,28 @@ public class CdnManager {
             } catch (IOException | CdnException ex) {
                 ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
                 internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
+            } catch (NotFoundException ex) {
+                ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
+                internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
+                throw new RuntimeException(ex);
             }
         }
 
         @NotNull
-        public synchronized InternalResponse request(int chunk) throws IOException, CdnException {
+        public synchronized InternalResponse request(int chunk) throws IOException, CdnException, NotFoundException {
             return request(CHUNK_SIZE * chunk, (chunk + 1) * CHUNK_SIZE - 1);
         }
 
         @NotNull
-        public synchronized InternalResponse request(int rangeStart, int rangeEnd) throws IOException, CdnException {
+        public synchronized InternalResponse request(int rangeStart, int rangeEnd) throws IOException, CdnException, NotFoundException {
             try (Response resp = session.client().newCall(new Request.Builder().get().url(cdnUrl.url())
                     .header("Range", "bytes=" + rangeStart + "-" + rangeEnd)
                     .build()).execute()) {
 
+                if (resp.code() == 404) {
+                    //404: Not Found
+                    throw new NotFoundException();
+                }
                 if (resp.code() != 206)
                     throw new IOException(resp.code() + ": " + resp.message());
 

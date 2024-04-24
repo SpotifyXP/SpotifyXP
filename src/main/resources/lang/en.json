@@ -204,5 +204,8 @@
   "extension.updateAvailable.message": "Update/s available for extension/s",
   "extension.updateAvailable.update": "Update",
   "extension.updater.tab": "Updater",
-  "extension.store.tab": "Store"
+  "extension.store.tab": "Store",
+  "playlists.create.title": "Create playlist",
+  "playlists.create.name.label": "Playlist name",
+  "playlists.create.visibility": "Set visibility public?"
 }
