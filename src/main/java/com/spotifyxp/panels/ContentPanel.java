@@ -356,7 +356,7 @@ public class ContentPanel extends JPanel {
             }
             String opensourcelist = new Resources().readToString("setup/thirdparty.html");
             String finalhtml = cache.toString().split("<insertOpenSourceList>")[0] + opensourcelist + cache.toString().split("</insertOpenSourceList>")[1];
-            dialog.open(frame, PublicValues.language.translate("ui.menu.help.about"), finalhtml);
+            dialog.open(PublicValues.language.translate("ui.menu.help.about"), finalhtml);
         } catch (Exception ex) {
             GraphicalMessage.openException(ex);
             ConsoleLogging.Throwable(ex);

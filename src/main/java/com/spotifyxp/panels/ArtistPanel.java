@@ -165,6 +165,7 @@ public class ArtistPanel extends JPanel {
         for(Runnable runnable : runWhenOpeningArtistPanel) {
             runnable.run();
         }
+        ContentPanel.blockTabSwitch();
         javax.swing.SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
     }
 }

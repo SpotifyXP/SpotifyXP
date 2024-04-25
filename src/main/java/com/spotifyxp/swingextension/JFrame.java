@@ -15,6 +15,10 @@ public class JFrame extends javax.swing.JFrame {
     public JFrame() {
     }
 
+    public Point getCenter() {
+        return new Point(getLocation().x / 2, getLocation().y / 2);
+    }
+
     public void close() {
         this.setVisible(false);
     }

@@ -342,9 +342,8 @@ public class CdnManager {
                 ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
                 internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
             } catch (NotFoundException ex) {
-                ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
+                ConsoleLoggingModules.error("Failed requesting chunk from network due to a 404, index: {}", index, ex);
                 internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
-                throw new RuntimeException(ex);
             }
         }
 

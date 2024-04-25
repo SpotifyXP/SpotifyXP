@@ -15,9 +15,6 @@ public class SystemTrayDialog {
     TrayIcon trayIcon = null;
     boolean calledadd = false;
     boolean calledopen = false;
-    int eventCnt = 0;
-    java.util.Timer timer = new java.util.Timer("doubleClickTimer", false);
-    @SuppressWarnings("Convert2Lambda")
     PopupMenu menu;
 
     public void add(String trayicon, String tooltip) {

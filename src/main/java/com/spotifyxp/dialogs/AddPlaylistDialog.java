@@ -29,7 +29,7 @@ public class AddPlaylistDialog extends JDialog {
     }
 
     public void show(OkRunnable ok, Runnable cancel, Runnable onClose) {
-        setLocation(ContentPanel.frame.getLocation());
+        setLocation(ContentPanel.frame.getCenter());
         closeListener = onClose;
         playlistvisibility.setText(PublicValues.language.translate("playlists.create.visibility"));
         playlistnamelabel.setText(PublicValues.language.translate("playlists.create.name.label"));
@@ -41,6 +41,12 @@ public class AddPlaylistDialog extends JDialog {
         cancelbutton.addActionListener(e -> {
             dispose();
             cancel.run();
+        });
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
         });
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setPreferredSize(new Dimension(800 / 2, 600 / 3));

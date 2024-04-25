@@ -98,9 +98,16 @@ public class RAWTextArea extends JPanel {
         return content;
     }
 
+    boolean skipPaint = false;
+
+    public void dontPaint() {
+        skipPaint = true;
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        if(skipPaint) return;
         if(!colorMode) {
             g.setColor(PublicValues.globalFontColor);
             Rectangle2D r = g.getFontMetrics().getStringBounds(content, g);

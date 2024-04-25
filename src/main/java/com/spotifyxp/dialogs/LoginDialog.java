@@ -3,181 +3,110 @@ package com.spotifyxp.dialogs;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.CustomLengthPasswordField;
 import com.spotifyxp.swingextension.CustomLengthTextField;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-@SuppressWarnings("Convert2Lambda")
-public class LoginDialog {
-    private static CustomLengthTextField spotifyusernamefield;
-    private static CustomLengthPasswordField usernamepasswordfield;
-    private static JButton facebook;
-    private static JButton spotifyokbutton;
-    private static JButton spotifycancelbutton;
-    private static class ContentPanel extends JPanel {
-        public ContentPanel() {
-            spotifyusernamefield = new CustomLengthTextField(60);
-            spotifyusernamefield.setBounds(10, 81, 314, 39);
-            add(spotifyusernamefield);
-            spotifyusernamefield.setColumns(10);
-            setBorder(new EmptyBorder(5, 5, 5, 5));
-            setLayout(new BorderLayout());
-            usernamepasswordfield = new CustomLengthPasswordField(60);
-            usernamepasswordfield.setColumns(10);
-            usernamepasswordfield.setBounds(10, 179, 314, 39);
-            add(usernamepasswordfield);
-            facebook = new JButton("Facebook");
-            facebook.setBounds(10, 228, 314, 20);
-            //add(facebook);
-            spotifyokbutton = new JButton("Ok");
-            spotifyokbutton.setBounds(10, 275, 139, 31);
-            add(spotifyokbutton);
-            spotifycancelbutton = new JButton("Cancel");
-            spotifycancelbutton.setBounds(185, 275, 139, 31);
-            add(spotifycancelbutton);
-            JLabel spotifylabelusername = new JLabel("E-Mail");
-            spotifylabelusername.setBounds(10, 60, 111, 14);
-            add(spotifylabelusername);
-            JLabel spotifylabelpassword = new JLabel("Password");
-            spotifylabelpassword.setBounds(10, 158, 111, 14);
-            add(spotifylabelpassword);
-            JLabel spotifylabelinfo = new JLabel("Please enter your Spotify credentials");
-            spotifylabelinfo.setHorizontalAlignment(SwingConstants.CENTER);
-            spotifylabelinfo.setBounds(10, 11, 314, 14);
-            add(spotifylabelinfo);
-            spotifylabelinfo.setVisible(false);
-            usernamepasswordfield.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyTyped(KeyEvent e) {
-                    super.keyTyped(e);
-                    if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        spotifyokbutton.doClick();
-                    }
-                }
-            });
-        }
+//ToDo: Check if this is the first start of SpotifyXP and when not support translation
+
+public class LoginDialog extends JDialog {
+    private JPanel contentPane;
+    private JButton spotifyokbutton;
+    private JButton spotifycancelbutton;
+    private JButton facebook;
+    private JLabel spotifylabelusername;
+    private JLabel spotifylabelpassword;
+    private CustomLengthTextField spotifyusernamefield;
+    private CustomLengthPasswordField usernamepasswordfield;
+
+    public LoginDialog() {
+        setContentPane(contentPane);
+        setModal(true);
+        setPreferredSize(new Dimension(350, 356));
+        setResizable(false);
+
+        spotifyusernamefield.setColumns(10);
+
+        usernamepasswordfield.setColumns(10);
+
+        facebook.setText("Facebook");
+        facebook.setEnabled(false);
+        facebook.setToolTipText("Facebook auth not supported"); //https://github.com/SpotifyXP/SpotifyXP/issues/15
+        facebook.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.facebook.name, true);
+                SplashPanel.frame.setAlwaysOnTop(false);
+                PublicValues.facebookcanceldialog = new CancelDialog();
+                PublicValues.facebookcanceldialog.showIt();
+                dispose();
+            }
+        });
+
+        getRootPane().setDefaultButton(spotifyokbutton);
+
+        spotifyokbutton.setText("Ok"); //ToDo: Translate
+        spotifyokbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
+                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
+                PublicValues.config.write(ConfigValues.facebook.name, false);
+                dispose();
+            }
+        });
+
+        spotifycancelbutton.setText("Cancel"); //ToDo: Translate
+        spotifycancelbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        spotifylabelusername.setText("E-Mail"); //ToDo: Translate
+
+        spotifylabelpassword.setText("Password"); //ToDo: Translate
     }
-    @SuppressWarnings("BusyWait")
+
     public void openWithInvalidAuth() {
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Invalid Login! Try again");
-        dialog.getContentPane().add(new ContentPanel());
-        dialog.setResizable(false);
-        dialog.setPreferredSize(new Dimension(350, 356));
-        dialog.pack();
-        dialog.setVisible(true);
-        dialog.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.red);
-        spotifyokbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
-                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
-                PublicValues.config.write(ConfigValues.facebook.name, false);
-                dialog.dispose();
-            }
-        });
-        facebook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.facebook.name, true);
-                SplashPanel.frame.setAlwaysOnTop(false);
-                PublicValues.facebookcanceldialog = new CancelDialog();
-                PublicValues.facebookcanceldialog.showIt();
-                dialog.dispose();
-            }
-        });
-        spotifycancelbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        dialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        setTitle("Invalid Login! Try again"); //ToDo: Translate
+        getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.red);
         Initiator.past = true;
         SplashPanel.frame.setAlwaysOnTop(false);
-        while(dialog.isVisible()) {
-            try {
-                Thread.sleep(99);
-            } catch (InterruptedException e) {
-                GraphicalMessage.openException(e);
-                ConsoleLogging.Throwable(e);
-            }
-        }
+        pack();
+        setVisible(true);
         Initiator.past = false;
         Initiator.startupTime = new StartupTime();
         Initiator.thread.start();
         SplashPanel.frame.setAlwaysOnTop(true);
     }
-    @SuppressWarnings("BusyWait")
+
     public void open() {
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Enter Spotify Credentials");
-        dialog.getContentPane().add(new ContentPanel());
-        dialog.setResizable(false);
-        dialog.setPreferredSize(new Dimension(350, 356));
-        dialog.pack();
-        dialog.setVisible(true);
-        spotifyokbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
-                PublicValues.config.write(ConfigValues.password.name, new String(usernamepasswordfield.getPassword()));
-                PublicValues.config.write(ConfigValues.facebook.name, false);
-                dialog.dispose();
-            }
-        });
-        facebook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PublicValues.config.write(ConfigValues.facebook.name, true);
-                SplashPanel.frame.setAlwaysOnTop(false);
-                PublicValues.facebookcanceldialog = new CancelDialog();
-                PublicValues.facebookcanceldialog.showIt();
-                dialog.dispose();
-            }
-        });
-        spotifycancelbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!new File(PublicValues.fileslocation + "/" + "LOCKED").delete()) {
-                    ConsoleLogging.error(PublicValues.language.translate("startup.error.lockdelete"));
-                }
-                System.exit(0);
-            }
-        });
-        dialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        setTitle("Enter Spotify Credentials"); //ToDo: Translate
         Initiator.past = true;
         SplashPanel.frame.setAlwaysOnTop(false);
-        while(dialog.isVisible()) {
-            try {
-                Thread.sleep(99);
-            } catch (InterruptedException e) {
-                GraphicalMessage.openException(e);
-                ConsoleLogging.Throwable(e);
-            }
-        }
+        pack();
+        setVisible(true);
         Initiator.past = false;
         Initiator.startupTime = new StartupTime();
         Initiator.thread.start();
         SplashPanel.frame.setAlwaysOnTop(true);
+    }
+
+    public static void main(String[] args) {
+        LoginDialog dialog = new LoginDialog();
+        dialog.open();
+    }
+
+    private void createUIComponents() {
+        spotifyusernamefield = new CustomLengthTextField(254); //https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+        usernamepasswordfield = new CustomLengthPasswordField(500); //https://community.spotify.com/t5/Accounts/max-password-lenght/td-p/5533953
     }
 }
