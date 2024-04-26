@@ -1,6 +1,3 @@
-sh "$(pwd)/scripts/getModules.sh"
-sh "$(pwd)/scripts/buildModules.sh"
-
 echo "\033[0;36mBuilding SpotifyXP\033[0m"
 echo ""
 echo "Please wait..."

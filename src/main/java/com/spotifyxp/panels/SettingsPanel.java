@@ -4,13 +4,13 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.swingextension.JScrollText;
 import com.spotifyxp.swingextension.SettingsTable;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;

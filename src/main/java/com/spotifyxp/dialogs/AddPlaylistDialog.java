@@ -1,12 +1,12 @@
 package com.spotifyxp.dialogs;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.panels.ContentPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class AddPlaylistDialog extends JDialog {
     private JPanel contentPane;

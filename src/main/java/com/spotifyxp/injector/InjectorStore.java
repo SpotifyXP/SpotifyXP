@@ -2,21 +2,16 @@ package com.spotifyxp.injector;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.ApplicationUtils;
-import com.spotifyxp.utils.FileUtils;
 import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.PlayerUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Objects;
 

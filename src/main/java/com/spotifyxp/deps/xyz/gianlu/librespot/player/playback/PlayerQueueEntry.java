@@ -40,7 +40,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.utils.PlayerUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

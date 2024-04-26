@@ -1,6 +1,5 @@
 package com.spotifyxp.dialogs;
 
-import ch.randelshofer.quaqua.border.OverlayBorder;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
@@ -16,6 +15,7 @@ import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

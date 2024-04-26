@@ -14,9 +14,6 @@ IF EXIST "%cd%/build/" CALL "%cd%\scripts\utils\clean.bat"
 IF EXIST "%cd%/Modules/" CALL "%cd%\scripts\utils\clean.bat"
 IF EXIST "%cd%/src/main/resources/SpotifyXP-Updater.jar" CALL "%cd%\scripts\utils\clean.bat"
 
-CALL "%cd%\scripts\getModules.bat"
-CALL "%cd%\scripts\buildModules.bat" %1
-
 CALL :color 03 "Building SpotifyXP"
 echo.
 

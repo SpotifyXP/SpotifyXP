@@ -40,7 +40,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.NotActiveException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
