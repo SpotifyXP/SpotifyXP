@@ -25,13 +25,11 @@ import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.SupportModuleLoader;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.updater.Updater;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.web.WebInterface;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -100,7 +98,6 @@ public class Initiator {
         }
 
         initThemes(); //Initializing the theming support
-        checkingUpdater(); //Checking if the updater jar exists inside resources
         creatingLock(); //Creating the 'LOCK' file
         checkLogin(); //Checking if user has already entered his credentials
         addShutdownHook(); //Adding the shudtown hook
@@ -108,7 +105,6 @@ public class Initiator {
         createKeyListener(); //Starting the key listener (For Play/Pause)
         initTrayIcon(); //Creating the tray icon
         initGUI(); //Initializing the GUI
-        checkingUpdate(); //Checking for available updates
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide(); //Hiding the splash panel
         new WebInterface(); //Starting the webinterface
@@ -294,15 +290,6 @@ public class Initiator {
         }
     }
 
-    static void checkingUpdater() {
-        try {
-            Files.copy(new Resources(true).readToInputStream("SpotifyXP-Updater.jar"), Paths.get(PublicValues.appLocation + "/SpotifyXP-Updater.jar"), StandardCopyOption.REPLACE_EXISTING);
-        }catch (Exception e) {
-            //Build without SpotifyXP-Updater
-            Updater.disable = true; //Disabling updater
-        }
-    }
-
     static void creatingLock() {
         try {
             if(new File(PublicValues.appLocation, "LOCK").createNewFile()) {
@@ -353,24 +340,5 @@ public class Initiator {
     static void initTrayIcon() {
         SplashPanel.linfo.setText("Creating the tray icon...");
         new BackgroundService().start();
-    }
-
-    static void checkingUpdate() {
-        Updater.UpdateInfo info = new Updater().updateAvailable();
-        DefThread thread = new DefThread(() -> {
-            if (info.updateAvailable) {
-                String version = info.version;
-                Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.available") + version);
-                new Updater().invoke();
-            } else {
-                if (new Updater().isNightly()) {
-                    Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.nightly"));
-                    Feedback.feedbackupdaterdownloadbutton.setVisible(false);
-                } else {
-                    Feedback.feedbackupdaterversionfield.setText(PublicValues.language.translate("ui.updater.notavailable"));
-                }
-            }
-        });
-        thread.start();
     }
 }
