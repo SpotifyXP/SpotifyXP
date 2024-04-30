@@ -9,9 +9,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.ClipboardUtil;
-import com.spotifyxp.utils.SpotifyUtils;
-import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.utils.*;
 import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
@@ -172,7 +170,7 @@ public class Search extends JPanel {
             searchfilterplaylist.setSelected(false);
             searchfilterartist.setSelected(false);
         });
-        searchfinditbutton.addActionListener(e -> {
+        searchfinditbutton.addActionListener(new AsyncActionListener(e -> {
             DefThread thread1 = new DefThread(() -> {
                 String searchartist = searchartistfield.getText();
                 String searchtitle = searchsongtitlefield.getText();
@@ -265,13 +263,13 @@ public class Search extends JPanel {
                 searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
             });
             thread1.start();
-        });
+        }));
         searchscrollpanel = new JScrollPane();
         searchscrollpanel.setBounds(0, 139, 784, 282);
         add(searchscrollpanel);
         searchsonglist = new DefTable();
         searchsonglist.getTableHeader().setReorderingAllowed(false);
-        searchsonglist.addMouseListener(new MouseAdapter() {
+        searchsonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -514,7 +512,7 @@ public class Search extends JPanel {
                     searchsonglist.setColumnSelectionInterval(0, searchsonglist.getColumnCount() - 1);
                 }
             }
-        });
+        }));
         searchsonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
         searchsonglist.setForeground(PublicValues.globalFontColor);
         searchsonglist.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
@@ -538,7 +536,7 @@ public class Search extends JPanel {
         searchplaylistscrollpanel.setViewportView(searchplaylisttable);
         searchplaylisttable.setForeground(PublicValues.globalFontColor);
         searchplaylisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        searchplaylisttable.addMouseListener(new MouseAdapter() {
+        searchplaylisttable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -548,12 +546,12 @@ public class Search extends JPanel {
                     TrackUtils.addAllToQueue(searchplaylistsongscache, searchplaylisttable);
                 }
             }
-        });
+        }));
         searchplaylisttable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         searchplaylistpanel.setVisible(false);
         searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable);
         searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow())));
-        searchbackbutton.addActionListener(e -> {
+        searchbackbutton.addActionListener(new AsyncActionListener(e -> {
             searchplaylistpanel.setVisible(false);
             if(ContentPanel.artistPanelVisible) {
                 ArtistPanel.contentPanel.setVisible(true);
@@ -564,7 +562,7 @@ public class Search extends JPanel {
             if (!ContentPanel.artistPanelVisible) {
                 ContentPanel.enableTabSwitch();
             }
-        });
+        }));
         searchcontextmenu = new ContextMenu(searchsonglist);
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.addtolibrary"), () -> {
             PlayerArea.heart.isFilled = true;

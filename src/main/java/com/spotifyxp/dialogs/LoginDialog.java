@@ -6,6 +6,7 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.CustomLengthPasswordField;
 import com.spotifyxp.swingextension.CustomLengthTextField;
+import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.StartupTime;
 
 import javax.swing.*;
@@ -38,7 +39,7 @@ public class LoginDialog extends JDialog {
         facebook.setText("Facebook");
         facebook.setEnabled(false);
         facebook.setToolTipText("Facebook auth not supported"); //https://github.com/SpotifyXP/SpotifyXP/issues/15
-        facebook.addActionListener(new ActionListener() {
+        facebook.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.facebook.name, true);
@@ -47,12 +48,12 @@ public class LoginDialog extends JDialog {
                 PublicValues.facebookcanceldialog.showIt();
                 dispose();
             }
-        });
+        }));
 
         getRootPane().setDefaultButton(spotifyokbutton);
 
         spotifyokbutton.setText("Ok"); //ToDo: Translate
-        spotifyokbutton.addActionListener(new ActionListener() {
+        spotifyokbutton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.username.name, spotifyusernamefield.getText());
@@ -60,15 +61,15 @@ public class LoginDialog extends JDialog {
                 PublicValues.config.write(ConfigValues.facebook.name, false);
                 dispose();
             }
-        });
+        }));
 
         spotifycancelbutton.setText("Cancel"); //ToDo: Translate
-        spotifycancelbutton.addActionListener(new ActionListener() {
+        spotifycancelbutton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
-        });
+        }));
 
         spotifylabelusername.setText("E-Mail"); //ToDo: Translate
 

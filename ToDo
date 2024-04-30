@@ -4,4 +4,6 @@ Translation ToDo (Japanese):
   "playlists.create.name.label": ""
   "playlists.create.visibility": ""
 
-Find out why librespot stops responding (GUI doesn't freeze.. yay)
+Fix Spotify updater
+
+Fix legacy disable on opening other panels (User can break the UI)

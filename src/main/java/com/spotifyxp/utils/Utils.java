@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.JFrame;
+import com.spotifyxp.threading.DefThread;
 import org.apache.commons.io.IOUtils;
 
 import java.awt.*;
@@ -140,5 +141,10 @@ public class Utils {
             }
         }
         return -1;
+    }
+
+    public static void executeAsync(Runnable runnable) {
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }

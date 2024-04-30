@@ -10,6 +10,7 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
 
@@ -100,7 +101,7 @@ public class Playlists extends JPanel {
             }, () -> {
             }, dialog::dispose);
         });
-        playlistsplayliststable.addMouseListener(new MouseAdapter() {
+        playlistsplayliststable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -138,8 +139,8 @@ public class Playlists extends JPanel {
                     thread.start();
                 }
             }
-        });
-        playlistssongtable.addMouseListener(new MouseAdapter() {
+        }));
+        playlistssongtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -147,6 +148,6 @@ public class Playlists extends JPanel {
                     TrackUtils.addAllToQueue(playlistssonguricache, playlistssongtable);
                 }
             }
-        });
+        }));
     }
 }

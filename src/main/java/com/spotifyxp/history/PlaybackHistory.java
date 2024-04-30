@@ -11,6 +11,8 @@ import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.AsyncActionListener;
+import com.spotifyxp.utils.AsyncMouseListener;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -102,20 +104,20 @@ public class PlaybackHistory extends JFrame {
 
         JButton removeall = new JButton(PublicValues.language.translate("ui.history.removeall"));
 
-        removeall.addActionListener(e -> {
+        removeall.addActionListener(new AsyncActionListener(e -> {
             try {
                 removeAllSongs();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
 
-        });
+        }));
 
         add(removeall, BorderLayout.SOUTH);
 
 
 
-        tree.addMouseListener(new MouseAdapter() {
+        tree.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount() == 2) {
@@ -143,7 +145,7 @@ public class PlaybackHistory extends JFrame {
                     }
                 }
             }
-        });
+        }));
 
         addWindowListener(new WindowAdapter() {
             @Override

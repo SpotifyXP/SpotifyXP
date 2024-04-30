@@ -11,6 +11,7 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.StringUtils;
 import com.spotifyxp.utils.TrackUtils;
@@ -105,7 +106,7 @@ public class HomePanel {
             homepanelmodulecontenttable.addModifyAction(() -> ((DefaultTableModel) homepanelmodulecontenttable.getModel()).addRow(new Object[]{artist.name, ""}));
         }
 
-        homepanelmodulecontenttable.addMouseListener(new MouseAdapter() {
+        homepanelmodulecontenttable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -167,7 +168,7 @@ public class HomePanel {
                     }
                 }
             }
-        });
+        }));
 
         addCache+=319;
         cache++;
@@ -212,7 +213,7 @@ public class HomePanel {
                 }
         ));
 
-        homepanelusertable.addMouseListener(new MouseAdapter() {
+        homepanelusertable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -270,7 +271,7 @@ public class HomePanel {
                     }
                 }
             }
-        });
+        }));
 
         JLabel homepanelgreetingstext = new JLabel(tab.greeting);
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 16));

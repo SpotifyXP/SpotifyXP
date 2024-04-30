@@ -15,7 +15,6 @@ public class AddPlaylistDialog extends JDialog {
     private JTextField playlistname;
     private JCheckBox playlistvisibility;
     private JLabel playlistnamelabel;
-    private Runnable closeListener;
 
     @FunctionalInterface
     public interface OkRunnable {
@@ -30,7 +29,6 @@ public class AddPlaylistDialog extends JDialog {
 
     public void show(OkRunnable ok, Runnable cancel, Runnable onClose) {
         setLocation(ContentPanel.frame.getCenter());
-        closeListener = onClose;
         playlistvisibility.setText(PublicValues.language.translate("playlists.create.visibility"));
         playlistnamelabel.setText(PublicValues.language.translate("playlists.create.name.label"));
         setTitle(PublicValues.language.translate("playlists.create.title"));
@@ -45,6 +43,7 @@ public class AddPlaylistDialog extends JDialog {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                onClose.run();
                 dispose();
             }
         });

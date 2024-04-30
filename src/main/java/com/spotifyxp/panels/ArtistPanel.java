@@ -9,6 +9,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
+import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.TrackUtils;
@@ -93,7 +94,7 @@ public class ArtistPanel extends JPanel {
         artistalbumalbumtable.setForeground(PublicValues.globalFontColor);
         artistalbumalbumtable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
-        artistalbumalbumtable.addMouseListener(new MouseAdapter() {
+        artistalbumalbumtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -117,7 +118,7 @@ public class ArtistPanel extends JPanel {
                     }
                 }
             }
-        });
+        }));
 
         artistpopularsonglist.setModel(new DefaultTableModel(
                 new Object[][]{
@@ -137,7 +138,7 @@ public class ArtistPanel extends JPanel {
                 }
         ));
 
-        artistpopularsonglist.addMouseListener(new MouseAdapter() {
+        artistpopularsonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -146,7 +147,7 @@ public class ArtistPanel extends JPanel {
                     TrackUtils.addAllToQueue(popularuricache, artistpopularsonglist);
                 }
             }
-        });
+        }));
     }
 
     public static ArrayList<String> albumuricache = new ArrayList<>();

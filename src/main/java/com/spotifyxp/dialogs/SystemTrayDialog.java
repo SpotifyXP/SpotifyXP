@@ -1,6 +1,8 @@
 package com.spotifyxp.dialogs;
 
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.utils.AsyncActionListener;
+import com.spotifyxp.utils.AsyncMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +36,7 @@ public class SystemTrayDialog {
     public void addEntry(String name, ActionListener onclick) {
         if(calledadd) {
             MenuItem action = new MenuItem(name);
-            action.addActionListener(onclick);
+            action.addActionListener(new AsyncActionListener(onclick));
             menu.add(action);
         }
     }
@@ -43,7 +45,7 @@ public class SystemTrayDialog {
             calledopen = true;
             trayIcon = new TrayIcon(image, toolt);
             trayIcon.setImageAutoSize(true);
-            trayIcon.addActionListener(ondoubleclick);
+            trayIcon.addActionListener(new AsyncActionListener(ondoubleclick));
             try {
                 systemTray.add(trayIcon);
             } catch (AWTException awtException) {
@@ -57,7 +59,7 @@ public class SystemTrayDialog {
             trayIcon = new TrayIcon(image, toolt);
             trayIcon.setPopupMenu(menu);
             trayIcon.setImageAutoSize(true);
-            trayIcon.addMouseListener(adapter);
+            trayIcon.addMouseListener(new AsyncMouseListener(adapter));
             try {
                 systemTray.add(trayIcon);
             } catch (AWTException awtException) {

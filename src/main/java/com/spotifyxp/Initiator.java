@@ -17,7 +17,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.panels.Feedback;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.setup.Setup;
@@ -27,13 +26,10 @@ import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.web.WebInterface;
+
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 @SuppressWarnings({"all", "RedundantArrayCreation"})
 public class Initiator {

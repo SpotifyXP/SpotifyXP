@@ -76,17 +76,10 @@ public class ContentPanel extends JPanel {
     public static final ArrayList<String> advanceduricache = new ArrayList<>();
     public static boolean pressedCTRL = false;
     public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
-    public static SettingsPanel settingsPanel = null;
     static boolean steamdeck = false;
     static LastTypes lastmenu = LastTypes.HotList;
     static boolean advancedSongPanelVisible = false;
-    boolean clicked = false;
-    int w = 0;
-    int h = 0;
-    boolean visible = false;
-    boolean dragging = false;
-    boolean toggle = false;
-    int count = 0;
+    static boolean errorDisplayVisible = false;
 
     static class TabEntry {
         public String title;
@@ -143,7 +136,7 @@ public class ContentPanel extends JPanel {
         SplashPanel.linfo.setText("Creating advancedPanel...");
         createAdvancedPanel();
         SplashPanel.linfo.setText("Adding window mouse listener...");
-        addMouseListener(new MouseAdapter() {
+        addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
@@ -151,7 +144,7 @@ public class ContentPanel extends JPanel {
                     PublicValues.injector.openInjectWindow("");
                 }
             }
-        });
+        }));
         SplashPanel.linfo.setText("Deciding population of hotlist...");
         if (PublicValues.autoLoadHotList) {
             Thread t = new Thread(this::setHotlistVisible);
@@ -298,11 +291,6 @@ public class ContentPanel extends JPanel {
         //---
     }
 
-    @SuppressWarnings("SameParameterValue")
-    static Color hex2Rgb(String colorStr) {
-        return new Color(Integer.valueOf(colorStr.substring(1, 3), 16), Integer.valueOf(colorStr.substring(3, 5), 16), Integer.valueOf(colorStr.substring(5, 7), 16));
-    }
-
     public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {
         homepanel.getComponent().setVisible(false);
         ((DefaultTableModel) advancedsongtable.getModel()).setRowCount(0);
@@ -389,7 +377,7 @@ public class ContentPanel extends JPanel {
         artistPanelBackButton = new JButton(PublicValues.language.translate("ui.back"));
         artistPanelBackButton.setBounds(0, 0, 89, 23);
         artistPanelBackButton.setForeground(PublicValues.globalFontColor);
-        artistPanelBackButton.addActionListener(e -> {
+        artistPanelBackButton.addActionListener(new AsyncActionListener(e -> {
             if (PublicValues.blockArtistPanelBackButton) {
                 return;
             }
@@ -417,7 +405,7 @@ public class ContentPanel extends JPanel {
                     artistPanelVisible = false;
                     ContentPanel.enableTabSwitch();
             }
-        });
+        }));
         tabpanel.add(artistPanelBackButton);
         artistPanel = new ArtistPanel();
         artistPanel.contentPanel.setBounds(0, 21, 784, 400);
@@ -434,8 +422,6 @@ public class ContentPanel extends JPanel {
         searchpanel = new Search();
         tabpanel.add(searchpanel);
     }
-
-    boolean errorDisplayVisible = false;
 
     void createErrorDisplay() {
         errorDisplay = new JButton() {
@@ -472,7 +458,7 @@ public class ContentPanel extends JPanel {
                 return true;
             }
         };
-        errorDisplay.addActionListener(new ActionListener() {
+        errorDisplay.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(errorQueue.size() > 100) {
@@ -495,14 +481,14 @@ public class ContentPanel extends JPanel {
                 for (ExceptionDialog exd : errorQueue) {
                     ((DefaultTableModel) table.getModel()).addRow(new Object[]{exd.getPreview()});
                 }
-                table.addMouseListener(new MouseAdapter() {
+                table.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
                         if(SwingUtilities.isRightMouseButton(e)) return;
                         if(e.getClickCount() == 2) errorQueue.get(table.getSelectedRow()).openReal();
                     }
-                });
+                }));
                 ContextMenu menu = new ContextMenu(pane, table);
                 menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(errorQueue.get(table.getSelectedRow()).getAsFormattedText()));
                 menu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
@@ -514,11 +500,11 @@ public class ContentPanel extends JPanel {
                     }
                 });
                 JButton remove = new JButton(PublicValues.language.translate("ui.errorqueue.clear"));
-                remove.addActionListener(e1 -> {
+                remove.addActionListener(new AsyncActionListener(e1 -> {
                     errorQueue.clear();
                     ((DefaultTableModel) table.getModel()).setRowCount(0);
                     errorDisplay.setVisible(false);
-                });
+                }));
                 dialog.add(remove, BorderLayout.SOUTH);
                 dialog.setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
                 dialog.add(pane, BorderLayout.CENTER);
@@ -531,7 +517,7 @@ public class ContentPanel extends JPanel {
                 });
                 dialog.pack();
             }
-        });
+        }));
         errorDisplay.setVisible(false);
         add(errorDisplay);
         errorDisplay.setBackground(Color.decode("#BB0000"));
@@ -670,7 +656,7 @@ public class ContentPanel extends JPanel {
         help.add(extensions);
         help.add(about);
         playback.add(changedevice);
-        changedevice.addActionListener(new ActionListener() {
+        changedevice.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ArrayList<String> devices = new ArrayList<>();
@@ -698,10 +684,10 @@ public class ContentPanel extends JPanel {
                     }
                 }
             }
-        });
+        }));
         audiovisualizer.addActionListener(e -> PublicValues.visualizer.open());
         extensions.addActionListener(e -> new InjectorStore().open());
-        settings.addActionListener(new ActionListener() {
+        settings.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame dialog = new JFrame();
@@ -719,20 +705,20 @@ public class ContentPanel extends JPanel {
                     }
                 });
             }
-        });
-        logout.addActionListener(e -> {
+        }));
+        logout.addActionListener(new AsyncActionListener(e -> {
             PublicValues.config.write(ConfigValues.username.name, "");
             PublicValues.config.write(ConfigValues.password.name, "");
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
-        });
-        about.addActionListener(e -> openAbout());
+        }));
+        about.addActionListener(new AsyncActionListener(e -> openAbout()));
         exit.addActionListener(e -> System.exit(0));
-        playuri.addActionListener(e -> {
+        playuri.addActionListener(new AsyncActionListener(e -> {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
             PublicValues.spotifyplayer.load(uri, true, false, false);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
-        });
+        }));
         if (steamdeck) {
             for (int i = 0; i < bar.getMenuCount(); i++) {
                 JMenu menu1 = bar.getMenu(i);
@@ -750,7 +736,7 @@ public class ContentPanel extends JPanel {
                         ((DefaultTableModel) table.getModel()).addRow(new Object[]{menuItem1.getText()});
                     }
                 }
-                table.addMouseListener(new MouseAdapter() {
+                table.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
@@ -758,7 +744,7 @@ public class ContentPanel extends JPanel {
                             items.get(table.getSelectedRow()).doClick();
                         }
                     }
-                });
+                }));
                 window.setPreferredSize(new Dimension(300, 300));
                 window.setVisible(true);
                 window.pack();
@@ -798,11 +784,11 @@ public class ContentPanel extends JPanel {
         advancedsongpanel.add(advancedbackbutton);
         advancedbackbutton.setForeground(PublicValues.globalFontColor);
         advancedsongpanel.setVisible(false);
-        advancedbackbutton.addActionListener(e -> {
+        advancedbackbutton.addActionListener(new AsyncActionListener(e -> {
             advancedsongpanel.setVisible(false);
             homepanel.getComponent().setVisible(true);
             ContentPanel.enableTabSwitch();
-        });
+        }));
         advancedsongtable = new DefTable();
         advancedsongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         advancedsongtable.setForeground(PublicValues.globalFontColor);
@@ -811,7 +797,7 @@ public class ContentPanel extends JPanel {
         advancedscrollpanel.setBounds(0, 22, 784, 399);
         advancedsongpanel.add(advancedscrollpanel);
         advancedscrollpanel.setViewportView(advancedsongtable);
-        advancedsongtable.addMouseListener(new MouseAdapter() {
+        advancedsongtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -821,7 +807,7 @@ public class ContentPanel extends JPanel {
                     TrackUtils.addAllToQueue(advanceduricache, advancedsongtable);
                 }
             }
-        });
+        }));
     }
 
     public void setLibraryVisible() {

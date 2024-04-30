@@ -13,10 +13,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.*;
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.Shuffle;
-import com.spotifyxp.utils.StringUtils;
-import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.utils.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
 
@@ -67,7 +64,7 @@ public class PlayerArea extends JPanel {
         playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
         playerarearepeatingbutton.getJComponent().setBackground(frame.getBackground());
         add(playerarearepeatingbutton.getJComponent());
-        playerareashufflebutton.getJComponent().addMouseListener(new MouseAdapter() {
+        playerareashufflebutton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -93,8 +90,8 @@ public class PlayerArea extends JPanel {
                     playerareashufflebutton.setImage(Graphics.SHUFFLESELECTED.getPath());
                 }
             }
-        });
-        playerarearepeatingbutton.getJComponent().addMouseListener(new MouseAdapter() {
+        }));
+        playerarearepeatingbutton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -108,7 +105,7 @@ public class PlayerArea extends JPanel {
                     playerarearepeatingbutton.setImage(Graphics.REPEATSELECTED.getPath());
                 }
             }
-        });
+        }));
         playerimage = new JImagePanel();
         playerimage.setBounds(10, 11, 78, 78);
         add(playerimage);
@@ -116,7 +113,7 @@ public class PlayerArea extends JPanel {
         playerarealyricsbutton.getJComponent().setBounds(280, 75, 14, 14);
         playerarealyricsbutton.getJComponent().setBackground(frame.getBackground());
         add(playerarealyricsbutton.getJComponent());
-        playerarealyricsbutton.getJComponent().addMouseListener(new MouseAdapter() {
+        playerarealyricsbutton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -139,7 +136,7 @@ public class PlayerArea extends JPanel {
                     playerarealyricsbutton.isFilled = false;
                 }
             }
-        });
+        }));
         playerareavolumeicon = new JSVGPanel();
         playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
         playerareavolumeicon.getJComponent().setBackground(frame.getBackground());
@@ -242,7 +239,7 @@ public class PlayerArea extends JPanel {
         heart = new JSVGPanel();
         heart.getJComponent().setBackground(frame.getBackground());
         heart.getJComponent().setBounds(525, 20, 24, 24);
-        heart.getJComponent().addMouseListener(new MouseAdapter() {
+        heart.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -264,28 +261,28 @@ public class PlayerArea extends JPanel {
                     heart.isFilled = true;
                 }
             }
-        });
+        }));
         heart.setImage(Graphics.HEART.getPath());
         add(heart.getJComponent());
         playercurrenttime.setForeground(PublicValues.globalFontColor);
         playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(playercurrenttime.getValue() * 1000L)));
-        playercurrenttime.addMouseListener(new MouseAdapter() {
+        playercurrenttime.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 InstanceManager.getPlayer().getPlayer().pause();
                 PlayerListener.pauseTimer = true;
             }
-        });
-        playercurrenttime.addMouseListener(new MouseAdapter() {
+        }));
+        playercurrenttime.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 PlayerListener.pauseTimer = false;
                 InstanceManager.getPlayer().getPlayer().seek(playercurrenttime.getValue() * 1000);
                 InstanceManager.getPlayer().getPlayer().play();
             }
-        });
+        }));
         playerplaynextbutton.addActionListener(e -> InstanceManager.getPlayer().getPlayer().next());
-        playerplaypreviousbutton.addActionListener(e -> PublicValues.spotifyplayer.previous());
+        playerplaypreviousbutton.addActionListener(new AsyncActionListener(e -> PublicValues.spotifyplayer.previous()));
         playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(InstanceManager.getPlayer().getPlayer().time())));
 
         SplashPanel.linfo.setText("Creating playback history...");
@@ -304,7 +301,7 @@ public class PlayerArea extends JPanel {
         historybutton = new JSVGPanel();
         historybutton.setImage(Graphics.HISTORY.getPath());
         historybutton.getJComponent().setBounds(720, 50, 20, 20);
-        historybutton.getJComponent().addMouseListener(new MouseAdapter() {
+        historybutton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -318,11 +315,11 @@ public class PlayerArea extends JPanel {
                     PublicValues.history.open();
                 }
             }
-        });
+        }));
         ContentPanel.frame.add(historybutton.getJComponent());
 
         JFrame dialog = new JFrame();
-        addMouseListener(new MouseAdapter() {
+        addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -351,7 +348,7 @@ public class PlayerArea extends JPanel {
                     }
                 }
             }
-        });
+        }));
         dialog.setResizable(false);
         dialog.addWindowListener(new WindowAdapter() {
             @Override

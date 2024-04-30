@@ -10,10 +10,7 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.utils.ClipboardUtil;
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.SpotifyUtils;
-import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.utils.*;
 import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
@@ -84,7 +81,7 @@ public class HotList extends JPanel {
         hotlistsongstable.getTableHeader().setForeground(PublicValues.globalFontColor);
         hotslistsongscrollpanel.setViewportView(hotlistsongstable);
         hotlistplayliststable.getTableHeader().setReorderingAllowed(false);
-        hotlistsongstable.addMouseListener(new MouseAdapter() {
+        hotlistsongstable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 hotlistsongstable.setColumnSelectionInterval(0, hotlistsongstable.getColumnCount() - 1);
@@ -94,8 +91,8 @@ public class HotList extends JPanel {
                     TrackUtils.addAllToQueue(hotlistsonglistcache, hotlistsongstable);
                 }
             }
-        });
-        hotlistplayliststable.addMouseListener(new MouseAdapter() {
+        }));
+        hotlistplayliststable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ((DefaultTableModel) hotlistsongstable.getModel()).setRowCount(0);
@@ -108,7 +105,7 @@ public class HotList extends JPanel {
                     }
                 }
             }
-        });
+        }));
     }
 
     public static void fetchHotlist() {

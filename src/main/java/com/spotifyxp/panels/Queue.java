@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.T
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
@@ -74,10 +75,10 @@ public class Queue extends JPanel {
                 }
             }
         });
-        queueremovebutton.addActionListener(e -> {
+        queueremovebutton.addActionListener(new AsyncActionListener(e -> {
             InstanceManager.getPlayer().getPlayer().removeFromQueue(queueuricache.get(queuelist.getSelectedIndex()));
             queueuricache.remove(queueuricache.get(queuelist.getSelectedIndex()));
             ((DefaultListModel<?>) queuelist.getModel()).remove(queuelist.getSelectedIndex());
-        });
+        }));
     }
 }

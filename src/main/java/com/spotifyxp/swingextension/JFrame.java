@@ -2,6 +2,7 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.Utils;
 
 import javax.swing.*;
@@ -36,7 +37,7 @@ public class JFrame extends javax.swing.JFrame {
                 JMenuItem originalMenuItem = originalMenu.getItem(j);
                 JMenuItem newMenuItem = new JMenuItem(originalMenuItem.getText());
                 for(ActionListener listener : originalMenuItem.getActionListeners()) {
-                    newMenuItem.addActionListener(listener);
+                    newMenuItem.addActionListener(new AsyncActionListener(listener));
                 }
                 newMenu.add(newMenuItem);
             }

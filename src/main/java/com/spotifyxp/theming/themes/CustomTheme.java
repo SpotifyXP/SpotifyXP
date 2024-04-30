@@ -9,6 +9,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.theming.Theme;
+import com.spotifyxp.utils.AsyncActionListener;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
@@ -63,7 +64,7 @@ public class CustomTheme implements Theme {
             bgcolorbutton.setBounds(214, 34, 180, 29);
             add(bgcolorbutton);
 
-            bgcolorbutton.addActionListener(e -> bgcolorfield.setText(openColorWheel(bgcolorfield.getText())));
+            bgcolorbutton.addActionListener(new AsyncActionListener(e -> bgcolorfield.setText(openColorWheel(bgcolorfield.getText()))));
 
             bordercolorlabel = new JLabel(PublicValues.language.translate("theme.borderfield"));
             bordercolorlabel.setBounds(6, 75, 388, 16);
@@ -80,7 +81,7 @@ public class CustomTheme implements Theme {
             bordercolorbutton.setBounds(214, 100, 180, 29);
             add(bordercolorbutton);
 
-            bordercolorbutton.addActionListener(e -> bordercolorfield.setText(openColorWheel(bordercolorfield.getText())));
+            bordercolorbutton.addActionListener(new AsyncActionListener(e -> bordercolorfield.setText(openColorWheel(bordercolorfield.getText()))));
 
             tabpanelbglabel = new JLabel(PublicValues.language.translate("theme.tabpanelfield"));
             tabpanelbglabel.setBounds(6, 138, 388, 16);
@@ -90,7 +91,7 @@ public class CustomTheme implements Theme {
             tabpanelbgbutton.setBounds(214, 166, 180, 29);
             add(tabpanelbgbutton);
 
-            tabpanelbgbutton.addActionListener(e -> tabpanelbgfield.setText(openColorWheel(tabpanelbgfield.getText())));
+            tabpanelbgbutton.addActionListener(new AsyncActionListener(e -> tabpanelbgfield.setText(openColorWheel(tabpanelbgfield.getText()))));
 
             tabpanelbgfield = new JTextField();
             tabpanelbgfield.setColumns(10);
@@ -114,7 +115,7 @@ public class CustomTheme implements Theme {
             fontcolorbutton.setBounds(214, 235, 180, 29);
             add(fontcolorbutton);
 
-            fontcolorbutton.addActionListener(e -> fontcolorfield.setText(openColorWheel(fontcolorfield.getText())));
+            fontcolorbutton.addActionListener(new AsyncActionListener(e -> fontcolorfield.setText(openColorWheel(fontcolorfield.getText()))));
 
             themetouselabel = new JLabel(PublicValues.language.translate("theme.touse"));
             themetouselabel.setBounds(6, 276, 196, 16);
@@ -234,7 +235,7 @@ public class CustomTheme implements Theme {
             JMenuItem change = new JMenuItem(PublicValues.language.translate("ui.theme.change"));
             menu.add(change);
             PublicValues.menuBar.add(menu);
-            change.addActionListener(e -> openCustomzationMenu());
+            change.addActionListener(new AsyncActionListener(e -> openCustomzationMenu()));
         });
     }
 

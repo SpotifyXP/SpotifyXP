@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.ApplicationUtils;
+import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
@@ -122,7 +123,7 @@ public class InjectorStore {
             separator.setSize(361, 2);
             separator.setLocation(0, ycache);
             modulesholder.add(separator);
-            extensioninstallremovebutton.addActionListener(e -> {
+            extensioninstallremovebutton.addActionListener(new AsyncActionListener(e -> {
                 InjectorAPI.Extension extension = api.getExtensionFromSimplified(ex, repository);
                 try {
                     long size = api.getSizeOfExtension(repository, extension);
@@ -144,7 +145,7 @@ public class InjectorStore {
                 } catch (IOException exc) {
                     throw new RuntimeException(exc);
                 }
-            });
+            }));
         }
     }
 
@@ -199,7 +200,7 @@ public class InjectorStore {
                     extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
                 }
             }
-            extensioninstallremovebutton.addActionListener(e -> {
+            extensioninstallremovebutton.addActionListener(new AsyncActionListener(e -> {
                 if(!extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
                     return;
                 }
@@ -219,7 +220,7 @@ public class InjectorStore {
                     api.getInjectorFile().remove(ex);
                     installedExtensions.remove(ex);
                 }
-            });
+            }));
             JLabel extensiontitle = new JLabel(ex.getName() + " from " + ex.getAuthor() + " - " + ex.getVersion());
             extensiontitle.setBounds(10, ycache + 11, 339, 14);
             modulesholder.add(extensiontitle);
@@ -258,7 +259,7 @@ public class InjectorStore {
                     extensioninstallremovebutton.setText(PublicValues.language.translate("extension.remove"));
                 }
             }
-            extensioninstallremovebutton.addActionListener(e -> {
+            extensioninstallremovebutton.addActionListener(new AsyncActionListener(e -> {
                 if (extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
                     //Remove extension
                     extensioninstallremovebutton.setEnabled(false);
@@ -309,7 +310,7 @@ public class InjectorStore {
                     }
                     GraphicalMessage.pleaseRestart();
                 }
-            });
+            }));
             JLabel extensiontitle = new JLabel(ex.getName() + " from " + ex.getAuthor() + " - " + ex.getVersion());
             extensiontitle.setBounds(10, ycache + 11, 339, 14);
             modulesholder.add(extensiontitle);

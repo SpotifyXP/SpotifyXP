@@ -8,6 +8,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
@@ -95,7 +96,7 @@ public class Library extends JPanel {
         librarysonglist.getColumnModel().getColumn(3).setPreferredWidth(51);
         librarysonglist.setFillsViewportHeight(true);
         libraryscrollpane.setViewportView(librarysonglist);
-        librarysonglist.addMouseListener(new MouseAdapter() {
+        librarysonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -104,7 +105,7 @@ public class Library extends JPanel {
                     thread1.start();
                 }
             }
-        });
+        }));
         ContextMenu librarymenu = new ContextMenu(librarysonglist);
         librarymenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryuricache.get(librarysonglist.getSelectedRow())));
         librarymenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {

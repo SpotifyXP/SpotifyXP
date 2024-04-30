@@ -7,6 +7,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.SettingsTable;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
+import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
@@ -201,7 +202,7 @@ public class SettingsPanel extends JPanel {
 
         settingsplaybackopenequalizerbutton.addActionListener(e -> triggerUninstall());
 
-        settingspathsetbutton.addActionListener(e -> {
+        settingspathsetbutton.addActionListener(new AsyncActionListener(e -> {
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"),"exe");
@@ -209,7 +210,7 @@ public class SettingsPanel extends JPanel {
             chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
             chooser.showOpenDialog(panel);
             if(chooser.getSelectedFile() != null) settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
-        });
+        }));
 
         settingslanguagelabel = new JLabel(PublicValues.language.translate("ui.settings.language"));
         settingslanguagelabel.setBounds(6, 118, 370, 20);

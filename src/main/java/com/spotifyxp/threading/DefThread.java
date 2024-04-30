@@ -1,7 +1,6 @@
 package com.spotifyxp.threading;
 
 import com.spotifyxp.PublicValues;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,6 +11,7 @@ public class DefThread {
     final Runnable toRun;
     final boolean isDaemon;
     ArrayList<Class<?>> permissionToRemoveThread;
+
     public String getName() {
         return name;
     }

@@ -1,6 +1,8 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.AsyncActionListener;
+import com.spotifyxp.utils.AsyncMouseListener;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
@@ -32,7 +34,7 @@ public class DropDownMenu {
 
             }
         });
-        panel.addMouseListener(new MouseAdapter() {
+        panel.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseClicked(e);
@@ -51,7 +53,7 @@ public class DropDownMenu {
                     }
                 }
             }
-        });
+        }));
     }
     public DropDownMenu(JSVGPanel panel, boolean animate) {
         popupMenu.setLightWeightPopupEnabled(true);
@@ -71,7 +73,7 @@ public class DropDownMenu {
 
             }
         });
-        panel.getJComponent().addMouseListener(new MouseAdapter() {
+        panel.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseClicked(e);
@@ -90,11 +92,11 @@ public class DropDownMenu {
                     }
                 }
             }
-        });
+        }));
     }
     public void addItem(String text, Runnable onClick) {
         JMenuItem item = new JMenuItem(text);
-        item.addActionListener(e -> onClick.run());
+        item.addActionListener(new AsyncActionListener(e -> onClick.run()));
         popupMenu.add(item);
     }
 }
