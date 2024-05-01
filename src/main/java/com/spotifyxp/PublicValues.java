@@ -76,6 +76,7 @@ public class PublicValues {
     public static ThemeLoader themeLoader;
     public static boolean wasOffline;
     public static CountryCode countryCode;
+    public static boolean enableMediaControl = true;
     public static boolean disableChunkDebug = false;
     //Devstuff
     public static boolean locationFinderActive = false;

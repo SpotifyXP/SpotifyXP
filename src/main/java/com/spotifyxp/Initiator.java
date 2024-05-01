@@ -98,7 +98,7 @@ public class Initiator {
         checkLogin(); //Checking if user has already entered his credentials
         addShutdownHook(); //Adding the shudtown hook
         initAPI(); //Initializing all the apis used
-        createKeyListener(); //Starting the key listener (For Play/Pause)
+        if(PublicValues.enableMediaControl) createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
         initTrayIcon(); //Creating the tray icon
         initGUI(); //Initializing the GUI
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
