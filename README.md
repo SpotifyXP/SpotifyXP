@@ -24,6 +24,7 @@
 * [Built With](#built-with)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
+* [SpotifyXP stuck on "Creating API..."?](#stuck-on-"creating-api..."?)
 * [Contributing](#contributing)
 * [License](#license)
 * [Authors](#authors)
@@ -89,6 +90,12 @@ SpotifyXP is build with
 ## Usage
 
 Follow the steps under 'Getting Started' and then login with your Email and Password. Then just listen to music
+
+## Stuck on "Creating API..."?
+
+First, Delete all contents of SpotifyXP, which is the SpotifyXP folder
+Second, re-install SpotifyXP. You may need to re-download the **SpotifyXP.jar** file. (#install)
+After re-installing SpotifyXP, you should now be able to listen to music.
 
 ## Compiling
 
