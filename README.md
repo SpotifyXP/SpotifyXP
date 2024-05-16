@@ -8,6 +8,8 @@
     <br/>
 <center><a href="https://www.buymeacoffee.com/werwolf2303" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a></center>
     <br/>
+    <a href="https://github.com/SpotifyXP/SpotifyXP/wiki">SpotifyXP Wiki</a>
+    .
     <a href="https://github.com/SpotifyXP/SpotifyXP/issues">Report Bug</a>
     .
     <a href="https://github.com/SpotifyXP/SpotifyXP/issues">Request Feature</a>
@@ -19,6 +21,7 @@
 ## Table Of Contents
 
 * [About the Project](#about-the-project)
+* [The SpotifyXP Wiki](#the-spotifyxp-wiki)
 * [System Requirements](#system-requirements)
 * [Translating](#translating)
 * [Built With](#built-with)
@@ -39,7 +42,13 @@ I developed SpotifyXP for my old daily driver that runs Windows XP. My daily dri
 
 <h5>Why use SpotifyXP:</h5>
 
-On december 2022 Spotify shutdown it's last version for Windows XP so this application is the only way to listen to Spotify
+On December 2022, Spotify shutdown it's last version for Windows XP, making this application the only way to listen to Spotify.
+
+## The SpotifyXP Wiki
+
+The SpotifyXP Wiki is available to help fix any bugs or problems that may be found when using SpotifyXP.
+When you have an issue, check the Wiki before creating an Issue to see if that issue had already been resolved.
+
 
 ## System Requirements
 
