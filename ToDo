@@ -3,7 +3,20 @@ Translation ToDo (Japanese):
   "playlists.create.title": "",
   "playlists.create.name.label": ""
   "playlists.create.visibility": ""
+  "ui.artistpanel.popular": ""
+  "ui.artistpanel.albums": ""
+  "generic.ok": ""
+  "generic.cancel": ""
+  "ui.login.email": ""
+  "ui.login.password": ""
+  "ui.login.invalidLogin": ""
+  "ui.login.enterspotcred": ""
+  "ui.lyrics.title": ""
+  "ui.canceldialog.cancel.text": ""
+  "ui.canceldialog.cancel.title": ""
+  "ui.customtheme.colorchooser.title": ""
 
 Fix Spotify updater
 
-Fix legacy disable on opening other panels (User can break the UI)
+Switch to IntelliJ Form Designer for all guis
+

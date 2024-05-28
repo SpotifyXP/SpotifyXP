@@ -6,7 +6,6 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.P
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dialogs.AddPlaylistDialog;
-import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.threading.DefThread;
@@ -29,8 +28,8 @@ public class Playlists extends JPanel {
     public static JScrollPane playlistsplaylistsscroll;
     public static JPanel playlistssonglist;
     public static JScrollPane playlistssongsscroll;
-    public static DefTable playlistsplayliststable;
-    public static DefTable playlistssongtable;
+    public static JTable playlistsplayliststable;
+    public static JTable playlistssongtable;
     public static final ArrayList<String> playlistsuricache = new ArrayList<>();
     public static final ArrayList<String> playlistssonguricache = new ArrayList<>();
 
@@ -46,7 +45,12 @@ public class Playlists extends JPanel {
         playlistsplaylistsscroll = new JScrollPane();
         playlistsplaylistsscroll.setBounds(0, 0, 259, 421);
         playlistsplaylistslist.add(playlistsplaylistsscroll);
-        playlistsplayliststable = new DefTable();
+        playlistsplayliststable = new JTable() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         playlistsplayliststable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.playlists.playlistname")}));
         playlistsplayliststable.setForeground(PublicValues.globalFontColor);
         playlistsplayliststable.getColumnModel().getColumn(0).setPreferredWidth(623);
@@ -61,7 +65,12 @@ public class Playlists extends JPanel {
         playlistssongsscroll = new JScrollPane();
         playlistssongsscroll.setBounds(0, 0, 524, 421);
         playlistssonglist.add(playlistssongsscroll);
-        playlistssongtable = new DefTable();
+        playlistssongtable = new JTable() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         playlistssongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistssongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.songslist.songtitle"), PublicValues.language.translate("ui.playlists.songslist.filesize"), PublicValues.language.translate("ui.playlists.songslist.bitrate"), PublicValues.language.translate("ui.playlists.songslist.length")}));
         playlistssongtable.setForeground(PublicValues.globalFontColor);
@@ -88,13 +97,8 @@ public class Playlists extends JPanel {
             dialog.show((playlistname, playlistvisibility) -> {
                 try {
                     String uri = InstanceManager.getSpotifyApi().createPlaylist(PublicValues.session.username(), playlistname).public_(playlistvisibility).build().execute().getUri();
-                    playlistsplayliststable.addModifyAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            playlistsuricache.add(uri);
-                            ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{playlistname});
-                        }
-                    });
+                    playlistsuricache.add(uri);
+                    ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{playlistname});
                 } catch (IOException | SpotifyWebApiException | ParseException e) {
                     throw new RuntimeException(e);
                 }

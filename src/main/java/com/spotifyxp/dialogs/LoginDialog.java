@@ -14,8 +14,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//ToDo: Check if this is the first start of SpotifyXP and when not support translation
-
 public class LoginDialog extends JDialog {
     private JPanel contentPane;
     private JButton spotifyokbutton;
@@ -43,7 +41,7 @@ public class LoginDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PublicValues.config.write(ConfigValues.facebook.name, true);
-                SplashPanel.frame.setAlwaysOnTop(false);
+                SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setAlwaysOnTop(false);
                 PublicValues.facebookcanceldialog = new CancelDialog();
                 PublicValues.facebookcanceldialog.showIt();
                 dispose();
@@ -52,7 +50,7 @@ public class LoginDialog extends JDialog {
 
         getRootPane().setDefaultButton(spotifyokbutton);
 
-        spotifyokbutton.setText("Ok"); //ToDo: Translate
+        spotifyokbutton.setText(PublicValues.language.translate("generic.ok"));
         spotifyokbutton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +61,7 @@ public class LoginDialog extends JDialog {
             }
         }));
 
-        spotifycancelbutton.setText("Cancel"); //ToDo: Translate
+        spotifycancelbutton.setText(PublicValues.language.translate("generic.cancel"));
         spotifycancelbutton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,34 +69,34 @@ public class LoginDialog extends JDialog {
             }
         }));
 
-        spotifylabelusername.setText("E-Mail"); //ToDo: Translate
+        spotifylabelusername.setText(PublicValues.language.translate("ui.login.email"));
 
-        spotifylabelpassword.setText("Password"); //ToDo: Translate
+        spotifylabelpassword.setText(PublicValues.language.translate("ui.login.password"));
     }
 
     public void openWithInvalidAuth() {
-        setTitle("Invalid Login! Try again"); //ToDo: Translate
+        setTitle(PublicValues.language.translate("ui.login.invalidLogin"));
         getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.red);
         Initiator.past = true;
-        SplashPanel.frame.setAlwaysOnTop(false);
+        SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setAlwaysOnTop(false);
         pack();
         setVisible(true);
         Initiator.past = false;
         Initiator.startupTime = new StartupTime();
         Initiator.thread.start();
-        SplashPanel.frame.setAlwaysOnTop(true);
+        SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setAlwaysOnTop(true);
     }
 
     public void open() {
-        setTitle("Enter Spotify Credentials"); //ToDo: Translate
+        setTitle(PublicValues.language.translate("ui.login.enterspotcred"));
         Initiator.past = true;
-        SplashPanel.frame.setAlwaysOnTop(false);
+        SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setAlwaysOnTop(false);
         pack();
         setVisible(true);
         Initiator.past = false;
         Initiator.startupTime = new StartupTime();
         Initiator.thread.start();
-        SplashPanel.frame.setAlwaysOnTop(true);
+        SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setAlwaysOnTop(true);
     }
 
     public static void main(String[] args) {

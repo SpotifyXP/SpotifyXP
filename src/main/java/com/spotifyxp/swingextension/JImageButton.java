@@ -3,7 +3,6 @@ package com.spotifyxp.swingextension;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
@@ -161,7 +160,8 @@ public class JImageButton extends JSVGCanvas {
         while(!ContentPanel.frame.isVisible()) {
             try {
                 Thread.sleep(99);
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException exception) {
+                throw new RuntimeException(exception);
             }
         }
         canvas.setBounds(canvas.getBounds());

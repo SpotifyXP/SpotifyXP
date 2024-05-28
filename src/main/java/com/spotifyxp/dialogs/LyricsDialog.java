@@ -32,7 +32,7 @@ public class LyricsDialog extends JDialog {
     private final ArrayList<ColoredLyricsLine> displayedLines = new ArrayList<>();
 
     public LyricsDialog() {
-        setTitle("SpotifyXP - Song Lyrics"); //ToDo: Translate
+        setTitle(PublicValues.language.translate("ui.lyrics.title"));
         setContentPane(contentPanel);
     }
 

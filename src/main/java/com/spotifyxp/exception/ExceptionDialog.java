@@ -36,8 +36,8 @@ public class ExceptionDialog {
         if(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name)) {
             return;
         }
-        if(SplashPanel.frame.isVisible()) {
-            SplashPanel.frame.setAlwaysOnTop(false);
+        if(SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).isVisible()) {
+            SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setAlwaysOnTop(false);
         }
         JFrame frame = new JFrame(PublicValues.language.translate("exception.dialog.title"));
         JPanel contentPane = new JPanel();

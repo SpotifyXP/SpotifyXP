@@ -3,17 +3,15 @@ package com.spotifyxp.testing;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.configuration.Config;
-import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.exception.ElementNotFoundException;
 import com.spotifyxp.lib.libLanguage;
-import com.spotifyxp.panels.SplashPanel;
-import com.spotifyxp.swingextension.JFrame;
 
 import java.io.File;
 
 public class Test {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, ElementNotFoundException {
         for(SpotifyXPEvents event : SpotifyXPEvents.values()) {
             Events.register(event.getName(), true);
         }
@@ -23,8 +21,5 @@ public class Test {
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.config = new Config();
         PublicValues.config.checkConfig();
-        SplashPanel.frame = new JFrame();
-        new LoginDialog().open();
-        System.out.println("After");
     }
 }

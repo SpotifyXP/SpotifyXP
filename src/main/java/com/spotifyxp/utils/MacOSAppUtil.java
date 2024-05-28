@@ -38,46 +38,50 @@ public class MacOSAppUtil {
         iconpath = location;
     }
 
-    void internalCreate(String dp) {
-        File contents = new File(dp, "Contents");
-        if(contents.mkdir()) {
-            //Create plist
-            NSDictionary root = new NSDictionary();
-            root.put("CFBundleExecutable", appName);
-            root.put("CFBundleIconFile", "AppIcon.icns");
-            root.put("CFBundleInfoDictionaryVersion", "1.0");
-            root.put("CFBundlePackageType", "APPL");
-            root.put("CDBundleSignature", "???");
-            root.put("CFBundleVersion", "1.0");
-            try {
-                XMLPropertyListWriter.write(root, new File(dp + "/Contents", "Info.plist"));
-            } catch (IOException e) {
-                ConsoleLogging.Throwable(e);
-                GraphicalMessage.openException(e);
-            }
-            File macos = new File(dp + "/Contents", "MacOS");
-            if(macos.mkdir()) {
+    void internalCreate(String dp) throws Exception {
+        try {
+            File contents = new File(dp, "Contents");
+            if (contents.mkdir()) {
+                //Create plist
+                NSDictionary root = new NSDictionary();
+                root.put("CFBundleExecutable", appName);
+                root.put("CFBundleIconFile", "AppIcon.icns");
+                root.put("CFBundleInfoDictionaryVersion", "1.0");
+                root.put("CFBundlePackageType", "APPL");
+                root.put("CDBundleSignature", "???");
+                root.put("CFBundleVersion", "1.0");
                 try {
-                    File execfile = new File(macos, appName);
-                    execfile.setExecutable(true, false);
-                    execfile.setReadable(true, false);
-                    execfile.setWritable(true, false);
-                    Files.copy(IOUtils.toInputStream("#!/bin/zsh\njava -jar " + executableLocation + " --setup-complete", Charset.defaultCharset()), execfile.toPath());
-                    new ProcessBuilder().command("/bin/sh", "-c", "chmod +x \"" + applicationsfolderpath + "/" + appName + ".app/Contents/MacOS/" + appName + "\"").inheritIO().start();
-                }catch (IOException e) {
-                    ConsoleLogging.Throwable(e);
-                    GraphicalMessage.openException(e);
-                }
-            }
-            File resources = new File(dp + "/Contents", "Resources");
-            if(resources.mkdir()) {
-                try {
-                    Files.copy(new Resources().readToInputStream(iconpath), new File(dp + "/Contents/Resources", "AppIcon.icns").toPath());
+                    XMLPropertyListWriter.write(root, new File(dp + "/Contents", "Info.plist"));
                 } catch (IOException e) {
-                    GraphicalMessage.openException(e);
                     ConsoleLogging.Throwable(e);
+                    GraphicalMessage.openException(e);
+                }
+                File macos = new File(dp + "/Contents", "MacOS");
+                if (macos.mkdir()) {
+                    try {
+                        File execfile = new File(macos, appName);
+                        execfile.setExecutable(true, false);
+                        execfile.setReadable(true, false);
+                        execfile.setWritable(true, false);
+                        Files.copy(IOUtils.toInputStream("#!/bin/zsh\njava -jar " + executableLocation + " --setup-complete", Charset.defaultCharset()), execfile.toPath());
+                        new ProcessBuilder().command("/bin/sh", "-c", "chmod +x \"" + applicationsfolderpath + "/" + appName + ".app/Contents/MacOS/" + appName + "\"").inheritIO().start();
+                    } catch (IOException e) {
+                        ConsoleLogging.Throwable(e);
+                        GraphicalMessage.openException(e);
+                    }
+                }
+                File resources = new File(dp + "/Contents", "Resources");
+                if (resources.mkdir()) {
+                    try {
+                        Files.copy(new Resources().readToInputStream(iconpath), new File(dp + "/Contents/Resources", "AppIcon.icns").toPath());
+                    } catch (IOException e) {
+                        GraphicalMessage.openException(e);
+                        ConsoleLogging.Throwable(e);
+                    }
                 }
             }
+        }catch (Exception e) {
+            throw new Exception();
         }
     }
 
@@ -86,7 +90,7 @@ public class MacOSAppUtil {
         copyyear = year;
     }
 
-    public void create() {
+    public void create() throws Exception {
         File app = new File(applicationsfolderpath, appName + ".app");
         if(!app.exists()) {
             if(app.mkdir()) {

@@ -3,7 +3,6 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.SavedTrack;
-import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -21,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library extends JPanel {
-    public static DefTable librarysonglist;
+    public static JTable librarysonglist;
     public static JScrollPane libraryscrollpane;
     public static DefaultTableModel librarydefaulttablemodel;
     public static final ArrayList<String> libraryuricache = new ArrayList<>();
@@ -40,7 +39,7 @@ public class Library extends JPanel {
                     for (SavedTrack t : track) {
                         libraryuricache.add(t.getTrack().getUri());
                         String a = TrackUtils.getArtists(t.getTrack().getArtists());
-                        librarysonglist.addModifyAction(() -> ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
+                        ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())});
                         parsed++;
                     }
                     if (parsed == last) {
@@ -87,7 +86,12 @@ public class Library extends JPanel {
                 inProg[0] = false;
             }
         });
-        librarysonglist = new DefTable();
+        librarysonglist = new JTable() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         librarysonglist.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.library.songlist.songname"), PublicValues.language.translate("ui.library.songlist.filesize"), PublicValues.language.translate("ui.library.songlist.bitrate"), PublicValues.language.translate("ui.library.songlist.length")}));
         librarysonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
         librarysonglist.setForeground(PublicValues.globalFontColor);
@@ -137,7 +141,7 @@ public class Library extends JPanel {
                     for (SavedTrack t : track) {
                         libraryuricache.add(t.getTrack().getUri());
                         String a = TrackUtils.getArtists(t.getTrack().getArtists());
-                        librarysonglist.addModifyAction(() -> ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
+                        ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())});
                         parsed++;
                     }
                     if (last == parsed) {

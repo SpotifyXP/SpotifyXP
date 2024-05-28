@@ -50,16 +50,13 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
 
         String libName = System.getProperty("jnativehook.lib.name", "JNativeHook");
 
-        // Get the package name for the GlobalScreen.
-        String basePackage = GlobalScreen.class.getPackage().getName().replace('.', '/');
-
         String libNativeArch = NativeSystem.getArchitecture().toString().toLowerCase();
         String libNativeName = System
             .mapLibraryName(libName) // Get what the system "thinks" the library name should be.
             .replaceAll("\\.jnilib$", "\\.dylib"); // Hack for OS X JRE 1.6 and earlier.
 
         // Resource path for the native library.
-        String libResourcePath = "/" + basePackage + "/lib/" +
+        String libResourcePath = "/com/github/kwhat/jnativehook/lib/" +
             NativeSystem.getFamily().toString().toLowerCase() +
             '/' + libNativeArch + '/' + libNativeName;
 

@@ -4,10 +4,10 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.graphics.Graphics;
-import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
 import org.apache.hc.core5.http.ParseException;
@@ -26,14 +26,14 @@ import java.util.ArrayList;
 public class Search extends JPanel {
     public static JPanel searchplaylistpanel;
     public static JButton searchbackbutton;
-    public static DefTable searchplaylisttable;
+    public static JTable searchplaylisttable;
     public static JRadioButton searchfilterplaylist;
     public static JRadioButton searchfilteralbum;
     public static JRadioButton searchfiltershow;
     public static JRadioButton searchfiltertrack;
     public static JScrollPane searchplaylistscrollpanel;
     public static JRadioButton searchfilterartist;
-    public static DefTable searchsonglist;
+    public static JTable searchsonglist;
     public static JTextField searchartistfield;
     public static JTextField searchsongtitlefield;
     public static JPanel searchfieldspanel;
@@ -57,7 +57,7 @@ public class Search extends JPanel {
         ContentPanel.tabpanel.add(this);
         setLayout(null);
         searchfieldspanel = new JPanel();
-        searchfieldspanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        searchfieldspanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, PublicValues.globalFontColor));
         searchfieldspanel.setBounds(0, 0, 784, 128);
         add(searchfieldspanel);
         searchfieldspanel.setLayout(null);
@@ -85,6 +85,7 @@ public class Search extends JPanel {
         searchfieldspanel.add(searchfinditbutton);
         searchfinditbutton.setForeground(PublicValues.globalFontColor);
         searchartistfield = new JTextField();
+        searchartistfield.setForeground(PublicValues.globalFontColor);
         searchartistfield.setBounds(86, 22, 356, 20);
         searchfieldspanel.add(searchartistfield);
         searchartistfield.setColumns(10);
@@ -98,6 +99,7 @@ public class Search extends JPanel {
             }
         });
         searchsongtitlefield = new JTextField();
+        searchsongtitlefield.setForeground(PublicValues.globalFontColor);
         searchsongtitlefield.setColumns(10);
         searchsongtitlefield.setBounds(86, 59, 356, 20);
         searchfieldspanel.add(searchsongtitlefield);
@@ -112,7 +114,7 @@ public class Search extends JPanel {
         });
         searchfilterpanel = new JPanel();
         searchfilterpanel.setLayout(null);
-        searchfilterpanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.filters.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        searchfilterpanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.filters.border"), TitledBorder.LEADING, TitledBorder.TOP, null, PublicValues.globalFontColor));
         searchfilterpanel.setBounds(452, 11, 322, 106);
         searchfieldspanel.add(searchfilterpanel);
         searchfilterexcludeexplicit = new JRadioButton(PublicValues.language.translate("ui.search.searchfield.filters.excludeexplicit"));
@@ -260,14 +262,19 @@ public class Search extends JPanel {
                 } catch (IOException | SpotifyWebApiException | ParseException ex) {
                     ConsoleLogging.Throwable(ex);
                 }
-                searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
+                ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")});
             });
             thread1.start();
         }));
         searchscrollpanel = new JScrollPane();
         searchscrollpanel.setBounds(0, 139, 784, 282);
         add(searchscrollpanel);
-        searchsonglist = new DefTable();
+        searchsonglist = new JTable() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         searchsonglist.getTableHeader().setReorderingAllowed(false);
         searchsonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
@@ -351,7 +358,7 @@ public class Search extends JPanel {
                                 } catch (IOException | SpotifyWebApiException | ParseException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
-                                searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
+                                ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")});
                             });
                             thread1.start();
                             return;
@@ -371,12 +378,12 @@ public class Search extends JPanel {
                         case "artist":
                             ArtistPanel.popularuricache.clear();
                             ArtistPanel.albumuricache.clear();
-                            ((DefaultTableModel) ArtistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                            ((DefaultTableModel) ArtistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                            ArtistPanel.artisttitle.setText("");
+                            ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistAlbumTable", JTable.class).getModel()).setRowCount(0);
+                            ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistPopularSongListTable", JTable.class).getModel()).setRowCount(0);
+                            ArtistPanel.getElementByNameAutoThrow("artistName", JLabel.class).setText("");
                             ContentPanel.artistPanel.openPanel();
                             ArtistPanel.isFirst = true;
-                            ArtistPanel.contentPanel.setVisible(true);
+                            ArtistPanel.getContainer().setVisible(true);
                             ContentPanel.artistPanelBackButton.setVisible(true);
                             ContentPanel.artistPanelVisible = true;
                             setVisible(false);
@@ -418,25 +425,25 @@ public class Search extends JPanel {
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
                                     try {
-                                        ArtistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
+                                        ArtistPanel.getElementByNameAutoThrow("artistImage", JImagePanel.class).setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
                                     } catch (ArrayIndexOutOfBoundsException exception) {
                                         // No artist image (when this is raised it's a bug)
                                     }
-                                    ArtistPanel.artisttitle.setText(a.getName());
+                                    ArtistPanel.getElementByNameAutoThrow("artistName", JLabel.class).setText(a.getName());
                                     DefThread trackthread = new DefThread(() -> {
                                         try {
                                             for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
-                                                if (!ContentPanel.artistPanel.isVisible()) {
+                                                if (!ArtistPanel.getContainer().isVisible()) {
                                                     break;
                                                 }
                                                 ArtistPanel.popularuricache.add(t.getUri());
-                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
+                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.getElementByNameAutoThrow("artistPopularSongListTable", JTable.class));
                                             }
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.artistalbumalbumtable));
+                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.getElementByNameAutoThrow("artistAlbumTable", JTable.class)));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (Exception e1) {
@@ -532,7 +539,12 @@ public class Search extends JPanel {
         searchplaylistscrollpanel = new JScrollPane();
         searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
         searchplaylistpanel.add(searchplaylistscrollpanel);
-        searchplaylisttable = new DefTable();
+        searchplaylisttable = new JTable() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         searchplaylistscrollpanel.setViewportView(searchplaylisttable);
         searchplaylisttable.setForeground(PublicValues.globalFontColor);
         searchplaylisttable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -554,7 +566,7 @@ public class Search extends JPanel {
         searchbackbutton.addActionListener(new AsyncActionListener(e -> {
             searchplaylistpanel.setVisible(false);
             if(ContentPanel.artistPanelVisible) {
-                ArtistPanel.contentPanel.setVisible(true);
+                ArtistPanel.getContainer().setVisible(true);
             }else{
                 ContentPanel.searchpanel.setVisible(true);
             }
