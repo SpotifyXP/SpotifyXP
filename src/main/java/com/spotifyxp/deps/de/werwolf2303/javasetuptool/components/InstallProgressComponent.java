@@ -1,6 +1,7 @@
 package com.spotifyxp.deps.de.werwolf2303.javasetuptool.components;
 
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.PublicValues;
+import com.spotifyxp.deps.de.werwolf2303.javasetuptool.RunnableWEC;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.uninstaller.Uninstaller;
 
@@ -111,7 +112,7 @@ public class InstallProgressComponent extends JPanel implements Component {
             return this;
         }
 
-        public FileOperationBuilder setCustom(Runnable run) {
+        public FileOperationBuilder setCustom(RunnableWEC run) {
             internal.customCode = run;
             return this;
         }
@@ -148,7 +149,7 @@ public class InstallProgressComponent extends JPanel implements Component {
                         Files.copy(Paths.get(new File(operation.from).getAbsolutePath()), Paths.get(new File(operation.to).getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
                         files.add(operation.to);
                         operation.succeeded = true;
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         operation.succeeded = false;
                     }
                     break;
@@ -164,7 +165,7 @@ public class InstallProgressComponent extends JPanel implements Component {
                         Files.move(Paths.get(new File(operation.from).getAbsolutePath()), Paths.get(new File(operation.to).getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
                         files.add(operation.to);
                         operation.succeeded = true;
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         operation.succeeded = false;
                     }
                     break;
@@ -180,7 +181,7 @@ public class InstallProgressComponent extends JPanel implements Component {
                         if(new File(operation.from).exists()) { files.add(operation.from); operation.succeeded = true; break; }
                         operation.succeeded = new File(operation.from).createNewFile();
                         files.add(operation.from);
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         operation.succeeded = false;
                     }
                     break;
@@ -223,7 +224,7 @@ public class InstallProgressComponent extends JPanel implements Component {
                         Files.copy(operation.fromStream, Paths.get(new File(operation.to).getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
                         files.add(operation.to);
                         operation.succeeded = true;
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         operation.succeeded = false;
                     }
                     break;
@@ -272,7 +273,7 @@ public class InstallProgressComponent extends JPanel implements Component {
                         in.close();
                         files.add(operation.to);
                         operation.succeeded = true;
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         operation.succeeded = false;
                     }
                     break;
@@ -363,7 +364,7 @@ public class InstallProgressComponent extends JPanel implements Component {
         InputStream fromStream;
         String to = "";
         boolean succeeded = false;
-        Runnable customCode;
+        RunnableWEC customCode;
         String url = "";
         FileOperationTypes operationType;
         FeatureSelectionComponent.Feature feature = null;

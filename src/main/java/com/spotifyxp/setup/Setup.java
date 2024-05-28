@@ -2,6 +2,7 @@ package com.spotifyxp.setup;
 
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.de.werwolf2303.javasetuptool.RunnableWEC;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup.SetupBuilder;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.AcceptComponent;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.InstallProgressComponent;
@@ -12,6 +13,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.utils.*;
 
+import javax.swing.*;
 import java.io.File;
 import java.net.URISyntaxException;
 
@@ -19,7 +21,7 @@ public class Setup {
 
     @SuppressWarnings("all")
     public Setup() {
-        SplashPanel.frame.setVisible(false);
+        SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setVisible(false);
         AcceptComponent thirdparty = new AcceptComponent();
         thirdparty.load(new Resources().readToString("setup/thirdparty.html"));
         new com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup().open(new SetupBuilder()
@@ -38,7 +40,8 @@ public class Setup {
         while(true) {
             try {
                 Thread.sleep(99);
-            } catch (InterruptedException ignored) {
+            } catch (InterruptedException exception) {
+                throw new RuntimeException(exception);
             }
         }
     }
@@ -73,7 +76,13 @@ public class Setup {
                         MacOSAppUtil util = new MacOSAppUtil("SpotifyXP");
                         util.setIcon("spotifyxp.icns");
                         util.setExecutableLocation(PublicValues.appLocation + "/SpotifyXP.jar");
-                        util.create();
+                        try {
+                            util.create();
+                            return true;
+                        } catch (Exception e) {
+                            ConsoleLogging.Throwable(e);
+                            return false;
+                        }
                     })
                     .setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
@@ -107,8 +116,10 @@ public class Setup {
                             ShellLinkHelper helper = new ShellLinkHelper(shellLink);
                             helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
                             helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
+                            return true;
                         }catch (Exception e) {
                             ConsoleLogging.Throwable(e);
+                            return false;
                         }
                     }).setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
@@ -142,7 +153,13 @@ public class Setup {
                         util.setExecutableLocation("java -jar SpotifyXP.jar --setup-complete");
                         util.setIconlocation(PublicValues.appLocation + "/spotifyxp.ico");
                         util.setCategories("Java", "Music");
-                        util.create();
+                        try {
+                            util.create();
+                            return true;
+                        } catch (Exception e) {
+                            ConsoleLogging.Throwable(e);
+                            return false;
+                        }
                     }).setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
         } catch (URISyntaxException e) {
             GraphicalMessage.openException(e);
