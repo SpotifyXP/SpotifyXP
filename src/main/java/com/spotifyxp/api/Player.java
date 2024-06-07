@@ -14,6 +14,7 @@ public class Player {
      * Retries building a working librespot-player instance
      */
     public void retry() {
+        InstanceManager.getPlayer().getPlayer().close();
         player = InstanceManager.getPlayerUtils().buildPlayer();
         try {
             player.waitReady();

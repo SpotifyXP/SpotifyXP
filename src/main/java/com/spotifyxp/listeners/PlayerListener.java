@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
 import org.json.JSONException;
 
+import java.io.Console;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -201,7 +202,8 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPanicState(@NotNull Player player) {
-        GraphicalMessage.openException(new UnknownError("PanicState in PlayerListener"));
+        ConsoleLogging.info("Panic in player!! Trying to rebuild the player instance");
+        //GraphicalMessage.openException(new UnknownError("PanicState in PlayerListener"));
         PublicValues.blockLoading = false;
         pl.retry();
     }
