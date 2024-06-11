@@ -9,7 +9,6 @@ public class StartupTime {
     }
     public String getMMSSCoded() {
         long timemillis = new Date().getTime() - whenstarted;
-        boolean ddh = false;
         float ttr = timemillis/(float)1000;
         int seconds = Math.round(ttr);
         int hh = seconds/60/60;
@@ -38,7 +37,6 @@ public class StartupTime {
         int mm = seconds/60;
         seconds = seconds - mm * 60;
         int ss = seconds;
-        String h = String.valueOf(hh);
         String m = String.valueOf(mm);
         String s = String.valueOf(ss);
         if(mm<10) {
