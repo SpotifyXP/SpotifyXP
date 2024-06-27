@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.JFrame;
+import com.spotifyxp.threading.DefThread;
 import org.apache.commons.io.IOUtils;
 
 import java.awt.*;

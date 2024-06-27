@@ -133,9 +133,6 @@ public class Setup {
         InstallProgressComponent linux = new InstallProgressComponent();
         try {
             linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setFrom(PublicValues.fileslocation)
-                    .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));
-            linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
                     .setFrom(PublicValues.appLocation)
                     .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));
             linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()

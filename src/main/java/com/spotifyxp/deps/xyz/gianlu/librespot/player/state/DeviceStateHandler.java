@@ -291,8 +291,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
                 }
                 try {
                     Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-                }catch (Exception exception) {
-                    throw new RuntimeException(exception);
+                }catch (Exception ignored) {
                 }
             }
         }

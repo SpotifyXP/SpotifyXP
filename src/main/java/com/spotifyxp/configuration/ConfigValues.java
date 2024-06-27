@@ -10,6 +10,7 @@ public enum ConfigValues {
     theme("settings.ui.theme", ConfigValueTypes.STRING, "DARKGREEN"),
     mypalpath("settings.mypal.path", ConfigValueTypes.STRING, ""),
     showallrecommendations("settings.performance.showallrecommendations", ConfigValueTypes.BOOLEAN, false),
+    disableplayerstats("settings.performance.displayplayerstats", ConfigValueTypes.BOOLEAN, false),
     username("user.settings.username", ConfigValueTypes.STRING, ""),
     password("user.settings.password", ConfigValueTypes.STRING, ""),
     language("user.settings.language", ConfigValueTypes.STRING, "English"),

@@ -29,7 +29,6 @@ import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
 import com.spotifyxp.web.WebInterface;
 
-import javax.swing.*;
 import java.io.File;
 
 @SuppressWarnings({"all", "RedundantArrayCreation"})
@@ -45,6 +44,19 @@ public class Initiator {
             while (!past) {
                 int s = Integer.parseInt(startupTime.getMMSSCoded().split(":")[1]);
                 if (s > 10) {
+                    if(!(destroyCounter > 2)) {
+                        ConsoleLogging.warning("Init of player failed! Retrying... (" + destroyCounter + ")");
+                        InstanceManager.getPlayer().destroy();
+                        Thread playerBuildThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                InstanceManager.getPlayer();
+                            }
+                        });
+                        playerBuildThread.start();
+                        destroyCounter++;
+                        return;
+                    }
                     if(GraphicalMessage.stuck()) {
                         System.exit(0);
                     }else{
@@ -195,7 +207,7 @@ public class Initiator {
     }
 
     static void detectOS() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Detecting operating system...");
+        SplashPanel.linfo.setText("Detecting operating system...");
         PublicValues.osType = libDetect.getDetectedOS();
         try {
             InstanceManager.getInstanceOf(SupportModuleLoader.class).loadModules();
@@ -213,35 +225,35 @@ public class Initiator {
     }
 
     static void initConfig() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Initializing config...");
+        SplashPanel.linfo.setText("Initializing config...");
         PublicValues.config = new Config();
         PublicValues.config.checkConfig();
     }
 
     static void loadExtensions() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Loading Extensions...");
+        SplashPanel.linfo.setText("Loading Extensions...");
         new Injector().autoInject();
     }
 
     static void initGEH() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Setting up globalexceptionhandler...");
+        SplashPanel.linfo.setText("Setting up globalexceptionhandler...");
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
     }
 
     static void storeArguments(String[] args) {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Storing program arguments...");
+        SplashPanel.linfo.setText("Storing program arguments...");
         PublicValues.args = args;
     }
 
     static void initLanguageSupport() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Init Language...");
+        SplashPanel.linfo.setText("Init Language...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
         PublicValues.language.setNoAutoFindLanguage(libLanguage.Language.getCodeFromName(PublicValues.config.getString(ConfigValues.language.name)));
     }
 
     static void parseAudioQuality() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Parsing audio quality info...");
+        SplashPanel.linfo.setText("Parsing audio quality info...");
         try {
             PublicValues.quality = Quality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name));
         }catch (Exception exception) {
@@ -252,7 +264,7 @@ public class Initiator {
     }
 
     static void checkSetup() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Checking setup...");
+        SplashPanel.linfo.setText("Checking setup...");
         if(!PublicValues.foundSetupArgument) {
             new Setup();
             startupTime = new StartupTime();
@@ -260,7 +272,7 @@ public class Initiator {
     }
 
     static void initThemes() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Init Themes...");
+        SplashPanel.linfo.setText("Init Themes...");
         ThemeLoader loader = PublicValues.themeLoader;
         try {
             loader.loadTheme(PublicValues.config.getString(ConfigValues.theme.name));
@@ -287,7 +299,7 @@ public class Initiator {
     }
 
     static void checkLogin() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Checking login...");
+        SplashPanel.linfo.setText("Checking login...");
         if (PublicValues.config.getString(ConfigValues.username.name).isEmpty()) {
             new LoginDialog().open(); //Show login dialog if no username is set
             startupTime = new StartupTime();
@@ -295,34 +307,34 @@ public class Initiator {
     }
 
     static void addShutdownHook() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Add shutdown hook...");
+        SplashPanel.linfo.setText("Add shutdown hook...");
         Runtime.getRuntime().addShutdownHook(hook.getRawThread());
     }
 
     static void createKeyListener() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating keylistener...");
+        SplashPanel.linfo.setText("Creating keylistener...");
         new KeyListener().start();
     }
 
     static void initAPI() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating api...");
+        SplashPanel.linfo.setText("Creating api...");
         Player player = null;
         thread.start();
         InstanceManager.getSpotifyAPI();
         player = InstanceManager.getPlayer();
         past = true;
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Create advanced api key...");
+        SplashPanel.linfo.setText("Create advanced api key...");
         InstanceManager.getUnofficialSpotifyApi();
     }
 
     static void initGUI() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating contentPanel...");
+        SplashPanel.linfo.setText("Creating contentPanel...");
         ContentPanel panel = new ContentPanel();
         panel.open();
     }
 
     static void initTrayIcon() {
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating the tray icon...");
+        SplashPanel.linfo.setText("Creating the tray icon...");
         new BackgroundService().start();
     }
 }

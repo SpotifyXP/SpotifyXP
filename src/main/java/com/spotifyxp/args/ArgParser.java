@@ -70,6 +70,7 @@ public class ArgParser {
         arguments.add(new Debug());
         arguments.add(new Development());
         arguments.add(new Language());
+        arguments.add(new NoConnection());
         arguments.add(new NoMediaControl());
         arguments.add(new NoGUI());
         arguments.add(new SaveLog());

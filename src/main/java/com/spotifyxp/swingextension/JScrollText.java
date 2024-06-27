@@ -41,8 +41,7 @@ public class JScrollText extends JLabel implements Runnable {
                 String newText = oldText.substring(1) + oldText.charAt(0);
                 try {
                     Thread.sleep(400);
-                } catch (InterruptedException exception) {
-                    throw new RuntimeException(exception);
+                } catch (InterruptedException ignored) {
                 }
                 super.setText(newText);
             }

@@ -15,12 +15,12 @@ import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.graphics.Graphics;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
-import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.theming.themes.DarkGreen;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
@@ -66,7 +66,7 @@ public class ContentPanel extends JPanel {
     public static final JTabbedPane legacyswitch = new JTabbedPane();
     public static final JMenuBar bar = new JMenuBar();
     public static boolean isLastArtist = false;
-    public static JTable advancedsongtable;
+    public static DefTable advancedsongtable;
     public static JButton artistPanelBackButton;
     public static JPanel advancedsongpanel;
     public static JScrollPane advancedscrollpanel;
@@ -104,40 +104,38 @@ public class ContentPanel extends JPanel {
     @SuppressWarnings("Busy")
     public ContentPanel() {
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Setting window size...");
+        SplashPanel.linfo.setText("Setting window size...");
         setPreferredSize(new Dimension(783, 600));
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating errorDisplay...");
+        SplashPanel.linfo.setText("Creating errorDisplay...");
         createErrorDisplay();
         Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), () -> PublicValues.blockLoading = false);
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating tabpanel...");
+        SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setLayout(null);
         tabpanel.setBounds(0, 140, 784, 450);
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating playerarea...");
+        SplashPanel.linfo.setText("Creating playerarea...");
         createPlayerArea();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating feedback...");
+        SplashPanel.linfo.setText("Creating feedback...");
         createFeedback();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating library...");
+        SplashPanel.linfo.setText("Creating library...");
         createLibrary();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating hotlist...");
+        SplashPanel.linfo.setText("Creating hotlist...");
         createHotList();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating playlist...");
+        SplashPanel.linfo.setText("Creating playlist...");
         createPlaylist();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating queue...");
+        SplashPanel.linfo.setText("Creating queue...");
         createQueue();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating search...");
+        SplashPanel.linfo.setText("Creating search...");
         createSearch();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating artistPanel...");
+        SplashPanel.linfo.setText("Creating artistPanel...");
         createArtistPanel();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating home...");
+        SplashPanel.linfo.setText("Creating home...");
         createHome();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating advancedPanel...");
+        SplashPanel.linfo.setText("Creating advancedPanel...");
         createAdvancedPanel();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating settings...");
-        new SettingsPanel();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Adding window mouse listener...");
+        SplashPanel.linfo.setText("Adding window mouse listener...");
         addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -147,12 +145,12 @@ public class ContentPanel extends JPanel {
                 }
             }
         }));
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Deciding population of hotlist...");
+        SplashPanel.linfo.setText("Deciding population of hotlist...");
         if (PublicValues.autoLoadHotList) {
             Thread t = new Thread(this::setHotlistVisible);
             t.start();
         }
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Making window interactive...");
+        SplashPanel.linfo.setText("Making window interactive...");
         createLegacy();
         try {
             if (!(InstanceManager.getSpotifyApi().getCurrentUsersProfile() == null)) {
@@ -164,9 +162,9 @@ public class ContentPanel extends JPanel {
             PublicValues.countryCode = CountryCode.DE;
         }
         artistPanelBackButton.setVisible(false);
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Init Theme...");
+        SplashPanel.linfo.setText("Init Theme...");
         updateTheme();
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Done building contentPanel");
+        SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelend"));
     }
 
@@ -200,12 +198,12 @@ public class ContentPanel extends JPanel {
             case Home:
                 artistPanel.popularuricache.clear();
                 artistPanel.albumuricache.clear();
-                ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistAlbumTable", JTable.class).getModel()).setRowCount(0);
-                ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistPopularSongListTable", JTable.class).getModel()).setRowCount(0);
-                ArtistPanel.getElementByNameAutoThrow("artistName", JLabel.class).setText("");
+                ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                ((DefaultTableModel) artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                artistPanel.artisttitle.setText("");
                 ContentPanel.artistPanel.openPanel();
                 ArtistPanel.isFirst = true;
-                ArtistPanel.getContainer().setVisible(true);
+                artistPanel.contentPanel.setVisible(true);
                 artistPanelBackButton.setVisible(true);
                 artistPanelVisible = true;
                 homepanel.getComponent().setVisible(false);
@@ -214,12 +212,12 @@ public class ContentPanel extends JPanel {
             case Search:
                 artistPanel.popularuricache.clear();
                 artistPanel.albumuricache.clear();
-                ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistAlbumTable", JTable.class).getModel()).setRowCount(0);
-                ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistPopularSongListTable", JTable.class).getModel()).setRowCount(0);
-                ArtistPanel.getElementByNameAutoThrow("artistName", JLabel.class).setText("");
+                ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
+                ((DefaultTableModel) artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
+                artistPanel.artisttitle.setText("");
                 ContentPanel.artistPanel.openPanel();
                 ArtistPanel.isFirst = true;
-                ArtistPanel.getContainer().setVisible(true);
+                artistPanel.contentPanel.setVisible(true);
                 artistPanelBackButton.setVisible(true);
                 artistPanelVisible = true;
                 searchpanel.setVisible(false);
@@ -229,19 +227,19 @@ public class ContentPanel extends JPanel {
         try {
             Artist a = InstanceManager.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
             try {
-                ArtistPanel.getElementByNameAutoThrow("artistImage", JImagePanel.class).setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
+                artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
             } catch (ArrayIndexOutOfBoundsException exception) {
                 // No artist image (when this is raised it's a bug)
             }
-            ArtistPanel.getElementByNameAutoThrow("artistName", JLabel.class).setText(a.getName());
+            artistPanel.artisttitle.setText(a.getName());
             DefThread trackthread = new DefThread(() -> {
                 try {
                     for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
-                        if (!ArtistPanel.getContainer().isVisible()) {
+                        if (!artistPanel.isVisible()) {
                             break;
                         }
                         artistPanel.popularuricache.add(t.getUri());
-                        InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.getElementByNameAutoThrow("artistPopularSongListTable", JTable.class));
+                        InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
                     }
                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                     ConsoleLogging.Throwable(ex);
@@ -250,7 +248,7 @@ public class ContentPanel extends JPanel {
             DefThread albumthread = new DefThread(() -> {
                 for(AlbumSimplified album : SpotifyUtils.getAllAlbumsArtist(a.getUri())) {
                     artistPanel.albumuricache.add(album.getUri());
-                    ((DefaultTableModel) ArtistPanel.getElementByNameAutoThrow("artistAlbumTable", JTable.class).getModel()).addRow(new Object[]{album.getName()});
+                    ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).addRow(new Object[]{album.getName()});
                 }
             });
             albumthread.start();
@@ -294,7 +292,6 @@ public class ContentPanel extends JPanel {
     }
 
     public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {
-        blockTabSwitch();
         homepanel.getComponent().setVisible(false);
         ((DefaultTableModel) advancedsongtable.getModel()).setRowCount(0);
         advanceduricache.clear();
@@ -302,40 +299,35 @@ public class ContentPanel extends JPanel {
         if (artistPanelVisible) {
             artistPanelBackButton.doClick();
         }
-        DefThread loadContent = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    switch (contentType) {
-                        case playlist:
-                            for (PlaylistTrack simplified : SpotifyUtils.getAllTracksPlaylist(foruri)) {
-                                ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getTrack().getName(), TrackUtils.calculateFileSizeKb(simplified.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getTrack().getDurationMs())});
-                                advanceduricache.add(simplified.getTrack().getUri());
-                            }
-                            break;
-                        case show:
-                            for (EpisodeSimplified simplified : SpotifyUtils.getAllEpisodesShow(foruri)) {
-                                ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                advanceduricache.add(simplified.getUri());
-                            }
-                            break;
-                        case album:
-                            for (TrackSimplified simplified : SpotifyUtils.getAllTracksAlbum(foruri)) {
-                                ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                                advanceduricache.add(simplified.getUri());
-                            }
-                            break;
-                        default:
-                            GraphicalMessage.bug("tried to invoke showAdvancedSongPanel with incompatible type -> " + contentType);
-                            break;
+        try {
+            switch (contentType) {
+                case playlist:
+                    for (PlaylistTrack simplified : SpotifyUtils.getAllTracksPlaylist(foruri)) {
+                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getTrack().getName(), TrackUtils.calculateFileSizeKb(simplified.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getTrack().getDurationMs())});
+                        advanceduricache.add(simplified.getTrack().getUri());
                     }
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                    break;
+                case show:
+                    for (EpisodeSimplified simplified : SpotifyUtils.getAllEpisodesShow(foruri)) {
+                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                        advanceduricache.add(simplified.getUri());
+                    }
+                    break;
+                case album:
+                    for (TrackSimplified simplified : SpotifyUtils.getAllTracksAlbum(foruri)) {
+                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                        advanceduricache.add(simplified.getUri());
+                    }
+                    break;
+                default:
+                    GraphicalMessage.bug("tried to invoke showAdvancedSongPanel with incompatible type -> " + contentType);
+                    break;
             }
-        });
-        loadContent.start();
+        } catch (Exception e) {
+            ConsoleLogging.Throwable(e);
+        }
         advancedsongpanel.setVisible(true);
+        blockTabSwitch();
     }
 
     public static void openAbout() {
@@ -394,12 +386,12 @@ public class ContentPanel extends JPanel {
                     if (isLastArtist) {
                         artistPanel.openPanel();
                         artistPanel.isFirst = true;
-                        ArtistPanel.getContainer().setVisible(true);
+                        artistPanel.contentPanel.setVisible(true);
                         Search.searchplaylistpanel.setVisible(false);
                         artistPanelVisible = true;
                         isLastArtist = false;
                     } else {
-                        ArtistPanel.getContainer().setVisible(false);
+                        artistPanel.contentPanel.setVisible(false);
                         artistPanelBackButton.setVisible(false);
                         searchpanel.setVisible(true);
                         artistPanelVisible = false;
@@ -409,16 +401,16 @@ public class ContentPanel extends JPanel {
                 case Home:
                     homepanel.getComponent().setVisible(true);
                     artistPanelBackButton.setVisible(false);
-                    ArtistPanel.getContainer().setVisible(false);
+                    artistPanel.contentPanel.setVisible(false);
                     artistPanelVisible = false;
                     ContentPanel.enableTabSwitch();
             }
         }));
         tabpanel.add(artistPanelBackButton);
         artistPanel = new ArtistPanel();
-        ArtistPanel.getContainer().setBounds(0, 21, 784, 400);
-        tabpanel.add(ArtistPanel.getContainer());
-        ArtistPanel.getContainer().setVisible(false);
+        artistPanel.contentPanel.setBounds(0, 21, 784, 400);
+        tabpanel.add(artistPanel.contentPanel);
+        artistPanel.contentPanel.setVisible(false);
     }
 
     void createPlaylist() {
@@ -483,12 +475,7 @@ public class ContentPanel extends JPanel {
                 JFrame dialog = new JFrame();
                 dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
                 JScrollPane pane = new JScrollPane();
-                JTable table = new JTable() {
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
+                DefTable table = new DefTable();
                 table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{""}));
                 pane.setViewportView(table);
                 for (ExceptionDialog exd : errorQueue) {
@@ -703,7 +690,20 @@ public class ContentPanel extends JPanel {
         settings.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SettingsPanel.open();
+                JFrame dialog = new JFrame();
+                dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
+                dialog.getContentPane().add(new SettingsPanel());
+                dialog.setPreferredSize(new Dimension(422, 506));
+                dialog.setResizable(false);
+                dialog.setVisible(true);
+                dialog.pack();
+                dialog.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        super.windowClosing(e);
+                        SettingsPanel.applySettings();
+                    }
+                });
             }
         }));
         logout.addActionListener(new AsyncActionListener(e -> {
@@ -725,12 +725,7 @@ public class ContentPanel extends JPanel {
                 JFrame window = new JFrame();
                 window.setTitle(menu1.getText());
                 ArrayList<JMenuItem> items = new ArrayList<>();
-                JTable table = new JTable() {
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
+                DefTable table = new DefTable();
                 table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{""}));
                 window.add(table, BorderLayout.CENTER);
                 for (int j = 0; j < menu1.getMenuComponentCount(); j++) {
@@ -794,12 +789,7 @@ public class ContentPanel extends JPanel {
             homepanel.getComponent().setVisible(true);
             ContentPanel.enableTabSwitch();
         }));
-        advancedsongtable = new JTable() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        advancedsongtable = new DefTable();
         advancedsongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         advancedsongtable.setForeground(PublicValues.globalFontColor);
         advancedsongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -1097,8 +1087,7 @@ public class ContentPanel extends JPanel {
         ;
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(2));
-        } catch (InterruptedException exception) {
-            throw new RuntimeException(exception);
+        } catch (InterruptedException ignored) {
         }
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);

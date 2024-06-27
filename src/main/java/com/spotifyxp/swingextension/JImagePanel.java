@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 public class JImagePanel extends JPanel {
     private BufferedImage image = null;
     private byte[] imagebytes;
+    public boolean isFilled = false;
     private String rad = "";
 
     void refresh() {

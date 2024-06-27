@@ -150,7 +150,7 @@ public class CustomTheme implements Theme {
                 if (!color.isEmpty()) {
                     defc = Color.getColor(color);
                 }
-                Color c = JColorChooser.showDialog(this, PublicValues.language.translate("ui.customtheme.colorchooser.title"), defc);
+                Color c = JColorChooser.showDialog(this, "Choose the Color", defc); //ToDo: Translate the text
                 return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
             }catch (NullPointerException e) {
                 //User cancelled the color selection

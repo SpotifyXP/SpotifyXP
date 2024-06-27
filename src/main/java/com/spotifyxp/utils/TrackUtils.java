@@ -17,10 +17,10 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class TrackUtils {
         }
         return formattedTime;
     }
-    public static void addAllToQueue(ArrayList<String> cache, JTable addintable) {
+    public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
         try {
             try {
                 if (!InstanceManager.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
@@ -171,15 +171,15 @@ public class TrackUtils {
         }
     }
 
-    public static void removeLovedTrack(JTable table, ArrayList<String> uricache) {
+    public static void removeLovedTrack(DefTable table, ArrayList<String> uricache) {
         InstanceManager.getSpotifyApi().removeUsersSavedTracks(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
-        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
-    public static void removeFollowedPlaylist(JTable table, ArrayList<String> uricache) {
+    public static void removeFollowedPlaylist(DefTable table, ArrayList<String> uricache) {
         InstanceManager.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());
-        ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
 
     public static void download(PlayableId id) throws CdnManager.CdnException, IOException, MercuryClient.MercuryException, PlayableContentFeeder.ContentRestrictedException, UnsupportedOperationException, NotFoundException {

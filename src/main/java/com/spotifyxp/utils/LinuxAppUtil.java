@@ -66,55 +66,51 @@ public class LinuxAppUtil {
         public String categories;
     }
 
-    public DesktopEntry create() throws Exception {
-        try {
-            DesktopEntry entry = new DesktopEntry();
-            entry.categories = cat;
-            entry.version = ver;
-            entry.exec = executablepath;
-            entry.icon = iconlocation;
-            entry.comment = com;
-            entry.name = appName;
-            entry.path = pa;
-            StringBuilder builder = new StringBuilder();
-            builder.append(entry.header).append("\n");
-            builder.append("Type=").append(entry.type).append("\n");
-            builder.append("Version=").append(entry.version).append("\n");
-            builder.append("Name=").append(entry.name).append("\n");
-            builder.append("Comment=").append(entry.comment).append("\n");
-            builder.append("Path=").append(entry.path).append("\n");
-            builder.append("Exec=").append(entry.exec).append("\n");
-            builder.append("Icon=").append(entry.icon).append("\n");
-            builder.append("Terminal=").append(entry.terminal).append("\n");
-            builder.append("Categories=").append(entry.categories);
-            if (new File(System.getProperty("user.home") + "/.local/share/applications").exists()) {
+    public DesktopEntry create() {
+        DesktopEntry entry = new DesktopEntry();
+        entry.categories = cat;
+        entry.version = ver;
+        entry.exec = executablepath;
+        entry.icon = iconlocation;
+        entry.comment = com;
+        entry.name = appName;
+        entry.path = pa;
+        StringBuilder builder = new StringBuilder();
+        builder.append(entry.header).append("\n");
+        builder.append("Type=").append(entry.type).append("\n");
+        builder.append("Version=").append(entry.version).append("\n");
+        builder.append("Name=").append(entry.name).append("\n");
+        builder.append("Comment=").append(entry.comment).append("\n");
+        builder.append("Path=").append(entry.path).append("\n");
+        builder.append("Exec=").append(entry.exec).append("\n");
+        builder.append("Icon=").append(entry.icon).append("\n");
+        builder.append("Terminal=").append(entry.terminal).append("\n");
+        builder.append("Categories=").append(entry.categories);
+        if(new File(System.getProperty("user.home") + "/.local/share/applications").exists()) {
+            try {
+                Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/.local/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                ConsoleLogging.Throwable(e);
+            }
+        }else{
+            if(new File("/usr/share/applications").exists()) {
                 try {
-                    Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/.local/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File("/usr/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException e) {
-                    ConsoleLogging.Throwable(e);
-                }
-            } else {
-                if (new File("/usr/share/applications").exists()) {
                     try {
-                        Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File("/usr/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e) {
+                        Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/Schreibtisch", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    }catch (IOException e2) {
                         try {
-                            Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/Schreibtisch", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
-                        } catch (IOException e2) {
-                            try {
-                                Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/Desktop", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
-                            } catch (IOException e3) {
-                                GraphicalMessage.bug("Cant create shortcut! All methods failed");
-                            }
+                            Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/Desktop", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        }catch (IOException e3) {
+                            GraphicalMessage.bug("Cant create shortcut! All methods failed");
                         }
                     }
-                } else {
-                    GraphicalMessage.bug("No applications folder found!");
                 }
+            }else{
+                GraphicalMessage.bug("No applications folder found!");
             }
-            return entry;
-        }catch (Exception e) {
-            throw new Exception();
         }
+        return entry;
     }
 }

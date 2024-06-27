@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -22,8 +23,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class HotList extends JPanel {
-    public static JTable hotlistplayliststable;
-    public static JTable hotlistsongstable;
+    public static DefTable hotlistplayliststable;
+    public static DefTable hotlistsongstable;
     public static JPanel hotlistplaylistspanel;
     public static JScrollPane hotlistplaylistsscrollpanel;
     public static JPanel hotlistsonglistpanel;
@@ -44,12 +45,7 @@ public class HotList extends JPanel {
         hotlistplaylistsscrollpanel = new JScrollPane();
         hotlistplaylistsscrollpanel.setBounds(0, 0, 259, 421);
         hotlistplaylistspanel.add(hotlistplaylistsscrollpanel);
-        hotlistplayliststable = new JTable() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        hotlistplayliststable = new DefTable();
         hotlistplayliststable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.playlistlist.playlists")}));
         hotlistplayliststable.setForeground(PublicValues.globalFontColor);
         hotlistplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
@@ -72,12 +68,7 @@ public class HotList extends JPanel {
             ((DefaultTableModel) hotlistplayliststable.getModel()).setRowCount(0);
             fetchHotlist();
         });
-        hotlistsongstable = new JTable() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        hotlistsongstable = new DefTable();
         hotlistsongstable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")}));
         hotlistsongstablecontextmenu = new ContextMenu(hotlistsongstable);
         hotlistsongstablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow())));

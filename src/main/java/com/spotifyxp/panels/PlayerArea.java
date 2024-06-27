@@ -285,7 +285,7 @@ public class PlayerArea extends JPanel {
         playerplaypreviousbutton.addActionListener(new AsyncActionListener(e -> PublicValues.spotifyplayer.previous()));
         playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(InstanceManager.getPlayer().getPlayer().time())));
 
-        SplashPanel.getElementByNameAutoThrow("linfo", JLabel.class).setText("Creating playback history...");
+        SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
         Events.subscribe(SpotifyXPEvents.trackNext.getName(), () -> {
             if(PublicValues.spotifyplayer.currentPlayable() == null) return;

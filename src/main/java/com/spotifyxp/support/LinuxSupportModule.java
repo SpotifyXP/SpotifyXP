@@ -11,10 +11,10 @@ public class LinuxSupportModule implements SupportModule {
     @Override
     public void run() {
         if(!PublicValues.customSaveDir) {
-            PublicValues.fileslocation = System.getProperty("user.home") + "/SpotifyXP";
+            PublicValues.fileslocation = "/home/" + System.getProperty("user.name") + "/SpotifyXP";
             PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
             PublicValues.configfilepath = PublicValues.fileslocation + "/config.json";
-            PublicValues.tempPath = System.getProperty("java.io.tmpdir");
+            PublicValues.tempPath = "/tmp";
         }
     }
 }

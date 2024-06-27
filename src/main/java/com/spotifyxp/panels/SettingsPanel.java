@@ -1,14 +1,10 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.args.CustomSaveDir;
-import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.exception.ElementNotFoundException;
 import com.spotifyxp.lib.libLanguage;
-import com.spotifyxp.swingextension.JFrame;
+import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.swingextension.SettingsTable;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.AsyncActionListener;
@@ -17,270 +13,321 @@ import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Style;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Set;
 
-public class SettingsPanel {
-    private static ArrayList<Object[]> elements;
-    private JPanel contentPanel;
-    private JTabbedPane switcher;
-    private JTextField settingsBrowserPath;
-    private JButton settingsBrowserPathChoose;
-    private JLabel settingsBrowserPathLabel;
-    private JPanel uiSettings;
-    private JPanel browserSettings;
-    private JPanel playbackSettings;
-    private JPanel otherSettings;
-    private JRadioButton uiHideExceptions;
-    private JComboBox uiLanguageSelect;
-    private JLabel uiLanguageLabel;
-    private JLabel uiLanguageSelectLabel;
-    private JComboBox uiThemeSelect;
-    private JLabel uiThemeSelectLabel;
-    private JComboBox playbackQualitySelect;
-    private JRadioButton playbackDisableSpotifyConnect;
-    private JLabel playbackQualitySelectLabel;
-    private JCheckBox otherAutoPlayEnabled;
-    private JTextField otherCrossfadeDuration;
-    private JCheckBox otherPreloadEnabled;
-    private JTextField otherReleaseLineDelay;
-    private JCheckBox otherBypassSinkVolume;
-    private JTextField otherPreferredLocale;
-    private JLabel otherAutoPlayEnabledLabel;
-    private JLabel otherCrossfadeDurationLabel;
-    private JCheckBox otherEnableNormalization;
-    private JLabel otherEnableNormalizationLabel;
-    private JTextField otherNormalizationPregain;
-    private JLabel otherNormalizationPregainLabel;
-    private JTextField otherMixerSearchKeywords;
-    private JLabel otherMixerSearchKeywordsLabel;
-    private JLabel otherPreloadEnabledLabel;
-    private JLabel otherReleaseLineDelayLabel;
-    private JLabel otherBypassSinkVolumeLabel;
-    private JLabel otherPreferredLocaleLabel;
+@SuppressWarnings({"unchecked", "rawtypes", "resource"})
+public class SettingsPanel extends JPanel {
+    final SettingsPanel panel = this;
+    public static JTextField settingsbrowserpath;
+    public static JButton settingspathsetbutton;
+    public static JRadioButton settingsuidisableplayerstats;
+    public static JComboBox settingsuiselecttheme;
+    public static JComboBox settingsplaybackselectquality;
+    public static JButton settingsplaybackopenequalizerbutton;
+    public static JRadioButton settingsdisableexceptions;
+    public static JLabel settingslanguagelabel;
+    public static JLabel settingslanguageselectlabel;
+    public static JComboBox settingslanguageselect;
+    public static JLabel settingsbrowserlabel;
+    public static JLabel settingsbrowserpathlable;
+    public static JLabel settingsuilabel;
+    public static JLabel settingsuithemelabel;
+    public static JLabel settingsplaybacklabel;
+    public static JLabel settingsplaybackselectqualitylabel;
+    public static JRadioButton settingsturnoffspotifyconnect;
+    public static SettingsTable settingsTable;
+
+    //Borders
+    public static JPanel browsersettingsborder;
+    public static JPanel settingsuiborder;
+    public static JPanel playbackborder;
+    public static JPanel otherBorder;
+    //
+
+
+    public static JTabbedPane switcher = new JTabbedPane(SwingConstants.TOP);
+
+    //Other settings
+    public static JCheckBox autoplayenabled;
+    public static JTextField crossfadeduration;
+    public static JCheckBox enablenormalization;
+    public static JTextField normalizationpregain;
+    public static JTextField mixersearchkeywords;
+    public static JCheckBox preloadenabled;
+    public static JTextField releaselinedelay;
+    public static JCheckBox bypasssinkvolume;
+    public static JTextField preferredlocale;
+    //
+
+
 
     public SettingsPanel() {
-        initBrowserSettings();
-        initUISettings();
-        initPlaybackSettings();
-        initOtherSettings();
+        setBounds(100, 100, 422, 506);
+        setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLayout(null);
 
-        //Show warning message on 'Other' tab
-        switcher.addChangeListener(e -> {
-            if(switcher.getSelectedIndex() == switcher.getTabCount() - 1) {
-                JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.other.message"), PublicValues.language.translate("ui.settings.other.message.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-            }
-        });
-        //----
+        switcher.setBounds(0, 0,422, 506);
 
-        //Set color of switcher
         switcher.setForeground(PublicValues.globalFontColor);
-        //----
 
-        elements = new ArrayList<>();
-        addAllToElementList();
-    }
+        add(switcher);
 
-    private void initBrowserSettings() {
-        settingsBrowserPathLabel.setText(PublicValues.language.translate("ui.settings.browser.label"));
-        settingsBrowserPathLabel.setForeground(PublicValues.globalFontColor);
+        // Initiate and add borders
+        browsersettingsborder = new JPanel();
+        browsersettingsborder.setBounds(0, 0, 422, 506);
+        browsersettingsborder.setLayout(null);
 
-        settingsBrowserPath.setForeground(PublicValues.globalFontColor);
-        settingsBrowserPath.setText(PublicValues.config.getString(ConfigValues.mypalpath.name));
+        switcher.add(browsersettingsborder, PublicValues.language.translate("ui.settings.browser.label"));
 
-        settingsBrowserPathChoose.setForeground(PublicValues.globalFontColor);
-        settingsBrowserPathChoose.addActionListener(new AsyncActionListener(e -> {
+        settingsuiborder = new JPanel();
+        settingsuiborder.setBounds(0, 0, 422, 506);
+        settingsuiborder.setLayout(null);
+
+        switcher.add(settingsuiborder, PublicValues.language.translate("ui.settings.ui.label"));
+
+        playbackborder = new JPanel();
+        playbackborder.setBounds(0, 0, 422, 506);
+        playbackborder.setLayout(null);
+
+        switcher.add(playbackborder, PublicValues.language.translate("ui.settings.playback.label"));
+        otherBorder = new JPanel();
+        otherBorder.setBounds(0, 0, 422, 506);
+        otherBorder.setLayout(null);
+
+        switcher.add(PublicValues.language.translate("ui.settings.other"), otherBorder);
+
+        //
+
+        settingsbrowserlabel = new JLabel(PublicValues.language.translate("ui.settings.browser.label"));
+        settingsbrowserlabel.setBounds(10, 451, 206, 29);
+        browsersettingsborder.add(settingsbrowserlabel);
+
+        settingsbrowserlabel.setForeground(PublicValues.globalFontColor);
+
+        settingsbrowserpath = new JTextField();
+        settingsbrowserpath.setBounds(6, 39, 370, 26);
+        browsersettingsborder.add(settingsbrowserpath);
+        settingsbrowserpath.setColumns(10);
+
+        settingsbrowserpathlable = new JLabel(PublicValues.language.translate("ui.settings.mypal.path.label"));
+        settingsbrowserpathlable.setBounds(17, 17, 348, 16);
+        browsersettingsborder.add(settingsbrowserpathlable);
+        settingsbrowserpathlable.setHorizontalAlignment(SwingConstants.LEFT);
+
+        settingsbrowserpathlable.setForeground(PublicValues.globalFontColor);
+
+        settingspathsetbutton = new JButton(PublicValues.language.translate("ui.settings.mypal.path.choosebutton"));
+        settingspathsetbutton.setBounds(100, 69, 175, 29);
+        browsersettingsborder.add(settingspathsetbutton);
+
+        settingspathsetbutton.setForeground(PublicValues.globalFontColor);
+
+        settingsuilabel = new JLabel(PublicValues.language.translate("ui.settings.ui.label"));
+        settingsuilabel.setBounds(10, 435, 290, 14);
+        settingsuiborder.add(settingsuilabel);
+
+        settingsuilabel.setForeground(PublicValues.globalFontColor);
+
+        settingsdisableexceptions = new JRadioButton(PublicValues.language.translate("general.exception.hide"));
+        settingsdisableexceptions.setBounds(6, 18, 370, 23);
+        settingsuiborder.add(settingsdisableexceptions);
+
+        settingsdisableexceptions.setForeground(PublicValues.globalFontColor);
+
+        settingsuidisableplayerstats = new JRadioButton(PublicValues.language.translate("ui.settings.performance.disableplayerstats"));
+        settingsuidisableplayerstats.setBounds(6, 53, 370, 23);
+        settingsuiborder.add(settingsuidisableplayerstats);
+
+        settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
+
+        settingsuiselecttheme = new JComboBox();
+        for(Theme theme : ThemeLoader.getAvailableThemes()) {
+            ((DefaultComboBoxModel)settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
+        }
+        settingsuiselecttheme.setBounds(159, 85, 217, 30);
+        settingsuiborder.add(settingsuiselecttheme);
+
+        settingsuithemelabel = new JLabel(PublicValues.language.translate("ui.settings.theme"));
+        settingsuithemelabel.setBounds(6, 90, 151, 16);
+        settingsuiborder.add(settingsuithemelabel);
+        settingsuithemelabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        settingsuithemelabel.setForeground(PublicValues.globalFontColor);
+
+        settingsplaybacklabel = new JLabel(PublicValues.language.translate("ui.settings.playback.label"));
+        settingsplaybacklabel.setBounds(10, 448, 269, 14);
+        //add(settingsplaybacklabel);
+
+        settingsplaybacklabel.setForeground(PublicValues.globalFontColor);
+
+        settingsplaybackselectquality = new JComboBox(new String[] {
+                "Normal", "High", "Very_High"
+        });
+        settingsplaybackselectquality.setBounds(167, 28, 206, 22);
+        playbackborder.add(settingsplaybackselectquality);
+
+        settingsplaybackselectqualitylabel = new JLabel(PublicValues.language.translate("ui.settings.quality"));
+        settingsplaybackselectqualitylabel.setBounds(6, 30, 149, 14);
+        playbackborder.add(settingsplaybackselectqualitylabel);
+        settingsplaybackselectqualitylabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        settingsturnoffspotifyconnect = new JRadioButton(PublicValues.language.translate("ui.settings.spconnect"));
+        settingsturnoffspotifyconnect.setForeground(PublicValues.globalFontColor);
+
+        settingsturnoffspotifyconnect.setBounds(120, 55, 200, 20);
+
+        playbackborder.add(settingsturnoffspotifyconnect);
+
+
+        settingsplaybackselectquality.setForeground(PublicValues.globalFontColor);
+
+        settingsplaybackopenequalizerbutton = new JButton(PublicValues.language.translate("ui.settings.uninstall"));
+        settingsplaybackopenequalizerbutton.setBounds(205, 445, 197, 23);
+        //add(settingsplaybackopenequalizerbutton);
+
+        settingsplaybackopenequalizerbutton.setEnabled(false);
+
+        settingsplaybackopenequalizerbutton.setForeground(PublicValues.globalFontColor);
+
+        settingsplaybackopenequalizerbutton.addActionListener(e -> triggerUninstall());
+
+        settingspathsetbutton.addActionListener(new AsyncActionListener(e -> {
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"),"exe");
             chooser.setFileFilter(filter);
             chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
-            chooser.showOpenDialog(contentPanel);
-            if(chooser.getSelectedFile() != null) settingsBrowserPath.setText(chooser.getSelectedFile().getAbsolutePath());
+            chooser.showOpenDialog(panel);
+            if(chooser.getSelectedFile() != null) settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
         }));
-    }
 
-    private void initUISettings() {
-        uiHideExceptions.setText(PublicValues.language.translate("general.exception.hide"));
-        uiHideExceptions.setSelected(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name));
-        uiHideExceptions.setForeground(PublicValues.globalFontColor);
+        settingslanguagelabel = new JLabel(PublicValues.language.translate("ui.settings.language"));
+        settingslanguagelabel.setBounds(6, 118, 370, 20);
+        settingslanguagelabel.setFont(new Font(settingslanguagelabel.getFont().getName(), Font.BOLD, settingslanguagelabel.getFont().getSize()));
+        settingsuiborder.add(settingslanguagelabel);
 
-        uiThemeSelectLabel.setText(PublicValues.language.translate("ui.settings.theme"));
-        uiThemeSelectLabel.setForeground(PublicValues.globalFontColor);
+        settingslanguagelabel.setForeground(PublicValues.globalFontColor);
 
-        uiThemeSelect.setForeground(PublicValues.globalFontColor);
-        for(Theme theme : ThemeLoader.getAvailableThemes()) {
-            ((DefaultComboBoxModel)uiThemeSelect.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
-        }
-        uiThemeSelect.setSelectedItem(PublicValues.config.getString(ConfigValues.theme.name));
+        settingslanguageselect = new JComboBox();
+        settingslanguageselect.setBounds(159, 146, 217, 27);
+        settingsuiborder.add(settingslanguageselect);
 
-        uiLanguageLabel.setText(PublicValues.language.translate("ui.settings.language"));
-        uiLanguageLabel.setForeground(PublicValues.globalFontColor);
+        settingslanguageselectlabel = new JLabel(PublicValues.language.translate("ui.settings.langselect"));
+        settingslanguageselectlabel.setBounds(6, 150, 140, 16);
+        settingsuiborder.add(settingslanguageselectlabel);
 
-        uiLanguageSelectLabel.setText(PublicValues.language.translate("ui.settings.langselect"));
-        uiLanguageSelectLabel.setForeground(PublicValues.globalFontColor);
+        settingslanguageselectlabel.setForeground(PublicValues.globalFontColor);
 
-        uiLanguageSelect.setForeground(PublicValues.globalFontColor);
+        settingsTable = new SettingsTable();
+        settingsTable.setBounds(0, 0, 422, 506);
+
+        autoplayenabled = new JCheckBox();
+
+        autoplayenabled.setSelected(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.autoplayenabled"), autoplayenabled);
+
+        crossfadeduration = new JTextField();
+
+        crossfadeduration.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name)));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.crossfadeduration"), crossfadeduration);
+
+        enablenormalization = new JCheckBox();
+
+        enablenormalization.setSelected(PublicValues.config.getBoolean(ConfigValues.other_enablenormalization.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.enablenormalization"), enablenormalization);
+
+        normalizationpregain = new JTextField();
+
+        normalizationpregain.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_normalizationpregain.name)));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.normalizationpregain"), normalizationpregain);
+
+        mixersearchkeywords = new JTextField();
+
+        mixersearchkeywords.setText(PublicValues.config.getString(ConfigValues.other_mixersearchkeywords.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.mixersearchkeywords"), mixersearchkeywords);
+
+        preloadenabled = new JCheckBox();
+
+        preloadenabled.setSelected(PublicValues.config.getBoolean(ConfigValues.other_preloadenabled.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.preloadenabled"), preloadenabled);
+
+        releaselinedelay = new JTextField();
+
+        releaselinedelay.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_releaselinedelay.name)));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.releaselinedelay"), releaselinedelay);
+
+        bypasssinkvolume = new JCheckBox();
+
+        bypasssinkvolume.setSelected(PublicValues.config.getBoolean(ConfigValues.other_bypasssinkvolume.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.bypasssinkvolume"), bypasssinkvolume);
+
+        preferredlocale = new JTextField();
+
+        preferredlocale.setText(PublicValues.config.getString(ConfigValues.other_preferredlocale.name));
+
+        settingsTable.addSetting(PublicValues.language.translate("ui.settings.other.preferredlocale"), preferredlocale);
+
+        switcher.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(switcher.getSelectedIndex() == switcher.getTabCount() - 1) {
+                    JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.other.message"), PublicValues.language.translate("ui.settings.other.message.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
+        otherBorder.add(settingsTable);
+
         ArrayList<String> selectcache = new ArrayList<>();
+
         for(libLanguage.Language language : libLanguage.Language.values()) {
             if(selectcache.contains(language.getName())) {
                 continue;
             }
             if(new Resources(true).readToInputStream("lang/" + language.getCode() + ".json") != null) {
-                ((DefaultComboBoxModel) uiLanguageSelect.getModel()).addElement(language.getName());
+                selectcache.add(language.getName());
             }
         }
-        uiLanguageSelect.setSelectedItem(PublicValues.config.getString(ConfigValues.language.name));
-    }
 
-    private void initPlaybackSettings() {
-        playbackQualitySelect.setForeground(PublicValues.globalFontColor);
-        playbackQualitySelect.setModel(new DefaultComboBoxModel(new String[]{"Normal", "High", "Very_High"}));
-        playbackQualitySelect.setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
-
-        playbackQualitySelectLabel.setForeground(PublicValues.globalFontColor);
-        playbackQualitySelectLabel.setText(PublicValues.language.translate("ui.settings.quality"));
-
-        playbackDisableSpotifyConnect.setForeground(PublicValues.globalFontColor);
-        playbackDisableSpotifyConnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
-        playbackDisableSpotifyConnect.setText(PublicValues.language.translate("ui.settings.spconnect"));
-    }
-
-    private void initOtherSettings() {
-        otherAutoPlayEnabled.setText("");
-        otherAutoPlayEnabled.setSelected(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name));
-        otherAutoPlayEnabled.setForeground(PublicValues.globalFontColor);
-
-        otherAutoPlayEnabledLabel.setText(PublicValues.language.translate("ui.settings.other.autoplayenabled"));
-        otherAutoPlayEnabledLabel.setForeground(PublicValues.globalFontColor);
-
-        otherCrossfadeDuration.setForeground(PublicValues.globalFontColor);
-        otherCrossfadeDuration.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name)));
-
-        otherCrossfadeDurationLabel.setText(PublicValues.language.translate("ui.settings.other.crossfadeduration"));
-        otherCrossfadeDurationLabel.setForeground(PublicValues.globalFontColor);
-
-        otherEnableNormalization.setText("");
-        otherEnableNormalization.setSelected(PublicValues.config.getBoolean(ConfigValues.other_enablenormalization.name));
-        otherEnableNormalization.setForeground(PublicValues.globalFontColor);
-
-        otherEnableNormalizationLabel.setText(PublicValues.language.translate("ui.settings.other.enablenormalization"));
-        otherEnableNormalizationLabel.setForeground(PublicValues.globalFontColor);
-
-        otherNormalizationPregain.setForeground(PublicValues.globalFontColor);
-        otherNormalizationPregain.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_normalizationpregain.name)));
-
-        otherNormalizationPregainLabel.setText(PublicValues.language.translate("ui.settings.other.normalizationpregain"));
-        otherNormalizationPregainLabel.setForeground(PublicValues.globalFontColor);
-
-        otherMixerSearchKeywords.setForeground(PublicValues.globalFontColor);
-        otherMixerSearchKeywords.setText(PublicValues.config.getString(ConfigValues.other_mixersearchkeywords.name));
-
-        otherMixerSearchKeywordsLabel.setText(PublicValues.language.translate("ui.settings.other.mixersearchkeywords"));
-        otherMixerSearchKeywordsLabel.setForeground(PublicValues.globalFontColor);
-
-        otherPreloadEnabled.setText("");
-        otherPreloadEnabled.setSelected(PublicValues.config.getBoolean(ConfigValues.other_preloadenabled.name));
-        otherPreloadEnabled.setForeground(PublicValues.globalFontColor);
-
-        otherPreloadEnabledLabel.setText(PublicValues.language.translate("ui.settings.other.preloadenabled"));
-        otherPreloadEnabledLabel.setForeground(PublicValues.globalFontColor);
-
-        otherReleaseLineDelay.setForeground(PublicValues.globalFontColor);
-        otherReleaseLineDelay.setText(String.valueOf(PublicValues.config.getInt(ConfigValues.other_releaselinedelay.name)));
-
-        otherReleaseLineDelayLabel.setText(PublicValues.language.translate("ui.settings.other.releaselinedelay"));
-        otherReleaseLineDelayLabel.setForeground(PublicValues.globalFontColor);
-
-        otherBypassSinkVolume.setText("");
-        otherBypassSinkVolume.setSelected(PublicValues.config.getBoolean(ConfigValues.other_bypasssinkvolume.name));
-        otherBypassSinkVolume.setForeground(PublicValues.globalFontColor);
-
-        otherBypassSinkVolumeLabel.setText(PublicValues.language.translate("ui.settings.other.bypasssinkvolume"));
-        otherBypassSinkVolumeLabel.setForeground(PublicValues.globalFontColor);
-
-        otherPreferredLocale.setForeground(PublicValues.globalFontColor);
-        otherPreferredLocale.setText(PublicValues.config.getString(ConfigValues.other_preferredlocale.name));
-
-        otherPreferredLocaleLabel.setText(PublicValues.language.translate("ui.settings.other.preferredlocale"));
-        otherPreferredLocaleLabel.setForeground(PublicValues.globalFontColor);
-    }
-
-    private void addAllToElementList() {
-        addToElementList("contentPanel", contentPanel);
-        addToElementList("switcher", switcher);
-        addToElementList("settingsBrowserPath", settingsBrowserPath);
-        addToElementList("settingsBrowserPathChoose", settingsBrowserPathChoose);
-        addToElementList("settingsBrowserPathLabel", settingsBrowserPathLabel);
-        addToElementList("uiSettings", uiSettings);
-        addToElementList("browserSettings", browserSettings);
-        addToElementList("playbackSettings", playbackSettings);
-        addToElementList("otherSettings", otherSettings);
-        addToElementList("uiHideExceptions", uiHideExceptions);
-        addToElementList("uiLanguageSelect", uiLanguageSelect);
-        addToElementList("uiLanguageLabel", uiLanguageLabel);
-        addToElementList("uiLanguageSelectLabel", uiLanguageSelectLabel);
-        addToElementList("uiThemeSelect", uiThemeSelect);
-        addToElementList("uiThemeSelectLabel", uiThemeSelectLabel);
-        addToElementList("playbackQualitySelect", playbackQualitySelect);
-        addToElementList("playbackDisableSpotifyConnect", playbackDisableSpotifyConnect);
-        addToElementList("playbackQualitySelectLabel", playbackQualitySelectLabel);
-        addToElementList("otherAutoPlayEnabled", otherAutoPlayEnabled);
-        addToElementList("otherCrossfadeDuration", otherCrossfadeDuration);
-        addToElementList("otherPreloadEnabled", otherPreloadEnabled);
-        addToElementList("otherReleaseLineDelay", otherReleaseLineDelay);
-        addToElementList("otherBypassSinkVolume", otherBypassSinkVolume);
-        addToElementList("otherPreferredLocale", otherPreferredLocale);
-        addToElementList("otherAutoPlayEnabledLabel", otherAutoPlayEnabledLabel);
-        addToElementList("otherCrossfadeDurationLabel", otherCrossfadeDurationLabel);
-        addToElementList("otherEnableNormalization", otherEnableNormalization);
-        addToElementList("otherEnableNormalizationLabel", otherEnableNormalizationLabel);
-        addToElementList("otherNormalizationPregain", otherNormalizationPregain);
-        addToElementList("otherNormalizationPregainLabel", otherNormalizationPregainLabel);
-        addToElementList("otherMixerSearchKeywords", otherMixerSearchKeywords);
-        addToElementList("otherMixerSearchKeywordsLabel", otherMixerSearchKeywordsLabel);
-        addToElementList("otherPreloadEnabledLabel", otherPreloadEnabledLabel);
-        addToElementList("otherReleaseLineDelayLabel", otherReleaseLineDelayLabel);
-        addToElementList("otherBypassSinkVolumeLabel", otherBypassSinkVolumeLabel);
-        addToElementList("otherPreferredLocaleLabel", otherPreferredLocaleLabel);
-    }
-
-    private void addToElementList(String name, Object instance) {
-        elements.add(new Object[]{name, instance});
-    }
-
-    public static JPanel getContainer() {
-        return getElementByNameAutoThrow("contentPanel", JPanel.class);
-    }
-
-    public static <E> E getElementByName(String name, Class<E> elementType) throws ElementNotFoundException {
-        for(Object[] element : elements) {
-            if(element[0].equals(name)) {
-                return elementType.cast(element[1]);
-            }
+        for(String s : selectcache) {
+            ((DefaultComboBoxModel) settingslanguageselect.getModel()).addElement(s);
         }
-        throw new ElementNotFoundException(elementType);
-    }
 
-    public static <E> E getElementByNameAutoThrow(String name, Class<E> elementType) {
-        for(Object[] element : elements) {
-            if(element[0].equals(name)) {
-                return elementType.cast(element[1]);
-            }
+        settingslanguageselect.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.language.name));
+        settingsdisableexceptions.setSelected(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name));
+        settingsuidisableplayerstats.setSelected(PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name));
+        settingsbrowserpath.setText(PublicValues.config.getString(ConfigValues.mypalpath.name));
+        settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.theme.name));
+        settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
+        settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
+
+        if(settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
+            settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
         }
-        throw new RuntimeException(new ElementNotFoundException(elementType));
     }
 
-
-    private static void saveSettings() {
+    public static void applySettings() {
         try {
-            switch ((String) getElementByNameAutoThrow("playbackQualitySelect", JComboBox.class).getModel().getSelectedItem()) {
+            switch ((String) settingsplaybackselectquality.getModel().getSelectedItem()) {
                 case "Normal":
                     PublicValues.config.write(ConfigValues.audioquality.name, "NORMAL");
                     break;
@@ -291,41 +338,45 @@ public class SettingsPanel {
                     PublicValues.config.write(ConfigValues.audioquality.name, "VERY_HIGH");
                     break;
             }
-            PublicValues.config.write(ConfigValues.spconnect.name, getElementByNameAutoThrow("playbackDisableSpotifyConnect", JCheckBox.class).isSelected());
-            PublicValues.config.write(ConfigValues.language.name, getElementByNameAutoThrow("uiLanguageSelect", JComboBox.class).getModel().getSelectedItem().toString());
-            PublicValues.config.write(ConfigValues.hideExceptions.name, getElementByNameAutoThrow("uiHideExceptions", JCheckBox.class).isSelected());
-            PublicValues.config.write(ConfigValues.theme.name, getElementByNameAutoThrow("uiThemeSelect", JComboBox.class).getModel().getSelectedItem().toString().split(" from ")[0]);
-            PublicValues.config.write(ConfigValues.mypalpath.name, getElementByNameAutoThrow("settingsBrowserPath", JTextField.class).getText());
-            PublicValues.config.write(ConfigValues.other_autoplayenabled.name, getElementByNameAutoThrow("otherAutoPlayEnabled", JCheckBox.class).isSelected());
-            PublicValues.config.write(ConfigValues.other_crossfadeduration.name, Integer.parseInt(getElementByNameAutoThrow("otherCrossfadeDuration", JTextField.class).getText()));
-            PublicValues.config.write(ConfigValues.other_enablenormalization.name, getElementByNameAutoThrow("otherEnableNormalization", JCheckBox.class).isSelected());
-            PublicValues.config.write(ConfigValues.other_normalizationpregain.name, Integer.parseInt(getElementByNameAutoThrow("otherNormalizationPregain", JTextField.class).getText()));
-            PublicValues.config.write(ConfigValues.other_mixersearchkeywords.name, getElementByNameAutoThrow("otherMixerSearchKeywords", JTextField.class).getText());
-            PublicValues.config.write(ConfigValues.other_preloadenabled.name, getElementByNameAutoThrow("otherPreloadEnabled", JCheckBox.class).isSelected());
-            PublicValues.config.write(ConfigValues.other_releaselinedelay.name, Integer.parseInt(getElementByNameAutoThrow("otherReleaseLineDelay", JTextField.class).getText()));
-            PublicValues.config.write(ConfigValues.other_bypasssinkvolume.name, getElementByNameAutoThrow("otherBypassSinkVolume", JCheckBox.class).isSelected());
-            PublicValues.config.write(ConfigValues.other_preferredlocale.name, getElementByNameAutoThrow("otherPreferredLocale", JTextField.class).getText());
+            PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
+            PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
+            PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
+            PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
+            PublicValues.config.write(ConfigValues.mypalpath.name, settingsbrowserpath.getText());
+            PublicValues.config.write(ConfigValues.disableplayerstats.name, settingsuidisableplayerstats.isSelected());
+            PublicValues.config.write(ConfigValues.other_autoplayenabled.name, autoplayenabled.isSelected());
+            PublicValues.config.write(ConfigValues.other_crossfadeduration.name, Integer.parseInt(crossfadeduration.getText()));
+            PublicValues.config.write(ConfigValues.other_enablenormalization.name, enablenormalization.isSelected());
+            PublicValues.config.write(ConfigValues.other_normalizationpregain.name, Integer.parseInt(normalizationpregain.getText()));
+            PublicValues.config.write(ConfigValues.other_mixersearchkeywords.name, mixersearchkeywords.getText());
+            PublicValues.config.write(ConfigValues.other_preloadenabled.name, preloadenabled.isSelected());
+            PublicValues.config.write(ConfigValues.other_releaselinedelay.name, Integer.parseInt(releaselinedelay.getText()));
+            PublicValues.config.write(ConfigValues.other_bypasssinkvolume.name, bypasssinkvolume.isSelected());
+            PublicValues.config.write(ConfigValues.other_preferredlocale.name, preferredlocale.getText());
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
         }catch (NumberFormatException e) {
             GraphicalMessage.sorryError("Failed to write settings");
         }
     }
 
-
-    public static void open() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                saveSettings();
-                e.getWindow().dispose();
-            }
-        });
-        frame.setTitle(PublicValues.language.translate("ui.settings.title"));
-        frame.getContentPane().add(SettingsPanel.getContainer());
-        frame.setResizable(false);
-        frame.setVisible(true);
-        frame.pack();
+    public static void triggerUninstall() {
+        ProcessBuilder builder;
+        try {
+            Files.copy(new Resources().readToInputStream("JavaSetupTool.jar"), Paths.get(PublicValues.tempPath + File.separator + "SpotifyXP-Uninstaller.jar"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Paths.get(PublicValues.appLocation + File.separator + "uninstaller.xml"), Paths.get(PublicValues.tempPath + File.separator + "uninstaller.xml"), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+        }
+        if(System.getProperty("os.name").toLowerCase().contains("win")) {
+            builder = new ProcessBuilder("cmd.exe", "/c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
+        }else{
+            builder = new ProcessBuilder("bash", "-c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
+        }
+        try {
+            builder.start();
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+        }
+        System.exit(0);
     }
 }

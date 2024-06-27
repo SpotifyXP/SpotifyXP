@@ -200,8 +200,6 @@
   "theme.touse":"Theme to use",
   "generic.no": "No",
   "generic.yes": "Yes",
-  "generic.ok": "Ok",
-  "generic.cancel": "Abbrechen",
   "extension.updateAvailable.title": "Extension Updater",
   "extension.updateAvailable.message": "Update/s available for extension/s",
   "extension.updateAvailable.update": "Update",
@@ -209,15 +207,5 @@
   "extension.store.tab": "Store",
   "playlists.create.title": "Create playlist",
   "playlists.create.name.label": "Playlist name",
-  "playlists.create.visibility": "Set visibility public?",
-  "ui.artistpanel.popular": "Popular",
-  "ui.artistpanel.albums": "Albums",
-  "ui.login.email": "E-Mail",
-  "ui.login.password": "Password",
-  "ui.login.invalidLogin": "Invalid Login!",
-  "ui.login.enterspotcred": "Enter Spotify credentials",
-  "ui.lyrics.title": "SpotifyXP - Song Lyric",
-  "ui.canceldialog.cancel.text": "Cancel Login",
-  "ui.canceldialog.cancel.title": "Cancel login?",
-  "ui.customtheme.colorchooser.title": "Choose the color"
+  "playlists.create.visibility": "Set visibility public?"
 }
