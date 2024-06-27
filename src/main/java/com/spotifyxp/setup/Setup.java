@@ -21,7 +21,7 @@ public class Setup {
 
     @SuppressWarnings("all")
     public Setup() {
-        SplashPanel.getElementByNameAutoThrow("frame", JFrame.class).setVisible(false);
+        SplashPanel.frame.setVisible(false);
         AcceptComponent thirdparty = new AcceptComponent();
         thirdparty.load(new Resources().readToString("setup/thirdparty.html"));
         new com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup().open(new SetupBuilder()
@@ -132,6 +132,9 @@ public class Setup {
     public InstallProgressComponent buildLinux() {
         InstallProgressComponent linux = new InstallProgressComponent();
         try {
+            linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
+                    .setFrom(PublicValues.fileslocation)
+                    .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));
             linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
                     .setFrom(PublicValues.appLocation)
                     .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));

@@ -132,10 +132,10 @@ limitations under the License.
 
 ## Authors
 
-* **Werwolf2303** - ** - [Werwolf2303](https://github.com/Werwolf2303/) - **
+* [Werwolf2303](https://github.com/Werwolf2303/) 
 
 ## Special thanks
 
 * [StapleBacon5037](https://github.com/StapleBacon5037) - For improving the readme
 * [skippster1337](https://github.com/skipster1337) - For listing SpotifyXP on his site
-* <a href="https://www.yourkit.com/"><img src="https://www.yourkit.com/images/yklogo.png" height="20"></a> that provided a free license for their [Java Profiler](https://www.yourkit.com/java/profiler/)
+* [Jri-creator](https://github.com/Jri-creator) - For the new setup image
