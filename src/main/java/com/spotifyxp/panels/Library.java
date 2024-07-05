@@ -31,7 +31,6 @@ public class Library extends JPanel {
             try {
                 libraryLoadingInProgress = true;
                 int visibleCount = 28;
-                int total = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getTotal();
                 int counter = 0;
                 int last = 0;
                 int parsed = 0;

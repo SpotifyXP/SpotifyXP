@@ -43,9 +43,11 @@ public class LyricsDialog extends JDialog {
         try {
             if (isVisible()) {
                 lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                if(lyrics == null) throw new JSONException("");
                 //New lyrics
             } else {
                 lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                if(lyrics == null) throw new JSONException("");
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
@@ -94,6 +96,7 @@ public class LyricsDialog extends JDialog {
             this.uri = uri;
             return true;
         }catch (JSONException e) {
+            ConsoleLogging.info("No song lyrics available for: " + uri);
             return false;
         }
     }

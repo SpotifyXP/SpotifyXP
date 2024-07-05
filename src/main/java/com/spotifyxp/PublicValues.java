@@ -63,7 +63,6 @@ public class PublicValues {
     public static String tempPath = System.getenv("temp");
     public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
     public static boolean blockArtistPanelBackButton = false;
-    public static boolean nogui = false;
     public static Color borderColor = Color.black;
     public static boolean autoLoadHotList = false;
     public static PlaybackHistory history;

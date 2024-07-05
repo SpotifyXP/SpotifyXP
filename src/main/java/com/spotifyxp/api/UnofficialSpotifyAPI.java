@@ -119,22 +119,26 @@ public class UnofficialSpotifyAPI {
      * @see Lyrics
      */
     public Lyrics getLyrics(String uri) {
-        JSONObject object = new JSONObject(makeGet("https://spclient.wg.spotify.com/color-lyrics/v2/track/" + uri.split(":")[2] + "?format=json&vocalRemoval=false"));
-        JSONObject lyricsroot = new JSONObject(object.getJSONObject("lyrics").toString());
-        Lyrics lyrics = new Lyrics();
-        lyrics.language = lyricsroot.getString("language");
-        lyrics.providerLyricsId = lyricsroot.getString("providerLyricsId");
-        lyrics.providerDisplayName = lyricsroot.getString("providerDisplayName");
-        lyrics.syncType = lyricsroot.getString("syncType");
-        for (Object line : lyricsroot.getJSONArray("lines")) {
-            JSONObject l = new JSONObject(line.toString());
-            LyricsLine lyricsLine = new LyricsLine();
-            lyricsLine.endTimeMs = Long.parseLong(l.getString("endTimeMs"));
-            lyricsLine.startTimeMs = Long.parseLong(l.getString("startTimeMs"));
-            lyricsLine.words = l.getString("words");
-            lyrics.lines.add(lyricsLine);
+        try {
+            JSONObject object = new JSONObject(makeGet("https://spclient.wg.spotify.com/color-lyrics/v2/track/" + uri.split(":")[2] + "?format=json&vocalRemoval=false"));
+            JSONObject lyricsroot = new JSONObject(object.getJSONObject("lyrics").toString());
+            Lyrics lyrics = new Lyrics();
+            lyrics.language = lyricsroot.getString("language");
+            lyrics.providerLyricsId = lyricsroot.getString("providerLyricsId");
+            lyrics.providerDisplayName = lyricsroot.getString("providerDisplayName");
+            lyrics.syncType = lyricsroot.getString("syncType");
+            for (Object line : lyricsroot.getJSONArray("lines")) {
+                JSONObject l = new JSONObject(line.toString());
+                LyricsLine lyricsLine = new LyricsLine();
+                lyricsLine.endTimeMs = Long.parseLong(l.getString("endTimeMs"));
+                lyricsLine.startTimeMs = Long.parseLong(l.getString("startTimeMs"));
+                lyricsLine.words = l.getString("words");
+                lyrics.lines.add(lyricsLine);
+            }
+            return lyrics;
+        }catch (JSONException e) {
+            return null;
         }
-        return lyrics;
     }
 
     /**

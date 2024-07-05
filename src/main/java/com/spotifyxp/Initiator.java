@@ -1,7 +1,6 @@
 package com.spotifyxp;
 
 import com.spotifyxp.api.Player;
-import com.spotifyxp.api.RestAPI;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
@@ -27,8 +26,6 @@ import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
-import com.spotifyxp.web.WebInterface;
-
 import java.io.File;
 
 @SuppressWarnings({"all", "RedundantArrayCreation"})
@@ -76,7 +73,7 @@ public class Initiator {
         startupTime = new StartupTime(); //Saving the time SpotifyXP was started
         initEvents(); //Initializing the event support
         PublicValues.argParser.parseArguments(args); //Parsing the arguments
-        initSplashPanel(); //Initializing the splash panel
+        new SplashPanel().show(); //Initializing the splash panel
         System.setProperty("http.agent", ApplicationUtils.getUserAgent()); //Setting the user agent string that SpotifyXP uses
         checkDebug(); //Checking if debug is enabled
         detectOS(); //Detecting the operating system
@@ -87,41 +84,16 @@ public class Initiator {
         storeArguments(args); //Storing the program arguments in PublicValues.class
         initLanguageSupport(); //Initializing the language support
         parseAudioQuality(); //Parsing the audio quality
-
-        if(PublicValues.nogui) {
-            initNoGUI();
-            return;
-        }
-
         initThemes(); //Initializing the theming support
         creatingLock(); //Creating the 'LOCK' file
         checkLogin(); //Checking if user has already entered his credentials
         addShutdownHook(); //Adding the shudtown hook
         initAPI(); //Initializing all the apis used
-        if(PublicValues.enableMediaControl) createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
+        if (PublicValues.enableMediaControl) createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
         initTrayIcon(); //Creating the tray icon
         initGUI(); //Initializing the GUI
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide(); //Hiding the splash panel
-        new WebInterface(); //Starting the webinterface
-    }
-
-    static void initNoGUI() {
-        creatingLock(); //Creating the 'LOCK' file
-        checkLogin(); //Checking if user has already entered his credentials
-        addShutdownHook(); //Adding the shudtown hook
-        initAPI(); //Initializing all the apis used
-        ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
-        new WebInterface(); //Starting the webinterface
-        new RestAPI().start(); //Starting the restAPI
-    }
-
-    static void initSplashPanel() {
-        if(!PublicValues.nogui) {
-            new SplashPanel().show();
-        }else{
-            new SplashPanel();
-        }
     }
 
     static void checkDebug() {

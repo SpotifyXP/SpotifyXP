@@ -7,3 +7,5 @@ Translation ToDo (Japanese):
 Fix Spotify updater
 
 Fix legacy disable on opening other panels (User can break the UI)
+
+Wrong background color on some svg icons (Playback history button has white background)

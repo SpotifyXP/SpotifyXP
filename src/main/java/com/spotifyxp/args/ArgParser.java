@@ -1,7 +1,6 @@
 package com.spotifyxp.args;
 
 import com.spotifyxp.utils.ApplicationUtils;
-
 import java.util.ArrayList;
 
 public class ArgParser {
@@ -70,13 +69,10 @@ public class ArgParser {
         arguments.add(new Debug());
         arguments.add(new Development());
         arguments.add(new Language());
-        arguments.add(new NoConnection());
         arguments.add(new NoMediaControl());
-        arguments.add(new NoGUI());
         arguments.add(new SaveLog());
         arguments.add(new SetupComplete());
         arguments.add(new SteamDeck());
-        arguments.add(new RESTApi());
         arguments.add(new Help());
     }
 

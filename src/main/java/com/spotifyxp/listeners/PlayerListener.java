@@ -1,6 +1,7 @@
 package com.spotifyxp.listeners;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
@@ -61,8 +62,6 @@ public class PlayerListener implements Player.EventsListener {
     public void onContextChanged(@NotNull Player player, @NotNull String s) {
 
     }
-
-    boolean fromShuffle = false;
 
     @Override
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
@@ -135,6 +134,11 @@ public class PlayerListener implements Player.EventsListener {
                 GraphicalMessage.openException(e);
                 ConsoleLogging.Throwable(e);
             }
+        }
+        if(InstanceManager.getUnofficialSpotifyApi().getLyrics(playableId.toSpotifyUri()) == null) {
+            PlayerArea.playerarealyricsbutton.getJComponent().setToolTipText("No lyrics found");
+        }else{
+            PlayerArea.playerarealyricsbutton.getJComponent().setToolTipText(null);
         }
         locked = false;
         Events.triggerEvent(SpotifyXPEvents.playerLockRelease.getName());
