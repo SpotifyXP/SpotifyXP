@@ -131,6 +131,7 @@ public class Session implements Closeable {
     private volatile boolean closing = false;
     private volatile ScheduledFuture<?> scheduledReconnect = null;
     private int rescheduledTimes = 0;
+    private int retryOtherApTimes = 0;
 
     public Session(@NotNull Inner inner) throws IOException {
         this.inner = inner;
@@ -211,6 +212,11 @@ public class Session implements Closeable {
         if ((lo & 0x80) == 0) return lo;
         int hi = buffer.get();
         return lo & 0x7f | hi << 7;
+    }
+
+    private void newRandomAP() throws IOException {
+        String addr = apResolver.getRandomAccesspoint();
+        this.conn = ConnectionHolder.create(addr, inner.conf);
     }
 
     @NotNull
@@ -325,9 +331,6 @@ public class Session implements Closeable {
                 } else if (read > 0) {
                     throw new IllegalStateException("Read unknown data!");
                 }
-            } catch (SocketTimeoutException ignored) {
-            } catch (EOFException e) {
-                throw new RuntimeException(e);
             } finally {
                 conn.socket.setSoTimeout(0);
             }
@@ -341,6 +344,8 @@ public class Session implements Closeable {
             }
 
             ConsoleLoggingModules.info("Connected successfully!");
+
+            retryOtherApTimes = 0;
         }catch (OutOfMemoryError e) {
             ConsoleLoggingModules.Throwable(e);
             if(rescheduledTimes > 10) {
@@ -358,6 +363,14 @@ public class Session implements Closeable {
                     scheduleReconnect();
                 }
             }, 1, TimeUnit.SECONDS);
+        } catch (EOFException | SocketTimeoutException e) {
+            retryOtherApTimes++;
+            if(retryOtherApTimes >= 10) {
+                GraphicalMessage.sorryErrorExit("Error connection! EOFException / SocketTimeOutException: " + e.getMessage());
+            }
+            ConsoleLoggingModules.info("Exception! Trying other ap...");
+            newRandomAP();
+            connect();
         }
     }
 
@@ -1103,14 +1116,17 @@ public class Session implements Closeable {
         public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
             if (loginCredentials == null)
                 throw new IllegalStateException("You must select an authentication method.");
-
             TimeProvider.init(conf);
 
-            Session session = new Session(new Inner(deviceType, deviceName, deviceId, preferredLocale, conf));
-            session.connect();
-            session.authenticate(loginCredentials);
-            session.api().setClientToken(clientToken);
-            return session;
+            try {
+                Session session = new Session(new Inner(deviceType, deviceName, deviceId, preferredLocale, conf));
+                session.connect();
+                session.authenticate(loginCredentials);
+                session.api().setClientToken(clientToken);
+                return session;
+            }catch (IOException e) {
+                return create();
+            }
         }
     }
 

@@ -21,19 +21,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.utils.ConnectionUtils;
-import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,9 +42,9 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("resource")
 public final class ApResolver {
     private static final String BASE_URL = "http://apresolve.spotify.com/";
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApResolver.class);
 
     private final OkHttpClient client;
     private final Map<String, List<String>> pool = new HashMap<>(3);
@@ -74,8 +73,6 @@ public final class ApResolver {
         return list;
     }
 
-    int times = 0;
-
     private void request(@NotNull String... types) throws IOException {
         if (types.length == 0) throw new IllegalArgumentException();
 
@@ -91,15 +88,7 @@ public final class ApResolver {
         try (Response response = client.newCall(request).execute()) {
             ResponseBody body = response.body();
             if (body == null) throw new IOException("No body");
-            byte[] resp = IOUtils.toByteArray(body.byteStream());
-            try {
-                if (new String(resp).split("<title>")[1].replace("</title>", "").contains("502")) {
-                    GraphicalMessage.sorryErrorExit("Spotify APResolve responded with 502");
-                }
-            }catch (ArrayIndexOutOfBoundsException e) {
-                //200 OK
-            }
-            JsonObject obj = JsonParser.parseString(new String(resp)).getAsJsonObject();
+            JsonObject obj = JsonParser.parseReader(body.charStream()).getAsJsonObject();
             HashMap<String, List<String>> map = new HashMap<>();
             for (String type : types)
                 map.put(type, getUrls(obj, type));
@@ -110,14 +99,7 @@ public final class ApResolver {
                 pool.notifyAll();
             }
 
-            ConsoleLoggingModules.info("Loaded aps into pool: " + pool);
-            times = 0;
-        }catch (SocketTimeoutException e) {
-            if(times > 10) {
-                GraphicalMessage.sorryErrorExit("Socket timeout");
-            }
-            request(types);
-            times++;
+            LOGGER.info("Loaded aps into pool: " + pool);
         }
     }
 
@@ -133,51 +115,6 @@ public final class ApResolver {
         }
     }
 
-    boolean retry = false;
-    boolean ret80 = true;
-    int retryCounter = 0;
-
-    private String returnPortSafe(String url, String type) {
-        if(!ConnectionUtils.isConnectedToInternet()) {
-            retryCounter = 0;
-        }
-        if(retryCounter > 15) {
-            throw new RuntimeException("Can't find a suitable " + type);
-        }
-        retryCounter++;
-        if(ret80) {
-            if(url.contains(":80") || url.contains(":443")) {
-                if (isBlocked(url)) {
-                    if(ConnectionUtils.isConnectedToInternet()) {
-                        ConsoleLoggingModules.warning("Port 80 is blocked by your firewall! Trying other ports");
-                    }
-                    ret80 = false;
-                    waitForPool();
-                    List<String> urls = pool.get(type);
-                    if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-                    return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
-                }
-                return url;
-            }else{
-                waitForPool();
-                List<String> urls = pool.get(type);
-                if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-                return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
-            }
-        }
-        if(!isBlocked(url)) {
-            return url;
-        }else{
-            if(ConnectionUtils.isConnectedToInternet()) {
-                ConsoleLoggingModules.warning("Port '" + url.split(":")[1] + "' is blocked");
-            }
-        }
-        waitForPool();
-        List<String> urls = pool.get(type);
-        if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-        return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
-    }
-
     public boolean isBlocked(String url) {
         Socket socket = new Socket();
         try {
@@ -188,24 +125,18 @@ public final class ApResolver {
         return false;
     }
 
-    int counter = 0;
-
     @NotNull
     private String getRandomOf(@NotNull String type) {
-        if(counter>50) {
-            throw new RuntimeException("Error in getRandomOf! 50 tries. StackOverflowError");
-        }
         waitForPool();
 
         List<String> urls = pool.get(type);
         if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-        try {
-            return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
-        }catch (StackOverflowError error) {
-            //Just retry eventually it will work
-            counter++;
-            return returnPortSafe(urls.get(ThreadLocalRandom.current().nextInt(urls.size())), type);
+        String url = urls.get(ThreadLocalRandom.current().nextInt(urls.size()));
+        if(isBlocked(url)) {
+            ConsoleLoggingModules.info(type + " not reachable: " + url);
+            url = urls.get(ThreadLocalRandom.current().nextInt(urls.size()));
         }
+        return url;
     }
 
     @NotNull

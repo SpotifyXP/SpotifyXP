@@ -27,10 +27,6 @@ public class LoginDialog extends JDialog {
     private CustomLengthPasswordField usernamepasswordfield;
 
     public LoginDialog() {
-        setContentPane(contentPane);
-        setModal(true);
-        setPreferredSize(new Dimension(350, 356));
-        setResizable(false);
 
         spotifyusernamefield.setColumns(10);
 
@@ -49,8 +45,6 @@ public class LoginDialog extends JDialog {
                 dispose();
             }
         }));
-
-        getRootPane().setDefaultButton(spotifyokbutton);
 
         spotifyokbutton.setText("Ok"); //ToDo: Translate
         spotifyokbutton.addActionListener(new AsyncActionListener(new ActionListener() {
@@ -77,6 +71,11 @@ public class LoginDialog extends JDialog {
     }
 
     public void openWithInvalidAuth() {
+        setContentPane(contentPane);
+        setModal(true);
+        setPreferredSize(new Dimension(350, 356));
+        setResizable(false);
+        getRootPane().setDefaultButton(spotifyokbutton);
         setTitle("Invalid Login! Try again"); //ToDo: Translate
         getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.red);
         Initiator.past = true;
@@ -90,6 +89,11 @@ public class LoginDialog extends JDialog {
     }
 
     public void open() {
+        setContentPane(contentPane);
+        setModal(true);
+        setPreferredSize(new Dimension(350, 356));
+        setResizable(false);
+        getRootPane().setDefaultButton(spotifyokbutton);
         setTitle("Enter Spotify Credentials"); //ToDo: Translate
         Initiator.past = true;
         SplashPanel.frame.setAlwaysOnTop(false);
