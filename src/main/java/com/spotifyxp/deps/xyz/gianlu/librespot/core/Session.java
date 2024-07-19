@@ -331,6 +331,7 @@ public class Session implements Closeable {
                 } else if (read > 0) {
                     throw new IllegalStateException("Read unknown data!");
                 }
+            } catch (SocketTimeoutException ignored) {
             } finally {
                 conn.socket.setSoTimeout(0);
             }
