@@ -28,13 +28,28 @@ public class LoginDialog extends JDialog {
 
     public LoginDialog() {
 
+        contentPane = new JPanel();
+        setContentPane(contentPane);
+        setModal(true);
+        setPreferredSize(new Dimension(350, 356));
+        setResizable(false);
+
+        spotifyusernamefield = new CustomLengthTextField(254); //https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+        spotifyusernamefield.setBounds(10, 81, 314, 39);
         spotifyusernamefield.setColumns(10);
+        add(spotifyusernamefield);
 
+        usernamepasswordfield = new CustomLengthPasswordField(500); //https://community.spotify.com/t5/Accounts/max-password-lenght/td-p/5533953
         usernamepasswordfield.setColumns(10);
+        usernamepasswordfield.setBounds(10, 179, 314, 39);
+        add(usernamepasswordfield);
 
+        facebook = new JButton();
         facebook.setText("Facebook");
+        facebook.setBounds(10, 228, 314, 20);
         facebook.setEnabled(false);
         facebook.setToolTipText("Facebook auth not supported"); //https://github.com/SpotifyXP/SpotifyXP/issues/15
+        //add(facebook);
         facebook.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,7 +61,12 @@ public class LoginDialog extends JDialog {
             }
         }));
 
+        getRootPane().setDefaultButton(spotifyokbutton);
+
+        spotifyokbutton = new JButton();
         spotifyokbutton.setText("Ok"); //ToDo: Translate
+        spotifyokbutton.setBounds(10, 275, 139, 31);
+        add(spotifyokbutton);
         spotifyokbutton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,7 +77,10 @@ public class LoginDialog extends JDialog {
             }
         }));
 
+        spotifycancelbutton = new JButton();
         spotifycancelbutton.setText("Cancel"); //ToDo: Translate
+        spotifycancelbutton.setBounds(185, 275, 139, 31);
+        add(spotifycancelbutton);
         spotifycancelbutton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,17 +88,18 @@ public class LoginDialog extends JDialog {
             }
         }));
 
+        spotifylabelusername = new JLabel();
         spotifylabelusername.setText("E-Mail"); //ToDo: Translate
+        spotifylabelusername.setBounds(10, 60, 111, 14);
+        add(spotifylabelusername);
 
+        spotifylabelpassword = new JLabel();
         spotifylabelpassword.setText("Password"); //ToDo: Translate
+        spotifylabelpassword.setBounds(10, 158, 111, 14);
+        add(spotifylabelpassword);
     }
 
     public void openWithInvalidAuth() {
-        setContentPane(contentPane);
-        setModal(true);
-        setPreferredSize(new Dimension(350, 356));
-        setResizable(false);
-        getRootPane().setDefaultButton(spotifyokbutton);
         setTitle("Invalid Login! Try again"); //ToDo: Translate
         getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.red);
         Initiator.past = true;
@@ -89,11 +113,6 @@ public class LoginDialog extends JDialog {
     }
 
     public void open() {
-        setContentPane(contentPane);
-        setModal(true);
-        setPreferredSize(new Dimension(350, 356));
-        setResizable(false);
-        getRootPane().setDefaultButton(spotifyokbutton);
         setTitle("Enter Spotify Credentials"); //ToDo: Translate
         Initiator.past = true;
         SplashPanel.frame.setAlwaysOnTop(false);
@@ -108,10 +127,5 @@ public class LoginDialog extends JDialog {
     public static void main(String[] args) {
         LoginDialog dialog = new LoginDialog();
         dialog.open();
-    }
-
-    private void createUIComponents() {
-        spotifyusernamefield = new CustomLengthTextField(254); //https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
-        usernamepasswordfield = new CustomLengthPasswordField(500); //https://community.spotify.com/t5/Accounts/max-password-lenght/td-p/5533953
     }
 }
