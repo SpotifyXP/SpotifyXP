@@ -331,6 +331,14 @@ public class Session implements Closeable {
                 } else if (read > 0) {
                     throw new IllegalStateException("Read unknown data!");
                 }
+            } catch(SocketTimeoutException e) {
+                retryOtherApTimes++;
+                if(retryOtherApTimes >= 10) {
+                    GraphicalMessage.sorryErrorExit("Error connection! EOFException / SocketTimeOutException: " + e.getMessage());
+                }
+                ConsoleLoggingModules.info("Exception! Trying other ap...");
+                newRandomAP();
+                connect();
             } finally {
                 conn.socket.setSoTimeout(0);
             }
