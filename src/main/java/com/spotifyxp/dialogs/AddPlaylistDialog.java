@@ -5,6 +5,8 @@ import com.spotifyxp.panels.ContentPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -32,13 +34,19 @@ public class AddPlaylistDialog extends JDialog {
         playlistvisibility.setText(PublicValues.language.translate("playlists.create.visibility"));
         playlistnamelabel.setText(PublicValues.language.translate("playlists.create.name.label"));
         setTitle(PublicValues.language.translate("playlists.create.title"));
-        okbutton.addActionListener(e -> {
-            ok.run(playlistname.getText(), playlistvisibility.isSelected());
-            onClose.run();
+        okbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ok.run(playlistname.getText(), playlistvisibility.isSelected());
+                onClose.run();
+            }
         });
-        cancelbutton.addActionListener(e -> {
-            dispose();
-            cancel.run();
+        cancelbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                cancel.run();
+            }
         });
         addWindowListener(new WindowAdapter() {
             @Override
