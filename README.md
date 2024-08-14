@@ -1,4 +1,4 @@
-<h2>Due to username, password deprecation in the spotify api, the development is now on hold and it likely no longer works</h2>
+<h2>Due to username, password deprecation in the spotify api, the development is now on hold and the chance is high that this project is now dead forever</h2>
 <p align="center">
   <a href="https://github.com/SpotifyXP/SpotifyXP">
     <img src="https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/spotifyxp.png" alt="Logo" width="80" height="80">
