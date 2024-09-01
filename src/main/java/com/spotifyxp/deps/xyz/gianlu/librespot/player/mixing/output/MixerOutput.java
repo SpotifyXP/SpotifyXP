@@ -53,7 +53,7 @@ public final class MixerOutput implements SinkOutput {
                 line = LineHelper.getLineFor(mixerSearchKeywords, logAvailableMixers, format);
                 line.open(format);
             } catch (LineUnavailableException | LineHelper.MixerException ex) {
-                ConsoleLoggingModules.warning("Failed opening line for custom format '" + format + "'. Opening default.");
+                ConsoleLoggingModules.warning("Failed opening line for custom format '{}'. Opening default.", format);
 
                 format = makeJavaxAudioFormat(OutputAudioFormat.DEFAULT_FORMAT);
                 line = LineHelper.getLineFor(mixerSearchKeywords, logAvailableMixers, format);

@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.metadata;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public final class TrackId implements SpotifyId, PlayableId {
     static final Pattern PATTERN = Pattern.compile("spotify:track:(.{22})");
     private final String hexId;

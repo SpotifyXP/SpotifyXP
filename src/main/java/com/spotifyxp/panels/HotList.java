@@ -87,7 +87,7 @@ public class HotList extends JPanel {
                 hotlistsongstable.setColumnSelectionInterval(0, hotlistsongstable.getColumnCount() - 1);
                 if (e.getClickCount() == 2) {
                     // Factory.getPlayer().getPlayer().tracks(true).next.clear();
-                    InstanceManager.getPlayer().getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, PublicValues.shuffle, false);
+                    InstanceManager.getPlayer().getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, PublicValues.shuffle);
                     TrackUtils.addAllToQueue(hotlistsonglistcache, hotlistsongstable);
                 }
             }

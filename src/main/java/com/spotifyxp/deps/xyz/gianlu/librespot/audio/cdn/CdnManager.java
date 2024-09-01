@@ -17,10 +17,12 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn;
 
 import com.google.protobuf.ByteString;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.*;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decrypt.AesAudioDecrypt;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decrypt.AudioDecrypt;
@@ -32,12 +34,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.net.ssl.SSLPeerUnverifiedException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -50,9 +47,7 @@ import static com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManag
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public class CdnManager {
-    
     private final Session session;
 
     public CdnManager(@NotNull Session session) {
@@ -76,13 +71,13 @@ public class CdnManager {
     }
 
     @NotNull
-    public Streamer streamExternalEpisode(@NotNull Metadata.Episode episode, @NotNull HttpUrl externalUrl, @Nullable HaltListener haltListener) throws IOException, CdnException, NotFoundException {
+    public Streamer streamExternalEpisode(@NotNull Metadata.Episode episode, @NotNull HttpUrl externalUrl, @Nullable HaltListener haltListener) throws IOException, CdnException {
         return new Streamer(new StreamId(episode), SuperAudioFormat.MP3 /* Guaranteed */, new CdnUrl(null, externalUrl),
                 session.cache(), new NoopAudioDecrypt(), haltListener);
     }
 
     @NotNull
-    public Streamer streamFile(@NotNull Metadata.AudioFile file, @NotNull byte[] key, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnException, NotFoundException {
+    public Streamer streamFile(@NotNull Metadata.AudioFile file, @NotNull byte[] key, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnException {
         return new Streamer(new StreamId(file), SuperAudioFormat.get(file.getFormat()), new CdnUrl(file.getFileId(), url),
                 session.cache(), new AesAudioDecrypt(key), haltListener);
     }
@@ -161,9 +156,6 @@ public class CdnManager {
 
             if (fileId != null) {
                 String tokenStr = url.queryParameter("__token__");
-
-                String expiresStr = url.queryParameter("Expires");
-
                 if (tokenStr != null && !tokenStr.isEmpty()) {
                     Long expireAt = null;
                     String[] split = tokenStr.split("~");
@@ -184,15 +176,6 @@ public class CdnManager {
                     }
 
                     expiration = expireAt * 1000;
-                } else if( expiresStr != null && !expiresStr.isEmpty()) {
-                    String expiresStrVal = expiresStr.split("~")[0];
-                    try {
-                        expiration = Long.parseLong(expiresStrVal) * 1000;
-                        ConsoleLoggingModules.info("Expires-based expiration {} ms", expiration);
-                    } catch (NumberFormatException e) {
-                        expiration = -1;
-                        ConsoleLoggingModules.warning("Invalid Expires param in CDN url: {}", url);
-                    }
                 } else {
                     String param = url.queryParameterName(0);
                     int i = param.indexOf('_');
@@ -210,7 +193,6 @@ public class CdnManager {
         }
     }
 
-    @SuppressWarnings({"NullableProblems", "ClassEscapesDefinedScope", "KotlinInternalInJava"})
     public class Streamer implements DecodedAudioStream, GeneralWritableStream {
         private final StreamId streamId;
         private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "cdn-async-" + r.hashCode()));
@@ -227,14 +209,13 @@ public class CdnManager {
         private final HaltListener haltListener;
 
         private Streamer(@NotNull StreamId streamId, @NotNull SuperAudioFormat format, @NotNull CdnUrl cdnUrl, @Nullable CacheManager cache,
-                         @Nullable AudioDecrypt audioDecrypt, @Nullable HaltListener haltListener) throws IOException, CdnException, NotFoundException {
+                         @Nullable AudioDecrypt audioDecrypt, @Nullable HaltListener haltListener) throws IOException, CdnException {
             this.streamId = streamId;
             this.format = format;
             this.audioDecrypt = audioDecrypt;
             this.cdnUrl = cdnUrl;
             this.haltListener = haltListener;
             this.cacheHandler = cache != null ? cache.getHandler(streamId) : null;
-
 
             boolean fromCache;
             byte[] firstChunk;
@@ -291,7 +272,7 @@ public class CdnManager {
                 }
             }
 
-            if(!PublicValues.disableChunkDebug) ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, stream: {}", chunkIndex, chunks, cached, describe());
+            ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, stream: {}", chunkIndex, chunks, cached, describe());
 
             buffer[chunkIndex] = chunk;
             audioDecrypt.decryptChunk(chunkIndex, chunk);
@@ -334,33 +315,23 @@ public class CdnManager {
             try {
                 InternalResponse resp = request(index);
                 writeChunk(resp.buffer, index, false);
-            } catch (SSLPeerUnverifiedException ex) {
-                CdnFeedHelper.blockCurrentCDN(cdnUrl.url.uri().toString());
-                requestChunk(index);
             } catch (IOException | CdnException ex) {
                 ConsoleLoggingModules.error("Failed requesting chunk from network, index: {}", index, ex);
-                internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
-            } catch (NotFoundException ex) {
-                ConsoleLoggingModules.error("Failed requesting chunk from network due to a 404, index: {}", index, ex);
                 internalStream.notifyChunkError(index, new AbsChunkedInputStream.ChunkException(ex));
             }
         }
 
         @NotNull
-        public synchronized InternalResponse request(int chunk) throws IOException, CdnException, NotFoundException {
+        public synchronized InternalResponse request(int chunk) throws IOException, CdnException {
             return request(CHUNK_SIZE * chunk, (chunk + 1) * CHUNK_SIZE - 1);
         }
 
         @NotNull
-        public synchronized InternalResponse request(int rangeStart, int rangeEnd) throws IOException, CdnException, NotFoundException {
+        public synchronized InternalResponse request(int rangeStart, int rangeEnd) throws IOException, CdnException {
             try (Response resp = session.client().newCall(new Request.Builder().get().url(cdnUrl.url())
                     .header("Range", "bytes=" + rangeStart + "-" + rangeEnd)
                     .build()).execute()) {
 
-                if (resp.code() == 404) {
-                    //404: Not Found
-                    throw new NotFoundException();
-                }
                 if (resp.code() != 206)
                     throw new IOException(resp.code() + ": " + resp.message());
 
@@ -390,8 +361,7 @@ public class CdnManager {
                 if (cacheHandler != null) {
                     try {
                         cacheHandler.close();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    } catch (IOException ignored) {
                     }
                 }
             }

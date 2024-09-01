@@ -56,7 +56,7 @@ public final class Code {
   /**
    * Protobuf type {@code spotify.login5.v3.challenges.CodeChallenge}
    */
-  public  static final class CodeChallenge extends
+  public static final class CodeChallenge extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.challenges.CodeChallenge)
       CodeChallengeOrBuilder {
@@ -77,69 +77,7 @@ public final class Code {
       return new CodeChallenge();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CodeChallenge(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-                method_ = input.readEnum();
-              break;
-            }
-            case 16: {
-
-              codeLength_ = input.readInt32();
-              break;
-            }
-            case 24: {
-
-              expiresIn_ = input.readInt32();
-              break;
-            }
-            case 34: {
-
-                canonicalPhoneNumber_ = input.readStringRequireUtf8();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeChallenge_descriptor;
     }
@@ -214,17 +152,25 @@ public final class Code {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Method> internalValueMap =
-              Method::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Method>() {
+              public Method findValueByNumber(int number) {
+                return Method.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.getDescriptor().getEnumTypes().get(0);
       }
@@ -245,7 +191,7 @@ public final class Code {
 
       private final int value;
 
-      Method(int value) {
+      private Method(int value) {
         this.value = value;
       }
 
@@ -253,49 +199,53 @@ public final class Code {
     }
 
     public static final int METHOD_FIELD_NUMBER = 1;
-    private int method_;
+    private int method_ = 0;
     /**
      * <code>.spotify.login5.v3.challenges.CodeChallenge.Method method = 1;</code>
      * @return The enum numeric value on the wire for method.
      */
-    public int getMethodValue() {
+    @java.lang.Override public int getMethodValue() {
       return method_;
     }
     /**
      * <code>.spotify.login5.v3.challenges.CodeChallenge.Method method = 1;</code>
      * @return The method.
      */
-    public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method getMethod() {
-      com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method result = com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.valueOf(method_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method getMethod() {
+      com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method result = com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.forNumber(method_);
       return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.UNRECOGNIZED : result;
     }
 
     public static final int CODE_LENGTH_FIELD_NUMBER = 2;
-    private int codeLength_;
+    private int codeLength_ = 0;
     /**
      * <code>int32 code_length = 2;</code>
      * @return The codeLength.
      */
+    @java.lang.Override
     public int getCodeLength() {
       return codeLength_;
     }
 
     public static final int EXPIRES_IN_FIELD_NUMBER = 3;
-    private int expiresIn_;
+    private int expiresIn_ = 0;
     /**
      * <code>int32 expires_in = 3;</code>
      * @return The expiresIn.
      */
+    @java.lang.Override
     public int getExpiresIn() {
       return expiresIn_;
     }
 
     public static final int CANONICAL_PHONE_NUMBER_FIELD_NUMBER = 4;
-    private volatile java.lang.Object canonicalPhoneNumber_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object canonicalPhoneNumber_ = "";
     /**
      * <code>string canonical_phone_number = 4;</code>
      * @return The canonicalPhoneNumber.
      */
+    @java.lang.Override
     public java.lang.String getCanonicalPhoneNumber() {
       java.lang.Object ref = canonicalPhoneNumber_;
       if (ref instanceof java.lang.String) {
@@ -312,6 +262,7 @@ public final class Code {
      * <code>string canonical_phone_number = 4;</code>
      * @return The bytes for canonicalPhoneNumber.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCanonicalPhoneNumberBytes() {
       java.lang.Object ref = canonicalPhoneNumber_;
@@ -328,7 +279,7 @@ public final class Code {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -349,10 +300,10 @@ public final class Code {
       if (expiresIn_ != 0) {
         output.writeInt32(3, expiresIn_);
       }
-      if (!getCanonicalPhoneNumberBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(canonicalPhoneNumber_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, canonicalPhoneNumber_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -373,10 +324,10 @@ public final class Code {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, expiresIn_);
       }
-      if (!getCanonicalPhoneNumberBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(canonicalPhoneNumber_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, canonicalPhoneNumber_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -398,7 +349,8 @@ public final class Code {
           != other.getExpiresIn()) return false;
       if (!getCanonicalPhoneNumber()
           .equals(other.getCanonicalPhoneNumber())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -416,7 +368,7 @@ public final class Code {
       hash = (53 * hash) + getExpiresIn();
       hash = (37 * hash) + CANONICAL_PHONE_NUMBER_FIELD_NUMBER;
       hash = (53 * hash) + getCanonicalPhoneNumber().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -465,11 +417,13 @@ public final class Code {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -508,7 +462,8 @@ public final class Code {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.challenges.CodeChallenge}
@@ -517,7 +472,7 @@ public final class Code {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.challenges.CodeChallenge)
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeChallenge_descriptor;
       }
@@ -532,27 +487,22 @@ public final class Code {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         method_ = 0;
-
         codeLength_ = 0;
-
         expiresIn_ = 0;
-
         canonicalPhoneNumber_ = "";
-
         return this;
       }
 
@@ -579,46 +529,27 @@ public final class Code {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge result = new com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge(this);
-        result.method_ = method_;
-        result.codeLength_ = codeLength_;
-        result.expiresIn_ = expiresIn_;
-        result.canonicalPhoneNumber_ = canonicalPhoneNumber_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.method_ = method_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.codeLength_ = codeLength_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.expiresIn_ = expiresIn_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.canonicalPhoneNumber_ = canonicalPhoneNumber_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge) {
@@ -642,15 +573,16 @@ public final class Code {
         }
         if (!other.getCanonicalPhoneNumber().isEmpty()) {
           canonicalPhoneNumber_ = other.canonicalPhoneNumber_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -659,26 +591,60 @@ public final class Code {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                method_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                codeLength_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                expiresIn_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                canonicalPhoneNumber_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private int method_ = 0;
       /**
        * <code>.spotify.login5.v3.challenges.CodeChallenge.Method method = 1;</code>
        * @return The enum numeric value on the wire for method.
        */
-      public int getMethodValue() {
+      @java.lang.Override public int getMethodValue() {
         return method_;
       }
       /**
@@ -688,6 +654,7 @@ public final class Code {
        */
       public Builder setMethodValue(int value) {
         method_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -695,8 +662,9 @@ public final class Code {
        * <code>.spotify.login5.v3.challenges.CodeChallenge.Method method = 1;</code>
        * @return The method.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method getMethod() {
-        com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method result = com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.valueOf(method_);
+        com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method result = com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.forNumber(method_);
         return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Method.UNRECOGNIZED : result;
       }
       /**
@@ -708,7 +676,7 @@ public final class Code {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         method_ = value.getNumber();
         onChanged();
         return this;
@@ -718,7 +686,7 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder clearMethod() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         method_ = 0;
         onChanged();
         return this;
@@ -729,6 +697,7 @@ public final class Code {
        * <code>int32 code_length = 2;</code>
        * @return The codeLength.
        */
+      @java.lang.Override
       public int getCodeLength() {
         return codeLength_;
       }
@@ -738,8 +707,9 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder setCodeLength(int value) {
-        
+
         codeLength_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -748,7 +718,7 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder clearCodeLength() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         codeLength_ = 0;
         onChanged();
         return this;
@@ -759,6 +729,7 @@ public final class Code {
        * <code>int32 expires_in = 3;</code>
        * @return The expiresIn.
        */
+      @java.lang.Override
       public int getExpiresIn() {
         return expiresIn_;
       }
@@ -768,8 +739,9 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder setExpiresIn(int value) {
-        
+
         expiresIn_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -778,7 +750,7 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder clearExpiresIn() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         expiresIn_ = 0;
         onChanged();
         return this;
@@ -825,11 +797,9 @@ public final class Code {
        */
       public Builder setCanonicalPhoneNumber(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         canonicalPhoneNumber_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -838,8 +808,8 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder clearCanonicalPhoneNumber() {
-        
         canonicalPhoneNumber_ = getDefaultInstance().getCanonicalPhoneNumber();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -850,23 +820,21 @@ public final class Code {
        */
       public Builder setCanonicalPhoneNumberBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         canonicalPhoneNumber_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -892,7 +860,18 @@ public final class Code {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CodeChallenge(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -931,7 +910,7 @@ public final class Code {
   /**
    * Protobuf type {@code spotify.login5.v3.challenges.CodeSolution}
    */
-  public  static final class CodeSolution extends
+  public static final class CodeSolution extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.challenges.CodeSolution)
       CodeSolutionOrBuilder {
@@ -951,54 +930,7 @@ public final class Code {
       return new CodeSolution();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CodeSolution(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-                code_ = input.readStringRequireUtf8();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeSolution_descriptor;
     }
@@ -1012,11 +944,13 @@ public final class Code {
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object code_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object code_ = "";
     /**
      * <code>string code = 1;</code>
      * @return The code.
      */
+    @java.lang.Override
     public java.lang.String getCode() {
       java.lang.Object ref = code_;
       if (ref instanceof java.lang.String) {
@@ -1033,6 +967,7 @@ public final class Code {
      * <code>string code = 1;</code>
      * @return The bytes for code.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCodeBytes() {
       java.lang.Object ref = code_;
@@ -1049,7 +984,7 @@ public final class Code {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1061,10 +996,10 @@ public final class Code {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getCodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(code_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, code_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1073,10 +1008,10 @@ public final class Code {
       if (size != -1) return size;
 
       size = 0;
-      if (!getCodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(code_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, code_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1093,7 +1028,8 @@ public final class Code {
 
       if (!getCode()
           .equals(other.getCode())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1105,7 +1041,7 @@ public final class Code {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CODE_FIELD_NUMBER;
       hash = (53 * hash) + getCode().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1154,11 +1090,13 @@ public final class Code {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1197,7 +1135,8 @@ public final class Code {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.challenges.CodeSolution}
@@ -1206,7 +1145,7 @@ public final class Code {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.challenges.CodeSolution)
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Code.internal_static_spotify_login5_v3_challenges_CodeSolution_descriptor;
       }
@@ -1221,21 +1160,19 @@ public final class Code {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         code_ = "";
-
         return this;
       }
 
@@ -1262,43 +1199,18 @@ public final class Code {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution result = new com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution(this);
-        result.code_ = code_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.code_ = code_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution) {
@@ -1313,15 +1225,16 @@ public final class Code {
         if (other == com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.getDefaultInstance()) return this;
         if (!other.getCode().isEmpty()) {
           code_ = other.code_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -1330,19 +1243,38 @@ public final class Code {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                code_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object code_ = "";
       /**
@@ -1385,11 +1317,9 @@ public final class Code {
        */
       public Builder setCode(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         code_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1398,8 +1328,8 @@ public final class Code {
        * @return This builder for chaining.
        */
       public Builder clearCode() {
-        
         code_ = getDefaultInstance().getCode();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1410,23 +1340,21 @@ public final class Code {
        */
       public Builder setCodeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         code_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1452,7 +1380,18 @@ public final class Code {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CodeSolution(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1487,19 +1426,19 @@ public final class Code {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n'spotify/login5/v3/challenges/code.prot" +
+      "\n\'spotify/login5/v3/challenges/code.prot" +
       "o\022\034spotify.login5.v3.challenges\"\274\001\n\rCode" +
       "Challenge\022B\n\006method\030\001 \001(\01622.spotify.logi" +
       "n5.v3.challenges.CodeChallenge.Method\022\023\n" +
       "\013code_length\030\002 \001(\005\022\022\n\nexpires_in\030\003 \001(\005\022\036" +
       "\n\026canonical_phone_number\030\004 \001(\t\"\036\n\006Method" +
       "\022\013\n\007UNKNOWN\020\000\022\007\n\003SMS\020\001\"\034\n\014CodeSolution\022\014" +
-      "\n\004code\030\001 \001(\tB\026\n\024com.spotify.login5v3b\006pr" +
-      "oto3"
+      "\n\004code\030\001 \001(\tB)\n\'com.spotifyxp.deps.com.s" +
+      "potify.login5v3b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

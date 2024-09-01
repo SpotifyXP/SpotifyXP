@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.SeekableInputStream;
 
 import java.io.IOException;
 
@@ -26,7 +26,6 @@ import static com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManag
 /**
  * @author devgianlu
  */
-@SuppressWarnings({"NullableProblems", "lossy-conversions"})
 public abstract class AbsChunkedInputStream extends SeekableInputStream implements HaltListener {
     private static final int PRELOAD_AHEAD = 3;
     private static final int PRELOAD_CHUNK_RETRIES = 2;
@@ -186,8 +185,7 @@ public abstract class AbsChunkedInputStream extends SeekableInputStream implemen
             if (retry) {
                 try {
                     Thread.sleep((long) (Math.log10(retries[chunk]) * 1000));
-                } catch (InterruptedException ex) {
-                    throw new IOException(ex);
+                } catch (InterruptedException ignored) {
                 }
 
                 checkAvailability(chunk, true, true); // We must exit the synchronized block!
@@ -254,10 +252,6 @@ public abstract class AbsChunkedInputStream extends SeekableInputStream implemen
         availableChunks()[index] = false;
         requestedChunks()[index] = false;
         retries[index] += 1;
-
-        if(retries[index] > 20) {
-            throw new RuntimeException();
-        }
 
         synchronized (waitLock) {
             if (index == waitForChunk && !closed) {

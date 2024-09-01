@@ -34,6 +34,10 @@ import com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass;
 import com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass;
 import com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass;
 import com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.FisherYatesShuffle;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtoUtils;
@@ -48,13 +52,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager.Action;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.panels.ContentPanel;
-import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.*;
@@ -67,9 +65,7 @@ import java.util.function.Function;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.MessageListener, Closeable {
-
     static {
         try {
             ProtoUtils.overrideDefaultValue(ContextIndex.getDescriptor().findFieldByName("track"), -1);
@@ -325,19 +321,9 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         state.setContextRestrictions(context.restrictions.toProto());
     }
 
-    int counter = 0;
     synchronized void updated() {
         updateRestrictions();
-        try {
-            device.updateState(Connect.PutStateReason.PLAYER_STATE_CHANGED, player.time(), state.build());
-        }catch (IllegalStateException e) {
-            if(counter==5) {
-                JOptionPane.showConfirmDialog(ContentPanel.frame, "Please restart SpotifyXP", "Something went wrong", JOptionPane.OK_CANCEL_OPTION);
-                return;
-            }
-            counter++;
-            updated();
-        }
+        device.updateState(Connect.PutStateReason.PLAYER_STATE_CHANGED, player.time(), state.build());
     }
 
     void addListener(@NotNull DeviceStateHandler.Listener listener) {
@@ -673,15 +659,6 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
             if (index == -1) return Optional.empty();
         }
 
-        if(index > tracksKeeper.tracks.size()) {
-            //IndexOutOfBounds
-            index = PlayableId.indexOfTrack(tracksKeeper.tracks, id);
-            if(index > tracksKeeper.tracks.size()) {
-                index = PlayableId.indexOfTrack(tracksKeeper.queue, id);
-                if(index == -1) return Optional.empty();
-            }
-        }
-
         return Optional.of(tracksKeeper.tracks.get(index).getMetadataMap());
     }
 
@@ -858,7 +835,7 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
     }
 
     @Nullable
-    public ContextTrack getCurrentTrack() throws IndexOutOfBoundsException {
+    public ContextTrack getCurrentTrack() {
         int index = tracksKeeper.getCurrentTrackIndex();
         return tracksKeeper == null || tracksKeeper.tracks.size() < index ? null : tracksKeeper.tracks.get(index);
     }
@@ -931,7 +908,6 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         }
     }
 
-    @SuppressWarnings({"SameParameterValue", "JavadocBlankLines"})
     private class TracksKeeper {
         private static final int MAX_PREV_TRACKS = 16;
         private static final int MAX_NEXT_TRACKS = 48;
@@ -1397,11 +1373,8 @@ public class StateWrapper implements DeviceStateHandler.Listener, DealerClient.M
         }
 
         synchronized void toggleShuffle(boolean value) {
-            //System.err.println("isFinite");
             if (!context.isFinite()) throw new IllegalStateException("Cannot shuffle infinite context!");
-            //System.err.println("TracksSize"); //It was here
             if (tracks.size() <= 1) return;
-            //System.err.println("IsPlayingQueue");
             if (isPlayingQueue) return;
 
             if (value) {

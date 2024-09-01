@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.TestOnly;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.io.Closeable;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +29,6 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("UnusedReturnValue")
 public class CircularBuffer implements Closeable {
     protected final Lock lock = new ReentrantLock();
     protected final Condition awaitSpace = lock.newCondition();
@@ -47,13 +46,11 @@ public class CircularBuffer implements Closeable {
 
     private void awaitSpace(int count) throws InterruptedException {
         while (free() < count && !closed)
-            //noinspection ResultOfMethodCallIgnored
             awaitSpace.await(100, TimeUnit.MILLISECONDS);
     }
 
     protected void awaitData(int count) throws InterruptedException {
         while (available() < count && !closed)
-            //noinspection ResultOfMethodCallIgnored
             awaitData.await(100, TimeUnit.MILLISECONDS);
     }
 
@@ -73,8 +70,7 @@ public class CircularBuffer implements Closeable {
             }
 
             awaitData.signal();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException ignored) {
         } finally {
             lock.unlock();
         }
@@ -95,8 +91,7 @@ public class CircularBuffer implements Closeable {
                 tail = 0;
 
             awaitData.signal();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException ignored) {
         } finally {
             lock.unlock();
         }
@@ -119,7 +114,7 @@ public class CircularBuffer implements Closeable {
 
             awaitSpace.signal();
             return dest - off;
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ignored) {
             if (closed) return -1;
             else return 0;
         } finally {

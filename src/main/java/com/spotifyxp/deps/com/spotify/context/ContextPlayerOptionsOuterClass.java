@@ -54,7 +54,7 @@ public final class ContextPlayerOptionsOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.ContextPlayerOptions}
    */
-  public  static final class ContextPlayerOptions extends
+  public static final class ContextPlayerOptions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.ContextPlayerOptions)
       ContextPlayerOptionsOrBuilder {
@@ -73,12 +73,7 @@ public final class ContextPlayerOptionsOuterClass {
       return new ContextPlayerOptions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptions_descriptor;
     }
@@ -93,11 +88,12 @@ public final class ContextPlayerOptionsOuterClass {
 
     private int bitField0_;
     public static final int SHUFFLING_CONTEXT_FIELD_NUMBER = 1;
-    private boolean shufflingContext_;
+    private boolean shufflingContext_ = false;
     /**
      * <code>optional bool shuffling_context = 1;</code>
      * @return Whether the shufflingContext field is set.
      */
+    @java.lang.Override
     public boolean hasShufflingContext() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -105,16 +101,18 @@ public final class ContextPlayerOptionsOuterClass {
      * <code>optional bool shuffling_context = 1;</code>
      * @return The shufflingContext.
      */
+    @java.lang.Override
     public boolean getShufflingContext() {
       return shufflingContext_;
     }
 
     public static final int REPEATING_CONTEXT_FIELD_NUMBER = 2;
-    private boolean repeatingContext_;
+    private boolean repeatingContext_ = false;
     /**
      * <code>optional bool repeating_context = 2;</code>
      * @return Whether the repeatingContext field is set.
      */
+    @java.lang.Override
     public boolean hasRepeatingContext() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -122,16 +120,18 @@ public final class ContextPlayerOptionsOuterClass {
      * <code>optional bool repeating_context = 2;</code>
      * @return The repeatingContext.
      */
+    @java.lang.Override
     public boolean getRepeatingContext() {
       return repeatingContext_;
     }
 
     public static final int REPEATING_TRACK_FIELD_NUMBER = 3;
-    private boolean repeatingTrack_;
+    private boolean repeatingTrack_ = false;
     /**
      * <code>optional bool repeating_track = 3;</code>
      * @return Whether the repeatingTrack field is set.
      */
+    @java.lang.Override
     public boolean hasRepeatingTrack() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -139,6 +139,7 @@ public final class ContextPlayerOptionsOuterClass {
      * <code>optional bool repeating_track = 3;</code>
      * @return The repeatingTrack.
      */
+    @java.lang.Override
     public boolean getRepeatingTrack() {
       return repeatingTrack_;
     }
@@ -187,11 +188,13 @@ public final class ContextPlayerOptionsOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -230,7 +233,8 @@ public final class ContextPlayerOptionsOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextPlayerOptions}
@@ -239,7 +243,7 @@ public final class ContextPlayerOptionsOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextPlayerOptions)
         com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptions_descriptor;
       }
@@ -254,25 +258,21 @@ public final class ContextPlayerOptionsOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         shufflingContext_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
         repeatingContext_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
         repeatingTrack_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -299,6 +299,12 @@ public final class ContextPlayerOptionsOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions buildPartial() {
         com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions result = new com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -313,43 +319,9 @@ public final class ContextPlayerOptionsOuterClass {
           result.repeatingTrack_ = repeatingTrack_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private boolean shufflingContext_ ;
@@ -357,6 +329,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool shuffling_context = 1;</code>
        * @return Whether the shufflingContext field is set.
        */
+      @java.lang.Override
       public boolean hasShufflingContext() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -364,6 +337,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool shuffling_context = 1;</code>
        * @return The shufflingContext.
        */
+      @java.lang.Override
       public boolean getShufflingContext() {
         return shufflingContext_;
       }
@@ -373,8 +347,9 @@ public final class ContextPlayerOptionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder setShufflingContext(boolean value) {
-        bitField0_ |= 0x00000001;
+
         shufflingContext_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -394,6 +369,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_context = 2;</code>
        * @return Whether the repeatingContext field is set.
        */
+      @java.lang.Override
       public boolean hasRepeatingContext() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -401,6 +377,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_context = 2;</code>
        * @return The repeatingContext.
        */
+      @java.lang.Override
       public boolean getRepeatingContext() {
         return repeatingContext_;
       }
@@ -410,8 +387,9 @@ public final class ContextPlayerOptionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder setRepeatingContext(boolean value) {
-        bitField0_ |= 0x00000002;
+
         repeatingContext_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -431,6 +409,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_track = 3;</code>
        * @return Whether the repeatingTrack field is set.
        */
+      @java.lang.Override
       public boolean hasRepeatingTrack() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -438,6 +417,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_track = 3;</code>
        * @return The repeatingTrack.
        */
+      @java.lang.Override
       public boolean getRepeatingTrack() {
         return repeatingTrack_;
       }
@@ -447,8 +427,9 @@ public final class ContextPlayerOptionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder setRepeatingTrack(boolean value) {
-        bitField0_ |= 0x00000004;
+
         repeatingTrack_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -463,13 +444,13 @@ public final class ContextPlayerOptionsOuterClass {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -500,10 +481,11 @@ public final class ContextPlayerOptionsOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -565,7 +547,7 @@ public final class ContextPlayerOptionsOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.ContextPlayerOptionOverrides}
    */
-  public  static final class ContextPlayerOptionOverrides extends
+  public static final class ContextPlayerOptionOverrides extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.ContextPlayerOptionOverrides)
       ContextPlayerOptionOverridesOrBuilder {
@@ -584,12 +566,7 @@ public final class ContextPlayerOptionsOuterClass {
       return new ContextPlayerOptionOverrides();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptionOverrides_descriptor;
     }
@@ -604,11 +581,12 @@ public final class ContextPlayerOptionsOuterClass {
 
     private int bitField0_;
     public static final int SHUFFLING_CONTEXT_FIELD_NUMBER = 1;
-    private boolean shufflingContext_;
+    private boolean shufflingContext_ = false;
     /**
      * <code>optional bool shuffling_context = 1;</code>
      * @return Whether the shufflingContext field is set.
      */
+    @java.lang.Override
     public boolean hasShufflingContext() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -616,16 +594,18 @@ public final class ContextPlayerOptionsOuterClass {
      * <code>optional bool shuffling_context = 1;</code>
      * @return The shufflingContext.
      */
+    @java.lang.Override
     public boolean getShufflingContext() {
       return shufflingContext_;
     }
 
     public static final int REPEATING_CONTEXT_FIELD_NUMBER = 2;
-    private boolean repeatingContext_;
+    private boolean repeatingContext_ = false;
     /**
      * <code>optional bool repeating_context = 2;</code>
      * @return Whether the repeatingContext field is set.
      */
+    @java.lang.Override
     public boolean hasRepeatingContext() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -633,16 +613,18 @@ public final class ContextPlayerOptionsOuterClass {
      * <code>optional bool repeating_context = 2;</code>
      * @return The repeatingContext.
      */
+    @java.lang.Override
     public boolean getRepeatingContext() {
       return repeatingContext_;
     }
 
     public static final int REPEATING_TRACK_FIELD_NUMBER = 3;
-    private boolean repeatingTrack_;
+    private boolean repeatingTrack_ = false;
     /**
      * <code>optional bool repeating_track = 3;</code>
      * @return Whether the repeatingTrack field is set.
      */
+    @java.lang.Override
     public boolean hasRepeatingTrack() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -650,6 +632,7 @@ public final class ContextPlayerOptionsOuterClass {
      * <code>optional bool repeating_track = 3;</code>
      * @return The repeatingTrack.
      */
+    @java.lang.Override
     public boolean getRepeatingTrack() {
       return repeatingTrack_;
     }
@@ -698,11 +681,13 @@ public final class ContextPlayerOptionsOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -741,7 +726,8 @@ public final class ContextPlayerOptionsOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextPlayerOptionOverrides}
@@ -750,7 +736,7 @@ public final class ContextPlayerOptionsOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextPlayerOptionOverrides)
         com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.internal_static_spotify_player_proto_ContextPlayerOptionOverrides_descriptor;
       }
@@ -765,25 +751,21 @@ public final class ContextPlayerOptionsOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         shufflingContext_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
         repeatingContext_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
         repeatingTrack_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -810,6 +792,12 @@ public final class ContextPlayerOptionsOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides buildPartial() {
         com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides result = new com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -824,43 +812,9 @@ public final class ContextPlayerOptionsOuterClass {
           result.repeatingTrack_ = repeatingTrack_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private boolean shufflingContext_ ;
@@ -868,6 +822,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool shuffling_context = 1;</code>
        * @return Whether the shufflingContext field is set.
        */
+      @java.lang.Override
       public boolean hasShufflingContext() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -875,6 +830,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool shuffling_context = 1;</code>
        * @return The shufflingContext.
        */
+      @java.lang.Override
       public boolean getShufflingContext() {
         return shufflingContext_;
       }
@@ -884,8 +840,9 @@ public final class ContextPlayerOptionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder setShufflingContext(boolean value) {
-        bitField0_ |= 0x00000001;
+
         shufflingContext_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -905,6 +862,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_context = 2;</code>
        * @return Whether the repeatingContext field is set.
        */
+      @java.lang.Override
       public boolean hasRepeatingContext() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -912,6 +870,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_context = 2;</code>
        * @return The repeatingContext.
        */
+      @java.lang.Override
       public boolean getRepeatingContext() {
         return repeatingContext_;
       }
@@ -921,8 +880,9 @@ public final class ContextPlayerOptionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder setRepeatingContext(boolean value) {
-        bitField0_ |= 0x00000002;
+
         repeatingContext_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -942,6 +902,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_track = 3;</code>
        * @return Whether the repeatingTrack field is set.
        */
+      @java.lang.Override
       public boolean hasRepeatingTrack() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -949,6 +910,7 @@ public final class ContextPlayerOptionsOuterClass {
        * <code>optional bool repeating_track = 3;</code>
        * @return The repeatingTrack.
        */
+      @java.lang.Override
       public boolean getRepeatingTrack() {
         return repeatingTrack_;
       }
@@ -958,8 +920,9 @@ public final class ContextPlayerOptionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder setRepeatingTrack(boolean value) {
-        bitField0_ |= 0x00000004;
+
         repeatingTrack_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -974,13 +937,13 @@ public final class ContextPlayerOptionsOuterClass {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1011,10 +974,11 @@ public final class ContextPlayerOptionsOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1051,7 +1015,7 @@ public final class ContextPlayerOptionsOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1061,8 +1025,8 @@ public final class ContextPlayerOptionsOuterClass {
       "text\030\002 \001(\010\022\027\n\017repeating_track\030\003 \001(\010\"m\n\034C" +
       "ontextPlayerOptionOverrides\022\031\n\021shuffling" +
       "_context\030\001 \001(\010\022\031\n\021repeating_context\030\002 \001(" +
-      "\010\022\027\n\017repeating_track\030\003 \001(\010B\027\n\023com.spotif" +
-      "y.contextH\002"
+      "\010\022\027\n\017repeating_track\030\003 \001(\010B*\n&com.spotif" +
+      "yxp.deps.com.spotify.contextH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

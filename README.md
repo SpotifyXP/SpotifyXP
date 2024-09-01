@@ -1,6 +1,5 @@
-<h2>Due to Username & Password deprecation in the Spotify API, this project is now in a dormant state, potentially lost forever. For updates, refer to Closed Issue https://github.com/SpotifyXP/SpotifyXP/issues/51 . This project will be left open, in hopes that someone will take this project and make it work again. Thank you to everyone who has used SpotifyXP.</h2>
-<h2>And for anyone wanting to fix the project, Thank you!</h2>
-<br>
+<h2>New login method info:</h2>
+<a>SpotifyXP will now hang on "creating api...". Open a modern spotify client and select SpotifyXP under devices and SpotifyXP should authenticate with spotify</a>
 <p align="center">
   <a href="https://github.com/SpotifyXP/SpotifyXP">
     <img src="https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/spotifyxp.png" alt="Logo" width="80" height="80">
@@ -9,7 +8,7 @@
  <p align="center">
     A real Spotify Player for Windows XP
     <br/>
-    <br/>
+<center>    <br/>
     <a href="https://github.com/SpotifyXP/SpotifyXP/wiki">SpotifyXP Wiki</a>
     .
     <a href="https://github.com/SpotifyXP/SpotifyXP/issues">Report Bug</a>

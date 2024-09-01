@@ -26,13 +26,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +40,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public final class ApResolver {
     private static final String BASE_URL = "http://apresolve.spotify.com/";
-    private static final Logger LOGGER = LoggerFactory.getLogger(ApResolver.class);
 
     private final OkHttpClient client;
     private final Map<String, List<String>> pool = new HashMap<>(3);
@@ -99,7 +94,7 @@ public final class ApResolver {
                 pool.notifyAll();
             }
 
-            LOGGER.info("Loaded aps into pool: " + pool);
+            ConsoleLoggingModules.info("Loaded aps into pool: " + pool);
         }
     }
 
@@ -115,28 +110,13 @@ public final class ApResolver {
         }
     }
 
-    public boolean isBlocked(String url) {
-        Socket socket = new Socket();
-        try {
-            socket.connect(new InetSocketAddress(url.split(":")[0], Integer.parseInt(url.split(":")[1])));
-        } catch (IOException e) {
-            return true;
-        }
-        return false;
-    }
-
     @NotNull
     private String getRandomOf(@NotNull String type) {
         waitForPool();
 
         List<String> urls = pool.get(type);
         if (urls == null || urls.isEmpty()) throw new IllegalStateException();
-        String url = urls.get(ThreadLocalRandom.current().nextInt(urls.size()));
-        if(isBlocked(url)) {
-            ConsoleLoggingModules.info(type + " not reachable: " + url);
-            url = urls.get(ThreadLocalRandom.current().nextInt(urls.size()));
-        }
-        return url;
+        return urls.get(ThreadLocalRandom.current().nextInt(urls.size()));
     }
 
     @NotNull

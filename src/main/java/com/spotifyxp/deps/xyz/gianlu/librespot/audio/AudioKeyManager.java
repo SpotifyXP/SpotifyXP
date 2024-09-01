@@ -17,14 +17,13 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
 import com.google.protobuf.ByteString;
-import com.spotifyxp.PublicValues;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.PacketsReceiver;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,7 +37,6 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public final class AudioKeyManager implements PacketsReceiver {
     private static final byte[] ZERO_SHORT = new byte[]{0, 0};
     private static final long AUDIO_KEY_REQUEST_TIMEOUT = 2000;
@@ -76,11 +74,8 @@ public final class AudioKeyManager implements PacketsReceiver {
         byte[] key = callback.waitResponse();
         if (key == null) {
             if (retry) return getAudioKey(gid, fileId, false);
-            else {
-                PublicValues.spotifyplayer.next();
-                throw new AesKeyException(String.format("Failed fetching audio key! {gid: %s, fileId: %s}",
-                        Utils.bytesToHex(gid), Utils.bytesToHex(fileId)));
-            }
+            else throw new AesKeyException(String.format("Failed fetching audio key! {gid: %s, fileId: %s}",
+                    Utils.bytesToHex(gid), Utils.bytesToHex(fileId)));
         }
 
         return key;
@@ -105,7 +100,7 @@ public final class AudioKeyManager implements PacketsReceiver {
             short code = payload.getShort();
             callback.error(code);
         } else {
-            ConsoleLoggingModules.warning("Couldn't handle packet, cmd: " + packet.type() + ", length: " + packet.payload.length);
+            ConsoleLoggingModules.warning("Couldn't handle packet, cmd: {}, length: {}", packet.type(), packet.payload.length);
         }
     }
 
@@ -115,7 +110,6 @@ public final class AudioKeyManager implements PacketsReceiver {
         void error(short code);
     }
 
-    @SuppressWarnings("NullableProblems")
     private static class SyncCallback implements Callback {
         private final AtomicReference<byte[]> reference = new AtomicReference<>();
 
@@ -129,7 +123,7 @@ public final class AudioKeyManager implements PacketsReceiver {
 
         @Override
         public void error(short code) {
-            ConsoleLoggingModules.error("Audio key error, code: " + code);
+            ConsoleLoggingModules.error("Audio key error, code: {}", code);
 
             synchronized (reference) {
                 reference.set(null);

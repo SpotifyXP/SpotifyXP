@@ -143,7 +143,11 @@ public final class Playlist4ApiProto {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ListAttributeKind> internalValueMap =
-            ListAttributeKind::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ListAttributeKind>() {
+            public ListAttributeKind findValueByNumber(int number) {
+              return ListAttributeKind.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -153,7 +157,7 @@ public final class Playlist4ApiProto {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.getDescriptor().getEnumTypes().get(0);
     }
@@ -171,7 +175,7 @@ public final class Playlist4ApiProto {
 
     private final int value;
 
-    ListAttributeKind(int value) {
+    private ListAttributeKind(int value) {
       this.value = value;
     }
 
@@ -280,7 +284,11 @@ public final class Playlist4ApiProto {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ItemAttributeKind> internalValueMap =
-            ItemAttributeKind::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ItemAttributeKind>() {
+            public ItemAttributeKind findValueByNumber(int number) {
+              return ItemAttributeKind.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -290,7 +298,7 @@ public final class Playlist4ApiProto {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.getDescriptor().getEnumTypes().get(1);
     }
@@ -308,7 +316,7 @@ public final class Playlist4ApiProto {
 
     private final int value;
 
-    ItemAttributeKind(int value) {
+    private ItemAttributeKind(int value) {
       this.value = value;
     }
 
@@ -354,7 +362,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Item}
    */
-  public  static final class Item extends
+  public static final class Item extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Item)
       ItemOrBuilder {
@@ -374,12 +382,7 @@ public final class Playlist4ApiProto {
       return new Item();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Item_descriptor;
     }
@@ -394,11 +397,13 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>required string uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -406,6 +411,7 @@ public final class Playlist4ApiProto {
      * <code>required string uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -424,6 +430,7 @@ public final class Playlist4ApiProto {
      * <code>required string uri = 1;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -444,6 +451,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ItemAttributes attributes = 2;</code>
      * @return Whether the attributes field is set.
      */
+    @java.lang.Override
     public boolean hasAttributes() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -451,12 +459,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ItemAttributes attributes = 2;</code>
      * @return The attributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes getAttributes() {
       return attributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance() : attributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ItemAttributes attributes = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder getAttributesOrBuilder() {
       return attributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance() : attributes_;
     }
@@ -505,11 +515,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -548,7 +560,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Item}
@@ -557,7 +570,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Item)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Item_descriptor;
       }
@@ -589,14 +602,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-        } else {
-          attributesBuilder_.clear();
+        attributes_ = null;
+        if (attributesBuilder_ != null) {
+          attributesBuilder_.dispose();
+          attributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -623,57 +635,27 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (attributesBuilder_ == null) {
-            result.attributes_ = attributes_;
-          } else {
-            result.attributes_ = attributesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.attributes_ = attributesBuilder_ == null
+              ? attributes_
+              : attributesBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object uri_ = "";
@@ -726,11 +708,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -739,8 +719,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -751,11 +731,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -790,11 +768,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           attributes_ = value;
-          onChanged();
         } else {
           attributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -804,11 +782,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder builderForValue) {
         if (attributesBuilder_ == null) {
           attributes_ = builderForValue.build();
-          onChanged();
         } else {
           attributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -817,31 +795,30 @@ public final class Playlist4ApiProto {
       public Builder mergeAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes value) {
         if (attributesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              attributes_ != null &&
-              attributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance()) {
-            attributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.newBuilder(attributes_).mergeFrom(value).buildPartial();
+            attributes_ != null &&
+            attributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance()) {
+            getAttributesBuilder().mergeFrom(value);
           } else {
             attributes_ = value;
           }
-          onChanged();
         } else {
           attributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ItemAttributes attributes = 2;</code>
        */
       public Builder clearAttributes() {
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-          onChanged();
-        } else {
-          attributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        attributes_ = null;
+        if (attributesBuilder_ != null) {
+          attributesBuilder_.dispose();
+          attributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -870,7 +847,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder> 
           getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder>(
                   getAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -879,13 +857,13 @@ public final class Playlist4ApiProto {
         return attributesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -916,10 +894,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1013,7 +992,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.MetaItem}
    */
-  public  static final class MetaItem extends
+  public static final class MetaItem extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.MetaItem)
       MetaItemOrBuilder {
@@ -1034,12 +1013,7 @@ public final class Playlist4ApiProto {
       return new MetaItem();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_MetaItem_descriptor;
     }
@@ -1054,11 +1028,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int REVISION_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString revision_;
+    private com.google.protobuf.ByteString revision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes revision = 1;</code>
      * @return Whether the revision field is set.
      */
+    @java.lang.Override
     public boolean hasRevision() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -1066,6 +1041,7 @@ public final class Playlist4ApiProto {
      * <code>optional bytes revision = 1;</code>
      * @return The revision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getRevision() {
       return revision_;
     }
@@ -1076,6 +1052,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 2;</code>
      * @return Whether the attributes field is set.
      */
+    @java.lang.Override
     public boolean hasAttributes() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -1083,22 +1060,25 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 2;</code>
      * @return The attributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes getAttributes() {
       return attributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance() : attributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder getAttributesOrBuilder() {
       return attributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance() : attributes_;
     }
 
     public static final int LENGTH_FIELD_NUMBER = 3;
-    private int length_;
+    private int length_ = 0;
     /**
      * <code>optional int32 length = 3;</code>
      * @return Whether the length field is set.
      */
+    @java.lang.Override
     public boolean hasLength() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -1106,16 +1086,18 @@ public final class Playlist4ApiProto {
      * <code>optional int32 length = 3;</code>
      * @return The length.
      */
+    @java.lang.Override
     public int getLength() {
       return length_;
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 4;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>optional int64 timestamp = 4;</code>
      * @return Whether the timestamp field is set.
      */
+    @java.lang.Override
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -1123,16 +1105,19 @@ public final class Playlist4ApiProto {
      * <code>optional int64 timestamp = 4;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int OWNER_USERNAME_FIELD_NUMBER = 5;
-    private volatile java.lang.Object ownerUsername_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ownerUsername_ = "";
     /**
      * <code>optional string owner_username = 5;</code>
      * @return Whether the ownerUsername field is set.
      */
+    @java.lang.Override
     public boolean hasOwnerUsername() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -1140,6 +1125,7 @@ public final class Playlist4ApiProto {
      * <code>optional string owner_username = 5;</code>
      * @return The ownerUsername.
      */
+    @java.lang.Override
     public java.lang.String getOwnerUsername() {
       java.lang.Object ref = ownerUsername_;
       if (ref instanceof java.lang.String) {
@@ -1158,6 +1144,7 @@ public final class Playlist4ApiProto {
      * <code>optional string owner_username = 5;</code>
      * @return The bytes for ownerUsername.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerUsernameBytes() {
       java.lang.Object ref = ownerUsername_;
@@ -1216,11 +1203,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1259,7 +1248,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.MetaItem}
@@ -1268,7 +1258,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.MetaItem)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_MetaItem_descriptor;
       }
@@ -1300,20 +1290,16 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         revision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-        } else {
-          attributesBuilder_.clear();
+        attributes_ = null;
+        if (attributesBuilder_ != null) {
+          attributesBuilder_.dispose();
+          attributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         length_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000008);
         ownerUsername_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -1340,18 +1326,22 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.revision_ = revision_;
           to_bitField0_ |= 0x00000001;
         }
-        result.revision_ = revision_;
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (attributesBuilder_ == null) {
-            result.attributes_ = attributes_;
-          } else {
-            result.attributes_ = attributesBuilder_.build();
-          }
+          result.attributes_ = attributesBuilder_ == null
+              ? attributes_
+              : attributesBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
@@ -1363,46 +1353,12 @@ public final class Playlist4ApiProto {
           to_bitField0_ |= 0x00000008;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.ownerUsername_ = ownerUsername_;
           to_bitField0_ |= 0x00000010;
         }
-        result.ownerUsername_ = ownerUsername_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private com.google.protobuf.ByteString revision_ = com.google.protobuf.ByteString.EMPTY;
@@ -1410,6 +1366,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 1;</code>
        * @return Whether the revision field is set.
        */
+      @java.lang.Override
       public boolean hasRevision() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -1417,6 +1374,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 1;</code>
        * @return The revision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getRevision() {
         return revision_;
       }
@@ -1426,11 +1384,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         revision_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1475,11 +1431,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           attributes_ = value;
-          onChanged();
         } else {
           attributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1489,11 +1445,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder builderForValue) {
         if (attributesBuilder_ == null) {
           attributes_ = builderForValue.build();
-          onChanged();
         } else {
           attributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1502,31 +1458,30 @@ public final class Playlist4ApiProto {
       public Builder mergeAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes value) {
         if (attributesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              attributes_ != null &&
-              attributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance()) {
-            attributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.newBuilder(attributes_).mergeFrom(value).buildPartial();
+            attributes_ != null &&
+            attributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance()) {
+            getAttributesBuilder().mergeFrom(value);
           } else {
             attributes_ = value;
           }
-          onChanged();
         } else {
           attributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 2;</code>
        */
       public Builder clearAttributes() {
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-          onChanged();
-        } else {
-          attributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        attributes_ = null;
+        if (attributesBuilder_ != null) {
+          attributesBuilder_.dispose();
+          attributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -1555,7 +1510,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder> 
           getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder>(
                   getAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -1569,6 +1525,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 length = 3;</code>
        * @return Whether the length field is set.
        */
+      @java.lang.Override
       public boolean hasLength() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -1576,6 +1533,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 length = 3;</code>
        * @return The length.
        */
+      @java.lang.Override
       public int getLength() {
         return length_;
       }
@@ -1585,8 +1543,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setLength(int value) {
-        bitField0_ |= 0x00000004;
+
         length_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1606,6 +1565,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 4;</code>
        * @return Whether the timestamp field is set.
        */
+      @java.lang.Override
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -1613,6 +1573,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 4;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -1622,8 +1583,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000008;
+
         timestamp_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1688,11 +1650,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setOwnerUsername(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         ownerUsername_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1701,8 +1661,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearOwnerUsername() {
-        bitField0_ = (bitField0_ & ~0x00000010);
         ownerUsername_ = getDefaultInstance().getOwnerUsername();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -1713,22 +1673,20 @@ public final class Playlist4ApiProto {
        */
       public Builder setOwnerUsernameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         ownerUsername_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1759,10 +1717,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1861,7 +1820,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ListItems}
    */
-  public  static final class ListItems extends
+  public static final class ListItems extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ListItems)
       ListItemsOrBuilder {
@@ -1882,12 +1841,7 @@ public final class Playlist4ApiProto {
       return new ListItems();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListItems_descriptor;
     }
@@ -1902,11 +1856,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int POS_FIELD_NUMBER = 1;
-    private int pos_;
+    private int pos_ = 0;
     /**
      * <code>required int32 pos = 1;</code>
      * @return Whether the pos field is set.
      */
+    @java.lang.Override
     public boolean hasPos() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -1914,16 +1869,18 @@ public final class Playlist4ApiProto {
      * <code>required int32 pos = 1;</code>
      * @return The pos.
      */
+    @java.lang.Override
     public int getPos() {
       return pos_;
     }
 
     public static final int TRUNCATED_FIELD_NUMBER = 2;
-    private boolean truncated_;
+    private boolean truncated_ = false;
     /**
      * <code>required bool truncated = 2;</code>
      * @return Whether the truncated field is set.
      */
+    @java.lang.Override
     public boolean hasTruncated() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -1931,21 +1888,25 @@ public final class Playlist4ApiProto {
      * <code>required bool truncated = 2;</code>
      * @return The truncated.
      */
+    @java.lang.Override
     public boolean getTruncated() {
       return truncated_;
     }
 
     public static final int ITEMS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_;
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> getItemsList() {
       return items_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
         getItemsOrBuilderList() {
       return items_;
@@ -1953,34 +1914,40 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public int getItemsCount() {
       return items_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item getItems(int index) {
       return items_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder getItemsOrBuilder(
         int index) {
       return items_.get(index);
     }
 
     public static final int META_ITEMS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem> metaItems_;
     /**
      * <code>repeated .spotify.playlist4.proto.MetaItem meta_items = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem> getMetaItemsList() {
       return metaItems_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.MetaItem meta_items = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder> 
         getMetaItemsOrBuilderList() {
       return metaItems_;
@@ -1988,18 +1955,21 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.MetaItem meta_items = 4;</code>
      */
+    @java.lang.Override
     public int getMetaItemsCount() {
       return metaItems_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.MetaItem meta_items = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem getMetaItems(int index) {
       return metaItems_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.MetaItem meta_items = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder getMetaItemsOrBuilder(
         int index) {
       return metaItems_.get(index);
@@ -2049,11 +2019,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2092,7 +2064,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListItems}
@@ -2101,7 +2074,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListItems)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListItems_descriptor;
       }
@@ -2116,40 +2089,34 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getItemsFieldBuilder();
-          getMetaItemsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         pos_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         truncated_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
         if (itemsBuilder_ == null) {
           items_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          items_ = null;
           itemsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (metaItemsBuilder_ == null) {
           metaItems_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          metaItems_ = null;
           metaItemsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -2176,16 +2143,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.pos_ = pos_;
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.truncated_ = truncated_;
-          to_bitField0_ |= 0x00000002;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems result) {
         if (itemsBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0)) {
             items_ = java.util.Collections.unmodifiableList(items_);
@@ -2204,43 +2168,22 @@ public final class Playlist4ApiProto {
         } else {
           result.metaItems_ = metaItemsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.pos_ = pos_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.truncated_ = truncated_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int pos_ ;
@@ -2248,6 +2191,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 pos = 1;</code>
        * @return Whether the pos field is set.
        */
+      @java.lang.Override
       public boolean hasPos() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -2255,6 +2199,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 pos = 1;</code>
        * @return The pos.
        */
+      @java.lang.Override
       public int getPos() {
         return pos_;
       }
@@ -2264,8 +2209,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setPos(int value) {
-        bitField0_ |= 0x00000001;
+
         pos_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2285,6 +2231,7 @@ public final class Playlist4ApiProto {
        * <code>required bool truncated = 2;</code>
        * @return Whether the truncated field is set.
        */
+      @java.lang.Override
       public boolean hasTruncated() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -2292,6 +2239,7 @@ public final class Playlist4ApiProto {
        * <code>required bool truncated = 2;</code>
        * @return The truncated.
        */
+      @java.lang.Override
       public boolean getTruncated() {
         return truncated_;
       }
@@ -2301,8 +2249,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setTruncated(boolean value) {
-        bitField0_ |= 0x00000002;
+
         truncated_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2320,8 +2269,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
-          items_ = new java.util.ArrayList<>(items_);
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          items_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item>(items_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -2546,7 +2495,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
           getItemsFieldBuilder() {
         if (itemsBuilder_ == null) {
-          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder>(
                   items_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -2559,8 +2509,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem> metaItems_ =
         java.util.Collections.emptyList();
       private void ensureMetaItemsIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          metaItems_ = new java.util.ArrayList<>(metaItems_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          metaItems_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem>(metaItems_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -2785,7 +2735,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder> 
           getMetaItemsFieldBuilder() {
         if (metaItemsBuilder_ == null) {
-          metaItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          metaItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MetaItemOrBuilder>(
                   metaItems_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -2795,13 +2746,13 @@ public final class Playlist4ApiProto {
         return metaItemsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2832,10 +2783,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -2898,7 +2850,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.FormatListAttribute}
    */
-  public  static final class FormatListAttribute extends
+  public static final class FormatListAttribute extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.FormatListAttribute)
       FormatListAttributeOrBuilder {
@@ -2919,12 +2871,7 @@ public final class Playlist4ApiProto {
       return new FormatListAttribute();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_FormatListAttribute_descriptor;
     }
@@ -2939,11 +2886,13 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int KEY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object key_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object key_ = "";
     /**
      * <code>optional string key = 1;</code>
      * @return Whether the key field is set.
      */
+    @java.lang.Override
     public boolean hasKey() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -2951,6 +2900,7 @@ public final class Playlist4ApiProto {
      * <code>optional string key = 1;</code>
      * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -2969,6 +2919,7 @@ public final class Playlist4ApiProto {
      * <code>optional string key = 1;</code>
      * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -2984,11 +2935,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int VALUE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object value_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object value_ = "";
     /**
      * <code>optional string value = 2;</code>
      * @return Whether the value field is set.
      */
+    @java.lang.Override
     public boolean hasValue() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -2996,6 +2949,7 @@ public final class Playlist4ApiProto {
      * <code>optional string value = 2;</code>
      * @return The value.
      */
+    @java.lang.Override
     public java.lang.String getValue() {
       java.lang.Object ref = value_;
       if (ref instanceof java.lang.String) {
@@ -3014,6 +2968,7 @@ public final class Playlist4ApiProto {
      * <code>optional string value = 2;</code>
      * @return The bytes for value.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getValueBytes() {
       java.lang.Object ref = value_;
@@ -3072,11 +3027,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3115,7 +3072,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.FormatListAttribute}
@@ -3124,7 +3082,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.FormatListAttribute)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_FormatListAttribute_descriptor;
       }
@@ -3139,23 +3097,20 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         key_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         value_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -3182,53 +3137,25 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.key_ = key_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.value_ = value_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.key_ = key_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.value_ = value_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object key_ = "";
@@ -3281,11 +3208,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setKey(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3294,8 +3219,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearKey() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         key_ = getDefaultInstance().getKey();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -3306,11 +3231,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3365,11 +3288,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setValue(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         value_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3378,8 +3299,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearValue() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         value_ = getDefaultInstance().getValue();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -3390,22 +3311,20 @@ public final class Playlist4ApiProto {
        */
       public Builder setValueBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         value_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3436,10 +3355,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -3610,7 +3530,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ListAttributes}
    */
-  public  static final class ListAttributes extends
+  public static final class ListAttributes extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ListAttributes)
       ListAttributesOrBuilder {
@@ -3636,12 +3556,7 @@ public final class Playlist4ApiProto {
       return new ListAttributes();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributes_descriptor;
     }
@@ -3656,11 +3571,13 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 1;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -3668,6 +3585,7 @@ public final class Playlist4ApiProto {
      * <code>optional string name = 1;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -3686,6 +3604,7 @@ public final class Playlist4ApiProto {
      * <code>optional string name = 1;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -3701,11 +3620,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int DESCRIPTION_FIELD_NUMBER = 2;
-    private volatile java.lang.Object description_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
     /**
      * <code>optional string description = 2;</code>
      * @return Whether the description field is set.
      */
+    @java.lang.Override
     public boolean hasDescription() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -3713,6 +3634,7 @@ public final class Playlist4ApiProto {
      * <code>optional string description = 2;</code>
      * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -3731,6 +3653,7 @@ public final class Playlist4ApiProto {
      * <code>optional string description = 2;</code>
      * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -3746,11 +3669,12 @@ public final class Playlist4ApiProto {
     }
 
     public static final int PICTURE_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString picture_;
+    private com.google.protobuf.ByteString picture_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes picture = 3;</code>
      * @return Whether the picture field is set.
      */
+    @java.lang.Override
     public boolean hasPicture() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -3758,16 +3682,18 @@ public final class Playlist4ApiProto {
      * <code>optional bytes picture = 3;</code>
      * @return The picture.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPicture() {
       return picture_;
     }
 
     public static final int COLLABORATIVE_FIELD_NUMBER = 4;
-    private boolean collaborative_;
+    private boolean collaborative_ = false;
     /**
      * <code>optional bool collaborative = 4;</code>
      * @return Whether the collaborative field is set.
      */
+    @java.lang.Override
     public boolean hasCollaborative() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -3775,16 +3701,19 @@ public final class Playlist4ApiProto {
      * <code>optional bool collaborative = 4;</code>
      * @return The collaborative.
      */
+    @java.lang.Override
     public boolean getCollaborative() {
       return collaborative_;
     }
 
     public static final int PL3_VERSION_FIELD_NUMBER = 5;
-    private volatile java.lang.Object pl3Version_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object pl3Version_ = "";
     /**
      * <code>optional string pl3_version = 5;</code>
      * @return Whether the pl3Version field is set.
      */
+    @java.lang.Override
     public boolean hasPl3Version() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -3792,6 +3721,7 @@ public final class Playlist4ApiProto {
      * <code>optional string pl3_version = 5;</code>
      * @return The pl3Version.
      */
+    @java.lang.Override
     public java.lang.String getPl3Version() {
       java.lang.Object ref = pl3Version_;
       if (ref instanceof java.lang.String) {
@@ -3810,6 +3740,7 @@ public final class Playlist4ApiProto {
      * <code>optional string pl3_version = 5;</code>
      * @return The bytes for pl3Version.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPl3VersionBytes() {
       java.lang.Object ref = pl3Version_;
@@ -3825,11 +3756,12 @@ public final class Playlist4ApiProto {
     }
 
     public static final int DELETED_BY_OWNER_FIELD_NUMBER = 6;
-    private boolean deletedByOwner_;
+    private boolean deletedByOwner_ = false;
     /**
      * <code>optional bool deleted_by_owner = 6;</code>
      * @return Whether the deletedByOwner field is set.
      */
+    @java.lang.Override
     public boolean hasDeletedByOwner() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -3837,16 +3769,19 @@ public final class Playlist4ApiProto {
      * <code>optional bool deleted_by_owner = 6;</code>
      * @return The deletedByOwner.
      */
+    @java.lang.Override
     public boolean getDeletedByOwner() {
       return deletedByOwner_;
     }
 
     public static final int CLIENT_ID_FIELD_NUMBER = 10;
-    private volatile java.lang.Object clientId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clientId_ = "";
     /**
      * <code>optional string client_id = 10;</code>
      * @return Whether the clientId field is set.
      */
+    @java.lang.Override
     public boolean hasClientId() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -3854,6 +3789,7 @@ public final class Playlist4ApiProto {
      * <code>optional string client_id = 10;</code>
      * @return The clientId.
      */
+    @java.lang.Override
     public java.lang.String getClientId() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
@@ -3872,6 +3808,7 @@ public final class Playlist4ApiProto {
      * <code>optional string client_id = 10;</code>
      * @return The bytes for clientId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getClientIdBytes() {
       java.lang.Object ref = clientId_;
@@ -3887,11 +3824,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int FORMAT_FIELD_NUMBER = 11;
-    private volatile java.lang.Object format_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object format_ = "";
     /**
      * <code>optional string format = 11;</code>
      * @return Whether the format field is set.
      */
+    @java.lang.Override
     public boolean hasFormat() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -3899,6 +3838,7 @@ public final class Playlist4ApiProto {
      * <code>optional string format = 11;</code>
      * @return The format.
      */
+    @java.lang.Override
     public java.lang.String getFormat() {
       java.lang.Object ref = format_;
       if (ref instanceof java.lang.String) {
@@ -3917,6 +3857,7 @@ public final class Playlist4ApiProto {
      * <code>optional string format = 11;</code>
      * @return The bytes for format.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFormatBytes() {
       java.lang.Object ref = format_;
@@ -3932,16 +3873,19 @@ public final class Playlist4ApiProto {
     }
 
     public static final int FORMAT_ATTRIBUTES_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> formatAttributes_;
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> getFormatAttributesList() {
       return formatAttributes_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder> 
         getFormatAttributesOrBuilderList() {
       return formatAttributes_;
@@ -3949,18 +3893,21 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 12;</code>
      */
+    @java.lang.Override
     public int getFormatAttributesCount() {
       return formatAttributes_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute getFormatAttributes(int index) {
       return formatAttributes_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder getFormatAttributesOrBuilder(
         int index) {
       return formatAttributes_.get(index);
@@ -4010,11 +3957,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4053,7 +4002,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListAttributes}
@@ -4062,7 +4012,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributes_descriptor;
       }
@@ -4077,45 +4027,33 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getFormatAttributesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         picture_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         collaborative_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         pl3Version_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
         deletedByOwner_ = false;
-        bitField0_ = (bitField0_ & ~0x00000020);
         clientId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000040);
         format_ = "";
-        bitField0_ = (bitField0_ & ~0x00000080);
         if (formatAttributesBuilder_ == null) {
           formatAttributes_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
         } else {
+          formatAttributes_ = null;
           formatAttributesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -4142,40 +4080,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.description_ = description_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.picture_ = picture_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.collaborative_ = collaborative_;
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.pl3Version_ = pl3Version_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.deletedByOwner_ = deletedByOwner_;
-          to_bitField0_ |= 0x00000020;
-        }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.clientId_ = clientId_;
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.format_ = format_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes result) {
         if (formatAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000100) != 0)) {
             formatAttributes_ = java.util.Collections.unmodifiableList(formatAttributes_);
@@ -4185,43 +4096,46 @@ public final class Playlist4ApiProto {
         } else {
           result.formatAttributes_ = formatAttributesBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.description_ = description_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.picture_ = picture_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.collaborative_ = collaborative_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.pl3Version_ = pl3Version_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.deletedByOwner_ = deletedByOwner_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.clientId_ = clientId_;
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.format_ = format_;
+          to_bitField0_ |= 0x00000080;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object name_ = "";
@@ -4274,11 +4188,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4287,8 +4199,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -4299,11 +4211,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4358,11 +4268,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setDescription(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4371,8 +4279,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -4383,11 +4291,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4397,6 +4303,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes picture = 3;</code>
        * @return Whether the picture field is set.
        */
+      @java.lang.Override
       public boolean hasPicture() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -4404,6 +4311,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes picture = 3;</code>
        * @return The picture.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPicture() {
         return picture_;
       }
@@ -4413,11 +4321,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setPicture(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         picture_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -4437,6 +4343,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool collaborative = 4;</code>
        * @return Whether the collaborative field is set.
        */
+      @java.lang.Override
       public boolean hasCollaborative() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -4444,6 +4351,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool collaborative = 4;</code>
        * @return The collaborative.
        */
+      @java.lang.Override
       public boolean getCollaborative() {
         return collaborative_;
       }
@@ -4453,8 +4361,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setCollaborative(boolean value) {
-        bitField0_ |= 0x00000008;
+
         collaborative_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -4519,11 +4428,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setPl3Version(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         pl3Version_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -4532,8 +4439,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearPl3Version() {
-        bitField0_ = (bitField0_ & ~0x00000010);
         pl3Version_ = getDefaultInstance().getPl3Version();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -4544,11 +4451,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setPl3VersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         pl3Version_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -4558,6 +4463,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool deleted_by_owner = 6;</code>
        * @return Whether the deletedByOwner field is set.
        */
+      @java.lang.Override
       public boolean hasDeletedByOwner() {
         return ((bitField0_ & 0x00000020) != 0);
       }
@@ -4565,6 +4471,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool deleted_by_owner = 6;</code>
        * @return The deletedByOwner.
        */
+      @java.lang.Override
       public boolean getDeletedByOwner() {
         return deletedByOwner_;
       }
@@ -4574,8 +4481,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setDeletedByOwner(boolean value) {
-        bitField0_ |= 0x00000020;
+
         deletedByOwner_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -4640,11 +4548,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setClientId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
+        if (value == null) { throw new NullPointerException(); }
         clientId_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -4653,8 +4559,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearClientId() {
-        bitField0_ = (bitField0_ & ~0x00000040);
         clientId_ = getDefaultInstance().getClientId();
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
       }
@@ -4665,11 +4571,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
+        if (value == null) { throw new NullPointerException(); }
         clientId_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -4724,11 +4628,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setFormat(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000080;
+        if (value == null) { throw new NullPointerException(); }
         format_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -4737,8 +4639,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearFormat() {
-        bitField0_ = (bitField0_ & ~0x00000080);
         format_ = getDefaultInstance().getFormat();
+        bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
       }
@@ -4749,11 +4651,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setFormatBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000080;
+        if (value == null) { throw new NullPointerException(); }
         format_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -4761,8 +4661,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> formatAttributes_ =
         java.util.Collections.emptyList();
       private void ensureFormatAttributesIsMutable() {
-        if ((bitField0_ & 0x00000100) == 0) {
-          formatAttributes_ = new java.util.ArrayList<>(formatAttributes_);
+        if (!((bitField0_ & 0x00000100) != 0)) {
+          formatAttributes_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute>(formatAttributes_);
           bitField0_ |= 0x00000100;
          }
       }
@@ -4987,7 +4887,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder> 
           getFormatAttributesFieldBuilder() {
         if (formatAttributesBuilder_ == null) {
-          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder>(
                   formatAttributes_,
                   ((bitField0_ & 0x00000100) != 0),
                   getParentForChildren(),
@@ -4997,13 +4898,13 @@ public final class Playlist4ApiProto {
         return formatAttributesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5034,10 +4935,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5151,7 +5053,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ItemAttributes}
    */
-  public  static final class ItemAttributes extends
+  public static final class ItemAttributes extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ItemAttributes)
       ItemAttributesOrBuilder {
@@ -5173,12 +5075,7 @@ public final class Playlist4ApiProto {
       return new ItemAttributes();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributes_descriptor;
     }
@@ -5193,11 +5090,13 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int ADDED_BY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object addedBy_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object addedBy_ = "";
     /**
      * <code>optional string added_by = 1;</code>
      * @return Whether the addedBy field is set.
      */
+    @java.lang.Override
     public boolean hasAddedBy() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -5205,6 +5104,7 @@ public final class Playlist4ApiProto {
      * <code>optional string added_by = 1;</code>
      * @return The addedBy.
      */
+    @java.lang.Override
     public java.lang.String getAddedBy() {
       java.lang.Object ref = addedBy_;
       if (ref instanceof java.lang.String) {
@@ -5223,6 +5123,7 @@ public final class Playlist4ApiProto {
      * <code>optional string added_by = 1;</code>
      * @return The bytes for addedBy.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAddedByBytes() {
       java.lang.Object ref = addedBy_;
@@ -5238,11 +5139,12 @@ public final class Playlist4ApiProto {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 2;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>optional int64 timestamp = 2;</code>
      * @return Whether the timestamp field is set.
      */
+    @java.lang.Override
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -5250,16 +5152,18 @@ public final class Playlist4ApiProto {
      * <code>optional int64 timestamp = 2;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int SEEN_AT_FIELD_NUMBER = 9;
-    private long seenAt_;
+    private long seenAt_ = 0L;
     /**
      * <code>optional int64 seen_at = 9;</code>
      * @return Whether the seenAt field is set.
      */
+    @java.lang.Override
     public boolean hasSeenAt() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -5267,16 +5171,18 @@ public final class Playlist4ApiProto {
      * <code>optional int64 seen_at = 9;</code>
      * @return The seenAt.
      */
+    @java.lang.Override
     public long getSeenAt() {
       return seenAt_;
     }
 
     public static final int PUBLIC_FIELD_NUMBER = 10;
-    private boolean public_;
+    private boolean public_ = false;
     /**
      * <code>optional bool public = 10;</code>
      * @return Whether the public field is set.
      */
+    @java.lang.Override
     public boolean hasPublic() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -5284,21 +5190,25 @@ public final class Playlist4ApiProto {
      * <code>optional bool public = 10;</code>
      * @return The public.
      */
+    @java.lang.Override
     public boolean getPublic() {
       return public_;
     }
 
     public static final int FORMAT_ATTRIBUTES_FIELD_NUMBER = 11;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> formatAttributes_;
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> getFormatAttributesList() {
       return formatAttributes_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder> 
         getFormatAttributesOrBuilderList() {
       return formatAttributes_;
@@ -5306,29 +5216,33 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 11;</code>
      */
+    @java.lang.Override
     public int getFormatAttributesCount() {
       return formatAttributes_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute getFormatAttributes(int index) {
       return formatAttributes_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.FormatListAttribute format_attributes = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder getFormatAttributesOrBuilder(
         int index) {
       return formatAttributes_.get(index);
     }
 
     public static final int ITEM_ID_FIELD_NUMBER = 12;
-    private com.google.protobuf.ByteString itemId_;
+    private com.google.protobuf.ByteString itemId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes item_id = 12;</code>
      * @return Whether the itemId field is set.
      */
+    @java.lang.Override
     public boolean hasItemId() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -5336,6 +5250,7 @@ public final class Playlist4ApiProto {
      * <code>optional bytes item_id = 12;</code>
      * @return The itemId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getItemId() {
       return itemId_;
     }
@@ -5384,11 +5299,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5427,7 +5344,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ItemAttributes}
@@ -5436,7 +5354,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ItemAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributes_descriptor;
       }
@@ -5451,39 +5369,30 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getFormatAttributesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         addedBy_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
         seenAt_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
         public_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         if (formatAttributesBuilder_ == null) {
           formatAttributes_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
+          formatAttributes_ = null;
           formatAttributesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000010);
         itemId_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -5510,12 +5419,31 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes result) {
+        if (formatAttributesBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) != 0)) {
+            formatAttributes_ = java.util.Collections.unmodifiableList(formatAttributes_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.formatAttributes_ = formatAttributes_;
+        } else {
+          result.formatAttributes_ = formatAttributesBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.addedBy_ = addedBy_;
           to_bitField0_ |= 0x00000001;
         }
-        result.addedBy_ = addedBy_;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.timestamp_ = timestamp_;
           to_bitField0_ |= 0x00000002;
@@ -5528,56 +5456,13 @@ public final class Playlist4ApiProto {
           result.public_ = public_;
           to_bitField0_ |= 0x00000008;
         }
-        if (formatAttributesBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) != 0)) {
-            formatAttributes_ = java.util.Collections.unmodifiableList(formatAttributes_);
-            bitField0_ = (bitField0_ & ~0x00000010);
-          }
-          result.formatAttributes_ = formatAttributes_;
-        } else {
-          result.formatAttributes_ = formatAttributesBuilder_.build();
-        }
         if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.itemId_ = itemId_;
           to_bitField0_ |= 0x00000010;
         }
-        result.itemId_ = itemId_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private java.lang.Object addedBy_ = "";
@@ -5630,11 +5515,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setAddedBy(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         addedBy_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5643,8 +5526,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearAddedBy() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         addedBy_ = getDefaultInstance().getAddedBy();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -5655,11 +5538,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setAddedByBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         addedBy_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5669,6 +5550,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 2;</code>
        * @return Whether the timestamp field is set.
        */
+      @java.lang.Override
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -5676,6 +5558,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 2;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -5685,8 +5568,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000002;
+
         timestamp_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -5706,6 +5590,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 seen_at = 9;</code>
        * @return Whether the seenAt field is set.
        */
+      @java.lang.Override
       public boolean hasSeenAt() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -5713,6 +5598,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 seen_at = 9;</code>
        * @return The seenAt.
        */
+      @java.lang.Override
       public long getSeenAt() {
         return seenAt_;
       }
@@ -5722,8 +5608,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setSeenAt(long value) {
-        bitField0_ |= 0x00000004;
+
         seenAt_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -5743,6 +5630,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool public = 10;</code>
        * @return Whether the public field is set.
        */
+      @java.lang.Override
       public boolean hasPublic() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -5750,6 +5638,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool public = 10;</code>
        * @return The public.
        */
+      @java.lang.Override
       public boolean getPublic() {
         return public_;
       }
@@ -5759,8 +5648,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setPublic(boolean value) {
-        bitField0_ |= 0x00000008;
+
         public_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -5778,8 +5668,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute> formatAttributes_ =
         java.util.Collections.emptyList();
       private void ensureFormatAttributesIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
-          formatAttributes_ = new java.util.ArrayList<>(formatAttributes_);
+        if (!((bitField0_ & 0x00000010) != 0)) {
+          formatAttributes_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute>(formatAttributes_);
           bitField0_ |= 0x00000010;
          }
       }
@@ -6004,7 +5894,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder> 
           getFormatAttributesFieldBuilder() {
         if (formatAttributesBuilder_ == null) {
-          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          formatAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttribute.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.FormatListAttributeOrBuilder>(
                   formatAttributes_,
                   ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
@@ -6019,6 +5910,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes item_id = 12;</code>
        * @return Whether the itemId field is set.
        */
+      @java.lang.Override
       public boolean hasItemId() {
         return ((bitField0_ & 0x00000020) != 0);
       }
@@ -6026,6 +5918,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes item_id = 12;</code>
        * @return The itemId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getItemId() {
         return itemId_;
       }
@@ -6035,11 +5928,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setItemId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         itemId_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -6054,13 +5945,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6091,10 +5982,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -6180,7 +6072,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Add}
    */
-  public  static final class Add extends
+  public static final class Add extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Add)
       AddOrBuilder {
@@ -6200,12 +6092,7 @@ public final class Playlist4ApiProto {
       return new Add();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Add_descriptor;
     }
@@ -6220,11 +6107,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int FROM_INDEX_FIELD_NUMBER = 1;
-    private int fromIndex_;
+    private int fromIndex_ = 0;
     /**
      * <code>optional int32 from_index = 1;</code>
      * @return Whether the fromIndex field is set.
      */
+    @java.lang.Override
     public boolean hasFromIndex() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -6232,21 +6120,25 @@ public final class Playlist4ApiProto {
      * <code>optional int32 from_index = 1;</code>
      * @return The fromIndex.
      */
+    @java.lang.Override
     public int getFromIndex() {
       return fromIndex_;
     }
 
     public static final int ITEMS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_;
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> getItemsList() {
       return items_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
         getItemsOrBuilderList() {
       return items_;
@@ -6254,29 +6146,33 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 2;</code>
      */
+    @java.lang.Override
     public int getItemsCount() {
       return items_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item getItems(int index) {
       return items_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder getItemsOrBuilder(
         int index) {
       return items_.get(index);
     }
 
     public static final int ADD_LAST_FIELD_NUMBER = 4;
-    private boolean addLast_;
+    private boolean addLast_ = false;
     /**
      * <code>optional bool add_last = 4;</code>
      * @return Whether the addLast field is set.
      */
+    @java.lang.Override
     public boolean hasAddLast() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -6284,16 +6180,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool add_last = 4;</code>
      * @return The addLast.
      */
+    @java.lang.Override
     public boolean getAddLast() {
       return addLast_;
     }
 
     public static final int ADD_FIRST_FIELD_NUMBER = 5;
-    private boolean addFirst_;
+    private boolean addFirst_ = false;
     /**
      * <code>optional bool add_first = 5;</code>
      * @return Whether the addFirst field is set.
      */
+    @java.lang.Override
     public boolean hasAddFirst() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -6301,6 +6199,7 @@ public final class Playlist4ApiProto {
      * <code>optional bool add_first = 5;</code>
      * @return The addFirst.
      */
+    @java.lang.Override
     public boolean getAddFirst() {
       return addFirst_;
     }
@@ -6349,11 +6248,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6392,7 +6293,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Add}
@@ -6401,7 +6303,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Add)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Add_descriptor;
       }
@@ -6416,35 +6318,28 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getItemsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fromIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         if (itemsBuilder_ == null) {
           items_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          items_ = null;
           itemsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         addLast_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
         addFirst_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -6471,12 +6366,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.fromIndex_ = fromIndex_;
-          to_bitField0_ |= 0x00000001;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add result) {
         if (itemsBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             items_ = java.util.Collections.unmodifiableList(items_);
@@ -6486,6 +6382,15 @@ public final class Playlist4ApiProto {
         } else {
           result.items_ = itemsBuilder_.build();
         }
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.fromIndex_ = fromIndex_;
+          to_bitField0_ |= 0x00000001;
+        }
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.addLast_ = addLast_;
           to_bitField0_ |= 0x00000002;
@@ -6494,43 +6399,9 @@ public final class Playlist4ApiProto {
           result.addFirst_ = addFirst_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int fromIndex_ ;
@@ -6538,6 +6409,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 from_index = 1;</code>
        * @return Whether the fromIndex field is set.
        */
+      @java.lang.Override
       public boolean hasFromIndex() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -6545,6 +6417,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 from_index = 1;</code>
        * @return The fromIndex.
        */
+      @java.lang.Override
       public int getFromIndex() {
         return fromIndex_;
       }
@@ -6554,8 +6427,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setFromIndex(int value) {
-        bitField0_ |= 0x00000001;
+
         fromIndex_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6573,8 +6447,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          items_ = new java.util.ArrayList<>(items_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          items_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item>(items_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -6799,7 +6673,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
           getItemsFieldBuilder() {
         if (itemsBuilder_ == null) {
-          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder>(
                   items_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -6814,6 +6689,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool add_last = 4;</code>
        * @return Whether the addLast field is set.
        */
+      @java.lang.Override
       public boolean hasAddLast() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -6821,6 +6697,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool add_last = 4;</code>
        * @return The addLast.
        */
+      @java.lang.Override
       public boolean getAddLast() {
         return addLast_;
       }
@@ -6830,8 +6707,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setAddLast(boolean value) {
-        bitField0_ |= 0x00000004;
+
         addLast_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -6851,6 +6729,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool add_first = 5;</code>
        * @return Whether the addFirst field is set.
        */
+      @java.lang.Override
       public boolean hasAddFirst() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -6858,6 +6737,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool add_first = 5;</code>
        * @return The addFirst.
        */
+      @java.lang.Override
       public boolean getAddFirst() {
         return addFirst_;
       }
@@ -6867,8 +6747,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setAddFirst(boolean value) {
-        bitField0_ |= 0x00000008;
+
         addFirst_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -6883,13 +6764,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6920,10 +6801,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -7009,7 +6891,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Rem}
    */
-  public  static final class Rem extends
+  public static final class Rem extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Rem)
       RemOrBuilder {
@@ -7029,12 +6911,7 @@ public final class Playlist4ApiProto {
       return new Rem();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Rem_descriptor;
     }
@@ -7049,11 +6926,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int FROM_INDEX_FIELD_NUMBER = 1;
-    private int fromIndex_;
+    private int fromIndex_ = 0;
     /**
      * <code>optional int32 from_index = 1;</code>
      * @return Whether the fromIndex field is set.
      */
+    @java.lang.Override
     public boolean hasFromIndex() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -7061,16 +6939,18 @@ public final class Playlist4ApiProto {
      * <code>optional int32 from_index = 1;</code>
      * @return The fromIndex.
      */
+    @java.lang.Override
     public int getFromIndex() {
       return fromIndex_;
     }
 
     public static final int LENGTH_FIELD_NUMBER = 2;
-    private int length_;
+    private int length_ = 0;
     /**
      * <code>optional int32 length = 2;</code>
      * @return Whether the length field is set.
      */
+    @java.lang.Override
     public boolean hasLength() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -7078,21 +6958,25 @@ public final class Playlist4ApiProto {
      * <code>optional int32 length = 2;</code>
      * @return The length.
      */
+    @java.lang.Override
     public int getLength() {
       return length_;
     }
 
     public static final int ITEMS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_;
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> getItemsList() {
       return items_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
         getItemsOrBuilderList() {
       return items_;
@@ -7100,29 +6984,33 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public int getItemsCount() {
       return items_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item getItems(int index) {
       return items_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Item items = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder getItemsOrBuilder(
         int index) {
       return items_.get(index);
     }
 
     public static final int ITEMS_AS_KEY_FIELD_NUMBER = 7;
-    private boolean itemsAsKey_;
+    private boolean itemsAsKey_ = false;
     /**
      * <code>optional bool items_as_key = 7;</code>
      * @return Whether the itemsAsKey field is set.
      */
+    @java.lang.Override
     public boolean hasItemsAsKey() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -7130,6 +7018,7 @@ public final class Playlist4ApiProto {
      * <code>optional bool items_as_key = 7;</code>
      * @return The itemsAsKey.
      */
+    @java.lang.Override
     public boolean getItemsAsKey() {
       return itemsAsKey_;
     }
@@ -7178,11 +7067,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7221,7 +7112,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Rem}
@@ -7230,7 +7122,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Rem)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Rem_descriptor;
       }
@@ -7245,35 +7137,28 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getItemsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fromIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         length_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         if (itemsBuilder_ == null) {
           items_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          items_ = null;
           itemsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         itemsAsKey_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -7300,6 +7185,25 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem result) {
+        if (itemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0)) {
+            items_ = java.util.Collections.unmodifiableList(items_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.items_ = items_;
+        } else {
+          result.items_ = itemsBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -7310,56 +7214,13 @@ public final class Playlist4ApiProto {
           result.length_ = length_;
           to_bitField0_ |= 0x00000002;
         }
-        if (itemsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0)) {
-            items_ = java.util.Collections.unmodifiableList(items_);
-            bitField0_ = (bitField0_ & ~0x00000004);
-          }
-          result.items_ = items_;
-        } else {
-          result.items_ = itemsBuilder_.build();
-        }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.itemsAsKey_ = itemsAsKey_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int fromIndex_ ;
@@ -7367,6 +7228,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 from_index = 1;</code>
        * @return Whether the fromIndex field is set.
        */
+      @java.lang.Override
       public boolean hasFromIndex() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -7374,6 +7236,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 from_index = 1;</code>
        * @return The fromIndex.
        */
+      @java.lang.Override
       public int getFromIndex() {
         return fromIndex_;
       }
@@ -7383,8 +7246,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setFromIndex(int value) {
-        bitField0_ |= 0x00000001;
+
         fromIndex_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7404,6 +7268,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 length = 2;</code>
        * @return Whether the length field is set.
        */
+      @java.lang.Override
       public boolean hasLength() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -7411,6 +7276,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 length = 2;</code>
        * @return The length.
        */
+      @java.lang.Override
       public int getLength() {
         return length_;
       }
@@ -7420,8 +7286,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setLength(int value) {
-        bitField0_ |= 0x00000002;
+
         length_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7439,8 +7306,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item> items_ =
         java.util.Collections.emptyList();
       private void ensureItemsIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
-          items_ = new java.util.ArrayList<>(items_);
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          items_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item>(items_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -7665,7 +7532,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder> 
           getItemsFieldBuilder() {
         if (itemsBuilder_ == null) {
-          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Item.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemOrBuilder>(
                   items_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -7680,6 +7548,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool items_as_key = 7;</code>
        * @return Whether the itemsAsKey field is set.
        */
+      @java.lang.Override
       public boolean hasItemsAsKey() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -7687,6 +7556,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool items_as_key = 7;</code>
        * @return The itemsAsKey.
        */
+      @java.lang.Override
       public boolean getItemsAsKey() {
         return itemsAsKey_;
       }
@@ -7696,8 +7566,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setItemsAsKey(boolean value) {
-        bitField0_ |= 0x00000008;
+
         itemsAsKey_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -7712,13 +7583,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7749,10 +7620,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -7814,7 +7686,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Mov}
    */
-  public  static final class Mov extends
+  public static final class Mov extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Mov)
       MovOrBuilder {
@@ -7833,12 +7705,7 @@ public final class Playlist4ApiProto {
       return new Mov();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Mov_descriptor;
     }
@@ -7853,11 +7720,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int FROM_INDEX_FIELD_NUMBER = 1;
-    private int fromIndex_;
+    private int fromIndex_ = 0;
     /**
      * <code>required int32 from_index = 1;</code>
      * @return Whether the fromIndex field is set.
      */
+    @java.lang.Override
     public boolean hasFromIndex() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -7865,16 +7733,18 @@ public final class Playlist4ApiProto {
      * <code>required int32 from_index = 1;</code>
      * @return The fromIndex.
      */
+    @java.lang.Override
     public int getFromIndex() {
       return fromIndex_;
     }
 
     public static final int LENGTH_FIELD_NUMBER = 2;
-    private int length_;
+    private int length_ = 0;
     /**
      * <code>required int32 length = 2;</code>
      * @return Whether the length field is set.
      */
+    @java.lang.Override
     public boolean hasLength() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -7882,16 +7752,18 @@ public final class Playlist4ApiProto {
      * <code>required int32 length = 2;</code>
      * @return The length.
      */
+    @java.lang.Override
     public int getLength() {
       return length_;
     }
 
     public static final int TO_INDEX_FIELD_NUMBER = 3;
-    private int toIndex_;
+    private int toIndex_ = 0;
     /**
      * <code>required int32 to_index = 3;</code>
      * @return Whether the toIndex field is set.
      */
+    @java.lang.Override
     public boolean hasToIndex() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -7899,6 +7771,7 @@ public final class Playlist4ApiProto {
      * <code>required int32 to_index = 3;</code>
      * @return The toIndex.
      */
+    @java.lang.Override
     public int getToIndex() {
       return toIndex_;
     }
@@ -7947,11 +7820,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7990,7 +7865,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Mov}
@@ -7999,7 +7875,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Mov)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Mov_descriptor;
       }
@@ -8014,25 +7890,21 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fromIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         length_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         toIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -8059,6 +7931,12 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -8073,43 +7951,9 @@ public final class Playlist4ApiProto {
           result.toIndex_ = toIndex_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int fromIndex_ ;
@@ -8117,6 +7961,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 from_index = 1;</code>
        * @return Whether the fromIndex field is set.
        */
+      @java.lang.Override
       public boolean hasFromIndex() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -8124,6 +7969,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 from_index = 1;</code>
        * @return The fromIndex.
        */
+      @java.lang.Override
       public int getFromIndex() {
         return fromIndex_;
       }
@@ -8133,8 +7979,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setFromIndex(int value) {
-        bitField0_ |= 0x00000001;
+
         fromIndex_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -8154,6 +8001,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 length = 2;</code>
        * @return Whether the length field is set.
        */
+      @java.lang.Override
       public boolean hasLength() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -8161,6 +8009,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 length = 2;</code>
        * @return The length.
        */
+      @java.lang.Override
       public int getLength() {
         return length_;
       }
@@ -8170,8 +8019,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setLength(int value) {
-        bitField0_ |= 0x00000002;
+
         length_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -8191,6 +8041,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 to_index = 3;</code>
        * @return Whether the toIndex field is set.
        */
+      @java.lang.Override
       public boolean hasToIndex() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -8198,6 +8049,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 to_index = 3;</code>
        * @return The toIndex.
        */
+      @java.lang.Override
       public int getToIndex() {
         return toIndex_;
       }
@@ -8207,8 +8059,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setToIndex(int value) {
-        bitField0_ |= 0x00000004;
+
         toIndex_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -8223,13 +8076,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8260,10 +8113,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -8324,7 +8178,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ItemAttributesPartialState}
    */
-  public  static final class ItemAttributesPartialState extends
+  public static final class ItemAttributesPartialState extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ItemAttributesPartialState)
       ItemAttributesPartialStateOrBuilder {
@@ -8344,12 +8198,7 @@ public final class Playlist4ApiProto {
       return new ItemAttributesPartialState();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributesPartialState_descriptor;
     }
@@ -8369,6 +8218,7 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ItemAttributes values = 1;</code>
      * @return Whether the values field is set.
      */
+    @java.lang.Override
     public boolean hasValues() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -8376,35 +8226,44 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ItemAttributes values = 1;</code>
      * @return The values.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes getValues() {
       return values_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance() : values_;
     }
     /**
      * <code>required .spotify.playlist4.proto.ItemAttributes values = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder getValuesOrBuilder() {
       return values_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance() : values_;
     }
 
     public static final int NO_VALUE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<java.lang.Integer> noValue_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind> noValue_converter_ =
-            from -> {
-              ItemAttributeKind result = ItemAttributeKind.valueOf(from);
-              return result == null ? ItemAttributeKind.ITEM_UNKNOWN : result;
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind>() {
+              public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind convert(java.lang.Integer from) {
+                com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind.forNumber(from);
+                return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind.ITEM_UNKNOWN : result;
+              }
             };
     /**
      * <code>repeated .spotify.playlist4.proto.ItemAttributeKind no_value = 2;</code>
      * @return A list containing the noValue.
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind> getNoValueList() {
-      return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<
+          java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind>(noValue_, noValue_converter_);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.ItemAttributeKind no_value = 2;</code>
      * @return The count of noValue.
      */
+    @java.lang.Override
     public int getNoValueCount() {
       return noValue_.size();
     }
@@ -8413,6 +8272,7 @@ public final class Playlist4ApiProto {
      * @param index The index of the element to return.
      * @return The noValue at the given index.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind getNoValue(int index) {
       return noValue_converter_.convert(noValue_.get(index));
     }
@@ -8461,11 +8321,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8504,7 +8366,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ItemAttributesPartialState}
@@ -8513,7 +8376,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ItemAttributesPartialState)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ItemAttributesPartialState_descriptor;
       }
@@ -8545,12 +8408,12 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (valuesBuilder_ == null) {
-          values_ = null;
-        } else {
-          valuesBuilder_.clear();
+        bitField0_ = 0;
+        values_ = null;
+        if (valuesBuilder_ != null) {
+          valuesBuilder_.dispose();
+          valuesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
         noValue_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
@@ -8579,58 +8442,32 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (valuesBuilder_ == null) {
-            result.values_ = values_;
-          } else {
-            result.values_ = valuesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState result) {
         if (((bitField0_ & 0x00000002) != 0)) {
           noValue_ = java.util.Collections.unmodifiableList(noValue_);
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.noValue_ = noValue_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.values_ = valuesBuilder_ == null
+              ? values_
+              : valuesBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes values_;
@@ -8663,11 +8500,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           values_ = value;
-          onChanged();
         } else {
           valuesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -8677,11 +8514,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           values_ = builderForValue.build();
-          onChanged();
         } else {
           valuesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -8690,31 +8527,30 @@ public final class Playlist4ApiProto {
       public Builder mergeValues(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes value) {
         if (valuesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              values_ != null &&
-              values_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance()) {
-            values_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.newBuilder(values_).mergeFrom(value).buildPartial();
+            values_ != null &&
+            values_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.getDefaultInstance()) {
+            getValuesBuilder().mergeFrom(value);
           } else {
             values_ = value;
           }
-          onChanged();
         } else {
           valuesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>required .spotify.playlist4.proto.ItemAttributes values = 1;</code>
        */
       public Builder clearValues() {
-        if (valuesBuilder_ == null) {
-          values_ = null;
-          onChanged();
-        } else {
-          valuesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        values_ = null;
+        if (valuesBuilder_ != null) {
+          valuesBuilder_.dispose();
+          valuesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -8743,7 +8579,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder> 
           getValuesFieldBuilder() {
         if (valuesBuilder_ == null) {
-          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesOrBuilder>(
                   getValues(),
                   getParentForChildren(),
                   isClean());
@@ -8755,8 +8592,8 @@ public final class Playlist4ApiProto {
       private java.util.List<java.lang.Integer> noValue_ =
         java.util.Collections.emptyList();
       private void ensureNoValueIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          noValue_ = new java.util.ArrayList<>(noValue_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          noValue_ = new java.util.ArrayList<java.lang.Integer>(noValue_);
           bitField0_ |= 0x00000002;
         }
       }
@@ -8765,7 +8602,8 @@ public final class Playlist4ApiProto {
        * @return A list containing the noValue.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind> getNoValueList() {
-        return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<
+            java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributeKind>(noValue_, noValue_converter_);
       }
       /**
        * <code>repeated .spotify.playlist4.proto.ItemAttributeKind no_value = 2;</code>
@@ -8837,13 +8675,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8874,10 +8712,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -8938,7 +8777,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ListAttributesPartialState}
    */
-  public  static final class ListAttributesPartialState extends
+  public static final class ListAttributesPartialState extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ListAttributesPartialState)
       ListAttributesPartialStateOrBuilder {
@@ -8958,12 +8797,7 @@ public final class Playlist4ApiProto {
       return new ListAttributesPartialState();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributesPartialState_descriptor;
     }
@@ -8983,6 +8817,7 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ListAttributes values = 1;</code>
      * @return Whether the values field is set.
      */
+    @java.lang.Override
     public boolean hasValues() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -8990,35 +8825,44 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ListAttributes values = 1;</code>
      * @return The values.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes getValues() {
       return values_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance() : values_;
     }
     /**
      * <code>required .spotify.playlist4.proto.ListAttributes values = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder getValuesOrBuilder() {
       return values_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance() : values_;
     }
 
     public static final int NO_VALUE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<java.lang.Integer> noValue_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind> noValue_converter_ =
-            from -> {
-              ListAttributeKind result = ListAttributeKind.valueOf(from);
-              return result == null ? ListAttributeKind.LIST_UNKNOWN : result;
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind>() {
+              public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind convert(java.lang.Integer from) {
+                com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind.forNumber(from);
+                return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind.LIST_UNKNOWN : result;
+              }
             };
     /**
      * <code>repeated .spotify.playlist4.proto.ListAttributeKind no_value = 2;</code>
      * @return A list containing the noValue.
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind> getNoValueList() {
-      return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<
+          java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind>(noValue_, noValue_converter_);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.ListAttributeKind no_value = 2;</code>
      * @return The count of noValue.
      */
+    @java.lang.Override
     public int getNoValueCount() {
       return noValue_.size();
     }
@@ -9027,6 +8871,7 @@ public final class Playlist4ApiProto {
      * @param index The index of the element to return.
      * @return The noValue at the given index.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind getNoValue(int index) {
       return noValue_converter_.convert(noValue_.get(index));
     }
@@ -9075,11 +8920,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9118,7 +8965,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListAttributesPartialState}
@@ -9127,7 +8975,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListAttributesPartialState)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListAttributesPartialState_descriptor;
       }
@@ -9159,12 +9007,12 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (valuesBuilder_ == null) {
-          values_ = null;
-        } else {
-          valuesBuilder_.clear();
+        bitField0_ = 0;
+        values_ = null;
+        if (valuesBuilder_ != null) {
+          valuesBuilder_.dispose();
+          valuesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
         noValue_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
@@ -9193,58 +9041,32 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (valuesBuilder_ == null) {
-            result.values_ = values_;
-          } else {
-            result.values_ = valuesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState result) {
         if (((bitField0_ & 0x00000002) != 0)) {
           noValue_ = java.util.Collections.unmodifiableList(noValue_);
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.noValue_ = noValue_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.values_ = valuesBuilder_ == null
+              ? values_
+              : valuesBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes values_;
@@ -9277,11 +9099,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           values_ = value;
-          onChanged();
         } else {
           valuesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -9291,11 +9113,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder builderForValue) {
         if (valuesBuilder_ == null) {
           values_ = builderForValue.build();
-          onChanged();
         } else {
           valuesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -9304,31 +9126,30 @@ public final class Playlist4ApiProto {
       public Builder mergeValues(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes value) {
         if (valuesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              values_ != null &&
-              values_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance()) {
-            values_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.newBuilder(values_).mergeFrom(value).buildPartial();
+            values_ != null &&
+            values_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance()) {
+            getValuesBuilder().mergeFrom(value);
           } else {
             values_ = value;
           }
-          onChanged();
         } else {
           valuesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>required .spotify.playlist4.proto.ListAttributes values = 1;</code>
        */
       public Builder clearValues() {
-        if (valuesBuilder_ == null) {
-          values_ = null;
-          onChanged();
-        } else {
-          valuesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        values_ = null;
+        if (valuesBuilder_ != null) {
+          valuesBuilder_.dispose();
+          valuesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -9357,7 +9178,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder> 
           getValuesFieldBuilder() {
         if (valuesBuilder_ == null) {
-          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          valuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder>(
                   getValues(),
                   getParentForChildren(),
                   isClean());
@@ -9369,8 +9191,8 @@ public final class Playlist4ApiProto {
       private java.util.List<java.lang.Integer> noValue_ =
         java.util.Collections.emptyList();
       private void ensureNoValueIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          noValue_ = new java.util.ArrayList<>(noValue_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          noValue_ = new java.util.ArrayList<java.lang.Integer>(noValue_);
           bitField0_ |= 0x00000002;
         }
       }
@@ -9379,7 +9201,8 @@ public final class Playlist4ApiProto {
        * @return A list containing the noValue.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind> getNoValueList() {
-        return new com.google.protobuf.Internal.ListAdapter<>(noValue_, noValue_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<
+            java.lang.Integer, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributeKind>(noValue_, noValue_converter_);
       }
       /**
        * <code>repeated .spotify.playlist4.proto.ListAttributeKind no_value = 2;</code>
@@ -9451,13 +9274,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9488,10 +9311,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -9561,7 +9385,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.UpdateItemAttributes}
    */
-  public  static final class UpdateItemAttributes extends
+  public static final class UpdateItemAttributes extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.UpdateItemAttributes)
       UpdateItemAttributesOrBuilder {
@@ -9580,12 +9404,7 @@ public final class Playlist4ApiProto {
       return new UpdateItemAttributes();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateItemAttributes_descriptor;
     }
@@ -9600,11 +9419,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int INDEX_FIELD_NUMBER = 1;
-    private int index_;
+    private int index_ = 0;
     /**
      * <code>required int32 index = 1;</code>
      * @return Whether the index field is set.
      */
+    @java.lang.Override
     public boolean hasIndex() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -9612,6 +9432,7 @@ public final class Playlist4ApiProto {
      * <code>required int32 index = 1;</code>
      * @return The index.
      */
+    @java.lang.Override
     public int getIndex() {
       return index_;
     }
@@ -9622,6 +9443,7 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ItemAttributesPartialState new_attributes = 2;</code>
      * @return Whether the newAttributes field is set.
      */
+    @java.lang.Override
     public boolean hasNewAttributes() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -9629,12 +9451,14 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ItemAttributesPartialState new_attributes = 2;</code>
      * @return The newAttributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState getNewAttributes() {
       return newAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance() : newAttributes_;
     }
     /**
      * <code>required .spotify.playlist4.proto.ItemAttributesPartialState new_attributes = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder getNewAttributesOrBuilder() {
       return newAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance() : newAttributes_;
     }
@@ -9645,6 +9469,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ItemAttributesPartialState old_attributes = 3;</code>
      * @return Whether the oldAttributes field is set.
      */
+    @java.lang.Override
     public boolean hasOldAttributes() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -9652,12 +9477,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ItemAttributesPartialState old_attributes = 3;</code>
      * @return The oldAttributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState getOldAttributes() {
       return oldAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance() : oldAttributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ItemAttributesPartialState old_attributes = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder getOldAttributesOrBuilder() {
       return oldAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance() : oldAttributes_;
     }
@@ -9706,11 +9533,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9749,7 +9578,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.UpdateItemAttributes}
@@ -9758,7 +9588,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.UpdateItemAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateItemAttributes_descriptor;
       }
@@ -9791,20 +9621,18 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         index_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (newAttributesBuilder_ == null) {
-          newAttributes_ = null;
-        } else {
-          newAttributesBuilder_.clear();
+        newAttributes_ = null;
+        if (newAttributesBuilder_ != null) {
+          newAttributesBuilder_.dispose();
+          newAttributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (oldAttributesBuilder_ == null) {
-          oldAttributes_ = null;
-        } else {
-          oldAttributesBuilder_.clear();
+        oldAttributes_ = null;
+        if (oldAttributesBuilder_ != null) {
+          oldAttributesBuilder_.dispose();
+          oldAttributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -9831,6 +9659,12 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -9838,58 +9672,20 @@ public final class Playlist4ApiProto {
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (newAttributesBuilder_ == null) {
-            result.newAttributes_ = newAttributes_;
-          } else {
-            result.newAttributes_ = newAttributesBuilder_.build();
-          }
+          result.newAttributes_ = newAttributesBuilder_ == null
+              ? newAttributes_
+              : newAttributesBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (oldAttributesBuilder_ == null) {
-            result.oldAttributes_ = oldAttributes_;
-          } else {
-            result.oldAttributes_ = oldAttributesBuilder_.build();
-          }
+          result.oldAttributes_ = oldAttributesBuilder_ == null
+              ? oldAttributes_
+              : oldAttributesBuilder_.build();
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int index_ ;
@@ -9897,6 +9693,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 index = 1;</code>
        * @return Whether the index field is set.
        */
+      @java.lang.Override
       public boolean hasIndex() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -9904,6 +9701,7 @@ public final class Playlist4ApiProto {
        * <code>required int32 index = 1;</code>
        * @return The index.
        */
+      @java.lang.Override
       public int getIndex() {
         return index_;
       }
@@ -9913,8 +9711,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setIndex(int value) {
-        bitField0_ |= 0x00000001;
+
         index_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9959,11 +9758,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           newAttributes_ = value;
-          onChanged();
         } else {
           newAttributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -9973,11 +9772,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder builderForValue) {
         if (newAttributesBuilder_ == null) {
           newAttributes_ = builderForValue.build();
-          onChanged();
         } else {
           newAttributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -9986,31 +9785,30 @@ public final class Playlist4ApiProto {
       public Builder mergeNewAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState value) {
         if (newAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              newAttributes_ != null &&
-              newAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance()) {
-            newAttributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.newBuilder(newAttributes_).mergeFrom(value).buildPartial();
+            newAttributes_ != null &&
+            newAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance()) {
+            getNewAttributesBuilder().mergeFrom(value);
           } else {
             newAttributes_ = value;
           }
-          onChanged();
         } else {
           newAttributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>required .spotify.playlist4.proto.ItemAttributesPartialState new_attributes = 2;</code>
        */
       public Builder clearNewAttributes() {
-        if (newAttributesBuilder_ == null) {
-          newAttributes_ = null;
-          onChanged();
-        } else {
-          newAttributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        newAttributes_ = null;
+        if (newAttributesBuilder_ != null) {
+          newAttributesBuilder_.dispose();
+          newAttributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -10039,7 +9837,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder> 
           getNewAttributesFieldBuilder() {
         if (newAttributesBuilder_ == null) {
-          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder>(
                   getNewAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10078,11 +9877,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           oldAttributes_ = value;
-          onChanged();
         } else {
           oldAttributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -10092,11 +9891,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder builderForValue) {
         if (oldAttributesBuilder_ == null) {
           oldAttributes_ = builderForValue.build();
-          onChanged();
         } else {
           oldAttributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -10105,31 +9904,30 @@ public final class Playlist4ApiProto {
       public Builder mergeOldAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState value) {
         if (oldAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              oldAttributes_ != null &&
-              oldAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance()) {
-            oldAttributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.newBuilder(oldAttributes_).mergeFrom(value).buildPartial();
+            oldAttributes_ != null &&
+            oldAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.getDefaultInstance()) {
+            getOldAttributesBuilder().mergeFrom(value);
           } else {
             oldAttributes_ = value;
           }
-          onChanged();
         } else {
           oldAttributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ItemAttributesPartialState old_attributes = 3;</code>
        */
       public Builder clearOldAttributes() {
-        if (oldAttributesBuilder_ == null) {
-          oldAttributes_ = null;
-          onChanged();
-        } else {
-          oldAttributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        oldAttributes_ = null;
+        if (oldAttributesBuilder_ != null) {
+          oldAttributesBuilder_.dispose();
+          oldAttributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -10158,7 +9956,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder> 
           getOldAttributesFieldBuilder() {
         if (oldAttributesBuilder_ == null) {
-          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ItemAttributesPartialStateOrBuilder>(
                   getOldAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10167,13 +9966,13 @@ public final class Playlist4ApiProto {
         return oldAttributesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10204,10 +10003,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -10266,7 +10066,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.UpdateListAttributes}
    */
-  public  static final class UpdateListAttributes extends
+  public static final class UpdateListAttributes extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.UpdateListAttributes)
       UpdateListAttributesOrBuilder {
@@ -10285,12 +10085,7 @@ public final class Playlist4ApiProto {
       return new UpdateListAttributes();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateListAttributes_descriptor;
     }
@@ -10310,6 +10105,7 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ListAttributesPartialState new_attributes = 1;</code>
      * @return Whether the newAttributes field is set.
      */
+    @java.lang.Override
     public boolean hasNewAttributes() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -10317,12 +10113,14 @@ public final class Playlist4ApiProto {
      * <code>required .spotify.playlist4.proto.ListAttributesPartialState new_attributes = 1;</code>
      * @return The newAttributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState getNewAttributes() {
       return newAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance() : newAttributes_;
     }
     /**
      * <code>required .spotify.playlist4.proto.ListAttributesPartialState new_attributes = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder getNewAttributesOrBuilder() {
       return newAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance() : newAttributes_;
     }
@@ -10333,6 +10131,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListAttributesPartialState old_attributes = 2;</code>
      * @return Whether the oldAttributes field is set.
      */
+    @java.lang.Override
     public boolean hasOldAttributes() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -10340,12 +10139,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListAttributesPartialState old_attributes = 2;</code>
      * @return The oldAttributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState getOldAttributes() {
       return oldAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance() : oldAttributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ListAttributesPartialState old_attributes = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder getOldAttributesOrBuilder() {
       return oldAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance() : oldAttributes_;
     }
@@ -10394,11 +10195,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10437,7 +10240,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.UpdateListAttributes}
@@ -10446,7 +10250,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.UpdateListAttributes)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UpdateListAttributes_descriptor;
       }
@@ -10479,18 +10283,17 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (newAttributesBuilder_ == null) {
-          newAttributes_ = null;
-        } else {
-          newAttributesBuilder_.clear();
+        bitField0_ = 0;
+        newAttributes_ = null;
+        if (newAttributesBuilder_ != null) {
+          newAttributesBuilder_.dispose();
+          newAttributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (oldAttributesBuilder_ == null) {
-          oldAttributes_ = null;
-        } else {
-          oldAttributesBuilder_.clear();
+        oldAttributes_ = null;
+        if (oldAttributesBuilder_ != null) {
+          oldAttributesBuilder_.dispose();
+          oldAttributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -10517,61 +10320,29 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (newAttributesBuilder_ == null) {
-            result.newAttributes_ = newAttributes_;
-          } else {
-            result.newAttributes_ = newAttributesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (oldAttributesBuilder_ == null) {
-            result.oldAttributes_ = oldAttributes_;
-          } else {
-            result.oldAttributes_ = oldAttributesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.newAttributes_ = newAttributesBuilder_ == null
+              ? newAttributes_
+              : newAttributesBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.oldAttributes_ = oldAttributesBuilder_ == null
+              ? oldAttributes_
+              : oldAttributesBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState newAttributes_;
@@ -10604,11 +10375,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           newAttributes_ = value;
-          onChanged();
         } else {
           newAttributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -10618,11 +10389,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder builderForValue) {
         if (newAttributesBuilder_ == null) {
           newAttributes_ = builderForValue.build();
-          onChanged();
         } else {
           newAttributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -10631,31 +10402,30 @@ public final class Playlist4ApiProto {
       public Builder mergeNewAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState value) {
         if (newAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              newAttributes_ != null &&
-              newAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance()) {
-            newAttributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.newBuilder(newAttributes_).mergeFrom(value).buildPartial();
+            newAttributes_ != null &&
+            newAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance()) {
+            getNewAttributesBuilder().mergeFrom(value);
           } else {
             newAttributes_ = value;
           }
-          onChanged();
         } else {
           newAttributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>required .spotify.playlist4.proto.ListAttributesPartialState new_attributes = 1;</code>
        */
       public Builder clearNewAttributes() {
-        if (newAttributesBuilder_ == null) {
-          newAttributes_ = null;
-          onChanged();
-        } else {
-          newAttributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        newAttributes_ = null;
+        if (newAttributesBuilder_ != null) {
+          newAttributesBuilder_.dispose();
+          newAttributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -10684,7 +10454,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder> 
           getNewAttributesFieldBuilder() {
         if (newAttributesBuilder_ == null) {
-          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          newAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder>(
                   getNewAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10723,11 +10494,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           oldAttributes_ = value;
-          onChanged();
         } else {
           oldAttributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -10737,11 +10508,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder builderForValue) {
         if (oldAttributesBuilder_ == null) {
           oldAttributes_ = builderForValue.build();
-          onChanged();
         } else {
           oldAttributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -10750,31 +10521,30 @@ public final class Playlist4ApiProto {
       public Builder mergeOldAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState value) {
         if (oldAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              oldAttributes_ != null &&
-              oldAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance()) {
-            oldAttributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.newBuilder(oldAttributes_).mergeFrom(value).buildPartial();
+            oldAttributes_ != null &&
+            oldAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.getDefaultInstance()) {
+            getOldAttributesBuilder().mergeFrom(value);
           } else {
             oldAttributes_ = value;
           }
-          onChanged();
         } else {
           oldAttributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ListAttributesPartialState old_attributes = 2;</code>
        */
       public Builder clearOldAttributes() {
-        if (oldAttributesBuilder_ == null) {
-          oldAttributes_ = null;
-          onChanged();
-        } else {
-          oldAttributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        oldAttributes_ = null;
+        if (oldAttributesBuilder_ != null) {
+          oldAttributesBuilder_.dispose();
+          oldAttributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -10803,7 +10573,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder> 
           getOldAttributesFieldBuilder() {
         if (oldAttributesBuilder_ == null) {
-          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          oldAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialState.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesPartialStateOrBuilder>(
                   getOldAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -10812,13 +10583,13 @@ public final class Playlist4ApiProto {
         return oldAttributesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10849,10 +10620,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -10967,7 +10739,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Op}
    */
-  public  static final class Op extends
+  public static final class Op extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Op)
       OpOrBuilder {
@@ -10987,12 +10759,7 @@ public final class Playlist4ApiProto {
       return new Op();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Op_descriptor;
     }
@@ -11098,7 +10865,11 @@ public final class Playlist4ApiProto {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Kind> internalValueMap =
-              Kind::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Kind>() {
+              public Kind findValueByNumber(int number) {
+                return Kind.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -11108,7 +10879,7 @@ public final class Playlist4ApiProto {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.getDescriptor().getEnumTypes().get(0);
       }
@@ -11126,7 +10897,7 @@ public final class Playlist4ApiProto {
 
       private final int value;
 
-      Kind(int value) {
+      private Kind(int value) {
         this.value = value;
       }
 
@@ -11135,20 +10906,20 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int KIND_FIELD_NUMBER = 1;
-    private int kind_;
+    private int kind_ = 0;
     /**
      * <code>required .spotify.playlist4.proto.Op.Kind kind = 1;</code>
      * @return Whether the kind field is set.
      */
-    public boolean hasKind() {
+    @java.lang.Override public boolean hasKind() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>required .spotify.playlist4.proto.Op.Kind kind = 1;</code>
      * @return The kind.
      */
-    public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind getKind() {
-      com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.valueOf(kind_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind getKind() {
+      com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.forNumber(kind_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.KIND_UNKNOWN : result;
     }
 
@@ -11158,6 +10929,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Add add = 2;</code>
      * @return Whether the add field is set.
      */
+    @java.lang.Override
     public boolean hasAdd() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -11165,12 +10937,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Add add = 2;</code>
      * @return The add.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add getAdd() {
       return add_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.getDefaultInstance() : add_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.Add add = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder getAddOrBuilder() {
       return add_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.getDefaultInstance() : add_;
     }
@@ -11181,6 +10955,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Rem rem = 3;</code>
      * @return Whether the rem field is set.
      */
+    @java.lang.Override
     public boolean hasRem() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -11188,12 +10963,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Rem rem = 3;</code>
      * @return The rem.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem getRem() {
       return rem_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.getDefaultInstance() : rem_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.Rem rem = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder getRemOrBuilder() {
       return rem_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.getDefaultInstance() : rem_;
     }
@@ -11204,6 +10981,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Mov mov = 4;</code>
      * @return Whether the mov field is set.
      */
+    @java.lang.Override
     public boolean hasMov() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -11211,12 +10989,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Mov mov = 4;</code>
      * @return The mov.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov getMov() {
       return mov_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.getDefaultInstance() : mov_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.Mov mov = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder getMovOrBuilder() {
       return mov_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.getDefaultInstance() : mov_;
     }
@@ -11227,6 +11007,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.UpdateItemAttributes update_item_attributes = 5;</code>
      * @return Whether the updateItemAttributes field is set.
      */
+    @java.lang.Override
     public boolean hasUpdateItemAttributes() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -11234,12 +11015,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.UpdateItemAttributes update_item_attributes = 5;</code>
      * @return The updateItemAttributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes getUpdateItemAttributes() {
       return updateItemAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.getDefaultInstance() : updateItemAttributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.UpdateItemAttributes update_item_attributes = 5;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder getUpdateItemAttributesOrBuilder() {
       return updateItemAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.getDefaultInstance() : updateItemAttributes_;
     }
@@ -11250,6 +11033,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.UpdateListAttributes update_list_attributes = 6;</code>
      * @return Whether the updateListAttributes field is set.
      */
+    @java.lang.Override
     public boolean hasUpdateListAttributes() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -11257,12 +11041,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.UpdateListAttributes update_list_attributes = 6;</code>
      * @return The updateListAttributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes getUpdateListAttributes() {
       return updateListAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.getDefaultInstance() : updateListAttributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.UpdateListAttributes update_list_attributes = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder getUpdateListAttributesOrBuilder() {
       return updateListAttributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.getDefaultInstance() : updateListAttributes_;
     }
@@ -11311,11 +11097,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11354,7 +11142,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Op}
@@ -11363,7 +11152,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Op)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Op_descriptor;
       }
@@ -11399,38 +11188,33 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         kind_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (addBuilder_ == null) {
-          add_ = null;
-        } else {
-          addBuilder_.clear();
+        add_ = null;
+        if (addBuilder_ != null) {
+          addBuilder_.dispose();
+          addBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (remBuilder_ == null) {
-          rem_ = null;
-        } else {
-          remBuilder_.clear();
+        rem_ = null;
+        if (remBuilder_ != null) {
+          remBuilder_.dispose();
+          remBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (movBuilder_ == null) {
-          mov_ = null;
-        } else {
-          movBuilder_.clear();
+        mov_ = null;
+        if (movBuilder_ != null) {
+          movBuilder_.dispose();
+          movBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (updateItemAttributesBuilder_ == null) {
-          updateItemAttributes_ = null;
-        } else {
-          updateItemAttributesBuilder_.clear();
+        updateItemAttributes_ = null;
+        if (updateItemAttributesBuilder_ != null) {
+          updateItemAttributesBuilder_.dispose();
+          updateItemAttributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        if (updateListAttributesBuilder_ == null) {
-          updateListAttributes_ = null;
-        } else {
-          updateListAttributesBuilder_.clear();
+        updateListAttributes_ = null;
+        if (updateListAttributesBuilder_ != null) {
+          updateListAttributesBuilder_.dispose();
+          updateListAttributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -11457,89 +11241,51 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.kind_ = kind_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (addBuilder_ == null) {
-            result.add_ = add_;
-          } else {
-            result.add_ = addBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (remBuilder_ == null) {
-            result.rem_ = rem_;
-          } else {
-            result.rem_ = remBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000004;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          if (movBuilder_ == null) {
-            result.mov_ = mov_;
-          } else {
-            result.mov_ = movBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          if (updateItemAttributesBuilder_ == null) {
-            result.updateItemAttributes_ = updateItemAttributes_;
-          } else {
-            result.updateItemAttributes_ = updateItemAttributesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          if (updateListAttributesBuilder_ == null) {
-            result.updateListAttributes_ = updateListAttributes_;
-          } else {
-            result.updateListAttributes_ = updateListAttributesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000020;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.kind_ = kind_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.add_ = addBuilder_ == null
+              ? add_
+              : addBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.rem_ = remBuilder_ == null
+              ? rem_
+              : remBuilder_.build();
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.mov_ = movBuilder_ == null
+              ? mov_
+              : movBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.updateItemAttributes_ = updateItemAttributesBuilder_ == null
+              ? updateItemAttributes_
+              : updateItemAttributesBuilder_.build();
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.updateListAttributes_ = updateListAttributesBuilder_ == null
+              ? updateListAttributes_
+              : updateListAttributesBuilder_.build();
+          to_bitField0_ |= 0x00000020;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int kind_ = 0;
@@ -11547,15 +11293,16 @@ public final class Playlist4ApiProto {
        * <code>required .spotify.playlist4.proto.Op.Kind kind = 1;</code>
        * @return Whether the kind field is set.
        */
-      public boolean hasKind() {
+      @java.lang.Override public boolean hasKind() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>required .spotify.playlist4.proto.Op.Kind kind = 1;</code>
        * @return The kind.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind getKind() {
-        com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.valueOf(kind_);
+        com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.forNumber(kind_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Kind.KIND_UNKNOWN : result;
       }
       /**
@@ -11613,11 +11360,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           add_ = value;
-          onChanged();
         } else {
           addBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11627,11 +11374,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.Builder builderForValue) {
         if (addBuilder_ == null) {
           add_ = builderForValue.build();
-          onChanged();
         } else {
           addBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11640,31 +11387,30 @@ public final class Playlist4ApiProto {
       public Builder mergeAdd(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add value) {
         if (addBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              add_ != null &&
-              add_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.getDefaultInstance()) {
-            add_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.newBuilder(add_).mergeFrom(value).buildPartial();
+            add_ != null &&
+            add_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.getDefaultInstance()) {
+            getAddBuilder().mergeFrom(value);
           } else {
             add_ = value;
           }
-          onChanged();
         } else {
           addBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.Add add = 2;</code>
        */
       public Builder clearAdd() {
-        if (addBuilder_ == null) {
-          add_ = null;
-          onChanged();
-        } else {
-          addBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        add_ = null;
+        if (addBuilder_ != null) {
+          addBuilder_.dispose();
+          addBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -11693,7 +11439,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder> 
           getAddFieldBuilder() {
         if (addBuilder_ == null) {
-          addBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          addBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Add.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.AddOrBuilder>(
                   getAdd(),
                   getParentForChildren(),
                   isClean());
@@ -11732,11 +11479,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           rem_ = value;
-          onChanged();
         } else {
           remBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -11746,11 +11493,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.Builder builderForValue) {
         if (remBuilder_ == null) {
           rem_ = builderForValue.build();
-          onChanged();
         } else {
           remBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -11759,31 +11506,30 @@ public final class Playlist4ApiProto {
       public Builder mergeRem(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem value) {
         if (remBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              rem_ != null &&
-              rem_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.getDefaultInstance()) {
-            rem_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.newBuilder(rem_).mergeFrom(value).buildPartial();
+            rem_ != null &&
+            rem_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.getDefaultInstance()) {
+            getRemBuilder().mergeFrom(value);
           } else {
             rem_ = value;
           }
-          onChanged();
         } else {
           remBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.Rem rem = 3;</code>
        */
       public Builder clearRem() {
-        if (remBuilder_ == null) {
-          rem_ = null;
-          onChanged();
-        } else {
-          remBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        rem_ = null;
+        if (remBuilder_ != null) {
+          remBuilder_.dispose();
+          remBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -11812,7 +11558,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder> 
           getRemFieldBuilder() {
         if (remBuilder_ == null) {
-          remBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          remBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Rem.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.RemOrBuilder>(
                   getRem(),
                   getParentForChildren(),
                   isClean());
@@ -11851,11 +11598,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           mov_ = value;
-          onChanged();
         } else {
           movBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -11865,11 +11612,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.Builder builderForValue) {
         if (movBuilder_ == null) {
           mov_ = builderForValue.build();
-          onChanged();
         } else {
           movBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -11878,31 +11625,30 @@ public final class Playlist4ApiProto {
       public Builder mergeMov(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov value) {
         if (movBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0) &&
-              mov_ != null &&
-              mov_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.getDefaultInstance()) {
-            mov_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.newBuilder(mov_).mergeFrom(value).buildPartial();
+            mov_ != null &&
+            mov_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.getDefaultInstance()) {
+            getMovBuilder().mergeFrom(value);
           } else {
             mov_ = value;
           }
-          onChanged();
         } else {
           movBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.Mov mov = 4;</code>
        */
       public Builder clearMov() {
-        if (movBuilder_ == null) {
-          mov_ = null;
-          onChanged();
-        } else {
-          movBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000008);
+        mov_ = null;
+        if (movBuilder_ != null) {
+          movBuilder_.dispose();
+          movBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -11931,7 +11677,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder> 
           getMovFieldBuilder() {
         if (movBuilder_ == null) {
-          movBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          movBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Mov.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.MovOrBuilder>(
                   getMov(),
                   getParentForChildren(),
                   isClean());
@@ -11970,11 +11717,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           updateItemAttributes_ = value;
-          onChanged();
         } else {
           updateItemAttributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -11984,11 +11731,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.Builder builderForValue) {
         if (updateItemAttributesBuilder_ == null) {
           updateItemAttributes_ = builderForValue.build();
-          onChanged();
         } else {
           updateItemAttributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -11997,31 +11744,30 @@ public final class Playlist4ApiProto {
       public Builder mergeUpdateItemAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes value) {
         if (updateItemAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000010) != 0) &&
-              updateItemAttributes_ != null &&
-              updateItemAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.getDefaultInstance()) {
-            updateItemAttributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.newBuilder(updateItemAttributes_).mergeFrom(value).buildPartial();
+            updateItemAttributes_ != null &&
+            updateItemAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.getDefaultInstance()) {
+            getUpdateItemAttributesBuilder().mergeFrom(value);
           } else {
             updateItemAttributes_ = value;
           }
-          onChanged();
         } else {
           updateItemAttributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.UpdateItemAttributes update_item_attributes = 5;</code>
        */
       public Builder clearUpdateItemAttributes() {
-        if (updateItemAttributesBuilder_ == null) {
-          updateItemAttributes_ = null;
-          onChanged();
-        } else {
-          updateItemAttributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000010);
+        updateItemAttributes_ = null;
+        if (updateItemAttributesBuilder_ != null) {
+          updateItemAttributesBuilder_.dispose();
+          updateItemAttributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -12050,7 +11796,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder> 
           getUpdateItemAttributesFieldBuilder() {
         if (updateItemAttributesBuilder_ == null) {
-          updateItemAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          updateItemAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateItemAttributesOrBuilder>(
                   getUpdateItemAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -12089,11 +11836,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           updateListAttributes_ = value;
-          onChanged();
         } else {
           updateListAttributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -12103,11 +11850,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.Builder builderForValue) {
         if (updateListAttributesBuilder_ == null) {
           updateListAttributes_ = builderForValue.build();
-          onChanged();
         } else {
           updateListAttributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -12116,31 +11863,30 @@ public final class Playlist4ApiProto {
       public Builder mergeUpdateListAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes value) {
         if (updateListAttributesBuilder_ == null) {
           if (((bitField0_ & 0x00000020) != 0) &&
-              updateListAttributes_ != null &&
-              updateListAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.getDefaultInstance()) {
-            updateListAttributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.newBuilder(updateListAttributes_).mergeFrom(value).buildPartial();
+            updateListAttributes_ != null &&
+            updateListAttributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.getDefaultInstance()) {
+            getUpdateListAttributesBuilder().mergeFrom(value);
           } else {
             updateListAttributes_ = value;
           }
-          onChanged();
         } else {
           updateListAttributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.UpdateListAttributes update_list_attributes = 6;</code>
        */
       public Builder clearUpdateListAttributes() {
-        if (updateListAttributesBuilder_ == null) {
-          updateListAttributes_ = null;
-          onChanged();
-        } else {
-          updateListAttributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000020);
+        updateListAttributes_ = null;
+        if (updateListAttributesBuilder_ != null) {
+          updateListAttributesBuilder_.dispose();
+          updateListAttributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -12169,7 +11915,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder> 
           getUpdateListAttributesFieldBuilder() {
         if (updateListAttributesBuilder_ == null) {
-          updateListAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          updateListAttributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UpdateListAttributesOrBuilder>(
                   getUpdateListAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -12178,13 +11925,13 @@ public final class Playlist4ApiProto {
         return updateListAttributesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12215,10 +11962,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -12271,7 +12019,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.OpList}
    */
-  public  static final class OpList extends
+  public static final class OpList extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.OpList)
       OpListOrBuilder {
@@ -12291,12 +12039,7 @@ public final class Playlist4ApiProto {
       return new OpList();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_OpList_descriptor;
     }
@@ -12310,16 +12053,19 @@ public final class Playlist4ApiProto {
     }
 
     public static final int OPS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_;
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> getOpsList() {
       return ops_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
         getOpsOrBuilderList() {
       return ops_;
@@ -12327,18 +12073,21 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 1;</code>
      */
+    @java.lang.Override
     public int getOpsCount() {
       return ops_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op getOps(int index) {
       return ops_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder getOpsOrBuilder(
         int index) {
       return ops_.get(index);
@@ -12388,11 +12137,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12431,7 +12182,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.OpList}
@@ -12440,7 +12192,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.OpList)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpListOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_OpList_descriptor;
       }
@@ -12455,29 +12207,25 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getOpsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (opsBuilder_ == null) {
           ops_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          ops_ = null;
           opsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -12504,7 +12252,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList result) {
         if (opsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             ops_ = java.util.Collections.unmodifiableList(ops_);
@@ -12514,49 +12268,19 @@ public final class Playlist4ApiProto {
         } else {
           result.ops_ = opsBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpList result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          ops_ = new java.util.ArrayList<>(ops_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -12781,7 +12505,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
                   ops_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -12791,13 +12516,13 @@ public final class Playlist4ApiProto {
         return opsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12828,10 +12553,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -12980,7 +12706,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ChangeInfo}
    */
-  public  static final class ChangeInfo extends
+  public static final class ChangeInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ChangeInfo)
       ChangeInfoOrBuilder {
@@ -13000,12 +12726,7 @@ public final class Playlist4ApiProto {
       return new ChangeInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ChangeInfo_descriptor;
     }
@@ -13020,11 +12741,13 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int USER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object user_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object user_ = "";
     /**
      * <code>optional string user = 1;</code>
      * @return Whether the user field is set.
      */
+    @java.lang.Override
     public boolean hasUser() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -13032,6 +12755,7 @@ public final class Playlist4ApiProto {
      * <code>optional string user = 1;</code>
      * @return The user.
      */
+    @java.lang.Override
     public java.lang.String getUser() {
       java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
@@ -13050,6 +12774,7 @@ public final class Playlist4ApiProto {
      * <code>optional string user = 1;</code>
      * @return The bytes for user.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUserBytes() {
       java.lang.Object ref = user_;
@@ -13065,11 +12790,12 @@ public final class Playlist4ApiProto {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 2;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>optional int64 timestamp = 2;</code>
      * @return Whether the timestamp field is set.
      */
+    @java.lang.Override
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -13077,16 +12803,18 @@ public final class Playlist4ApiProto {
      * <code>optional int64 timestamp = 2;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int ADMIN_FIELD_NUMBER = 3;
-    private boolean admin_;
+    private boolean admin_ = false;
     /**
      * <code>optional bool admin = 3;</code>
      * @return Whether the admin field is set.
      */
+    @java.lang.Override
     public boolean hasAdmin() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -13094,16 +12822,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool admin = 3;</code>
      * @return The admin.
      */
+    @java.lang.Override
     public boolean getAdmin() {
       return admin_;
     }
 
     public static final int UNDO_FIELD_NUMBER = 4;
-    private boolean undo_;
+    private boolean undo_ = false;
     /**
      * <code>optional bool undo = 4;</code>
      * @return Whether the undo field is set.
      */
+    @java.lang.Override
     public boolean hasUndo() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -13111,16 +12841,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool undo = 4;</code>
      * @return The undo.
      */
+    @java.lang.Override
     public boolean getUndo() {
       return undo_;
     }
 
     public static final int REDO_FIELD_NUMBER = 5;
-    private boolean redo_;
+    private boolean redo_ = false;
     /**
      * <code>optional bool redo = 5;</code>
      * @return Whether the redo field is set.
      */
+    @java.lang.Override
     public boolean hasRedo() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -13128,16 +12860,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool redo = 5;</code>
      * @return The redo.
      */
+    @java.lang.Override
     public boolean getRedo() {
       return redo_;
     }
 
     public static final int MERGE_FIELD_NUMBER = 6;
-    private boolean merge_;
+    private boolean merge_ = false;
     /**
      * <code>optional bool merge = 6;</code>
      * @return Whether the merge field is set.
      */
+    @java.lang.Override
     public boolean hasMerge() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -13145,16 +12879,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool merge = 6;</code>
      * @return The merge.
      */
+    @java.lang.Override
     public boolean getMerge() {
       return merge_;
     }
 
     public static final int COMPRESSED_FIELD_NUMBER = 7;
-    private boolean compressed_;
+    private boolean compressed_ = false;
     /**
      * <code>optional bool compressed = 7;</code>
      * @return Whether the compressed field is set.
      */
+    @java.lang.Override
     public boolean hasCompressed() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -13162,16 +12898,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool compressed = 7;</code>
      * @return The compressed.
      */
+    @java.lang.Override
     public boolean getCompressed() {
       return compressed_;
     }
 
     public static final int MIGRATION_FIELD_NUMBER = 8;
-    private boolean migration_;
+    private boolean migration_ = false;
     /**
      * <code>optional bool migration = 8;</code>
      * @return Whether the migration field is set.
      */
+    @java.lang.Override
     public boolean hasMigration() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -13179,16 +12917,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool migration = 8;</code>
      * @return The migration.
      */
+    @java.lang.Override
     public boolean getMigration() {
       return migration_;
     }
 
     public static final int SPLIT_ID_FIELD_NUMBER = 9;
-    private int splitId_;
+    private int splitId_ = 0;
     /**
      * <code>optional int32 split_id = 9;</code>
      * @return Whether the splitId field is set.
      */
+    @java.lang.Override
     public boolean hasSplitId() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -13196,6 +12936,7 @@ public final class Playlist4ApiProto {
      * <code>optional int32 split_id = 9;</code>
      * @return The splitId.
      */
+    @java.lang.Override
     public int getSplitId() {
       return splitId_;
     }
@@ -13206,6 +12947,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.SourceInfo source = 10;</code>
      * @return Whether the source field is set.
      */
+    @java.lang.Override
     public boolean hasSource() {
       return ((bitField0_ & 0x00000200) != 0);
     }
@@ -13213,12 +12955,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.SourceInfo source = 10;</code>
      * @return The source.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo getSource() {
       return source_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.getDefaultInstance() : source_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.SourceInfo source = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder getSourceOrBuilder() {
       return source_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.getDefaultInstance() : source_;
     }
@@ -13267,11 +13011,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13310,7 +13056,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ChangeInfo}
@@ -13319,7 +13066,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ChangeInfo)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ChangeInfo_descriptor;
       }
@@ -13351,30 +13098,21 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         user_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
         admin_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
         undo_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         redo_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
         merge_ = false;
-        bitField0_ = (bitField0_ & ~0x00000020);
         compressed_ = false;
-        bitField0_ = (bitField0_ & ~0x00000040);
         migration_ = false;
-        bitField0_ = (bitField0_ & ~0x00000080);
         splitId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        if (sourceBuilder_ == null) {
-          source_ = null;
-        } else {
-          sourceBuilder_.clear();
+        source_ = null;
+        if (sourceBuilder_ != null) {
+          sourceBuilder_.dispose();
+          sourceBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
 
@@ -13401,12 +13139,18 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.user_ = user_;
           to_bitField0_ |= 0x00000001;
         }
-        result.user_ = user_;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.timestamp_ = timestamp_;
           to_bitField0_ |= 0x00000002;
@@ -13440,50 +13184,14 @@ public final class Playlist4ApiProto {
           to_bitField0_ |= 0x00000100;
         }
         if (((from_bitField0_ & 0x00000200) != 0)) {
-          if (sourceBuilder_ == null) {
-            result.source_ = source_;
-          } else {
-            result.source_ = sourceBuilder_.build();
-          }
+          result.source_ = sourceBuilder_ == null
+              ? source_
+              : sourceBuilder_.build();
           to_bitField0_ |= 0x00000200;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private java.lang.Object user_ = "";
@@ -13536,11 +13244,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setUser(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         user_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13549,8 +13255,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearUser() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         user_ = getDefaultInstance().getUser();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -13561,11 +13267,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         user_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13575,6 +13279,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 2;</code>
        * @return Whether the timestamp field is set.
        */
+      @java.lang.Override
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -13582,6 +13287,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 2;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -13591,8 +13297,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000002;
+
         timestamp_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -13612,6 +13319,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool admin = 3;</code>
        * @return Whether the admin field is set.
        */
+      @java.lang.Override
       public boolean hasAdmin() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -13619,6 +13327,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool admin = 3;</code>
        * @return The admin.
        */
+      @java.lang.Override
       public boolean getAdmin() {
         return admin_;
       }
@@ -13628,8 +13337,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setAdmin(boolean value) {
-        bitField0_ |= 0x00000004;
+
         admin_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -13649,6 +13359,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool undo = 4;</code>
        * @return Whether the undo field is set.
        */
+      @java.lang.Override
       public boolean hasUndo() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -13656,6 +13367,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool undo = 4;</code>
        * @return The undo.
        */
+      @java.lang.Override
       public boolean getUndo() {
         return undo_;
       }
@@ -13665,8 +13377,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setUndo(boolean value) {
-        bitField0_ |= 0x00000008;
+
         undo_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -13686,6 +13399,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool redo = 5;</code>
        * @return Whether the redo field is set.
        */
+      @java.lang.Override
       public boolean hasRedo() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -13693,6 +13407,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool redo = 5;</code>
        * @return The redo.
        */
+      @java.lang.Override
       public boolean getRedo() {
         return redo_;
       }
@@ -13702,8 +13417,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setRedo(boolean value) {
-        bitField0_ |= 0x00000010;
+
         redo_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -13723,6 +13439,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool merge = 6;</code>
        * @return Whether the merge field is set.
        */
+      @java.lang.Override
       public boolean hasMerge() {
         return ((bitField0_ & 0x00000020) != 0);
       }
@@ -13730,6 +13447,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool merge = 6;</code>
        * @return The merge.
        */
+      @java.lang.Override
       public boolean getMerge() {
         return merge_;
       }
@@ -13739,8 +13457,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setMerge(boolean value) {
-        bitField0_ |= 0x00000020;
+
         merge_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -13760,6 +13479,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool compressed = 7;</code>
        * @return Whether the compressed field is set.
        */
+      @java.lang.Override
       public boolean hasCompressed() {
         return ((bitField0_ & 0x00000040) != 0);
       }
@@ -13767,6 +13487,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool compressed = 7;</code>
        * @return The compressed.
        */
+      @java.lang.Override
       public boolean getCompressed() {
         return compressed_;
       }
@@ -13776,8 +13497,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setCompressed(boolean value) {
-        bitField0_ |= 0x00000040;
+
         compressed_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -13797,6 +13519,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool migration = 8;</code>
        * @return Whether the migration field is set.
        */
+      @java.lang.Override
       public boolean hasMigration() {
         return ((bitField0_ & 0x00000080) != 0);
       }
@@ -13804,6 +13527,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool migration = 8;</code>
        * @return The migration.
        */
+      @java.lang.Override
       public boolean getMigration() {
         return migration_;
       }
@@ -13813,8 +13537,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setMigration(boolean value) {
-        bitField0_ |= 0x00000080;
+
         migration_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -13834,6 +13559,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 split_id = 9;</code>
        * @return Whether the splitId field is set.
        */
+      @java.lang.Override
       public boolean hasSplitId() {
         return ((bitField0_ & 0x00000100) != 0);
       }
@@ -13841,6 +13567,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 split_id = 9;</code>
        * @return The splitId.
        */
+      @java.lang.Override
       public int getSplitId() {
         return splitId_;
       }
@@ -13850,8 +13577,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setSplitId(int value) {
-        bitField0_ |= 0x00000100;
+
         splitId_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -13896,11 +13624,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           source_ = value;
-          onChanged();
         } else {
           sourceBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
@@ -13910,11 +13638,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Builder builderForValue) {
         if (sourceBuilder_ == null) {
           source_ = builderForValue.build();
-          onChanged();
         } else {
           sourceBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
@@ -13923,31 +13651,30 @@ public final class Playlist4ApiProto {
       public Builder mergeSource(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo value) {
         if (sourceBuilder_ == null) {
           if (((bitField0_ & 0x00000200) != 0) &&
-              source_ != null &&
-              source_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.getDefaultInstance()) {
-            source_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.newBuilder(source_).mergeFrom(value).buildPartial();
+            source_ != null &&
+            source_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.getDefaultInstance()) {
+            getSourceBuilder().mergeFrom(value);
           } else {
             source_ = value;
           }
-          onChanged();
         } else {
           sourceBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.SourceInfo source = 10;</code>
        */
       public Builder clearSource() {
-        if (sourceBuilder_ == null) {
-          source_ = null;
-          onChanged();
-        } else {
-          sourceBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000200);
+        source_ = null;
+        if (sourceBuilder_ != null) {
+          sourceBuilder_.dispose();
+          sourceBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -13976,7 +13703,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder> 
           getSourceFieldBuilder() {
         if (sourceBuilder_ == null) {
-          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder>(
                   getSource(),
                   getParentForChildren(),
                   isClean());
@@ -13985,13 +13713,13 @@ public final class Playlist4ApiProto {
         return sourceBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14022,10 +13750,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -14116,7 +13845,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.SourceInfo}
    */
-  public  static final class SourceInfo extends
+  public static final class SourceInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.SourceInfo)
       SourceInfoOrBuilder {
@@ -14139,12 +13868,7 @@ public final class Playlist4ApiProto {
       return new SourceInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SourceInfo_descriptor;
     }
@@ -14259,7 +13983,11 @@ public final class Playlist4ApiProto {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Client> internalValueMap =
-              Client::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Client>() {
+              public Client findValueByNumber(int number) {
+                return Client.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -14269,7 +13997,7 @@ public final class Playlist4ApiProto {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.getDescriptor().getEnumTypes().get(0);
       }
@@ -14287,7 +14015,7 @@ public final class Playlist4ApiProto {
 
       private final int value;
 
-      Client(int value) {
+      private Client(int value) {
         this.value = value;
       }
 
@@ -14296,29 +14024,31 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int CLIENT_FIELD_NUMBER = 1;
-    private int client_;
+    private int client_ = 0;
     /**
      * <code>optional .spotify.playlist4.proto.SourceInfo.Client client = 1;</code>
      * @return Whether the client field is set.
      */
-    public boolean hasClient() {
+    @java.lang.Override public boolean hasClient() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>optional .spotify.playlist4.proto.SourceInfo.Client client = 1;</code>
      * @return The client.
      */
-    public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client getClient() {
-      com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.valueOf(client_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client getClient() {
+      com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.forNumber(client_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.CLIENT_UNKNOWN : result;
     }
 
     public static final int APP_FIELD_NUMBER = 3;
-    private volatile java.lang.Object app_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object app_ = "";
     /**
      * <code>optional string app = 3;</code>
      * @return Whether the app field is set.
      */
+    @java.lang.Override
     public boolean hasApp() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -14326,6 +14056,7 @@ public final class Playlist4ApiProto {
      * <code>optional string app = 3;</code>
      * @return The app.
      */
+    @java.lang.Override
     public java.lang.String getApp() {
       java.lang.Object ref = app_;
       if (ref instanceof java.lang.String) {
@@ -14344,6 +14075,7 @@ public final class Playlist4ApiProto {
      * <code>optional string app = 3;</code>
      * @return The bytes for app.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAppBytes() {
       java.lang.Object ref = app_;
@@ -14359,11 +14091,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int SOURCE_FIELD_NUMBER = 4;
-    private volatile java.lang.Object source_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object source_ = "";
     /**
      * <code>optional string source = 4;</code>
      * @return Whether the source field is set.
      */
+    @java.lang.Override
     public boolean hasSource() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -14371,6 +14105,7 @@ public final class Playlist4ApiProto {
      * <code>optional string source = 4;</code>
      * @return The source.
      */
+    @java.lang.Override
     public java.lang.String getSource() {
       java.lang.Object ref = source_;
       if (ref instanceof java.lang.String) {
@@ -14389,6 +14124,7 @@ public final class Playlist4ApiProto {
      * <code>optional string source = 4;</code>
      * @return The bytes for source.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSourceBytes() {
       java.lang.Object ref = source_;
@@ -14404,11 +14140,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int VERSION_FIELD_NUMBER = 5;
-    private volatile java.lang.Object version_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object version_ = "";
     /**
      * <code>optional string version = 5;</code>
      * @return Whether the version field is set.
      */
+    @java.lang.Override
     public boolean hasVersion() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -14416,6 +14154,7 @@ public final class Playlist4ApiProto {
      * <code>optional string version = 5;</code>
      * @return The version.
      */
+    @java.lang.Override
     public java.lang.String getVersion() {
       java.lang.Object ref = version_;
       if (ref instanceof java.lang.String) {
@@ -14434,6 +14173,7 @@ public final class Playlist4ApiProto {
      * <code>optional string version = 5;</code>
      * @return The bytes for version.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getVersionBytes() {
       java.lang.Object ref = version_;
@@ -14492,11 +14232,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14535,7 +14277,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.SourceInfo}
@@ -14544,7 +14287,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.SourceInfo)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SourceInfo_descriptor;
       }
@@ -14559,27 +14302,22 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         client_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         app_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         source_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         version_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -14606,61 +14344,33 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.client_ = client_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.app_ = app_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.source_ = source_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.version_ = version_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.client_ = client_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.app_ = app_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.source_ = source_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.version_ = version_;
+          to_bitField0_ |= 0x00000008;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int client_ = 0;
@@ -14668,15 +14378,16 @@ public final class Playlist4ApiProto {
        * <code>optional .spotify.playlist4.proto.SourceInfo.Client client = 1;</code>
        * @return Whether the client field is set.
        */
-      public boolean hasClient() {
+      @java.lang.Override public boolean hasClient() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>optional .spotify.playlist4.proto.SourceInfo.Client client = 1;</code>
        * @return The client.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client getClient() {
-        com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.valueOf(client_);
+        com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client result = com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.forNumber(client_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SourceInfo.Client.CLIENT_UNKNOWN : result;
       }
       /**
@@ -14754,11 +14465,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setApp(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         app_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -14767,8 +14476,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearApp() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         app_ = getDefaultInstance().getApp();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -14779,11 +14488,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setAppBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         app_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -14838,11 +14545,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setSource(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         source_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -14851,8 +14556,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearSource() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         source_ = getDefaultInstance().getSource();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -14863,11 +14568,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setSourceBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         source_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -14922,11 +14625,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setVersion(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         version_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -14935,8 +14636,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearVersion() {
-        bitField0_ = (bitField0_ & ~0x00000008);
         version_ = getDefaultInstance().getVersion();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -14947,22 +14648,20 @@ public final class Playlist4ApiProto {
        */
       public Builder setVersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         version_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14993,10 +14692,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -15075,7 +14775,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Delta}
    */
-  public  static final class Delta extends
+  public static final class Delta extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Delta)
       DeltaOrBuilder {
@@ -15096,12 +14796,7 @@ public final class Playlist4ApiProto {
       return new Delta();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Delta_descriptor;
     }
@@ -15116,11 +14811,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int BASE_VERSION_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString baseVersion_;
+    private com.google.protobuf.ByteString baseVersion_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes base_version = 1;</code>
      * @return Whether the baseVersion field is set.
      */
+    @java.lang.Override
     public boolean hasBaseVersion() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -15128,21 +14824,25 @@ public final class Playlist4ApiProto {
      * <code>optional bytes base_version = 1;</code>
      * @return The baseVersion.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getBaseVersion() {
       return baseVersion_;
     }
 
     public static final int OPS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_;
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> getOpsList() {
       return ops_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
         getOpsOrBuilderList() {
       return ops_;
@@ -15150,18 +14850,21 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public int getOpsCount() {
       return ops_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op getOps(int index) {
       return ops_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder getOpsOrBuilder(
         int index) {
       return ops_.get(index);
@@ -15173,6 +14876,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ChangeInfo info = 4;</code>
      * @return Whether the info field is set.
      */
+    @java.lang.Override
     public boolean hasInfo() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -15180,12 +14884,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ChangeInfo info = 4;</code>
      * @return The info.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo getInfo() {
       return info_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.getDefaultInstance() : info_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ChangeInfo info = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder getInfoOrBuilder() {
       return info_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.getDefaultInstance() : info_;
     }
@@ -15234,11 +14940,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15277,7 +14985,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Delta}
@@ -15286,7 +14995,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Delta)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Delta_descriptor;
       }
@@ -15319,20 +15028,20 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         baseVersion_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         if (opsBuilder_ == null) {
           ops_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          ops_ = null;
           opsBuilder_.clear();
         }
-        if (infoBuilder_ == null) {
-          info_ = null;
-        } else {
-          infoBuilder_.clear();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        info_ = null;
+        if (infoBuilder_ != null) {
+          infoBuilder_.dispose();
+          infoBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -15359,12 +15068,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.baseVersion_ = baseVersion_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta result) {
         if (opsBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             ops_ = java.util.Collections.unmodifiableList(ops_);
@@ -15374,51 +15084,24 @@ public final class Playlist4ApiProto {
         } else {
           result.ops_ = opsBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (infoBuilder_ == null) {
-            result.info_ = info_;
-          } else {
-            result.info_ = infoBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.baseVersion_ = baseVersion_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.info_ = infoBuilder_ == null
+              ? info_
+              : infoBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString baseVersion_ = com.google.protobuf.ByteString.EMPTY;
@@ -15426,6 +15109,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes base_version = 1;</code>
        * @return Whether the baseVersion field is set.
        */
+      @java.lang.Override
       public boolean hasBaseVersion() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -15433,6 +15117,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes base_version = 1;</code>
        * @return The baseVersion.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getBaseVersion() {
         return baseVersion_;
       }
@@ -15442,11 +15127,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setBaseVersion(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         baseVersion_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -15464,8 +15147,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          ops_ = new java.util.ArrayList<>(ops_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -15690,7 +15373,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
                   ops_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -15730,11 +15414,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           info_ = value;
-          onChanged();
         } else {
           infoBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -15744,11 +15428,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.Builder builderForValue) {
         if (infoBuilder_ == null) {
           info_ = builderForValue.build();
-          onChanged();
         } else {
           infoBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -15757,31 +15441,30 @@ public final class Playlist4ApiProto {
       public Builder mergeInfo(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo value) {
         if (infoBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              info_ != null &&
-              info_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.getDefaultInstance()) {
-            info_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.newBuilder(info_).mergeFrom(value).buildPartial();
+            info_ != null &&
+            info_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.getDefaultInstance()) {
+            getInfoBuilder().mergeFrom(value);
           } else {
             info_ = value;
           }
-          onChanged();
         } else {
           infoBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ChangeInfo info = 4;</code>
        */
       public Builder clearInfo() {
-        if (infoBuilder_ == null) {
-          info_ = null;
-          onChanged();
-        } else {
-          infoBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        info_ = null;
+        if (infoBuilder_ != null) {
+          infoBuilder_.dispose();
+          infoBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -15810,7 +15493,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder> 
           getInfoFieldBuilder() {
         if (infoBuilder_ == null) {
-          infoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          infoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfo.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ChangeInfoOrBuilder>(
                   getInfo(),
                   getParentForChildren(),
                   isClean());
@@ -15819,13 +15503,13 @@ public final class Playlist4ApiProto {
         return infoBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -15856,10 +15540,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -15934,7 +15619,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.Diff}
    */
-  public  static final class Diff extends
+  public static final class Diff extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.Diff)
       DiffOrBuilder {
@@ -15956,12 +15641,7 @@ public final class Playlist4ApiProto {
       return new Diff();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Diff_descriptor;
     }
@@ -15976,11 +15656,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int FROM_REVISION_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString fromRevision_;
+    private com.google.protobuf.ByteString fromRevision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes from_revision = 1;</code>
      * @return Whether the fromRevision field is set.
      */
+    @java.lang.Override
     public boolean hasFromRevision() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -15988,21 +15669,25 @@ public final class Playlist4ApiProto {
      * <code>required bytes from_revision = 1;</code>
      * @return The fromRevision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFromRevision() {
       return fromRevision_;
     }
 
     public static final int OPS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_;
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> getOpsList() {
       return ops_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
         getOpsOrBuilderList() {
       return ops_;
@@ -16010,29 +15695,33 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public int getOpsCount() {
       return ops_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op getOps(int index) {
       return ops_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder getOpsOrBuilder(
         int index) {
       return ops_.get(index);
     }
 
     public static final int TO_REVISION_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString toRevision_;
+    private com.google.protobuf.ByteString toRevision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes to_revision = 3;</code>
      * @return Whether the toRevision field is set.
      */
+    @java.lang.Override
     public boolean hasToRevision() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -16040,6 +15729,7 @@ public final class Playlist4ApiProto {
      * <code>required bytes to_revision = 3;</code>
      * @return The toRevision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getToRevision() {
       return toRevision_;
     }
@@ -16088,11 +15778,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -16131,7 +15823,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.Diff}
@@ -16140,7 +15833,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.Diff)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_Diff_descriptor;
       }
@@ -16155,33 +15848,27 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getOpsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fromRevision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         if (opsBuilder_ == null) {
           ops_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          ops_ = null;
           opsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         toRevision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -16208,12 +15895,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.fromRevision_ = fromRevision_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff result) {
         if (opsBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             ops_ = java.util.Collections.unmodifiableList(ops_);
@@ -16223,47 +15911,22 @@ public final class Playlist4ApiProto {
         } else {
           result.ops_ = opsBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.toRevision_ = toRevision_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.fromRevision_ = fromRevision_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.toRevision_ = toRevision_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString fromRevision_ = com.google.protobuf.ByteString.EMPTY;
@@ -16271,6 +15934,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes from_revision = 1;</code>
        * @return Whether the fromRevision field is set.
        */
+      @java.lang.Override
       public boolean hasFromRevision() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -16278,6 +15942,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes from_revision = 1;</code>
        * @return The fromRevision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFromRevision() {
         return fromRevision_;
       }
@@ -16287,11 +15952,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setFromRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         fromRevision_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -16309,8 +15972,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          ops_ = new java.util.ArrayList<>(ops_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -16535,7 +16198,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
                   ops_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -16550,6 +16214,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes to_revision = 3;</code>
        * @return Whether the toRevision field is set.
        */
+      @java.lang.Override
       public boolean hasToRevision() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -16557,6 +16222,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes to_revision = 3;</code>
        * @return The toRevision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getToRevision() {
         return toRevision_;
       }
@@ -16566,11 +16232,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setToRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         toRevision_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -16585,13 +16249,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -16622,10 +16286,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -16728,7 +16393,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ListChanges}
    */
-  public  static final class ListChanges extends
+  public static final class ListChanges extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ListChanges)
       ListChangesOrBuilder {
@@ -16750,12 +16415,7 @@ public final class Playlist4ApiProto {
       return new ListChanges();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListChanges_descriptor;
     }
@@ -16770,11 +16430,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int BASE_REVISION_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString baseRevision_;
+    private com.google.protobuf.ByteString baseRevision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes base_revision = 1;</code>
      * @return Whether the baseRevision field is set.
      */
+    @java.lang.Override
     public boolean hasBaseRevision() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -16782,21 +16443,25 @@ public final class Playlist4ApiProto {
      * <code>optional bytes base_revision = 1;</code>
      * @return The baseRevision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getBaseRevision() {
       return baseRevision_;
     }
 
     public static final int DELTAS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta> deltas_;
     /**
      * <code>repeated .spotify.playlist4.proto.Delta deltas = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta> getDeltasList() {
       return deltas_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Delta deltas = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder> 
         getDeltasOrBuilderList() {
       return deltas_;
@@ -16804,29 +16469,33 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Delta deltas = 2;</code>
      */
+    @java.lang.Override
     public int getDeltasCount() {
       return deltas_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Delta deltas = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta getDeltas(int index) {
       return deltas_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Delta deltas = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder getDeltasOrBuilder(
         int index) {
       return deltas_.get(index);
     }
 
     public static final int WANT_RESULTING_REVISIONS_FIELD_NUMBER = 3;
-    private boolean wantResultingRevisions_;
+    private boolean wantResultingRevisions_ = false;
     /**
      * <code>optional bool want_resulting_revisions = 3;</code>
      * @return Whether the wantResultingRevisions field is set.
      */
+    @java.lang.Override
     public boolean hasWantResultingRevisions() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -16834,16 +16503,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool want_resulting_revisions = 3;</code>
      * @return The wantResultingRevisions.
      */
+    @java.lang.Override
     public boolean getWantResultingRevisions() {
       return wantResultingRevisions_;
     }
 
     public static final int WANT_SYNC_RESULT_FIELD_NUMBER = 4;
-    private boolean wantSyncResult_;
+    private boolean wantSyncResult_ = false;
     /**
      * <code>optional bool want_sync_result = 4;</code>
      * @return Whether the wantSyncResult field is set.
      */
+    @java.lang.Override
     public boolean hasWantSyncResult() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -16851,16 +16522,19 @@ public final class Playlist4ApiProto {
      * <code>optional bool want_sync_result = 4;</code>
      * @return The wantSyncResult.
      */
+    @java.lang.Override
     public boolean getWantSyncResult() {
       return wantSyncResult_;
     }
 
     public static final int NONCES_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
     private com.google.protobuf.Internal.LongList nonces_;
     /**
      * <code>repeated int64 nonces = 6;</code>
      * @return A list containing the nonces.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Long>
         getNoncesList() {
       return nonces_;
@@ -16925,11 +16599,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -16968,7 +16644,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ListChanges}
@@ -16977,7 +16654,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ListChanges)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChangesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ListChanges_descriptor;
       }
@@ -16992,37 +16669,29 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDeltasFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         baseRevision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         if (deltasBuilder_ == null) {
           deltas_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          deltas_ = null;
           deltasBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         wantResultingRevisions_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
         wantSyncResult_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
         nonces_ = emptyLongList();
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -17049,12 +16718,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.baseRevision_ = baseRevision_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges result) {
         if (deltasBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             deltas_ = java.util.Collections.unmodifiableList(deltas_);
@@ -17064,6 +16734,20 @@ public final class Playlist4ApiProto {
         } else {
           result.deltas_ = deltasBuilder_.build();
         }
+        if (((bitField0_ & 0x00000010) != 0)) {
+          nonces_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.nonces_ = nonces_;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListChanges result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.baseRevision_ = baseRevision_;
+          to_bitField0_ |= 0x00000001;
+        }
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.wantResultingRevisions_ = wantResultingRevisions_;
           to_bitField0_ |= 0x00000002;
@@ -17072,48 +16756,9 @@ public final class Playlist4ApiProto {
           result.wantSyncResult_ = wantSyncResult_;
           to_bitField0_ |= 0x00000004;
         }
-        if (((bitField0_ & 0x00000010) != 0)) {
-          nonces_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.nonces_ = nonces_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private com.google.protobuf.ByteString baseRevision_ = com.google.protobuf.ByteString.EMPTY;
@@ -17121,6 +16766,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes base_revision = 1;</code>
        * @return Whether the baseRevision field is set.
        */
+      @java.lang.Override
       public boolean hasBaseRevision() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -17128,6 +16774,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes base_revision = 1;</code>
        * @return The baseRevision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getBaseRevision() {
         return baseRevision_;
       }
@@ -17137,11 +16784,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setBaseRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         baseRevision_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -17159,8 +16804,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta> deltas_ =
         java.util.Collections.emptyList();
       private void ensureDeltasIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          deltas_ = new java.util.ArrayList<>(deltas_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          deltas_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta>(deltas_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -17385,7 +17030,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder> 
           getDeltasFieldBuilder() {
         if (deltasBuilder_ == null) {
-          deltasBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          deltasBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Delta.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DeltaOrBuilder>(
                   deltas_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -17400,6 +17046,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool want_resulting_revisions = 3;</code>
        * @return Whether the wantResultingRevisions field is set.
        */
+      @java.lang.Override
       public boolean hasWantResultingRevisions() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -17407,6 +17054,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool want_resulting_revisions = 3;</code>
        * @return The wantResultingRevisions.
        */
+      @java.lang.Override
       public boolean getWantResultingRevisions() {
         return wantResultingRevisions_;
       }
@@ -17416,8 +17064,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setWantResultingRevisions(boolean value) {
-        bitField0_ |= 0x00000004;
+
         wantResultingRevisions_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -17437,6 +17086,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool want_sync_result = 4;</code>
        * @return Whether the wantSyncResult field is set.
        */
+      @java.lang.Override
       public boolean hasWantSyncResult() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -17444,6 +17094,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool want_sync_result = 4;</code>
        * @return The wantSyncResult.
        */
+      @java.lang.Override
       public boolean getWantSyncResult() {
         return wantSyncResult_;
       }
@@ -17453,8 +17104,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setWantSyncResult(boolean value) {
-        bitField0_ |= 0x00000008;
+
         wantSyncResult_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -17471,10 +17123,10 @@ public final class Playlist4ApiProto {
 
       private com.google.protobuf.Internal.LongList nonces_ = emptyLongList();
       private void ensureNoncesIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
+        if (!((bitField0_ & 0x00000010) != 0)) {
           nonces_ = mutableCopy(nonces_);
           bitField0_ |= 0x00000010;
-         }
+        }
       }
       /**
        * <code>repeated int64 nonces = 6;</code>
@@ -17508,6 +17160,7 @@ public final class Playlist4ApiProto {
        */
       public Builder setNonces(
           int index, long value) {
+
         ensureNoncesIsMutable();
         nonces_.setLong(index, value);
         onChanged();
@@ -17519,6 +17172,7 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder addNonces(long value) {
+
         ensureNoncesIsMutable();
         nonces_.addLong(value);
         onChanged();
@@ -17548,13 +17202,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -17585,10 +17239,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -17783,7 +17438,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.SelectedListContent}
    */
-  public  static final class SelectedListContent extends
+  public static final class SelectedListContent extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.SelectedListContent)
       SelectedListContentOrBuilder {
@@ -17806,12 +17461,7 @@ public final class Playlist4ApiProto {
       return new SelectedListContent();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SelectedListContent_descriptor;
     }
@@ -17826,11 +17476,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int REVISION_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString revision_;
+    private com.google.protobuf.ByteString revision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes revision = 1;</code>
      * @return Whether the revision field is set.
      */
+    @java.lang.Override
     public boolean hasRevision() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -17838,16 +17489,18 @@ public final class Playlist4ApiProto {
      * <code>optional bytes revision = 1;</code>
      * @return The revision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getRevision() {
       return revision_;
     }
 
     public static final int LENGTH_FIELD_NUMBER = 2;
-    private int length_;
+    private int length_ = 0;
     /**
      * <code>optional int32 length = 2;</code>
      * @return Whether the length field is set.
      */
+    @java.lang.Override
     public boolean hasLength() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -17855,6 +17508,7 @@ public final class Playlist4ApiProto {
      * <code>optional int32 length = 2;</code>
      * @return The length.
      */
+    @java.lang.Override
     public int getLength() {
       return length_;
     }
@@ -17865,6 +17519,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 3;</code>
      * @return Whether the attributes field is set.
      */
+    @java.lang.Override
     public boolean hasAttributes() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -17872,12 +17527,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 3;</code>
      * @return The attributes.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes getAttributes() {
       return attributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance() : attributes_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder getAttributesOrBuilder() {
       return attributes_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance() : attributes_;
     }
@@ -17888,6 +17545,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListItems contents = 5;</code>
      * @return Whether the contents field is set.
      */
+    @java.lang.Override
     public boolean hasContents() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -17895,12 +17553,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.ListItems contents = 5;</code>
      * @return The contents.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems getContents() {
       return contents_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.getDefaultInstance() : contents_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.ListItems contents = 5;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder getContentsOrBuilder() {
       return contents_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.getDefaultInstance() : contents_;
     }
@@ -17911,6 +17571,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Diff diff = 6;</code>
      * @return Whether the diff field is set.
      */
+    @java.lang.Override
     public boolean hasDiff() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -17918,12 +17579,14 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Diff diff = 6;</code>
      * @return The diff.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff getDiff() {
       return diff_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance() : diff_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.Diff diff = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder getDiffOrBuilder() {
       return diff_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance() : diff_;
     }
@@ -17934,6 +17597,7 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Diff sync_result = 7;</code>
      * @return Whether the syncResult field is set.
      */
+    @java.lang.Override
     public boolean hasSyncResult() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -17941,22 +17605,26 @@ public final class Playlist4ApiProto {
      * <code>optional .spotify.playlist4.proto.Diff sync_result = 7;</code>
      * @return The syncResult.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff getSyncResult() {
       return syncResult_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance() : syncResult_;
     }
     /**
      * <code>optional .spotify.playlist4.proto.Diff sync_result = 7;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder getSyncResultOrBuilder() {
       return syncResult_ == null ? com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance() : syncResult_;
     }
 
     public static final int RESULTING_REVISIONS_FIELD_NUMBER = 8;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> resultingRevisions_;
     /**
      * <code>repeated bytes resulting_revisions = 8;</code>
      * @return A list containing the resultingRevisions.
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getResultingRevisionsList() {
       return resultingRevisions_;
@@ -17978,11 +17646,12 @@ public final class Playlist4ApiProto {
     }
 
     public static final int MULTIPLE_HEADS_FIELD_NUMBER = 9;
-    private boolean multipleHeads_;
+    private boolean multipleHeads_ = false;
     /**
      * <code>optional bool multiple_heads = 9;</code>
      * @return Whether the multipleHeads field is set.
      */
+    @java.lang.Override
     public boolean hasMultipleHeads() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -17990,16 +17659,18 @@ public final class Playlist4ApiProto {
      * <code>optional bool multiple_heads = 9;</code>
      * @return The multipleHeads.
      */
+    @java.lang.Override
     public boolean getMultipleHeads() {
       return multipleHeads_;
     }
 
     public static final int UP_TO_DATE_FIELD_NUMBER = 10;
-    private boolean upToDate_;
+    private boolean upToDate_ = false;
     /**
      * <code>optional bool up_to_date = 10;</code>
      * @return Whether the upToDate field is set.
      */
+    @java.lang.Override
     public boolean hasUpToDate() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -18007,16 +17678,19 @@ public final class Playlist4ApiProto {
      * <code>optional bool up_to_date = 10;</code>
      * @return The upToDate.
      */
+    @java.lang.Override
     public boolean getUpToDate() {
       return upToDate_;
     }
 
     public static final int NONCES_FIELD_NUMBER = 14;
+    @SuppressWarnings("serial")
     private com.google.protobuf.Internal.LongList nonces_;
     /**
      * <code>repeated int64 nonces = 14;</code>
      * @return A list containing the nonces.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Long>
         getNoncesList() {
       return nonces_;
@@ -18038,11 +17712,12 @@ public final class Playlist4ApiProto {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 15;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>optional int64 timestamp = 15;</code>
      * @return Whether the timestamp field is set.
      */
+    @java.lang.Override
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -18050,16 +17725,19 @@ public final class Playlist4ApiProto {
      * <code>optional int64 timestamp = 15;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int OWNER_USERNAME_FIELD_NUMBER = 16;
-    private volatile java.lang.Object ownerUsername_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ownerUsername_ = "";
     /**
      * <code>optional string owner_username = 16;</code>
      * @return Whether the ownerUsername field is set.
      */
+    @java.lang.Override
     public boolean hasOwnerUsername() {
       return ((bitField0_ & 0x00000200) != 0);
     }
@@ -18067,6 +17745,7 @@ public final class Playlist4ApiProto {
      * <code>optional string owner_username = 16;</code>
      * @return The ownerUsername.
      */
+    @java.lang.Override
     public java.lang.String getOwnerUsername() {
       java.lang.Object ref = ownerUsername_;
       if (ref instanceof java.lang.String) {
@@ -18085,6 +17764,7 @@ public final class Playlist4ApiProto {
      * <code>optional string owner_username = 16;</code>
      * @return The bytes for ownerUsername.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOwnerUsernameBytes() {
       java.lang.Object ref = ownerUsername_;
@@ -18143,11 +17823,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -18186,7 +17868,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.SelectedListContent}
@@ -18195,7 +17878,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.SelectedListContent)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContentOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SelectedListContent_descriptor;
       }
@@ -18230,46 +17913,35 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         revision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         length_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-        } else {
-          attributesBuilder_.clear();
+        attributes_ = null;
+        if (attributesBuilder_ != null) {
+          attributesBuilder_.dispose();
+          attributesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (contentsBuilder_ == null) {
-          contents_ = null;
-        } else {
-          contentsBuilder_.clear();
+        contents_ = null;
+        if (contentsBuilder_ != null) {
+          contentsBuilder_.dispose();
+          contentsBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (diffBuilder_ == null) {
-          diff_ = null;
-        } else {
-          diffBuilder_.clear();
+        diff_ = null;
+        if (diffBuilder_ != null) {
+          diffBuilder_.dispose();
+          diffBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        if (syncResultBuilder_ == null) {
-          syncResult_ = null;
-        } else {
-          syncResultBuilder_.clear();
+        syncResult_ = null;
+        if (syncResultBuilder_ != null) {
+          syncResultBuilder_.dispose();
+          syncResultBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
         resultingRevisions_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
         multipleHeads_ = false;
-        bitField0_ = (bitField0_ & ~0x00000080);
         upToDate_ = false;
-        bitField0_ = (bitField0_ & ~0x00000100);
         nonces_ = emptyLongList();
-        bitField0_ = (bitField0_ & ~0x00000200);
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000400);
         ownerUsername_ = "";
-        bitField0_ = (bitField0_ & ~0x00000800);
         return this;
       }
 
@@ -18296,53 +17968,60 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.revision_ = revision_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.length_ = length_;
-          to_bitField0_ |= 0x00000002;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (attributesBuilder_ == null) {
-            result.attributes_ = attributes_;
-          } else {
-            result.attributes_ = attributesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000004;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          if (contentsBuilder_ == null) {
-            result.contents_ = contents_;
-          } else {
-            result.contents_ = contentsBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          if (diffBuilder_ == null) {
-            result.diff_ = diff_;
-          } else {
-            result.diff_ = diffBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          if (syncResultBuilder_ == null) {
-            result.syncResult_ = syncResult_;
-          } else {
-            result.syncResult_ = syncResultBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000020;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent result) {
         if (((bitField0_ & 0x00000040) != 0)) {
           resultingRevisions_ = java.util.Collections.unmodifiableList(resultingRevisions_);
           bitField0_ = (bitField0_ & ~0x00000040);
         }
         result.resultingRevisions_ = resultingRevisions_;
+        if (((bitField0_ & 0x00000200) != 0)) {
+          nonces_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000200);
+        }
+        result.nonces_ = nonces_;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SelectedListContent result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.revision_ = revision_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.length_ = length_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.attributes_ = attributesBuilder_ == null
+              ? attributes_
+              : attributesBuilder_.build();
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.contents_ = contentsBuilder_ == null
+              ? contents_
+              : contentsBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.diff_ = diffBuilder_ == null
+              ? diff_
+              : diffBuilder_.build();
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.syncResult_ = syncResultBuilder_ == null
+              ? syncResult_
+              : syncResultBuilder_.build();
+          to_bitField0_ |= 0x00000020;
+        }
         if (((from_bitField0_ & 0x00000080) != 0)) {
           result.multipleHeads_ = multipleHeads_;
           to_bitField0_ |= 0x00000040;
@@ -18351,56 +18030,17 @@ public final class Playlist4ApiProto {
           result.upToDate_ = upToDate_;
           to_bitField0_ |= 0x00000080;
         }
-        if (((bitField0_ & 0x00000200) != 0)) {
-          nonces_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000200);
-        }
-        result.nonces_ = nonces_;
         if (((from_bitField0_ & 0x00000400) != 0)) {
           result.timestamp_ = timestamp_;
           to_bitField0_ |= 0x00000100;
         }
         if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.ownerUsername_ = ownerUsername_;
           to_bitField0_ |= 0x00000200;
         }
-        result.ownerUsername_ = ownerUsername_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private com.google.protobuf.ByteString revision_ = com.google.protobuf.ByteString.EMPTY;
@@ -18408,6 +18048,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 1;</code>
        * @return Whether the revision field is set.
        */
+      @java.lang.Override
       public boolean hasRevision() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -18415,6 +18056,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 1;</code>
        * @return The revision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getRevision() {
         return revision_;
       }
@@ -18424,11 +18066,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         revision_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -18448,6 +18088,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 length = 2;</code>
        * @return Whether the length field is set.
        */
+      @java.lang.Override
       public boolean hasLength() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -18455,6 +18096,7 @@ public final class Playlist4ApiProto {
        * <code>optional int32 length = 2;</code>
        * @return The length.
        */
+      @java.lang.Override
       public int getLength() {
         return length_;
       }
@@ -18464,8 +18106,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setLength(int value) {
-        bitField0_ |= 0x00000002;
+
         length_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -18510,11 +18153,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           attributes_ = value;
-          onChanged();
         } else {
           attributesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -18524,11 +18167,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder builderForValue) {
         if (attributesBuilder_ == null) {
           attributes_ = builderForValue.build();
-          onChanged();
         } else {
           attributesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -18537,31 +18180,30 @@ public final class Playlist4ApiProto {
       public Builder mergeAttributes(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes value) {
         if (attributesBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              attributes_ != null &&
-              attributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance()) {
-            attributes_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.newBuilder(attributes_).mergeFrom(value).buildPartial();
+            attributes_ != null &&
+            attributes_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.getDefaultInstance()) {
+            getAttributesBuilder().mergeFrom(value);
           } else {
             attributes_ = value;
           }
-          onChanged();
         } else {
           attributesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ListAttributes attributes = 3;</code>
        */
       public Builder clearAttributes() {
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-          onChanged();
-        } else {
-          attributesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        attributes_ = null;
+        if (attributesBuilder_ != null) {
+          attributesBuilder_.dispose();
+          attributesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -18590,7 +18232,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder> 
           getAttributesFieldBuilder() {
         if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributes.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListAttributesOrBuilder>(
                   getAttributes(),
                   getParentForChildren(),
                   isClean());
@@ -18629,11 +18272,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           contents_ = value;
-          onChanged();
         } else {
           contentsBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -18643,11 +18286,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.Builder builderForValue) {
         if (contentsBuilder_ == null) {
           contents_ = builderForValue.build();
-          onChanged();
         } else {
           contentsBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -18656,31 +18299,30 @@ public final class Playlist4ApiProto {
       public Builder mergeContents(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems value) {
         if (contentsBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0) &&
-              contents_ != null &&
-              contents_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.getDefaultInstance()) {
-            contents_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.newBuilder(contents_).mergeFrom(value).buildPartial();
+            contents_ != null &&
+            contents_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.getDefaultInstance()) {
+            getContentsBuilder().mergeFrom(value);
           } else {
             contents_ = value;
           }
-          onChanged();
         } else {
           contentsBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.ListItems contents = 5;</code>
        */
       public Builder clearContents() {
-        if (contentsBuilder_ == null) {
-          contents_ = null;
-          onChanged();
-        } else {
-          contentsBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000008);
+        contents_ = null;
+        if (contentsBuilder_ != null) {
+          contentsBuilder_.dispose();
+          contentsBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -18709,7 +18351,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder> 
           getContentsFieldBuilder() {
         if (contentsBuilder_ == null) {
-          contentsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          contentsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItems.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ListItemsOrBuilder>(
                   getContents(),
                   getParentForChildren(),
                   isClean());
@@ -18748,11 +18391,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           diff_ = value;
-          onChanged();
         } else {
           diffBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -18762,11 +18405,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder builderForValue) {
         if (diffBuilder_ == null) {
           diff_ = builderForValue.build();
-          onChanged();
         } else {
           diffBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -18775,31 +18418,30 @@ public final class Playlist4ApiProto {
       public Builder mergeDiff(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff value) {
         if (diffBuilder_ == null) {
           if (((bitField0_ & 0x00000010) != 0) &&
-              diff_ != null &&
-              diff_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance()) {
-            diff_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.newBuilder(diff_).mergeFrom(value).buildPartial();
+            diff_ != null &&
+            diff_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance()) {
+            getDiffBuilder().mergeFrom(value);
           } else {
             diff_ = value;
           }
-          onChanged();
         } else {
           diffBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.Diff diff = 6;</code>
        */
       public Builder clearDiff() {
-        if (diffBuilder_ == null) {
-          diff_ = null;
-          onChanged();
-        } else {
-          diffBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000010);
+        diff_ = null;
+        if (diffBuilder_ != null) {
+          diffBuilder_.dispose();
+          diffBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -18828,7 +18470,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder> 
           getDiffFieldBuilder() {
         if (diffBuilder_ == null) {
-          diffBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          diffBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder>(
                   getDiff(),
                   getParentForChildren(),
                   isClean());
@@ -18867,11 +18510,11 @@ public final class Playlist4ApiProto {
             throw new NullPointerException();
           }
           syncResult_ = value;
-          onChanged();
         } else {
           syncResultBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -18881,11 +18524,11 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder builderForValue) {
         if (syncResultBuilder_ == null) {
           syncResult_ = builderForValue.build();
-          onChanged();
         } else {
           syncResultBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -18894,31 +18537,30 @@ public final class Playlist4ApiProto {
       public Builder mergeSyncResult(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff value) {
         if (syncResultBuilder_ == null) {
           if (((bitField0_ & 0x00000020) != 0) &&
-              syncResult_ != null &&
-              syncResult_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance()) {
-            syncResult_ =
-              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.newBuilder(syncResult_).mergeFrom(value).buildPartial();
+            syncResult_ != null &&
+            syncResult_ != com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.getDefaultInstance()) {
+            getSyncResultBuilder().mergeFrom(value);
           } else {
             syncResult_ = value;
           }
-          onChanged();
         } else {
           syncResultBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.playlist4.proto.Diff sync_result = 7;</code>
        */
       public Builder clearSyncResult() {
-        if (syncResultBuilder_ == null) {
-          syncResult_ = null;
-          onChanged();
-        } else {
-          syncResultBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000020);
+        syncResult_ = null;
+        if (syncResultBuilder_ != null) {
+          syncResultBuilder_.dispose();
+          syncResultBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -18947,7 +18589,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder> 
           getSyncResultFieldBuilder() {
         if (syncResultBuilder_ == null) {
-          syncResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          syncResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Diff.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.DiffOrBuilder>(
                   getSyncResult(),
                   getParentForChildren(),
                   isClean());
@@ -18958,10 +18601,10 @@ public final class Playlist4ApiProto {
 
       private java.util.List<com.google.protobuf.ByteString> resultingRevisions_ = java.util.Collections.emptyList();
       private void ensureResultingRevisionsIsMutable() {
-        if ((bitField0_ & 0x00000040) == 0) {
-          resultingRevisions_ = new java.util.ArrayList<>(resultingRevisions_);
+        if (!((bitField0_ & 0x00000040) != 0)) {
+          resultingRevisions_ = new java.util.ArrayList<com.google.protobuf.ByteString>(resultingRevisions_);
           bitField0_ |= 0x00000040;
-         }
+        }
       }
       /**
        * <code>repeated bytes resulting_revisions = 8;</code>
@@ -18995,10 +18638,8 @@ public final class Playlist4ApiProto {
        */
       public Builder setResultingRevisions(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureResultingRevisionsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureResultingRevisionsIsMutable();
         resultingRevisions_.set(index, value);
         onChanged();
         return this;
@@ -19009,10 +18650,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder addResultingRevisions(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureResultingRevisionsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureResultingRevisionsIsMutable();
         resultingRevisions_.add(value);
         onChanged();
         return this;
@@ -19046,6 +18685,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool multiple_heads = 9;</code>
        * @return Whether the multipleHeads field is set.
        */
+      @java.lang.Override
       public boolean hasMultipleHeads() {
         return ((bitField0_ & 0x00000080) != 0);
       }
@@ -19053,6 +18693,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool multiple_heads = 9;</code>
        * @return The multipleHeads.
        */
+      @java.lang.Override
       public boolean getMultipleHeads() {
         return multipleHeads_;
       }
@@ -19062,8 +18703,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setMultipleHeads(boolean value) {
-        bitField0_ |= 0x00000080;
+
         multipleHeads_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -19083,6 +18725,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool up_to_date = 10;</code>
        * @return Whether the upToDate field is set.
        */
+      @java.lang.Override
       public boolean hasUpToDate() {
         return ((bitField0_ & 0x00000100) != 0);
       }
@@ -19090,6 +18733,7 @@ public final class Playlist4ApiProto {
        * <code>optional bool up_to_date = 10;</code>
        * @return The upToDate.
        */
+      @java.lang.Override
       public boolean getUpToDate() {
         return upToDate_;
       }
@@ -19099,8 +18743,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setUpToDate(boolean value) {
-        bitField0_ |= 0x00000100;
+
         upToDate_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -19117,10 +18762,10 @@ public final class Playlist4ApiProto {
 
       private com.google.protobuf.Internal.LongList nonces_ = emptyLongList();
       private void ensureNoncesIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
+        if (!((bitField0_ & 0x00000200) != 0)) {
           nonces_ = mutableCopy(nonces_);
           bitField0_ |= 0x00000200;
-         }
+        }
       }
       /**
        * <code>repeated int64 nonces = 14;</code>
@@ -19154,6 +18799,7 @@ public final class Playlist4ApiProto {
        */
       public Builder setNonces(
           int index, long value) {
+
         ensureNoncesIsMutable();
         nonces_.setLong(index, value);
         onChanged();
@@ -19165,6 +18811,7 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder addNonces(long value) {
+
         ensureNoncesIsMutable();
         nonces_.addLong(value);
         onChanged();
@@ -19199,6 +18846,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 15;</code>
        * @return Whether the timestamp field is set.
        */
+      @java.lang.Override
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000400) != 0);
       }
@@ -19206,6 +18854,7 @@ public final class Playlist4ApiProto {
        * <code>optional int64 timestamp = 15;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -19215,8 +18864,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000400;
+
         timestamp_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -19281,11 +18931,9 @@ public final class Playlist4ApiProto {
        */
       public Builder setOwnerUsername(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000800;
+        if (value == null) { throw new NullPointerException(); }
         ownerUsername_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -19294,8 +18942,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder clearOwnerUsername() {
-        bitField0_ = (bitField0_ & ~0x00000800);
         ownerUsername_ = getDefaultInstance().getOwnerUsername();
+        bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
         return this;
       }
@@ -19306,22 +18954,20 @@ public final class Playlist4ApiProto {
        */
       public Builder setOwnerUsernameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000800;
+        if (value == null) { throw new NullPointerException(); }
         ownerUsername_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -19352,10 +18998,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -19406,7 +19053,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.CreateListReply}
    */
-  public  static final class CreateListReply extends
+  public static final class CreateListReply extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.CreateListReply)
       CreateListReplyOrBuilder {
@@ -19427,12 +19074,7 @@ public final class Playlist4ApiProto {
       return new CreateListReply();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_CreateListReply_descriptor;
     }
@@ -19447,11 +19089,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString uri_;
+    private com.google.protobuf.ByteString uri_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -19459,16 +19102,18 @@ public final class Playlist4ApiProto {
      * <code>required bytes uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getUri() {
       return uri_;
     }
 
     public static final int REVISION_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString revision_;
+    private com.google.protobuf.ByteString revision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes revision = 2;</code>
      * @return Whether the revision field is set.
      */
+    @java.lang.Override
     public boolean hasRevision() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -19476,6 +19121,7 @@ public final class Playlist4ApiProto {
      * <code>optional bytes revision = 2;</code>
      * @return The revision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getRevision() {
       return revision_;
     }
@@ -19524,11 +19170,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -19567,7 +19215,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.CreateListReply}
@@ -19576,7 +19225,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.CreateListReply)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReplyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_CreateListReply_descriptor;
       }
@@ -19591,23 +19240,20 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         revision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -19634,53 +19280,25 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.revision_ = revision_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.CreateListReply result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.revision_ = revision_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString uri_ = com.google.protobuf.ByteString.EMPTY;
@@ -19688,6 +19306,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes uri = 1;</code>
        * @return Whether the uri field is set.
        */
+      @java.lang.Override
       public boolean hasUri() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -19695,6 +19314,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes uri = 1;</code>
        * @return The uri.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getUri() {
         return uri_;
       }
@@ -19704,11 +19324,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setUri(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -19728,6 +19346,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 2;</code>
        * @return Whether the revision field is set.
        */
+      @java.lang.Override
       public boolean hasRevision() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -19735,6 +19354,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 2;</code>
        * @return The revision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getRevision() {
         return revision_;
       }
@@ -19744,11 +19364,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         revision_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -19763,13 +19381,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -19800,10 +19418,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -19854,7 +19473,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.ModifyReply}
    */
-  public  static final class ModifyReply extends
+  public static final class ModifyReply extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.ModifyReply)
       ModifyReplyOrBuilder {
@@ -19875,12 +19494,7 @@ public final class Playlist4ApiProto {
       return new ModifyReply();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ModifyReply_descriptor;
     }
@@ -19895,11 +19509,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString uri_;
+    private com.google.protobuf.ByteString uri_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -19907,16 +19522,18 @@ public final class Playlist4ApiProto {
      * <code>required bytes uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getUri() {
       return uri_;
     }
 
     public static final int REVISION_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString revision_;
+    private com.google.protobuf.ByteString revision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes revision = 2;</code>
      * @return Whether the revision field is set.
      */
+    @java.lang.Override
     public boolean hasRevision() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -19924,6 +19541,7 @@ public final class Playlist4ApiProto {
      * <code>optional bytes revision = 2;</code>
      * @return The revision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getRevision() {
       return revision_;
     }
@@ -19972,11 +19590,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -20015,7 +19635,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.ModifyReply}
@@ -20024,7 +19645,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.ModifyReply)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReplyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_ModifyReply_descriptor;
       }
@@ -20039,23 +19660,20 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         revision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -20082,53 +19700,25 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.revision_ = revision_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.ModifyReply result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.revision_ = revision_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString uri_ = com.google.protobuf.ByteString.EMPTY;
@@ -20136,6 +19726,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes uri = 1;</code>
        * @return Whether the uri field is set.
        */
+      @java.lang.Override
       public boolean hasUri() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -20143,6 +19734,7 @@ public final class Playlist4ApiProto {
        * <code>required bytes uri = 1;</code>
        * @return The uri.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getUri() {
         return uri_;
       }
@@ -20152,11 +19744,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setUri(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -20176,6 +19766,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 2;</code>
        * @return Whether the revision field is set.
        */
+      @java.lang.Override
       public boolean hasRevision() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -20183,6 +19774,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes revision = 2;</code>
        * @return The revision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getRevision() {
         return revision_;
       }
@@ -20192,11 +19784,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         revision_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -20211,13 +19801,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -20248,10 +19838,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -20297,7 +19888,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.SubscribeRequest}
    */
-  public  static final class SubscribeRequest extends
+  public static final class SubscribeRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.SubscribeRequest)
       SubscribeRequestOrBuilder {
@@ -20317,12 +19908,7 @@ public final class Playlist4ApiProto {
       return new SubscribeRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SubscribeRequest_descriptor;
     }
@@ -20336,11 +19922,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int URIS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> uris_;
     /**
      * <code>repeated bytes uris = 1;</code>
      * @return A list containing the uris.
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getUrisList() {
       return uris_;
@@ -20405,11 +19993,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -20448,7 +20038,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.SubscribeRequest}
@@ -20457,7 +20048,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.SubscribeRequest)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_SubscribeRequest_descriptor;
       }
@@ -20472,21 +20063,19 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uris_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -20513,56 +20102,32 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest result) {
         if (((bitField0_ & 0x00000001) != 0)) {
           uris_ = java.util.Collections.unmodifiableList(uris_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.uris_ = uris_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.SubscribeRequest result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.google.protobuf.ByteString> uris_ = java.util.Collections.emptyList();
       private void ensureUrisIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          uris_ = new java.util.ArrayList<>(uris_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          uris_ = new java.util.ArrayList<com.google.protobuf.ByteString>(uris_);
           bitField0_ |= 0x00000001;
-         }
+        }
       }
       /**
        * <code>repeated bytes uris = 1;</code>
@@ -20596,10 +20161,8 @@ public final class Playlist4ApiProto {
        */
       public Builder setUris(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureUrisIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureUrisIsMutable();
         uris_.set(index, value);
         onChanged();
         return this;
@@ -20610,10 +20173,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder addUris(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureUrisIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureUrisIsMutable();
         uris_.add(value);
         onChanged();
         return this;
@@ -20642,13 +20203,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -20679,10 +20240,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -20728,7 +20290,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.UnsubscribeRequest}
    */
-  public  static final class UnsubscribeRequest extends
+  public static final class UnsubscribeRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.UnsubscribeRequest)
       UnsubscribeRequestOrBuilder {
@@ -20748,12 +20310,7 @@ public final class Playlist4ApiProto {
       return new UnsubscribeRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UnsubscribeRequest_descriptor;
     }
@@ -20767,11 +20324,13 @@ public final class Playlist4ApiProto {
     }
 
     public static final int URIS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> uris_;
     /**
      * <code>repeated bytes uris = 1;</code>
      * @return A list containing the uris.
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getUrisList() {
       return uris_;
@@ -20836,11 +20395,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -20879,7 +20440,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.UnsubscribeRequest}
@@ -20888,7 +20450,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.UnsubscribeRequest)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_UnsubscribeRequest_descriptor;
       }
@@ -20903,21 +20465,19 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uris_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -20944,56 +20504,32 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest result) {
         if (((bitField0_ & 0x00000001) != 0)) {
           uris_ = java.util.Collections.unmodifiableList(uris_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.uris_ = uris_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.UnsubscribeRequest result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.google.protobuf.ByteString> uris_ = java.util.Collections.emptyList();
       private void ensureUrisIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          uris_ = new java.util.ArrayList<>(uris_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          uris_ = new java.util.ArrayList<com.google.protobuf.ByteString>(uris_);
           bitField0_ |= 0x00000001;
-         }
+        }
       }
       /**
        * <code>repeated bytes uris = 1;</code>
@@ -21027,10 +20563,8 @@ public final class Playlist4ApiProto {
        */
       public Builder setUris(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureUrisIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureUrisIsMutable();
         uris_.set(index, value);
         onChanged();
         return this;
@@ -21041,10 +20575,8 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder addUris(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureUrisIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureUrisIsMutable();
         uris_.add(value);
         onChanged();
         return this;
@@ -21073,13 +20605,13 @@ public final class Playlist4ApiProto {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -21110,10 +20642,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -21199,7 +20732,7 @@ public final class Playlist4ApiProto {
   /**
    * Protobuf type {@code spotify.playlist4.proto.PlaylistModificationInfo}
    */
-  public  static final class PlaylistModificationInfo extends
+  public static final class PlaylistModificationInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.playlist4.proto.PlaylistModificationInfo)
       PlaylistModificationInfoOrBuilder {
@@ -21222,12 +20755,7 @@ public final class Playlist4ApiProto {
       return new PlaylistModificationInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_PlaylistModificationInfo_descriptor;
     }
@@ -21242,11 +20770,12 @@ public final class Playlist4ApiProto {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString uri_;
+    private com.google.protobuf.ByteString uri_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -21254,16 +20783,18 @@ public final class Playlist4ApiProto {
      * <code>optional bytes uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getUri() {
       return uri_;
     }
 
     public static final int NEW_REVISION_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString newRevision_;
+    private com.google.protobuf.ByteString newRevision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes new_revision = 2;</code>
      * @return Whether the newRevision field is set.
      */
+    @java.lang.Override
     public boolean hasNewRevision() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -21271,16 +20802,18 @@ public final class Playlist4ApiProto {
      * <code>optional bytes new_revision = 2;</code>
      * @return The newRevision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getNewRevision() {
       return newRevision_;
     }
 
     public static final int PARENT_REVISION_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString parentRevision_;
+    private com.google.protobuf.ByteString parentRevision_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes parent_revision = 3;</code>
      * @return Whether the parentRevision field is set.
      */
+    @java.lang.Override
     public boolean hasParentRevision() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -21288,21 +20821,25 @@ public final class Playlist4ApiProto {
      * <code>optional bytes parent_revision = 3;</code>
      * @return The parentRevision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getParentRevision() {
       return parentRevision_;
     }
 
     public static final int OPS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_;
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> getOpsList() {
       return ops_;
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
         getOpsOrBuilderList() {
       return ops_;
@@ -21310,18 +20847,21 @@ public final class Playlist4ApiProto {
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 4;</code>
      */
+    @java.lang.Override
     public int getOpsCount() {
       return ops_.size();
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op getOps(int index) {
       return ops_.get(index);
     }
     /**
      * <code>repeated .spotify.playlist4.proto.Op ops = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder getOpsOrBuilder(
         int index) {
       return ops_.get(index);
@@ -21371,11 +20911,13 @@ public final class Playlist4ApiProto {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -21414,7 +20956,8 @@ public final class Playlist4ApiProto {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.playlist4.proto.PlaylistModificationInfo}
@@ -21423,7 +20966,7 @@ public final class Playlist4ApiProto {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.playlist4.proto.PlaylistModificationInfo)
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.internal_static_spotify_playlist4_proto_PlaylistModificationInfo_descriptor;
       }
@@ -21438,35 +20981,28 @@ public final class Playlist4ApiProto {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getOpsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         newRevision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
         parentRevision_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (opsBuilder_ == null) {
           ops_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          ops_ = null;
           opsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -21493,20 +21029,13 @@ public final class Playlist4ApiProto {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo result = new com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.newRevision_ = newRevision_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.parentRevision_ = parentRevision_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo result) {
         if (opsBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0)) {
             ops_ = java.util.Collections.unmodifiableList(ops_);
@@ -21516,43 +21045,26 @@ public final class Playlist4ApiProto {
         } else {
           result.ops_ = opsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.PlaylistModificationInfo result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.newRevision_ = newRevision_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.parentRevision_ = parentRevision_;
+          to_bitField0_ |= 0x00000004;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString uri_ = com.google.protobuf.ByteString.EMPTY;
@@ -21560,6 +21072,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes uri = 1;</code>
        * @return Whether the uri field is set.
        */
+      @java.lang.Override
       public boolean hasUri() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -21567,6 +21080,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes uri = 1;</code>
        * @return The uri.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getUri() {
         return uri_;
       }
@@ -21576,11 +21090,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setUri(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -21600,6 +21112,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes new_revision = 2;</code>
        * @return Whether the newRevision field is set.
        */
+      @java.lang.Override
       public boolean hasNewRevision() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -21607,6 +21120,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes new_revision = 2;</code>
        * @return The newRevision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getNewRevision() {
         return newRevision_;
       }
@@ -21616,11 +21130,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setNewRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         newRevision_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -21640,6 +21152,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes parent_revision = 3;</code>
        * @return Whether the parentRevision field is set.
        */
+      @java.lang.Override
       public boolean hasParentRevision() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -21647,6 +21160,7 @@ public final class Playlist4ApiProto {
        * <code>optional bytes parent_revision = 3;</code>
        * @return The parentRevision.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getParentRevision() {
         return parentRevision_;
       }
@@ -21656,11 +21170,9 @@ public final class Playlist4ApiProto {
        * @return This builder for chaining.
        */
       public Builder setParentRevision(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         parentRevision_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -21678,8 +21190,8 @@ public final class Playlist4ApiProto {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op> ops_ =
         java.util.Collections.emptyList();
       private void ensureOpsIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          ops_ = new java.util.ArrayList<>(ops_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          ops_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op>(ops_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -21904,7 +21416,8 @@ public final class Playlist4ApiProto {
           com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder> 
           getOpsFieldBuilder() {
         if (opsBuilder_ == null) {
-          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.Op.Builder, com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto.OpOrBuilder>(
                   ops_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -21914,13 +21427,13 @@ public final class Playlist4ApiProto {
         return opsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -21951,10 +21464,11 @@ public final class Playlist4ApiProto {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -22111,15 +21625,15 @@ public final class Playlist4ApiProto {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\030playlist4_external.proto\022\027spotify.play" +
       "list4.proto\"P\n\004Item\022\013\n\003uri\030\001 \002(\t\022;\n\nattr" +
-              "ibutes\030\002 \001(\0132'.spotify.playlist4.proto.I" +
+      "ibutes\030\002 \001(\0132\'.spotify.playlist4.proto.I" +
       "temAttributes\"\224\001\n\010MetaItem\022\020\n\010revision\030\001" +
-              " \001(\014\022;\n\nattributes\030\002 \001(\0132'.spotify.playl" +
+      " \001(\014\022;\n\nattributes\030\002 \001(\0132\'.spotify.playl" +
       "ist4.proto.ListAttributes\022\016\n\006length\030\003 \001(" +
       "\005\022\021\n\ttimestamp\030\004 \001(\003\022\026\n\016owner_username\030\005" +
       " \001(\t\"\220\001\n\tListItems\022\013\n\003pos\030\001 \002(\005\022\021\n\ttrunc" +
@@ -22146,10 +21660,10 @@ public final class Playlist4ApiProto {
       "s_key\030\007 \001(\010\";\n\003Mov\022\022\n\nfrom_index\030\001 \002(\005\022\016" +
       "\n\006length\030\002 \002(\005\022\020\n\010to_index\030\003 \002(\005\"\223\001\n\032Ite" +
       "mAttributesPartialState\0227\n\006values\030\001 \002(\0132" +
-              "'.spotify.playlist4.proto.ItemAttributes" +
+      "\'.spotify.playlist4.proto.ItemAttributes" +
       "\022<\n\010no_value\030\002 \003(\0162*.spotify.playlist4.p" +
       "roto.ItemAttributeKind\"\223\001\n\032ListAttribute" +
-              "sPartialState\0227\n\006values\030\001 \002(\0132'.spotify." +
+      "sPartialState\0227\n\006values\030\001 \002(\0132\'.spotify." +
       "playlist4.proto.ListAttributes\022<\n\010no_val" +
       "ue\030\002 \003(\0162*.spotify.playlist4.proto.ListA" +
       "ttributeKind\"\277\001\n\024UpdateItemAttributes\022\r\n" +
@@ -22196,7 +21710,7 @@ public final class Playlist4ApiProto {
       "elta\022 \n\030want_resulting_revisions\030\003 \001(\010\022\030" +
       "\n\020want_sync_result\030\004 \001(\010\022\016\n\006nonces\030\006 \003(\003" +
       "\"\217\003\n\023SelectedListContent\022\020\n\010revision\030\001 \001" +
-              "(\014\022\016\n\006length\030\002 \001(\005\022;\n\nattributes\030\003 \001(\0132'" +
+      "(\014\022\016\n\006length\030\002 \001(\005\022;\n\nattributes\030\003 \001(\0132\'" +
       ".spotify.playlist4.proto.ListAttributes\022" +
       "4\n\010contents\030\005 \001(\0132\".spotify.playlist4.pr" +
       "oto.ListItems\022+\n\004diff\030\006 \001(\0132\035.spotify.pl" +
@@ -22222,8 +21736,8 @@ public final class Playlist4ApiProto {
       "EM_UNKNOWN\020\000\022\021\n\rITEM_ADDED_BY\020\001\022\022\n\016ITEM_" +
       "TIMESTAMP\020\002\022\020\n\014ITEM_SEEN_AT\020\t\022\017\n\013ITEM_PU" +
       "BLIC\020\n\022\032\n\026ITEM_FORMAT_ATTRIBUTES\020\013\022\013\n\007IT" +
-      "EM_ID\020\014B,\n\025com.spotify.playlist4B\021Playli" +
-      "st4ApiProtoH\002"
+      "EM_ID\020\014B?\n(com.spotifyxp.deps.com.spotif" +
+      "y.playlist4B\021Playlist4ApiProtoH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -16,10 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decrypt;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManager;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
-import com.spotifyxp.utils.GraphicalMessage;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
@@ -35,7 +33,6 @@ import static com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManag
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public final class AesAudioDecrypt implements AudioDecrypt {
     private static final byte[] AUDIO_AES_IV = new byte[]{(byte) 0x72, (byte) 0xe0, (byte) 0x67, (byte) 0xfb, (byte) 0xdd, (byte) 0xcb, (byte) 0xcf, (byte) 0x77, (byte) 0xeb, (byte) 0xe8, (byte) 0xbc, (byte) 0x64, (byte) 0x3f, (byte) 0x63, (byte) 0x0d, (byte) 0x93};
     private final static BigInteger IV_INT = new BigInteger(1, AUDIO_AES_IV);
@@ -50,7 +47,6 @@ public final class AesAudioDecrypt implements AudioDecrypt {
             this.secretKeySpec = new SecretKeySpec(key, "AES");
             this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
         } catch (NoSuchAlgorithmException | NoSuchPaddingException ex) {
-            GraphicalMessage.sorryError();
             throw new IllegalStateException(ex); // This should never happen
         }
     }
@@ -79,7 +75,7 @@ public final class AesAudioDecrypt implements AudioDecrypt {
     }
 
     /**
-     * Average decrypt time for {@link ChannelManager#CHUNK_SIZE} bytes of data.
+     * Average decrypt time for {@link com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManager#CHUNK_SIZE} bytes of data.
      *
      * @return The average decrypt time in milliseconds
      */

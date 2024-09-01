@@ -63,7 +63,7 @@ public final class StorageResolve {
   /**
    * Protobuf type {@code spotify.download.proto.StorageResolveResponse}
    */
-  public  static final class StorageResolveResponse extends
+  public static final class StorageResolveResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.download.proto.StorageResolveResponse)
       StorageResolveResponseOrBuilder {
@@ -74,7 +74,8 @@ public final class StorageResolve {
     }
     private StorageResolveResponse() {
       result_ = 0;
-      cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
+      cdnurl_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       fileid_ = com.google.protobuf.ByteString.EMPTY;
     }
 
@@ -85,12 +86,7 @@ public final class StorageResolve {
       return new StorageResolveResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.storage.StorageResolve.internal_static_spotify_download_proto_StorageResolveResponse_descriptor;
     }
@@ -174,17 +170,25 @@ public final class StorageResolve {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Result> internalValueMap =
-              Result::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Result>() {
+              public Result findValueByNumber(int number) {
+                return Result.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.getDescriptor().getEnumTypes().get(0);
       }
@@ -205,7 +209,7 @@ public final class StorageResolve {
 
       private final int value;
 
-      Result(int value) {
+      private Result(int value) {
         this.value = value;
       }
 
@@ -213,25 +217,27 @@ public final class StorageResolve {
     }
 
     public static final int RESULT_FIELD_NUMBER = 1;
-    private int result_;
+    private int result_ = 0;
     /**
      * <code>.spotify.download.proto.StorageResolveResponse.Result result = 1;</code>
      * @return The enum numeric value on the wire for result.
      */
-    public int getResultValue() {
+    @java.lang.Override public int getResultValue() {
       return result_;
     }
     /**
      * <code>.spotify.download.proto.StorageResolveResponse.Result result = 1;</code>
      * @return The result.
      */
-    public com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result getResult() {
-      com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result result = com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.valueOf(result_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result getResult() {
+      com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result result = com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.forNumber(result_);
       return result == null ? com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.UNRECOGNIZED : result;
     }
 
     public static final int CDNURL_FIELD_NUMBER = 2;
-    private com.google.protobuf.LazyStringList cdnurl_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList cdnurl_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string cdnurl = 2;</code>
      * @return A list containing the cdnurl.
@@ -266,11 +272,12 @@ public final class StorageResolve {
     }
 
     public static final int FILEID_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString fileid_;
+    private com.google.protobuf.ByteString fileid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes fileid = 4;</code>
      * @return The fileid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFileid() {
       return fileid_;
     }
@@ -319,11 +326,13 @@ public final class StorageResolve {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -362,7 +371,8 @@ public final class StorageResolve {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.download.proto.StorageResolveResponse}
@@ -371,7 +381,7 @@ public final class StorageResolve {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.download.proto.StorageResolveResponse)
         com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.storage.StorageResolve.internal_static_spotify_download_proto_StorageResolveResponse_descriptor;
       }
@@ -386,25 +396,22 @@ public final class StorageResolve {
 
       // Construct using com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         result_ = 0;
-
-        cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        cdnurl_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         fileid_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -431,50 +438,25 @@ public final class StorageResolve {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse result = new com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse(this);
-        int from_bitField0_ = bitField0_;
-        result.result_ = result_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          cdnurl_ = cdnurl_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.cdnurl_ = cdnurl_;
-        result.fileid_ = fileid_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.result_ = result_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          cdnurl_.makeImmutable();
+          result.cdnurl_ = cdnurl_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.fileid_ = fileid_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int result_ = 0;
@@ -482,7 +464,7 @@ public final class StorageResolve {
        * <code>.spotify.download.proto.StorageResolveResponse.Result result = 1;</code>
        * @return The enum numeric value on the wire for result.
        */
-      public int getResultValue() {
+      @java.lang.Override public int getResultValue() {
         return result_;
       }
       /**
@@ -492,6 +474,7 @@ public final class StorageResolve {
        */
       public Builder setResultValue(int value) {
         result_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -499,8 +482,9 @@ public final class StorageResolve {
        * <code>.spotify.download.proto.StorageResolveResponse.Result result = 1;</code>
        * @return The result.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result getResult() {
-        com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result result = com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.valueOf(result_);
+        com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result result = com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.forNumber(result_);
         return result == null ? com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse.Result.UNRECOGNIZED : result;
       }
       /**
@@ -512,7 +496,7 @@ public final class StorageResolve {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         result_ = value.getNumber();
         onChanged();
         return this;
@@ -522,19 +506,19 @@ public final class StorageResolve {
        * @return This builder for chaining.
        */
       public Builder clearResult() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         result_ = 0;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList cdnurl_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureCdnurlIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!cdnurl_.isModifiable()) {
           cdnurl_ = new com.google.protobuf.LazyStringArrayList(cdnurl_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000002;
       }
       /**
        * <code>repeated string cdnurl = 2;</code>
@@ -542,7 +526,8 @@ public final class StorageResolve {
        */
       public com.google.protobuf.ProtocolStringList
           getCdnurlList() {
-        return cdnurl_.getUnmodifiableView();
+        cdnurl_.makeImmutable();
+        return cdnurl_;
       }
       /**
        * <code>repeated string cdnurl = 2;</code>
@@ -576,11 +561,10 @@ public final class StorageResolve {
        */
       public Builder setCdnurl(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCdnurlIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCdnurlIsMutable();
         cdnurl_.set(index, value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -591,11 +575,10 @@ public final class StorageResolve {
        */
       public Builder addCdnurl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCdnurlIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCdnurlIsMutable();
         cdnurl_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -609,6 +592,7 @@ public final class StorageResolve {
         ensureCdnurlIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, cdnurl_);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -617,8 +601,9 @@ public final class StorageResolve {
        * @return This builder for chaining.
        */
       public Builder clearCdnurl() {
-        cdnurl_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        cdnurl_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);;
         onChanged();
         return this;
       }
@@ -629,12 +614,11 @@ public final class StorageResolve {
        */
       public Builder addCdnurlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureCdnurlIsMutable();
         cdnurl_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -644,6 +628,7 @@ public final class StorageResolve {
        * <code>bytes fileid = 4;</code>
        * @return The fileid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFileid() {
         return fileid_;
       }
@@ -653,11 +638,9 @@ public final class StorageResolve {
        * @return This builder for chaining.
        */
       public Builder setFileid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         fileid_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -666,19 +649,19 @@ public final class StorageResolve {
        * @return This builder for chaining.
        */
       public Builder clearFileid() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         fileid_ = getDefaultInstance().getFileid();
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -709,10 +692,11 @@ public final class StorageResolve {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -744,7 +728,7 @@ public final class StorageResolve {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -753,8 +737,8 @@ public final class StorageResolve {
       "sult\030\001 \001(\01625.spotify.download.proto.Stor" +
       "ageResolveResponse.Result\022\016\n\006cdnurl\030\002 \003(" +
       "\t\022\016\n\006fileid\030\004 \001(\014\".\n\006Result\022\007\n\003CDN\020\000\022\013\n\007" +
-      "STORAGE\020\001\022\016\n\nRESTRICTED\020\003B\027\n\023com.spotify" +
-      ".storageH\002b\006proto3"
+      "STORAGE\020\001\022\016\n\nRESTRICTED\020\003B*\n&com.spotify" +
+      "xp.deps.com.spotify.storageH\002b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

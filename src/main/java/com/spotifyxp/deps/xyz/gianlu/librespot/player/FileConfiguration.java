@@ -28,14 +28,14 @@ import com.electronwill.nightconfig.core.io.ConfigParser;
 import com.electronwill.nightconfig.core.io.ConfigWriter;
 import com.electronwill.nightconfig.toml.TomlParser;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TimeProvider;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileReader;
@@ -52,10 +52,7 @@ import java.util.function.Supplier;
 /**
  * @author devgianlu
  */
-@SuppressWarnings("ExtractMethodRecommender")
 public final class FileConfiguration {
-    
-
     static {
         FormatDetector.registerExtension("properties", new PropertiesFormat());
     }
@@ -64,7 +61,6 @@ public final class FileConfiguration {
 
     public FileConfiguration(@Nullable String... override) throws IOException {
         File confFile = null;
-        //noinspection RedundantLengthCheck
         if (override != null && override.length > 0) {
             for (String arg : override) {
                 if (arg != null && arg.startsWith("--conf-file="))
@@ -95,10 +91,8 @@ public final class FileConfiguration {
             updateConfigFile(new TomlParser().parse(streamDefaultConfig()));
         }
 
-        //noinspection RedundantLengthCheck
         if (override != null && override.length > 0) {
             for (String str : override) {
-                ConsoleLoggingModules.debug("Configuration: String = " + str);
                 if (str == null) continue;
 
                 if (str.contains("=") && str.startsWith("--")) {
@@ -109,7 +103,6 @@ public final class FileConfiguration {
                     }
 
                     String key = split[0].substring(2);
-                    ConsoleLoggingModules.debug("Configuration: Key = " + str);
                     config.set(key, convertFromString(key, split[1]));
                 } else {
                     ConsoleLoggingModules.warning("Invalid command line argument: " + str);
@@ -372,7 +365,7 @@ public final class FileConfiguration {
                 .setDeviceId(deviceId())
                 .setListenPort(config.get("zeroconf.listenPort"));
 
-        if (Boolean.TRUE.equals(config.get("zeroconf.listenAll"))) builder.setListenAll(true);
+        if (config.get("zeroconf.listenAll")) builder.setListenAll(true);
         else builder.setListenInterfaces(getStringArray("zeroconf.interfaces", ','));
 
         return builder;
@@ -437,6 +430,7 @@ public final class FileConfiguration {
                 .setAutoplayEnabled(config.get("player.autoplayEnabled"))
                 .setCrossfadeDuration(config.get("player.crossfadeDuration"))
                 .setEnableNormalisation(config.get("player.enableNormalisation"))
+                .setUseAlbumGain(config.get("player.useAlbumGain"))
                 .setInitialVolume(config.get("player.initialVolume"))
                 .setLogAvailableMixers(config.get("player.logAvailableMixers"))
                 .setMetadataPipe(metadataPipe())

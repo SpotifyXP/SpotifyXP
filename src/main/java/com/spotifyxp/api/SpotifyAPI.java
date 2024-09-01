@@ -1,13 +1,17 @@
 package com.spotifyxp.api;
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.threading.DefThread;
+import com.spotifyxp.utils.Token;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +21,16 @@ import java.util.ArrayList;
 public class SpotifyAPI {
     public static int waitAmount = 4;
     static SpotifyApi spotifyApi = null;
+
+    public SpotifyAPI() {
+        Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), new Runnable() {
+            @Override
+            public void run() {
+                if(PublicValues.spotifyplayer == null) return;
+                spotifyApi.setAccessToken(Token.getDefaultToken());
+            }
+        });
+    }
 
     /**
      * Injects a SpotifyApi instance (For debugging)

@@ -18,17 +18,22 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.player;
 
 import com.google.gson.JsonObject;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dacp.DacpMetadataPipe;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.StationsWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
@@ -36,6 +41,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.ImageId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.StateWrapper.NextPlayable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.contexts.AbsSpotifyContext;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewPlaybackIdEvent;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.NewSessionIdEvent;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics;
@@ -44,16 +50,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.threading.DefThread;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.Range;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -63,8 +59,7 @@ import java.util.concurrent.*;
 /**
  * @author Gianlu
  */
-@SuppressWarnings({"JavadocBlankLines", "NullableProblems", "BooleanMethodIsAlwaysInverted", "DataFlowIssue"})
-public class Player implements Closeable, PlayerDefine {
+public class Player implements Closeable {
     public static final int VOLUME_MAX = 65536;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory((r) -> "release-line-scheduler-" + r.hashCode()));
     private final Session session;
@@ -72,7 +67,7 @@ public class Player implements Closeable, PlayerDefine {
     private final EventsDispatcher events;
     private final AudioSink sink;
     private final Map<String, PlaybackMetrics> metrics = new HashMap<>(5);
-    public static StateWrapper state;
+    private StateWrapper state;
     private PlayerSession playerSession;
     private ScheduledFuture<?> releaseLineFuture = null;
     private DeviceStateHandler.Listener deviceStateListener;
@@ -89,13 +84,6 @@ public class Player implements Closeable, PlayerDefine {
         initState();
     }
 
-    public Player() {
-        this.conf = null;
-        this.session = null;
-        this.events = null;
-        this.sink = null;
-    }
-
     public void addEventsListener(@NotNull EventsListener listener) {
         events.listeners.add(listener);
     }
@@ -105,7 +93,7 @@ public class Player implements Closeable, PlayerDefine {
     }
 
     private void initState() {
-        state = new StateWrapper(session, this, conf);
+        this.state = new StateWrapper(session, this, conf);
         state.addListener(deviceStateListener = new DeviceStateHandler.Listener() {
             @Override
             public void ready() {
@@ -186,34 +174,21 @@ public class Player implements Closeable, PlayerDefine {
     // ================================ //
 
     public void volumeUp() {
-        DefThread thread = new DefThread(() -> volumeUp(1));
-        thread.start();
+        this.volumeUp(1);
     }
 
     public void volumeUp(int steps) {
-        DefThread thread = new DefThread(() -> {
-            if (state == null) return;
-            setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
-        });
-        thread.start();
-    }
-
-    public int getVolume() {
-        if (state == null) return 0;
-        return state.getVolume();
+        if (state == null) return;
+        setVolume(Math.min(Player.VOLUME_MAX, state.getVolume() + steps * oneVolumeStep()));
     }
 
     public void volumeDown() {
-        DefThread thread = new DefThread(() -> volumeDown(1));
-        thread.start();
+        this.volumeDown(1);
     }
 
     public void volumeDown(int steps) {
-        DefThread thread = new DefThread(() -> {
-            if (state == null) return;
-            setVolume(Math.max(0, state.getVolume() - steps * oneVolumeStep()));
-        });
-        thread.start();
+        if (state == null) return;
+        setVolume(Math.max(0, state.getVolume() - steps * oneVolumeStep()));
     }
 
     private int oneVolumeStep() {
@@ -221,14 +196,11 @@ public class Player implements Closeable, PlayerDefine {
     }
 
     public void setVolume(int val) {
-        DefThread thread = new DefThread(() -> {
-            if (val < 0 || val > VOLUME_MAX)
-                throw new IllegalArgumentException(String.valueOf(val));
+        if (val < 0 || val > VOLUME_MAX)
+            throw new IllegalArgumentException(String.valueOf(val));
 
-            if (state == null) return;
-            state.setVolume(val);
-        });
-        thread.start();
+        if (state == null) return;
+        state.setVolume(val);
     }
 
     public void setShuffle(boolean val) {
@@ -253,22 +225,12 @@ public class Player implements Closeable, PlayerDefine {
     }
 
     public void play() {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        DefThread thread = new DefThread(this::handleResume);
-        thread.start();
+        handleResume();
     }
 
     public void playPause() {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        DefThread thread = new DefThread(() -> {
-            if (state.isPaused()) handleResume();
-            else handlePause();
-        });
-        thread.start();
+        if (state.isPaused()) handleResume();
+        else handlePause();
     }
 
     public boolean isPaused() {
@@ -276,45 +238,22 @@ public class Player implements Closeable, PlayerDefine {
     }
 
     public void pause() {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        DefThread thread = new DefThread(this::handlePause);
-        thread.start();
+        handlePause();
     }
 
     public void next() {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        DefThread thread = new DefThread(() -> handleSkipNext(null, TransitionInfo.skippedNext(state)));
-        thread.start();
+        handleSkipNext(null, TransitionInfo.skippedNext(state));
     }
 
     public void previous() {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        DefThread thread = new DefThread(this::handleSkipPrev);
-        thread.start();
+        handleSkipPrev();
     }
 
     public void seek(int pos) {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        DefThread thread = new DefThread(() -> handleSeek(pos));
-        thread.start();
+        handleSeek(pos);
     }
 
-    public void load(@NotNull String uri, boolean play, boolean shuffle, boolean playingFromLibrary) {
-        if(PublicValues.blockLoading) {
-            return;
-        }
-        Events.triggerEvent(SpotifyXPEvents.trackLoad.getName());
-
-        PublicValues.playingFromLibrary = playingFromLibrary;
-
+    public void load(@NotNull String uri, boolean play, boolean shuffle) {
         try {
             String sessionId = state.loadContext(uri);
             events.contextChanged();
@@ -328,8 +267,6 @@ public class Player implements Closeable, PlayerDefine {
         } catch (AbsSpotifyContext.UnsupportedContextException ex) {
             ConsoleLoggingModules.error("Cannot play context!", ex);
             panicState(null);
-        } catch (IllegalStateException ex) {
-            ConsoleLoggingModules.Throwable(ex);
         }
     }
 
@@ -551,15 +488,14 @@ public class Player implements Closeable, PlayerDefine {
      * @param play  Whether the playback should start immediately
      * @param trans A {@link TransitionInfo} object containing information about this track change
      */
-
     private void loadTrack(boolean play, @NotNull TransitionInfo trans) {
-        Events.triggerEvent(SpotifyXPEvents.trackNext.getName());
         endMetrics(playerSession.currentPlaybackId(), trans.endedReason, playerSession.currentMetrics(), trans.endedWhen);
 
         ConsoleLoggingModules.debug("Loading track, id: {}, session: {}, playback: {}, play: {}", state.getCurrentPlayable(), playerSession.sessionId(), playerSession.currentPlaybackId(), play);
         String playbackId = playerSession.play(state.getCurrentPlayableOrThrow(), state.getPosition(), trans.startedReason);
         state.setPlaybackId(playbackId);
         session.eventService().sendEvent(new NewPlaybackIdEvent(state.getSessionId(), playbackId));
+
         if (play) sink.resume();
         else sink.pause(false);
 
@@ -715,7 +651,6 @@ public class Player implements Closeable, PlayerDefine {
             if (prev.isOk()) {
                 state.setPosition(0);
                 loadTrack(true, TransitionInfo.skippedPrev(state));
-                events.seeked(0);
             } else {
                 ConsoleLoggingModules.error("Failed loading previous song: " + prev);
                 panicState(null);
@@ -724,7 +659,6 @@ public class Player implements Closeable, PlayerDefine {
             playerSession.seekCurrent(0);
             state.setPosition(0);
             state.updated();
-            events.seeked(0);
         }
     }
 
@@ -840,13 +774,8 @@ public class Player implements Closeable, PlayerDefine {
      * @return A {@link Tracks} instance with the current player queue
      */
     @NotNull
-    public Tracks tracks(boolean withQueue) throws IndexOutOfBoundsException {
+    public Tracks tracks(boolean withQueue) {
         return new Tracks(state.getPrevTracks(), state.getCurrentTrack(), state.getNextTracks(withQueue));
-    }
-
-    public void clearQueue() {
-        tracks(true).next.clear();
-        tracks(true).previous.clear();
     }
 
     /**
@@ -934,13 +863,6 @@ public class Player implements Closeable, PlayerDefine {
         ConsoleLoggingModules.info("Closed player.");
     }
 
-    public void removeAllFromQueue() {
-        state.getNextTracks(true).clear();
-        state.setQueue(state.getPrevTracks(), state.getNextTracks(true));
-        state.updated();
-    }
-
-    @SuppressWarnings("EmptyMethod")
     public interface EventsListener {
         void onContextChanged(@NotNull Player player, @NotNull String newUri);
 
@@ -989,7 +911,7 @@ public class Player implements Closeable, PlayerDefine {
     /**
      * Stores information about the transition between two tracks.
      */
-    public static class TransitionInfo {
+    private static class TransitionInfo {
         /**
          * How the <bold>next</bold> track started
          */
@@ -1034,12 +956,9 @@ public class Player implements Closeable, PlayerDefine {
          * Skipping to previous track.
          */
         @NotNull
-        public static TransitionInfo skippedPrev(@NotNull StateWrapper state) {
+        static TransitionInfo skippedPrev(@NotNull StateWrapper state) {
             TransitionInfo trans = new TransitionInfo(PlaybackMetrics.Reason.BACK_BTN, PlaybackMetrics.Reason.BACK_BTN);
             if (state.getCurrentPlayable() != null) trans.endedWhen = state.getPosition();
-
-            Events.triggerEvent(SpotifyXPEvents.queueRegress.getName());
-
             return trans;
         }
 
@@ -1054,7 +973,6 @@ public class Player implements Closeable, PlayerDefine {
         }
     }
 
-    @SuppressWarnings("resource")
     private class EventsDispatcher {
         private final ExecutorService executorService = Executors.newSingleThreadExecutor(new NameThreadFactory((r) -> "player-events-" + r.hashCode()));
         private final List<EventsListener> listeners = new ArrayList<>();

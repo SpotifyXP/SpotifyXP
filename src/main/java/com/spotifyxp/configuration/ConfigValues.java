@@ -7,7 +7,7 @@ import com.spotifyxp.audio.Quality;
  */
 public enum ConfigValues {
     audioquality("settings.playback.quality", ConfigValueTypes.STRING, Quality.NORMAL.configValue()),
-    theme("settings.ui.theme", ConfigValueTypes.STRING, "DARKGREEN"),
+    theme("settings.ui.theme", ConfigValueTypes.STRING, "DarkGreen"),
     mypalpath("settings.mypal.path", ConfigValueTypes.STRING, ""),
     showallrecommendations("settings.performance.showallrecommendations", ConfigValueTypes.BOOLEAN, false),
     disableplayerstats("settings.performance.displayplayerstats", ConfigValueTypes.BOOLEAN, false),

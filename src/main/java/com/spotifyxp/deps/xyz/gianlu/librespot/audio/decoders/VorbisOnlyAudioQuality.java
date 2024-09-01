@@ -17,12 +17,12 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.AudioQualityPicker;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.SuperAudioFormat;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.AudioQualityPicker;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.SuperAudioFormat;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.util.List;
 
@@ -30,8 +30,7 @@ import java.util.List;
  * @author Gianlu
  */
 public final class VorbisOnlyAudioQuality implements AudioQualityPicker {
-    
-    private final AudioQuality preferred;
+     private final AudioQuality preferred;
 
     public VorbisOnlyAudioQuality(@NotNull AudioQuality preferred) {
         this.preferred = preferred;

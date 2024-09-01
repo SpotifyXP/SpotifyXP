@@ -3,8 +3,6 @@
 
 package com.spotifyxp.deps.com.spotify;
 
-import com.spotifyxp.utils.GraphicalMessage;
-
 public final class Mercury {
   private Mercury() {}
   public static void registerAllExtensions(
@@ -47,7 +45,7 @@ public final class Mercury {
   /**
    * Protobuf type {@code spotify.MercuryMultiGetRequest}
    */
-  public  static final class MercuryMultiGetRequest extends
+  public static final class MercuryMultiGetRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.MercuryMultiGetRequest)
       MercuryMultiGetRequestOrBuilder {
@@ -67,64 +65,7 @@ public final class Mercury {
       return new MercuryMultiGetRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MercuryMultiGetRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if ((mutable_bitField0_ & 0x00000001) == 0) {
-                request_ = new java.util.ArrayList<>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              request_.add(
-                  input.readMessage(com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest.PARSER, extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        GraphicalMessage.sorryErrorExit("Mercury.java Line 112");
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        GraphicalMessage.sorryErrorExit("Mercury.java Line 112");
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          request_ = java.util.Collections.unmodifiableList(request_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryMultiGetRequest_descriptor;
     }
@@ -138,16 +79,19 @@ public final class Mercury {
     }
 
     public static final int REQUEST_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest> request_;
     /**
      * <code>repeated .spotify.MercuryRequest request = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest> getRequestList() {
       return request_;
     }
     /**
      * <code>repeated .spotify.MercuryRequest request = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.Mercury.MercuryRequestOrBuilder> 
         getRequestOrBuilderList() {
       return request_;
@@ -155,18 +99,21 @@ public final class Mercury {
     /**
      * <code>repeated .spotify.MercuryRequest request = 1;</code>
      */
+    @java.lang.Override
     public int getRequestCount() {
       return request_.size();
     }
     /**
      * <code>repeated .spotify.MercuryRequest request = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest getRequest(int index) {
       return request_.get(index);
     }
     /**
      * <code>repeated .spotify.MercuryRequest request = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Mercury.MercuryRequestOrBuilder getRequestOrBuilder(
         int index) {
       return request_.get(index);
@@ -174,7 +121,7 @@ public final class Mercury {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -186,10 +133,10 @@ public final class Mercury {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (MercuryRequest mercuryRequest : request_) {
-        output.writeMessage(1, mercuryRequest);
+      for (int i = 0; i < request_.size(); i++) {
+        output.writeMessage(1, request_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -198,11 +145,11 @@ public final class Mercury {
       if (size != -1) return size;
 
       size = 0;
-      for (MercuryRequest mercuryRequest : request_) {
+      for (int i = 0; i < request_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-                .computeMessageSize(1, mercuryRequest);
+          .computeMessageSize(1, request_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -219,7 +166,8 @@ public final class Mercury {
 
       if (!getRequestList()
           .equals(other.getRequestList())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -233,7 +181,7 @@ public final class Mercury {
         hash = (37 * hash) + REQUEST_FIELD_NUMBER;
         hash = (53 * hash) + getRequestList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -282,11 +230,13 @@ public final class Mercury {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -325,7 +275,8 @@ public final class Mercury {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.MercuryMultiGetRequest}
@@ -334,7 +285,7 @@ public final class Mercury {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.MercuryMultiGetRequest)
         com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryMultiGetRequest_descriptor;
       }
@@ -349,29 +300,25 @@ public final class Mercury {
 
       // Construct using com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getRequestFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (requestBuilder_ == null) {
           request_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          request_ = null;
           requestBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -398,7 +345,13 @@ public final class Mercury {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest result = new com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest result) {
         if (requestBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             request_ = java.util.Collections.unmodifiableList(request_);
@@ -408,42 +361,12 @@ public final class Mercury {
         } else {
           result.request_ = requestBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest) {
@@ -482,13 +405,13 @@ public final class Mercury {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -497,17 +420,43 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest m =
+                    input.readMessage(
+                        com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest.PARSER,
+                        extensionRegistry);
+                if (requestBuilder_ == null) {
+                  ensureRequestIsMutable();
+                  request_.add(m);
+                } else {
+                  requestBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -515,8 +464,8 @@ public final class Mercury {
       private java.util.List<com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest> request_ =
         java.util.Collections.emptyList();
       private void ensureRequestIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          request_ = new java.util.ArrayList<>(request_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          request_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest>(request_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -741,7 +690,8 @@ public final class Mercury {
           com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest, com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest.Builder, com.spotifyxp.deps.com.spotify.Mercury.MercuryRequestOrBuilder> 
           getRequestFieldBuilder() {
         if (requestBuilder_ == null) {
-          requestBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          requestBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest, com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest.Builder, com.spotifyxp.deps.com.spotify.Mercury.MercuryRequestOrBuilder>(
                   request_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -751,13 +701,13 @@ public final class Mercury {
         return requestBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -783,7 +733,18 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MercuryMultiGetRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -834,7 +795,7 @@ public final class Mercury {
   /**
    * Protobuf type {@code spotify.MercuryMultiGetReply}
    */
-  public  static final class MercuryMultiGetReply extends
+  public static final class MercuryMultiGetReply extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.MercuryMultiGetReply)
       MercuryMultiGetReplyOrBuilder {
@@ -854,62 +815,7 @@ public final class Mercury {
       return new MercuryMultiGetReply();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MercuryMultiGetReply(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if ((mutable_bitField0_ & 0x00000001) == 0) {
-                reply_ = new java.util.ArrayList<>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              reply_.add(
-                  input.readMessage(com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.PARSER, extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          reply_ = java.util.Collections.unmodifiableList(reply_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryMultiGetReply_descriptor;
     }
@@ -923,16 +829,19 @@ public final class Mercury {
     }
 
     public static final int REPLY_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.Mercury.MercuryReply> reply_;
     /**
      * <code>repeated .spotify.MercuryReply reply = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.Mercury.MercuryReply> getReplyList() {
       return reply_;
     }
     /**
      * <code>repeated .spotify.MercuryReply reply = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.Mercury.MercuryReplyOrBuilder> 
         getReplyOrBuilderList() {
       return reply_;
@@ -940,18 +849,21 @@ public final class Mercury {
     /**
      * <code>repeated .spotify.MercuryReply reply = 1;</code>
      */
+    @java.lang.Override
     public int getReplyCount() {
       return reply_.size();
     }
     /**
      * <code>repeated .spotify.MercuryReply reply = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Mercury.MercuryReply getReply(int index) {
       return reply_.get(index);
     }
     /**
      * <code>repeated .spotify.MercuryReply reply = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Mercury.MercuryReplyOrBuilder getReplyOrBuilder(
         int index) {
       return reply_.get(index);
@@ -959,7 +871,7 @@ public final class Mercury {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -971,10 +883,10 @@ public final class Mercury {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (MercuryReply mercuryReply : reply_) {
-        output.writeMessage(1, mercuryReply);
+      for (int i = 0; i < reply_.size(); i++) {
+        output.writeMessage(1, reply_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -983,11 +895,11 @@ public final class Mercury {
       if (size != -1) return size;
 
       size = 0;
-      for (MercuryReply mercuryReply : reply_) {
+      for (int i = 0; i < reply_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-                .computeMessageSize(1, mercuryReply);
+          .computeMessageSize(1, reply_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1004,7 +916,8 @@ public final class Mercury {
 
       if (!getReplyList()
           .equals(other.getReplyList())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1018,7 +931,7 @@ public final class Mercury {
         hash = (37 * hash) + REPLY_FIELD_NUMBER;
         hash = (53 * hash) + getReplyList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1067,11 +980,13 @@ public final class Mercury {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1110,7 +1025,8 @@ public final class Mercury {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.MercuryMultiGetReply}
@@ -1119,7 +1035,7 @@ public final class Mercury {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.MercuryMultiGetReply)
         com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReplyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryMultiGetReply_descriptor;
       }
@@ -1134,29 +1050,25 @@ public final class Mercury {
 
       // Construct using com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getReplyFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (replyBuilder_ == null) {
           reply_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          reply_ = null;
           replyBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -1183,7 +1095,13 @@ public final class Mercury {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply buildPartial() {
         com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply result = new com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply result) {
         if (replyBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             reply_ = java.util.Collections.unmodifiableList(reply_);
@@ -1193,42 +1111,12 @@ public final class Mercury {
         } else {
           result.reply_ = replyBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply) {
@@ -1267,13 +1155,13 @@ public final class Mercury {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -1282,17 +1170,43 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.spotifyxp.deps.com.spotify.Mercury.MercuryReply m =
+                    input.readMessage(
+                        com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.PARSER,
+                        extensionRegistry);
+                if (replyBuilder_ == null) {
+                  ensureReplyIsMutable();
+                  reply_.add(m);
+                } else {
+                  replyBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Mercury.MercuryMultiGetReply) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1300,8 +1214,8 @@ public final class Mercury {
       private java.util.List<com.spotifyxp.deps.com.spotify.Mercury.MercuryReply> reply_ =
         java.util.Collections.emptyList();
       private void ensureReplyIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          reply_ = new java.util.ArrayList<>(reply_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          reply_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.Mercury.MercuryReply>(reply_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -1526,7 +1440,8 @@ public final class Mercury {
           com.spotifyxp.deps.com.spotify.Mercury.MercuryReply, com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.Builder, com.spotifyxp.deps.com.spotify.Mercury.MercuryReplyOrBuilder> 
           getReplyFieldBuilder() {
         if (replyBuilder_ == null) {
-          replyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          replyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Mercury.MercuryReply, com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.Builder, com.spotifyxp.deps.com.spotify.Mercury.MercuryReplyOrBuilder>(
                   reply_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -1536,13 +1451,13 @@ public final class Mercury {
         return replyBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1568,7 +1483,18 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MercuryMultiGetReply(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1651,7 +1577,7 @@ public final class Mercury {
   /**
    * Protobuf type {@code spotify.MercuryRequest}
    */
-  public  static final class MercuryRequest extends
+  public static final class MercuryRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.MercuryRequest)
       MercuryRequestOrBuilder {
@@ -1674,72 +1600,7 @@ public final class Mercury {
       return new MercuryRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MercuryRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              uri_ = bs;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              contentType_ = bs;
-              break;
-            }
-            case 26: {
-              bitField0_ |= 0x00000004;
-              body_ = input.readBytes();
-              break;
-            }
-            case 34: {
-              bitField0_ |= 0x00000008;
-              etag_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryRequest_descriptor;
     }
@@ -1754,11 +1615,13 @@ public final class Mercury {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>optional string uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -1766,6 +1629,7 @@ public final class Mercury {
      * <code>optional string uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -1784,6 +1648,7 @@ public final class Mercury {
      * <code>optional string uri = 1;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -1799,11 +1664,13 @@ public final class Mercury {
     }
 
     public static final int CONTENT_TYPE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object contentType_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object contentType_ = "";
     /**
      * <code>optional string content_type = 2;</code>
      * @return Whether the contentType field is set.
      */
+    @java.lang.Override
     public boolean hasContentType() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -1811,6 +1678,7 @@ public final class Mercury {
      * <code>optional string content_type = 2;</code>
      * @return The contentType.
      */
+    @java.lang.Override
     public java.lang.String getContentType() {
       java.lang.Object ref = contentType_;
       if (ref instanceof java.lang.String) {
@@ -1829,6 +1697,7 @@ public final class Mercury {
      * <code>optional string content_type = 2;</code>
      * @return The bytes for contentType.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContentTypeBytes() {
       java.lang.Object ref = contentType_;
@@ -1844,11 +1713,12 @@ public final class Mercury {
     }
 
     public static final int BODY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString body_;
+    private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes body = 3;</code>
      * @return Whether the body field is set.
      */
+    @java.lang.Override
     public boolean hasBody() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -1856,16 +1726,18 @@ public final class Mercury {
      * <code>optional bytes body = 3;</code>
      * @return The body.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getBody() {
       return body_;
     }
 
     public static final int ETAG_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString etag_;
+    private com.google.protobuf.ByteString etag_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes etag = 4;</code>
      * @return Whether the etag field is set.
      */
+    @java.lang.Override
     public boolean hasEtag() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -1873,13 +1745,14 @@ public final class Mercury {
      * <code>optional bytes etag = 4;</code>
      * @return The etag.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getEtag() {
       return etag_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1903,7 +1776,7 @@ public final class Mercury {
       if (((bitField0_ & 0x00000008) != 0)) {
         output.writeBytes(4, etag_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1926,7 +1799,7 @@ public final class Mercury {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, etag_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1961,7 +1834,8 @@ public final class Mercury {
         if (!getEtag()
             .equals(other.getEtag())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1987,7 +1861,7 @@ public final class Mercury {
         hash = (37 * hash) + ETAG_FIELD_NUMBER;
         hash = (53 * hash) + getEtag().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2036,11 +1910,13 @@ public final class Mercury {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2079,7 +1955,8 @@ public final class Mercury {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.MercuryRequest}
@@ -2088,7 +1965,7 @@ public final class Mercury {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.MercuryRequest)
         com.spotifyxp.deps.com.spotify.Mercury.MercuryRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryRequest_descriptor;
       }
@@ -2103,27 +1980,22 @@ public final class Mercury {
 
       // Construct using com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         contentType_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         body_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         etag_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -2150,61 +2022,33 @@ public final class Mercury {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest result = new com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.contentType_ = contentType_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.body_ = body_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.etag_ = etag_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.contentType_ = contentType_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.body_ = body_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.etag_ = etag_;
+          to_bitField0_ |= 0x00000008;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest) {
@@ -2218,13 +2062,13 @@ public final class Mercury {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest other) {
         if (other == com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest.getDefaultInstance()) return this;
         if (other.hasUri()) {
-          bitField0_ |= 0x00000001;
           uri_ = other.uri_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasContentType()) {
-          bitField0_ |= 0x00000002;
           contentType_ = other.contentType_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.hasBody()) {
@@ -2233,13 +2077,13 @@ public final class Mercury {
         if (other.hasEtag()) {
           setEtag(other.getEtag());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -2248,17 +2092,50 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                uri_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                contentType_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                body_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                etag_ = input.readBytes();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Mercury.MercuryRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2313,11 +2190,9 @@ public final class Mercury {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2326,8 +2201,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -2338,11 +2213,9 @@ public final class Mercury {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2397,11 +2270,9 @@ public final class Mercury {
        */
       public Builder setContentType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         contentType_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2410,8 +2281,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearContentType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         contentType_ = getDefaultInstance().getContentType();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2422,11 +2293,9 @@ public final class Mercury {
        */
       public Builder setContentTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         contentType_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2436,6 +2305,7 @@ public final class Mercury {
        * <code>optional bytes body = 3;</code>
        * @return Whether the body field is set.
        */
+      @java.lang.Override
       public boolean hasBody() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -2443,6 +2313,7 @@ public final class Mercury {
        * <code>optional bytes body = 3;</code>
        * @return The body.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getBody() {
         return body_;
       }
@@ -2452,11 +2323,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setBody(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         body_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2476,6 +2345,7 @@ public final class Mercury {
        * <code>optional bytes etag = 4;</code>
        * @return Whether the etag field is set.
        */
+      @java.lang.Override
       public boolean hasEtag() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -2483,6 +2353,7 @@ public final class Mercury {
        * <code>optional bytes etag = 4;</code>
        * @return The etag.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getEtag() {
         return etag_;
       }
@@ -2492,11 +2363,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setEtag(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         etag_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2511,13 +2380,13 @@ public final class Mercury {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2543,7 +2412,18 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MercuryRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2659,7 +2539,7 @@ public final class Mercury {
   /**
    * Protobuf type {@code spotify.MercuryReply}
    */
-  public  static final class MercuryReply extends
+  public static final class MercuryReply extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.MercuryReply)
       MercuryReplyOrBuilder {
@@ -2683,93 +2563,7 @@ public final class Mercury {
       return new MercuryReply();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MercuryReply(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              bitField0_ |= 0x00000001;
-              statusCode_ = input.readSInt32();
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              statusMessage_ = bs;
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy value = com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(3, rawValue);
-              } else {
-                bitField0_ |= 0x00000004;
-                cachePolicy_ = rawValue;
-              }
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              ttl_ = input.readSInt32();
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              etag_ = input.readBytes();
-              break;
-            }
-            case 50: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000020;
-              contentType_ = bs;
-              break;
-            }
-            case 58: {
-              bitField0_ |= 0x00000040;
-              body_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryReply_descriptor;
     }
@@ -2848,7 +2642,11 @@ public final class Mercury {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           CachePolicy> internalValueMap =
-              CachePolicy::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<CachePolicy>() {
+              public CachePolicy findValueByNumber(int number) {
+                return CachePolicy.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -2858,7 +2656,7 @@ public final class Mercury {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.getDescriptor().getEnumTypes().get(0);
       }
@@ -2876,7 +2674,7 @@ public final class Mercury {
 
       private final int value;
 
-      CachePolicy(int value) {
+      private CachePolicy(int value) {
         this.value = value;
       }
 
@@ -2885,11 +2683,12 @@ public final class Mercury {
 
     private int bitField0_;
     public static final int STATUS_CODE_FIELD_NUMBER = 1;
-    private int statusCode_;
+    private int statusCode_ = 0;
     /**
      * <code>optional sint32 status_code = 1;</code>
      * @return Whether the statusCode field is set.
      */
+    @java.lang.Override
     public boolean hasStatusCode() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -2897,16 +2696,19 @@ public final class Mercury {
      * <code>optional sint32 status_code = 1;</code>
      * @return The statusCode.
      */
+    @java.lang.Override
     public int getStatusCode() {
       return statusCode_;
     }
 
     public static final int STATUS_MESSAGE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object statusMessage_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object statusMessage_ = "";
     /**
      * <code>optional string status_message = 2;</code>
      * @return Whether the statusMessage field is set.
      */
+    @java.lang.Override
     public boolean hasStatusMessage() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -2914,6 +2716,7 @@ public final class Mercury {
      * <code>optional string status_message = 2;</code>
      * @return The statusMessage.
      */
+    @java.lang.Override
     public java.lang.String getStatusMessage() {
       java.lang.Object ref = statusMessage_;
       if (ref instanceof java.lang.String) {
@@ -2932,6 +2735,7 @@ public final class Mercury {
      * <code>optional string status_message = 2;</code>
      * @return The bytes for statusMessage.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getStatusMessageBytes() {
       java.lang.Object ref = statusMessage_;
@@ -2947,29 +2751,30 @@ public final class Mercury {
     }
 
     public static final int CACHE_POLICY_FIELD_NUMBER = 3;
-    private int cachePolicy_;
+    private int cachePolicy_ = 1;
     /**
      * <code>optional .spotify.MercuryReply.CachePolicy cache_policy = 3;</code>
      * @return Whether the cachePolicy field is set.
      */
-    public boolean hasCachePolicy() {
+    @java.lang.Override public boolean hasCachePolicy() {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <code>optional .spotify.MercuryReply.CachePolicy cache_policy = 3;</code>
      * @return The cachePolicy.
      */
-    public com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy getCachePolicy() {
-      com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy result = com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.valueOf(cachePolicy_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy getCachePolicy() {
+      com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy result = com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.forNumber(cachePolicy_);
       return result == null ? com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.CACHE_NO : result;
     }
 
     public static final int TTL_FIELD_NUMBER = 4;
-    private int ttl_;
+    private int ttl_ = 0;
     /**
      * <code>optional sint32 ttl = 4;</code>
      * @return Whether the ttl field is set.
      */
+    @java.lang.Override
     public boolean hasTtl() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -2977,16 +2782,18 @@ public final class Mercury {
      * <code>optional sint32 ttl = 4;</code>
      * @return The ttl.
      */
+    @java.lang.Override
     public int getTtl() {
       return ttl_;
     }
 
     public static final int ETAG_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString etag_;
+    private com.google.protobuf.ByteString etag_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes etag = 5;</code>
      * @return Whether the etag field is set.
      */
+    @java.lang.Override
     public boolean hasEtag() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -2994,16 +2801,19 @@ public final class Mercury {
      * <code>optional bytes etag = 5;</code>
      * @return The etag.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getEtag() {
       return etag_;
     }
 
     public static final int CONTENT_TYPE_FIELD_NUMBER = 6;
-    private volatile java.lang.Object contentType_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object contentType_ = "";
     /**
      * <code>optional string content_type = 6;</code>
      * @return Whether the contentType field is set.
      */
+    @java.lang.Override
     public boolean hasContentType() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -3011,6 +2821,7 @@ public final class Mercury {
      * <code>optional string content_type = 6;</code>
      * @return The contentType.
      */
+    @java.lang.Override
     public java.lang.String getContentType() {
       java.lang.Object ref = contentType_;
       if (ref instanceof java.lang.String) {
@@ -3029,6 +2840,7 @@ public final class Mercury {
      * <code>optional string content_type = 6;</code>
      * @return The bytes for contentType.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContentTypeBytes() {
       java.lang.Object ref = contentType_;
@@ -3044,11 +2856,12 @@ public final class Mercury {
     }
 
     public static final int BODY_FIELD_NUMBER = 7;
-    private com.google.protobuf.ByteString body_;
+    private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes body = 7;</code>
      * @return Whether the body field is set.
      */
+    @java.lang.Override
     public boolean hasBody() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -3056,13 +2869,14 @@ public final class Mercury {
      * <code>optional bytes body = 7;</code>
      * @return The body.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getBody() {
       return body_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -3095,7 +2909,7 @@ public final class Mercury {
       if (((bitField0_ & 0x00000040) != 0)) {
         output.writeBytes(7, body_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3130,7 +2944,7 @@ public final class Mercury {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(7, body_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3179,7 +2993,8 @@ public final class Mercury {
         if (!getBody()
             .equals(other.getBody())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3217,7 +3032,7 @@ public final class Mercury {
         hash = (37 * hash) + BODY_FIELD_NUMBER;
         hash = (53 * hash) + getBody().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3266,11 +3081,13 @@ public final class Mercury {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.MercuryReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3309,7 +3126,8 @@ public final class Mercury {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.MercuryReply}
@@ -3318,7 +3136,7 @@ public final class Mercury {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.MercuryReply)
         com.spotifyxp.deps.com.spotify.Mercury.MercuryReplyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_MercuryReply_descriptor;
       }
@@ -3333,33 +3151,25 @@ public final class Mercury {
 
       // Construct using com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         statusCode_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         statusMessage_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         cachePolicy_ = 1;
-        bitField0_ = (bitField0_ & ~0x00000004);
         ttl_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         etag_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
         contentType_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
         body_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -3386,6 +3196,12 @@ public final class Mercury {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.MercuryReply buildPartial() {
         com.spotifyxp.deps.com.spotify.Mercury.MercuryReply result = new com.spotifyxp.deps.com.spotify.Mercury.MercuryReply(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Mercury.MercuryReply result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -3393,66 +3209,32 @@ public final class Mercury {
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.statusMessage_ = statusMessage_;
           to_bitField0_ |= 0x00000002;
         }
-        result.statusMessage_ = statusMessage_;
         if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.cachePolicy_ = cachePolicy_;
           to_bitField0_ |= 0x00000004;
         }
-        result.cachePolicy_ = cachePolicy_;
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.ttl_ = ttl_;
           to_bitField0_ |= 0x00000008;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.etag_ = etag_;
           to_bitField0_ |= 0x00000010;
         }
-        result.etag_ = etag_;
         if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.contentType_ = contentType_;
           to_bitField0_ |= 0x00000020;
         }
-        result.contentType_ = contentType_;
         if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.body_ = body_;
           to_bitField0_ |= 0x00000040;
         }
-        result.body_ = body_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Mercury.MercuryReply) {
@@ -3469,8 +3251,8 @@ public final class Mercury {
           setStatusCode(other.getStatusCode());
         }
         if (other.hasStatusMessage()) {
-          bitField0_ |= 0x00000002;
           statusMessage_ = other.statusMessage_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.hasCachePolicy()) {
@@ -3483,20 +3265,20 @@ public final class Mercury {
           setEtag(other.getEtag());
         }
         if (other.hasContentType()) {
-          bitField0_ |= 0x00000020;
           contentType_ = other.contentType_;
+          bitField0_ |= 0x00000020;
           onChanged();
         }
         if (other.hasBody()) {
           setBody(other.getBody());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -3505,17 +3287,72 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Mercury.MercuryReply parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                statusCode_ = input.readSInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                statusMessage_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy tmpValue =
+                    com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(3, tmpRaw);
+                } else {
+                  cachePolicy_ = tmpRaw;
+                  bitField0_ |= 0x00000004;
+                }
+                break;
+              } // case 24
+              case 32: {
+                ttl_ = input.readSInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                etag_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                contentType_ = input.readBytes();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 58: {
+                body_ = input.readBytes();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 58
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Mercury.MercuryReply) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -3525,6 +3362,7 @@ public final class Mercury {
        * <code>optional sint32 status_code = 1;</code>
        * @return Whether the statusCode field is set.
        */
+      @java.lang.Override
       public boolean hasStatusCode() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -3532,6 +3370,7 @@ public final class Mercury {
        * <code>optional sint32 status_code = 1;</code>
        * @return The statusCode.
        */
+      @java.lang.Override
       public int getStatusCode() {
         return statusCode_;
       }
@@ -3541,8 +3380,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setStatusCode(int value) {
-        bitField0_ |= 0x00000001;
+
         statusCode_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3607,11 +3447,9 @@ public final class Mercury {
        */
       public Builder setStatusMessage(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         statusMessage_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3620,8 +3458,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearStatusMessage() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         statusMessage_ = getDefaultInstance().getStatusMessage();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -3632,11 +3470,9 @@ public final class Mercury {
        */
       public Builder setStatusMessageBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         statusMessage_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3646,15 +3482,16 @@ public final class Mercury {
        * <code>optional .spotify.MercuryReply.CachePolicy cache_policy = 3;</code>
        * @return Whether the cachePolicy field is set.
        */
-      public boolean hasCachePolicy() {
+      @java.lang.Override public boolean hasCachePolicy() {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>optional .spotify.MercuryReply.CachePolicy cache_policy = 3;</code>
        * @return The cachePolicy.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy getCachePolicy() {
-        com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy result = com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.valueOf(cachePolicy_);
+        com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy result = com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.forNumber(cachePolicy_);
         return result == null ? com.spotifyxp.deps.com.spotify.Mercury.MercuryReply.CachePolicy.CACHE_NO : result;
       }
       /**
@@ -3687,6 +3524,7 @@ public final class Mercury {
        * <code>optional sint32 ttl = 4;</code>
        * @return Whether the ttl field is set.
        */
+      @java.lang.Override
       public boolean hasTtl() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -3694,6 +3532,7 @@ public final class Mercury {
        * <code>optional sint32 ttl = 4;</code>
        * @return The ttl.
        */
+      @java.lang.Override
       public int getTtl() {
         return ttl_;
       }
@@ -3703,8 +3542,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setTtl(int value) {
-        bitField0_ |= 0x00000008;
+
         ttl_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -3724,6 +3564,7 @@ public final class Mercury {
        * <code>optional bytes etag = 5;</code>
        * @return Whether the etag field is set.
        */
+      @java.lang.Override
       public boolean hasEtag() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -3731,6 +3572,7 @@ public final class Mercury {
        * <code>optional bytes etag = 5;</code>
        * @return The etag.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getEtag() {
         return etag_;
       }
@@ -3740,11 +3582,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setEtag(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         etag_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -3809,11 +3649,9 @@ public final class Mercury {
        */
       public Builder setContentType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         contentType_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -3822,8 +3660,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearContentType() {
-        bitField0_ = (bitField0_ & ~0x00000020);
         contentType_ = getDefaultInstance().getContentType();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -3834,11 +3672,9 @@ public final class Mercury {
        */
       public Builder setContentTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         contentType_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -3848,6 +3684,7 @@ public final class Mercury {
        * <code>optional bytes body = 7;</code>
        * @return Whether the body field is set.
        */
+      @java.lang.Override
       public boolean hasBody() {
         return ((bitField0_ & 0x00000040) != 0);
       }
@@ -3855,6 +3692,7 @@ public final class Mercury {
        * <code>optional bytes body = 7;</code>
        * @return The body.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getBody() {
         return body_;
       }
@@ -3864,11 +3702,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setBody(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
+        if (value == null) { throw new NullPointerException(); }
         body_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -3883,13 +3719,13 @@ public final class Mercury {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3915,7 +3751,18 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MercuryReply(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4028,7 +3875,7 @@ public final class Mercury {
   /**
    * Protobuf type {@code spotify.Header}
    */
-  public  static final class Header extends
+  public static final class Header extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.Header)
       HeaderOrBuilder {
@@ -4051,85 +3898,7 @@ public final class Mercury {
       return new Header();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Header(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              uri_ = bs;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              contentType_ = bs;
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              method_ = bs;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              statusCode_ = input.readSInt32();
-              break;
-            }
-            case 50: {
-              if ((mutable_bitField0_ & 0x00000010) == 0) {
-                userFields_ = new java.util.ArrayList<>();
-                mutable_bitField0_ |= 0x00000010;
-              }
-              userFields_.add(
-                  input.readMessage(com.spotifyxp.deps.com.spotify.Mercury.UserField.PARSER, extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000010) != 0)) {
-          userFields_ = java.util.Collections.unmodifiableList(userFields_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_Header_descriptor;
     }
@@ -4144,11 +3913,13 @@ public final class Mercury {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>optional string uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -4156,6 +3927,7 @@ public final class Mercury {
      * <code>optional string uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -4174,6 +3946,7 @@ public final class Mercury {
      * <code>optional string uri = 1;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -4189,11 +3962,13 @@ public final class Mercury {
     }
 
     public static final int CONTENT_TYPE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object contentType_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object contentType_ = "";
     /**
      * <code>optional string content_type = 2;</code>
      * @return Whether the contentType field is set.
      */
+    @java.lang.Override
     public boolean hasContentType() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -4201,6 +3976,7 @@ public final class Mercury {
      * <code>optional string content_type = 2;</code>
      * @return The contentType.
      */
+    @java.lang.Override
     public java.lang.String getContentType() {
       java.lang.Object ref = contentType_;
       if (ref instanceof java.lang.String) {
@@ -4219,6 +3995,7 @@ public final class Mercury {
      * <code>optional string content_type = 2;</code>
      * @return The bytes for contentType.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContentTypeBytes() {
       java.lang.Object ref = contentType_;
@@ -4234,11 +4011,13 @@ public final class Mercury {
     }
 
     public static final int METHOD_FIELD_NUMBER = 3;
-    private volatile java.lang.Object method_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object method_ = "";
     /**
      * <code>optional string method = 3;</code>
      * @return Whether the method field is set.
      */
+    @java.lang.Override
     public boolean hasMethod() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -4246,6 +4025,7 @@ public final class Mercury {
      * <code>optional string method = 3;</code>
      * @return The method.
      */
+    @java.lang.Override
     public java.lang.String getMethod() {
       java.lang.Object ref = method_;
       if (ref instanceof java.lang.String) {
@@ -4264,6 +4044,7 @@ public final class Mercury {
      * <code>optional string method = 3;</code>
      * @return The bytes for method.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMethodBytes() {
       java.lang.Object ref = method_;
@@ -4279,11 +4060,12 @@ public final class Mercury {
     }
 
     public static final int STATUS_CODE_FIELD_NUMBER = 4;
-    private int statusCode_;
+    private int statusCode_ = 0;
     /**
      * <code>optional sint32 status_code = 4;</code>
      * @return Whether the statusCode field is set.
      */
+    @java.lang.Override
     public boolean hasStatusCode() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -4291,21 +4073,25 @@ public final class Mercury {
      * <code>optional sint32 status_code = 4;</code>
      * @return The statusCode.
      */
+    @java.lang.Override
     public int getStatusCode() {
       return statusCode_;
     }
 
     public static final int USER_FIELDS_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.Mercury.UserField> userFields_;
     /**
      * <code>repeated .spotify.UserField user_fields = 6;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.Mercury.UserField> getUserFieldsList() {
       return userFields_;
     }
     /**
      * <code>repeated .spotify.UserField user_fields = 6;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.Mercury.UserFieldOrBuilder> 
         getUserFieldsOrBuilderList() {
       return userFields_;
@@ -4313,18 +4099,21 @@ public final class Mercury {
     /**
      * <code>repeated .spotify.UserField user_fields = 6;</code>
      */
+    @java.lang.Override
     public int getUserFieldsCount() {
       return userFields_.size();
     }
     /**
      * <code>repeated .spotify.UserField user_fields = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Mercury.UserField getUserFields(int index) {
       return userFields_.get(index);
     }
     /**
      * <code>repeated .spotify.UserField user_fields = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Mercury.UserFieldOrBuilder getUserFieldsOrBuilder(
         int index) {
       return userFields_.get(index);
@@ -4332,7 +4121,7 @@ public final class Mercury {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -4356,10 +4145,10 @@ public final class Mercury {
       if (((bitField0_ & 0x00000008) != 0)) {
         output.writeSInt32(4, statusCode_);
       }
-      for (UserField userField : userFields_) {
-        output.writeMessage(6, userField);
+      for (int i = 0; i < userFields_.size(); i++) {
+        output.writeMessage(6, userFields_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4381,11 +4170,11 @@ public final class Mercury {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt32Size(4, statusCode_);
       }
-      for (UserField userField : userFields_) {
+      for (int i = 0; i < userFields_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-                .computeMessageSize(6, userField);
+          .computeMessageSize(6, userFields_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4422,7 +4211,8 @@ public final class Mercury {
       }
       if (!getUserFieldsList()
           .equals(other.getUserFieldsList())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4452,7 +4242,7 @@ public final class Mercury {
         hash = (37 * hash) + USER_FIELDS_FIELD_NUMBER;
         hash = (53 * hash) + getUserFieldsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4501,11 +4291,13 @@ public final class Mercury {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.Header parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.Header parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4544,7 +4336,8 @@ public final class Mercury {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.Header}
@@ -4553,7 +4346,7 @@ public final class Mercury {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.Header)
         com.spotifyxp.deps.com.spotify.Mercury.HeaderOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_Header_descriptor;
       }
@@ -4568,37 +4361,29 @@ public final class Mercury {
 
       // Construct using com.spotifyxp.deps.com.spotify.Mercury.Header.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getUserFieldsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         contentType_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         method_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         statusCode_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         if (userFieldsBuilder_ == null) {
           userFields_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
+          userFields_ = null;
           userFieldsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -4625,24 +4410,13 @@ public final class Mercury {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.Header buildPartial() {
         com.spotifyxp.deps.com.spotify.Mercury.Header result = new com.spotifyxp.deps.com.spotify.Mercury.Header(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.contentType_ = contentType_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.method_ = method_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.statusCode_ = statusCode_;
-          to_bitField0_ |= 0x00000008;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.Mercury.Header result) {
         if (userFieldsBuilder_ == null) {
           if (((bitField0_ & 0x00000010) != 0)) {
             userFields_ = java.util.Collections.unmodifiableList(userFields_);
@@ -4652,43 +4426,30 @@ public final class Mercury {
         } else {
           result.userFields_ = userFieldsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Mercury.Header result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.contentType_ = contentType_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.method_ = method_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.statusCode_ = statusCode_;
+          to_bitField0_ |= 0x00000008;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Mercury.Header) {
@@ -4702,18 +4463,18 @@ public final class Mercury {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Mercury.Header other) {
         if (other == com.spotifyxp.deps.com.spotify.Mercury.Header.getDefaultInstance()) return this;
         if (other.hasUri()) {
-          bitField0_ |= 0x00000001;
           uri_ = other.uri_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasContentType()) {
-          bitField0_ |= 0x00000002;
           contentType_ = other.contentType_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.hasMethod()) {
-          bitField0_ |= 0x00000004;
           method_ = other.method_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (other.hasStatusCode()) {
@@ -4745,13 +4506,13 @@ public final class Mercury {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -4760,17 +4521,63 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Mercury.Header parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                uri_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                contentType_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                method_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                statusCode_ = input.readSInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 50: {
+                com.spotifyxp.deps.com.spotify.Mercury.UserField m =
+                    input.readMessage(
+                        com.spotifyxp.deps.com.spotify.Mercury.UserField.PARSER,
+                        extensionRegistry);
+                if (userFieldsBuilder_ == null) {
+                  ensureUserFieldsIsMutable();
+                  userFields_.add(m);
+                } else {
+                  userFieldsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 50
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Mercury.Header) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -4825,11 +4632,9 @@ public final class Mercury {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4838,8 +4643,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -4850,11 +4655,9 @@ public final class Mercury {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4909,11 +4712,9 @@ public final class Mercury {
        */
       public Builder setContentType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         contentType_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4922,8 +4723,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearContentType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         contentType_ = getDefaultInstance().getContentType();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -4934,11 +4735,9 @@ public final class Mercury {
        */
       public Builder setContentTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         contentType_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4993,11 +4792,9 @@ public final class Mercury {
        */
       public Builder setMethod(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         method_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -5006,8 +4803,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearMethod() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         method_ = getDefaultInstance().getMethod();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -5018,11 +4815,9 @@ public final class Mercury {
        */
       public Builder setMethodBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         method_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -5032,6 +4827,7 @@ public final class Mercury {
        * <code>optional sint32 status_code = 4;</code>
        * @return Whether the statusCode field is set.
        */
+      @java.lang.Override
       public boolean hasStatusCode() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -5039,6 +4835,7 @@ public final class Mercury {
        * <code>optional sint32 status_code = 4;</code>
        * @return The statusCode.
        */
+      @java.lang.Override
       public int getStatusCode() {
         return statusCode_;
       }
@@ -5048,8 +4845,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setStatusCode(int value) {
-        bitField0_ |= 0x00000008;
+
         statusCode_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -5067,8 +4865,8 @@ public final class Mercury {
       private java.util.List<com.spotifyxp.deps.com.spotify.Mercury.UserField> userFields_ =
         java.util.Collections.emptyList();
       private void ensureUserFieldsIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
-          userFields_ = new java.util.ArrayList<>(userFields_);
+        if (!((bitField0_ & 0x00000010) != 0)) {
+          userFields_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.Mercury.UserField>(userFields_);
           bitField0_ |= 0x00000010;
          }
       }
@@ -5293,7 +5091,8 @@ public final class Mercury {
           com.spotifyxp.deps.com.spotify.Mercury.UserField, com.spotifyxp.deps.com.spotify.Mercury.UserField.Builder, com.spotifyxp.deps.com.spotify.Mercury.UserFieldOrBuilder> 
           getUserFieldsFieldBuilder() {
         if (userFieldsBuilder_ == null) {
-          userFieldsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          userFieldsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Mercury.UserField, com.spotifyxp.deps.com.spotify.Mercury.UserField.Builder, com.spotifyxp.deps.com.spotify.Mercury.UserFieldOrBuilder>(
                   userFields_,
                   ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
@@ -5303,13 +5102,13 @@ public final class Mercury {
         return userFieldsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5335,7 +5134,18 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Header(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -5390,7 +5200,7 @@ public final class Mercury {
   /**
    * Protobuf type {@code spotify.UserField}
    */
-  public  static final class UserField extends
+  public static final class UserField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.UserField)
       UserFieldOrBuilder {
@@ -5411,61 +5221,7 @@ public final class Mercury {
       return new UserField();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UserField(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              key_ = bs;
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              value_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_UserField_descriptor;
     }
@@ -5480,11 +5236,13 @@ public final class Mercury {
 
     private int bitField0_;
     public static final int KEY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object key_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object key_ = "";
     /**
      * <code>optional string key = 1;</code>
      * @return Whether the key field is set.
      */
+    @java.lang.Override
     public boolean hasKey() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -5492,6 +5250,7 @@ public final class Mercury {
      * <code>optional string key = 1;</code>
      * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -5510,6 +5269,7 @@ public final class Mercury {
      * <code>optional string key = 1;</code>
      * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -5525,11 +5285,12 @@ public final class Mercury {
     }
 
     public static final int VALUE_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString value_;
+    private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes value = 2;</code>
      * @return Whether the value field is set.
      */
+    @java.lang.Override
     public boolean hasValue() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -5537,13 +5298,14 @@ public final class Mercury {
      * <code>optional bytes value = 2;</code>
      * @return The value.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getValue() {
       return value_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5561,7 +5323,7 @@ public final class Mercury {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeBytes(2, value_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5577,7 +5339,7 @@ public final class Mercury {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, value_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5602,7 +5364,8 @@ public final class Mercury {
         if (!getValue()
             .equals(other.getValue())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -5620,7 +5383,7 @@ public final class Mercury {
         hash = (37 * hash) + VALUE_FIELD_NUMBER;
         hash = (53 * hash) + getValue().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -5669,11 +5432,13 @@ public final class Mercury {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.UserField parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Mercury.UserField parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5712,7 +5477,8 @@ public final class Mercury {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.UserField}
@@ -5721,7 +5487,7 @@ public final class Mercury {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.UserField)
         com.spotifyxp.deps.com.spotify.Mercury.UserFieldOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Mercury.internal_static_spotify_UserField_descriptor;
       }
@@ -5736,23 +5502,20 @@ public final class Mercury {
 
       // Construct using com.spotifyxp.deps.com.spotify.Mercury.UserField.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         key_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         value_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -5779,53 +5542,25 @@ public final class Mercury {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Mercury.UserField buildPartial() {
         com.spotifyxp.deps.com.spotify.Mercury.UserField result = new com.spotifyxp.deps.com.spotify.Mercury.UserField(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.key_ = key_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.value_ = value_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Mercury.UserField result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.key_ = key_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.value_ = value_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Mercury.UserField) {
@@ -5839,20 +5574,20 @@ public final class Mercury {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Mercury.UserField other) {
         if (other == com.spotifyxp.deps.com.spotify.Mercury.UserField.getDefaultInstance()) return this;
         if (other.hasKey()) {
-          bitField0_ |= 0x00000001;
           key_ = other.key_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasValue()) {
           setValue(other.getValue());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -5861,17 +5596,40 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Mercury.UserField parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                value_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Mercury.UserField) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -5926,11 +5684,9 @@ public final class Mercury {
        */
       public Builder setKey(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5939,8 +5695,8 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder clearKey() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         key_ = getDefaultInstance().getKey();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -5951,11 +5707,9 @@ public final class Mercury {
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5965,6 +5719,7 @@ public final class Mercury {
        * <code>optional bytes value = 2;</code>
        * @return Whether the value field is set.
        */
+      @java.lang.Override
       public boolean hasValue() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -5972,6 +5727,7 @@ public final class Mercury {
        * <code>optional bytes value = 2;</code>
        * @return The value.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getValue() {
         return value_;
       }
@@ -5981,11 +5737,9 @@ public final class Mercury {
        * @return This builder for chaining.
        */
       public Builder setValue(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         value_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6000,13 +5754,13 @@ public final class Mercury {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6032,7 +5786,18 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserField(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6087,7 +5852,7 @@ public final class Mercury {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -6105,9 +5870,10 @@ public final class Mercury {
       "E_NO\020\001\022\021\n\rCACHE_PRIVATE\020\002\022\020\n\014CACHE_PUBLI" +
       "C\020\003\"y\n\006Header\022\013\n\003uri\030\001 \001(\t\022\024\n\014content_ty" +
       "pe\030\002 \001(\t\022\016\n\006method\030\003 \001(\t\022\023\n\013status_code\030" +
-              "\004 \001(\021\022'\n\013user_fields\030\006 \003(\0132\022.spotify.Use" +
-              "rField\"'\n\tUserField\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
-      "e\030\002 \001(\014B\r\n\013com.spotify"
+      "\004 \001(\021\022\'\n\013user_fields\030\006 \003(\0132\022.spotify.Use" +
+      "rField\"\'\n\tUserField\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
+      "e\030\002 \001(\014B \n\036com.spotifyxp.deps.com.spotif" +
+      "y"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

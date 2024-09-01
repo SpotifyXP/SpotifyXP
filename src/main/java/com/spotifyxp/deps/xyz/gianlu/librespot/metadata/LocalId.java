@@ -24,7 +24,6 @@ import java.net.URLDecoder;
 /**
  * @author devgianlu
  */
-@SuppressWarnings("NullableProblems")
 public final class LocalId implements PlayableId {
     private final String uri;
     private final String[] data;

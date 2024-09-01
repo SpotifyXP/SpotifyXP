@@ -19,18 +19,17 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Reason;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Reason;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CrossfadeController {
-    
     private final String playbackId;
     private final int trackDuration;
     private final Map<Reason, FadeInterval> fadeOutMap = new HashMap<>(8);
@@ -72,7 +71,7 @@ public class CrossfadeController {
         JsonArray fadeInCurves = JsonParser.parseString(metadata.getOrDefault("audio.fade_in_curves", "[]")).getAsJsonArray();
         if (fadeInCurves.size() > 1) throw new UnsupportedOperationException(fadeInCurves.toString());
 
-        if (fadeInDuration != 0 && !fadeInCurves.isEmpty())
+        if (fadeInDuration != 0 && fadeInCurves.size() > 0)
             fadeInMap.put(Reason.TRACK_DONE, new FadeInterval(fadeInStartTime, fadeInDuration, LookupInterpolator.fromJson(getFadeCurve(fadeInCurves))));
         else if (defaultFadeDuration > 0)
             fadeInMap.put(Reason.TRACK_DONE, new FadeInterval(0, defaultFadeDuration, new LinearIncreasingInterpolator()));
@@ -95,7 +94,7 @@ public class CrossfadeController {
         JsonArray fadeOutCurves = JsonParser.parseString(metadata.getOrDefault("audio.fade_out_curves", "[]")).getAsJsonArray();
         if (fadeOutCurves.size() > 1) throw new UnsupportedOperationException(fadeOutCurves.toString());
 
-        if (fadeOutDuration != 0 && !fadeOutCurves.isEmpty())
+        if (fadeOutDuration != 0 && fadeOutCurves.size() > 0)
             fadeOutMap.put(Reason.TRACK_DONE, new FadeInterval(fadeOutStartTime, fadeOutDuration, LookupInterpolator.fromJson(getFadeCurve(fadeOutCurves))));
         else if (defaultFadeDuration > 0)
             fadeOutMap.put(Reason.TRACK_DONE, new FadeInterval(trackDuration - defaultFadeDuration, defaultFadeDuration, new LinearDecreasingInterpolator()));

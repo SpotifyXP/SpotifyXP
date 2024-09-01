@@ -1,11 +1,10 @@
 package com.spotifyxp;
 
-import com.spotifyxp.api.Player;
+
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.background.BackgroundService;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.injector.Injector;
@@ -33,40 +32,6 @@ public class Initiator {
     public static StartupTime startupTime;
     static final DefThread hook = new DefThread(PlayerArea::saveCurrentState);
 
-    static int destroyCounter = 1;
-
-    public static final DefThread thread = new DefThread(new Runnable() {
-        @Override
-        public void run() {
-            while (!past) {
-                int s = Integer.parseInt(startupTime.getMMSSCoded().split(":")[1]);
-                if (s > 10) {
-                    if(!(destroyCounter > 2)) {
-                        ConsoleLogging.warning("Init of player failed! Retrying... (" + destroyCounter + ")");
-                        InstanceManager.getPlayer().destroy();
-                        Thread playerBuildThread = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                InstanceManager.getPlayer();
-                            }
-                        });
-                        playerBuildThread.start();
-                        destroyCounter++;
-                        return;
-                    }
-                    if(GraphicalMessage.stuck()) {
-                        System.exit(0);
-                    }else{
-                        past = true;
-                        break;
-                    }
-                }
-            }
-        }
-    });
-
-
-
     public static boolean past = false;
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
@@ -86,8 +51,7 @@ public class Initiator {
         parseAudioQuality(); //Parsing the audio quality
         initThemes(); //Initializing the theming support
         creatingLock(); //Creating the 'LOCK' file
-        checkLogin(); //Checking if user has already entered his credentials
-        addShutdownHook(); //Adding the shudtown hook
+        addShutdownHook(); //Adding the shutdown hook
         initAPI(); //Initializing all the apis used
         if (PublicValues.enableMediaControl) createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
         initTrayIcon(); //Creating the tray icon
@@ -266,15 +230,7 @@ public class Initiator {
         }catch (Exception e) {
             GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
-            ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be instable");
-        }
-    }
-
-    static void checkLogin() {
-        SplashPanel.linfo.setText("Checking login...");
-        if (PublicValues.config.getString(ConfigValues.username.name).isEmpty()) {
-            new LoginDialog().open(); //Show login dialog if no username is set
-            startupTime = new StartupTime();
+            ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be unstable");
         }
     }
 
@@ -290,10 +246,8 @@ public class Initiator {
 
     static void initAPI() {
         SplashPanel.linfo.setText("Creating api...");
-        Player player = null;
-        thread.start();
         InstanceManager.getSpotifyAPI();
-        player = InstanceManager.getPlayer();
+        InstanceManager.getPlayer();
         past = true;
         SplashPanel.linfo.setText("Create advanced api key...");
         InstanceManager.getUnofficialSpotifyApi();

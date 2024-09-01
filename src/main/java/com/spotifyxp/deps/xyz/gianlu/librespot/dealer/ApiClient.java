@@ -25,17 +25,17 @@ import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.extendedmetadata.ExtendedMetadata;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.*;
+import okio.BufferedSink;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.StationsWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.*;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import okhttp3.*;
-import okio.BufferedSink;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +47,6 @@ import static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanva
  * @author devgianlu
  */
 public final class ApiClient {
-    
     private final Session session;
     private final String baseUrl;
     private String clientToken = null;

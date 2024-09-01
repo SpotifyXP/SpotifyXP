@@ -55,7 +55,7 @@ public final class ExplicitContentPubsub {
   /**
    * Protobuf type {@code spotify.explicit_content.proto.KeyValuePair}
    */
-  public  static final class KeyValuePair extends
+  public static final class KeyValuePair extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.explicit_content.proto.KeyValuePair)
       KeyValuePairOrBuilder {
@@ -76,12 +76,7 @@ public final class ExplicitContentPubsub {
       return new KeyValuePair();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_KeyValuePair_descriptor;
     }
@@ -96,11 +91,13 @@ public final class ExplicitContentPubsub {
 
     private int bitField0_;
     public static final int KEY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object key_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object key_ = "";
     /**
      * <code>required string key = 1;</code>
      * @return Whether the key field is set.
      */
+    @java.lang.Override
     public boolean hasKey() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -108,6 +105,7 @@ public final class ExplicitContentPubsub {
      * <code>required string key = 1;</code>
      * @return The key.
      */
+    @java.lang.Override
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
       if (ref instanceof java.lang.String) {
@@ -126,6 +124,7 @@ public final class ExplicitContentPubsub {
      * <code>required string key = 1;</code>
      * @return The bytes for key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getKeyBytes() {
       java.lang.Object ref = key_;
@@ -141,11 +140,13 @@ public final class ExplicitContentPubsub {
     }
 
     public static final int VALUE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object value_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object value_ = "";
     /**
      * <code>required string value = 2;</code>
      * @return Whether the value field is set.
      */
+    @java.lang.Override
     public boolean hasValue() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -153,6 +154,7 @@ public final class ExplicitContentPubsub {
      * <code>required string value = 2;</code>
      * @return The value.
      */
+    @java.lang.Override
     public java.lang.String getValue() {
       java.lang.Object ref = value_;
       if (ref instanceof java.lang.String) {
@@ -171,6 +173,7 @@ public final class ExplicitContentPubsub {
      * <code>required string value = 2;</code>
      * @return The bytes for value.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getValueBytes() {
       java.lang.Object ref = value_;
@@ -229,11 +232,13 @@ public final class ExplicitContentPubsub {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -272,7 +277,8 @@ public final class ExplicitContentPubsub {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.explicit_content.proto.KeyValuePair}
@@ -281,7 +287,7 @@ public final class ExplicitContentPubsub {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.explicit_content.proto.KeyValuePair)
         com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_KeyValuePair_descriptor;
       }
@@ -296,23 +302,20 @@ public final class ExplicitContentPubsub {
 
       // Construct using com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         key_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         value_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -339,53 +342,25 @@ public final class ExplicitContentPubsub {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair buildPartial() {
         com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair result = new com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.key_ = key_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.value_ = value_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.key_ = key_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.value_ = value_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object key_ = "";
@@ -438,11 +413,9 @@ public final class ExplicitContentPubsub {
        */
       public Builder setKey(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -451,8 +424,8 @@ public final class ExplicitContentPubsub {
        * @return This builder for chaining.
        */
       public Builder clearKey() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         key_ = getDefaultInstance().getKey();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -463,11 +436,9 @@ public final class ExplicitContentPubsub {
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -522,11 +493,9 @@ public final class ExplicitContentPubsub {
        */
       public Builder setValue(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         value_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -535,8 +504,8 @@ public final class ExplicitContentPubsub {
        * @return This builder for chaining.
        */
       public Builder clearValue() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         value_ = getDefaultInstance().getValue();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -547,22 +516,20 @@ public final class ExplicitContentPubsub {
        */
       public Builder setValueBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         value_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -593,10 +560,11 @@ public final class ExplicitContentPubsub {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -649,7 +617,7 @@ public final class ExplicitContentPubsub {
   /**
    * Protobuf type {@code spotify.explicit_content.proto.UserAttributesUpdate}
    */
-  public  static final class UserAttributesUpdate extends
+  public static final class UserAttributesUpdate extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.explicit_content.proto.UserAttributesUpdate)
       UserAttributesUpdateOrBuilder {
@@ -669,12 +637,7 @@ public final class ExplicitContentPubsub {
       return new UserAttributesUpdate();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_UserAttributesUpdate_descriptor;
     }
@@ -688,16 +651,19 @@ public final class ExplicitContentPubsub {
     }
 
     public static final int PAIRS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair> pairs_;
     /**
      * <code>repeated .spotify.explicit_content.proto.KeyValuePair pairs = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair> getPairsList() {
       return pairs_;
     }
     /**
      * <code>repeated .spotify.explicit_content.proto.KeyValuePair pairs = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder> 
         getPairsOrBuilderList() {
       return pairs_;
@@ -705,18 +671,21 @@ public final class ExplicitContentPubsub {
     /**
      * <code>repeated .spotify.explicit_content.proto.KeyValuePair pairs = 1;</code>
      */
+    @java.lang.Override
     public int getPairsCount() {
       return pairs_.size();
     }
     /**
      * <code>repeated .spotify.explicit_content.proto.KeyValuePair pairs = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair getPairs(int index) {
       return pairs_.get(index);
     }
     /**
      * <code>repeated .spotify.explicit_content.proto.KeyValuePair pairs = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder getPairsOrBuilder(
         int index) {
       return pairs_.get(index);
@@ -766,11 +735,13 @@ public final class ExplicitContentPubsub {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -809,7 +780,8 @@ public final class ExplicitContentPubsub {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.explicit_content.proto.UserAttributesUpdate}
@@ -818,7 +790,7 @@ public final class ExplicitContentPubsub {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.explicit_content.proto.UserAttributesUpdate)
         com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.internal_static_spotify_explicit_content_proto_UserAttributesUpdate_descriptor;
       }
@@ -833,29 +805,25 @@ public final class ExplicitContentPubsub {
 
       // Construct using com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getPairsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (pairsBuilder_ == null) {
           pairs_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          pairs_ = null;
           pairsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -882,7 +850,13 @@ public final class ExplicitContentPubsub {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate buildPartial() {
         com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate result = new com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate result) {
         if (pairsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             pairs_ = java.util.Collections.unmodifiableList(pairs_);
@@ -892,49 +866,19 @@ public final class ExplicitContentPubsub {
         } else {
           result.pairs_ = pairsBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair> pairs_ =
         java.util.Collections.emptyList();
       private void ensurePairsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          pairs_ = new java.util.ArrayList<>(pairs_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          pairs_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair>(pairs_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -1159,7 +1103,8 @@ public final class ExplicitContentPubsub {
           com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair.Builder, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder> 
           getPairsFieldBuilder() {
         if (pairsBuilder_ == null) {
-          pairsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          pairsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePair.Builder, com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.KeyValuePairOrBuilder>(
                   pairs_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -1169,13 +1114,13 @@ public final class ExplicitContentPubsub {
         return pairsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1206,10 +1151,11 @@ public final class ExplicitContentPubsub {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1246,7 +1192,7 @@ public final class ExplicitContentPubsub {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1254,8 +1200,8 @@ public final class ExplicitContentPubsub {
       ".explicit_content.proto\"*\n\014KeyValuePair\022" +
       "\013\n\003key\030\001 \002(\t\022\r\n\005value\030\002 \002(\t\"S\n\024UserAttri" +
       "butesUpdate\022;\n\005pairs\030\001 \003(\0132,.spotify.exp" +
-      "licit_content.proto.KeyValuePairB\030\n\024com." +
-      "spotify.explicitH\002"
+      "licit_content.proto.KeyValuePairB+\n\'com." +
+      "spotifyxp.deps.com.spotify.explicitH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

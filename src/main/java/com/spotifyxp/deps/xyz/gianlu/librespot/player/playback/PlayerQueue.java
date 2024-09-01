@@ -16,13 +16,11 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 
 import java.io.Closeable;
 import java.util.concurrent.ExecutorService;
@@ -34,7 +32,6 @@ import java.util.concurrent.Executors;
  * @author devgianlu
  */
 final class PlayerQueue implements Closeable {
-    
     private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "player-queue-" + r.hashCode()));
     private PlayerQueueEntry head = null;
 
@@ -138,8 +135,6 @@ final class PlayerQueue implements Closeable {
     synchronized boolean advance() {
         if (head == null || head.next == null)
             return false;
-
-        Events.triggerEvent(SpotifyXPEvents.queueAdvance.getName());
 
         PlayerQueueEntry tmp = head.next;
         head.next = null;

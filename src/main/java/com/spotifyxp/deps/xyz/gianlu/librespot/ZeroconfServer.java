@@ -18,18 +18,18 @@ package com.spotifyxp.deps.xyz.gianlu.librespot;
 
 import com.google.gson.JsonObject;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.DiffieHellman;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.HttpUrl;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import xyz.gianlu.zeroconf.Service;
-import xyz.gianlu.zeroconf.Zeroconf;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.DiffieHellman;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.deps.xyz.gianlu.zeroconf.Service;
+import com.spotifyxp.deps.xyz.gianlu.zeroconf.Zeroconf;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -56,7 +56,6 @@ public class ZeroconfServer implements Closeable {
     public static final String SERVICE = "spotify-connect";
     private final static int MAX_PORT = 65536;
     private final static int MIN_PORT = 1024;
-    
     private static final byte[] EOL = new byte[]{'\r', '\n'};
     private static final JsonObject DEFAULT_GET_INFO_FIELDS = new JsonObject();
     private static final JsonObject DEFAULT_SUCCESSFUL_ADD_USER = new JsonObject();
@@ -409,7 +408,6 @@ public class ZeroconfServer implements Closeable {
         void sessionChanged(@NotNull Session session);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
     public static class Builder extends Session.AbsBuilder<Builder> {
         private boolean listenAll = true;
         private int listenPort = -1;

@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.crypto;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.math.BigInteger;
 import java.util.Random;
@@ -25,7 +25,6 @@ import java.util.Random;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public class DiffieHellman {
     private static final BigInteger GENERATOR = BigInteger.valueOf(2);
     private static final byte[] PRIME_BYTES = {

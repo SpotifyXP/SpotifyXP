@@ -16,13 +16,12 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.OutputStream;
 
-@SuppressWarnings({"NullableProblems", "lossy-conversions"})
 public final class StreamConverter extends OutputStream {
     private final boolean monoToStereo;
     private final int sampleSizeFrom;
@@ -39,7 +38,7 @@ public final class StreamConverter extends OutputStream {
         if (from.isBigEndian() || to.isBigEndian()) return false;
 
         if (from.matches(to)) return true;
-        if (!from.getEncoding().equals(to.getEncoding())) return false;
+        if (from.getEncoding() != to.getEncoding()) return false;
         return from.getSampleRate() == to.getSampleRate();
     }
 

@@ -391,7 +391,7 @@ public class PlayerArea extends JPanel {
                             PlayerArea.playerplaytime.setText(lastPlayState.playtime);
                             PlayerArea.playerplaytimetotal.setText(lastPlayState.playtimetotal);
                             PlayerArea.playercurrenttime.setMaximum(Integer.parseInt(lastPlayState.playerslidermax));
-                            PublicValues.spotifyplayer.load(lastPlayState.uri, false, PublicValues.shuffle, false);
+                            PublicValues.spotifyplayer.load(lastPlayState.uri, false, PublicValues.shuffle);
                             if (!TrackUtils.isTrackLiked(lastPlayState.uri.split(":")[2])) {
                                 PlayerArea.heart.isFilled = false;
                                 PlayerArea.heart.setImage(Graphics.HEART.getPath());
@@ -412,7 +412,7 @@ public class PlayerArea extends JPanel {
                         }
                         if(!lastPlayState.queue.isEmpty()) {
                             try {
-                                PublicValues.spotifyplayer.clearQueue();
+                                PublicValues.spotifyplayer.tracks(true).next.clear();
                                 for(String s : lastPlayState.queue) {
                                     PublicValues.spotifyplayer.addToQueue(s);
                                 }

@@ -18,9 +18,9 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.metadata;
 
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -242,7 +242,11 @@ public final class ExtensionKindOuterClass {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ExtensionKind> internalValueMap =
-            ExtensionKind::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ExtensionKind>() {
+            public ExtensionKind findValueByNumber(int number) {
+              return ExtensionKind.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -252,7 +256,7 @@ public final class ExtensionKindOuterClass {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.extendedmetadata.ExtensionKindOuterClass.getDescriptor().getEnumTypes().get(0);
     }
@@ -270,7 +274,7 @@ public final class ExtensionKindOuterClass {
 
     private final int value;
 
-    ExtensionKind(int value) {
+    private ExtensionKind(int value) {
       this.value = value;
     }
 
@@ -282,7 +286,7 @@ public final class ExtensionKindOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -298,7 +302,8 @@ public final class ExtensionKindOuterClass {
       "\020\n\014SHOW_V4_BASE\020\021\022\032\n\026SHOW_V4_EPISODES_AS" +
       "SOC\020\022\022\037\n\033TRACK_DESCRIPTOR_SIGNATURES\020\023\022\027" +
       "\n\023PODCAST_AD_SEGMENTS\020\024\022\017\n\013TRANSCRIPTS\020\025" +
-      "B \n\034com.spotify.extendedmetadataH\002"
+      "B3\n/com.spotifyxp.deps.com.spotify.exten" +
+      "dedmetadataH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

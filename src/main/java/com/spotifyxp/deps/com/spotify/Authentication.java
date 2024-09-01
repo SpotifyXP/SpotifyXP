@@ -98,7 +98,11 @@ public final class Authentication {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         AuthenticationType> internalValueMap =
-            AuthenticationType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<AuthenticationType>() {
+            public AuthenticationType findValueByNumber(int number) {
+              return AuthenticationType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -108,7 +112,7 @@ public final class Authentication {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.getDescriptor().getEnumTypes().get(0);
     }
@@ -126,7 +130,7 @@ public final class Authentication {
 
     private final int value;
 
-    AuthenticationType(int value) {
+    private AuthenticationType(int value) {
       this.value = value;
     }
 
@@ -190,7 +194,11 @@ public final class Authentication {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         AccountCreation> internalValueMap =
-            AccountCreation::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<AccountCreation>() {
+            public AccountCreation findValueByNumber(int number) {
+              return AccountCreation.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -200,7 +208,7 @@ public final class Authentication {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.getDescriptor().getEnumTypes().get(1);
     }
@@ -218,7 +226,7 @@ public final class Authentication {
 
     private final int value;
 
-    AccountCreation(int value) {
+    private AccountCreation(int value) {
       this.value = value;
     }
 
@@ -354,7 +362,11 @@ public final class Authentication {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         CpuFamily> internalValueMap =
-            CpuFamily::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<CpuFamily>() {
+            public CpuFamily findValueByNumber(int number) {
+              return CpuFamily.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -364,7 +376,7 @@ public final class Authentication {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.getDescriptor().getEnumTypes().get(2);
     }
@@ -382,7 +394,7 @@ public final class Authentication {
 
     private final int value;
 
-    CpuFamily(int value) {
+    private CpuFamily(int value) {
       this.value = value;
     }
 
@@ -464,7 +476,11 @@ public final class Authentication {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         Brand> internalValueMap =
-            Brand::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<Brand>() {
+            public Brand findValueByNumber(int number) {
+              return Brand.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -474,7 +490,7 @@ public final class Authentication {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.getDescriptor().getEnumTypes().get(3);
     }
@@ -492,7 +508,7 @@ public final class Authentication {
 
     private final int value;
 
-    Brand(int value) {
+    private Brand(int value) {
       this.value = value;
     }
 
@@ -745,7 +761,11 @@ public final class Authentication {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         Os> internalValueMap =
-            Os::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<Os>() {
+            public Os findValueByNumber(int number) {
+              return Os.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -755,7 +775,7 @@ public final class Authentication {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.getDescriptor().getEnumTypes().get(4);
     }
@@ -773,7 +793,7 @@ public final class Authentication {
 
     private final int value;
 
-    Os(int value) {
+    private Os(int value) {
       this.value = value;
     }
 
@@ -837,7 +857,11 @@ public final class Authentication {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         AccountType> internalValueMap =
-            AccountType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<AccountType>() {
+            public AccountType findValueByNumber(int number) {
+              return AccountType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -847,7 +871,7 @@ public final class Authentication {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.getDescriptor().getEnumTypes().get(5);
     }
@@ -865,7 +889,7 @@ public final class Authentication {
 
     private final int value;
 
-    AccountType(int value) {
+    private AccountType(int value) {
       this.value = value;
     }
 
@@ -1014,7 +1038,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.ClientResponseEncrypted}
    */
-  public  static final class ClientResponseEncrypted extends
+  public static final class ClientResponseEncrypted extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.ClientResponseEncrypted)
       ClientResponseEncryptedOrBuilder {
@@ -1036,151 +1060,7 @@ public final class Authentication {
       return new ClientResponseEncrypted();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ClientResponseEncrypted(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) != 0)) {
-                subBuilder = loginCredentials_.toBuilder();
-              }
-              loginCredentials_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(loginCredentials_);
-                loginCredentials_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-            case 160: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.AccountCreation value = com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(20, rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                accountCreation_ = rawValue;
-              }
-              break;
-            }
-            case 242: {
-              com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) != 0)) {
-                subBuilder = fingerprintResponse_.toBuilder();
-              }
-              fingerprintResponse_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fingerprintResponse_);
-                fingerprintResponse_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 322: {
-              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) != 0)) {
-                subBuilder = peerTicket_.toBuilder();
-              }
-              peerTicket_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(peerTicket_);
-                peerTicket_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000008;
-              break;
-            }
-            case 402: {
-              com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) != 0)) {
-                subBuilder = systemInfo_.toBuilder();
-              }
-              systemInfo_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(systemInfo_);
-                systemInfo_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000010;
-              break;
-            }
-            case 482: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000020;
-              platformModel_ = bs;
-              break;
-            }
-            case 562: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000040;
-              versionString_ = bs;
-              break;
-            }
-            case 642: {
-              com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000080) != 0)) {
-                subBuilder = appkey_.toBuilder();
-              }
-              appkey_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(appkey_);
-                appkey_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000080;
-              break;
-            }
-            case 722: {
-              com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000100) != 0)) {
-                subBuilder = clientInfo_.toBuilder();
-              }
-              clientInfo_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(clientInfo_);
-                clientInfo_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000100;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_ClientResponseEncrypted_descriptor;
     }
@@ -1200,6 +1080,7 @@ public final class Authentication {
      * <code>required .spotify.LoginCredentials login_credentials = 10;</code>
      * @return Whether the loginCredentials field is set.
      */
+    @java.lang.Override
     public boolean hasLoginCredentials() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -1207,31 +1088,33 @@ public final class Authentication {
      * <code>required .spotify.LoginCredentials login_credentials = 10;</code>
      * @return The loginCredentials.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials getLoginCredentials() {
       return loginCredentials_ == null ? com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.getDefaultInstance() : loginCredentials_;
     }
     /**
      * <code>required .spotify.LoginCredentials login_credentials = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.LoginCredentialsOrBuilder getLoginCredentialsOrBuilder() {
       return loginCredentials_ == null ? com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.getDefaultInstance() : loginCredentials_;
     }
 
     public static final int ACCOUNT_CREATION_FIELD_NUMBER = 20;
-    private int accountCreation_;
+    private int accountCreation_ = 1;
     /**
      * <code>optional .spotify.AccountCreation account_creation = 20;</code>
      * @return Whether the accountCreation field is set.
      */
-    public boolean hasAccountCreation() {
+    @java.lang.Override public boolean hasAccountCreation() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>optional .spotify.AccountCreation account_creation = 20;</code>
      * @return The accountCreation.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.AccountCreation getAccountCreation() {
-      com.spotifyxp.deps.com.spotify.Authentication.AccountCreation result = com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.valueOf(accountCreation_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.AccountCreation getAccountCreation() {
+      com.spotifyxp.deps.com.spotify.Authentication.AccountCreation result = com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.forNumber(accountCreation_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.ACCOUNT_CREATION_ALWAYS_PROMPT : result;
     }
 
@@ -1241,6 +1124,7 @@ public final class Authentication {
      * <code>optional .spotify.FingerprintResponseUnion fingerprint_response = 30;</code>
      * @return Whether the fingerprintResponse field is set.
      */
+    @java.lang.Override
     public boolean hasFingerprintResponse() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -1248,12 +1132,14 @@ public final class Authentication {
      * <code>optional .spotify.FingerprintResponseUnion fingerprint_response = 30;</code>
      * @return The fingerprintResponse.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion getFingerprintResponse() {
       return fingerprintResponse_ == null ? com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.getDefaultInstance() : fingerprintResponse_;
     }
     /**
      * <code>optional .spotify.FingerprintResponseUnion fingerprint_response = 30;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnionOrBuilder getFingerprintResponseOrBuilder() {
       return fingerprintResponse_ == null ? com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.getDefaultInstance() : fingerprintResponse_;
     }
@@ -1264,6 +1150,7 @@ public final class Authentication {
      * <code>optional .spotify.PeerTicketUnion peer_ticket = 40;</code>
      * @return Whether the peerTicket field is set.
      */
+    @java.lang.Override
     public boolean hasPeerTicket() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -1271,12 +1158,14 @@ public final class Authentication {
      * <code>optional .spotify.PeerTicketUnion peer_ticket = 40;</code>
      * @return The peerTicket.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion getPeerTicket() {
       return peerTicket_ == null ? com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.getDefaultInstance() : peerTicket_;
     }
     /**
      * <code>optional .spotify.PeerTicketUnion peer_ticket = 40;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnionOrBuilder getPeerTicketOrBuilder() {
       return peerTicket_ == null ? com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.getDefaultInstance() : peerTicket_;
     }
@@ -1287,6 +1176,7 @@ public final class Authentication {
      * <code>required .spotify.SystemInfo system_info = 50;</code>
      * @return Whether the systemInfo field is set.
      */
+    @java.lang.Override
     public boolean hasSystemInfo() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -1294,22 +1184,26 @@ public final class Authentication {
      * <code>required .spotify.SystemInfo system_info = 50;</code>
      * @return The systemInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.SystemInfo getSystemInfo() {
       return systemInfo_ == null ? com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.getDefaultInstance() : systemInfo_;
     }
     /**
      * <code>required .spotify.SystemInfo system_info = 50;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.SystemInfoOrBuilder getSystemInfoOrBuilder() {
       return systemInfo_ == null ? com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.getDefaultInstance() : systemInfo_;
     }
 
     public static final int PLATFORM_MODEL_FIELD_NUMBER = 60;
-    private volatile java.lang.Object platformModel_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object platformModel_ = "";
     /**
      * <code>optional string platform_model = 60;</code>
      * @return Whether the platformModel field is set.
      */
+    @java.lang.Override
     public boolean hasPlatformModel() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -1317,6 +1211,7 @@ public final class Authentication {
      * <code>optional string platform_model = 60;</code>
      * @return The platformModel.
      */
+    @java.lang.Override
     public java.lang.String getPlatformModel() {
       java.lang.Object ref = platformModel_;
       if (ref instanceof java.lang.String) {
@@ -1335,6 +1230,7 @@ public final class Authentication {
      * <code>optional string platform_model = 60;</code>
      * @return The bytes for platformModel.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPlatformModelBytes() {
       java.lang.Object ref = platformModel_;
@@ -1350,11 +1246,13 @@ public final class Authentication {
     }
 
     public static final int VERSION_STRING_FIELD_NUMBER = 70;
-    private volatile java.lang.Object versionString_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object versionString_ = "";
     /**
      * <code>optional string version_string = 70;</code>
      * @return Whether the versionString field is set.
      */
+    @java.lang.Override
     public boolean hasVersionString() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -1362,6 +1260,7 @@ public final class Authentication {
      * <code>optional string version_string = 70;</code>
      * @return The versionString.
      */
+    @java.lang.Override
     public java.lang.String getVersionString() {
       java.lang.Object ref = versionString_;
       if (ref instanceof java.lang.String) {
@@ -1380,6 +1279,7 @@ public final class Authentication {
      * <code>optional string version_string = 70;</code>
      * @return The bytes for versionString.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getVersionStringBytes() {
       java.lang.Object ref = versionString_;
@@ -1400,6 +1300,7 @@ public final class Authentication {
      * <code>optional .spotify.LibspotifyAppKey appkey = 80;</code>
      * @return Whether the appkey field is set.
      */
+    @java.lang.Override
     public boolean hasAppkey() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -1407,12 +1308,14 @@ public final class Authentication {
      * <code>optional .spotify.LibspotifyAppKey appkey = 80;</code>
      * @return The appkey.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey getAppkey() {
       return appkey_ == null ? com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.getDefaultInstance() : appkey_;
     }
     /**
      * <code>optional .spotify.LibspotifyAppKey appkey = 80;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKeyOrBuilder getAppkeyOrBuilder() {
       return appkey_ == null ? com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.getDefaultInstance() : appkey_;
     }
@@ -1423,6 +1326,7 @@ public final class Authentication {
      * <code>optional .spotify.ClientInfo client_info = 90;</code>
      * @return Whether the clientInfo field is set.
      */
+    @java.lang.Override
     public boolean hasClientInfo() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -1430,19 +1334,21 @@ public final class Authentication {
      * <code>optional .spotify.ClientInfo client_info = 90;</code>
      * @return The clientInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.ClientInfo getClientInfo() {
       return clientInfo_ == null ? com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.getDefaultInstance() : clientInfo_;
     }
     /**
      * <code>optional .spotify.ClientInfo client_info = 90;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.ClientInfoOrBuilder getClientInfoOrBuilder() {
       return clientInfo_ == null ? com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.getDefaultInstance() : clientInfo_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1515,7 +1421,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000100) != 0)) {
         output.writeMessage(90, getClientInfo());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1558,7 +1464,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(90, getClientInfo());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1617,7 +1523,8 @@ public final class Authentication {
         if (!getClientInfo()
             .equals(other.getClientInfo())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1663,7 +1570,7 @@ public final class Authentication {
         hash = (37 * hash) + CLIENT_INFO_FIELD_NUMBER;
         hash = (53 * hash) + getClientInfo().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1712,11 +1619,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1755,7 +1664,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.ClientResponseEncrypted}
@@ -1764,7 +1674,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.ClientResponseEncrypted)
         com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncryptedOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_ClientResponseEncrypted_descriptor;
       }
@@ -1801,48 +1711,40 @@ public final class Authentication {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (loginCredentialsBuilder_ == null) {
-          loginCredentials_ = null;
-        } else {
-          loginCredentialsBuilder_.clear();
+        bitField0_ = 0;
+        loginCredentials_ = null;
+        if (loginCredentialsBuilder_ != null) {
+          loginCredentialsBuilder_.dispose();
+          loginCredentialsBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
         accountCreation_ = 1;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (fingerprintResponseBuilder_ == null) {
-          fingerprintResponse_ = null;
-        } else {
-          fingerprintResponseBuilder_.clear();
+        fingerprintResponse_ = null;
+        if (fingerprintResponseBuilder_ != null) {
+          fingerprintResponseBuilder_.dispose();
+          fingerprintResponseBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (peerTicketBuilder_ == null) {
-          peerTicket_ = null;
-        } else {
-          peerTicketBuilder_.clear();
+        peerTicket_ = null;
+        if (peerTicketBuilder_ != null) {
+          peerTicketBuilder_.dispose();
+          peerTicketBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (systemInfoBuilder_ == null) {
-          systemInfo_ = null;
-        } else {
-          systemInfoBuilder_.clear();
+        systemInfo_ = null;
+        if (systemInfoBuilder_ != null) {
+          systemInfoBuilder_.dispose();
+          systemInfoBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
         platformModel_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
         versionString_ = "";
-        bitField0_ = (bitField0_ & ~0x00000040);
-        if (appkeyBuilder_ == null) {
-          appkey_ = null;
-        } else {
-          appkeyBuilder_.clear();
+        appkey_ = null;
+        if (appkeyBuilder_ != null) {
+          appkeyBuilder_.dispose();
+          appkeyBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
-        if (clientInfoBuilder_ == null) {
-          clientInfo_ = null;
-        } else {
-          clientInfoBuilder_.clear();
+        clientInfo_ = null;
+        if (clientInfoBuilder_ != null) {
+          clientInfoBuilder_.dispose();
+          clientInfoBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -1869,105 +1771,65 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted result = new com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (loginCredentialsBuilder_ == null) {
-            result.loginCredentials_ = loginCredentials_;
-          } else {
-            result.loginCredentials_ = loginCredentialsBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.accountCreation_ = accountCreation_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (fingerprintResponseBuilder_ == null) {
-            result.fingerprintResponse_ = fingerprintResponse_;
-          } else {
-            result.fingerprintResponse_ = fingerprintResponseBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000004;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          if (peerTicketBuilder_ == null) {
-            result.peerTicket_ = peerTicket_;
-          } else {
-            result.peerTicket_ = peerTicketBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          if (systemInfoBuilder_ == null) {
-            result.systemInfo_ = systemInfo_;
-          } else {
-            result.systemInfo_ = systemInfoBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.platformModel_ = platformModel_;
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.versionString_ = versionString_;
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          if (appkeyBuilder_ == null) {
-            result.appkey_ = appkey_;
-          } else {
-            result.appkey_ = appkeyBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000080;
-        }
-        if (((from_bitField0_ & 0x00000100) != 0)) {
-          if (clientInfoBuilder_ == null) {
-            result.clientInfo_ = clientInfo_;
-          } else {
-            result.clientInfo_ = clientInfoBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000100;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.loginCredentials_ = loginCredentialsBuilder_ == null
+              ? loginCredentials_
+              : loginCredentialsBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.accountCreation_ = accountCreation_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.fingerprintResponse_ = fingerprintResponseBuilder_ == null
+              ? fingerprintResponse_
+              : fingerprintResponseBuilder_.build();
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.peerTicket_ = peerTicketBuilder_ == null
+              ? peerTicket_
+              : peerTicketBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.systemInfo_ = systemInfoBuilder_ == null
+              ? systemInfo_
+              : systemInfoBuilder_.build();
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.platformModel_ = platformModel_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.versionString_ = versionString_;
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.appkey_ = appkeyBuilder_ == null
+              ? appkey_
+              : appkeyBuilder_.build();
+          to_bitField0_ |= 0x00000080;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.clientInfo_ = clientInfoBuilder_ == null
+              ? clientInfo_
+              : clientInfoBuilder_.build();
+          to_bitField0_ |= 0x00000100;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted) {
@@ -1996,13 +1858,13 @@ public final class Authentication {
           mergeSystemInfo(other.getSystemInfo());
         }
         if (other.hasPlatformModel()) {
-          bitField0_ |= 0x00000020;
           platformModel_ = other.platformModel_;
+          bitField0_ |= 0x00000020;
           onChanged();
         }
         if (other.hasVersionString()) {
-          bitField0_ |= 0x00000040;
           versionString_ = other.versionString_;
+          bitField0_ |= 0x00000040;
           onChanged();
         }
         if (other.hasAppkey()) {
@@ -2011,13 +1873,13 @@ public final class Authentication {
         if (other.hasClientInfo()) {
           mergeClientInfo(other.getClientInfo());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (!hasLoginCredentials()) {
           return false;
         }
@@ -2041,7 +1903,9 @@ public final class Authentication {
           return false;
         }
         if (hasAppkey()) {
-          return getAppkey().isInitialized();
+          if (!getAppkey().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -2051,17 +1915,94 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                input.readMessage(
+                    getLoginCredentialsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              case 160: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.AccountCreation tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(20, tmpRaw);
+                } else {
+                  accountCreation_ = tmpRaw;
+                  bitField0_ |= 0x00000002;
+                }
+                break;
+              } // case 160
+              case 242: {
+                input.readMessage(
+                    getFingerprintResponseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 242
+              case 322: {
+                input.readMessage(
+                    getPeerTicketFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 322
+              case 402: {
+                input.readMessage(
+                    getSystemInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 402
+              case 482: {
+                platformModel_ = input.readBytes();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 482
+              case 562: {
+                versionString_ = input.readBytes();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 562
+              case 642: {
+                input.readMessage(
+                    getAppkeyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 642
+              case 722: {
+                input.readMessage(
+                    getClientInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 722
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.ClientResponseEncrypted) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2096,11 +2037,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           loginCredentials_ = value;
-          onChanged();
         } else {
           loginCredentialsBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2110,11 +2051,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.Builder builderForValue) {
         if (loginCredentialsBuilder_ == null) {
           loginCredentials_ = builderForValue.build();
-          onChanged();
         } else {
           loginCredentialsBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2123,31 +2064,30 @@ public final class Authentication {
       public Builder mergeLoginCredentials(com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials value) {
         if (loginCredentialsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              loginCredentials_ != null &&
-              loginCredentials_ != com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.getDefaultInstance()) {
-            loginCredentials_ =
-              com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.newBuilder(loginCredentials_).mergeFrom(value).buildPartial();
+            loginCredentials_ != null &&
+            loginCredentials_ != com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.getDefaultInstance()) {
+            getLoginCredentialsBuilder().mergeFrom(value);
           } else {
             loginCredentials_ = value;
           }
-          onChanged();
         } else {
           loginCredentialsBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>required .spotify.LoginCredentials login_credentials = 10;</code>
        */
       public Builder clearLoginCredentials() {
-        if (loginCredentialsBuilder_ == null) {
-          loginCredentials_ = null;
-          onChanged();
-        } else {
-          loginCredentialsBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        loginCredentials_ = null;
+        if (loginCredentialsBuilder_ != null) {
+          loginCredentialsBuilder_.dispose();
+          loginCredentialsBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -2176,7 +2116,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials, com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.Builder, com.spotifyxp.deps.com.spotify.Authentication.LoginCredentialsOrBuilder> 
           getLoginCredentialsFieldBuilder() {
         if (loginCredentialsBuilder_ == null) {
-          loginCredentialsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          loginCredentialsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials, com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.Builder, com.spotifyxp.deps.com.spotify.Authentication.LoginCredentialsOrBuilder>(
                   getLoginCredentials(),
                   getParentForChildren(),
                   isClean());
@@ -2190,15 +2131,16 @@ public final class Authentication {
        * <code>optional .spotify.AccountCreation account_creation = 20;</code>
        * @return Whether the accountCreation field is set.
        */
-      public boolean hasAccountCreation() {
+      @java.lang.Override public boolean hasAccountCreation() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>optional .spotify.AccountCreation account_creation = 20;</code>
        * @return The accountCreation.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AccountCreation getAccountCreation() {
-        com.spotifyxp.deps.com.spotify.Authentication.AccountCreation result = com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.valueOf(accountCreation_);
+        com.spotifyxp.deps.com.spotify.Authentication.AccountCreation result = com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.forNumber(accountCreation_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountCreation.ACCOUNT_CREATION_ALWAYS_PROMPT : result;
       }
       /**
@@ -2256,11 +2198,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           fingerprintResponse_ = value;
-          onChanged();
         } else {
           fingerprintResponseBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -2270,11 +2212,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.Builder builderForValue) {
         if (fingerprintResponseBuilder_ == null) {
           fingerprintResponse_ = builderForValue.build();
-          onChanged();
         } else {
           fingerprintResponseBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -2283,31 +2225,30 @@ public final class Authentication {
       public Builder mergeFingerprintResponse(com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion value) {
         if (fingerprintResponseBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              fingerprintResponse_ != null &&
-              fingerprintResponse_ != com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.getDefaultInstance()) {
-            fingerprintResponse_ =
-              com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.newBuilder(fingerprintResponse_).mergeFrom(value).buildPartial();
+            fingerprintResponse_ != null &&
+            fingerprintResponse_ != com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.getDefaultInstance()) {
+            getFingerprintResponseBuilder().mergeFrom(value);
           } else {
             fingerprintResponse_ = value;
           }
-          onChanged();
         } else {
           fingerprintResponseBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.FingerprintResponseUnion fingerprint_response = 30;</code>
        */
       public Builder clearFingerprintResponse() {
-        if (fingerprintResponseBuilder_ == null) {
-          fingerprintResponse_ = null;
-          onChanged();
-        } else {
-          fingerprintResponseBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        fingerprintResponse_ = null;
+        if (fingerprintResponseBuilder_ != null) {
+          fingerprintResponseBuilder_.dispose();
+          fingerprintResponseBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -2336,7 +2277,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion, com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.Builder, com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnionOrBuilder> 
           getFingerprintResponseFieldBuilder() {
         if (fingerprintResponseBuilder_ == null) {
-          fingerprintResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          fingerprintResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion, com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion.Builder, com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnionOrBuilder>(
                   getFingerprintResponse(),
                   getParentForChildren(),
                   isClean());
@@ -2375,11 +2317,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           peerTicket_ = value;
-          onChanged();
         } else {
           peerTicketBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2389,11 +2331,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.Builder builderForValue) {
         if (peerTicketBuilder_ == null) {
           peerTicket_ = builderForValue.build();
-          onChanged();
         } else {
           peerTicketBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2402,31 +2344,30 @@ public final class Authentication {
       public Builder mergePeerTicket(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion value) {
         if (peerTicketBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0) &&
-              peerTicket_ != null &&
-              peerTicket_ != com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.getDefaultInstance()) {
-            peerTicket_ =
-              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.newBuilder(peerTicket_).mergeFrom(value).buildPartial();
+            peerTicket_ != null &&
+            peerTicket_ != com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.getDefaultInstance()) {
+            getPeerTicketBuilder().mergeFrom(value);
           } else {
             peerTicket_ = value;
           }
-          onChanged();
         } else {
           peerTicketBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.PeerTicketUnion peer_ticket = 40;</code>
        */
       public Builder clearPeerTicket() {
-        if (peerTicketBuilder_ == null) {
-          peerTicket_ = null;
-          onChanged();
-        } else {
-          peerTicketBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000008);
+        peerTicket_ = null;
+        if (peerTicketBuilder_ != null) {
+          peerTicketBuilder_.dispose();
+          peerTicketBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -2455,7 +2396,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.Builder, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnionOrBuilder> 
           getPeerTicketFieldBuilder() {
         if (peerTicketBuilder_ == null) {
-          peerTicketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          peerTicketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion.Builder, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnionOrBuilder>(
                   getPeerTicket(),
                   getParentForChildren(),
                   isClean());
@@ -2494,11 +2436,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           systemInfo_ = value;
-          onChanged();
         } else {
           systemInfoBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2508,11 +2450,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.Builder builderForValue) {
         if (systemInfoBuilder_ == null) {
           systemInfo_ = builderForValue.build();
-          onChanged();
         } else {
           systemInfoBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2521,31 +2463,30 @@ public final class Authentication {
       public Builder mergeSystemInfo(com.spotifyxp.deps.com.spotify.Authentication.SystemInfo value) {
         if (systemInfoBuilder_ == null) {
           if (((bitField0_ & 0x00000010) != 0) &&
-              systemInfo_ != null &&
-              systemInfo_ != com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.getDefaultInstance()) {
-            systemInfo_ =
-              com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.newBuilder(systemInfo_).mergeFrom(value).buildPartial();
+            systemInfo_ != null &&
+            systemInfo_ != com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.getDefaultInstance()) {
+            getSystemInfoBuilder().mergeFrom(value);
           } else {
             systemInfo_ = value;
           }
-          onChanged();
         } else {
           systemInfoBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
        * <code>required .spotify.SystemInfo system_info = 50;</code>
        */
       public Builder clearSystemInfo() {
-        if (systemInfoBuilder_ == null) {
-          systemInfo_ = null;
-          onChanged();
-        } else {
-          systemInfoBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000010);
+        systemInfo_ = null;
+        if (systemInfoBuilder_ != null) {
+          systemInfoBuilder_.dispose();
+          systemInfoBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -2574,7 +2515,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.SystemInfo, com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.Builder, com.spotifyxp.deps.com.spotify.Authentication.SystemInfoOrBuilder> 
           getSystemInfoFieldBuilder() {
         if (systemInfoBuilder_ == null) {
-          systemInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          systemInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.SystemInfo, com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.Builder, com.spotifyxp.deps.com.spotify.Authentication.SystemInfoOrBuilder>(
                   getSystemInfo(),
                   getParentForChildren(),
                   isClean());
@@ -2633,11 +2575,9 @@ public final class Authentication {
        */
       public Builder setPlatformModel(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         platformModel_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -2646,8 +2586,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearPlatformModel() {
-        bitField0_ = (bitField0_ & ~0x00000020);
         platformModel_ = getDefaultInstance().getPlatformModel();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -2658,11 +2598,9 @@ public final class Authentication {
        */
       public Builder setPlatformModelBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         platformModel_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -2717,11 +2655,9 @@ public final class Authentication {
        */
       public Builder setVersionString(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
+        if (value == null) { throw new NullPointerException(); }
         versionString_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -2730,8 +2666,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearVersionString() {
-        bitField0_ = (bitField0_ & ~0x00000040);
         versionString_ = getDefaultInstance().getVersionString();
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
       }
@@ -2742,11 +2678,9 @@ public final class Authentication {
        */
       public Builder setVersionStringBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
+        if (value == null) { throw new NullPointerException(); }
         versionString_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -2781,11 +2715,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           appkey_ = value;
-          onChanged();
         } else {
           appkeyBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -2795,11 +2729,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.Builder builderForValue) {
         if (appkeyBuilder_ == null) {
           appkey_ = builderForValue.build();
-          onChanged();
         } else {
           appkeyBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -2808,31 +2742,30 @@ public final class Authentication {
       public Builder mergeAppkey(com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey value) {
         if (appkeyBuilder_ == null) {
           if (((bitField0_ & 0x00000080) != 0) &&
-              appkey_ != null &&
-              appkey_ != com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.getDefaultInstance()) {
-            appkey_ =
-              com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.newBuilder(appkey_).mergeFrom(value).buildPartial();
+            appkey_ != null &&
+            appkey_ != com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.getDefaultInstance()) {
+            getAppkeyBuilder().mergeFrom(value);
           } else {
             appkey_ = value;
           }
-          onChanged();
         } else {
           appkeyBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.LibspotifyAppKey appkey = 80;</code>
        */
       public Builder clearAppkey() {
-        if (appkeyBuilder_ == null) {
-          appkey_ = null;
-          onChanged();
-        } else {
-          appkeyBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000080);
+        appkey_ = null;
+        if (appkeyBuilder_ != null) {
+          appkeyBuilder_.dispose();
+          appkeyBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -2861,7 +2794,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey, com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.Builder, com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKeyOrBuilder> 
           getAppkeyFieldBuilder() {
         if (appkeyBuilder_ == null) {
-          appkeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          appkeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey, com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.Builder, com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKeyOrBuilder>(
                   getAppkey(),
                   getParentForChildren(),
                   isClean());
@@ -2900,11 +2834,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           clientInfo_ = value;
-          onChanged();
         } else {
           clientInfoBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
@@ -2914,11 +2848,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.Builder builderForValue) {
         if (clientInfoBuilder_ == null) {
           clientInfo_ = builderForValue.build();
-          onChanged();
         } else {
           clientInfoBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
@@ -2927,31 +2861,30 @@ public final class Authentication {
       public Builder mergeClientInfo(com.spotifyxp.deps.com.spotify.Authentication.ClientInfo value) {
         if (clientInfoBuilder_ == null) {
           if (((bitField0_ & 0x00000100) != 0) &&
-              clientInfo_ != null &&
-              clientInfo_ != com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.getDefaultInstance()) {
-            clientInfo_ =
-              com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.newBuilder(clientInfo_).mergeFrom(value).buildPartial();
+            clientInfo_ != null &&
+            clientInfo_ != com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.getDefaultInstance()) {
+            getClientInfoBuilder().mergeFrom(value);
           } else {
             clientInfo_ = value;
           }
-          onChanged();
         } else {
           clientInfoBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.ClientInfo client_info = 90;</code>
        */
       public Builder clearClientInfo() {
-        if (clientInfoBuilder_ == null) {
-          clientInfo_ = null;
-          onChanged();
-        } else {
-          clientInfoBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000100);
+        clientInfo_ = null;
+        if (clientInfoBuilder_ != null) {
+          clientInfoBuilder_.dispose();
+          clientInfoBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -2980,7 +2913,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.ClientInfo, com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.Builder, com.spotifyxp.deps.com.spotify.Authentication.ClientInfoOrBuilder> 
           getClientInfoFieldBuilder() {
         if (clientInfoBuilder_ == null) {
-          clientInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          clientInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.ClientInfo, com.spotifyxp.deps.com.spotify.Authentication.ClientInfo.Builder, com.spotifyxp.deps.com.spotify.Authentication.ClientInfoOrBuilder>(
                   getClientInfo(),
                   getParentForChildren(),
                   isClean());
@@ -2989,13 +2923,13 @@ public final class Authentication {
         return clientInfoBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3021,7 +2955,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClientResponseEncrypted(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3087,7 +3032,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.LoginCredentials}
    */
-  public  static final class LoginCredentials extends
+  public static final class LoginCredentials extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.LoginCredentials)
       LoginCredentialsOrBuilder {
@@ -3109,72 +3054,7 @@ public final class Authentication {
       return new LoginCredentials();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoginCredentials(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              username_ = bs;
-              break;
-            }
-            case 160: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType value = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(20, rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                typ_ = rawValue;
-              }
-              break;
-            }
-            case 242: {
-              bitField0_ |= 0x00000004;
-              authData_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_LoginCredentials_descriptor;
     }
@@ -3189,11 +3069,13 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int USERNAME_FIELD_NUMBER = 10;
-    private volatile java.lang.Object username_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object username_ = "";
     /**
      * <code>optional string username = 10;</code>
      * @return Whether the username field is set.
      */
+    @java.lang.Override
     public boolean hasUsername() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -3201,6 +3083,7 @@ public final class Authentication {
      * <code>optional string username = 10;</code>
      * @return The username.
      */
+    @java.lang.Override
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
       if (ref instanceof java.lang.String) {
@@ -3219,6 +3102,7 @@ public final class Authentication {
      * <code>optional string username = 10;</code>
      * @return The bytes for username.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUsernameBytes() {
       java.lang.Object ref = username_;
@@ -3234,29 +3118,30 @@ public final class Authentication {
     }
 
     public static final int TYP_FIELD_NUMBER = 20;
-    private int typ_;
+    private int typ_ = 0;
     /**
      * <code>required .spotify.AuthenticationType typ = 20;</code>
      * @return Whether the typ field is set.
      */
-    public boolean hasTyp() {
+    @java.lang.Override public boolean hasTyp() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>required .spotify.AuthenticationType typ = 20;</code>
      * @return The typ.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType getTyp() {
-      com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.valueOf(typ_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType getTyp() {
+      com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.forNumber(typ_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.AUTHENTICATION_USER_PASS : result;
     }
 
     public static final int AUTH_DATA_FIELD_NUMBER = 30;
-    private com.google.protobuf.ByteString authData_;
+    private com.google.protobuf.ByteString authData_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes auth_data = 30;</code>
      * @return Whether the authData field is set.
      */
+    @java.lang.Override
     public boolean hasAuthData() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -3264,13 +3149,14 @@ public final class Authentication {
      * <code>optional bytes auth_data = 30;</code>
      * @return The authData.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getAuthData() {
       return authData_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -3295,7 +3181,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeBytes(30, authData_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3315,7 +3201,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(30, authData_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3344,7 +3230,8 @@ public final class Authentication {
         if (!getAuthData()
             .equals(other.getAuthData())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3366,7 +3253,7 @@ public final class Authentication {
         hash = (37 * hash) + AUTH_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getAuthData().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3415,11 +3302,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3458,7 +3347,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.LoginCredentials}
@@ -3467,7 +3357,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.LoginCredentials)
         com.spotifyxp.deps.com.spotify.Authentication.LoginCredentialsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_LoginCredentials_descriptor;
       }
@@ -3482,25 +3372,21 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         username_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         typ_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         authData_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -3527,57 +3413,29 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials result = new com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.username_ = username_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.typ_ = typ_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.authData_ = authData_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.username_ = username_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.typ_ = typ_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.authData_ = authData_;
+          to_bitField0_ |= 0x00000004;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials) {
@@ -3591,8 +3449,8 @@ public final class Authentication {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials other) {
         if (other == com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials.getDefaultInstance()) return this;
         if (other.hasUsername()) {
-          bitField0_ |= 0x00000001;
           username_ = other.username_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasTyp()) {
@@ -3601,14 +3459,17 @@ public final class Authentication {
         if (other.hasAuthData()) {
           setAuthData(other.getAuthData());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
-        return hasTyp();
+      public final boolean isInitialized() {
+        if (!hasTyp()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -3616,17 +3477,52 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                username_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              case 160: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(20, tmpRaw);
+                } else {
+                  typ_ = tmpRaw;
+                  bitField0_ |= 0x00000002;
+                }
+                break;
+              } // case 160
+              case 242: {
+                authData_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 242
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -3681,11 +3577,9 @@ public final class Authentication {
        */
       public Builder setUsername(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         username_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3694,8 +3588,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearUsername() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         username_ = getDefaultInstance().getUsername();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -3706,11 +3600,9 @@ public final class Authentication {
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         username_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3720,15 +3612,16 @@ public final class Authentication {
        * <code>required .spotify.AuthenticationType typ = 20;</code>
        * @return Whether the typ field is set.
        */
-      public boolean hasTyp() {
+      @java.lang.Override public boolean hasTyp() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>required .spotify.AuthenticationType typ = 20;</code>
        * @return The typ.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType getTyp() {
-        com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.valueOf(typ_);
+        com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.forNumber(typ_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.AUTHENTICATION_USER_PASS : result;
       }
       /**
@@ -3761,6 +3654,7 @@ public final class Authentication {
        * <code>optional bytes auth_data = 30;</code>
        * @return Whether the authData field is set.
        */
+      @java.lang.Override
       public boolean hasAuthData() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -3768,6 +3662,7 @@ public final class Authentication {
        * <code>optional bytes auth_data = 30;</code>
        * @return The authData.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getAuthData() {
         return authData_;
       }
@@ -3777,11 +3672,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setAuthData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         authData_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -3796,13 +3689,13 @@ public final class Authentication {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3828,7 +3721,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LoginCredentials(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3885,7 +3789,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.FingerprintResponseUnion}
    */
-  public  static final class FingerprintResponseUnion extends
+  public static final class FingerprintResponseUnion extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.FingerprintResponseUnion)
       FingerprintResponseUnionOrBuilder {
@@ -3904,76 +3808,7 @@ public final class Authentication {
       return new FingerprintResponseUnion();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private FingerprintResponseUnion(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) != 0)) {
-                subBuilder = grain_.toBuilder();
-              }
-              grain_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(grain_);
-                grain_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-            case 162: {
-              com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) != 0)) {
-                subBuilder = hmacRipemd_.toBuilder();
-              }
-              hmacRipemd_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(hmacRipemd_);
-                hmacRipemd_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_FingerprintResponseUnion_descriptor;
     }
@@ -3993,6 +3828,7 @@ public final class Authentication {
      * <code>optional .spotify.FingerprintGrainResponse grain = 10;</code>
      * @return Whether the grain field is set.
      */
+    @java.lang.Override
     public boolean hasGrain() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -4000,12 +3836,14 @@ public final class Authentication {
      * <code>optional .spotify.FingerprintGrainResponse grain = 10;</code>
      * @return The grain.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse getGrain() {
       return grain_ == null ? com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.getDefaultInstance() : grain_;
     }
     /**
      * <code>optional .spotify.FingerprintGrainResponse grain = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponseOrBuilder getGrainOrBuilder() {
       return grain_ == null ? com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.getDefaultInstance() : grain_;
     }
@@ -4016,6 +3854,7 @@ public final class Authentication {
      * <code>optional .spotify.FingerprintHmacRipemdResponse hmac_ripemd = 20;</code>
      * @return Whether the hmacRipemd field is set.
      */
+    @java.lang.Override
     public boolean hasHmacRipemd() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -4023,19 +3862,21 @@ public final class Authentication {
      * <code>optional .spotify.FingerprintHmacRipemdResponse hmac_ripemd = 20;</code>
      * @return The hmacRipemd.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse getHmacRipemd() {
       return hmacRipemd_ == null ? com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.getDefaultInstance() : hmacRipemd_;
     }
     /**
      * <code>optional .spotify.FingerprintHmacRipemdResponse hmac_ripemd = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponseOrBuilder getHmacRipemdOrBuilder() {
       return hmacRipemd_ == null ? com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.getDefaultInstance() : hmacRipemd_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -4065,7 +3906,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20, getHmacRipemd());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4082,7 +3923,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getHmacRipemd());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4107,7 +3948,8 @@ public final class Authentication {
         if (!getHmacRipemd()
             .equals(other.getHmacRipemd())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4125,7 +3967,7 @@ public final class Authentication {
         hash = (37 * hash) + HMAC_RIPEMD_FIELD_NUMBER;
         hash = (53 * hash) + getHmacRipemd().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4174,11 +4016,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4217,7 +4061,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.FingerprintResponseUnion}
@@ -4226,7 +4071,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.FingerprintResponseUnion)
         com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnionOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_FingerprintResponseUnion_descriptor;
       }
@@ -4259,18 +4104,17 @@ public final class Authentication {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (grainBuilder_ == null) {
-          grain_ = null;
-        } else {
-          grainBuilder_.clear();
+        bitField0_ = 0;
+        grain_ = null;
+        if (grainBuilder_ != null) {
+          grainBuilder_.dispose();
+          grainBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (hmacRipemdBuilder_ == null) {
-          hmacRipemd_ = null;
-        } else {
-          hmacRipemdBuilder_.clear();
+        hmacRipemd_ = null;
+        if (hmacRipemdBuilder_ != null) {
+          hmacRipemdBuilder_.dispose();
+          hmacRipemdBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -4297,61 +4141,29 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion result = new com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (grainBuilder_ == null) {
-            result.grain_ = grain_;
-          } else {
-            result.grain_ = grainBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (hmacRipemdBuilder_ == null) {
-            result.hmacRipemd_ = hmacRipemd_;
-          } else {
-            result.hmacRipemd_ = hmacRipemdBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.grain_ = grainBuilder_ == null
+              ? grain_
+              : grainBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.hmacRipemd_ = hmacRipemdBuilder_ == null
+              ? hmacRipemd_
+              : hmacRipemdBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion) {
@@ -4370,20 +4182,22 @@ public final class Authentication {
         if (other.hasHmacRipemd()) {
           mergeHmacRipemd(other.getHmacRipemd());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (hasGrain()) {
           if (!getGrain().isInitialized()) {
             return false;
           }
         }
         if (hasHmacRipemd()) {
-          return getHmacRipemd().isInitialized();
+          if (!getHmacRipemd().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -4393,17 +4207,44 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                input.readMessage(
+                    getGrainFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              case 162: {
+                input.readMessage(
+                    getHmacRipemdFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 162
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.FingerprintResponseUnion) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -4438,11 +4279,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           grain_ = value;
-          onChanged();
         } else {
           grainBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4452,11 +4293,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.Builder builderForValue) {
         if (grainBuilder_ == null) {
           grain_ = builderForValue.build();
-          onChanged();
         } else {
           grainBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4465,31 +4306,30 @@ public final class Authentication {
       public Builder mergeGrain(com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse value) {
         if (grainBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              grain_ != null &&
-              grain_ != com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.getDefaultInstance()) {
-            grain_ =
-              com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.newBuilder(grain_).mergeFrom(value).buildPartial();
+            grain_ != null &&
+            grain_ != com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.getDefaultInstance()) {
+            getGrainBuilder().mergeFrom(value);
           } else {
             grain_ = value;
           }
-          onChanged();
         } else {
           grainBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.FingerprintGrainResponse grain = 10;</code>
        */
       public Builder clearGrain() {
-        if (grainBuilder_ == null) {
-          grain_ = null;
-          onChanged();
-        } else {
-          grainBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        grain_ = null;
+        if (grainBuilder_ != null) {
+          grainBuilder_.dispose();
+          grainBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -4518,7 +4358,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse, com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.Builder, com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponseOrBuilder> 
           getGrainFieldBuilder() {
         if (grainBuilder_ == null) {
-          grainBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          grainBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse, com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.Builder, com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponseOrBuilder>(
                   getGrain(),
                   getParentForChildren(),
                   isClean());
@@ -4557,11 +4398,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           hmacRipemd_ = value;
-          onChanged();
         } else {
           hmacRipemdBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4571,11 +4412,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.Builder builderForValue) {
         if (hmacRipemdBuilder_ == null) {
           hmacRipemd_ = builderForValue.build();
-          onChanged();
         } else {
           hmacRipemdBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4584,31 +4425,30 @@ public final class Authentication {
       public Builder mergeHmacRipemd(com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse value) {
         if (hmacRipemdBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              hmacRipemd_ != null &&
-              hmacRipemd_ != com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.getDefaultInstance()) {
-            hmacRipemd_ =
-              com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.newBuilder(hmacRipemd_).mergeFrom(value).buildPartial();
+            hmacRipemd_ != null &&
+            hmacRipemd_ != com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.getDefaultInstance()) {
+            getHmacRipemdBuilder().mergeFrom(value);
           } else {
             hmacRipemd_ = value;
           }
-          onChanged();
         } else {
           hmacRipemdBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.FingerprintHmacRipemdResponse hmac_ripemd = 20;</code>
        */
       public Builder clearHmacRipemd() {
-        if (hmacRipemdBuilder_ == null) {
-          hmacRipemd_ = null;
-          onChanged();
-        } else {
-          hmacRipemdBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        hmacRipemd_ = null;
+        if (hmacRipemdBuilder_ != null) {
+          hmacRipemdBuilder_.dispose();
+          hmacRipemdBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -4637,7 +4477,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse, com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.Builder, com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponseOrBuilder> 
           getHmacRipemdFieldBuilder() {
         if (hmacRipemdBuilder_ == null) {
-          hmacRipemdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          hmacRipemdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse, com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.Builder, com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponseOrBuilder>(
                   getHmacRipemd(),
                   getParentForChildren(),
                   isClean());
@@ -4646,13 +4487,13 @@ public final class Authentication {
         return hmacRipemdBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4678,7 +4519,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new FingerprintResponseUnion(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4716,7 +4568,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.FingerprintGrainResponse}
    */
-  public  static final class FingerprintGrainResponse extends
+  public static final class FingerprintGrainResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.FingerprintGrainResponse)
       FingerprintGrainResponseOrBuilder {
@@ -4736,55 +4588,7 @@ public final class Authentication {
       return new FingerprintGrainResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private FingerprintGrainResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              bitField0_ |= 0x00000001;
-              encryptedKey_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_FingerprintGrainResponse_descriptor;
     }
@@ -4799,11 +4603,12 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int ENCRYPTED_KEY_FIELD_NUMBER = 10;
-    private com.google.protobuf.ByteString encryptedKey_;
+    private com.google.protobuf.ByteString encryptedKey_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes encrypted_key = 10;</code>
      * @return Whether the encryptedKey field is set.
      */
+    @java.lang.Override
     public boolean hasEncryptedKey() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -4811,13 +4616,14 @@ public final class Authentication {
      * <code>required bytes encrypted_key = 10;</code>
      * @return The encryptedKey.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getEncryptedKey() {
       return encryptedKey_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -4836,7 +4642,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeBytes(10, encryptedKey_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4849,7 +4655,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(10, encryptedKey_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4869,7 +4675,8 @@ public final class Authentication {
         if (!getEncryptedKey()
             .equals(other.getEncryptedKey())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4883,7 +4690,7 @@ public final class Authentication {
         hash = (37 * hash) + ENCRYPTED_KEY_FIELD_NUMBER;
         hash = (53 * hash) + getEncryptedKey().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4932,11 +4739,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4975,7 +4784,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.FingerprintGrainResponse}
@@ -4984,7 +4794,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.FingerprintGrainResponse)
         com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_FingerprintGrainResponse_descriptor;
       }
@@ -4999,21 +4809,19 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         encryptedKey_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -5040,49 +4848,21 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse result = new com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.encryptedKey_ = encryptedKey_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.encryptedKey_ = encryptedKey_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse) {
@@ -5098,14 +4878,17 @@ public final class Authentication {
         if (other.hasEncryptedKey()) {
           setEncryptedKey(other.getEncryptedKey());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
-        return hasEncryptedKey();
+      public final boolean isInitialized() {
+        if (!hasEncryptedKey()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -5113,17 +4896,35 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                encryptedKey_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.FingerprintGrainResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -5133,6 +4934,7 @@ public final class Authentication {
        * <code>required bytes encrypted_key = 10;</code>
        * @return Whether the encryptedKey field is set.
        */
+      @java.lang.Override
       public boolean hasEncryptedKey() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -5140,6 +4942,7 @@ public final class Authentication {
        * <code>required bytes encrypted_key = 10;</code>
        * @return The encryptedKey.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getEncryptedKey() {
         return encryptedKey_;
       }
@@ -5149,11 +4952,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setEncryptedKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         encryptedKey_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5168,13 +4969,13 @@ public final class Authentication {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5200,7 +5001,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new FingerprintGrainResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -5238,7 +5050,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.FingerprintHmacRipemdResponse}
    */
-  public  static final class FingerprintHmacRipemdResponse extends
+  public static final class FingerprintHmacRipemdResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.FingerprintHmacRipemdResponse)
       FingerprintHmacRipemdResponseOrBuilder {
@@ -5258,55 +5070,7 @@ public final class Authentication {
       return new FingerprintHmacRipemdResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private FingerprintHmacRipemdResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              bitField0_ |= 0x00000001;
-              hmac_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_FingerprintHmacRipemdResponse_descriptor;
     }
@@ -5321,11 +5085,12 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int HMAC_FIELD_NUMBER = 10;
-    private com.google.protobuf.ByteString hmac_;
+    private com.google.protobuf.ByteString hmac_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes hmac = 10;</code>
      * @return Whether the hmac field is set.
      */
+    @java.lang.Override
     public boolean hasHmac() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -5333,13 +5098,14 @@ public final class Authentication {
      * <code>required bytes hmac = 10;</code>
      * @return The hmac.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getHmac() {
       return hmac_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5358,7 +5124,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeBytes(10, hmac_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5371,7 +5137,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(10, hmac_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5391,7 +5157,8 @@ public final class Authentication {
         if (!getHmac()
             .equals(other.getHmac())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -5405,7 +5172,7 @@ public final class Authentication {
         hash = (37 * hash) + HMAC_FIELD_NUMBER;
         hash = (53 * hash) + getHmac().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -5454,11 +5221,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5497,7 +5266,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.FingerprintHmacRipemdResponse}
@@ -5506,7 +5276,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.FingerprintHmacRipemdResponse)
         com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_FingerprintHmacRipemdResponse_descriptor;
       }
@@ -5521,21 +5291,19 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         hmac_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -5562,49 +5330,21 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse result = new com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.hmac_ = hmac_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.hmac_ = hmac_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse) {
@@ -5620,14 +5360,17 @@ public final class Authentication {
         if (other.hasHmac()) {
           setHmac(other.getHmac());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
-        return hasHmac();
+      public final boolean isInitialized() {
+        if (!hasHmac()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -5635,17 +5378,35 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                hmac_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.FingerprintHmacRipemdResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -5655,6 +5416,7 @@ public final class Authentication {
        * <code>required bytes hmac = 10;</code>
        * @return Whether the hmac field is set.
        */
+      @java.lang.Override
       public boolean hasHmac() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -5662,6 +5424,7 @@ public final class Authentication {
        * <code>required bytes hmac = 10;</code>
        * @return The hmac.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getHmac() {
         return hmac_;
       }
@@ -5671,11 +5434,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setHmac(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         hmac_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5690,13 +5451,13 @@ public final class Authentication {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5722,7 +5483,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new FingerprintHmacRipemdResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -5779,7 +5551,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.PeerTicketUnion}
    */
-  public  static final class PeerTicketUnion extends
+  public static final class PeerTicketUnion extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.PeerTicketUnion)
       PeerTicketUnionOrBuilder {
@@ -5798,76 +5570,7 @@ public final class Authentication {
       return new PeerTicketUnion();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PeerTicketUnion(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) != 0)) {
-                subBuilder = publicKey_.toBuilder();
-              }
-              publicKey_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(publicKey_);
-                publicKey_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-            case 162: {
-              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) != 0)) {
-                subBuilder = oldTicket_.toBuilder();
-              }
-              oldTicket_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(oldTicket_);
-                oldTicket_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_PeerTicketUnion_descriptor;
     }
@@ -5887,6 +5590,7 @@ public final class Authentication {
      * <code>optional .spotify.PeerTicketPublicKey public_key = 10;</code>
      * @return Whether the publicKey field is set.
      */
+    @java.lang.Override
     public boolean hasPublicKey() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -5894,12 +5598,14 @@ public final class Authentication {
      * <code>optional .spotify.PeerTicketPublicKey public_key = 10;</code>
      * @return The publicKey.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey getPublicKey() {
       return publicKey_ == null ? com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.getDefaultInstance() : publicKey_;
     }
     /**
      * <code>optional .spotify.PeerTicketPublicKey public_key = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKeyOrBuilder getPublicKeyOrBuilder() {
       return publicKey_ == null ? com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.getDefaultInstance() : publicKey_;
     }
@@ -5910,6 +5616,7 @@ public final class Authentication {
      * <code>optional .spotify.PeerTicketOld old_ticket = 20;</code>
      * @return Whether the oldTicket field is set.
      */
+    @java.lang.Override
     public boolean hasOldTicket() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -5917,19 +5624,21 @@ public final class Authentication {
      * <code>optional .spotify.PeerTicketOld old_ticket = 20;</code>
      * @return The oldTicket.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld getOldTicket() {
       return oldTicket_ == null ? com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.getDefaultInstance() : oldTicket_;
     }
     /**
      * <code>optional .spotify.PeerTicketOld old_ticket = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOldOrBuilder getOldTicketOrBuilder() {
       return oldTicket_ == null ? com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.getDefaultInstance() : oldTicket_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5959,7 +5668,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20, getOldTicket());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5976,7 +5685,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getOldTicket());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -6001,7 +5710,8 @@ public final class Authentication {
         if (!getOldTicket()
             .equals(other.getOldTicket())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6019,7 +5729,7 @@ public final class Authentication {
         hash = (37 * hash) + OLD_TICKET_FIELD_NUMBER;
         hash = (53 * hash) + getOldTicket().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -6068,11 +5778,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6111,7 +5823,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.PeerTicketUnion}
@@ -6120,7 +5833,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.PeerTicketUnion)
         com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnionOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_PeerTicketUnion_descriptor;
       }
@@ -6153,18 +5866,17 @@ public final class Authentication {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (publicKeyBuilder_ == null) {
-          publicKey_ = null;
-        } else {
-          publicKeyBuilder_.clear();
+        bitField0_ = 0;
+        publicKey_ = null;
+        if (publicKeyBuilder_ != null) {
+          publicKeyBuilder_.dispose();
+          publicKeyBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (oldTicketBuilder_ == null) {
-          oldTicket_ = null;
-        } else {
-          oldTicketBuilder_.clear();
+        oldTicket_ = null;
+        if (oldTicketBuilder_ != null) {
+          oldTicketBuilder_.dispose();
+          oldTicketBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -6191,61 +5903,29 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion result = new com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (publicKeyBuilder_ == null) {
-            result.publicKey_ = publicKey_;
-          } else {
-            result.publicKey_ = publicKeyBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (oldTicketBuilder_ == null) {
-            result.oldTicket_ = oldTicket_;
-          } else {
-            result.oldTicket_ = oldTicketBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.publicKey_ = publicKeyBuilder_ == null
+              ? publicKey_
+              : publicKeyBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.oldTicket_ = oldTicketBuilder_ == null
+              ? oldTicket_
+              : oldTicketBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion) {
@@ -6264,20 +5944,22 @@ public final class Authentication {
         if (other.hasOldTicket()) {
           mergeOldTicket(other.getOldTicket());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (hasPublicKey()) {
           if (!getPublicKey().isInitialized()) {
             return false;
           }
         }
         if (hasOldTicket()) {
-          return getOldTicket().isInitialized();
+          if (!getOldTicket().isInitialized()) {
+            return false;
+          }
         }
         return true;
       }
@@ -6287,17 +5969,44 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                input.readMessage(
+                    getPublicKeyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              case 162: {
+                input.readMessage(
+                    getOldTicketFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 162
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.PeerTicketUnion) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -6332,11 +6041,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           publicKey_ = value;
-          onChanged();
         } else {
           publicKeyBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -6346,11 +6055,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.Builder builderForValue) {
         if (publicKeyBuilder_ == null) {
           publicKey_ = builderForValue.build();
-          onChanged();
         } else {
           publicKeyBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -6359,31 +6068,30 @@ public final class Authentication {
       public Builder mergePublicKey(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey value) {
         if (publicKeyBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              publicKey_ != null &&
-              publicKey_ != com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.getDefaultInstance()) {
-            publicKey_ =
-              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.newBuilder(publicKey_).mergeFrom(value).buildPartial();
+            publicKey_ != null &&
+            publicKey_ != com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.getDefaultInstance()) {
+            getPublicKeyBuilder().mergeFrom(value);
           } else {
             publicKey_ = value;
           }
-          onChanged();
         } else {
           publicKeyBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.PeerTicketPublicKey public_key = 10;</code>
        */
       public Builder clearPublicKey() {
-        if (publicKeyBuilder_ == null) {
-          publicKey_ = null;
-          onChanged();
-        } else {
-          publicKeyBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        publicKey_ = null;
+        if (publicKeyBuilder_ != null) {
+          publicKeyBuilder_.dispose();
+          publicKeyBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -6412,7 +6120,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.Builder, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKeyOrBuilder> 
           getPublicKeyFieldBuilder() {
         if (publicKeyBuilder_ == null) {
-          publicKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          publicKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.Builder, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKeyOrBuilder>(
                   getPublicKey(),
                   getParentForChildren(),
                   isClean());
@@ -6451,11 +6160,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           oldTicket_ = value;
-          onChanged();
         } else {
           oldTicketBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6465,11 +6174,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.Builder builderForValue) {
         if (oldTicketBuilder_ == null) {
           oldTicket_ = builderForValue.build();
-          onChanged();
         } else {
           oldTicketBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6478,31 +6187,30 @@ public final class Authentication {
       public Builder mergeOldTicket(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld value) {
         if (oldTicketBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              oldTicket_ != null &&
-              oldTicket_ != com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.getDefaultInstance()) {
-            oldTicket_ =
-              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.newBuilder(oldTicket_).mergeFrom(value).buildPartial();
+            oldTicket_ != null &&
+            oldTicket_ != com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.getDefaultInstance()) {
+            getOldTicketBuilder().mergeFrom(value);
           } else {
             oldTicket_ = value;
           }
-          onChanged();
         } else {
           oldTicketBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.PeerTicketOld old_ticket = 20;</code>
        */
       public Builder clearOldTicket() {
-        if (oldTicketBuilder_ == null) {
-          oldTicket_ = null;
-          onChanged();
-        } else {
-          oldTicketBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        oldTicket_ = null;
+        if (oldTicketBuilder_ != null) {
+          oldTicketBuilder_.dispose();
+          oldTicketBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -6531,7 +6239,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.Builder, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOldOrBuilder> 
           getOldTicketFieldBuilder() {
         if (oldTicketBuilder_ == null) {
-          oldTicketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          oldTicketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.Builder, com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOldOrBuilder>(
                   getOldTicket(),
                   getParentForChildren(),
                   isClean());
@@ -6540,13 +6249,13 @@ public final class Authentication {
         return oldTicketBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6572,7 +6281,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PeerTicketUnion(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6610,7 +6330,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.PeerTicketPublicKey}
    */
-  public  static final class PeerTicketPublicKey extends
+  public static final class PeerTicketPublicKey extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.PeerTicketPublicKey)
       PeerTicketPublicKeyOrBuilder {
@@ -6630,55 +6350,7 @@ public final class Authentication {
       return new PeerTicketPublicKey();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PeerTicketPublicKey(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              bitField0_ |= 0x00000001;
-              publicKey_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_PeerTicketPublicKey_descriptor;
     }
@@ -6693,11 +6365,12 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int PUBLIC_KEY_FIELD_NUMBER = 10;
-    private com.google.protobuf.ByteString publicKey_;
+    private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes public_key = 10;</code>
      * @return Whether the publicKey field is set.
      */
+    @java.lang.Override
     public boolean hasPublicKey() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -6705,13 +6378,14 @@ public final class Authentication {
      * <code>required bytes public_key = 10;</code>
      * @return The publicKey.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPublicKey() {
       return publicKey_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -6730,7 +6404,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeBytes(10, publicKey_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -6743,7 +6417,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(10, publicKey_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -6763,7 +6437,8 @@ public final class Authentication {
         if (!getPublicKey()
             .equals(other.getPublicKey())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6777,7 +6452,7 @@ public final class Authentication {
         hash = (37 * hash) + PUBLIC_KEY_FIELD_NUMBER;
         hash = (53 * hash) + getPublicKey().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -6826,11 +6501,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6869,7 +6546,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.PeerTicketPublicKey}
@@ -6878,7 +6556,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.PeerTicketPublicKey)
         com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKeyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_PeerTicketPublicKey_descriptor;
       }
@@ -6893,21 +6571,19 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         publicKey_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -6934,49 +6610,21 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey result = new com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.publicKey_ = publicKey_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.publicKey_ = publicKey_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey) {
@@ -6992,14 +6640,17 @@ public final class Authentication {
         if (other.hasPublicKey()) {
           setPublicKey(other.getPublicKey());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
-        return hasPublicKey();
+      public final boolean isInitialized() {
+        if (!hasPublicKey()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -7007,17 +6658,35 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                publicKey_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.PeerTicketPublicKey) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -7027,6 +6696,7 @@ public final class Authentication {
        * <code>required bytes public_key = 10;</code>
        * @return Whether the publicKey field is set.
        */
+      @java.lang.Override
       public boolean hasPublicKey() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -7034,6 +6704,7 @@ public final class Authentication {
        * <code>required bytes public_key = 10;</code>
        * @return The publicKey.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPublicKey() {
         return publicKey_;
       }
@@ -7043,11 +6714,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setPublicKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         publicKey_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7062,13 +6731,13 @@ public final class Authentication {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7094,7 +6763,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PeerTicketPublicKey(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -7143,7 +6823,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.PeerTicketOld}
    */
-  public  static final class PeerTicketOld extends
+  public static final class PeerTicketOld extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.PeerTicketOld)
       PeerTicketOldOrBuilder {
@@ -7164,60 +6844,7 @@ public final class Authentication {
       return new PeerTicketOld();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PeerTicketOld(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              bitField0_ |= 0x00000001;
-              peerTicket_ = input.readBytes();
-              break;
-            }
-            case 162: {
-              bitField0_ |= 0x00000002;
-              peerTicketSignature_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_PeerTicketOld_descriptor;
     }
@@ -7232,11 +6859,12 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int PEER_TICKET_FIELD_NUMBER = 10;
-    private com.google.protobuf.ByteString peerTicket_;
+    private com.google.protobuf.ByteString peerTicket_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes peer_ticket = 10;</code>
      * @return Whether the peerTicket field is set.
      */
+    @java.lang.Override
     public boolean hasPeerTicket() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -7244,16 +6872,18 @@ public final class Authentication {
      * <code>required bytes peer_ticket = 10;</code>
      * @return The peerTicket.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPeerTicket() {
       return peerTicket_;
     }
 
     public static final int PEER_TICKET_SIGNATURE_FIELD_NUMBER = 20;
-    private com.google.protobuf.ByteString peerTicketSignature_;
+    private com.google.protobuf.ByteString peerTicketSignature_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes peer_ticket_signature = 20;</code>
      * @return Whether the peerTicketSignature field is set.
      */
+    @java.lang.Override
     public boolean hasPeerTicketSignature() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -7261,13 +6891,14 @@ public final class Authentication {
      * <code>required bytes peer_ticket_signature = 20;</code>
      * @return The peerTicketSignature.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPeerTicketSignature() {
       return peerTicketSignature_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -7293,7 +6924,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeBytes(20, peerTicketSignature_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -7310,7 +6941,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(20, peerTicketSignature_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7335,7 +6966,8 @@ public final class Authentication {
         if (!getPeerTicketSignature()
             .equals(other.getPeerTicketSignature())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7353,7 +6985,7 @@ public final class Authentication {
         hash = (37 * hash) + PEER_TICKET_SIGNATURE_FIELD_NUMBER;
         hash = (53 * hash) + getPeerTicketSignature().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7402,11 +7034,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7445,7 +7079,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.PeerTicketOld}
@@ -7454,7 +7089,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.PeerTicketOld)
         com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOldOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_PeerTicketOld_descriptor;
       }
@@ -7469,23 +7104,20 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         peerTicket_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         peerTicketSignature_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -7512,53 +7144,25 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld result = new com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.peerTicket_ = peerTicket_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.peerTicketSignature_ = peerTicketSignature_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.peerTicket_ = peerTicket_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.peerTicketSignature_ = peerTicketSignature_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld) {
@@ -7577,17 +7181,20 @@ public final class Authentication {
         if (other.hasPeerTicketSignature()) {
           setPeerTicketSignature(other.getPeerTicketSignature());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (!hasPeerTicket()) {
           return false;
         }
-        return hasPeerTicketSignature();
+        if (!hasPeerTicketSignature()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -7595,17 +7202,40 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                peerTicket_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              case 162: {
+                peerTicketSignature_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 162
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.PeerTicketOld) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -7615,6 +7245,7 @@ public final class Authentication {
        * <code>required bytes peer_ticket = 10;</code>
        * @return Whether the peerTicket field is set.
        */
+      @java.lang.Override
       public boolean hasPeerTicket() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -7622,6 +7253,7 @@ public final class Authentication {
        * <code>required bytes peer_ticket = 10;</code>
        * @return The peerTicket.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPeerTicket() {
         return peerTicket_;
       }
@@ -7631,11 +7263,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setPeerTicket(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         peerTicket_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7655,6 +7285,7 @@ public final class Authentication {
        * <code>required bytes peer_ticket_signature = 20;</code>
        * @return Whether the peerTicketSignature field is set.
        */
+      @java.lang.Override
       public boolean hasPeerTicketSignature() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -7662,6 +7293,7 @@ public final class Authentication {
        * <code>required bytes peer_ticket_signature = 20;</code>
        * @return The peerTicketSignature.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPeerTicketSignature() {
         return peerTicketSignature_;
       }
@@ -7671,11 +7303,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setPeerTicketSignature(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         peerTicketSignature_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7690,13 +7320,13 @@ public final class Authentication {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7722,7 +7352,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PeerTicketOld(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -7871,7 +7512,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.SystemInfo}
    */
-  public  static final class SystemInfo extends
+  public static final class SystemInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.SystemInfo)
       SystemInfoOrBuilder {
@@ -7895,120 +7536,7 @@ public final class Authentication {
       return new SystemInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SystemInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 80: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.CpuFamily value = com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(10, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                cpuFamily_ = rawValue;
-              }
-              break;
-            }
-            case 160: {
-              bitField0_ |= 0x00000002;
-              cpuSubtype_ = input.readUInt32();
-              break;
-            }
-            case 240: {
-              bitField0_ |= 0x00000004;
-              cpuExt_ = input.readUInt32();
-              break;
-            }
-            case 320: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.Brand value = com.spotifyxp.deps.com.spotify.Authentication.Brand.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(40, rawValue);
-              } else {
-                bitField0_ |= 0x00000008;
-                brand_ = rawValue;
-              }
-              break;
-            }
-            case 400: {
-              bitField0_ |= 0x00000010;
-              brandFlags_ = input.readUInt32();
-              break;
-            }
-            case 480: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.Os value = com.spotifyxp.deps.com.spotify.Authentication.Os.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(60, rawValue);
-              } else {
-                bitField0_ |= 0x00000020;
-                os_ = rawValue;
-              }
-              break;
-            }
-            case 560: {
-              bitField0_ |= 0x00000040;
-              osVersion_ = input.readUInt32();
-              break;
-            }
-            case 640: {
-              bitField0_ |= 0x00000080;
-              osExt_ = input.readUInt32();
-              break;
-            }
-            case 722: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000100;
-              systemInformationString_ = bs;
-              break;
-            }
-            case 802: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000200;
-              deviceId_ = bs;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_SystemInfo_descriptor;
     }
@@ -8023,29 +7551,30 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int CPU_FAMILY_FIELD_NUMBER = 10;
-    private int cpuFamily_;
+    private int cpuFamily_ = 0;
     /**
      * <code>required .spotify.CpuFamily cpu_family = 10;</code>
      * @return Whether the cpuFamily field is set.
      */
-    public boolean hasCpuFamily() {
+    @java.lang.Override public boolean hasCpuFamily() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>required .spotify.CpuFamily cpu_family = 10;</code>
      * @return The cpuFamily.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.CpuFamily getCpuFamily() {
-      com.spotifyxp.deps.com.spotify.Authentication.CpuFamily result = com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.valueOf(cpuFamily_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.CpuFamily getCpuFamily() {
+      com.spotifyxp.deps.com.spotify.Authentication.CpuFamily result = com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.forNumber(cpuFamily_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.CPU_UNKNOWN : result;
     }
 
     public static final int CPU_SUBTYPE_FIELD_NUMBER = 20;
-    private int cpuSubtype_;
+    private int cpuSubtype_ = 0;
     /**
      * <code>optional uint32 cpu_subtype = 20;</code>
      * @return Whether the cpuSubtype field is set.
      */
+    @java.lang.Override
     public boolean hasCpuSubtype() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -8053,16 +7582,18 @@ public final class Authentication {
      * <code>optional uint32 cpu_subtype = 20;</code>
      * @return The cpuSubtype.
      */
+    @java.lang.Override
     public int getCpuSubtype() {
       return cpuSubtype_;
     }
 
     public static final int CPU_EXT_FIELD_NUMBER = 30;
-    private int cpuExt_;
+    private int cpuExt_ = 0;
     /**
      * <code>optional uint32 cpu_ext = 30;</code>
      * @return Whether the cpuExt field is set.
      */
+    @java.lang.Override
     public boolean hasCpuExt() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -8070,34 +7601,36 @@ public final class Authentication {
      * <code>optional uint32 cpu_ext = 30;</code>
      * @return The cpuExt.
      */
+    @java.lang.Override
     public int getCpuExt() {
       return cpuExt_;
     }
 
     public static final int BRAND_FIELD_NUMBER = 40;
-    private int brand_;
+    private int brand_ = 0;
     /**
      * <code>optional .spotify.Brand brand = 40;</code>
      * @return Whether the brand field is set.
      */
-    public boolean hasBrand() {
+    @java.lang.Override public boolean hasBrand() {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
      * <code>optional .spotify.Brand brand = 40;</code>
      * @return The brand.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.Brand getBrand() {
-      com.spotifyxp.deps.com.spotify.Authentication.Brand result = com.spotifyxp.deps.com.spotify.Authentication.Brand.valueOf(brand_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.Brand getBrand() {
+      com.spotifyxp.deps.com.spotify.Authentication.Brand result = com.spotifyxp.deps.com.spotify.Authentication.Brand.forNumber(brand_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.Brand.BRAND_UNBRANDED : result;
     }
 
     public static final int BRAND_FLAGS_FIELD_NUMBER = 50;
-    private int brandFlags_;
+    private int brandFlags_ = 0;
     /**
      * <code>optional uint32 brand_flags = 50;</code>
      * @return Whether the brandFlags field is set.
      */
+    @java.lang.Override
     public boolean hasBrandFlags() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -8105,34 +7638,36 @@ public final class Authentication {
      * <code>optional uint32 brand_flags = 50;</code>
      * @return The brandFlags.
      */
+    @java.lang.Override
     public int getBrandFlags() {
       return brandFlags_;
     }
 
     public static final int OS_FIELD_NUMBER = 60;
-    private int os_;
+    private int os_ = 0;
     /**
      * <code>required .spotify.Os os = 60;</code>
      * @return Whether the os field is set.
      */
-    public boolean hasOs() {
+    @java.lang.Override public boolean hasOs() {
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
      * <code>required .spotify.Os os = 60;</code>
      * @return The os.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.Os getOs() {
-      com.spotifyxp.deps.com.spotify.Authentication.Os result = com.spotifyxp.deps.com.spotify.Authentication.Os.valueOf(os_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.Os getOs() {
+      com.spotifyxp.deps.com.spotify.Authentication.Os result = com.spotifyxp.deps.com.spotify.Authentication.Os.forNumber(os_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.Os.OS_UNKNOWN : result;
     }
 
     public static final int OS_VERSION_FIELD_NUMBER = 70;
-    private int osVersion_;
+    private int osVersion_ = 0;
     /**
      * <code>optional uint32 os_version = 70;</code>
      * @return Whether the osVersion field is set.
      */
+    @java.lang.Override
     public boolean hasOsVersion() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -8140,16 +7675,18 @@ public final class Authentication {
      * <code>optional uint32 os_version = 70;</code>
      * @return The osVersion.
      */
+    @java.lang.Override
     public int getOsVersion() {
       return osVersion_;
     }
 
     public static final int OS_EXT_FIELD_NUMBER = 80;
-    private int osExt_;
+    private int osExt_ = 0;
     /**
      * <code>optional uint32 os_ext = 80;</code>
      * @return Whether the osExt field is set.
      */
+    @java.lang.Override
     public boolean hasOsExt() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -8157,16 +7694,19 @@ public final class Authentication {
      * <code>optional uint32 os_ext = 80;</code>
      * @return The osExt.
      */
+    @java.lang.Override
     public int getOsExt() {
       return osExt_;
     }
 
     public static final int SYSTEM_INFORMATION_STRING_FIELD_NUMBER = 90;
-    private volatile java.lang.Object systemInformationString_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object systemInformationString_ = "";
     /**
      * <code>optional string system_information_string = 90;</code>
      * @return Whether the systemInformationString field is set.
      */
+    @java.lang.Override
     public boolean hasSystemInformationString() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -8174,6 +7714,7 @@ public final class Authentication {
      * <code>optional string system_information_string = 90;</code>
      * @return The systemInformationString.
      */
+    @java.lang.Override
     public java.lang.String getSystemInformationString() {
       java.lang.Object ref = systemInformationString_;
       if (ref instanceof java.lang.String) {
@@ -8192,6 +7733,7 @@ public final class Authentication {
      * <code>optional string system_information_string = 90;</code>
      * @return The bytes for systemInformationString.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSystemInformationStringBytes() {
       java.lang.Object ref = systemInformationString_;
@@ -8207,11 +7749,13 @@ public final class Authentication {
     }
 
     public static final int DEVICE_ID_FIELD_NUMBER = 100;
-    private volatile java.lang.Object deviceId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deviceId_ = "";
     /**
      * <code>optional string device_id = 100;</code>
      * @return Whether the deviceId field is set.
      */
+    @java.lang.Override
     public boolean hasDeviceId() {
       return ((bitField0_ & 0x00000200) != 0);
     }
@@ -8219,6 +7763,7 @@ public final class Authentication {
      * <code>optional string device_id = 100;</code>
      * @return The deviceId.
      */
+    @java.lang.Override
     public java.lang.String getDeviceId() {
       java.lang.Object ref = deviceId_;
       if (ref instanceof java.lang.String) {
@@ -8237,6 +7782,7 @@ public final class Authentication {
      * <code>optional string device_id = 100;</code>
      * @return The bytes for deviceId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDeviceIdBytes() {
       java.lang.Object ref = deviceId_;
@@ -8253,7 +7799,7 @@ public final class Authentication {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -8303,7 +7849,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000200) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 100, deviceId_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -8350,7 +7896,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000200) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(100, deviceId_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -8412,7 +7958,8 @@ public final class Authentication {
         if (!getDeviceId()
             .equals(other.getDeviceId())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -8462,7 +8009,7 @@ public final class Authentication {
         hash = (37 * hash) + DEVICE_ID_FIELD_NUMBER;
         hash = (53 * hash) + getDeviceId().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -8511,11 +8058,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.SystemInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.SystemInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8554,7 +8103,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.SystemInfo}
@@ -8563,7 +8113,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.SystemInfo)
         com.spotifyxp.deps.com.spotify.Authentication.SystemInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_SystemInfo_descriptor;
       }
@@ -8578,39 +8128,28 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.SystemInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         cpuFamily_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         cpuSubtype_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         cpuExt_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         brand_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         brandFlags_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
         os_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
         osVersion_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
         osExt_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
         systemInformationString_ = "";
-        bitField0_ = (bitField0_ & ~0x00000100);
         deviceId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
 
@@ -8637,12 +8176,18 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.SystemInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.SystemInfo result = new com.spotifyxp.deps.com.spotify.Authentication.SystemInfo(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.SystemInfo result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.cpuFamily_ = cpuFamily_;
           to_bitField0_ |= 0x00000001;
         }
-        result.cpuFamily_ = cpuFamily_;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.cpuSubtype_ = cpuSubtype_;
           to_bitField0_ |= 0x00000002;
@@ -8652,17 +8197,17 @@ public final class Authentication {
           to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.brand_ = brand_;
           to_bitField0_ |= 0x00000008;
         }
-        result.brand_ = brand_;
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.brandFlags_ = brandFlags_;
           to_bitField0_ |= 0x00000010;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.os_ = os_;
           to_bitField0_ |= 0x00000020;
         }
-        result.os_ = os_;
         if (((from_bitField0_ & 0x00000040) != 0)) {
           result.osVersion_ = osVersion_;
           to_bitField0_ |= 0x00000040;
@@ -8672,50 +8217,16 @@ public final class Authentication {
           to_bitField0_ |= 0x00000080;
         }
         if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.systemInformationString_ = systemInformationString_;
           to_bitField0_ |= 0x00000100;
         }
-        result.systemInformationString_ = systemInformationString_;
         if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.deviceId_ = deviceId_;
           to_bitField0_ |= 0x00000200;
         }
-        result.deviceId_ = deviceId_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.SystemInfo) {
@@ -8753,26 +8264,29 @@ public final class Authentication {
           setOsExt(other.getOsExt());
         }
         if (other.hasSystemInformationString()) {
-          bitField0_ |= 0x00000100;
           systemInformationString_ = other.systemInformationString_;
+          bitField0_ |= 0x00000100;
           onChanged();
         }
         if (other.hasDeviceId()) {
-          bitField0_ |= 0x00000200;
           deviceId_ = other.deviceId_;
+          bitField0_ |= 0x00000200;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (!hasCpuFamily()) {
           return false;
         }
-        return hasOs();
+        if (!hasOs()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -8780,17 +8294,101 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.SystemInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 80: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.CpuFamily tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(10, tmpRaw);
+                } else {
+                  cpuFamily_ = tmpRaw;
+                  bitField0_ |= 0x00000001;
+                }
+                break;
+              } // case 80
+              case 160: {
+                cpuSubtype_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 160
+              case 240: {
+                cpuExt_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 240
+              case 320: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.Brand tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.Brand.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(40, tmpRaw);
+                } else {
+                  brand_ = tmpRaw;
+                  bitField0_ |= 0x00000008;
+                }
+                break;
+              } // case 320
+              case 400: {
+                brandFlags_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 400
+              case 480: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.Os tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.Os.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(60, tmpRaw);
+                } else {
+                  os_ = tmpRaw;
+                  bitField0_ |= 0x00000020;
+                }
+                break;
+              } // case 480
+              case 560: {
+                osVersion_ = input.readUInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 560
+              case 640: {
+                osExt_ = input.readUInt32();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 640
+              case 722: {
+                systemInformationString_ = input.readBytes();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 722
+              case 802: {
+                deviceId_ = input.readBytes();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 802
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.SystemInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -8800,15 +8398,16 @@ public final class Authentication {
        * <code>required .spotify.CpuFamily cpu_family = 10;</code>
        * @return Whether the cpuFamily field is set.
        */
-      public boolean hasCpuFamily() {
+      @java.lang.Override public boolean hasCpuFamily() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>required .spotify.CpuFamily cpu_family = 10;</code>
        * @return The cpuFamily.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.CpuFamily getCpuFamily() {
-        com.spotifyxp.deps.com.spotify.Authentication.CpuFamily result = com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.valueOf(cpuFamily_);
+        com.spotifyxp.deps.com.spotify.Authentication.CpuFamily result = com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.forNumber(cpuFamily_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.CpuFamily.CPU_UNKNOWN : result;
       }
       /**
@@ -8841,6 +8440,7 @@ public final class Authentication {
        * <code>optional uint32 cpu_subtype = 20;</code>
        * @return Whether the cpuSubtype field is set.
        */
+      @java.lang.Override
       public boolean hasCpuSubtype() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -8848,6 +8448,7 @@ public final class Authentication {
        * <code>optional uint32 cpu_subtype = 20;</code>
        * @return The cpuSubtype.
        */
+      @java.lang.Override
       public int getCpuSubtype() {
         return cpuSubtype_;
       }
@@ -8857,8 +8458,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setCpuSubtype(int value) {
-        bitField0_ |= 0x00000002;
+
         cpuSubtype_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -8878,6 +8480,7 @@ public final class Authentication {
        * <code>optional uint32 cpu_ext = 30;</code>
        * @return Whether the cpuExt field is set.
        */
+      @java.lang.Override
       public boolean hasCpuExt() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -8885,6 +8488,7 @@ public final class Authentication {
        * <code>optional uint32 cpu_ext = 30;</code>
        * @return The cpuExt.
        */
+      @java.lang.Override
       public int getCpuExt() {
         return cpuExt_;
       }
@@ -8894,8 +8498,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setCpuExt(int value) {
-        bitField0_ |= 0x00000004;
+
         cpuExt_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -8915,15 +8520,16 @@ public final class Authentication {
        * <code>optional .spotify.Brand brand = 40;</code>
        * @return Whether the brand field is set.
        */
-      public boolean hasBrand() {
+      @java.lang.Override public boolean hasBrand() {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>optional .spotify.Brand brand = 40;</code>
        * @return The brand.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.Brand getBrand() {
-        com.spotifyxp.deps.com.spotify.Authentication.Brand result = com.spotifyxp.deps.com.spotify.Authentication.Brand.valueOf(brand_);
+        com.spotifyxp.deps.com.spotify.Authentication.Brand result = com.spotifyxp.deps.com.spotify.Authentication.Brand.forNumber(brand_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.Brand.BRAND_UNBRANDED : result;
       }
       /**
@@ -8956,6 +8562,7 @@ public final class Authentication {
        * <code>optional uint32 brand_flags = 50;</code>
        * @return Whether the brandFlags field is set.
        */
+      @java.lang.Override
       public boolean hasBrandFlags() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -8963,6 +8570,7 @@ public final class Authentication {
        * <code>optional uint32 brand_flags = 50;</code>
        * @return The brandFlags.
        */
+      @java.lang.Override
       public int getBrandFlags() {
         return brandFlags_;
       }
@@ -8972,8 +8580,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setBrandFlags(int value) {
-        bitField0_ |= 0x00000010;
+
         brandFlags_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -8993,15 +8602,16 @@ public final class Authentication {
        * <code>required .spotify.Os os = 60;</code>
        * @return Whether the os field is set.
        */
-      public boolean hasOs() {
+      @java.lang.Override public boolean hasOs() {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <code>required .spotify.Os os = 60;</code>
        * @return The os.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.Os getOs() {
-        com.spotifyxp.deps.com.spotify.Authentication.Os result = com.spotifyxp.deps.com.spotify.Authentication.Os.valueOf(os_);
+        com.spotifyxp.deps.com.spotify.Authentication.Os result = com.spotifyxp.deps.com.spotify.Authentication.Os.forNumber(os_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.Os.OS_UNKNOWN : result;
       }
       /**
@@ -9034,6 +8644,7 @@ public final class Authentication {
        * <code>optional uint32 os_version = 70;</code>
        * @return Whether the osVersion field is set.
        */
+      @java.lang.Override
       public boolean hasOsVersion() {
         return ((bitField0_ & 0x00000040) != 0);
       }
@@ -9041,6 +8652,7 @@ public final class Authentication {
        * <code>optional uint32 os_version = 70;</code>
        * @return The osVersion.
        */
+      @java.lang.Override
       public int getOsVersion() {
         return osVersion_;
       }
@@ -9050,8 +8662,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setOsVersion(int value) {
-        bitField0_ |= 0x00000040;
+
         osVersion_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -9071,6 +8684,7 @@ public final class Authentication {
        * <code>optional uint32 os_ext = 80;</code>
        * @return Whether the osExt field is set.
        */
+      @java.lang.Override
       public boolean hasOsExt() {
         return ((bitField0_ & 0x00000080) != 0);
       }
@@ -9078,6 +8692,7 @@ public final class Authentication {
        * <code>optional uint32 os_ext = 80;</code>
        * @return The osExt.
        */
+      @java.lang.Override
       public int getOsExt() {
         return osExt_;
       }
@@ -9087,8 +8702,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setOsExt(int value) {
-        bitField0_ |= 0x00000080;
+
         osExt_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -9153,11 +8769,9 @@ public final class Authentication {
        */
       public Builder setSystemInformationString(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000100;
+        if (value == null) { throw new NullPointerException(); }
         systemInformationString_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -9166,8 +8780,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearSystemInformationString() {
-        bitField0_ = (bitField0_ & ~0x00000100);
         systemInformationString_ = getDefaultInstance().getSystemInformationString();
+        bitField0_ = (bitField0_ & ~0x00000100);
         onChanged();
         return this;
       }
@@ -9178,11 +8792,9 @@ public final class Authentication {
        */
       public Builder setSystemInformationStringBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000100;
+        if (value == null) { throw new NullPointerException(); }
         systemInformationString_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -9237,11 +8849,9 @@ public final class Authentication {
        */
       public Builder setDeviceId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000200;
+        if (value == null) { throw new NullPointerException(); }
         deviceId_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -9250,8 +8860,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearDeviceId() {
-        bitField0_ = (bitField0_ & ~0x00000200);
         deviceId_ = getDefaultInstance().getDeviceId();
+        bitField0_ = (bitField0_ & ~0x00000200);
         onChanged();
         return this;
       }
@@ -9262,22 +8872,20 @@ public final class Authentication {
        */
       public Builder setDeviceIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000200;
+        if (value == null) { throw new NullPointerException(); }
         deviceId_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9303,7 +8911,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SystemInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -9391,7 +9010,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.LibspotifyAppKey}
    */
-  public  static final class LibspotifyAppKey extends
+  public static final class LibspotifyAppKey extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.LibspotifyAppKey)
       LibspotifyAppKeyOrBuilder {
@@ -9414,76 +9033,7 @@ public final class Authentication {
       return new LibspotifyAppKey();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LibspotifyAppKey(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              bitField0_ |= 0x00000001;
-              version_ = input.readUInt32();
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              devkey_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              bitField0_ |= 0x00000004;
-              signature_ = input.readBytes();
-              break;
-            }
-            case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              useragent_ = bs;
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              callbackHash_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_LibspotifyAppKey_descriptor;
     }
@@ -9498,11 +9048,12 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int VERSION_FIELD_NUMBER = 1;
-    private int version_;
+    private int version_ = 0;
     /**
      * <code>required uint32 version = 1;</code>
      * @return Whether the version field is set.
      */
+    @java.lang.Override
     public boolean hasVersion() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -9510,16 +9061,18 @@ public final class Authentication {
      * <code>required uint32 version = 1;</code>
      * @return The version.
      */
+    @java.lang.Override
     public int getVersion() {
       return version_;
     }
 
     public static final int DEVKEY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString devkey_;
+    private com.google.protobuf.ByteString devkey_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes devkey = 2;</code>
      * @return Whether the devkey field is set.
      */
+    @java.lang.Override
     public boolean hasDevkey() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -9527,16 +9080,18 @@ public final class Authentication {
      * <code>required bytes devkey = 2;</code>
      * @return The devkey.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getDevkey() {
       return devkey_;
     }
 
     public static final int SIGNATURE_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString signature_;
+    private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes signature = 3;</code>
      * @return Whether the signature field is set.
      */
+    @java.lang.Override
     public boolean hasSignature() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -9544,16 +9099,19 @@ public final class Authentication {
      * <code>required bytes signature = 3;</code>
      * @return The signature.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSignature() {
       return signature_;
     }
 
     public static final int USERAGENT_FIELD_NUMBER = 4;
-    private volatile java.lang.Object useragent_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object useragent_ = "";
     /**
      * <code>required string useragent = 4;</code>
      * @return Whether the useragent field is set.
      */
+    @java.lang.Override
     public boolean hasUseragent() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -9561,6 +9119,7 @@ public final class Authentication {
      * <code>required string useragent = 4;</code>
      * @return The useragent.
      */
+    @java.lang.Override
     public java.lang.String getUseragent() {
       java.lang.Object ref = useragent_;
       if (ref instanceof java.lang.String) {
@@ -9579,6 +9138,7 @@ public final class Authentication {
      * <code>required string useragent = 4;</code>
      * @return The bytes for useragent.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUseragentBytes() {
       java.lang.Object ref = useragent_;
@@ -9594,11 +9154,12 @@ public final class Authentication {
     }
 
     public static final int CALLBACK_HASH_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString callbackHash_;
+    private com.google.protobuf.ByteString callbackHash_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes callback_hash = 5;</code>
      * @return Whether the callbackHash field is set.
      */
+    @java.lang.Override
     public boolean hasCallbackHash() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -9606,13 +9167,14 @@ public final class Authentication {
      * <code>required bytes callback_hash = 5;</code>
      * @return The callbackHash.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getCallbackHash() {
       return callbackHash_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -9659,7 +9221,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000010) != 0)) {
         output.writeBytes(5, callbackHash_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -9687,7 +9249,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, callbackHash_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -9727,7 +9289,8 @@ public final class Authentication {
         if (!getCallbackHash()
             .equals(other.getCallbackHash())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -9757,7 +9320,7 @@ public final class Authentication {
         hash = (37 * hash) + CALLBACK_HASH_FIELD_NUMBER;
         hash = (53 * hash) + getCallbackHash().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -9806,11 +9369,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9849,7 +9414,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.LibspotifyAppKey}
@@ -9858,7 +9424,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.LibspotifyAppKey)
         com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKeyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_LibspotifyAppKey_descriptor;
       }
@@ -9873,29 +9439,23 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         version_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         devkey_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
         signature_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         useragent_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
         callbackHash_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -9922,6 +9482,12 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey result = new com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -9929,58 +9495,24 @@ public final class Authentication {
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.devkey_ = devkey_;
           to_bitField0_ |= 0x00000002;
         }
-        result.devkey_ = devkey_;
         if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.signature_ = signature_;
           to_bitField0_ |= 0x00000004;
         }
-        result.signature_ = signature_;
         if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.useragent_ = useragent_;
           to_bitField0_ |= 0x00000008;
         }
-        result.useragent_ = useragent_;
         if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.callbackHash_ = callbackHash_;
           to_bitField0_ |= 0x00000010;
         }
-        result.callbackHash_ = callbackHash_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey) {
@@ -10003,20 +9535,20 @@ public final class Authentication {
           setSignature(other.getSignature());
         }
         if (other.hasUseragent()) {
-          bitField0_ |= 0x00000008;
           useragent_ = other.useragent_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         if (other.hasCallbackHash()) {
           setCallbackHash(other.getCallbackHash());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (!hasVersion()) {
           return false;
         }
@@ -10029,7 +9561,10 @@ public final class Authentication {
         if (!hasUseragent()) {
           return false;
         }
-        return hasCallbackHash();
+        if (!hasCallbackHash()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -10037,17 +9572,55 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                version_ = input.readUInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                devkey_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                signature_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                useragent_ = input.readBytes();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                callbackHash_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.LibspotifyAppKey) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -10057,6 +9630,7 @@ public final class Authentication {
        * <code>required uint32 version = 1;</code>
        * @return Whether the version field is set.
        */
+      @java.lang.Override
       public boolean hasVersion() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -10064,6 +9638,7 @@ public final class Authentication {
        * <code>required uint32 version = 1;</code>
        * @return The version.
        */
+      @java.lang.Override
       public int getVersion() {
         return version_;
       }
@@ -10073,8 +9648,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setVersion(int value) {
-        bitField0_ |= 0x00000001;
+
         version_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -10094,6 +9670,7 @@ public final class Authentication {
        * <code>required bytes devkey = 2;</code>
        * @return Whether the devkey field is set.
        */
+      @java.lang.Override
       public boolean hasDevkey() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -10101,6 +9678,7 @@ public final class Authentication {
        * <code>required bytes devkey = 2;</code>
        * @return The devkey.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getDevkey() {
         return devkey_;
       }
@@ -10110,11 +9688,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setDevkey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         devkey_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -10134,6 +9710,7 @@ public final class Authentication {
        * <code>required bytes signature = 3;</code>
        * @return Whether the signature field is set.
        */
+      @java.lang.Override
       public boolean hasSignature() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -10141,6 +9718,7 @@ public final class Authentication {
        * <code>required bytes signature = 3;</code>
        * @return The signature.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getSignature() {
         return signature_;
       }
@@ -10150,11 +9728,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setSignature(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         signature_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -10219,11 +9795,9 @@ public final class Authentication {
        */
       public Builder setUseragent(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         useragent_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -10232,8 +9806,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearUseragent() {
-        bitField0_ = (bitField0_ & ~0x00000008);
         useragent_ = getDefaultInstance().getUseragent();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -10244,11 +9818,9 @@ public final class Authentication {
        */
       public Builder setUseragentBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         useragent_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -10258,6 +9830,7 @@ public final class Authentication {
        * <code>required bytes callback_hash = 5;</code>
        * @return Whether the callbackHash field is set.
        */
+      @java.lang.Override
       public boolean hasCallbackHash() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -10265,6 +9838,7 @@ public final class Authentication {
        * <code>required bytes callback_hash = 5;</code>
        * @return The callbackHash.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getCallbackHash() {
         return callbackHash_;
       }
@@ -10274,11 +9848,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setCallbackHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         callbackHash_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -10293,13 +9865,13 @@ public final class Authentication {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10325,7 +9897,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LibspotifyAppKey(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -10395,7 +9978,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.ClientInfo}
    */
-  public  static final class ClientInfo extends
+  public static final class ClientInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.ClientInfo)
       ClientInfoOrBuilder {
@@ -10415,74 +9998,7 @@ public final class Authentication {
       return new ClientInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ClientInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              bitField0_ |= 0x00000001;
-              limited_ = input.readBool();
-              break;
-            }
-            case 18: {
-              com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) != 0)) {
-                subBuilder = fb_.toBuilder();
-              }
-              fb_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fb_);
-                fb_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              language_ = bs;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_ClientInfo_descriptor;
     }
@@ -10497,11 +10013,12 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int LIMITED_FIELD_NUMBER = 1;
-    private boolean limited_;
+    private boolean limited_ = false;
     /**
      * <code>optional bool limited = 1;</code>
      * @return Whether the limited field is set.
      */
+    @java.lang.Override
     public boolean hasLimited() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -10509,6 +10026,7 @@ public final class Authentication {
      * <code>optional bool limited = 1;</code>
      * @return The limited.
      */
+    @java.lang.Override
     public boolean getLimited() {
       return limited_;
     }
@@ -10519,6 +10037,7 @@ public final class Authentication {
      * <code>optional .spotify.ClientInfoFacebook fb = 2;</code>
      * @return Whether the fb field is set.
      */
+    @java.lang.Override
     public boolean hasFb() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -10526,22 +10045,26 @@ public final class Authentication {
      * <code>optional .spotify.ClientInfoFacebook fb = 2;</code>
      * @return The fb.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook getFb() {
       return fb_ == null ? com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.getDefaultInstance() : fb_;
     }
     /**
      * <code>optional .spotify.ClientInfoFacebook fb = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebookOrBuilder getFbOrBuilder() {
       return fb_ == null ? com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.getDefaultInstance() : fb_;
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object language_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object language_ = "";
     /**
      * <code>optional string language = 3;</code>
      * @return Whether the language field is set.
      */
+    @java.lang.Override
     public boolean hasLanguage() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -10549,6 +10072,7 @@ public final class Authentication {
      * <code>optional string language = 3;</code>
      * @return The language.
      */
+    @java.lang.Override
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
       if (ref instanceof java.lang.String) {
@@ -10567,6 +10091,7 @@ public final class Authentication {
      * <code>optional string language = 3;</code>
      * @return The bytes for language.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLanguageBytes() {
       java.lang.Object ref = language_;
@@ -10583,7 +10108,7 @@ public final class Authentication {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -10604,7 +10129,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000004) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, language_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -10624,7 +10149,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, language_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -10654,7 +10179,8 @@ public final class Authentication {
         if (!getLanguage()
             .equals(other.getLanguage())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10677,7 +10203,7 @@ public final class Authentication {
         hash = (37 * hash) + LANGUAGE_FIELD_NUMBER;
         hash = (53 * hash) + getLanguage().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -10726,11 +10252,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.ClientInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.ClientInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10769,7 +10297,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.ClientInfo}
@@ -10778,7 +10307,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.ClientInfo)
         com.spotifyxp.deps.com.spotify.Authentication.ClientInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_ClientInfo_descriptor;
       }
@@ -10810,16 +10339,14 @@ public final class Authentication {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         limited_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (fbBuilder_ == null) {
-          fb_ = null;
-        } else {
-          fbBuilder_.clear();
+        fb_ = null;
+        if (fbBuilder_ != null) {
+          fbBuilder_.dispose();
+          fbBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         language_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -10846,6 +10373,12 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.ClientInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.ClientInfo result = new com.spotifyxp.deps.com.spotify.Authentication.ClientInfo(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.ClientInfo result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -10853,54 +10386,18 @@ public final class Authentication {
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (fbBuilder_ == null) {
-            result.fb_ = fb_;
-          } else {
-            result.fb_ = fbBuilder_.build();
-          }
+          result.fb_ = fbBuilder_ == null
+              ? fb_
+              : fbBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.language_ = language_;
           to_bitField0_ |= 0x00000004;
         }
-        result.language_ = language_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.ClientInfo) {
@@ -10920,17 +10417,17 @@ public final class Authentication {
           mergeFb(other.getFb());
         }
         if (other.hasLanguage()) {
-          bitField0_ |= 0x00000004;
           language_ = other.language_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -10939,17 +10436,47 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.ClientInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                limited_ = input.readBool();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getFbFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                language_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.ClientInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -10959,6 +10486,7 @@ public final class Authentication {
        * <code>optional bool limited = 1;</code>
        * @return Whether the limited field is set.
        */
+      @java.lang.Override
       public boolean hasLimited() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -10966,6 +10494,7 @@ public final class Authentication {
        * <code>optional bool limited = 1;</code>
        * @return The limited.
        */
+      @java.lang.Override
       public boolean getLimited() {
         return limited_;
       }
@@ -10975,8 +10504,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setLimited(boolean value) {
-        bitField0_ |= 0x00000001;
+
         limited_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -11021,11 +10551,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           fb_ = value;
-          onChanged();
         } else {
           fbBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11035,11 +10565,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.Builder builderForValue) {
         if (fbBuilder_ == null) {
           fb_ = builderForValue.build();
-          onChanged();
         } else {
           fbBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11048,31 +10578,30 @@ public final class Authentication {
       public Builder mergeFb(com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook value) {
         if (fbBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              fb_ != null &&
-              fb_ != com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.getDefaultInstance()) {
-            fb_ =
-              com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.newBuilder(fb_).mergeFrom(value).buildPartial();
+            fb_ != null &&
+            fb_ != com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.getDefaultInstance()) {
+            getFbBuilder().mergeFrom(value);
           } else {
             fb_ = value;
           }
-          onChanged();
         } else {
           fbBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.ClientInfoFacebook fb = 2;</code>
        */
       public Builder clearFb() {
-        if (fbBuilder_ == null) {
-          fb_ = null;
-          onChanged();
-        } else {
-          fbBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        fb_ = null;
+        if (fbBuilder_ != null) {
+          fbBuilder_.dispose();
+          fbBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -11101,7 +10630,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook, com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.Builder, com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebookOrBuilder> 
           getFbFieldBuilder() {
         if (fbBuilder_ == null) {
-          fbBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          fbBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook, com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.Builder, com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebookOrBuilder>(
                   getFb(),
                   getParentForChildren(),
                   isClean());
@@ -11160,11 +10690,9 @@ public final class Authentication {
        */
       public Builder setLanguage(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         language_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -11173,8 +10701,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearLanguage() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         language_ = getDefaultInstance().getLanguage();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -11185,22 +10713,20 @@ public final class Authentication {
        */
       public Builder setLanguageBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         language_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11226,7 +10752,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClientInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -11270,7 +10807,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.ClientInfoFacebook}
    */
-  public  static final class ClientInfoFacebook extends
+  public static final class ClientInfoFacebook extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.ClientInfoFacebook)
       ClientInfoFacebookOrBuilder {
@@ -11290,56 +10827,7 @@ public final class Authentication {
       return new ClientInfoFacebook();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ClientInfoFacebook(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              machineId_ = bs;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_ClientInfoFacebook_descriptor;
     }
@@ -11354,11 +10842,13 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int MACHINE_ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object machineId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object machineId_ = "";
     /**
      * <code>optional string machine_id = 1;</code>
      * @return Whether the machineId field is set.
      */
+    @java.lang.Override
     public boolean hasMachineId() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -11366,6 +10856,7 @@ public final class Authentication {
      * <code>optional string machine_id = 1;</code>
      * @return The machineId.
      */
+    @java.lang.Override
     public java.lang.String getMachineId() {
       java.lang.Object ref = machineId_;
       if (ref instanceof java.lang.String) {
@@ -11384,6 +10875,7 @@ public final class Authentication {
      * <code>optional string machine_id = 1;</code>
      * @return The bytes for machineId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMachineIdBytes() {
       java.lang.Object ref = machineId_;
@@ -11400,7 +10892,7 @@ public final class Authentication {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -11415,7 +10907,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000001) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, machineId_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -11427,7 +10919,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, machineId_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -11447,7 +10939,8 @@ public final class Authentication {
         if (!getMachineId()
             .equals(other.getMachineId())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -11461,7 +10954,7 @@ public final class Authentication {
         hash = (37 * hash) + MACHINE_ID_FIELD_NUMBER;
         hash = (53 * hash) + getMachineId().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -11510,11 +11003,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11553,7 +11048,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.ClientInfoFacebook}
@@ -11562,7 +11058,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.ClientInfoFacebook)
         com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebookOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_ClientInfoFacebook_descriptor;
       }
@@ -11577,21 +11073,19 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         machineId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -11618,49 +11112,21 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook result = new com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.machineId_ = machineId_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.machineId_ = machineId_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook) {
@@ -11674,17 +11140,17 @@ public final class Authentication {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook other) {
         if (other == com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook.getDefaultInstance()) return this;
         if (other.hasMachineId()) {
-          bitField0_ |= 0x00000001;
           machineId_ = other.machineId_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -11693,17 +11159,35 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                machineId_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.ClientInfoFacebook) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -11758,11 +11242,9 @@ public final class Authentication {
        */
       public Builder setMachineId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         machineId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -11771,8 +11253,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearMachineId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         machineId_ = getDefaultInstance().getMachineId();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -11783,22 +11265,20 @@ public final class Authentication {
        */
       public Builder setMachineIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         machineId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11824,7 +11304,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClientInfoFacebook(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -11953,7 +11444,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.APWelcome}
    */
-  public  static final class APWelcome extends
+  public static final class APWelcome extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.APWelcome)
       APWelcomeOrBuilder {
@@ -11978,125 +11469,7 @@ public final class Authentication {
       return new APWelcome();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private APWelcome(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 82: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              canonicalUsername_ = bs;
-              break;
-            }
-            case 160: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.AccountType value = com.spotifyxp.deps.com.spotify.Authentication.AccountType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(20, rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                accountTypeLoggedIn_ = rawValue;
-              }
-              break;
-            }
-            case 200: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.AccountType value = com.spotifyxp.deps.com.spotify.Authentication.AccountType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(25, rawValue);
-              } else {
-                bitField0_ |= 0x00000004;
-                credentialsTypeLoggedIn_ = rawValue;
-              }
-              break;
-            }
-            case 240: {
-              int rawValue = input.readEnum();
-                com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType value = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(30, rawValue);
-              } else {
-                bitField0_ |= 0x00000008;
-                reusableAuthCredentialsType_ = rawValue;
-              }
-              break;
-            }
-            case 322: {
-              bitField0_ |= 0x00000010;
-              reusableAuthCredentials_ = input.readBytes();
-              break;
-            }
-            case 402: {
-              bitField0_ |= 0x00000020;
-              lfsSecret_ = input.readBytes();
-              break;
-            }
-            case 482: {
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000040) != 0)) {
-                subBuilder = accountInfo_.toBuilder();
-              }
-              accountInfo_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(accountInfo_);
-                accountInfo_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000040;
-              break;
-            }
-            case 562: {
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000080) != 0)) {
-                subBuilder = fb_.toBuilder();
-              }
-              fb_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fb_);
-                fb_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000080;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_APWelcome_descriptor;
     }
@@ -12111,11 +11484,13 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int CANONICAL_USERNAME_FIELD_NUMBER = 10;
-    private volatile java.lang.Object canonicalUsername_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object canonicalUsername_ = "";
     /**
      * <code>required string canonical_username = 10;</code>
      * @return Whether the canonicalUsername field is set.
      */
+    @java.lang.Override
     public boolean hasCanonicalUsername() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -12123,6 +11498,7 @@ public final class Authentication {
      * <code>required string canonical_username = 10;</code>
      * @return The canonicalUsername.
      */
+    @java.lang.Override
     public java.lang.String getCanonicalUsername() {
       java.lang.Object ref = canonicalUsername_;
       if (ref instanceof java.lang.String) {
@@ -12141,6 +11517,7 @@ public final class Authentication {
      * <code>required string canonical_username = 10;</code>
      * @return The bytes for canonicalUsername.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCanonicalUsernameBytes() {
       java.lang.Object ref = canonicalUsername_;
@@ -12156,65 +11533,66 @@ public final class Authentication {
     }
 
     public static final int ACCOUNT_TYPE_LOGGED_IN_FIELD_NUMBER = 20;
-    private int accountTypeLoggedIn_;
+    private int accountTypeLoggedIn_ = 0;
     /**
      * <code>required .spotify.AccountType account_type_logged_in = 20;</code>
      * @return Whether the accountTypeLoggedIn field is set.
      */
-    public boolean hasAccountTypeLoggedIn() {
+    @java.lang.Override public boolean hasAccountTypeLoggedIn() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>required .spotify.AccountType account_type_logged_in = 20;</code>
      * @return The accountTypeLoggedIn.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.AccountType getAccountTypeLoggedIn() {
-      com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.valueOf(accountTypeLoggedIn_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.AccountType getAccountTypeLoggedIn() {
+      com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.forNumber(accountTypeLoggedIn_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountType.Spotify : result;
     }
 
     public static final int CREDENTIALS_TYPE_LOGGED_IN_FIELD_NUMBER = 25;
-    private int credentialsTypeLoggedIn_;
+    private int credentialsTypeLoggedIn_ = 0;
     /**
      * <code>required .spotify.AccountType credentials_type_logged_in = 25;</code>
      * @return Whether the credentialsTypeLoggedIn field is set.
      */
-    public boolean hasCredentialsTypeLoggedIn() {
+    @java.lang.Override public boolean hasCredentialsTypeLoggedIn() {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <code>required .spotify.AccountType credentials_type_logged_in = 25;</code>
      * @return The credentialsTypeLoggedIn.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.AccountType getCredentialsTypeLoggedIn() {
-      com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.valueOf(credentialsTypeLoggedIn_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.AccountType getCredentialsTypeLoggedIn() {
+      com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.forNumber(credentialsTypeLoggedIn_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountType.Spotify : result;
     }
 
     public static final int REUSABLE_AUTH_CREDENTIALS_TYPE_FIELD_NUMBER = 30;
-    private int reusableAuthCredentialsType_;
+    private int reusableAuthCredentialsType_ = 0;
     /**
      * <code>required .spotify.AuthenticationType reusable_auth_credentials_type = 30;</code>
      * @return Whether the reusableAuthCredentialsType field is set.
      */
-    public boolean hasReusableAuthCredentialsType() {
+    @java.lang.Override public boolean hasReusableAuthCredentialsType() {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
      * <code>required .spotify.AuthenticationType reusable_auth_credentials_type = 30;</code>
      * @return The reusableAuthCredentialsType.
      */
-    public com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType getReusableAuthCredentialsType() {
-      com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.valueOf(reusableAuthCredentialsType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType getReusableAuthCredentialsType() {
+      com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.forNumber(reusableAuthCredentialsType_);
       return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.AUTHENTICATION_USER_PASS : result;
     }
 
     public static final int REUSABLE_AUTH_CREDENTIALS_FIELD_NUMBER = 40;
-    private com.google.protobuf.ByteString reusableAuthCredentials_;
+    private com.google.protobuf.ByteString reusableAuthCredentials_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>required bytes reusable_auth_credentials = 40;</code>
      * @return Whether the reusableAuthCredentials field is set.
      */
+    @java.lang.Override
     public boolean hasReusableAuthCredentials() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -12222,16 +11600,18 @@ public final class Authentication {
      * <code>required bytes reusable_auth_credentials = 40;</code>
      * @return The reusableAuthCredentials.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getReusableAuthCredentials() {
       return reusableAuthCredentials_;
     }
 
     public static final int LFS_SECRET_FIELD_NUMBER = 50;
-    private com.google.protobuf.ByteString lfsSecret_;
+    private com.google.protobuf.ByteString lfsSecret_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes lfs_secret = 50;</code>
      * @return Whether the lfsSecret field is set.
      */
+    @java.lang.Override
     public boolean hasLfsSecret() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -12239,6 +11619,7 @@ public final class Authentication {
      * <code>optional bytes lfs_secret = 50;</code>
      * @return The lfsSecret.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getLfsSecret() {
       return lfsSecret_;
     }
@@ -12249,6 +11630,7 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfo account_info = 60;</code>
      * @return Whether the accountInfo field is set.
      */
+    @java.lang.Override
     public boolean hasAccountInfo() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -12256,12 +11638,14 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfo account_info = 60;</code>
      * @return The accountInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfo getAccountInfo() {
       return accountInfo_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.getDefaultInstance() : accountInfo_;
     }
     /**
      * <code>optional .spotify.AccountInfo account_info = 60;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoOrBuilder getAccountInfoOrBuilder() {
       return accountInfo_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.getDefaultInstance() : accountInfo_;
     }
@@ -12272,6 +11656,7 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfoFacebook fb = 70;</code>
      * @return Whether the fb field is set.
      */
+    @java.lang.Override
     public boolean hasFb() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -12279,19 +11664,21 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfoFacebook fb = 70;</code>
      * @return The fb.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook getFb() {
       return fb_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance() : fb_;
     }
     /**
      * <code>optional .spotify.AccountInfoFacebook fb = 70;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder getFbOrBuilder() {
       return fb_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance() : fb_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -12347,7 +11734,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000080) != 0)) {
         output.writeMessage(70, getFb());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -12387,7 +11774,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(70, getFb());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -12439,7 +11826,8 @@ public final class Authentication {
         if (!getFb()
             .equals(other.getFb())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -12481,7 +11869,7 @@ public final class Authentication {
         hash = (37 * hash) + FB_FIELD_NUMBER;
         hash = (53 * hash) + getFb().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -12530,11 +11918,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.APWelcome parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.APWelcome parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12573,7 +11963,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.APWelcome}
@@ -12582,7 +11973,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.APWelcome)
         com.spotifyxp.deps.com.spotify.Authentication.APWelcomeOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_APWelcome_descriptor;
       }
@@ -12615,30 +12006,23 @@ public final class Authentication {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         canonicalUsername_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         accountTypeLoggedIn_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         credentialsTypeLoggedIn_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         reusableAuthCredentialsType_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         reusableAuthCredentials_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
         lfsSecret_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        if (accountInfoBuilder_ == null) {
-          accountInfo_ = null;
-        } else {
-          accountInfoBuilder_.clear();
+        accountInfo_ = null;
+        if (accountInfoBuilder_ != null) {
+          accountInfoBuilder_.dispose();
+          accountInfoBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
-        if (fbBuilder_ == null) {
-          fb_ = null;
-        } else {
-          fbBuilder_.clear();
+        fb_ = null;
+        if (fbBuilder_ != null) {
+          fbBuilder_.dispose();
+          fbBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -12665,85 +12049,53 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.APWelcome buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.APWelcome result = new com.spotifyxp.deps.com.spotify.Authentication.APWelcome(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.canonicalUsername_ = canonicalUsername_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.accountTypeLoggedIn_ = accountTypeLoggedIn_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.credentialsTypeLoggedIn_ = credentialsTypeLoggedIn_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.reusableAuthCredentialsType_ = reusableAuthCredentialsType_;
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.reusableAuthCredentials_ = reusableAuthCredentials_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.lfsSecret_ = lfsSecret_;
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          if (accountInfoBuilder_ == null) {
-            result.accountInfo_ = accountInfo_;
-          } else {
-            result.accountInfo_ = accountInfoBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000040;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          if (fbBuilder_ == null) {
-            result.fb_ = fb_;
-          } else {
-            result.fb_ = fbBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000080;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.APWelcome result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.canonicalUsername_ = canonicalUsername_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.accountTypeLoggedIn_ = accountTypeLoggedIn_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.credentialsTypeLoggedIn_ = credentialsTypeLoggedIn_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.reusableAuthCredentialsType_ = reusableAuthCredentialsType_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.reusableAuthCredentials_ = reusableAuthCredentials_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.lfsSecret_ = lfsSecret_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.accountInfo_ = accountInfoBuilder_ == null
+              ? accountInfo_
+              : accountInfoBuilder_.build();
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.fb_ = fbBuilder_ == null
+              ? fb_
+              : fbBuilder_.build();
+          to_bitField0_ |= 0x00000080;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.APWelcome) {
@@ -12757,8 +12109,8 @@ public final class Authentication {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Authentication.APWelcome other) {
         if (other == com.spotifyxp.deps.com.spotify.Authentication.APWelcome.getDefaultInstance()) return this;
         if (other.hasCanonicalUsername()) {
-          bitField0_ |= 0x00000001;
           canonicalUsername_ = other.canonicalUsername_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasAccountTypeLoggedIn()) {
@@ -12782,13 +12134,13 @@ public final class Authentication {
         if (other.hasFb()) {
           mergeFb(other.getFb());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         if (!hasCanonicalUsername()) {
           return false;
         }
@@ -12801,7 +12153,10 @@ public final class Authentication {
         if (!hasReusableAuthCredentialsType()) {
           return false;
         }
-        return hasReusableAuthCredentials();
+        if (!hasReusableAuthCredentials()) {
+          return false;
+        }
+        return true;
       }
 
       @java.lang.Override
@@ -12809,17 +12164,95 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.APWelcome parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 82: {
+                canonicalUsername_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 82
+              case 160: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.AccountType tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.AccountType.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(20, tmpRaw);
+                } else {
+                  accountTypeLoggedIn_ = tmpRaw;
+                  bitField0_ |= 0x00000002;
+                }
+                break;
+              } // case 160
+              case 200: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.AccountType tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.AccountType.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(25, tmpRaw);
+                } else {
+                  credentialsTypeLoggedIn_ = tmpRaw;
+                  bitField0_ |= 0x00000004;
+                }
+                break;
+              } // case 200
+              case 240: {
+                int tmpRaw = input.readEnum();
+                com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType tmpValue =
+                    com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.forNumber(tmpRaw);
+                if (tmpValue == null) {
+                  mergeUnknownVarintField(30, tmpRaw);
+                } else {
+                  reusableAuthCredentialsType_ = tmpRaw;
+                  bitField0_ |= 0x00000008;
+                }
+                break;
+              } // case 240
+              case 322: {
+                reusableAuthCredentials_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 322
+              case 402: {
+                lfsSecret_ = input.readBytes();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 402
+              case 482: {
+                input.readMessage(
+                    getAccountInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 482
+              case 562: {
+                input.readMessage(
+                    getFbFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 562
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.APWelcome) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -12874,11 +12307,9 @@ public final class Authentication {
        */
       public Builder setCanonicalUsername(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         canonicalUsername_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -12887,8 +12318,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearCanonicalUsername() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         canonicalUsername_ = getDefaultInstance().getCanonicalUsername();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -12899,11 +12330,9 @@ public final class Authentication {
        */
       public Builder setCanonicalUsernameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         canonicalUsername_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -12913,15 +12342,16 @@ public final class Authentication {
        * <code>required .spotify.AccountType account_type_logged_in = 20;</code>
        * @return Whether the accountTypeLoggedIn field is set.
        */
-      public boolean hasAccountTypeLoggedIn() {
+      @java.lang.Override public boolean hasAccountTypeLoggedIn() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>required .spotify.AccountType account_type_logged_in = 20;</code>
        * @return The accountTypeLoggedIn.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AccountType getAccountTypeLoggedIn() {
-        com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.valueOf(accountTypeLoggedIn_);
+        com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.forNumber(accountTypeLoggedIn_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountType.Spotify : result;
       }
       /**
@@ -12954,15 +12384,16 @@ public final class Authentication {
        * <code>required .spotify.AccountType credentials_type_logged_in = 25;</code>
        * @return Whether the credentialsTypeLoggedIn field is set.
        */
-      public boolean hasCredentialsTypeLoggedIn() {
+      @java.lang.Override public boolean hasCredentialsTypeLoggedIn() {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>required .spotify.AccountType credentials_type_logged_in = 25;</code>
        * @return The credentialsTypeLoggedIn.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AccountType getCredentialsTypeLoggedIn() {
-        com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.valueOf(credentialsTypeLoggedIn_);
+        com.spotifyxp.deps.com.spotify.Authentication.AccountType result = com.spotifyxp.deps.com.spotify.Authentication.AccountType.forNumber(credentialsTypeLoggedIn_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountType.Spotify : result;
       }
       /**
@@ -12995,15 +12426,16 @@ public final class Authentication {
        * <code>required .spotify.AuthenticationType reusable_auth_credentials_type = 30;</code>
        * @return Whether the reusableAuthCredentialsType field is set.
        */
-      public boolean hasReusableAuthCredentialsType() {
+      @java.lang.Override public boolean hasReusableAuthCredentialsType() {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>required .spotify.AuthenticationType reusable_auth_credentials_type = 30;</code>
        * @return The reusableAuthCredentialsType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType getReusableAuthCredentialsType() {
-        com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.valueOf(reusableAuthCredentialsType_);
+        com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType result = com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.forNumber(reusableAuthCredentialsType_);
         return result == null ? com.spotifyxp.deps.com.spotify.Authentication.AuthenticationType.AUTHENTICATION_USER_PASS : result;
       }
       /**
@@ -13036,6 +12468,7 @@ public final class Authentication {
        * <code>required bytes reusable_auth_credentials = 40;</code>
        * @return Whether the reusableAuthCredentials field is set.
        */
+      @java.lang.Override
       public boolean hasReusableAuthCredentials() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -13043,6 +12476,7 @@ public final class Authentication {
        * <code>required bytes reusable_auth_credentials = 40;</code>
        * @return The reusableAuthCredentials.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getReusableAuthCredentials() {
         return reusableAuthCredentials_;
       }
@@ -13052,11 +12486,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setReusableAuthCredentials(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         reusableAuthCredentials_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -13076,6 +12508,7 @@ public final class Authentication {
        * <code>optional bytes lfs_secret = 50;</code>
        * @return Whether the lfsSecret field is set.
        */
+      @java.lang.Override
       public boolean hasLfsSecret() {
         return ((bitField0_ & 0x00000020) != 0);
       }
@@ -13083,6 +12516,7 @@ public final class Authentication {
        * <code>optional bytes lfs_secret = 50;</code>
        * @return The lfsSecret.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getLfsSecret() {
         return lfsSecret_;
       }
@@ -13092,11 +12526,9 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder setLfsSecret(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         lfsSecret_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -13141,11 +12573,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           accountInfo_ = value;
-          onChanged();
         } else {
           accountInfoBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -13155,11 +12587,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.Builder builderForValue) {
         if (accountInfoBuilder_ == null) {
           accountInfo_ = builderForValue.build();
-          onChanged();
         } else {
           accountInfoBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -13168,31 +12600,30 @@ public final class Authentication {
       public Builder mergeAccountInfo(com.spotifyxp.deps.com.spotify.Authentication.AccountInfo value) {
         if (accountInfoBuilder_ == null) {
           if (((bitField0_ & 0x00000040) != 0) &&
-              accountInfo_ != null &&
-              accountInfo_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.getDefaultInstance()) {
-            accountInfo_ =
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.newBuilder(accountInfo_).mergeFrom(value).buildPartial();
+            accountInfo_ != null &&
+            accountInfo_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.getDefaultInstance()) {
+            getAccountInfoBuilder().mergeFrom(value);
           } else {
             accountInfo_ = value;
           }
-          onChanged();
         } else {
           accountInfoBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.AccountInfo account_info = 60;</code>
        */
       public Builder clearAccountInfo() {
-        if (accountInfoBuilder_ == null) {
-          accountInfo_ = null;
-          onChanged();
-        } else {
-          accountInfoBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000040);
+        accountInfo_ = null;
+        if (accountInfoBuilder_ != null) {
+          accountInfoBuilder_.dispose();
+          accountInfoBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -13221,7 +12652,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfo, com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoOrBuilder> 
           getAccountInfoFieldBuilder() {
         if (accountInfoBuilder_ == null) {
-          accountInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          accountInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.AccountInfo, com.spotifyxp.deps.com.spotify.Authentication.AccountInfo.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoOrBuilder>(
                   getAccountInfo(),
                   getParentForChildren(),
                   isClean());
@@ -13260,11 +12692,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           fb_ = value;
-          onChanged();
         } else {
           fbBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -13274,11 +12706,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder builderForValue) {
         if (fbBuilder_ == null) {
           fb_ = builderForValue.build();
-          onChanged();
         } else {
           fbBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -13287,31 +12719,30 @@ public final class Authentication {
       public Builder mergeFb(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook value) {
         if (fbBuilder_ == null) {
           if (((bitField0_ & 0x00000080) != 0) &&
-              fb_ != null &&
-              fb_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance()) {
-            fb_ =
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.newBuilder(fb_).mergeFrom(value).buildPartial();
+            fb_ != null &&
+            fb_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance()) {
+            getFbBuilder().mergeFrom(value);
           } else {
             fb_ = value;
           }
-          onChanged();
         } else {
           fbBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.AccountInfoFacebook fb = 70;</code>
        */
       public Builder clearFb() {
-        if (fbBuilder_ == null) {
-          fb_ = null;
-          onChanged();
-        } else {
-          fbBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000080);
+        fb_ = null;
+        if (fbBuilder_ != null) {
+          fbBuilder_.dispose();
+          fbBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -13340,7 +12771,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder> 
           getFbFieldBuilder() {
         if (fbBuilder_ == null) {
-          fbBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          fbBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder>(
                   getFb(),
                   getParentForChildren(),
                   isClean());
@@ -13349,13 +12781,13 @@ public final class Authentication {
         return fbBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13381,7 +12813,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new APWelcome(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -13438,7 +12881,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.AccountInfo}
    */
-  public  static final class AccountInfo extends
+  public static final class AccountInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.AccountInfo)
       AccountInfoOrBuilder {
@@ -13457,76 +12900,7 @@ public final class Authentication {
       return new AccountInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AccountInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) != 0)) {
-                subBuilder = spotify_.toBuilder();
-              }
-              spotify_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(spotify_);
-                spotify_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-            case 18: {
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) != 0)) {
-                subBuilder = facebook_.toBuilder();
-              }
-              facebook_ = input.readMessage(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(facebook_);
-                facebook_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_AccountInfo_descriptor;
     }
@@ -13546,6 +12920,7 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfoSpotify spotify = 1;</code>
      * @return Whether the spotify field is set.
      */
+    @java.lang.Override
     public boolean hasSpotify() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -13553,12 +12928,14 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfoSpotify spotify = 1;</code>
      * @return The spotify.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify getSpotify() {
       return spotify_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.getDefaultInstance() : spotify_;
     }
     /**
      * <code>optional .spotify.AccountInfoSpotify spotify = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotifyOrBuilder getSpotifyOrBuilder() {
       return spotify_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.getDefaultInstance() : spotify_;
     }
@@ -13569,6 +12946,7 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfoFacebook facebook = 2;</code>
      * @return Whether the facebook field is set.
      */
+    @java.lang.Override
     public boolean hasFacebook() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -13576,19 +12954,21 @@ public final class Authentication {
      * <code>optional .spotify.AccountInfoFacebook facebook = 2;</code>
      * @return The facebook.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook getFacebook() {
       return facebook_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance() : facebook_;
     }
     /**
      * <code>optional .spotify.AccountInfoFacebook facebook = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder getFacebookOrBuilder() {
       return facebook_ == null ? com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance() : facebook_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -13606,7 +12986,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(2, getFacebook());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -13623,7 +13003,7 @@ public final class Authentication {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getFacebook());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -13648,7 +13028,8 @@ public final class Authentication {
         if (!getFacebook()
             .equals(other.getFacebook())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -13666,7 +13047,7 @@ public final class Authentication {
         hash = (37 * hash) + FACEBOOK_FIELD_NUMBER;
         hash = (53 * hash) + getFacebook().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -13715,11 +13096,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.AccountInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.AccountInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13758,7 +13141,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.AccountInfo}
@@ -13767,7 +13151,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.AccountInfo)
         com.spotifyxp.deps.com.spotify.Authentication.AccountInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_AccountInfo_descriptor;
       }
@@ -13800,18 +13184,17 @@ public final class Authentication {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (spotifyBuilder_ == null) {
-          spotify_ = null;
-        } else {
-          spotifyBuilder_.clear();
+        bitField0_ = 0;
+        spotify_ = null;
+        if (spotifyBuilder_ != null) {
+          spotifyBuilder_.dispose();
+          spotifyBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (facebookBuilder_ == null) {
-          facebook_ = null;
-        } else {
-          facebookBuilder_.clear();
+        facebook_ = null;
+        if (facebookBuilder_ != null) {
+          facebookBuilder_.dispose();
+          facebookBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -13838,61 +13221,29 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AccountInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.AccountInfo result = new com.spotifyxp.deps.com.spotify.Authentication.AccountInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (spotifyBuilder_ == null) {
-            result.spotify_ = spotify_;
-          } else {
-            result.spotify_ = spotifyBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (facebookBuilder_ == null) {
-            result.facebook_ = facebook_;
-          } else {
-            result.facebook_ = facebookBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.AccountInfo result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.spotify_ = spotifyBuilder_ == null
+              ? spotify_
+              : spotifyBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.facebook_ = facebookBuilder_ == null
+              ? facebook_
+              : facebookBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.AccountInfo) {
@@ -13911,13 +13262,13 @@ public final class Authentication {
         if (other.hasFacebook()) {
           mergeFacebook(other.getFacebook());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -13926,17 +13277,44 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.AccountInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getSpotifyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getFacebookFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.AccountInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -13971,11 +13349,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           spotify_ = value;
-          onChanged();
         } else {
           spotifyBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -13985,11 +13363,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.Builder builderForValue) {
         if (spotifyBuilder_ == null) {
           spotify_ = builderForValue.build();
-          onChanged();
         } else {
           spotifyBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -13998,31 +13376,30 @@ public final class Authentication {
       public Builder mergeSpotify(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify value) {
         if (spotifyBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              spotify_ != null &&
-              spotify_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.getDefaultInstance()) {
-            spotify_ =
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.newBuilder(spotify_).mergeFrom(value).buildPartial();
+            spotify_ != null &&
+            spotify_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.getDefaultInstance()) {
+            getSpotifyBuilder().mergeFrom(value);
           } else {
             spotify_ = value;
           }
-          onChanged();
         } else {
           spotifyBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.AccountInfoSpotify spotify = 1;</code>
        */
       public Builder clearSpotify() {
-        if (spotifyBuilder_ == null) {
-          spotify_ = null;
-          onChanged();
-        } else {
-          spotifyBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        spotify_ = null;
+        if (spotifyBuilder_ != null) {
+          spotifyBuilder_.dispose();
+          spotifyBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -14051,7 +13428,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotifyOrBuilder> 
           getSpotifyFieldBuilder() {
         if (spotifyBuilder_ == null) {
-          spotifyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          spotifyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotifyOrBuilder>(
                   getSpotify(),
                   getParentForChildren(),
                   isClean());
@@ -14090,11 +13468,11 @@ public final class Authentication {
             throw new NullPointerException();
           }
           facebook_ = value;
-          onChanged();
         } else {
           facebookBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -14104,11 +13482,11 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder builderForValue) {
         if (facebookBuilder_ == null) {
           facebook_ = builderForValue.build();
-          onChanged();
         } else {
           facebookBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -14117,31 +13495,30 @@ public final class Authentication {
       public Builder mergeFacebook(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook value) {
         if (facebookBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              facebook_ != null &&
-              facebook_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance()) {
-            facebook_ =
-              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.newBuilder(facebook_).mergeFrom(value).buildPartial();
+            facebook_ != null &&
+            facebook_ != com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance()) {
+            getFacebookBuilder().mergeFrom(value);
           } else {
             facebook_ = value;
           }
-          onChanged();
         } else {
           facebookBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.AccountInfoFacebook facebook = 2;</code>
        */
       public Builder clearFacebook() {
-        if (facebookBuilder_ == null) {
-          facebook_ = null;
-          onChanged();
-        } else {
-          facebookBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        facebook_ = null;
+        if (facebookBuilder_ != null) {
+          facebookBuilder_.dispose();
+          facebookBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -14170,7 +13547,8 @@ public final class Authentication {
           com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder> 
           getFacebookFieldBuilder() {
         if (facebookBuilder_ == null) {
-          facebookBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          facebookBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.Builder, com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder>(
                   getFacebook(),
                   getParentForChildren(),
                   isClean());
@@ -14179,13 +13557,13 @@ public final class Authentication {
         return facebookBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14211,7 +13589,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AccountInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -14238,7 +13627,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.AccountInfoSpotify}
    */
-  public  static final class AccountInfoSpotify extends
+  public static final class AccountInfoSpotify extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.AccountInfoSpotify)
       AccountInfoSpotifyOrBuilder {
@@ -14257,45 +13646,7 @@ public final class Authentication {
       return new AccountInfoSpotify();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AccountInfoSpotify(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          if (tag == 0) {
-            done = true;
-          } else {
-            if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_AccountInfoSpotify_descriptor;
     }
@@ -14310,7 +13661,7 @@ public final class Authentication {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -14322,7 +13673,7 @@ public final class Authentication {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -14331,7 +13682,7 @@ public final class Authentication {
       if (size != -1) return size;
 
       size = 0;
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -14346,7 +13697,8 @@ public final class Authentication {
       }
       com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify other = (com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify) obj;
 
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -14356,7 +13708,7 @@ public final class Authentication {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -14405,11 +13757,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14448,7 +13802,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.AccountInfoSpotify}
@@ -14457,7 +13812,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.AccountInfoSpotify)
         com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotifyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_AccountInfoSpotify_descriptor;
       }
@@ -14472,15 +13827,13 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -14516,38 +13869,6 @@ public final class Authentication {
       }
 
       @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify) {
           return mergeFrom((com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify)other);
@@ -14559,13 +13880,13 @@ public final class Authentication {
 
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify other) {
         if (other == com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -14574,27 +13895,40 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.AccountInfoSpotify) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14620,7 +13954,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AccountInfoSpotify(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -14681,7 +14026,7 @@ public final class Authentication {
   /**
    * Protobuf type {@code spotify.AccountInfoFacebook}
    */
-  public  static final class AccountInfoFacebook extends
+  public static final class AccountInfoFacebook extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.AccountInfoFacebook)
       AccountInfoFacebookOrBuilder {
@@ -14702,62 +14047,7 @@ public final class Authentication {
       return new AccountInfoFacebook();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AccountInfoFacebook(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              accessToken_ = bs;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              machineId_ = bs;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_AccountInfoFacebook_descriptor;
     }
@@ -14772,11 +14062,13 @@ public final class Authentication {
 
     private int bitField0_;
     public static final int ACCESS_TOKEN_FIELD_NUMBER = 1;
-    private volatile java.lang.Object accessToken_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object accessToken_ = "";
     /**
      * <code>optional string access_token = 1;</code>
      * @return Whether the accessToken field is set.
      */
+    @java.lang.Override
     public boolean hasAccessToken() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -14784,6 +14076,7 @@ public final class Authentication {
      * <code>optional string access_token = 1;</code>
      * @return The accessToken.
      */
+    @java.lang.Override
     public java.lang.String getAccessToken() {
       java.lang.Object ref = accessToken_;
       if (ref instanceof java.lang.String) {
@@ -14802,6 +14095,7 @@ public final class Authentication {
      * <code>optional string access_token = 1;</code>
      * @return The bytes for accessToken.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccessTokenBytes() {
       java.lang.Object ref = accessToken_;
@@ -14817,11 +14111,13 @@ public final class Authentication {
     }
 
     public static final int MACHINE_ID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object machineId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object machineId_ = "";
     /**
      * <code>optional string machine_id = 2;</code>
      * @return Whether the machineId field is set.
      */
+    @java.lang.Override
     public boolean hasMachineId() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -14829,6 +14125,7 @@ public final class Authentication {
      * <code>optional string machine_id = 2;</code>
      * @return The machineId.
      */
+    @java.lang.Override
     public java.lang.String getMachineId() {
       java.lang.Object ref = machineId_;
       if (ref instanceof java.lang.String) {
@@ -14847,6 +14144,7 @@ public final class Authentication {
      * <code>optional string machine_id = 2;</code>
      * @return The bytes for machineId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMachineIdBytes() {
       java.lang.Object ref = machineId_;
@@ -14863,7 +14161,7 @@ public final class Authentication {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -14881,7 +14179,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000002) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, machineId_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -14896,7 +14194,7 @@ public final class Authentication {
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, machineId_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -14921,7 +14219,8 @@ public final class Authentication {
         if (!getMachineId()
             .equals(other.getMachineId())) return false;
       }
-      return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -14939,7 +14238,7 @@ public final class Authentication {
         hash = (37 * hash) + MACHINE_ID_FIELD_NUMBER;
         hash = (53 * hash) + getMachineId().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -14988,11 +14287,13 @@ public final class Authentication {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15031,7 +14332,8 @@ public final class Authentication {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.AccountInfoFacebook}
@@ -15040,7 +14342,7 @@ public final class Authentication {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.AccountInfoFacebook)
         com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebookOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.Authentication.internal_static_spotify_AccountInfoFacebook_descriptor;
       }
@@ -15055,23 +14357,20 @@ public final class Authentication {
 
       // Construct using com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         accessToken_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         machineId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -15098,53 +14397,25 @@ public final class Authentication {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook buildPartial() {
         com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook result = new com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.accessToken_ = accessToken_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.machineId_ = machineId_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.accessToken_ = accessToken_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.machineId_ = machineId_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook) {
@@ -15158,22 +14429,22 @@ public final class Authentication {
       public Builder mergeFrom(com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook other) {
         if (other == com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook.getDefaultInstance()) return this;
         if (other.hasAccessToken()) {
-          bitField0_ |= 0x00000001;
           accessToken_ = other.accessToken_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasMachineId()) {
-          bitField0_ |= 0x00000002;
           machineId_ = other.machineId_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -15182,17 +14453,40 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                accessToken_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                machineId_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.Authentication.AccountInfoFacebook) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -15247,11 +14541,9 @@ public final class Authentication {
        */
       public Builder setAccessToken(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         accessToken_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -15260,8 +14552,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearAccessToken() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         accessToken_ = getDefaultInstance().getAccessToken();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -15272,11 +14564,9 @@ public final class Authentication {
        */
       public Builder setAccessTokenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         accessToken_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -15331,11 +14621,9 @@ public final class Authentication {
        */
       public Builder setMachineId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         machineId_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -15344,8 +14632,8 @@ public final class Authentication {
        * @return This builder for chaining.
        */
       public Builder clearMachineId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         machineId_ = getDefaultInstance().getMachineId();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -15356,22 +14644,20 @@ public final class Authentication {
        */
       public Builder setMachineIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         machineId_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -15397,7 +14683,18 @@ public final class Authentication {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AccountInfoFacebook(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -15502,7 +14799,7 @@ public final class Authentication {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -15541,7 +14838,7 @@ public final class Authentication {
       "bspotifyAppKey\022\017\n\007version\030\001 \002(\r\022\016\n\006devke" +
       "y\030\002 \002(\014\022\021\n\tsignature\030\003 \002(\014\022\021\n\tuseragent\030" +
       "\004 \002(\t\022\025\n\rcallback_hash\030\005 \002(\014\"X\n\nClientIn" +
-              "fo\022\017\n\007limited\030\001 \001(\010\022'\n\002fb\030\002 \001(\0132\033.spotif" +
+      "fo\022\017\n\007limited\030\001 \001(\010\022\'\n\002fb\030\002 \001(\0132\033.spotif" +
       "y.ClientInfoFacebook\022\020\n\010language\030\003 \001(\t\"(" +
       "\n\022ClientInfoFacebook\022\022\n\nmachine_id\030\001 \001(\t" +
       "\"\351\002\n\tAPWelcome\022\032\n\022canonical_username\030\n \002" +
@@ -15581,7 +14878,8 @@ public final class Authentication {
       "WD\020\020\022\014\n\010OS_VOLVO\020\021\022\013\n\007OS_TIVO\020\022\022\013\n\007OS_AW" +
       "OX\020\023\022\014\n\010OS_MEEGO\020\024\022\r\n\tOS_QNXNTO\020\025\022\n\n\006OS_" +
       "BCO\020\026*(\n\013AccountType\022\013\n\007Spotify\020\000\022\014\n\010Fac" +
-      "ebook\020\001B\r\n\013com.spotify"
+      "ebook\020\001B \n\036com.spotifyxp.deps.com.spotif" +
+      "y"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

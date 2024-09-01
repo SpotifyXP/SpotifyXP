@@ -15,7 +15,7 @@ public final class CanvazOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface ArtistOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.spotifyxp.deps.com.spotify.canvazcache.Artist)
+      // @@protoc_insertion_point(interface_extends:com.spotify.canvazcache.Artist)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -55,11 +55,11 @@ public final class CanvazOuterClass {
         getAvatarBytes();
   }
   /**
-   * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.Artist}
+   * Protobuf type {@code com.spotify.canvazcache.Artist}
    */
-  public  static final class Artist extends
+  public static final class Artist extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.spotifyxp.deps.com.spotify.canvazcache.Artist)
+      // @@protoc_insertion_point(message_implements:com.spotify.canvazcache.Artist)
       ArtistOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use Artist.newBuilder() to construct.
@@ -79,12 +79,7 @@ public final class CanvazOuterClass {
       return new Artist();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_Artist_descriptor;
     }
@@ -98,11 +93,13 @@ public final class CanvazOuterClass {
     }
 
     public static final int URI_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>string uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -119,6 +116,7 @@ public final class CanvazOuterClass {
      * <code>string uri = 1;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -134,11 +132,13 @@ public final class CanvazOuterClass {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -155,6 +155,7 @@ public final class CanvazOuterClass {
      * <code>string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -170,11 +171,13 @@ public final class CanvazOuterClass {
     }
 
     public static final int AVATAR_FIELD_NUMBER = 3;
-    private volatile java.lang.Object avatar_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object avatar_ = "";
     /**
      * <code>string avatar = 3;</code>
      * @return The avatar.
      */
+    @java.lang.Override
     public java.lang.String getAvatar() {
       java.lang.Object ref = avatar_;
       if (ref instanceof java.lang.String) {
@@ -191,6 +194,7 @@ public final class CanvazOuterClass {
      * <code>string avatar = 3;</code>
      * @return The bytes for avatar.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAvatarBytes() {
       java.lang.Object ref = avatar_;
@@ -249,11 +253,13 @@ public final class CanvazOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -292,16 +298,17 @@ public final class CanvazOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
-     * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.Artist}
+     * Protobuf type {@code com.spotify.canvazcache.Artist}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.Artist)
+        // @@protoc_insertion_point(builder_implements:com.spotify.canvazcache.Artist)
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_Artist_descriptor;
       }
@@ -316,25 +323,21 @@ public final class CanvazOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = "";
-
         name_ = "";
-
         avatar_ = "";
-
         return this;
       }
 
@@ -361,45 +364,25 @@ public final class CanvazOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist buildPartial() {
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist result = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist(this);
-        result.uri_ = uri_;
-        result.name_ = name_;
-        result.avatar_ = avatar_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.avatar_ = avatar_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object uri_ = "";
       /**
@@ -442,11 +425,9 @@ public final class CanvazOuterClass {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -455,8 +436,8 @@ public final class CanvazOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -467,12 +448,10 @@ public final class CanvazOuterClass {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -518,11 +497,9 @@ public final class CanvazOuterClass {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -531,8 +508,8 @@ public final class CanvazOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -543,12 +520,10 @@ public final class CanvazOuterClass {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -594,11 +569,9 @@ public final class CanvazOuterClass {
        */
       public Builder setAvatar(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         avatar_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -607,8 +580,8 @@ public final class CanvazOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearAvatar() {
-        
         avatar_ = getDefaultInstance().getAvatar();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -619,32 +592,30 @@ public final class CanvazOuterClass {
        */
       public Builder setAvatarBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         avatar_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.spotifyxp.deps.com.spotify.canvazcache.Artist)
+      // @@protoc_insertion_point(builder_scope:com.spotify.canvazcache.Artist)
     }
 
-    // @@protoc_insertion_point(class_scope:com.spotifyxp.deps.com.spotify.canvazcache.Artist)
+    // @@protoc_insertion_point(class_scope:com.spotify.canvazcache.Artist)
     private static final com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist();
@@ -666,10 +637,11 @@ public final class CanvazOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -692,29 +664,29 @@ public final class CanvazOuterClass {
   }
 
   public interface EntityCanvazResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse)
+      // @@protoc_insertion_point(interface_extends:com.spotify.canvazcache.EntityCanvazResponse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
     java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> 
         getCanvasesList();
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
     com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz getCanvases(int index);
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
     int getCanvasesCount();
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
     java.util.List<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder> 
         getCanvasesOrBuilderList();
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
     com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder getCanvasesOrBuilder(
         int index);
@@ -726,11 +698,11 @@ public final class CanvazOuterClass {
     long getTtlInSeconds();
   }
   /**
-   * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse}
+   * Protobuf type {@code com.spotify.canvazcache.EntityCanvazResponse}
    */
-  public  static final class EntityCanvazResponse extends
+  public static final class EntityCanvazResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse)
+      // @@protoc_insertion_point(message_implements:com.spotify.canvazcache.EntityCanvazResponse)
       EntityCanvazResponseOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use EntityCanvazResponse.newBuilder() to construct.
@@ -748,12 +720,7 @@ public final class CanvazOuterClass {
       return new EntityCanvazResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_descriptor;
     }
@@ -767,7 +734,7 @@ public final class CanvazOuterClass {
     }
 
     public interface CanvazOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
+        // @@protoc_insertion_point(interface_extends:com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
         com.google.protobuf.MessageOrBuilder {
 
       /**
@@ -807,12 +774,12 @@ public final class CanvazOuterClass {
           getFileIdBytes();
 
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+       * <code>.com.spotify.canvaz.Type type = 4;</code>
        * @return The enum numeric value on the wire for type.
        */
       int getTypeValue();
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+       * <code>.com.spotify.canvaz.Type type = 4;</code>
        * @return The type.
        */
       com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type getType();
@@ -830,17 +797,17 @@ public final class CanvazOuterClass {
           getEntityUriBytes();
 
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+       * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
        * @return Whether the artist field is set.
        */
       boolean hasArtist();
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+       * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
        * @return The artist.
        */
       com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist getArtist();
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+       * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
        */
       com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder getArtistOrBuilder();
 
@@ -887,11 +854,11 @@ public final class CanvazOuterClass {
           getCanvasUriBytes();
     }
     /**
-     * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz}
+     * Protobuf type {@code com.spotify.canvazcache.EntityCanvazResponse.Canvaz}
      */
-    public  static final class Canvaz extends
+    public static final class Canvaz extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
+        // @@protoc_insertion_point(message_implements:com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
         CanvazOrBuilder {
     private static final long serialVersionUID = 0L;
       // Use Canvaz.newBuilder() to construct.
@@ -916,12 +883,7 @@ public final class CanvazOuterClass {
         return new Canvaz();
       }
 
-      @java.lang.Override
-      public com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_Canvaz_descriptor;
       }
@@ -935,11 +897,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int ID_FIELD_NUMBER = 1;
-      private volatile java.lang.Object id_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
        * @return The id.
        */
+      @java.lang.Override
       public java.lang.String getId() {
         java.lang.Object ref = id_;
         if (ref instanceof java.lang.String) {
@@ -956,6 +920,7 @@ public final class CanvazOuterClass {
        * <code>string id = 1;</code>
        * @return The bytes for id.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getIdBytes() {
         java.lang.Object ref = id_;
@@ -971,11 +936,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int URL_FIELD_NUMBER = 2;
-      private volatile java.lang.Object url_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object url_ = "";
       /**
        * <code>string url = 2;</code>
        * @return The url.
        */
+      @java.lang.Override
       public java.lang.String getUrl() {
         java.lang.Object ref = url_;
         if (ref instanceof java.lang.String) {
@@ -992,6 +959,7 @@ public final class CanvazOuterClass {
        * <code>string url = 2;</code>
        * @return The bytes for url.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getUrlBytes() {
         java.lang.Object ref = url_;
@@ -1007,11 +975,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int FILE_ID_FIELD_NUMBER = 3;
-      private volatile java.lang.Object fileId_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object fileId_ = "";
       /**
        * <code>string file_id = 3;</code>
        * @return The fileId.
        */
+      @java.lang.Override
       public java.lang.String getFileId() {
         java.lang.Object ref = fileId_;
         if (ref instanceof java.lang.String) {
@@ -1028,6 +998,7 @@ public final class CanvazOuterClass {
        * <code>string file_id = 3;</code>
        * @return The bytes for fileId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getFileIdBytes() {
         java.lang.Object ref = fileId_;
@@ -1043,30 +1014,31 @@ public final class CanvazOuterClass {
       }
 
       public static final int TYPE_FIELD_NUMBER = 4;
-      private int type_;
+      private int type_ = 0;
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+       * <code>.com.spotify.canvaz.Type type = 4;</code>
        * @return The enum numeric value on the wire for type.
        */
-      public int getTypeValue() {
+      @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+       * <code>.com.spotify.canvaz.Type type = 4;</code>
        * @return The type.
        */
-      public com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type getType() {
-        @SuppressWarnings("deprecation")
-        com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type result = com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type.valueOf(type_);
+      @java.lang.Override public com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type getType() {
+        com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type result = com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type.forNumber(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type.UNRECOGNIZED : result;
       }
 
       public static final int ENTITY_URI_FIELD_NUMBER = 5;
-      private volatile java.lang.Object entityUri_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object entityUri_ = "";
       /**
        * <code>string entity_uri = 5;</code>
        * @return The entityUri.
        */
+      @java.lang.Override
       public java.lang.String getEntityUri() {
         java.lang.Object ref = entityUri_;
         if (ref instanceof java.lang.String) {
@@ -1083,6 +1055,7 @@ public final class CanvazOuterClass {
        * <code>string entity_uri = 5;</code>
        * @return The bytes for entityUri.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getEntityUriBytes() {
         java.lang.Object ref = entityUri_;
@@ -1100,42 +1073,48 @@ public final class CanvazOuterClass {
       public static final int ARTIST_FIELD_NUMBER = 6;
       private com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist artist_;
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+       * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
        * @return Whether the artist field is set.
        */
+      @java.lang.Override
       public boolean hasArtist() {
         return artist_ != null;
       }
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+       * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
        * @return The artist.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist getArtist() {
         return artist_ == null ? com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.getDefaultInstance() : artist_;
       }
       /**
-       * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+       * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder getArtistOrBuilder() {
-        return getArtist();
+        return artist_ == null ? com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.getDefaultInstance() : artist_;
       }
 
       public static final int EXPLICIT_FIELD_NUMBER = 7;
-      private boolean explicit_;
+      private boolean explicit_ = false;
       /**
        * <code>bool explicit = 7;</code>
        * @return The explicit.
        */
+      @java.lang.Override
       public boolean getExplicit() {
         return explicit_;
       }
 
       public static final int UPLOADED_BY_FIELD_NUMBER = 8;
-      private volatile java.lang.Object uploadedBy_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object uploadedBy_ = "";
       /**
        * <code>string uploaded_by = 8;</code>
        * @return The uploadedBy.
        */
+      @java.lang.Override
       public java.lang.String getUploadedBy() {
         java.lang.Object ref = uploadedBy_;
         if (ref instanceof java.lang.String) {
@@ -1152,6 +1131,7 @@ public final class CanvazOuterClass {
        * <code>string uploaded_by = 8;</code>
        * @return The bytes for uploadedBy.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getUploadedByBytes() {
         java.lang.Object ref = uploadedBy_;
@@ -1167,11 +1147,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int ETAG_FIELD_NUMBER = 9;
-      private volatile java.lang.Object etag_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object etag_ = "";
       /**
        * <code>string etag = 9;</code>
        * @return The etag.
        */
+      @java.lang.Override
       public java.lang.String getEtag() {
         java.lang.Object ref = etag_;
         if (ref instanceof java.lang.String) {
@@ -1188,6 +1170,7 @@ public final class CanvazOuterClass {
        * <code>string etag = 9;</code>
        * @return The bytes for etag.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getEtagBytes() {
         java.lang.Object ref = etag_;
@@ -1203,11 +1186,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int CANVAS_URI_FIELD_NUMBER = 11;
-      private volatile java.lang.Object canvasUri_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object canvasUri_ = "";
       /**
        * <code>string canvas_uri = 11;</code>
        * @return The canvasUri.
        */
+      @java.lang.Override
       public java.lang.String getCanvasUri() {
         java.lang.Object ref = canvasUri_;
         if (ref instanceof java.lang.String) {
@@ -1224,6 +1209,7 @@ public final class CanvazOuterClass {
        * <code>string canvas_uri = 11;</code>
        * @return The bytes for canvasUri.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getCanvasUriBytes() {
         java.lang.Object ref = canvasUri_;
@@ -1282,11 +1268,13 @@ public final class CanvazOuterClass {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
+
       public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
+
       public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1325,16 +1313,17 @@ public final class CanvazOuterClass {
       @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+        Builder builder = new Builder(parent);
+        return builder;
       }
       /**
-       * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz}
+       * Protobuf type {@code com.spotify.canvazcache.EntityCanvazResponse.Canvaz}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
+          // @@protoc_insertion_point(builder_implements:com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder {
-        public static com.google.protobuf.Descriptors.Descriptor
+        public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
           return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_Canvaz_descriptor;
         }
@@ -1349,43 +1338,32 @@ public final class CanvazOuterClass {
 
         // Construct using com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
+          bitField0_ = 0;
           id_ = "";
-
           url_ = "";
-
           fileId_ = "";
-
           type_ = 0;
-
           entityUri_ = "";
-
-          if (artistBuilder_ == null) {
-            artist_ = null;
-          } else {
-            artist_ = null;
+          artist_ = null;
+          if (artistBuilder_ != null) {
+            artistBuilder_.dispose();
             artistBuilder_ = null;
           }
           explicit_ = false;
-
           uploadedBy_ = "";
-
           etag_ = "";
-
           canvasUri_ = "";
-
           return this;
         }
 
@@ -1412,56 +1390,48 @@ public final class CanvazOuterClass {
         @java.lang.Override
         public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz buildPartial() {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz result = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz(this);
-          result.id_ = id_;
-          result.url_ = url_;
-          result.fileId_ = fileId_;
-          result.type_ = type_;
-          result.entityUri_ = entityUri_;
-          if (artistBuilder_ == null) {
-            result.artist_ = artist_;
-          } else {
-            result.artist_ = artistBuilder_.build();
-          }
-          result.explicit_ = explicit_;
-          result.uploadedBy_ = uploadedBy_;
-          result.etag_ = etag_;
-          result.canvasUri_ = canvasUri_;
+          if (bitField0_ != 0) { buildPartial0(result); }
           onBuilt();
           return result;
         }
 
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
+        private void buildPartial0(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.id_ = id_;
+          }
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.url_ = url_;
+          }
+          if (((from_bitField0_ & 0x00000004) != 0)) {
+            result.fileId_ = fileId_;
+          }
+          if (((from_bitField0_ & 0x00000008) != 0)) {
+            result.type_ = type_;
+          }
+          if (((from_bitField0_ & 0x00000010) != 0)) {
+            result.entityUri_ = entityUri_;
+          }
+          if (((from_bitField0_ & 0x00000020) != 0)) {
+            result.artist_ = artistBuilder_ == null
+                ? artist_
+                : artistBuilder_.build();
+          }
+          if (((from_bitField0_ & 0x00000040) != 0)) {
+            result.explicit_ = explicit_;
+          }
+          if (((from_bitField0_ & 0x00000080) != 0)) {
+            result.uploadedBy_ = uploadedBy_;
+          }
+          if (((from_bitField0_ & 0x00000100) != 0)) {
+            result.etag_ = etag_;
+          }
+          if (((from_bitField0_ & 0x00000200) != 0)) {
+            result.canvasUri_ = canvasUri_;
+          }
         }
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
+
+        private int bitField0_;
 
         private java.lang.Object id_ = "";
         /**
@@ -1504,11 +1474,9 @@ public final class CanvazOuterClass {
          */
         public Builder setId(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           id_ = value;
+          bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
@@ -1517,8 +1485,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearId() {
-          
           id_ = getDefaultInstance().getId();
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
           return this;
         }
@@ -1529,12 +1497,10 @@ public final class CanvazOuterClass {
          */
         public Builder setIdBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           id_ = value;
+          bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
@@ -1580,11 +1546,9 @@ public final class CanvazOuterClass {
          */
         public Builder setUrl(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           url_ = value;
+          bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
@@ -1593,8 +1557,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearUrl() {
-          
           url_ = getDefaultInstance().getUrl();
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
           return this;
         }
@@ -1605,12 +1569,10 @@ public final class CanvazOuterClass {
          */
         public Builder setUrlBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           url_ = value;
+          bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
@@ -1656,11 +1618,9 @@ public final class CanvazOuterClass {
          */
         public Builder setFileId(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           fileId_ = value;
+          bitField0_ |= 0x00000004;
           onChanged();
           return this;
         }
@@ -1669,8 +1629,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearFileId() {
-          
           fileId_ = getDefaultInstance().getFileId();
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
           return this;
         }
@@ -1681,45 +1641,44 @@ public final class CanvazOuterClass {
          */
         public Builder setFileIdBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           fileId_ = value;
+          bitField0_ |= 0x00000004;
           onChanged();
           return this;
         }
 
         private int type_ = 0;
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+         * <code>.com.spotify.canvaz.Type type = 4;</code>
          * @return The enum numeric value on the wire for type.
          */
-        public int getTypeValue() {
+        @java.lang.Override public int getTypeValue() {
           return type_;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+         * <code>.com.spotify.canvaz.Type type = 4;</code>
          * @param value The enum numeric value on the wire for type to set.
          * @return This builder for chaining.
          */
         public Builder setTypeValue(int value) {
           type_ = value;
+          bitField0_ |= 0x00000008;
           onChanged();
           return this;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+         * <code>.com.spotify.canvaz.Type type = 4;</code>
          * @return The type.
          */
+        @java.lang.Override
         public com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type getType() {
-          @SuppressWarnings("deprecation")
-          com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type result = com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type.valueOf(type_);
+          com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type result = com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type.forNumber(type_);
           return result == null ? com.spotifyxp.deps.com.spotify.canvaz.CanvazMeta.Type.UNRECOGNIZED : result;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+         * <code>.com.spotify.canvaz.Type type = 4;</code>
          * @param value The type to set.
          * @return This builder for chaining.
          */
@@ -1727,17 +1686,17 @@ public final class CanvazOuterClass {
           if (value == null) {
             throw new NullPointerException();
           }
-          
+          bitField0_ |= 0x00000008;
           type_ = value.getNumber();
           onChanged();
           return this;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvaz.Type type = 4;</code>
+         * <code>.com.spotify.canvaz.Type type = 4;</code>
          * @return This builder for chaining.
          */
         public Builder clearType() {
-          
+          bitField0_ = (bitField0_ & ~0x00000008);
           type_ = 0;
           onChanged();
           return this;
@@ -1784,11 +1743,9 @@ public final class CanvazOuterClass {
          */
         public Builder setEntityUri(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           entityUri_ = value;
+          bitField0_ |= 0x00000010;
           onChanged();
           return this;
         }
@@ -1797,8 +1754,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearEntityUri() {
-          
           entityUri_ = getDefaultInstance().getEntityUri();
+          bitField0_ = (bitField0_ & ~0x00000010);
           onChanged();
           return this;
         }
@@ -1809,12 +1766,10 @@ public final class CanvazOuterClass {
          */
         public Builder setEntityUriBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           entityUri_ = value;
+          bitField0_ |= 0x00000010;
           onChanged();
           return this;
         }
@@ -1823,14 +1778,14 @@ public final class CanvazOuterClass {
         private com.google.protobuf.SingleFieldBuilderV3<
             com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder> artistBuilder_;
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          * @return Whether the artist field is set.
          */
         public boolean hasArtist() {
-          return artistBuilder_ != null || artist_ != null;
+          return ((bitField0_ & 0x00000020) != 0);
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          * @return The artist.
          */
         public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist getArtist() {
@@ -1841,7 +1796,7 @@ public final class CanvazOuterClass {
           }
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         public Builder setArtist(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist value) {
           if (artistBuilder_ == null) {
@@ -1849,69 +1804,69 @@ public final class CanvazOuterClass {
               throw new NullPointerException();
             }
             artist_ = value;
-            onChanged();
           } else {
             artistBuilder_.setMessage(value);
           }
-
+          bitField0_ |= 0x00000020;
+          onChanged();
           return this;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         public Builder setArtist(
             com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder builderForValue) {
           if (artistBuilder_ == null) {
             artist_ = builderForValue.build();
-            onChanged();
           } else {
             artistBuilder_.setMessage(builderForValue.build());
           }
-
+          bitField0_ |= 0x00000020;
+          onChanged();
           return this;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         public Builder mergeArtist(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist value) {
           if (artistBuilder_ == null) {
-            if (artist_ != null) {
-              artist_ =
-                com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.newBuilder(artist_).mergeFrom(value).buildPartial();
+            if (((bitField0_ & 0x00000020) != 0) &&
+              artist_ != null &&
+              artist_ != com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.getDefaultInstance()) {
+              getArtistBuilder().mergeFrom(value);
             } else {
               artist_ = value;
             }
-            onChanged();
           } else {
             artistBuilder_.mergeFrom(value);
           }
-
+          bitField0_ |= 0x00000020;
+          onChanged();
           return this;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         public Builder clearArtist() {
-          if (artistBuilder_ == null) {
-            artist_ = null;
-            onChanged();
-          } else {
-            artist_ = null;
+          bitField0_ = (bitField0_ & ~0x00000020);
+          artist_ = null;
+          if (artistBuilder_ != null) {
+            artistBuilder_.dispose();
             artistBuilder_ = null;
           }
-
+          onChanged();
           return this;
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder getArtistBuilder() {
-          
+          bitField0_ |= 0x00000020;
           onChanged();
           return getArtistFieldBuilder().getBuilder();
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder getArtistOrBuilder() {
           if (artistBuilder_ != null) {
@@ -1922,13 +1877,14 @@ public final class CanvazOuterClass {
           }
         }
         /**
-         * <code>.com.spotifyxp.deps.com.spotify.canvazcache.Artist artist = 6;</code>
+         * <code>.com.spotify.canvazcache.Artist artist = 6;</code>
          */
         private com.google.protobuf.SingleFieldBuilderV3<
             com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder> 
             getArtistFieldBuilder() {
           if (artistBuilder_ == null) {
-            artistBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+            artistBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.Artist.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.ArtistOrBuilder>(
                     getArtist(),
                     getParentForChildren(),
                     isClean());
@@ -1942,6 +1898,7 @@ public final class CanvazOuterClass {
          * <code>bool explicit = 7;</code>
          * @return The explicit.
          */
+        @java.lang.Override
         public boolean getExplicit() {
           return explicit_;
         }
@@ -1951,8 +1908,9 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder setExplicit(boolean value) {
-          
+
           explicit_ = value;
+          bitField0_ |= 0x00000040;
           onChanged();
           return this;
         }
@@ -1961,7 +1919,7 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearExplicit() {
-          
+          bitField0_ = (bitField0_ & ~0x00000040);
           explicit_ = false;
           onChanged();
           return this;
@@ -2008,11 +1966,9 @@ public final class CanvazOuterClass {
          */
         public Builder setUploadedBy(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           uploadedBy_ = value;
+          bitField0_ |= 0x00000080;
           onChanged();
           return this;
         }
@@ -2021,8 +1977,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearUploadedBy() {
-          
           uploadedBy_ = getDefaultInstance().getUploadedBy();
+          bitField0_ = (bitField0_ & ~0x00000080);
           onChanged();
           return this;
         }
@@ -2033,12 +1989,10 @@ public final class CanvazOuterClass {
          */
         public Builder setUploadedByBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           uploadedBy_ = value;
+          bitField0_ |= 0x00000080;
           onChanged();
           return this;
         }
@@ -2084,11 +2038,9 @@ public final class CanvazOuterClass {
          */
         public Builder setEtag(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           etag_ = value;
+          bitField0_ |= 0x00000100;
           onChanged();
           return this;
         }
@@ -2097,8 +2049,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearEtag() {
-          
           etag_ = getDefaultInstance().getEtag();
+          bitField0_ = (bitField0_ & ~0x00000100);
           onChanged();
           return this;
         }
@@ -2109,12 +2061,10 @@ public final class CanvazOuterClass {
          */
         public Builder setEtagBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           etag_ = value;
+          bitField0_ |= 0x00000100;
           onChanged();
           return this;
         }
@@ -2160,11 +2110,9 @@ public final class CanvazOuterClass {
          */
         public Builder setCanvasUri(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           canvasUri_ = value;
+          bitField0_ |= 0x00000200;
           onChanged();
           return this;
         }
@@ -2173,8 +2121,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearCanvasUri() {
-          
           canvasUri_ = getDefaultInstance().getCanvasUri();
+          bitField0_ = (bitField0_ & ~0x00000200);
           onChanged();
           return this;
         }
@@ -2185,32 +2133,30 @@ public final class CanvazOuterClass {
          */
         public Builder setCanvasUriBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           canvasUri_ = value;
+          bitField0_ |= 0x00000200;
           onChanged();
           return this;
         }
         @java.lang.Override
-        public Builder setUnknownFields(
+        public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
-        public Builder mergeUnknownFields(
+        public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
         }
 
 
-        // @@protoc_insertion_point(builder_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
+        // @@protoc_insertion_point(builder_scope:com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
       }
 
-      // @@protoc_insertion_point(class_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
+      // @@protoc_insertion_point(class_scope:com.spotify.canvazcache.EntityCanvazResponse.Canvaz)
       private static final com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz DEFAULT_INSTANCE;
       static {
         DEFAULT_INSTANCE = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz();
@@ -2232,10 +2178,11 @@ public final class CanvazOuterClass {
             builder.mergeFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(
-                    builder.buildPartial());
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
           }
           return builder.buildPartial();
         }
@@ -2258,46 +2205,53 @@ public final class CanvazOuterClass {
     }
 
     public static final int CANVASES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> canvases_;
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> getCanvasesList() {
       return canvases_;
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder> 
         getCanvasesOrBuilderList() {
       return canvases_;
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
+    @java.lang.Override
     public int getCanvasesCount() {
       return canvases_.size();
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz getCanvases(int index) {
       return canvases_.get(index);
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder getCanvasesOrBuilder(
         int index) {
       return canvases_.get(index);
     }
 
     public static final int TTL_IN_SECONDS_FIELD_NUMBER = 2;
-    private long ttlInSeconds_;
+    private long ttlInSeconds_ = 0L;
     /**
      * <code>int64 ttl_in_seconds = 2;</code>
      * @return The ttlInSeconds.
      */
+    @java.lang.Override
     public long getTtlInSeconds() {
       return ttlInSeconds_;
     }
@@ -2346,11 +2300,13 @@ public final class CanvazOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2389,16 +2345,17 @@ public final class CanvazOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
-     * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse}
+     * Protobuf type {@code com.spotify.canvazcache.EntityCanvazResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse)
+        // @@protoc_insertion_point(builder_implements:com.spotify.canvazcache.EntityCanvazResponse)
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazResponse_descriptor;
       }
@@ -2413,31 +2370,26 @@ public final class CanvazOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getCanvasesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (canvasesBuilder_ == null) {
           canvases_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          canvases_ = null;
           canvasesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         ttlInSeconds_ = 0L;
-
         return this;
       }
 
@@ -2464,7 +2416,13 @@ public final class CanvazOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse result = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse result) {
         if (canvasesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             canvases_ = java.util.Collections.unmodifiableList(canvases_);
@@ -2474,50 +2432,22 @@ public final class CanvazOuterClass {
         } else {
           result.canvases_ = canvasesBuilder_.build();
         }
-        result.ttlInSeconds_ = ttlInSeconds_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.ttlInSeconds_ = ttlInSeconds_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> canvases_ =
         java.util.Collections.emptyList();
       private void ensureCanvasesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          canvases_ = new java.util.ArrayList<>(canvases_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          canvases_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz>(canvases_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -2526,7 +2456,7 @@ public final class CanvazOuterClass {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder> canvasesBuilder_;
 
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> getCanvasesList() {
         if (canvasesBuilder_ == null) {
@@ -2536,7 +2466,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public int getCanvasesCount() {
         if (canvasesBuilder_ == null) {
@@ -2546,7 +2476,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz getCanvases(int index) {
         if (canvasesBuilder_ == null) {
@@ -2556,7 +2486,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder setCanvases(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz value) {
@@ -2573,7 +2503,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder setCanvases(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder builderForValue) {
@@ -2587,7 +2517,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder addCanvases(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz value) {
         if (canvasesBuilder_ == null) {
@@ -2603,7 +2533,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder addCanvases(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz value) {
@@ -2620,7 +2550,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder addCanvases(
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder builderForValue) {
@@ -2634,7 +2564,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder addCanvases(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder builderForValue) {
@@ -2648,7 +2578,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder addAllCanvases(
           java.lang.Iterable<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz> values) {
@@ -2663,7 +2593,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder clearCanvases() {
         if (canvasesBuilder_ == null) {
@@ -2676,7 +2606,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public Builder removeCanvases(int index) {
         if (canvasesBuilder_ == null) {
@@ -2689,14 +2619,14 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder getCanvasesBuilder(
           int index) {
         return getCanvasesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder getCanvasesOrBuilder(
           int index) {
@@ -2706,7 +2636,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public java.util.List<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder> 
            getCanvasesOrBuilderList() {
@@ -2717,14 +2647,14 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder addCanvasesBuilder() {
         return getCanvasesFieldBuilder().addBuilder(
             com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder addCanvasesBuilder(
           int index) {
@@ -2732,7 +2662,7 @@ public final class CanvazOuterClass {
             index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvases = 1;</code>
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder> 
            getCanvasesBuilderList() {
@@ -2742,7 +2672,8 @@ public final class CanvazOuterClass {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder> 
           getCanvasesFieldBuilder() {
         if (canvasesBuilder_ == null) {
-          canvasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          canvasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.Canvaz.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse.CanvazOrBuilder>(
                   canvases_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2757,6 +2688,7 @@ public final class CanvazOuterClass {
        * <code>int64 ttl_in_seconds = 2;</code>
        * @return The ttlInSeconds.
        */
+      @java.lang.Override
       public long getTtlInSeconds() {
         return ttlInSeconds_;
       }
@@ -2766,8 +2698,9 @@ public final class CanvazOuterClass {
        * @return This builder for chaining.
        */
       public Builder setTtlInSeconds(long value) {
-        
+
         ttlInSeconds_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2776,28 +2709,28 @@ public final class CanvazOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearTtlInSeconds() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         ttlInSeconds_ = 0L;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse)
+      // @@protoc_insertion_point(builder_scope:com.spotify.canvazcache.EntityCanvazResponse)
     }
 
-    // @@protoc_insertion_point(class_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazResponse)
+    // @@protoc_insertion_point(class_scope:com.spotify.canvazcache.EntityCanvazResponse)
     private static final com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazResponse();
@@ -2819,10 +2752,11 @@ public final class CanvazOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -2845,39 +2779,39 @@ public final class CanvazOuterClass {
   }
 
   public interface EntityCanvazRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest)
+      // @@protoc_insertion_point(interface_extends:com.spotify.canvazcache.EntityCanvazRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
     java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> 
         getEntitiesList();
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
     com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity getEntities(int index);
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
     int getEntitiesCount();
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
     java.util.List<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder> 
         getEntitiesOrBuilderList();
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
     com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder getEntitiesOrBuilder(
         int index);
   }
   /**
-   * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest}
+   * Protobuf type {@code com.spotify.canvazcache.EntityCanvazRequest}
    */
-  public  static final class EntityCanvazRequest extends
+  public static final class EntityCanvazRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest)
+      // @@protoc_insertion_point(message_implements:com.spotify.canvazcache.EntityCanvazRequest)
       EntityCanvazRequestOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use EntityCanvazRequest.newBuilder() to construct.
@@ -2895,12 +2829,7 @@ public final class CanvazOuterClass {
       return new EntityCanvazRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_descriptor;
     }
@@ -2914,7 +2843,7 @@ public final class CanvazOuterClass {
     }
 
     public interface EntityOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity)
+        // @@protoc_insertion_point(interface_extends:com.spotify.canvazcache.EntityCanvazRequest.Entity)
         com.google.protobuf.MessageOrBuilder {
 
       /**
@@ -2942,18 +2871,18 @@ public final class CanvazOuterClass {
           getEtagBytes();
     }
     /**
-     * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity}
+     * Protobuf type {@code com.spotify.canvazcache.EntityCanvazRequest.Entity}
      */
-    public  static final class Entity extends
+    public static final class Entity extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity)
+        // @@protoc_insertion_point(message_implements:com.spotify.canvazcache.EntityCanvazRequest.Entity)
         EntityOrBuilder {
     private static final long serialVersionUID = 0L;
       // Use Entity.newBuilder() to construct.
       private Entity(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
-      public Entity() {
+      private Entity() {
         entityUri_ = "";
         etag_ = "";
       }
@@ -2965,12 +2894,7 @@ public final class CanvazOuterClass {
         return new Entity();
       }
 
-      @java.lang.Override
-      public com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_Entity_descriptor;
       }
@@ -2984,11 +2908,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int ENTITY_URI_FIELD_NUMBER = 1;
-      private volatile java.lang.Object entityUri_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object entityUri_ = "";
       /**
        * <code>string entity_uri = 1;</code>
        * @return The entityUri.
        */
+      @java.lang.Override
       public java.lang.String getEntityUri() {
         java.lang.Object ref = entityUri_;
         if (ref instanceof java.lang.String) {
@@ -3005,6 +2931,7 @@ public final class CanvazOuterClass {
        * <code>string entity_uri = 1;</code>
        * @return The bytes for entityUri.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getEntityUriBytes() {
         java.lang.Object ref = entityUri_;
@@ -3020,11 +2947,13 @@ public final class CanvazOuterClass {
       }
 
       public static final int ETAG_FIELD_NUMBER = 2;
-      private volatile java.lang.Object etag_;
+      @SuppressWarnings("serial")
+      private volatile java.lang.Object etag_ = "";
       /**
        * <code>string etag = 2;</code>
        * @return The etag.
        */
+      @java.lang.Override
       public java.lang.String getEtag() {
         java.lang.Object ref = etag_;
         if (ref instanceof java.lang.String) {
@@ -3041,6 +2970,7 @@ public final class CanvazOuterClass {
        * <code>string etag = 2;</code>
        * @return The bytes for etag.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getEtagBytes() {
         java.lang.Object ref = etag_;
@@ -3099,11 +3029,13 @@ public final class CanvazOuterClass {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
+
       public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
+
       public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3142,16 +3074,17 @@ public final class CanvazOuterClass {
       @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+        Builder builder = new Builder(parent);
+        return builder;
       }
       /**
-       * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity}
+       * Protobuf type {@code com.spotify.canvazcache.EntityCanvazRequest.Entity}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity)
+          // @@protoc_insertion_point(builder_implements:com.spotify.canvazcache.EntityCanvazRequest.Entity)
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder {
-        public static com.google.protobuf.Descriptors.Descriptor
+        public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
           return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_Entity_descriptor;
         }
@@ -3166,23 +3099,20 @@ public final class CanvazOuterClass {
 
         // Construct using com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
+          bitField0_ = 0;
           entityUri_ = "";
-
           etag_ = "";
-
           return this;
         }
 
@@ -3209,44 +3139,22 @@ public final class CanvazOuterClass {
         @java.lang.Override
         public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity buildPartial() {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity result = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity(this);
-          result.entityUri_ = entityUri_;
-          result.etag_ = etag_;
+          if (bitField0_ != 0) { buildPartial0(result); }
           onBuilt();
           return result;
         }
 
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
+        private void buildPartial0(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.entityUri_ = entityUri_;
+          }
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.etag_ = etag_;
+          }
         }
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
+
+        private int bitField0_;
 
         private java.lang.Object entityUri_ = "";
         /**
@@ -3289,11 +3197,9 @@ public final class CanvazOuterClass {
          */
         public Builder setEntityUri(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           entityUri_ = value;
+          bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
@@ -3302,8 +3208,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearEntityUri() {
-          
           entityUri_ = getDefaultInstance().getEntityUri();
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
           return this;
         }
@@ -3314,12 +3220,10 @@ public final class CanvazOuterClass {
          */
         public Builder setEntityUriBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           entityUri_ = value;
+          bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
@@ -3365,11 +3269,9 @@ public final class CanvazOuterClass {
          */
         public Builder setEtag(
             java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          if (value == null) { throw new NullPointerException(); }
           etag_ = value;
+          bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
@@ -3378,8 +3280,8 @@ public final class CanvazOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearEtag() {
-          
           etag_ = getDefaultInstance().getEtag();
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
           return this;
         }
@@ -3390,32 +3292,30 @@ public final class CanvazOuterClass {
          */
         public Builder setEtagBytes(
             com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
+          if (value == null) { throw new NullPointerException(); }
+          checkByteStringIsUtf8(value);
           etag_ = value;
+          bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
         @java.lang.Override
-        public Builder setUnknownFields(
+        public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
-        public Builder mergeUnknownFields(
+        public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
         }
 
 
-        // @@protoc_insertion_point(builder_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity)
+        // @@protoc_insertion_point(builder_scope:com.spotify.canvazcache.EntityCanvazRequest.Entity)
       }
 
-      // @@protoc_insertion_point(class_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity)
+      // @@protoc_insertion_point(class_scope:com.spotify.canvazcache.EntityCanvazRequest.Entity)
       private static final com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity DEFAULT_INSTANCE;
       static {
         DEFAULT_INSTANCE = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity();
@@ -3437,10 +3337,11 @@ public final class CanvazOuterClass {
             builder.mergeFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(
-                    builder.buildPartial());
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
           }
           return builder.buildPartial();
         }
@@ -3463,35 +3364,41 @@ public final class CanvazOuterClass {
     }
 
     public static final int ENTITIES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> entities_;
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> getEntitiesList() {
       return entities_;
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder> 
         getEntitiesOrBuilderList() {
       return entities_;
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
+    @java.lang.Override
     public int getEntitiesCount() {
       return entities_.size();
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity getEntities(int index) {
       return entities_.get(index);
     }
     /**
-     * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+     * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder getEntitiesOrBuilder(
         int index) {
       return entities_.get(index);
@@ -3541,11 +3448,13 @@ public final class CanvazOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3584,16 +3493,17 @@ public final class CanvazOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
-     * Protobuf type {@code com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest}
+     * Protobuf type {@code com.spotify.canvazcache.EntityCanvazRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest)
+        // @@protoc_insertion_point(builder_implements:com.spotify.canvazcache.EntityCanvazRequest)
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.internal_static_com_spotify_canvazcache_EntityCanvazRequest_descriptor;
       }
@@ -3608,29 +3518,25 @@ public final class CanvazOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getEntitiesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (entitiesBuilder_ == null) {
           entities_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          entities_ = null;
           entitiesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -3657,7 +3563,13 @@ public final class CanvazOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest result = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest result) {
         if (entitiesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             entities_ = java.util.Collections.unmodifiableList(entities_);
@@ -3667,49 +3579,19 @@ public final class CanvazOuterClass {
         } else {
           result.entities_ = entitiesBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> entities_ =
         java.util.Collections.emptyList();
       private void ensureEntitiesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          entities_ = new java.util.ArrayList<>(entities_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          entities_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity>(entities_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -3718,7 +3600,7 @@ public final class CanvazOuterClass {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder> entitiesBuilder_;
 
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> getEntitiesList() {
         if (entitiesBuilder_ == null) {
@@ -3728,7 +3610,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public int getEntitiesCount() {
         if (entitiesBuilder_ == null) {
@@ -3738,7 +3620,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity getEntities(int index) {
         if (entitiesBuilder_ == null) {
@@ -3748,7 +3630,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder setEntities(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity value) {
@@ -3765,7 +3647,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder setEntities(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder builderForValue) {
@@ -3779,7 +3661,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder addEntities(com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity value) {
         if (entitiesBuilder_ == null) {
@@ -3795,7 +3677,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder addEntities(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity value) {
@@ -3812,7 +3694,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder addEntities(
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder builderForValue) {
@@ -3826,7 +3708,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder addEntities(
           int index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder builderForValue) {
@@ -3840,7 +3722,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder addAllEntities(
           java.lang.Iterable<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity> values) {
@@ -3855,7 +3737,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder clearEntities() {
         if (entitiesBuilder_ == null) {
@@ -3868,7 +3750,7 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public Builder removeEntities(int index) {
         if (entitiesBuilder_ == null) {
@@ -3881,14 +3763,14 @@ public final class CanvazOuterClass {
         return this;
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder getEntitiesBuilder(
           int index) {
         return getEntitiesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder getEntitiesOrBuilder(
           int index) {
@@ -3898,7 +3780,7 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public java.util.List<? extends com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder> 
            getEntitiesOrBuilderList() {
@@ -3909,14 +3791,14 @@ public final class CanvazOuterClass {
         }
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder addEntitiesBuilder() {
         return getEntitiesFieldBuilder().addBuilder(
             com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder addEntitiesBuilder(
           int index) {
@@ -3924,7 +3806,7 @@ public final class CanvazOuterClass {
             index, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
+       * <code>repeated .com.spotify.canvazcache.EntityCanvazRequest.Entity entities = 1;</code>
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder> 
            getEntitiesBuilderList() {
@@ -3934,7 +3816,8 @@ public final class CanvazOuterClass {
           com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder> 
           getEntitiesFieldBuilder() {
         if (entitiesBuilder_ == null) {
-          entitiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          entitiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.Entity.Builder, com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest.EntityOrBuilder>(
                   entities_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -3944,22 +3827,22 @@ public final class CanvazOuterClass {
         return entitiesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest)
+      // @@protoc_insertion_point(builder_scope:com.spotify.canvazcache.EntityCanvazRequest)
     }
 
-    // @@protoc_insertion_point(class_scope:com.spotifyxp.deps.com.spotify.canvazcache.EntityCanvazRequest)
+    // @@protoc_insertion_point(class_scope:com.spotify.canvazcache.EntityCanvazRequest)
     private static final com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass.EntityCanvazRequest();
@@ -3981,10 +3864,11 @@ public final class CanvazOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -4036,7 +3920,7 @@ public final class CanvazOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -4055,7 +3939,8 @@ public final class CanvazOuterClass {
       "nvazRequest\022E\n\010entities\030\001 \003(\01323.com.spot" +
       "ify.canvazcache.EntityCanvazRequest.Enti" +
       "ty\032*\n\006Entity\022\022\n\nentity_uri\030\001 \001(\t\022\014\n\004etag" +
-      "\030\002 \001(\tB\026\n\022com.spotify.canvazH\002b\006proto3"
+      "\030\002 \001(\tB)\n%com.spotifyxp.deps.com.spotify" +
+      ".canvazH\002b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

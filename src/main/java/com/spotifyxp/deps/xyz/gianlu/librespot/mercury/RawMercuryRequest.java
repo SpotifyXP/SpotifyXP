@@ -19,8 +19,8 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.mercury;
 import com.google.protobuf.AbstractMessageLite;
 import com.google.protobuf.ByteString;
 import com.spotifyxp.deps.com.spotify.Mercury;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.BytesArrayList;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.BytesArrayList;
 
 /**
  * @author Gianlu
@@ -64,7 +64,6 @@ public class RawMercuryRequest {
         return new Builder();
     }
 
-    @SuppressWarnings("NullableProblems")
     public static class Builder {
         private final Mercury.Header.Builder header;
         private final BytesArrayList payload;

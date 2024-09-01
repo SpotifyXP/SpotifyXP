@@ -3,8 +3,6 @@
 
 package com.spotifyxp.deps.com.spotify.connectstate;
 
-//Note: Don't replace the deprecated methods here otherwise SpotifyXP wouldn't work on Windows XP for some reason
-@SuppressWarnings("deprecation")
 public final class Player {
   private Player() {}
   public static void registerAllExtensions(
@@ -114,17 +112,25 @@ public final class Player {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         BitrateLevel> internalValueMap =
-            BitrateLevel::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<BitrateLevel>() {
+            public BitrateLevel findValueByNumber(int number) {
+              return BitrateLevel.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.getDescriptor().getEnumTypes().get(0);
     }
@@ -145,7 +151,7 @@ public final class Player {
 
     private final int value;
 
-    BitrateLevel(int value) {
+    private BitrateLevel(int value) {
       this.value = value;
     }
 
@@ -250,17 +256,25 @@ public final class Player {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         BitrateStrategy> internalValueMap =
-            BitrateStrategy::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<BitrateStrategy>() {
+            public BitrateStrategy findValueByNumber(int number) {
+              return BitrateStrategy.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.getDescriptor().getEnumTypes().get(1);
     }
@@ -281,7 +295,7 @@ public final class Player {
 
     private final int value;
 
-    BitrateStrategy(int value) {
+    private BitrateStrategy(int value) {
       this.value = value;
     }
 
@@ -359,17 +373,25 @@ public final class Player {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         HiFiStatus> internalValueMap =
-            HiFiStatus::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<HiFiStatus>() {
+            public HiFiStatus findValueByNumber(int number) {
+              return HiFiStatus.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.getDescriptor().getEnumTypes().get(2);
     }
@@ -390,7 +412,7 @@ public final class Player {
 
     private final int value;
 
-    HiFiStatus(int value) {
+    private HiFiStatus(int value) {
       this.value = value;
     }
 
@@ -661,14 +683,14 @@ public final class Player {
     /**
      * <code>map&lt;string, string&gt; context_metadata = 21;</code>
      */
-
-    java.lang.String getContextMetadataOrDefault(
+    /* nullable */
+java.lang.String getContextMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; context_metadata = 21;</code>
      */
-
     java.lang.String getContextMetadataOrThrow(
         java.lang.String key);
 
@@ -695,14 +717,14 @@ public final class Player {
     /**
      * <code>map&lt;string, string&gt; page_metadata = 22;</code>
      */
-
-    java.lang.String getPageMetadataOrDefault(
+    /* nullable */
+java.lang.String getPageMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; page_metadata = 22;</code>
      */
-
     java.lang.String getPageMetadataOrThrow(
         java.lang.String key);
 
@@ -814,7 +836,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.PlayerState}
    */
-  public  static final class PlayerState extends
+  public static final class PlayerState extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.PlayerState)
       PlayerStateOrBuilder {
@@ -843,12 +865,7 @@ public final class Player {
       return new PlayerState();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlayerState_descriptor;
     }
@@ -876,21 +893,24 @@ public final class Player {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>int64 timestamp = 1;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int CONTEXT_URI_FIELD_NUMBER = 2;
-    private volatile java.lang.Object contextUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object contextUri_ = "";
     /**
      * <code>string context_uri = 2;</code>
      * @return The contextUri.
      */
+    @java.lang.Override
     public java.lang.String getContextUri() {
       java.lang.Object ref = contextUri_;
       if (ref instanceof java.lang.String) {
@@ -907,6 +927,7 @@ public final class Player {
      * <code>string context_uri = 2;</code>
      * @return The bytes for contextUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContextUriBytes() {
       java.lang.Object ref = contextUri_;
@@ -922,11 +943,13 @@ public final class Player {
     }
 
     public static final int CONTEXT_URL_FIELD_NUMBER = 3;
-    private volatile java.lang.Object contextUrl_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object contextUrl_ = "";
     /**
      * <code>string context_url = 3;</code>
      * @return The contextUrl.
      */
+    @java.lang.Override
     public java.lang.String getContextUrl() {
       java.lang.Object ref = contextUrl_;
       if (ref instanceof java.lang.String) {
@@ -943,6 +966,7 @@ public final class Player {
      * <code>string context_url = 3;</code>
      * @return The bytes for contextUrl.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContextUrlBytes() {
       java.lang.Object ref = contextUrl_;
@@ -963,6 +987,7 @@ public final class Player {
      * <code>.connectstate.Restrictions context_restrictions = 4;</code>
      * @return Whether the contextRestrictions field is set.
      */
+    @java.lang.Override
     public boolean hasContextRestrictions() {
       return contextRestrictions_ != null;
     }
@@ -970,14 +995,16 @@ public final class Player {
      * <code>.connectstate.Restrictions context_restrictions = 4;</code>
      * @return The contextRestrictions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions getContextRestrictions() {
       return contextRestrictions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance() : contextRestrictions_;
     }
     /**
      * <code>.connectstate.Restrictions context_restrictions = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder getContextRestrictionsOrBuilder() {
-      return getContextRestrictions();
+      return contextRestrictions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance() : contextRestrictions_;
     }
 
     public static final int PLAY_ORIGIN_FIELD_NUMBER = 5;
@@ -986,6 +1013,7 @@ public final class Player {
      * <code>.connectstate.PlayOrigin play_origin = 5;</code>
      * @return Whether the playOrigin field is set.
      */
+    @java.lang.Override
     public boolean hasPlayOrigin() {
       return playOrigin_ != null;
     }
@@ -993,14 +1021,16 @@ public final class Player {
      * <code>.connectstate.PlayOrigin play_origin = 5;</code>
      * @return The playOrigin.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin getPlayOrigin() {
       return playOrigin_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.getDefaultInstance() : playOrigin_;
     }
     /**
      * <code>.connectstate.PlayOrigin play_origin = 5;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOriginOrBuilder getPlayOriginOrBuilder() {
-      return getPlayOrigin();
+      return playOrigin_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.getDefaultInstance() : playOrigin_;
     }
 
     public static final int INDEX_FIELD_NUMBER = 6;
@@ -1009,6 +1039,7 @@ public final class Player {
      * <code>.connectstate.ContextIndex index = 6;</code>
      * @return Whether the index field is set.
      */
+    @java.lang.Override
     public boolean hasIndex() {
       return index_ != null;
     }
@@ -1016,14 +1047,16 @@ public final class Player {
      * <code>.connectstate.ContextIndex index = 6;</code>
      * @return The index.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex getIndex() {
       return index_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.getDefaultInstance() : index_;
     }
     /**
      * <code>.connectstate.ContextIndex index = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndexOrBuilder getIndexOrBuilder() {
-      return getIndex();
+      return index_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.getDefaultInstance() : index_;
     }
 
     public static final int TRACK_FIELD_NUMBER = 7;
@@ -1032,6 +1065,7 @@ public final class Player {
      * <code>.connectstate.ProvidedTrack track = 7;</code>
      * @return Whether the track field is set.
      */
+    @java.lang.Override
     public boolean hasTrack() {
       return track_ != null;
     }
@@ -1039,22 +1073,26 @@ public final class Player {
      * <code>.connectstate.ProvidedTrack track = 7;</code>
      * @return The track.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack getTrack() {
       return track_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.getDefaultInstance() : track_;
     }
     /**
      * <code>.connectstate.ProvidedTrack track = 7;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder getTrackOrBuilder() {
-      return getTrack();
+      return track_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.getDefaultInstance() : track_;
     }
 
     public static final int PLAYBACK_ID_FIELD_NUMBER = 8;
-    private volatile java.lang.Object playbackId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object playbackId_ = "";
     /**
      * <code>string playback_id = 8;</code>
      * @return The playbackId.
      */
+    @java.lang.Override
     public java.lang.String getPlaybackId() {
       java.lang.Object ref = playbackId_;
       if (ref instanceof java.lang.String) {
@@ -1071,6 +1109,7 @@ public final class Player {
      * <code>string playback_id = 8;</code>
      * @return The bytes for playbackId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPlaybackIdBytes() {
       java.lang.Object ref = playbackId_;
@@ -1086,71 +1125,78 @@ public final class Player {
     }
 
     public static final int PLAYBACK_SPEED_FIELD_NUMBER = 9;
-    private double playbackSpeed_;
+    private double playbackSpeed_ = 0D;
     /**
      * <code>double playback_speed = 9;</code>
      * @return The playbackSpeed.
      */
+    @java.lang.Override
     public double getPlaybackSpeed() {
       return playbackSpeed_;
     }
 
     public static final int POSITION_AS_OF_TIMESTAMP_FIELD_NUMBER = 10;
-    private long positionAsOfTimestamp_;
+    private long positionAsOfTimestamp_ = 0L;
     /**
      * <code>int64 position_as_of_timestamp = 10;</code>
      * @return The positionAsOfTimestamp.
      */
+    @java.lang.Override
     public long getPositionAsOfTimestamp() {
       return positionAsOfTimestamp_;
     }
 
     public static final int DURATION_FIELD_NUMBER = 11;
-    private long duration_;
+    private long duration_ = 0L;
     /**
      * <code>int64 duration = 11;</code>
      * @return The duration.
      */
+    @java.lang.Override
     public long getDuration() {
       return duration_;
     }
 
     public static final int IS_PLAYING_FIELD_NUMBER = 12;
-    private boolean isPlaying_;
+    private boolean isPlaying_ = false;
     /**
      * <code>bool is_playing = 12;</code>
      * @return The isPlaying.
      */
+    @java.lang.Override
     public boolean getIsPlaying() {
       return isPlaying_;
     }
 
     public static final int IS_PAUSED_FIELD_NUMBER = 13;
-    private boolean isPaused_;
+    private boolean isPaused_ = false;
     /**
      * <code>bool is_paused = 13;</code>
      * @return The isPaused.
      */
+    @java.lang.Override
     public boolean getIsPaused() {
       return isPaused_;
     }
 
     public static final int IS_BUFFERING_FIELD_NUMBER = 14;
-    private boolean isBuffering_;
+    private boolean isBuffering_ = false;
     /**
      * <code>bool is_buffering = 14;</code>
      * @return The isBuffering.
      */
+    @java.lang.Override
     public boolean getIsBuffering() {
       return isBuffering_;
     }
 
     public static final int IS_SYSTEM_INITIATED_FIELD_NUMBER = 15;
-    private boolean isSystemInitiated_;
+    private boolean isSystemInitiated_ = false;
     /**
      * <code>bool is_system_initiated = 15;</code>
      * @return The isSystemInitiated.
      */
+    @java.lang.Override
     public boolean getIsSystemInitiated() {
       return isSystemInitiated_;
     }
@@ -1161,6 +1207,7 @@ public final class Player {
      * <code>.connectstate.ContextPlayerOptions options = 16;</code>
      * @return Whether the options field is set.
      */
+    @java.lang.Override
     public boolean hasOptions() {
       return options_ != null;
     }
@@ -1168,14 +1215,16 @@ public final class Player {
      * <code>.connectstate.ContextPlayerOptions options = 16;</code>
      * @return The options.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions getOptions() {
       return options_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.getDefaultInstance() : options_;
     }
     /**
      * <code>.connectstate.ContextPlayerOptions options = 16;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptionsOrBuilder getOptionsOrBuilder() {
-      return getOptions();
+      return options_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.getDefaultInstance() : options_;
     }
 
     public static final int RESTRICTIONS_FIELD_NUMBER = 17;
@@ -1184,6 +1233,7 @@ public final class Player {
      * <code>.connectstate.Restrictions restrictions = 17;</code>
      * @return Whether the restrictions field is set.
      */
+    @java.lang.Override
     public boolean hasRestrictions() {
       return restrictions_ != null;
     }
@@ -1191,14 +1241,16 @@ public final class Player {
      * <code>.connectstate.Restrictions restrictions = 17;</code>
      * @return The restrictions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions getRestrictions() {
       return restrictions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance() : restrictions_;
     }
     /**
      * <code>.connectstate.Restrictions restrictions = 17;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder getRestrictionsOrBuilder() {
-      return getRestrictions();
+      return restrictions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance() : restrictions_;
     }
 
     public static final int SUPPRESSIONS_FIELD_NUMBER = 18;
@@ -1207,6 +1259,7 @@ public final class Player {
      * <code>.connectstate.Suppressions suppressions = 18;</code>
      * @return Whether the suppressions field is set.
      */
+    @java.lang.Override
     public boolean hasSuppressions() {
       return suppressions_ != null;
     }
@@ -1214,27 +1267,32 @@ public final class Player {
      * <code>.connectstate.Suppressions suppressions = 18;</code>
      * @return The suppressions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions getSuppressions() {
       return suppressions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.getDefaultInstance() : suppressions_;
     }
     /**
      * <code>.connectstate.Suppressions suppressions = 18;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.SuppressionsOrBuilder getSuppressionsOrBuilder() {
-      return getSuppressions();
+      return suppressions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.getDefaultInstance() : suppressions_;
     }
 
     public static final int PREV_TRACKS_FIELD_NUMBER = 19;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> prevTracks_;
     /**
      * <code>repeated .connectstate.ProvidedTrack prev_tracks = 19;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> getPrevTracksList() {
       return prevTracks_;
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack prev_tracks = 19;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
         getPrevTracksOrBuilderList() {
       return prevTracks_;
@@ -1242,34 +1300,40 @@ public final class Player {
     /**
      * <code>repeated .connectstate.ProvidedTrack prev_tracks = 19;</code>
      */
+    @java.lang.Override
     public int getPrevTracksCount() {
       return prevTracks_.size();
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack prev_tracks = 19;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack getPrevTracks(int index) {
       return prevTracks_.get(index);
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack prev_tracks = 19;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder getPrevTracksOrBuilder(
         int index) {
       return prevTracks_.get(index);
     }
 
     public static final int NEXT_TRACKS_FIELD_NUMBER = 20;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> nextTracks_;
     /**
      * <code>repeated .connectstate.ProvidedTrack next_tracks = 20;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> getNextTracksList() {
       return nextTracks_;
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack next_tracks = 20;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
         getNextTracksOrBuilderList() {
       return nextTracks_;
@@ -1277,18 +1341,21 @@ public final class Player {
     /**
      * <code>repeated .connectstate.ProvidedTrack next_tracks = 20;</code>
      */
+    @java.lang.Override
     public int getNextTracksCount() {
       return nextTracks_.size();
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack next_tracks = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack getNextTracks(int index) {
       return nextTracks_.get(index);
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack next_tracks = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder getNextTracksOrBuilder(
         int index) {
       return nextTracks_.get(index);
@@ -1299,13 +1366,14 @@ public final class Player {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlayerState_ContextMetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> contextMetadata_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -1316,22 +1384,22 @@ public final class Player {
       }
       return contextMetadata_;
     }
-
     public int getContextMetadataCount() {
       return internalGetContextMetadata().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; context_metadata = 21;</code>
      */
-
+    @java.lang.Override
     public boolean containsContextMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetContextMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getContextMetadataMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getContextMetadata() {
       return getContextMetadataMap();
@@ -1339,29 +1407,31 @@ public final class Player {
     /**
      * <code>map&lt;string, string&gt; context_metadata = 21;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getContextMetadataMap() {
       return internalGetContextMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; context_metadata = 21;</code>
      */
-
-    public java.lang.String getContextMetadataOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getContextMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetContextMetadata().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; context_metadata = 21;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getContextMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetContextMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -1375,13 +1445,14 @@ public final class Player {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlayerState_PageMetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> pageMetadata_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -1392,22 +1463,22 @@ public final class Player {
       }
       return pageMetadata_;
     }
-
     public int getPageMetadataCount() {
       return internalGetPageMetadata().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; page_metadata = 22;</code>
      */
-
+    @java.lang.Override
     public boolean containsPageMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetPageMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getPageMetadataMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getPageMetadata() {
       return getPageMetadataMap();
@@ -1415,29 +1486,31 @@ public final class Player {
     /**
      * <code>map&lt;string, string&gt; page_metadata = 22;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getPageMetadataMap() {
       return internalGetPageMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; page_metadata = 22;</code>
      */
-
-    public java.lang.String getPageMetadataOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getPageMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetPageMetadata().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; page_metadata = 22;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getPageMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetPageMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -1447,11 +1520,13 @@ public final class Player {
     }
 
     public static final int SESSION_ID_FIELD_NUMBER = 23;
-    private volatile java.lang.Object sessionId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionId_ = "";
     /**
      * <code>string session_id = 23;</code>
      * @return The sessionId.
      */
+    @java.lang.Override
     public java.lang.String getSessionId() {
       java.lang.Object ref = sessionId_;
       if (ref instanceof java.lang.String) {
@@ -1468,6 +1543,7 @@ public final class Player {
      * <code>string session_id = 23;</code>
      * @return The bytes for sessionId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSessionIdBytes() {
       java.lang.Object ref = sessionId_;
@@ -1483,11 +1559,13 @@ public final class Player {
     }
 
     public static final int QUEUE_REVISION_FIELD_NUMBER = 24;
-    private volatile java.lang.Object queueRevision_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object queueRevision_ = "";
     /**
      * <code>string queue_revision = 24;</code>
      * @return The queueRevision.
      */
+    @java.lang.Override
     public java.lang.String getQueueRevision() {
       java.lang.Object ref = queueRevision_;
       if (ref instanceof java.lang.String) {
@@ -1504,6 +1582,7 @@ public final class Player {
      * <code>string queue_revision = 24;</code>
      * @return The bytes for queueRevision.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getQueueRevisionBytes() {
       java.lang.Object ref = queueRevision_;
@@ -1519,21 +1598,24 @@ public final class Player {
     }
 
     public static final int POSITION_FIELD_NUMBER = 25;
-    private long position_;
+    private long position_ = 0L;
     /**
      * <code>int64 position = 25;</code>
      * @return The position.
      */
+    @java.lang.Override
     public long getPosition() {
       return position_;
     }
 
     public static final int ENTITY_URI_FIELD_NUMBER = 26;
-    private volatile java.lang.Object entityUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object entityUri_ = "";
     /**
      * <code>string entity_uri = 26;</code>
      * @return The entityUri.
      */
+    @java.lang.Override
     public java.lang.String getEntityUri() {
       java.lang.Object ref = entityUri_;
       if (ref instanceof java.lang.String) {
@@ -1550,6 +1632,7 @@ public final class Player {
      * <code>string entity_uri = 26;</code>
      * @return The bytes for entityUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getEntityUriBytes() {
       java.lang.Object ref = entityUri_;
@@ -1565,16 +1648,19 @@ public final class Player {
     }
 
     public static final int REVERSE_FIELD_NUMBER = 27;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> reverse_;
     /**
      * <code>repeated .connectstate.ProvidedTrack reverse = 27;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> getReverseList() {
       return reverse_;
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack reverse = 27;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
         getReverseOrBuilderList() {
       return reverse_;
@@ -1582,34 +1668,40 @@ public final class Player {
     /**
      * <code>repeated .connectstate.ProvidedTrack reverse = 27;</code>
      */
+    @java.lang.Override
     public int getReverseCount() {
       return reverse_.size();
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack reverse = 27;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack getReverse(int index) {
       return reverse_.get(index);
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack reverse = 27;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder getReverseOrBuilder(
         int index) {
       return reverse_.get(index);
     }
 
     public static final int FUTURE_FIELD_NUMBER = 28;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> future_;
     /**
      * <code>repeated .connectstate.ProvidedTrack future = 28;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> getFutureList() {
       return future_;
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack future = 28;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
         getFutureOrBuilderList() {
       return future_;
@@ -1617,18 +1709,21 @@ public final class Player {
     /**
      * <code>repeated .connectstate.ProvidedTrack future = 28;</code>
      */
+    @java.lang.Override
     public int getFutureCount() {
       return future_.size();
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack future = 28;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack getFuture(int index) {
       return future_.get(index);
     }
     /**
      * <code>repeated .connectstate.ProvidedTrack future = 28;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder getFutureOrBuilder(
         int index) {
       return future_.get(index);
@@ -1640,6 +1735,7 @@ public final class Player {
      * <code>.connectstate.PlaybackQuality playback_quality = 32;</code>
      * @return Whether the playbackQuality field is set.
      */
+    @java.lang.Override
     public boolean hasPlaybackQuality() {
       return playbackQuality_ != null;
     }
@@ -1647,14 +1743,16 @@ public final class Player {
      * <code>.connectstate.PlaybackQuality playback_quality = 32;</code>
      * @return The playbackQuality.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality getPlaybackQuality() {
       return playbackQuality_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.getDefaultInstance() : playbackQuality_;
     }
     /**
      * <code>.connectstate.PlaybackQuality playback_quality = 32;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQualityOrBuilder getPlaybackQualityOrBuilder() {
-      return getPlaybackQuality();
+      return playbackQuality_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.getDefaultInstance() : playbackQuality_;
     }
 
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState parseFrom(
@@ -1701,11 +1799,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1744,7 +1844,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.PlayerState}
@@ -1753,7 +1854,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PlayerState)
         com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlayerState_descriptor;
       }
@@ -1794,128 +1895,101 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getPrevTracksFieldBuilder();
-          getNextTracksFieldBuilder();
-          getReverseFieldBuilder();
-          getFutureFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         timestamp_ = 0L;
-
         contextUri_ = "";
-
         contextUrl_ = "";
-
-        if (contextRestrictionsBuilder_ == null) {
-          contextRestrictions_ = null;
-        } else {
-          contextRestrictions_ = null;
+        contextRestrictions_ = null;
+        if (contextRestrictionsBuilder_ != null) {
+          contextRestrictionsBuilder_.dispose();
           contextRestrictionsBuilder_ = null;
         }
-        if (playOriginBuilder_ == null) {
-          playOrigin_ = null;
-        } else {
-          playOrigin_ = null;
+        playOrigin_ = null;
+        if (playOriginBuilder_ != null) {
+          playOriginBuilder_.dispose();
           playOriginBuilder_ = null;
         }
-        if (indexBuilder_ == null) {
-          index_ = null;
-        } else {
-          index_ = null;
+        index_ = null;
+        if (indexBuilder_ != null) {
+          indexBuilder_.dispose();
           indexBuilder_ = null;
         }
-        if (trackBuilder_ == null) {
-          track_ = null;
-        } else {
-          track_ = null;
+        track_ = null;
+        if (trackBuilder_ != null) {
+          trackBuilder_.dispose();
           trackBuilder_ = null;
         }
         playbackId_ = "";
-
         playbackSpeed_ = 0D;
-
         positionAsOfTimestamp_ = 0L;
-
         duration_ = 0L;
-
         isPlaying_ = false;
-
         isPaused_ = false;
-
         isBuffering_ = false;
-
         isSystemInitiated_ = false;
-
-        if (optionsBuilder_ == null) {
-          options_ = null;
-        } else {
-          options_ = null;
+        options_ = null;
+        if (optionsBuilder_ != null) {
+          optionsBuilder_.dispose();
           optionsBuilder_ = null;
         }
-        if (restrictionsBuilder_ == null) {
-          restrictions_ = null;
-        } else {
-          restrictions_ = null;
+        restrictions_ = null;
+        if (restrictionsBuilder_ != null) {
+          restrictionsBuilder_.dispose();
           restrictionsBuilder_ = null;
         }
-        if (suppressionsBuilder_ == null) {
-          suppressions_ = null;
-        } else {
-          suppressions_ = null;
+        suppressions_ = null;
+        if (suppressionsBuilder_ != null) {
+          suppressionsBuilder_.dispose();
           suppressionsBuilder_ = null;
         }
         if (prevTracksBuilder_ == null) {
           prevTracks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          prevTracks_ = null;
           prevTracksBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00040000);
         if (nextTracksBuilder_ == null) {
           nextTracks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          nextTracks_ = null;
           nextTracksBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00080000);
         internalGetMutableContextMetadata().clear();
         internalGetMutablePageMetadata().clear();
         sessionId_ = "";
-
         queueRevision_ = "";
-
         position_ = 0L;
-
         entityUri_ = "";
-
         if (reverseBuilder_ == null) {
           reverse_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
+          reverse_ = null;
           reverseBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x04000000);
         if (futureBuilder_ == null) {
           future_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
         } else {
+          future_ = null;
           futureBuilder_.clear();
         }
-        if (playbackQualityBuilder_ == null) {
-          playbackQuality_ = null;
-        } else {
-          playbackQuality_ = null;
+        bitField0_ = (bitField0_ & ~0x08000000);
+        playbackQuality_ = null;
+        if (playbackQualityBuilder_ != null) {
+          playbackQualityBuilder_.dispose();
           playbackQualityBuilder_ = null;
         }
         return this;
@@ -1944,138 +2018,148 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState result = new com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState(this);
-        int from_bitField0_ = bitField0_;
-        result.timestamp_ = timestamp_;
-        result.contextUri_ = contextUri_;
-        result.contextUrl_ = contextUrl_;
-        if (contextRestrictionsBuilder_ == null) {
-          result.contextRestrictions_ = contextRestrictions_;
-        } else {
-          result.contextRestrictions_ = contextRestrictionsBuilder_.build();
-        }
-        if (playOriginBuilder_ == null) {
-          result.playOrigin_ = playOrigin_;
-        } else {
-          result.playOrigin_ = playOriginBuilder_.build();
-        }
-        if (indexBuilder_ == null) {
-          result.index_ = index_;
-        } else {
-          result.index_ = indexBuilder_.build();
-        }
-        if (trackBuilder_ == null) {
-          result.track_ = track_;
-        } else {
-          result.track_ = trackBuilder_.build();
-        }
-        result.playbackId_ = playbackId_;
-        result.playbackSpeed_ = playbackSpeed_;
-        result.positionAsOfTimestamp_ = positionAsOfTimestamp_;
-        result.duration_ = duration_;
-        result.isPlaying_ = isPlaying_;
-        result.isPaused_ = isPaused_;
-        result.isBuffering_ = isBuffering_;
-        result.isSystemInitiated_ = isSystemInitiated_;
-        if (optionsBuilder_ == null) {
-          result.options_ = options_;
-        } else {
-          result.options_ = optionsBuilder_.build();
-        }
-        if (restrictionsBuilder_ == null) {
-          result.restrictions_ = restrictions_;
-        } else {
-          result.restrictions_ = restrictionsBuilder_.build();
-        }
-        if (suppressionsBuilder_ == null) {
-          result.suppressions_ = suppressions_;
-        } else {
-          result.suppressions_ = suppressionsBuilder_.build();
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState result) {
         if (prevTracksBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00040000) != 0)) {
             prevTracks_ = java.util.Collections.unmodifiableList(prevTracks_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00040000);
           }
           result.prevTracks_ = prevTracks_;
         } else {
           result.prevTracks_ = prevTracksBuilder_.build();
         }
         if (nextTracksBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
+          if (((bitField0_ & 0x00080000) != 0)) {
             nextTracks_ = java.util.Collections.unmodifiableList(nextTracks_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00080000);
           }
           result.nextTracks_ = nextTracks_;
         } else {
           result.nextTracks_ = nextTracksBuilder_.build();
         }
-        result.contextMetadata_ = internalGetContextMetadata();
-        result.contextMetadata_.makeImmutable();
-        result.pageMetadata_ = internalGetPageMetadata();
-        result.pageMetadata_.makeImmutable();
-        result.sessionId_ = sessionId_;
-        result.queueRevision_ = queueRevision_;
-        result.position_ = position_;
-        result.entityUri_ = entityUri_;
         if (reverseBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) != 0)) {
+          if (((bitField0_ & 0x04000000) != 0)) {
             reverse_ = java.util.Collections.unmodifiableList(reverse_);
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x04000000);
           }
           result.reverse_ = reverse_;
         } else {
           result.reverse_ = reverseBuilder_.build();
         }
         if (futureBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) != 0)) {
+          if (((bitField0_ & 0x08000000) != 0)) {
             future_ = java.util.Collections.unmodifiableList(future_);
-            bitField0_ = (bitField0_ & ~0x00000020);
+            bitField0_ = (bitField0_ & ~0x08000000);
           }
           result.future_ = future_;
         } else {
           result.future_ = futureBuilder_.build();
         }
-        if (playbackQualityBuilder_ == null) {
-          result.playbackQuality_ = playbackQuality_;
-        } else {
-          result.playbackQuality_ = playbackQualityBuilder_.build();
-        }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.timestamp_ = timestamp_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.contextUri_ = contextUri_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.contextUrl_ = contextUrl_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.contextRestrictions_ = contextRestrictionsBuilder_ == null
+              ? contextRestrictions_
+              : contextRestrictionsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.playOrigin_ = playOriginBuilder_ == null
+              ? playOrigin_
+              : playOriginBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.index_ = indexBuilder_ == null
+              ? index_
+              : indexBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.track_ = trackBuilder_ == null
+              ? track_
+              : trackBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.playbackId_ = playbackId_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.playbackSpeed_ = playbackSpeed_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.positionAsOfTimestamp_ = positionAsOfTimestamp_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.duration_ = duration_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.isPlaying_ = isPlaying_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.isPaused_ = isPaused_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          result.isBuffering_ = isBuffering_;
+        }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          result.isSystemInitiated_ = isSystemInitiated_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          result.options_ = optionsBuilder_ == null
+              ? options_
+              : optionsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.restrictions_ = restrictionsBuilder_ == null
+              ? restrictions_
+              : restrictionsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          result.suppressions_ = suppressionsBuilder_ == null
+              ? suppressions_
+              : suppressionsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00100000) != 0)) {
+          result.contextMetadata_ = internalGetContextMetadata();
+          result.contextMetadata_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00200000) != 0)) {
+          result.pageMetadata_ = internalGetPageMetadata();
+          result.pageMetadata_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00400000) != 0)) {
+          result.sessionId_ = sessionId_;
+        }
+        if (((from_bitField0_ & 0x00800000) != 0)) {
+          result.queueRevision_ = queueRevision_;
+        }
+        if (((from_bitField0_ & 0x01000000) != 0)) {
+          result.position_ = position_;
+        }
+        if (((from_bitField0_ & 0x02000000) != 0)) {
+          result.entityUri_ = entityUri_;
+        }
+        if (((from_bitField0_ & 0x10000000) != 0)) {
+          result.playbackQuality_ = playbackQualityBuilder_ == null
+              ? playbackQuality_
+              : playbackQualityBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private long timestamp_ ;
@@ -2083,6 +2167,7 @@ public final class Player {
        * <code>int64 timestamp = 1;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -2092,8 +2177,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        
+
         timestamp_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2102,7 +2188,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         timestamp_ = 0L;
         onChanged();
         return this;
@@ -2149,11 +2235,9 @@ public final class Player {
        */
       public Builder setContextUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         contextUri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2162,8 +2246,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearContextUri() {
-        
         contextUri_ = getDefaultInstance().getContextUri();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2174,12 +2258,10 @@ public final class Player {
        */
       public Builder setContextUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         contextUri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2225,11 +2307,9 @@ public final class Player {
        */
       public Builder setContextUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         contextUrl_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2238,8 +2318,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearContextUrl() {
-        
         contextUrl_ = getDefaultInstance().getContextUrl();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -2250,12 +2330,10 @@ public final class Player {
        */
       public Builder setContextUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         contextUrl_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2268,7 +2346,7 @@ public final class Player {
        * @return Whether the contextRestrictions field is set.
        */
       public boolean hasContextRestrictions() {
-        return contextRestrictionsBuilder_ != null || contextRestrictions_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>.connectstate.Restrictions context_restrictions = 4;</code>
@@ -2290,11 +2368,11 @@ public final class Player {
             throw new NullPointerException();
           }
           contextRestrictions_ = value;
-          onChanged();
         } else {
           contextRestrictionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2304,11 +2382,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder builderForValue) {
         if (contextRestrictionsBuilder_ == null) {
           contextRestrictions_ = builderForValue.build();
-          onChanged();
         } else {
           contextRestrictionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2316,38 +2394,38 @@ public final class Player {
        */
       public Builder mergeContextRestrictions(com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions value) {
         if (contextRestrictionsBuilder_ == null) {
-          if (contextRestrictions_ != null) {
-            contextRestrictions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.newBuilder(contextRestrictions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            contextRestrictions_ != null &&
+            contextRestrictions_ != com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance()) {
+            getContextRestrictionsBuilder().mergeFrom(value);
           } else {
             contextRestrictions_ = value;
           }
-          onChanged();
         } else {
           contextRestrictionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Restrictions context_restrictions = 4;</code>
        */
       public Builder clearContextRestrictions() {
-        if (contextRestrictionsBuilder_ == null) {
-          contextRestrictions_ = null;
-          onChanged();
-        } else {
-          contextRestrictions_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        contextRestrictions_ = null;
+        if (contextRestrictionsBuilder_ != null) {
+          contextRestrictionsBuilder_.dispose();
           contextRestrictionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Restrictions context_restrictions = 4;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder getContextRestrictionsBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getContextRestrictionsFieldBuilder().getBuilder();
       }
@@ -2369,7 +2447,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions, com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder> 
           getContextRestrictionsFieldBuilder() {
         if (contextRestrictionsBuilder_ == null) {
-          contextRestrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          contextRestrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions, com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder>(
                   getContextRestrictions(),
                   getParentForChildren(),
                   isClean());
@@ -2386,7 +2465,7 @@ public final class Player {
        * @return Whether the playOrigin field is set.
        */
       public boolean hasPlayOrigin() {
-        return playOriginBuilder_ != null || playOrigin_ != null;
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <code>.connectstate.PlayOrigin play_origin = 5;</code>
@@ -2408,11 +2487,11 @@ public final class Player {
             throw new NullPointerException();
           }
           playOrigin_ = value;
-          onChanged();
         } else {
           playOriginBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2422,11 +2501,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.Builder builderForValue) {
         if (playOriginBuilder_ == null) {
           playOrigin_ = builderForValue.build();
-          onChanged();
         } else {
           playOriginBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2434,38 +2513,38 @@ public final class Player {
        */
       public Builder mergePlayOrigin(com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin value) {
         if (playOriginBuilder_ == null) {
-          if (playOrigin_ != null) {
-            playOrigin_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.newBuilder(playOrigin_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000010) != 0) &&
+            playOrigin_ != null &&
+            playOrigin_ != com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.getDefaultInstance()) {
+            getPlayOriginBuilder().mergeFrom(value);
           } else {
             playOrigin_ = value;
           }
-          onChanged();
         } else {
           playOriginBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlayOrigin play_origin = 5;</code>
        */
       public Builder clearPlayOrigin() {
-        if (playOriginBuilder_ == null) {
-          playOrigin_ = null;
-          onChanged();
-        } else {
-          playOrigin_ = null;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        playOrigin_ = null;
+        if (playOriginBuilder_ != null) {
+          playOriginBuilder_.dispose();
           playOriginBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlayOrigin play_origin = 5;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.Builder getPlayOriginBuilder() {
-        
+        bitField0_ |= 0x00000010;
         onChanged();
         return getPlayOriginFieldBuilder().getBuilder();
       }
@@ -2487,7 +2566,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOriginOrBuilder> 
           getPlayOriginFieldBuilder() {
         if (playOriginBuilder_ == null) {
-          playOriginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          playOriginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOriginOrBuilder>(
                   getPlayOrigin(),
                   getParentForChildren(),
                   isClean());
@@ -2504,7 +2584,7 @@ public final class Player {
        * @return Whether the index field is set.
        */
       public boolean hasIndex() {
-        return indexBuilder_ != null || index_ != null;
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <code>.connectstate.ContextIndex index = 6;</code>
@@ -2526,11 +2606,11 @@ public final class Player {
             throw new NullPointerException();
           }
           index_ = value;
-          onChanged();
         } else {
           indexBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -2540,11 +2620,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.Builder builderForValue) {
         if (indexBuilder_ == null) {
           index_ = builderForValue.build();
-          onChanged();
         } else {
           indexBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -2552,38 +2632,38 @@ public final class Player {
        */
       public Builder mergeIndex(com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex value) {
         if (indexBuilder_ == null) {
-          if (index_ != null) {
-            index_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.newBuilder(index_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000020) != 0) &&
+            index_ != null &&
+            index_ != com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.getDefaultInstance()) {
+            getIndexBuilder().mergeFrom(value);
           } else {
             index_ = value;
           }
-          onChanged();
         } else {
           indexBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ContextIndex index = 6;</code>
        */
       public Builder clearIndex() {
-        if (indexBuilder_ == null) {
-          index_ = null;
-          onChanged();
-        } else {
-          index_ = null;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        index_ = null;
+        if (indexBuilder_ != null) {
+          indexBuilder_.dispose();
           indexBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ContextIndex index = 6;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.Builder getIndexBuilder() {
-        
+        bitField0_ |= 0x00000020;
         onChanged();
         return getIndexFieldBuilder().getBuilder();
       }
@@ -2605,7 +2685,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndexOrBuilder> 
           getIndexFieldBuilder() {
         if (indexBuilder_ == null) {
-          indexBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          indexBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndexOrBuilder>(
                   getIndex(),
                   getParentForChildren(),
                   isClean());
@@ -2622,7 +2703,7 @@ public final class Player {
        * @return Whether the track field is set.
        */
       public boolean hasTrack() {
-        return trackBuilder_ != null || track_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <code>.connectstate.ProvidedTrack track = 7;</code>
@@ -2644,11 +2725,11 @@ public final class Player {
             throw new NullPointerException();
           }
           track_ = value;
-          onChanged();
         } else {
           trackBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2658,11 +2739,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder builderForValue) {
         if (trackBuilder_ == null) {
           track_ = builderForValue.build();
-          onChanged();
         } else {
           trackBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2670,38 +2751,38 @@ public final class Player {
        */
       public Builder mergeTrack(com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack value) {
         if (trackBuilder_ == null) {
-          if (track_ != null) {
-            track_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.newBuilder(track_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            track_ != null &&
+            track_ != com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.getDefaultInstance()) {
+            getTrackBuilder().mergeFrom(value);
           } else {
             track_ = value;
           }
-          onChanged();
         } else {
           trackBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ProvidedTrack track = 7;</code>
        */
       public Builder clearTrack() {
-        if (trackBuilder_ == null) {
-          track_ = null;
-          onChanged();
-        } else {
-          track_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        track_ = null;
+        if (trackBuilder_ != null) {
+          trackBuilder_.dispose();
           trackBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ProvidedTrack track = 7;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder getTrackBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getTrackFieldBuilder().getBuilder();
       }
@@ -2723,7 +2804,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
           getTrackFieldBuilder() {
         if (trackBuilder_ == null) {
-          trackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          trackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder>(
                   getTrack(),
                   getParentForChildren(),
                   isClean());
@@ -2773,11 +2855,9 @@ public final class Player {
        */
       public Builder setPlaybackId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         playbackId_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -2786,8 +2866,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearPlaybackId() {
-        
         playbackId_ = getDefaultInstance().getPlaybackId();
+        bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
       }
@@ -2798,12 +2878,10 @@ public final class Player {
        */
       public Builder setPlaybackIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         playbackId_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -2813,6 +2891,7 @@ public final class Player {
        * <code>double playback_speed = 9;</code>
        * @return The playbackSpeed.
        */
+      @java.lang.Override
       public double getPlaybackSpeed() {
         return playbackSpeed_;
       }
@@ -2822,8 +2901,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setPlaybackSpeed(double value) {
-        
+
         playbackSpeed_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2832,7 +2912,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearPlaybackSpeed() {
-        
+        bitField0_ = (bitField0_ & ~0x00000100);
         playbackSpeed_ = 0D;
         onChanged();
         return this;
@@ -2843,6 +2923,7 @@ public final class Player {
        * <code>int64 position_as_of_timestamp = 10;</code>
        * @return The positionAsOfTimestamp.
        */
+      @java.lang.Override
       public long getPositionAsOfTimestamp() {
         return positionAsOfTimestamp_;
       }
@@ -2852,8 +2933,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setPositionAsOfTimestamp(long value) {
-        
+
         positionAsOfTimestamp_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -2862,7 +2944,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearPositionAsOfTimestamp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000200);
         positionAsOfTimestamp_ = 0L;
         onChanged();
         return this;
@@ -2873,6 +2955,7 @@ public final class Player {
        * <code>int64 duration = 11;</code>
        * @return The duration.
        */
+      @java.lang.Override
       public long getDuration() {
         return duration_;
       }
@@ -2882,8 +2965,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setDuration(long value) {
-        
+
         duration_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -2892,7 +2976,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDuration() {
-        
+        bitField0_ = (bitField0_ & ~0x00000400);
         duration_ = 0L;
         onChanged();
         return this;
@@ -2903,6 +2987,7 @@ public final class Player {
        * <code>bool is_playing = 12;</code>
        * @return The isPlaying.
        */
+      @java.lang.Override
       public boolean getIsPlaying() {
         return isPlaying_;
       }
@@ -2912,8 +2997,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setIsPlaying(boolean value) {
-        
+
         isPlaying_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -2922,7 +3008,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearIsPlaying() {
-        
+        bitField0_ = (bitField0_ & ~0x00000800);
         isPlaying_ = false;
         onChanged();
         return this;
@@ -2933,6 +3019,7 @@ public final class Player {
        * <code>bool is_paused = 13;</code>
        * @return The isPaused.
        */
+      @java.lang.Override
       public boolean getIsPaused() {
         return isPaused_;
       }
@@ -2942,8 +3029,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setIsPaused(boolean value) {
-        
+
         isPaused_ = value;
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -2952,7 +3040,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearIsPaused() {
-        
+        bitField0_ = (bitField0_ & ~0x00001000);
         isPaused_ = false;
         onChanged();
         return this;
@@ -2963,6 +3051,7 @@ public final class Player {
        * <code>bool is_buffering = 14;</code>
        * @return The isBuffering.
        */
+      @java.lang.Override
       public boolean getIsBuffering() {
         return isBuffering_;
       }
@@ -2972,8 +3061,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setIsBuffering(boolean value) {
-        
+
         isBuffering_ = value;
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -2982,7 +3072,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearIsBuffering() {
-        
+        bitField0_ = (bitField0_ & ~0x00002000);
         isBuffering_ = false;
         onChanged();
         return this;
@@ -2993,6 +3083,7 @@ public final class Player {
        * <code>bool is_system_initiated = 15;</code>
        * @return The isSystemInitiated.
        */
+      @java.lang.Override
       public boolean getIsSystemInitiated() {
         return isSystemInitiated_;
       }
@@ -3002,8 +3093,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setIsSystemInitiated(boolean value) {
-        
+
         isSystemInitiated_ = value;
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -3012,7 +3104,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearIsSystemInitiated() {
-        
+        bitField0_ = (bitField0_ & ~0x00004000);
         isSystemInitiated_ = false;
         onChanged();
         return this;
@@ -3026,7 +3118,7 @@ public final class Player {
        * @return Whether the options field is set.
        */
       public boolean hasOptions() {
-        return optionsBuilder_ != null || options_ != null;
+        return ((bitField0_ & 0x00008000) != 0);
       }
       /**
        * <code>.connectstate.ContextPlayerOptions options = 16;</code>
@@ -3048,11 +3140,11 @@ public final class Player {
             throw new NullPointerException();
           }
           options_ = value;
-          onChanged();
         } else {
           optionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00008000;
+        onChanged();
         return this;
       }
       /**
@@ -3062,11 +3154,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.Builder builderForValue) {
         if (optionsBuilder_ == null) {
           options_ = builderForValue.build();
-          onChanged();
         } else {
           optionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00008000;
+        onChanged();
         return this;
       }
       /**
@@ -3074,38 +3166,38 @@ public final class Player {
        */
       public Builder mergeOptions(com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions value) {
         if (optionsBuilder_ == null) {
-          if (options_ != null) {
-            options_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.newBuilder(options_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00008000) != 0) &&
+            options_ != null &&
+            options_ != com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.getDefaultInstance()) {
+            getOptionsBuilder().mergeFrom(value);
           } else {
             options_ = value;
           }
-          onChanged();
         } else {
           optionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00008000;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ContextPlayerOptions options = 16;</code>
        */
       public Builder clearOptions() {
-        if (optionsBuilder_ == null) {
-          options_ = null;
-          onChanged();
-        } else {
-          options_ = null;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        options_ = null;
+        if (optionsBuilder_ != null) {
+          optionsBuilder_.dispose();
           optionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ContextPlayerOptions options = 16;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.Builder getOptionsBuilder() {
-        
+        bitField0_ |= 0x00008000;
         onChanged();
         return getOptionsFieldBuilder().getBuilder();
       }
@@ -3127,7 +3219,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptionsOrBuilder> 
           getOptionsFieldBuilder() {
         if (optionsBuilder_ == null) {
-          optionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          optionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptionsOrBuilder>(
                   getOptions(),
                   getParentForChildren(),
                   isClean());
@@ -3144,7 +3237,7 @@ public final class Player {
        * @return Whether the restrictions field is set.
        */
       public boolean hasRestrictions() {
-        return restrictionsBuilder_ != null || restrictions_ != null;
+        return ((bitField0_ & 0x00010000) != 0);
       }
       /**
        * <code>.connectstate.Restrictions restrictions = 17;</code>
@@ -3166,11 +3259,11 @@ public final class Player {
             throw new NullPointerException();
           }
           restrictions_ = value;
-          onChanged();
         } else {
           restrictionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -3180,11 +3273,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder builderForValue) {
         if (restrictionsBuilder_ == null) {
           restrictions_ = builderForValue.build();
-          onChanged();
         } else {
           restrictionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -3192,38 +3285,38 @@ public final class Player {
        */
       public Builder mergeRestrictions(com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions value) {
         if (restrictionsBuilder_ == null) {
-          if (restrictions_ != null) {
-            restrictions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.newBuilder(restrictions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00010000) != 0) &&
+            restrictions_ != null &&
+            restrictions_ != com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance()) {
+            getRestrictionsBuilder().mergeFrom(value);
           } else {
             restrictions_ = value;
           }
-          onChanged();
         } else {
           restrictionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Restrictions restrictions = 17;</code>
        */
       public Builder clearRestrictions() {
-        if (restrictionsBuilder_ == null) {
-          restrictions_ = null;
-          onChanged();
-        } else {
-          restrictions_ = null;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        restrictions_ = null;
+        if (restrictionsBuilder_ != null) {
+          restrictionsBuilder_.dispose();
           restrictionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Restrictions restrictions = 17;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder getRestrictionsBuilder() {
-        
+        bitField0_ |= 0x00010000;
         onChanged();
         return getRestrictionsFieldBuilder().getBuilder();
       }
@@ -3245,7 +3338,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions, com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder> 
           getRestrictionsFieldBuilder() {
         if (restrictionsBuilder_ == null) {
-          restrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          restrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions, com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder>(
                   getRestrictions(),
                   getParentForChildren(),
                   isClean());
@@ -3262,7 +3356,7 @@ public final class Player {
        * @return Whether the suppressions field is set.
        */
       public boolean hasSuppressions() {
-        return suppressionsBuilder_ != null || suppressions_ != null;
+        return ((bitField0_ & 0x00020000) != 0);
       }
       /**
        * <code>.connectstate.Suppressions suppressions = 18;</code>
@@ -3284,11 +3378,11 @@ public final class Player {
             throw new NullPointerException();
           }
           suppressions_ = value;
-          onChanged();
         } else {
           suppressionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00020000;
+        onChanged();
         return this;
       }
       /**
@@ -3298,11 +3392,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.Builder builderForValue) {
         if (suppressionsBuilder_ == null) {
           suppressions_ = builderForValue.build();
-          onChanged();
         } else {
           suppressionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00020000;
+        onChanged();
         return this;
       }
       /**
@@ -3310,38 +3404,38 @@ public final class Player {
        */
       public Builder mergeSuppressions(com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions value) {
         if (suppressionsBuilder_ == null) {
-          if (suppressions_ != null) {
-            suppressions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.newBuilder(suppressions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00020000) != 0) &&
+            suppressions_ != null &&
+            suppressions_ != com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.getDefaultInstance()) {
+            getSuppressionsBuilder().mergeFrom(value);
           } else {
             suppressions_ = value;
           }
-          onChanged();
         } else {
           suppressionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00020000;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Suppressions suppressions = 18;</code>
        */
       public Builder clearSuppressions() {
-        if (suppressionsBuilder_ == null) {
-          suppressions_ = null;
-          onChanged();
-        } else {
-          suppressions_ = null;
+        bitField0_ = (bitField0_ & ~0x00020000);
+        suppressions_ = null;
+        if (suppressionsBuilder_ != null) {
+          suppressionsBuilder_.dispose();
           suppressionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Suppressions suppressions = 18;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.Builder getSuppressionsBuilder() {
-        
+        bitField0_ |= 0x00020000;
         onChanged();
         return getSuppressionsFieldBuilder().getBuilder();
       }
@@ -3363,7 +3457,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions, com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.SuppressionsOrBuilder> 
           getSuppressionsFieldBuilder() {
         if (suppressionsBuilder_ == null) {
-          suppressionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          suppressionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions, com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.SuppressionsOrBuilder>(
                   getSuppressions(),
                   getParentForChildren(),
                   isClean());
@@ -3375,9 +3470,9 @@ public final class Player {
       private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> prevTracks_ =
         java.util.Collections.emptyList();
       private void ensurePrevTracksIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          prevTracks_ = new java.util.ArrayList<>(prevTracks_);
-          bitField0_ |= 0x00000001;
+        if (!((bitField0_ & 0x00040000) != 0)) {
+          prevTracks_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack>(prevTracks_);
+          bitField0_ |= 0x00040000;
          }
       }
 
@@ -3527,7 +3622,7 @@ public final class Player {
       public Builder clearPrevTracks() {
         if (prevTracksBuilder_ == null) {
           prevTracks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00040000);
           onChanged();
         } else {
           prevTracksBuilder_.clear();
@@ -3601,9 +3696,10 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
           getPrevTracksFieldBuilder() {
         if (prevTracksBuilder_ == null) {
-          prevTracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          prevTracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder>(
                   prevTracks_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00040000) != 0),
                   getParentForChildren(),
                   isClean());
           prevTracks_ = null;
@@ -3614,9 +3710,9 @@ public final class Player {
       private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> nextTracks_ =
         java.util.Collections.emptyList();
       private void ensureNextTracksIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          nextTracks_ = new java.util.ArrayList<>(nextTracks_);
-          bitField0_ |= 0x00000002;
+        if (!((bitField0_ & 0x00080000) != 0)) {
+          nextTracks_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack>(nextTracks_);
+          bitField0_ |= 0x00080000;
          }
       }
 
@@ -3766,7 +3862,7 @@ public final class Player {
       public Builder clearNextTracks() {
         if (nextTracksBuilder_ == null) {
           nextTracks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00080000);
           onChanged();
         } else {
           nextTracksBuilder_.clear();
@@ -3840,9 +3936,10 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
           getNextTracksFieldBuilder() {
         if (nextTracksBuilder_ == null) {
-          nextTracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          nextTracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder>(
                   nextTracks_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  ((bitField0_ & 0x00080000) != 0),
                   getParentForChildren(),
                   isClean());
           nextTracks_ = null;
@@ -3853,7 +3950,7 @@ public final class Player {
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> contextMetadata_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetContextMetadata() {
+          internalGetContextMetadata() {
         if (contextMetadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               ContextMetadataDefaultEntryHolder.defaultEntry);
@@ -3861,8 +3958,7 @@ public final class Player {
         return contextMetadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableContextMetadata() {
-        onChanged();
+          internalGetMutableContextMetadata() {
         if (contextMetadata_ == null) {
           contextMetadata_ = com.google.protobuf.MapField.newMapField(
               ContextMetadataDefaultEntryHolder.defaultEntry);
@@ -3870,24 +3966,26 @@ public final class Player {
         if (!contextMetadata_.isMutable()) {
           contextMetadata_ = contextMetadata_.copy();
         }
+        bitField0_ |= 0x00100000;
+        onChanged();
         return contextMetadata_;
       }
-
       public int getContextMetadataCount() {
         return internalGetContextMetadata().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; context_metadata = 21;</code>
        */
-
+      @java.lang.Override
       public boolean containsContextMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetContextMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getContextMetadataMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getContextMetadata() {
         return getContextMetadataMap();
@@ -3895,29 +3993,31 @@ public final class Player {
       /**
        * <code>map&lt;string, string&gt; context_metadata = 21;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getContextMetadataMap() {
         return internalGetContextMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; context_metadata = 21;</code>
        */
-
-      public java.lang.String getContextMetadataOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getContextMetadataOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetContextMetadata().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; context_metadata = 21;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getContextMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetContextMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -3925,8 +4025,8 @@ public final class Player {
         }
         return map.get(key);
       }
-
       public Builder clearContextMetadata() {
+        bitField0_ = (bitField0_ & ~0x00100000);
         internalGetMutableContextMetadata().getMutableMap()
             .clear();
         return this;
@@ -3934,10 +4034,9 @@ public final class Player {
       /**
        * <code>map&lt;string, string&gt; context_metadata = 21;</code>
        */
-
       public Builder removeContextMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableContextMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -3947,7 +4046,8 @@ public final class Player {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutableContextMetadata() {
+          getMutableContextMetadata() {
+        bitField0_ |= 0x00100000;
         return internalGetMutableContextMetadata().getMutableMap();
       }
       /**
@@ -3956,27 +4056,28 @@ public final class Player {
       public Builder putContextMetadata(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableContextMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00100000;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; context_metadata = 21;</code>
        */
-
       public Builder putAllContextMetadata(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableContextMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00100000;
         return this;
       }
 
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> pageMetadata_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetPageMetadata() {
+          internalGetPageMetadata() {
         if (pageMetadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               PageMetadataDefaultEntryHolder.defaultEntry);
@@ -3984,8 +4085,7 @@ public final class Player {
         return pageMetadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutablePageMetadata() {
-        onChanged();
+          internalGetMutablePageMetadata() {
         if (pageMetadata_ == null) {
           pageMetadata_ = com.google.protobuf.MapField.newMapField(
               PageMetadataDefaultEntryHolder.defaultEntry);
@@ -3993,24 +4093,26 @@ public final class Player {
         if (!pageMetadata_.isMutable()) {
           pageMetadata_ = pageMetadata_.copy();
         }
+        bitField0_ |= 0x00200000;
+        onChanged();
         return pageMetadata_;
       }
-
       public int getPageMetadataCount() {
         return internalGetPageMetadata().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; page_metadata = 22;</code>
        */
-
+      @java.lang.Override
       public boolean containsPageMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetPageMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getPageMetadataMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getPageMetadata() {
         return getPageMetadataMap();
@@ -4018,29 +4120,31 @@ public final class Player {
       /**
        * <code>map&lt;string, string&gt; page_metadata = 22;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getPageMetadataMap() {
         return internalGetPageMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; page_metadata = 22;</code>
        */
-
-      public java.lang.String getPageMetadataOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getPageMetadataOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetPageMetadata().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; page_metadata = 22;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getPageMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetPageMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -4048,8 +4152,8 @@ public final class Player {
         }
         return map.get(key);
       }
-
       public Builder clearPageMetadata() {
+        bitField0_ = (bitField0_ & ~0x00200000);
         internalGetMutablePageMetadata().getMutableMap()
             .clear();
         return this;
@@ -4057,10 +4161,9 @@ public final class Player {
       /**
        * <code>map&lt;string, string&gt; page_metadata = 22;</code>
        */
-
       public Builder removePageMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutablePageMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -4070,7 +4173,8 @@ public final class Player {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutablePageMetadata() {
+          getMutablePageMetadata() {
+        bitField0_ |= 0x00200000;
         return internalGetMutablePageMetadata().getMutableMap();
       }
       /**
@@ -4079,20 +4183,21 @@ public final class Player {
       public Builder putPageMetadata(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutablePageMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00200000;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; page_metadata = 22;</code>
        */
-
       public Builder putAllPageMetadata(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutablePageMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00200000;
         return this;
       }
 
@@ -4137,11 +4242,9 @@ public final class Player {
        */
       public Builder setSessionId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         sessionId_ = value;
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
@@ -4150,8 +4253,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearSessionId() {
-        
         sessionId_ = getDefaultInstance().getSessionId();
+        bitField0_ = (bitField0_ & ~0x00400000);
         onChanged();
         return this;
       }
@@ -4162,12 +4265,10 @@ public final class Player {
        */
       public Builder setSessionIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         sessionId_ = value;
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
@@ -4213,11 +4314,9 @@ public final class Player {
        */
       public Builder setQueueRevision(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         queueRevision_ = value;
+        bitField0_ |= 0x00800000;
         onChanged();
         return this;
       }
@@ -4226,8 +4325,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearQueueRevision() {
-        
         queueRevision_ = getDefaultInstance().getQueueRevision();
+        bitField0_ = (bitField0_ & ~0x00800000);
         onChanged();
         return this;
       }
@@ -4238,12 +4337,10 @@ public final class Player {
        */
       public Builder setQueueRevisionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         queueRevision_ = value;
+        bitField0_ |= 0x00800000;
         onChanged();
         return this;
       }
@@ -4253,6 +4350,7 @@ public final class Player {
        * <code>int64 position = 25;</code>
        * @return The position.
        */
+      @java.lang.Override
       public long getPosition() {
         return position_;
       }
@@ -4262,8 +4360,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setPosition(long value) {
-        
+
         position_ = value;
+        bitField0_ |= 0x01000000;
         onChanged();
         return this;
       }
@@ -4272,7 +4371,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearPosition() {
-        
+        bitField0_ = (bitField0_ & ~0x01000000);
         position_ = 0L;
         onChanged();
         return this;
@@ -4319,11 +4418,9 @@ public final class Player {
        */
       public Builder setEntityUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         entityUri_ = value;
+        bitField0_ |= 0x02000000;
         onChanged();
         return this;
       }
@@ -4332,8 +4429,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearEntityUri() {
-        
         entityUri_ = getDefaultInstance().getEntityUri();
+        bitField0_ = (bitField0_ & ~0x02000000);
         onChanged();
         return this;
       }
@@ -4344,12 +4441,10 @@ public final class Player {
        */
       public Builder setEntityUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         entityUri_ = value;
+        bitField0_ |= 0x02000000;
         onChanged();
         return this;
       }
@@ -4357,9 +4452,9 @@ public final class Player {
       private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> reverse_ =
         java.util.Collections.emptyList();
       private void ensureReverseIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
-          reverse_ = new java.util.ArrayList<>(reverse_);
-          bitField0_ |= 0x00000010;
+        if (!((bitField0_ & 0x04000000) != 0)) {
+          reverse_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack>(reverse_);
+          bitField0_ |= 0x04000000;
          }
       }
 
@@ -4509,7 +4604,7 @@ public final class Player {
       public Builder clearReverse() {
         if (reverseBuilder_ == null) {
           reverse_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x04000000);
           onChanged();
         } else {
           reverseBuilder_.clear();
@@ -4583,9 +4678,10 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
           getReverseFieldBuilder() {
         if (reverseBuilder_ == null) {
-          reverseBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          reverseBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder>(
                   reverse_,
-                  ((bitField0_ & 0x00000010) != 0),
+                  ((bitField0_ & 0x04000000) != 0),
                   getParentForChildren(),
                   isClean());
           reverse_ = null;
@@ -4596,9 +4692,9 @@ public final class Player {
       private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack> future_ =
         java.util.Collections.emptyList();
       private void ensureFutureIsMutable() {
-        if ((bitField0_ & 0x00000020) == 0) {
-          future_ = new java.util.ArrayList<>(future_);
-          bitField0_ |= 0x00000020;
+        if (!((bitField0_ & 0x08000000) != 0)) {
+          future_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack>(future_);
+          bitField0_ |= 0x08000000;
          }
       }
 
@@ -4748,7 +4844,7 @@ public final class Player {
       public Builder clearFuture() {
         if (futureBuilder_ == null) {
           future_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x08000000);
           onChanged();
         } else {
           futureBuilder_.clear();
@@ -4822,9 +4918,10 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder> 
           getFutureFieldBuilder() {
         if (futureBuilder_ == null) {
-          futureBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          futureBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder>(
                   future_,
-                  ((bitField0_ & 0x00000020) != 0),
+                  ((bitField0_ & 0x08000000) != 0),
                   getParentForChildren(),
                   isClean());
           future_ = null;
@@ -4840,7 +4937,7 @@ public final class Player {
        * @return Whether the playbackQuality field is set.
        */
       public boolean hasPlaybackQuality() {
-        return playbackQualityBuilder_ != null || playbackQuality_ != null;
+        return ((bitField0_ & 0x10000000) != 0);
       }
       /**
        * <code>.connectstate.PlaybackQuality playback_quality = 32;</code>
@@ -4862,11 +4959,11 @@ public final class Player {
             throw new NullPointerException();
           }
           playbackQuality_ = value;
-          onChanged();
         } else {
           playbackQualityBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x10000000;
+        onChanged();
         return this;
       }
       /**
@@ -4876,11 +4973,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.Builder builderForValue) {
         if (playbackQualityBuilder_ == null) {
           playbackQuality_ = builderForValue.build();
-          onChanged();
         } else {
           playbackQualityBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x10000000;
+        onChanged();
         return this;
       }
       /**
@@ -4888,38 +4985,38 @@ public final class Player {
        */
       public Builder mergePlaybackQuality(com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality value) {
         if (playbackQualityBuilder_ == null) {
-          if (playbackQuality_ != null) {
-            playbackQuality_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.newBuilder(playbackQuality_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x10000000) != 0) &&
+            playbackQuality_ != null &&
+            playbackQuality_ != com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.getDefaultInstance()) {
+            getPlaybackQualityBuilder().mergeFrom(value);
           } else {
             playbackQuality_ = value;
           }
-          onChanged();
         } else {
           playbackQualityBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x10000000;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlaybackQuality playback_quality = 32;</code>
        */
       public Builder clearPlaybackQuality() {
-        if (playbackQualityBuilder_ == null) {
-          playbackQuality_ = null;
-          onChanged();
-        } else {
-          playbackQuality_ = null;
+        bitField0_ = (bitField0_ & ~0x10000000);
+        playbackQuality_ = null;
+        if (playbackQualityBuilder_ != null) {
+          playbackQualityBuilder_.dispose();
           playbackQualityBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlaybackQuality playback_quality = 32;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.Builder getPlaybackQualityBuilder() {
-        
+        bitField0_ |= 0x10000000;
         onChanged();
         return getPlaybackQualityFieldBuilder().getBuilder();
       }
@@ -4941,7 +5038,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality, com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQualityOrBuilder> 
           getPlaybackQualityFieldBuilder() {
         if (playbackQualityBuilder_ == null) {
-          playbackQualityBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          playbackQualityBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality, com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQualityOrBuilder>(
                   getPlaybackQuality(),
                   getParentForChildren(),
                   isClean());
@@ -4950,13 +5048,13 @@ public final class Player {
         return playbackQualityBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4987,10 +5085,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5063,14 +5162,14 @@ public final class Player {
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
-    java.lang.String getMetadataOrDefault(
+    /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
     java.lang.String getMetadataOrThrow(
         java.lang.String key);
 
@@ -5228,7 +5327,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.ProvidedTrack}
    */
-  public  static final class ProvidedTrack extends
+  public static final class ProvidedTrack extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.ProvidedTrack)
       ProvidedTrackOrBuilder {
@@ -5240,13 +5339,17 @@ public final class Player {
     private ProvidedTrack() {
       uri_ = "";
       uid_ = "";
-      removed_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      blocked_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      removed_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      blocked_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       provider_ = "";
       albumUri_ = "";
-      disallowReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      disallowReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       artistUri_ = "";
-      disallowUndecided_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      disallowUndecided_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -5256,12 +5359,7 @@ public final class Player {
       return new ProvidedTrack();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ProvidedTrack_descriptor;
     }
@@ -5270,11 +5368,13 @@ public final class Player {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-        if (number == 3) {
-            return internalGetMetadata();
-        }
-        throw new RuntimeException(
-                "Invalid map field number: " + number);
+      switch (number) {
+        case 3:
+          return internalGetMetadata();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5285,11 +5385,13 @@ public final class Player {
     }
 
     public static final int URI_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>string uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -5306,6 +5408,7 @@ public final class Player {
      * <code>string uri = 1;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -5321,11 +5424,13 @@ public final class Player {
     }
 
     public static final int UID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object uid_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uid_ = "";
     /**
      * <code>string uid = 2;</code>
      * @return The uid.
      */
+    @java.lang.Override
     public java.lang.String getUid() {
       java.lang.Object ref = uid_;
       if (ref instanceof java.lang.String) {
@@ -5342,6 +5447,7 @@ public final class Player {
      * <code>string uid = 2;</code>
      * @return The bytes for uid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUidBytes() {
       java.lang.Object ref = uid_;
@@ -5361,13 +5467,14 @@ public final class Player {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ProvidedTrack_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> metadata_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -5378,22 +5485,22 @@ public final class Player {
       }
       return metadata_;
     }
-
     public int getMetadataCount() {
       return internalGetMetadata().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
+    @java.lang.Override
     public boolean containsMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getMetadataMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
       return getMetadataMap();
@@ -5401,29 +5508,31 @@ public final class Player {
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
       return internalGetMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
-    public java.lang.String getMetadataOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -5433,7 +5542,9 @@ public final class Player {
     }
 
     public static final int REMOVED_FIELD_NUMBER = 4;
-    private com.google.protobuf.LazyStringList removed_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList removed_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string removed = 4;</code>
      * @return A list containing the removed.
@@ -5468,7 +5579,9 @@ public final class Player {
     }
 
     public static final int BLOCKED_FIELD_NUMBER = 5;
-    private com.google.protobuf.LazyStringList blocked_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList blocked_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string blocked = 5;</code>
      * @return A list containing the blocked.
@@ -5503,11 +5616,13 @@ public final class Player {
     }
 
     public static final int PROVIDER_FIELD_NUMBER = 6;
-    private volatile java.lang.Object provider_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object provider_ = "";
     /**
      * <code>string provider = 6;</code>
      * @return The provider.
      */
+    @java.lang.Override
     public java.lang.String getProvider() {
       java.lang.Object ref = provider_;
       if (ref instanceof java.lang.String) {
@@ -5524,6 +5639,7 @@ public final class Player {
      * <code>string provider = 6;</code>
      * @return The bytes for provider.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getProviderBytes() {
       java.lang.Object ref = provider_;
@@ -5544,6 +5660,7 @@ public final class Player {
      * <code>.connectstate.Restrictions restrictions = 7;</code>
      * @return Whether the restrictions field is set.
      */
+    @java.lang.Override
     public boolean hasRestrictions() {
       return restrictions_ != null;
     }
@@ -5551,22 +5668,26 @@ public final class Player {
      * <code>.connectstate.Restrictions restrictions = 7;</code>
      * @return The restrictions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions getRestrictions() {
       return restrictions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance() : restrictions_;
     }
     /**
      * <code>.connectstate.Restrictions restrictions = 7;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder getRestrictionsOrBuilder() {
-      return getRestrictions();
+      return restrictions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance() : restrictions_;
     }
 
     public static final int ALBUM_URI_FIELD_NUMBER = 8;
-    private volatile java.lang.Object albumUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object albumUri_ = "";
     /**
      * <code>string album_uri = 8;</code>
      * @return The albumUri.
      */
+    @java.lang.Override
     public java.lang.String getAlbumUri() {
       java.lang.Object ref = albumUri_;
       if (ref instanceof java.lang.String) {
@@ -5583,6 +5704,7 @@ public final class Player {
      * <code>string album_uri = 8;</code>
      * @return The bytes for albumUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAlbumUriBytes() {
       java.lang.Object ref = albumUri_;
@@ -5598,7 +5720,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_REASONS_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList disallowReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_reasons = 9;</code>
      * @return A list containing the disallowReasons.
@@ -5633,11 +5757,13 @@ public final class Player {
     }
 
     public static final int ARTIST_URI_FIELD_NUMBER = 10;
-    private volatile java.lang.Object artistUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object artistUri_ = "";
     /**
      * <code>string artist_uri = 10;</code>
      * @return The artistUri.
      */
+    @java.lang.Override
     public java.lang.String getArtistUri() {
       java.lang.Object ref = artistUri_;
       if (ref instanceof java.lang.String) {
@@ -5654,6 +5780,7 @@ public final class Player {
      * <code>string artist_uri = 10;</code>
      * @return The bytes for artistUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getArtistUriBytes() {
       java.lang.Object ref = artistUri_;
@@ -5669,7 +5796,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_UNDECIDED_FIELD_NUMBER = 11;
-    private com.google.protobuf.LazyStringList disallowUndecided_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowUndecided_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_undecided = 11;</code>
      * @return A list containing the disallowUndecided.
@@ -5747,11 +5876,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5790,7 +5921,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.ProvidedTrack}
@@ -5799,7 +5931,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ProvidedTrack)
         com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrackOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ProvidedTrack_descriptor;
       }
@@ -5807,20 +5939,24 @@ public final class Player {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-          if (number == 3) {
-              return internalGetMetadata();
-          }
-          throw new RuntimeException(
-                  "Invalid map field number: " + number);
+        switch (number) {
+          case 3:
+            return internalGetMetadata();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-          if (number == 3) {
-              return internalGetMutableMetadata();
-          }
-          throw new RuntimeException(
-                  "Invalid map field number: " + number);
+        switch (number) {
+          case 3:
+            return internalGetMutableMetadata();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5832,44 +5968,37 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = "";
-
         uid_ = "";
-
         internalGetMutableMetadata().clear();
-        removed_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        blocked_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        removed_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        blocked_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         provider_ = "";
-
-        if (restrictionsBuilder_ == null) {
-          restrictions_ = null;
-        } else {
-          restrictions_ = null;
+        restrictions_ = null;
+        if (restrictionsBuilder_ != null) {
+          restrictionsBuilder_.dispose();
           restrictionsBuilder_ = null;
         }
         albumUri_ = "";
-
-        disallowReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        disallowReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         artistUri_ = "";
-
-        disallowUndecided_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        disallowUndecided_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -5896,75 +6025,55 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack result = new com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack(this);
-        int from_bitField0_ = bitField0_;
-        result.uri_ = uri_;
-        result.uid_ = uid_;
-        result.metadata_ = internalGetMetadata();
-        result.metadata_.makeImmutable();
-        if (((bitField0_ & 0x00000002) != 0)) {
-          removed_ = removed_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.removed_ = removed_;
-        if (((bitField0_ & 0x00000004) != 0)) {
-          blocked_ = blocked_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.blocked_ = blocked_;
-        result.provider_ = provider_;
-        if (restrictionsBuilder_ == null) {
-          result.restrictions_ = restrictions_;
-        } else {
-          result.restrictions_ = restrictionsBuilder_.build();
-        }
-        result.albumUri_ = albumUri_;
-        if (((bitField0_ & 0x00000008) != 0)) {
-          disallowReasons_ = disallowReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000008);
-        }
-        result.disallowReasons_ = disallowReasons_;
-        result.artistUri_ = artistUri_;
-        if (((bitField0_ & 0x00000010) != 0)) {
-          disallowUndecided_ = disallowUndecided_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.disallowUndecided_ = disallowUndecided_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.ProvidedTrack result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.uid_ = uid_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.metadata_ = internalGetMetadata();
+          result.metadata_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          removed_.makeImmutable();
+          result.removed_ = removed_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          blocked_.makeImmutable();
+          result.blocked_ = blocked_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.provider_ = provider_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.restrictions_ = restrictionsBuilder_ == null
+              ? restrictions_
+              : restrictionsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.albumUri_ = albumUri_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          disallowReasons_.makeImmutable();
+          result.disallowReasons_ = disallowReasons_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.artistUri_ = artistUri_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          disallowUndecided_.makeImmutable();
+          result.disallowUndecided_ = disallowUndecided_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object uri_ = "";
@@ -6008,11 +6117,9 @@ public final class Player {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6021,8 +6128,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -6033,12 +6140,10 @@ public final class Player {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6084,11 +6189,9 @@ public final class Player {
        */
       public Builder setUid(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         uid_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6097,8 +6200,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearUid() {
-        
         uid_ = getDefaultInstance().getUid();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -6109,12 +6212,10 @@ public final class Player {
        */
       public Builder setUidBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         uid_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6122,7 +6223,7 @@ public final class Player {
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> metadata_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMetadata() {
+          internalGetMetadata() {
         if (metadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -6130,8 +6231,7 @@ public final class Player {
         return metadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableMetadata() {
-        onChanged();
+          internalGetMutableMetadata() {
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -6139,24 +6239,26 @@ public final class Player {
         if (!metadata_.isMutable()) {
           metadata_ = metadata_.copy();
         }
+        bitField0_ |= 0x00000004;
+        onChanged();
         return metadata_;
       }
-
       public int getMetadataCount() {
         return internalGetMetadata().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
+      @java.lang.Override
       public boolean containsMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getMetadataMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
         return getMetadataMap();
@@ -6164,29 +6266,31 @@ public final class Player {
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
         return internalGetMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
-      public java.lang.String getMetadataOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getMetadataOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -6194,8 +6298,8 @@ public final class Player {
         }
         return map.get(key);
       }
-
       public Builder clearMetadata() {
+        bitField0_ = (bitField0_ & ~0x00000004);
         internalGetMutableMetadata().getMutableMap()
             .clear();
         return this;
@@ -6203,10 +6307,9 @@ public final class Player {
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
       public Builder removeMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -6216,7 +6319,8 @@ public final class Player {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutableMetadata() {
+          getMutableMetadata() {
+        bitField0_ |= 0x00000004;
         return internalGetMutableMetadata().getMutableMap();
       }
       /**
@@ -6225,30 +6329,31 @@ public final class Player {
       public Builder putMetadata(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
       public Builder putAllMetadata(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000004;
         return this;
       }
 
-      private com.google.protobuf.LazyStringList removed_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList removed_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureRemovedIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
+        if (!removed_.isModifiable()) {
           removed_ = new com.google.protobuf.LazyStringArrayList(removed_);
-          bitField0_ |= 0x00000002;
-         }
+        }
+        bitField0_ |= 0x00000008;
       }
       /**
        * <code>repeated string removed = 4;</code>
@@ -6256,7 +6361,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getRemovedList() {
-        return removed_.getUnmodifiableView();
+        removed_.makeImmutable();
+        return removed_;
       }
       /**
        * <code>repeated string removed = 4;</code>
@@ -6290,11 +6396,10 @@ public final class Player {
        */
       public Builder setRemoved(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRemovedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureRemovedIsMutable();
         removed_.set(index, value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -6305,11 +6410,10 @@ public final class Player {
        */
       public Builder addRemoved(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRemovedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureRemovedIsMutable();
         removed_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -6323,6 +6427,7 @@ public final class Player {
         ensureRemovedIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, removed_);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -6331,8 +6436,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearRemoved() {
-        removed_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        removed_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);;
         onChanged();
         return this;
       }
@@ -6343,23 +6449,22 @@ public final class Player {
        */
       public Builder addRemovedBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureRemovedIsMutable();
         removed_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList blocked_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList blocked_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureBlockedIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
+        if (!blocked_.isModifiable()) {
           blocked_ = new com.google.protobuf.LazyStringArrayList(blocked_);
-          bitField0_ |= 0x00000004;
-         }
+        }
+        bitField0_ |= 0x00000010;
       }
       /**
        * <code>repeated string blocked = 5;</code>
@@ -6367,7 +6472,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getBlockedList() {
-        return blocked_.getUnmodifiableView();
+        blocked_.makeImmutable();
+        return blocked_;
       }
       /**
        * <code>repeated string blocked = 5;</code>
@@ -6401,11 +6507,10 @@ public final class Player {
        */
       public Builder setBlocked(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureBlockedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureBlockedIsMutable();
         blocked_.set(index, value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -6416,11 +6521,10 @@ public final class Player {
        */
       public Builder addBlocked(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureBlockedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureBlockedIsMutable();
         blocked_.add(value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -6434,6 +6538,7 @@ public final class Player {
         ensureBlockedIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, blocked_);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -6442,8 +6547,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearBlocked() {
-        blocked_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        blocked_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);;
         onChanged();
         return this;
       }
@@ -6454,12 +6560,11 @@ public final class Player {
        */
       public Builder addBlockedBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureBlockedIsMutable();
         blocked_.add(value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -6505,11 +6610,9 @@ public final class Player {
        */
       public Builder setProvider(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         provider_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -6518,8 +6621,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearProvider() {
-        
         provider_ = getDefaultInstance().getProvider();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -6530,12 +6633,10 @@ public final class Player {
        */
       public Builder setProviderBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         provider_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -6548,7 +6649,7 @@ public final class Player {
        * @return Whether the restrictions field is set.
        */
       public boolean hasRestrictions() {
-        return restrictionsBuilder_ != null || restrictions_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <code>.connectstate.Restrictions restrictions = 7;</code>
@@ -6570,11 +6671,11 @@ public final class Player {
             throw new NullPointerException();
           }
           restrictions_ = value;
-          onChanged();
         } else {
           restrictionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -6584,11 +6685,11 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder builderForValue) {
         if (restrictionsBuilder_ == null) {
           restrictions_ = builderForValue.build();
-          onChanged();
         } else {
           restrictionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -6596,38 +6697,38 @@ public final class Player {
        */
       public Builder mergeRestrictions(com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions value) {
         if (restrictionsBuilder_ == null) {
-          if (restrictions_ != null) {
-            restrictions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.newBuilder(restrictions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            restrictions_ != null &&
+            restrictions_ != com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.getDefaultInstance()) {
+            getRestrictionsBuilder().mergeFrom(value);
           } else {
             restrictions_ = value;
           }
-          onChanged();
         } else {
           restrictionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Restrictions restrictions = 7;</code>
        */
       public Builder clearRestrictions() {
-        if (restrictionsBuilder_ == null) {
-          restrictions_ = null;
-          onChanged();
-        } else {
-          restrictions_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        restrictions_ = null;
+        if (restrictionsBuilder_ != null) {
+          restrictionsBuilder_.dispose();
           restrictionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Restrictions restrictions = 7;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder getRestrictionsBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getRestrictionsFieldBuilder().getBuilder();
       }
@@ -6649,7 +6750,8 @@ public final class Player {
           com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions, com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder> 
           getRestrictionsFieldBuilder() {
         if (restrictionsBuilder_ == null) {
-          restrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          restrictionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions, com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder>(
                   getRestrictions(),
                   getParentForChildren(),
                   isClean());
@@ -6699,11 +6801,9 @@ public final class Player {
        */
       public Builder setAlbumUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         albumUri_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -6712,8 +6812,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearAlbumUri() {
-        
         albumUri_ = getDefaultInstance().getAlbumUri();
+        bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
       }
@@ -6724,23 +6824,21 @@ public final class Player {
        */
       public Builder setAlbumUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         albumUri_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowReasonsIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
+        if (!disallowReasons_.isModifiable()) {
           disallowReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReasons_);
-          bitField0_ |= 0x00000008;
-         }
+        }
+        bitField0_ |= 0x00000100;
       }
       /**
        * <code>repeated string disallow_reasons = 9;</code>
@@ -6748,7 +6846,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowReasonsList() {
-        return disallowReasons_.getUnmodifiableView();
+        disallowReasons_.makeImmutable();
+        return disallowReasons_;
       }
       /**
        * <code>repeated string disallow_reasons = 9;</code>
@@ -6782,11 +6881,10 @@ public final class Player {
        */
       public Builder setDisallowReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReasonsIsMutable();
         disallowReasons_.set(index, value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -6797,11 +6895,10 @@ public final class Player {
        */
       public Builder addDisallowReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReasonsIsMutable();
         disallowReasons_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -6815,6 +6912,7 @@ public final class Player {
         ensureDisallowReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowReasons_);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -6823,8 +6921,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowReasons() {
-        disallowReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        disallowReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000100);;
         onChanged();
         return this;
       }
@@ -6835,12 +6934,11 @@ public final class Player {
        */
       public Builder addDisallowReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowReasonsIsMutable();
         disallowReasons_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -6886,11 +6984,9 @@ public final class Player {
        */
       public Builder setArtistUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         artistUri_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -6899,8 +6995,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearArtistUri() {
-        
         artistUri_ = getDefaultInstance().getArtistUri();
+        bitField0_ = (bitField0_ & ~0x00000200);
         onChanged();
         return this;
       }
@@ -6911,23 +7007,21 @@ public final class Player {
        */
       public Builder setArtistUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         artistUri_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowUndecided_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowUndecided_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowUndecidedIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
+        if (!disallowUndecided_.isModifiable()) {
           disallowUndecided_ = new com.google.protobuf.LazyStringArrayList(disallowUndecided_);
-          bitField0_ |= 0x00000010;
-         }
+        }
+        bitField0_ |= 0x00000400;
       }
       /**
        * <code>repeated string disallow_undecided = 11;</code>
@@ -6935,7 +7029,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowUndecidedList() {
-        return disallowUndecided_.getUnmodifiableView();
+        disallowUndecided_.makeImmutable();
+        return disallowUndecided_;
       }
       /**
        * <code>repeated string disallow_undecided = 11;</code>
@@ -6969,11 +7064,10 @@ public final class Player {
        */
       public Builder setDisallowUndecided(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUndecidedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUndecidedIsMutable();
         disallowUndecided_.set(index, value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -6984,11 +7078,10 @@ public final class Player {
        */
       public Builder addDisallowUndecided(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUndecidedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUndecidedIsMutable();
         disallowUndecided_.add(value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -7002,6 +7095,7 @@ public final class Player {
         ensureDisallowUndecidedIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowUndecided_);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -7010,8 +7104,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowUndecided() {
-        disallowUndecided_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        disallowUndecided_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000400);;
         onChanged();
         return this;
       }
@@ -7022,23 +7117,22 @@ public final class Player {
        */
       public Builder addDisallowUndecidedBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowUndecidedIsMutable();
         disallowUndecided_.add(value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7069,10 +7163,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -7113,7 +7208,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.ContextIndex}
    */
-  public  static final class ContextIndex extends
+  public static final class ContextIndex extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.ContextIndex)
       ContextIndexOrBuilder {
@@ -7132,12 +7227,7 @@ public final class Player {
       return new ContextIndex();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ContextIndex_descriptor;
     }
@@ -7151,21 +7241,23 @@ public final class Player {
     }
 
     public static final int PAGE_FIELD_NUMBER = 1;
-    private int page_;
+    private int page_ = 0;
     /**
      * <code>uint32 page = 1;</code>
      * @return The page.
      */
+    @java.lang.Override
     public int getPage() {
       return page_;
     }
 
     public static final int TRACK_FIELD_NUMBER = 2;
-    private int track_;
+    private int track_ = 0;
     /**
      * <code>uint32 track = 2;</code>
      * @return The track.
      */
+    @java.lang.Override
     public int getTrack() {
       return track_;
     }
@@ -7214,11 +7306,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7257,7 +7351,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.ContextIndex}
@@ -7266,7 +7361,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ContextIndex)
         com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndexOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ContextIndex_descriptor;
       }
@@ -7281,23 +7376,20 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         page_ = 0;
-
         track_ = 0;
-
         return this;
       }
 
@@ -7324,50 +7416,29 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex result = new com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex(this);
-        result.page_ = page_;
-        result.track_ = track_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.ContextIndex result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.page_ = page_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.track_ = track_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private int page_ ;
       /**
        * <code>uint32 page = 1;</code>
        * @return The page.
        */
+      @java.lang.Override
       public int getPage() {
         return page_;
       }
@@ -7377,8 +7448,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setPage(int value) {
-        
+
         page_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7387,7 +7459,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearPage() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         page_ = 0;
         onChanged();
         return this;
@@ -7398,6 +7470,7 @@ public final class Player {
        * <code>uint32 track = 2;</code>
        * @return The track.
        */
+      @java.lang.Override
       public int getTrack() {
         return track_;
       }
@@ -7407,8 +7480,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setTrack(int value) {
-        
+
         track_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7417,19 +7491,19 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearTrack() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         track_ = 0;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7460,10 +7534,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -8067,7 +8142,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.Restrictions}
    */
-  public  static final class Restrictions extends
+  public static final class Restrictions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.Restrictions)
       RestrictionsOrBuilder {
@@ -8077,29 +8152,52 @@ public final class Player {
       super(builder);
     }
     private Restrictions() {
-      disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowPlayingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      disallowStoppingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      disallowPausingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowResumingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSeekingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowPeekingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowPeekingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSkippingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSkippingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTogglingRepeatContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTogglingRepeatTrackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTogglingShuffleReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSetQueueReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowInterruptingPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTransferringPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowRemoteControlReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowInsertingIntoNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowInsertingIntoContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowReorderingInNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowReorderingInContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowRemovingFromNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowRemovingFromContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowUpdatingContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowPlayingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowStoppingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -8109,12 +8207,7 @@ public final class Player {
       return new Restrictions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_Restrictions_descriptor;
     }
@@ -8128,7 +8221,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_PAUSING_REASONS_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList disallowPausingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPausingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_pausing_reasons = 1;</code>
      * @return A list containing the disallowPausingReasons.
@@ -8163,7 +8258,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_RESUMING_REASONS_FIELD_NUMBER = 2;
-    private com.google.protobuf.LazyStringList disallowResumingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowResumingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_resuming_reasons = 2;</code>
      * @return A list containing the disallowResumingReasons.
@@ -8198,7 +8295,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_SEEKING_REASONS_FIELD_NUMBER = 3;
-    private com.google.protobuf.LazyStringList disallowSeekingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSeekingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_seeking_reasons = 3;</code>
      * @return A list containing the disallowSeekingReasons.
@@ -8233,7 +8332,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_PEEKING_PREV_REASONS_FIELD_NUMBER = 4;
-    private com.google.protobuf.LazyStringList disallowPeekingPrevReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPeekingPrevReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_peeking_prev_reasons = 4;</code>
      * @return A list containing the disallowPeekingPrevReasons.
@@ -8268,7 +8369,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_PEEKING_NEXT_REASONS_FIELD_NUMBER = 5;
-    private com.google.protobuf.LazyStringList disallowPeekingNextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPeekingNextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_peeking_next_reasons = 5;</code>
      * @return A list containing the disallowPeekingNextReasons.
@@ -8303,7 +8406,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_SKIPPING_PREV_REASONS_FIELD_NUMBER = 6;
-    private com.google.protobuf.LazyStringList disallowSkippingPrevReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSkippingPrevReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_skipping_prev_reasons = 6;</code>
      * @return A list containing the disallowSkippingPrevReasons.
@@ -8338,7 +8443,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_SKIPPING_NEXT_REASONS_FIELD_NUMBER = 7;
-    private com.google.protobuf.LazyStringList disallowSkippingNextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSkippingNextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_skipping_next_reasons = 7;</code>
      * @return A list containing the disallowSkippingNextReasons.
@@ -8373,7 +8480,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_TOGGLING_REPEAT_CONTEXT_REASONS_FIELD_NUMBER = 8;
-    private com.google.protobuf.LazyStringList disallowTogglingRepeatContextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatContextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_toggling_repeat_context_reasons = 8;</code>
      * @return A list containing the disallowTogglingRepeatContextReasons.
@@ -8408,7 +8517,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_TOGGLING_REPEAT_TRACK_REASONS_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList disallowTogglingRepeatTrackReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatTrackReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_toggling_repeat_track_reasons = 9;</code>
      * @return A list containing the disallowTogglingRepeatTrackReasons.
@@ -8443,7 +8554,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_TOGGLING_SHUFFLE_REASONS_FIELD_NUMBER = 10;
-    private com.google.protobuf.LazyStringList disallowTogglingShuffleReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTogglingShuffleReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_toggling_shuffle_reasons = 10;</code>
      * @return A list containing the disallowTogglingShuffleReasons.
@@ -8478,7 +8591,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_SET_QUEUE_REASONS_FIELD_NUMBER = 11;
-    private com.google.protobuf.LazyStringList disallowSetQueueReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSetQueueReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_set_queue_reasons = 11;</code>
      * @return A list containing the disallowSetQueueReasons.
@@ -8513,7 +8628,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_INTERRUPTING_PLAYBACK_REASONS_FIELD_NUMBER = 12;
-    private com.google.protobuf.LazyStringList disallowInterruptingPlaybackReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowInterruptingPlaybackReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_interrupting_playback_reasons = 12;</code>
      * @return A list containing the disallowInterruptingPlaybackReasons.
@@ -8548,7 +8665,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_TRANSFERRING_PLAYBACK_REASONS_FIELD_NUMBER = 13;
-    private com.google.protobuf.LazyStringList disallowTransferringPlaybackReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTransferringPlaybackReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_transferring_playback_reasons = 13;</code>
      * @return A list containing the disallowTransferringPlaybackReasons.
@@ -8583,7 +8702,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_REMOTE_CONTROL_REASONS_FIELD_NUMBER = 14;
-    private com.google.protobuf.LazyStringList disallowRemoteControlReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowRemoteControlReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_remote_control_reasons = 14;</code>
      * @return A list containing the disallowRemoteControlReasons.
@@ -8618,7 +8739,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_INSERTING_INTO_NEXT_TRACKS_REASONS_FIELD_NUMBER = 15;
-    private com.google.protobuf.LazyStringList disallowInsertingIntoNextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowInsertingIntoNextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_inserting_into_next_tracks_reasons = 15;</code>
      * @return A list containing the disallowInsertingIntoNextTracksReasons.
@@ -8653,7 +8776,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_INSERTING_INTO_CONTEXT_TRACKS_REASONS_FIELD_NUMBER = 16;
-    private com.google.protobuf.LazyStringList disallowInsertingIntoContextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowInsertingIntoContextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_inserting_into_context_tracks_reasons = 16;</code>
      * @return A list containing the disallowInsertingIntoContextTracksReasons.
@@ -8688,7 +8813,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_REORDERING_IN_NEXT_TRACKS_REASONS_FIELD_NUMBER = 17;
-    private com.google.protobuf.LazyStringList disallowReorderingInNextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowReorderingInNextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_reordering_in_next_tracks_reasons = 17;</code>
      * @return A list containing the disallowReorderingInNextTracksReasons.
@@ -8723,7 +8850,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_REORDERING_IN_CONTEXT_TRACKS_REASONS_FIELD_NUMBER = 18;
-    private com.google.protobuf.LazyStringList disallowReorderingInContextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowReorderingInContextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_reordering_in_context_tracks_reasons = 18;</code>
      * @return A list containing the disallowReorderingInContextTracksReasons.
@@ -8758,7 +8887,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_REMOVING_FROM_NEXT_TRACKS_REASONS_FIELD_NUMBER = 19;
-    private com.google.protobuf.LazyStringList disallowRemovingFromNextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowRemovingFromNextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_removing_from_next_tracks_reasons = 19;</code>
      * @return A list containing the disallowRemovingFromNextTracksReasons.
@@ -8793,7 +8924,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_REMOVING_FROM_CONTEXT_TRACKS_REASONS_FIELD_NUMBER = 20;
-    private com.google.protobuf.LazyStringList disallowRemovingFromContextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowRemovingFromContextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_removing_from_context_tracks_reasons = 20;</code>
      * @return A list containing the disallowRemovingFromContextTracksReasons.
@@ -8828,7 +8961,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_UPDATING_CONTEXT_REASONS_FIELD_NUMBER = 21;
-    private com.google.protobuf.LazyStringList disallowUpdatingContextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowUpdatingContextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_updating_context_reasons = 21;</code>
      * @return A list containing the disallowUpdatingContextReasons.
@@ -8863,7 +8998,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_PLAYING_REASONS_FIELD_NUMBER = 22;
-    private com.google.protobuf.LazyStringList disallowPlayingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPlayingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_playing_reasons = 22;</code>
      * @return A list containing the disallowPlayingReasons.
@@ -8898,7 +9035,9 @@ public final class Player {
     }
 
     public static final int DISALLOW_STOPPING_REASONS_FIELD_NUMBER = 23;
-    private com.google.protobuf.LazyStringList disallowStoppingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowStoppingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_stopping_reasons = 23;</code>
      * @return A list containing the disallowStoppingReasons.
@@ -8976,11 +9115,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9019,7 +9160,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.Restrictions}
@@ -9028,7 +9170,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Restrictions)
         com.spotifyxp.deps.com.spotify.connectstate.Player.RestrictionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_Restrictions_descriptor;
       }
@@ -9043,65 +9185,64 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000200);
-        disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000400);
-        disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
-        disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00001000);
-        disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00002000);
-        disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00004000);
-        disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00008000);
-        disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00010000);
-        disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00020000);
-        disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00040000);
-        disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00080000);
-        disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00100000);
-        disallowPlayingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00200000);
-        disallowStoppingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00400000);
+        bitField0_ = 0;
+        disallowPausingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowResumingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSeekingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowPeekingPrevReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowPeekingNextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSkippingPrevReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSkippingNextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTogglingRepeatContextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTogglingRepeatTrackReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTogglingShuffleReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSetQueueReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowInterruptingPlaybackReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTransferringPlaybackReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowRemoteControlReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowInsertingIntoNextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowInsertingIntoContextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowReorderingInNextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowReorderingInContextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowRemovingFromNextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowRemovingFromContextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowUpdatingContextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowPlayingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowStoppingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -9128,167 +9269,116 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions result = new com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          disallowPausingReasons_ = disallowPausingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.disallowPausingReasons_ = disallowPausingReasons_;
-        if (((bitField0_ & 0x00000002) != 0)) {
-          disallowResumingReasons_ = disallowResumingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.disallowResumingReasons_ = disallowResumingReasons_;
-        if (((bitField0_ & 0x00000004) != 0)) {
-          disallowSeekingReasons_ = disallowSeekingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.disallowSeekingReasons_ = disallowSeekingReasons_;
-        if (((bitField0_ & 0x00000008) != 0)) {
-          disallowPeekingPrevReasons_ = disallowPeekingPrevReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000008);
-        }
-        result.disallowPeekingPrevReasons_ = disallowPeekingPrevReasons_;
-        if (((bitField0_ & 0x00000010) != 0)) {
-          disallowPeekingNextReasons_ = disallowPeekingNextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.disallowPeekingNextReasons_ = disallowPeekingNextReasons_;
-        if (((bitField0_ & 0x00000020) != 0)) {
-          disallowSkippingPrevReasons_ = disallowSkippingPrevReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000020);
-        }
-        result.disallowSkippingPrevReasons_ = disallowSkippingPrevReasons_;
-        if (((bitField0_ & 0x00000040) != 0)) {
-          disallowSkippingNextReasons_ = disallowSkippingNextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000040);
-        }
-        result.disallowSkippingNextReasons_ = disallowSkippingNextReasons_;
-        if (((bitField0_ & 0x00000080) != 0)) {
-          disallowTogglingRepeatContextReasons_ = disallowTogglingRepeatContextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000080);
-        }
-        result.disallowTogglingRepeatContextReasons_ = disallowTogglingRepeatContextReasons_;
-        if (((bitField0_ & 0x00000100) != 0)) {
-          disallowTogglingRepeatTrackReasons_ = disallowTogglingRepeatTrackReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000100);
-        }
-        result.disallowTogglingRepeatTrackReasons_ = disallowTogglingRepeatTrackReasons_;
-        if (((bitField0_ & 0x00000200) != 0)) {
-          disallowTogglingShuffleReasons_ = disallowTogglingShuffleReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000200);
-        }
-        result.disallowTogglingShuffleReasons_ = disallowTogglingShuffleReasons_;
-        if (((bitField0_ & 0x00000400) != 0)) {
-          disallowSetQueueReasons_ = disallowSetQueueReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000400);
-        }
-        result.disallowSetQueueReasons_ = disallowSetQueueReasons_;
-        if (((bitField0_ & 0x00000800) != 0)) {
-          disallowInterruptingPlaybackReasons_ = disallowInterruptingPlaybackReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000800);
-        }
-        result.disallowInterruptingPlaybackReasons_ = disallowInterruptingPlaybackReasons_;
-        if (((bitField0_ & 0x00001000) != 0)) {
-          disallowTransferringPlaybackReasons_ = disallowTransferringPlaybackReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00001000);
-        }
-        result.disallowTransferringPlaybackReasons_ = disallowTransferringPlaybackReasons_;
-        if (((bitField0_ & 0x00002000) != 0)) {
-          disallowRemoteControlReasons_ = disallowRemoteControlReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00002000);
-        }
-        result.disallowRemoteControlReasons_ = disallowRemoteControlReasons_;
-        if (((bitField0_ & 0x00004000) != 0)) {
-          disallowInsertingIntoNextTracksReasons_ = disallowInsertingIntoNextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00004000);
-        }
-        result.disallowInsertingIntoNextTracksReasons_ = disallowInsertingIntoNextTracksReasons_;
-        if (((bitField0_ & 0x00008000) != 0)) {
-          disallowInsertingIntoContextTracksReasons_ = disallowInsertingIntoContextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00008000);
-        }
-        result.disallowInsertingIntoContextTracksReasons_ = disallowInsertingIntoContextTracksReasons_;
-        if (((bitField0_ & 0x00010000) != 0)) {
-          disallowReorderingInNextTracksReasons_ = disallowReorderingInNextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00010000);
-        }
-        result.disallowReorderingInNextTracksReasons_ = disallowReorderingInNextTracksReasons_;
-        if (((bitField0_ & 0x00020000) != 0)) {
-          disallowReorderingInContextTracksReasons_ = disallowReorderingInContextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00020000);
-        }
-        result.disallowReorderingInContextTracksReasons_ = disallowReorderingInContextTracksReasons_;
-        if (((bitField0_ & 0x00040000) != 0)) {
-          disallowRemovingFromNextTracksReasons_ = disallowRemovingFromNextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00040000);
-        }
-        result.disallowRemovingFromNextTracksReasons_ = disallowRemovingFromNextTracksReasons_;
-        if (((bitField0_ & 0x00080000) != 0)) {
-          disallowRemovingFromContextTracksReasons_ = disallowRemovingFromContextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00080000);
-        }
-        result.disallowRemovingFromContextTracksReasons_ = disallowRemovingFromContextTracksReasons_;
-        if (((bitField0_ & 0x00100000) != 0)) {
-          disallowUpdatingContextReasons_ = disallowUpdatingContextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00100000);
-        }
-        result.disallowUpdatingContextReasons_ = disallowUpdatingContextReasons_;
-        if (((bitField0_ & 0x00200000) != 0)) {
-          disallowPlayingReasons_ = disallowPlayingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00200000);
-        }
-        result.disallowPlayingReasons_ = disallowPlayingReasons_;
-        if (((bitField0_ & 0x00400000) != 0)) {
-          disallowStoppingReasons_ = disallowStoppingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00400000);
-        }
-        result.disallowStoppingReasons_ = disallowStoppingReasons_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.Restrictions result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          disallowPausingReasons_.makeImmutable();
+          result.disallowPausingReasons_ = disallowPausingReasons_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          disallowResumingReasons_.makeImmutable();
+          result.disallowResumingReasons_ = disallowResumingReasons_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          disallowSeekingReasons_.makeImmutable();
+          result.disallowSeekingReasons_ = disallowSeekingReasons_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          disallowPeekingPrevReasons_.makeImmutable();
+          result.disallowPeekingPrevReasons_ = disallowPeekingPrevReasons_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          disallowPeekingNextReasons_.makeImmutable();
+          result.disallowPeekingNextReasons_ = disallowPeekingNextReasons_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          disallowSkippingPrevReasons_.makeImmutable();
+          result.disallowSkippingPrevReasons_ = disallowSkippingPrevReasons_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          disallowSkippingNextReasons_.makeImmutable();
+          result.disallowSkippingNextReasons_ = disallowSkippingNextReasons_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          disallowTogglingRepeatContextReasons_.makeImmutable();
+          result.disallowTogglingRepeatContextReasons_ = disallowTogglingRepeatContextReasons_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          disallowTogglingRepeatTrackReasons_.makeImmutable();
+          result.disallowTogglingRepeatTrackReasons_ = disallowTogglingRepeatTrackReasons_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          disallowTogglingShuffleReasons_.makeImmutable();
+          result.disallowTogglingShuffleReasons_ = disallowTogglingShuffleReasons_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          disallowSetQueueReasons_.makeImmutable();
+          result.disallowSetQueueReasons_ = disallowSetQueueReasons_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          disallowInterruptingPlaybackReasons_.makeImmutable();
+          result.disallowInterruptingPlaybackReasons_ = disallowInterruptingPlaybackReasons_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          disallowTransferringPlaybackReasons_.makeImmutable();
+          result.disallowTransferringPlaybackReasons_ = disallowTransferringPlaybackReasons_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          disallowRemoteControlReasons_.makeImmutable();
+          result.disallowRemoteControlReasons_ = disallowRemoteControlReasons_;
+        }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          disallowInsertingIntoNextTracksReasons_.makeImmutable();
+          result.disallowInsertingIntoNextTracksReasons_ = disallowInsertingIntoNextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          disallowInsertingIntoContextTracksReasons_.makeImmutable();
+          result.disallowInsertingIntoContextTracksReasons_ = disallowInsertingIntoContextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          disallowReorderingInNextTracksReasons_.makeImmutable();
+          result.disallowReorderingInNextTracksReasons_ = disallowReorderingInNextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          disallowReorderingInContextTracksReasons_.makeImmutable();
+          result.disallowReorderingInContextTracksReasons_ = disallowReorderingInContextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          disallowRemovingFromNextTracksReasons_.makeImmutable();
+          result.disallowRemovingFromNextTracksReasons_ = disallowRemovingFromNextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          disallowRemovingFromContextTracksReasons_.makeImmutable();
+          result.disallowRemovingFromContextTracksReasons_ = disallowRemovingFromContextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00100000) != 0)) {
+          disallowUpdatingContextReasons_.makeImmutable();
+          result.disallowUpdatingContextReasons_ = disallowUpdatingContextReasons_;
+        }
+        if (((from_bitField0_ & 0x00200000) != 0)) {
+          disallowPlayingReasons_.makeImmutable();
+          result.disallowPlayingReasons_ = disallowPlayingReasons_;
+        }
+        if (((from_bitField0_ & 0x00400000) != 0)) {
+          disallowStoppingReasons_.makeImmutable();
+          result.disallowStoppingReasons_ = disallowStoppingReasons_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
-      private com.google.protobuf.LazyStringList disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowPausingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPausingReasonsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!disallowPausingReasons_.isModifiable()) {
           disallowPausingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPausingReasons_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000001;
       }
       /**
        * <code>repeated string disallow_pausing_reasons = 1;</code>
@@ -9296,7 +9386,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPausingReasonsList() {
-        return disallowPausingReasons_.getUnmodifiableView();
+        disallowPausingReasons_.makeImmutable();
+        return disallowPausingReasons_;
       }
       /**
        * <code>repeated string disallow_pausing_reasons = 1;</code>
@@ -9330,11 +9421,10 @@ public final class Player {
        */
       public Builder setDisallowPausingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPausingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPausingReasonsIsMutable();
         disallowPausingReasons_.set(index, value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9345,11 +9435,10 @@ public final class Player {
        */
       public Builder addDisallowPausingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPausingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPausingReasonsIsMutable();
         disallowPausingReasons_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9363,6 +9452,7 @@ public final class Player {
         ensureDisallowPausingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPausingReasons_);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9371,8 +9461,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPausingReasons() {
-        disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        disallowPausingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
         onChanged();
         return this;
       }
@@ -9383,23 +9474,22 @@ public final class Player {
        */
       public Builder addDisallowPausingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowPausingReasonsIsMutable();
         disallowPausingReasons_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowResumingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowResumingReasonsIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
+        if (!disallowResumingReasons_.isModifiable()) {
           disallowResumingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowResumingReasons_);
-          bitField0_ |= 0x00000002;
-         }
+        }
+        bitField0_ |= 0x00000002;
       }
       /**
        * <code>repeated string disallow_resuming_reasons = 2;</code>
@@ -9407,7 +9497,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowResumingReasonsList() {
-        return disallowResumingReasons_.getUnmodifiableView();
+        disallowResumingReasons_.makeImmutable();
+        return disallowResumingReasons_;
       }
       /**
        * <code>repeated string disallow_resuming_reasons = 2;</code>
@@ -9441,11 +9532,10 @@ public final class Player {
        */
       public Builder setDisallowResumingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowResumingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowResumingReasonsIsMutable();
         disallowResumingReasons_.set(index, value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9456,11 +9546,10 @@ public final class Player {
        */
       public Builder addDisallowResumingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowResumingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowResumingReasonsIsMutable();
         disallowResumingReasons_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9474,6 +9563,7 @@ public final class Player {
         ensureDisallowResumingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowResumingReasons_);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9482,8 +9572,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowResumingReasons() {
-        disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        disallowResumingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);;
         onChanged();
         return this;
       }
@@ -9494,23 +9585,22 @@ public final class Player {
        */
       public Builder addDisallowResumingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowResumingReasonsIsMutable();
         disallowResumingReasons_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowSeekingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSeekingReasonsIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
+        if (!disallowSeekingReasons_.isModifiable()) {
           disallowSeekingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSeekingReasons_);
-          bitField0_ |= 0x00000004;
-         }
+        }
+        bitField0_ |= 0x00000004;
       }
       /**
        * <code>repeated string disallow_seeking_reasons = 3;</code>
@@ -9518,7 +9608,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSeekingReasonsList() {
-        return disallowSeekingReasons_.getUnmodifiableView();
+        disallowSeekingReasons_.makeImmutable();
+        return disallowSeekingReasons_;
       }
       /**
        * <code>repeated string disallow_seeking_reasons = 3;</code>
@@ -9552,11 +9643,10 @@ public final class Player {
        */
       public Builder setDisallowSeekingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSeekingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSeekingReasonsIsMutable();
         disallowSeekingReasons_.set(index, value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9567,11 +9657,10 @@ public final class Player {
        */
       public Builder addDisallowSeekingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSeekingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSeekingReasonsIsMutable();
         disallowSeekingReasons_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9585,6 +9674,7 @@ public final class Player {
         ensureDisallowSeekingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSeekingReasons_);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9593,8 +9683,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSeekingReasons() {
-        disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        disallowSeekingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);;
         onChanged();
         return this;
       }
@@ -9605,23 +9696,22 @@ public final class Player {
        */
       public Builder addDisallowSeekingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowSeekingReasonsIsMutable();
         disallowSeekingReasons_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowPeekingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPeekingPrevReasonsIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
+        if (!disallowPeekingPrevReasons_.isModifiable()) {
           disallowPeekingPrevReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPeekingPrevReasons_);
-          bitField0_ |= 0x00000008;
-         }
+        }
+        bitField0_ |= 0x00000008;
       }
       /**
        * <code>repeated string disallow_peeking_prev_reasons = 4;</code>
@@ -9629,7 +9719,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPeekingPrevReasonsList() {
-        return disallowPeekingPrevReasons_.getUnmodifiableView();
+        disallowPeekingPrevReasons_.makeImmutable();
+        return disallowPeekingPrevReasons_;
       }
       /**
        * <code>repeated string disallow_peeking_prev_reasons = 4;</code>
@@ -9663,11 +9754,10 @@ public final class Player {
        */
       public Builder setDisallowPeekingPrevReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingPrevReasonsIsMutable();
         disallowPeekingPrevReasons_.set(index, value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -9678,11 +9768,10 @@ public final class Player {
        */
       public Builder addDisallowPeekingPrevReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingPrevReasonsIsMutable();
         disallowPeekingPrevReasons_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -9696,6 +9785,7 @@ public final class Player {
         ensureDisallowPeekingPrevReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPeekingPrevReasons_);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -9704,8 +9794,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPeekingPrevReasons() {
-        disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        disallowPeekingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);;
         onChanged();
         return this;
       }
@@ -9716,23 +9807,22 @@ public final class Player {
        */
       public Builder addDisallowPeekingPrevReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowPeekingPrevReasonsIsMutable();
         disallowPeekingPrevReasons_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowPeekingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPeekingNextReasonsIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
+        if (!disallowPeekingNextReasons_.isModifiable()) {
           disallowPeekingNextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPeekingNextReasons_);
-          bitField0_ |= 0x00000010;
-         }
+        }
+        bitField0_ |= 0x00000010;
       }
       /**
        * <code>repeated string disallow_peeking_next_reasons = 5;</code>
@@ -9740,7 +9830,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPeekingNextReasonsList() {
-        return disallowPeekingNextReasons_.getUnmodifiableView();
+        disallowPeekingNextReasons_.makeImmutable();
+        return disallowPeekingNextReasons_;
       }
       /**
        * <code>repeated string disallow_peeking_next_reasons = 5;</code>
@@ -9774,11 +9865,10 @@ public final class Player {
        */
       public Builder setDisallowPeekingNextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingNextReasonsIsMutable();
         disallowPeekingNextReasons_.set(index, value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -9789,11 +9879,10 @@ public final class Player {
        */
       public Builder addDisallowPeekingNextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingNextReasonsIsMutable();
         disallowPeekingNextReasons_.add(value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -9807,6 +9896,7 @@ public final class Player {
         ensureDisallowPeekingNextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPeekingNextReasons_);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -9815,8 +9905,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPeekingNextReasons() {
-        disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        disallowPeekingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);;
         onChanged();
         return this;
       }
@@ -9827,23 +9918,22 @@ public final class Player {
        */
       public Builder addDisallowPeekingNextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowPeekingNextReasonsIsMutable();
         disallowPeekingNextReasons_.add(value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowSkippingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSkippingPrevReasonsIsMutable() {
-        if ((bitField0_ & 0x00000020) == 0) {
+        if (!disallowSkippingPrevReasons_.isModifiable()) {
           disallowSkippingPrevReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSkippingPrevReasons_);
-          bitField0_ |= 0x00000020;
-         }
+        }
+        bitField0_ |= 0x00000020;
       }
       /**
        * <code>repeated string disallow_skipping_prev_reasons = 6;</code>
@@ -9851,7 +9941,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSkippingPrevReasonsList() {
-        return disallowSkippingPrevReasons_.getUnmodifiableView();
+        disallowSkippingPrevReasons_.makeImmutable();
+        return disallowSkippingPrevReasons_;
       }
       /**
        * <code>repeated string disallow_skipping_prev_reasons = 6;</code>
@@ -9885,11 +9976,10 @@ public final class Player {
        */
       public Builder setDisallowSkippingPrevReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingPrevReasonsIsMutable();
         disallowSkippingPrevReasons_.set(index, value);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -9900,11 +9990,10 @@ public final class Player {
        */
       public Builder addDisallowSkippingPrevReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingPrevReasonsIsMutable();
         disallowSkippingPrevReasons_.add(value);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -9918,6 +10007,7 @@ public final class Player {
         ensureDisallowSkippingPrevReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSkippingPrevReasons_);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -9926,8 +10016,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSkippingPrevReasons() {
-        disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        disallowSkippingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);;
         onChanged();
         return this;
       }
@@ -9938,23 +10029,22 @@ public final class Player {
        */
       public Builder addDisallowSkippingPrevReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowSkippingPrevReasonsIsMutable();
         disallowSkippingPrevReasons_.add(value);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowSkippingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSkippingNextReasonsIsMutable() {
-        if ((bitField0_ & 0x00000040) == 0) {
+        if (!disallowSkippingNextReasons_.isModifiable()) {
           disallowSkippingNextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSkippingNextReasons_);
-          bitField0_ |= 0x00000040;
-         }
+        }
+        bitField0_ |= 0x00000040;
       }
       /**
        * <code>repeated string disallow_skipping_next_reasons = 7;</code>
@@ -9962,7 +10052,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSkippingNextReasonsList() {
-        return disallowSkippingNextReasons_.getUnmodifiableView();
+        disallowSkippingNextReasons_.makeImmutable();
+        return disallowSkippingNextReasons_;
       }
       /**
        * <code>repeated string disallow_skipping_next_reasons = 7;</code>
@@ -9996,11 +10087,10 @@ public final class Player {
        */
       public Builder setDisallowSkippingNextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingNextReasonsIsMutable();
         disallowSkippingNextReasons_.set(index, value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10011,11 +10101,10 @@ public final class Player {
        */
       public Builder addDisallowSkippingNextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingNextReasonsIsMutable();
         disallowSkippingNextReasons_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10029,6 +10118,7 @@ public final class Player {
         ensureDisallowSkippingNextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSkippingNextReasons_);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10037,8 +10127,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSkippingNextReasons() {
-        disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
+        disallowSkippingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);;
         onChanged();
         return this;
       }
@@ -10049,23 +10140,22 @@ public final class Player {
        */
       public Builder addDisallowSkippingNextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowSkippingNextReasonsIsMutable();
         disallowSkippingNextReasons_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTogglingRepeatContextReasonsIsMutable() {
-        if ((bitField0_ & 0x00000080) == 0) {
+        if (!disallowTogglingRepeatContextReasons_.isModifiable()) {
           disallowTogglingRepeatContextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingRepeatContextReasons_);
-          bitField0_ |= 0x00000080;
-         }
+        }
+        bitField0_ |= 0x00000080;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_context_reasons = 8;</code>
@@ -10073,7 +10163,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTogglingRepeatContextReasonsList() {
-        return disallowTogglingRepeatContextReasons_.getUnmodifiableView();
+        disallowTogglingRepeatContextReasons_.makeImmutable();
+        return disallowTogglingRepeatContextReasons_;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_context_reasons = 8;</code>
@@ -10107,11 +10198,10 @@ public final class Player {
        */
       public Builder setDisallowTogglingRepeatContextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatContextReasonsIsMutable();
         disallowTogglingRepeatContextReasons_.set(index, value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -10122,11 +10212,10 @@ public final class Player {
        */
       public Builder addDisallowTogglingRepeatContextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatContextReasonsIsMutable();
         disallowTogglingRepeatContextReasons_.add(value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -10140,6 +10229,7 @@ public final class Player {
         ensureDisallowTogglingRepeatContextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTogglingRepeatContextReasons_);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -10148,8 +10238,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTogglingRepeatContextReasons() {
-        disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000080);
+        disallowTogglingRepeatContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000080);;
         onChanged();
         return this;
       }
@@ -10160,23 +10251,22 @@ public final class Player {
        */
       public Builder addDisallowTogglingRepeatContextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowTogglingRepeatContextReasonsIsMutable();
         disallowTogglingRepeatContextReasons_.add(value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatTrackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTogglingRepeatTrackReasonsIsMutable() {
-        if ((bitField0_ & 0x00000100) == 0) {
+        if (!disallowTogglingRepeatTrackReasons_.isModifiable()) {
           disallowTogglingRepeatTrackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingRepeatTrackReasons_);
-          bitField0_ |= 0x00000100;
-         }
+        }
+        bitField0_ |= 0x00000100;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_track_reasons = 9;</code>
@@ -10184,7 +10274,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTogglingRepeatTrackReasonsList() {
-        return disallowTogglingRepeatTrackReasons_.getUnmodifiableView();
+        disallowTogglingRepeatTrackReasons_.makeImmutable();
+        return disallowTogglingRepeatTrackReasons_;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_track_reasons = 9;</code>
@@ -10218,11 +10309,10 @@ public final class Player {
        */
       public Builder setDisallowTogglingRepeatTrackReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatTrackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         disallowTogglingRepeatTrackReasons_.set(index, value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -10233,11 +10323,10 @@ public final class Player {
        */
       public Builder addDisallowTogglingRepeatTrackReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatTrackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         disallowTogglingRepeatTrackReasons_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -10251,6 +10340,7 @@ public final class Player {
         ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTogglingRepeatTrackReasons_);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -10259,8 +10349,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTogglingRepeatTrackReasons() {
-        disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
+        disallowTogglingRepeatTrackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000100);;
         onChanged();
         return this;
       }
@@ -10271,23 +10362,22 @@ public final class Player {
        */
       public Builder addDisallowTogglingRepeatTrackReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         disallowTogglingRepeatTrackReasons_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowTogglingShuffleReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTogglingShuffleReasonsIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
+        if (!disallowTogglingShuffleReasons_.isModifiable()) {
           disallowTogglingShuffleReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingShuffleReasons_);
-          bitField0_ |= 0x00000200;
-         }
+        }
+        bitField0_ |= 0x00000200;
       }
       /**
        * <code>repeated string disallow_toggling_shuffle_reasons = 10;</code>
@@ -10295,7 +10385,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTogglingShuffleReasonsList() {
-        return disallowTogglingShuffleReasons_.getUnmodifiableView();
+        disallowTogglingShuffleReasons_.makeImmutable();
+        return disallowTogglingShuffleReasons_;
       }
       /**
        * <code>repeated string disallow_toggling_shuffle_reasons = 10;</code>
@@ -10329,11 +10420,10 @@ public final class Player {
        */
       public Builder setDisallowTogglingShuffleReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingShuffleReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingShuffleReasonsIsMutable();
         disallowTogglingShuffleReasons_.set(index, value);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -10344,11 +10434,10 @@ public final class Player {
        */
       public Builder addDisallowTogglingShuffleReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingShuffleReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingShuffleReasonsIsMutable();
         disallowTogglingShuffleReasons_.add(value);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -10362,6 +10451,7 @@ public final class Player {
         ensureDisallowTogglingShuffleReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTogglingShuffleReasons_);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -10370,8 +10460,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTogglingShuffleReasons() {
-        disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000200);
+        disallowTogglingShuffleReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000200);;
         onChanged();
         return this;
       }
@@ -10382,23 +10473,22 @@ public final class Player {
        */
       public Builder addDisallowTogglingShuffleReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowTogglingShuffleReasonsIsMutable();
         disallowTogglingShuffleReasons_.add(value);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowSetQueueReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSetQueueReasonsIsMutable() {
-        if ((bitField0_ & 0x00000400) == 0) {
+        if (!disallowSetQueueReasons_.isModifiable()) {
           disallowSetQueueReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSetQueueReasons_);
-          bitField0_ |= 0x00000400;
-         }
+        }
+        bitField0_ |= 0x00000400;
       }
       /**
        * <code>repeated string disallow_set_queue_reasons = 11;</code>
@@ -10406,7 +10496,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSetQueueReasonsList() {
-        return disallowSetQueueReasons_.getUnmodifiableView();
+        disallowSetQueueReasons_.makeImmutable();
+        return disallowSetQueueReasons_;
       }
       /**
        * <code>repeated string disallow_set_queue_reasons = 11;</code>
@@ -10440,11 +10531,10 @@ public final class Player {
        */
       public Builder setDisallowSetQueueReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSetQueueReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSetQueueReasonsIsMutable();
         disallowSetQueueReasons_.set(index, value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -10455,11 +10545,10 @@ public final class Player {
        */
       public Builder addDisallowSetQueueReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSetQueueReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSetQueueReasonsIsMutable();
         disallowSetQueueReasons_.add(value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -10473,6 +10562,7 @@ public final class Player {
         ensureDisallowSetQueueReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSetQueueReasons_);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -10481,8 +10571,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSetQueueReasons() {
-        disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000400);
+        disallowSetQueueReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000400);;
         onChanged();
         return this;
       }
@@ -10493,23 +10584,22 @@ public final class Player {
        */
       public Builder addDisallowSetQueueReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowSetQueueReasonsIsMutable();
         disallowSetQueueReasons_.add(value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowInterruptingPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowInterruptingPlaybackReasonsIsMutable() {
-        if ((bitField0_ & 0x00000800) == 0) {
+        if (!disallowInterruptingPlaybackReasons_.isModifiable()) {
           disallowInterruptingPlaybackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInterruptingPlaybackReasons_);
-          bitField0_ |= 0x00000800;
-         }
+        }
+        bitField0_ |= 0x00000800;
       }
       /**
        * <code>repeated string disallow_interrupting_playback_reasons = 12;</code>
@@ -10517,7 +10607,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowInterruptingPlaybackReasonsList() {
-        return disallowInterruptingPlaybackReasons_.getUnmodifiableView();
+        disallowInterruptingPlaybackReasons_.makeImmutable();
+        return disallowInterruptingPlaybackReasons_;
       }
       /**
        * <code>repeated string disallow_interrupting_playback_reasons = 12;</code>
@@ -10551,11 +10642,10 @@ public final class Player {
        */
       public Builder setDisallowInterruptingPlaybackReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInterruptingPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInterruptingPlaybackReasonsIsMutable();
         disallowInterruptingPlaybackReasons_.set(index, value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -10566,11 +10656,10 @@ public final class Player {
        */
       public Builder addDisallowInterruptingPlaybackReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInterruptingPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInterruptingPlaybackReasonsIsMutable();
         disallowInterruptingPlaybackReasons_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -10584,6 +10673,7 @@ public final class Player {
         ensureDisallowInterruptingPlaybackReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowInterruptingPlaybackReasons_);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -10592,8 +10682,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowInterruptingPlaybackReasons() {
-        disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+        disallowInterruptingPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000800);;
         onChanged();
         return this;
       }
@@ -10604,23 +10695,22 @@ public final class Player {
        */
       public Builder addDisallowInterruptingPlaybackReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowInterruptingPlaybackReasonsIsMutable();
         disallowInterruptingPlaybackReasons_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowTransferringPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTransferringPlaybackReasonsIsMutable() {
-        if ((bitField0_ & 0x00001000) == 0) {
+        if (!disallowTransferringPlaybackReasons_.isModifiable()) {
           disallowTransferringPlaybackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTransferringPlaybackReasons_);
-          bitField0_ |= 0x00001000;
-         }
+        }
+        bitField0_ |= 0x00001000;
       }
       /**
        * <code>repeated string disallow_transferring_playback_reasons = 13;</code>
@@ -10628,7 +10718,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTransferringPlaybackReasonsList() {
-        return disallowTransferringPlaybackReasons_.getUnmodifiableView();
+        disallowTransferringPlaybackReasons_.makeImmutable();
+        return disallowTransferringPlaybackReasons_;
       }
       /**
        * <code>repeated string disallow_transferring_playback_reasons = 13;</code>
@@ -10662,11 +10753,10 @@ public final class Player {
        */
       public Builder setDisallowTransferringPlaybackReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTransferringPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTransferringPlaybackReasonsIsMutable();
         disallowTransferringPlaybackReasons_.set(index, value);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -10677,11 +10767,10 @@ public final class Player {
        */
       public Builder addDisallowTransferringPlaybackReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTransferringPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTransferringPlaybackReasonsIsMutable();
         disallowTransferringPlaybackReasons_.add(value);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -10695,6 +10784,7 @@ public final class Player {
         ensureDisallowTransferringPlaybackReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTransferringPlaybackReasons_);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -10703,8 +10793,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTransferringPlaybackReasons() {
-        disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00001000);
+        disallowTransferringPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00001000);;
         onChanged();
         return this;
       }
@@ -10715,23 +10806,22 @@ public final class Player {
        */
       public Builder addDisallowTransferringPlaybackReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowTransferringPlaybackReasonsIsMutable();
         disallowTransferringPlaybackReasons_.add(value);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowRemoteControlReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowRemoteControlReasonsIsMutable() {
-        if ((bitField0_ & 0x00002000) == 0) {
+        if (!disallowRemoteControlReasons_.isModifiable()) {
           disallowRemoteControlReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemoteControlReasons_);
-          bitField0_ |= 0x00002000;
-         }
+        }
+        bitField0_ |= 0x00002000;
       }
       /**
        * <code>repeated string disallow_remote_control_reasons = 14;</code>
@@ -10739,7 +10829,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowRemoteControlReasonsList() {
-        return disallowRemoteControlReasons_.getUnmodifiableView();
+        disallowRemoteControlReasons_.makeImmutable();
+        return disallowRemoteControlReasons_;
       }
       /**
        * <code>repeated string disallow_remote_control_reasons = 14;</code>
@@ -10773,11 +10864,10 @@ public final class Player {
        */
       public Builder setDisallowRemoteControlReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemoteControlReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemoteControlReasonsIsMutable();
         disallowRemoteControlReasons_.set(index, value);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -10788,11 +10878,10 @@ public final class Player {
        */
       public Builder addDisallowRemoteControlReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemoteControlReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemoteControlReasonsIsMutable();
         disallowRemoteControlReasons_.add(value);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -10806,6 +10895,7 @@ public final class Player {
         ensureDisallowRemoteControlReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowRemoteControlReasons_);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -10814,8 +10904,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowRemoteControlReasons() {
-        disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00002000);
+        disallowRemoteControlReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00002000);;
         onChanged();
         return this;
       }
@@ -10826,23 +10917,22 @@ public final class Player {
        */
       public Builder addDisallowRemoteControlReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowRemoteControlReasonsIsMutable();
         disallowRemoteControlReasons_.add(value);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowInsertingIntoNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowInsertingIntoNextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
+        if (!disallowInsertingIntoNextTracksReasons_.isModifiable()) {
           disallowInsertingIntoNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInsertingIntoNextTracksReasons_);
-          bitField0_ |= 0x00004000;
-         }
+        }
+        bitField0_ |= 0x00004000;
       }
       /**
        * <code>repeated string disallow_inserting_into_next_tracks_reasons = 15;</code>
@@ -10850,7 +10940,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowInsertingIntoNextTracksReasonsList() {
-        return disallowInsertingIntoNextTracksReasons_.getUnmodifiableView();
+        disallowInsertingIntoNextTracksReasons_.makeImmutable();
+        return disallowInsertingIntoNextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_inserting_into_next_tracks_reasons = 15;</code>
@@ -10884,11 +10975,10 @@ public final class Player {
        */
       public Builder setDisallowInsertingIntoNextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         disallowInsertingIntoNextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -10899,11 +10989,10 @@ public final class Player {
        */
       public Builder addDisallowInsertingIntoNextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         disallowInsertingIntoNextTracksReasons_.add(value);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -10917,6 +11006,7 @@ public final class Player {
         ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowInsertingIntoNextTracksReasons_);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -10925,8 +11015,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowInsertingIntoNextTracksReasons() {
-        disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00004000);
+        disallowInsertingIntoNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00004000);;
         onChanged();
         return this;
       }
@@ -10937,23 +11028,22 @@ public final class Player {
        */
       public Builder addDisallowInsertingIntoNextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         disallowInsertingIntoNextTracksReasons_.add(value);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowInsertingIntoContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowInsertingIntoContextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00008000) == 0) {
+        if (!disallowInsertingIntoContextTracksReasons_.isModifiable()) {
           disallowInsertingIntoContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInsertingIntoContextTracksReasons_);
-          bitField0_ |= 0x00008000;
-         }
+        }
+        bitField0_ |= 0x00008000;
       }
       /**
        * <code>repeated string disallow_inserting_into_context_tracks_reasons = 16;</code>
@@ -10961,7 +11051,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowInsertingIntoContextTracksReasonsList() {
-        return disallowInsertingIntoContextTracksReasons_.getUnmodifiableView();
+        disallowInsertingIntoContextTracksReasons_.makeImmutable();
+        return disallowInsertingIntoContextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_inserting_into_context_tracks_reasons = 16;</code>
@@ -10995,11 +11086,10 @@ public final class Player {
        */
       public Builder setDisallowInsertingIntoContextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         disallowInsertingIntoContextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -11010,11 +11100,10 @@ public final class Player {
        */
       public Builder addDisallowInsertingIntoContextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         disallowInsertingIntoContextTracksReasons_.add(value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -11028,6 +11117,7 @@ public final class Player {
         ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowInsertingIntoContextTracksReasons_);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -11036,8 +11126,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowInsertingIntoContextTracksReasons() {
-        disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00008000);
+        disallowInsertingIntoContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00008000);;
         onChanged();
         return this;
       }
@@ -11048,23 +11139,22 @@ public final class Player {
        */
       public Builder addDisallowInsertingIntoContextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         disallowInsertingIntoContextTracksReasons_.add(value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowReorderingInNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowReorderingInNextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00010000) == 0) {
+        if (!disallowReorderingInNextTracksReasons_.isModifiable()) {
           disallowReorderingInNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReorderingInNextTracksReasons_);
-          bitField0_ |= 0x00010000;
-         }
+        }
+        bitField0_ |= 0x00010000;
       }
       /**
        * <code>repeated string disallow_reordering_in_next_tracks_reasons = 17;</code>
@@ -11072,7 +11162,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowReorderingInNextTracksReasonsList() {
-        return disallowReorderingInNextTracksReasons_.getUnmodifiableView();
+        disallowReorderingInNextTracksReasons_.makeImmutable();
+        return disallowReorderingInNextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_reordering_in_next_tracks_reasons = 17;</code>
@@ -11106,11 +11197,10 @@ public final class Player {
        */
       public Builder setDisallowReorderingInNextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInNextTracksReasonsIsMutable();
         disallowReorderingInNextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -11121,11 +11211,10 @@ public final class Player {
        */
       public Builder addDisallowReorderingInNextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInNextTracksReasonsIsMutable();
         disallowReorderingInNextTracksReasons_.add(value);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -11139,6 +11228,7 @@ public final class Player {
         ensureDisallowReorderingInNextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowReorderingInNextTracksReasons_);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -11147,8 +11237,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowReorderingInNextTracksReasons() {
-        disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00010000);
+        disallowReorderingInNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00010000);;
         onChanged();
         return this;
       }
@@ -11159,23 +11250,22 @@ public final class Player {
        */
       public Builder addDisallowReorderingInNextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowReorderingInNextTracksReasonsIsMutable();
         disallowReorderingInNextTracksReasons_.add(value);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowReorderingInContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowReorderingInContextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00020000) == 0) {
+        if (!disallowReorderingInContextTracksReasons_.isModifiable()) {
           disallowReorderingInContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReorderingInContextTracksReasons_);
-          bitField0_ |= 0x00020000;
-         }
+        }
+        bitField0_ |= 0x00020000;
       }
       /**
        * <code>repeated string disallow_reordering_in_context_tracks_reasons = 18;</code>
@@ -11183,7 +11273,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowReorderingInContextTracksReasonsList() {
-        return disallowReorderingInContextTracksReasons_.getUnmodifiableView();
+        disallowReorderingInContextTracksReasons_.makeImmutable();
+        return disallowReorderingInContextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_reordering_in_context_tracks_reasons = 18;</code>
@@ -11217,11 +11308,10 @@ public final class Player {
        */
       public Builder setDisallowReorderingInContextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInContextTracksReasonsIsMutable();
         disallowReorderingInContextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -11232,11 +11322,10 @@ public final class Player {
        */
       public Builder addDisallowReorderingInContextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInContextTracksReasonsIsMutable();
         disallowReorderingInContextTracksReasons_.add(value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -11250,6 +11339,7 @@ public final class Player {
         ensureDisallowReorderingInContextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowReorderingInContextTracksReasons_);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -11258,8 +11348,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowReorderingInContextTracksReasons() {
-        disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00020000);
+        disallowReorderingInContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00020000);;
         onChanged();
         return this;
       }
@@ -11270,23 +11361,22 @@ public final class Player {
        */
       public Builder addDisallowReorderingInContextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowReorderingInContextTracksReasonsIsMutable();
         disallowReorderingInContextTracksReasons_.add(value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowRemovingFromNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowRemovingFromNextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00040000) == 0) {
+        if (!disallowRemovingFromNextTracksReasons_.isModifiable()) {
           disallowRemovingFromNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemovingFromNextTracksReasons_);
-          bitField0_ |= 0x00040000;
-         }
+        }
+        bitField0_ |= 0x00040000;
       }
       /**
        * <code>repeated string disallow_removing_from_next_tracks_reasons = 19;</code>
@@ -11294,7 +11384,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowRemovingFromNextTracksReasonsList() {
-        return disallowRemovingFromNextTracksReasons_.getUnmodifiableView();
+        disallowRemovingFromNextTracksReasons_.makeImmutable();
+        return disallowRemovingFromNextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_removing_from_next_tracks_reasons = 19;</code>
@@ -11328,11 +11419,10 @@ public final class Player {
        */
       public Builder setDisallowRemovingFromNextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         disallowRemovingFromNextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -11343,11 +11433,10 @@ public final class Player {
        */
       public Builder addDisallowRemovingFromNextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         disallowRemovingFromNextTracksReasons_.add(value);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -11361,6 +11450,7 @@ public final class Player {
         ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowRemovingFromNextTracksReasons_);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -11369,8 +11459,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowRemovingFromNextTracksReasons() {
-        disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00040000);
+        disallowRemovingFromNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00040000);;
         onChanged();
         return this;
       }
@@ -11381,23 +11472,22 @@ public final class Player {
        */
       public Builder addDisallowRemovingFromNextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         disallowRemovingFromNextTracksReasons_.add(value);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowRemovingFromContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowRemovingFromContextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00080000) == 0) {
+        if (!disallowRemovingFromContextTracksReasons_.isModifiable()) {
           disallowRemovingFromContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemovingFromContextTracksReasons_);
-          bitField0_ |= 0x00080000;
-         }
+        }
+        bitField0_ |= 0x00080000;
       }
       /**
        * <code>repeated string disallow_removing_from_context_tracks_reasons = 20;</code>
@@ -11405,7 +11495,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowRemovingFromContextTracksReasonsList() {
-        return disallowRemovingFromContextTracksReasons_.getUnmodifiableView();
+        disallowRemovingFromContextTracksReasons_.makeImmutable();
+        return disallowRemovingFromContextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_removing_from_context_tracks_reasons = 20;</code>
@@ -11439,11 +11530,10 @@ public final class Player {
        */
       public Builder setDisallowRemovingFromContextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         disallowRemovingFromContextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -11454,11 +11544,10 @@ public final class Player {
        */
       public Builder addDisallowRemovingFromContextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         disallowRemovingFromContextTracksReasons_.add(value);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -11472,6 +11561,7 @@ public final class Player {
         ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowRemovingFromContextTracksReasons_);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -11480,8 +11570,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowRemovingFromContextTracksReasons() {
-        disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00080000);
+        disallowRemovingFromContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00080000);;
         onChanged();
         return this;
       }
@@ -11492,23 +11583,22 @@ public final class Player {
        */
       public Builder addDisallowRemovingFromContextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         disallowRemovingFromContextTracksReasons_.add(value);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowUpdatingContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowUpdatingContextReasonsIsMutable() {
-        if ((bitField0_ & 0x00100000) == 0) {
+        if (!disallowUpdatingContextReasons_.isModifiable()) {
           disallowUpdatingContextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowUpdatingContextReasons_);
-          bitField0_ |= 0x00100000;
-         }
+        }
+        bitField0_ |= 0x00100000;
       }
       /**
        * <code>repeated string disallow_updating_context_reasons = 21;</code>
@@ -11516,7 +11606,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowUpdatingContextReasonsList() {
-        return disallowUpdatingContextReasons_.getUnmodifiableView();
+        disallowUpdatingContextReasons_.makeImmutable();
+        return disallowUpdatingContextReasons_;
       }
       /**
        * <code>repeated string disallow_updating_context_reasons = 21;</code>
@@ -11550,11 +11641,10 @@ public final class Player {
        */
       public Builder setDisallowUpdatingContextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUpdatingContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUpdatingContextReasonsIsMutable();
         disallowUpdatingContextReasons_.set(index, value);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -11565,11 +11655,10 @@ public final class Player {
        */
       public Builder addDisallowUpdatingContextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUpdatingContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUpdatingContextReasonsIsMutable();
         disallowUpdatingContextReasons_.add(value);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -11583,6 +11672,7 @@ public final class Player {
         ensureDisallowUpdatingContextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowUpdatingContextReasons_);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -11591,8 +11681,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowUpdatingContextReasons() {
-        disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00100000);
+        disallowUpdatingContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00100000);;
         onChanged();
         return this;
       }
@@ -11603,23 +11694,22 @@ public final class Player {
        */
       public Builder addDisallowUpdatingContextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowUpdatingContextReasonsIsMutable();
         disallowUpdatingContextReasons_.add(value);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowPlayingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowPlayingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPlayingReasonsIsMutable() {
-        if ((bitField0_ & 0x00200000) == 0) {
+        if (!disallowPlayingReasons_.isModifiable()) {
           disallowPlayingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPlayingReasons_);
-          bitField0_ |= 0x00200000;
-         }
+        }
+        bitField0_ |= 0x00200000;
       }
       /**
        * <code>repeated string disallow_playing_reasons = 22;</code>
@@ -11627,7 +11717,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPlayingReasonsList() {
-        return disallowPlayingReasons_.getUnmodifiableView();
+        disallowPlayingReasons_.makeImmutable();
+        return disallowPlayingReasons_;
       }
       /**
        * <code>repeated string disallow_playing_reasons = 22;</code>
@@ -11661,11 +11752,10 @@ public final class Player {
        */
       public Builder setDisallowPlayingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPlayingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPlayingReasonsIsMutable();
         disallowPlayingReasons_.set(index, value);
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
@@ -11676,11 +11766,10 @@ public final class Player {
        */
       public Builder addDisallowPlayingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPlayingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPlayingReasonsIsMutable();
         disallowPlayingReasons_.add(value);
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
@@ -11694,6 +11783,7 @@ public final class Player {
         ensureDisallowPlayingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPlayingReasons_);
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
@@ -11702,8 +11792,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPlayingReasons() {
-        disallowPlayingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00200000);
+        disallowPlayingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00200000);;
         onChanged();
         return this;
       }
@@ -11714,23 +11805,22 @@ public final class Player {
        */
       public Builder addDisallowPlayingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowPlayingReasonsIsMutable();
         disallowPlayingReasons_.add(value);
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowStoppingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList disallowStoppingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowStoppingReasonsIsMutable() {
-        if ((bitField0_ & 0x00400000) == 0) {
+        if (!disallowStoppingReasons_.isModifiable()) {
           disallowStoppingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowStoppingReasons_);
-          bitField0_ |= 0x00400000;
-         }
+        }
+        bitField0_ |= 0x00400000;
       }
       /**
        * <code>repeated string disallow_stopping_reasons = 23;</code>
@@ -11738,7 +11828,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowStoppingReasonsList() {
-        return disallowStoppingReasons_.getUnmodifiableView();
+        disallowStoppingReasons_.makeImmutable();
+        return disallowStoppingReasons_;
       }
       /**
        * <code>repeated string disallow_stopping_reasons = 23;</code>
@@ -11772,11 +11863,10 @@ public final class Player {
        */
       public Builder setDisallowStoppingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowStoppingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowStoppingReasonsIsMutable();
         disallowStoppingReasons_.set(index, value);
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
@@ -11787,11 +11877,10 @@ public final class Player {
        */
       public Builder addDisallowStoppingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowStoppingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowStoppingReasonsIsMutable();
         disallowStoppingReasons_.add(value);
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
@@ -11805,6 +11894,7 @@ public final class Player {
         ensureDisallowStoppingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowStoppingReasons_);
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
@@ -11813,8 +11903,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDisallowStoppingReasons() {
-        disallowStoppingReasons_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00400000);
+        disallowStoppingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00400000);;
         onChanged();
         return this;
       }
@@ -11825,23 +11916,22 @@ public final class Player {
        */
       public Builder addDisallowStoppingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDisallowStoppingReasonsIsMutable();
         disallowStoppingReasons_.add(value);
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11872,10 +11962,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -12001,7 +12092,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.PlayOrigin}
    */
-  public  static final class PlayOrigin extends
+  public static final class PlayOrigin extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.PlayOrigin)
       PlayOriginOrBuilder {
@@ -12017,7 +12108,8 @@ public final class Player {
       externalReferrer_ = "";
       referrerIdentifier_ = "";
       deviceIdentifier_ = "";
-      featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      featureClasses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -12027,12 +12119,7 @@ public final class Player {
       return new PlayOrigin();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlayOrigin_descriptor;
     }
@@ -12046,11 +12133,13 @@ public final class Player {
     }
 
     public static final int FEATURE_IDENTIFIER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object featureIdentifier_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object featureIdentifier_ = "";
     /**
      * <code>string feature_identifier = 1;</code>
      * @return The featureIdentifier.
      */
+    @java.lang.Override
     public java.lang.String getFeatureIdentifier() {
       java.lang.Object ref = featureIdentifier_;
       if (ref instanceof java.lang.String) {
@@ -12067,6 +12156,7 @@ public final class Player {
      * <code>string feature_identifier = 1;</code>
      * @return The bytes for featureIdentifier.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFeatureIdentifierBytes() {
       java.lang.Object ref = featureIdentifier_;
@@ -12082,11 +12172,13 @@ public final class Player {
     }
 
     public static final int FEATURE_VERSION_FIELD_NUMBER = 2;
-    private volatile java.lang.Object featureVersion_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object featureVersion_ = "";
     /**
      * <code>string feature_version = 2;</code>
      * @return The featureVersion.
      */
+    @java.lang.Override
     public java.lang.String getFeatureVersion() {
       java.lang.Object ref = featureVersion_;
       if (ref instanceof java.lang.String) {
@@ -12103,6 +12195,7 @@ public final class Player {
      * <code>string feature_version = 2;</code>
      * @return The bytes for featureVersion.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFeatureVersionBytes() {
       java.lang.Object ref = featureVersion_;
@@ -12118,11 +12211,13 @@ public final class Player {
     }
 
     public static final int VIEW_URI_FIELD_NUMBER = 3;
-    private volatile java.lang.Object viewUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object viewUri_ = "";
     /**
      * <code>string view_uri = 3;</code>
      * @return The viewUri.
      */
+    @java.lang.Override
     public java.lang.String getViewUri() {
       java.lang.Object ref = viewUri_;
       if (ref instanceof java.lang.String) {
@@ -12139,6 +12234,7 @@ public final class Player {
      * <code>string view_uri = 3;</code>
      * @return The bytes for viewUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getViewUriBytes() {
       java.lang.Object ref = viewUri_;
@@ -12154,11 +12250,13 @@ public final class Player {
     }
 
     public static final int EXTERNAL_REFERRER_FIELD_NUMBER = 4;
-    private volatile java.lang.Object externalReferrer_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object externalReferrer_ = "";
     /**
      * <code>string external_referrer = 4;</code>
      * @return The externalReferrer.
      */
+    @java.lang.Override
     public java.lang.String getExternalReferrer() {
       java.lang.Object ref = externalReferrer_;
       if (ref instanceof java.lang.String) {
@@ -12175,6 +12273,7 @@ public final class Player {
      * <code>string external_referrer = 4;</code>
      * @return The bytes for externalReferrer.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getExternalReferrerBytes() {
       java.lang.Object ref = externalReferrer_;
@@ -12190,11 +12289,13 @@ public final class Player {
     }
 
     public static final int REFERRER_IDENTIFIER_FIELD_NUMBER = 5;
-    private volatile java.lang.Object referrerIdentifier_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object referrerIdentifier_ = "";
     /**
      * <code>string referrer_identifier = 5;</code>
      * @return The referrerIdentifier.
      */
+    @java.lang.Override
     public java.lang.String getReferrerIdentifier() {
       java.lang.Object ref = referrerIdentifier_;
       if (ref instanceof java.lang.String) {
@@ -12211,6 +12312,7 @@ public final class Player {
      * <code>string referrer_identifier = 5;</code>
      * @return The bytes for referrerIdentifier.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getReferrerIdentifierBytes() {
       java.lang.Object ref = referrerIdentifier_;
@@ -12226,11 +12328,13 @@ public final class Player {
     }
 
     public static final int DEVICE_IDENTIFIER_FIELD_NUMBER = 6;
-    private volatile java.lang.Object deviceIdentifier_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deviceIdentifier_ = "";
     /**
      * <code>string device_identifier = 6;</code>
      * @return The deviceIdentifier.
      */
+    @java.lang.Override
     public java.lang.String getDeviceIdentifier() {
       java.lang.Object ref = deviceIdentifier_;
       if (ref instanceof java.lang.String) {
@@ -12247,6 +12351,7 @@ public final class Player {
      * <code>string device_identifier = 6;</code>
      * @return The bytes for deviceIdentifier.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDeviceIdentifierBytes() {
       java.lang.Object ref = deviceIdentifier_;
@@ -12262,7 +12367,9 @@ public final class Player {
     }
 
     public static final int FEATURE_CLASSES_FIELD_NUMBER = 7;
-    private com.google.protobuf.LazyStringList featureClasses_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList featureClasses_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string feature_classes = 7;</code>
      * @return A list containing the featureClasses.
@@ -12340,11 +12447,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12383,7 +12492,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.PlayOrigin}
@@ -12392,7 +12502,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PlayOrigin)
         com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOriginOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlayOrigin_descriptor;
       }
@@ -12407,33 +12517,26 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         featureIdentifier_ = "";
-
         featureVersion_ = "";
-
         viewUri_ = "";
-
         externalReferrer_ = "";
-
         referrerIdentifier_ = "";
-
         deviceIdentifier_ = "";
-
-        featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        featureClasses_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -12460,54 +12563,37 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin result = new com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin(this);
-        int from_bitField0_ = bitField0_;
-        result.featureIdentifier_ = featureIdentifier_;
-        result.featureVersion_ = featureVersion_;
-        result.viewUri_ = viewUri_;
-        result.externalReferrer_ = externalReferrer_;
-        result.referrerIdentifier_ = referrerIdentifier_;
-        result.deviceIdentifier_ = deviceIdentifier_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          featureClasses_ = featureClasses_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.featureClasses_ = featureClasses_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.PlayOrigin result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.featureIdentifier_ = featureIdentifier_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.featureVersion_ = featureVersion_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.viewUri_ = viewUri_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.externalReferrer_ = externalReferrer_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.referrerIdentifier_ = referrerIdentifier_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.deviceIdentifier_ = deviceIdentifier_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          featureClasses_.makeImmutable();
+          result.featureClasses_ = featureClasses_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object featureIdentifier_ = "";
@@ -12551,11 +12637,9 @@ public final class Player {
        */
       public Builder setFeatureIdentifier(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         featureIdentifier_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -12564,8 +12648,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearFeatureIdentifier() {
-        
         featureIdentifier_ = getDefaultInstance().getFeatureIdentifier();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -12576,12 +12660,10 @@ public final class Player {
        */
       public Builder setFeatureIdentifierBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         featureIdentifier_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -12627,11 +12709,9 @@ public final class Player {
        */
       public Builder setFeatureVersion(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         featureVersion_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -12640,8 +12720,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearFeatureVersion() {
-        
         featureVersion_ = getDefaultInstance().getFeatureVersion();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -12652,12 +12732,10 @@ public final class Player {
        */
       public Builder setFeatureVersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         featureVersion_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -12703,11 +12781,9 @@ public final class Player {
        */
       public Builder setViewUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         viewUri_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -12716,8 +12792,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearViewUri() {
-        
         viewUri_ = getDefaultInstance().getViewUri();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -12728,12 +12804,10 @@ public final class Player {
        */
       public Builder setViewUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         viewUri_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -12779,11 +12853,9 @@ public final class Player {
        */
       public Builder setExternalReferrer(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         externalReferrer_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -12792,8 +12864,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearExternalReferrer() {
-        
         externalReferrer_ = getDefaultInstance().getExternalReferrer();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -12804,12 +12876,10 @@ public final class Player {
        */
       public Builder setExternalReferrerBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         externalReferrer_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -12855,11 +12925,9 @@ public final class Player {
        */
       public Builder setReferrerIdentifier(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         referrerIdentifier_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -12868,8 +12936,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearReferrerIdentifier() {
-        
         referrerIdentifier_ = getDefaultInstance().getReferrerIdentifier();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -12880,12 +12948,10 @@ public final class Player {
        */
       public Builder setReferrerIdentifierBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         referrerIdentifier_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -12931,11 +12997,9 @@ public final class Player {
        */
       public Builder setDeviceIdentifier(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         deviceIdentifier_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -12944,8 +13008,8 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearDeviceIdentifier() {
-        
         deviceIdentifier_ = getDefaultInstance().getDeviceIdentifier();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -12956,23 +13020,21 @@ public final class Player {
        */
       public Builder setDeviceIdentifierBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         deviceIdentifier_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList featureClasses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureFeatureClassesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!featureClasses_.isModifiable()) {
           featureClasses_ = new com.google.protobuf.LazyStringArrayList(featureClasses_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000040;
       }
       /**
        * <code>repeated string feature_classes = 7;</code>
@@ -12980,7 +13042,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getFeatureClassesList() {
-        return featureClasses_.getUnmodifiableView();
+        featureClasses_.makeImmutable();
+        return featureClasses_;
       }
       /**
        * <code>repeated string feature_classes = 7;</code>
@@ -13014,11 +13077,10 @@ public final class Player {
        */
       public Builder setFeatureClasses(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFeatureClassesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFeatureClassesIsMutable();
         featureClasses_.set(index, value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -13029,11 +13091,10 @@ public final class Player {
        */
       public Builder addFeatureClasses(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFeatureClassesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFeatureClassesIsMutable();
         featureClasses_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -13047,6 +13108,7 @@ public final class Player {
         ensureFeatureClassesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, featureClasses_);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -13055,8 +13117,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearFeatureClasses() {
-        featureClasses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        featureClasses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);;
         onChanged();
         return this;
       }
@@ -13067,23 +13130,22 @@ public final class Player {
        */
       public Builder addFeatureClassesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureFeatureClassesIsMutable();
         featureClasses_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13114,10 +13176,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -13164,7 +13227,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.ContextPlayerOptions}
    */
-  public  static final class ContextPlayerOptions extends
+  public static final class ContextPlayerOptions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.ContextPlayerOptions)
       ContextPlayerOptionsOrBuilder {
@@ -13183,12 +13246,7 @@ public final class Player {
       return new ContextPlayerOptions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ContextPlayerOptions_descriptor;
     }
@@ -13202,31 +13260,34 @@ public final class Player {
     }
 
     public static final int SHUFFLING_CONTEXT_FIELD_NUMBER = 1;
-    private boolean shufflingContext_;
+    private boolean shufflingContext_ = false;
     /**
      * <code>bool shuffling_context = 1;</code>
      * @return The shufflingContext.
      */
+    @java.lang.Override
     public boolean getShufflingContext() {
       return shufflingContext_;
     }
 
     public static final int REPEATING_CONTEXT_FIELD_NUMBER = 2;
-    private boolean repeatingContext_;
+    private boolean repeatingContext_ = false;
     /**
      * <code>bool repeating_context = 2;</code>
      * @return The repeatingContext.
      */
+    @java.lang.Override
     public boolean getRepeatingContext() {
       return repeatingContext_;
     }
 
     public static final int REPEATING_TRACK_FIELD_NUMBER = 3;
-    private boolean repeatingTrack_;
+    private boolean repeatingTrack_ = false;
     /**
      * <code>bool repeating_track = 3;</code>
      * @return The repeatingTrack.
      */
+    @java.lang.Override
     public boolean getRepeatingTrack() {
       return repeatingTrack_;
     }
@@ -13275,11 +13336,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13318,7 +13381,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.ContextPlayerOptions}
@@ -13327,7 +13391,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ContextPlayerOptions)
         com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_ContextPlayerOptions_descriptor;
       }
@@ -13342,25 +13406,21 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         shufflingContext_ = false;
-
         repeatingContext_ = false;
-
         repeatingTrack_ = false;
-
         return this;
       }
 
@@ -13387,51 +13447,32 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions result = new com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions(this);
-        result.shufflingContext_ = shufflingContext_;
-        result.repeatingContext_ = repeatingContext_;
-        result.repeatingTrack_ = repeatingTrack_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.ContextPlayerOptions result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.shufflingContext_ = shufflingContext_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.repeatingContext_ = repeatingContext_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.repeatingTrack_ = repeatingTrack_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private boolean shufflingContext_ ;
       /**
        * <code>bool shuffling_context = 1;</code>
        * @return The shufflingContext.
        */
+      @java.lang.Override
       public boolean getShufflingContext() {
         return shufflingContext_;
       }
@@ -13441,8 +13482,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setShufflingContext(boolean value) {
-        
+
         shufflingContext_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13451,7 +13493,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearShufflingContext() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         shufflingContext_ = false;
         onChanged();
         return this;
@@ -13462,6 +13504,7 @@ public final class Player {
        * <code>bool repeating_context = 2;</code>
        * @return The repeatingContext.
        */
+      @java.lang.Override
       public boolean getRepeatingContext() {
         return repeatingContext_;
       }
@@ -13471,8 +13514,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setRepeatingContext(boolean value) {
-        
+
         repeatingContext_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -13481,7 +13525,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearRepeatingContext() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         repeatingContext_ = false;
         onChanged();
         return this;
@@ -13492,6 +13536,7 @@ public final class Player {
        * <code>bool repeating_track = 3;</code>
        * @return The repeatingTrack.
        */
+      @java.lang.Override
       public boolean getRepeatingTrack() {
         return repeatingTrack_;
       }
@@ -13501,8 +13546,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setRepeatingTrack(boolean value) {
-        
+
         repeatingTrack_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -13511,19 +13557,19 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearRepeatingTrack() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         repeatingTrack_ = false;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13554,10 +13600,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -13611,7 +13658,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.Suppressions}
    */
-  public  static final class Suppressions extends
+  public static final class Suppressions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.Suppressions)
       SuppressionsOrBuilder {
@@ -13621,7 +13668,8 @@ public final class Player {
       super(builder);
     }
     private Suppressions() {
-      providers_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      providers_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -13631,12 +13679,7 @@ public final class Player {
       return new Suppressions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_Suppressions_descriptor;
     }
@@ -13650,7 +13693,9 @@ public final class Player {
     }
 
     public static final int PROVIDERS_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList providers_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList providers_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string providers = 1;</code>
      * @return A list containing the providers.
@@ -13728,11 +13773,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13771,7 +13818,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.Suppressions}
@@ -13780,7 +13828,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Suppressions)
         com.spotifyxp.deps.com.spotify.connectstate.Player.SuppressionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_Suppressions_descriptor;
       }
@@ -13795,21 +13843,20 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        providers_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = 0;
+        providers_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -13836,57 +13883,28 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions result = new com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          providers_ = providers_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.providers_ = providers_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.Suppressions result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          providers_.makeImmutable();
+          result.providers_ = providers_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
-      private com.google.protobuf.LazyStringList providers_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList providers_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureProvidersIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!providers_.isModifiable()) {
           providers_ = new com.google.protobuf.LazyStringArrayList(providers_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000001;
       }
       /**
        * <code>repeated string providers = 1;</code>
@@ -13894,7 +13912,8 @@ public final class Player {
        */
       public com.google.protobuf.ProtocolStringList
           getProvidersList() {
-        return providers_.getUnmodifiableView();
+        providers_.makeImmutable();
+        return providers_;
       }
       /**
        * <code>repeated string providers = 1;</code>
@@ -13928,11 +13947,10 @@ public final class Player {
        */
       public Builder setProviders(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureProvidersIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureProvidersIsMutable();
         providers_.set(index, value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13943,11 +13961,10 @@ public final class Player {
        */
       public Builder addProviders(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureProvidersIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureProvidersIsMutable();
         providers_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13961,6 +13978,7 @@ public final class Player {
         ensureProvidersIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, providers_);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13969,8 +13987,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearProviders() {
-        providers_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        providers_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
         onChanged();
         return this;
       }
@@ -13981,23 +14000,22 @@ public final class Player {
        */
       public Builder addProvidersBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureProvidersIsMutable();
         providers_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14028,10 +14046,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -14110,7 +14129,7 @@ public final class Player {
   /**
    * Protobuf type {@code connectstate.PlaybackQuality}
    */
-  public  static final class PlaybackQuality extends
+  public static final class PlaybackQuality extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.PlaybackQuality)
       PlaybackQualityOrBuilder {
@@ -14133,12 +14152,7 @@ public final class Player {
       return new PlaybackQuality();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlaybackQuality_descriptor;
     }
@@ -14152,84 +14166,85 @@ public final class Player {
     }
 
     public static final int BITRATE_LEVEL_FIELD_NUMBER = 1;
-    private int bitrateLevel_;
+    private int bitrateLevel_ = 0;
     /**
      * <code>.connectstate.BitrateLevel bitrate_level = 1;</code>
      * @return The enum numeric value on the wire for bitrateLevel.
      */
-    public int getBitrateLevelValue() {
+    @java.lang.Override public int getBitrateLevelValue() {
       return bitrateLevel_;
     }
     /**
      * <code>.connectstate.BitrateLevel bitrate_level = 1;</code>
      * @return The bitrateLevel.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel getBitrateLevel() {
-      com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.valueOf(bitrateLevel_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel getBitrateLevel() {
+      com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.forNumber(bitrateLevel_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.UNRECOGNIZED : result;
     }
 
     public static final int STRATEGY_FIELD_NUMBER = 2;
-    private int strategy_;
+    private int strategy_ = 0;
     /**
      * <code>.connectstate.BitrateStrategy strategy = 2;</code>
      * @return The enum numeric value on the wire for strategy.
      */
-    public int getStrategyValue() {
+    @java.lang.Override public int getStrategyValue() {
       return strategy_;
     }
     /**
      * <code>.connectstate.BitrateStrategy strategy = 2;</code>
      * @return The strategy.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy getStrategy() {
-      com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy.valueOf(strategy_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy getStrategy() {
+      com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy.forNumber(strategy_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy.UNRECOGNIZED : result;
     }
 
     public static final int TARGET_BITRATE_LEVEL_FIELD_NUMBER = 3;
-    private int targetBitrateLevel_;
+    private int targetBitrateLevel_ = 0;
     /**
      * <code>.connectstate.BitrateLevel target_bitrate_level = 3;</code>
      * @return The enum numeric value on the wire for targetBitrateLevel.
      */
-    public int getTargetBitrateLevelValue() {
+    @java.lang.Override public int getTargetBitrateLevelValue() {
       return targetBitrateLevel_;
     }
     /**
      * <code>.connectstate.BitrateLevel target_bitrate_level = 3;</code>
      * @return The targetBitrateLevel.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel getTargetBitrateLevel() {
-      com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.valueOf(targetBitrateLevel_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel getTargetBitrateLevel() {
+      com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.forNumber(targetBitrateLevel_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.UNRECOGNIZED : result;
     }
 
     public static final int TARGET_BITRATE_AVAILABLE_FIELD_NUMBER = 4;
-    private boolean targetBitrateAvailable_;
+    private boolean targetBitrateAvailable_ = false;
     /**
      * <code>bool target_bitrate_available = 4;</code>
      * @return The targetBitrateAvailable.
      */
+    @java.lang.Override
     public boolean getTargetBitrateAvailable() {
       return targetBitrateAvailable_;
     }
 
     public static final int HIFI_STATUS_FIELD_NUMBER = 5;
-    private int hifiStatus_;
+    private int hifiStatus_ = 0;
     /**
      * <code>.connectstate.HiFiStatus hifi_status = 5;</code>
      * @return The enum numeric value on the wire for hifiStatus.
      */
-    public int getHifiStatusValue() {
+    @java.lang.Override public int getHifiStatusValue() {
       return hifiStatus_;
     }
     /**
      * <code>.connectstate.HiFiStatus hifi_status = 5;</code>
      * @return The hifiStatus.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus getHifiStatus() {
-      com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus result = com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus.valueOf(hifiStatus_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus getHifiStatus() {
+      com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus result = com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus.forNumber(hifiStatus_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus.UNRECOGNIZED : result;
     }
 
@@ -14277,11 +14292,13 @@ public final class Player {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14320,7 +14337,8 @@ public final class Player {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.PlaybackQuality}
@@ -14329,7 +14347,7 @@ public final class Player {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PlaybackQuality)
         com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQualityOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Player.internal_static_connectstate_PlaybackQuality_descriptor;
       }
@@ -14344,29 +14362,23 @@ public final class Player {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         bitrateLevel_ = 0;
-
         strategy_ = 0;
-
         targetBitrateLevel_ = 0;
-
         targetBitrateAvailable_ = false;
-
         hifiStatus_ = 0;
-
         return this;
       }
 
@@ -14393,54 +14405,38 @@ public final class Player {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality result = new com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality(this);
-        result.bitrateLevel_ = bitrateLevel_;
-        result.strategy_ = strategy_;
-        result.targetBitrateLevel_ = targetBitrateLevel_;
-        result.targetBitrateAvailable_ = targetBitrateAvailable_;
-        result.hifiStatus_ = hifiStatus_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Player.PlaybackQuality result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.bitrateLevel_ = bitrateLevel_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.strategy_ = strategy_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.targetBitrateLevel_ = targetBitrateLevel_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.targetBitrateAvailable_ = targetBitrateAvailable_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.hifiStatus_ = hifiStatus_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private int bitrateLevel_ = 0;
       /**
        * <code>.connectstate.BitrateLevel bitrate_level = 1;</code>
        * @return The enum numeric value on the wire for bitrateLevel.
        */
-      public int getBitrateLevelValue() {
+      @java.lang.Override public int getBitrateLevelValue() {
         return bitrateLevel_;
       }
       /**
@@ -14450,6 +14446,7 @@ public final class Player {
        */
       public Builder setBitrateLevelValue(int value) {
         bitrateLevel_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -14457,8 +14454,9 @@ public final class Player {
        * <code>.connectstate.BitrateLevel bitrate_level = 1;</code>
        * @return The bitrateLevel.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel getBitrateLevel() {
-        com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.valueOf(bitrateLevel_);
+        com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.forNumber(bitrateLevel_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.UNRECOGNIZED : result;
       }
       /**
@@ -14470,7 +14468,7 @@ public final class Player {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         bitrateLevel_ = value.getNumber();
         onChanged();
         return this;
@@ -14480,7 +14478,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearBitrateLevel() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         bitrateLevel_ = 0;
         onChanged();
         return this;
@@ -14491,7 +14489,7 @@ public final class Player {
        * <code>.connectstate.BitrateStrategy strategy = 2;</code>
        * @return The enum numeric value on the wire for strategy.
        */
-      public int getStrategyValue() {
+      @java.lang.Override public int getStrategyValue() {
         return strategy_;
       }
       /**
@@ -14501,6 +14499,7 @@ public final class Player {
        */
       public Builder setStrategyValue(int value) {
         strategy_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -14508,8 +14507,9 @@ public final class Player {
        * <code>.connectstate.BitrateStrategy strategy = 2;</code>
        * @return The strategy.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy getStrategy() {
-        com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy.valueOf(strategy_);
+        com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy.forNumber(strategy_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateStrategy.UNRECOGNIZED : result;
       }
       /**
@@ -14521,7 +14521,7 @@ public final class Player {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000002;
         strategy_ = value.getNumber();
         onChanged();
         return this;
@@ -14531,7 +14531,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearStrategy() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         strategy_ = 0;
         onChanged();
         return this;
@@ -14542,7 +14542,7 @@ public final class Player {
        * <code>.connectstate.BitrateLevel target_bitrate_level = 3;</code>
        * @return The enum numeric value on the wire for targetBitrateLevel.
        */
-      public int getTargetBitrateLevelValue() {
+      @java.lang.Override public int getTargetBitrateLevelValue() {
         return targetBitrateLevel_;
       }
       /**
@@ -14552,6 +14552,7 @@ public final class Player {
        */
       public Builder setTargetBitrateLevelValue(int value) {
         targetBitrateLevel_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -14559,8 +14560,9 @@ public final class Player {
        * <code>.connectstate.BitrateLevel target_bitrate_level = 3;</code>
        * @return The targetBitrateLevel.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel getTargetBitrateLevel() {
-        com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.valueOf(targetBitrateLevel_);
+        com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel result = com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.forNumber(targetBitrateLevel_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.BitrateLevel.UNRECOGNIZED : result;
       }
       /**
@@ -14572,7 +14574,7 @@ public final class Player {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000004;
         targetBitrateLevel_ = value.getNumber();
         onChanged();
         return this;
@@ -14582,7 +14584,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearTargetBitrateLevel() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         targetBitrateLevel_ = 0;
         onChanged();
         return this;
@@ -14593,6 +14595,7 @@ public final class Player {
        * <code>bool target_bitrate_available = 4;</code>
        * @return The targetBitrateAvailable.
        */
+      @java.lang.Override
       public boolean getTargetBitrateAvailable() {
         return targetBitrateAvailable_;
       }
@@ -14602,8 +14605,9 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder setTargetBitrateAvailable(boolean value) {
-        
+
         targetBitrateAvailable_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -14612,7 +14616,7 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearTargetBitrateAvailable() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         targetBitrateAvailable_ = false;
         onChanged();
         return this;
@@ -14623,7 +14627,7 @@ public final class Player {
        * <code>.connectstate.HiFiStatus hifi_status = 5;</code>
        * @return The enum numeric value on the wire for hifiStatus.
        */
-      public int getHifiStatusValue() {
+      @java.lang.Override public int getHifiStatusValue() {
         return hifiStatus_;
       }
       /**
@@ -14633,6 +14637,7 @@ public final class Player {
        */
       public Builder setHifiStatusValue(int value) {
         hifiStatus_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -14640,8 +14645,9 @@ public final class Player {
        * <code>.connectstate.HiFiStatus hifi_status = 5;</code>
        * @return The hifiStatus.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus getHifiStatus() {
-        com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus result = com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus.valueOf(hifiStatus_);
+        com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus result = com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus.forNumber(hifiStatus_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.HiFiStatus.UNRECOGNIZED : result;
       }
       /**
@@ -14653,7 +14659,7 @@ public final class Player {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000010;
         hifiStatus_ = value.getNumber();
         onChanged();
         return this;
@@ -14663,19 +14669,19 @@ public final class Player {
        * @return This builder for chaining.
        */
       public Builder clearHifiStatus() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         hifiStatus_ = 0;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14706,10 +14712,11 @@ public final class Player {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -14791,7 +14798,7 @@ public final class Player {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -14849,7 +14856,7 @@ public final class Player {
       "low_set_queue_reasons\030\013 \003(\t\022.\n&disallow_" +
       "interrupting_playback_reasons\030\014 \003(\t\022.\n&d" +
       "isallow_transferring_playback_reasons\030\r " +
-              "\003(\t\022'\n\037disallow_remote_control_reasons\030\016" +
+      "\003(\t\022\'\n\037disallow_remote_control_reasons\030\016" +
       " \003(\t\0223\n+disallow_inserting_into_next_tra" +
       "cks_reasons\030\017 \003(\t\0226\n.disallow_inserting_" +
       "into_context_tracks_reasons\030\020 \003(\t\0222\n*dis" +
@@ -14881,9 +14888,9 @@ public final class Player {
       "*\203\001\n\017BitrateStrategy\022\024\n\020unknown_strategy" +
       "\020\000\022\021\n\rbest_matching\020\001\022\023\n\017backend_advised" +
       "\020\002\022\021\n\rofflined_file\020\003\022\017\n\013cached_file\020\004\022\016" +
-              "\n\nlocal_file\020\005*'\n\nHiFiStatus\022\010\n\004none\020\000\022\007" +
-      "\n\003off\020\001\022\006\n\002on\020\002B\034\n\030com.spotify.connectst" +
-      "ateH\002b\006proto3"
+      "\n\nlocal_file\020\005*\'\n\nHiFiStatus\022\010\n\004none\020\000\022\007" +
+      "\n\003off\020\001\022\006\n\002on\020\002B/\n+com.spotifyxp.deps.co" +
+      "m.spotify.connectstateH\002b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

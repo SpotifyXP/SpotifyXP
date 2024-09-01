@@ -3,11 +3,6 @@
 
 package com.spotifyxp.deps.com.spotify.connectstate;
 
-import com.google.protobuf.LazyStringArrayList;
-
-//Note: Don't replace the deprecated methods here otherwise SpotifyXP wouldn't work on Windows XP for some reason
-
-@SuppressWarnings("deprecation")
 public final class Connect {
   private Connect() {}
   public static void registerAllExtensions(
@@ -135,17 +130,25 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         SendCommandResult> internalValueMap =
-            SendCommandResult::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<SendCommandResult>() {
+            public SendCommandResult findValueByNumber(int number) {
+              return SendCommandResult.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(0);
     }
@@ -166,7 +169,7 @@ public final class Connect {
 
     private final int value;
 
-    SendCommandResult(int value) {
+    private SendCommandResult(int value) {
       this.value = value;
     }
 
@@ -298,17 +301,25 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         PutStateReason> internalValueMap =
-            PutStateReason::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<PutStateReason>() {
+            public PutStateReason findValueByNumber(int number) {
+              return PutStateReason.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(1);
     }
@@ -329,7 +340,7 @@ public final class Connect {
 
     private final int value;
 
-    PutStateReason(int value) {
+    private PutStateReason(int value) {
       this.value = value;
     }
 
@@ -434,17 +445,25 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         MemberType> internalValueMap =
-            MemberType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<MemberType>() {
+            public MemberType findValueByNumber(int number) {
+              return MemberType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(2);
     }
@@ -465,7 +484,7 @@ public final class Connect {
 
     private final int value;
 
-    MemberType(int value) {
+    private MemberType(int value) {
       this.value = value;
     }
 
@@ -570,17 +589,25 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ClusterUpdateReason> internalValueMap =
-            ClusterUpdateReason::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ClusterUpdateReason>() {
+            public ClusterUpdateReason findValueByNumber(int number) {
+              return ClusterUpdateReason.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(3);
     }
@@ -601,7 +628,7 @@ public final class Connect {
 
     private final int value;
 
-    ClusterUpdateReason(int value) {
+    private ClusterUpdateReason(int value) {
       this.value = value;
     }
 
@@ -823,17 +850,25 @@ public final class Connect {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         DeviceType> internalValueMap =
-            DeviceType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<DeviceType>() {
+            public DeviceType findValueByNumber(int number) {
+              return DeviceType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.getDescriptor().getEnumTypes().get(4);
     }
@@ -854,7 +889,7 @@ public final class Connect {
 
     private final int value;
 
-    DeviceType(int value) {
+    private DeviceType(int value) {
       this.value = value;
     }
 
@@ -931,7 +966,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.ClusterUpdate}
    */
-  public  static final class ClusterUpdate extends
+  public static final class ClusterUpdate extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.ClusterUpdate)
       ClusterUpdateOrBuilder {
@@ -943,7 +978,8 @@ public final class Connect {
     private ClusterUpdate() {
       updateReason_ = 0;
       ackId_ = "";
-      devicesThatChanged_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      devicesThatChanged_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -953,12 +989,7 @@ public final class Connect {
       return new ClusterUpdate();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ClusterUpdate_descriptor;
     }
@@ -977,6 +1008,7 @@ public final class Connect {
      * <code>.connectstate.Cluster cluster = 1;</code>
      * @return Whether the cluster field is set.
      */
+    @java.lang.Override
     public boolean hasCluster() {
       return cluster_ != null;
     }
@@ -984,40 +1016,44 @@ public final class Connect {
      * <code>.connectstate.Cluster cluster = 1;</code>
      * @return The cluster.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster getCluster() {
       return cluster_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.getDefaultInstance() : cluster_;
     }
     /**
      * <code>.connectstate.Cluster cluster = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder getClusterOrBuilder() {
-      return getCluster();
+      return cluster_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.getDefaultInstance() : cluster_;
     }
 
     public static final int UPDATE_REASON_FIELD_NUMBER = 2;
-    private int updateReason_;
+    private int updateReason_ = 0;
     /**
      * <code>.connectstate.ClusterUpdateReason update_reason = 2;</code>
      * @return The enum numeric value on the wire for updateReason.
      */
-    public int getUpdateReasonValue() {
+    @java.lang.Override public int getUpdateReasonValue() {
       return updateReason_;
     }
     /**
      * <code>.connectstate.ClusterUpdateReason update_reason = 2;</code>
      * @return The updateReason.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason getUpdateReason() {
-      com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.valueOf(updateReason_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason getUpdateReason() {
+      com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.forNumber(updateReason_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.UNRECOGNIZED : result;
     }
 
     public static final int ACK_ID_FIELD_NUMBER = 3;
-    private volatile java.lang.Object ackId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ackId_ = "";
     /**
      * <code>string ack_id = 3;</code>
      * @return The ackId.
      */
+    @java.lang.Override
     public java.lang.String getAckId() {
       java.lang.Object ref = ackId_;
       if (ref instanceof java.lang.String) {
@@ -1034,6 +1070,7 @@ public final class Connect {
      * <code>string ack_id = 3;</code>
      * @return The bytes for ackId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAckIdBytes() {
       java.lang.Object ref = ackId_;
@@ -1049,7 +1086,9 @@ public final class Connect {
     }
 
     public static final int DEVICES_THAT_CHANGED_FIELD_NUMBER = 4;
-    private com.google.protobuf.LazyStringList devicesThatChanged_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList devicesThatChanged_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string devices_that_changed = 4;</code>
      * @return A list containing the devicesThatChanged.
@@ -1127,11 +1166,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1170,7 +1211,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.ClusterUpdate}
@@ -1179,7 +1221,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ClusterUpdate)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ClusterUpdate_descriptor;
       }
@@ -1194,31 +1236,27 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (clusterBuilder_ == null) {
-          cluster_ = null;
-        } else {
-          cluster_ = null;
+        bitField0_ = 0;
+        cluster_ = null;
+        if (clusterBuilder_ != null) {
+          clusterBuilder_.dispose();
           clusterBuilder_ = null;
         }
         updateReason_ = 0;
-
         ackId_ = "";
-
-        devicesThatChanged_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        devicesThatChanged_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -1245,55 +1283,30 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate(this);
-        int from_bitField0_ = bitField0_;
-        if (clusterBuilder_ == null) {
-          result.cluster_ = cluster_;
-        } else {
-          result.cluster_ = clusterBuilder_.build();
-        }
-        result.updateReason_ = updateReason_;
-        result.ackId_ = ackId_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          devicesThatChanged_ = devicesThatChanged_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.devicesThatChanged_ = devicesThatChanged_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdate result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.cluster_ = clusterBuilder_ == null
+              ? cluster_
+              : clusterBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.updateReason_ = updateReason_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.ackId_ = ackId_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          devicesThatChanged_.makeImmutable();
+          result.devicesThatChanged_ = devicesThatChanged_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster cluster_;
@@ -1304,7 +1317,7 @@ public final class Connect {
        * @return Whether the cluster field is set.
        */
       public boolean hasCluster() {
-        return clusterBuilder_ != null || cluster_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.connectstate.Cluster cluster = 1;</code>
@@ -1326,11 +1339,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           cluster_ = value;
-          onChanged();
         } else {
           clusterBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1340,11 +1353,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.Builder builderForValue) {
         if (clusterBuilder_ == null) {
           cluster_ = builderForValue.build();
-          onChanged();
         } else {
           clusterBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1352,38 +1365,38 @@ public final class Connect {
        */
       public Builder mergeCluster(com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster value) {
         if (clusterBuilder_ == null) {
-          if (cluster_ != null) {
-            cluster_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.newBuilder(cluster_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            cluster_ != null &&
+            cluster_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.getDefaultInstance()) {
+            getClusterBuilder().mergeFrom(value);
           } else {
             cluster_ = value;
           }
-          onChanged();
         } else {
           clusterBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Cluster cluster = 1;</code>
        */
       public Builder clearCluster() {
-        if (clusterBuilder_ == null) {
-          cluster_ = null;
-          onChanged();
-        } else {
-          cluster_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        cluster_ = null;
+        if (clusterBuilder_ != null) {
+          clusterBuilder_.dispose();
           clusterBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Cluster cluster = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.Builder getClusterBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getClusterFieldBuilder().getBuilder();
       }
@@ -1405,7 +1418,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster, com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder> 
           getClusterFieldBuilder() {
         if (clusterBuilder_ == null) {
-          clusterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          clusterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster, com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder>(
                   getCluster(),
                   getParentForChildren(),
                   isClean());
@@ -1419,7 +1433,7 @@ public final class Connect {
        * <code>.connectstate.ClusterUpdateReason update_reason = 2;</code>
        * @return The enum numeric value on the wire for updateReason.
        */
-      public int getUpdateReasonValue() {
+      @java.lang.Override public int getUpdateReasonValue() {
         return updateReason_;
       }
       /**
@@ -1429,6 +1443,7 @@ public final class Connect {
        */
       public Builder setUpdateReasonValue(int value) {
         updateReason_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1436,8 +1451,9 @@ public final class Connect {
        * <code>.connectstate.ClusterUpdateReason update_reason = 2;</code>
        * @return The updateReason.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason getUpdateReason() {
-        com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.valueOf(updateReason_);
+        com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.forNumber(updateReason_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterUpdateReason.UNRECOGNIZED : result;
       }
       /**
@@ -1449,7 +1465,7 @@ public final class Connect {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000002;
         updateReason_ = value.getNumber();
         onChanged();
         return this;
@@ -1459,7 +1475,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearUpdateReason() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         updateReason_ = 0;
         onChanged();
         return this;
@@ -1506,11 +1522,9 @@ public final class Connect {
        */
       public Builder setAckId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         ackId_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1519,8 +1533,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearAckId() {
-        
         ackId_ = getDefaultInstance().getAckId();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1531,23 +1545,21 @@ public final class Connect {
        */
       public Builder setAckIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ackId_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList devicesThatChanged_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList devicesThatChanged_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDevicesThatChangedIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!devicesThatChanged_.isModifiable()) {
           devicesThatChanged_ = new com.google.protobuf.LazyStringArrayList(devicesThatChanged_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000008;
       }
       /**
        * <code>repeated string devices_that_changed = 4;</code>
@@ -1555,7 +1567,8 @@ public final class Connect {
        */
       public com.google.protobuf.ProtocolStringList
           getDevicesThatChangedList() {
-        return devicesThatChanged_.getUnmodifiableView();
+        devicesThatChanged_.makeImmutable();
+        return devicesThatChanged_;
       }
       /**
        * <code>repeated string devices_that_changed = 4;</code>
@@ -1589,11 +1602,10 @@ public final class Connect {
        */
       public Builder setDevicesThatChanged(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDevicesThatChangedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDevicesThatChangedIsMutable();
         devicesThatChanged_.set(index, value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1604,11 +1616,10 @@ public final class Connect {
        */
       public Builder addDevicesThatChanged(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDevicesThatChangedIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDevicesThatChangedIsMutable();
         devicesThatChanged_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1622,6 +1633,7 @@ public final class Connect {
         ensureDevicesThatChangedIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, devicesThatChanged_);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1630,8 +1642,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDevicesThatChanged() {
-        devicesThatChanged_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        devicesThatChanged_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);;
         onChanged();
         return this;
       }
@@ -1642,23 +1655,22 @@ public final class Connect {
        */
       public Builder addDevicesThatChangedBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureDevicesThatChangedIsMutable();
         devicesThatChanged_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1689,10 +1701,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1776,7 +1789,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.Device}
    */
-  public  static final class Device extends
+  public static final class Device extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.Device)
       DeviceOrBuilder {
@@ -1796,12 +1809,7 @@ public final class Connect {
       return new Device();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Device_descriptor;
     }
@@ -1820,6 +1828,7 @@ public final class Connect {
      * <code>.connectstate.DeviceInfo device_info = 1;</code>
      * @return Whether the deviceInfo field is set.
      */
+    @java.lang.Override
     public boolean hasDeviceInfo() {
       return deviceInfo_ != null;
     }
@@ -1827,14 +1836,16 @@ public final class Connect {
      * <code>.connectstate.DeviceInfo device_info = 1;</code>
      * @return The deviceInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceInfo() {
       return deviceInfo_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.getDefaultInstance() : deviceInfo_;
     }
     /**
      * <code>.connectstate.DeviceInfo device_info = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder getDeviceInfoOrBuilder() {
-      return getDeviceInfo();
+      return deviceInfo_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.getDefaultInstance() : deviceInfo_;
     }
 
     public static final int PLAYER_STATE_FIELD_NUMBER = 2;
@@ -1843,6 +1854,7 @@ public final class Connect {
      * <code>.connectstate.PlayerState player_state = 2;</code>
      * @return Whether the playerState field is set.
      */
+    @java.lang.Override
     public boolean hasPlayerState() {
       return playerState_ != null;
     }
@@ -1850,14 +1862,16 @@ public final class Connect {
      * <code>.connectstate.PlayerState player_state = 2;</code>
      * @return The playerState.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState getPlayerState() {
       return playerState_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.getDefaultInstance() : playerState_;
     }
     /**
      * <code>.connectstate.PlayerState player_state = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder getPlayerStateOrBuilder() {
-      return getPlayerState();
+      return playerState_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.getDefaultInstance() : playerState_;
     }
 
     public static final int PRIVATE_DEVICE_INFO_FIELD_NUMBER = 3;
@@ -1866,6 +1880,7 @@ public final class Connect {
      * <code>.connectstate.PrivateDeviceInfo private_device_info = 3;</code>
      * @return Whether the privateDeviceInfo field is set.
      */
+    @java.lang.Override
     public boolean hasPrivateDeviceInfo() {
       return privateDeviceInfo_ != null;
     }
@@ -1873,18 +1888,20 @@ public final class Connect {
      * <code>.connectstate.PrivateDeviceInfo private_device_info = 3;</code>
      * @return The privateDeviceInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo getPrivateDeviceInfo() {
       return privateDeviceInfo_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.getDefaultInstance() : privateDeviceInfo_;
     }
     /**
      * <code>.connectstate.PrivateDeviceInfo private_device_info = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder getPrivateDeviceInfoOrBuilder() {
-      return getPrivateDeviceInfo();
+      return privateDeviceInfo_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.getDefaultInstance() : privateDeviceInfo_;
     }
 
     public static final int TRANSFER_DATA_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString transferData_;
+    private com.google.protobuf.ByteString transferData_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * TransferState
@@ -1893,6 +1910,7 @@ public final class Connect {
      * <code>bytes transfer_data = 4;</code>
      * @return The transferData.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getTransferData() {
       return transferData_;
     }
@@ -1941,11 +1959,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Device parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Device parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1984,7 +2004,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.Device}
@@ -1993,7 +2014,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Device)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Device_descriptor;
       }
@@ -2008,39 +2029,34 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (deviceInfoBuilder_ == null) {
-          deviceInfo_ = null;
-        } else {
-          deviceInfo_ = null;
+        bitField0_ = 0;
+        deviceInfo_ = null;
+        if (deviceInfoBuilder_ != null) {
+          deviceInfoBuilder_.dispose();
           deviceInfoBuilder_ = null;
         }
-        if (playerStateBuilder_ == null) {
-          playerState_ = null;
-        } else {
-          playerState_ = null;
+        playerState_ = null;
+        if (playerStateBuilder_ != null) {
+          playerStateBuilder_.dispose();
           playerStateBuilder_ = null;
         }
-        if (privateDeviceInfoBuilder_ == null) {
-          privateDeviceInfo_ = null;
-        } else {
-          privateDeviceInfo_ = null;
+        privateDeviceInfo_ = null;
+        if (privateDeviceInfoBuilder_ != null) {
+          privateDeviceInfoBuilder_.dispose();
           privateDeviceInfoBuilder_ = null;
         }
         transferData_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -2067,58 +2083,34 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.Device buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.Device result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.Device(this);
-        if (deviceInfoBuilder_ == null) {
-          result.deviceInfo_ = deviceInfo_;
-        } else {
-          result.deviceInfo_ = deviceInfoBuilder_.build();
-        }
-        if (playerStateBuilder_ == null) {
-          result.playerState_ = playerState_;
-        } else {
-          result.playerState_ = playerStateBuilder_.build();
-        }
-        if (privateDeviceInfoBuilder_ == null) {
-          result.privateDeviceInfo_ = privateDeviceInfo_;
-        } else {
-          result.privateDeviceInfo_ = privateDeviceInfoBuilder_.build();
-        }
-        result.transferData_ = transferData_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.Device result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.deviceInfo_ = deviceInfoBuilder_ == null
+              ? deviceInfo_
+              : deviceInfoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.playerState_ = playerStateBuilder_ == null
+              ? playerState_
+              : playerStateBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.privateDeviceInfo_ = privateDeviceInfoBuilder_ == null
+              ? privateDeviceInfo_
+              : privateDeviceInfoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.transferData_ = transferData_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo deviceInfo_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2128,7 +2120,7 @@ public final class Connect {
        * @return Whether the deviceInfo field is set.
        */
       public boolean hasDeviceInfo() {
-        return deviceInfoBuilder_ != null || deviceInfo_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.connectstate.DeviceInfo device_info = 1;</code>
@@ -2150,11 +2142,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           deviceInfo_ = value;
-          onChanged();
         } else {
           deviceInfoBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2164,11 +2156,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.Builder builderForValue) {
         if (deviceInfoBuilder_ == null) {
           deviceInfo_ = builderForValue.build();
-          onChanged();
         } else {
           deviceInfoBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2176,38 +2168,38 @@ public final class Connect {
        */
       public Builder mergeDeviceInfo(com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo value) {
         if (deviceInfoBuilder_ == null) {
-          if (deviceInfo_ != null) {
-            deviceInfo_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.newBuilder(deviceInfo_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            deviceInfo_ != null &&
+            deviceInfo_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.getDefaultInstance()) {
+            getDeviceInfoBuilder().mergeFrom(value);
           } else {
             deviceInfo_ = value;
           }
-          onChanged();
         } else {
           deviceInfoBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.DeviceInfo device_info = 1;</code>
        */
       public Builder clearDeviceInfo() {
-        if (deviceInfoBuilder_ == null) {
-          deviceInfo_ = null;
-          onChanged();
-        } else {
-          deviceInfo_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        deviceInfo_ = null;
+        if (deviceInfoBuilder_ != null) {
+          deviceInfoBuilder_.dispose();
           deviceInfoBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.DeviceInfo device_info = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.Builder getDeviceInfoBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getDeviceInfoFieldBuilder().getBuilder();
       }
@@ -2229,7 +2221,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder> 
           getDeviceInfoFieldBuilder() {
         if (deviceInfoBuilder_ == null) {
-          deviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          deviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder>(
                   getDeviceInfo(),
                   getParentForChildren(),
                   isClean());
@@ -2246,7 +2239,7 @@ public final class Connect {
        * @return Whether the playerState field is set.
        */
       public boolean hasPlayerState() {
-        return playerStateBuilder_ != null || playerState_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.connectstate.PlayerState player_state = 2;</code>
@@ -2268,11 +2261,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           playerState_ = value;
-          onChanged();
         } else {
           playerStateBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2282,11 +2275,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder builderForValue) {
         if (playerStateBuilder_ == null) {
           playerState_ = builderForValue.build();
-          onChanged();
         } else {
           playerStateBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2294,38 +2287,38 @@ public final class Connect {
        */
       public Builder mergePlayerState(com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState value) {
         if (playerStateBuilder_ == null) {
-          if (playerState_ != null) {
-            playerState_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.newBuilder(playerState_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            playerState_ != null &&
+            playerState_ != com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.getDefaultInstance()) {
+            getPlayerStateBuilder().mergeFrom(value);
           } else {
             playerState_ = value;
           }
-          onChanged();
         } else {
           playerStateBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlayerState player_state = 2;</code>
        */
       public Builder clearPlayerState() {
-        if (playerStateBuilder_ == null) {
-          playerState_ = null;
-          onChanged();
-        } else {
-          playerState_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        playerState_ = null;
+        if (playerStateBuilder_ != null) {
+          playerStateBuilder_.dispose();
           playerStateBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlayerState player_state = 2;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder getPlayerStateBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPlayerStateFieldBuilder().getBuilder();
       }
@@ -2347,7 +2340,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder> 
           getPlayerStateFieldBuilder() {
         if (playerStateBuilder_ == null) {
-          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder>(
                   getPlayerState(),
                   getParentForChildren(),
                   isClean());
@@ -2364,7 +2358,7 @@ public final class Connect {
        * @return Whether the privateDeviceInfo field is set.
        */
       public boolean hasPrivateDeviceInfo() {
-        return privateDeviceInfoBuilder_ != null || privateDeviceInfo_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>.connectstate.PrivateDeviceInfo private_device_info = 3;</code>
@@ -2386,11 +2380,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           privateDeviceInfo_ = value;
-          onChanged();
         } else {
           privateDeviceInfoBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -2400,11 +2394,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.Builder builderForValue) {
         if (privateDeviceInfoBuilder_ == null) {
           privateDeviceInfo_ = builderForValue.build();
-          onChanged();
         } else {
           privateDeviceInfoBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -2412,38 +2406,38 @@ public final class Connect {
        */
       public Builder mergePrivateDeviceInfo(com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo value) {
         if (privateDeviceInfoBuilder_ == null) {
-          if (privateDeviceInfo_ != null) {
-            privateDeviceInfo_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.newBuilder(privateDeviceInfo_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            privateDeviceInfo_ != null &&
+            privateDeviceInfo_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.getDefaultInstance()) {
+            getPrivateDeviceInfoBuilder().mergeFrom(value);
           } else {
             privateDeviceInfo_ = value;
           }
-          onChanged();
         } else {
           privateDeviceInfoBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PrivateDeviceInfo private_device_info = 3;</code>
        */
       public Builder clearPrivateDeviceInfo() {
-        if (privateDeviceInfoBuilder_ == null) {
-          privateDeviceInfo_ = null;
-          onChanged();
-        } else {
-          privateDeviceInfo_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        privateDeviceInfo_ = null;
+        if (privateDeviceInfoBuilder_ != null) {
+          privateDeviceInfoBuilder_.dispose();
           privateDeviceInfoBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PrivateDeviceInfo private_device_info = 3;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.Builder getPrivateDeviceInfoBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getPrivateDeviceInfoFieldBuilder().getBuilder();
       }
@@ -2465,7 +2459,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder> 
           getPrivateDeviceInfoFieldBuilder() {
         if (privateDeviceInfoBuilder_ == null) {
-          privateDeviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          privateDeviceInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder>(
                   getPrivateDeviceInfo(),
                   getParentForChildren(),
                   isClean());
@@ -2483,6 +2478,7 @@ public final class Connect {
        * <code>bytes transfer_data = 4;</code>
        * @return The transferData.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getTransferData() {
         return transferData_;
       }
@@ -2496,11 +2492,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setTransferData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         transferData_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2513,19 +2507,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearTransferData() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         transferData_ = getDefaultInstance().getTransferData();
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2556,10 +2550,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -2641,14 +2636,14 @@ public final class Connect {
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
      */
-
-    com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrDefault(
+    /* nullable */
+com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrDefault(
         java.lang.String key,
-        com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo defaultValue);
+        /* nullable */
+com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo defaultValue);
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
      */
-
     com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrThrow(
         java.lang.String key);
 
@@ -2685,7 +2680,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.Cluster}
    */
-  public  static final class Cluster extends
+  public static final class Cluster extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.Cluster)
       ClusterOrBuilder {
@@ -2706,12 +2701,7 @@ public final class Connect {
       return new Cluster();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Cluster_descriptor;
     }
@@ -2720,11 +2710,13 @@ public final class Connect {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      if (number == 4) {
-        return internalGetDevice();
-      }
-      throw new RuntimeException(
+      switch (number) {
+        case 4:
+          return internalGetDevice();
+        default:
+          throw new RuntimeException(
               "Invalid map field number: " + number);
+      }
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2735,21 +2727,24 @@ public final class Connect {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>int64 timestamp = 1;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int ACTIVE_DEVICE_ID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object activeDeviceId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object activeDeviceId_ = "";
     /**
      * <code>string active_device_id = 2;</code>
      * @return The activeDeviceId.
      */
+    @java.lang.Override
     public java.lang.String getActiveDeviceId() {
       java.lang.Object ref = activeDeviceId_;
       if (ref instanceof java.lang.String) {
@@ -2766,6 +2761,7 @@ public final class Connect {
      * <code>string active_device_id = 2;</code>
      * @return The bytes for activeDeviceId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getActiveDeviceIdBytes() {
       java.lang.Object ref = activeDeviceId_;
@@ -2786,6 +2782,7 @@ public final class Connect {
      * <code>.connectstate.PlayerState player_state = 3;</code>
      * @return Whether the playerState field is set.
      */
+    @java.lang.Override
     public boolean hasPlayerState() {
       return playerState_ != null;
     }
@@ -2793,14 +2790,16 @@ public final class Connect {
      * <code>.connectstate.PlayerState player_state = 3;</code>
      * @return The playerState.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState getPlayerState() {
       return playerState_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.getDefaultInstance() : playerState_;
     }
     /**
      * <code>.connectstate.PlayerState player_state = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder getPlayerStateOrBuilder() {
-      return getPlayerState();
+      return playerState_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.getDefaultInstance() : playerState_;
     }
 
     public static final int DEVICE_FIELD_NUMBER = 4;
@@ -2808,13 +2807,14 @@ public final class Connect {
       static final com.google.protobuf.MapEntry<
           java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Cluster_DeviceEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.getDefaultInstance());
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> device_;
     private com.google.protobuf.MapField<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>
@@ -2825,22 +2825,22 @@ public final class Connect {
       }
       return device_;
     }
-
     public int getDeviceCount() {
       return internalGetDevice().getMap().size();
     }
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
      */
-
+    @java.lang.Override
     public boolean containsDevice(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetDevice().getMap().containsKey(key);
     }
     /**
      * Use {@link #getDeviceMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> getDevice() {
       return getDeviceMap();
@@ -2848,29 +2848,31 @@ public final class Connect {
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> getDeviceMap() {
       return internalGetDevice().getMap();
     }
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
      */
-
-    public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrDefault(
+    @java.lang.Override
+    public /* nullable */
+com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrDefault(
         java.lang.String key,
-        com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> map =
           internalGetDevice().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
      */
-
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> map =
           internalGetDevice().getMap();
       if (!map.containsKey(key)) {
@@ -2880,51 +2882,56 @@ public final class Connect {
     }
 
     public static final int TRANSFER_DATA_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString transferData_;
+    private com.google.protobuf.ByteString transferData_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes transfer_data = 5;</code>
      * @return The transferData.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getTransferData() {
       return transferData_;
     }
 
     public static final int TRANSFER_DATA_TIMESTAMP_FIELD_NUMBER = 6;
-    private long transferDataTimestamp_;
+    private long transferDataTimestamp_ = 0L;
     /**
      * <code>uint64 transfer_data_timestamp = 6;</code>
      * @return The transferDataTimestamp.
      */
+    @java.lang.Override
     public long getTransferDataTimestamp() {
       return transferDataTimestamp_;
     }
 
     public static final int NOT_PLAYING_SINCE_TIMESTAMP_FIELD_NUMBER = 7;
-    private long notPlayingSinceTimestamp_;
+    private long notPlayingSinceTimestamp_ = 0L;
     /**
      * <code>int64 not_playing_since_timestamp = 7;</code>
      * @return The notPlayingSinceTimestamp.
      */
+    @java.lang.Override
     public long getNotPlayingSinceTimestamp() {
       return notPlayingSinceTimestamp_;
     }
 
     public static final int NEED_FULL_PLAYER_STATE_FIELD_NUMBER = 8;
-    private boolean needFullPlayerState_;
+    private boolean needFullPlayerState_ = false;
     /**
      * <code>bool need_full_player_state = 8;</code>
      * @return The needFullPlayerState.
      */
+    @java.lang.Override
     public boolean getNeedFullPlayerState() {
       return needFullPlayerState_;
     }
 
     public static final int SERVER_TIMESTAMP_MS_FIELD_NUMBER = 9;
-    private long serverTimestampMs_;
+    private long serverTimestampMs_ = 0L;
     /**
      * <code>int64 server_timestamp_ms = 9;</code>
      * @return The serverTimestampMs.
      */
+    @java.lang.Override
     public long getServerTimestampMs() {
       return serverTimestampMs_;
     }
@@ -2973,11 +2980,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3016,7 +3025,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.Cluster}
@@ -3025,7 +3035,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Cluster)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ClusterOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Cluster_descriptor;
       }
@@ -3033,20 +3043,24 @@ public final class Connect {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        if (number == 4) {
-          return internalGetDevice();
-        }
-        throw new RuntimeException(
+        switch (number) {
+          case 4:
+            return internalGetDevice();
+          default:
+            throw new RuntimeException(
                 "Invalid map field number: " + number);
+        }
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        if (number == 4) {
-          return internalGetMutableDevice();
-        }
-        throw new RuntimeException(
+        switch (number) {
+          case 4:
+            return internalGetMutableDevice();
+          default:
+            throw new RuntimeException(
                 "Invalid map field number: " + number);
+        }
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -3058,40 +3072,31 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         timestamp_ = 0L;
-
         activeDeviceId_ = "";
-
-        if (playerStateBuilder_ == null) {
-          playerState_ = null;
-        } else {
-          playerState_ = null;
+        playerState_ = null;
+        if (playerStateBuilder_ != null) {
+          playerStateBuilder_.dispose();
           playerStateBuilder_ = null;
         }
         internalGetMutableDevice().clear();
         transferData_ = com.google.protobuf.ByteString.EMPTY;
-
         transferDataTimestamp_ = 0L;
-
         notPlayingSinceTimestamp_ = 0L;
-
         needFullPlayerState_ = false;
-
         serverTimestampMs_ = 0L;
-
         return this;
       }
 
@@ -3118,57 +3123,45 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster(this);
-        int from_bitField0_ = bitField0_;
-        result.timestamp_ = timestamp_;
-        result.activeDeviceId_ = activeDeviceId_;
-        if (playerStateBuilder_ == null) {
-          result.playerState_ = playerState_;
-        } else {
-          result.playerState_ = playerStateBuilder_.build();
-        }
-        result.device_ = internalGetDevice();
-        result.device_.makeImmutable();
-        result.transferData_ = transferData_;
-        result.transferDataTimestamp_ = transferDataTimestamp_;
-        result.notPlayingSinceTimestamp_ = notPlayingSinceTimestamp_;
-        result.needFullPlayerState_ = needFullPlayerState_;
-        result.serverTimestampMs_ = serverTimestampMs_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.Cluster result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.timestamp_ = timestamp_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.activeDeviceId_ = activeDeviceId_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.playerState_ = playerStateBuilder_ == null
+              ? playerState_
+              : playerStateBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.device_ = internalGetDevice();
+          result.device_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.transferData_ = transferData_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.transferDataTimestamp_ = transferDataTimestamp_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.notPlayingSinceTimestamp_ = notPlayingSinceTimestamp_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.needFullPlayerState_ = needFullPlayerState_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.serverTimestampMs_ = serverTimestampMs_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private long timestamp_ ;
@@ -3176,6 +3169,7 @@ public final class Connect {
        * <code>int64 timestamp = 1;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -3185,8 +3179,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        
+
         timestamp_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3195,7 +3190,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         timestamp_ = 0L;
         onChanged();
         return this;
@@ -3242,11 +3237,9 @@ public final class Connect {
        */
       public Builder setActiveDeviceId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         activeDeviceId_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3255,8 +3248,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearActiveDeviceId() {
-        
         activeDeviceId_ = getDefaultInstance().getActiveDeviceId();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -3267,12 +3260,10 @@ public final class Connect {
        */
       public Builder setActiveDeviceIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         activeDeviceId_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3285,7 +3276,7 @@ public final class Connect {
        * @return Whether the playerState field is set.
        */
       public boolean hasPlayerState() {
-        return playerStateBuilder_ != null || playerState_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>.connectstate.PlayerState player_state = 3;</code>
@@ -3307,11 +3298,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           playerState_ = value;
-          onChanged();
         } else {
           playerStateBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -3321,11 +3312,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder builderForValue) {
         if (playerStateBuilder_ == null) {
           playerState_ = builderForValue.build();
-          onChanged();
         } else {
           playerStateBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -3333,38 +3324,38 @@ public final class Connect {
        */
       public Builder mergePlayerState(com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState value) {
         if (playerStateBuilder_ == null) {
-          if (playerState_ != null) {
-            playerState_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.newBuilder(playerState_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            playerState_ != null &&
+            playerState_ != com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.getDefaultInstance()) {
+            getPlayerStateBuilder().mergeFrom(value);
           } else {
             playerState_ = value;
           }
-          onChanged();
         } else {
           playerStateBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlayerState player_state = 3;</code>
        */
       public Builder clearPlayerState() {
-        if (playerStateBuilder_ == null) {
-          playerState_ = null;
-          onChanged();
-        } else {
-          playerState_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        playerState_ = null;
+        if (playerStateBuilder_ != null) {
+          playerStateBuilder_.dispose();
           playerStateBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.PlayerState player_state = 3;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder getPlayerStateBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getPlayerStateFieldBuilder().getBuilder();
       }
@@ -3386,7 +3377,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder> 
           getPlayerStateFieldBuilder() {
         if (playerStateBuilder_ == null) {
-          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          playerStateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerState.Builder, com.spotifyxp.deps.com.spotify.connectstate.Player.PlayerStateOrBuilder>(
                   getPlayerState(),
                   getParentForChildren(),
                   isClean());
@@ -3398,7 +3390,7 @@ public final class Connect {
       private com.google.protobuf.MapField<
           java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> device_;
       private com.google.protobuf.MapField<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>
-      internalGetDevice() {
+          internalGetDevice() {
         if (device_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               DeviceDefaultEntryHolder.defaultEntry);
@@ -3406,8 +3398,7 @@ public final class Connect {
         return device_;
       }
       private com.google.protobuf.MapField<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>
-      internalGetMutableDevice() {
-        onChanged();
+          internalGetMutableDevice() {
         if (device_ == null) {
           device_ = com.google.protobuf.MapField.newMapField(
               DeviceDefaultEntryHolder.defaultEntry);
@@ -3415,24 +3406,26 @@ public final class Connect {
         if (!device_.isMutable()) {
           device_ = device_.copy();
         }
+        bitField0_ |= 0x00000008;
+        onChanged();
         return device_;
       }
-
       public int getDeviceCount() {
         return internalGetDevice().getMap().size();
       }
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
        */
-
+      @java.lang.Override
       public boolean containsDevice(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetDevice().getMap().containsKey(key);
       }
       /**
        * Use {@link #getDeviceMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> getDevice() {
         return getDeviceMap();
@@ -3440,29 +3433,31 @@ public final class Connect {
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> getDeviceMap() {
         return internalGetDevice().getMap();
       }
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
        */
-
-      public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrDefault(
+      @java.lang.Override
+      public /* nullable */
+com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrDefault(
           java.lang.String key,
-          com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> map =
             internalGetDevice().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
        */
-
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo getDeviceOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> map =
             internalGetDevice().getMap();
         if (!map.containsKey(key)) {
@@ -3470,8 +3465,8 @@ public final class Connect {
         }
         return map.get(key);
       }
-
       public Builder clearDevice() {
+        bitField0_ = (bitField0_ & ~0x00000008);
         internalGetMutableDevice().getMutableMap()
             .clear();
         return this;
@@ -3479,10 +3474,9 @@ public final class Connect {
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
        */
-
       public Builder removeDevice(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableDevice().getMutableMap()
             .remove(key);
         return this;
@@ -3492,7 +3486,8 @@ public final class Connect {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo>
-      getMutableDevice() {
+          getMutableDevice() {
+        bitField0_ |= 0x00000008;
         return internalGetMutableDevice().getMutableMap();
       }
       /**
@@ -3501,20 +3496,21 @@ public final class Connect {
       public Builder putDevice(
           java.lang.String key,
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableDevice().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
        * <code>map&lt;string, .connectstate.DeviceInfo&gt; device = 4;</code>
        */
-
       public Builder putAllDevice(
           java.util.Map<java.lang.String, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo> values) {
         internalGetMutableDevice().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000008;
         return this;
       }
 
@@ -3523,6 +3519,7 @@ public final class Connect {
        * <code>bytes transfer_data = 5;</code>
        * @return The transferData.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getTransferData() {
         return transferData_;
       }
@@ -3532,11 +3529,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setTransferData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         transferData_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -3545,7 +3540,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearTransferData() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         transferData_ = getDefaultInstance().getTransferData();
         onChanged();
         return this;
@@ -3556,6 +3551,7 @@ public final class Connect {
        * <code>uint64 transfer_data_timestamp = 6;</code>
        * @return The transferDataTimestamp.
        */
+      @java.lang.Override
       public long getTransferDataTimestamp() {
         return transferDataTimestamp_;
       }
@@ -3565,8 +3561,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setTransferDataTimestamp(long value) {
-        
+
         transferDataTimestamp_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -3575,7 +3572,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearTransferDataTimestamp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000020);
         transferDataTimestamp_ = 0L;
         onChanged();
         return this;
@@ -3586,6 +3583,7 @@ public final class Connect {
        * <code>int64 not_playing_since_timestamp = 7;</code>
        * @return The notPlayingSinceTimestamp.
        */
+      @java.lang.Override
       public long getNotPlayingSinceTimestamp() {
         return notPlayingSinceTimestamp_;
       }
@@ -3595,8 +3593,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setNotPlayingSinceTimestamp(long value) {
-        
+
         notPlayingSinceTimestamp_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -3605,7 +3604,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearNotPlayingSinceTimestamp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000040);
         notPlayingSinceTimestamp_ = 0L;
         onChanged();
         return this;
@@ -3616,6 +3615,7 @@ public final class Connect {
        * <code>bool need_full_player_state = 8;</code>
        * @return The needFullPlayerState.
        */
+      @java.lang.Override
       public boolean getNeedFullPlayerState() {
         return needFullPlayerState_;
       }
@@ -3625,8 +3625,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setNeedFullPlayerState(boolean value) {
-        
+
         needFullPlayerState_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -3635,7 +3636,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearNeedFullPlayerState() {
-        
+        bitField0_ = (bitField0_ & ~0x00000080);
         needFullPlayerState_ = false;
         onChanged();
         return this;
@@ -3646,6 +3647,7 @@ public final class Connect {
        * <code>int64 server_timestamp_ms = 9;</code>
        * @return The serverTimestampMs.
        */
+      @java.lang.Override
       public long getServerTimestampMs() {
         return serverTimestampMs_;
       }
@@ -3655,8 +3657,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setServerTimestampMs(long value) {
-        
+
         serverTimestampMs_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -3665,19 +3668,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearServerTimestampMs() {
-        
+        bitField0_ = (bitField0_ & ~0x00000100);
         serverTimestampMs_ = 0L;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3708,10 +3711,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -3843,7 +3847,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.PutStateRequest}
    */
-  public  static final class PutStateRequest extends
+  public static final class PutStateRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.PutStateRequest)
       PutStateRequestOrBuilder {
@@ -3866,12 +3870,7 @@ public final class Connect {
       return new PutStateRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PutStateRequest_descriptor;
     }
@@ -3885,11 +3884,13 @@ public final class Connect {
     }
 
     public static final int CALLBACK_URL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object callbackUrl_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object callbackUrl_ = "";
     /**
      * <code>string callback_url = 1;</code>
      * @return The callbackUrl.
      */
+    @java.lang.Override
     public java.lang.String getCallbackUrl() {
       java.lang.Object ref = callbackUrl_;
       if (ref instanceof java.lang.String) {
@@ -3906,6 +3907,7 @@ public final class Connect {
      * <code>string callback_url = 1;</code>
      * @return The bytes for callbackUrl.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCallbackUrlBytes() {
       java.lang.Object ref = callbackUrl_;
@@ -3926,6 +3928,7 @@ public final class Connect {
      * <code>.connectstate.Device device = 2;</code>
      * @return Whether the device field is set.
      */
+    @java.lang.Override
     public boolean hasDevice() {
       return device_ != null;
     }
@@ -3933,78 +3936,84 @@ public final class Connect {
      * <code>.connectstate.Device device = 2;</code>
      * @return The device.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.Device getDevice() {
       return device_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.getDefaultInstance() : device_;
     }
     /**
      * <code>.connectstate.Device device = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder getDeviceOrBuilder() {
-      return getDevice();
+      return device_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.getDefaultInstance() : device_;
     }
 
     public static final int MEMBER_TYPE_FIELD_NUMBER = 3;
-    private int memberType_;
+    private int memberType_ = 0;
     /**
      * <code>.connectstate.MemberType member_type = 3;</code>
      * @return The enum numeric value on the wire for memberType.
      */
-    public int getMemberTypeValue() {
+    @java.lang.Override public int getMemberTypeValue() {
       return memberType_;
     }
     /**
      * <code>.connectstate.MemberType member_type = 3;</code>
      * @return The memberType.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType getMemberType() {
-      com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.valueOf(memberType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType getMemberType() {
+      com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.forNumber(memberType_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.UNRECOGNIZED : result;
     }
 
     public static final int IS_ACTIVE_FIELD_NUMBER = 4;
-    private boolean isActive_;
+    private boolean isActive_ = false;
     /**
      * <code>bool is_active = 4;</code>
      * @return The isActive.
      */
+    @java.lang.Override
     public boolean getIsActive() {
       return isActive_;
     }
 
     public static final int PUT_STATE_REASON_FIELD_NUMBER = 5;
-    private int putStateReason_;
+    private int putStateReason_ = 0;
     /**
      * <code>.connectstate.PutStateReason put_state_reason = 5;</code>
      * @return The enum numeric value on the wire for putStateReason.
      */
-    public int getPutStateReasonValue() {
+    @java.lang.Override public int getPutStateReasonValue() {
       return putStateReason_;
     }
     /**
      * <code>.connectstate.PutStateReason put_state_reason = 5;</code>
      * @return The putStateReason.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason getPutStateReason() {
-      com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.valueOf(putStateReason_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason getPutStateReason() {
+      com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.forNumber(putStateReason_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.UNRECOGNIZED : result;
     }
 
     public static final int MESSAGE_ID_FIELD_NUMBER = 6;
-    private int messageId_;
+    private int messageId_ = 0;
     /**
      * <code>uint32 message_id = 6;</code>
      * @return The messageId.
      */
+    @java.lang.Override
     public int getMessageId() {
       return messageId_;
     }
 
     public static final int LAST_COMMAND_SENT_BY_DEVICE_ID_FIELD_NUMBER = 7;
-    private volatile java.lang.Object lastCommandSentByDeviceId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object lastCommandSentByDeviceId_ = "";
     /**
      * <code>string last_command_sent_by_device_id = 7;</code>
      * @return The lastCommandSentByDeviceId.
      */
+    @java.lang.Override
     public java.lang.String getLastCommandSentByDeviceId() {
       java.lang.Object ref = lastCommandSentByDeviceId_;
       if (ref instanceof java.lang.String) {
@@ -4021,6 +4030,7 @@ public final class Connect {
      * <code>string last_command_sent_by_device_id = 7;</code>
      * @return The bytes for lastCommandSentByDeviceId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLastCommandSentByDeviceIdBytes() {
       java.lang.Object ref = lastCommandSentByDeviceId_;
@@ -4036,51 +4046,56 @@ public final class Connect {
     }
 
     public static final int LAST_COMMAND_MESSAGE_ID_FIELD_NUMBER = 8;
-    private int lastCommandMessageId_;
+    private int lastCommandMessageId_ = 0;
     /**
      * <code>uint32 last_command_message_id = 8;</code>
      * @return The lastCommandMessageId.
      */
+    @java.lang.Override
     public int getLastCommandMessageId() {
       return lastCommandMessageId_;
     }
 
     public static final int STARTED_PLAYING_AT_FIELD_NUMBER = 9;
-    private long startedPlayingAt_;
+    private long startedPlayingAt_ = 0L;
     /**
      * <code>uint64 started_playing_at = 9;</code>
      * @return The startedPlayingAt.
      */
+    @java.lang.Override
     public long getStartedPlayingAt() {
       return startedPlayingAt_;
     }
 
     public static final int HAS_BEEN_PLAYING_FOR_MS_FIELD_NUMBER = 11;
-    private long hasBeenPlayingForMs_;
+    private long hasBeenPlayingForMs_ = 0L;
     /**
      * <code>uint64 has_been_playing_for_ms = 11;</code>
      * @return The hasBeenPlayingForMs.
      */
+    @java.lang.Override
     public long getHasBeenPlayingForMs() {
       return hasBeenPlayingForMs_;
     }
 
     public static final int CLIENT_SIDE_TIMESTAMP_FIELD_NUMBER = 12;
-    private long clientSideTimestamp_;
+    private long clientSideTimestamp_ = 0L;
     /**
      * <code>uint64 client_side_timestamp = 12;</code>
      * @return The clientSideTimestamp.
      */
+    @java.lang.Override
     public long getClientSideTimestamp() {
       return clientSideTimestamp_;
     }
 
     public static final int ONLY_WRITE_PLAYER_STATE_FIELD_NUMBER = 13;
-    private boolean onlyWritePlayerState_;
+    private boolean onlyWritePlayerState_ = false;
     /**
      * <code>bool only_write_player_state = 13;</code>
      * @return The onlyWritePlayerState.
      */
+    @java.lang.Override
     public boolean getOnlyWritePlayerState() {
       return onlyWritePlayerState_;
     }
@@ -4129,11 +4144,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4172,7 +4189,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.PutStateRequest}
@@ -4181,7 +4199,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PutStateRequest)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PutStateRequest_descriptor;
       }
@@ -4196,47 +4214,34 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         callbackUrl_ = "";
-
-        if (deviceBuilder_ == null) {
-          device_ = null;
-        } else {
-          device_ = null;
+        device_ = null;
+        if (deviceBuilder_ != null) {
+          deviceBuilder_.dispose();
           deviceBuilder_ = null;
         }
         memberType_ = 0;
-
         isActive_ = false;
-
         putStateReason_ = 0;
-
         messageId_ = 0;
-
         lastCommandSentByDeviceId_ = "";
-
         lastCommandMessageId_ = 0;
-
         startedPlayingAt_ = 0L;
-
         hasBeenPlayingForMs_ = 0L;
-
         clientSideTimestamp_ = 0L;
-
         onlyWritePlayerState_ = false;
-
         return this;
       }
 
@@ -4263,58 +4268,54 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest(this);
-        result.callbackUrl_ = callbackUrl_;
-        if (deviceBuilder_ == null) {
-          result.device_ = device_;
-        } else {
-          result.device_ = deviceBuilder_.build();
-        }
-        result.memberType_ = memberType_;
-        result.isActive_ = isActive_;
-        result.putStateReason_ = putStateReason_;
-        result.messageId_ = messageId_;
-        result.lastCommandSentByDeviceId_ = lastCommandSentByDeviceId_;
-        result.lastCommandMessageId_ = lastCommandMessageId_;
-        result.startedPlayingAt_ = startedPlayingAt_;
-        result.hasBeenPlayingForMs_ = hasBeenPlayingForMs_;
-        result.clientSideTimestamp_ = clientSideTimestamp_;
-        result.onlyWritePlayerState_ = onlyWritePlayerState_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.callbackUrl_ = callbackUrl_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.device_ = deviceBuilder_ == null
+              ? device_
+              : deviceBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.memberType_ = memberType_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.isActive_ = isActive_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.putStateReason_ = putStateReason_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.messageId_ = messageId_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.lastCommandSentByDeviceId_ = lastCommandSentByDeviceId_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.lastCommandMessageId_ = lastCommandMessageId_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.startedPlayingAt_ = startedPlayingAt_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.hasBeenPlayingForMs_ = hasBeenPlayingForMs_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.clientSideTimestamp_ = clientSideTimestamp_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.onlyWritePlayerState_ = onlyWritePlayerState_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object callbackUrl_ = "";
       /**
@@ -4357,11 +4358,9 @@ public final class Connect {
        */
       public Builder setCallbackUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         callbackUrl_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4370,8 +4369,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearCallbackUrl() {
-        
         callbackUrl_ = getDefaultInstance().getCallbackUrl();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -4382,12 +4381,10 @@ public final class Connect {
        */
       public Builder setCallbackUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         callbackUrl_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4400,7 +4397,7 @@ public final class Connect {
        * @return Whether the device field is set.
        */
       public boolean hasDevice() {
-        return deviceBuilder_ != null || device_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.connectstate.Device device = 2;</code>
@@ -4422,11 +4419,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           device_ = value;
-          onChanged();
         } else {
           deviceBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4436,11 +4433,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.Builder builderForValue) {
         if (deviceBuilder_ == null) {
           device_ = builderForValue.build();
-          onChanged();
         } else {
           deviceBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4448,38 +4445,38 @@ public final class Connect {
        */
       public Builder mergeDevice(com.spotifyxp.deps.com.spotify.connectstate.Connect.Device value) {
         if (deviceBuilder_ == null) {
-          if (device_ != null) {
-            device_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.newBuilder(device_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            device_ != null &&
+            device_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.getDefaultInstance()) {
+            getDeviceBuilder().mergeFrom(value);
           } else {
             device_ = value;
           }
-          onChanged();
         } else {
           deviceBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Device device = 2;</code>
        */
       public Builder clearDevice() {
-        if (deviceBuilder_ == null) {
-          device_ = null;
-          onChanged();
-        } else {
-          device_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        device_ = null;
+        if (deviceBuilder_ != null) {
+          deviceBuilder_.dispose();
           deviceBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Device device = 2;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.Builder getDeviceBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getDeviceFieldBuilder().getBuilder();
       }
@@ -4501,7 +4498,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Device, com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder> 
           getDeviceFieldBuilder() {
         if (deviceBuilder_ == null) {
-          deviceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          deviceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.Device, com.spotifyxp.deps.com.spotify.connectstate.Connect.Device.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceOrBuilder>(
                   getDevice(),
                   getParentForChildren(),
                   isClean());
@@ -4515,7 +4513,7 @@ public final class Connect {
        * <code>.connectstate.MemberType member_type = 3;</code>
        * @return The enum numeric value on the wire for memberType.
        */
-      public int getMemberTypeValue() {
+      @java.lang.Override public int getMemberTypeValue() {
         return memberType_;
       }
       /**
@@ -4525,6 +4523,7 @@ public final class Connect {
        */
       public Builder setMemberTypeValue(int value) {
         memberType_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -4532,8 +4531,9 @@ public final class Connect {
        * <code>.connectstate.MemberType member_type = 3;</code>
        * @return The memberType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType getMemberType() {
-        com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.valueOf(memberType_);
+        com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.forNumber(memberType_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.MemberType.UNRECOGNIZED : result;
       }
       /**
@@ -4545,7 +4545,7 @@ public final class Connect {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000004;
         memberType_ = value.getNumber();
         onChanged();
         return this;
@@ -4555,7 +4555,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearMemberType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         memberType_ = 0;
         onChanged();
         return this;
@@ -4566,6 +4566,7 @@ public final class Connect {
        * <code>bool is_active = 4;</code>
        * @return The isActive.
        */
+      @java.lang.Override
       public boolean getIsActive() {
         return isActive_;
       }
@@ -4575,8 +4576,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsActive(boolean value) {
-        
+
         isActive_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -4585,7 +4587,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsActive() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         isActive_ = false;
         onChanged();
         return this;
@@ -4596,7 +4598,7 @@ public final class Connect {
        * <code>.connectstate.PutStateReason put_state_reason = 5;</code>
        * @return The enum numeric value on the wire for putStateReason.
        */
-      public int getPutStateReasonValue() {
+      @java.lang.Override public int getPutStateReasonValue() {
         return putStateReason_;
       }
       /**
@@ -4606,6 +4608,7 @@ public final class Connect {
        */
       public Builder setPutStateReasonValue(int value) {
         putStateReason_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -4613,8 +4616,9 @@ public final class Connect {
        * <code>.connectstate.PutStateReason put_state_reason = 5;</code>
        * @return The putStateReason.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason getPutStateReason() {
-        com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.valueOf(putStateReason_);
+        com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason result = com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.forNumber(putStateReason_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.PutStateReason.UNRECOGNIZED : result;
       }
       /**
@@ -4626,7 +4630,7 @@ public final class Connect {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000010;
         putStateReason_ = value.getNumber();
         onChanged();
         return this;
@@ -4636,7 +4640,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearPutStateReason() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         putStateReason_ = 0;
         onChanged();
         return this;
@@ -4647,6 +4651,7 @@ public final class Connect {
        * <code>uint32 message_id = 6;</code>
        * @return The messageId.
        */
+      @java.lang.Override
       public int getMessageId() {
         return messageId_;
       }
@@ -4656,8 +4661,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setMessageId(int value) {
-        
+
         messageId_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -4666,7 +4672,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearMessageId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000020);
         messageId_ = 0;
         onChanged();
         return this;
@@ -4713,11 +4719,9 @@ public final class Connect {
        */
       public Builder setLastCommandSentByDeviceId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         lastCommandSentByDeviceId_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -4726,8 +4730,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearLastCommandSentByDeviceId() {
-        
         lastCommandSentByDeviceId_ = getDefaultInstance().getLastCommandSentByDeviceId();
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
       }
@@ -4738,12 +4742,10 @@ public final class Connect {
        */
       public Builder setLastCommandSentByDeviceIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         lastCommandSentByDeviceId_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -4753,6 +4755,7 @@ public final class Connect {
        * <code>uint32 last_command_message_id = 8;</code>
        * @return The lastCommandMessageId.
        */
+      @java.lang.Override
       public int getLastCommandMessageId() {
         return lastCommandMessageId_;
       }
@@ -4762,8 +4765,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setLastCommandMessageId(int value) {
-        
+
         lastCommandMessageId_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -4772,7 +4776,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearLastCommandMessageId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000080);
         lastCommandMessageId_ = 0;
         onChanged();
         return this;
@@ -4783,6 +4787,7 @@ public final class Connect {
        * <code>uint64 started_playing_at = 9;</code>
        * @return The startedPlayingAt.
        */
+      @java.lang.Override
       public long getStartedPlayingAt() {
         return startedPlayingAt_;
       }
@@ -4792,8 +4797,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setStartedPlayingAt(long value) {
-        
+
         startedPlayingAt_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -4802,7 +4808,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearStartedPlayingAt() {
-        
+        bitField0_ = (bitField0_ & ~0x00000100);
         startedPlayingAt_ = 0L;
         onChanged();
         return this;
@@ -4813,6 +4819,7 @@ public final class Connect {
        * <code>uint64 has_been_playing_for_ms = 11;</code>
        * @return The hasBeenPlayingForMs.
        */
+      @java.lang.Override
       public long getHasBeenPlayingForMs() {
         return hasBeenPlayingForMs_;
       }
@@ -4822,8 +4829,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setHasBeenPlayingForMs(long value) {
-        
+
         hasBeenPlayingForMs_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -4832,7 +4840,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearHasBeenPlayingForMs() {
-        
+        bitField0_ = (bitField0_ & ~0x00000200);
         hasBeenPlayingForMs_ = 0L;
         onChanged();
         return this;
@@ -4843,6 +4851,7 @@ public final class Connect {
        * <code>uint64 client_side_timestamp = 12;</code>
        * @return The clientSideTimestamp.
        */
+      @java.lang.Override
       public long getClientSideTimestamp() {
         return clientSideTimestamp_;
       }
@@ -4852,8 +4861,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setClientSideTimestamp(long value) {
-        
+
         clientSideTimestamp_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -4862,7 +4872,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearClientSideTimestamp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000400);
         clientSideTimestamp_ = 0L;
         onChanged();
         return this;
@@ -4873,6 +4883,7 @@ public final class Connect {
        * <code>bool only_write_player_state = 13;</code>
        * @return The onlyWritePlayerState.
        */
+      @java.lang.Override
       public boolean getOnlyWritePlayerState() {
         return onlyWritePlayerState_;
       }
@@ -4882,8 +4893,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setOnlyWritePlayerState(boolean value) {
-        
+
         onlyWritePlayerState_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -4892,19 +4904,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearOnlyWritePlayerState() {
-        
+        bitField0_ = (bitField0_ & ~0x00000800);
         onlyWritePlayerState_ = false;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4935,10 +4947,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -4979,7 +4992,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.PrivateDeviceInfo}
    */
-  public  static final class PrivateDeviceInfo extends
+  public static final class PrivateDeviceInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.PrivateDeviceInfo)
       PrivateDeviceInfoOrBuilder {
@@ -4999,12 +5012,7 @@ public final class Connect {
       return new PrivateDeviceInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PrivateDeviceInfo_descriptor;
     }
@@ -5018,11 +5026,13 @@ public final class Connect {
     }
 
     public static final int PLATFORM_FIELD_NUMBER = 1;
-    private volatile java.lang.Object platform_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object platform_ = "";
     /**
      * <code>string platform = 1;</code>
      * @return The platform.
      */
+    @java.lang.Override
     public java.lang.String getPlatform() {
       java.lang.Object ref = platform_;
       if (ref instanceof java.lang.String) {
@@ -5039,6 +5049,7 @@ public final class Connect {
      * <code>string platform = 1;</code>
      * @return The bytes for platform.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPlatformBytes() {
       java.lang.Object ref = platform_;
@@ -5097,11 +5108,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5140,7 +5153,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.PrivateDeviceInfo}
@@ -5149,7 +5163,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.PrivateDeviceInfo)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_PrivateDeviceInfo_descriptor;
       }
@@ -5164,21 +5178,19 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         platform_ = "";
-
         return this;
       }
 
@@ -5205,43 +5217,19 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo(this);
-        result.platform_ = platform_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.PrivateDeviceInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.platform_ = platform_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object platform_ = "";
       /**
@@ -5284,11 +5272,9 @@ public final class Connect {
        */
       public Builder setPlatform(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         platform_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5297,8 +5283,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearPlatform() {
-        
         platform_ = getDefaultInstance().getPlatform();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -5309,23 +5295,21 @@ public final class Connect {
        */
       public Builder setPlatformBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         platform_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5356,10 +5340,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5400,7 +5385,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.SubscribeRequest}
    */
-  public  static final class SubscribeRequest extends
+  public static final class SubscribeRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.SubscribeRequest)
       SubscribeRequestOrBuilder {
@@ -5420,12 +5405,7 @@ public final class Connect {
       return new SubscribeRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SubscribeRequest_descriptor;
     }
@@ -5439,11 +5419,13 @@ public final class Connect {
     }
 
     public static final int CALLBACK_URL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object callbackUrl_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object callbackUrl_ = "";
     /**
      * <code>string callback_url = 1;</code>
      * @return The callbackUrl.
      */
+    @java.lang.Override
     public java.lang.String getCallbackUrl() {
       java.lang.Object ref = callbackUrl_;
       if (ref instanceof java.lang.String) {
@@ -5460,6 +5442,7 @@ public final class Connect {
      * <code>string callback_url = 1;</code>
      * @return The bytes for callbackUrl.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCallbackUrlBytes() {
       java.lang.Object ref = callbackUrl_;
@@ -5518,11 +5501,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5561,7 +5546,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.SubscribeRequest}
@@ -5570,7 +5556,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.SubscribeRequest)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SubscribeRequest_descriptor;
       }
@@ -5585,21 +5571,19 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         callbackUrl_ = "";
-
         return this;
       }
 
@@ -5626,43 +5610,19 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest(this);
-        result.callbackUrl_ = callbackUrl_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.SubscribeRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.callbackUrl_ = callbackUrl_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object callbackUrl_ = "";
       /**
@@ -5705,11 +5665,9 @@ public final class Connect {
        */
       public Builder setCallbackUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         callbackUrl_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5718,8 +5676,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearCallbackUrl() {
-        
         callbackUrl_ = getDefaultInstance().getCallbackUrl();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -5730,23 +5688,21 @@ public final class Connect {
        */
       public Builder setCallbackUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         callbackUrl_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5777,10 +5733,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5963,14 +5920,14 @@ public final class Connect {
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
      */
-
-    java.lang.String getMetadataMapOrDefault(
+    /* nullable */
+java.lang.String getMetadataMapOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
      */
-
     java.lang.String getMetadataMapOrThrow(
         java.lang.String key);
 
@@ -6061,7 +6018,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.DeviceInfo}
    */
-  public  static final class DeviceInfo extends
+  public static final class DeviceInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.DeviceInfo)
       DeviceInfoOrBuilder {
@@ -6093,12 +6050,7 @@ public final class Connect {
       return new DeviceInfo();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_descriptor;
     }
@@ -6107,11 +6059,13 @@ public final class Connect {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      if (number == 16) {
-        return internalGetMetadataMap();
-      }
-      throw new RuntimeException(
+      switch (number) {
+        case 16:
+          return internalGetMetadataMap();
+        default:
+          throw new RuntimeException(
               "Invalid map field number: " + number);
+      }
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -6149,7 +6103,7 @@ public final class Connect {
     /**
      * Protobuf type {@code connectstate.DeviceInfo.DeviceAliasesEntry}
      */
-    public  static final class DeviceAliasesEntry extends
+    public static final class DeviceAliasesEntry extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:connectstate.DeviceInfo.DeviceAliasesEntry)
         DeviceAliasesEntryOrBuilder {
@@ -6168,12 +6122,7 @@ public final class Connect {
         return new DeviceAliasesEntry();
       }
 
-      @java.lang.Override
-      public com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_DeviceAliasesEntry_descriptor;
       }
@@ -6187,11 +6136,12 @@ public final class Connect {
       }
 
       public static final int KEY_FIELD_NUMBER = 1;
-      private int key_;
+      private int key_ = 0;
       /**
        * <code>uint32 key = 1;</code>
        * @return The key.
        */
+      @java.lang.Override
       public int getKey() {
         return key_;
       }
@@ -6202,6 +6152,7 @@ public final class Connect {
        * <code>.connectstate.DeviceAlias value = 2;</code>
        * @return Whether the value field is set.
        */
+      @java.lang.Override
       public boolean hasValue() {
         return value_ != null;
       }
@@ -6209,14 +6160,16 @@ public final class Connect {
        * <code>.connectstate.DeviceAlias value = 2;</code>
        * @return The value.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias getValue() {
         return value_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.getDefaultInstance() : value_;
       }
       /**
        * <code>.connectstate.DeviceAlias value = 2;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder getValueOrBuilder() {
-        return getValue();
+        return value_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.getDefaultInstance() : value_;
       }
 
       public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry parseFrom(
@@ -6263,11 +6216,13 @@ public final class Connect {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
+
       public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
+
       public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6306,7 +6261,8 @@ public final class Connect {
       @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+        Builder builder = new Builder(parent);
+        return builder;
       }
       /**
        * Protobuf type {@code connectstate.DeviceInfo.DeviceAliasesEntry}
@@ -6315,7 +6271,7 @@ public final class Connect {
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:connectstate.DeviceInfo.DeviceAliasesEntry)
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder {
-        public static com.google.protobuf.Descriptors.Descriptor
+        public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
           return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_DeviceAliasesEntry_descriptor;
         }
@@ -6330,25 +6286,22 @@ public final class Connect {
 
         // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
+          bitField0_ = 0;
           key_ = 0;
-
-          if (valueBuilder_ == null) {
-            value_ = null;
-          } else {
-            value_ = null;
+          value_ = null;
+          if (valueBuilder_ != null) {
+            valueBuilder_.dispose();
             valueBuilder_ = null;
           }
           return this;
@@ -6377,54 +6330,31 @@ public final class Connect {
         @java.lang.Override
         public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry buildPartial() {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry(this);
-          result.key_ = key_;
-          if (valueBuilder_ == null) {
-            result.value_ = value_;
-          } else {
-            result.value_ = valueBuilder_.build();
-          }
+          if (bitField0_ != 0) { buildPartial0(result); }
           onBuilt();
           return result;
         }
 
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
+        private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.key_ = key_;
+          }
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.value_ = valueBuilder_ == null
+                ? value_
+                : valueBuilder_.build();
+          }
         }
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
+
+        private int bitField0_;
 
         private int key_ ;
         /**
          * <code>uint32 key = 1;</code>
          * @return The key.
          */
+        @java.lang.Override
         public int getKey() {
           return key_;
         }
@@ -6434,8 +6364,9 @@ public final class Connect {
          * @return This builder for chaining.
          */
         public Builder setKey(int value) {
-          
+
           key_ = value;
+          bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
@@ -6444,7 +6375,7 @@ public final class Connect {
          * @return This builder for chaining.
          */
         public Builder clearKey() {
-          
+          bitField0_ = (bitField0_ & ~0x00000001);
           key_ = 0;
           onChanged();
           return this;
@@ -6458,7 +6389,7 @@ public final class Connect {
          * @return Whether the value field is set.
          */
         public boolean hasValue() {
-          return valueBuilder_ != null || value_ != null;
+          return ((bitField0_ & 0x00000002) != 0);
         }
         /**
          * <code>.connectstate.DeviceAlias value = 2;</code>
@@ -6480,11 +6411,11 @@ public final class Connect {
               throw new NullPointerException();
             }
             value_ = value;
-            onChanged();
           } else {
             valueBuilder_.setMessage(value);
           }
-
+          bitField0_ |= 0x00000002;
+          onChanged();
           return this;
         }
         /**
@@ -6494,11 +6425,11 @@ public final class Connect {
             com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.Builder builderForValue) {
           if (valueBuilder_ == null) {
             value_ = builderForValue.build();
-            onChanged();
           } else {
             valueBuilder_.setMessage(builderForValue.build());
           }
-
+          bitField0_ |= 0x00000002;
+          onChanged();
           return this;
         }
         /**
@@ -6506,38 +6437,38 @@ public final class Connect {
          */
         public Builder mergeValue(com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias value) {
           if (valueBuilder_ == null) {
-            if (value_ != null) {
-              value_ =
-                com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.newBuilder(value_).mergeFrom(value).buildPartial();
+            if (((bitField0_ & 0x00000002) != 0) &&
+              value_ != null &&
+              value_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.getDefaultInstance()) {
+              getValueBuilder().mergeFrom(value);
             } else {
               value_ = value;
             }
-            onChanged();
           } else {
             valueBuilder_.mergeFrom(value);
           }
-
+          bitField0_ |= 0x00000002;
+          onChanged();
           return this;
         }
         /**
          * <code>.connectstate.DeviceAlias value = 2;</code>
          */
         public Builder clearValue() {
-          if (valueBuilder_ == null) {
-            value_ = null;
-            onChanged();
-          } else {
-            value_ = null;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          value_ = null;
+          if (valueBuilder_ != null) {
+            valueBuilder_.dispose();
             valueBuilder_ = null;
           }
-
+          onChanged();
           return this;
         }
         /**
          * <code>.connectstate.DeviceAlias value = 2;</code>
          */
         public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.Builder getValueBuilder() {
-          
+          bitField0_ |= 0x00000002;
           onChanged();
           return getValueFieldBuilder().getBuilder();
         }
@@ -6559,7 +6490,8 @@ public final class Connect {
             com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder> 
             getValueFieldBuilder() {
           if (valueBuilder_ == null) {
-            valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+            valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder>(
                     getValue(),
                     getParentForChildren(),
                     isClean());
@@ -6568,13 +6500,13 @@ public final class Connect {
           return valueBuilder_;
         }
         @java.lang.Override
-        public Builder setUnknownFields(
+        public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
-        public Builder mergeUnknownFields(
+        public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
         }
@@ -6605,10 +6537,11 @@ public final class Connect {
             builder.mergeFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(
-                    builder.buildPartial());
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
           }
           return builder.buildPartial();
         }
@@ -6631,31 +6564,35 @@ public final class Connect {
     }
 
     public static final int CAN_PLAY_FIELD_NUMBER = 1;
-    private boolean canPlay_;
+    private boolean canPlay_ = false;
     /**
      * <code>bool can_play = 1;</code>
      * @return The canPlay.
      */
+    @java.lang.Override
     public boolean getCanPlay() {
       return canPlay_;
     }
 
     public static final int VOLUME_FIELD_NUMBER = 2;
-    private int volume_;
+    private int volume_ = 0;
     /**
      * <code>uint32 volume = 2;</code>
      * @return The volume.
      */
+    @java.lang.Override
     public int getVolume() {
       return volume_;
     }
 
     public static final int NAME_FIELD_NUMBER = 3;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>string name = 3;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -6672,6 +6609,7 @@ public final class Connect {
      * <code>string name = 3;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -6692,6 +6630,7 @@ public final class Connect {
      * <code>.connectstate.Capabilities capabilities = 4;</code>
      * @return Whether the capabilities field is set.
      */
+    @java.lang.Override
     public boolean hasCapabilities() {
       return capabilities_ != null;
     }
@@ -6699,22 +6638,26 @@ public final class Connect {
      * <code>.connectstate.Capabilities capabilities = 4;</code>
      * @return The capabilities.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities getCapabilities() {
       return capabilities_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.getDefaultInstance() : capabilities_;
     }
     /**
      * <code>.connectstate.Capabilities capabilities = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder getCapabilitiesOrBuilder() {
-      return getCapabilities();
+      return capabilities_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.getDefaultInstance() : capabilities_;
     }
 
     public static final int DEVICE_SOFTWARE_VERSION_FIELD_NUMBER = 6;
-    private volatile java.lang.Object deviceSoftwareVersion_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deviceSoftwareVersion_ = "";
     /**
      * <code>string device_software_version = 6;</code>
      * @return The deviceSoftwareVersion.
      */
+    @java.lang.Override
     public java.lang.String getDeviceSoftwareVersion() {
       java.lang.Object ref = deviceSoftwareVersion_;
       if (ref instanceof java.lang.String) {
@@ -6731,6 +6674,7 @@ public final class Connect {
      * <code>string device_software_version = 6;</code>
      * @return The bytes for deviceSoftwareVersion.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDeviceSoftwareVersionBytes() {
       java.lang.Object ref = deviceSoftwareVersion_;
@@ -6746,29 +6690,31 @@ public final class Connect {
     }
 
     public static final int DEVICE_TYPE_FIELD_NUMBER = 7;
-    private int deviceType_;
+    private int deviceType_ = 0;
     /**
      * <code>.connectstate.DeviceType device_type = 7;</code>
      * @return The enum numeric value on the wire for deviceType.
      */
-    public int getDeviceTypeValue() {
+    @java.lang.Override public int getDeviceTypeValue() {
       return deviceType_;
     }
     /**
      * <code>.connectstate.DeviceType device_type = 7;</code>
      * @return The deviceType.
      */
-    public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType getDeviceType() {
-      com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.valueOf(deviceType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType getDeviceType() {
+      com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.forNumber(deviceType_);
       return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.UNRECOGNIZED : result;
     }
 
     public static final int SPIRC_VERSION_FIELD_NUMBER = 9;
-    private volatile java.lang.Object spircVersion_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object spircVersion_ = "";
     /**
      * <code>string spirc_version = 9;</code>
      * @return The spircVersion.
      */
+    @java.lang.Override
     public java.lang.String getSpircVersion() {
       java.lang.Object ref = spircVersion_;
       if (ref instanceof java.lang.String) {
@@ -6785,6 +6731,7 @@ public final class Connect {
      * <code>string spirc_version = 9;</code>
      * @return The bytes for spircVersion.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSpircVersionBytes() {
       java.lang.Object ref = spircVersion_;
@@ -6800,11 +6747,13 @@ public final class Connect {
     }
 
     public static final int DEVICE_ID_FIELD_NUMBER = 10;
-    private volatile java.lang.Object deviceId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deviceId_ = "";
     /**
      * <code>string device_id = 10;</code>
      * @return The deviceId.
      */
+    @java.lang.Override
     public java.lang.String getDeviceId() {
       java.lang.Object ref = deviceId_;
       if (ref instanceof java.lang.String) {
@@ -6821,6 +6770,7 @@ public final class Connect {
      * <code>string device_id = 10;</code>
      * @return The bytes for deviceId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDeviceIdBytes() {
       java.lang.Object ref = deviceId_;
@@ -6836,31 +6786,35 @@ public final class Connect {
     }
 
     public static final int IS_PRIVATE_SESSION_FIELD_NUMBER = 11;
-    private boolean isPrivateSession_;
+    private boolean isPrivateSession_ = false;
     /**
      * <code>bool is_private_session = 11;</code>
      * @return The isPrivateSession.
      */
+    @java.lang.Override
     public boolean getIsPrivateSession() {
       return isPrivateSession_;
     }
 
     public static final int IS_SOCIAL_CONNECT_FIELD_NUMBER = 12;
-    private boolean isSocialConnect_;
+    private boolean isSocialConnect_ = false;
     /**
      * <code>bool is_social_connect = 12;</code>
      * @return The isSocialConnect.
      */
+    @java.lang.Override
     public boolean getIsSocialConnect() {
       return isSocialConnect_;
     }
 
     public static final int CLIENT_ID_FIELD_NUMBER = 13;
-    private volatile java.lang.Object clientId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clientId_ = "";
     /**
      * <code>string client_id = 13;</code>
      * @return The clientId.
      */
+    @java.lang.Override
     public java.lang.String getClientId() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
@@ -6877,6 +6831,7 @@ public final class Connect {
      * <code>string client_id = 13;</code>
      * @return The bytes for clientId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getClientIdBytes() {
       java.lang.Object ref = clientId_;
@@ -6892,11 +6847,13 @@ public final class Connect {
     }
 
     public static final int BRAND_FIELD_NUMBER = 14;
-    private volatile java.lang.Object brand_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object brand_ = "";
     /**
      * <code>string brand = 14;</code>
      * @return The brand.
      */
+    @java.lang.Override
     public java.lang.String getBrand() {
       java.lang.Object ref = brand_;
       if (ref instanceof java.lang.String) {
@@ -6913,6 +6870,7 @@ public final class Connect {
      * <code>string brand = 14;</code>
      * @return The bytes for brand.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBrandBytes() {
       java.lang.Object ref = brand_;
@@ -6928,11 +6886,13 @@ public final class Connect {
     }
 
     public static final int MODEL_FIELD_NUMBER = 15;
-    private volatile java.lang.Object model_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object model_ = "";
     /**
      * <code>string model = 15;</code>
      * @return The model.
      */
+    @java.lang.Override
     public java.lang.String getModel() {
       java.lang.Object ref = model_;
       if (ref instanceof java.lang.String) {
@@ -6949,6 +6909,7 @@ public final class Connect {
      * <code>string model = 15;</code>
      * @return The bytes for model.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getModelBytes() {
       java.lang.Object ref = model_;
@@ -6968,13 +6929,14 @@ public final class Connect {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_MetadataMapEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> metadataMap_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -6985,22 +6947,22 @@ public final class Connect {
       }
       return metadataMap_;
     }
-
     public int getMetadataMapCount() {
       return internalGetMetadataMap().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
      */
-
+    @java.lang.Override
     public boolean containsMetadataMap(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadataMap().getMap().containsKey(key);
     }
     /**
      * Use {@link #getMetadataMapMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
       return getMetadataMapMap();
@@ -7008,29 +6970,31 @@ public final class Connect {
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getMetadataMapMap() {
       return internalGetMetadataMap().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
      */
-
-    public java.lang.String getMetadataMapOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getMetadataMapOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadataMap().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; metadata_map = 16;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getMetadataMapOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadataMap().getMap();
       if (!map.containsKey(key)) {
@@ -7040,11 +7004,13 @@ public final class Connect {
     }
 
     public static final int PRODUCT_ID_FIELD_NUMBER = 17;
-    private volatile java.lang.Object productId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object productId_ = "";
     /**
      * <code>string product_id = 17;</code>
      * @return The productId.
      */
+    @java.lang.Override
     public java.lang.String getProductId() {
       java.lang.Object ref = productId_;
       if (ref instanceof java.lang.String) {
@@ -7061,6 +7027,7 @@ public final class Connect {
      * <code>string product_id = 17;</code>
      * @return The bytes for productId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getProductIdBytes() {
       java.lang.Object ref = productId_;
@@ -7076,11 +7043,13 @@ public final class Connect {
     }
 
     public static final int DEDUPLICATION_ID_FIELD_NUMBER = 18;
-    private volatile java.lang.Object deduplicationId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deduplicationId_ = "";
     /**
      * <code>string deduplication_id = 18;</code>
      * @return The deduplicationId.
      */
+    @java.lang.Override
     public java.lang.String getDeduplicationId() {
       java.lang.Object ref = deduplicationId_;
       if (ref instanceof java.lang.String) {
@@ -7097,6 +7066,7 @@ public final class Connect {
      * <code>string deduplication_id = 18;</code>
      * @return The bytes for deduplicationId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDeduplicationIdBytes() {
       java.lang.Object ref = deduplicationId_;
@@ -7112,26 +7082,30 @@ public final class Connect {
     }
 
     public static final int SELECTED_ALIAS_ID_FIELD_NUMBER = 19;
-    private int selectedAliasId_;
+    private int selectedAliasId_ = 0;
     /**
      * <code>uint32 selected_alias_id = 19;</code>
      * @return The selectedAliasId.
      */
+    @java.lang.Override
     public int getSelectedAliasId() {
       return selectedAliasId_;
     }
 
     public static final int DEVICE_ALIASES_FIELD_NUMBER = 20;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry> deviceAliases_;
     /**
      * <code>repeated .connectstate.DeviceInfo.DeviceAliasesEntry device_aliases = 20;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry> getDeviceAliasesList() {
       return deviceAliases_;
     }
     /**
      * <code>repeated .connectstate.DeviceInfo.DeviceAliasesEntry device_aliases = 20;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder> 
         getDeviceAliasesOrBuilderList() {
       return deviceAliases_;
@@ -7139,39 +7113,45 @@ public final class Connect {
     /**
      * <code>repeated .connectstate.DeviceInfo.DeviceAliasesEntry device_aliases = 20;</code>
      */
+    @java.lang.Override
     public int getDeviceAliasesCount() {
       return deviceAliases_.size();
     }
     /**
      * <code>repeated .connectstate.DeviceInfo.DeviceAliasesEntry device_aliases = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry getDeviceAliases(int index) {
       return deviceAliases_.get(index);
     }
     /**
      * <code>repeated .connectstate.DeviceInfo.DeviceAliasesEntry device_aliases = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder getDeviceAliasesOrBuilder(
         int index) {
       return deviceAliases_.get(index);
     }
 
     public static final int IS_OFFLINE_FIELD_NUMBER = 21;
-    private boolean isOffline_;
+    private boolean isOffline_ = false;
     /**
      * <code>bool is_offline = 21;</code>
      * @return The isOffline.
      */
+    @java.lang.Override
     public boolean getIsOffline() {
       return isOffline_;
     }
 
     public static final int PUBLIC_IP_FIELD_NUMBER = 22;
-    private volatile java.lang.Object publicIp_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object publicIp_ = "";
     /**
      * <code>string public_ip = 22;</code>
      * @return The publicIp.
      */
+    @java.lang.Override
     public java.lang.String getPublicIp() {
       java.lang.Object ref = publicIp_;
       if (ref instanceof java.lang.String) {
@@ -7188,6 +7168,7 @@ public final class Connect {
      * <code>string public_ip = 22;</code>
      * @return The bytes for publicIp.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPublicIpBytes() {
       java.lang.Object ref = publicIp_;
@@ -7203,11 +7184,13 @@ public final class Connect {
     }
 
     public static final int LICENSE_FIELD_NUMBER = 23;
-    private volatile java.lang.Object license_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object license_ = "";
     /**
      * <code>string license = 23;</code>
      * @return The license.
      */
+    @java.lang.Override
     public java.lang.String getLicense() {
       java.lang.Object ref = license_;
       if (ref instanceof java.lang.String) {
@@ -7224,6 +7207,7 @@ public final class Connect {
      * <code>string license = 23;</code>
      * @return The bytes for license.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLicenseBytes() {
       java.lang.Object ref = license_;
@@ -7282,11 +7266,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7325,7 +7311,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.DeviceInfo}
@@ -7334,7 +7321,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.DeviceInfo)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfoOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceInfo_descriptor;
       }
@@ -7342,20 +7329,24 @@ public final class Connect {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        if (number == 16) {
-          return internalGetMetadataMap();
-        }
-        throw new RuntimeException(
+        switch (number) {
+          case 16:
+            return internalGetMetadataMap();
+          default:
+            throw new RuntimeException(
                 "Invalid map field number: " + number);
+        }
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        if (number == 16) {
-          return internalGetMutableMetadataMap();
-        }
-        throw new RuntimeException(
+        switch (number) {
+          case 16:
+            return internalGetMutableMetadataMap();
+          default:
+            throw new RuntimeException(
                 "Invalid map field number: " + number);
+        }
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7367,72 +7358,49 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDeviceAliasesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         canPlay_ = false;
-
         volume_ = 0;
-
         name_ = "";
-
-        if (capabilitiesBuilder_ == null) {
-          capabilities_ = null;
-        } else {
-          capabilities_ = null;
+        capabilities_ = null;
+        if (capabilitiesBuilder_ != null) {
+          capabilitiesBuilder_.dispose();
           capabilitiesBuilder_ = null;
         }
         deviceSoftwareVersion_ = "";
-
         deviceType_ = 0;
-
         spircVersion_ = "";
-
         deviceId_ = "";
-
         isPrivateSession_ = false;
-
         isSocialConnect_ = false;
-
         clientId_ = "";
-
         brand_ = "";
-
         model_ = "";
-
         internalGetMutableMetadataMap().clear();
         productId_ = "";
-
         deduplicationId_ = "";
-
         selectedAliasId_ = 0;
-
         if (deviceAliasesBuilder_ == null) {
           deviceAliases_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          deviceAliases_ = null;
           deviceAliasesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00020000);
         isOffline_ = false;
-
         publicIp_ = "";
-
         license_ = "";
-
         return this;
       }
 
@@ -7459,77 +7427,91 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo(this);
-        int from_bitField0_ = bitField0_;
-        result.canPlay_ = canPlay_;
-        result.volume_ = volume_;
-        result.name_ = name_;
-        if (capabilitiesBuilder_ == null) {
-          result.capabilities_ = capabilities_;
-        } else {
-          result.capabilities_ = capabilitiesBuilder_.build();
-        }
-        result.deviceSoftwareVersion_ = deviceSoftwareVersion_;
-        result.deviceType_ = deviceType_;
-        result.spircVersion_ = spircVersion_;
-        result.deviceId_ = deviceId_;
-        result.isPrivateSession_ = isPrivateSession_;
-        result.isSocialConnect_ = isSocialConnect_;
-        result.clientId_ = clientId_;
-        result.brand_ = brand_;
-        result.model_ = model_;
-        result.metadataMap_ = internalGetMetadataMap();
-        result.metadataMap_.makeImmutable();
-        result.productId_ = productId_;
-        result.deduplicationId_ = deduplicationId_;
-        result.selectedAliasId_ = selectedAliasId_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo result) {
         if (deviceAliasesBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
+          if (((bitField0_ & 0x00020000) != 0)) {
             deviceAliases_ = java.util.Collections.unmodifiableList(deviceAliases_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00020000);
           }
           result.deviceAliases_ = deviceAliases_;
         } else {
           result.deviceAliases_ = deviceAliasesBuilder_.build();
         }
-        result.isOffline_ = isOffline_;
-        result.publicIp_ = publicIp_;
-        result.license_ = license_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.canPlay_ = canPlay_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.volume_ = volume_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.capabilities_ = capabilitiesBuilder_ == null
+              ? capabilities_
+              : capabilitiesBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.deviceSoftwareVersion_ = deviceSoftwareVersion_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.deviceType_ = deviceType_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.spircVersion_ = spircVersion_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.deviceId_ = deviceId_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.isPrivateSession_ = isPrivateSession_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.isSocialConnect_ = isSocialConnect_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.clientId_ = clientId_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.brand_ = brand_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.model_ = model_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          result.metadataMap_ = internalGetMetadataMap();
+          result.metadataMap_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          result.productId_ = productId_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          result.deduplicationId_ = deduplicationId_;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.selectedAliasId_ = selectedAliasId_;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          result.isOffline_ = isOffline_;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          result.publicIp_ = publicIp_;
+        }
+        if (((from_bitField0_ & 0x00100000) != 0)) {
+          result.license_ = license_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private boolean canPlay_ ;
@@ -7537,6 +7519,7 @@ public final class Connect {
        * <code>bool can_play = 1;</code>
        * @return The canPlay.
        */
+      @java.lang.Override
       public boolean getCanPlay() {
         return canPlay_;
       }
@@ -7546,8 +7529,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setCanPlay(boolean value) {
-        
+
         canPlay_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7556,7 +7540,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearCanPlay() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         canPlay_ = false;
         onChanged();
         return this;
@@ -7567,6 +7551,7 @@ public final class Connect {
        * <code>uint32 volume = 2;</code>
        * @return The volume.
        */
+      @java.lang.Override
       public int getVolume() {
         return volume_;
       }
@@ -7576,8 +7561,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setVolume(int value) {
-        
+
         volume_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7586,7 +7572,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearVolume() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         volume_ = 0;
         onChanged();
         return this;
@@ -7633,11 +7619,9 @@ public final class Connect {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -7646,8 +7630,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -7658,12 +7642,10 @@ public final class Connect {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         name_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -7676,7 +7658,7 @@ public final class Connect {
        * @return Whether the capabilities field is set.
        */
       public boolean hasCapabilities() {
-        return capabilitiesBuilder_ != null || capabilities_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>.connectstate.Capabilities capabilities = 4;</code>
@@ -7698,11 +7680,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           capabilities_ = value;
-          onChanged();
         } else {
           capabilitiesBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -7712,11 +7694,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.Builder builderForValue) {
         if (capabilitiesBuilder_ == null) {
           capabilities_ = builderForValue.build();
-          onChanged();
         } else {
           capabilitiesBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -7724,38 +7706,38 @@ public final class Connect {
        */
       public Builder mergeCapabilities(com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities value) {
         if (capabilitiesBuilder_ == null) {
-          if (capabilities_ != null) {
-            capabilities_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.newBuilder(capabilities_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            capabilities_ != null &&
+            capabilities_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.getDefaultInstance()) {
+            getCapabilitiesBuilder().mergeFrom(value);
           } else {
             capabilities_ = value;
           }
-          onChanged();
         } else {
           capabilitiesBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Capabilities capabilities = 4;</code>
        */
       public Builder clearCapabilities() {
-        if (capabilitiesBuilder_ == null) {
-          capabilities_ = null;
-          onChanged();
-        } else {
-          capabilities_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        capabilities_ = null;
+        if (capabilitiesBuilder_ != null) {
+          capabilitiesBuilder_.dispose();
           capabilitiesBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.Capabilities capabilities = 4;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.Builder getCapabilitiesBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getCapabilitiesFieldBuilder().getBuilder();
       }
@@ -7777,7 +7759,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities, com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder> 
           getCapabilitiesFieldBuilder() {
         if (capabilitiesBuilder_ == null) {
-          capabilitiesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          capabilitiesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities, com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder>(
                   getCapabilities(),
                   getParentForChildren(),
                   isClean());
@@ -7827,11 +7810,9 @@ public final class Connect {
        */
       public Builder setDeviceSoftwareVersion(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         deviceSoftwareVersion_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -7840,8 +7821,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDeviceSoftwareVersion() {
-        
         deviceSoftwareVersion_ = getDefaultInstance().getDeviceSoftwareVersion();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -7852,12 +7833,10 @@ public final class Connect {
        */
       public Builder setDeviceSoftwareVersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         deviceSoftwareVersion_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -7867,7 +7846,7 @@ public final class Connect {
        * <code>.connectstate.DeviceType device_type = 7;</code>
        * @return The enum numeric value on the wire for deviceType.
        */
-      public int getDeviceTypeValue() {
+      @java.lang.Override public int getDeviceTypeValue() {
         return deviceType_;
       }
       /**
@@ -7877,6 +7856,7 @@ public final class Connect {
        */
       public Builder setDeviceTypeValue(int value) {
         deviceType_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -7884,8 +7864,9 @@ public final class Connect {
        * <code>.connectstate.DeviceType device_type = 7;</code>
        * @return The deviceType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType getDeviceType() {
-        com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.valueOf(deviceType_);
+        com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType result = com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.forNumber(deviceType_);
         return result == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType.UNRECOGNIZED : result;
       }
       /**
@@ -7897,7 +7878,7 @@ public final class Connect {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000020;
         deviceType_ = value.getNumber();
         onChanged();
         return this;
@@ -7907,7 +7888,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDeviceType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000020);
         deviceType_ = 0;
         onChanged();
         return this;
@@ -7954,11 +7935,9 @@ public final class Connect {
        */
       public Builder setSpircVersion(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         spircVersion_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -7967,8 +7946,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSpircVersion() {
-        
         spircVersion_ = getDefaultInstance().getSpircVersion();
+        bitField0_ = (bitField0_ & ~0x00000040);
         onChanged();
         return this;
       }
@@ -7979,12 +7958,10 @@ public final class Connect {
        */
       public Builder setSpircVersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         spircVersion_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -8030,11 +8007,9 @@ public final class Connect {
        */
       public Builder setDeviceId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         deviceId_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -8043,8 +8018,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDeviceId() {
-        
         deviceId_ = getDefaultInstance().getDeviceId();
+        bitField0_ = (bitField0_ & ~0x00000080);
         onChanged();
         return this;
       }
@@ -8055,12 +8030,10 @@ public final class Connect {
        */
       public Builder setDeviceIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         deviceId_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -8070,6 +8043,7 @@ public final class Connect {
        * <code>bool is_private_session = 11;</code>
        * @return The isPrivateSession.
        */
+      @java.lang.Override
       public boolean getIsPrivateSession() {
         return isPrivateSession_;
       }
@@ -8079,8 +8053,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsPrivateSession(boolean value) {
-        
+
         isPrivateSession_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -8089,7 +8064,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsPrivateSession() {
-        
+        bitField0_ = (bitField0_ & ~0x00000100);
         isPrivateSession_ = false;
         onChanged();
         return this;
@@ -8100,6 +8075,7 @@ public final class Connect {
        * <code>bool is_social_connect = 12;</code>
        * @return The isSocialConnect.
        */
+      @java.lang.Override
       public boolean getIsSocialConnect() {
         return isSocialConnect_;
       }
@@ -8109,8 +8085,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsSocialConnect(boolean value) {
-        
+
         isSocialConnect_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -8119,7 +8096,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsSocialConnect() {
-        
+        bitField0_ = (bitField0_ & ~0x00000200);
         isSocialConnect_ = false;
         onChanged();
         return this;
@@ -8166,11 +8143,9 @@ public final class Connect {
        */
       public Builder setClientId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         clientId_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -8179,8 +8154,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearClientId() {
-        
         clientId_ = getDefaultInstance().getClientId();
+        bitField0_ = (bitField0_ & ~0x00000400);
         onChanged();
         return this;
       }
@@ -8191,12 +8166,10 @@ public final class Connect {
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         clientId_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -8242,11 +8215,9 @@ public final class Connect {
        */
       public Builder setBrand(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         brand_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8255,8 +8226,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearBrand() {
-        
         brand_ = getDefaultInstance().getBrand();
+        bitField0_ = (bitField0_ & ~0x00000800);
         onChanged();
         return this;
       }
@@ -8267,12 +8238,10 @@ public final class Connect {
        */
       public Builder setBrandBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         brand_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8318,11 +8287,9 @@ public final class Connect {
        */
       public Builder setModel(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         model_ = value;
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -8331,8 +8298,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearModel() {
-        
         model_ = getDefaultInstance().getModel();
+        bitField0_ = (bitField0_ & ~0x00001000);
         onChanged();
         return this;
       }
@@ -8343,12 +8310,10 @@ public final class Connect {
        */
       public Builder setModelBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         model_ = value;
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -8356,7 +8321,7 @@ public final class Connect {
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> metadataMap_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMetadataMap() {
+          internalGetMetadataMap() {
         if (metadataMap_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MetadataMapDefaultEntryHolder.defaultEntry);
@@ -8364,8 +8329,7 @@ public final class Connect {
         return metadataMap_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableMetadataMap() {
-        onChanged();
+          internalGetMutableMetadataMap() {
         if (metadataMap_ == null) {
           metadataMap_ = com.google.protobuf.MapField.newMapField(
               MetadataMapDefaultEntryHolder.defaultEntry);
@@ -8373,24 +8337,26 @@ public final class Connect {
         if (!metadataMap_.isMutable()) {
           metadataMap_ = metadataMap_.copy();
         }
+        bitField0_ |= 0x00002000;
+        onChanged();
         return metadataMap_;
       }
-
       public int getMetadataMapCount() {
         return internalGetMetadataMap().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
        */
-
+      @java.lang.Override
       public boolean containsMetadataMap(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadataMap().getMap().containsKey(key);
       }
       /**
        * Use {@link #getMetadataMapMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
         return getMetadataMapMap();
@@ -8398,29 +8364,31 @@ public final class Connect {
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getMetadataMapMap() {
         return internalGetMetadataMap().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
        */
-
-      public java.lang.String getMetadataMapOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getMetadataMapOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadataMap().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getMetadataMapOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadataMap().getMap();
         if (!map.containsKey(key)) {
@@ -8428,8 +8396,8 @@ public final class Connect {
         }
         return map.get(key);
       }
-
       public Builder clearMetadataMap() {
+        bitField0_ = (bitField0_ & ~0x00002000);
         internalGetMutableMetadataMap().getMutableMap()
             .clear();
         return this;
@@ -8437,10 +8405,9 @@ public final class Connect {
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
        */
-
       public Builder removeMetadataMap(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadataMap().getMutableMap()
             .remove(key);
         return this;
@@ -8450,7 +8417,8 @@ public final class Connect {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutableMetadataMap() {
+          getMutableMetadataMap() {
+        bitField0_ |= 0x00002000;
         return internalGetMutableMetadataMap().getMutableMap();
       }
       /**
@@ -8459,20 +8427,21 @@ public final class Connect {
       public Builder putMetadataMap(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadataMap().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00002000;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; metadata_map = 16;</code>
        */
-
       public Builder putAllMetadataMap(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableMetadataMap().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00002000;
         return this;
       }
 
@@ -8517,11 +8486,9 @@ public final class Connect {
        */
       public Builder setProductId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         productId_ = value;
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -8530,8 +8497,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearProductId() {
-        
         productId_ = getDefaultInstance().getProductId();
+        bitField0_ = (bitField0_ & ~0x00004000);
         onChanged();
         return this;
       }
@@ -8542,12 +8509,10 @@ public final class Connect {
        */
       public Builder setProductIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         productId_ = value;
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -8593,11 +8558,9 @@ public final class Connect {
        */
       public Builder setDeduplicationId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         deduplicationId_ = value;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -8606,8 +8569,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDeduplicationId() {
-        
         deduplicationId_ = getDefaultInstance().getDeduplicationId();
+        bitField0_ = (bitField0_ & ~0x00008000);
         onChanged();
         return this;
       }
@@ -8618,12 +8581,10 @@ public final class Connect {
        */
       public Builder setDeduplicationIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         deduplicationId_ = value;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -8633,6 +8594,7 @@ public final class Connect {
        * <code>uint32 selected_alias_id = 19;</code>
        * @return The selectedAliasId.
        */
+      @java.lang.Override
       public int getSelectedAliasId() {
         return selectedAliasId_;
       }
@@ -8642,8 +8604,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSelectedAliasId(int value) {
-        
+
         selectedAliasId_ = value;
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -8652,7 +8615,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSelectedAliasId() {
-        
+        bitField0_ = (bitField0_ & ~0x00010000);
         selectedAliasId_ = 0;
         onChanged();
         return this;
@@ -8661,9 +8624,9 @@ public final class Connect {
       private java.util.List<com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry> deviceAliases_ =
         java.util.Collections.emptyList();
       private void ensureDeviceAliasesIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          deviceAliases_ = new java.util.ArrayList<>(deviceAliases_);
-          bitField0_ |= 0x00000002;
+        if (!((bitField0_ & 0x00020000) != 0)) {
+          deviceAliases_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry>(deviceAliases_);
+          bitField0_ |= 0x00020000;
          }
       }
 
@@ -8813,7 +8776,7 @@ public final class Connect {
       public Builder clearDeviceAliases() {
         if (deviceAliasesBuilder_ == null) {
           deviceAliases_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00020000);
           onChanged();
         } else {
           deviceAliasesBuilder_.clear();
@@ -8887,9 +8850,10 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder> 
           getDeviceAliasesFieldBuilder() {
         if (deviceAliasesBuilder_ == null) {
-          deviceAliasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          deviceAliasesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntry.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceInfo.DeviceAliasesEntryOrBuilder>(
                   deviceAliases_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  ((bitField0_ & 0x00020000) != 0),
                   getParentForChildren(),
                   isClean());
           deviceAliases_ = null;
@@ -8902,6 +8866,7 @@ public final class Connect {
        * <code>bool is_offline = 21;</code>
        * @return The isOffline.
        */
+      @java.lang.Override
       public boolean getIsOffline() {
         return isOffline_;
       }
@@ -8911,8 +8876,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsOffline(boolean value) {
-        
+
         isOffline_ = value;
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -8921,7 +8887,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsOffline() {
-        
+        bitField0_ = (bitField0_ & ~0x00040000);
         isOffline_ = false;
         onChanged();
         return this;
@@ -8968,11 +8934,9 @@ public final class Connect {
        */
       public Builder setPublicIp(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         publicIp_ = value;
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -8981,8 +8945,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearPublicIp() {
-        
         publicIp_ = getDefaultInstance().getPublicIp();
+        bitField0_ = (bitField0_ & ~0x00080000);
         onChanged();
         return this;
       }
@@ -8993,12 +8957,10 @@ public final class Connect {
        */
       public Builder setPublicIpBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         publicIp_ = value;
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -9044,11 +9006,9 @@ public final class Connect {
        */
       public Builder setLicense(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         license_ = value;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -9057,8 +9017,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearLicense() {
-        
         license_ = getDefaultInstance().getLicense();
+        bitField0_ = (bitField0_ & ~0x00100000);
         onChanged();
         return this;
       }
@@ -9069,23 +9029,21 @@ public final class Connect {
        */
       public Builder setLicenseBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         license_ = value;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9116,10 +9074,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -9172,7 +9131,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.DeviceAlias}
    */
-  public  static final class DeviceAlias extends
+  public static final class DeviceAlias extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.DeviceAlias)
       DeviceAliasOrBuilder {
@@ -9192,12 +9151,7 @@ public final class Connect {
       return new DeviceAlias();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceAlias_descriptor;
     }
@@ -9211,21 +9165,24 @@ public final class Connect {
     }
 
     public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
+    private int id_ = 0;
     /**
      * <code>uint32 id = 1;</code>
      * @return The id.
      */
+    @java.lang.Override
     public int getId() {
       return id_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -9242,6 +9199,7 @@ public final class Connect {
      * <code>string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -9257,11 +9215,12 @@ public final class Connect {
     }
 
     public static final int IS_GROUP_FIELD_NUMBER = 3;
-    private boolean isGroup_;
+    private boolean isGroup_ = false;
     /**
      * <code>bool is_group = 3;</code>
      * @return The isGroup.
      */
+    @java.lang.Override
     public boolean getIsGroup() {
       return isGroup_;
     }
@@ -9310,11 +9269,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9353,7 +9314,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.DeviceAlias}
@@ -9362,7 +9324,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.DeviceAlias)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAliasOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_DeviceAlias_descriptor;
       }
@@ -9377,25 +9339,21 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         id_ = 0;
-
         name_ = "";
-
         isGroup_ = false;
-
         return this;
       }
 
@@ -9422,51 +9380,32 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias(this);
-        result.id_ = id_;
-        result.name_ = name_;
-        result.isGroup_ = isGroup_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceAlias result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.isGroup_ = isGroup_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private int id_ ;
       /**
        * <code>uint32 id = 1;</code>
        * @return The id.
        */
+      @java.lang.Override
       public int getId() {
         return id_;
       }
@@ -9476,8 +9415,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setId(int value) {
-        
+
         id_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9486,7 +9426,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         id_ = 0;
         onChanged();
         return this;
@@ -9533,11 +9473,9 @@ public final class Connect {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9546,8 +9484,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -9558,12 +9496,10 @@ public final class Connect {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9573,6 +9509,7 @@ public final class Connect {
        * <code>bool is_group = 3;</code>
        * @return The isGroup.
        */
+      @java.lang.Override
       public boolean getIsGroup() {
         return isGroup_;
       }
@@ -9582,8 +9519,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsGroup(boolean value) {
-        
+
         isGroup_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9592,19 +9530,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsGroup() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         isGroup_ = false;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9635,10 +9573,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -9851,7 +9790,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.Capabilities}
    */
-  public  static final class Capabilities extends
+  public static final class Capabilities extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.Capabilities)
       CapabilitiesOrBuilder {
@@ -9861,7 +9800,8 @@ public final class Connect {
       super(builder);
     }
     private Capabilities() {
-      supportedTypes_ = LazyStringArrayList.EMPTY;
+      supportedTypes_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -9871,12 +9811,7 @@ public final class Connect {
       return new Capabilities();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Capabilities_descriptor;
     }
@@ -9890,67 +9825,75 @@ public final class Connect {
     }
 
     public static final int CAN_BE_PLAYER_FIELD_NUMBER = 2;
-    private boolean canBePlayer_;
+    private boolean canBePlayer_ = false;
     /**
      * <code>bool can_be_player = 2;</code>
      * @return The canBePlayer.
      */
+    @java.lang.Override
     public boolean getCanBePlayer() {
       return canBePlayer_;
     }
 
     public static final int RESTRICT_TO_LOCAL_FIELD_NUMBER = 3;
-    private boolean restrictToLocal_;
+    private boolean restrictToLocal_ = false;
     /**
      * <code>bool restrict_to_local = 3;</code>
      * @return The restrictToLocal.
      */
+    @java.lang.Override
     public boolean getRestrictToLocal() {
       return restrictToLocal_;
     }
 
     public static final int GAIA_EQ_CONNECT_ID_FIELD_NUMBER = 5;
-    private boolean gaiaEqConnectId_;
+    private boolean gaiaEqConnectId_ = false;
     /**
      * <code>bool gaia_eq_connect_id = 5;</code>
      * @return The gaiaEqConnectId.
      */
+    @java.lang.Override
     public boolean getGaiaEqConnectId() {
       return gaiaEqConnectId_;
     }
 
     public static final int SUPPORTS_LOGOUT_FIELD_NUMBER = 6;
-    private boolean supportsLogout_;
+    private boolean supportsLogout_ = false;
     /**
      * <code>bool supports_logout = 6;</code>
      * @return The supportsLogout.
      */
+    @java.lang.Override
     public boolean getSupportsLogout() {
       return supportsLogout_;
     }
 
     public static final int IS_OBSERVABLE_FIELD_NUMBER = 7;
-    private boolean isObservable_;
+    private boolean isObservable_ = false;
     /**
      * <code>bool is_observable = 7;</code>
      * @return The isObservable.
      */
+    @java.lang.Override
     public boolean getIsObservable() {
       return isObservable_;
     }
 
     public static final int VOLUME_STEPS_FIELD_NUMBER = 8;
-    private int volumeSteps_;
+    private int volumeSteps_ = 0;
     /**
      * <code>int32 volume_steps = 8;</code>
      * @return The volumeSteps.
      */
+    @java.lang.Override
     public int getVolumeSteps() {
       return volumeSteps_;
     }
 
     public static final int SUPPORTED_TYPES_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList supportedTypes_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList supportedTypes_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string supported_types = 9;</code>
      * @return A list containing the supportedTypes.
@@ -9985,161 +9928,177 @@ public final class Connect {
     }
 
     public static final int COMMAND_ACKS_FIELD_NUMBER = 10;
-    private boolean commandAcks_;
+    private boolean commandAcks_ = false;
     /**
      * <code>bool command_acks = 10;</code>
      * @return The commandAcks.
      */
+    @java.lang.Override
     public boolean getCommandAcks() {
       return commandAcks_;
     }
 
     public static final int SUPPORTS_RENAME_FIELD_NUMBER = 11;
-    private boolean supportsRename_;
+    private boolean supportsRename_ = false;
     /**
      * <code>bool supports_rename = 11;</code>
      * @return The supportsRename.
      */
+    @java.lang.Override
     public boolean getSupportsRename() {
       return supportsRename_;
     }
 
     public static final int HIDDEN_FIELD_NUMBER = 12;
-    private boolean hidden_;
+    private boolean hidden_ = false;
     /**
      * <code>bool hidden = 12;</code>
      * @return The hidden.
      */
+    @java.lang.Override
     public boolean getHidden() {
       return hidden_;
     }
 
     public static final int DISABLE_VOLUME_FIELD_NUMBER = 13;
-    private boolean disableVolume_;
+    private boolean disableVolume_ = false;
     /**
      * <code>bool disable_volume = 13;</code>
      * @return The disableVolume.
      */
+    @java.lang.Override
     public boolean getDisableVolume() {
       return disableVolume_;
     }
 
     public static final int CONNECT_DISABLED_FIELD_NUMBER = 14;
-    private boolean connectDisabled_;
+    private boolean connectDisabled_ = false;
     /**
      * <code>bool connect_disabled = 14;</code>
      * @return The connectDisabled.
      */
+    @java.lang.Override
     public boolean getConnectDisabled() {
       return connectDisabled_;
     }
 
     public static final int SUPPORTS_PLAYLIST_V2_FIELD_NUMBER = 15;
-    private boolean supportsPlaylistV2_;
+    private boolean supportsPlaylistV2_ = false;
     /**
      * <code>bool supports_playlist_v2 = 15;</code>
      * @return The supportsPlaylistV2.
      */
+    @java.lang.Override
     public boolean getSupportsPlaylistV2() {
       return supportsPlaylistV2_;
     }
 
     public static final int IS_CONTROLLABLE_FIELD_NUMBER = 16;
-    private boolean isControllable_;
+    private boolean isControllable_ = false;
     /**
      * <code>bool is_controllable = 16;</code>
      * @return The isControllable.
      */
+    @java.lang.Override
     public boolean getIsControllable() {
       return isControllable_;
     }
 
     public static final int SUPPORTS_EXTERNAL_EPISODES_FIELD_NUMBER = 17;
-    private boolean supportsExternalEpisodes_;
+    private boolean supportsExternalEpisodes_ = false;
     /**
      * <code>bool supports_external_episodes = 17;</code>
      * @return The supportsExternalEpisodes.
      */
+    @java.lang.Override
     public boolean getSupportsExternalEpisodes() {
       return supportsExternalEpisodes_;
     }
 
     public static final int SUPPORTS_SET_BACKEND_METADATA_FIELD_NUMBER = 18;
-    private boolean supportsSetBackendMetadata_;
+    private boolean supportsSetBackendMetadata_ = false;
     /**
      * <code>bool supports_set_backend_metadata = 18;</code>
      * @return The supportsSetBackendMetadata.
      */
+    @java.lang.Override
     public boolean getSupportsSetBackendMetadata() {
       return supportsSetBackendMetadata_;
     }
 
     public static final int SUPPORTS_TRANSFER_COMMAND_FIELD_NUMBER = 19;
-    private boolean supportsTransferCommand_;
+    private boolean supportsTransferCommand_ = false;
     /**
      * <code>bool supports_transfer_command = 19;</code>
      * @return The supportsTransferCommand.
      */
+    @java.lang.Override
     public boolean getSupportsTransferCommand() {
       return supportsTransferCommand_;
     }
 
     public static final int SUPPORTS_COMMAND_REQUEST_FIELD_NUMBER = 20;
-    private boolean supportsCommandRequest_;
+    private boolean supportsCommandRequest_ = false;
     /**
      * <code>bool supports_command_request = 20;</code>
      * @return The supportsCommandRequest.
      */
+    @java.lang.Override
     public boolean getSupportsCommandRequest() {
       return supportsCommandRequest_;
     }
 
     public static final int IS_VOICE_ENABLED_FIELD_NUMBER = 21;
-    private boolean isVoiceEnabled_;
+    private boolean isVoiceEnabled_ = false;
     /**
      * <code>bool is_voice_enabled = 21;</code>
      * @return The isVoiceEnabled.
      */
+    @java.lang.Override
     public boolean getIsVoiceEnabled() {
       return isVoiceEnabled_;
     }
 
     public static final int NEEDS_FULL_PLAYER_STATE_FIELD_NUMBER = 22;
-    private boolean needsFullPlayerState_;
+    private boolean needsFullPlayerState_ = false;
     /**
      * <code>bool needs_full_player_state = 22;</code>
      * @return The needsFullPlayerState.
      */
+    @java.lang.Override
     public boolean getNeedsFullPlayerState() {
       return needsFullPlayerState_;
     }
 
     public static final int SUPPORTS_GZIP_PUSHES_FIELD_NUMBER = 23;
-    private boolean supportsGzipPushes_;
+    private boolean supportsGzipPushes_ = false;
     /**
      * <code>bool supports_gzip_pushes = 23;</code>
      * @return The supportsGzipPushes.
      */
+    @java.lang.Override
     public boolean getSupportsGzipPushes() {
       return supportsGzipPushes_;
     }
 
     public static final int SUPPORTS_LOSSLESS_AUDIO_FIELD_NUMBER = 24;
-    private boolean supportsLosslessAudio_;
+    private boolean supportsLosslessAudio_ = false;
     /**
      * <code>bool supports_lossless_audio = 24;</code>
      * @return The supportsLosslessAudio.
      */
+    @java.lang.Override
     public boolean getSupportsLosslessAudio() {
       return supportsLosslessAudio_;
     }
 
     public static final int SUPPORTS_SET_OPTIONS_COMMAND_FIELD_NUMBER = 25;
-    private boolean supportsSetOptionsCommand_;
+    private boolean supportsSetOptionsCommand_ = false;
     /**
      * <code>bool supports_set_options_command = 25;</code>
      * @return The supportsSetOptionsCommand.
      */
+    @java.lang.Override
     public boolean getSupportsSetOptionsCommand() {
       return supportsSetOptionsCommand_;
     }
@@ -10154,6 +10113,7 @@ public final class Connect {
      * <code>.connectstate.CapabilitySupportDetails supports_hifi = 26;</code>
      * @return Whether the supportsHifi field is set.
      */
+    @java.lang.Override
     public boolean hasSupportsHifi() {
       return supportsHifi_ != null;
     }
@@ -10165,6 +10125,7 @@ public final class Connect {
      * <code>.connectstate.CapabilitySupportDetails supports_hifi = 26;</code>
      * @return The supportsHifi.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails getSupportsHifi() {
       return supportsHifi_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.getDefaultInstance() : supportsHifi_;
     }
@@ -10175,8 +10136,9 @@ public final class Connect {
      *
      * <code>.connectstate.CapabilitySupportDetails supports_hifi = 26;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder getSupportsHifiOrBuilder() {
-      return getSupportsHifi();
+      return supportsHifi_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.getDefaultInstance() : supportsHifi_;
     }
 
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities parseFrom(
@@ -10223,11 +10185,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10266,7 +10230,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.Capabilities}
@@ -10275,7 +10240,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.Capabilities)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitiesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_Capabilities_descriptor;
       }
@@ -10290,69 +10255,45 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         canBePlayer_ = false;
-
         restrictToLocal_ = false;
-
         gaiaEqConnectId_ = false;
-
         supportsLogout_ = false;
-
         isObservable_ = false;
-
         volumeSteps_ = 0;
-
-        supportedTypes_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        supportedTypes_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         commandAcks_ = false;
-
         supportsRename_ = false;
-
         hidden_ = false;
-
         disableVolume_ = false;
-
         connectDisabled_ = false;
-
         supportsPlaylistV2_ = false;
-
         isControllable_ = false;
-
         supportsExternalEpisodes_ = false;
-
         supportsSetBackendMetadata_ = false;
-
         supportsTransferCommand_ = false;
-
         supportsCommandRequest_ = false;
-
         isVoiceEnabled_ = false;
-
         needsFullPlayerState_ = false;
-
         supportsGzipPushes_ = false;
-
         supportsLosslessAudio_ = false;
-
         supportsSetOptionsCommand_ = false;
-
-        if (supportsHifiBuilder_ == null) {
-          supportsHifi_ = null;
-        } else {
-          supportsHifi_ = null;
+        supportsHifi_ = null;
+        if (supportsHifiBuilder_ != null) {
+          supportsHifiBuilder_.dispose();
           supportsHifiBuilder_ = null;
         }
         return this;
@@ -10381,75 +10322,90 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities(this);
-        int from_bitField0_ = bitField0_;
-        result.canBePlayer_ = canBePlayer_;
-        result.restrictToLocal_ = restrictToLocal_;
-        result.gaiaEqConnectId_ = gaiaEqConnectId_;
-        result.supportsLogout_ = supportsLogout_;
-        result.isObservable_ = isObservable_;
-        result.volumeSteps_ = volumeSteps_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          supportedTypes_ = supportedTypes_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.supportedTypes_ = supportedTypes_;
-        result.commandAcks_ = commandAcks_;
-        result.supportsRename_ = supportsRename_;
-        result.hidden_ = hidden_;
-        result.disableVolume_ = disableVolume_;
-        result.connectDisabled_ = connectDisabled_;
-        result.supportsPlaylistV2_ = supportsPlaylistV2_;
-        result.isControllable_ = isControllable_;
-        result.supportsExternalEpisodes_ = supportsExternalEpisodes_;
-        result.supportsSetBackendMetadata_ = supportsSetBackendMetadata_;
-        result.supportsTransferCommand_ = supportsTransferCommand_;
-        result.supportsCommandRequest_ = supportsCommandRequest_;
-        result.isVoiceEnabled_ = isVoiceEnabled_;
-        result.needsFullPlayerState_ = needsFullPlayerState_;
-        result.supportsGzipPushes_ = supportsGzipPushes_;
-        result.supportsLosslessAudio_ = supportsLosslessAudio_;
-        result.supportsSetOptionsCommand_ = supportsSetOptionsCommand_;
-        if (supportsHifiBuilder_ == null) {
-          result.supportsHifi_ = supportsHifi_;
-        } else {
-          result.supportsHifi_ = supportsHifiBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.Capabilities result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.canBePlayer_ = canBePlayer_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.restrictToLocal_ = restrictToLocal_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.gaiaEqConnectId_ = gaiaEqConnectId_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.supportsLogout_ = supportsLogout_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.isObservable_ = isObservable_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.volumeSteps_ = volumeSteps_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          supportedTypes_.makeImmutable();
+          result.supportedTypes_ = supportedTypes_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.commandAcks_ = commandAcks_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.supportsRename_ = supportsRename_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.hidden_ = hidden_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.disableVolume_ = disableVolume_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.connectDisabled_ = connectDisabled_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.supportsPlaylistV2_ = supportsPlaylistV2_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          result.isControllable_ = isControllable_;
+        }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          result.supportsExternalEpisodes_ = supportsExternalEpisodes_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          result.supportsSetBackendMetadata_ = supportsSetBackendMetadata_;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.supportsTransferCommand_ = supportsTransferCommand_;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          result.supportsCommandRequest_ = supportsCommandRequest_;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          result.isVoiceEnabled_ = isVoiceEnabled_;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          result.needsFullPlayerState_ = needsFullPlayerState_;
+        }
+        if (((from_bitField0_ & 0x00100000) != 0)) {
+          result.supportsGzipPushes_ = supportsGzipPushes_;
+        }
+        if (((from_bitField0_ & 0x00200000) != 0)) {
+          result.supportsLosslessAudio_ = supportsLosslessAudio_;
+        }
+        if (((from_bitField0_ & 0x00400000) != 0)) {
+          result.supportsSetOptionsCommand_ = supportsSetOptionsCommand_;
+        }
+        if (((from_bitField0_ & 0x00800000) != 0)) {
+          result.supportsHifi_ = supportsHifiBuilder_ == null
+              ? supportsHifi_
+              : supportsHifiBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private boolean canBePlayer_ ;
@@ -10457,6 +10413,7 @@ public final class Connect {
        * <code>bool can_be_player = 2;</code>
        * @return The canBePlayer.
        */
+      @java.lang.Override
       public boolean getCanBePlayer() {
         return canBePlayer_;
       }
@@ -10466,8 +10423,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setCanBePlayer(boolean value) {
-        
+
         canBePlayer_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -10476,7 +10434,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearCanBePlayer() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         canBePlayer_ = false;
         onChanged();
         return this;
@@ -10487,6 +10445,7 @@ public final class Connect {
        * <code>bool restrict_to_local = 3;</code>
        * @return The restrictToLocal.
        */
+      @java.lang.Override
       public boolean getRestrictToLocal() {
         return restrictToLocal_;
       }
@@ -10496,8 +10455,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setRestrictToLocal(boolean value) {
-        
+
         restrictToLocal_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -10506,7 +10466,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearRestrictToLocal() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         restrictToLocal_ = false;
         onChanged();
         return this;
@@ -10517,6 +10477,7 @@ public final class Connect {
        * <code>bool gaia_eq_connect_id = 5;</code>
        * @return The gaiaEqConnectId.
        */
+      @java.lang.Override
       public boolean getGaiaEqConnectId() {
         return gaiaEqConnectId_;
       }
@@ -10526,8 +10487,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setGaiaEqConnectId(boolean value) {
-        
+
         gaiaEqConnectId_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -10536,7 +10498,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearGaiaEqConnectId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         gaiaEqConnectId_ = false;
         onChanged();
         return this;
@@ -10547,6 +10509,7 @@ public final class Connect {
        * <code>bool supports_logout = 6;</code>
        * @return The supportsLogout.
        */
+      @java.lang.Override
       public boolean getSupportsLogout() {
         return supportsLogout_;
       }
@@ -10556,8 +10519,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsLogout(boolean value) {
-        
+
         supportsLogout_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -10566,7 +10530,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsLogout() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         supportsLogout_ = false;
         onChanged();
         return this;
@@ -10577,6 +10541,7 @@ public final class Connect {
        * <code>bool is_observable = 7;</code>
        * @return The isObservable.
        */
+      @java.lang.Override
       public boolean getIsObservable() {
         return isObservable_;
       }
@@ -10586,8 +10551,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsObservable(boolean value) {
-        
+
         isObservable_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -10596,7 +10562,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsObservable() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         isObservable_ = false;
         onChanged();
         return this;
@@ -10607,6 +10573,7 @@ public final class Connect {
        * <code>int32 volume_steps = 8;</code>
        * @return The volumeSteps.
        */
+      @java.lang.Override
       public int getVolumeSteps() {
         return volumeSteps_;
       }
@@ -10616,8 +10583,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setVolumeSteps(int value) {
-        
+
         volumeSteps_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -10626,19 +10594,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearVolumeSteps() {
-        
+        bitField0_ = (bitField0_ & ~0x00000020);
         volumeSteps_ = 0;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList supportedTypes_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-
+      private com.google.protobuf.LazyStringArrayList supportedTypes_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureSupportedTypesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!supportedTypes_.isModifiable()) {
           supportedTypes_ = new com.google.protobuf.LazyStringArrayList(supportedTypes_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000040;
       }
       /**
        * <code>repeated string supported_types = 9;</code>
@@ -10646,7 +10614,8 @@ public final class Connect {
        */
       public com.google.protobuf.ProtocolStringList
           getSupportedTypesList() {
-        return supportedTypes_.getUnmodifiableView();
+        supportedTypes_.makeImmutable();
+        return supportedTypes_;
       }
       /**
        * <code>repeated string supported_types = 9;</code>
@@ -10680,11 +10649,10 @@ public final class Connect {
        */
       public Builder setSupportedTypes(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSupportedTypesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureSupportedTypesIsMutable();
         supportedTypes_.set(index, value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10695,11 +10663,10 @@ public final class Connect {
        */
       public Builder addSupportedTypes(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSupportedTypesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureSupportedTypesIsMutable();
         supportedTypes_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10713,6 +10680,7 @@ public final class Connect {
         ensureSupportedTypesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, supportedTypes_);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10721,8 +10689,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportedTypes() {
-        supportedTypes_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        supportedTypes_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);;
         onChanged();
         return this;
       }
@@ -10733,12 +10702,11 @@ public final class Connect {
        */
       public Builder addSupportedTypesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureSupportedTypesIsMutable();
         supportedTypes_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -10748,6 +10716,7 @@ public final class Connect {
        * <code>bool command_acks = 10;</code>
        * @return The commandAcks.
        */
+      @java.lang.Override
       public boolean getCommandAcks() {
         return commandAcks_;
       }
@@ -10757,8 +10726,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setCommandAcks(boolean value) {
-        
+
         commandAcks_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -10767,7 +10737,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearCommandAcks() {
-        
+        bitField0_ = (bitField0_ & ~0x00000080);
         commandAcks_ = false;
         onChanged();
         return this;
@@ -10778,6 +10748,7 @@ public final class Connect {
        * <code>bool supports_rename = 11;</code>
        * @return The supportsRename.
        */
+      @java.lang.Override
       public boolean getSupportsRename() {
         return supportsRename_;
       }
@@ -10787,8 +10758,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsRename(boolean value) {
-        
+
         supportsRename_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -10797,7 +10769,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsRename() {
-        
+        bitField0_ = (bitField0_ & ~0x00000100);
         supportsRename_ = false;
         onChanged();
         return this;
@@ -10808,6 +10780,7 @@ public final class Connect {
        * <code>bool hidden = 12;</code>
        * @return The hidden.
        */
+      @java.lang.Override
       public boolean getHidden() {
         return hidden_;
       }
@@ -10817,8 +10790,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setHidden(boolean value) {
-        
+
         hidden_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -10827,7 +10801,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearHidden() {
-        
+        bitField0_ = (bitField0_ & ~0x00000200);
         hidden_ = false;
         onChanged();
         return this;
@@ -10838,6 +10812,7 @@ public final class Connect {
        * <code>bool disable_volume = 13;</code>
        * @return The disableVolume.
        */
+      @java.lang.Override
       public boolean getDisableVolume() {
         return disableVolume_;
       }
@@ -10847,8 +10822,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setDisableVolume(boolean value) {
-        
+
         disableVolume_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -10857,7 +10833,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDisableVolume() {
-        
+        bitField0_ = (bitField0_ & ~0x00000400);
         disableVolume_ = false;
         onChanged();
         return this;
@@ -10868,6 +10844,7 @@ public final class Connect {
        * <code>bool connect_disabled = 14;</code>
        * @return The connectDisabled.
        */
+      @java.lang.Override
       public boolean getConnectDisabled() {
         return connectDisabled_;
       }
@@ -10877,8 +10854,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setConnectDisabled(boolean value) {
-        
+
         connectDisabled_ = value;
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -10887,7 +10865,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearConnectDisabled() {
-        
+        bitField0_ = (bitField0_ & ~0x00000800);
         connectDisabled_ = false;
         onChanged();
         return this;
@@ -10898,6 +10876,7 @@ public final class Connect {
        * <code>bool supports_playlist_v2 = 15;</code>
        * @return The supportsPlaylistV2.
        */
+      @java.lang.Override
       public boolean getSupportsPlaylistV2() {
         return supportsPlaylistV2_;
       }
@@ -10907,8 +10886,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsPlaylistV2(boolean value) {
-        
+
         supportsPlaylistV2_ = value;
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -10917,7 +10897,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsPlaylistV2() {
-        
+        bitField0_ = (bitField0_ & ~0x00001000);
         supportsPlaylistV2_ = false;
         onChanged();
         return this;
@@ -10928,6 +10908,7 @@ public final class Connect {
        * <code>bool is_controllable = 16;</code>
        * @return The isControllable.
        */
+      @java.lang.Override
       public boolean getIsControllable() {
         return isControllable_;
       }
@@ -10937,8 +10918,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsControllable(boolean value) {
-        
+
         isControllable_ = value;
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -10947,7 +10929,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsControllable() {
-        
+        bitField0_ = (bitField0_ & ~0x00002000);
         isControllable_ = false;
         onChanged();
         return this;
@@ -10958,6 +10940,7 @@ public final class Connect {
        * <code>bool supports_external_episodes = 17;</code>
        * @return The supportsExternalEpisodes.
        */
+      @java.lang.Override
       public boolean getSupportsExternalEpisodes() {
         return supportsExternalEpisodes_;
       }
@@ -10967,8 +10950,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsExternalEpisodes(boolean value) {
-        
+
         supportsExternalEpisodes_ = value;
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -10977,7 +10961,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsExternalEpisodes() {
-        
+        bitField0_ = (bitField0_ & ~0x00004000);
         supportsExternalEpisodes_ = false;
         onChanged();
         return this;
@@ -10988,6 +10972,7 @@ public final class Connect {
        * <code>bool supports_set_backend_metadata = 18;</code>
        * @return The supportsSetBackendMetadata.
        */
+      @java.lang.Override
       public boolean getSupportsSetBackendMetadata() {
         return supportsSetBackendMetadata_;
       }
@@ -10997,8 +10982,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsSetBackendMetadata(boolean value) {
-        
+
         supportsSetBackendMetadata_ = value;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -11007,7 +10993,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsSetBackendMetadata() {
-        
+        bitField0_ = (bitField0_ & ~0x00008000);
         supportsSetBackendMetadata_ = false;
         onChanged();
         return this;
@@ -11018,6 +11004,7 @@ public final class Connect {
        * <code>bool supports_transfer_command = 19;</code>
        * @return The supportsTransferCommand.
        */
+      @java.lang.Override
       public boolean getSupportsTransferCommand() {
         return supportsTransferCommand_;
       }
@@ -11027,8 +11014,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsTransferCommand(boolean value) {
-        
+
         supportsTransferCommand_ = value;
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -11037,7 +11025,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsTransferCommand() {
-        
+        bitField0_ = (bitField0_ & ~0x00010000);
         supportsTransferCommand_ = false;
         onChanged();
         return this;
@@ -11048,6 +11036,7 @@ public final class Connect {
        * <code>bool supports_command_request = 20;</code>
        * @return The supportsCommandRequest.
        */
+      @java.lang.Override
       public boolean getSupportsCommandRequest() {
         return supportsCommandRequest_;
       }
@@ -11057,8 +11046,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsCommandRequest(boolean value) {
-        
+
         supportsCommandRequest_ = value;
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -11067,7 +11057,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsCommandRequest() {
-        
+        bitField0_ = (bitField0_ & ~0x00020000);
         supportsCommandRequest_ = false;
         onChanged();
         return this;
@@ -11078,6 +11068,7 @@ public final class Connect {
        * <code>bool is_voice_enabled = 21;</code>
        * @return The isVoiceEnabled.
        */
+      @java.lang.Override
       public boolean getIsVoiceEnabled() {
         return isVoiceEnabled_;
       }
@@ -11087,8 +11078,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setIsVoiceEnabled(boolean value) {
-        
+
         isVoiceEnabled_ = value;
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -11097,7 +11089,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearIsVoiceEnabled() {
-        
+        bitField0_ = (bitField0_ & ~0x00040000);
         isVoiceEnabled_ = false;
         onChanged();
         return this;
@@ -11108,6 +11100,7 @@ public final class Connect {
        * <code>bool needs_full_player_state = 22;</code>
        * @return The needsFullPlayerState.
        */
+      @java.lang.Override
       public boolean getNeedsFullPlayerState() {
         return needsFullPlayerState_;
       }
@@ -11117,8 +11110,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setNeedsFullPlayerState(boolean value) {
-        
+
         needsFullPlayerState_ = value;
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -11127,7 +11121,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearNeedsFullPlayerState() {
-        
+        bitField0_ = (bitField0_ & ~0x00080000);
         needsFullPlayerState_ = false;
         onChanged();
         return this;
@@ -11138,6 +11132,7 @@ public final class Connect {
        * <code>bool supports_gzip_pushes = 23;</code>
        * @return The supportsGzipPushes.
        */
+      @java.lang.Override
       public boolean getSupportsGzipPushes() {
         return supportsGzipPushes_;
       }
@@ -11147,8 +11142,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsGzipPushes(boolean value) {
-        
+
         supportsGzipPushes_ = value;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -11157,7 +11153,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsGzipPushes() {
-        
+        bitField0_ = (bitField0_ & ~0x00100000);
         supportsGzipPushes_ = false;
         onChanged();
         return this;
@@ -11168,6 +11164,7 @@ public final class Connect {
        * <code>bool supports_lossless_audio = 24;</code>
        * @return The supportsLosslessAudio.
        */
+      @java.lang.Override
       public boolean getSupportsLosslessAudio() {
         return supportsLosslessAudio_;
       }
@@ -11177,8 +11174,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsLosslessAudio(boolean value) {
-        
+
         supportsLosslessAudio_ = value;
+        bitField0_ |= 0x00200000;
         onChanged();
         return this;
       }
@@ -11187,7 +11185,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsLosslessAudio() {
-        
+        bitField0_ = (bitField0_ & ~0x00200000);
         supportsLosslessAudio_ = false;
         onChanged();
         return this;
@@ -11198,6 +11196,7 @@ public final class Connect {
        * <code>bool supports_set_options_command = 25;</code>
        * @return The supportsSetOptionsCommand.
        */
+      @java.lang.Override
       public boolean getSupportsSetOptionsCommand() {
         return supportsSetOptionsCommand_;
       }
@@ -11207,8 +11206,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setSupportsSetOptionsCommand(boolean value) {
-        
+
         supportsSetOptionsCommand_ = value;
+        bitField0_ |= 0x00400000;
         onChanged();
         return this;
       }
@@ -11217,7 +11217,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearSupportsSetOptionsCommand() {
-        
+        bitField0_ = (bitField0_ & ~0x00400000);
         supportsSetOptionsCommand_ = false;
         onChanged();
         return this;
@@ -11235,7 +11235,7 @@ public final class Connect {
        * @return Whether the supportsHifi field is set.
        */
       public boolean hasSupportsHifi() {
-        return supportsHifiBuilder_ != null || supportsHifi_ != null;
+        return ((bitField0_ & 0x00800000) != 0);
       }
       /**
        * <pre>
@@ -11265,11 +11265,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           supportsHifi_ = value;
-          onChanged();
         } else {
           supportsHifiBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00800000;
+        onChanged();
         return this;
       }
       /**
@@ -11283,11 +11283,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.Builder builderForValue) {
         if (supportsHifiBuilder_ == null) {
           supportsHifi_ = builderForValue.build();
-          onChanged();
         } else {
           supportsHifiBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00800000;
+        onChanged();
         return this;
       }
       /**
@@ -11299,17 +11299,18 @@ public final class Connect {
        */
       public Builder mergeSupportsHifi(com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails value) {
         if (supportsHifiBuilder_ == null) {
-          if (supportsHifi_ != null) {
-            supportsHifi_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.newBuilder(supportsHifi_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00800000) != 0) &&
+            supportsHifi_ != null &&
+            supportsHifi_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.getDefaultInstance()) {
+            getSupportsHifiBuilder().mergeFrom(value);
           } else {
             supportsHifi_ = value;
           }
-          onChanged();
         } else {
           supportsHifiBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00800000;
+        onChanged();
         return this;
       }
       /**
@@ -11320,14 +11321,13 @@ public final class Connect {
        * <code>.connectstate.CapabilitySupportDetails supports_hifi = 26;</code>
        */
       public Builder clearSupportsHifi() {
-        if (supportsHifiBuilder_ == null) {
-          supportsHifi_ = null;
-          onChanged();
-        } else {
-          supportsHifi_ = null;
+        bitField0_ = (bitField0_ & ~0x00800000);
+        supportsHifi_ = null;
+        if (supportsHifiBuilder_ != null) {
+          supportsHifiBuilder_.dispose();
           supportsHifiBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -11338,7 +11338,7 @@ public final class Connect {
        * <code>.connectstate.CapabilitySupportDetails supports_hifi = 26;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.Builder getSupportsHifiBuilder() {
-        
+        bitField0_ |= 0x00800000;
         onChanged();
         return getSupportsHifiFieldBuilder().getBuilder();
       }
@@ -11368,7 +11368,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder> 
           getSupportsHifiFieldBuilder() {
         if (supportsHifiBuilder_ == null) {
-          supportsHifiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          supportsHifiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder>(
                   getSupportsHifi(),
                   getParentForChildren(),
                   isClean());
@@ -11377,13 +11378,13 @@ public final class Connect {
         return supportsHifiBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11414,10 +11415,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -11464,7 +11466,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.CapabilitySupportDetails}
    */
-  public  static final class CapabilitySupportDetails extends
+  public static final class CapabilitySupportDetails extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.CapabilitySupportDetails)
       CapabilitySupportDetailsOrBuilder {
@@ -11483,12 +11485,7 @@ public final class Connect {
       return new CapabilitySupportDetails();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_CapabilitySupportDetails_descriptor;
     }
@@ -11502,31 +11499,34 @@ public final class Connect {
     }
 
     public static final int FULLY_SUPPORTED_FIELD_NUMBER = 1;
-    private boolean fullySupported_;
+    private boolean fullySupported_ = false;
     /**
      * <code>bool fully_supported = 1;</code>
      * @return The fullySupported.
      */
+    @java.lang.Override
     public boolean getFullySupported() {
       return fullySupported_;
     }
 
     public static final int USER_ELIGIBLE_FIELD_NUMBER = 2;
-    private boolean userEligible_;
+    private boolean userEligible_ = false;
     /**
      * <code>bool user_eligible = 2;</code>
      * @return The userEligible.
      */
+    @java.lang.Override
     public boolean getUserEligible() {
       return userEligible_;
     }
 
     public static final int DEVICE_SUPPORTED_FIELD_NUMBER = 3;
-    private boolean deviceSupported_;
+    private boolean deviceSupported_ = false;
     /**
      * <code>bool device_supported = 3;</code>
      * @return The deviceSupported.
      */
+    @java.lang.Override
     public boolean getDeviceSupported() {
       return deviceSupported_;
     }
@@ -11575,11 +11575,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11618,7 +11620,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.CapabilitySupportDetails}
@@ -11627,7 +11630,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.CapabilitySupportDetails)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetailsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_CapabilitySupportDetails_descriptor;
       }
@@ -11642,25 +11645,21 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fullySupported_ = false;
-
         userEligible_ = false;
-
         deviceSupported_ = false;
-
         return this;
       }
 
@@ -11687,51 +11686,32 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails(this);
-        result.fullySupported_ = fullySupported_;
-        result.userEligible_ = userEligible_;
-        result.deviceSupported_ = deviceSupported_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.CapabilitySupportDetails result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.fullySupported_ = fullySupported_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.userEligible_ = userEligible_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.deviceSupported_ = deviceSupported_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private boolean fullySupported_ ;
       /**
        * <code>bool fully_supported = 1;</code>
        * @return The fullySupported.
        */
+      @java.lang.Override
       public boolean getFullySupported() {
         return fullySupported_;
       }
@@ -11741,8 +11721,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setFullySupported(boolean value) {
-        
+
         fullySupported_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -11751,7 +11732,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearFullySupported() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         fullySupported_ = false;
         onChanged();
         return this;
@@ -11762,6 +11743,7 @@ public final class Connect {
        * <code>bool user_eligible = 2;</code>
        * @return The userEligible.
        */
+      @java.lang.Override
       public boolean getUserEligible() {
         return userEligible_;
       }
@@ -11771,8 +11753,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setUserEligible(boolean value) {
-        
+
         userEligible_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -11781,7 +11764,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearUserEligible() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         userEligible_ = false;
         onChanged();
         return this;
@@ -11792,6 +11775,7 @@ public final class Connect {
        * <code>bool device_supported = 3;</code>
        * @return The deviceSupported.
        */
+      @java.lang.Override
       public boolean getDeviceSupported() {
         return deviceSupported_;
       }
@@ -11801,8 +11785,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setDeviceSupported(boolean value) {
-        
+
         deviceSupported_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -11811,19 +11796,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearDeviceSupported() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         deviceSupported_ = false;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -11854,10 +11839,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -11892,7 +11878,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.ConnectCommandOptions}
    */
-  public  static final class ConnectCommandOptions extends
+  public static final class ConnectCommandOptions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.ConnectCommandOptions)
       ConnectCommandOptionsOrBuilder {
@@ -11911,12 +11897,7 @@ public final class Connect {
       return new ConnectCommandOptions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ConnectCommandOptions_descriptor;
     }
@@ -11930,11 +11911,12 @@ public final class Connect {
     }
 
     public static final int MESSAGE_ID_FIELD_NUMBER = 1;
-    private int messageId_;
+    private int messageId_ = 0;
     /**
      * <code>int32 message_id = 1;</code>
      * @return The messageId.
      */
+    @java.lang.Override
     public int getMessageId() {
       return messageId_;
     }
@@ -11983,11 +11965,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12026,7 +12010,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.ConnectCommandOptions}
@@ -12035,7 +12020,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.ConnectCommandOptions)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_ConnectCommandOptions_descriptor;
       }
@@ -12050,21 +12035,19 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         messageId_ = 0;
-
         return this;
       }
 
@@ -12091,49 +12074,26 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions(this);
-        result.messageId_ = messageId_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.messageId_ = messageId_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private int messageId_ ;
       /**
        * <code>int32 message_id = 1;</code>
        * @return The messageId.
        */
+      @java.lang.Override
       public int getMessageId() {
         return messageId_;
       }
@@ -12143,8 +12103,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setMessageId(int value) {
-        
+
         messageId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -12153,19 +12114,19 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearMessageId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         messageId_ = 0;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12196,10 +12157,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -12243,7 +12205,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.LogoutCommand}
    */
-  public  static final class LogoutCommand extends
+  public static final class LogoutCommand extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.LogoutCommand)
       LogoutCommandOrBuilder {
@@ -12262,12 +12224,7 @@ public final class Connect {
       return new LogoutCommand();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_LogoutCommand_descriptor;
     }
@@ -12286,6 +12243,7 @@ public final class Connect {
      * <code>.connectstate.ConnectCommandOptions command_options = 1;</code>
      * @return Whether the commandOptions field is set.
      */
+    @java.lang.Override
     public boolean hasCommandOptions() {
       return commandOptions_ != null;
     }
@@ -12293,14 +12251,16 @@ public final class Connect {
      * <code>.connectstate.ConnectCommandOptions command_options = 1;</code>
      * @return The commandOptions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions getCommandOptions() {
       return commandOptions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance() : commandOptions_;
     }
     /**
      * <code>.connectstate.ConnectCommandOptions command_options = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder getCommandOptionsOrBuilder() {
-      return getCommandOptions();
+      return commandOptions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance() : commandOptions_;
     }
 
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand parseFrom(
@@ -12347,11 +12307,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12390,7 +12352,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.LogoutCommand}
@@ -12399,7 +12362,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.LogoutCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommandOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_LogoutCommand_descriptor;
       }
@@ -12414,23 +12377,21 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (commandOptionsBuilder_ == null) {
-          commandOptions_ = null;
-        } else {
-          commandOptions_ = null;
+        bitField0_ = 0;
+        commandOptions_ = null;
+        if (commandOptionsBuilder_ != null) {
+          commandOptionsBuilder_.dispose();
           commandOptionsBuilder_ = null;
         }
         return this;
@@ -12459,47 +12420,21 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand(this);
-        if (commandOptionsBuilder_ == null) {
-          result.commandOptions_ = commandOptions_;
-        } else {
-          result.commandOptions_ = commandOptionsBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.LogoutCommand result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.commandOptions_ = commandOptionsBuilder_ == null
+              ? commandOptions_
+              : commandOptionsBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions commandOptions_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -12509,7 +12444,7 @@ public final class Connect {
        * @return Whether the commandOptions field is set.
        */
       public boolean hasCommandOptions() {
-        return commandOptionsBuilder_ != null || commandOptions_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 1;</code>
@@ -12531,11 +12466,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           commandOptions_ = value;
-          onChanged();
         } else {
           commandOptionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -12545,11 +12480,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder builderForValue) {
         if (commandOptionsBuilder_ == null) {
           commandOptions_ = builderForValue.build();
-          onChanged();
         } else {
           commandOptionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -12557,38 +12492,38 @@ public final class Connect {
        */
       public Builder mergeCommandOptions(com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions value) {
         if (commandOptionsBuilder_ == null) {
-          if (commandOptions_ != null) {
-            commandOptions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.newBuilder(commandOptions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            commandOptions_ != null &&
+            commandOptions_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance()) {
+            getCommandOptionsBuilder().mergeFrom(value);
           } else {
             commandOptions_ = value;
           }
-          onChanged();
         } else {
           commandOptionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 1;</code>
        */
       public Builder clearCommandOptions() {
-        if (commandOptionsBuilder_ == null) {
-          commandOptions_ = null;
-          onChanged();
-        } else {
-          commandOptions_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        commandOptions_ = null;
+        if (commandOptionsBuilder_ != null) {
+          commandOptionsBuilder_.dispose();
           commandOptionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder getCommandOptionsBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getCommandOptionsFieldBuilder().getBuilder();
       }
@@ -12610,7 +12545,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder> 
           getCommandOptionsFieldBuilder() {
         if (commandOptionsBuilder_ == null) {
-          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder>(
                   getCommandOptions(),
                   getParentForChildren(),
                   isClean());
@@ -12619,13 +12555,13 @@ public final class Connect {
         return commandOptionsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -12656,10 +12592,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -12709,7 +12646,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.SetVolumeCommand}
    */
-  public  static final class SetVolumeCommand extends
+  public static final class SetVolumeCommand extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.SetVolumeCommand)
       SetVolumeCommandOrBuilder {
@@ -12728,12 +12665,7 @@ public final class Connect {
       return new SetVolumeCommand();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetVolumeCommand_descriptor;
     }
@@ -12747,11 +12679,12 @@ public final class Connect {
     }
 
     public static final int VOLUME_FIELD_NUMBER = 1;
-    private int volume_;
+    private int volume_ = 0;
     /**
      * <code>int32 volume = 1;</code>
      * @return The volume.
      */
+    @java.lang.Override
     public int getVolume() {
       return volume_;
     }
@@ -12762,6 +12695,7 @@ public final class Connect {
      * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
      * @return Whether the commandOptions field is set.
      */
+    @java.lang.Override
     public boolean hasCommandOptions() {
       return commandOptions_ != null;
     }
@@ -12769,14 +12703,16 @@ public final class Connect {
      * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
      * @return The commandOptions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions getCommandOptions() {
       return commandOptions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance() : commandOptions_;
     }
     /**
      * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder getCommandOptionsOrBuilder() {
-      return getCommandOptions();
+      return commandOptions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance() : commandOptions_;
     }
 
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand parseFrom(
@@ -12823,11 +12759,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12866,7 +12804,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.SetVolumeCommand}
@@ -12875,7 +12814,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.SetVolumeCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommandOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetVolumeCommand_descriptor;
       }
@@ -12890,25 +12829,22 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         volume_ = 0;
-
-        if (commandOptionsBuilder_ == null) {
-          commandOptions_ = null;
-        } else {
-          commandOptions_ = null;
+        commandOptions_ = null;
+        if (commandOptionsBuilder_ != null) {
+          commandOptionsBuilder_.dispose();
           commandOptionsBuilder_ = null;
         }
         return this;
@@ -12937,54 +12873,31 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand(this);
-        result.volume_ = volume_;
-        if (commandOptionsBuilder_ == null) {
-          result.commandOptions_ = commandOptions_;
-        } else {
-          result.commandOptions_ = commandOptionsBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.SetVolumeCommand result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.volume_ = volume_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.commandOptions_ = commandOptionsBuilder_ == null
+              ? commandOptions_
+              : commandOptionsBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private int volume_ ;
       /**
        * <code>int32 volume = 1;</code>
        * @return The volume.
        */
+      @java.lang.Override
       public int getVolume() {
         return volume_;
       }
@@ -12994,8 +12907,9 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder setVolume(int value) {
-        
+
         volume_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13004,7 +12918,7 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearVolume() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         volume_ = 0;
         onChanged();
         return this;
@@ -13018,7 +12932,7 @@ public final class Connect {
        * @return Whether the commandOptions field is set.
        */
       public boolean hasCommandOptions() {
-        return commandOptionsBuilder_ != null || commandOptions_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
@@ -13040,11 +12954,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           commandOptions_ = value;
-          onChanged();
         } else {
           commandOptionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -13054,11 +12968,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder builderForValue) {
         if (commandOptionsBuilder_ == null) {
           commandOptions_ = builderForValue.build();
-          onChanged();
         } else {
           commandOptionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -13066,38 +12980,38 @@ public final class Connect {
        */
       public Builder mergeCommandOptions(com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions value) {
         if (commandOptionsBuilder_ == null) {
-          if (commandOptions_ != null) {
-            commandOptions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.newBuilder(commandOptions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            commandOptions_ != null &&
+            commandOptions_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance()) {
+            getCommandOptionsBuilder().mergeFrom(value);
           } else {
             commandOptions_ = value;
           }
-          onChanged();
         } else {
           commandOptionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
        */
       public Builder clearCommandOptions() {
-        if (commandOptionsBuilder_ == null) {
-          commandOptions_ = null;
-          onChanged();
-        } else {
-          commandOptions_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        commandOptions_ = null;
+        if (commandOptionsBuilder_ != null) {
+          commandOptionsBuilder_.dispose();
           commandOptionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder getCommandOptionsBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getCommandOptionsFieldBuilder().getBuilder();
       }
@@ -13119,7 +13033,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder> 
           getCommandOptionsFieldBuilder() {
         if (commandOptionsBuilder_ == null) {
-          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder>(
                   getCommandOptions(),
                   getParentForChildren(),
                   isClean());
@@ -13128,13 +13043,13 @@ public final class Connect {
         return commandOptionsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13165,10 +13080,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -13224,7 +13140,7 @@ public final class Connect {
   /**
    * Protobuf type {@code connectstate.RenameCommand}
    */
-  public  static final class RenameCommand extends
+  public static final class RenameCommand extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.RenameCommand)
       RenameCommandOrBuilder {
@@ -13244,12 +13160,7 @@ public final class Connect {
       return new RenameCommand();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_RenameCommand_descriptor;
     }
@@ -13263,11 +13174,13 @@ public final class Connect {
     }
 
     public static final int RENAME_TO_FIELD_NUMBER = 1;
-    private volatile java.lang.Object renameTo_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object renameTo_ = "";
     /**
      * <code>string rename_to = 1;</code>
      * @return The renameTo.
      */
+    @java.lang.Override
     public java.lang.String getRenameTo() {
       java.lang.Object ref = renameTo_;
       if (ref instanceof java.lang.String) {
@@ -13284,6 +13197,7 @@ public final class Connect {
      * <code>string rename_to = 1;</code>
      * @return The bytes for renameTo.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getRenameToBytes() {
       java.lang.Object ref = renameTo_;
@@ -13304,6 +13218,7 @@ public final class Connect {
      * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
      * @return Whether the commandOptions field is set.
      */
+    @java.lang.Override
     public boolean hasCommandOptions() {
       return commandOptions_ != null;
     }
@@ -13311,14 +13226,16 @@ public final class Connect {
      * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
      * @return The commandOptions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions getCommandOptions() {
       return commandOptions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance() : commandOptions_;
     }
     /**
      * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder getCommandOptionsOrBuilder() {
-      return getCommandOptions();
+      return commandOptions_ == null ? com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance() : commandOptions_;
     }
 
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand parseFrom(
@@ -13365,11 +13282,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13408,7 +13327,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.RenameCommand}
@@ -13417,7 +13337,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.RenameCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommandOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_RenameCommand_descriptor;
       }
@@ -13432,25 +13352,22 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         renameTo_ = "";
-
-        if (commandOptionsBuilder_ == null) {
-          commandOptions_ = null;
-        } else {
-          commandOptions_ = null;
+        commandOptions_ = null;
+        if (commandOptionsBuilder_ != null) {
+          commandOptionsBuilder_.dispose();
           commandOptionsBuilder_ = null;
         }
         return this;
@@ -13479,48 +13396,24 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand(this);
-        result.renameTo_ = renameTo_;
-        if (commandOptionsBuilder_ == null) {
-          result.commandOptions_ = commandOptions_;
-        } else {
-          result.commandOptions_ = commandOptionsBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.RenameCommand result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.renameTo_ = renameTo_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.commandOptions_ = commandOptionsBuilder_ == null
+              ? commandOptions_
+              : commandOptionsBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object renameTo_ = "";
       /**
@@ -13563,11 +13456,9 @@ public final class Connect {
        */
       public Builder setRenameTo(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         renameTo_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13576,8 +13467,8 @@ public final class Connect {
        * @return This builder for chaining.
        */
       public Builder clearRenameTo() {
-        
         renameTo_ = getDefaultInstance().getRenameTo();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -13588,12 +13479,10 @@ public final class Connect {
        */
       public Builder setRenameToBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         renameTo_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -13606,7 +13495,7 @@ public final class Connect {
        * @return Whether the commandOptions field is set.
        */
       public boolean hasCommandOptions() {
-        return commandOptionsBuilder_ != null || commandOptions_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
@@ -13628,11 +13517,11 @@ public final class Connect {
             throw new NullPointerException();
           }
           commandOptions_ = value;
-          onChanged();
         } else {
           commandOptionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -13642,11 +13531,11 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder builderForValue) {
         if (commandOptionsBuilder_ == null) {
           commandOptions_ = builderForValue.build();
-          onChanged();
         } else {
           commandOptionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -13654,38 +13543,38 @@ public final class Connect {
        */
       public Builder mergeCommandOptions(com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions value) {
         if (commandOptionsBuilder_ == null) {
-          if (commandOptions_ != null) {
-            commandOptions_ =
-              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.newBuilder(commandOptions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            commandOptions_ != null &&
+            commandOptions_ != com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.getDefaultInstance()) {
+            getCommandOptionsBuilder().mergeFrom(value);
           } else {
             commandOptions_ = value;
           }
-          onChanged();
         } else {
           commandOptionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
        */
       public Builder clearCommandOptions() {
-        if (commandOptionsBuilder_ == null) {
-          commandOptions_ = null;
-          onChanged();
-        } else {
-          commandOptions_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        commandOptions_ = null;
+        if (commandOptionsBuilder_ != null) {
+          commandOptionsBuilder_.dispose();
           commandOptionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.connectstate.ConnectCommandOptions command_options = 2;</code>
        */
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder getCommandOptionsBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getCommandOptionsFieldBuilder().getBuilder();
       }
@@ -13707,7 +13596,8 @@ public final class Connect {
           com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder> 
           getCommandOptionsFieldBuilder() {
         if (commandOptionsBuilder_ == null) {
-          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          commandOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptions.Builder, com.spotifyxp.deps.com.spotify.connectstate.Connect.ConnectCommandOptionsOrBuilder>(
                   getCommandOptions(),
                   getParentForChildren(),
                   isClean());
@@ -13716,13 +13606,13 @@ public final class Connect {
         return commandOptionsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -13753,10 +13643,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -13805,21 +13696,21 @@ public final class Connect {
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
      */
-
-    java.lang.String getMetadataOrDefault(
+    /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
      */
-
     java.lang.String getMetadataOrThrow(
         java.lang.String key);
   }
   /**
    * Protobuf type {@code connectstate.SetBackendMetadataCommand}
    */
-  public  static final class SetBackendMetadataCommand extends
+  public static final class SetBackendMetadataCommand extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:connectstate.SetBackendMetadataCommand)
       SetBackendMetadataCommandOrBuilder {
@@ -13838,12 +13729,7 @@ public final class Connect {
       return new SetBackendMetadataCommand();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetBackendMetadataCommand_descriptor;
     }
@@ -13852,11 +13738,13 @@ public final class Connect {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-      if (number == 1) {
-        return internalGetMetadata();
-      }
-      throw new RuntimeException(
+      switch (number) {
+        case 1:
+          return internalGetMetadata();
+        default:
+          throw new RuntimeException(
               "Invalid map field number: " + number);
+      }
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -13871,13 +13759,14 @@ public final class Connect {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetBackendMetadataCommand_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> metadata_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -13888,22 +13777,22 @@ public final class Connect {
       }
       return metadata_;
     }
-
     public int getMetadataCount() {
       return internalGetMetadata().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
      */
-
+    @java.lang.Override
     public boolean containsMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getMetadataMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
       return getMetadataMap();
@@ -13911,29 +13800,31 @@ public final class Connect {
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
       return internalGetMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
      */
-
-    public java.lang.String getMetadataOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 1;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -13986,11 +13877,13 @@ public final class Connect {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14029,7 +13922,8 @@ public final class Connect {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code connectstate.SetBackendMetadataCommand}
@@ -14038,7 +13932,7 @@ public final class Connect {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:connectstate.SetBackendMetadataCommand)
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommandOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.connectstate.Connect.internal_static_connectstate_SetBackendMetadataCommand_descriptor;
       }
@@ -14046,20 +13940,24 @@ public final class Connect {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-        if (number == 1) {
-          return internalGetMetadata();
-        }
-        throw new RuntimeException(
+        switch (number) {
+          case 1:
+            return internalGetMetadata();
+          default:
+            throw new RuntimeException(
                 "Invalid map field number: " + number);
+        }
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-        if (number == 1) {
-          return internalGetMutableMetadata();
-        }
-        throw new RuntimeException(
+        switch (number) {
+          case 1:
+            return internalGetMutableMetadata();
+          default:
+            throw new RuntimeException(
                 "Invalid map field number: " + number);
+        }
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -14071,19 +13969,18 @@ public final class Connect {
 
       // Construct using com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         internalGetMutableMetadata().clear();
         return this;
       }
@@ -14111,51 +14008,25 @@ public final class Connect {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand buildPartial() {
         com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand result = new com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand(this);
-        int from_bitField0_ = bitField0_;
-        result.metadata_ = internalGetMetadata();
-        result.metadata_.makeImmutable();
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.connectstate.Connect.SetBackendMetadataCommand result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.metadata_ = internalGetMetadata();
+          result.metadata_.makeImmutable();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> metadata_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMetadata() {
+          internalGetMetadata() {
         if (metadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -14163,8 +14034,7 @@ public final class Connect {
         return metadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableMetadata() {
-        onChanged();
+          internalGetMutableMetadata() {
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -14172,24 +14042,26 @@ public final class Connect {
         if (!metadata_.isMutable()) {
           metadata_ = metadata_.copy();
         }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return metadata_;
       }
-
       public int getMetadataCount() {
         return internalGetMetadata().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
        */
-
+      @java.lang.Override
       public boolean containsMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getMetadataMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
         return getMetadataMap();
@@ -14197,29 +14069,31 @@ public final class Connect {
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
         return internalGetMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
        */
-
-      public java.lang.String getMetadataOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getMetadataOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -14227,8 +14101,8 @@ public final class Connect {
         }
         return map.get(key);
       }
-
       public Builder clearMetadata() {
+        bitField0_ = (bitField0_ & ~0x00000001);
         internalGetMutableMetadata().getMutableMap()
             .clear();
         return this;
@@ -14236,10 +14110,9 @@ public final class Connect {
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
        */
-
       public Builder removeMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -14249,7 +14122,8 @@ public final class Connect {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutableMetadata() {
+          getMutableMetadata() {
+        bitField0_ |= 0x00000001;
         return internalGetMutableMetadata().getMutableMap();
       }
       /**
@@ -14258,30 +14132,31 @@ public final class Connect {
       public Builder putMetadata(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000001;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 1;</code>
        */
-
       public Builder putAllMetadata(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000001;
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14312,10 +14187,11 @@ public final class Connect {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -14437,122 +14313,122 @@ public final class Connect {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n\rconnect.proto\022\014connectstate\032\014player.pr" +
-                    "oto\"\237\001\n\rClusterUpdate\022&\n\007cluster\030\001 \001(\0132\025" +
-                    ".connectstate.Cluster\0228\n\rupdate_reason\030\002" +
-                    " \001(\0162!.connectstate.ClusterUpdateReason\022" +
-                    "\016\n\006ack_id\030\003 \001(\t\022\034\n\024devices_that_changed\030" +
-                    "\004 \003(\t\"\275\001\n\006Device\022-\n\013device_info\030\001 \001(\0132\030." +
-                    "connectstate.DeviceInfo\022/\n\014player_state\030" +
-                    "\002 \001(\0132\031.connectstate.PlayerState\022<\n\023priv" +
-                    "ate_device_info\030\003 \001(\0132\037.connectstate.Pri" +
-                    "vateDeviceInfo\022\025\n\rtransfer_data\030\004 \001(\014\"\375\002" +
-                    "\n\007Cluster\022\021\n\ttimestamp\030\001 \001(\003\022\030\n\020active_d" +
-                    "evice_id\030\002 \001(\t\022/\n\014player_state\030\003 \001(\0132\031.c" +
-                    "onnectstate.PlayerState\0221\n\006device\030\004 \003(\0132" +
-                    "!.connectstate.Cluster.DeviceEntry\022\025\n\rtr" +
-                    "ansfer_data\030\005 \001(\014\022\037\n\027transfer_data_times" +
-                    "tamp\030\006 \001(\004\022#\n\033not_playing_since_timestam" +
-                    "p\030\007 \001(\003\022\036\n\026need_full_player_state\030\010 \001(\010\022" +
-                    "\033\n\023server_timestamp_ms\030\t \001(\003\032G\n\013DeviceEn" +
-                    "try\022\013\n\003key\030\001 \001(\t\022'\n\005value\030\002 \001(\0132\030.connec" +
-                    "tstate.DeviceInfo:\0028\001\"\241\003\n\017PutStateReques" +
-                    "t\022\024\n\014callback_url\030\001 \001(\t\022$\n\006device\030\002 \001(\0132" +
-                    "\024.connectstate.Device\022-\n\013member_type\030\003 \001" +
-                    "(\0162\030.connectstate.MemberType\022\021\n\tis_activ" +
-                    "e\030\004 \001(\010\0226\n\020put_state_reason\030\005 \001(\0162\034.conn" +
-                    "ectstate.PutStateReason\022\022\n\nmessage_id\030\006 " +
-                    "\001(\r\022&\n\036last_command_sent_by_device_id\030\007 " +
-                    "\001(\t\022\037\n\027last_command_message_id\030\010 \001(\r\022\032\n\022" +
-                    "started_playing_at\030\t \001(\004\022\037\n\027has_been_pla" +
-                    "ying_for_ms\030\013 \001(\004\022\035\n\025client_side_timesta" +
-                    "mp\030\014 \001(\004\022\037\n\027only_write_player_state\030\r \001(" +
-                    "\010\"%\n\021PrivateDeviceInfo\022\020\n\010platform\030\001 \001(\t" +
-                    "\"(\n\020SubscribeRequest\022\024\n\014callback_url\030\001 \001" +
-                    "(\t\"\330\005\n\nDeviceInfo\022\020\n\010can_play\030\001 \001(\010\022\016\n\006v" +
-                    "olume\030\002 \001(\r\022\014\n\004name\030\003 \001(\t\0220\n\014capabilitie" +
-                    "s\030\004 \001(\0132\032.connectstate.Capabilities\022\037\n\027d" +
-                    "evice_software_version\030\006 \001(\t\022-\n\013device_t" +
-                    "ype\030\007 \001(\0162\030.connectstate.DeviceType\022\025\n\rs" +
-                    "pirc_version\030\t \001(\t\022\021\n\tdevice_id\030\n \001(\t\022\032\n" +
-                    "\022is_private_session\030\013 \001(\010\022\031\n\021is_social_c" +
-                    "onnect\030\014 \001(\010\022\021\n\tclient_id\030\r \001(\t\022\r\n\005brand" +
-                    "\030\016 \001(\t\022\r\n\005model\030\017 \001(\t\022?\n\014metadata_map\030\020 " +
-                    "\003(\0132).connectstate.DeviceInfo.MetadataMa" +
-                    "pEntry\022\022\n\nproduct_id\030\021 \001(\t\022\030\n\020deduplicat" +
-                    "ion_id\030\022 \001(\t\022\031\n\021selected_alias_id\030\023 \001(\r\022" +
-                    "C\n\016device_aliases\030\024 \003(\0132+.connectstate.D" +
-                    "eviceInfo.DeviceAliasesEntry\022\022\n\nis_offli" +
-                    "ne\030\025 \001(\010\022\021\n\tpublic_ip\030\026 \001(\t\022\017\n\007license\030\027" +
-                    " \001(\t\032K\n\022DeviceAliasesEntry\022\013\n\003key\030\001 \001(\r\022" +
-                    "(\n\005value\030\002 \001(\0132\031.connectstate.DeviceAlia" +
-                    "s\0322\n\020MetadataMapEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va" +
-                    "lue\030\002 \001(\t:\0028\001\"9\n\013DeviceAlias\022\n\n\002id\030\001 \001(\r" +
-                    "\022\014\n\004name\030\002 \001(\t\022\020\n\010is_group\030\003 \001(\010\"\322\005\n\014Cap" +
-                    "abilities\022\025\n\rcan_be_player\030\002 \001(\010\022\031\n\021rest" +
-                    "rict_to_local\030\003 \001(\010\022\032\n\022gaia_eq_connect_i" +
-                    "d\030\005 \001(\010\022\027\n\017supports_logout\030\006 \001(\010\022\025\n\ris_o" +
-                    "bservable\030\007 \001(\010\022\024\n\014volume_steps\030\010 \001(\005\022\027\n" +
-                    "\017supported_types\030\t \003(\t\022\024\n\014command_acks\030\n" +
-                    " \001(\010\022\027\n\017supports_rename\030\013 \001(\010\022\016\n\006hidden\030" +
-                    "\014 \001(\010\022\026\n\016disable_volume\030\r \001(\010\022\030\n\020connect" +
-                    "_disabled\030\016 \001(\010\022\034\n\024supports_playlist_v2\030" +
-                    "\017 \001(\010\022\027\n\017is_controllable\030\020 \001(\010\022\"\n\032suppor" +
-                    "ts_external_episodes\030\021 \001(\010\022%\n\035supports_s" +
-                    "et_backend_metadata\030\022 \001(\010\022!\n\031supports_tr" +
-                    "ansfer_command\030\023 \001(\010\022 \n\030supports_command" +
-                    "_request\030\024 \001(\010\022\030\n\020is_voice_enabled\030\025 \001(\010" +
-                    "\022\037\n\027needs_full_player_state\030\026 \001(\010\022\034\n\024sup" +
-                    "ports_gzip_pushes\030\027 \001(\010\022\037\n\027supports_loss" +
-                    "less_audio\030\030 \001(\010\022$\n\034supports_set_options" +
-                    "_command\030\031 \001(\010\022=\n\rsupports_hifi\030\032 \001(\0132&." +
-                    "connectstate.CapabilitySupportDetails\"d\n" +
-                    "\030CapabilitySupportDetails\022\027\n\017fully_suppo" +
-                    "rted\030\001 \001(\010\022\025\n\ruser_eligible\030\002 \001(\010\022\030\n\020dev" +
-                    "ice_supported\030\003 \001(\010\"+\n\025ConnectCommandOpt" +
-                    "ions\022\022\n\nmessage_id\030\001 \001(\005\"M\n\rLogoutComman" +
-                    "d\022<\n\017command_options\030\001 \001(\0132#.connectstat" +
-                    "e.ConnectCommandOptions\"`\n\020SetVolumeComm" +
-                    "and\022\016\n\006volume\030\001 \001(\005\022<\n\017command_options\030\002" +
-                    " \001(\0132#.connectstate.ConnectCommandOption" +
-                    "s\"`\n\rRenameCommand\022\021\n\trename_to\030\001 \001(\t\022<\n" +
-                    "\017command_options\030\002 \001(\0132#.connectstate.Co" +
-                    "nnectCommandOptions\"\225\001\n\031SetBackendMetada" +
-                    "taCommand\022G\n\010metadata\030\001 \003(\01325.connectsta" +
-                    "te.SetBackendMetadataCommand.MetadataEnt" +
-                    "ry\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
-                    "e\030\002 \001(\t:\0028\001*\324\001\n\021SendCommandResult\022\037\n\033UNK" +
-                    "NOWN_SEND_COMMAND_RESULT\020\000\022\013\n\007SUCCESS\020\001\022" +
-                    "\024\n\020DEVICE_NOT_FOUND\020\002\022\030\n\024CONTEXT_PLAYER_" +
-                    "ERROR\020\003\022\026\n\022DEVICE_DISAPPEARED\020\004\022\022\n\016UPSTR" +
-                    "EAM_ERROR\020\005\022#\n\037DEVICE_DOES_NOT_SUPPORT_C" +
-                    "OMMAND\020\006\022\020\n\014RATE_LIMITED\020\007*\312\001\n\016PutStateR" +
-                    "eason\022\034\n\030UNKNOWN_PUT_STATE_REASON\020\000\022\017\n\013S" +
-                    "PIRC_HELLO\020\001\022\020\n\014SPIRC_NOTIFY\020\002\022\016\n\nNEW_DE" +
-                    "VICE\020\003\022\030\n\024PLAYER_STATE_CHANGED\020\004\022\022\n\016VOLU" +
-                    "ME_CHANGED\020\005\022\021\n\rPICKER_OPENED\020\006\022\023\n\017BECAM" +
-                    "E_INACTIVE\020\007\022\021\n\rALIAS_CHANGED\020\010*\202\001\n\nMemb" +
-                    "erType\022\014\n\010SPIRC_V2\020\000\022\014\n\010SPIRC_V3\020\001\022\021\n\rCO" +
-                    "NNECT_STATE\020\002\022\032\n\026CONNECT_STATE_EXTENDED\020" +
-                    "\005\022\031\n\025ACTIVE_DEVICE_TRACKER\020\006\022\016\n\nPLAY_TOK" +
-                    "EN\020\007*\271\001\n\023ClusterUpdateReason\022!\n\035UNKNOWN_" +
-                    "CLUSTER_UPDATE_REASON\020\000\022\027\n\023DEVICES_DISAP" +
-                    "PEARED\020\001\022\030\n\024DEVICE_STATE_CHANGED\020\002\022\027\n\023NE" +
-                    "W_DEVICE_APPEARED\020\003\022\031\n\025DEVICE_VOLUME_CHA" +
-                    "NGED\020\004\022\030\n\024DEVICE_ALIAS_CHANGED\020\005*\240\002\n\nDev" +
-                    "iceType\022\013\n\007UNKNOWN\020\000\022\014\n\010COMPUTER\020\001\022\n\n\006TA" +
-                    "BLET\020\002\022\016\n\nSMARTPHONE\020\003\022\013\n\007SPEAKER\020\004\022\006\n\002T" +
-                    "V\020\005\022\007\n\003AVR\020\006\022\007\n\003STB\020\007\022\020\n\014AUDIO_DONGLE\020\010\022" +
-                    "\020\n\014GAME_CONSOLE\020\t\022\016\n\nCAST_VIDEO\020\n\022\016\n\nCAS" +
-                    "T_AUDIO\020\013\022\016\n\nAUTOMOBILE\020\014\022\016\n\nSMARTWATCH\020" +
-                    "\r\022\016\n\nCHROMEBOOK\020\016\022\023\n\017UNKNOWN_SPOTIFY\020d\022\r" +
-                    "\n\tCAR_THING\020e\022\014\n\010OBSERVER\020f\022\016\n\nHOME_THIN" +
-                    "G\020gB\034\n\030com.spotify.connectstateH\002b\006proto" +
-                    "3"
+      "\n\rconnect.proto\022\014connectstate\032\014player.pr" +
+      "oto\"\237\001\n\rClusterUpdate\022&\n\007cluster\030\001 \001(\0132\025" +
+      ".connectstate.Cluster\0228\n\rupdate_reason\030\002" +
+      " \001(\0162!.connectstate.ClusterUpdateReason\022" +
+      "\016\n\006ack_id\030\003 \001(\t\022\034\n\024devices_that_changed\030" +
+      "\004 \003(\t\"\275\001\n\006Device\022-\n\013device_info\030\001 \001(\0132\030." +
+      "connectstate.DeviceInfo\022/\n\014player_state\030" +
+      "\002 \001(\0132\031.connectstate.PlayerState\022<\n\023priv" +
+      "ate_device_info\030\003 \001(\0132\037.connectstate.Pri" +
+      "vateDeviceInfo\022\025\n\rtransfer_data\030\004 \001(\014\"\375\002" +
+      "\n\007Cluster\022\021\n\ttimestamp\030\001 \001(\003\022\030\n\020active_d" +
+      "evice_id\030\002 \001(\t\022/\n\014player_state\030\003 \001(\0132\031.c" +
+      "onnectstate.PlayerState\0221\n\006device\030\004 \003(\0132" +
+      "!.connectstate.Cluster.DeviceEntry\022\025\n\rtr" +
+      "ansfer_data\030\005 \001(\014\022\037\n\027transfer_data_times" +
+      "tamp\030\006 \001(\004\022#\n\033not_playing_since_timestam" +
+      "p\030\007 \001(\003\022\036\n\026need_full_player_state\030\010 \001(\010\022" +
+      "\033\n\023server_timestamp_ms\030\t \001(\003\032G\n\013DeviceEn" +
+      "try\022\013\n\003key\030\001 \001(\t\022\'\n\005value\030\002 \001(\0132\030.connec" +
+      "tstate.DeviceInfo:\0028\001\"\241\003\n\017PutStateReques" +
+      "t\022\024\n\014callback_url\030\001 \001(\t\022$\n\006device\030\002 \001(\0132" +
+      "\024.connectstate.Device\022-\n\013member_type\030\003 \001" +
+      "(\0162\030.connectstate.MemberType\022\021\n\tis_activ" +
+      "e\030\004 \001(\010\0226\n\020put_state_reason\030\005 \001(\0162\034.conn" +
+      "ectstate.PutStateReason\022\022\n\nmessage_id\030\006 " +
+      "\001(\r\022&\n\036last_command_sent_by_device_id\030\007 " +
+      "\001(\t\022\037\n\027last_command_message_id\030\010 \001(\r\022\032\n\022" +
+      "started_playing_at\030\t \001(\004\022\037\n\027has_been_pla" +
+      "ying_for_ms\030\013 \001(\004\022\035\n\025client_side_timesta" +
+      "mp\030\014 \001(\004\022\037\n\027only_write_player_state\030\r \001(" +
+      "\010\"%\n\021PrivateDeviceInfo\022\020\n\010platform\030\001 \001(\t" +
+      "\"(\n\020SubscribeRequest\022\024\n\014callback_url\030\001 \001" +
+      "(\t\"\330\005\n\nDeviceInfo\022\020\n\010can_play\030\001 \001(\010\022\016\n\006v" +
+      "olume\030\002 \001(\r\022\014\n\004name\030\003 \001(\t\0220\n\014capabilitie" +
+      "s\030\004 \001(\0132\032.connectstate.Capabilities\022\037\n\027d" +
+      "evice_software_version\030\006 \001(\t\022-\n\013device_t" +
+      "ype\030\007 \001(\0162\030.connectstate.DeviceType\022\025\n\rs" +
+      "pirc_version\030\t \001(\t\022\021\n\tdevice_id\030\n \001(\t\022\032\n" +
+      "\022is_private_session\030\013 \001(\010\022\031\n\021is_social_c" +
+      "onnect\030\014 \001(\010\022\021\n\tclient_id\030\r \001(\t\022\r\n\005brand" +
+      "\030\016 \001(\t\022\r\n\005model\030\017 \001(\t\022?\n\014metadata_map\030\020 " +
+      "\003(\0132).connectstate.DeviceInfo.MetadataMa" +
+      "pEntry\022\022\n\nproduct_id\030\021 \001(\t\022\030\n\020deduplicat" +
+      "ion_id\030\022 \001(\t\022\031\n\021selected_alias_id\030\023 \001(\r\022" +
+      "C\n\016device_aliases\030\024 \003(\0132+.connectstate.D" +
+      "eviceInfo.DeviceAliasesEntry\022\022\n\nis_offli" +
+      "ne\030\025 \001(\010\022\021\n\tpublic_ip\030\026 \001(\t\022\017\n\007license\030\027" +
+      " \001(\t\032K\n\022DeviceAliasesEntry\022\013\n\003key\030\001 \001(\r\022" +
+      "(\n\005value\030\002 \001(\0132\031.connectstate.DeviceAlia" +
+      "s\0322\n\020MetadataMapEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va" +
+      "lue\030\002 \001(\t:\0028\001\"9\n\013DeviceAlias\022\n\n\002id\030\001 \001(\r" +
+      "\022\014\n\004name\030\002 \001(\t\022\020\n\010is_group\030\003 \001(\010\"\322\005\n\014Cap" +
+      "abilities\022\025\n\rcan_be_player\030\002 \001(\010\022\031\n\021rest" +
+      "rict_to_local\030\003 \001(\010\022\032\n\022gaia_eq_connect_i" +
+      "d\030\005 \001(\010\022\027\n\017supports_logout\030\006 \001(\010\022\025\n\ris_o" +
+      "bservable\030\007 \001(\010\022\024\n\014volume_steps\030\010 \001(\005\022\027\n" +
+      "\017supported_types\030\t \003(\t\022\024\n\014command_acks\030\n" +
+      " \001(\010\022\027\n\017supports_rename\030\013 \001(\010\022\016\n\006hidden\030" +
+      "\014 \001(\010\022\026\n\016disable_volume\030\r \001(\010\022\030\n\020connect" +
+      "_disabled\030\016 \001(\010\022\034\n\024supports_playlist_v2\030" +
+      "\017 \001(\010\022\027\n\017is_controllable\030\020 \001(\010\022\"\n\032suppor" +
+      "ts_external_episodes\030\021 \001(\010\022%\n\035supports_s" +
+      "et_backend_metadata\030\022 \001(\010\022!\n\031supports_tr" +
+      "ansfer_command\030\023 \001(\010\022 \n\030supports_command" +
+      "_request\030\024 \001(\010\022\030\n\020is_voice_enabled\030\025 \001(\010" +
+      "\022\037\n\027needs_full_player_state\030\026 \001(\010\022\034\n\024sup" +
+      "ports_gzip_pushes\030\027 \001(\010\022\037\n\027supports_loss" +
+      "less_audio\030\030 \001(\010\022$\n\034supports_set_options" +
+      "_command\030\031 \001(\010\022=\n\rsupports_hifi\030\032 \001(\0132&." +
+      "connectstate.CapabilitySupportDetails\"d\n" +
+      "\030CapabilitySupportDetails\022\027\n\017fully_suppo" +
+      "rted\030\001 \001(\010\022\025\n\ruser_eligible\030\002 \001(\010\022\030\n\020dev" +
+      "ice_supported\030\003 \001(\010\"+\n\025ConnectCommandOpt" +
+      "ions\022\022\n\nmessage_id\030\001 \001(\005\"M\n\rLogoutComman" +
+      "d\022<\n\017command_options\030\001 \001(\0132#.connectstat" +
+      "e.ConnectCommandOptions\"`\n\020SetVolumeComm" +
+      "and\022\016\n\006volume\030\001 \001(\005\022<\n\017command_options\030\002" +
+      " \001(\0132#.connectstate.ConnectCommandOption" +
+      "s\"`\n\rRenameCommand\022\021\n\trename_to\030\001 \001(\t\022<\n" +
+      "\017command_options\030\002 \001(\0132#.connectstate.Co" +
+      "nnectCommandOptions\"\225\001\n\031SetBackendMetada" +
+      "taCommand\022G\n\010metadata\030\001 \003(\01325.connectsta" +
+      "te.SetBackendMetadataCommand.MetadataEnt" +
+      "ry\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
+      "e\030\002 \001(\t:\0028\001*\324\001\n\021SendCommandResult\022\037\n\033UNK" +
+      "NOWN_SEND_COMMAND_RESULT\020\000\022\013\n\007SUCCESS\020\001\022" +
+      "\024\n\020DEVICE_NOT_FOUND\020\002\022\030\n\024CONTEXT_PLAYER_" +
+      "ERROR\020\003\022\026\n\022DEVICE_DISAPPEARED\020\004\022\022\n\016UPSTR" +
+      "EAM_ERROR\020\005\022#\n\037DEVICE_DOES_NOT_SUPPORT_C" +
+      "OMMAND\020\006\022\020\n\014RATE_LIMITED\020\007*\312\001\n\016PutStateR" +
+      "eason\022\034\n\030UNKNOWN_PUT_STATE_REASON\020\000\022\017\n\013S" +
+      "PIRC_HELLO\020\001\022\020\n\014SPIRC_NOTIFY\020\002\022\016\n\nNEW_DE" +
+      "VICE\020\003\022\030\n\024PLAYER_STATE_CHANGED\020\004\022\022\n\016VOLU" +
+      "ME_CHANGED\020\005\022\021\n\rPICKER_OPENED\020\006\022\023\n\017BECAM" +
+      "E_INACTIVE\020\007\022\021\n\rALIAS_CHANGED\020\010*\202\001\n\nMemb" +
+      "erType\022\014\n\010SPIRC_V2\020\000\022\014\n\010SPIRC_V3\020\001\022\021\n\rCO" +
+      "NNECT_STATE\020\002\022\032\n\026CONNECT_STATE_EXTENDED\020" +
+      "\005\022\031\n\025ACTIVE_DEVICE_TRACKER\020\006\022\016\n\nPLAY_TOK" +
+      "EN\020\007*\271\001\n\023ClusterUpdateReason\022!\n\035UNKNOWN_" +
+      "CLUSTER_UPDATE_REASON\020\000\022\027\n\023DEVICES_DISAP" +
+      "PEARED\020\001\022\030\n\024DEVICE_STATE_CHANGED\020\002\022\027\n\023NE" +
+      "W_DEVICE_APPEARED\020\003\022\031\n\025DEVICE_VOLUME_CHA" +
+      "NGED\020\004\022\030\n\024DEVICE_ALIAS_CHANGED\020\005*\240\002\n\nDev" +
+      "iceType\022\013\n\007UNKNOWN\020\000\022\014\n\010COMPUTER\020\001\022\n\n\006TA" +
+      "BLET\020\002\022\016\n\nSMARTPHONE\020\003\022\013\n\007SPEAKER\020\004\022\006\n\002T" +
+      "V\020\005\022\007\n\003AVR\020\006\022\007\n\003STB\020\007\022\020\n\014AUDIO_DONGLE\020\010\022" +
+      "\020\n\014GAME_CONSOLE\020\t\022\016\n\nCAST_VIDEO\020\n\022\016\n\nCAS" +
+      "T_AUDIO\020\013\022\016\n\nAUTOMOBILE\020\014\022\016\n\nSMARTWATCH\020" +
+      "\r\022\016\n\nCHROMEBOOK\020\016\022\023\n\017UNKNOWN_SPOTIFY\020d\022\r" +
+      "\n\tCAR_THING\020e\022\014\n\010OBSERVER\020f\022\016\n\nHOME_THIN" +
+      "G\020gB/\n+com.spotifyxp.deps.com.spotify.co" +
+      "nnectstateH\002b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

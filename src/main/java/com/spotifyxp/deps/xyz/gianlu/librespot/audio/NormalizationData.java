@@ -30,7 +30,6 @@ import java.nio.ByteOrder;
  * @author Gianlu
  */
 public class NormalizationData {
-    
     public final float track_gain_db;
     public final float track_peak;
     public final float album_gain_db;
@@ -61,13 +60,19 @@ public class NormalizationData {
         return new NormalizationData(buffer.getFloat(), buffer.getFloat(), buffer.getFloat(), buffer.getFloat());
     }
 
-    public float getFactor(float normalisationPregain) {
-        float normalisationFactor = (float) Math.pow(10, (track_gain_db + normalisationPregain) / 20);
+    public float getFactor(float normalisationPregain, boolean useAlbumGain) {
+        float gain = useAlbumGain? album_gain_db : track_gain_db;
+        ConsoleLoggingModules.debug("Using gain: {}", gain);
+        float normalisationFactor = (float) Math.pow(10, (gain + normalisationPregain) / 20);
         if (normalisationFactor * track_peak > 1) {
             ConsoleLoggingModules.warning("Reducing normalisation factor to prevent clipping. Please add negative pregain to avoid.");
             normalisationFactor = 1 / track_peak;
         }
 
         return normalisationFactor;
+    }
+
+    public float getFactor(float normalisationPregain) {
+        return getFactor(normalisationPregain, false);
     }
 }

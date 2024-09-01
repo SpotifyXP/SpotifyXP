@@ -88,7 +88,7 @@ public final class EntityExtensionDataOuterClass {
   /**
    * Protobuf type {@code spotify.extendedmetadata.proto.EntityExtensionDataHeader}
    */
-  public  static final class EntityExtensionDataHeader extends
+  public static final class EntityExtensionDataHeader extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.extendedmetadata.proto.EntityExtensionDataHeader)
       EntityExtensionDataHeaderOrBuilder {
@@ -109,12 +109,7 @@ public final class EntityExtensionDataOuterClass {
       return new EntityExtensionDataHeader();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionDataHeader_descriptor;
     }
@@ -129,11 +124,12 @@ public final class EntityExtensionDataOuterClass {
 
     private int bitField0_;
     public static final int STATUS_CODE_FIELD_NUMBER = 1;
-    private int statusCode_;
+    private int statusCode_ = 0;
     /**
      * <code>optional int32 status_code = 1;</code>
      * @return Whether the statusCode field is set.
      */
+    @java.lang.Override
     public boolean hasStatusCode() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -141,16 +137,19 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional int32 status_code = 1;</code>
      * @return The statusCode.
      */
+    @java.lang.Override
     public int getStatusCode() {
       return statusCode_;
     }
 
     public static final int ETAG_FIELD_NUMBER = 2;
-    private volatile java.lang.Object etag_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object etag_ = "";
     /**
      * <code>optional string etag = 2;</code>
      * @return Whether the etag field is set.
      */
+    @java.lang.Override
     public boolean hasEtag() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -158,6 +157,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional string etag = 2;</code>
      * @return The etag.
      */
+    @java.lang.Override
     public java.lang.String getEtag() {
       java.lang.Object ref = etag_;
       if (ref instanceof java.lang.String) {
@@ -176,6 +176,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional string etag = 2;</code>
      * @return The bytes for etag.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getEtagBytes() {
       java.lang.Object ref = etag_;
@@ -191,11 +192,13 @@ public final class EntityExtensionDataOuterClass {
     }
 
     public static final int LOCALE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object locale_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object locale_ = "";
     /**
      * <code>optional string locale = 3;</code>
      * @return Whether the locale field is set.
      */
+    @java.lang.Override
     public boolean hasLocale() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -203,6 +206,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional string locale = 3;</code>
      * @return The locale.
      */
+    @java.lang.Override
     public java.lang.String getLocale() {
       java.lang.Object ref = locale_;
       if (ref instanceof java.lang.String) {
@@ -221,6 +225,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional string locale = 3;</code>
      * @return The bytes for locale.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLocaleBytes() {
       java.lang.Object ref = locale_;
@@ -236,11 +241,12 @@ public final class EntityExtensionDataOuterClass {
     }
 
     public static final int CACHE_TTL_IN_SECONDS_FIELD_NUMBER = 4;
-    private long cacheTtlInSeconds_;
+    private long cacheTtlInSeconds_ = 0L;
     /**
      * <code>optional int64 cache_ttl_in_seconds = 4;</code>
      * @return Whether the cacheTtlInSeconds field is set.
      */
+    @java.lang.Override
     public boolean hasCacheTtlInSeconds() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -248,16 +254,18 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional int64 cache_ttl_in_seconds = 4;</code>
      * @return The cacheTtlInSeconds.
      */
+    @java.lang.Override
     public long getCacheTtlInSeconds() {
       return cacheTtlInSeconds_;
     }
 
     public static final int OFFLINE_TTL_IN_SECONDS_FIELD_NUMBER = 5;
-    private long offlineTtlInSeconds_;
+    private long offlineTtlInSeconds_ = 0L;
     /**
      * <code>optional int64 offline_ttl_in_seconds = 5;</code>
      * @return Whether the offlineTtlInSeconds field is set.
      */
+    @java.lang.Override
     public boolean hasOfflineTtlInSeconds() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -265,6 +273,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional int64 offline_ttl_in_seconds = 5;</code>
      * @return The offlineTtlInSeconds.
      */
+    @java.lang.Override
     public long getOfflineTtlInSeconds() {
       return offlineTtlInSeconds_;
     }
@@ -313,11 +322,13 @@ public final class EntityExtensionDataOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -356,7 +367,8 @@ public final class EntityExtensionDataOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.extendedmetadata.proto.EntityExtensionDataHeader}
@@ -365,7 +377,7 @@ public final class EntityExtensionDataOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.extendedmetadata.proto.EntityExtensionDataHeader)
         com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionDataHeader_descriptor;
       }
@@ -380,29 +392,23 @@ public final class EntityExtensionDataOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         statusCode_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         etag_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         locale_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         cacheTtlInSeconds_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000008);
         offlineTtlInSeconds_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -429,6 +435,12 @@ public final class EntityExtensionDataOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader buildPartial() {
         com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader result = new com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -436,13 +448,13 @@ public final class EntityExtensionDataOuterClass {
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.etag_ = etag_;
           to_bitField0_ |= 0x00000002;
         }
-        result.etag_ = etag_;
         if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.locale_ = locale_;
           to_bitField0_ |= 0x00000004;
         }
-        result.locale_ = locale_;
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.cacheTtlInSeconds_ = cacheTtlInSeconds_;
           to_bitField0_ |= 0x00000008;
@@ -451,43 +463,9 @@ public final class EntityExtensionDataOuterClass {
           result.offlineTtlInSeconds_ = offlineTtlInSeconds_;
           to_bitField0_ |= 0x00000010;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int statusCode_ ;
@@ -495,6 +473,7 @@ public final class EntityExtensionDataOuterClass {
        * <code>optional int32 status_code = 1;</code>
        * @return Whether the statusCode field is set.
        */
+      @java.lang.Override
       public boolean hasStatusCode() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -502,6 +481,7 @@ public final class EntityExtensionDataOuterClass {
        * <code>optional int32 status_code = 1;</code>
        * @return The statusCode.
        */
+      @java.lang.Override
       public int getStatusCode() {
         return statusCode_;
       }
@@ -511,8 +491,9 @@ public final class EntityExtensionDataOuterClass {
        * @return This builder for chaining.
        */
       public Builder setStatusCode(int value) {
-        bitField0_ |= 0x00000001;
+
         statusCode_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -577,11 +558,9 @@ public final class EntityExtensionDataOuterClass {
        */
       public Builder setEtag(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         etag_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -590,8 +569,8 @@ public final class EntityExtensionDataOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearEtag() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         etag_ = getDefaultInstance().getEtag();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -602,11 +581,9 @@ public final class EntityExtensionDataOuterClass {
        */
       public Builder setEtagBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         etag_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -661,11 +638,9 @@ public final class EntityExtensionDataOuterClass {
        */
       public Builder setLocale(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         locale_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -674,8 +649,8 @@ public final class EntityExtensionDataOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearLocale() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         locale_ = getDefaultInstance().getLocale();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -686,11 +661,9 @@ public final class EntityExtensionDataOuterClass {
        */
       public Builder setLocaleBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         locale_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -700,6 +673,7 @@ public final class EntityExtensionDataOuterClass {
        * <code>optional int64 cache_ttl_in_seconds = 4;</code>
        * @return Whether the cacheTtlInSeconds field is set.
        */
+      @java.lang.Override
       public boolean hasCacheTtlInSeconds() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -707,6 +681,7 @@ public final class EntityExtensionDataOuterClass {
        * <code>optional int64 cache_ttl_in_seconds = 4;</code>
        * @return The cacheTtlInSeconds.
        */
+      @java.lang.Override
       public long getCacheTtlInSeconds() {
         return cacheTtlInSeconds_;
       }
@@ -716,8 +691,9 @@ public final class EntityExtensionDataOuterClass {
        * @return This builder for chaining.
        */
       public Builder setCacheTtlInSeconds(long value) {
-        bitField0_ |= 0x00000008;
+
         cacheTtlInSeconds_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -737,6 +713,7 @@ public final class EntityExtensionDataOuterClass {
        * <code>optional int64 offline_ttl_in_seconds = 5;</code>
        * @return Whether the offlineTtlInSeconds field is set.
        */
+      @java.lang.Override
       public boolean hasOfflineTtlInSeconds() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -744,6 +721,7 @@ public final class EntityExtensionDataOuterClass {
        * <code>optional int64 offline_ttl_in_seconds = 5;</code>
        * @return The offlineTtlInSeconds.
        */
+      @java.lang.Override
       public long getOfflineTtlInSeconds() {
         return offlineTtlInSeconds_;
       }
@@ -753,8 +731,9 @@ public final class EntityExtensionDataOuterClass {
        * @return This builder for chaining.
        */
       public Builder setOfflineTtlInSeconds(long value) {
-        bitField0_ |= 0x00000010;
+
         offlineTtlInSeconds_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -769,13 +748,13 @@ public final class EntityExtensionDataOuterClass {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -806,10 +785,11 @@ public final class EntityExtensionDataOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -885,7 +865,7 @@ public final class EntityExtensionDataOuterClass {
   /**
    * Protobuf type {@code spotify.extendedmetadata.proto.EntityExtensionData}
    */
-  public  static final class EntityExtensionData extends
+  public static final class EntityExtensionData extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.extendedmetadata.proto.EntityExtensionData)
       EntityExtensionDataOrBuilder {
@@ -905,12 +885,7 @@ public final class EntityExtensionDataOuterClass {
       return new EntityExtensionData();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionData_descriptor;
     }
@@ -930,6 +905,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional .spotify.extendedmetadata.proto.EntityExtensionDataHeader header = 1;</code>
      * @return Whether the header field is set.
      */
+    @java.lang.Override
     public boolean hasHeader() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -937,22 +913,26 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional .spotify.extendedmetadata.proto.EntityExtensionDataHeader header = 1;</code>
      * @return The header.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader getHeader() {
       return header_ == null ? com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.getDefaultInstance() : header_;
     }
     /**
      * <code>optional .spotify.extendedmetadata.proto.EntityExtensionDataHeader header = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder getHeaderOrBuilder() {
       return header_ == null ? com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.getDefaultInstance() : header_;
     }
 
     public static final int ENTITY_URI_FIELD_NUMBER = 2;
-    private volatile java.lang.Object entityUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object entityUri_ = "";
     /**
      * <code>optional string entity_uri = 2;</code>
      * @return Whether the entityUri field is set.
      */
+    @java.lang.Override
     public boolean hasEntityUri() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -960,6 +940,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional string entity_uri = 2;</code>
      * @return The entityUri.
      */
+    @java.lang.Override
     public java.lang.String getEntityUri() {
       java.lang.Object ref = entityUri_;
       if (ref instanceof java.lang.String) {
@@ -978,6 +959,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional string entity_uri = 2;</code>
      * @return The bytes for entityUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getEntityUriBytes() {
       java.lang.Object ref = entityUri_;
@@ -998,6 +980,7 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional .google.protobuf.Any extension_data = 3;</code>
      * @return Whether the extensionData field is set.
      */
+    @java.lang.Override
     public boolean hasExtensionData() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -1005,12 +988,14 @@ public final class EntityExtensionDataOuterClass {
      * <code>optional .google.protobuf.Any extension_data = 3;</code>
      * @return The extensionData.
      */
+    @java.lang.Override
     public com.google.protobuf.Any getExtensionData() {
       return extensionData_ == null ? com.google.protobuf.Any.getDefaultInstance() : extensionData_;
     }
     /**
      * <code>optional .google.protobuf.Any extension_data = 3;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.AnyOrBuilder getExtensionDataOrBuilder() {
       return extensionData_ == null ? com.google.protobuf.Any.getDefaultInstance() : extensionData_;
     }
@@ -1059,11 +1044,13 @@ public final class EntityExtensionDataOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionData parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionData parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1102,7 +1089,8 @@ public final class EntityExtensionDataOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.extendedmetadata.proto.EntityExtensionData}
@@ -1111,7 +1099,7 @@ public final class EntityExtensionDataOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.extendedmetadata.proto.EntityExtensionData)
         com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.internal_static_spotify_extendedmetadata_proto_EntityExtensionData_descriptor;
       }
@@ -1144,20 +1132,18 @@ public final class EntityExtensionDataOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          headerBuilder_.clear();
+        bitField0_ = 0;
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
+          headerBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
         entityUri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (extensionDataBuilder_ == null) {
-          extensionData_ = null;
-        } else {
-          extensionDataBuilder_.clear();
+        extensionData_ = null;
+        if (extensionDataBuilder_ != null) {
+          extensionDataBuilder_.dispose();
+          extensionDataBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -1184,65 +1170,33 @@ public final class EntityExtensionDataOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionData buildPartial() {
         com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionData result = new com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionData(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (headerBuilder_ == null) {
-            result.header_ = header_;
-          } else {
-            result.header_ = headerBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.entityUri_ = entityUri_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (extensionDataBuilder_ == null) {
-            result.extensionData_ = extensionData_;
-          } else {
-            result.extensionData_ = extensionDataBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000004;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionData result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.header_ = headerBuilder_ == null
+              ? header_
+              : headerBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.entityUri_ = entityUri_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.extensionData_ = extensionDataBuilder_ == null
+              ? extensionData_
+              : extensionDataBuilder_.build();
+          to_bitField0_ |= 0x00000004;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader header_;
@@ -1275,11 +1229,11 @@ public final class EntityExtensionDataOuterClass {
             throw new NullPointerException();
           }
           header_ = value;
-          onChanged();
         } else {
           headerBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1289,11 +1243,11 @@ public final class EntityExtensionDataOuterClass {
           com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.Builder builderForValue) {
         if (headerBuilder_ == null) {
           header_ = builderForValue.build();
-          onChanged();
         } else {
           headerBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1302,31 +1256,30 @@ public final class EntityExtensionDataOuterClass {
       public Builder mergeHeader(com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader value) {
         if (headerBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              header_ != null &&
-              header_ != com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.getDefaultInstance()) {
-            header_ =
-              com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.newBuilder(header_).mergeFrom(value).buildPartial();
+            header_ != null &&
+            header_ != com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.getDefaultInstance()) {
+            getHeaderBuilder().mergeFrom(value);
           } else {
             header_ = value;
           }
-          onChanged();
         } else {
           headerBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.extendedmetadata.proto.EntityExtensionDataHeader header = 1;</code>
        */
       public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          headerBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
+          headerBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -1355,7 +1308,8 @@ public final class EntityExtensionDataOuterClass {
           com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.Builder, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder> 
           getHeaderFieldBuilder() {
         if (headerBuilder_ == null) {
-          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeader.Builder, com.spotifyxp.deps.com.spotify.extendedmetadata.EntityExtensionDataOuterClass.EntityExtensionDataHeaderOrBuilder>(
                   getHeader(),
                   getParentForChildren(),
                   isClean());
@@ -1414,11 +1368,9 @@ public final class EntityExtensionDataOuterClass {
        */
       public Builder setEntityUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         entityUri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1427,8 +1379,8 @@ public final class EntityExtensionDataOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearEntityUri() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         entityUri_ = getDefaultInstance().getEntityUri();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1439,11 +1391,9 @@ public final class EntityExtensionDataOuterClass {
        */
       public Builder setEntityUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         entityUri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1478,11 +1428,11 @@ public final class EntityExtensionDataOuterClass {
             throw new NullPointerException();
           }
           extensionData_ = value;
-          onChanged();
         } else {
           extensionDataBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -1492,11 +1442,11 @@ public final class EntityExtensionDataOuterClass {
           com.google.protobuf.Any.Builder builderForValue) {
         if (extensionDataBuilder_ == null) {
           extensionData_ = builderForValue.build();
-          onChanged();
         } else {
           extensionDataBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -1505,31 +1455,30 @@ public final class EntityExtensionDataOuterClass {
       public Builder mergeExtensionData(com.google.protobuf.Any value) {
         if (extensionDataBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              extensionData_ != null &&
-              extensionData_ != com.google.protobuf.Any.getDefaultInstance()) {
-            extensionData_ =
-              com.google.protobuf.Any.newBuilder(extensionData_).mergeFrom(value).buildPartial();
+            extensionData_ != null &&
+            extensionData_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getExtensionDataBuilder().mergeFrom(value);
           } else {
             extensionData_ = value;
           }
-          onChanged();
         } else {
           extensionDataBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .google.protobuf.Any extension_data = 3;</code>
        */
       public Builder clearExtensionData() {
-        if (extensionDataBuilder_ == null) {
-          extensionData_ = null;
-          onChanged();
-        } else {
-          extensionDataBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        extensionData_ = null;
+        if (extensionDataBuilder_ != null) {
+          extensionDataBuilder_.dispose();
+          extensionDataBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -1558,7 +1507,8 @@ public final class EntityExtensionDataOuterClass {
           com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getExtensionDataFieldBuilder() {
         if (extensionDataBuilder_ == null) {
-          extensionDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          extensionDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getExtensionData(),
                   getParentForChildren(),
                   isClean());
@@ -1567,13 +1517,13 @@ public final class EntityExtensionDataOuterClass {
         return extensionDataBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1604,10 +1554,11 @@ public final class EntityExtensionDataOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1644,7 +1595,7 @@ public final class EntityExtensionDataOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1657,8 +1608,9 @@ public final class EntityExtensionDataOuterClass {
       "tyExtensionData\022I\n\006header\030\001 \001(\01329.spotif" +
       "y.extendedmetadata.proto.EntityExtension" +
       "DataHeader\022\022\n\nentity_uri\030\002 \001(\t\022,\n\016extens" +
-      "ion_data\030\003 \001(\0132\024.google.protobuf.AnyB \n\034" +
-      "com.spotify.extendedmetadataH\002"
+      "ion_data\030\003 \001(\0132\024.google.protobuf.AnyB3\n/" +
+      "com.spotifyxp.deps.com.spotify.extendedm" +
+      "etadataH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

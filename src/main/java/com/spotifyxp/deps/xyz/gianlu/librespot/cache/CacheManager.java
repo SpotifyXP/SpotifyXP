@@ -16,13 +16,13 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.cache;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.GeneralWritableStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.StreamId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.File;
@@ -42,7 +42,6 @@ import static com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage.ChannelManag
  */
 public class CacheManager implements Closeable {
     private static final long CLEAN_UP_THRESHOLD = TimeUnit.DAYS.toMillis(7);
-    
     /**
      * The header indicating when the file was last read or written to.
      */
@@ -155,7 +154,6 @@ public class CacheManager implements Closeable {
         }
     }
 
-    @SuppressWarnings("NullableProblems")
     public class Handler implements Closeable {
         private final String streamId;
         private final RandomAccessFile io;

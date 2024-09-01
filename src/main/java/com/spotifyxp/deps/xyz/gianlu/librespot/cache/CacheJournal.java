@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.cache;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.io.Closeable;
 import java.io.File;
@@ -37,7 +37,6 @@ import java.util.*;
  *
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 class CacheJournal implements Closeable {
     static final int MAX_CHUNKS_SIZE = 2048;
     static final int MAX_CHUNKS = MAX_CHUNKS_SIZE * 8;

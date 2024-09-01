@@ -18,8 +18,8 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.json;
 
 import com.google.gson.JsonObject;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtoUtils;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtoUtils;
 
 import java.util.List;
 
