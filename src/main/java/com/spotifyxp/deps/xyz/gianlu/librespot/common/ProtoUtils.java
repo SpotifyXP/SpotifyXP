@@ -28,10 +28,10 @@ import com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage;
 import com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -44,7 +44,6 @@ import static com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOr
  * @author Gianlu
  */
 public final class ProtoUtils {
-    
 
     private ProtoUtils() {
     }
@@ -341,14 +340,14 @@ public final class ProtoUtils {
     }
 
     public static void putFilesAsMetadata(@NotNull Player.ProvidedTrack.Builder builder, @NotNull List<Metadata.AudioFile> files) {
-        if (files.isEmpty()) return;
+        if (files.size() == 0) return;
 
         JsonArray formats = new JsonArray(files.size());
         for (Metadata.AudioFile file : files) {
             if (file.hasFormat()) formats.add(file.getFormat().name());
         }
 
-        if (!formats.isEmpty()) builder.putMetadata("available_file_formats", formats.toString());
+        if (formats.size() > 0) builder.putMetadata("available_file_formats", formats.toString());
     }
 
     public static int getTrackCount(@NotNull Metadata.Album album) {

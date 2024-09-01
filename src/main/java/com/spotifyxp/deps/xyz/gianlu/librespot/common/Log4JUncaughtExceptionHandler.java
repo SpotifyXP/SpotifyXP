@@ -19,13 +19,10 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.common;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 
-
-
 /**
  * @author devgianlu
  */
 public class Log4JUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
-    
 
     @Override
     public void uncaughtException(@NotNull Thread t, Throwable e) {

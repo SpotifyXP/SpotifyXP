@@ -18,13 +18,16 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.spotifyxp.PublicValues;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.GenericJson;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,16 +38,13 @@ import java.util.Objects;
 /**
  * @author Gianlu
  */
-public class TokenProvider {
+public final class TokenProvider {
     private final static int TOKEN_EXPIRE_THRESHOLD = 10;
-    private Session session;
+    private final Session session;
     private final List<StoredToken> tokens = new ArrayList<>();
 
-    public TokenProvider(@NotNull Session session) {
+    TokenProvider(@NotNull Session session) {
         this.session = session;
-    }
-
-    public TokenProvider() {
     }
 
     @Nullable
@@ -87,7 +87,7 @@ public class TokenProvider {
         public final String[] scopes;
         public final long timestamp;
 
-        public StoredToken(@NotNull JsonObject obj) {
+        private StoredToken(@NotNull JsonObject obj) {
             timestamp = TimeProvider.currentTimeMillis();
             expiresIn = obj.get("expiresIn").getAsInt();
             accessToken = obj.get("accessToken").getAsString();
@@ -96,13 +96,6 @@ public class TokenProvider {
             scopes = new String[scopesArray.size()];
             for (int i = 0; i < scopesArray.size(); i++)
                 scopes[i] = scopesArray.get(i).getAsString();
-        }
-
-        public StoredToken() {
-            timestamp = TimeProvider.currentTimeMillis();
-            expiresIn = 0;
-            accessToken = "";
-            scopes = new String[] {};
         }
 
         public boolean expired() {

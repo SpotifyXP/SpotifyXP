@@ -86,21 +86,21 @@ public final class ContextTrackOuterClass {
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
      */
-
-    java.lang.String getMetadataOrDefault(
+    /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
      */
-
     java.lang.String getMetadataOrThrow(
         java.lang.String key);
   }
   /**
    * Protobuf type {@code spotify.player.proto.ContextTrack}
    */
-  public  static final class ContextTrack extends
+  public static final class ContextTrack extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.ContextTrack)
       ContextTrackOrBuilder {
@@ -122,12 +122,7 @@ public final class ContextTrackOuterClass {
       return new ContextTrack();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.internal_static_spotify_player_proto_ContextTrack_descriptor;
     }
@@ -136,11 +131,13 @@ public final class ContextTrackOuterClass {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-        if (number == 4) {
-            return internalGetMetadata();
-        }
-        throw new RuntimeException(
-                "Invalid map field number: " + number);
+      switch (number) {
+        case 4:
+          return internalGetMetadata();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -152,11 +149,13 @@ public final class ContextTrackOuterClass {
 
     private int bitField0_;
     public static final int URI_FIELD_NUMBER = 1;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>optional string uri = 1;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -164,6 +163,7 @@ public final class ContextTrackOuterClass {
      * <code>optional string uri = 1;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -182,6 +182,7 @@ public final class ContextTrackOuterClass {
      * <code>optional string uri = 1;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -197,11 +198,13 @@ public final class ContextTrackOuterClass {
     }
 
     public static final int UID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object uid_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uid_ = "";
     /**
      * <code>optional string uid = 2;</code>
      * @return Whether the uid field is set.
      */
+    @java.lang.Override
     public boolean hasUid() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -209,6 +212,7 @@ public final class ContextTrackOuterClass {
      * <code>optional string uid = 2;</code>
      * @return The uid.
      */
+    @java.lang.Override
     public java.lang.String getUid() {
       java.lang.Object ref = uid_;
       if (ref instanceof java.lang.String) {
@@ -227,6 +231,7 @@ public final class ContextTrackOuterClass {
      * <code>optional string uid = 2;</code>
      * @return The bytes for uid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUidBytes() {
       java.lang.Object ref = uid_;
@@ -242,11 +247,12 @@ public final class ContextTrackOuterClass {
     }
 
     public static final int GID_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString gid_;
+    private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes gid = 3;</code>
      * @return Whether the gid field is set.
      */
+    @java.lang.Override
     public boolean hasGid() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -254,6 +260,7 @@ public final class ContextTrackOuterClass {
      * <code>optional bytes gid = 3;</code>
      * @return The gid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getGid() {
       return gid_;
     }
@@ -263,13 +270,14 @@ public final class ContextTrackOuterClass {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.internal_static_spotify_player_proto_ContextTrack_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> metadata_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -280,22 +288,22 @@ public final class ContextTrackOuterClass {
       }
       return metadata_;
     }
-
     public int getMetadataCount() {
       return internalGetMetadata().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
      */
-
+    @java.lang.Override
     public boolean containsMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getMetadataMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
       return getMetadataMap();
@@ -303,29 +311,31 @@ public final class ContextTrackOuterClass {
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
       return internalGetMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
      */
-
-    public java.lang.String getMetadataOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 4;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -378,11 +388,13 @@ public final class ContextTrackOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -421,7 +433,8 @@ public final class ContextTrackOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextTrack}
@@ -430,7 +443,7 @@ public final class ContextTrackOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextTrack)
         com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.internal_static_spotify_player_proto_ContextTrack_descriptor;
       }
@@ -438,20 +451,24 @@ public final class ContextTrackOuterClass {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-          if (number == 4) {
-              return internalGetMetadata();
-          }
-          throw new RuntimeException(
-                  "Invalid map field number: " + number);
+        switch (number) {
+          case 4:
+            return internalGetMetadata();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-          if (number == 4) {
-              return internalGetMutableMetadata();
-          }
-          throw new RuntimeException(
-                  "Invalid map field number: " + number);
+        switch (number) {
+          case 4:
+            return internalGetMutableMetadata();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -463,25 +480,21 @@ public final class ContextTrackOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         uid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         gid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
         internalGetMutableMetadata().clear();
         return this;
       }
@@ -509,59 +522,33 @@ public final class ContextTrackOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack buildPartial() {
         com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack result = new com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uri_ = uri_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.uid_ = uid_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.gid_ = gid_;
-        result.metadata_ = internalGetMetadata();
-        result.metadata_.makeImmutable();
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.uid_ = uid_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.gid_ = gid_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.metadata_ = internalGetMetadata();
+          result.metadata_.makeImmutable();
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object uri_ = "";
@@ -614,11 +601,9 @@ public final class ContextTrackOuterClass {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -627,8 +612,8 @@ public final class ContextTrackOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -639,11 +624,9 @@ public final class ContextTrackOuterClass {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -698,11 +681,9 @@ public final class ContextTrackOuterClass {
        */
       public Builder setUid(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         uid_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -711,8 +692,8 @@ public final class ContextTrackOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearUid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         uid_ = getDefaultInstance().getUid();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -723,11 +704,9 @@ public final class ContextTrackOuterClass {
        */
       public Builder setUidBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         uid_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -737,6 +716,7 @@ public final class ContextTrackOuterClass {
        * <code>optional bytes gid = 3;</code>
        * @return Whether the gid field is set.
        */
+      @java.lang.Override
       public boolean hasGid() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -744,6 +724,7 @@ public final class ContextTrackOuterClass {
        * <code>optional bytes gid = 3;</code>
        * @return The gid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getGid() {
         return gid_;
       }
@@ -753,11 +734,9 @@ public final class ContextTrackOuterClass {
        * @return This builder for chaining.
        */
       public Builder setGid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         gid_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -775,7 +754,7 @@ public final class ContextTrackOuterClass {
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> metadata_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMetadata() {
+          internalGetMetadata() {
         if (metadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -783,8 +762,7 @@ public final class ContextTrackOuterClass {
         return metadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableMetadata() {
-        onChanged();
+          internalGetMutableMetadata() {
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -792,24 +770,26 @@ public final class ContextTrackOuterClass {
         if (!metadata_.isMutable()) {
           metadata_ = metadata_.copy();
         }
+        bitField0_ |= 0x00000008;
+        onChanged();
         return metadata_;
       }
-
       public int getMetadataCount() {
         return internalGetMetadata().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
        */
-
+      @java.lang.Override
       public boolean containsMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getMetadataMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
         return getMetadataMap();
@@ -817,29 +797,31 @@ public final class ContextTrackOuterClass {
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
         return internalGetMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
        */
-
-      public java.lang.String getMetadataOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getMetadataOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -847,8 +829,8 @@ public final class ContextTrackOuterClass {
         }
         return map.get(key);
       }
-
       public Builder clearMetadata() {
+        bitField0_ = (bitField0_ & ~0x00000008);
         internalGetMutableMetadata().getMutableMap()
             .clear();
         return this;
@@ -856,10 +838,9 @@ public final class ContextTrackOuterClass {
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
        */
-
       public Builder removeMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -869,7 +850,8 @@ public final class ContextTrackOuterClass {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutableMetadata() {
+          getMutableMetadata() {
+        bitField0_ |= 0x00000008;
         return internalGetMutableMetadata().getMutableMap();
       }
       /**
@@ -878,30 +860,31 @@ public final class ContextTrackOuterClass {
       public Builder putMetadata(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 4;</code>
        */
-
       public Builder putAllMetadata(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000008;
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -932,10 +915,11 @@ public final class ContextTrackOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -972,7 +956,7 @@ public final class ContextTrackOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -981,8 +965,8 @@ public final class ContextTrackOuterClass {
       "\030\002 \001(\t\022\013\n\003gid\030\003 \001(\014\022B\n\010metadata\030\004 \003(\01320." +
       "spotify.player.proto.ContextTrack.Metada" +
       "taEntry\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022\r\n" +
-      "\005value\030\002 \001(\t:\0028\001B\027\n\023com.spotify.contextH" +
-      "\002"
+      "\005value\030\002 \001(\t:\0028\001B*\n&com.spotifyxp.deps.c" +
+      "om.spotify.contextH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

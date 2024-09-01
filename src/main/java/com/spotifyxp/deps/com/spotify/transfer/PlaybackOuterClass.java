@@ -80,7 +80,7 @@ public final class PlaybackOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.transfer.Playback}
    */
-  public  static final class Playback extends
+  public static final class Playback extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.transfer.Playback)
       PlaybackOrBuilder {
@@ -99,12 +99,7 @@ public final class PlaybackOuterClass {
       return new Playback();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.internal_static_spotify_player_proto_transfer_Playback_descriptor;
     }
@@ -119,11 +114,12 @@ public final class PlaybackOuterClass {
 
     private int bitField0_;
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
-    private long timestamp_;
+    private long timestamp_ = 0L;
     /**
      * <code>optional int64 timestamp = 1;</code>
      * @return Whether the timestamp field is set.
      */
+    @java.lang.Override
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -131,16 +127,18 @@ public final class PlaybackOuterClass {
      * <code>optional int64 timestamp = 1;</code>
      * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
 
     public static final int POSITION_AS_OF_TIMESTAMP_FIELD_NUMBER = 2;
-    private int positionAsOfTimestamp_;
+    private int positionAsOfTimestamp_ = 0;
     /**
      * <code>optional int32 position_as_of_timestamp = 2;</code>
      * @return Whether the positionAsOfTimestamp field is set.
      */
+    @java.lang.Override
     public boolean hasPositionAsOfTimestamp() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -148,16 +146,18 @@ public final class PlaybackOuterClass {
      * <code>optional int32 position_as_of_timestamp = 2;</code>
      * @return The positionAsOfTimestamp.
      */
+    @java.lang.Override
     public int getPositionAsOfTimestamp() {
       return positionAsOfTimestamp_;
     }
 
     public static final int PLAYBACK_SPEED_FIELD_NUMBER = 3;
-    private double playbackSpeed_;
+    private double playbackSpeed_ = 0D;
     /**
      * <code>optional double playback_speed = 3;</code>
      * @return Whether the playbackSpeed field is set.
      */
+    @java.lang.Override
     public boolean hasPlaybackSpeed() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -165,16 +165,18 @@ public final class PlaybackOuterClass {
      * <code>optional double playback_speed = 3;</code>
      * @return The playbackSpeed.
      */
+    @java.lang.Override
     public double getPlaybackSpeed() {
       return playbackSpeed_;
     }
 
     public static final int IS_PAUSED_FIELD_NUMBER = 4;
-    private boolean isPaused_;
+    private boolean isPaused_ = false;
     /**
      * <code>optional bool is_paused = 4;</code>
      * @return Whether the isPaused field is set.
      */
+    @java.lang.Override
     public boolean hasIsPaused() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -182,6 +184,7 @@ public final class PlaybackOuterClass {
      * <code>optional bool is_paused = 4;</code>
      * @return The isPaused.
      */
+    @java.lang.Override
     public boolean getIsPaused() {
       return isPaused_;
     }
@@ -192,6 +195,7 @@ public final class PlaybackOuterClass {
      * <code>optional .spotify.player.proto.ContextTrack current_track = 5;</code>
      * @return Whether the currentTrack field is set.
      */
+    @java.lang.Override
     public boolean hasCurrentTrack() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -199,12 +203,14 @@ public final class PlaybackOuterClass {
      * <code>optional .spotify.player.proto.ContextTrack current_track = 5;</code>
      * @return The currentTrack.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack getCurrentTrack() {
       return currentTrack_ == null ? com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.getDefaultInstance() : currentTrack_;
     }
     /**
      * <code>optional .spotify.player.proto.ContextTrack current_track = 5;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder getCurrentTrackOrBuilder() {
       return currentTrack_ == null ? com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.getDefaultInstance() : currentTrack_;
     }
@@ -253,11 +259,13 @@ public final class PlaybackOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -296,7 +304,8 @@ public final class PlaybackOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.Playback}
@@ -305,7 +314,7 @@ public final class PlaybackOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.Playback)
         com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.PlaybackOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.internal_static_spotify_player_proto_transfer_Playback_descriptor;
       }
@@ -337,20 +346,16 @@ public final class PlaybackOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000001);
         positionAsOfTimestamp_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         playbackSpeed_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000004);
         isPaused_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (currentTrackBuilder_ == null) {
-          currentTrack_ = null;
-        } else {
-          currentTrackBuilder_.clear();
+        currentTrack_ = null;
+        if (currentTrackBuilder_ != null) {
+          currentTrackBuilder_.dispose();
+          currentTrackBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -377,6 +382,12 @@ public final class PlaybackOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback buildPartial() {
         com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback result = new com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -396,50 +407,14 @@ public final class PlaybackOuterClass {
           to_bitField0_ |= 0x00000008;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
-          if (currentTrackBuilder_ == null) {
-            result.currentTrack_ = currentTrack_;
-          } else {
-            result.currentTrack_ = currentTrackBuilder_.build();
-          }
+          result.currentTrack_ = currentTrackBuilder_ == null
+              ? currentTrack_
+              : currentTrackBuilder_.build();
           to_bitField0_ |= 0x00000010;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private long timestamp_ ;
@@ -447,6 +422,7 @@ public final class PlaybackOuterClass {
        * <code>optional int64 timestamp = 1;</code>
        * @return Whether the timestamp field is set.
        */
+      @java.lang.Override
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -454,6 +430,7 @@ public final class PlaybackOuterClass {
        * <code>optional int64 timestamp = 1;</code>
        * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -463,8 +440,9 @@ public final class PlaybackOuterClass {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000001;
+
         timestamp_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -484,6 +462,7 @@ public final class PlaybackOuterClass {
        * <code>optional int32 position_as_of_timestamp = 2;</code>
        * @return Whether the positionAsOfTimestamp field is set.
        */
+      @java.lang.Override
       public boolean hasPositionAsOfTimestamp() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -491,6 +470,7 @@ public final class PlaybackOuterClass {
        * <code>optional int32 position_as_of_timestamp = 2;</code>
        * @return The positionAsOfTimestamp.
        */
+      @java.lang.Override
       public int getPositionAsOfTimestamp() {
         return positionAsOfTimestamp_;
       }
@@ -500,8 +480,9 @@ public final class PlaybackOuterClass {
        * @return This builder for chaining.
        */
       public Builder setPositionAsOfTimestamp(int value) {
-        bitField0_ |= 0x00000002;
+
         positionAsOfTimestamp_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -521,6 +502,7 @@ public final class PlaybackOuterClass {
        * <code>optional double playback_speed = 3;</code>
        * @return Whether the playbackSpeed field is set.
        */
+      @java.lang.Override
       public boolean hasPlaybackSpeed() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -528,6 +510,7 @@ public final class PlaybackOuterClass {
        * <code>optional double playback_speed = 3;</code>
        * @return The playbackSpeed.
        */
+      @java.lang.Override
       public double getPlaybackSpeed() {
         return playbackSpeed_;
       }
@@ -537,8 +520,9 @@ public final class PlaybackOuterClass {
        * @return This builder for chaining.
        */
       public Builder setPlaybackSpeed(double value) {
-        bitField0_ |= 0x00000004;
+
         playbackSpeed_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -558,6 +542,7 @@ public final class PlaybackOuterClass {
        * <code>optional bool is_paused = 4;</code>
        * @return Whether the isPaused field is set.
        */
+      @java.lang.Override
       public boolean hasIsPaused() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -565,6 +550,7 @@ public final class PlaybackOuterClass {
        * <code>optional bool is_paused = 4;</code>
        * @return The isPaused.
        */
+      @java.lang.Override
       public boolean getIsPaused() {
         return isPaused_;
       }
@@ -574,8 +560,9 @@ public final class PlaybackOuterClass {
        * @return This builder for chaining.
        */
       public Builder setIsPaused(boolean value) {
-        bitField0_ |= 0x00000008;
+
         isPaused_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -620,11 +607,11 @@ public final class PlaybackOuterClass {
             throw new NullPointerException();
           }
           currentTrack_ = value;
-          onChanged();
         } else {
           currentTrackBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -634,11 +621,11 @@ public final class PlaybackOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder builderForValue) {
         if (currentTrackBuilder_ == null) {
           currentTrack_ = builderForValue.build();
-          onChanged();
         } else {
           currentTrackBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -647,31 +634,30 @@ public final class PlaybackOuterClass {
       public Builder mergeCurrentTrack(com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack value) {
         if (currentTrackBuilder_ == null) {
           if (((bitField0_ & 0x00000010) != 0) &&
-              currentTrack_ != null &&
-              currentTrack_ != com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.getDefaultInstance()) {
-            currentTrack_ =
-              com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.newBuilder(currentTrack_).mergeFrom(value).buildPartial();
+            currentTrack_ != null &&
+            currentTrack_ != com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.getDefaultInstance()) {
+            getCurrentTrackBuilder().mergeFrom(value);
           } else {
             currentTrack_ = value;
           }
-          onChanged();
         } else {
           currentTrackBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.ContextTrack current_track = 5;</code>
        */
       public Builder clearCurrentTrack() {
-        if (currentTrackBuilder_ == null) {
-          currentTrack_ = null;
-          onChanged();
-        } else {
-          currentTrackBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000010);
+        currentTrack_ = null;
+        if (currentTrackBuilder_ != null) {
+          currentTrackBuilder_.dispose();
+          currentTrackBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -700,7 +686,8 @@ public final class PlaybackOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder> 
           getCurrentTrackFieldBuilder() {
         if (currentTrackBuilder_ == null) {
-          currentTrackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          currentTrackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder>(
                   getCurrentTrack(),
                   getParentForChildren(),
                   isClean());
@@ -709,13 +696,13 @@ public final class PlaybackOuterClass {
         return currentTrackBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -746,10 +733,11 @@ public final class PlaybackOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -781,7 +769,7 @@ public final class PlaybackOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -790,8 +778,9 @@ public final class PlaybackOuterClass {
       "k\022\021\n\ttimestamp\030\001 \001(\003\022 \n\030position_as_of_t" +
       "imestamp\030\002 \001(\005\022\026\n\016playback_speed\030\003 \001(\001\022\021" +
       "\n\tis_paused\030\004 \001(\010\0229\n\rcurrent_track\030\005 \001(\013" +
-      "2\".spotify.player.proto.ContextTrackB\030\n\024" +
-      "com.spotify.transferH\002"
+      "2\".spotify.player.proto.ContextTrackB+\n\'" +
+      "com.spotifyxp.deps.com.spotify.transferH" +
+      "\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

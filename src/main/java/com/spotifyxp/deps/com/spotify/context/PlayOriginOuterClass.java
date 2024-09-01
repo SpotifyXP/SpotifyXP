@@ -148,7 +148,7 @@ public final class PlayOriginOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.PlayOrigin}
    */
-  public  static final class PlayOrigin extends
+  public static final class PlayOrigin extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.PlayOrigin)
       PlayOriginOrBuilder {
@@ -164,7 +164,8 @@ public final class PlayOriginOuterClass {
       externalReferrer_ = "";
       referrerIdentifier_ = "";
       deviceIdentifier_ = "";
-      featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
+      featureClasses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -174,12 +175,7 @@ public final class PlayOriginOuterClass {
       return new PlayOrigin();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.internal_static_spotify_player_proto_PlayOrigin_descriptor;
     }
@@ -194,11 +190,13 @@ public final class PlayOriginOuterClass {
 
     private int bitField0_;
     public static final int FEATURE_IDENTIFIER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object featureIdentifier_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object featureIdentifier_ = "";
     /**
      * <code>optional string feature_identifier = 1;</code>
      * @return Whether the featureIdentifier field is set.
      */
+    @java.lang.Override
     public boolean hasFeatureIdentifier() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -206,6 +204,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string feature_identifier = 1;</code>
      * @return The featureIdentifier.
      */
+    @java.lang.Override
     public java.lang.String getFeatureIdentifier() {
       java.lang.Object ref = featureIdentifier_;
       if (ref instanceof java.lang.String) {
@@ -224,6 +223,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string feature_identifier = 1;</code>
      * @return The bytes for featureIdentifier.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFeatureIdentifierBytes() {
       java.lang.Object ref = featureIdentifier_;
@@ -239,11 +239,13 @@ public final class PlayOriginOuterClass {
     }
 
     public static final int FEATURE_VERSION_FIELD_NUMBER = 2;
-    private volatile java.lang.Object featureVersion_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object featureVersion_ = "";
     /**
      * <code>optional string feature_version = 2;</code>
      * @return Whether the featureVersion field is set.
      */
+    @java.lang.Override
     public boolean hasFeatureVersion() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -251,6 +253,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string feature_version = 2;</code>
      * @return The featureVersion.
      */
+    @java.lang.Override
     public java.lang.String getFeatureVersion() {
       java.lang.Object ref = featureVersion_;
       if (ref instanceof java.lang.String) {
@@ -269,6 +272,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string feature_version = 2;</code>
      * @return The bytes for featureVersion.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFeatureVersionBytes() {
       java.lang.Object ref = featureVersion_;
@@ -284,11 +288,13 @@ public final class PlayOriginOuterClass {
     }
 
     public static final int VIEW_URI_FIELD_NUMBER = 3;
-    private volatile java.lang.Object viewUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object viewUri_ = "";
     /**
      * <code>optional string view_uri = 3;</code>
      * @return Whether the viewUri field is set.
      */
+    @java.lang.Override
     public boolean hasViewUri() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -296,6 +302,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string view_uri = 3;</code>
      * @return The viewUri.
      */
+    @java.lang.Override
     public java.lang.String getViewUri() {
       java.lang.Object ref = viewUri_;
       if (ref instanceof java.lang.String) {
@@ -314,6 +321,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string view_uri = 3;</code>
      * @return The bytes for viewUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getViewUriBytes() {
       java.lang.Object ref = viewUri_;
@@ -329,11 +337,13 @@ public final class PlayOriginOuterClass {
     }
 
     public static final int EXTERNAL_REFERRER_FIELD_NUMBER = 4;
-    private volatile java.lang.Object externalReferrer_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object externalReferrer_ = "";
     /**
      * <code>optional string external_referrer = 4;</code>
      * @return Whether the externalReferrer field is set.
      */
+    @java.lang.Override
     public boolean hasExternalReferrer() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -341,6 +351,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string external_referrer = 4;</code>
      * @return The externalReferrer.
      */
+    @java.lang.Override
     public java.lang.String getExternalReferrer() {
       java.lang.Object ref = externalReferrer_;
       if (ref instanceof java.lang.String) {
@@ -359,6 +370,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string external_referrer = 4;</code>
      * @return The bytes for externalReferrer.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getExternalReferrerBytes() {
       java.lang.Object ref = externalReferrer_;
@@ -374,11 +386,13 @@ public final class PlayOriginOuterClass {
     }
 
     public static final int REFERRER_IDENTIFIER_FIELD_NUMBER = 5;
-    private volatile java.lang.Object referrerIdentifier_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object referrerIdentifier_ = "";
     /**
      * <code>optional string referrer_identifier = 5;</code>
      * @return Whether the referrerIdentifier field is set.
      */
+    @java.lang.Override
     public boolean hasReferrerIdentifier() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -386,6 +400,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string referrer_identifier = 5;</code>
      * @return The referrerIdentifier.
      */
+    @java.lang.Override
     public java.lang.String getReferrerIdentifier() {
       java.lang.Object ref = referrerIdentifier_;
       if (ref instanceof java.lang.String) {
@@ -404,6 +419,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string referrer_identifier = 5;</code>
      * @return The bytes for referrerIdentifier.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getReferrerIdentifierBytes() {
       java.lang.Object ref = referrerIdentifier_;
@@ -419,11 +435,13 @@ public final class PlayOriginOuterClass {
     }
 
     public static final int DEVICE_IDENTIFIER_FIELD_NUMBER = 6;
-    private volatile java.lang.Object deviceIdentifier_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deviceIdentifier_ = "";
     /**
      * <code>optional string device_identifier = 6;</code>
      * @return Whether the deviceIdentifier field is set.
      */
+    @java.lang.Override
     public boolean hasDeviceIdentifier() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -431,6 +449,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string device_identifier = 6;</code>
      * @return The deviceIdentifier.
      */
+    @java.lang.Override
     public java.lang.String getDeviceIdentifier() {
       java.lang.Object ref = deviceIdentifier_;
       if (ref instanceof java.lang.String) {
@@ -449,6 +468,7 @@ public final class PlayOriginOuterClass {
      * <code>optional string device_identifier = 6;</code>
      * @return The bytes for deviceIdentifier.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDeviceIdentifierBytes() {
       java.lang.Object ref = deviceIdentifier_;
@@ -464,7 +484,9 @@ public final class PlayOriginOuterClass {
     }
 
     public static final int FEATURE_CLASSES_FIELD_NUMBER = 7;
-    private com.google.protobuf.LazyStringList featureClasses_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList featureClasses_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string feature_classes = 7;</code>
      * @return A list containing the featureClasses.
@@ -542,11 +564,13 @@ public final class PlayOriginOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -585,7 +609,8 @@ public final class PlayOriginOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.PlayOrigin}
@@ -594,7 +619,7 @@ public final class PlayOriginOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.PlayOrigin)
         com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.internal_static_spotify_player_proto_PlayOrigin_descriptor;
       }
@@ -609,33 +634,26 @@ public final class PlayOriginOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         featureIdentifier_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         featureVersion_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         viewUri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         externalReferrer_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
         referrerIdentifier_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
         deviceIdentifier_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
-        featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
+        featureClasses_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -662,74 +680,45 @@ public final class PlayOriginOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin buildPartial() {
         com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin result = new com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.featureIdentifier_ = featureIdentifier_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.featureVersion_ = featureVersion_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.viewUri_ = viewUri_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.externalReferrer_ = externalReferrer_;
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.referrerIdentifier_ = referrerIdentifier_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.deviceIdentifier_ = deviceIdentifier_;
-        if (((bitField0_ & 0x00000040) != 0)) {
-          featureClasses_ = featureClasses_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000040);
-        }
-        result.featureClasses_ = featureClasses_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.featureIdentifier_ = featureIdentifier_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.featureVersion_ = featureVersion_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.viewUri_ = viewUri_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.externalReferrer_ = externalReferrer_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.referrerIdentifier_ = referrerIdentifier_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.deviceIdentifier_ = deviceIdentifier_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          featureClasses_.makeImmutable();
+          result.featureClasses_ = featureClasses_;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object featureIdentifier_ = "";
@@ -782,11 +771,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setFeatureIdentifier(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         featureIdentifier_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -795,8 +782,8 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearFeatureIdentifier() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         featureIdentifier_ = getDefaultInstance().getFeatureIdentifier();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -807,11 +794,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setFeatureIdentifierBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         featureIdentifier_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -866,11 +851,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setFeatureVersion(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         featureVersion_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -879,8 +862,8 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearFeatureVersion() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         featureVersion_ = getDefaultInstance().getFeatureVersion();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -891,11 +874,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setFeatureVersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         featureVersion_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -950,11 +931,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setViewUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         viewUri_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -963,8 +942,8 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearViewUri() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         viewUri_ = getDefaultInstance().getViewUri();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -975,11 +954,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setViewUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         viewUri_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1034,11 +1011,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setExternalReferrer(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         externalReferrer_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1047,8 +1022,8 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearExternalReferrer() {
-        bitField0_ = (bitField0_ & ~0x00000008);
         externalReferrer_ = getDefaultInstance().getExternalReferrer();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -1059,11 +1034,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setExternalReferrerBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
+        if (value == null) { throw new NullPointerException(); }
         externalReferrer_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1118,11 +1091,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setReferrerIdentifier(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         referrerIdentifier_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1131,8 +1102,8 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearReferrerIdentifier() {
-        bitField0_ = (bitField0_ & ~0x00000010);
         referrerIdentifier_ = getDefaultInstance().getReferrerIdentifier();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -1143,11 +1114,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setReferrerIdentifierBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         referrerIdentifier_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1202,11 +1171,9 @@ public final class PlayOriginOuterClass {
        */
       public Builder setDeviceIdentifier(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         deviceIdentifier_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -1215,8 +1182,8 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDeviceIdentifier() {
-        bitField0_ = (bitField0_ & ~0x00000020);
         deviceIdentifier_ = getDefaultInstance().getDeviceIdentifier();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -1227,22 +1194,20 @@ public final class PlayOriginOuterClass {
        */
       public Builder setDeviceIdentifierBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         deviceIdentifier_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList featureClasses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureFeatureClassesIsMutable() {
-        if ((bitField0_ & 0x00000040) == 0) {
+        if (!featureClasses_.isModifiable()) {
           featureClasses_ = new com.google.protobuf.LazyStringArrayList(featureClasses_);
-          bitField0_ |= 0x00000040;
-         }
+        }
+        bitField0_ |= 0x00000040;
       }
       /**
        * <code>repeated string feature_classes = 7;</code>
@@ -1250,7 +1215,8 @@ public final class PlayOriginOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getFeatureClassesList() {
-        return featureClasses_.getUnmodifiableView();
+        featureClasses_.makeImmutable();
+        return featureClasses_;
       }
       /**
        * <code>repeated string feature_classes = 7;</code>
@@ -1284,11 +1250,10 @@ public final class PlayOriginOuterClass {
        */
       public Builder setFeatureClasses(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFeatureClassesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFeatureClassesIsMutable();
         featureClasses_.set(index, value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -1299,11 +1264,10 @@ public final class PlayOriginOuterClass {
        */
       public Builder addFeatureClasses(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFeatureClassesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFeatureClassesIsMutable();
         featureClasses_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -1317,6 +1281,7 @@ public final class PlayOriginOuterClass {
         ensureFeatureClassesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, featureClasses_);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -1325,8 +1290,9 @@ public final class PlayOriginOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearFeatureClasses() {
-        featureClasses_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
+        featureClasses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);;
         onChanged();
         return this;
       }
@@ -1337,22 +1303,21 @@ public final class PlayOriginOuterClass {
        */
       public Builder addFeatureClassesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFeatureClassesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFeatureClassesIsMutable();
         featureClasses_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1383,10 +1348,11 @@ public final class PlayOriginOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1418,7 +1384,7 @@ public final class PlayOriginOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1427,8 +1393,8 @@ public final class PlayOriginOuterClass {
       " \001(\t\022\027\n\017feature_version\030\002 \001(\t\022\020\n\010view_ur" +
       "i\030\003 \001(\t\022\031\n\021external_referrer\030\004 \001(\t\022\033\n\023re" +
       "ferrer_identifier\030\005 \001(\t\022\031\n\021device_identi" +
-      "fier\030\006 \001(\t\022\027\n\017feature_classes\030\007 \003(\tB\027\n\023c" +
-      "om.spotify.contextH\002"
+      "fier\030\006 \001(\t\022\027\n\017feature_classes\030\007 \003(\tB*\n&c" +
+      "om.spotifyxp.deps.com.spotify.contextH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

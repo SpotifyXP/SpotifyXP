@@ -16,11 +16,11 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.dacp;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.io.Closeable;
 import java.io.File;
@@ -33,7 +33,6 @@ import java.nio.charset.StandardCharsets;
  *
  * @author devgianlu
  */
-@SuppressWarnings({"SameParameterValue", "NullableProblems", "JavadocLinkAsPlainText"})
 public final class DacpMetadataPipe implements Closeable {
     private static final String TYPE_SSNC = "73736e63";
     private static final String TYPE_CORE = "636f7265";
@@ -44,7 +43,6 @@ public final class DacpMetadataPipe implements Closeable {
     private static final String CODE_PRGR = "70726772";
     private static final String CODE_PICT = "50494354";
     private static final String CODE_PFLS = "70666C73";
-    
     private final File file;
     private FileOutputStream out;
 
@@ -64,8 +62,7 @@ public final class DacpMetadataPipe implements Closeable {
         try {
             send(type, code, payload);
         } catch (IOException ex) {
-            //ConsoleLoggingModules.error("Failed sending metadata through pipe! ", ex.getMessage());
-            //This is normal it should not prevent SpotifyXP from working
+            ConsoleLoggingModules.error("Failed sending metadata through pipe!", ex);
         }
     }
 

@@ -57,7 +57,7 @@ public final class Identifiers {
   /**
    * Protobuf type {@code spotify.login5.v3.identifiers.PhoneNumber}
    */
-  public  static final class PhoneNumber extends
+  public static final class PhoneNumber extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.identifiers.PhoneNumber)
       PhoneNumberOrBuilder {
@@ -79,64 +79,7 @@ public final class Identifiers {
       return new PhoneNumber();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PhoneNumber(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-                number_ = input.readStringRequireUtf8();
-              break;
-            }
-            case 18: {
-
-                isoCountryCode_ = input.readStringRequireUtf8();
-              break;
-            }
-            case 26: {
-
-                countryCallingCode_ = input.readStringRequireUtf8();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Identifiers.internal_static_spotify_login5_v3_identifiers_PhoneNumber_descriptor;
     }
@@ -150,11 +93,13 @@ public final class Identifiers {
     }
 
     public static final int NUMBER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object number_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object number_ = "";
     /**
      * <code>string number = 1;</code>
      * @return The number.
      */
+    @java.lang.Override
     public java.lang.String getNumber() {
       java.lang.Object ref = number_;
       if (ref instanceof java.lang.String) {
@@ -171,6 +116,7 @@ public final class Identifiers {
      * <code>string number = 1;</code>
      * @return The bytes for number.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNumberBytes() {
       java.lang.Object ref = number_;
@@ -186,11 +132,13 @@ public final class Identifiers {
     }
 
     public static final int ISO_COUNTRY_CODE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object isoCountryCode_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object isoCountryCode_ = "";
     /**
      * <code>string iso_country_code = 2;</code>
      * @return The isoCountryCode.
      */
+    @java.lang.Override
     public java.lang.String getIsoCountryCode() {
       java.lang.Object ref = isoCountryCode_;
       if (ref instanceof java.lang.String) {
@@ -207,6 +155,7 @@ public final class Identifiers {
      * <code>string iso_country_code = 2;</code>
      * @return The bytes for isoCountryCode.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIsoCountryCodeBytes() {
       java.lang.Object ref = isoCountryCode_;
@@ -222,11 +171,13 @@ public final class Identifiers {
     }
 
     public static final int COUNTRY_CALLING_CODE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object countryCallingCode_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object countryCallingCode_ = "";
     /**
      * <code>string country_calling_code = 3;</code>
      * @return The countryCallingCode.
      */
+    @java.lang.Override
     public java.lang.String getCountryCallingCode() {
       java.lang.Object ref = countryCallingCode_;
       if (ref instanceof java.lang.String) {
@@ -243,6 +194,7 @@ public final class Identifiers {
      * <code>string country_calling_code = 3;</code>
      * @return The bytes for countryCallingCode.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCountryCallingCodeBytes() {
       java.lang.Object ref = countryCallingCode_;
@@ -259,7 +211,7 @@ public final class Identifiers {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -271,16 +223,16 @@ public final class Identifiers {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNumberBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(number_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, number_);
       }
-      if (!getIsoCountryCodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(isoCountryCode_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, isoCountryCode_);
       }
-      if (!getCountryCallingCodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(countryCallingCode_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, countryCallingCode_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -289,16 +241,16 @@ public final class Identifiers {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNumberBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(number_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, number_);
       }
-      if (!getIsoCountryCodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(isoCountryCode_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, isoCountryCode_);
       }
-      if (!getCountryCallingCodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(countryCallingCode_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, countryCallingCode_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -319,7 +271,8 @@ public final class Identifiers {
           .equals(other.getIsoCountryCode())) return false;
       if (!getCountryCallingCode()
           .equals(other.getCountryCallingCode())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -335,7 +288,7 @@ public final class Identifiers {
       hash = (53 * hash) + getIsoCountryCode().hashCode();
       hash = (37 * hash) + COUNTRY_CALLING_CODE_FIELD_NUMBER;
       hash = (53 * hash) + getCountryCallingCode().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -384,11 +337,13 @@ public final class Identifiers {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -427,7 +382,8 @@ public final class Identifiers {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.identifiers.PhoneNumber}
@@ -436,7 +392,7 @@ public final class Identifiers {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.identifiers.PhoneNumber)
         com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Identifiers.internal_static_spotify_login5_v3_identifiers_PhoneNumber_descriptor;
       }
@@ -451,25 +407,21 @@ public final class Identifiers {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         number_ = "";
-
         isoCountryCode_ = "";
-
         countryCallingCode_ = "";
-
         return this;
       }
 
@@ -496,45 +448,24 @@ public final class Identifiers {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber result = new com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber(this);
-        result.number_ = number_;
-        result.isoCountryCode_ = isoCountryCode_;
-        result.countryCallingCode_ = countryCallingCode_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.number_ = number_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.isoCountryCode_ = isoCountryCode_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.countryCallingCode_ = countryCallingCode_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber) {
@@ -549,23 +480,26 @@ public final class Identifiers {
         if (other == com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.getDefaultInstance()) return this;
         if (!other.getNumber().isEmpty()) {
           number_ = other.number_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getIsoCountryCode().isEmpty()) {
           isoCountryCode_ = other.isoCountryCode_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getCountryCallingCode().isEmpty()) {
           countryCallingCode_ = other.countryCallingCode_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -574,19 +508,48 @@ public final class Identifiers {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                number_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                isoCountryCode_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                countryCallingCode_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object number_ = "";
       /**
@@ -629,11 +592,9 @@ public final class Identifiers {
        */
       public Builder setNumber(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         number_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -642,8 +603,8 @@ public final class Identifiers {
        * @return This builder for chaining.
        */
       public Builder clearNumber() {
-        
         number_ = getDefaultInstance().getNumber();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -654,12 +615,10 @@ public final class Identifiers {
        */
       public Builder setNumberBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         number_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -705,11 +664,9 @@ public final class Identifiers {
        */
       public Builder setIsoCountryCode(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         isoCountryCode_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -718,8 +675,8 @@ public final class Identifiers {
        * @return This builder for chaining.
        */
       public Builder clearIsoCountryCode() {
-        
         isoCountryCode_ = getDefaultInstance().getIsoCountryCode();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -730,12 +687,10 @@ public final class Identifiers {
        */
       public Builder setIsoCountryCodeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         isoCountryCode_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -781,11 +736,9 @@ public final class Identifiers {
        */
       public Builder setCountryCallingCode(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         countryCallingCode_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -794,8 +747,8 @@ public final class Identifiers {
        * @return This builder for chaining.
        */
       public Builder clearCountryCallingCode() {
-        
         countryCallingCode_ = getDefaultInstance().getCountryCallingCode();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -806,23 +759,21 @@ public final class Identifiers {
        */
       public Builder setCountryCallingCodeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         countryCallingCode_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -848,7 +799,18 @@ public final class Identifiers {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PhoneNumber(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -878,7 +840,7 @@ public final class Identifiers {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -886,7 +848,8 @@ public final class Identifiers {
       "ers.proto\022\035spotify.login5.v3.identifiers" +
       "\"U\n\013PhoneNumber\022\016\n\006number\030\001 \001(\t\022\030\n\020iso_c" +
       "ountry_code\030\002 \001(\t\022\034\n\024country_calling_cod" +
-      "e\030\003 \001(\tB\026\n\024com.spotify.login5v3b\006proto3"
+      "e\030\003 \001(\tB)\n\'com.spotifyxp.deps.com.spotif" +
+      "y.login5v3b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -89,7 +89,7 @@ public class Packet {
             return null;
         }
 
-        public static Type forMethod(@NotNull String method) {
+        public static Packet.Type forMethod(@NotNull String method) {
             switch (method) {
                 case "SUB":
                     return MercurySub;

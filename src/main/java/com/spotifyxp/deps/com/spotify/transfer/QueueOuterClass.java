@@ -56,7 +56,7 @@ public final class QueueOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.transfer.Queue}
    */
-  public  static final class Queue extends
+  public static final class Queue extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.transfer.Queue)
       QueueOrBuilder {
@@ -76,12 +76,7 @@ public final class QueueOuterClass {
       return new Queue();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.internal_static_spotify_player_proto_transfer_Queue_descriptor;
     }
@@ -96,16 +91,19 @@ public final class QueueOuterClass {
 
     private int bitField0_;
     public static final int TRACKS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> tracks_;
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> getTracksList() {
       return tracks_;
     }
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder> 
         getTracksOrBuilderList() {
       return tracks_;
@@ -113,29 +111,33 @@ public final class QueueOuterClass {
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 1;</code>
      */
+    @java.lang.Override
     public int getTracksCount() {
       return tracks_.size();
     }
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack getTracks(int index) {
       return tracks_.get(index);
     }
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder getTracksOrBuilder(
         int index) {
       return tracks_.get(index);
     }
 
     public static final int IS_PLAYING_QUEUE_FIELD_NUMBER = 2;
-    private boolean isPlayingQueue_;
+    private boolean isPlayingQueue_ = false;
     /**
      * <code>optional bool is_playing_queue = 2;</code>
      * @return Whether the isPlayingQueue field is set.
      */
+    @java.lang.Override
     public boolean hasIsPlayingQueue() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -143,6 +145,7 @@ public final class QueueOuterClass {
      * <code>optional bool is_playing_queue = 2;</code>
      * @return The isPlayingQueue.
      */
+    @java.lang.Override
     public boolean getIsPlayingQueue() {
       return isPlayingQueue_;
     }
@@ -191,11 +194,13 @@ public final class QueueOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -234,7 +239,8 @@ public final class QueueOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.Queue}
@@ -243,7 +249,7 @@ public final class QueueOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.Queue)
         com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.internal_static_spotify_player_proto_transfer_Queue_descriptor;
       }
@@ -258,31 +264,26 @@ public final class QueueOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTracksFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (tracksBuilder_ == null) {
           tracks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          tracks_ = null;
           tracksBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         isPlayingQueue_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -309,8 +310,13 @@ public final class QueueOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue buildPartial() {
         com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue result = new com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue result) {
         if (tracksBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             tracks_ = java.util.Collections.unmodifiableList(tracks_);
@@ -320,54 +326,25 @@ public final class QueueOuterClass {
         } else {
           result.tracks_ = tracksBuilder_.build();
         }
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.isPlayingQueue_ = isPlayingQueue_;
           to_bitField0_ |= 0x00000001;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> tracks_ =
         java.util.Collections.emptyList();
       private void ensureTracksIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          tracks_ = new java.util.ArrayList<>(tracks_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          tracks_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack>(tracks_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -592,7 +569,8 @@ public final class QueueOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder> 
           getTracksFieldBuilder() {
         if (tracksBuilder_ == null) {
-          tracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          tracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder>(
                   tracks_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -607,6 +585,7 @@ public final class QueueOuterClass {
        * <code>optional bool is_playing_queue = 2;</code>
        * @return Whether the isPlayingQueue field is set.
        */
+      @java.lang.Override
       public boolean hasIsPlayingQueue() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -614,6 +593,7 @@ public final class QueueOuterClass {
        * <code>optional bool is_playing_queue = 2;</code>
        * @return The isPlayingQueue.
        */
+      @java.lang.Override
       public boolean getIsPlayingQueue() {
         return isPlayingQueue_;
       }
@@ -623,8 +603,9 @@ public final class QueueOuterClass {
        * @return This builder for chaining.
        */
       public Builder setIsPlayingQueue(boolean value) {
-        bitField0_ |= 0x00000002;
+
         isPlayingQueue_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -639,13 +620,13 @@ public final class QueueOuterClass {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -676,10 +657,11 @@ public final class QueueOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -711,15 +693,15 @@ public final class QueueOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\013queue.proto\022\035spotify.player.proto.tran" +
       "sfer\032\023context_track.proto\"U\n\005Queue\0222\n\006tr" +
       "acks\030\001 \003(\0132\".spotify.player.proto.Contex" +
-      "tTrack\022\030\n\020is_playing_queue\030\002 \001(\010B\030\n\024com." +
-      "spotify.transferH\002"
+      "tTrack\022\030\n\020is_playing_queue\030\002 \001(\010B+\n\'com." +
+      "spotifyxp.deps.com.spotify.transferH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

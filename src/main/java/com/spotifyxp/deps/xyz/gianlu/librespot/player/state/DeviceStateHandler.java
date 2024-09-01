@@ -21,11 +21,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.TextFormat;
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.AsyncWorker;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtoUtils;
@@ -37,10 +38,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient.RequestResult
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.threading.DefThread;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -48,12 +45,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
 import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Gianlu
  */
-@SuppressWarnings({"NullableProblems", "IfStatementWithIdenticalBranches", "JavadocDeclaration", "BusyWait"})
 public final class DeviceStateHandler implements Closeable, DealerClient.MessageListener, DealerClient.RequestListener {
 
     static {
@@ -217,7 +212,7 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
         }
     }
 
-    public synchronized void updateState(@NotNull Connect.PutStateReason reason, int playerTime, @NotNull Player.PlayerState state) throws IllegalStateException {
+    public synchronized void updateState(@NotNull Connect.PutStateReason reason, int playerTime, @NotNull Player.PlayerState state) {
         if (connectionId == null) throw new IllegalStateException();
 
         long timestamp = TimeProvider.currentTimeMillis();
@@ -269,59 +264,16 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
      *
      * @param req The {@link Connect.PutStateRequest}
      */
-
-    final ArrayList<Connect.PutStateRequest> stateRequestQueue = new ArrayList<>();
-    Connect.PutStateRequest lastReq = null;
-    final DefThread queueworker = new DefThread(new Runnable() {
-        @Override
-        public void run() {
-            while(!stateRequestQueue.isEmpty()) {
-                try {
-                    session.api().putConnectState(connectionId, stateRequestQueue.get(0));
-                    if (ConsoleLoggingModules.isTraceEnabled()) {
-                        ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}, request: {}}", stateRequestQueue.get(0).getClientSideTimestamp(),
-                                Utils.truncateMiddle(connectionId, 10), stateRequestQueue.get(0).getPutStateReason(), TextFormat.shortDebugString(putState));
-                    } else {
-                        ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}}", stateRequestQueue.get(0).getClientSideTimestamp(),
-                                Utils.truncateMiddle(connectionId, 10), stateRequestQueue.get(0).getPutStateReason());
-                    }
-                    stateRequestQueue.remove(0);
-                } catch (IOException | MercuryClient.MercuryException ex) {
-                    ConsoleLoggingModules.error("Failed updating state.", ex);
-                }
-                try {
-                    Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-                }catch (Exception ignored) {
-                }
-            }
-        }
-    });
-
     private void putConnectState(@NotNull Connect.PutStateRequest req) {
-        if(Boolean.parseBoolean(PublicValues.config.getString(ConfigValues.spconnect.name))) {
-            return;
-        }
-        if(lastReq == null) {
-            lastReq = req;
-        }else {
-            if(lastReq.getPutStateReason() == req.getPutStateReason()) {
-                stateRequestQueue.add(req);
-                if(!queueworker.isAlive()) {
-                    queueworker.start();
-                }
-                lastReq = req;
-                return;
-            }
-            lastReq = req;
-        }
         try {
             session.api().putConnectState(connectionId, req);
             if (ConsoleLoggingModules.isTraceEnabled()) {
                 ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}, request: {}}", req.getClientSideTimestamp(),
                         Utils.truncateMiddle(connectionId, 10), req.getPutStateReason(), TextFormat.shortDebugString(putState));
-            } else
+            } else {
                 ConsoleLoggingModules.info("Put state. {ts: {}, connId: {}, reason: {}}", req.getClientSideTimestamp(),
                         Utils.truncateMiddle(connectionId, 10), req.getPutStateReason());
+            }
         } catch (IOException | MercuryClient.MercuryException ex) {
             ConsoleLoggingModules.error("Failed updating state.", ex);
         }

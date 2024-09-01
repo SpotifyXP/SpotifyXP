@@ -19,12 +19,23 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.com.spotify.Keyexchange;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub;
 import com.spotifyxp.deps.com.spotify.explicit.ExplicitContentPubsub.UserAttributesUpdate;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.Authenticator;
+import okhttp3.*;
+import okio.BufferedSink;
+import okio.GzipSink;
+import okio.Okio;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AudioKeyManager;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
@@ -40,20 +51,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.ApiClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.GraphicalMessage;
-import okhttp3.Authenticator;
-import okhttp3.*;
-import okio.BufferedSink;
-import okio.GzipSink;
-import okio.Okio;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -76,8 +73,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * @author Gianlu
  */
-@SuppressWarnings({"resource", "BusyWait", "KotlinInternalInJava"})
-public class Session implements Closeable {
+public final class Session implements Closeable {
     private static final byte[] serverKey = new byte[]{
             (byte) 0xac, (byte) 0xe0, (byte) 0x46, (byte) 0x0b, (byte) 0xff, (byte) 0xc2, (byte) 0x30, (byte) 0xaf, (byte) 0xf4, (byte) 0x6b, (byte) 0xfe, (byte) 0xc3,
             (byte) 0xbf, (byte) 0xbf, (byte) 0x86, (byte) 0x3d, (byte) 0xa1, (byte) 0x91, (byte) 0xc6, (byte) 0xcc, (byte) 0x33, (byte) 0x6c, (byte) 0x93, (byte) 0xa1,
@@ -102,12 +98,12 @@ public class Session implements Closeable {
             (byte) 0xeb, (byte) 0x00, (byte) 0x06, (byte) 0xa2, (byte) 0x5a, (byte) 0xee, (byte) 0xa1, (byte) 0x1b, (byte) 0x13, (byte) 0x87, (byte) 0x3c, (byte) 0xd7,
             (byte) 0x19, (byte) 0xe6, (byte) 0x55, (byte) 0xbd
     };
-    private ApResolver apResolver = null;
-    private DiffieHellman keys = null;
-    private Inner inner = null;
+    private final ApResolver apResolver;
+    private final DiffieHellman keys;
+    private final Inner inner;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new NameThreadFactory(r -> "session-scheduler-" + r.hashCode()));
     private final AtomicBoolean authLock = new AtomicBoolean(false);
-    private OkHttpClient client = null;
+    private final OkHttpClient client;
     private final List<CloseListener> closeListeners = Collections.synchronizedList(new ArrayList<>());
     private final List<ReconnectionListener> reconnectionListeners = Collections.synchronizedList(new ArrayList<>());
     private final Map<String, String> userAttributes = Collections.synchronizedMap(new HashMap<>());
@@ -130,10 +126,8 @@ public class Session implements Closeable {
     private volatile boolean closed = false;
     private volatile boolean closing = false;
     private volatile ScheduledFuture<?> scheduledReconnect = null;
-    private int rescheduledTimes = 0;
-    private int retryOtherApTimes = 0;
 
-    public Session(@NotNull Inner inner) throws IOException {
+    private Session(@NotNull Inner inner) throws IOException {
         this.inner = inner;
         this.keys = new DiffieHellman(inner.random);
         this.client = createClient(inner.conf);
@@ -141,10 +135,7 @@ public class Session implements Closeable {
         String addr = apResolver.getRandomAccesspoint();
         this.conn = ConnectionHolder.create(addr, inner.conf);
 
-        ConsoleLoggingModules.info("Created new session! {deviceId: " + inner.deviceId + ", ap: " + addr + ", proxy: " + inner.conf.proxyEnabled + "} ");
-    }
-
-    public Session() {
+        ConsoleLoggingModules.info("Created new session! {deviceId: {}, ap: {}, proxy: {}} ", inner.deviceId, addr, inner.conf.proxyEnabled);
     }
 
     @NotNull
@@ -176,7 +167,7 @@ public class Session implements Closeable {
 
         builder.addInterceptor(chain -> {
             Request original = chain.request();
-            RequestBody body  ;
+            RequestBody body;
             if ((body = original.body()) == null || original.header("Content-Encoding") != null)
                 return chain.proceed(original);
 
@@ -214,179 +205,131 @@ public class Session implements Closeable {
         return lo & 0x7f | hi << 7;
     }
 
-    private void newRandomAP() throws IOException {
-        String addr = apResolver.getRandomAccesspoint();
-        this.conn = ConnectionHolder.create(addr, inner.conf);
-    }
-
     @NotNull
     public OkHttpClient client() {
         return client;
     }
 
     private void connect() throws IOException, GeneralSecurityException, SpotifyAuthenticationException {
-        try {
-            Accumulator acc = new Accumulator();
+        Accumulator acc = new Accumulator();
 
-            // Send ClientHello
+        // Send ClientHello
 
-            byte[] nonce = new byte[0x10];
-            inner.random.nextBytes(nonce);
+        byte[] nonce = new byte[0x10];
+        inner.random.nextBytes(nonce);
 
-            Keyexchange.ClientHello clientHello = Keyexchange.ClientHello.newBuilder()
-                    .setBuildInfo(Version.standardBuildInfo())
-                    .addCryptosuitesSupported(Keyexchange.Cryptosuite.CRYPTO_SUITE_SHANNON)
-                    .setLoginCryptoHello(Keyexchange.LoginCryptoHelloUnion.newBuilder()
-                            .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanHello.newBuilder()
-                                    .setGc(ByteString.copyFrom(keys.publicKeyArray()))
-                                    .setServerKeysKnown(1)
-                                    .build())
-                            .build())
-                    .setClientNonce(ByteString.copyFrom(nonce))
-                    .setPadding(ByteString.copyFrom(new byte[]{0x1e}))
-                    .build();
+        Keyexchange.ClientHello clientHello = Keyexchange.ClientHello.newBuilder()
+                .setBuildInfo(Version.standardBuildInfo())
+                .addCryptosuitesSupported(Keyexchange.Cryptosuite.CRYPTO_SUITE_SHANNON)
+                .setLoginCryptoHello(Keyexchange.LoginCryptoHelloUnion.newBuilder()
+                        .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanHello.newBuilder()
+                                .setGc(ByteString.copyFrom(keys.publicKeyArray()))
+                                .setServerKeysKnown(1)
+                                .build())
+                        .build())
+                .setClientNonce(ByteString.copyFrom(nonce))
+                .setPadding(ByteString.copyFrom(new byte[]{0x1e}))
+                .build();
 
-            byte[] clientHelloBytes = clientHello.toByteArray();
-            int length = 2 + 4 + clientHelloBytes.length;
-            conn.out.writeByte(0);
-            conn.out.writeByte(4);
-            conn.out.writeInt(length);
-            conn.out.write(clientHelloBytes);
-            conn.out.flush();
+        byte[] clientHelloBytes = clientHello.toByteArray();
+        int length = 2 + 4 + clientHelloBytes.length;
+        conn.out.writeByte(0);
+        conn.out.writeByte(4);
+        conn.out.writeInt(length);
+        conn.out.write(clientHelloBytes);
+        conn.out.flush();
 
-            acc.writeByte(0);
-            acc.writeByte(4);
-            acc.writeInt(length);
-            acc.write(clientHelloBytes);
-
-
-            // Read APResponseMessage
-
-            length = conn.in.readInt();
-            acc.writeInt(length);
-            byte[] buffer = new byte[length - 4];
-            conn.in.readFully(buffer);
-            acc.write(buffer);
-            acc.dump();
-
-            Keyexchange.APResponseMessage apResponseMessage = Keyexchange.APResponseMessage.parseFrom(buffer);
-            byte[] sharedKey = Utils.toByteArray(keys.computeSharedKey(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray()));
+        acc.writeByte(0);
+        acc.writeByte(4);
+        acc.writeInt(length);
+        acc.write(clientHelloBytes);
 
 
-            // Check gs_signature
+        // Read APResponseMessage
 
-            KeyFactory factory = KeyFactory.getInstance("RSA");
-            PublicKey publicKey = factory.generatePublic(new RSAPublicKeySpec(new BigInteger(1, serverKey), BigInteger.valueOf(65537)));
+        length = conn.in.readInt();
+        acc.writeInt(length);
+        byte[] buffer = new byte[length - 4];
+        conn.in.readFully(buffer);
+        acc.write(buffer);
+        acc.dump();
 
-            Signature sig = Signature.getInstance("SHA1withRSA");
-            sig.initVerify(publicKey);
-            sig.update(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray());
-            if (!sig.verify(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGsSignature().toByteArray()))
-                throw new GeneralSecurityException("Failed signature check!");
+        Keyexchange.APResponseMessage apResponseMessage = Keyexchange.APResponseMessage.parseFrom(buffer);
+        byte[] sharedKey = Utils.toByteArray(keys.computeSharedKey(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray()));
 
 
-            // Solve challenge
+        // Check gs_signature
 
-            ByteArrayOutputStream data = new ByteArrayOutputStream(0x64);
+        KeyFactory factory = KeyFactory.getInstance("RSA");
+        PublicKey publicKey = factory.generatePublic(new RSAPublicKeySpec(new BigInteger(1, serverKey), BigInteger.valueOf(65537)));
 
-            Mac mac = Mac.getInstance("HmacSHA1");
-            mac.init(new SecretKeySpec(sharedKey, "HmacSHA1"));
-            for (int i = 1; i < 6; i++) {
-                mac.update(acc.array());
-                mac.update(new byte[]{(byte) i});
-                data.write(mac.doFinal());
-                mac.reset();
-            }
+        Signature sig = Signature.getInstance("SHA1withRSA");
+        sig.initVerify(publicKey);
+        sig.update(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGs().toByteArray());
+        if (!sig.verify(apResponseMessage.getChallenge().getLoginCryptoChallenge().getDiffieHellman().getGsSignature().toByteArray()))
+            throw new GeneralSecurityException("Failed signature check!");
 
-            byte[] dataArray = data.toByteArray();
-            mac.init(new SecretKeySpec(Arrays.copyOfRange(dataArray, 0, 0x14), "HmacSHA1"));
+
+        // Solve challenge
+
+        ByteArrayOutputStream data = new ByteArrayOutputStream(0x64);
+
+        Mac mac = Mac.getInstance("HmacSHA1");
+        mac.init(new SecretKeySpec(sharedKey, "HmacSHA1"));
+        for (int i = 1; i < 6; i++) {
             mac.update(acc.array());
-
-            byte[] challenge = mac.doFinal();
-            Keyexchange.ClientResponsePlaintext clientResponsePlaintext = Keyexchange.ClientResponsePlaintext.newBuilder()
-                    .setLoginCryptoResponse(Keyexchange.LoginCryptoResponseUnion.newBuilder()
-                            .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanResponse.newBuilder()
-                                    .setHmac(ByteString.copyFrom(challenge)).build())
-                            .build())
-                    .setPowResponse(Keyexchange.PoWResponseUnion.newBuilder().build())
-                    .setCryptoResponse(Keyexchange.CryptoResponseUnion.newBuilder().build())
-                    .build();
-
-            byte[] clientResponsePlaintextBytes = clientResponsePlaintext.toByteArray();
-            length = 4 + clientResponsePlaintextBytes.length;
-            conn.out.writeInt(length);
-            conn.out.write(clientResponsePlaintextBytes);
-            conn.out.flush();
-
-            try {
-                byte[] scrap = new byte[4];
-                conn.socket.setSoTimeout(300);
-                int read = conn.in.read(scrap);
-                if (read == scrap.length) {
-                    length = (scrap[0] << 24) | (scrap[1] << 16) | (scrap[2] << 8) | (scrap[3] & 0xFF);
-                    byte[] payload = new byte[length - 4];
-                    conn.in.readFully(payload);
-                    Keyexchange.APLoginFailed failed = Keyexchange.APResponseMessage.parseFrom(payload).getLoginFailed();
-                    throw new SpotifyAuthenticationException(failed);
-                } else if (read > 0) {
-                    throw new IllegalStateException("Read unknown data!");
-                }
-            } catch (SocketTimeoutException ignored) {
-            } finally {
-                conn.socket.setSoTimeout(0);
-            }
-
-            synchronized (authLock) {
-                // Init Shannon cipher
-                cipherPair = new CipherPair(Arrays.copyOfRange(data.toByteArray(), 0x14, 0x34),
-                        Arrays.copyOfRange(data.toByteArray(), 0x34, 0x54));
-
-                authLock.set(true);
-            }
-
-            ConsoleLoggingModules.info("Connected successfully!");
-
-            retryOtherApTimes = 0;
-        }catch (OutOfMemoryError e) {
-            ConsoleLoggingModules.Throwable(e);
-            if(rescheduledTimes > 10) {
-                ConsoleLoggingModules.error("Error reconnecting after OutOfMemoryError");
-                GraphicalMessage.sorryErrorExit("Error reconnecting after OutOfMemoryError");
-            }
-            ConsoleLoggingModules.info("Scheduled reconnection attempt in 1 second...");
-            scheduler.schedule(() -> {
-                rescheduledTimes++;
-                try {
-                    connect();
-                    rescheduledTimes = 0;
-                } catch (IOException | SpotifyAuthenticationException | GeneralSecurityException ex) {
-                    ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
-                    scheduleReconnect();
-                }
-            }, 1, TimeUnit.SECONDS);
-        } catch (EOFException | SocketTimeoutException e) {
-            retryOtherApTimes++;
-            if(retryOtherApTimes >= 10) {
-                GraphicalMessage.sorryErrorExit("Error connection! EOFException / SocketTimeOutException: " + e.getMessage());
-            }
-            ConsoleLoggingModules.info("Exception! Trying other ap...");
-            newRandomAP();
-            connect();
+            mac.update(new byte[]{(byte) i});
+            data.write(mac.doFinal());
+            mac.reset();
         }
-    }
 
-    private void scheduleReconnect() {
-        ConsoleLoggingModules.info("Scheduled reconnection attempt in 1 second...");
-        scheduler.schedule(() -> {
-            rescheduledTimes++;
-            try {
-                connect();
-                rescheduledTimes = 0;
-            } catch (IOException | SpotifyAuthenticationException | GeneralSecurityException ex) {
-                ConsoleLoggingModules.error("Failed reconnecting, retrying...", ex);
+        byte[] dataArray = data.toByteArray();
+        mac.init(new SecretKeySpec(Arrays.copyOfRange(dataArray, 0, 0x14), "HmacSHA1"));
+        mac.update(acc.array());
 
+        byte[] challenge = mac.doFinal();
+        Keyexchange.ClientResponsePlaintext clientResponsePlaintext = Keyexchange.ClientResponsePlaintext.newBuilder()
+                .setLoginCryptoResponse(Keyexchange.LoginCryptoResponseUnion.newBuilder()
+                        .setDiffieHellman(Keyexchange.LoginCryptoDiffieHellmanResponse.newBuilder()
+                                .setHmac(ByteString.copyFrom(challenge)).build())
+                        .build())
+                .setPowResponse(Keyexchange.PoWResponseUnion.newBuilder().build())
+                .setCryptoResponse(Keyexchange.CryptoResponseUnion.newBuilder().build())
+                .build();
+
+        byte[] clientResponsePlaintextBytes = clientResponsePlaintext.toByteArray();
+        length = 4 + clientResponsePlaintextBytes.length;
+        conn.out.writeInt(length);
+        conn.out.write(clientResponsePlaintextBytes);
+        conn.out.flush();
+
+        try {
+            byte[] scrap = new byte[4];
+            conn.socket.setSoTimeout(300);
+            int read = conn.in.read(scrap);
+            if (read == scrap.length) {
+                length = (scrap[0] << 24) | (scrap[1] << 16) | (scrap[2] << 8) | (scrap[3] & 0xFF);
+                byte[] payload = new byte[length - 4];
+                conn.in.readFully(payload);
+                Keyexchange.APLoginFailed failed = Keyexchange.APResponseMessage.parseFrom(payload).getLoginFailed();
+                throw new SpotifyAuthenticationException(failed);
+            } else if (read > 0) {
+                throw new IllegalStateException("Read unknown data!");
             }
-        }, 1, TimeUnit.SECONDS);
+        } catch (SocketTimeoutException ignored) {
+        } finally {
+            conn.socket.setSoTimeout(0);
+        }
+
+        synchronized (authLock) {
+            // Init Shannon cipher
+            cipherPair = new CipherPair(Arrays.copyOfRange(data.toByteArray(), 0x14, 0x34),
+                    Arrays.copyOfRange(data.toByteArray(), 0x34, 0x54));
+
+            authLock.set(true);
+        }
+
+        ConsoleLoggingModules.info("Connected successfully!");
     }
 
     /**
@@ -416,20 +359,20 @@ public class Session implements Closeable {
         TimeProvider.init(this);
         dealer.connect();
 
-        ConsoleLoggingModules.info("Authenticated as " + apWelcome.getCanonicalUsername() + "!");
+        ConsoleLoggingModules.info("Authenticated as {}!", apWelcome.getCanonicalUsername());
         mercury().interestedIn(resp -> {
             if (resp.uri.equals("spotify:user:attributes:update")) {
                 UserAttributesUpdate attributesUpdate;
                 try {
                     attributesUpdate = UserAttributesUpdate.parseFrom(resp.payload.stream());
                 } catch (IOException ex) {
-                    ConsoleLoggingModules.warning("Failed parsing user attributes update. " + ex.getMessage());
+                    ConsoleLoggingModules.warning("Failed parsing user attributes update.", ex);
                     return;
                 }
 
                 for (ExplicitContentPubsub.KeyValuePair pair : attributesUpdate.getPairsList()) {
                     userAttributes.put(pair.getKey(), pair.getValue());
-                    ConsoleLoggingModules.debug("Updated user attribute: " + pair.getKey() + " -> " + pair.getValue());
+                    ConsoleLoggingModules.debug("Updated user attribute: {} -> {}", pair.getKey(), pair.getValue());
                 }
             }
         }, "spotify:user:attributes:update");
@@ -438,7 +381,7 @@ public class Session implements Closeable {
                 try {
                     close();
                 } catch (IOException ex) {
-                    ConsoleLoggingModules.error("Failed closing session due to logout. " + ex.getMessage());
+                    ConsoleLoggingModules.error("Failed closing session due to logout.", ex);
                 }
             }
         }, "hm://connect-state/v1/connect/logout");
@@ -505,7 +448,7 @@ public class Session implements Closeable {
                 }
             }
         } else if (packet.is(Packet.Type.AuthFailure)) {
-            throw new SpotifyAuthenticationException(Keyexchange.APLoginFailed.parseFrom(packet.payload)); //This was hit
+            throw new SpotifyAuthenticationException(Keyexchange.APLoginFailed.parseFrom(packet.payload));
         } else {
             throw new IllegalStateException("Unknown CMD 0x" + Integer.toHexString(packet.cmd));
         }
@@ -513,7 +456,7 @@ public class Session implements Closeable {
 
     @Override
     public void close() throws IOException {
-        ConsoleLoggingModules.info("Closing session. {deviceId: " + inner.deviceId + "}");
+        ConsoleLoggingModules.info("Closing session. {deviceId: {}}", inner.deviceId);
 
         if (scheduledReconnect != null) scheduledReconnect.cancel(true);
 
@@ -574,17 +517,13 @@ public class Session implements Closeable {
 
         reconnectionListeners.clear();
 
-        ConsoleLoggingModules.info("Closed session. {deviceId: " + inner.deviceId + "} ");
+        ConsoleLoggingModules.info("Closed session. {deviceId: {}} ", inner.deviceId);
     }
 
     private void sendUnchecked(Packet.Type cmd, byte[] payload) throws IOException {
-        while(conn == null) {
-            try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(2));
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        if (conn == null)
+            throw new IOException("Cannot write to missing connection.");
+
         cipherPair.sendEncoded(conn.out, cmd.val, payload);
     }
 
@@ -596,23 +535,15 @@ public class Session implements Closeable {
 
         if (closed) throw new IllegalStateException("Session is closed!");
 
-        DefThread waitThread = new DefThread(new Runnable() {
-            @Override
-            public void run() {
-                PublicValues.blockLoading = true;
-                synchronized (authLock) {
-                    if (cipherPair == null || authLock.get()) {
-                        try {
-                            authLock.wait();
-                        } catch (InterruptedException ex) {
-                            throw new IllegalStateException(ex);
-                        }
-                    }
+        synchronized (authLock) {
+            if (cipherPair == null || authLock.get()) {
+                try {
+                    authLock.wait();
+                } catch (InterruptedException ex) {
+                    throw new IllegalStateException(ex);
                 }
-                PublicValues.blockLoading = false;
             }
-        }, "authLockWait");
-        waitThread.start();
+        }
     }
 
     public void send(Packet.Type cmd, byte[] payload) throws IOException {
@@ -800,7 +731,7 @@ public class Session implements Closeable {
                     .setAuthData(apWelcome.getReusableAuthCredentials())
                     .build(), true);
 
-            ConsoleLoggingModules.info("Re-authenticated as " + apWelcome.getCanonicalUsername() + "!");
+            ConsoleLoggingModules.info("Re-authenticated as {}!", apWelcome.getCanonicalUsername());
 
             synchronized (reconnectionListeners) {
                 reconnectionListeners.forEach(ReconnectionListener::onConnectionEstablished);
@@ -810,12 +741,12 @@ public class Session implements Closeable {
                 return;
 
             conn = null;
-            ConsoleLoggingModules.error("Failed reconnecting, retrying in 1 second... " + ex.getMessage());
+            ConsoleLoggingModules.error("Failed reconnecting, retrying in 10 seconds...", ex);
 
             try {
-                scheduler.schedule(this::reconnect, 1, TimeUnit.SECONDS);
+                scheduler.schedule(this::reconnect, 10, TimeUnit.SECONDS);
             } catch (RejectedExecutionException exx) {
-                ConsoleLoggingModules.info("Scheduler already shutdown, stopping reconnection " + exx.getMessage());
+                ConsoleLoggingModules.info("Scheduler already shutdown, stopping reconnection", exx);
             }
         }
     }
@@ -955,7 +886,7 @@ public class Session implements Closeable {
         /**
          * Sets the device type.
          *
-         * @param deviceType The {@link Connect.DeviceType}
+         * @param deviceType The {@link com.spotifyxp.deps.com.spotify.connectstate.Connect.DeviceType}
          */
         public T setDeviceType(@NotNull Connect.DeviceType deviceType) {
             this.deviceType = deviceType;
@@ -966,7 +897,6 @@ public class Session implements Closeable {
     /**
      * Builder for setting up a {@link Session} object.
      */
-    @SuppressWarnings("UnusedReturnValue")
     public static class Builder extends AbsBuilder<Builder> {
         private Authentication.LoginCredentials loginCredentials = null;
 
@@ -1023,7 +953,7 @@ public class Session implements Closeable {
         /**
          * Gets the current credentials initialised for this {@link Builder}.
          *
-         * @return A {@link Authentication.LoginCredentials} object or {@code null}
+         * @return A {@link com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials} object or {@code null}
          */
         @Nullable
         public Authentication.LoginCredentials getCredentials() {
@@ -1031,7 +961,7 @@ public class Session implements Closeable {
         }
 
         /**
-         * Authenticates with a custom {@link Authentication.LoginCredentials} object.
+         * Authenticates with a custom {@link com.spotifyxp.deps.com.spotify.Authentication.LoginCredentials} object.
          *
          * @param credentials The credentials
          */
@@ -1070,7 +1000,7 @@ public class Session implements Closeable {
          * Authenticates with your Facebook account, will prompt to open a link in the browser. This locks until completion.
          */
         @NotNull
-        public Builder facebook() throws IOException, NoSuchAlgorithmException {
+        public Builder facebook() throws IOException {
             try (FacebookAuthenticator authenticator = new FacebookAuthenticator()) {
                 loginCredentials = authenticator.lockUntilCredentials();
             } catch (InterruptedException ignored) {
@@ -1117,17 +1047,14 @@ public class Session implements Closeable {
         public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
             if (loginCredentials == null)
                 throw new IllegalStateException("You must select an authentication method.");
+
             TimeProvider.init(conf);
 
-            try {
-                Session session = new Session(new Inner(deviceType, deviceName, deviceId, preferredLocale, conf));
-                session.connect();
-                session.authenticate(loginCredentials);
-                session.api().setClientToken(clientToken);
-                return session;
-            }catch (IOException e) {
-                return create();
-            }
+            Session session = new Session(new Inner(deviceType, deviceName, deviceId, preferredLocale, conf));
+            session.connect();
+            session.authenticate(loginCredentials);
+            session.api().setClientToken(clientToken);
+            return session;
         }
     }
 
@@ -1178,10 +1105,10 @@ public class Session implements Closeable {
             this.timeSynchronizationMethod = timeSynchronizationMethod;
             this.timeManualCorrection = timeManualCorrection;
             this.cacheEnabled = cacheEnabled;
-            this.cacheDir = new File(PublicValues.fileslocation + "/cache");
+            this.cacheDir = cacheDir;
             this.doCacheCleanUp = doCacheCleanUp;
             this.storeCredentials = storeCredentials;
-            this.storedCredentialsFile = new File(PublicValues.fileslocation + "/credentials.json");
+            this.storedCredentialsFile = storedCredentialsFile;
             this.retryOnChunkError = retryOnChunkError;
             this.connectionTimeout = connectionTimeout;
         }
@@ -1317,12 +1244,11 @@ public class Session implements Closeable {
     }
 
     public static class SpotifyAuthenticationException extends Exception {
-        public SpotifyAuthenticationException(Keyexchange.@NotNull APLoginFailed loginFailed) {
+        private SpotifyAuthenticationException(Keyexchange.@NotNull APLoginFailed loginFailed) {
             super(loginFailed.getErrorCode().name());
         }
     }
 
-    @SuppressWarnings("NullableProblems")
     private static class Accumulator extends DataOutputStream {
         private byte[] bytes;
 
@@ -1348,8 +1274,6 @@ public class Session implements Closeable {
 
         private ConnectionHolder(@NotNull Socket socket) throws IOException {
             this.socket = socket;
-            // Big but not infinite
-            socket.setSoTimeout(10000);
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
         }
@@ -1419,7 +1343,7 @@ public class Session implements Closeable {
 
     /**
      * A {@link SocketFactory} that delegates calls. Sockets can be configured after creation by
-     * overriding {@link #configureSocket(Socket)}.
+     * overriding {@link #configureSocket(java.net.Socket)}.
      * <p>
      * Copy/pasted from okhttp3 tests sources for HTTPS proxy support
      */
@@ -1462,7 +1386,7 @@ public class Session implements Closeable {
             return configureSocket(socket);
         }
 
-        protected Socket configureSocket(Socket socket) {
+        protected Socket configureSocket(Socket socket) throws IOException {
             // No-op by default.
             return socket;
         }
@@ -1493,12 +1417,12 @@ public class Session implements Closeable {
                     packet = cipherPair.receiveEncoded(conn.in);
                     cmd = Packet.Type.parse(packet.cmd);
                     if (cmd == null) {
-                        ConsoleLoggingModules.info("Skipping unknown command {cmd: 0x" + Integer.toHexString(packet.cmd) + ", payload: " + Utils.bytesToHex(packet.payload) + "}");
+                        ConsoleLoggingModules.info("Skipping unknown command {cmd: 0x{}, payload: {}}", Integer.toHexString(packet.cmd), Utils.bytesToHex(packet.payload));
                         continue;
                     }
                 } catch (IOException | GeneralSecurityException ex) {
                     if (running && !closing) {
-                        ConsoleLoggingModules.error("Failed reading packet! " + ex.getMessage());
+                        ConsoleLoggingModules.error("Failed reading packet!", ex);
                         reconnect();
                     }
 
@@ -1520,7 +1444,7 @@ public class Session implements Closeable {
                         try {
                             send(Packet.Type.Pong, packet.payload);
                         } catch (IOException ex) {
-                            ConsoleLoggingModules.error("Failed sending Pong! " + ex.getMessage());
+                            ConsoleLoggingModules.error("Failed sending Pong!", ex);
                         }
                         break;
                     case PongAck:
@@ -1536,9 +1460,9 @@ public class Session implements Closeable {
                         if (id != 0) {
                             byte[] buffer = new byte[licenseVersion.get()];
                             licenseVersion.get(buffer);
-                            ConsoleLoggingModules.info("Received LicenseVersion: " + id + ", " + new String(buffer));
+                            ConsoleLoggingModules.info("Received LicenseVersion: {}, {}", id, new String(buffer));
                         } else {
-                            ConsoleLoggingModules.info("Received LicenseVersion: " + id);
+                            ConsoleLoggingModules.info("Received LicenseVersion: {}", id);
                         }
                         break;
                     case Unknown_0x10:
@@ -1562,7 +1486,7 @@ public class Session implements Closeable {
                         try {
                             parseProductInfo(new ByteArrayInputStream(packet.payload));
                         } catch (IOException | ParserConfigurationException | SAXException ex) {
-                            ConsoleLoggingModules.warning("Failed parsing product info! " + ex.getMessage());
+                            ConsoleLoggingModules.warning("Failed parsing product info!", ex);
                         }
                         break;
                     default:

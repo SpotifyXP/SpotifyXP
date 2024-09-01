@@ -31,7 +31,6 @@ import java.util.List;
 final class LineHelper {
 
     private LineHelper() {
-
     }
 
     @NotNull

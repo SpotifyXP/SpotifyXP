@@ -16,11 +16,11 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -28,9 +28,7 @@ import java.io.OutputStream;
 /**
  * @author Gianlu
  */
-@SuppressWarnings("NullableProblems")
 public final class MixingLine extends InputStream {
-    
     boolean switchFormat = false;
     private GainAwareCircularBuffer fcb;
     private GainAwareCircularBuffer scb;
@@ -131,7 +129,6 @@ public final class MixingLine extends InputStream {
         }
     }
 
-    @SuppressWarnings("NullableProblems")
     public abstract static class MixingOutput extends OutputStream {
         StreamConverter converter = null;
 
@@ -165,7 +162,6 @@ public final class MixingLine extends InputStream {
         public abstract void emptyBuffer();
     }
 
-    @SuppressWarnings("NullableProblems")
     public class FirstOutputStream extends MixingOutput {
 
         @Override
@@ -213,7 +209,6 @@ public final class MixingLine extends InputStream {
         }
     }
 
-    @SuppressWarnings("NullableProblems")
     public class SecondOutputStream extends MixingOutput {
 
         @Override

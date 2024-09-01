@@ -16,11 +16,10 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.crypto;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -73,27 +72,25 @@ public class CipherPair {
         synchronized (recvCipher) {
             recvCipher.nonce(Utils.toByteArray(recvNonce.getAndIncrement()));
 
-            try {
-                byte[] headerBytes = new byte[3];
-                in.readFully(headerBytes);
-                recvCipher.decrypt(headerBytes);
-                byte cmd = headerBytes[0];
-                short payloadLength = (short) ((headerBytes[1] << 8) | (headerBytes[2] & 0xFF));
+            byte[] headerBytes = new byte[3];
+            in.readFully(headerBytes);
+            recvCipher.decrypt(headerBytes);
 
-                byte[] payloadBytes = new byte[payloadLength];
-                in.readFully(payloadBytes);
-                recvCipher.decrypt(payloadBytes);
+            byte cmd = headerBytes[0];
+            short payloadLength = (short) ((headerBytes[1] << 8) | (headerBytes[2] & 0xFF));
 
-                byte[] mac = new byte[4];
-                in.readFully(mac);
+            byte[] payloadBytes = new byte[payloadLength];
+            in.readFully(payloadBytes);
+            recvCipher.decrypt(payloadBytes);
 
-                byte[] expectedMac = new byte[4];
-                recvCipher.finish(expectedMac);
-                if (!Arrays.equals(mac, expectedMac)) throw new GeneralSecurityException("MACs don't match!");
-                return new Packet(cmd, payloadBytes);
-            }catch (EOFException e) {
-                throw new EOFException();
-            }
+            byte[] mac = new byte[4];
+            in.readFully(mac);
+
+            byte[] expectedMac = new byte[4];
+            recvCipher.finish(expectedMac);
+            if (!Arrays.equals(mac, expectedMac)) throw new GeneralSecurityException("MACs don't match!");
+
+            return new Packet(cmd, payloadBytes);
         }
     }
 }

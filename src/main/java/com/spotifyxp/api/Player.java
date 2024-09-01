@@ -7,7 +7,7 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.GraphicalMessage;
 
 public class Player {
-    com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine player;
+    com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;
     SpotifyAPI api;
 
     /**
@@ -60,7 +60,7 @@ public class Player {
      * Returns an instance of librespot-player
      * @return    an instance of librespot-player
      */
-    public com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine getPlayer() {
+    public com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getPlayer() {
         return player;
     }
 }

@@ -83,7 +83,7 @@ public final class SessionOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.transfer.Session}
    */
-  public  static final class Session extends
+  public static final class Session extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.transfer.Session)
       SessionOrBuilder {
@@ -103,12 +103,7 @@ public final class SessionOuterClass {
       return new Session();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.internal_static_spotify_player_proto_transfer_Session_descriptor;
     }
@@ -128,6 +123,7 @@ public final class SessionOuterClass {
      * <code>optional .spotify.player.proto.PlayOrigin play_origin = 1;</code>
      * @return Whether the playOrigin field is set.
      */
+    @java.lang.Override
     public boolean hasPlayOrigin() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -135,12 +131,14 @@ public final class SessionOuterClass {
      * <code>optional .spotify.player.proto.PlayOrigin play_origin = 1;</code>
      * @return The playOrigin.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin getPlayOrigin() {
       return playOrigin_ == null ? com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.getDefaultInstance() : playOrigin_;
     }
     /**
      * <code>optional .spotify.player.proto.PlayOrigin play_origin = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder getPlayOriginOrBuilder() {
       return playOrigin_ == null ? com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.getDefaultInstance() : playOrigin_;
     }
@@ -151,6 +149,7 @@ public final class SessionOuterClass {
      * <code>optional .spotify.player.proto.Context context = 2;</code>
      * @return Whether the context field is set.
      */
+    @java.lang.Override
     public boolean hasContext() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -158,22 +157,26 @@ public final class SessionOuterClass {
      * <code>optional .spotify.player.proto.Context context = 2;</code>
      * @return The context.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context getContext() {
       return context_ == null ? com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.getDefaultInstance() : context_;
     }
     /**
      * <code>optional .spotify.player.proto.Context context = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextOuterClass.ContextOrBuilder getContextOrBuilder() {
       return context_ == null ? com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.getDefaultInstance() : context_;
     }
 
     public static final int CURRENT_UID_FIELD_NUMBER = 3;
-    private volatile java.lang.Object currentUid_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object currentUid_ = "";
     /**
      * <code>optional string current_uid = 3;</code>
      * @return Whether the currentUid field is set.
      */
+    @java.lang.Override
     public boolean hasCurrentUid() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -181,6 +184,7 @@ public final class SessionOuterClass {
      * <code>optional string current_uid = 3;</code>
      * @return The currentUid.
      */
+    @java.lang.Override
     public java.lang.String getCurrentUid() {
       java.lang.Object ref = currentUid_;
       if (ref instanceof java.lang.String) {
@@ -199,6 +203,7 @@ public final class SessionOuterClass {
      * <code>optional string current_uid = 3;</code>
      * @return The bytes for currentUid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCurrentUidBytes() {
       java.lang.Object ref = currentUid_;
@@ -219,6 +224,7 @@ public final class SessionOuterClass {
      * <code>optional .spotify.player.proto.ContextPlayerOptionOverrides option_overrides = 4;</code>
      * @return Whether the optionOverrides field is set.
      */
+    @java.lang.Override
     public boolean hasOptionOverrides() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -226,12 +232,14 @@ public final class SessionOuterClass {
      * <code>optional .spotify.player.proto.ContextPlayerOptionOverrides option_overrides = 4;</code>
      * @return The optionOverrides.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides getOptionOverrides() {
       return optionOverrides_ == null ? com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.getDefaultInstance() : optionOverrides_;
     }
     /**
      * <code>optional .spotify.player.proto.ContextPlayerOptionOverrides option_overrides = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder getOptionOverridesOrBuilder() {
       return optionOverrides_ == null ? com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.getDefaultInstance() : optionOverrides_;
     }
@@ -280,11 +288,13 @@ public final class SessionOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -323,7 +333,8 @@ public final class SessionOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.Session}
@@ -332,7 +343,7 @@ public final class SessionOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.Session)
         com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.internal_static_spotify_player_proto_transfer_Session_descriptor;
       }
@@ -366,26 +377,23 @@ public final class SessionOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (playOriginBuilder_ == null) {
-          playOrigin_ = null;
-        } else {
-          playOriginBuilder_.clear();
+        bitField0_ = 0;
+        playOrigin_ = null;
+        if (playOriginBuilder_ != null) {
+          playOriginBuilder_.dispose();
+          playOriginBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (contextBuilder_ == null) {
-          context_ = null;
-        } else {
-          contextBuilder_.clear();
+        context_ = null;
+        if (contextBuilder_ != null) {
+          contextBuilder_.dispose();
+          contextBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         currentUid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (optionOverridesBuilder_ == null) {
-          optionOverrides_ = null;
-        } else {
-          optionOverridesBuilder_.clear();
+        optionOverrides_ = null;
+        if (optionOverridesBuilder_ != null) {
+          optionOverridesBuilder_.dispose();
+          optionOverridesBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -412,73 +420,39 @@ public final class SessionOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session buildPartial() {
         com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session result = new com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (playOriginBuilder_ == null) {
-            result.playOrigin_ = playOrigin_;
-          } else {
-            result.playOrigin_ = playOriginBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (contextBuilder_ == null) {
-            result.context_ = context_;
-          } else {
-            result.context_ = contextBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000002;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.currentUid_ = currentUid_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          if (optionOverridesBuilder_ == null) {
-            result.optionOverrides_ = optionOverrides_;
-          } else {
-            result.optionOverrides_ = optionOverridesBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000008;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.playOrigin_ = playOriginBuilder_ == null
+              ? playOrigin_
+              : playOriginBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.context_ = contextBuilder_ == null
+              ? context_
+              : contextBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.currentUid_ = currentUid_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.optionOverrides_ = optionOverridesBuilder_ == null
+              ? optionOverrides_
+              : optionOverridesBuilder_.build();
+          to_bitField0_ |= 0x00000008;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin playOrigin_;
@@ -511,11 +485,11 @@ public final class SessionOuterClass {
             throw new NullPointerException();
           }
           playOrigin_ = value;
-          onChanged();
         } else {
           playOriginBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -525,11 +499,11 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.Builder builderForValue) {
         if (playOriginBuilder_ == null) {
           playOrigin_ = builderForValue.build();
-          onChanged();
         } else {
           playOriginBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -538,31 +512,30 @@ public final class SessionOuterClass {
       public Builder mergePlayOrigin(com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin value) {
         if (playOriginBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              playOrigin_ != null &&
-              playOrigin_ != com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.getDefaultInstance()) {
-            playOrigin_ =
-              com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.newBuilder(playOrigin_).mergeFrom(value).buildPartial();
+            playOrigin_ != null &&
+            playOrigin_ != com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.getDefaultInstance()) {
+            getPlayOriginBuilder().mergeFrom(value);
           } else {
             playOrigin_ = value;
           }
-          onChanged();
         } else {
           playOriginBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.PlayOrigin play_origin = 1;</code>
        */
       public Builder clearPlayOrigin() {
-        if (playOriginBuilder_ == null) {
-          playOrigin_ = null;
-          onChanged();
-        } else {
-          playOriginBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        playOrigin_ = null;
+        if (playOriginBuilder_ != null) {
+          playOriginBuilder_.dispose();
+          playOriginBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -591,7 +564,8 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.Builder, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder> 
           getPlayOriginFieldBuilder() {
         if (playOriginBuilder_ == null) {
-          playOriginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          playOriginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOrigin.Builder, com.spotifyxp.deps.com.spotify.context.PlayOriginOuterClass.PlayOriginOrBuilder>(
                   getPlayOrigin(),
                   getParentForChildren(),
                   isClean());
@@ -630,11 +604,11 @@ public final class SessionOuterClass {
             throw new NullPointerException();
           }
           context_ = value;
-          onChanged();
         } else {
           contextBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -644,11 +618,11 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.Builder builderForValue) {
         if (contextBuilder_ == null) {
           context_ = builderForValue.build();
-          onChanged();
         } else {
           contextBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -657,31 +631,30 @@ public final class SessionOuterClass {
       public Builder mergeContext(com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context value) {
         if (contextBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              context_ != null &&
-              context_ != com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.getDefaultInstance()) {
-            context_ =
-              com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.newBuilder(context_).mergeFrom(value).buildPartial();
+            context_ != null &&
+            context_ != com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.getDefaultInstance()) {
+            getContextBuilder().mergeFrom(value);
           } else {
             context_ = value;
           }
-          onChanged();
         } else {
           contextBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.Context context = 2;</code>
        */
       public Builder clearContext() {
-        if (contextBuilder_ == null) {
-          context_ = null;
-          onChanged();
-        } else {
-          contextBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        context_ = null;
+        if (contextBuilder_ != null) {
+          contextBuilder_.dispose();
+          contextBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -710,7 +683,8 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.Builder, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.ContextOrBuilder> 
           getContextFieldBuilder() {
         if (contextBuilder_ == null) {
-          contextBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          contextBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.Context.Builder, com.spotifyxp.deps.com.spotify.context.ContextOuterClass.ContextOrBuilder>(
                   getContext(),
                   getParentForChildren(),
                   isClean());
@@ -769,11 +743,9 @@ public final class SessionOuterClass {
        */
       public Builder setCurrentUid(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         currentUid_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -782,8 +754,8 @@ public final class SessionOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearCurrentUid() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         currentUid_ = getDefaultInstance().getCurrentUid();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -794,11 +766,9 @@ public final class SessionOuterClass {
        */
       public Builder setCurrentUidBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         currentUid_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -833,11 +803,11 @@ public final class SessionOuterClass {
             throw new NullPointerException();
           }
           optionOverrides_ = value;
-          onChanged();
         } else {
           optionOverridesBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -847,11 +817,11 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.Builder builderForValue) {
         if (optionOverridesBuilder_ == null) {
           optionOverrides_ = builderForValue.build();
-          onChanged();
         } else {
           optionOverridesBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -860,31 +830,30 @@ public final class SessionOuterClass {
       public Builder mergeOptionOverrides(com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides value) {
         if (optionOverridesBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0) &&
-              optionOverrides_ != null &&
-              optionOverrides_ != com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.getDefaultInstance()) {
-            optionOverrides_ =
-              com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.newBuilder(optionOverrides_).mergeFrom(value).buildPartial();
+            optionOverrides_ != null &&
+            optionOverrides_ != com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.getDefaultInstance()) {
+            getOptionOverridesBuilder().mergeFrom(value);
           } else {
             optionOverrides_ = value;
           }
-          onChanged();
         } else {
           optionOverridesBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.ContextPlayerOptionOverrides option_overrides = 4;</code>
        */
       public Builder clearOptionOverrides() {
-        if (optionOverridesBuilder_ == null) {
-          optionOverrides_ = null;
-          onChanged();
-        } else {
-          optionOverridesBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000008);
+        optionOverrides_ = null;
+        if (optionOverridesBuilder_ != null) {
+          optionOverridesBuilder_.dispose();
+          optionOverridesBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -913,7 +882,8 @@ public final class SessionOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder> 
           getOptionOverridesFieldBuilder() {
         if (optionOverridesBuilder_ == null) {
-          optionOverridesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          optionOverridesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverrides.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionOverridesOrBuilder>(
                   getOptionOverrides(),
                   getParentForChildren(),
                   isClean());
@@ -922,13 +892,13 @@ public final class SessionOuterClass {
         return optionOverridesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -959,10 +929,11 @@ public final class SessionOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -994,7 +965,7 @@ public final class SessionOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1006,7 +977,8 @@ public final class SessionOuterClass {
       "tify.player.proto.Context\022\023\n\013current_uid" +
       "\030\003 \001(\t\022L\n\020option_overrides\030\004 \001(\01322.spoti" +
       "fy.player.proto.ContextPlayerOptionOverr" +
-      "idesB\030\n\024com.spotify.transferH\002"
+      "idesB+\n\'com.spotifyxp.deps.com.spotify.t" +
+      "ransferH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

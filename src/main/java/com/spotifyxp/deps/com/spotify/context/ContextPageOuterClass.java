@@ -75,14 +75,14 @@ public final class ContextPageOuterClass {
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
-    java.lang.String getMetadataOrDefault(
+    /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue);
+        /* nullable */
+java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
     java.lang.String getMetadataOrThrow(
         java.lang.String key);
 
@@ -124,7 +124,7 @@ public final class ContextPageOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.ContextPage}
    */
-  public  static final class ContextPage extends
+  public static final class ContextPage extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.ContextPage)
       ContextPageOrBuilder {
@@ -146,12 +146,7 @@ public final class ContextPageOuterClass {
       return new ContextPage();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.internal_static_spotify_player_proto_ContextPage_descriptor;
     }
@@ -160,11 +155,13 @@ public final class ContextPageOuterClass {
     @java.lang.Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
-        if (number == 3) {
-            return internalGetMetadata();
-        }
-        throw new RuntimeException(
-                "Invalid map field number: " + number);
+      switch (number) {
+        case 3:
+          return internalGetMetadata();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
     }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -176,11 +173,13 @@ public final class ContextPageOuterClass {
 
     private int bitField0_;
     public static final int PAGE_URL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object pageUrl_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object pageUrl_ = "";
     /**
      * <code>optional string page_url = 1;</code>
      * @return Whether the pageUrl field is set.
      */
+    @java.lang.Override
     public boolean hasPageUrl() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -188,6 +187,7 @@ public final class ContextPageOuterClass {
      * <code>optional string page_url = 1;</code>
      * @return The pageUrl.
      */
+    @java.lang.Override
     public java.lang.String getPageUrl() {
       java.lang.Object ref = pageUrl_;
       if (ref instanceof java.lang.String) {
@@ -206,6 +206,7 @@ public final class ContextPageOuterClass {
      * <code>optional string page_url = 1;</code>
      * @return The bytes for pageUrl.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPageUrlBytes() {
       java.lang.Object ref = pageUrl_;
@@ -221,11 +222,13 @@ public final class ContextPageOuterClass {
     }
 
     public static final int NEXT_PAGE_URL_FIELD_NUMBER = 2;
-    private volatile java.lang.Object nextPageUrl_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object nextPageUrl_ = "";
     /**
      * <code>optional string next_page_url = 2;</code>
      * @return Whether the nextPageUrl field is set.
      */
+    @java.lang.Override
     public boolean hasNextPageUrl() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -233,6 +236,7 @@ public final class ContextPageOuterClass {
      * <code>optional string next_page_url = 2;</code>
      * @return The nextPageUrl.
      */
+    @java.lang.Override
     public java.lang.String getNextPageUrl() {
       java.lang.Object ref = nextPageUrl_;
       if (ref instanceof java.lang.String) {
@@ -251,6 +255,7 @@ public final class ContextPageOuterClass {
      * <code>optional string next_page_url = 2;</code>
      * @return The bytes for nextPageUrl.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNextPageUrlBytes() {
       java.lang.Object ref = nextPageUrl_;
@@ -270,13 +275,14 @@ public final class ContextPageOuterClass {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.internal_static_spotify_player_proto_ContextPage_MetadataEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.String> metadata_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -287,22 +293,22 @@ public final class ContextPageOuterClass {
       }
       return metadata_;
     }
-
     public int getMetadataCount() {
       return internalGetMetadata().getMap().size();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
+    @java.lang.Override
     public boolean containsMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadata().getMap().containsKey(key);
     }
     /**
      * Use {@link #getMetadataMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
       return getMetadataMap();
@@ -310,29 +316,31 @@ public final class ContextPageOuterClass {
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
+    @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
       return internalGetMetadata().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
-    public java.lang.String getMetadataOrDefault(
+    @java.lang.Override
+    public /* nullable */
+java.lang.String getMetadataOrDefault(
         java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+java.lang.String defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
-      return map.getOrDefault(key, defaultValue);
+      return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, string&gt; metadata = 3;</code>
      */
-
+    @java.lang.Override
     public java.lang.String getMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -342,16 +350,19 @@ public final class ContextPageOuterClass {
     }
 
     public static final int TRACKS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> tracks_;
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> getTracksList() {
       return tracks_;
     }
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder> 
         getTracksOrBuilderList() {
       return tracks_;
@@ -359,29 +370,33 @@ public final class ContextPageOuterClass {
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 4;</code>
      */
+    @java.lang.Override
     public int getTracksCount() {
       return tracks_.size();
     }
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack getTracks(int index) {
       return tracks_.get(index);
     }
     /**
      * <code>repeated .spotify.player.proto.ContextTrack tracks = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder getTracksOrBuilder(
         int index) {
       return tracks_.get(index);
     }
 
     public static final int LOADING_FIELD_NUMBER = 5;
-    private boolean loading_;
+    private boolean loading_ = false;
     /**
      * <code>optional bool loading = 5;</code>
      * @return Whether the loading field is set.
      */
+    @java.lang.Override
     public boolean hasLoading() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -389,6 +404,7 @@ public final class ContextPageOuterClass {
      * <code>optional bool loading = 5;</code>
      * @return The loading.
      */
+    @java.lang.Override
     public boolean getLoading() {
       return loading_;
     }
@@ -437,11 +453,13 @@ public final class ContextPageOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -480,7 +498,8 @@ public final class ContextPageOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.ContextPage}
@@ -489,7 +508,7 @@ public final class ContextPageOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.ContextPage)
         com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPageOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.internal_static_spotify_player_proto_ContextPage_descriptor;
       }
@@ -497,20 +516,24 @@ public final class ContextPageOuterClass {
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
-          if (number == 3) {
-              return internalGetMetadata();
-          }
-          throw new RuntimeException(
-                  "Invalid map field number: " + number);
+        switch (number) {
+          case 3:
+            return internalGetMetadata();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
       }
       @SuppressWarnings({"rawtypes"})
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
-          if (number == 3) {
-              return internalGetMutableMetadata();
-          }
-          throw new RuntimeException(
-                  "Invalid map field number: " + number);
+        switch (number) {
+          case 3:
+            return internalGetMutableMetadata();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
       }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -522,36 +545,29 @@ public final class ContextPageOuterClass {
 
       // Construct using com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTracksFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         pageUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         nextPageUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         internalGetMutableMetadata().clear();
         if (tracksBuilder_ == null) {
           tracks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          tracks_ = null;
           tracksBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         loading_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -578,18 +594,13 @@ public final class ContextPageOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage buildPartial() {
         com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage result = new com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.pageUrl_ = pageUrl_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.nextPageUrl_ = nextPageUrl_;
-        result.metadata_ = internalGetMetadata();
-        result.metadata_.makeImmutable();
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage result) {
         if (tracksBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0)) {
             tracks_ = java.util.Collections.unmodifiableList(tracks_);
@@ -599,47 +610,30 @@ public final class ContextPageOuterClass {
         } else {
           result.tracks_ = tracksBuilder_.build();
         }
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.pageUrl_ = pageUrl_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.nextPageUrl_ = nextPageUrl_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.metadata_ = internalGetMetadata();
+          result.metadata_.makeImmutable();
+        }
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.loading_ = loading_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private java.lang.Object pageUrl_ = "";
@@ -692,11 +686,9 @@ public final class ContextPageOuterClass {
        */
       public Builder setPageUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         pageUrl_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -705,8 +697,8 @@ public final class ContextPageOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearPageUrl() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         pageUrl_ = getDefaultInstance().getPageUrl();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -717,11 +709,9 @@ public final class ContextPageOuterClass {
        */
       public Builder setPageUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         pageUrl_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -776,11 +766,9 @@ public final class ContextPageOuterClass {
        */
       public Builder setNextPageUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         nextPageUrl_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -789,8 +777,8 @@ public final class ContextPageOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearNextPageUrl() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         nextPageUrl_ = getDefaultInstance().getNextPageUrl();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -801,11 +789,9 @@ public final class ContextPageOuterClass {
        */
       public Builder setNextPageUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         nextPageUrl_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -813,7 +799,7 @@ public final class ContextPageOuterClass {
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.String> metadata_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMetadata() {
+          internalGetMetadata() {
         if (metadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -821,8 +807,7 @@ public final class ContextPageOuterClass {
         return metadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableMetadata() {
-        onChanged();
+          internalGetMutableMetadata() {
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -830,24 +815,26 @@ public final class ContextPageOuterClass {
         if (!metadata_.isMutable()) {
           metadata_ = metadata_.copy();
         }
+        bitField0_ |= 0x00000004;
+        onChanged();
         return metadata_;
       }
-
       public int getMetadataCount() {
         return internalGetMetadata().getMap().size();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
+      @java.lang.Override
       public boolean containsMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadata().getMap().containsKey(key);
       }
       /**
        * Use {@link #getMetadataMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
         return getMetadataMap();
@@ -855,29 +842,31 @@ public final class ContextPageOuterClass {
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
+      @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
         return internalGetMetadata().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
-      public java.lang.String getMetadataOrDefault(
+      @java.lang.Override
+      public /* nullable */
+java.lang.String getMetadataOrDefault(
           java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+java.lang.String defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
-        return map.getOrDefault(key, defaultValue);
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
+      @java.lang.Override
       public java.lang.String getMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -885,8 +874,8 @@ public final class ContextPageOuterClass {
         }
         return map.get(key);
       }
-
       public Builder clearMetadata() {
+        bitField0_ = (bitField0_ & ~0x00000004);
         internalGetMutableMetadata().getMutableMap()
             .clear();
         return this;
@@ -894,10 +883,9 @@ public final class ContextPageOuterClass {
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
       public Builder removeMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -907,7 +895,8 @@ public final class ContextPageOuterClass {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
-      getMutableMetadata() {
+          getMutableMetadata() {
+        bitField0_ |= 0x00000004;
         return internalGetMutableMetadata().getMutableMap();
       }
       /**
@@ -916,28 +905,29 @@ public final class ContextPageOuterClass {
       public Builder putMetadata(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
        * <code>map&lt;string, string&gt; metadata = 3;</code>
        */
-
       public Builder putAllMetadata(
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000004;
         return this;
       }
 
       private java.util.List<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack> tracks_ =
         java.util.Collections.emptyList();
       private void ensureTracksIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          tracks_ = new java.util.ArrayList<>(tracks_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          tracks_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack>(tracks_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -1162,7 +1152,8 @@ public final class ContextPageOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder> 
           getTracksFieldBuilder() {
         if (tracksBuilder_ == null) {
-          tracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          tracksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack.Builder, com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrackOrBuilder>(
                   tracks_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -1177,6 +1168,7 @@ public final class ContextPageOuterClass {
        * <code>optional bool loading = 5;</code>
        * @return Whether the loading field is set.
        */
+      @java.lang.Override
       public boolean hasLoading() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -1184,6 +1176,7 @@ public final class ContextPageOuterClass {
        * <code>optional bool loading = 5;</code>
        * @return The loading.
        */
+      @java.lang.Override
       public boolean getLoading() {
         return loading_;
       }
@@ -1193,8 +1186,9 @@ public final class ContextPageOuterClass {
        * @return This builder for chaining.
        */
       public Builder setLoading(boolean value) {
-        bitField0_ |= 0x00000010;
+
         loading_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1209,13 +1203,13 @@ public final class ContextPageOuterClass {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1246,10 +1240,11 @@ public final class ContextPageOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1286,7 +1281,7 @@ public final class ContextPageOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1297,8 +1292,8 @@ public final class ContextPageOuterClass {
       "o.ContextPage.MetadataEntry\0222\n\006tracks\030\004 " +
       "\003(\0132\".spotify.player.proto.ContextTrack\022" +
       "\017\n\007loading\030\005 \001(\010\032/\n\rMetadataEntry\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\027\n\023com.spotify" +
-      ".contextH\002"
+      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B*\n&com.spotify" +
+      "xp.deps.com.spotify.contextH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

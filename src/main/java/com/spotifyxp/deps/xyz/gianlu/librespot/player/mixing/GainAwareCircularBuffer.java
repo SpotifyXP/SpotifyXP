@@ -19,7 +19,6 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 /**
  * @author Gianlu
  */
-@SuppressWarnings({"SameParameterValue", "lossy-conversions"})
 class GainAwareCircularBuffer extends CircularBuffer {
     GainAwareCircularBuffer(int bufferSize) {
         super(bufferSize);
@@ -51,8 +50,7 @@ class GainAwareCircularBuffer extends CircularBuffer {
             }
 
             awaitSpace.signal();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException ignored) {
         } finally {
             lock.unlock();
         }

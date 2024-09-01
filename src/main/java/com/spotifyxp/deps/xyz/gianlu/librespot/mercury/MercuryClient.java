@@ -22,6 +22,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
 import com.spotifyxp.deps.com.spotify.Mercury;
 import com.spotifyxp.deps.com.spotify.Pubsub;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.BytesArrayList;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtobufToJson;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
@@ -29,9 +32,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.PacketsReceiver;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.JsonWrapper;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -71,7 +71,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
             subscriptions.add(new InternalSubListener(uri, listener, true));
         }
 
-        ConsoleLoggingModules.debug("Subscribed successfully to " + uri + "!");
+        ConsoleLoggingModules.debug("Subscribed successfully to {}!", uri);
     }
 
     public void unsubscribe(@NotNull String uri) throws IOException, PubSubException {
@@ -79,7 +79,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
         if (response.statusCode != 200) throw new PubSubException(response);
 
         subscriptions.removeIf(l -> l.matches(uri));
-        ConsoleLoggingModules.debug("Unsubscribed successfully from " + uri + "!");
+        ConsoleLoggingModules.debug("Unsubscribed successfully from {}!", uri);
     }
 
     @NotNull
@@ -143,7 +143,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
             seq = seqHolder.getAndIncrement();
         }
 
-        ConsoleLoggingModules.debug("Send Mercury request, seq: " + seq + ", uri: " + request.header.getUri() + ", method: " + request.header.getMethod());
+        ConsoleLoggingModules.debug("Send Mercury request, seq: {}, uri: {}, method: {}", seq, request.header.getUri(), request.header.getMethod());
 
         out.writeShort((short) 4); // Seq length
         out.writeInt(seq); // Seq
@@ -186,7 +186,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
             partials.put(seq, partial);
         }
 
-        ConsoleLoggingModules.debug("Handling packet, cmd: " + packet.type() + ", seq: " + seq + ", flags: " + flags + ", parts: " + parts);
+        ConsoleLoggingModules.debug("Handling packet, cmd: {}, seq: {}, flags: {}, parts: {}", packet.type(), seq, flags, parts);
 
         for (int i = 0; i < parts; i++) {
             short size = payload.getShort();
@@ -203,7 +203,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
         try {
             header = Mercury.Header.parseFrom(partial.get(0));
         } catch (InvalidProtocolBufferException ex) {
-            ConsoleLoggingModules.error("Couldn't parse header! {bytes: " + Utils.bytesToHex(partial.get(0)) + "}");
+            ConsoleLoggingModules.error("Couldn't parse header! {bytes: {}}", Utils.bytesToHex(partial.get(0)));
             return;
         }
 
@@ -221,23 +221,23 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
             }
 
             if (!dispatched)
-                ConsoleLoggingModules.debug("Couldn't dispatch Mercury event {seq: " + seq + ", uri: " + header.getUri() + ", code: " + header.getStatusCode() + ", payload: " + resp.payload.toHex() + "}");
+                ConsoleLoggingModules.debug("Couldn't dispatch Mercury event {seq: {}, uri: {}, code: {}, payload: {}}", seq, header.getUri(), header.getStatusCode(), resp.payload.toHex());
         } else if (packet.is(Packet.Type.MercuryReq) || packet.is(Packet.Type.MercurySub) || packet.is(Packet.Type.MercuryUnsub)) {
             Callback callback = callbacks.remove(seq);
             if (callback != null)
                 callback.response(resp);
             else
-                ConsoleLoggingModules.warning("Skipped Mercury response, seq: " + seq + ", uri: " + header.getUri() + ", code: " + header.getStatusCode());
+                ConsoleLoggingModules.warning("Skipped Mercury response, seq: {}, uri: {}, code: {}", seq, header.getUri(), header.getStatusCode());
 
             synchronized (removeCallbackLock) {
                 removeCallbackLock.notifyAll();
             }
         } else {
-            ConsoleLoggingModules.warning("Couldn't handle packet, seq: " + seq + ", uri: " + header.getUri() + ", code: " + header.getStatusCode());
+            ConsoleLoggingModules.warning("Couldn't handle packet, seq: {}, uri: {}, code: {}", seq, header.getUri(), header.getStatusCode());
         }
     }
 
-    public void interestedIn(@NotNull SubListener listener, @NotNull String uri) {
+    public void interestedIn( @NotNull SubListener listener, @NotNull String uri) {
         subscriptions.add(new InternalSubListener(uri, listener, false));
     }
 
@@ -253,7 +253,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
                     if (listener.isSub) unsubscribe(listener.uri);
                     else notInterested(listener.listener);
                 } catch (IOException | MercuryException ex) {
-                    ConsoleLoggingModules.error("Failed unsubscribing. " + ex.getMessage());
+                    ConsoleLoggingModules.debug("Failed unsubscribing.", ex);
                 }
             }
         }

@@ -143,7 +143,7 @@ public class ArtistPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(popularuricache.get(artistpopularsonglist.getSelectedRow()), true, false, false);
+                    InstanceManager.getPlayer().getPlayer().load(popularuricache.get(artistpopularsonglist.getSelectedRow()), true, false);
                     TrackUtils.addAllToQueue(popularuricache, artistpopularsonglist);
                 }
             }

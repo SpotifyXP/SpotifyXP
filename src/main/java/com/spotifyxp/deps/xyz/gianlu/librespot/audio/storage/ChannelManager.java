@@ -17,13 +17,13 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage;
 
 import com.google.protobuf.ByteString;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.PacketsReceiver;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -181,7 +181,7 @@ public class ChannelManager implements Closeable, PacketsReceiver {
                             break;
                         }
                     } catch (IOException ex) {
-                        ConsoleLoggingModules.debug("Failed handling packet!", ex.getMessage());
+                        ConsoleLoggingModules.error("Failed handling packet!", ex);
                     } catch (InterruptedException ex) {
                         break;
                     }

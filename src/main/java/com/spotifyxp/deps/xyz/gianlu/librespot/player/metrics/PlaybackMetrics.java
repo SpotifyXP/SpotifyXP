@@ -16,14 +16,14 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics;
 
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TimeProvider;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.StateWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,6 @@ import java.util.List;
  * @author devgianlu
  */
 public class PlaybackMetrics {
-    
     public final PlayableId id;
     final String playbackId;
     final String featureVersion;

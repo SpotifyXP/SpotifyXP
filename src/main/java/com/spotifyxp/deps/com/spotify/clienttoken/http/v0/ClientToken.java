@@ -85,17 +85,25 @@ public final class ClientToken {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ClientTokenRequestType> internalValueMap =
-            ClientTokenRequestType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ClientTokenRequestType>() {
+            public ClientTokenRequestType findValueByNumber(int number) {
+              return ClientTokenRequestType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.getDescriptor().getEnumTypes().get(0);
     }
@@ -116,7 +124,7 @@ public final class ClientToken {
 
     private final int value;
 
-    ClientTokenRequestType(int value) {
+    private ClientTokenRequestType(int value) {
       this.value = value;
     }
 
@@ -194,17 +202,25 @@ public final class ClientToken {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ClientTokenResponseType> internalValueMap =
-            ClientTokenResponseType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ClientTokenResponseType>() {
+            public ClientTokenResponseType findValueByNumber(int number) {
+              return ClientTokenResponseType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.getDescriptor().getEnumTypes().get(1);
     }
@@ -225,7 +241,7 @@ public final class ClientToken {
 
     private final int value;
 
-    ClientTokenResponseType(int value) {
+    private ClientTokenResponseType(int value) {
       this.value = value;
     }
 
@@ -312,17 +328,25 @@ public final class ClientToken {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         ChallengeType> internalValueMap =
-            ChallengeType::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<ChallengeType>() {
+            public ChallengeType findValueByNumber(int number) {
+              return ChallengeType.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.getDescriptor().getEnumTypes().get(2);
     }
@@ -343,7 +367,7 @@ public final class ClientToken {
 
     private final int value;
 
-    ChallengeType(int value) {
+    private ChallengeType(int value) {
       this.value = value;
     }
 
@@ -400,7 +424,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ClientTokenRequest}
    */
-  public  static final class ClientTokenRequest extends
+  public static final class ClientTokenRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ClientTokenRequest)
       ClientTokenRequestOrBuilder {
@@ -420,12 +444,7 @@ public final class ClientToken {
       return new ClientTokenRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientTokenRequest_descriptor;
     }
@@ -439,6 +458,7 @@ public final class ClientToken {
     }
 
     private int requestCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object request_;
     public enum RequestCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -447,7 +467,7 @@ public final class ClientToken {
       CHALLENGE_ANSWERS(3),
       REQUEST_NOT_SET(0);
       private final int value;
-      RequestCase(int value) {
+      private RequestCase(int value) {
         this.value = value;
       }
       /**
@@ -471,7 +491,7 @@ public final class ClientToken {
       public int getNumber() {
         return this.value;
       }
-    }
+    };
 
     public RequestCase
     getRequestCase() {
@@ -480,20 +500,20 @@ public final class ClientToken {
     }
 
     public static final int REQUEST_TYPE_FIELD_NUMBER = 1;
-    private int requestType_;
+    private int requestType_ = 0;
     /**
      * <code>.spotify.clienttoken.http.v0.ClientTokenRequestType request_type = 1;</code>
      * @return The enum numeric value on the wire for requestType.
      */
-    public int getRequestTypeValue() {
+    @java.lang.Override public int getRequestTypeValue() {
       return requestType_;
     }
     /**
      * <code>.spotify.clienttoken.http.v0.ClientTokenRequestType request_type = 1;</code>
      * @return The requestType.
      */
-    public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType getRequestType() {
-      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType.valueOf(requestType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType getRequestType() {
+      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType.forNumber(requestType_);
       return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType.UNRECOGNIZED : result;
     }
 
@@ -502,6 +522,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
      * @return Whether the clientData field is set.
      */
+    @java.lang.Override
     public boolean hasClientData() {
       return requestCase_ == 2;
     }
@@ -509,6 +530,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
      * @return The clientData.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest getClientData() {
       if (requestCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest) request_;
@@ -518,6 +540,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequestOrBuilder getClientDataOrBuilder() {
       if (requestCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest) request_;
@@ -530,6 +553,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
      * @return Whether the challengeAnswers field is set.
      */
+    @java.lang.Override
     public boolean hasChallengeAnswers() {
       return requestCase_ == 3;
     }
@@ -537,6 +561,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
      * @return The challengeAnswers.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest getChallengeAnswers() {
       if (requestCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest) request_;
@@ -546,6 +571,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequestOrBuilder getChallengeAnswersOrBuilder() {
       if (requestCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest) request_;
@@ -597,11 +623,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -640,7 +668,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ClientTokenRequest}
@@ -649,7 +678,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ClientTokenRequest)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientTokenRequest_descriptor;
       }
@@ -664,21 +693,25 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         requestType_ = 0;
-
+        if (clientDataBuilder_ != null) {
+          clientDataBuilder_.clear();
+        }
+        if (challengeAnswersBuilder_ != null) {
+          challengeAnswersBuilder_.clear();
+        }
         requestCase_ = 0;
         request_ = null;
         return this;
@@ -707,58 +740,32 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest(this);
-        result.requestType_ = requestType_;
-        if (requestCase_ == 2) {
-          if (clientDataBuilder_ == null) {
-            result.request_ = request_;
-          } else {
-            result.request_ = clientDataBuilder_.build();
-          }
-        }
-        if (requestCase_ == 3) {
-          if (challengeAnswersBuilder_ == null) {
-            result.request_ = request_;
-          } else {
-            result.request_ = challengeAnswersBuilder_.build();
-          }
-        }
-        result.requestCase_ = requestCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.requestType_ = requestType_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartialOneofs(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequest result) {
+        result.requestCase_ = requestCase_;
+        result.request_ = this.request_;
+        if (requestCase_ == 2 &&
+            clientDataBuilder_ != null) {
+          result.request_ = clientDataBuilder_.build();
+        }
+        if (requestCase_ == 3 &&
+            challengeAnswersBuilder_ != null) {
+          result.request_ = challengeAnswersBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int requestCase_ = 0;
       private java.lang.Object request_;
       public RequestCase
@@ -774,13 +781,14 @@ public final class ClientToken {
         return this;
       }
 
+      private int bitField0_;
 
       private int requestType_ = 0;
       /**
        * <code>.spotify.clienttoken.http.v0.ClientTokenRequestType request_type = 1;</code>
        * @return The enum numeric value on the wire for requestType.
        */
-      public int getRequestTypeValue() {
+      @java.lang.Override public int getRequestTypeValue() {
         return requestType_;
       }
       /**
@@ -790,6 +798,7 @@ public final class ClientToken {
        */
       public Builder setRequestTypeValue(int value) {
         requestType_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -797,8 +806,9 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientTokenRequestType request_type = 1;</code>
        * @return The requestType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType getRequestType() {
-        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType.valueOf(requestType_);
+        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType.forNumber(requestType_);
         return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenRequestType.UNRECOGNIZED : result;
       }
       /**
@@ -810,7 +820,7 @@ public final class ClientToken {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         requestType_ = value.getNumber();
         onChanged();
         return this;
@@ -820,7 +830,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearRequestType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         requestType_ = 0;
         onChanged();
         return this;
@@ -832,6 +842,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
        * @return Whether the clientData field is set.
        */
+      @java.lang.Override
       public boolean hasClientData() {
         return requestCase_ == 2;
       }
@@ -839,17 +850,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
        * @return The clientData.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest getClientData() {
         if (clientDataBuilder_ == null) {
           if (requestCase_ == 2) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest) request_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest.getDefaultInstance();
         } else {
           if (requestCase_ == 2) {
             return clientDataBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest.getDefaultInstance();
         }
-        return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
@@ -897,8 +910,9 @@ public final class ClientToken {
         } else {
           if (requestCase_ == 2) {
             clientDataBuilder_.mergeFrom(value);
+          } else {
+            clientDataBuilder_.setMessage(value);
           }
-          clientDataBuilder_.setMessage(value);
         }
         requestCase_ = 2;
         return this;
@@ -931,6 +945,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.ClientDataRequest client_data = 2;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequestOrBuilder getClientDataOrBuilder() {
         if ((requestCase_ == 2) && (clientDataBuilder_ != null)) {
           return clientDataBuilder_.getMessageOrBuilder();
@@ -951,7 +966,8 @@ public final class ClientToken {
           if (!(requestCase_ == 2)) {
             request_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest.getDefaultInstance();
           }
-          clientDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          clientDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequestOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest) request_,
                   getParentForChildren(),
                   isClean());
@@ -968,6 +984,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
        * @return Whether the challengeAnswers field is set.
        */
+      @java.lang.Override
       public boolean hasChallengeAnswers() {
         return requestCase_ == 3;
       }
@@ -975,17 +992,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
        * @return The challengeAnswers.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest getChallengeAnswers() {
         if (challengeAnswersBuilder_ == null) {
           if (requestCase_ == 3) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest) request_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest.getDefaultInstance();
         } else {
           if (requestCase_ == 3) {
             return challengeAnswersBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest.getDefaultInstance();
         }
-        return ChallengeAnswersRequest.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
@@ -1033,8 +1052,9 @@ public final class ClientToken {
         } else {
           if (requestCase_ == 3) {
             challengeAnswersBuilder_.mergeFrom(value);
+          } else {
+            challengeAnswersBuilder_.setMessage(value);
           }
-          challengeAnswersBuilder_.setMessage(value);
         }
         requestCase_ = 3;
         return this;
@@ -1067,6 +1087,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.ChallengeAnswersRequest challenge_answers = 3;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequestOrBuilder getChallengeAnswersOrBuilder() {
         if ((requestCase_ == 3) && (challengeAnswersBuilder_ != null)) {
           return challengeAnswersBuilder_.getMessageOrBuilder();
@@ -1087,7 +1108,8 @@ public final class ClientToken {
           if (!(requestCase_ == 3)) {
             request_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest.getDefaultInstance();
           }
-          challengeAnswersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          challengeAnswersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequestOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest) request_,
                   getParentForChildren(),
                   isClean());
@@ -1098,13 +1120,13 @@ public final class ClientToken {
         return challengeAnswersBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1135,10 +1157,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1208,7 +1231,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ClientDataRequest}
    */
-  public  static final class ClientDataRequest extends
+  public static final class ClientDataRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ClientDataRequest)
       ClientDataRequestOrBuilder {
@@ -1229,12 +1252,7 @@ public final class ClientToken {
       return new ClientDataRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientDataRequest_descriptor;
     }
@@ -1248,6 +1266,7 @@ public final class ClientToken {
     }
 
     private int dataCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object data_;
     public enum DataCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -1255,7 +1274,7 @@ public final class ClientToken {
       CONNECTIVITY_SDK_DATA(3),
       DATA_NOT_SET(0);
       private final int value;
-      DataCase(int value) {
+      private DataCase(int value) {
         this.value = value;
       }
       /**
@@ -1278,7 +1297,7 @@ public final class ClientToken {
       public int getNumber() {
         return this.value;
       }
-    }
+    };
 
     public DataCase
     getDataCase() {
@@ -1287,11 +1306,13 @@ public final class ClientToken {
     }
 
     public static final int CLIENT_VERSION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object clientVersion_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clientVersion_ = "";
     /**
      * <code>string client_version = 1;</code>
      * @return The clientVersion.
      */
+    @java.lang.Override
     public java.lang.String getClientVersion() {
       java.lang.Object ref = clientVersion_;
       if (ref instanceof java.lang.String) {
@@ -1308,6 +1329,7 @@ public final class ClientToken {
      * <code>string client_version = 1;</code>
      * @return The bytes for clientVersion.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getClientVersionBytes() {
       java.lang.Object ref = clientVersion_;
@@ -1323,11 +1345,13 @@ public final class ClientToken {
     }
 
     public static final int CLIENT_ID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object clientId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clientId_ = "";
     /**
      * <code>string client_id = 2;</code>
      * @return The clientId.
      */
+    @java.lang.Override
     public java.lang.String getClientId() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
@@ -1344,6 +1368,7 @@ public final class ClientToken {
      * <code>string client_id = 2;</code>
      * @return The bytes for clientId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getClientIdBytes() {
       java.lang.Object ref = clientId_;
@@ -1363,6 +1388,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
      * @return Whether the connectivitySdkData field is set.
      */
+    @java.lang.Override
     public boolean hasConnectivitySdkData() {
       return dataCase_ == 3;
     }
@@ -1370,6 +1396,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
      * @return The connectivitySdkData.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData getConnectivitySdkData() {
       if (dataCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData) data_;
@@ -1379,6 +1406,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkDataOrBuilder getConnectivitySdkDataOrBuilder() {
       if (dataCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData) data_;
@@ -1430,11 +1458,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1473,7 +1503,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ClientDataRequest}
@@ -1482,7 +1513,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ClientDataRequest)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientDataRequest_descriptor;
       }
@@ -1497,23 +1528,23 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         clientVersion_ = "";
-
         clientId_ = "";
-
+        if (connectivitySdkDataBuilder_ != null) {
+          connectivitySdkDataBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -1542,52 +1573,31 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest(this);
-        result.clientVersion_ = clientVersion_;
-        result.clientId_ = clientId_;
-        if (dataCase_ == 3) {
-          if (connectivitySdkDataBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = connectivitySdkDataBuilder_.build();
-          }
-        }
-        result.dataCase_ = dataCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.clientVersion_ = clientVersion_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.clientId_ = clientId_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartialOneofs(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientDataRequest result) {
+        result.dataCase_ = dataCase_;
+        result.data_ = this.data_;
+        if (dataCase_ == 3 &&
+            connectivitySdkDataBuilder_ != null) {
+          result.data_ = connectivitySdkDataBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int dataCase_ = 0;
       private java.lang.Object data_;
       public DataCase
@@ -1603,6 +1613,7 @@ public final class ClientToken {
         return this;
       }
 
+      private int bitField0_;
 
       private java.lang.Object clientVersion_ = "";
       /**
@@ -1645,11 +1656,9 @@ public final class ClientToken {
        */
       public Builder setClientVersion(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         clientVersion_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1658,8 +1667,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearClientVersion() {
-        
         clientVersion_ = getDefaultInstance().getClientVersion();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1670,12 +1679,10 @@ public final class ClientToken {
        */
       public Builder setClientVersionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         clientVersion_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1721,11 +1728,9 @@ public final class ClientToken {
        */
       public Builder setClientId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         clientId_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1734,8 +1739,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearClientId() {
-        
         clientId_ = getDefaultInstance().getClientId();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1746,12 +1751,10 @@ public final class ClientToken {
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         clientId_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1762,6 +1765,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
        * @return Whether the connectivitySdkData field is set.
        */
+      @java.lang.Override
       public boolean hasConnectivitySdkData() {
         return dataCase_ == 3;
       }
@@ -1769,17 +1773,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
        * @return The connectivitySdkData.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData getConnectivitySdkData() {
         if (connectivitySdkDataBuilder_ == null) {
           if (dataCase_ == 3) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData) data_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData.getDefaultInstance();
         } else {
           if (dataCase_ == 3) {
             return connectivitySdkDataBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData.getDefaultInstance();
         }
-        return com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
@@ -1827,8 +1833,9 @@ public final class ClientToken {
         } else {
           if (dataCase_ == 3) {
             connectivitySdkDataBuilder_.mergeFrom(value);
+          } else {
+            connectivitySdkDataBuilder_.setMessage(value);
           }
-          connectivitySdkDataBuilder_.setMessage(value);
         }
         dataCase_ = 3;
         return this;
@@ -1861,6 +1868,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.data.v0.ConnectivitySdkData connectivity_sdk_data = 3;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkDataOrBuilder getConnectivitySdkDataOrBuilder() {
         if ((dataCase_ == 3) && (connectivitySdkDataBuilder_ != null)) {
           return connectivitySdkDataBuilder_.getMessageOrBuilder();
@@ -1881,7 +1889,8 @@ public final class ClientToken {
           if (!(dataCase_ == 3)) {
             data_ = com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData.getDefaultInstance();
           }
-          connectivitySdkDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          connectivitySdkDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData.Builder, com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkDataOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.data.v0.Connectivity.ConnectivitySdkData) data_,
                   getParentForChildren(),
                   isClean());
@@ -1892,13 +1901,13 @@ public final class ClientToken {
         return connectivitySdkDataBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1929,10 +1938,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1997,7 +2007,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ChallengeAnswersRequest}
    */
-  public  static final class ChallengeAnswersRequest extends
+  public static final class ChallengeAnswersRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ChallengeAnswersRequest)
       ChallengeAnswersRequestOrBuilder {
@@ -2018,12 +2028,7 @@ public final class ClientToken {
       return new ChallengeAnswersRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ChallengeAnswersRequest_descriptor;
     }
@@ -2037,11 +2042,13 @@ public final class ClientToken {
     }
 
     public static final int STATE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object state_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object state_ = "";
     /**
      * <code>string state = 1;</code>
      * @return The state.
      */
+    @java.lang.Override
     public java.lang.String getState() {
       java.lang.Object ref = state_;
       if (ref instanceof java.lang.String) {
@@ -2058,6 +2065,7 @@ public final class ClientToken {
      * <code>string state = 1;</code>
      * @return The bytes for state.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getStateBytes() {
       java.lang.Object ref = state_;
@@ -2073,16 +2081,19 @@ public final class ClientToken {
     }
 
     public static final int ANSWERS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer> answers_;
     /**
      * <code>repeated .spotify.clienttoken.http.v0.ChallengeAnswer answers = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer> getAnswersList() {
       return answers_;
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.ChallengeAnswer answers = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswerOrBuilder> 
         getAnswersOrBuilderList() {
       return answers_;
@@ -2090,18 +2101,21 @@ public final class ClientToken {
     /**
      * <code>repeated .spotify.clienttoken.http.v0.ChallengeAnswer answers = 2;</code>
      */
+    @java.lang.Override
     public int getAnswersCount() {
       return answers_.size();
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.ChallengeAnswer answers = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer getAnswers(int index) {
       return answers_.get(index);
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.ChallengeAnswer answers = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswerOrBuilder getAnswersOrBuilder(
         int index) {
       return answers_.get(index);
@@ -2151,11 +2165,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2194,7 +2210,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ChallengeAnswersRequest}
@@ -2203,7 +2220,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ChallengeAnswersRequest)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ChallengeAnswersRequest_descriptor;
       }
@@ -2218,31 +2235,26 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getAnswersFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         state_ = "";
-
         if (answersBuilder_ == null) {
           answers_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          answers_ = null;
           answersBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -2269,53 +2281,31 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest(this);
-        int from_bitField0_ = bitField0_;
-        result.state_ = state_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest result) {
         if (answersBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             answers_ = java.util.Collections.unmodifiableList(answers_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.answers_ = answers_;
         } else {
           result.answers_ = answersBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswersRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.state_ = state_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object state_ = "";
@@ -2359,11 +2349,9 @@ public final class ClientToken {
        */
       public Builder setState(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         state_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2372,8 +2360,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearState() {
-        
         state_ = getDefaultInstance().getState();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -2384,12 +2372,10 @@ public final class ClientToken {
        */
       public Builder setStateBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         state_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2397,9 +2383,9 @@ public final class ClientToken {
       private java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer> answers_ =
         java.util.Collections.emptyList();
       private void ensureAnswersIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          answers_ = new java.util.ArrayList<>(answers_);
-          bitField0_ |= 0x00000001;
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          answers_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer>(answers_);
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -2549,7 +2535,7 @@ public final class ClientToken {
       public Builder clearAnswers() {
         if (answersBuilder_ == null) {
           answers_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           answersBuilder_.clear();
@@ -2623,9 +2609,10 @@ public final class ClientToken {
           com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswerOrBuilder> 
           getAnswersFieldBuilder() {
         if (answersBuilder_ == null) {
-          answersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          answersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswerOrBuilder>(
                   answers_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           answers_ = null;
@@ -2633,13 +2620,13 @@ public final class ClientToken {
         return answersBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2670,10 +2657,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -2745,7 +2733,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ClientTokenResponse}
    */
-  public  static final class ClientTokenResponse extends
+  public static final class ClientTokenResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ClientTokenResponse)
       ClientTokenResponseOrBuilder {
@@ -2765,12 +2753,7 @@ public final class ClientToken {
       return new ClientTokenResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientTokenResponse_descriptor;
     }
@@ -2784,6 +2767,7 @@ public final class ClientToken {
     }
 
     private int responseCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object response_;
     public enum ResponseCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -2792,7 +2776,7 @@ public final class ClientToken {
       CHALLENGES(3),
       RESPONSE_NOT_SET(0);
       private final int value;
-      ResponseCase(int value) {
+      private ResponseCase(int value) {
         this.value = value;
       }
       /**
@@ -2816,7 +2800,7 @@ public final class ClientToken {
       public int getNumber() {
         return this.value;
       }
-    }
+    };
 
     public ResponseCase
     getResponseCase() {
@@ -2825,20 +2809,20 @@ public final class ClientToken {
     }
 
     public static final int RESPONSE_TYPE_FIELD_NUMBER = 1;
-    private int responseType_;
+    private int responseType_ = 0;
     /**
      * <code>.spotify.clienttoken.http.v0.ClientTokenResponseType response_type = 1;</code>
      * @return The enum numeric value on the wire for responseType.
      */
-    public int getResponseTypeValue() {
+    @java.lang.Override public int getResponseTypeValue() {
       return responseType_;
     }
     /**
      * <code>.spotify.clienttoken.http.v0.ClientTokenResponseType response_type = 1;</code>
      * @return The responseType.
      */
-    public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType getResponseType() {
-      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType.valueOf(responseType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType getResponseType() {
+      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType.forNumber(responseType_);
       return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType.UNRECOGNIZED : result;
     }
 
@@ -2847,6 +2831,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
      * @return Whether the grantedToken field is set.
      */
+    @java.lang.Override
     public boolean hasGrantedToken() {
       return responseCase_ == 2;
     }
@@ -2854,6 +2839,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
      * @return The grantedToken.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse getGrantedToken() {
       if (responseCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse) response_;
@@ -2863,6 +2849,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponseOrBuilder getGrantedTokenOrBuilder() {
       if (responseCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse) response_;
@@ -2875,6 +2862,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
      * @return Whether the challenges field is set.
      */
+    @java.lang.Override
     public boolean hasChallenges() {
       return responseCase_ == 3;
     }
@@ -2882,6 +2870,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
      * @return The challenges.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse getChallenges() {
       if (responseCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse) response_;
@@ -2891,6 +2880,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponseOrBuilder getChallengesOrBuilder() {
       if (responseCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse) response_;
@@ -2942,11 +2932,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2985,7 +2977,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ClientTokenResponse}
@@ -2994,7 +2987,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ClientTokenResponse)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientTokenResponse_descriptor;
       }
@@ -3009,21 +3002,25 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         responseType_ = 0;
-
+        if (grantedTokenBuilder_ != null) {
+          grantedTokenBuilder_.clear();
+        }
+        if (challengesBuilder_ != null) {
+          challengesBuilder_.clear();
+        }
         responseCase_ = 0;
         response_ = null;
         return this;
@@ -3052,58 +3049,32 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse(this);
-        result.responseType_ = responseType_;
-        if (responseCase_ == 2) {
-          if (grantedTokenBuilder_ == null) {
-            result.response_ = response_;
-          } else {
-            result.response_ = grantedTokenBuilder_.build();
-          }
-        }
-        if (responseCase_ == 3) {
-          if (challengesBuilder_ == null) {
-            result.response_ = response_;
-          } else {
-            result.response_ = challengesBuilder_.build();
-          }
-        }
-        result.responseCase_ = responseCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.responseType_ = responseType_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartialOneofs(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponse result) {
+        result.responseCase_ = responseCase_;
+        result.response_ = this.response_;
+        if (responseCase_ == 2 &&
+            grantedTokenBuilder_ != null) {
+          result.response_ = grantedTokenBuilder_.build();
+        }
+        if (responseCase_ == 3 &&
+            challengesBuilder_ != null) {
+          result.response_ = challengesBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int responseCase_ = 0;
       private java.lang.Object response_;
       public ResponseCase
@@ -3119,13 +3090,14 @@ public final class ClientToken {
         return this;
       }
 
+      private int bitField0_;
 
       private int responseType_ = 0;
       /**
        * <code>.spotify.clienttoken.http.v0.ClientTokenResponseType response_type = 1;</code>
        * @return The enum numeric value on the wire for responseType.
        */
-      public int getResponseTypeValue() {
+      @java.lang.Override public int getResponseTypeValue() {
         return responseType_;
       }
       /**
@@ -3135,6 +3107,7 @@ public final class ClientToken {
        */
       public Builder setResponseTypeValue(int value) {
         responseType_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3142,8 +3115,9 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientTokenResponseType response_type = 1;</code>
        * @return The responseType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType getResponseType() {
-        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType.valueOf(responseType_);
+        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType.forNumber(responseType_);
         return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenResponseType.UNRECOGNIZED : result;
       }
       /**
@@ -3155,7 +3129,7 @@ public final class ClientToken {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         responseType_ = value.getNumber();
         onChanged();
         return this;
@@ -3165,7 +3139,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearResponseType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         responseType_ = 0;
         onChanged();
         return this;
@@ -3177,6 +3151,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
        * @return Whether the grantedToken field is set.
        */
+      @java.lang.Override
       public boolean hasGrantedToken() {
         return responseCase_ == 2;
       }
@@ -3184,17 +3159,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
        * @return The grantedToken.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse getGrantedToken() {
         if (grantedTokenBuilder_ == null) {
           if (responseCase_ == 2) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse) response_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse.getDefaultInstance();
         } else {
           if (responseCase_ == 2) {
             return grantedTokenBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse.getDefaultInstance();
         }
-        return GrantedTokenResponse.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
@@ -3242,8 +3219,9 @@ public final class ClientToken {
         } else {
           if (responseCase_ == 2) {
             grantedTokenBuilder_.mergeFrom(value);
+          } else {
+            grantedTokenBuilder_.setMessage(value);
           }
-          grantedTokenBuilder_.setMessage(value);
         }
         responseCase_ = 2;
         return this;
@@ -3276,6 +3254,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.GrantedTokenResponse granted_token = 2;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponseOrBuilder getGrantedTokenOrBuilder() {
         if ((responseCase_ == 2) && (grantedTokenBuilder_ != null)) {
           return grantedTokenBuilder_.getMessageOrBuilder();
@@ -3296,7 +3275,8 @@ public final class ClientToken {
           if (!(responseCase_ == 2)) {
             response_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse.getDefaultInstance();
           }
-          grantedTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          grantedTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponseOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse) response_,
                   getParentForChildren(),
                   isClean());
@@ -3313,6 +3293,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
        * @return Whether the challenges field is set.
        */
+      @java.lang.Override
       public boolean hasChallenges() {
         return responseCase_ == 3;
       }
@@ -3320,17 +3301,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
        * @return The challenges.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse getChallenges() {
         if (challengesBuilder_ == null) {
           if (responseCase_ == 3) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse) response_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse.getDefaultInstance();
         } else {
           if (responseCase_ == 3) {
             return challengesBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse.getDefaultInstance();
         }
-        return ChallengesResponse.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
@@ -3378,8 +3361,9 @@ public final class ClientToken {
         } else {
           if (responseCase_ == 3) {
             challengesBuilder_.mergeFrom(value);
+          } else {
+            challengesBuilder_.setMessage(value);
           }
-          challengesBuilder_.setMessage(value);
         }
         responseCase_ = 3;
         return this;
@@ -3412,6 +3396,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.ChallengesResponse challenges = 3;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponseOrBuilder getChallengesOrBuilder() {
         if ((responseCase_ == 3) && (challengesBuilder_ != null)) {
           return challengesBuilder_.getMessageOrBuilder();
@@ -3432,7 +3417,8 @@ public final class ClientToken {
           if (!(responseCase_ == 3)) {
             response_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse.getDefaultInstance();
           }
-          challengesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          challengesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponseOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse) response_,
                   getParentForChildren(),
                   isClean());
@@ -3443,13 +3429,13 @@ public final class ClientToken {
         return challengesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3480,10 +3466,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -3524,7 +3511,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.TokenDomain}
    */
-  public  static final class TokenDomain extends
+  public static final class TokenDomain extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.TokenDomain)
       TokenDomainOrBuilder {
@@ -3544,12 +3531,7 @@ public final class ClientToken {
       return new TokenDomain();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_TokenDomain_descriptor;
     }
@@ -3563,11 +3545,13 @@ public final class ClientToken {
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 1;
-    private volatile java.lang.Object domain_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object domain_ = "";
     /**
      * <code>string domain = 1;</code>
      * @return The domain.
      */
+    @java.lang.Override
     public java.lang.String getDomain() {
       java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
@@ -3584,6 +3568,7 @@ public final class ClientToken {
      * <code>string domain = 1;</code>
      * @return The bytes for domain.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDomainBytes() {
       java.lang.Object ref = domain_;
@@ -3642,11 +3627,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3685,7 +3672,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.TokenDomain}
@@ -3694,7 +3682,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.TokenDomain)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomainOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_TokenDomain_descriptor;
       }
@@ -3709,21 +3697,19 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         domain_ = "";
-
         return this;
       }
 
@@ -3750,43 +3736,19 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain(this);
-        result.domain_ = domain_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.domain_ = domain_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object domain_ = "";
       /**
@@ -3829,11 +3791,9 @@ public final class ClientToken {
        */
       public Builder setDomain(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         domain_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3842,8 +3802,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearDomain() {
-        
         domain_ = getDefaultInstance().getDomain();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -3854,23 +3814,21 @@ public final class ClientToken {
        */
       public Builder setDomainBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         domain_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3901,10 +3859,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -3981,7 +3940,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.GrantedTokenResponse}
    */
-  public  static final class GrantedTokenResponse extends
+  public static final class GrantedTokenResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.GrantedTokenResponse)
       GrantedTokenResponseOrBuilder {
@@ -4002,12 +3961,7 @@ public final class ClientToken {
       return new GrantedTokenResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_GrantedTokenResponse_descriptor;
     }
@@ -4021,11 +3975,13 @@ public final class ClientToken {
     }
 
     public static final int TOKEN_FIELD_NUMBER = 1;
-    private volatile java.lang.Object token_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object token_ = "";
     /**
      * <code>string token = 1;</code>
      * @return The token.
      */
+    @java.lang.Override
     public java.lang.String getToken() {
       java.lang.Object ref = token_;
       if (ref instanceof java.lang.String) {
@@ -4042,6 +3998,7 @@ public final class ClientToken {
      * <code>string token = 1;</code>
      * @return The bytes for token.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTokenBytes() {
       java.lang.Object ref = token_;
@@ -4057,36 +4014,41 @@ public final class ClientToken {
     }
 
     public static final int EXPIRES_AFTER_SECONDS_FIELD_NUMBER = 2;
-    private int expiresAfterSeconds_;
+    private int expiresAfterSeconds_ = 0;
     /**
      * <code>int32 expires_after_seconds = 2;</code>
      * @return The expiresAfterSeconds.
      */
+    @java.lang.Override
     public int getExpiresAfterSeconds() {
       return expiresAfterSeconds_;
     }
 
     public static final int REFRESH_AFTER_SECONDS_FIELD_NUMBER = 3;
-    private int refreshAfterSeconds_;
+    private int refreshAfterSeconds_ = 0;
     /**
      * <code>int32 refresh_after_seconds = 3;</code>
      * @return The refreshAfterSeconds.
      */
+    @java.lang.Override
     public int getRefreshAfterSeconds() {
       return refreshAfterSeconds_;
     }
 
     public static final int DOMAINS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain> domains_;
     /**
      * <code>repeated .spotify.clienttoken.http.v0.TokenDomain domains = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain> getDomainsList() {
       return domains_;
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.TokenDomain domains = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomainOrBuilder> 
         getDomainsOrBuilderList() {
       return domains_;
@@ -4094,18 +4056,21 @@ public final class ClientToken {
     /**
      * <code>repeated .spotify.clienttoken.http.v0.TokenDomain domains = 4;</code>
      */
+    @java.lang.Override
     public int getDomainsCount() {
       return domains_.size();
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.TokenDomain domains = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain getDomains(int index) {
       return domains_.get(index);
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.TokenDomain domains = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomainOrBuilder getDomainsOrBuilder(
         int index) {
       return domains_.get(index);
@@ -4155,11 +4120,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4198,7 +4165,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.GrantedTokenResponse}
@@ -4207,7 +4175,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.GrantedTokenResponse)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_GrantedTokenResponse_descriptor;
       }
@@ -4222,35 +4190,28 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDomainsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         token_ = "";
-
         expiresAfterSeconds_ = 0;
-
         refreshAfterSeconds_ = 0;
-
         if (domainsBuilder_ == null) {
           domains_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          domains_ = null;
           domainsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -4277,55 +4238,37 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse(this);
-        int from_bitField0_ = bitField0_;
-        result.token_ = token_;
-        result.expiresAfterSeconds_ = expiresAfterSeconds_;
-        result.refreshAfterSeconds_ = refreshAfterSeconds_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse result) {
         if (domainsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             domains_ = java.util.Collections.unmodifiableList(domains_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.domains_ = domains_;
         } else {
           result.domains_ = domainsBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.GrantedTokenResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.token_ = token_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.expiresAfterSeconds_ = expiresAfterSeconds_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.refreshAfterSeconds_ = refreshAfterSeconds_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object token_ = "";
@@ -4369,11 +4312,9 @@ public final class ClientToken {
        */
       public Builder setToken(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         token_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4382,8 +4323,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearToken() {
-        
         token_ = getDefaultInstance().getToken();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -4394,12 +4335,10 @@ public final class ClientToken {
        */
       public Builder setTokenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         token_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -4409,6 +4348,7 @@ public final class ClientToken {
        * <code>int32 expires_after_seconds = 2;</code>
        * @return The expiresAfterSeconds.
        */
+      @java.lang.Override
       public int getExpiresAfterSeconds() {
         return expiresAfterSeconds_;
       }
@@ -4418,8 +4358,9 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder setExpiresAfterSeconds(int value) {
-        
+
         expiresAfterSeconds_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4428,7 +4369,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearExpiresAfterSeconds() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         expiresAfterSeconds_ = 0;
         onChanged();
         return this;
@@ -4439,6 +4380,7 @@ public final class ClientToken {
        * <code>int32 refresh_after_seconds = 3;</code>
        * @return The refreshAfterSeconds.
        */
+      @java.lang.Override
       public int getRefreshAfterSeconds() {
         return refreshAfterSeconds_;
       }
@@ -4448,8 +4390,9 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder setRefreshAfterSeconds(int value) {
-        
+
         refreshAfterSeconds_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -4458,7 +4401,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearRefreshAfterSeconds() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         refreshAfterSeconds_ = 0;
         onChanged();
         return this;
@@ -4467,9 +4410,9 @@ public final class ClientToken {
       private java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain> domains_ =
         java.util.Collections.emptyList();
       private void ensureDomainsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          domains_ = new java.util.ArrayList<>(domains_);
-          bitField0_ |= 0x00000001;
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          domains_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain>(domains_);
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -4619,7 +4562,7 @@ public final class ClientToken {
       public Builder clearDomains() {
         if (domainsBuilder_ == null) {
           domains_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           domainsBuilder_.clear();
@@ -4693,9 +4636,10 @@ public final class ClientToken {
           com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomainOrBuilder> 
           getDomainsFieldBuilder() {
         if (domainsBuilder_ == null) {
-          domainsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          domainsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomain.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.TokenDomainOrBuilder>(
                   domains_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           domains_ = null;
@@ -4703,13 +4647,13 @@ public final class ClientToken {
         return domainsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4740,10 +4684,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -4808,7 +4753,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ChallengesResponse}
    */
-  public  static final class ChallengesResponse extends
+  public static final class ChallengesResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ChallengesResponse)
       ChallengesResponseOrBuilder {
@@ -4829,12 +4774,7 @@ public final class ClientToken {
       return new ChallengesResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ChallengesResponse_descriptor;
     }
@@ -4848,11 +4788,13 @@ public final class ClientToken {
     }
 
     public static final int STATE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object state_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object state_ = "";
     /**
      * <code>string state = 1;</code>
      * @return The state.
      */
+    @java.lang.Override
     public java.lang.String getState() {
       java.lang.Object ref = state_;
       if (ref instanceof java.lang.String) {
@@ -4869,6 +4811,7 @@ public final class ClientToken {
      * <code>string state = 1;</code>
      * @return The bytes for state.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getStateBytes() {
       java.lang.Object ref = state_;
@@ -4884,16 +4827,19 @@ public final class ClientToken {
     }
 
     public static final int CHALLENGES_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge> challenges_;
     /**
      * <code>repeated .spotify.clienttoken.http.v0.Challenge challenges = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge> getChallengesList() {
       return challenges_;
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.Challenge challenges = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeOrBuilder> 
         getChallengesOrBuilderList() {
       return challenges_;
@@ -4901,18 +4847,21 @@ public final class ClientToken {
     /**
      * <code>repeated .spotify.clienttoken.http.v0.Challenge challenges = 2;</code>
      */
+    @java.lang.Override
     public int getChallengesCount() {
       return challenges_.size();
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.Challenge challenges = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge getChallenges(int index) {
       return challenges_.get(index);
     }
     /**
      * <code>repeated .spotify.clienttoken.http.v0.Challenge challenges = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeOrBuilder getChallengesOrBuilder(
         int index) {
       return challenges_.get(index);
@@ -4962,11 +4911,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5005,7 +4956,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ChallengesResponse}
@@ -5014,7 +4966,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ChallengesResponse)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ChallengesResponse_descriptor;
       }
@@ -5029,31 +4981,26 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getChallengesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         state_ = "";
-
         if (challengesBuilder_ == null) {
           challenges_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          challenges_ = null;
           challengesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -5080,53 +5027,31 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse(this);
-        int from_bitField0_ = bitField0_;
-        result.state_ = state_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse result) {
         if (challengesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             challenges_ = java.util.Collections.unmodifiableList(challenges_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.challenges_ = challenges_;
         } else {
           result.challenges_ = challengesBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengesResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.state_ = state_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object state_ = "";
@@ -5170,11 +5095,9 @@ public final class ClientToken {
        */
       public Builder setState(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         state_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5183,8 +5106,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearState() {
-        
         state_ = getDefaultInstance().getState();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -5195,12 +5118,10 @@ public final class ClientToken {
        */
       public Builder setStateBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         state_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5208,9 +5129,9 @@ public final class ClientToken {
       private java.util.List<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge> challenges_ =
         java.util.Collections.emptyList();
       private void ensureChallengesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          challenges_ = new java.util.ArrayList<>(challenges_);
-          bitField0_ |= 0x00000001;
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          challenges_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge>(challenges_);
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -5360,7 +5281,7 @@ public final class ClientToken {
       public Builder clearChallenges() {
         if (challengesBuilder_ == null) {
           challenges_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           challengesBuilder_.clear();
@@ -5434,9 +5355,10 @@ public final class ClientToken {
           com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeOrBuilder> 
           getChallengesFieldBuilder() {
         if (challengesBuilder_ == null) {
-          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeOrBuilder>(
                   challenges_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           challenges_ = null;
@@ -5444,13 +5366,13 @@ public final class ClientToken {
         return challengesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5481,10 +5403,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5525,7 +5448,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ClientSecretParameters}
    */
-  public  static final class ClientSecretParameters extends
+  public static final class ClientSecretParameters extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ClientSecretParameters)
       ClientSecretParametersOrBuilder {
@@ -5545,12 +5468,7 @@ public final class ClientToken {
       return new ClientSecretParameters();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientSecretParameters_descriptor;
     }
@@ -5564,11 +5482,13 @@ public final class ClientToken {
     }
 
     public static final int SALT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object salt_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object salt_ = "";
     /**
      * <code>string salt = 1;</code>
      * @return The salt.
      */
+    @java.lang.Override
     public java.lang.String getSalt() {
       java.lang.Object ref = salt_;
       if (ref instanceof java.lang.String) {
@@ -5585,6 +5505,7 @@ public final class ClientToken {
      * <code>string salt = 1;</code>
      * @return The bytes for salt.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSaltBytes() {
       java.lang.Object ref = salt_;
@@ -5643,11 +5564,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5686,7 +5609,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ClientSecretParameters}
@@ -5695,7 +5619,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ClientSecretParameters)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParametersOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientSecretParameters_descriptor;
       }
@@ -5710,21 +5634,19 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         salt_ = "";
-
         return this;
       }
 
@@ -5751,43 +5673,19 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters(this);
-        result.salt_ = salt_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.salt_ = salt_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object salt_ = "";
       /**
@@ -5830,11 +5728,9 @@ public final class ClientToken {
        */
       public Builder setSalt(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         salt_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5843,8 +5739,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearSalt() {
-        
         salt_ = getDefaultInstance().getSalt();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -5855,23 +5751,21 @@ public final class ClientToken {
        */
       public Builder setSaltBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         salt_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5902,10 +5796,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5971,7 +5866,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.EvaluateJSParameters}
    */
-  public  static final class EvaluateJSParameters extends
+  public static final class EvaluateJSParameters extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.EvaluateJSParameters)
       EvaluateJSParametersOrBuilder {
@@ -5982,7 +5877,8 @@ public final class ClientToken {
     }
     private EvaluateJSParameters() {
       code_ = "";
-      libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
+      libraries_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -5992,12 +5888,7 @@ public final class ClientToken {
       return new EvaluateJSParameters();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_EvaluateJSParameters_descriptor;
     }
@@ -6011,11 +5902,13 @@ public final class ClientToken {
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object code_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object code_ = "";
     /**
      * <code>string code = 1;</code>
      * @return The code.
      */
+    @java.lang.Override
     public java.lang.String getCode() {
       java.lang.Object ref = code_;
       if (ref instanceof java.lang.String) {
@@ -6032,6 +5925,7 @@ public final class ClientToken {
      * <code>string code = 1;</code>
      * @return The bytes for code.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCodeBytes() {
       java.lang.Object ref = code_;
@@ -6047,7 +5941,9 @@ public final class ClientToken {
     }
 
     public static final int LIBRARIES_FIELD_NUMBER = 2;
-    private com.google.protobuf.LazyStringList libraries_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList libraries_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string libraries = 2;</code>
      * @return A list containing the libraries.
@@ -6125,11 +6021,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6168,7 +6066,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.EvaluateJSParameters}
@@ -6177,7 +6076,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.EvaluateJSParameters)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParametersOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_EvaluateJSParameters_descriptor;
       }
@@ -6192,23 +6091,21 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         code_ = "";
-
-        libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+        libraries_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -6235,49 +6132,22 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters(this);
-        int from_bitField0_ = bitField0_;
-        result.code_ = code_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          libraries_ = libraries_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.libraries_ = libraries_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.code_ = code_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          libraries_.makeImmutable();
+          result.libraries_ = libraries_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object code_ = "";
@@ -6321,11 +6191,9 @@ public final class ClientToken {
        */
       public Builder setCode(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         code_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6334,8 +6202,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearCode() {
-        
         code_ = getDefaultInstance().getCode();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -6346,23 +6214,21 @@ public final class ClientToken {
        */
       public Builder setCodeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         code_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureLibrariesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+      private com.google.protobuf.LazyStringArrayList libraries_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureLibrariesIsMutable() {
+        if (!libraries_.isModifiable()) {
           libraries_ = new com.google.protobuf.LazyStringArrayList(libraries_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000002;
       }
       /**
        * <code>repeated string libraries = 2;</code>
@@ -6370,7 +6236,8 @@ public final class ClientToken {
        */
       public com.google.protobuf.ProtocolStringList
           getLibrariesList() {
-        return libraries_.getUnmodifiableView();
+        libraries_.makeImmutable();
+        return libraries_;
       }
       /**
        * <code>repeated string libraries = 2;</code>
@@ -6404,11 +6271,10 @@ public final class ClientToken {
        */
       public Builder setLibraries(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureLibrariesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureLibrariesIsMutable();
         libraries_.set(index, value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6419,11 +6285,10 @@ public final class ClientToken {
        */
       public Builder addLibraries(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureLibrariesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureLibrariesIsMutable();
         libraries_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6437,6 +6302,7 @@ public final class ClientToken {
         ensureLibrariesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, libraries_);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6445,8 +6311,9 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearLibraries() {
-        libraries_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+        libraries_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);;
         onChanged();
         return this;
       }
@@ -6457,23 +6324,22 @@ public final class ClientToken {
        */
       public Builder addLibrariesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureLibrariesIsMutable();
         libraries_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6504,10 +6370,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -6554,7 +6421,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.HashCashParameters}
    */
-  public  static final class HashCashParameters extends
+  public static final class HashCashParameters extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.HashCashParameters)
       HashCashParametersOrBuilder {
@@ -6574,12 +6441,7 @@ public final class ClientToken {
       return new HashCashParameters();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_HashCashParameters_descriptor;
     }
@@ -6593,21 +6455,24 @@ public final class ClientToken {
     }
 
     public static final int LENGTH_FIELD_NUMBER = 1;
-    private int length_;
+    private int length_ = 0;
     /**
      * <code>int32 length = 1;</code>
      * @return The length.
      */
+    @java.lang.Override
     public int getLength() {
       return length_;
     }
 
     public static final int PREFIX_FIELD_NUMBER = 2;
-    private volatile java.lang.Object prefix_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object prefix_ = "";
     /**
      * <code>string prefix = 2;</code>
      * @return The prefix.
      */
+    @java.lang.Override
     public java.lang.String getPrefix() {
       java.lang.Object ref = prefix_;
       if (ref instanceof java.lang.String) {
@@ -6624,6 +6489,7 @@ public final class ClientToken {
      * <code>string prefix = 2;</code>
      * @return The bytes for prefix.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPrefixBytes() {
       java.lang.Object ref = prefix_;
@@ -6682,11 +6548,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6725,7 +6593,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.HashCashParameters}
@@ -6734,7 +6603,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.HashCashParameters)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParametersOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_HashCashParameters_descriptor;
       }
@@ -6749,23 +6618,20 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         length_ = 0;
-
         prefix_ = "";
-
         return this;
       }
 
@@ -6792,50 +6658,29 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters(this);
-        result.length_ = length_;
-        result.prefix_ = prefix_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.length_ = length_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.prefix_ = prefix_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private int length_ ;
       /**
        * <code>int32 length = 1;</code>
        * @return The length.
        */
+      @java.lang.Override
       public int getLength() {
         return length_;
       }
@@ -6845,8 +6690,9 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder setLength(int value) {
-        
+
         length_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6855,7 +6701,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearLength() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         length_ = 0;
         onChanged();
         return this;
@@ -6902,11 +6748,9 @@ public final class ClientToken {
        */
       public Builder setPrefix(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         prefix_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6915,8 +6759,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearPrefix() {
-        
         prefix_ = getDefaultInstance().getPrefix();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -6927,23 +6771,21 @@ public final class ClientToken {
        */
       public Builder setPrefixBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         prefix_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6974,10 +6816,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -7064,7 +6907,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.Challenge}
    */
-  public  static final class Challenge extends
+  public static final class Challenge extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.Challenge)
       ChallengeOrBuilder {
@@ -7084,12 +6927,7 @@ public final class ClientToken {
       return new Challenge();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_Challenge_descriptor;
     }
@@ -7103,6 +6941,7 @@ public final class ClientToken {
     }
 
     private int parametersCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object parameters_;
     public enum ParametersCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -7112,7 +6951,7 @@ public final class ClientToken {
       EVALUATE_HASHCASH_PARAMETERS(4),
       PARAMETERS_NOT_SET(0);
       private final int value;
-      ParametersCase(int value) {
+      private ParametersCase(int value) {
         this.value = value;
       }
       /**
@@ -7137,7 +6976,7 @@ public final class ClientToken {
       public int getNumber() {
         return this.value;
       }
-    }
+    };
 
     public ParametersCase
     getParametersCase() {
@@ -7146,20 +6985,20 @@ public final class ClientToken {
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
+    private int type_ = 0;
     /**
      * <code>.spotify.clienttoken.http.v0.ChallengeType type = 1;</code>
      * @return The enum numeric value on the wire for type.
      */
-    public int getTypeValue() {
+    @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
      * <code>.spotify.clienttoken.http.v0.ChallengeType type = 1;</code>
      * @return The type.
      */
-    public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType getType() {
-      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.valueOf(type_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType getType() {
+      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.forNumber(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.UNRECOGNIZED : result;
     }
 
@@ -7168,6 +7007,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
      * @return Whether the clientSecretParameters field is set.
      */
+    @java.lang.Override
     public boolean hasClientSecretParameters() {
       return parametersCase_ == 2;
     }
@@ -7175,6 +7015,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
      * @return The clientSecretParameters.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters getClientSecretParameters() {
       if (parametersCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters) parameters_;
@@ -7184,6 +7025,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParametersOrBuilder getClientSecretParametersOrBuilder() {
       if (parametersCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters) parameters_;
@@ -7196,6 +7038,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
      * @return Whether the evaluateJsParameters field is set.
      */
+    @java.lang.Override
     public boolean hasEvaluateJsParameters() {
       return parametersCase_ == 3;
     }
@@ -7203,6 +7046,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
      * @return The evaluateJsParameters.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters getEvaluateJsParameters() {
       if (parametersCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters) parameters_;
@@ -7212,6 +7056,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParametersOrBuilder getEvaluateJsParametersOrBuilder() {
       if (parametersCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters) parameters_;
@@ -7224,6 +7069,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
      * @return Whether the evaluateHashcashParameters field is set.
      */
+    @java.lang.Override
     public boolean hasEvaluateHashcashParameters() {
       return parametersCase_ == 4;
     }
@@ -7231,6 +7077,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
      * @return The evaluateHashcashParameters.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters getEvaluateHashcashParameters() {
       if (parametersCase_ == 4) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters) parameters_;
@@ -7240,6 +7087,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParametersOrBuilder getEvaluateHashcashParametersOrBuilder() {
       if (parametersCase_ == 4) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters) parameters_;
@@ -7291,11 +7139,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7334,7 +7184,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.Challenge}
@@ -7343,7 +7194,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.Challenge)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_Challenge_descriptor;
       }
@@ -7358,21 +7209,28 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         type_ = 0;
-
+        if (clientSecretParametersBuilder_ != null) {
+          clientSecretParametersBuilder_.clear();
+        }
+        if (evaluateJsParametersBuilder_ != null) {
+          evaluateJsParametersBuilder_.clear();
+        }
+        if (evaluateHashcashParametersBuilder_ != null) {
+          evaluateHashcashParametersBuilder_.clear();
+        }
         parametersCase_ = 0;
         parameters_ = null;
         return this;
@@ -7401,65 +7259,36 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge(this);
-        result.type_ = type_;
-        if (parametersCase_ == 2) {
-          if (clientSecretParametersBuilder_ == null) {
-            result.parameters_ = parameters_;
-          } else {
-            result.parameters_ = clientSecretParametersBuilder_.build();
-          }
-        }
-        if (parametersCase_ == 3) {
-          if (evaluateJsParametersBuilder_ == null) {
-            result.parameters_ = parameters_;
-          } else {
-            result.parameters_ = evaluateJsParametersBuilder_.build();
-          }
-        }
-        if (parametersCase_ == 4) {
-          if (evaluateHashcashParametersBuilder_ == null) {
-            result.parameters_ = parameters_;
-          } else {
-            result.parameters_ = evaluateHashcashParametersBuilder_.build();
-          }
-        }
-        result.parametersCase_ = parametersCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartialOneofs(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.Challenge result) {
+        result.parametersCase_ = parametersCase_;
+        result.parameters_ = this.parameters_;
+        if (parametersCase_ == 2 &&
+            clientSecretParametersBuilder_ != null) {
+          result.parameters_ = clientSecretParametersBuilder_.build();
+        }
+        if (parametersCase_ == 3 &&
+            evaluateJsParametersBuilder_ != null) {
+          result.parameters_ = evaluateJsParametersBuilder_.build();
+        }
+        if (parametersCase_ == 4 &&
+            evaluateHashcashParametersBuilder_ != null) {
+          result.parameters_ = evaluateHashcashParametersBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int parametersCase_ = 0;
       private java.lang.Object parameters_;
       public ParametersCase
@@ -7475,13 +7304,14 @@ public final class ClientToken {
         return this;
       }
 
+      private int bitField0_;
 
       private int type_ = 0;
       /**
        * <code>.spotify.clienttoken.http.v0.ChallengeType type = 1;</code>
        * @return The enum numeric value on the wire for type.
        */
-      public int getTypeValue() {
+      @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
@@ -7491,6 +7321,7 @@ public final class ClientToken {
        */
       public Builder setTypeValue(int value) {
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7498,8 +7329,9 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ChallengeType type = 1;</code>
        * @return The type.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType getType() {
-        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.valueOf(type_);
+        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.forNumber(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.UNRECOGNIZED : result;
       }
       /**
@@ -7511,7 +7343,7 @@ public final class ClientToken {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -7521,7 +7353,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         type_ = 0;
         onChanged();
         return this;
@@ -7533,6 +7365,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
        * @return Whether the clientSecretParameters field is set.
        */
+      @java.lang.Override
       public boolean hasClientSecretParameters() {
         return parametersCase_ == 2;
       }
@@ -7540,17 +7373,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
        * @return The clientSecretParameters.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters getClientSecretParameters() {
         if (clientSecretParametersBuilder_ == null) {
           if (parametersCase_ == 2) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters) parameters_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters.getDefaultInstance();
         } else {
           if (parametersCase_ == 2) {
             return clientSecretParametersBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters.getDefaultInstance();
         }
-        return ClientSecretParameters.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
@@ -7598,8 +7433,9 @@ public final class ClientToken {
         } else {
           if (parametersCase_ == 2) {
             clientSecretParametersBuilder_.mergeFrom(value);
+          } else {
+            clientSecretParametersBuilder_.setMessage(value);
           }
-          clientSecretParametersBuilder_.setMessage(value);
         }
         parametersCase_ = 2;
         return this;
@@ -7632,6 +7468,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.ClientSecretParameters client_secret_parameters = 2;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParametersOrBuilder getClientSecretParametersOrBuilder() {
         if ((parametersCase_ == 2) && (clientSecretParametersBuilder_ != null)) {
           return clientSecretParametersBuilder_.getMessageOrBuilder();
@@ -7652,7 +7489,8 @@ public final class ClientToken {
           if (!(parametersCase_ == 2)) {
             parameters_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters.getDefaultInstance();
           }
-          clientSecretParametersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          clientSecretParametersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParametersOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretParameters) parameters_,
                   getParentForChildren(),
                   isClean());
@@ -7669,6 +7507,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
        * @return Whether the evaluateJsParameters field is set.
        */
+      @java.lang.Override
       public boolean hasEvaluateJsParameters() {
         return parametersCase_ == 3;
       }
@@ -7676,17 +7515,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
        * @return The evaluateJsParameters.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters getEvaluateJsParameters() {
         if (evaluateJsParametersBuilder_ == null) {
           if (parametersCase_ == 3) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters) parameters_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters.getDefaultInstance();
         } else {
           if (parametersCase_ == 3) {
             return evaluateJsParametersBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters.getDefaultInstance();
         }
-        return EvaluateJSParameters.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
@@ -7734,8 +7575,9 @@ public final class ClientToken {
         } else {
           if (parametersCase_ == 3) {
             evaluateJsParametersBuilder_.mergeFrom(value);
+          } else {
+            evaluateJsParametersBuilder_.setMessage(value);
           }
-          evaluateJsParametersBuilder_.setMessage(value);
         }
         parametersCase_ = 3;
         return this;
@@ -7768,6 +7610,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.EvaluateJSParameters evaluate_js_parameters = 3;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParametersOrBuilder getEvaluateJsParametersOrBuilder() {
         if ((parametersCase_ == 3) && (evaluateJsParametersBuilder_ != null)) {
           return evaluateJsParametersBuilder_.getMessageOrBuilder();
@@ -7788,7 +7631,8 @@ public final class ClientToken {
           if (!(parametersCase_ == 3)) {
             parameters_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters.getDefaultInstance();
           }
-          evaluateJsParametersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          evaluateJsParametersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParametersOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSParameters) parameters_,
                   getParentForChildren(),
                   isClean());
@@ -7805,6 +7649,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
        * @return Whether the evaluateHashcashParameters field is set.
        */
+      @java.lang.Override
       public boolean hasEvaluateHashcashParameters() {
         return parametersCase_ == 4;
       }
@@ -7812,17 +7657,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
        * @return The evaluateHashcashParameters.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters getEvaluateHashcashParameters() {
         if (evaluateHashcashParametersBuilder_ == null) {
           if (parametersCase_ == 4) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters) parameters_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters.getDefaultInstance();
         } else {
           if (parametersCase_ == 4) {
             return evaluateHashcashParametersBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters.getDefaultInstance();
         }
-        return HashCashParameters.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
@@ -7870,8 +7717,9 @@ public final class ClientToken {
         } else {
           if (parametersCase_ == 4) {
             evaluateHashcashParametersBuilder_.mergeFrom(value);
+          } else {
+            evaluateHashcashParametersBuilder_.setMessage(value);
           }
-          evaluateHashcashParametersBuilder_.setMessage(value);
         }
         parametersCase_ = 4;
         return this;
@@ -7904,6 +7752,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.HashCashParameters evaluate_hashcash_parameters = 4;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParametersOrBuilder getEvaluateHashcashParametersOrBuilder() {
         if ((parametersCase_ == 4) && (evaluateHashcashParametersBuilder_ != null)) {
           return evaluateHashcashParametersBuilder_.getMessageOrBuilder();
@@ -7924,7 +7773,8 @@ public final class ClientToken {
           if (!(parametersCase_ == 4)) {
             parameters_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters.getDefaultInstance();
           }
-          evaluateHashcashParametersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          evaluateHashcashParametersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParametersOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashParameters) parameters_,
                   getParentForChildren(),
                   isClean());
@@ -7935,13 +7785,13 @@ public final class ClientToken {
         return evaluateHashcashParametersBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -7972,10 +7822,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -8016,7 +7867,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ClientSecretHMACAnswer}
    */
-  public  static final class ClientSecretHMACAnswer extends
+  public static final class ClientSecretHMACAnswer extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ClientSecretHMACAnswer)
       ClientSecretHMACAnswerOrBuilder {
@@ -8036,12 +7887,7 @@ public final class ClientToken {
       return new ClientSecretHMACAnswer();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientSecretHMACAnswer_descriptor;
     }
@@ -8055,11 +7901,13 @@ public final class ClientToken {
     }
 
     public static final int HMAC_FIELD_NUMBER = 1;
-    private volatile java.lang.Object hmac_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object hmac_ = "";
     /**
      * <code>string hmac = 1;</code>
      * @return The hmac.
      */
+    @java.lang.Override
     public java.lang.String getHmac() {
       java.lang.Object ref = hmac_;
       if (ref instanceof java.lang.String) {
@@ -8076,6 +7924,7 @@ public final class ClientToken {
      * <code>string hmac = 1;</code>
      * @return The bytes for hmac.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getHmacBytes() {
       java.lang.Object ref = hmac_;
@@ -8134,11 +7983,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8177,7 +8028,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ClientSecretHMACAnswer}
@@ -8186,7 +8038,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ClientSecretHMACAnswer)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswerOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientSecretHMACAnswer_descriptor;
       }
@@ -8201,21 +8053,19 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         hmac_ = "";
-
         return this;
       }
 
@@ -8242,43 +8092,19 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer(this);
-        result.hmac_ = hmac_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.hmac_ = hmac_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object hmac_ = "";
       /**
@@ -8321,11 +8147,9 @@ public final class ClientToken {
        */
       public Builder setHmac(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         hmac_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -8334,8 +8158,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearHmac() {
-        
         hmac_ = getDefaultInstance().getHmac();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -8346,23 +8170,21 @@ public final class ClientToken {
        */
       public Builder setHmacBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         hmac_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8393,10 +8215,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -8437,7 +8260,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.EvaluateJSAnswer}
    */
-  public  static final class EvaluateJSAnswer extends
+  public static final class EvaluateJSAnswer extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.EvaluateJSAnswer)
       EvaluateJSAnswerOrBuilder {
@@ -8457,12 +8280,7 @@ public final class ClientToken {
       return new EvaluateJSAnswer();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_EvaluateJSAnswer_descriptor;
     }
@@ -8476,11 +8294,13 @@ public final class ClientToken {
     }
 
     public static final int RESULT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object result_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object result_ = "";
     /**
      * <code>string result = 1;</code>
      * @return The result.
      */
+    @java.lang.Override
     public java.lang.String getResult() {
       java.lang.Object ref = result_;
       if (ref instanceof java.lang.String) {
@@ -8497,6 +8317,7 @@ public final class ClientToken {
      * <code>string result = 1;</code>
      * @return The bytes for result.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getResultBytes() {
       java.lang.Object ref = result_;
@@ -8555,11 +8376,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8598,7 +8421,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.EvaluateJSAnswer}
@@ -8607,7 +8431,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.EvaluateJSAnswer)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswerOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_EvaluateJSAnswer_descriptor;
       }
@@ -8622,21 +8446,19 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         result_ = "";
-
         return this;
       }
 
@@ -8663,43 +8485,19 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer(this);
-        result.result_ = result_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.result_ = result_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object result_ = "";
       /**
@@ -8742,11 +8540,9 @@ public final class ClientToken {
        */
       public Builder setResult(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         result_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -8755,8 +8551,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearResult() {
-        
         result_ = getDefaultInstance().getResult();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -8767,23 +8563,21 @@ public final class ClientToken {
        */
       public Builder setResultBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         result_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8814,10 +8608,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -8858,7 +8653,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.HashCashAnswer}
    */
-  public  static final class HashCashAnswer extends
+  public static final class HashCashAnswer extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.HashCashAnswer)
       HashCashAnswerOrBuilder {
@@ -8878,12 +8673,7 @@ public final class ClientToken {
       return new HashCashAnswer();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_HashCashAnswer_descriptor;
     }
@@ -8897,11 +8687,13 @@ public final class ClientToken {
     }
 
     public static final int SUFFIX_FIELD_NUMBER = 1;
-    private volatile java.lang.Object suffix_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object suffix_ = "";
     /**
      * <code>string suffix = 1;</code>
      * @return The suffix.
      */
+    @java.lang.Override
     public java.lang.String getSuffix() {
       java.lang.Object ref = suffix_;
       if (ref instanceof java.lang.String) {
@@ -8918,6 +8710,7 @@ public final class ClientToken {
      * <code>string suffix = 1;</code>
      * @return The bytes for suffix.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSuffixBytes() {
       java.lang.Object ref = suffix_;
@@ -8976,11 +8769,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9019,7 +8814,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.HashCashAnswer}
@@ -9028,7 +8824,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.HashCashAnswer)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswerOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_HashCashAnswer_descriptor;
       }
@@ -9043,21 +8839,19 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         suffix_ = "";
-
         return this;
       }
 
@@ -9084,43 +8878,19 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer(this);
-        result.suffix_ = suffix_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.suffix_ = suffix_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object suffix_ = "";
       /**
@@ -9163,11 +8933,9 @@ public final class ClientToken {
        */
       public Builder setSuffix(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         suffix_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9176,8 +8944,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearSuffix() {
-        
         suffix_ = getDefaultInstance().getSuffix();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -9188,23 +8956,21 @@ public final class ClientToken {
        */
       public Builder setSuffixBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         suffix_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -9235,10 +9001,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -9325,7 +9092,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ChallengeAnswer}
    */
-  public  static final class ChallengeAnswer extends
+  public static final class ChallengeAnswer extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ChallengeAnswer)
       ChallengeAnswerOrBuilder {
@@ -9345,12 +9112,7 @@ public final class ClientToken {
       return new ChallengeAnswer();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ChallengeAnswer_descriptor;
     }
@@ -9364,6 +9126,7 @@ public final class ClientToken {
     }
 
     private int answerCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object answer_;
     public enum AnswerCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -9373,7 +9136,7 @@ public final class ClientToken {
       HASH_CASH(4),
       ANSWER_NOT_SET(0);
       private final int value;
-      AnswerCase(int value) {
+      private AnswerCase(int value) {
         this.value = value;
       }
       /**
@@ -9398,7 +9161,7 @@ public final class ClientToken {
       public int getNumber() {
         return this.value;
       }
-    }
+    };
 
     public AnswerCase
     getAnswerCase() {
@@ -9407,20 +9170,20 @@ public final class ClientToken {
     }
 
     public static final int CHALLENGETYPE_FIELD_NUMBER = 1;
-    private int challengeType_;
+    private int challengeType_ = 0;
     /**
      * <code>.spotify.clienttoken.http.v0.ChallengeType ChallengeType = 1;</code>
      * @return The enum numeric value on the wire for challengeType.
      */
-    public int getChallengeTypeValue() {
+    @java.lang.Override public int getChallengeTypeValue() {
       return challengeType_;
     }
     /**
      * <code>.spotify.clienttoken.http.v0.ChallengeType ChallengeType = 1;</code>
      * @return The challengeType.
      */
-    public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType getChallengeType() {
-      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.valueOf(challengeType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType getChallengeType() {
+      com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.forNumber(challengeType_);
       return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.UNRECOGNIZED : result;
     }
 
@@ -9429,6 +9192,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
      * @return Whether the clientSecret field is set.
      */
+    @java.lang.Override
     public boolean hasClientSecret() {
       return answerCase_ == 2;
     }
@@ -9436,6 +9200,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
      * @return The clientSecret.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer getClientSecret() {
       if (answerCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer) answer_;
@@ -9445,6 +9210,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswerOrBuilder getClientSecretOrBuilder() {
       if (answerCase_ == 2) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer) answer_;
@@ -9457,6 +9223,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
      * @return Whether the evaluateJs field is set.
      */
+    @java.lang.Override
     public boolean hasEvaluateJs() {
       return answerCase_ == 3;
     }
@@ -9464,6 +9231,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
      * @return The evaluateJs.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer getEvaluateJs() {
       if (answerCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer) answer_;
@@ -9473,6 +9241,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswerOrBuilder getEvaluateJsOrBuilder() {
       if (answerCase_ == 3) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer) answer_;
@@ -9485,6 +9254,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
      * @return Whether the hashCash field is set.
      */
+    @java.lang.Override
     public boolean hasHashCash() {
       return answerCase_ == 4;
     }
@@ -9492,6 +9262,7 @@ public final class ClientToken {
      * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
      * @return The hashCash.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer getHashCash() {
       if (answerCase_ == 4) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer) answer_;
@@ -9501,6 +9272,7 @@ public final class ClientToken {
     /**
      * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswerOrBuilder getHashCashOrBuilder() {
       if (answerCase_ == 4) {
          return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer) answer_;
@@ -9552,11 +9324,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9595,7 +9369,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ChallengeAnswer}
@@ -9604,7 +9379,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ChallengeAnswer)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswerOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ChallengeAnswer_descriptor;
       }
@@ -9619,21 +9394,28 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         challengeType_ = 0;
-
+        if (clientSecretBuilder_ != null) {
+          clientSecretBuilder_.clear();
+        }
+        if (evaluateJsBuilder_ != null) {
+          evaluateJsBuilder_.clear();
+        }
+        if (hashCashBuilder_ != null) {
+          hashCashBuilder_.clear();
+        }
         answerCase_ = 0;
         answer_ = null;
         return this;
@@ -9662,65 +9444,36 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer(this);
-        result.challengeType_ = challengeType_;
-        if (answerCase_ == 2) {
-          if (clientSecretBuilder_ == null) {
-            result.answer_ = answer_;
-          } else {
-            result.answer_ = clientSecretBuilder_.build();
-          }
-        }
-        if (answerCase_ == 3) {
-          if (evaluateJsBuilder_ == null) {
-            result.answer_ = answer_;
-          } else {
-            result.answer_ = evaluateJsBuilder_.build();
-          }
-        }
-        if (answerCase_ == 4) {
-          if (hashCashBuilder_ == null) {
-            result.answer_ = answer_;
-          } else {
-            result.answer_ = hashCashBuilder_.build();
-          }
-        }
-        result.answerCase_ = answerCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.challengeType_ = challengeType_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartialOneofs(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeAnswer result) {
+        result.answerCase_ = answerCase_;
+        result.answer_ = this.answer_;
+        if (answerCase_ == 2 &&
+            clientSecretBuilder_ != null) {
+          result.answer_ = clientSecretBuilder_.build();
+        }
+        if (answerCase_ == 3 &&
+            evaluateJsBuilder_ != null) {
+          result.answer_ = evaluateJsBuilder_.build();
+        }
+        if (answerCase_ == 4 &&
+            hashCashBuilder_ != null) {
+          result.answer_ = hashCashBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int answerCase_ = 0;
       private java.lang.Object answer_;
       public AnswerCase
@@ -9736,13 +9489,14 @@ public final class ClientToken {
         return this;
       }
 
+      private int bitField0_;
 
       private int challengeType_ = 0;
       /**
        * <code>.spotify.clienttoken.http.v0.ChallengeType ChallengeType = 1;</code>
        * @return The enum numeric value on the wire for challengeType.
        */
-      public int getChallengeTypeValue() {
+      @java.lang.Override public int getChallengeTypeValue() {
         return challengeType_;
       }
       /**
@@ -9752,6 +9506,7 @@ public final class ClientToken {
        */
       public Builder setChallengeTypeValue(int value) {
         challengeType_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9759,8 +9514,9 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ChallengeType ChallengeType = 1;</code>
        * @return The challengeType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType getChallengeType() {
-        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.valueOf(challengeType_);
+        com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType result = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.forNumber(challengeType_);
         return result == null ? com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ChallengeType.UNRECOGNIZED : result;
       }
       /**
@@ -9772,7 +9528,7 @@ public final class ClientToken {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         challengeType_ = value.getNumber();
         onChanged();
         return this;
@@ -9782,7 +9538,7 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearChallengeType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         challengeType_ = 0;
         onChanged();
         return this;
@@ -9794,6 +9550,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
        * @return Whether the clientSecret field is set.
        */
+      @java.lang.Override
       public boolean hasClientSecret() {
         return answerCase_ == 2;
       }
@@ -9801,17 +9558,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
        * @return The clientSecret.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer getClientSecret() {
         if (clientSecretBuilder_ == null) {
           if (answerCase_ == 2) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer) answer_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer.getDefaultInstance();
         } else {
           if (answerCase_ == 2) {
             return clientSecretBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer.getDefaultInstance();
         }
-        return ClientSecretHMACAnswer.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
@@ -9859,8 +9618,9 @@ public final class ClientToken {
         } else {
           if (answerCase_ == 2) {
             clientSecretBuilder_.mergeFrom(value);
+          } else {
+            clientSecretBuilder_.setMessage(value);
           }
-          clientSecretBuilder_.setMessage(value);
         }
         answerCase_ = 2;
         return this;
@@ -9893,6 +9653,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.ClientSecretHMACAnswer client_secret = 2;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswerOrBuilder getClientSecretOrBuilder() {
         if ((answerCase_ == 2) && (clientSecretBuilder_ != null)) {
           return clientSecretBuilder_.getMessageOrBuilder();
@@ -9913,7 +9674,8 @@ public final class ClientToken {
           if (!(answerCase_ == 2)) {
             answer_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer.getDefaultInstance();
           }
-          clientSecretBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          clientSecretBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswerOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientSecretHMACAnswer) answer_,
                   getParentForChildren(),
                   isClean());
@@ -9930,6 +9692,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
        * @return Whether the evaluateJs field is set.
        */
+      @java.lang.Override
       public boolean hasEvaluateJs() {
         return answerCase_ == 3;
       }
@@ -9937,17 +9700,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
        * @return The evaluateJs.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer getEvaluateJs() {
         if (evaluateJsBuilder_ == null) {
           if (answerCase_ == 3) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer) answer_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer.getDefaultInstance();
         } else {
           if (answerCase_ == 3) {
             return evaluateJsBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer.getDefaultInstance();
         }
-        return EvaluateJSAnswer.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
@@ -9995,8 +9760,9 @@ public final class ClientToken {
         } else {
           if (answerCase_ == 3) {
             evaluateJsBuilder_.mergeFrom(value);
+          } else {
+            evaluateJsBuilder_.setMessage(value);
           }
-          evaluateJsBuilder_.setMessage(value);
         }
         answerCase_ = 3;
         return this;
@@ -10029,6 +9795,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.EvaluateJSAnswer evaluate_js = 3;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswerOrBuilder getEvaluateJsOrBuilder() {
         if ((answerCase_ == 3) && (evaluateJsBuilder_ != null)) {
           return evaluateJsBuilder_.getMessageOrBuilder();
@@ -10049,7 +9816,8 @@ public final class ClientToken {
           if (!(answerCase_ == 3)) {
             answer_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer.getDefaultInstance();
           }
-          evaluateJsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          evaluateJsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswerOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.EvaluateJSAnswer) answer_,
                   getParentForChildren(),
                   isClean());
@@ -10066,6 +9834,7 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
        * @return Whether the hashCash field is set.
        */
+      @java.lang.Override
       public boolean hasHashCash() {
         return answerCase_ == 4;
       }
@@ -10073,17 +9842,19 @@ public final class ClientToken {
        * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
        * @return The hashCash.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer getHashCash() {
         if (hashCashBuilder_ == null) {
           if (answerCase_ == 4) {
             return (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer) answer_;
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer.getDefaultInstance();
         } else {
           if (answerCase_ == 4) {
             return hashCashBuilder_.getMessage();
           }
+          return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer.getDefaultInstance();
         }
-        return HashCashAnswer.getDefaultInstance();
       }
       /**
        * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
@@ -10131,8 +9902,9 @@ public final class ClientToken {
         } else {
           if (answerCase_ == 4) {
             hashCashBuilder_.mergeFrom(value);
+          } else {
+            hashCashBuilder_.setMessage(value);
           }
-          hashCashBuilder_.setMessage(value);
         }
         answerCase_ = 4;
         return this;
@@ -10165,6 +9937,7 @@ public final class ClientToken {
       /**
        * <code>.spotify.clienttoken.http.v0.HashCashAnswer hash_cash = 4;</code>
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswerOrBuilder getHashCashOrBuilder() {
         if ((answerCase_ == 4) && (hashCashBuilder_ != null)) {
           return hashCashBuilder_.getMessageOrBuilder();
@@ -10185,7 +9958,8 @@ public final class ClientToken {
           if (!(answerCase_ == 4)) {
             answer_ = com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer.getDefaultInstance();
           }
-          hashCashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          hashCashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer.Builder, com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswerOrBuilder>(
                   (com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.HashCashAnswer) answer_,
                   getParentForChildren(),
                   isClean());
@@ -10196,13 +9970,13 @@ public final class ClientToken {
         return hashCashBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10233,10 +10007,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -10277,7 +10052,7 @@ public final class ClientToken {
   /**
    * Protobuf type {@code spotify.clienttoken.http.v0.ClientTokenBadRequest}
    */
-  public  static final class ClientTokenBadRequest extends
+  public static final class ClientTokenBadRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.clienttoken.http.v0.ClientTokenBadRequest)
       ClientTokenBadRequestOrBuilder {
@@ -10297,12 +10072,7 @@ public final class ClientToken {
       return new ClientTokenBadRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientTokenBadRequest_descriptor;
     }
@@ -10316,11 +10086,13 @@ public final class ClientToken {
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object message_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object message_ = "";
     /**
      * <code>string message = 1;</code>
      * @return The message.
      */
+    @java.lang.Override
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
       if (ref instanceof java.lang.String) {
@@ -10337,6 +10109,7 @@ public final class ClientToken {
      * <code>string message = 1;</code>
      * @return The bytes for message.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMessageBytes() {
       java.lang.Object ref = message_;
@@ -10395,11 +10168,13 @@ public final class ClientToken {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10438,7 +10213,8 @@ public final class ClientToken {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.clienttoken.http.v0.ClientTokenBadRequest}
@@ -10447,7 +10223,7 @@ public final class ClientToken {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.clienttoken.http.v0.ClientTokenBadRequest)
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.internal_static_spotify_clienttoken_http_v0_ClientTokenBadRequest_descriptor;
       }
@@ -10462,21 +10238,19 @@ public final class ClientToken {
 
       // Construct using com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         message_ = "";
-
         return this;
       }
 
@@ -10503,43 +10277,19 @@ public final class ClientToken {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest result = new com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest(this);
-        result.message_ = message_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.clienttoken.http.v0.ClientToken.ClientTokenBadRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.message_ = message_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
+      private int bitField0_;
 
       private java.lang.Object message_ = "";
       /**
@@ -10582,11 +10332,9 @@ public final class ClientToken {
        */
       public Builder setMessage(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         message_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -10595,8 +10343,8 @@ public final class ClientToken {
        * @return This builder for chaining.
        */
       public Builder clearMessage() {
-        
         message_ = getDefaultInstance().getMessage();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -10607,23 +10355,21 @@ public final class ClientToken {
        */
       public Builder setMessageBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         message_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10654,10 +10400,11 @@ public final class ClientToken {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -10764,7 +10511,7 @@ public final class ClientToken {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -10829,8 +10576,9 @@ public final class ClientToken {
       "SE_CHALLENGES_RESPONSE\020\002*|\n\rChallengeTyp" +
       "e\022\025\n\021CHALLENGE_UNKNOWN\020\000\022 \n\034CHALLENGE_CL" +
       "IENT_SECRET_HMAC\020\001\022\031\n\025CHALLENGE_EVALUATE" +
-      "_JS\020\002\022\027\n\023CHALLENGE_HASH_CASH\020\003B#\n\037com.sp" +
-      "otify.clienttoken.http.v0H\002b\006proto3"
+      "_JS\020\002\022\027\n\023CHALLENGE_HASH_CASH\020\003B6\n2com.sp" +
+      "otifyxp.deps.com.spotify.clienttoken.htt" +
+      "p.v0H\002b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -92,7 +92,7 @@ public final class TransferStateOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.transfer.TransferState}
    */
-  public  static final class TransferState extends
+  public static final class TransferState extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.transfer.TransferState)
       TransferStateOrBuilder {
@@ -111,12 +111,7 @@ public final class TransferStateOuterClass {
       return new TransferState();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.internal_static_spotify_player_proto_transfer_TransferState_descriptor;
     }
@@ -136,6 +131,7 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.ContextPlayerOptions options = 1;</code>
      * @return Whether the options field is set.
      */
+    @java.lang.Override
     public boolean hasOptions() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -143,12 +139,14 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.ContextPlayerOptions options = 1;</code>
      * @return The options.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions getOptions() {
       return options_ == null ? com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.getDefaultInstance() : options_;
     }
     /**
      * <code>optional .spotify.player.proto.ContextPlayerOptions options = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder getOptionsOrBuilder() {
       return options_ == null ? com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.getDefaultInstance() : options_;
     }
@@ -159,6 +157,7 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.transfer.Playback playback = 2;</code>
      * @return Whether the playback field is set.
      */
+    @java.lang.Override
     public boolean hasPlayback() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -166,12 +165,14 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.transfer.Playback playback = 2;</code>
      * @return The playback.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback getPlayback() {
       return playback_ == null ? com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.getDefaultInstance() : playback_;
     }
     /**
      * <code>optional .spotify.player.proto.transfer.Playback playback = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.PlaybackOrBuilder getPlaybackOrBuilder() {
       return playback_ == null ? com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.getDefaultInstance() : playback_;
     }
@@ -182,6 +183,7 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.transfer.Session current_session = 3;</code>
      * @return Whether the currentSession field is set.
      */
+    @java.lang.Override
     public boolean hasCurrentSession() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -189,12 +191,14 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.transfer.Session current_session = 3;</code>
      * @return The currentSession.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session getCurrentSession() {
       return currentSession_ == null ? com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.getDefaultInstance() : currentSession_;
     }
     /**
      * <code>optional .spotify.player.proto.transfer.Session current_session = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder getCurrentSessionOrBuilder() {
       return currentSession_ == null ? com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.getDefaultInstance() : currentSession_;
     }
@@ -205,6 +209,7 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.transfer.Queue queue = 4;</code>
      * @return Whether the queue field is set.
      */
+    @java.lang.Override
     public boolean hasQueue() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -212,22 +217,25 @@ public final class TransferStateOuterClass {
      * <code>optional .spotify.player.proto.transfer.Queue queue = 4;</code>
      * @return The queue.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue getQueue() {
       return queue_ == null ? com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.getDefaultInstance() : queue_;
     }
     /**
      * <code>optional .spotify.player.proto.transfer.Queue queue = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder getQueueOrBuilder() {
       return queue_ == null ? com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.getDefaultInstance() : queue_;
     }
 
     public static final int CREATION_TIMESTAMP_FIELD_NUMBER = 5;
-    private long creationTimestamp_;
+    private long creationTimestamp_ = 0L;
     /**
      * <code>optional int64 creation_timestamp = 5;</code>
      * @return Whether the creationTimestamp field is set.
      */
+    @java.lang.Override
     public boolean hasCreationTimestamp() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -235,6 +243,7 @@ public final class TransferStateOuterClass {
      * <code>optional int64 creation_timestamp = 5;</code>
      * @return The creationTimestamp.
      */
+    @java.lang.Override
     public long getCreationTimestamp() {
       return creationTimestamp_;
     }
@@ -283,11 +292,13 @@ public final class TransferStateOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -326,7 +337,8 @@ public final class TransferStateOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.transfer.TransferState}
@@ -335,7 +347,7 @@ public final class TransferStateOuterClass {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.transfer.TransferState)
         com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferStateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.internal_static_spotify_player_proto_transfer_TransferState_descriptor;
       }
@@ -370,32 +382,28 @@ public final class TransferStateOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (optionsBuilder_ == null) {
-          options_ = null;
-        } else {
-          optionsBuilder_.clear();
+        bitField0_ = 0;
+        options_ = null;
+        if (optionsBuilder_ != null) {
+          optionsBuilder_.dispose();
+          optionsBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (playbackBuilder_ == null) {
-          playback_ = null;
-        } else {
-          playbackBuilder_.clear();
+        playback_ = null;
+        if (playbackBuilder_ != null) {
+          playbackBuilder_.dispose();
+          playbackBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (currentSessionBuilder_ == null) {
-          currentSession_ = null;
-        } else {
-          currentSessionBuilder_.clear();
+        currentSession_ = null;
+        if (currentSessionBuilder_ != null) {
+          currentSessionBuilder_.dispose();
+          currentSessionBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (queueBuilder_ == null) {
-          queue_ = null;
-        } else {
-          queueBuilder_.clear();
+        queue_ = null;
+        if (queueBuilder_ != null) {
+          queueBuilder_.dispose();
+          queueBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
         creationTimestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -422,81 +430,45 @@ public final class TransferStateOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferState buildPartial() {
         com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferState result = new com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferState(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass.TransferState result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          if (optionsBuilder_ == null) {
-            result.options_ = options_;
-          } else {
-            result.options_ = optionsBuilder_.build();
-          }
+          result.options_ = optionsBuilder_ == null
+              ? options_
+              : optionsBuilder_.build();
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (playbackBuilder_ == null) {
-            result.playback_ = playback_;
-          } else {
-            result.playback_ = playbackBuilder_.build();
-          }
+          result.playback_ = playbackBuilder_ == null
+              ? playback_
+              : playbackBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (currentSessionBuilder_ == null) {
-            result.currentSession_ = currentSession_;
-          } else {
-            result.currentSession_ = currentSessionBuilder_.build();
-          }
+          result.currentSession_ = currentSessionBuilder_ == null
+              ? currentSession_
+              : currentSessionBuilder_.build();
           to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
-          if (queueBuilder_ == null) {
-            result.queue_ = queue_;
-          } else {
-            result.queue_ = queueBuilder_.build();
-          }
+          result.queue_ = queueBuilder_ == null
+              ? queue_
+              : queueBuilder_.build();
           to_bitField0_ |= 0x00000008;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.creationTimestamp_ = creationTimestamp_;
           to_bitField0_ |= 0x00000010;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions options_;
@@ -529,11 +501,11 @@ public final class TransferStateOuterClass {
             throw new NullPointerException();
           }
           options_ = value;
-          onChanged();
         } else {
           optionsBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -543,11 +515,11 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.Builder builderForValue) {
         if (optionsBuilder_ == null) {
           options_ = builderForValue.build();
-          onChanged();
         } else {
           optionsBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -556,31 +528,30 @@ public final class TransferStateOuterClass {
       public Builder mergeOptions(com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions value) {
         if (optionsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0) &&
-              options_ != null &&
-              options_ != com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.getDefaultInstance()) {
-            options_ =
-              com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.newBuilder(options_).mergeFrom(value).buildPartial();
+            options_ != null &&
+            options_ != com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.getDefaultInstance()) {
+            getOptionsBuilder().mergeFrom(value);
           } else {
             options_ = value;
           }
-          onChanged();
         } else {
           optionsBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.ContextPlayerOptions options = 1;</code>
        */
       public Builder clearOptions() {
-        if (optionsBuilder_ == null) {
-          options_ = null;
-          onChanged();
-        } else {
-          optionsBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        options_ = null;
+        if (optionsBuilder_ != null) {
+          optionsBuilder_.dispose();
+          optionsBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -609,7 +580,8 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder> 
           getOptionsFieldBuilder() {
         if (optionsBuilder_ == null) {
-          optionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          optionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptions.Builder, com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass.ContextPlayerOptionsOrBuilder>(
                   getOptions(),
                   getParentForChildren(),
                   isClean());
@@ -648,11 +620,11 @@ public final class TransferStateOuterClass {
             throw new NullPointerException();
           }
           playback_ = value;
-          onChanged();
         } else {
           playbackBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -662,11 +634,11 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.Builder builderForValue) {
         if (playbackBuilder_ == null) {
           playback_ = builderForValue.build();
-          onChanged();
         } else {
           playbackBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -675,31 +647,30 @@ public final class TransferStateOuterClass {
       public Builder mergePlayback(com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback value) {
         if (playbackBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              playback_ != null &&
-              playback_ != com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.getDefaultInstance()) {
-            playback_ =
-              com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.newBuilder(playback_).mergeFrom(value).buildPartial();
+            playback_ != null &&
+            playback_ != com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.getDefaultInstance()) {
+            getPlaybackBuilder().mergeFrom(value);
           } else {
             playback_ = value;
           }
-          onChanged();
         } else {
           playbackBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.transfer.Playback playback = 2;</code>
        */
       public Builder clearPlayback() {
-        if (playbackBuilder_ == null) {
-          playback_ = null;
-          onChanged();
-        } else {
-          playbackBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        playback_ = null;
+        if (playbackBuilder_ != null) {
+          playbackBuilder_.dispose();
+          playbackBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -728,7 +699,8 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.Builder, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.PlaybackOrBuilder> 
           getPlaybackFieldBuilder() {
         if (playbackBuilder_ == null) {
-          playbackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          playbackBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.Playback.Builder, com.spotifyxp.deps.com.spotify.transfer.PlaybackOuterClass.PlaybackOrBuilder>(
                   getPlayback(),
                   getParentForChildren(),
                   isClean());
@@ -767,11 +739,11 @@ public final class TransferStateOuterClass {
             throw new NullPointerException();
           }
           currentSession_ = value;
-          onChanged();
         } else {
           currentSessionBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -781,11 +753,11 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.Builder builderForValue) {
         if (currentSessionBuilder_ == null) {
           currentSession_ = builderForValue.build();
-          onChanged();
         } else {
           currentSessionBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -794,31 +766,30 @@ public final class TransferStateOuterClass {
       public Builder mergeCurrentSession(com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session value) {
         if (currentSessionBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              currentSession_ != null &&
-              currentSession_ != com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.getDefaultInstance()) {
-            currentSession_ =
-              com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.newBuilder(currentSession_).mergeFrom(value).buildPartial();
+            currentSession_ != null &&
+            currentSession_ != com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.getDefaultInstance()) {
+            getCurrentSessionBuilder().mergeFrom(value);
           } else {
             currentSession_ = value;
           }
-          onChanged();
         } else {
           currentSessionBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.transfer.Session current_session = 3;</code>
        */
       public Builder clearCurrentSession() {
-        if (currentSessionBuilder_ == null) {
-          currentSession_ = null;
-          onChanged();
-        } else {
-          currentSessionBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        currentSession_ = null;
+        if (currentSessionBuilder_ != null) {
+          currentSessionBuilder_.dispose();
+          currentSessionBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -847,7 +818,8 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.Builder, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder> 
           getCurrentSessionFieldBuilder() {
         if (currentSessionBuilder_ == null) {
-          currentSessionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          currentSessionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.Session.Builder, com.spotifyxp.deps.com.spotify.transfer.SessionOuterClass.SessionOrBuilder>(
                   getCurrentSession(),
                   getParentForChildren(),
                   isClean());
@@ -886,11 +858,11 @@ public final class TransferStateOuterClass {
             throw new NullPointerException();
           }
           queue_ = value;
-          onChanged();
         } else {
           queueBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -900,11 +872,11 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.Builder builderForValue) {
         if (queueBuilder_ == null) {
           queue_ = builderForValue.build();
-          onChanged();
         } else {
           queueBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -913,31 +885,30 @@ public final class TransferStateOuterClass {
       public Builder mergeQueue(com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue value) {
         if (queueBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0) &&
-              queue_ != null &&
-              queue_ != com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.getDefaultInstance()) {
-            queue_ =
-              com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.newBuilder(queue_).mergeFrom(value).buildPartial();
+            queue_ != null &&
+            queue_ != com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.getDefaultInstance()) {
+            getQueueBuilder().mergeFrom(value);
           } else {
             queue_ = value;
           }
-          onChanged();
         } else {
           queueBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.player.proto.transfer.Queue queue = 4;</code>
        */
       public Builder clearQueue() {
-        if (queueBuilder_ == null) {
-          queue_ = null;
-          onChanged();
-        } else {
-          queueBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000008);
+        queue_ = null;
+        if (queueBuilder_ != null) {
+          queueBuilder_.dispose();
+          queueBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -966,7 +937,8 @@ public final class TransferStateOuterClass {
           com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.Builder, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder> 
           getQueueFieldBuilder() {
         if (queueBuilder_ == null) {
-          queueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          queueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.Queue.Builder, com.spotifyxp.deps.com.spotify.transfer.QueueOuterClass.QueueOrBuilder>(
                   getQueue(),
                   getParentForChildren(),
                   isClean());
@@ -980,6 +952,7 @@ public final class TransferStateOuterClass {
        * <code>optional int64 creation_timestamp = 5;</code>
        * @return Whether the creationTimestamp field is set.
        */
+      @java.lang.Override
       public boolean hasCreationTimestamp() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -987,6 +960,7 @@ public final class TransferStateOuterClass {
        * <code>optional int64 creation_timestamp = 5;</code>
        * @return The creationTimestamp.
        */
+      @java.lang.Override
       public long getCreationTimestamp() {
         return creationTimestamp_;
       }
@@ -996,8 +970,9 @@ public final class TransferStateOuterClass {
        * @return This builder for chaining.
        */
       public Builder setCreationTimestamp(long value) {
-        bitField0_ |= 0x00000010;
+
         creationTimestamp_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1012,13 +987,13 @@ public final class TransferStateOuterClass {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1049,10 +1024,11 @@ public final class TransferStateOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1084,7 +1060,7 @@ public final class TransferStateOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1093,12 +1069,13 @@ public final class TransferStateOuterClass {
       "oto\032\016playback.proto\032\rsession.proto\032\013queu" +
       "e.proto\"\231\002\n\rTransferState\022;\n\007options\030\001 \001" +
       "(\0132*.spotify.player.proto.ContextPlayerO" +
-              "ptions\0229\n\010playback\030\002 \001(\0132'.spotify.playe" +
+      "ptions\0229\n\010playback\030\002 \001(\0132\'.spotify.playe" +
       "r.proto.transfer.Playback\022?\n\017current_ses" +
       "sion\030\003 \001(\0132&.spotify.player.proto.transf" +
       "er.Session\0223\n\005queue\030\004 \001(\0132$.spotify.play" +
       "er.proto.transfer.Queue\022\032\n\022creation_time" +
-      "stamp\030\005 \001(\003B\030\n\024com.spotify.transferH\002"
+      "stamp\030\005 \001(\003B+\n\'com.spotifyxp.deps.com.sp" +
+      "otify.transferH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

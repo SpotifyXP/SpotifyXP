@@ -17,8 +17,10 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.storage;
 
 import com.google.protobuf.ByteString;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
@@ -30,9 +32,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.cache.JournalHeader;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -44,7 +43,6 @@ import java.util.concurrent.Executors;
  * @author devgianlu
  */
 public class AudioFileStreaming implements AudioFile, DecodedAudioStream {
-    
     private final CacheManager.Handler cacheHandler;
     private final Metadata.AudioFile file;
     private final byte[] key;
@@ -153,7 +151,6 @@ public class AudioFileStreaming implements AudioFile, DecodedAudioStream {
         }
 
         chunksBuffer.writeChunk(buffer, chunkIndex);
-        if(PublicValues.disableChunkDebug) return;
         ConsoleLoggingModules.debug("Chunk {}/{} completed, cached: {}, fileId: {}", chunkIndex, chunks, cached, Utils.bytesToHex(file.getFileId()));
     }
 
@@ -182,7 +179,6 @@ public class AudioFileStreaming implements AudioFile, DecodedAudioStream {
         }
     }
 
-    @SuppressWarnings("NullableProblems")
     private class ChunksBuffer implements Closeable {
         private final int size;
         private final byte[][] buffer;

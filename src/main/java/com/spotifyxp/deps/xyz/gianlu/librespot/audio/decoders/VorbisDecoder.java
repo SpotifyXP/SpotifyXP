@@ -25,10 +25,11 @@ import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
+import com.spotifyxp.dialogs.LyricsDialog;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.SeekableInputStream;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +37,6 @@ import java.io.OutputStream;
 /**
  * @author Gianlu
  */
-@SuppressWarnings({"StatementWithEmptyBody", "lossy-conversions"})
 public final class VorbisDecoder extends Decoder {
     private static final int CONVERTED_BUFFER_SIZE = Decoder.BUFFER_SIZE * 2;
     private final StreamState joggStreamState = new StreamState();
@@ -57,27 +57,6 @@ public final class VorbisDecoder extends Decoder {
     private long pcm_offset;
 
     public VorbisDecoder(@NotNull SeekableInputStream audioIn, float normalizationFactor, int duration) throws IOException, DecoderException {
-        super(audioIn, normalizationFactor, duration);
-
-        this.joggSyncState.init();
-        this.joggSyncState.buffer(Decoder.BUFFER_SIZE);
-        this.buffer = joggSyncState.data;
-
-        readHeader();
-        seekZero = audioIn.position();
-
-        convertedBuffer = new byte[CONVERTED_BUFFER_SIZE];
-
-        jorbisDspState.synthesis_init(jorbisInfo);
-        jorbisBlock.init(jorbisDspState);
-
-        pcmInfo = new float[1][][];
-        pcmIndex = new int[jorbisInfo.channels];
-
-        setAudioFormat(new OutputAudioFormat(jorbisInfo.rate, 16, jorbisInfo.channels, true, false));
-    }
-
-    public VorbisDecoder(@NotNull SeekableInputStream audioIn, float normalizationFactor, int duration, boolean module) throws IOException, DecoderException {
         super(audioIn, normalizationFactor, duration);
 
         this.joggSyncState.init();
@@ -216,6 +195,7 @@ public final class VorbisDecoder extends Decoder {
         int samples;
         while ((samples = jorbisDspState.synthesis_pcmout(pcmInfo, pcmIndex)) > 0) {
             range = Math.min(samples, CONVERTED_BUFFER_SIZE);
+
             if(PublicValues.lyricsDialog!=null) {
                 PublicValues.lyricsDialog.triggerRefresh();
             }
@@ -234,10 +214,9 @@ public final class VorbisDecoder extends Decoder {
                     else if (value < -32768) value = -32768;
                     else if (value < 0) value = value | 32768;
 
-
-
                     convertedBuffer[sampleIndex] = (byte) (value);
                     convertedBuffer[sampleIndex + 1] = (byte) (value >>> 8);
+
                     sampleIndex += 2 * jorbisInfo.channels;
                 }
             }

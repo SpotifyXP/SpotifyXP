@@ -71,7 +71,11 @@ public final class PlaylistAnnotate3 {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         RenderFeatures> internalValueMap =
-            RenderFeatures::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<RenderFeatures>() {
+            public RenderFeatures findValueByNumber(int number) {
+              return RenderFeatures.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -81,7 +85,7 @@ public final class PlaylistAnnotate3 {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.getDescriptor().getEnumTypes().get(0);
     }
@@ -99,7 +103,7 @@ public final class PlaylistAnnotate3 {
 
     private final int value;
 
-    RenderFeatures(int value) {
+    private RenderFeatures(int value) {
       this.value = value;
     }
 
@@ -163,7 +167,11 @@ public final class PlaylistAnnotate3 {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         AbuseReportState> internalValueMap =
-            AbuseReportState::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<AbuseReportState>() {
+            public AbuseReportState findValueByNumber(int number) {
+              return AbuseReportState.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
@@ -173,7 +181,7 @@ public final class PlaylistAnnotate3 {
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.getDescriptor().getEnumTypes().get(1);
     }
@@ -191,7 +199,7 @@ public final class PlaylistAnnotate3 {
 
     private final int value;
 
-    AbuseReportState(int value) {
+    private AbuseReportState(int value) {
       this.value = value;
     }
 
@@ -216,7 +224,7 @@ public final class PlaylistAnnotate3 {
   /**
    * Protobuf type {@code spotify_playlist_annotate3.proto.TakedownRequest}
    */
-  public  static final class TakedownRequest extends
+  public static final class TakedownRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify_playlist_annotate3.proto.TakedownRequest)
       TakedownRequestOrBuilder {
@@ -236,12 +244,7 @@ public final class PlaylistAnnotate3 {
       return new TakedownRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TakedownRequest_descriptor;
     }
@@ -256,20 +259,20 @@ public final class PlaylistAnnotate3 {
 
     private int bitField0_;
     public static final int ABUSE_REPORT_STATE_FIELD_NUMBER = 1;
-    private int abuseReportState_;
+    private int abuseReportState_ = 0;
     /**
      * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 1;</code>
      * @return Whether the abuseReportState field is set.
      */
-    public boolean hasAbuseReportState() {
+    @java.lang.Override public boolean hasAbuseReportState() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 1;</code>
      * @return The abuseReportState.
      */
-    public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-      com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
+      com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.forNumber(abuseReportState_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
     }
 
@@ -317,11 +320,13 @@ public final class PlaylistAnnotate3 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -360,7 +365,8 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.TakedownRequest}
@@ -369,7 +375,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.TakedownRequest)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TakedownRequest_descriptor;
       }
@@ -384,21 +390,19 @@ public final class PlaylistAnnotate3 {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         abuseReportState_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -425,49 +429,21 @@ public final class PlaylistAnnotate3 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest result = new com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.abuseReportState_ = abuseReportState_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TakedownRequest result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.abuseReportState_ = abuseReportState_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int abuseReportState_ = 0;
@@ -475,15 +451,16 @@ public final class PlaylistAnnotate3 {
        * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 1;</code>
        * @return Whether the abuseReportState field is set.
        */
-      public boolean hasAbuseReportState() {
+      @java.lang.Override public boolean hasAbuseReportState() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 1;</code>
        * @return The abuseReportState.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-        com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
+        com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.forNumber(abuseReportState_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
       }
       /**
@@ -511,13 +488,13 @@ public final class PlaylistAnnotate3 {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -548,10 +525,11 @@ public final class PlaylistAnnotate3 {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -614,7 +592,7 @@ public final class PlaylistAnnotate3 {
   /**
    * Protobuf type {@code spotify_playlist_annotate3.proto.AnnotateRequest}
    */
-  public  static final class AnnotateRequest extends
+  public static final class AnnotateRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify_playlist_annotate3.proto.AnnotateRequest)
       AnnotateRequestOrBuilder {
@@ -635,12 +613,7 @@ public final class PlaylistAnnotate3 {
       return new AnnotateRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_AnnotateRequest_descriptor;
     }
@@ -655,11 +628,13 @@ public final class PlaylistAnnotate3 {
 
     private int bitField0_;
     public static final int DESCRIPTION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object description_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
     /**
      * <code>optional string description = 1;</code>
      * @return Whether the description field is set.
      */
+    @java.lang.Override
     public boolean hasDescription() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -667,6 +642,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string description = 1;</code>
      * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -685,6 +661,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string description = 1;</code>
      * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -700,11 +677,13 @@ public final class PlaylistAnnotate3 {
     }
 
     public static final int IMAGE_URI_FIELD_NUMBER = 2;
-    private volatile java.lang.Object imageUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object imageUri_ = "";
     /**
      * <code>optional string image_uri = 2;</code>
      * @return Whether the imageUri field is set.
      */
+    @java.lang.Override
     public boolean hasImageUri() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -712,6 +691,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string image_uri = 2;</code>
      * @return The imageUri.
      */
+    @java.lang.Override
     public java.lang.String getImageUri() {
       java.lang.Object ref = imageUri_;
       if (ref instanceof java.lang.String) {
@@ -730,6 +710,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string image_uri = 2;</code>
      * @return The bytes for imageUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getImageUriBytes() {
       java.lang.Object ref = imageUri_;
@@ -788,11 +769,13 @@ public final class PlaylistAnnotate3 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -831,7 +814,8 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.AnnotateRequest}
@@ -840,7 +824,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.AnnotateRequest)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_AnnotateRequest_descriptor;
       }
@@ -855,23 +839,20 @@ public final class PlaylistAnnotate3 {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         imageUri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -898,53 +879,25 @@ public final class PlaylistAnnotate3 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest result = new com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.description_ = description_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.imageUri_ = imageUri_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AnnotateRequest result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.description_ = description_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.imageUri_ = imageUri_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object description_ = "";
@@ -997,11 +950,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setDescription(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1010,8 +961,8 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1022,11 +973,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1081,11 +1030,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setImageUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         imageUri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1094,8 +1041,8 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder clearImageUri() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         imageUri_ = getDefaultInstance().getImageUri();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1106,22 +1053,20 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setImageUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         imageUri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1152,10 +1097,11 @@ public final class PlaylistAnnotate3 {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1218,7 +1164,7 @@ public final class PlaylistAnnotate3 {
   /**
    * Protobuf type {@code spotify_playlist_annotate3.proto.TranscodedPicture}
    */
-  public  static final class TranscodedPicture extends
+  public static final class TranscodedPicture extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify_playlist_annotate3.proto.TranscodedPicture)
       TranscodedPictureOrBuilder {
@@ -1239,12 +1185,7 @@ public final class PlaylistAnnotate3 {
       return new TranscodedPicture();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TranscodedPicture_descriptor;
     }
@@ -1259,11 +1200,13 @@ public final class PlaylistAnnotate3 {
 
     private int bitField0_;
     public static final int TARGET_NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object targetName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object targetName_ = "";
     /**
      * <code>optional string target_name = 1;</code>
      * @return Whether the targetName field is set.
      */
+    @java.lang.Override
     public boolean hasTargetName() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -1271,6 +1214,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string target_name = 1;</code>
      * @return The targetName.
      */
+    @java.lang.Override
     public java.lang.String getTargetName() {
       java.lang.Object ref = targetName_;
       if (ref instanceof java.lang.String) {
@@ -1289,6 +1233,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string target_name = 1;</code>
      * @return The bytes for targetName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTargetNameBytes() {
       java.lang.Object ref = targetName_;
@@ -1304,11 +1249,13 @@ public final class PlaylistAnnotate3 {
     }
 
     public static final int URI_FIELD_NUMBER = 2;
-    private volatile java.lang.Object uri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uri_ = "";
     /**
      * <code>optional string uri = 2;</code>
      * @return Whether the uri field is set.
      */
+    @java.lang.Override
     public boolean hasUri() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -1316,6 +1263,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string uri = 2;</code>
      * @return The uri.
      */
+    @java.lang.Override
     public java.lang.String getUri() {
       java.lang.Object ref = uri_;
       if (ref instanceof java.lang.String) {
@@ -1334,6 +1282,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string uri = 2;</code>
      * @return The bytes for uri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUriBytes() {
       java.lang.Object ref = uri_;
@@ -1392,11 +1341,13 @@ public final class PlaylistAnnotate3 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1435,7 +1386,8 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.TranscodedPicture}
@@ -1444,7 +1396,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.TranscodedPicture)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_TranscodedPicture_descriptor;
       }
@@ -1459,23 +1411,20 @@ public final class PlaylistAnnotate3 {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         targetName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         uri_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1502,53 +1451,25 @@ public final class PlaylistAnnotate3 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture result = new com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.targetName_ = targetName_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.uri_ = uri_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.targetName_ = targetName_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.uri_ = uri_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object targetName_ = "";
@@ -1601,11 +1522,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setTargetName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         targetName_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1614,8 +1533,8 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder clearTargetName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         targetName_ = getDefaultInstance().getTargetName();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1626,11 +1545,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setTargetNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         targetName_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1685,11 +1602,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1698,8 +1613,8 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder clearUri() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         uri_ = getDefaultInstance().getUri();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1710,22 +1625,20 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         uri_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1756,10 +1669,11 @@ public final class PlaylistAnnotate3 {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -1821,11 +1735,15 @@ public final class PlaylistAnnotate3 {
 
     /**
      * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+     * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+     *     See playlist_annotate3.proto;l=24
      * @return Whether the deprecatedRenderFeatures field is set.
      */
     @java.lang.Deprecated boolean hasDeprecatedRenderFeatures();
     /**
      * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+     * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+     *     See playlist_annotate3.proto;l=24
      * @return The deprecatedRenderFeatures.
      */
     @java.lang.Deprecated com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures getDeprecatedRenderFeatures();
@@ -1879,7 +1797,7 @@ public final class PlaylistAnnotate3 {
   /**
    * Protobuf type {@code spotify_playlist_annotate3.proto.PlaylistAnnotation}
    */
-  public  static final class PlaylistAnnotation extends
+  public static final class PlaylistAnnotation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify_playlist_annotate3.proto.PlaylistAnnotation)
       PlaylistAnnotationOrBuilder {
@@ -1904,12 +1822,7 @@ public final class PlaylistAnnotate3 {
       return new PlaylistAnnotation();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_PlaylistAnnotation_descriptor;
     }
@@ -1924,11 +1837,13 @@ public final class PlaylistAnnotate3 {
 
     private int bitField0_;
     public static final int DESCRIPTION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object description_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
     /**
      * <code>optional string description = 1;</code>
      * @return Whether the description field is set.
      */
+    @java.lang.Override
     public boolean hasDescription() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -1936,6 +1851,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string description = 1;</code>
      * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -1954,6 +1870,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string description = 1;</code>
      * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -1969,11 +1886,13 @@ public final class PlaylistAnnotate3 {
     }
 
     public static final int PICTURE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object picture_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object picture_ = "";
     /**
      * <code>optional string picture = 2;</code>
      * @return Whether the picture field is set.
      */
+    @java.lang.Override
     public boolean hasPicture() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -1981,6 +1900,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string picture = 2;</code>
      * @return The picture.
      */
+    @java.lang.Override
     public java.lang.String getPicture() {
       java.lang.Object ref = picture_;
       if (ref instanceof java.lang.String) {
@@ -1999,6 +1919,7 @@ public final class PlaylistAnnotate3 {
      * <code>optional string picture = 2;</code>
      * @return The bytes for picture.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPictureBytes() {
       java.lang.Object ref = picture_;
@@ -2014,34 +1935,41 @@ public final class PlaylistAnnotate3 {
     }
 
     public static final int DEPRECATED_RENDER_FEATURES_FIELD_NUMBER = 3;
-    private int deprecatedRenderFeatures_;
+    private int deprecatedRenderFeatures_ = 1;
     /**
      * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+     * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+     *     See playlist_annotate3.proto;l=24
      * @return Whether the deprecatedRenderFeatures field is set.
      */
-    @java.lang.Deprecated public boolean hasDeprecatedRenderFeatures() {
+    @java.lang.Override @java.lang.Deprecated public boolean hasDeprecatedRenderFeatures() {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+     * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+     *     See playlist_annotate3.proto;l=24
      * @return The deprecatedRenderFeatures.
      */
-    @java.lang.Deprecated public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures getDeprecatedRenderFeatures() {
-      com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.valueOf(deprecatedRenderFeatures_);
+    @java.lang.Override @java.lang.Deprecated public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures getDeprecatedRenderFeatures() {
+      com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.forNumber(deprecatedRenderFeatures_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.NORMAL_FEATURES : result;
     }
 
     public static final int TRANSCODED_PICTURE_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture> transcodedPicture_;
     /**
      * <code>repeated .spotify_playlist_annotate3.proto.TranscodedPicture transcoded_picture = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture> getTranscodedPictureList() {
       return transcodedPicture_;
     }
     /**
      * <code>repeated .spotify_playlist_annotate3.proto.TranscodedPicture transcoded_picture = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder> 
         getTranscodedPictureOrBuilderList() {
       return transcodedPicture_;
@@ -2049,29 +1977,33 @@ public final class PlaylistAnnotate3 {
     /**
      * <code>repeated .spotify_playlist_annotate3.proto.TranscodedPicture transcoded_picture = 4;</code>
      */
+    @java.lang.Override
     public int getTranscodedPictureCount() {
       return transcodedPicture_.size();
     }
     /**
      * <code>repeated .spotify_playlist_annotate3.proto.TranscodedPicture transcoded_picture = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture getTranscodedPicture(int index) {
       return transcodedPicture_.get(index);
     }
     /**
      * <code>repeated .spotify_playlist_annotate3.proto.TranscodedPicture transcoded_picture = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder getTranscodedPictureOrBuilder(
         int index) {
       return transcodedPicture_.get(index);
     }
 
     public static final int IS_ABUSE_REPORTING_ENABLED_FIELD_NUMBER = 6;
-    private boolean isAbuseReportingEnabled_;
+    private boolean isAbuseReportingEnabled_ = true;
     /**
      * <code>optional bool is_abuse_reporting_enabled = 6 [default = true];</code>
      * @return Whether the isAbuseReportingEnabled field is set.
      */
+    @java.lang.Override
     public boolean hasIsAbuseReportingEnabled() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -2079,25 +2011,26 @@ public final class PlaylistAnnotate3 {
      * <code>optional bool is_abuse_reporting_enabled = 6 [default = true];</code>
      * @return The isAbuseReportingEnabled.
      */
+    @java.lang.Override
     public boolean getIsAbuseReportingEnabled() {
       return isAbuseReportingEnabled_;
     }
 
     public static final int ABUSE_REPORT_STATE_FIELD_NUMBER = 7;
-    private int abuseReportState_;
+    private int abuseReportState_ = 0;
     /**
      * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 7 [default = OK];</code>
      * @return Whether the abuseReportState field is set.
      */
-    public boolean hasAbuseReportState() {
+    @java.lang.Override public boolean hasAbuseReportState() {
       return ((bitField0_ & 0x00000010) != 0);
     }
     /**
      * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 7 [default = OK];</code>
      * @return The abuseReportState.
      */
-    public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-      com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
+      com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.forNumber(abuseReportState_);
       return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
     }
 
@@ -2145,11 +2078,13 @@ public final class PlaylistAnnotate3 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2188,7 +2123,8 @@ public final class PlaylistAnnotate3 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify_playlist_annotate3.proto.PlaylistAnnotation}
@@ -2197,7 +2133,7 @@ public final class PlaylistAnnotate3 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify_playlist_annotate3.proto.PlaylistAnnotation)
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotationOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.internal_static_spotify_playlist_annotate3_proto_PlaylistAnnotation_descriptor;
       }
@@ -2212,39 +2148,30 @@ public final class PlaylistAnnotate3 {
 
       // Construct using com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTranscodedPictureFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         picture_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         deprecatedRenderFeatures_ = 1;
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (transcodedPictureBuilder_ == null) {
           transcodedPicture_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          transcodedPicture_ = null;
           transcodedPictureBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         isAbuseReportingEnabled_ = true;
-        bitField0_ = (bitField0_ & ~0x00000010);
         abuseReportState_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -2271,20 +2198,13 @@ public final class PlaylistAnnotate3 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation buildPartial() {
         com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation result = new com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.description_ = description_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.picture_ = picture_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.deprecatedRenderFeatures_ = deprecatedRenderFeatures_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation result) {
         if (transcodedPictureBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0)) {
             transcodedPicture_ = java.util.Collections.unmodifiableList(transcodedPicture_);
@@ -2294,51 +2214,34 @@ public final class PlaylistAnnotate3 {
         } else {
           result.transcodedPicture_ = transcodedPictureBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.isAbuseReportingEnabled_ = isAbuseReportingEnabled_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.abuseReportState_ = abuseReportState_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.PlaylistAnnotation result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.description_ = description_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.picture_ = picture_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.deprecatedRenderFeatures_ = deprecatedRenderFeatures_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.isAbuseReportingEnabled_ = isAbuseReportingEnabled_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.abuseReportState_ = abuseReportState_;
+          to_bitField0_ |= 0x00000010;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object description_ = "";
@@ -2391,11 +2294,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setDescription(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2404,8 +2305,8 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -2416,11 +2317,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2475,11 +2374,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setPicture(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         picture_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2488,8 +2385,8 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder clearPicture() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         picture_ = getDefaultInstance().getPicture();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2500,11 +2397,9 @@ public final class PlaylistAnnotate3 {
        */
       public Builder setPictureBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         picture_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2512,21 +2407,28 @@ public final class PlaylistAnnotate3 {
       private int deprecatedRenderFeatures_ = 1;
       /**
        * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+       * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+       *     See playlist_annotate3.proto;l=24
        * @return Whether the deprecatedRenderFeatures field is set.
        */
-      @java.lang.Deprecated public boolean hasDeprecatedRenderFeatures() {
+      @java.lang.Override @java.lang.Deprecated public boolean hasDeprecatedRenderFeatures() {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+       * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+       *     See playlist_annotate3.proto;l=24
        * @return The deprecatedRenderFeatures.
        */
+      @java.lang.Override
       @java.lang.Deprecated public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures getDeprecatedRenderFeatures() {
-        com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.valueOf(deprecatedRenderFeatures_);
+        com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.forNumber(deprecatedRenderFeatures_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.RenderFeatures.NORMAL_FEATURES : result;
       }
       /**
        * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+       * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+       *     See playlist_annotate3.proto;l=24
        * @param value The deprecatedRenderFeatures to set.
        * @return This builder for chaining.
        */
@@ -2541,6 +2443,8 @@ public final class PlaylistAnnotate3 {
       }
       /**
        * <code>optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES, deprecated = true];</code>
+       * @deprecated spotify_playlist_annotate3.proto.PlaylistAnnotation.deprecated_render_features is deprecated.
+       *     See playlist_annotate3.proto;l=24
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder clearDeprecatedRenderFeatures() {
@@ -2553,8 +2457,8 @@ public final class PlaylistAnnotate3 {
       private java.util.List<com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture> transcodedPicture_ =
         java.util.Collections.emptyList();
       private void ensureTranscodedPictureIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          transcodedPicture_ = new java.util.ArrayList<>(transcodedPicture_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          transcodedPicture_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture>(transcodedPicture_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -2779,7 +2683,8 @@ public final class PlaylistAnnotate3 {
           com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture.Builder, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder> 
           getTranscodedPictureFieldBuilder() {
         if (transcodedPictureBuilder_ == null) {
-          transcodedPictureBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          transcodedPictureBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPicture.Builder, com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.TranscodedPictureOrBuilder>(
                   transcodedPicture_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -2794,6 +2699,7 @@ public final class PlaylistAnnotate3 {
        * <code>optional bool is_abuse_reporting_enabled = 6 [default = true];</code>
        * @return Whether the isAbuseReportingEnabled field is set.
        */
+      @java.lang.Override
       public boolean hasIsAbuseReportingEnabled() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -2801,6 +2707,7 @@ public final class PlaylistAnnotate3 {
        * <code>optional bool is_abuse_reporting_enabled = 6 [default = true];</code>
        * @return The isAbuseReportingEnabled.
        */
+      @java.lang.Override
       public boolean getIsAbuseReportingEnabled() {
         return isAbuseReportingEnabled_;
       }
@@ -2810,8 +2717,9 @@ public final class PlaylistAnnotate3 {
        * @return This builder for chaining.
        */
       public Builder setIsAbuseReportingEnabled(boolean value) {
-        bitField0_ |= 0x00000010;
+
         isAbuseReportingEnabled_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2831,15 +2739,16 @@ public final class PlaylistAnnotate3 {
        * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 7 [default = OK];</code>
        * @return Whether the abuseReportState field is set.
        */
-      public boolean hasAbuseReportState() {
+      @java.lang.Override public boolean hasAbuseReportState() {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <code>optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 7 [default = OK];</code>
        * @return The abuseReportState.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState getAbuseReportState() {
-        com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.valueOf(abuseReportState_);
+        com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState result = com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.forNumber(abuseReportState_);
         return result == null ? com.spotifyxp.deps.com.spotify.playlist_annotate3.PlaylistAnnotate3.AbuseReportState.OK : result;
       }
       /**
@@ -2867,13 +2776,13 @@ public final class PlaylistAnnotate3 {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2904,10 +2813,11 @@ public final class PlaylistAnnotate3 {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -2954,7 +2864,7 @@ public final class PlaylistAnnotate3 {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -2976,8 +2886,9 @@ public final class PlaylistAnnotate3 {
       "fy_playlist_annotate3.proto.AbuseReportS" +
       "tate:\002OK*<\n\016RenderFeatures\022\023\n\017NORMAL_FEA" +
       "TURES\020\001\022\025\n\021EXTENDED_FEATURES\020\002**\n\020AbuseR" +
-      "eportState\022\006\n\002OK\020\000\022\016\n\nTAKEN_DOWN\020\001B\"\n\036co" +
-      "m.spotify.playlist_annotate3H\002"
+      "eportState\022\006\n\002OK\020\000\022\016\n\nTAKEN_DOWN\020\001B5\n1co" +
+      "m.spotifyxp.deps.com.spotify.playlist_an" +
+      "notate3H\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

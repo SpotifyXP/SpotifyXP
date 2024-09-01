@@ -677,11 +677,11 @@ public class ContentPanel extends JPanel {
                 if(retvalue != JOptionPane.CLOSED_OPTION) {
                     JsonArray array = new JsonArray();
                     array.add(devicelist[retvalue].getId());
-                    try {
-                        InstanceManager.getSpotifyApi().transferUsersPlayback(array).play(!PublicValues.spotifyplayer.isPaused()).build().execute();
-                    }catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    //try {
+                    //    InstanceManager.getSpotifyApi().transferUsersPlayback(array).play(!PublicValues.spotifyplayer.).build().execute();
+                    //}catch (Exception ex) {
+                    //    throw new RuntimeException(ex);
+                    //}
                 }
             }
         }));
@@ -716,7 +716,7 @@ public class ContentPanel extends JPanel {
         exit.addActionListener(e -> System.exit(0));
         playuri.addActionListener(new AsyncActionListener(e -> {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
-            PublicValues.spotifyplayer.load(uri, true, false, false);
+            PublicValues.spotifyplayer.load(uri, true, false);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
         }));
         if (steamdeck) {
@@ -802,7 +802,7 @@ public class ContentPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, PublicValues.shuffle, false);
+                    InstanceManager.getPlayer().getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, PublicValues.shuffle);
                     advancedsongtable.setColumnSelectionInterval(0, advancedsongtable.getColumnCount() - 1);
                     TrackUtils.addAllToQueue(advanceduricache, advancedsongtable);
                 }

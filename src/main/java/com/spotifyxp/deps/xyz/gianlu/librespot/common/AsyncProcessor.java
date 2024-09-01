@@ -35,7 +35,6 @@ import java.util.function.Function;
  * @param <RES> Return type of our processor implementation
  */
 public class AsyncProcessor<REQ, RES> implements Closeable {
-    
     private final String name;
     private final Function<REQ, RES> processor;
     private final ExecutorService executor;

@@ -139,17 +139,25 @@ public final class Login5 {
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
         LoginError> internalValueMap =
-            LoginError::forNumber;
+          new com.google.protobuf.Internal.EnumLiteMap<LoginError>() {
+            public LoginError findValueByNumber(int number) {
+              return LoginError.forNumber(number);
+            }
+          };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
       return getDescriptor();
     }
-    public static com.google.protobuf.Descriptors.EnumDescriptor
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.getDescriptor().getEnumTypes().get(0);
     }
@@ -170,7 +178,7 @@ public final class Login5 {
 
     private final int value;
 
-    LoginError(int value) {
+    private LoginError(int value) {
       this.value = value;
     }
 
@@ -208,7 +216,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.Challenges}
    */
-  public  static final class Challenges extends
+  public static final class Challenges extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.Challenges)
       ChallengesOrBuilder {
@@ -228,62 +236,7 @@ public final class Login5 {
       return new Challenges();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Challenges(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if ((mutable_bitField0_ & 0x00000001) == 0) {
-                challenges_ = new java.util.ArrayList<>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              challenges_.add(
-                  input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          challenges_ = java.util.Collections.unmodifiableList(challenges_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenges_descriptor;
     }
@@ -297,16 +250,19 @@ public final class Login5 {
     }
 
     public static final int CHALLENGES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge> challenges_;
     /**
      * <code>repeated .spotify.login5.v3.Challenge challenges = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge> getChallengesList() {
       return challenges_;
     }
     /**
      * <code>repeated .spotify.login5.v3.Challenge challenges = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder> 
         getChallengesOrBuilderList() {
       return challenges_;
@@ -314,18 +270,21 @@ public final class Login5 {
     /**
      * <code>repeated .spotify.login5.v3.Challenge challenges = 1;</code>
      */
+    @java.lang.Override
     public int getChallengesCount() {
       return challenges_.size();
     }
     /**
      * <code>repeated .spotify.login5.v3.Challenge challenges = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge getChallenges(int index) {
       return challenges_.get(index);
     }
     /**
      * <code>repeated .spotify.login5.v3.Challenge challenges = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder getChallengesOrBuilder(
         int index) {
       return challenges_.get(index);
@@ -333,7 +292,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -345,10 +304,10 @@ public final class Login5 {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-        for (Challenge challenge : challenges_) {
-            output.writeMessage(1, challenge);
-        }
-      unknownFields.writeTo(output);
+      for (int i = 0; i < challenges_.size(); i++) {
+        output.writeMessage(1, challenges_.get(i));
+      }
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -357,11 +316,11 @@ public final class Login5 {
       if (size != -1) return size;
 
       size = 0;
-        for (Challenge challenge : challenges_) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(1, challenge);
-        }
-      size += unknownFields.getSerializedSize();
+      for (int i = 0; i < challenges_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, challenges_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -378,7 +337,8 @@ public final class Login5 {
 
       if (!getChallengesList()
           .equals(other.getChallengesList())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -392,7 +352,7 @@ public final class Login5 {
         hash = (37 * hash) + CHALLENGES_FIELD_NUMBER;
         hash = (53 * hash) + getChallengesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -441,11 +401,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -484,7 +446,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.Challenges}
@@ -493,7 +456,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.Challenges)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenges_descriptor;
       }
@@ -508,29 +471,25 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getChallengesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (challengesBuilder_ == null) {
           challenges_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          challenges_ = null;
           challengesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -557,7 +516,13 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges result) {
         if (challengesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             challenges_ = java.util.Collections.unmodifiableList(challenges_);
@@ -567,42 +532,12 @@ public final class Login5 {
         } else {
           result.challenges_ = challengesBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges) {
@@ -641,13 +576,13 @@ public final class Login5 {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -656,17 +591,43 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge m =
+                    input.readMessage(
+                        com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.parser(),
+                        extensionRegistry);
+                if (challengesBuilder_ == null) {
+                  ensureChallengesIsMutable();
+                  challenges_.add(m);
+                } else {
+                  challengesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -674,8 +635,8 @@ public final class Login5 {
       private java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge> challenges_ =
         java.util.Collections.emptyList();
       private void ensureChallengesIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          challenges_ = new java.util.ArrayList<>(challenges_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          challenges_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge>(challenges_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -900,7 +861,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder> 
           getChallengesFieldBuilder() {
         if (challengesBuilder_ == null) {
-          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder>(
                   challenges_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -910,13 +872,13 @@ public final class Login5 {
         return challengesBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -942,7 +904,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Challenges(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -999,7 +972,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.Challenge}
    */
-  public  static final class Challenge extends
+  public static final class Challenge extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.Challenge)
       ChallengeOrBuilder {
@@ -1018,75 +991,7 @@ public final class Login5 {
       return new Challenge();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Challenge(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder subBuilder = null;
-              if (hashcash_ != null) {
-                subBuilder = hashcash_.toBuilder();
-              }
-              hashcash_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(hashcash_);
-                hashcash_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder subBuilder = null;
-              if (code_ != null) {
-                subBuilder = code_.toBuilder();
-              }
-              code_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(code_);
-                code_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenge_descriptor;
     }
@@ -1105,6 +1010,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.HashcashChallenge hashcash = 1;</code>
      * @return Whether the hashcash field is set.
      */
+    @java.lang.Override
     public boolean hasHashcash() {
       return hashcash_ != null;
     }
@@ -1112,14 +1018,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.HashcashChallenge hashcash = 1;</code>
      * @return The hashcash.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge getHashcash() {
       return hashcash_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.getDefaultInstance() : hashcash_;
     }
     /**
      * <code>.spotify.login5.v3.challenges.HashcashChallenge hashcash = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallengeOrBuilder getHashcashOrBuilder() {
-      return getHashcash();
+      return hashcash_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.getDefaultInstance() : hashcash_;
     }
 
     public static final int CODE_FIELD_NUMBER = 2;
@@ -1128,6 +1036,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.CodeChallenge code = 2;</code>
      * @return Whether the code field is set.
      */
+    @java.lang.Override
     public boolean hasCode() {
       return code_ != null;
     }
@@ -1135,19 +1044,21 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.CodeChallenge code = 2;</code>
      * @return The code.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge getCode() {
       return code_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.getDefaultInstance() : code_;
     }
     /**
      * <code>.spotify.login5.v3.challenges.CodeChallenge code = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder getCodeOrBuilder() {
-      return getCode();
+      return code_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.getDefaultInstance() : code_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1165,7 +1076,7 @@ public final class Login5 {
       if (code_ != null) {
         output.writeMessage(2, getCode());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1182,7 +1093,7 @@ public final class Login5 {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCode());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1207,7 +1118,8 @@ public final class Login5 {
         if (!getCode()
             .equals(other.getCode())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1225,7 +1137,7 @@ public final class Login5 {
         hash = (37 * hash) + CODE_FIELD_NUMBER;
         hash = (53 * hash) + getCode().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1274,11 +1186,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1317,7 +1231,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.Challenge}
@@ -1326,7 +1241,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.Challenge)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_Challenge_descriptor;
       }
@@ -1341,29 +1256,26 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (hashcashBuilder_ == null) {
-          hashcash_ = null;
-        } else {
-          hashcash_ = null;
+        bitField0_ = 0;
+        hashcash_ = null;
+        if (hashcashBuilder_ != null) {
+          hashcashBuilder_.dispose();
           hashcashBuilder_ = null;
         }
-        if (codeBuilder_ == null) {
-          code_ = null;
-        } else {
-          code_ = null;
+        code_ = null;
+        if (codeBuilder_ != null) {
+          codeBuilder_.dispose();
           codeBuilder_ = null;
         }
         return this;
@@ -1392,52 +1304,25 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge(this);
-        if (hashcashBuilder_ == null) {
-          result.hashcash_ = hashcash_;
-        } else {
-          result.hashcash_ = hashcashBuilder_.build();
-        }
-        if (codeBuilder_ == null) {
-          result.code_ = code_;
-        } else {
-          result.code_ = codeBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.hashcash_ = hashcashBuilder_ == null
+              ? hashcash_
+              : hashcashBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.code_ = codeBuilder_ == null
+              ? code_
+              : codeBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge) {
@@ -1456,13 +1341,13 @@ public final class Login5 {
         if (other.hasCode()) {
           mergeCode(other.getCode());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -1471,19 +1356,47 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getHashcashFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getCodeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenge) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge hashcash_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1493,7 +1406,7 @@ public final class Login5 {
        * @return Whether the hashcash field is set.
        */
       public boolean hasHashcash() {
-        return hashcashBuilder_ != null || hashcash_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.spotify.login5.v3.challenges.HashcashChallenge hashcash = 1;</code>
@@ -1515,11 +1428,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           hashcash_ = value;
-          onChanged();
         } else {
           hashcashBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1529,11 +1442,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder builderForValue) {
         if (hashcashBuilder_ == null) {
           hashcash_ = builderForValue.build();
-          onChanged();
         } else {
           hashcashBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1541,38 +1454,38 @@ public final class Login5 {
        */
       public Builder mergeHashcash(com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge value) {
         if (hashcashBuilder_ == null) {
-          if (hashcash_ != null) {
-            hashcash_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.newBuilder(hashcash_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            hashcash_ != null &&
+            hashcash_ != com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.getDefaultInstance()) {
+            getHashcashBuilder().mergeFrom(value);
           } else {
             hashcash_ = value;
           }
-          onChanged();
         } else {
           hashcashBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.HashcashChallenge hashcash = 1;</code>
        */
       public Builder clearHashcash() {
-        if (hashcashBuilder_ == null) {
-          hashcash_ = null;
-          onChanged();
-        } else {
-          hashcash_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        hashcash_ = null;
+        if (hashcashBuilder_ != null) {
+          hashcashBuilder_.dispose();
           hashcashBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.HashcashChallenge hashcash = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder getHashcashBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getHashcashFieldBuilder().getBuilder();
       }
@@ -1594,7 +1507,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallengeOrBuilder> 
           getHashcashFieldBuilder() {
         if (hashcashBuilder_ == null) {
-          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashChallengeOrBuilder>(
                   getHashcash(),
                   getParentForChildren(),
                   isClean());
@@ -1611,7 +1525,7 @@ public final class Login5 {
        * @return Whether the code field is set.
        */
       public boolean hasCode() {
-        return codeBuilder_ != null || code_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.spotify.login5.v3.challenges.CodeChallenge code = 2;</code>
@@ -1633,11 +1547,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           code_ = value;
-          onChanged();
         } else {
           codeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1647,11 +1561,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder builderForValue) {
         if (codeBuilder_ == null) {
           code_ = builderForValue.build();
-          onChanged();
         } else {
           codeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1659,38 +1573,38 @@ public final class Login5 {
        */
       public Builder mergeCode(com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge value) {
         if (codeBuilder_ == null) {
-          if (code_ != null) {
-            code_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.newBuilder(code_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            code_ != null &&
+            code_ != com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.getDefaultInstance()) {
+            getCodeBuilder().mergeFrom(value);
           } else {
             code_ = value;
           }
-          onChanged();
         } else {
           codeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.CodeChallenge code = 2;</code>
        */
       public Builder clearCode() {
-        if (codeBuilder_ == null) {
-          code_ = null;
-          onChanged();
-        } else {
-          code_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        code_ = null;
+        if (codeBuilder_ != null) {
+          codeBuilder_.dispose();
           codeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.CodeChallenge code = 2;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder getCodeBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getCodeFieldBuilder().getBuilder();
       }
@@ -1712,7 +1626,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder> 
           getCodeFieldBuilder() {
         if (codeBuilder_ == null) {
-          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallenge.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeChallengeOrBuilder>(
                   getCode(),
                   getParentForChildren(),
                   isClean());
@@ -1721,13 +1636,13 @@ public final class Login5 {
         return codeBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -1753,7 +1668,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Challenge(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1804,7 +1730,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.ChallengeSolutions}
    */
-  public  static final class ChallengeSolutions extends
+  public static final class ChallengeSolutions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.ChallengeSolutions)
       ChallengeSolutionsOrBuilder {
@@ -1824,62 +1750,7 @@ public final class Login5 {
       return new ChallengeSolutions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ChallengeSolutions(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if ((mutable_bitField0_ & 0x00000001) == 0) {
-                solutions_ = new java.util.ArrayList<>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              solutions_.add(
-                  input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          solutions_ = java.util.Collections.unmodifiableList(solutions_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolutions_descriptor;
     }
@@ -1893,16 +1764,19 @@ public final class Login5 {
     }
 
     public static final int SOLUTIONS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution> solutions_;
     /**
      * <code>repeated .spotify.login5.v3.ChallengeSolution solutions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution> getSolutionsList() {
       return solutions_;
     }
     /**
      * <code>repeated .spotify.login5.v3.ChallengeSolution solutions = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder> 
         getSolutionsOrBuilderList() {
       return solutions_;
@@ -1910,18 +1784,21 @@ public final class Login5 {
     /**
      * <code>repeated .spotify.login5.v3.ChallengeSolution solutions = 1;</code>
      */
+    @java.lang.Override
     public int getSolutionsCount() {
       return solutions_.size();
     }
     /**
      * <code>repeated .spotify.login5.v3.ChallengeSolution solutions = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution getSolutions(int index) {
       return solutions_.get(index);
     }
     /**
      * <code>repeated .spotify.login5.v3.ChallengeSolution solutions = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder getSolutionsOrBuilder(
         int index) {
       return solutions_.get(index);
@@ -1929,7 +1806,7 @@ public final class Login5 {
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1941,10 +1818,10 @@ public final class Login5 {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-        for (ChallengeSolution challengeSolution : solutions_) {
-            output.writeMessage(1, challengeSolution);
-        }
-      unknownFields.writeTo(output);
+      for (int i = 0; i < solutions_.size(); i++) {
+        output.writeMessage(1, solutions_.get(i));
+      }
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1953,11 +1830,11 @@ public final class Login5 {
       if (size != -1) return size;
 
       size = 0;
-        for (ChallengeSolution challengeSolution : solutions_) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(1, challengeSolution);
-        }
-      size += unknownFields.getSerializedSize();
+      for (int i = 0; i < solutions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, solutions_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1974,7 +1851,8 @@ public final class Login5 {
 
       if (!getSolutionsList()
           .equals(other.getSolutionsList())) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1988,7 +1866,7 @@ public final class Login5 {
         hash = (37 * hash) + SOLUTIONS_FIELD_NUMBER;
         hash = (53 * hash) + getSolutionsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2037,11 +1915,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2080,7 +1960,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.ChallengeSolutions}
@@ -2089,7 +1970,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.ChallengeSolutions)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolutions_descriptor;
       }
@@ -2104,29 +1985,25 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getSolutionsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (solutionsBuilder_ == null) {
           solutions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          solutions_ = null;
           solutionsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -2153,7 +2030,13 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions result) {
         if (solutionsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             solutions_ = java.util.Collections.unmodifiableList(solutions_);
@@ -2163,42 +2046,12 @@ public final class Login5 {
         } else {
           result.solutions_ = solutionsBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions) {
@@ -2237,13 +2090,13 @@ public final class Login5 {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -2252,17 +2105,43 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution m =
+                    input.readMessage(
+                        com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.parser(),
+                        extensionRegistry);
+                if (solutionsBuilder_ == null) {
+                  ensureSolutionsIsMutable();
+                  solutions_.add(m);
+                } else {
+                  solutionsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2270,8 +2149,8 @@ public final class Login5 {
       private java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution> solutions_ =
         java.util.Collections.emptyList();
       private void ensureSolutionsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          solutions_ = new java.util.ArrayList<>(solutions_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          solutions_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution>(solutions_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -2496,7 +2375,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder> 
           getSolutionsFieldBuilder() {
         if (solutionsBuilder_ == null) {
-          solutionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          solutionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder>(
                   solutions_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2506,13 +2386,13 @@ public final class Login5 {
         return solutionsBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -2538,7 +2418,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChallengeSolutions(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2595,7 +2486,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.ChallengeSolution}
    */
-  public  static final class ChallengeSolution extends
+  public static final class ChallengeSolution extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.ChallengeSolution)
       ChallengeSolutionOrBuilder {
@@ -2614,75 +2505,7 @@ public final class Login5 {
       return new ChallengeSolution();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ChallengeSolution(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder subBuilder = null;
-              if (hashcash_ != null) {
-                subBuilder = hashcash_.toBuilder();
-              }
-              hashcash_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(hashcash_);
-                hashcash_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder subBuilder = null;
-              if (code_ != null) {
-                subBuilder = code_.toBuilder();
-              }
-              code_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(code_);
-                code_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolution_descriptor;
     }
@@ -2701,6 +2524,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.HashcashSolution hashcash = 1;</code>
      * @return Whether the hashcash field is set.
      */
+    @java.lang.Override
     public boolean hasHashcash() {
       return hashcash_ != null;
     }
@@ -2708,14 +2532,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.HashcashSolution hashcash = 1;</code>
      * @return The hashcash.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution getHashcash() {
       return hashcash_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.getDefaultInstance() : hashcash_;
     }
     /**
      * <code>.spotify.login5.v3.challenges.HashcashSolution hashcash = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolutionOrBuilder getHashcashOrBuilder() {
-      return getHashcash();
+      return hashcash_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.getDefaultInstance() : hashcash_;
     }
 
     public static final int CODE_FIELD_NUMBER = 2;
@@ -2724,6 +2550,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.CodeSolution code = 2;</code>
      * @return Whether the code field is set.
      */
+    @java.lang.Override
     public boolean hasCode() {
       return code_ != null;
     }
@@ -2731,19 +2558,21 @@ public final class Login5 {
      * <code>.spotify.login5.v3.challenges.CodeSolution code = 2;</code>
      * @return The code.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution getCode() {
       return code_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.getDefaultInstance() : code_;
     }
     /**
      * <code>.spotify.login5.v3.challenges.CodeSolution code = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder getCodeOrBuilder() {
-      return getCode();
+      return code_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.getDefaultInstance() : code_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -2761,7 +2590,7 @@ public final class Login5 {
       if (code_ != null) {
         output.writeMessage(2, getCode());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2778,7 +2607,7 @@ public final class Login5 {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCode());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2803,7 +2632,8 @@ public final class Login5 {
         if (!getCode()
             .equals(other.getCode())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2821,7 +2651,7 @@ public final class Login5 {
         hash = (37 * hash) + CODE_FIELD_NUMBER;
         hash = (53 * hash) + getCode().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2870,11 +2700,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2913,7 +2745,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.ChallengeSolution}
@@ -2922,7 +2755,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.ChallengeSolution)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_ChallengeSolution_descriptor;
       }
@@ -2937,29 +2770,26 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (hashcashBuilder_ == null) {
-          hashcash_ = null;
-        } else {
-          hashcash_ = null;
+        bitField0_ = 0;
+        hashcash_ = null;
+        if (hashcashBuilder_ != null) {
+          hashcashBuilder_.dispose();
           hashcashBuilder_ = null;
         }
-        if (codeBuilder_ == null) {
-          code_ = null;
-        } else {
-          code_ = null;
+        code_ = null;
+        if (codeBuilder_ != null) {
+          codeBuilder_.dispose();
           codeBuilder_ = null;
         }
         return this;
@@ -2988,52 +2818,25 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution(this);
-        if (hashcashBuilder_ == null) {
-          result.hashcash_ = hashcash_;
-        } else {
-          result.hashcash_ = hashcashBuilder_.build();
-        }
-        if (codeBuilder_ == null) {
-          result.code_ = code_;
-        } else {
-          result.code_ = codeBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.hashcash_ = hashcashBuilder_ == null
+              ? hashcash_
+              : hashcashBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.code_ = codeBuilder_ == null
+              ? code_
+              : codeBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution) {
@@ -3052,13 +2855,13 @@ public final class Login5 {
         if (other.hasCode()) {
           mergeCode(other.getCode());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -3067,19 +2870,47 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getHashcashFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getCodeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolution) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution hashcash_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -3089,7 +2920,7 @@ public final class Login5 {
        * @return Whether the hashcash field is set.
        */
       public boolean hasHashcash() {
-        return hashcashBuilder_ != null || hashcash_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.spotify.login5.v3.challenges.HashcashSolution hashcash = 1;</code>
@@ -3111,11 +2942,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           hashcash_ = value;
-          onChanged();
         } else {
           hashcashBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3125,11 +2956,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder builderForValue) {
         if (hashcashBuilder_ == null) {
           hashcash_ = builderForValue.build();
-          onChanged();
         } else {
           hashcashBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3137,38 +2968,38 @@ public final class Login5 {
        */
       public Builder mergeHashcash(com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution value) {
         if (hashcashBuilder_ == null) {
-          if (hashcash_ != null) {
-            hashcash_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.newBuilder(hashcash_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            hashcash_ != null &&
+            hashcash_ != com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.getDefaultInstance()) {
+            getHashcashBuilder().mergeFrom(value);
           } else {
             hashcash_ = value;
           }
-          onChanged();
         } else {
           hashcashBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.HashcashSolution hashcash = 1;</code>
        */
       public Builder clearHashcash() {
-        if (hashcashBuilder_ == null) {
-          hashcash_ = null;
-          onChanged();
-        } else {
-          hashcash_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        hashcash_ = null;
+        if (hashcashBuilder_ != null) {
+          hashcashBuilder_.dispose();
           hashcashBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.HashcashSolution hashcash = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder getHashcashBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getHashcashFieldBuilder().getBuilder();
       }
@@ -3190,7 +3021,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolutionOrBuilder> 
           getHashcashFieldBuilder() {
         if (hashcashBuilder_ == null) {
-          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          hashcashBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Hashcash.HashcashSolutionOrBuilder>(
                   getHashcash(),
                   getParentForChildren(),
                   isClean());
@@ -3207,7 +3039,7 @@ public final class Login5 {
        * @return Whether the code field is set.
        */
       public boolean hasCode() {
-        return codeBuilder_ != null || code_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.spotify.login5.v3.challenges.CodeSolution code = 2;</code>
@@ -3229,11 +3061,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           code_ = value;
-          onChanged();
         } else {
           codeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3243,11 +3075,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder builderForValue) {
         if (codeBuilder_ == null) {
           code_ = builderForValue.build();
-          onChanged();
         } else {
           codeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3255,38 +3087,38 @@ public final class Login5 {
        */
       public Builder mergeCode(com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution value) {
         if (codeBuilder_ == null) {
-          if (code_ != null) {
-            code_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.newBuilder(code_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            code_ != null &&
+            code_ != com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.getDefaultInstance()) {
+            getCodeBuilder().mergeFrom(value);
           } else {
             code_ = value;
           }
-          onChanged();
         } else {
           codeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.CodeSolution code = 2;</code>
        */
       public Builder clearCode() {
-        if (codeBuilder_ == null) {
-          code_ = null;
-          onChanged();
-        } else {
-          code_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        code_ = null;
+        if (codeBuilder_ != null) {
+          codeBuilder_.dispose();
           codeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.challenges.CodeSolution code = 2;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder getCodeBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getCodeFieldBuilder().getBuilder();
       }
@@ -3308,7 +3140,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder> 
           getCodeFieldBuilder() {
         if (codeBuilder_ == null) {
-          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          codeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolution.Builder, com.spotifyxp.deps.com.spotify.login5v3.Code.CodeSolutionOrBuilder>(
                   getCode(),
                   getParentForChildren(),
                   isClean());
@@ -3317,13 +3150,13 @@ public final class Login5 {
         return codeBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -3349,7 +3182,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChallengeSolution(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3517,7 +3361,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.LoginRequest}
    */
-  public  static final class LoginRequest extends
+  public static final class LoginRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.LoginRequest)
       LoginRequestOrBuilder {
@@ -3537,171 +3381,7 @@ public final class Login5 {
       return new LoginRequest();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoginRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder subBuilder = null;
-              if (clientInfo_ != null) {
-                subBuilder = clientInfo_.toBuilder();
-              }
-              clientInfo_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(clientInfo_);
-                clientInfo_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-
-              loginContext_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder subBuilder = null;
-              if (challengeSolutions_ != null) {
-                subBuilder = challengeSolutions_.toBuilder();
-              }
-              challengeSolutions_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(challengeSolutions_);
-                challengeSolutions_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 802: {
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder subBuilder = null;
-              if (storedCredential_ != null) {
-                subBuilder = storedCredential_.toBuilder();
-              }
-              storedCredential_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(storedCredential_);
-                storedCredential_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 810: {
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder subBuilder = null;
-              if (password_ != null) {
-                subBuilder = password_.toBuilder();
-              }
-              password_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(password_);
-                password_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 818: {
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder subBuilder = null;
-              if (facebookAccessToken_ != null) {
-                subBuilder = facebookAccessToken_.toBuilder();
-              }
-              facebookAccessToken_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(facebookAccessToken_);
-                facebookAccessToken_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 826: {
-              com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder subBuilder = null;
-              if (phoneNumber_ != null) {
-                subBuilder = phoneNumber_.toBuilder();
-              }
-              phoneNumber_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(phoneNumber_);
-                phoneNumber_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 834: {
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder subBuilder = null;
-              if (oneTimeToken_ != null) {
-                subBuilder = oneTimeToken_.toBuilder();
-              }
-              oneTimeToken_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(oneTimeToken_);
-                oneTimeToken_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 842: {
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder subBuilder = null;
-              if (parentChildCredential_ != null) {
-                subBuilder = parentChildCredential_.toBuilder();
-              }
-              parentChildCredential_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(parentChildCredential_);
-                parentChildCredential_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 850: {
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder subBuilder = null;
-              if (appleSignInCredential_ != null) {
-                subBuilder = appleSignInCredential_.toBuilder();
-              }
-              appleSignInCredential_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(appleSignInCredential_);
-                appleSignInCredential_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginRequest_descriptor;
     }
@@ -3720,6 +3400,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.ClientInfo client_info = 1;</code>
      * @return Whether the clientInfo field is set.
      */
+    @java.lang.Override
     public boolean hasClientInfo() {
       return clientInfo_ != null;
     }
@@ -3727,22 +3408,25 @@ public final class Login5 {
      * <code>.spotify.login5.v3.ClientInfo client_info = 1;</code>
      * @return The clientInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo getClientInfo() {
       return clientInfo_ == null ? com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.getDefaultInstance() : clientInfo_;
     }
     /**
      * <code>.spotify.login5.v3.ClientInfo client_info = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfoOrBuilder getClientInfoOrBuilder() {
-      return getClientInfo();
+      return clientInfo_ == null ? com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.getDefaultInstance() : clientInfo_;
     }
 
     public static final int LOGIN_CONTEXT_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString loginContext_;
+    private com.google.protobuf.ByteString loginContext_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes login_context = 2;</code>
      * @return The loginContext.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getLoginContext() {
       return loginContext_;
     }
@@ -3753,6 +3437,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.ChallengeSolutions challenge_solutions = 3;</code>
      * @return Whether the challengeSolutions field is set.
      */
+    @java.lang.Override
     public boolean hasChallengeSolutions() {
       return challengeSolutions_ != null;
     }
@@ -3760,14 +3445,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.ChallengeSolutions challenge_solutions = 3;</code>
      * @return The challengeSolutions.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions getChallengeSolutions() {
       return challengeSolutions_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.getDefaultInstance() : challengeSolutions_;
     }
     /**
      * <code>.spotify.login5.v3.ChallengeSolutions challenge_solutions = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder getChallengeSolutionsOrBuilder() {
-      return getChallengeSolutions();
+      return challengeSolutions_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.getDefaultInstance() : challengeSolutions_;
     }
 
     public static final int STORED_CREDENTIAL_FIELD_NUMBER = 100;
@@ -3776,6 +3463,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.StoredCredential stored_credential = 100;</code>
      * @return Whether the storedCredential field is set.
      */
+    @java.lang.Override
     public boolean hasStoredCredential() {
       return storedCredential_ != null;
     }
@@ -3783,14 +3471,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.StoredCredential stored_credential = 100;</code>
      * @return The storedCredential.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential getStoredCredential() {
       return storedCredential_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.getDefaultInstance() : storedCredential_;
     }
     /**
      * <code>.spotify.login5.v3.credentials.StoredCredential stored_credential = 100;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder getStoredCredentialOrBuilder() {
-      return getStoredCredential();
+      return storedCredential_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.getDefaultInstance() : storedCredential_;
     }
 
     public static final int PASSWORD_FIELD_NUMBER = 101;
@@ -3799,6 +3489,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.Password password = 101;</code>
      * @return Whether the password field is set.
      */
+    @java.lang.Override
     public boolean hasPassword() {
       return password_ != null;
     }
@@ -3806,14 +3497,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.Password password = 101;</code>
      * @return The password.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password getPassword() {
       return password_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.getDefaultInstance() : password_;
     }
     /**
      * <code>.spotify.login5.v3.credentials.Password password = 101;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.PasswordOrBuilder getPasswordOrBuilder() {
-      return getPassword();
+      return password_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.getDefaultInstance() : password_;
     }
 
     public static final int FACEBOOK_ACCESS_TOKEN_FIELD_NUMBER = 102;
@@ -3822,6 +3515,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.FacebookAccessToken facebook_access_token = 102;</code>
      * @return Whether the facebookAccessToken field is set.
      */
+    @java.lang.Override
     public boolean hasFacebookAccessToken() {
       return facebookAccessToken_ != null;
     }
@@ -3829,14 +3523,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.FacebookAccessToken facebook_access_token = 102;</code>
      * @return The facebookAccessToken.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken getFacebookAccessToken() {
       return facebookAccessToken_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.getDefaultInstance() : facebookAccessToken_;
     }
     /**
      * <code>.spotify.login5.v3.credentials.FacebookAccessToken facebook_access_token = 102;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessTokenOrBuilder getFacebookAccessTokenOrBuilder() {
-      return getFacebookAccessToken();
+      return facebookAccessToken_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.getDefaultInstance() : facebookAccessToken_;
     }
 
     public static final int PHONE_NUMBER_FIELD_NUMBER = 103;
@@ -3845,6 +3541,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.identifiers.PhoneNumber phone_number = 103;</code>
      * @return Whether the phoneNumber field is set.
      */
+    @java.lang.Override
     public boolean hasPhoneNumber() {
       return phoneNumber_ != null;
     }
@@ -3852,14 +3549,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.identifiers.PhoneNumber phone_number = 103;</code>
      * @return The phoneNumber.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber getPhoneNumber() {
       return phoneNumber_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.getDefaultInstance() : phoneNumber_;
     }
     /**
      * <code>.spotify.login5.v3.identifiers.PhoneNumber phone_number = 103;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder getPhoneNumberOrBuilder() {
-      return getPhoneNumber();
+      return phoneNumber_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.getDefaultInstance() : phoneNumber_;
     }
 
     public static final int ONE_TIME_TOKEN_FIELD_NUMBER = 104;
@@ -3868,6 +3567,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.OneTimeToken one_time_token = 104;</code>
      * @return Whether the oneTimeToken field is set.
      */
+    @java.lang.Override
     public boolean hasOneTimeToken() {
       return oneTimeToken_ != null;
     }
@@ -3875,14 +3575,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.OneTimeToken one_time_token = 104;</code>
      * @return The oneTimeToken.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken getOneTimeToken() {
       return oneTimeToken_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.getDefaultInstance() : oneTimeToken_;
     }
     /**
      * <code>.spotify.login5.v3.credentials.OneTimeToken one_time_token = 104;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeTokenOrBuilder getOneTimeTokenOrBuilder() {
-      return getOneTimeToken();
+      return oneTimeToken_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.getDefaultInstance() : oneTimeToken_;
     }
 
     public static final int PARENT_CHILD_CREDENTIAL_FIELD_NUMBER = 105;
@@ -3891,6 +3593,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.ParentChildCredential parent_child_credential = 105;</code>
      * @return Whether the parentChildCredential field is set.
      */
+    @java.lang.Override
     public boolean hasParentChildCredential() {
       return parentChildCredential_ != null;
     }
@@ -3898,14 +3601,16 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.ParentChildCredential parent_child_credential = 105;</code>
      * @return The parentChildCredential.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential getParentChildCredential() {
       return parentChildCredential_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.getDefaultInstance() : parentChildCredential_;
     }
     /**
      * <code>.spotify.login5.v3.credentials.ParentChildCredential parent_child_credential = 105;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredentialOrBuilder getParentChildCredentialOrBuilder() {
-      return getParentChildCredential();
+      return parentChildCredential_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.getDefaultInstance() : parentChildCredential_;
     }
 
     public static final int APPLE_SIGN_IN_CREDENTIAL_FIELD_NUMBER = 106;
@@ -3914,6 +3619,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.AppleSignInCredential apple_sign_in_credential = 106;</code>
      * @return Whether the appleSignInCredential field is set.
      */
+    @java.lang.Override
     public boolean hasAppleSignInCredential() {
       return appleSignInCredential_ != null;
     }
@@ -3921,19 +3627,21 @@ public final class Login5 {
      * <code>.spotify.login5.v3.credentials.AppleSignInCredential apple_sign_in_credential = 106;</code>
      * @return The appleSignInCredential.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential getAppleSignInCredential() {
       return appleSignInCredential_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.getDefaultInstance() : appleSignInCredential_;
     }
     /**
      * <code>.spotify.login5.v3.credentials.AppleSignInCredential apple_sign_in_credential = 106;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredentialOrBuilder getAppleSignInCredentialOrBuilder() {
-      return getAppleSignInCredential();
+      return appleSignInCredential_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.getDefaultInstance() : appleSignInCredential_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -3975,7 +3683,7 @@ public final class Login5 {
       if (appleSignInCredential_ != null) {
         output.writeMessage(106, getAppleSignInCredential());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4024,7 +3732,7 @@ public final class Login5 {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(106, getAppleSignInCredential());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4086,7 +3794,8 @@ public final class Login5 {
         if (!getAppleSignInCredential()
             .equals(other.getAppleSignInCredential())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4134,7 +3843,7 @@ public final class Login5 {
         hash = (37 * hash) + APPLE_SIGN_IN_CREDENTIAL_FIELD_NUMBER;
         hash = (53 * hash) + getAppleSignInCredential().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4183,11 +3892,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4226,7 +3937,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.LoginRequest}
@@ -4235,7 +3947,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.LoginRequest)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequestOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginRequest_descriptor;
       }
@@ -4250,73 +3962,62 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (clientInfoBuilder_ == null) {
-          clientInfo_ = null;
-        } else {
-          clientInfo_ = null;
+        bitField0_ = 0;
+        clientInfo_ = null;
+        if (clientInfoBuilder_ != null) {
+          clientInfoBuilder_.dispose();
           clientInfoBuilder_ = null;
         }
         loginContext_ = com.google.protobuf.ByteString.EMPTY;
-
-        if (challengeSolutionsBuilder_ == null) {
-          challengeSolutions_ = null;
-        } else {
-          challengeSolutions_ = null;
+        challengeSolutions_ = null;
+        if (challengeSolutionsBuilder_ != null) {
+          challengeSolutionsBuilder_.dispose();
           challengeSolutionsBuilder_ = null;
         }
-        if (storedCredentialBuilder_ == null) {
-          storedCredential_ = null;
-        } else {
-          storedCredential_ = null;
+        storedCredential_ = null;
+        if (storedCredentialBuilder_ != null) {
+          storedCredentialBuilder_.dispose();
           storedCredentialBuilder_ = null;
         }
-        if (passwordBuilder_ == null) {
-          password_ = null;
-        } else {
-          password_ = null;
+        password_ = null;
+        if (passwordBuilder_ != null) {
+          passwordBuilder_.dispose();
           passwordBuilder_ = null;
         }
-        if (facebookAccessTokenBuilder_ == null) {
-          facebookAccessToken_ = null;
-        } else {
-          facebookAccessToken_ = null;
+        facebookAccessToken_ = null;
+        if (facebookAccessTokenBuilder_ != null) {
+          facebookAccessTokenBuilder_.dispose();
           facebookAccessTokenBuilder_ = null;
         }
-        if (phoneNumberBuilder_ == null) {
-          phoneNumber_ = null;
-        } else {
-          phoneNumber_ = null;
+        phoneNumber_ = null;
+        if (phoneNumberBuilder_ != null) {
+          phoneNumberBuilder_.dispose();
           phoneNumberBuilder_ = null;
         }
-        if (oneTimeTokenBuilder_ == null) {
-          oneTimeToken_ = null;
-        } else {
-          oneTimeToken_ = null;
+        oneTimeToken_ = null;
+        if (oneTimeTokenBuilder_ != null) {
+          oneTimeTokenBuilder_.dispose();
           oneTimeTokenBuilder_ = null;
         }
-        if (parentChildCredentialBuilder_ == null) {
-          parentChildCredential_ = null;
-        } else {
-          parentChildCredential_ = null;
+        parentChildCredential_ = null;
+        if (parentChildCredentialBuilder_ != null) {
+          parentChildCredentialBuilder_.dispose();
           parentChildCredentialBuilder_ = null;
         }
-        if (appleSignInCredentialBuilder_ == null) {
-          appleSignInCredential_ = null;
-        } else {
-          appleSignInCredential_ = null;
+        appleSignInCredential_ = null;
+        if (appleSignInCredentialBuilder_ != null) {
+          appleSignInCredentialBuilder_.dispose();
           appleSignInCredentialBuilder_ = null;
         }
         return this;
@@ -4345,88 +4046,63 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest(this);
-        if (clientInfoBuilder_ == null) {
-          result.clientInfo_ = clientInfo_;
-        } else {
-          result.clientInfo_ = clientInfoBuilder_.build();
-        }
-        result.loginContext_ = loginContext_;
-        if (challengeSolutionsBuilder_ == null) {
-          result.challengeSolutions_ = challengeSolutions_;
-        } else {
-          result.challengeSolutions_ = challengeSolutionsBuilder_.build();
-        }
-        if (storedCredentialBuilder_ == null) {
-          result.storedCredential_ = storedCredential_;
-        } else {
-          result.storedCredential_ = storedCredentialBuilder_.build();
-        }
-        if (passwordBuilder_ == null) {
-          result.password_ = password_;
-        } else {
-          result.password_ = passwordBuilder_.build();
-        }
-        if (facebookAccessTokenBuilder_ == null) {
-          result.facebookAccessToken_ = facebookAccessToken_;
-        } else {
-          result.facebookAccessToken_ = facebookAccessTokenBuilder_.build();
-        }
-        if (phoneNumberBuilder_ == null) {
-          result.phoneNumber_ = phoneNumber_;
-        } else {
-          result.phoneNumber_ = phoneNumberBuilder_.build();
-        }
-        if (oneTimeTokenBuilder_ == null) {
-          result.oneTimeToken_ = oneTimeToken_;
-        } else {
-          result.oneTimeToken_ = oneTimeTokenBuilder_.build();
-        }
-        if (parentChildCredentialBuilder_ == null) {
-          result.parentChildCredential_ = parentChildCredential_;
-        } else {
-          result.parentChildCredential_ = parentChildCredentialBuilder_.build();
-        }
-        if (appleSignInCredentialBuilder_ == null) {
-          result.appleSignInCredential_ = appleSignInCredential_;
-        } else {
-          result.appleSignInCredential_ = appleSignInCredentialBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.clientInfo_ = clientInfoBuilder_ == null
+              ? clientInfo_
+              : clientInfoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.loginContext_ = loginContext_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.challengeSolutions_ = challengeSolutionsBuilder_ == null
+              ? challengeSolutions_
+              : challengeSolutionsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.storedCredential_ = storedCredentialBuilder_ == null
+              ? storedCredential_
+              : storedCredentialBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.password_ = passwordBuilder_ == null
+              ? password_
+              : passwordBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.facebookAccessToken_ = facebookAccessTokenBuilder_ == null
+              ? facebookAccessToken_
+              : facebookAccessTokenBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.phoneNumber_ = phoneNumberBuilder_ == null
+              ? phoneNumber_
+              : phoneNumberBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.oneTimeToken_ = oneTimeTokenBuilder_ == null
+              ? oneTimeToken_
+              : oneTimeTokenBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.parentChildCredential_ = parentChildCredentialBuilder_ == null
+              ? parentChildCredential_
+              : parentChildCredentialBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.appleSignInCredential_ = appleSignInCredentialBuilder_ == null
+              ? appleSignInCredential_
+              : appleSignInCredentialBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest) {
@@ -4469,13 +4145,13 @@ public final class Login5 {
         if (other.hasAppleSignInCredential()) {
           mergeAppleSignInCredential(other.getAppleSignInCredential());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -4484,19 +4160,101 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getClientInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                loginContext_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    getChallengeSolutionsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 802: {
+                input.readMessage(
+                    getStoredCredentialFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 802
+              case 810: {
+                input.readMessage(
+                    getPasswordFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 810
+              case 818: {
+                input.readMessage(
+                    getFacebookAccessTokenFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 818
+              case 826: {
+                input.readMessage(
+                    getPhoneNumberFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 826
+              case 834: {
+                input.readMessage(
+                    getOneTimeTokenFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 834
+              case 842: {
+                input.readMessage(
+                    getParentChildCredentialFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 842
+              case 850: {
+                input.readMessage(
+                    getAppleSignInCredentialFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 850
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo clientInfo_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -4506,7 +4264,7 @@ public final class Login5 {
        * @return Whether the clientInfo field is set.
        */
       public boolean hasClientInfo() {
-        return clientInfoBuilder_ != null || clientInfo_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.spotify.login5.v3.ClientInfo client_info = 1;</code>
@@ -4528,11 +4286,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           clientInfo_ = value;
-          onChanged();
         } else {
           clientInfoBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4542,11 +4300,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder builderForValue) {
         if (clientInfoBuilder_ == null) {
           clientInfo_ = builderForValue.build();
-          onChanged();
         } else {
           clientInfoBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4554,38 +4312,38 @@ public final class Login5 {
        */
       public Builder mergeClientInfo(com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo value) {
         if (clientInfoBuilder_ == null) {
-          if (clientInfo_ != null) {
-            clientInfo_ =
-              com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.newBuilder(clientInfo_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            clientInfo_ != null &&
+            clientInfo_ != com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.getDefaultInstance()) {
+            getClientInfoBuilder().mergeFrom(value);
           } else {
             clientInfo_ = value;
           }
-          onChanged();
         } else {
           clientInfoBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.ClientInfo client_info = 1;</code>
        */
       public Builder clearClientInfo() {
-        if (clientInfoBuilder_ == null) {
-          clientInfo_ = null;
-          onChanged();
-        } else {
-          clientInfo_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        clientInfo_ = null;
+        if (clientInfoBuilder_ != null) {
+          clientInfoBuilder_.dispose();
           clientInfoBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.ClientInfo client_info = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder getClientInfoBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getClientInfoFieldBuilder().getBuilder();
       }
@@ -4607,7 +4365,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfoOrBuilder> 
           getClientInfoFieldBuilder() {
         if (clientInfoBuilder_ == null) {
-          clientInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          clientInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.ClientInfoOuterClass.ClientInfoOrBuilder>(
                   getClientInfo(),
                   getParentForChildren(),
                   isClean());
@@ -4621,6 +4380,7 @@ public final class Login5 {
        * <code>bytes login_context = 2;</code>
        * @return The loginContext.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getLoginContext() {
         return loginContext_;
       }
@@ -4630,11 +4390,9 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder setLoginContext(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         loginContext_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4643,7 +4401,7 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearLoginContext() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         loginContext_ = getDefaultInstance().getLoginContext();
         onChanged();
         return this;
@@ -4657,7 +4415,7 @@ public final class Login5 {
        * @return Whether the challengeSolutions field is set.
        */
       public boolean hasChallengeSolutions() {
-        return challengeSolutionsBuilder_ != null || challengeSolutions_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>.spotify.login5.v3.ChallengeSolutions challenge_solutions = 3;</code>
@@ -4679,11 +4437,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           challengeSolutions_ = value;
-          onChanged();
         } else {
           challengeSolutionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -4693,11 +4451,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder builderForValue) {
         if (challengeSolutionsBuilder_ == null) {
           challengeSolutions_ = builderForValue.build();
-          onChanged();
         } else {
           challengeSolutionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -4705,38 +4463,38 @@ public final class Login5 {
        */
       public Builder mergeChallengeSolutions(com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions value) {
         if (challengeSolutionsBuilder_ == null) {
-          if (challengeSolutions_ != null) {
-            challengeSolutions_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.newBuilder(challengeSolutions_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            challengeSolutions_ != null &&
+            challengeSolutions_ != com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.getDefaultInstance()) {
+            getChallengeSolutionsBuilder().mergeFrom(value);
           } else {
             challengeSolutions_ = value;
           }
-          onChanged();
         } else {
           challengeSolutionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.ChallengeSolutions challenge_solutions = 3;</code>
        */
       public Builder clearChallengeSolutions() {
-        if (challengeSolutionsBuilder_ == null) {
-          challengeSolutions_ = null;
-          onChanged();
-        } else {
-          challengeSolutions_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        challengeSolutions_ = null;
+        if (challengeSolutionsBuilder_ != null) {
+          challengeSolutionsBuilder_.dispose();
           challengeSolutionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.ChallengeSolutions challenge_solutions = 3;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder getChallengeSolutionsBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getChallengeSolutionsFieldBuilder().getBuilder();
       }
@@ -4758,7 +4516,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder> 
           getChallengeSolutionsFieldBuilder() {
         if (challengeSolutionsBuilder_ == null) {
-          challengeSolutionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          challengeSolutionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutions.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengeSolutionsOrBuilder>(
                   getChallengeSolutions(),
                   getParentForChildren(),
                   isClean());
@@ -4775,7 +4534,7 @@ public final class Login5 {
        * @return Whether the storedCredential field is set.
        */
       public boolean hasStoredCredential() {
-        return storedCredentialBuilder_ != null || storedCredential_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>.spotify.login5.v3.credentials.StoredCredential stored_credential = 100;</code>
@@ -4797,11 +4556,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           storedCredential_ = value;
-          onChanged();
         } else {
           storedCredentialBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -4811,11 +4570,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder builderForValue) {
         if (storedCredentialBuilder_ == null) {
           storedCredential_ = builderForValue.build();
-          onChanged();
         } else {
           storedCredentialBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -4823,38 +4582,38 @@ public final class Login5 {
        */
       public Builder mergeStoredCredential(com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential value) {
         if (storedCredentialBuilder_ == null) {
-          if (storedCredential_ != null) {
-            storedCredential_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.newBuilder(storedCredential_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            storedCredential_ != null &&
+            storedCredential_ != com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.getDefaultInstance()) {
+            getStoredCredentialBuilder().mergeFrom(value);
           } else {
             storedCredential_ = value;
           }
-          onChanged();
         } else {
           storedCredentialBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.StoredCredential stored_credential = 100;</code>
        */
       public Builder clearStoredCredential() {
-        if (storedCredentialBuilder_ == null) {
-          storedCredential_ = null;
-          onChanged();
-        } else {
-          storedCredential_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        storedCredential_ = null;
+        if (storedCredentialBuilder_ != null) {
+          storedCredentialBuilder_.dispose();
           storedCredentialBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.StoredCredential stored_credential = 100;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder getStoredCredentialBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getStoredCredentialFieldBuilder().getBuilder();
       }
@@ -4876,7 +4635,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder> 
           getStoredCredentialFieldBuilder() {
         if (storedCredentialBuilder_ == null) {
-          storedCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          storedCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.StoredCredentialOrBuilder>(
                   getStoredCredential(),
                   getParentForChildren(),
                   isClean());
@@ -4893,7 +4653,7 @@ public final class Login5 {
        * @return Whether the password field is set.
        */
       public boolean hasPassword() {
-        return passwordBuilder_ != null || password_ != null;
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <code>.spotify.login5.v3.credentials.Password password = 101;</code>
@@ -4915,11 +4675,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           password_ = value;
-          onChanged();
         } else {
           passwordBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -4929,11 +4689,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder builderForValue) {
         if (passwordBuilder_ == null) {
           password_ = builderForValue.build();
-          onChanged();
         } else {
           passwordBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -4941,38 +4701,38 @@ public final class Login5 {
        */
       public Builder mergePassword(com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password value) {
         if (passwordBuilder_ == null) {
-          if (password_ != null) {
-            password_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.newBuilder(password_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000010) != 0) &&
+            password_ != null &&
+            password_ != com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.getDefaultInstance()) {
+            getPasswordBuilder().mergeFrom(value);
           } else {
             password_ = value;
           }
-          onChanged();
         } else {
           passwordBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.Password password = 101;</code>
        */
       public Builder clearPassword() {
-        if (passwordBuilder_ == null) {
-          password_ = null;
-          onChanged();
-        } else {
-          password_ = null;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        password_ = null;
+        if (passwordBuilder_ != null) {
+          passwordBuilder_.dispose();
           passwordBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.Password password = 101;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder getPasswordBuilder() {
-        
+        bitField0_ |= 0x00000010;
         onChanged();
         return getPasswordFieldBuilder().getBuilder();
       }
@@ -4994,7 +4754,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password, com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.PasswordOrBuilder> 
           getPasswordFieldBuilder() {
         if (passwordBuilder_ == null) {
-          passwordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          passwordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password, com.spotifyxp.deps.com.spotify.login5v3.Credentials.Password.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.PasswordOrBuilder>(
                   getPassword(),
                   getParentForChildren(),
                   isClean());
@@ -5011,7 +4772,7 @@ public final class Login5 {
        * @return Whether the facebookAccessToken field is set.
        */
       public boolean hasFacebookAccessToken() {
-        return facebookAccessTokenBuilder_ != null || facebookAccessToken_ != null;
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <code>.spotify.login5.v3.credentials.FacebookAccessToken facebook_access_token = 102;</code>
@@ -5033,11 +4794,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           facebookAccessToken_ = value;
-          onChanged();
         } else {
           facebookAccessTokenBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -5047,11 +4808,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder builderForValue) {
         if (facebookAccessTokenBuilder_ == null) {
           facebookAccessToken_ = builderForValue.build();
-          onChanged();
         } else {
           facebookAccessTokenBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -5059,38 +4820,38 @@ public final class Login5 {
        */
       public Builder mergeFacebookAccessToken(com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken value) {
         if (facebookAccessTokenBuilder_ == null) {
-          if (facebookAccessToken_ != null) {
-            facebookAccessToken_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.newBuilder(facebookAccessToken_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000020) != 0) &&
+            facebookAccessToken_ != null &&
+            facebookAccessToken_ != com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.getDefaultInstance()) {
+            getFacebookAccessTokenBuilder().mergeFrom(value);
           } else {
             facebookAccessToken_ = value;
           }
-          onChanged();
         } else {
           facebookAccessTokenBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.FacebookAccessToken facebook_access_token = 102;</code>
        */
       public Builder clearFacebookAccessToken() {
-        if (facebookAccessTokenBuilder_ == null) {
-          facebookAccessToken_ = null;
-          onChanged();
-        } else {
-          facebookAccessToken_ = null;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        facebookAccessToken_ = null;
+        if (facebookAccessTokenBuilder_ != null) {
+          facebookAccessTokenBuilder_.dispose();
           facebookAccessTokenBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.FacebookAccessToken facebook_access_token = 102;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder getFacebookAccessTokenBuilder() {
-        
+        bitField0_ |= 0x00000020;
         onChanged();
         return getFacebookAccessTokenFieldBuilder().getBuilder();
       }
@@ -5112,7 +4873,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessTokenOrBuilder> 
           getFacebookAccessTokenFieldBuilder() {
         if (facebookAccessTokenBuilder_ == null) {
-          facebookAccessTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          facebookAccessTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.FacebookAccessTokenOrBuilder>(
                   getFacebookAccessToken(),
                   getParentForChildren(),
                   isClean());
@@ -5129,7 +4891,7 @@ public final class Login5 {
        * @return Whether the phoneNumber field is set.
        */
       public boolean hasPhoneNumber() {
-        return phoneNumberBuilder_ != null || phoneNumber_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <code>.spotify.login5.v3.identifiers.PhoneNumber phone_number = 103;</code>
@@ -5151,11 +4913,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           phoneNumber_ = value;
-          onChanged();
         } else {
           phoneNumberBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -5165,11 +4927,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder builderForValue) {
         if (phoneNumberBuilder_ == null) {
           phoneNumber_ = builderForValue.build();
-          onChanged();
         } else {
           phoneNumberBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -5177,38 +4939,38 @@ public final class Login5 {
        */
       public Builder mergePhoneNumber(com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber value) {
         if (phoneNumberBuilder_ == null) {
-          if (phoneNumber_ != null) {
-            phoneNumber_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.newBuilder(phoneNumber_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            phoneNumber_ != null &&
+            phoneNumber_ != com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.getDefaultInstance()) {
+            getPhoneNumberBuilder().mergeFrom(value);
           } else {
             phoneNumber_ = value;
           }
-          onChanged();
         } else {
           phoneNumberBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.identifiers.PhoneNumber phone_number = 103;</code>
        */
       public Builder clearPhoneNumber() {
-        if (phoneNumberBuilder_ == null) {
-          phoneNumber_ = null;
-          onChanged();
-        } else {
-          phoneNumber_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        phoneNumber_ = null;
+        if (phoneNumberBuilder_ != null) {
+          phoneNumberBuilder_.dispose();
           phoneNumberBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.identifiers.PhoneNumber phone_number = 103;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder getPhoneNumberBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getPhoneNumberFieldBuilder().getBuilder();
       }
@@ -5230,7 +4992,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder> 
           getPhoneNumberFieldBuilder() {
         if (phoneNumberBuilder_ == null) {
-          phoneNumberBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          phoneNumberBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumber.Builder, com.spotifyxp.deps.com.spotify.login5v3.Identifiers.PhoneNumberOrBuilder>(
                   getPhoneNumber(),
                   getParentForChildren(),
                   isClean());
@@ -5247,7 +5010,7 @@ public final class Login5 {
        * @return Whether the oneTimeToken field is set.
        */
       public boolean hasOneTimeToken() {
-        return oneTimeTokenBuilder_ != null || oneTimeToken_ != null;
+        return ((bitField0_ & 0x00000080) != 0);
       }
       /**
        * <code>.spotify.login5.v3.credentials.OneTimeToken one_time_token = 104;</code>
@@ -5269,11 +5032,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           oneTimeToken_ = value;
-          onChanged();
         } else {
           oneTimeTokenBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -5283,11 +5046,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder builderForValue) {
         if (oneTimeTokenBuilder_ == null) {
           oneTimeToken_ = builderForValue.build();
-          onChanged();
         } else {
           oneTimeTokenBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -5295,38 +5058,38 @@ public final class Login5 {
        */
       public Builder mergeOneTimeToken(com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken value) {
         if (oneTimeTokenBuilder_ == null) {
-          if (oneTimeToken_ != null) {
-            oneTimeToken_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.newBuilder(oneTimeToken_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000080) != 0) &&
+            oneTimeToken_ != null &&
+            oneTimeToken_ != com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.getDefaultInstance()) {
+            getOneTimeTokenBuilder().mergeFrom(value);
           } else {
             oneTimeToken_ = value;
           }
-          onChanged();
         } else {
           oneTimeTokenBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.OneTimeToken one_time_token = 104;</code>
        */
       public Builder clearOneTimeToken() {
-        if (oneTimeTokenBuilder_ == null) {
-          oneTimeToken_ = null;
-          onChanged();
-        } else {
-          oneTimeToken_ = null;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        oneTimeToken_ = null;
+        if (oneTimeTokenBuilder_ != null) {
+          oneTimeTokenBuilder_.dispose();
           oneTimeTokenBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.OneTimeToken one_time_token = 104;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder getOneTimeTokenBuilder() {
-        
+        bitField0_ |= 0x00000080;
         onChanged();
         return getOneTimeTokenFieldBuilder().getBuilder();
       }
@@ -5348,7 +5111,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeTokenOrBuilder> 
           getOneTimeTokenFieldBuilder() {
         if (oneTimeTokenBuilder_ == null) {
-          oneTimeTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          oneTimeTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeToken.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.OneTimeTokenOrBuilder>(
                   getOneTimeToken(),
                   getParentForChildren(),
                   isClean());
@@ -5365,7 +5129,7 @@ public final class Login5 {
        * @return Whether the parentChildCredential field is set.
        */
       public boolean hasParentChildCredential() {
-        return parentChildCredentialBuilder_ != null || parentChildCredential_ != null;
+        return ((bitField0_ & 0x00000100) != 0);
       }
       /**
        * <code>.spotify.login5.v3.credentials.ParentChildCredential parent_child_credential = 105;</code>
@@ -5387,11 +5151,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           parentChildCredential_ = value;
-          onChanged();
         } else {
           parentChildCredentialBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
@@ -5401,11 +5165,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder builderForValue) {
         if (parentChildCredentialBuilder_ == null) {
           parentChildCredential_ = builderForValue.build();
-          onChanged();
         } else {
           parentChildCredentialBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
@@ -5413,38 +5177,38 @@ public final class Login5 {
        */
       public Builder mergeParentChildCredential(com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential value) {
         if (parentChildCredentialBuilder_ == null) {
-          if (parentChildCredential_ != null) {
-            parentChildCredential_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.newBuilder(parentChildCredential_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000100) != 0) &&
+            parentChildCredential_ != null &&
+            parentChildCredential_ != com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.getDefaultInstance()) {
+            getParentChildCredentialBuilder().mergeFrom(value);
           } else {
             parentChildCredential_ = value;
           }
-          onChanged();
         } else {
           parentChildCredentialBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.ParentChildCredential parent_child_credential = 105;</code>
        */
       public Builder clearParentChildCredential() {
-        if (parentChildCredentialBuilder_ == null) {
-          parentChildCredential_ = null;
-          onChanged();
-        } else {
-          parentChildCredential_ = null;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        parentChildCredential_ = null;
+        if (parentChildCredentialBuilder_ != null) {
+          parentChildCredentialBuilder_.dispose();
           parentChildCredentialBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.ParentChildCredential parent_child_credential = 105;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder getParentChildCredentialBuilder() {
-        
+        bitField0_ |= 0x00000100;
         onChanged();
         return getParentChildCredentialFieldBuilder().getBuilder();
       }
@@ -5466,7 +5230,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredentialOrBuilder> 
           getParentChildCredentialFieldBuilder() {
         if (parentChildCredentialBuilder_ == null) {
-          parentChildCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          parentChildCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.ParentChildCredentialOrBuilder>(
                   getParentChildCredential(),
                   getParentForChildren(),
                   isClean());
@@ -5483,7 +5248,7 @@ public final class Login5 {
        * @return Whether the appleSignInCredential field is set.
        */
       public boolean hasAppleSignInCredential() {
-        return appleSignInCredentialBuilder_ != null || appleSignInCredential_ != null;
+        return ((bitField0_ & 0x00000200) != 0);
       }
       /**
        * <code>.spotify.login5.v3.credentials.AppleSignInCredential apple_sign_in_credential = 106;</code>
@@ -5505,11 +5270,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           appleSignInCredential_ = value;
-          onChanged();
         } else {
           appleSignInCredentialBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
@@ -5519,11 +5284,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder builderForValue) {
         if (appleSignInCredentialBuilder_ == null) {
           appleSignInCredential_ = builderForValue.build();
-          onChanged();
         } else {
           appleSignInCredentialBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
@@ -5531,38 +5296,38 @@ public final class Login5 {
        */
       public Builder mergeAppleSignInCredential(com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential value) {
         if (appleSignInCredentialBuilder_ == null) {
-          if (appleSignInCredential_ != null) {
-            appleSignInCredential_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.newBuilder(appleSignInCredential_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000200) != 0) &&
+            appleSignInCredential_ != null &&
+            appleSignInCredential_ != com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.getDefaultInstance()) {
+            getAppleSignInCredentialBuilder().mergeFrom(value);
           } else {
             appleSignInCredential_ = value;
           }
-          onChanged();
         } else {
           appleSignInCredentialBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.AppleSignInCredential apple_sign_in_credential = 106;</code>
        */
       public Builder clearAppleSignInCredential() {
-        if (appleSignInCredentialBuilder_ == null) {
-          appleSignInCredential_ = null;
-          onChanged();
-        } else {
-          appleSignInCredential_ = null;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        appleSignInCredential_ = null;
+        if (appleSignInCredentialBuilder_ != null) {
+          appleSignInCredentialBuilder_.dispose();
           appleSignInCredentialBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.credentials.AppleSignInCredential apple_sign_in_credential = 106;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder getAppleSignInCredentialBuilder() {
-        
+        bitField0_ |= 0x00000200;
         onChanged();
         return getAppleSignInCredentialFieldBuilder().getBuilder();
       }
@@ -5584,7 +5349,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredentialOrBuilder> 
           getAppleSignInCredentialFieldBuilder() {
         if (appleSignInCredentialBuilder_ == null) {
-          appleSignInCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          appleSignInCredentialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredential.Builder, com.spotifyxp.deps.com.spotify.login5v3.Credentials.AppleSignInCredentialOrBuilder>(
                   getAppleSignInCredential(),
                   getParentForChildren(),
                   isClean());
@@ -5593,13 +5359,13 @@ public final class Login5 {
         return appleSignInCredentialBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5625,7 +5391,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LoginRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -5688,7 +5465,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.LoginOk}
    */
-  public  static final class LoginOk extends
+  public static final class LoginOk extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.LoginOk)
       LoginOkOrBuilder {
@@ -5710,69 +5487,7 @@ public final class Login5 {
       return new LoginOk();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoginOk(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-                username_ = input.readStringRequireUtf8();
-              break;
-            }
-            case 18: {
-
-                accessToken_ = input.readStringRequireUtf8();
-              break;
-            }
-            case 26: {
-
-              storedCredential_ = input.readBytes();
-              break;
-            }
-            case 32: {
-
-              accessTokenExpiresIn_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginOk_descriptor;
     }
@@ -5786,11 +5501,13 @@ public final class Login5 {
     }
 
     public static final int USERNAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object username_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object username_ = "";
     /**
      * <code>string username = 1;</code>
      * @return The username.
      */
+    @java.lang.Override
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
       if (ref instanceof java.lang.String) {
@@ -5807,6 +5524,7 @@ public final class Login5 {
      * <code>string username = 1;</code>
      * @return The bytes for username.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUsernameBytes() {
       java.lang.Object ref = username_;
@@ -5822,11 +5540,13 @@ public final class Login5 {
     }
 
     public static final int ACCESS_TOKEN_FIELD_NUMBER = 2;
-    private volatile java.lang.Object accessToken_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object accessToken_ = "";
     /**
      * <code>string access_token = 2;</code>
      * @return The accessToken.
      */
+    @java.lang.Override
     public java.lang.String getAccessToken() {
       java.lang.Object ref = accessToken_;
       if (ref instanceof java.lang.String) {
@@ -5843,6 +5563,7 @@ public final class Login5 {
      * <code>string access_token = 2;</code>
      * @return The bytes for accessToken.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccessTokenBytes() {
       java.lang.Object ref = accessToken_;
@@ -5858,28 +5579,30 @@ public final class Login5 {
     }
 
     public static final int STORED_CREDENTIAL_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString storedCredential_;
+    private com.google.protobuf.ByteString storedCredential_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes stored_credential = 3;</code>
      * @return The storedCredential.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getStoredCredential() {
       return storedCredential_;
     }
 
     public static final int ACCESS_TOKEN_EXPIRES_IN_FIELD_NUMBER = 4;
-    private int accessTokenExpiresIn_;
+    private int accessTokenExpiresIn_ = 0;
     /**
      * <code>int32 access_token_expires_in = 4;</code>
      * @return The accessTokenExpiresIn.
      */
+    @java.lang.Override
     public int getAccessTokenExpiresIn() {
       return accessTokenExpiresIn_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5891,10 +5614,10 @@ public final class Login5 {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getUsernameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
-      if (!getAccessTokenBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(accessToken_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, accessToken_);
       }
       if (!storedCredential_.isEmpty()) {
@@ -5903,7 +5626,7 @@ public final class Login5 {
       if (accessTokenExpiresIn_ != 0) {
         output.writeInt32(4, accessTokenExpiresIn_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5912,10 +5635,10 @@ public final class Login5 {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUsernameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
-      if (!getAccessTokenBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(accessToken_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, accessToken_);
       }
       if (!storedCredential_.isEmpty()) {
@@ -5926,7 +5649,7 @@ public final class Login5 {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, accessTokenExpiresIn_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5949,7 +5672,8 @@ public final class Login5 {
           .equals(other.getStoredCredential())) return false;
       if (getAccessTokenExpiresIn()
           != other.getAccessTokenExpiresIn()) return false;
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -5967,7 +5691,7 @@ public final class Login5 {
       hash = (53 * hash) + getStoredCredential().hashCode();
       hash = (37 * hash) + ACCESS_TOKEN_EXPIRES_IN_FIELD_NUMBER;
       hash = (53 * hash) + getAccessTokenExpiresIn();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -6016,11 +5740,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6059,7 +5785,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.LoginOk}
@@ -6068,7 +5795,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.LoginOk)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginOk_descriptor;
       }
@@ -6083,27 +5810,22 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         username_ = "";
-
         accessToken_ = "";
-
         storedCredential_ = com.google.protobuf.ByteString.EMPTY;
-
         accessTokenExpiresIn_ = 0;
-
         return this;
       }
 
@@ -6130,46 +5852,27 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk(this);
-        result.username_ = username_;
-        result.accessToken_ = accessToken_;
-        result.storedCredential_ = storedCredential_;
-        result.accessTokenExpiresIn_ = accessTokenExpiresIn_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.username_ = username_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.accessToken_ = accessToken_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.storedCredential_ = storedCredential_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.accessTokenExpiresIn_ = accessTokenExpiresIn_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk) {
@@ -6184,10 +5887,12 @@ public final class Login5 {
         if (other == com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.getDefaultInstance()) return this;
         if (!other.getUsername().isEmpty()) {
           username_ = other.username_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getAccessToken().isEmpty()) {
           accessToken_ = other.accessToken_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.getStoredCredential() != com.google.protobuf.ByteString.EMPTY) {
@@ -6196,13 +5901,13 @@ public final class Login5 {
         if (other.getAccessTokenExpiresIn() != 0) {
           setAccessTokenExpiresIn(other.getAccessTokenExpiresIn());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -6211,19 +5916,53 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                username_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                accessToken_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                storedCredential_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                accessTokenExpiresIn_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object username_ = "";
       /**
@@ -6266,11 +6005,9 @@ public final class Login5 {
        */
       public Builder setUsername(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         username_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6279,8 +6016,8 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearUsername() {
-        
         username_ = getDefaultInstance().getUsername();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -6291,12 +6028,10 @@ public final class Login5 {
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         username_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6342,11 +6077,9 @@ public final class Login5 {
        */
       public Builder setAccessToken(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         accessToken_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6355,8 +6088,8 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearAccessToken() {
-        
         accessToken_ = getDefaultInstance().getAccessToken();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -6367,12 +6100,10 @@ public final class Login5 {
        */
       public Builder setAccessTokenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         accessToken_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6382,6 +6113,7 @@ public final class Login5 {
        * <code>bytes stored_credential = 3;</code>
        * @return The storedCredential.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getStoredCredential() {
         return storedCredential_;
       }
@@ -6391,11 +6123,9 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder setStoredCredential(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         storedCredential_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -6404,7 +6134,7 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearStoredCredential() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         storedCredential_ = getDefaultInstance().getStoredCredential();
         onChanged();
         return this;
@@ -6415,6 +6145,7 @@ public final class Login5 {
        * <code>int32 access_token_expires_in = 4;</code>
        * @return The accessTokenExpiresIn.
        */
+      @java.lang.Override
       public int getAccessTokenExpiresIn() {
         return accessTokenExpiresIn_;
       }
@@ -6424,8 +6155,9 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder setAccessTokenExpiresIn(int value) {
-        
+
         accessTokenExpiresIn_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -6434,19 +6166,19 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearAccessTokenExpiresIn() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         accessTokenExpiresIn_ = 0;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -6472,7 +6204,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LoginOk(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6602,7 +6345,7 @@ public final class Login5 {
   /**
    * Protobuf type {@code spotify.login5.v3.LoginResponse}
    */
-  public  static final class LoginResponse extends
+  public static final class LoginResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.login5.v3.LoginResponse)
       LoginResponseOrBuilder {
@@ -6625,130 +6368,7 @@ public final class Login5 {
       return new LoginResponse();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LoginResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder subBuilder = null;
-              if (ok_ != null) {
-                subBuilder = ok_.toBuilder();
-              }
-              ok_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(ok_);
-                ok_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 16: {
-
-                error_ = input.readEnum();
-              break;
-            }
-            case 26: {
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder subBuilder = null;
-              if (challenges_ != null) {
-                subBuilder = challenges_.toBuilder();
-              }
-              challenges_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(challenges_);
-                challenges_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-              if ((mutable_bitField0_ & 0x00000001) == 0) {
-                warnings_ = new java.util.ArrayList<>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              warnings_.add(rawValue);
-              break;
-            }
-            case 34: {
-              int length = input.readRawVarint32();
-              int oldLimit = input.pushLimit(length);
-              while(input.getBytesUntilLimit() > 0) {
-                int rawValue = input.readEnum();
-                if ((mutable_bitField0_ & 0x00000001) == 0) {
-                  warnings_ = new java.util.ArrayList<>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                warnings_.add(rawValue);
-              }
-              input.popLimit(oldLimit);
-              break;
-            }
-            case 42: {
-
-              loginContext_ = input.readBytes();
-              break;
-            }
-            case 50: {
-
-                identifierToken_ = input.readStringRequireUtf8();
-              break;
-            }
-            case 58: {
-              com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder subBuilder = null;
-              if (userInfo_ != null) {
-                subBuilder = userInfo_.toBuilder();
-              }
-              userInfo_ = input.readMessage(com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(userInfo_);
-                userInfo_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          warnings_ = java.util.Collections.unmodifiableList(warnings_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginResponse_descriptor;
     }
@@ -6823,17 +6443,25 @@ public final class Login5 {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Warnings> internalValueMap =
-              Warnings::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Warnings>() {
+              public Warnings findValueByNumber(int number) {
+                return Warnings.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.getDescriptor().getEnumTypes().get(0);
       }
@@ -6854,7 +6482,7 @@ public final class Login5 {
 
       private final int value;
 
-      Warnings(int value) {
+      private Warnings(int value) {
         this.value = value;
       }
 
@@ -6867,6 +6495,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.LoginOk ok = 1;</code>
      * @return Whether the ok field is set.
      */
+    @java.lang.Override
     public boolean hasOk() {
       return ok_ != null;
     }
@@ -6874,31 +6503,33 @@ public final class Login5 {
      * <code>.spotify.login5.v3.LoginOk ok = 1;</code>
      * @return The ok.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk getOk() {
       return ok_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.getDefaultInstance() : ok_;
     }
     /**
      * <code>.spotify.login5.v3.LoginOk ok = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder getOkOrBuilder() {
-      return getOk();
+      return ok_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.getDefaultInstance() : ok_;
     }
 
     public static final int ERROR_FIELD_NUMBER = 2;
-    private int error_;
+    private int error_ = 0;
     /**
      * <code>.spotify.login5.v3.LoginError error = 2;</code>
      * @return The enum numeric value on the wire for error.
      */
-    public int getErrorValue() {
+    @java.lang.Override public int getErrorValue() {
       return error_;
     }
     /**
      * <code>.spotify.login5.v3.LoginError error = 2;</code>
      * @return The error.
      */
-    public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError getError() {
-      com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.valueOf(error_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError getError() {
+      com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.forNumber(error_);
       return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.UNRECOGNIZED : result;
     }
 
@@ -6908,6 +6539,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.Challenges challenges = 3;</code>
      * @return Whether the challenges field is set.
      */
+    @java.lang.Override
     public boolean hasChallenges() {
       return challenges_ != null;
     }
@@ -6915,35 +6547,44 @@ public final class Login5 {
      * <code>.spotify.login5.v3.Challenges challenges = 3;</code>
      * @return The challenges.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges getChallenges() {
       return challenges_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.getDefaultInstance() : challenges_;
     }
     /**
      * <code>.spotify.login5.v3.Challenges challenges = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder getChallengesOrBuilder() {
-      return getChallenges();
+      return challenges_ == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.getDefaultInstance() : challenges_;
     }
 
     public static final int WARNINGS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<java.lang.Integer> warnings_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings> warnings_converter_ =
-            from -> {
-              Warnings result = Warnings.valueOf(from);
-              return result == null ? Warnings.UNRECOGNIZED : result;
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings>() {
+              public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings convert(java.lang.Integer from) {
+                com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings.forNumber(from);
+                return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings.UNRECOGNIZED : result;
+              }
             };
     /**
      * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
      * @return A list containing the warnings.
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings> getWarningsList() {
-      return new com.google.protobuf.Internal.ListAdapter<>(warnings_, warnings_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<
+          java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings>(warnings_, warnings_converter_);
     }
     /**
      * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
      * @return The count of warnings.
      */
+    @java.lang.Override
     public int getWarningsCount() {
       return warnings_.size();
     }
@@ -6952,6 +6593,7 @@ public final class Login5 {
      * @param index The index of the element to return.
      * @return The warnings at the given index.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings getWarnings(int index) {
       return warnings_converter_.convert(warnings_.get(index));
     }
@@ -6959,6 +6601,7 @@ public final class Login5 {
      * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
      * @return A list containing the enum numeric values on the wire for warnings.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Integer>
     getWarningsValueList() {
       return warnings_;
@@ -6968,27 +6611,31 @@ public final class Login5 {
      * @param index The index of the value to return.
      * @return The enum numeric value on the wire of warnings at the given index.
      */
+    @java.lang.Override
     public int getWarningsValue(int index) {
       return warnings_.get(index);
     }
     private int warningsMemoizedSerializedSize;
 
     public static final int LOGIN_CONTEXT_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString loginContext_;
+    private com.google.protobuf.ByteString loginContext_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes login_context = 5;</code>
      * @return The loginContext.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getLoginContext() {
       return loginContext_;
     }
 
     public static final int IDENTIFIER_TOKEN_FIELD_NUMBER = 6;
-    private volatile java.lang.Object identifierToken_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object identifierToken_ = "";
     /**
      * <code>string identifier_token = 6;</code>
      * @return The identifierToken.
      */
+    @java.lang.Override
     public java.lang.String getIdentifierToken() {
       java.lang.Object ref = identifierToken_;
       if (ref instanceof java.lang.String) {
@@ -7005,6 +6652,7 @@ public final class Login5 {
      * <code>string identifier_token = 6;</code>
      * @return The bytes for identifierToken.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdentifierTokenBytes() {
       java.lang.Object ref = identifierToken_;
@@ -7025,6 +6673,7 @@ public final class Login5 {
      * <code>.spotify.login5.v3.UserInfo user_info = 7;</code>
      * @return Whether the userInfo field is set.
      */
+    @java.lang.Override
     public boolean hasUserInfo() {
       return userInfo_ != null;
     }
@@ -7032,19 +6681,21 @@ public final class Login5 {
      * <code>.spotify.login5.v3.UserInfo user_info = 7;</code>
      * @return The userInfo.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo getUserInfo() {
       return userInfo_ == null ? com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.getDefaultInstance() : userInfo_;
     }
     /**
      * <code>.spotify.login5.v3.UserInfo user_info = 7;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfoOrBuilder getUserInfoOrBuilder() {
-      return getUserInfo();
+      return userInfo_ == null ? com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.getDefaultInstance() : userInfo_;
     }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -7066,23 +6717,23 @@ public final class Login5 {
       if (challenges_ != null) {
         output.writeMessage(3, getChallenges());
       }
-      if (!getWarningsList().isEmpty()) {
+      if (getWarningsList().size() > 0) {
         output.writeUInt32NoTag(34);
         output.writeUInt32NoTag(warningsMemoizedSerializedSize);
       }
-        for (Integer integer : warnings_) {
-            output.writeEnumNoTag(integer);
-        }
+      for (int i = 0; i < warnings_.size(); i++) {
+        output.writeEnumNoTag(warnings_.get(i));
+      }
       if (!loginContext_.isEmpty()) {
         output.writeBytes(5, loginContext_);
       }
-      if (!getIdentifierTokenBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identifierToken_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, identifierToken_);
       }
       if (userInfo_ != null) {
         output.writeMessage(7, getUserInfo());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -7105,10 +6756,10 @@ public final class Login5 {
       }
       {
         int dataSize = 0;
-          for (Integer integer : warnings_) {
-              dataSize += com.google.protobuf.CodedOutputStream
-                      .computeEnumSizeNoTag(integer);
-          }
+        for (int i = 0; i < warnings_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(warnings_.get(i));
+        }
         size += dataSize;
         if (!getWarningsList().isEmpty()) {  size += 1;
           size += com.google.protobuf.CodedOutputStream
@@ -7119,14 +6770,14 @@ public final class Login5 {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, loginContext_);
       }
-      if (!getIdentifierTokenBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identifierToken_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, identifierToken_);
       }
       if (userInfo_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, getUserInfo());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7162,7 +6813,8 @@ public final class Login5 {
         if (!getUserInfo()
             .equals(other.getUserInfo())) return false;
       }
-        return unknownFields.equals(other.unknownFields);
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7194,7 +6846,7 @@ public final class Login5 {
         hash = (37 * hash) + USER_INFO_FIELD_NUMBER;
         hash = (53 * hash) + getUserInfo().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7243,11 +6895,13 @@ public final class Login5 {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7286,7 +6940,8 @@ public final class Login5 {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.login5.v3.LoginResponse}
@@ -7295,7 +6950,7 @@ public final class Login5 {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.login5.v3.LoginResponse)
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponseOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.login5v3.Login5.internal_static_spotify_login5_v3_LoginResponse_descriptor;
       }
@@ -7310,43 +6965,36 @@ public final class Login5 {
 
       // Construct using com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (okBuilder_ == null) {
-          ok_ = null;
-        } else {
-          ok_ = null;
+        bitField0_ = 0;
+        ok_ = null;
+        if (okBuilder_ != null) {
+          okBuilder_.dispose();
           okBuilder_ = null;
         }
         error_ = 0;
-
-        if (challengesBuilder_ == null) {
-          challenges_ = null;
-        } else {
-          challenges_ = null;
+        challenges_ = null;
+        if (challengesBuilder_ != null) {
+          challengesBuilder_.dispose();
           challengesBuilder_ = null;
         }
         warnings_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000008);
         loginContext_ = com.google.protobuf.ByteString.EMPTY;
-
         identifierToken_ = "";
-
-        if (userInfoBuilder_ == null) {
-          userInfo_ = null;
-        } else {
-          userInfo_ = null;
+        userInfo_ = null;
+        if (userInfoBuilder_ != null) {
+          userInfoBuilder_.dispose();
           userInfoBuilder_ = null;
         }
         return this;
@@ -7375,66 +7023,48 @@ public final class Login5 {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse buildPartial() {
         com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse result = new com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse(this);
-        int from_bitField0_ = bitField0_;
-        if (okBuilder_ == null) {
-          result.ok_ = ok_;
-        } else {
-          result.ok_ = okBuilder_.build();
-        }
-        result.error_ = error_;
-        if (challengesBuilder_ == null) {
-          result.challenges_ = challenges_;
-        } else {
-          result.challenges_ = challengesBuilder_.build();
-        }
-        if (((bitField0_ & 0x00000001) != 0)) {
-          warnings_ = java.util.Collections.unmodifiableList(warnings_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.warnings_ = warnings_;
-        result.loginContext_ = loginContext_;
-        result.identifierToken_ = identifierToken_;
-        if (userInfoBuilder_ == null) {
-          result.userInfo_ = userInfo_;
-        } else {
-          result.userInfo_ = userInfoBuilder_.build();
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse result) {
+        if (((bitField0_ & 0x00000008) != 0)) {
+          warnings_ = java.util.Collections.unmodifiableList(warnings_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.warnings_ = warnings_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.ok_ = okBuilder_ == null
+              ? ok_
+              : okBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.error_ = error_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.challenges_ = challengesBuilder_ == null
+              ? challenges_
+              : challengesBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.loginContext_ = loginContext_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.identifierToken_ = identifierToken_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.userInfo_ = userInfoBuilder_ == null
+              ? userInfo_
+              : userInfoBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse) {
@@ -7459,7 +7089,7 @@ public final class Login5 {
         if (!other.warnings_.isEmpty()) {
           if (warnings_.isEmpty()) {
             warnings_ = other.warnings_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureWarningsIsMutable();
             warnings_.addAll(other.warnings_);
@@ -7471,18 +7101,19 @@ public final class Login5 {
         }
         if (!other.getIdentifierToken().isEmpty()) {
           identifierToken_ = other.identifierToken_;
+          bitField0_ |= 0x00000020;
           onChanged();
         }
         if (other.hasUserInfo()) {
           mergeUserInfo(other.getUserInfo());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
       @java.lang.Override
-      public boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
@@ -7491,17 +7122,83 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getOkFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                error_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                input.readMessage(
+                    getChallengesFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                int tmpRaw = input.readEnum();
+                ensureWarningsIsMutable();
+                warnings_.add(tmpRaw);
+                break;
+              } // case 32
+              case 34: {
+                int length = input.readRawVarint32();
+                int oldLimit = input.pushLimit(length);
+                while(input.getBytesUntilLimit() > 0) {
+                  int tmpRaw = input.readEnum();
+                  ensureWarningsIsMutable();
+                  warnings_.add(tmpRaw);
+                }
+                input.popLimit(oldLimit);
+                break;
+              } // case 34
+              case 42: {
+                loginContext_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                identifierToken_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 58: {
+                input.readMessage(
+                    getUserInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 58
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -7514,7 +7211,7 @@ public final class Login5 {
        * @return Whether the ok field is set.
        */
       public boolean hasOk() {
-        return okBuilder_ != null || ok_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.spotify.login5.v3.LoginOk ok = 1;</code>
@@ -7536,11 +7233,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           ok_ = value;
-          onChanged();
         } else {
           okBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -7550,11 +7247,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder builderForValue) {
         if (okBuilder_ == null) {
           ok_ = builderForValue.build();
-          onChanged();
         } else {
           okBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -7562,38 +7259,38 @@ public final class Login5 {
        */
       public Builder mergeOk(com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk value) {
         if (okBuilder_ == null) {
-          if (ok_ != null) {
-            ok_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.newBuilder(ok_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            ok_ != null &&
+            ok_ != com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.getDefaultInstance()) {
+            getOkBuilder().mergeFrom(value);
           } else {
             ok_ = value;
           }
-          onChanged();
         } else {
           okBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.LoginOk ok = 1;</code>
        */
       public Builder clearOk() {
-        if (okBuilder_ == null) {
-          ok_ = null;
-          onChanged();
-        } else {
-          ok_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ok_ = null;
+        if (okBuilder_ != null) {
+          okBuilder_.dispose();
           okBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.LoginOk ok = 1;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder getOkBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getOkFieldBuilder().getBuilder();
       }
@@ -7615,7 +7312,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder> 
           getOkFieldBuilder() {
         if (okBuilder_ == null) {
-          okBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          okBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOk.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginOkOrBuilder>(
                   getOk(),
                   getParentForChildren(),
                   isClean());
@@ -7629,7 +7327,7 @@ public final class Login5 {
        * <code>.spotify.login5.v3.LoginError error = 2;</code>
        * @return The enum numeric value on the wire for error.
        */
-      public int getErrorValue() {
+      @java.lang.Override public int getErrorValue() {
         return error_;
       }
       /**
@@ -7639,6 +7337,7 @@ public final class Login5 {
        */
       public Builder setErrorValue(int value) {
         error_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7646,8 +7345,9 @@ public final class Login5 {
        * <code>.spotify.login5.v3.LoginError error = 2;</code>
        * @return The error.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError getError() {
-        com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.valueOf(error_);
+        com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError result = com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.forNumber(error_);
         return result == null ? com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginError.UNRECOGNIZED : result;
       }
       /**
@@ -7659,7 +7359,7 @@ public final class Login5 {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000002;
         error_ = value.getNumber();
         onChanged();
         return this;
@@ -7669,7 +7369,7 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearError() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         error_ = 0;
         onChanged();
         return this;
@@ -7683,7 +7383,7 @@ public final class Login5 {
        * @return Whether the challenges field is set.
        */
       public boolean hasChallenges() {
-        return challengesBuilder_ != null || challenges_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <code>.spotify.login5.v3.Challenges challenges = 3;</code>
@@ -7705,11 +7405,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           challenges_ = value;
-          onChanged();
         } else {
           challengesBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -7719,11 +7419,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder builderForValue) {
         if (challengesBuilder_ == null) {
           challenges_ = builderForValue.build();
-          onChanged();
         } else {
           challengesBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -7731,38 +7431,38 @@ public final class Login5 {
        */
       public Builder mergeChallenges(com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges value) {
         if (challengesBuilder_ == null) {
-          if (challenges_ != null) {
-            challenges_ =
-              com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.newBuilder(challenges_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            challenges_ != null &&
+            challenges_ != com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.getDefaultInstance()) {
+            getChallengesBuilder().mergeFrom(value);
           } else {
             challenges_ = value;
           }
-          onChanged();
         } else {
           challengesBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.Challenges challenges = 3;</code>
        */
       public Builder clearChallenges() {
-        if (challengesBuilder_ == null) {
-          challenges_ = null;
-          onChanged();
-        } else {
-          challenges_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        challenges_ = null;
+        if (challengesBuilder_ != null) {
+          challengesBuilder_.dispose();
           challengesBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.Challenges challenges = 3;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder getChallengesBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getChallengesFieldBuilder().getBuilder();
       }
@@ -7784,7 +7484,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder> 
           getChallengesFieldBuilder() {
         if (challengesBuilder_ == null) {
-          challengesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          challengesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges, com.spotifyxp.deps.com.spotify.login5v3.Login5.Challenges.Builder, com.spotifyxp.deps.com.spotify.login5v3.Login5.ChallengesOrBuilder>(
                   getChallenges(),
                   getParentForChildren(),
                   isClean());
@@ -7796,9 +7497,9 @@ public final class Login5 {
       private java.util.List<java.lang.Integer> warnings_ =
         java.util.Collections.emptyList();
       private void ensureWarningsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          warnings_ = new java.util.ArrayList<>(warnings_);
-          bitField0_ |= 0x00000001;
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          warnings_ = new java.util.ArrayList<java.lang.Integer>(warnings_);
+          bitField0_ |= 0x00000008;
         }
       }
       /**
@@ -7806,7 +7507,8 @@ public final class Login5 {
        * @return A list containing the warnings.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings> getWarningsList() {
-        return new com.google.protobuf.Internal.ListAdapter<>(warnings_, warnings_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<
+            java.lang.Integer, com.spotifyxp.deps.com.spotify.login5v3.Login5.LoginResponse.Warnings>(warnings_, warnings_converter_);
       }
       /**
        * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
@@ -7873,7 +7575,7 @@ public final class Login5 {
        */
       public Builder clearWarnings() {
         warnings_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -7895,8 +7597,9 @@ public final class Login5 {
       }
       /**
        * <code>repeated .spotify.login5.v3.LoginResponse.Warnings warnings = 4;</code>
-       * @param index The index of the value to return.
-       * @return The enum numeric value on the wire of warnings at the given index.
+       * @param index The index to set the value at.
+       * @param value The enum numeric value on the wire for warnings to set.
+       * @return This builder for chaining.
        */
       public Builder setWarningsValue(
           int index, int value) {
@@ -7936,6 +7639,7 @@ public final class Login5 {
        * <code>bytes login_context = 5;</code>
        * @return The loginContext.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getLoginContext() {
         return loginContext_;
       }
@@ -7945,11 +7649,9 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder setLoginContext(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         loginContext_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -7958,7 +7660,7 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearLoginContext() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         loginContext_ = getDefaultInstance().getLoginContext();
         onChanged();
         return this;
@@ -8005,11 +7707,9 @@ public final class Login5 {
        */
       public Builder setIdentifierToken(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         identifierToken_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -8018,8 +7718,8 @@ public final class Login5 {
        * @return This builder for chaining.
        */
       public Builder clearIdentifierToken() {
-        
         identifierToken_ = getDefaultInstance().getIdentifierToken();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -8030,12 +7730,10 @@ public final class Login5 {
        */
       public Builder setIdentifierTokenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         identifierToken_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -8048,7 +7746,7 @@ public final class Login5 {
        * @return Whether the userInfo field is set.
        */
       public boolean hasUserInfo() {
-        return userInfoBuilder_ != null || userInfo_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <code>.spotify.login5.v3.UserInfo user_info = 7;</code>
@@ -8070,11 +7768,11 @@ public final class Login5 {
             throw new NullPointerException();
           }
           userInfo_ = value;
-          onChanged();
         } else {
           userInfoBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -8084,11 +7782,11 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder builderForValue) {
         if (userInfoBuilder_ == null) {
           userInfo_ = builderForValue.build();
-          onChanged();
         } else {
           userInfoBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -8096,38 +7794,38 @@ public final class Login5 {
        */
       public Builder mergeUserInfo(com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo value) {
         if (userInfoBuilder_ == null) {
-          if (userInfo_ != null) {
-            userInfo_ =
-              com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.newBuilder(userInfo_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            userInfo_ != null &&
+            userInfo_ != com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.getDefaultInstance()) {
+            getUserInfoBuilder().mergeFrom(value);
           } else {
             userInfo_ = value;
           }
-          onChanged();
         } else {
           userInfoBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.UserInfo user_info = 7;</code>
        */
       public Builder clearUserInfo() {
-        if (userInfoBuilder_ == null) {
-          userInfo_ = null;
-          onChanged();
-        } else {
-          userInfo_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        userInfo_ = null;
+        if (userInfoBuilder_ != null) {
+          userInfoBuilder_.dispose();
           userInfoBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.spotify.login5.v3.UserInfo user_info = 7;</code>
        */
       public com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder getUserInfoBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getUserInfoFieldBuilder().getBuilder();
       }
@@ -8149,7 +7847,8 @@ public final class Login5 {
           com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfoOrBuilder> 
           getUserInfoFieldBuilder() {
         if (userInfoBuilder_ == null) {
-          userInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          userInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfo.Builder, com.spotifyxp.deps.com.spotify.login5v3.UserInfoOuterClass.UserInfoOrBuilder>(
                   getUserInfo(),
                   getParentForChildren(),
                   isClean());
@@ -8158,13 +7857,13 @@ public final class Login5 {
         return userInfoBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -8190,7 +7889,18 @@ public final class Login5 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LoginResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -8250,14 +7960,14 @@ public final class Login5 {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\036spotify/login5/v3/login5.proto\022\021spotif" +
       "y.login5.v3\032#spotify/login5/v3/client_in" +
       "fo.proto\032!spotify/login5/v3/user_info.pr" +
-              "oto\032'spotify/login5/v3/challenges/code.p" +
+      "oto\032\'spotify/login5/v3/challenges/code.p" +
       "roto\032+spotify/login5/v3/challenges/hashc" +
       "ash.proto\032/spotify/login5/v3/credentials" +
       "/credentials.proto\032/spotify/login5/v3/id" +
@@ -8278,7 +7988,7 @@ public final class Login5 {
       "e_solutions\030\003 \001(\0132%.spotify.login5.v3.Ch" +
       "allengeSolutions\022J\n\021stored_credential\030d " +
       "\001(\0132/.spotify.login5.v3.credentials.Stor" +
-              "edCredential\0229\n\010password\030e \001(\0132'.spotify" +
+      "edCredential\0229\n\010password\030e \001(\0132\'.spotify" +
       ".login5.v3.credentials.Password\022Q\n\025faceb" +
       "ook_access_token\030f \001(\01322.spotify.login5." +
       "v3.credentials.FacebookAccessToken\022@\n\014ph" +
@@ -8307,7 +8017,8 @@ public final class Login5 {
       "ORTED_LOGIN_PROTOCOL\020\003\022\013\n\007TIMEOUT\020\004\022\026\n\022U" +
       "NKNOWN_IDENTIFIER\020\005\022\025\n\021TOO_MANY_ATTEMPTS" +
       "\020\006\022\027\n\023INVALID_PHONENUMBER\020\007\022\023\n\017TRY_AGAIN" +
-      "_LATER\020\010B\026\n\024com.spotify.login5v3b\006proto3"
+      "_LATER\020\010B)\n\'com.spotifyxp.deps.com.spoti" +
+      "fy.login5v3b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

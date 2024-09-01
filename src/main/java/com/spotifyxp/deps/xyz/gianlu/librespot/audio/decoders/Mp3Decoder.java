@@ -16,13 +16,12 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
-
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.javazoom.jl.decoder.*;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.SeekableInputStream;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 import org.jetbrains.annotations.NotNull;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.SeekableInputStream;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -128,8 +127,6 @@ public final class Mp3Decoder extends Decoder {
             sampleRate = header.getSampleRate();
             bitstream.unreadFrame();
 
-
-
             outputBuffer.setReplayGainScale(normalisationPregain);
         }
 
@@ -159,11 +156,9 @@ public final class Mp3Decoder extends Decoder {
                     throw new IOException(ex);
                 }
 
-                //Here
                 if(PublicValues.visualizer.isVisible()) {
                     PublicValues.visualizer.update(buffer.array(), buffer.array().length);
                 }
-                //---
 
                 bitstream.closeFrame();
                 int bytesRead = outputBuffer.reset();

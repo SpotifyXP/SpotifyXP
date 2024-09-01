@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.contexts;
 
+import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.RestrictionsManager;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -59,7 +59,6 @@ public abstract class AbsSpotifyContext {
         return context;
     }
 
-    @SuppressWarnings("SameParameterValue")
     public static class UnsupportedContextException extends Exception {
         UnsupportedContextException(@NotNull String message) {
             super(message);

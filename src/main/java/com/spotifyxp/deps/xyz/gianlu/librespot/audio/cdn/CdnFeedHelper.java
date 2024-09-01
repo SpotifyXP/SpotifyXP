@@ -18,53 +18,42 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn;
 
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.storage.StorageResolve.StorageResolveResponse;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import okhttp3.HttpUrl;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.NormalizationData;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder.LoadedStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.utils.GraphicalMessage;
-import okhttp3.HttpUrl;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 /**
  * @author Gianlu
  */
 public final class CdnFeedHelper {
-    private static ArrayList<String> blockedCDNs = new ArrayList<>();
-    private static int retryCount = 0;
-    
 
     private CdnFeedHelper() {
     }
 
     @NotNull
     private static HttpUrl getUrl(@NotNull Session session, @NotNull StorageResolveResponse resp) {
-        for(String s : blockedCDNs) {
-            if(s.equals(resp.getCdnurl(session.random().nextInt(resp.getCdnurlCount())))) {
-                retryCount++;
-                if(retryCount == 30) {
-                    GraphicalMessage.sorryErrorExit("Failed to get suitable cdn");
-                }
-                return getUrl(session, resp);
-            }
+        String selectedUrl = resp.getCdnurl(session.random().nextInt(resp.getCdnurlCount()));
+        while (selectedUrl.contains("audio4-gm-fb")) {
+            ConsoleLoggingModules.warning("getUrl picked CDN with known issues {} (forcing re-selection)", selectedUrl );
+            selectedUrl = resp.getCdnurl(session.random().nextInt(resp.getCdnurlCount()));
         }
-        retryCount = 0;
-        return HttpUrl.get(resp.getCdnurl(session.random().nextInt(resp.getCdnurlCount())));
+        return HttpUrl.get(selectedUrl);
     }
 
     public static @NotNull LoadedStream loadTrack(@NotNull Session session, Metadata.@NotNull Track track, Metadata.@NotNull AudioFile file,
-                                                  @NotNull HttpUrl url, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, NotFoundException {
+                                                  @NotNull HttpUrl url, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {
         long start = System.currentTimeMillis();
         byte[] key = session.audioKey().getAudioKey(track.getGid(), file.getFileId());
         int audioKeyTime = (int) (System.currentTimeMillis() - start);
@@ -77,11 +66,11 @@ public final class CdnFeedHelper {
     }
 
     public static @NotNull LoadedStream loadTrack(@NotNull Session session, Metadata.@NotNull Track track, Metadata.@NotNull AudioFile file,
-                                                  @NotNull StorageResolveResponse storage, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, NotFoundException {
+                                                  @NotNull StorageResolveResponse storage, boolean preload, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {
         return loadTrack(session, track, file, getUrl(session, storage), preload, haltListener);
     }
 
-    public static @NotNull LoadedStream loadEpisodeExternal(@NotNull Session session, Metadata.@NotNull Episode episode, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, NotFoundException {
+    public static @NotNull LoadedStream loadEpisodeExternal(@NotNull Session session, Metadata.@NotNull Episode episode, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {
         try (Response resp = session.client().newCall(new Request.Builder().head()
                 .url(episode.getExternalUrl()).build()).execute()) {
 
@@ -96,12 +85,7 @@ public final class CdnFeedHelper {
         }
     }
 
-    public static void blockCurrentCDN(String cdnURL) {
-        ConsoleLoggingModules.warning("Blocking '" + cdnURL + "' because of https://github.com/librespot-org/librespot-java/issues/742");
-        blockedCDNs.add(cdnURL);
-    }
-
-    public static @NotNull LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, @NotNull Metadata.AudioFile file, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, NotFoundException {
+    public static @NotNull LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, @NotNull Metadata.AudioFile file, @NotNull HttpUrl url, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {
         long start = System.currentTimeMillis();
         byte[] key = session.audioKey().getAudioKey(episode.getGid(), file.getFileId());
         int audioKeyTime = (int) (System.currentTimeMillis() - start);
@@ -113,7 +97,7 @@ public final class CdnFeedHelper {
         return new LoadedStream(episode, streamer, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), false, audioKeyTime));
     }
 
-    public static @NotNull LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, @NotNull Metadata.AudioFile file, @NotNull StorageResolveResponse storage, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException, NotFoundException {
+    public static @NotNull LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, @NotNull Metadata.AudioFile file, @NotNull StorageResolveResponse storage, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {
         return loadEpisode(session, episode, file, getUrl(session, storage), haltListener);
     }
 }

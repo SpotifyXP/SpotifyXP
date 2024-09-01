@@ -144,7 +144,7 @@ public class Playlists extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, PublicValues.shuffle, false);
+                    InstanceManager.getPlayer().getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, PublicValues.shuffle);
                     TrackUtils.addAllToQueue(playlistssonguricache, playlistssongtable);
                 }
             }

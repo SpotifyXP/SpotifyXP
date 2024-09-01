@@ -3,6 +3,8 @@ package com.spotifyxp.deps.se.michaelthelin.spotify;
 import com.google.gson.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.GraphicalMessage;
@@ -356,6 +358,7 @@ public class SpotifyHttpManager implements IHttpManager {
             triggerTokenExpire = false;
             return delete(URI.create(uri), base.getHeaders(), body);
         }
+        Events.triggerEvent(SpotifyXPEvents.apikeyrefresh.getName());
       case HttpStatus.SC_FORBIDDEN:
         throw new ForbiddenException(errorMessage);
       case HttpStatus.SC_NOT_FOUND:

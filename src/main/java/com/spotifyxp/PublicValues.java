@@ -6,7 +6,7 @@ import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerDefine;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.dialogs.CancelDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.history.PlaybackHistory;
@@ -36,10 +36,9 @@ public class PublicValues {
     }
     public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
     public static CancelDialog facebookcanceldialog;
-    public static boolean playingFromLibrary = false;
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
-    public static PlayerDefine spotifyplayer = null;
+    public static Player spotifyplayer = null;
     public static ConsoleLogging logger = new ConsoleLogging();
     public static String configfilepath = fileslocation + "/config.json";
     public static Config config = null;

@@ -16,22 +16,22 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.decoders.Decoder;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade.CrossfadeController;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Reason;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.crossfade.CrossfadeController;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Reason;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
 
 import java.io.Closeable;
 import java.util.Map;
@@ -45,9 +45,7 @@ import java.util.concurrent.Executors;
  *
  * @author devgianlu
  */
-@SuppressWarnings({"ClassEscapesDefinedScope", "ConstantValue"})
 public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
-    
     private final ExecutorService executorService = Executors.newCachedThreadPool(new NameThreadFactory((r) -> "player-session-" + r.hashCode()));
     private final Session session;
     private final AudioSink sink;
@@ -247,6 +245,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
             head.prev.endReason = reason;
             if (head.prev.crossfade == null) {
                 head.prev.close();
+                customFade = false;
             } else {
                 customFade = head.playable.equals(head.prev.crossfade.fadeOutPlayable());
                 CrossfadeController.FadeInterval fadeOut;
@@ -278,12 +277,7 @@ public class PlayerSession implements Closeable, PlayerQueueEntry.Listener {
             head.seek(pos);
         }
 
-        try {
-            head.setOutput(out);
-        }catch (IllegalStateException exc) {
-            //Output already set skipping
-        }
-        
+        head.setOutput(out);
         ConsoleLoggingModules.debug("{} has been added to the output. {sessionId: {}, pos: {}, reason: {}}", head, sessionId, pos, reason);
         return new PlayerSession.EntryWithPos(head, pos);
     }

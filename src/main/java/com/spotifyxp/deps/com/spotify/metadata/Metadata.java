@@ -423,7 +423,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Artist}
    */
-  public  static final class Artist extends
+  public static final class Artist extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Artist)
       ArtistOrBuilder {
@@ -440,8 +440,9 @@ public final class Metadata {
       singleGroup_ = java.util.Collections.emptyList();
       compilationGroup_ = java.util.Collections.emptyList();
       appearsOnGroup_ = java.util.Collections.emptyList();
-      genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        externalId_ = java.util.Collections.emptyList();
+      genre_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      externalId_ = java.util.Collections.emptyList();
       portrait_ = java.util.Collections.emptyList();
       biography_ = java.util.Collections.emptyList();
       activityPeriod_ = java.util.Collections.emptyList();
@@ -458,12 +459,7 @@ public final class Metadata {
       return new Artist();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Artist_descriptor;
     }
@@ -478,11 +474,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int GID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString gid_;
+    private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes gid = 1;</code>
      * @return Whether the gid field is set.
      */
+    @java.lang.Override
     public boolean hasGid() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -490,16 +487,19 @@ public final class Metadata {
      * <code>optional bytes gid = 1;</code>
      * @return The gid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getGid() {
       return gid_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 2;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -507,6 +507,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -525,6 +526,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -540,11 +542,12 @@ public final class Metadata {
     }
 
     public static final int POPULARITY_FIELD_NUMBER = 3;
-    private int popularity_;
+    private int popularity_ = 0;
     /**
      * <code>optional sint32 popularity = 3;</code>
      * @return Whether the popularity field is set.
      */
+    @java.lang.Override
     public boolean hasPopularity() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -552,21 +555,25 @@ public final class Metadata {
      * <code>optional sint32 popularity = 3;</code>
      * @return The popularity.
      */
+    @java.lang.Override
     public int getPopularity() {
       return popularity_;
     }
 
     public static final int TOP_TRACK_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks> topTrack_;
     /**
      * <code>repeated .spotify.metadata.proto.TopTracks top_track = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks> getTopTrackList() {
       return topTrack_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.TopTracks top_track = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder> 
         getTopTrackOrBuilderList() {
       return topTrack_;
@@ -574,34 +581,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.TopTracks top_track = 4;</code>
      */
+    @java.lang.Override
     public int getTopTrackCount() {
       return topTrack_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.TopTracks top_track = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks getTopTrack(int index) {
       return topTrack_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.TopTracks top_track = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder getTopTrackOrBuilder(
         int index) {
       return topTrack_.get(index);
     }
 
     public static final int ALBUM_GROUP_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> albumGroup_;
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup album_group = 5;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> getAlbumGroupList() {
       return albumGroup_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup album_group = 5;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
         getAlbumGroupOrBuilderList() {
       return albumGroup_;
@@ -609,34 +622,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup album_group = 5;</code>
      */
+    @java.lang.Override
     public int getAlbumGroupCount() {
       return albumGroup_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup album_group = 5;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup getAlbumGroup(int index) {
       return albumGroup_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup album_group = 5;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder getAlbumGroupOrBuilder(
         int index) {
       return albumGroup_.get(index);
     }
 
     public static final int SINGLE_GROUP_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> singleGroup_;
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup single_group = 6;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> getSingleGroupList() {
       return singleGroup_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup single_group = 6;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
         getSingleGroupOrBuilderList() {
       return singleGroup_;
@@ -644,34 +663,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup single_group = 6;</code>
      */
+    @java.lang.Override
     public int getSingleGroupCount() {
       return singleGroup_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup single_group = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup getSingleGroup(int index) {
       return singleGroup_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup single_group = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder getSingleGroupOrBuilder(
         int index) {
       return singleGroup_.get(index);
     }
 
     public static final int COMPILATION_GROUP_FIELD_NUMBER = 7;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> compilationGroup_;
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup compilation_group = 7;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> getCompilationGroupList() {
       return compilationGroup_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup compilation_group = 7;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
         getCompilationGroupOrBuilderList() {
       return compilationGroup_;
@@ -679,34 +704,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup compilation_group = 7;</code>
      */
+    @java.lang.Override
     public int getCompilationGroupCount() {
       return compilationGroup_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup compilation_group = 7;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup getCompilationGroup(int index) {
       return compilationGroup_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup compilation_group = 7;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder getCompilationGroupOrBuilder(
         int index) {
       return compilationGroup_.get(index);
     }
 
     public static final int APPEARS_ON_GROUP_FIELD_NUMBER = 8;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> appearsOnGroup_;
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup appears_on_group = 8;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> getAppearsOnGroupList() {
       return appearsOnGroup_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup appears_on_group = 8;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
         getAppearsOnGroupOrBuilderList() {
       return appearsOnGroup_;
@@ -714,25 +745,30 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup appears_on_group = 8;</code>
      */
+    @java.lang.Override
     public int getAppearsOnGroupCount() {
       return appearsOnGroup_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup appears_on_group = 8;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup getAppearsOnGroup(int index) {
       return appearsOnGroup_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AlbumGroup appears_on_group = 8;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder getAppearsOnGroupOrBuilder(
         int index) {
       return appearsOnGroup_.get(index);
     }
 
     public static final int GENRE_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList genre_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList genre_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string genre = 9;</code>
      * @return A list containing the genre.
@@ -767,16 +803,19 @@ public final class Metadata {
     }
 
     public static final int EXTERNAL_ID_FIELD_NUMBER = 10;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_;
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> getExternalIdList() {
       return externalId_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
         getExternalIdOrBuilderList() {
       return externalId_;
@@ -784,34 +823,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public int getExternalIdCount() {
       return externalId_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId getExternalId(int index) {
       return externalId_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder getExternalIdOrBuilder(
         int index) {
       return externalId_.get(index);
     }
 
     public static final int PORTRAIT_FIELD_NUMBER = 11;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> portrait_;
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> getPortraitList() {
       return portrait_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
         getPortraitOrBuilderList() {
       return portrait_;
@@ -819,34 +864,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 11;</code>
      */
+    @java.lang.Override
     public int getPortraitCount() {
       return portrait_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image getPortrait(int index) {
       return portrait_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder getPortraitOrBuilder(
         int index) {
       return portrait_.get(index);
     }
 
     public static final int BIOGRAPHY_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography> biography_;
     /**
      * <code>repeated .spotify.metadata.proto.Biography biography = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography> getBiographyList() {
       return biography_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Biography biography = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder> 
         getBiographyOrBuilderList() {
       return biography_;
@@ -854,34 +905,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Biography biography = 12;</code>
      */
+    @java.lang.Override
     public int getBiographyCount() {
       return biography_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Biography biography = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography getBiography(int index) {
       return biography_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Biography biography = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder getBiographyOrBuilder(
         int index) {
       return biography_.get(index);
     }
 
     public static final int ACTIVITY_PERIOD_FIELD_NUMBER = 13;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod> activityPeriod_;
     /**
      * <code>repeated .spotify.metadata.proto.ActivityPeriod activity_period = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod> getActivityPeriodList() {
       return activityPeriod_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.ActivityPeriod activity_period = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder> 
         getActivityPeriodOrBuilderList() {
       return activityPeriod_;
@@ -889,34 +946,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.ActivityPeriod activity_period = 13;</code>
      */
+    @java.lang.Override
     public int getActivityPeriodCount() {
       return activityPeriod_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.ActivityPeriod activity_period = 13;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod getActivityPeriod(int index) {
       return activityPeriod_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.ActivityPeriod activity_period = 13;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder getActivityPeriodOrBuilder(
         int index) {
       return activityPeriod_.get(index);
     }
 
     public static final int RESTRICTION_FIELD_NUMBER = 14;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_;
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> getRestrictionList() {
       return restriction_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
         getRestrictionOrBuilderList() {
       return restriction_;
@@ -924,34 +987,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public int getRestrictionCount() {
       return restriction_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction getRestriction(int index) {
       return restriction_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder getRestrictionOrBuilder(
         int index) {
       return restriction_.get(index);
     }
 
     public static final int RELATED_FIELD_NUMBER = 15;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> related_;
     /**
      * <code>repeated .spotify.metadata.proto.Artist related = 15;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> getRelatedList() {
       return related_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist related = 15;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
         getRelatedOrBuilderList() {
       return related_;
@@ -959,29 +1028,33 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Artist related = 15;</code>
      */
+    @java.lang.Override
     public int getRelatedCount() {
       return related_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist related = 15;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist getRelated(int index) {
       return related_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist related = 15;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder getRelatedOrBuilder(
         int index) {
       return related_.get(index);
     }
 
     public static final int IS_PORTRAIT_ALBUM_COVER_FIELD_NUMBER = 16;
-    private boolean isPortraitAlbumCover_;
+    private boolean isPortraitAlbumCover_ = false;
     /**
      * <code>optional bool is_portrait_album_cover = 16;</code>
      * @return Whether the isPortraitAlbumCover field is set.
      */
+    @java.lang.Override
     public boolean hasIsPortraitAlbumCover() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -989,6 +1062,7 @@ public final class Metadata {
      * <code>optional bool is_portrait_album_cover = 16;</code>
      * @return The isPortraitAlbumCover.
      */
+    @java.lang.Override
     public boolean getIsPortraitAlbumCover() {
       return isPortraitAlbumCover_;
     }
@@ -999,6 +1073,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup portrait_group = 17;</code>
      * @return Whether the portraitGroup field is set.
      */
+    @java.lang.Override
     public boolean hasPortraitGroup() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -1006,27 +1081,32 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup portrait_group = 17;</code>
      * @return The portraitGroup.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup getPortraitGroup() {
       return portraitGroup_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : portraitGroup_;
     }
     /**
      * <code>optional .spotify.metadata.proto.ImageGroup portrait_group = 17;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder getPortraitGroupOrBuilder() {
       return portraitGroup_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : portraitGroup_;
     }
 
     public static final int SALE_PERIOD_FIELD_NUMBER = 18;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_;
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 18;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> getSalePeriodList() {
       return salePeriod_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 18;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
         getSalePeriodOrBuilderList() {
       return salePeriod_;
@@ -1034,34 +1114,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 18;</code>
      */
+    @java.lang.Override
     public int getSalePeriodCount() {
       return salePeriod_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 18;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod getSalePeriod(int index) {
       return salePeriod_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 18;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder getSalePeriodOrBuilder(
         int index) {
       return salePeriod_.get(index);
     }
 
     public static final int AVAILABILITY_FIELD_NUMBER = 20;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_;
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 20;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> getAvailabilityList() {
       return availability_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 20;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
         getAvailabilityOrBuilderList() {
       return availability_;
@@ -1069,18 +1155,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 20;</code>
      */
+    @java.lang.Override
     public int getAvailabilityCount() {
       return availability_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability getAvailability(int index) {
       return availability_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 20;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder getAvailabilityOrBuilder(
         int index) {
       return availability_.get(index);
@@ -1130,11 +1219,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1173,7 +1264,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Artist}
@@ -1182,7 +1274,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Artist)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Artist_descriptor;
       }
@@ -1227,100 +1319,109 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         gid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         popularity_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (topTrackBuilder_ == null) {
           topTrack_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          topTrack_ = null;
           topTrackBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (albumGroupBuilder_ == null) {
           albumGroup_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
+          albumGroup_ = null;
           albumGroupBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (singleGroupBuilder_ == null) {
           singleGroup_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
         } else {
+          singleGroup_ = null;
           singleGroupBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (compilationGroupBuilder_ == null) {
           compilationGroup_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000040);
         } else {
+          compilationGroup_ = null;
           compilationGroupBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000040);
         if (appearsOnGroupBuilder_ == null) {
           appearsOnGroup_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
         } else {
+          appearsOnGroup_ = null;
           appearsOnGroupBuilder_.clear();
         }
-        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000080);
+        genre_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         if (externalIdBuilder_ == null) {
           externalId_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
         } else {
+          externalId_ = null;
           externalIdBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000200);
         if (portraitBuilder_ == null) {
           portrait_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
         } else {
+          portrait_ = null;
           portraitBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000400);
         if (biographyBuilder_ == null) {
           biography_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000800);
         } else {
+          biography_ = null;
           biographyBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000800);
         if (activityPeriodBuilder_ == null) {
           activityPeriod_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00001000);
         } else {
+          activityPeriod_ = null;
           activityPeriodBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00001000);
         if (restrictionBuilder_ == null) {
           restriction_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00002000);
         } else {
+          restriction_ = null;
           restrictionBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00002000);
         if (relatedBuilder_ == null) {
           related_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00004000);
         } else {
+          related_ = null;
           relatedBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00004000);
         isPortraitAlbumCover_ = false;
-        bitField0_ = (bitField0_ & ~0x00008000);
-        if (portraitGroupBuilder_ == null) {
-          portraitGroup_ = null;
-        } else {
-          portraitGroupBuilder_.clear();
+        portraitGroup_ = null;
+        if (portraitGroupBuilder_ != null) {
+          portraitGroupBuilder_.dispose();
+          portraitGroupBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00010000);
         if (salePeriodBuilder_ == null) {
           salePeriod_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00020000);
         } else {
+          salePeriod_ = null;
           salePeriodBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00020000);
         if (availabilityBuilder_ == null) {
           availability_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00040000);
         } else {
+          availability_ = null;
           availabilityBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00040000);
         return this;
       }
 
@@ -1347,20 +1448,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.gid_ = gid_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.popularity_ = popularity_;
-          to_bitField0_ |= 0x00000004;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist result) {
         if (topTrackBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0)) {
             topTrack_ = java.util.Collections.unmodifiableList(topTrack_);
@@ -1406,11 +1500,6 @@ public final class Metadata {
         } else {
           result.appearsOnGroup_ = appearsOnGroupBuilder_.build();
         }
-        if (((bitField0_ & 0x00000100) != 0)) {
-          genre_ = genre_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000100);
-        }
-        result.genre_ = genre_;
         if (externalIdBuilder_ == null) {
           if (((bitField0_ & 0x00000200) != 0)) {
             externalId_ = java.util.Collections.unmodifiableList(externalId_);
@@ -1465,18 +1554,6 @@ public final class Metadata {
         } else {
           result.related_ = relatedBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00008000) != 0)) {
-          result.isPortraitAlbumCover_ = isPortraitAlbumCover_;
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00010000) != 0)) {
-          if (portraitGroupBuilder_ == null) {
-            result.portraitGroup_ = portraitGroup_;
-          } else {
-            result.portraitGroup_ = portraitGroupBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000010;
-        }
         if (salePeriodBuilder_ == null) {
           if (((bitField0_ & 0x00020000) != 0)) {
             salePeriod_ = java.util.Collections.unmodifiableList(salePeriod_);
@@ -1495,43 +1572,40 @@ public final class Metadata {
         } else {
           result.availability_ = availabilityBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.gid_ = gid_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.popularity_ = popularity_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          genre_.makeImmutable();
+          result.genre_ = genre_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          result.isPortraitAlbumCover_ = isPortraitAlbumCover_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.portraitGroup_ = portraitGroupBuilder_ == null
+              ? portraitGroup_
+              : portraitGroupBuilder_.build();
+          to_bitField0_ |= 0x00000010;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
@@ -1539,6 +1613,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return Whether the gid field is set.
        */
+      @java.lang.Override
       public boolean hasGid() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -1546,6 +1621,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return The gid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getGid() {
         return gid_;
       }
@@ -1555,11 +1631,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setGid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         gid_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1624,11 +1698,9 @@ public final class Metadata {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1637,8 +1709,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1649,11 +1721,9 @@ public final class Metadata {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1663,6 +1733,7 @@ public final class Metadata {
        * <code>optional sint32 popularity = 3;</code>
        * @return Whether the popularity field is set.
        */
+      @java.lang.Override
       public boolean hasPopularity() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -1670,6 +1741,7 @@ public final class Metadata {
        * <code>optional sint32 popularity = 3;</code>
        * @return The popularity.
        */
+      @java.lang.Override
       public int getPopularity() {
         return popularity_;
       }
@@ -1679,8 +1751,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setPopularity(int value) {
-        bitField0_ |= 0x00000004;
+
         popularity_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1698,8 +1771,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks> topTrack_ =
         java.util.Collections.emptyList();
       private void ensureTopTrackIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          topTrack_ = new java.util.ArrayList<>(topTrack_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          topTrack_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks>(topTrack_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -1924,7 +1997,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder> 
           getTopTrackFieldBuilder() {
         if (topTrackBuilder_ == null) {
-          topTrackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          topTrackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder>(
                   topTrack_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -1937,8 +2011,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> albumGroup_ =
         java.util.Collections.emptyList();
       private void ensureAlbumGroupIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
-          albumGroup_ = new java.util.ArrayList<>(albumGroup_);
+        if (!((bitField0_ & 0x00000010) != 0)) {
+          albumGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(albumGroup_);
           bitField0_ |= 0x00000010;
          }
       }
@@ -2163,7 +2237,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getAlbumGroupFieldBuilder() {
         if (albumGroupBuilder_ == null) {
-          albumGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          albumGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
                   albumGroup_,
                   ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
@@ -2176,8 +2251,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> singleGroup_ =
         java.util.Collections.emptyList();
       private void ensureSingleGroupIsMutable() {
-        if ((bitField0_ & 0x00000020) == 0) {
-          singleGroup_ = new java.util.ArrayList<>(singleGroup_);
+        if (!((bitField0_ & 0x00000020) != 0)) {
+          singleGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(singleGroup_);
           bitField0_ |= 0x00000020;
          }
       }
@@ -2402,7 +2477,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getSingleGroupFieldBuilder() {
         if (singleGroupBuilder_ == null) {
-          singleGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          singleGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
                   singleGroup_,
                   ((bitField0_ & 0x00000020) != 0),
                   getParentForChildren(),
@@ -2415,8 +2491,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> compilationGroup_ =
         java.util.Collections.emptyList();
       private void ensureCompilationGroupIsMutable() {
-        if ((bitField0_ & 0x00000040) == 0) {
-          compilationGroup_ = new java.util.ArrayList<>(compilationGroup_);
+        if (!((bitField0_ & 0x00000040) != 0)) {
+          compilationGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(compilationGroup_);
           bitField0_ |= 0x00000040;
          }
       }
@@ -2641,7 +2717,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getCompilationGroupFieldBuilder() {
         if (compilationGroupBuilder_ == null) {
-          compilationGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          compilationGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
                   compilationGroup_,
                   ((bitField0_ & 0x00000040) != 0),
                   getParentForChildren(),
@@ -2654,8 +2731,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup> appearsOnGroup_ =
         java.util.Collections.emptyList();
       private void ensureAppearsOnGroupIsMutable() {
-        if ((bitField0_ & 0x00000080) == 0) {
-          appearsOnGroup_ = new java.util.ArrayList<>(appearsOnGroup_);
+        if (!((bitField0_ & 0x00000080) != 0)) {
+          appearsOnGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup>(appearsOnGroup_);
           bitField0_ |= 0x00000080;
          }
       }
@@ -2880,7 +2957,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder> 
           getAppearsOnGroupFieldBuilder() {
         if (appearsOnGroupBuilder_ == null) {
-          appearsOnGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          appearsOnGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder>(
                   appearsOnGroup_,
                   ((bitField0_ & 0x00000080) != 0),
                   getParentForChildren(),
@@ -2890,13 +2968,13 @@ public final class Metadata {
         return appearsOnGroupBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureGenreIsMutable() {
-        if ((bitField0_ & 0x00000100) == 0) {
+      private com.google.protobuf.LazyStringArrayList genre_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureGenreIsMutable() {
+        if (!genre_.isModifiable()) {
           genre_ = new com.google.protobuf.LazyStringArrayList(genre_);
-          bitField0_ |= 0x00000100;
-         }
+        }
+        bitField0_ |= 0x00000100;
       }
       /**
        * <code>repeated string genre = 9;</code>
@@ -2904,7 +2982,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getGenreList() {
-        return genre_.getUnmodifiableView();
+        genre_.makeImmutable();
+        return genre_;
       }
       /**
        * <code>repeated string genre = 9;</code>
@@ -2938,11 +3017,10 @@ public final class Metadata {
        */
       public Builder setGenre(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenreIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenreIsMutable();
         genre_.set(index, value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2953,11 +3031,10 @@ public final class Metadata {
        */
       public Builder addGenre(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenreIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenreIsMutable();
         genre_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2971,6 +3048,7 @@ public final class Metadata {
         ensureGenreIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, genre_);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2979,8 +3057,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearGenre() {
-        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
+        genre_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000100);;
         onChanged();
         return this;
       }
@@ -2991,11 +3070,10 @@ public final class Metadata {
        */
       public Builder addGenreBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenreIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenreIsMutable();
         genre_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -3003,8 +3081,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_ =
         java.util.Collections.emptyList();
       private void ensureExternalIdIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
-          externalId_ = new java.util.ArrayList<>(externalId_);
+        if (!((bitField0_ & 0x00000200) != 0)) {
+          externalId_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId>(externalId_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -3229,7 +3307,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
           getExternalIdFieldBuilder() {
         if (externalIdBuilder_ == null) {
-          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder>(
                   externalId_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -3242,8 +3321,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> portrait_ =
         java.util.Collections.emptyList();
       private void ensurePortraitIsMutable() {
-        if ((bitField0_ & 0x00000400) == 0) {
-          portrait_ = new java.util.ArrayList<>(portrait_);
+        if (!((bitField0_ & 0x00000400) != 0)) {
+          portrait_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(portrait_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -3468,7 +3547,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getPortraitFieldBuilder() {
         if (portraitBuilder_ == null) {
-          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
                   portrait_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -3481,8 +3561,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography> biography_ =
         java.util.Collections.emptyList();
       private void ensureBiographyIsMutable() {
-        if ((bitField0_ & 0x00000800) == 0) {
-          biography_ = new java.util.ArrayList<>(biography_);
+        if (!((bitField0_ & 0x00000800) != 0)) {
+          biography_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography>(biography_);
           bitField0_ |= 0x00000800;
          }
       }
@@ -3707,7 +3787,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography, com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder> 
           getBiographyFieldBuilder() {
         if (biographyBuilder_ == null) {
-          biographyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          biographyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography, com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder>(
                   biography_,
                   ((bitField0_ & 0x00000800) != 0),
                   getParentForChildren(),
@@ -3720,8 +3801,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod> activityPeriod_ =
         java.util.Collections.emptyList();
       private void ensureActivityPeriodIsMutable() {
-        if ((bitField0_ & 0x00001000) == 0) {
-          activityPeriod_ = new java.util.ArrayList<>(activityPeriod_);
+        if (!((bitField0_ & 0x00001000) != 0)) {
+          activityPeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod>(activityPeriod_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -3946,7 +4027,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder> 
           getActivityPeriodFieldBuilder() {
         if (activityPeriodBuilder_ == null) {
-          activityPeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          activityPeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder>(
                   activityPeriod_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -3959,8 +4041,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if ((bitField0_ & 0x00002000) == 0) {
-          restriction_ = new java.util.ArrayList<>(restriction_);
+        if (!((bitField0_ & 0x00002000) != 0)) {
+          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -4185,7 +4267,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
                   restriction_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -4198,8 +4281,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> related_ =
         java.util.Collections.emptyList();
       private void ensureRelatedIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
-          related_ = new java.util.ArrayList<>(related_);
+        if (!((bitField0_ & 0x00004000) != 0)) {
+          related_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist>(related_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -4424,7 +4507,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
           getRelatedFieldBuilder() {
         if (relatedBuilder_ == null) {
-          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder>(
                   related_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -4439,6 +4523,7 @@ public final class Metadata {
        * <code>optional bool is_portrait_album_cover = 16;</code>
        * @return Whether the isPortraitAlbumCover field is set.
        */
+      @java.lang.Override
       public boolean hasIsPortraitAlbumCover() {
         return ((bitField0_ & 0x00008000) != 0);
       }
@@ -4446,6 +4531,7 @@ public final class Metadata {
        * <code>optional bool is_portrait_album_cover = 16;</code>
        * @return The isPortraitAlbumCover.
        */
+      @java.lang.Override
       public boolean getIsPortraitAlbumCover() {
         return isPortraitAlbumCover_;
       }
@@ -4455,8 +4541,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setIsPortraitAlbumCover(boolean value) {
-        bitField0_ |= 0x00008000;
+
         isPortraitAlbumCover_ = value;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -4501,11 +4588,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           portraitGroup_ = value;
-          onChanged();
         } else {
           portraitGroupBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -4515,11 +4602,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder builderForValue) {
         if (portraitGroupBuilder_ == null) {
           portraitGroup_ = builderForValue.build();
-          onChanged();
         } else {
           portraitGroupBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -4528,31 +4615,30 @@ public final class Metadata {
       public Builder mergePortraitGroup(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup value) {
         if (portraitGroupBuilder_ == null) {
           if (((bitField0_ & 0x00010000) != 0) &&
-              portraitGroup_ != null &&
-              portraitGroup_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
-            portraitGroup_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.newBuilder(portraitGroup_).mergeFrom(value).buildPartial();
+            portraitGroup_ != null &&
+            portraitGroup_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
+            getPortraitGroupBuilder().mergeFrom(value);
           } else {
             portraitGroup_ = value;
           }
-          onChanged();
         } else {
           portraitGroupBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.ImageGroup portrait_group = 17;</code>
        */
       public Builder clearPortraitGroup() {
-        if (portraitGroupBuilder_ == null) {
-          portraitGroup_ = null;
-          onChanged();
-        } else {
-          portraitGroupBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00010000);
+        portraitGroup_ = null;
+        if (portraitGroupBuilder_ != null) {
+          portraitGroupBuilder_.dispose();
+          portraitGroupBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -4581,7 +4667,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getPortraitGroupFieldBuilder() {
         if (portraitGroupBuilder_ == null) {
-          portraitGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          portraitGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
                   getPortraitGroup(),
                   getParentForChildren(),
                   isClean());
@@ -4593,8 +4680,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_ =
         java.util.Collections.emptyList();
       private void ensureSalePeriodIsMutable() {
-        if ((bitField0_ & 0x00020000) == 0) {
-          salePeriod_ = new java.util.ArrayList<>(salePeriod_);
+        if (!((bitField0_ & 0x00020000) != 0)) {
+          salePeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod>(salePeriod_);
           bitField0_ |= 0x00020000;
          }
       }
@@ -4819,7 +4906,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
           getSalePeriodFieldBuilder() {
         if (salePeriodBuilder_ == null) {
-          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder>(
                   salePeriod_,
                   ((bitField0_ & 0x00020000) != 0),
                   getParentForChildren(),
@@ -4832,8 +4920,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if ((bitField0_ & 0x00040000) == 0) {
-          availability_ = new java.util.ArrayList<>(availability_);
+        if (!((bitField0_ & 0x00040000) != 0)) {
+          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
           bitField0_ |= 0x00040000;
          }
       }
@@ -5058,7 +5146,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
                   availability_,
                   ((bitField0_ & 0x00040000) != 0),
                   getParentForChildren(),
@@ -5068,13 +5157,13 @@ public final class Metadata {
         return availabilityBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -5105,10 +5194,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -5551,7 +5641,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Album}
    */
-  public  static final class Album extends
+  public static final class Album extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Album)
       AlbumOrBuilder {
@@ -5566,12 +5656,14 @@ public final class Metadata {
       artist_ = java.util.Collections.emptyList();
       type_ = 1;
       label_ = "";
-      genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        cover_ = java.util.Collections.emptyList();
+      genre_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      cover_ = java.util.Collections.emptyList();
       externalId_ = java.util.Collections.emptyList();
       disc_ = java.util.Collections.emptyList();
-      review_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        copyright_ = java.util.Collections.emptyList();
+      review_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      copyright_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
       related_ = java.util.Collections.emptyList();
       salePeriod_ = java.util.Collections.emptyList();
@@ -5588,12 +5680,7 @@ public final class Metadata {
       return new Album();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Album_descriptor;
     }
@@ -5699,7 +5786,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Type> internalValueMap =
-              Type::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -5709,7 +5800,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.getDescriptor().getEnumTypes().get(0);
       }
@@ -5727,7 +5818,7 @@ public final class Metadata {
 
       private final int value;
 
-      Type(int value) {
+      private Type(int value) {
         this.value = value;
       }
 
@@ -5736,11 +5827,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int GID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString gid_;
+    private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes gid = 1;</code>
      * @return Whether the gid field is set.
      */
+    @java.lang.Override
     public boolean hasGid() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -5748,16 +5840,19 @@ public final class Metadata {
      * <code>optional bytes gid = 1;</code>
      * @return The gid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getGid() {
       return gid_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 2;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -5765,6 +5860,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -5783,6 +5879,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -5798,16 +5895,19 @@ public final class Metadata {
     }
 
     public static final int ARTIST_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> artist_;
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> getArtistList() {
       return artist_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
         getArtistOrBuilderList() {
       return artist_;
@@ -5815,47 +5915,52 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 3;</code>
      */
+    @java.lang.Override
     public int getArtistCount() {
       return artist_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist getArtist(int index) {
       return artist_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder getArtistOrBuilder(
         int index) {
       return artist_.get(index);
     }
 
     public static final int TYPE_FIELD_NUMBER = 4;
-    private int type_;
+    private int type_ = 1;
     /**
      * <code>optional .spotify.metadata.proto.Album.Type type = 4;</code>
      * @return Whether the type field is set.
      */
-    public boolean hasType() {
+    @java.lang.Override public boolean hasType() {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Album.Type type = 4;</code>
      * @return The type.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type getType() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.valueOf(type_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type getType() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.forNumber(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.ALBUM : result;
     }
 
     public static final int LABEL_FIELD_NUMBER = 5;
-    private volatile java.lang.Object label_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object label_ = "";
     /**
      * <code>optional string label = 5;</code>
      * @return Whether the label field is set.
      */
+    @java.lang.Override
     public boolean hasLabel() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -5863,6 +5968,7 @@ public final class Metadata {
      * <code>optional string label = 5;</code>
      * @return The label.
      */
+    @java.lang.Override
     public java.lang.String getLabel() {
       java.lang.Object ref = label_;
       if (ref instanceof java.lang.String) {
@@ -5881,6 +5987,7 @@ public final class Metadata {
      * <code>optional string label = 5;</code>
      * @return The bytes for label.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLabelBytes() {
       java.lang.Object ref = label_;
@@ -5901,6 +6008,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date date = 6;</code>
      * @return Whether the date field is set.
      */
+    @java.lang.Override
     public boolean hasDate() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -5908,22 +6016,25 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date date = 6;</code>
      * @return The date.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Date getDate() {
       return date_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : date_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Date date = 6;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder getDateOrBuilder() {
       return date_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : date_;
     }
 
     public static final int POPULARITY_FIELD_NUMBER = 7;
-    private int popularity_;
+    private int popularity_ = 0;
     /**
      * <code>optional sint32 popularity = 7;</code>
      * @return Whether the popularity field is set.
      */
+    @java.lang.Override
     public boolean hasPopularity() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -5931,12 +6042,15 @@ public final class Metadata {
      * <code>optional sint32 popularity = 7;</code>
      * @return The popularity.
      */
+    @java.lang.Override
     public int getPopularity() {
       return popularity_;
     }
 
     public static final int GENRE_FIELD_NUMBER = 8;
-    private com.google.protobuf.LazyStringList genre_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList genre_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string genre = 8;</code>
      * @return A list containing the genre.
@@ -5971,16 +6085,19 @@ public final class Metadata {
     }
 
     public static final int COVER_FIELD_NUMBER = 9;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> cover_;
     /**
      * <code>repeated .spotify.metadata.proto.Image cover = 9;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> getCoverList() {
       return cover_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image cover = 9;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
         getCoverOrBuilderList() {
       return cover_;
@@ -5988,34 +6105,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Image cover = 9;</code>
      */
+    @java.lang.Override
     public int getCoverCount() {
       return cover_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image cover = 9;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image getCover(int index) {
       return cover_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image cover = 9;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder getCoverOrBuilder(
         int index) {
       return cover_.get(index);
     }
 
     public static final int EXTERNAL_ID_FIELD_NUMBER = 10;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_;
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> getExternalIdList() {
       return externalId_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
         getExternalIdOrBuilderList() {
       return externalId_;
@@ -6023,34 +6146,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public int getExternalIdCount() {
       return externalId_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId getExternalId(int index) {
       return externalId_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder getExternalIdOrBuilder(
         int index) {
       return externalId_.get(index);
     }
 
     public static final int DISC_FIELD_NUMBER = 11;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc> disc_;
     /**
      * <code>repeated .spotify.metadata.proto.Disc disc = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc> getDiscList() {
       return disc_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Disc disc = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder> 
         getDiscOrBuilderList() {
       return disc_;
@@ -6058,25 +6187,30 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Disc disc = 11;</code>
      */
+    @java.lang.Override
     public int getDiscCount() {
       return disc_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Disc disc = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc getDisc(int index) {
       return disc_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Disc disc = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder getDiscOrBuilder(
         int index) {
       return disc_.get(index);
     }
 
     public static final int REVIEW_FIELD_NUMBER = 12;
-    private com.google.protobuf.LazyStringList review_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList review_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string review = 12;</code>
      * @return A list containing the review.
@@ -6111,16 +6245,19 @@ public final class Metadata {
     }
 
     public static final int COPYRIGHT_FIELD_NUMBER = 13;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> copyright_;
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> getCopyrightList() {
       return copyright_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder> 
         getCopyrightOrBuilderList() {
       return copyright_;
@@ -6128,34 +6265,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 13;</code>
      */
+    @java.lang.Override
     public int getCopyrightCount() {
       return copyright_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 13;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright getCopyright(int index) {
       return copyright_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 13;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder getCopyrightOrBuilder(
         int index) {
       return copyright_.get(index);
     }
 
     public static final int RESTRICTION_FIELD_NUMBER = 14;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_;
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> getRestrictionList() {
       return restriction_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
         getRestrictionOrBuilderList() {
       return restriction_;
@@ -6163,34 +6306,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public int getRestrictionCount() {
       return restriction_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction getRestriction(int index) {
       return restriction_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 14;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder getRestrictionOrBuilder(
         int index) {
       return restriction_.get(index);
     }
 
     public static final int RELATED_FIELD_NUMBER = 15;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> related_;
     /**
      * <code>repeated .spotify.metadata.proto.Album related = 15;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> getRelatedList() {
       return related_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Album related = 15;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
         getRelatedOrBuilderList() {
       return related_;
@@ -6198,34 +6347,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Album related = 15;</code>
      */
+    @java.lang.Override
     public int getRelatedCount() {
       return related_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Album related = 15;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album getRelated(int index) {
       return related_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Album related = 15;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder getRelatedOrBuilder(
         int index) {
       return related_.get(index);
     }
 
     public static final int SALE_PERIOD_FIELD_NUMBER = 16;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_;
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 16;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> getSalePeriodList() {
       return salePeriod_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 16;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
         getSalePeriodOrBuilderList() {
       return salePeriod_;
@@ -6233,18 +6388,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 16;</code>
      */
+    @java.lang.Override
     public int getSalePeriodCount() {
       return salePeriod_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 16;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod getSalePeriod(int index) {
       return salePeriod_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 16;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder getSalePeriodOrBuilder(
         int index) {
       return salePeriod_.get(index);
@@ -6256,6 +6414,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup cover_group = 17;</code>
      * @return Whether the coverGroup field is set.
      */
+    @java.lang.Override
     public boolean hasCoverGroup() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -6263,22 +6422,26 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup cover_group = 17;</code>
      * @return The coverGroup.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup getCoverGroup() {
       return coverGroup_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : coverGroup_;
     }
     /**
      * <code>optional .spotify.metadata.proto.ImageGroup cover_group = 17;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder getCoverGroupOrBuilder() {
       return coverGroup_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : coverGroup_;
     }
 
     public static final int ORIGINAL_TITLE_FIELD_NUMBER = 18;
-    private volatile java.lang.Object originalTitle_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object originalTitle_ = "";
     /**
      * <code>optional string original_title = 18;</code>
      * @return Whether the originalTitle field is set.
      */
+    @java.lang.Override
     public boolean hasOriginalTitle() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -6286,6 +6449,7 @@ public final class Metadata {
      * <code>optional string original_title = 18;</code>
      * @return The originalTitle.
      */
+    @java.lang.Override
     public java.lang.String getOriginalTitle() {
       java.lang.Object ref = originalTitle_;
       if (ref instanceof java.lang.String) {
@@ -6304,6 +6468,7 @@ public final class Metadata {
      * <code>optional string original_title = 18;</code>
      * @return The bytes for originalTitle.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginalTitleBytes() {
       java.lang.Object ref = originalTitle_;
@@ -6319,11 +6484,13 @@ public final class Metadata {
     }
 
     public static final int VERSION_TITLE_FIELD_NUMBER = 19;
-    private volatile java.lang.Object versionTitle_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object versionTitle_ = "";
     /**
      * <code>optional string version_title = 19;</code>
      * @return Whether the versionTitle field is set.
      */
+    @java.lang.Override
     public boolean hasVersionTitle() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -6331,6 +6498,7 @@ public final class Metadata {
      * <code>optional string version_title = 19;</code>
      * @return The versionTitle.
      */
+    @java.lang.Override
     public java.lang.String getVersionTitle() {
       java.lang.Object ref = versionTitle_;
       if (ref instanceof java.lang.String) {
@@ -6349,6 +6517,7 @@ public final class Metadata {
      * <code>optional string version_title = 19;</code>
      * @return The bytes for versionTitle.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getVersionTitleBytes() {
       java.lang.Object ref = versionTitle_;
@@ -6364,11 +6533,13 @@ public final class Metadata {
     }
 
     public static final int TYPE_STR_FIELD_NUMBER = 20;
-    private volatile java.lang.Object typeStr_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object typeStr_ = "";
     /**
      * <code>optional string type_str = 20;</code>
      * @return Whether the typeStr field is set.
      */
+    @java.lang.Override
     public boolean hasTypeStr() {
       return ((bitField0_ & 0x00000200) != 0);
     }
@@ -6376,6 +6547,7 @@ public final class Metadata {
      * <code>optional string type_str = 20;</code>
      * @return The typeStr.
      */
+    @java.lang.Override
     public java.lang.String getTypeStr() {
       java.lang.Object ref = typeStr_;
       if (ref instanceof java.lang.String) {
@@ -6394,6 +6566,7 @@ public final class Metadata {
      * <code>optional string type_str = 20;</code>
      * @return The bytes for typeStr.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTypeStrBytes() {
       java.lang.Object ref = typeStr_;
@@ -6409,16 +6582,19 @@ public final class Metadata {
     }
 
     public static final int AVAILABILITY_FIELD_NUMBER = 23;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_;
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 23;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> getAvailabilityList() {
       return availability_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 23;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
         getAvailabilityOrBuilderList() {
       return availability_;
@@ -6426,18 +6602,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 23;</code>
      */
+    @java.lang.Override
     public int getAvailabilityCount() {
       return availability_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 23;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability getAvailability(int index) {
       return availability_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 23;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder getAvailabilityOrBuilder(
         int index) {
       return availability_.get(index);
@@ -6487,11 +6666,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Album parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Album parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6530,7 +6711,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Album}
@@ -6539,7 +6721,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Album)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Album_descriptor;
       }
@@ -6581,92 +6763,92 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         gid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         if (artistBuilder_ == null) {
           artist_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          artist_ = null;
           artistBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         type_ = 1;
-        bitField0_ = (bitField0_ & ~0x00000008);
         label_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
-        if (dateBuilder_ == null) {
-          date_ = null;
-        } else {
-          dateBuilder_.clear();
+        date_ = null;
+        if (dateBuilder_ != null) {
+          dateBuilder_.dispose();
+          dateBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
         popularity_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+        genre_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         if (coverBuilder_ == null) {
           cover_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
         } else {
+          cover_ = null;
           coverBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000100);
         if (externalIdBuilder_ == null) {
           externalId_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
         } else {
+          externalId_ = null;
           externalIdBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000200);
         if (discBuilder_ == null) {
           disc_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
         } else {
+          disc_ = null;
           discBuilder_.clear();
         }
-        review_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000400);
+        review_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         if (copyrightBuilder_ == null) {
           copyright_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00001000);
         } else {
+          copyright_ = null;
           copyrightBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00001000);
         if (restrictionBuilder_ == null) {
           restriction_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00002000);
         } else {
+          restriction_ = null;
           restrictionBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00002000);
         if (relatedBuilder_ == null) {
           related_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00004000);
         } else {
+          related_ = null;
           relatedBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00004000);
         if (salePeriodBuilder_ == null) {
           salePeriod_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00008000);
         } else {
+          salePeriod_ = null;
           salePeriodBuilder_.clear();
         }
-        if (coverGroupBuilder_ == null) {
-          coverGroup_ = null;
-        } else {
-          coverGroupBuilder_.clear();
+        bitField0_ = (bitField0_ & ~0x00008000);
+        coverGroup_ = null;
+        if (coverGroupBuilder_ != null) {
+          coverGroupBuilder_.dispose();
+          coverGroupBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00010000);
         originalTitle_ = "";
-        bitField0_ = (bitField0_ & ~0x00020000);
         versionTitle_ = "";
-        bitField0_ = (bitField0_ & ~0x00040000);
         typeStr_ = "";
-        bitField0_ = (bitField0_ & ~0x00080000);
         if (availabilityBuilder_ == null) {
           availability_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00100000);
         } else {
+          availability_ = null;
           availabilityBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00100000);
         return this;
       }
 
@@ -6693,16 +6875,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Album result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Album(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.gid_ = gid_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.name_ = name_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Album result) {
         if (artistBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0)) {
             artist_ = java.util.Collections.unmodifiableList(artist_);
@@ -6712,31 +6891,6 @@ public final class Metadata {
         } else {
           result.artist_ = artistBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.type_ = type_;
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.label_ = label_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          if (dateBuilder_ == null) {
-            result.date_ = date_;
-          } else {
-            result.date_ = dateBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.popularity_ = popularity_;
-          to_bitField0_ |= 0x00000020;
-        }
-        if (((bitField0_ & 0x00000080) != 0)) {
-          genre_ = genre_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000080);
-        }
-        result.genre_ = genre_;
         if (coverBuilder_ == null) {
           if (((bitField0_ & 0x00000100) != 0)) {
             cover_ = java.util.Collections.unmodifiableList(cover_);
@@ -6764,11 +6918,6 @@ public final class Metadata {
         } else {
           result.disc_ = discBuilder_.build();
         }
-        if (((bitField0_ & 0x00000800) != 0)) {
-          review_ = review_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000800);
-        }
-        result.review_ = review_;
         if (copyrightBuilder_ == null) {
           if (((bitField0_ & 0x00001000) != 0)) {
             copyright_ = java.util.Collections.unmodifiableList(copyright_);
@@ -6805,26 +6954,6 @@ public final class Metadata {
         } else {
           result.salePeriod_ = salePeriodBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00010000) != 0)) {
-          if (coverGroupBuilder_ == null) {
-            result.coverGroup_ = coverGroup_;
-          } else {
-            result.coverGroup_ = coverGroupBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000040;
-        }
-        if (((from_bitField0_ & 0x00020000) != 0)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.originalTitle_ = originalTitle_;
-        if (((from_bitField0_ & 0x00040000) != 0)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.versionTitle_ = versionTitle_;
-        if (((from_bitField0_ & 0x00080000) != 0)) {
-          to_bitField0_ |= 0x00000200;
-        }
-        result.typeStr_ = typeStr_;
         if (availabilityBuilder_ == null) {
           if (((bitField0_ & 0x00100000) != 0)) {
             availability_ = java.util.Collections.unmodifiableList(availability_);
@@ -6834,43 +6963,66 @@ public final class Metadata {
         } else {
           result.availability_ = availabilityBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Album result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.gid_ = gid_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.type_ = type_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.label_ = label_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.date_ = dateBuilder_ == null
+              ? date_
+              : dateBuilder_.build();
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.popularity_ = popularity_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          genre_.makeImmutable();
+          result.genre_ = genre_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          review_.makeImmutable();
+          result.review_ = review_;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.coverGroup_ = coverGroupBuilder_ == null
+              ? coverGroup_
+              : coverGroupBuilder_.build();
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          result.originalTitle_ = originalTitle_;
+          to_bitField0_ |= 0x00000080;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          result.versionTitle_ = versionTitle_;
+          to_bitField0_ |= 0x00000100;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          result.typeStr_ = typeStr_;
+          to_bitField0_ |= 0x00000200;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
@@ -6878,6 +7030,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return Whether the gid field is set.
        */
+      @java.lang.Override
       public boolean hasGid() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -6885,6 +7038,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return The gid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getGid() {
         return gid_;
       }
@@ -6894,11 +7048,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setGid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         gid_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6963,11 +7115,9 @@ public final class Metadata {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -6976,8 +7126,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -6988,11 +7138,9 @@ public final class Metadata {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7000,8 +7148,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> artist_ =
         java.util.Collections.emptyList();
       private void ensureArtistIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
-          artist_ = new java.util.ArrayList<>(artist_);
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          artist_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist>(artist_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -7226,7 +7374,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
           getArtistFieldBuilder() {
         if (artistBuilder_ == null) {
-          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder>(
                   artist_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -7241,15 +7390,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Album.Type type = 4;</code>
        * @return Whether the type field is set.
        */
-      public boolean hasType() {
+      @java.lang.Override public boolean hasType() {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Album.Type type = 4;</code>
        * @return The type.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type getType() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.valueOf(type_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.forNumber(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Type.ALBUM : result;
       }
       /**
@@ -7327,11 +7477,9 @@ public final class Metadata {
        */
       public Builder setLabel(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         label_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -7340,8 +7488,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearLabel() {
-        bitField0_ = (bitField0_ & ~0x00000010);
         label_ = getDefaultInstance().getLabel();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -7352,11 +7500,9 @@ public final class Metadata {
        */
       public Builder setLabelBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         label_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -7391,11 +7537,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           date_ = value;
-          onChanged();
         } else {
           dateBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -7405,11 +7551,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder builderForValue) {
         if (dateBuilder_ == null) {
           date_ = builderForValue.build();
-          onChanged();
         } else {
           dateBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -7418,31 +7564,30 @@ public final class Metadata {
       public Builder mergeDate(com.spotifyxp.deps.com.spotify.metadata.Metadata.Date value) {
         if (dateBuilder_ == null) {
           if (((bitField0_ & 0x00000020) != 0) &&
-              date_ != null &&
-              date_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
-            date_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.newBuilder(date_).mergeFrom(value).buildPartial();
+            date_ != null &&
+            date_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
+            getDateBuilder().mergeFrom(value);
           } else {
             date_ = value;
           }
-          onChanged();
         } else {
           dateBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Date date = 6;</code>
        */
       public Builder clearDate() {
-        if (dateBuilder_ == null) {
-          date_ = null;
-          onChanged();
-        } else {
-          dateBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000020);
+        date_ = null;
+        if (dateBuilder_ != null) {
+          dateBuilder_.dispose();
+          dateBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -7471,7 +7616,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getDateFieldBuilder() {
         if (dateBuilder_ == null) {
-          dateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          dateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
                   getDate(),
                   getParentForChildren(),
                   isClean());
@@ -7485,6 +7631,7 @@ public final class Metadata {
        * <code>optional sint32 popularity = 7;</code>
        * @return Whether the popularity field is set.
        */
+      @java.lang.Override
       public boolean hasPopularity() {
         return ((bitField0_ & 0x00000040) != 0);
       }
@@ -7492,6 +7639,7 @@ public final class Metadata {
        * <code>optional sint32 popularity = 7;</code>
        * @return The popularity.
        */
+      @java.lang.Override
       public int getPopularity() {
         return popularity_;
       }
@@ -7501,8 +7649,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setPopularity(int value) {
-        bitField0_ |= 0x00000040;
+
         popularity_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -7517,13 +7666,13 @@ public final class Metadata {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureGenreIsMutable() {
-        if ((bitField0_ & 0x00000080) == 0) {
+      private com.google.protobuf.LazyStringArrayList genre_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureGenreIsMutable() {
+        if (!genre_.isModifiable()) {
           genre_ = new com.google.protobuf.LazyStringArrayList(genre_);
-          bitField0_ |= 0x00000080;
-         }
+        }
+        bitField0_ |= 0x00000080;
       }
       /**
        * <code>repeated string genre = 8;</code>
@@ -7531,7 +7680,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getGenreList() {
-        return genre_.getUnmodifiableView();
+        genre_.makeImmutable();
+        return genre_;
       }
       /**
        * <code>repeated string genre = 8;</code>
@@ -7565,11 +7715,10 @@ public final class Metadata {
        */
       public Builder setGenre(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenreIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenreIsMutable();
         genre_.set(index, value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -7580,11 +7729,10 @@ public final class Metadata {
        */
       public Builder addGenre(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenreIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenreIsMutable();
         genre_.add(value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -7598,6 +7746,7 @@ public final class Metadata {
         ensureGenreIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, genre_);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -7606,8 +7755,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearGenre() {
-        genre_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+        genre_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000080);;
         onChanged();
         return this;
       }
@@ -7618,11 +7768,10 @@ public final class Metadata {
        */
       public Builder addGenreBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenreIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenreIsMutable();
         genre_.add(value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -7630,8 +7779,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> cover_ =
         java.util.Collections.emptyList();
       private void ensureCoverIsMutable() {
-        if ((bitField0_ & 0x00000100) == 0) {
-          cover_ = new java.util.ArrayList<>(cover_);
+        if (!((bitField0_ & 0x00000100) != 0)) {
+          cover_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(cover_);
           bitField0_ |= 0x00000100;
          }
       }
@@ -7856,7 +8005,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getCoverFieldBuilder() {
         if (coverBuilder_ == null) {
-          coverBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          coverBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
                   cover_,
                   ((bitField0_ & 0x00000100) != 0),
                   getParentForChildren(),
@@ -7869,8 +8019,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_ =
         java.util.Collections.emptyList();
       private void ensureExternalIdIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
-          externalId_ = new java.util.ArrayList<>(externalId_);
+        if (!((bitField0_ & 0x00000200) != 0)) {
+          externalId_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId>(externalId_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -8095,7 +8245,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
           getExternalIdFieldBuilder() {
         if (externalIdBuilder_ == null) {
-          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder>(
                   externalId_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -8108,8 +8259,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc> disc_ =
         java.util.Collections.emptyList();
       private void ensureDiscIsMutable() {
-        if ((bitField0_ & 0x00000400) == 0) {
-          disc_ = new java.util.ArrayList<>(disc_);
+        if (!((bitField0_ & 0x00000400) != 0)) {
+          disc_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc>(disc_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -8334,7 +8485,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc, com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder> 
           getDiscFieldBuilder() {
         if (discBuilder_ == null) {
-          discBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          discBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc, com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder>(
                   disc_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -8344,13 +8496,13 @@ public final class Metadata {
         return discBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList review_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureReviewIsMutable() {
-        if ((bitField0_ & 0x00000800) == 0) {
+      private com.google.protobuf.LazyStringArrayList review_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureReviewIsMutable() {
+        if (!review_.isModifiable()) {
           review_ = new com.google.protobuf.LazyStringArrayList(review_);
-          bitField0_ |= 0x00000800;
-         }
+        }
+        bitField0_ |= 0x00000800;
       }
       /**
        * <code>repeated string review = 12;</code>
@@ -8358,7 +8510,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getReviewList() {
-        return review_.getUnmodifiableView();
+        review_.makeImmutable();
+        return review_;
       }
       /**
        * <code>repeated string review = 12;</code>
@@ -8392,11 +8545,10 @@ public final class Metadata {
        */
       public Builder setReview(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureReviewIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureReviewIsMutable();
         review_.set(index, value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8407,11 +8559,10 @@ public final class Metadata {
        */
       public Builder addReview(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureReviewIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureReviewIsMutable();
         review_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8425,6 +8576,7 @@ public final class Metadata {
         ensureReviewIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, review_);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8433,8 +8585,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearReview() {
-        review_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000800);
+        review_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000800);;
         onChanged();
         return this;
       }
@@ -8445,11 +8598,10 @@ public final class Metadata {
        */
       public Builder addReviewBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureReviewIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureReviewIsMutable();
         review_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8457,8 +8609,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> copyright_ =
         java.util.Collections.emptyList();
       private void ensureCopyrightIsMutable() {
-        if ((bitField0_ & 0x00001000) == 0) {
-          copyright_ = new java.util.ArrayList<>(copyright_);
+        if (!((bitField0_ & 0x00001000) != 0)) {
+          copyright_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright>(copyright_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -8683,7 +8835,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder> 
           getCopyrightFieldBuilder() {
         if (copyrightBuilder_ == null) {
-          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder>(
                   copyright_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -8696,8 +8849,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if ((bitField0_ & 0x00002000) == 0) {
-          restriction_ = new java.util.ArrayList<>(restriction_);
+        if (!((bitField0_ & 0x00002000) != 0)) {
+          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -8922,7 +9075,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
                   restriction_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -8935,8 +9089,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> related_ =
         java.util.Collections.emptyList();
       private void ensureRelatedIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
-          related_ = new java.util.ArrayList<>(related_);
+        if (!((bitField0_ & 0x00004000) != 0)) {
+          related_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album>(related_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -9161,7 +9315,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
           getRelatedFieldBuilder() {
         if (relatedBuilder_ == null) {
-          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          relatedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder>(
                   related_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -9174,8 +9329,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_ =
         java.util.Collections.emptyList();
       private void ensureSalePeriodIsMutable() {
-        if ((bitField0_ & 0x00008000) == 0) {
-          salePeriod_ = new java.util.ArrayList<>(salePeriod_);
+        if (!((bitField0_ & 0x00008000) != 0)) {
+          salePeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod>(salePeriod_);
           bitField0_ |= 0x00008000;
          }
       }
@@ -9400,7 +9555,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
           getSalePeriodFieldBuilder() {
         if (salePeriodBuilder_ == null) {
-          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder>(
                   salePeriod_,
                   ((bitField0_ & 0x00008000) != 0),
                   getParentForChildren(),
@@ -9440,11 +9596,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           coverGroup_ = value;
-          onChanged();
         } else {
           coverGroupBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -9454,11 +9610,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder builderForValue) {
         if (coverGroupBuilder_ == null) {
           coverGroup_ = builderForValue.build();
-          onChanged();
         } else {
           coverGroupBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -9467,31 +9623,30 @@ public final class Metadata {
       public Builder mergeCoverGroup(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup value) {
         if (coverGroupBuilder_ == null) {
           if (((bitField0_ & 0x00010000) != 0) &&
-              coverGroup_ != null &&
-              coverGroup_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
-            coverGroup_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.newBuilder(coverGroup_).mergeFrom(value).buildPartial();
+            coverGroup_ != null &&
+            coverGroup_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
+            getCoverGroupBuilder().mergeFrom(value);
           } else {
             coverGroup_ = value;
           }
-          onChanged();
         } else {
           coverGroupBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.ImageGroup cover_group = 17;</code>
        */
       public Builder clearCoverGroup() {
-        if (coverGroupBuilder_ == null) {
-          coverGroup_ = null;
-          onChanged();
-        } else {
-          coverGroupBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00010000);
+        coverGroup_ = null;
+        if (coverGroupBuilder_ != null) {
+          coverGroupBuilder_.dispose();
+          coverGroupBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -9520,7 +9675,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getCoverGroupFieldBuilder() {
         if (coverGroupBuilder_ == null) {
-          coverGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          coverGroupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
                   getCoverGroup(),
                   getParentForChildren(),
                   isClean());
@@ -9579,11 +9735,9 @@ public final class Metadata {
        */
       public Builder setOriginalTitle(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00020000;
+        if (value == null) { throw new NullPointerException(); }
         originalTitle_ = value;
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -9592,8 +9746,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearOriginalTitle() {
-        bitField0_ = (bitField0_ & ~0x00020000);
         originalTitle_ = getDefaultInstance().getOriginalTitle();
+        bitField0_ = (bitField0_ & ~0x00020000);
         onChanged();
         return this;
       }
@@ -9604,11 +9758,9 @@ public final class Metadata {
        */
       public Builder setOriginalTitleBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00020000;
+        if (value == null) { throw new NullPointerException(); }
         originalTitle_ = value;
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -9663,11 +9815,9 @@ public final class Metadata {
        */
       public Builder setVersionTitle(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00040000;
+        if (value == null) { throw new NullPointerException(); }
         versionTitle_ = value;
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -9676,8 +9826,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearVersionTitle() {
-        bitField0_ = (bitField0_ & ~0x00040000);
         versionTitle_ = getDefaultInstance().getVersionTitle();
+        bitField0_ = (bitField0_ & ~0x00040000);
         onChanged();
         return this;
       }
@@ -9688,11 +9838,9 @@ public final class Metadata {
        */
       public Builder setVersionTitleBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00040000;
+        if (value == null) { throw new NullPointerException(); }
         versionTitle_ = value;
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -9747,11 +9895,9 @@ public final class Metadata {
        */
       public Builder setTypeStr(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00080000;
+        if (value == null) { throw new NullPointerException(); }
         typeStr_ = value;
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -9760,8 +9906,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearTypeStr() {
-        bitField0_ = (bitField0_ & ~0x00080000);
         typeStr_ = getDefaultInstance().getTypeStr();
+        bitField0_ = (bitField0_ & ~0x00080000);
         onChanged();
         return this;
       }
@@ -9772,11 +9918,9 @@ public final class Metadata {
        */
       public Builder setTypeStrBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00080000;
+        if (value == null) { throw new NullPointerException(); }
         typeStr_ = value;
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -9784,8 +9928,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if ((bitField0_ & 0x00100000) == 0) {
-          availability_ = new java.util.ArrayList<>(availability_);
+        if (!((bitField0_ & 0x00100000) != 0)) {
+          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
           bitField0_ |= 0x00100000;
          }
       }
@@ -10010,7 +10154,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
                   availability_,
                   ((bitField0_ & 0x00100000) != 0),
                   getParentForChildren(),
@@ -10020,13 +10165,13 @@ public final class Metadata {
         return availabilityBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -10057,10 +10202,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -10441,7 +10587,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Track}
    */
-  public  static final class Track extends
+  public static final class Track extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Track)
       TrackOrBuilder {
@@ -10460,8 +10606,9 @@ public final class Metadata {
       alternative_ = java.util.Collections.emptyList();
       salePeriod_ = java.util.Collections.emptyList();
       preview_ = java.util.Collections.emptyList();
-      tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        availability_ = java.util.Collections.emptyList();
+      tags_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      availability_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -10471,12 +10618,7 @@ public final class Metadata {
       return new Track();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Track_descriptor;
     }
@@ -10491,11 +10633,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int GID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString gid_;
+    private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes gid = 1;</code>
      * @return Whether the gid field is set.
      */
+    @java.lang.Override
     public boolean hasGid() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -10503,16 +10646,19 @@ public final class Metadata {
      * <code>optional bytes gid = 1;</code>
      * @return The gid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getGid() {
       return gid_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 2;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -10520,6 +10666,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -10538,6 +10685,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -10558,6 +10706,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Album album = 3;</code>
      * @return Whether the album field is set.
      */
+    @java.lang.Override
     public boolean hasAlbum() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -10565,27 +10714,32 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Album album = 3;</code>
      * @return The album.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album getAlbum() {
       return album_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.getDefaultInstance() : album_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Album album = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder getAlbumOrBuilder() {
       return album_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.getDefaultInstance() : album_;
     }
 
     public static final int ARTIST_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> artist_;
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> getArtistList() {
       return artist_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
         getArtistOrBuilderList() {
       return artist_;
@@ -10593,29 +10747,33 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 4;</code>
      */
+    @java.lang.Override
     public int getArtistCount() {
       return artist_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist getArtist(int index) {
       return artist_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Artist artist = 4;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder getArtistOrBuilder(
         int index) {
       return artist_.get(index);
     }
 
     public static final int NUMBER_FIELD_NUMBER = 5;
-    private int number_;
+    private int number_ = 0;
     /**
      * <code>optional sint32 number = 5;</code>
      * @return Whether the number field is set.
      */
+    @java.lang.Override
     public boolean hasNumber() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -10623,16 +10781,18 @@ public final class Metadata {
      * <code>optional sint32 number = 5;</code>
      * @return The number.
      */
+    @java.lang.Override
     public int getNumber() {
       return number_;
     }
 
     public static final int DISC_NUMBER_FIELD_NUMBER = 6;
-    private int discNumber_;
+    private int discNumber_ = 0;
     /**
      * <code>optional sint32 disc_number = 6;</code>
      * @return Whether the discNumber field is set.
      */
+    @java.lang.Override
     public boolean hasDiscNumber() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -10640,16 +10800,18 @@ public final class Metadata {
      * <code>optional sint32 disc_number = 6;</code>
      * @return The discNumber.
      */
+    @java.lang.Override
     public int getDiscNumber() {
       return discNumber_;
     }
 
     public static final int DURATION_FIELD_NUMBER = 7;
-    private int duration_;
+    private int duration_ = 0;
     /**
      * <code>optional sint32 duration = 7;</code>
      * @return Whether the duration field is set.
      */
+    @java.lang.Override
     public boolean hasDuration() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -10657,16 +10819,18 @@ public final class Metadata {
      * <code>optional sint32 duration = 7;</code>
      * @return The duration.
      */
+    @java.lang.Override
     public int getDuration() {
       return duration_;
     }
 
     public static final int POPULARITY_FIELD_NUMBER = 8;
-    private int popularity_;
+    private int popularity_ = 0;
     /**
      * <code>optional sint32 popularity = 8;</code>
      * @return Whether the popularity field is set.
      */
+    @java.lang.Override
     public boolean hasPopularity() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -10674,16 +10838,18 @@ public final class Metadata {
      * <code>optional sint32 popularity = 8;</code>
      * @return The popularity.
      */
+    @java.lang.Override
     public int getPopularity() {
       return popularity_;
     }
 
     public static final int EXPLICIT_FIELD_NUMBER = 9;
-    private boolean explicit_;
+    private boolean explicit_ = false;
     /**
      * <code>optional bool explicit = 9;</code>
      * @return Whether the explicit field is set.
      */
+    @java.lang.Override
     public boolean hasExplicit() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -10691,21 +10857,25 @@ public final class Metadata {
      * <code>optional bool explicit = 9;</code>
      * @return The explicit.
      */
+    @java.lang.Override
     public boolean getExplicit() {
       return explicit_;
     }
 
     public static final int EXTERNAL_ID_FIELD_NUMBER = 10;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_;
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> getExternalIdList() {
       return externalId_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
         getExternalIdOrBuilderList() {
       return externalId_;
@@ -10713,34 +10883,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public int getExternalIdCount() {
       return externalId_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId getExternalId(int index) {
       return externalId_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.ExternalId external_id = 10;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder getExternalIdOrBuilder(
         int index) {
       return externalId_.get(index);
     }
 
     public static final int RESTRICTION_FIELD_NUMBER = 11;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_;
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> getRestrictionList() {
       return restriction_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 11;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
         getRestrictionOrBuilderList() {
       return restriction_;
@@ -10748,34 +10924,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 11;</code>
      */
+    @java.lang.Override
     public int getRestrictionCount() {
       return restriction_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction getRestriction(int index) {
       return restriction_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 11;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder getRestrictionOrBuilder(
         int index) {
       return restriction_.get(index);
     }
 
     public static final int FILE_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> file_;
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile file = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> getFileList() {
       return file_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile file = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
         getFileOrBuilderList() {
       return file_;
@@ -10783,34 +10965,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile file = 12;</code>
      */
+    @java.lang.Override
     public int getFileCount() {
       return file_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile file = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile getFile(int index) {
       return file_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile file = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder getFileOrBuilder(
         int index) {
       return file_.get(index);
     }
 
     public static final int ALTERNATIVE_FIELD_NUMBER = 13;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> alternative_;
     /**
      * <code>repeated .spotify.metadata.proto.Track alternative = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> getAlternativeList() {
       return alternative_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track alternative = 13;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
         getAlternativeOrBuilderList() {
       return alternative_;
@@ -10818,34 +11006,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Track alternative = 13;</code>
      */
+    @java.lang.Override
     public int getAlternativeCount() {
       return alternative_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track alternative = 13;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Track getAlternative(int index) {
       return alternative_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track alternative = 13;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder getAlternativeOrBuilder(
         int index) {
       return alternative_.get(index);
     }
 
     public static final int SALE_PERIOD_FIELD_NUMBER = 14;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_;
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 14;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> getSalePeriodList() {
       return salePeriod_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 14;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
         getSalePeriodOrBuilderList() {
       return salePeriod_;
@@ -10853,34 +11047,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 14;</code>
      */
+    @java.lang.Override
     public int getSalePeriodCount() {
       return salePeriod_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 14;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod getSalePeriod(int index) {
       return salePeriod_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.SalePeriod sale_period = 14;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder getSalePeriodOrBuilder(
         int index) {
       return salePeriod_.get(index);
     }
 
     public static final int PREVIEW_FIELD_NUMBER = 15;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> preview_;
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile preview = 15;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> getPreviewList() {
       return preview_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile preview = 15;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
         getPreviewOrBuilderList() {
       return preview_;
@@ -10888,25 +11088,30 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile preview = 15;</code>
      */
+    @java.lang.Override
     public int getPreviewCount() {
       return preview_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile preview = 15;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile getPreview(int index) {
       return preview_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile preview = 15;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder getPreviewOrBuilder(
         int index) {
       return preview_.get(index);
     }
 
     public static final int TAGS_FIELD_NUMBER = 16;
-    private com.google.protobuf.LazyStringList tags_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList tags_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string tags = 16;</code>
      * @return A list containing the tags.
@@ -10941,11 +11146,12 @@ public final class Metadata {
     }
 
     public static final int EARLIEST_LIVE_TIMESTAMP_FIELD_NUMBER = 17;
-    private long earliestLiveTimestamp_;
+    private long earliestLiveTimestamp_ = 0L;
     /**
      * <code>optional int64 earliest_live_timestamp = 17;</code>
      * @return Whether the earliestLiveTimestamp field is set.
      */
+    @java.lang.Override
     public boolean hasEarliestLiveTimestamp() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -10953,16 +11159,18 @@ public final class Metadata {
      * <code>optional int64 earliest_live_timestamp = 17;</code>
      * @return The earliestLiveTimestamp.
      */
+    @java.lang.Override
     public long getEarliestLiveTimestamp() {
       return earliestLiveTimestamp_;
     }
 
     public static final int HAS_LYRICS_FIELD_NUMBER = 18;
-    private boolean hasLyrics_;
+    private boolean hasLyrics_ = false;
     /**
      * <code>optional bool has_lyrics = 18;</code>
      * @return Whether the hasLyrics field is set.
      */
+    @java.lang.Override
     public boolean hasHasLyrics() {
       return ((bitField0_ & 0x00000200) != 0);
     }
@@ -10970,21 +11178,25 @@ public final class Metadata {
      * <code>optional bool has_lyrics = 18;</code>
      * @return The hasLyrics.
      */
+    @java.lang.Override
     public boolean getHasLyrics() {
       return hasLyrics_;
     }
 
     public static final int AVAILABILITY_FIELD_NUMBER = 19;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_;
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 19;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> getAvailabilityList() {
       return availability_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 19;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
         getAvailabilityOrBuilderList() {
       return availability_;
@@ -10992,18 +11204,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 19;</code>
      */
+    @java.lang.Override
     public int getAvailabilityCount() {
       return availability_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 19;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability getAvailability(int index) {
       return availability_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 19;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder getAvailabilityOrBuilder(
         int index) {
       return availability_.get(index);
@@ -11015,6 +11230,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Licensor licensor = 21;</code>
      * @return Whether the licensor field is set.
      */
+    @java.lang.Override
     public boolean hasLicensor() {
       return ((bitField0_ & 0x00000400) != 0);
     }
@@ -11022,12 +11238,14 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Licensor licensor = 21;</code>
      * @return The licensor.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor getLicensor() {
       return licensor_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.getDefaultInstance() : licensor_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Licensor licensor = 21;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder getLicensorOrBuilder() {
       return licensor_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.getDefaultInstance() : licensor_;
     }
@@ -11076,11 +11294,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Track parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Track parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11119,7 +11339,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Track}
@@ -11128,7 +11349,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Track)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Track_descriptor;
       }
@@ -11169,86 +11390,84 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         gid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (albumBuilder_ == null) {
-          album_ = null;
-        } else {
-          albumBuilder_.clear();
+        album_ = null;
+        if (albumBuilder_ != null) {
+          albumBuilder_.dispose();
+          albumBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (artistBuilder_ == null) {
           artist_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          artist_ = null;
           artistBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         number_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
         discNumber_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
         duration_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
         popularity_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
         explicit_ = false;
-        bitField0_ = (bitField0_ & ~0x00000100);
         if (externalIdBuilder_ == null) {
           externalId_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
         } else {
+          externalId_ = null;
           externalIdBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000200);
         if (restrictionBuilder_ == null) {
           restriction_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
         } else {
+          restriction_ = null;
           restrictionBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000400);
         if (fileBuilder_ == null) {
           file_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000800);
         } else {
+          file_ = null;
           fileBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000800);
         if (alternativeBuilder_ == null) {
           alternative_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00001000);
         } else {
+          alternative_ = null;
           alternativeBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00001000);
         if (salePeriodBuilder_ == null) {
           salePeriod_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00002000);
         } else {
+          salePeriod_ = null;
           salePeriodBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00002000);
         if (previewBuilder_ == null) {
           preview_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00004000);
         } else {
+          preview_ = null;
           previewBuilder_.clear();
         }
-        tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00004000);
+        tags_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         earliestLiveTimestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00010000);
         hasLyrics_ = false;
-        bitField0_ = (bitField0_ & ~0x00020000);
         if (availabilityBuilder_ == null) {
           availability_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00040000);
         } else {
+          availability_ = null;
           availabilityBuilder_.clear();
         }
-        if (licensorBuilder_ == null) {
-          licensor_ = null;
-        } else {
-          licensorBuilder_.clear();
+        bitField0_ = (bitField0_ & ~0x00040000);
+        licensor_ = null;
+        if (licensorBuilder_ != null) {
+          licensorBuilder_.dispose();
+          licensorBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00080000);
         return this;
       }
 
@@ -11275,24 +11494,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Track buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Track result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Track(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.gid_ = gid_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (albumBuilder_ == null) {
-            result.album_ = album_;
-          } else {
-            result.album_ = albumBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000004;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Track result) {
         if (artistBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0)) {
             artist_ = java.util.Collections.unmodifiableList(artist_);
@@ -11301,26 +11509,6 @@ public final class Metadata {
           result.artist_ = artist_;
         } else {
           result.artist_ = artistBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.number_ = number_;
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.discNumber_ = discNumber_;
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.duration_ = duration_;
-          to_bitField0_ |= 0x00000020;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          result.popularity_ = popularity_;
-          to_bitField0_ |= 0x00000040;
-        }
-        if (((from_bitField0_ & 0x00000100) != 0)) {
-          result.explicit_ = explicit_;
-          to_bitField0_ |= 0x00000080;
         }
         if (externalIdBuilder_ == null) {
           if (((bitField0_ & 0x00000200) != 0)) {
@@ -11376,19 +11564,6 @@ public final class Metadata {
         } else {
           result.preview_ = previewBuilder_.build();
         }
-        if (((bitField0_ & 0x00008000) != 0)) {
-          tags_ = tags_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00008000);
-        }
-        result.tags_ = tags_;
-        if (((from_bitField0_ & 0x00010000) != 0)) {
-          result.earliestLiveTimestamp_ = earliestLiveTimestamp_;
-          to_bitField0_ |= 0x00000100;
-        }
-        if (((from_bitField0_ & 0x00020000) != 0)) {
-          result.hasLyrics_ = hasLyrics_;
-          to_bitField0_ |= 0x00000200;
-        }
         if (availabilityBuilder_ == null) {
           if (((bitField0_ & 0x00040000) != 0)) {
             availability_ = java.util.Collections.unmodifiableList(availability_);
@@ -11398,51 +11573,66 @@ public final class Metadata {
         } else {
           result.availability_ = availabilityBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00080000) != 0)) {
-          if (licensorBuilder_ == null) {
-            result.licensor_ = licensor_;
-          } else {
-            result.licensor_ = licensorBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000400;
-        }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Track result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.gid_ = gid_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.album_ = albumBuilder_ == null
+              ? album_
+              : albumBuilder_.build();
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.number_ = number_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.discNumber_ = discNumber_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.duration_ = duration_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.popularity_ = popularity_;
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.explicit_ = explicit_;
+          to_bitField0_ |= 0x00000080;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          tags_.makeImmutable();
+          result.tags_ = tags_;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.earliestLiveTimestamp_ = earliestLiveTimestamp_;
+          to_bitField0_ |= 0x00000100;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          result.hasLyrics_ = hasLyrics_;
+          to_bitField0_ |= 0x00000200;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          result.licensor_ = licensorBuilder_ == null
+              ? licensor_
+              : licensorBuilder_.build();
+          to_bitField0_ |= 0x00000400;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
@@ -11450,6 +11640,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return Whether the gid field is set.
        */
+      @java.lang.Override
       public boolean hasGid() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -11457,6 +11648,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return The gid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getGid() {
         return gid_;
       }
@@ -11466,11 +11658,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setGid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         gid_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -11535,11 +11725,9 @@ public final class Metadata {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -11548,8 +11736,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -11560,11 +11748,9 @@ public final class Metadata {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -11599,11 +11785,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           album_ = value;
-          onChanged();
         } else {
           albumBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -11613,11 +11799,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder builderForValue) {
         if (albumBuilder_ == null) {
           album_ = builderForValue.build();
-          onChanged();
         } else {
           albumBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -11626,31 +11812,30 @@ public final class Metadata {
       public Builder mergeAlbum(com.spotifyxp.deps.com.spotify.metadata.Metadata.Album value) {
         if (albumBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              album_ != null &&
-              album_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.getDefaultInstance()) {
-            album_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.newBuilder(album_).mergeFrom(value).buildPartial();
+            album_ != null &&
+            album_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.getDefaultInstance()) {
+            getAlbumBuilder().mergeFrom(value);
           } else {
             album_ = value;
           }
-          onChanged();
         } else {
           albumBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Album album = 3;</code>
        */
       public Builder clearAlbum() {
-        if (albumBuilder_ == null) {
-          album_ = null;
-          onChanged();
-        } else {
-          albumBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        album_ = null;
+        if (albumBuilder_ != null) {
+          albumBuilder_.dispose();
+          albumBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -11679,7 +11864,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
           getAlbumFieldBuilder() {
         if (albumBuilder_ == null) {
-          albumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          albumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder>(
                   getAlbum(),
                   getParentForChildren(),
                   isClean());
@@ -11691,8 +11877,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist> artist_ =
         java.util.Collections.emptyList();
       private void ensureArtistIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          artist_ = new java.util.ArrayList<>(artist_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          artist_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist>(artist_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -11917,7 +12103,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder> 
           getArtistFieldBuilder() {
         if (artistBuilder_ == null) {
-          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          artistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist, com.spotifyxp.deps.com.spotify.metadata.Metadata.Artist.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ArtistOrBuilder>(
                   artist_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -11932,6 +12119,7 @@ public final class Metadata {
        * <code>optional sint32 number = 5;</code>
        * @return Whether the number field is set.
        */
+      @java.lang.Override
       public boolean hasNumber() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -11939,6 +12127,7 @@ public final class Metadata {
        * <code>optional sint32 number = 5;</code>
        * @return The number.
        */
+      @java.lang.Override
       public int getNumber() {
         return number_;
       }
@@ -11948,8 +12137,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setNumber(int value) {
-        bitField0_ |= 0x00000010;
+
         number_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -11969,6 +12159,7 @@ public final class Metadata {
        * <code>optional sint32 disc_number = 6;</code>
        * @return Whether the discNumber field is set.
        */
+      @java.lang.Override
       public boolean hasDiscNumber() {
         return ((bitField0_ & 0x00000020) != 0);
       }
@@ -11976,6 +12167,7 @@ public final class Metadata {
        * <code>optional sint32 disc_number = 6;</code>
        * @return The discNumber.
        */
+      @java.lang.Override
       public int getDiscNumber() {
         return discNumber_;
       }
@@ -11985,8 +12177,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setDiscNumber(int value) {
-        bitField0_ |= 0x00000020;
+
         discNumber_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -12006,6 +12199,7 @@ public final class Metadata {
        * <code>optional sint32 duration = 7;</code>
        * @return Whether the duration field is set.
        */
+      @java.lang.Override
       public boolean hasDuration() {
         return ((bitField0_ & 0x00000040) != 0);
       }
@@ -12013,6 +12207,7 @@ public final class Metadata {
        * <code>optional sint32 duration = 7;</code>
        * @return The duration.
        */
+      @java.lang.Override
       public int getDuration() {
         return duration_;
       }
@@ -12022,8 +12217,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setDuration(int value) {
-        bitField0_ |= 0x00000040;
+
         duration_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -12043,6 +12239,7 @@ public final class Metadata {
        * <code>optional sint32 popularity = 8;</code>
        * @return Whether the popularity field is set.
        */
+      @java.lang.Override
       public boolean hasPopularity() {
         return ((bitField0_ & 0x00000080) != 0);
       }
@@ -12050,6 +12247,7 @@ public final class Metadata {
        * <code>optional sint32 popularity = 8;</code>
        * @return The popularity.
        */
+      @java.lang.Override
       public int getPopularity() {
         return popularity_;
       }
@@ -12059,8 +12257,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setPopularity(int value) {
-        bitField0_ |= 0x00000080;
+
         popularity_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -12080,6 +12279,7 @@ public final class Metadata {
        * <code>optional bool explicit = 9;</code>
        * @return Whether the explicit field is set.
        */
+      @java.lang.Override
       public boolean hasExplicit() {
         return ((bitField0_ & 0x00000100) != 0);
       }
@@ -12087,6 +12287,7 @@ public final class Metadata {
        * <code>optional bool explicit = 9;</code>
        * @return The explicit.
        */
+      @java.lang.Override
       public boolean getExplicit() {
         return explicit_;
       }
@@ -12096,8 +12297,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setExplicit(boolean value) {
-        bitField0_ |= 0x00000100;
+
         explicit_ = value;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -12115,8 +12317,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId> externalId_ =
         java.util.Collections.emptyList();
       private void ensureExternalIdIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
-          externalId_ = new java.util.ArrayList<>(externalId_);
+        if (!((bitField0_ & 0x00000200) != 0)) {
+          externalId_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId>(externalId_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -12341,7 +12543,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder> 
           getExternalIdFieldBuilder() {
         if (externalIdBuilder_ == null) {
-          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          externalIdBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder>(
                   externalId_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -12354,8 +12557,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if ((bitField0_ & 0x00000400) == 0) {
-          restriction_ = new java.util.ArrayList<>(restriction_);
+        if (!((bitField0_ & 0x00000400) != 0)) {
+          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -12580,7 +12783,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
                   restriction_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -12593,8 +12797,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> file_ =
         java.util.Collections.emptyList();
       private void ensureFileIsMutable() {
-        if ((bitField0_ & 0x00000800) == 0) {
-          file_ = new java.util.ArrayList<>(file_);
+        if (!((bitField0_ & 0x00000800) != 0)) {
+          file_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(file_);
           bitField0_ |= 0x00000800;
          }
       }
@@ -12819,7 +13023,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getFileFieldBuilder() {
         if (fileBuilder_ == null) {
-          fileBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          fileBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
                   file_,
                   ((bitField0_ & 0x00000800) != 0),
                   getParentForChildren(),
@@ -12832,8 +13037,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> alternative_ =
         java.util.Collections.emptyList();
       private void ensureAlternativeIsMutable() {
-        if ((bitField0_ & 0x00001000) == 0) {
-          alternative_ = new java.util.ArrayList<>(alternative_);
+        if (!((bitField0_ & 0x00001000) != 0)) {
+          alternative_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track>(alternative_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -13058,7 +13263,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
           getAlternativeFieldBuilder() {
         if (alternativeBuilder_ == null) {
-          alternativeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          alternativeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder>(
                   alternative_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -13071,8 +13277,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod> salePeriod_ =
         java.util.Collections.emptyList();
       private void ensureSalePeriodIsMutable() {
-        if ((bitField0_ & 0x00002000) == 0) {
-          salePeriod_ = new java.util.ArrayList<>(salePeriod_);
+        if (!((bitField0_ & 0x00002000) != 0)) {
+          salePeriod_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod>(salePeriod_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -13297,7 +13503,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder> 
           getSalePeriodFieldBuilder() {
         if (salePeriodBuilder_ == null) {
-          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          salePeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder>(
                   salePeriod_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -13310,8 +13517,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> preview_ =
         java.util.Collections.emptyList();
       private void ensurePreviewIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
-          preview_ = new java.util.ArrayList<>(preview_);
+        if (!((bitField0_ & 0x00004000) != 0)) {
+          preview_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(preview_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -13536,7 +13743,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getPreviewFieldBuilder() {
         if (previewBuilder_ == null) {
-          previewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          previewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
                   preview_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -13546,13 +13754,13 @@ public final class Metadata {
         return previewBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureTagsIsMutable() {
-        if ((bitField0_ & 0x00008000) == 0) {
+      private com.google.protobuf.LazyStringArrayList tags_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureTagsIsMutable() {
+        if (!tags_.isModifiable()) {
           tags_ = new com.google.protobuf.LazyStringArrayList(tags_);
-          bitField0_ |= 0x00008000;
-         }
+        }
+        bitField0_ |= 0x00008000;
       }
       /**
        * <code>repeated string tags = 16;</code>
@@ -13560,7 +13768,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getTagsList() {
-        return tags_.getUnmodifiableView();
+        tags_.makeImmutable();
+        return tags_;
       }
       /**
        * <code>repeated string tags = 16;</code>
@@ -13594,11 +13803,10 @@ public final class Metadata {
        */
       public Builder setTags(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTagsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureTagsIsMutable();
         tags_.set(index, value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -13609,11 +13817,10 @@ public final class Metadata {
        */
       public Builder addTags(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTagsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureTagsIsMutable();
         tags_.add(value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -13627,6 +13834,7 @@ public final class Metadata {
         ensureTagsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, tags_);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -13635,8 +13843,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearTags() {
-        tags_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00008000);
+        tags_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00008000);;
         onChanged();
         return this;
       }
@@ -13647,11 +13856,10 @@ public final class Metadata {
        */
       public Builder addTagsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTagsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureTagsIsMutable();
         tags_.add(value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -13661,6 +13869,7 @@ public final class Metadata {
        * <code>optional int64 earliest_live_timestamp = 17;</code>
        * @return Whether the earliestLiveTimestamp field is set.
        */
+      @java.lang.Override
       public boolean hasEarliestLiveTimestamp() {
         return ((bitField0_ & 0x00010000) != 0);
       }
@@ -13668,6 +13877,7 @@ public final class Metadata {
        * <code>optional int64 earliest_live_timestamp = 17;</code>
        * @return The earliestLiveTimestamp.
        */
+      @java.lang.Override
       public long getEarliestLiveTimestamp() {
         return earliestLiveTimestamp_;
       }
@@ -13677,8 +13887,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setEarliestLiveTimestamp(long value) {
-        bitField0_ |= 0x00010000;
+
         earliestLiveTimestamp_ = value;
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -13698,6 +13909,7 @@ public final class Metadata {
        * <code>optional bool has_lyrics = 18;</code>
        * @return Whether the hasLyrics field is set.
        */
+      @java.lang.Override
       public boolean hasHasLyrics() {
         return ((bitField0_ & 0x00020000) != 0);
       }
@@ -13705,6 +13917,7 @@ public final class Metadata {
        * <code>optional bool has_lyrics = 18;</code>
        * @return The hasLyrics.
        */
+      @java.lang.Override
       public boolean getHasLyrics() {
         return hasLyrics_;
       }
@@ -13714,8 +13927,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setHasLyrics(boolean value) {
-        bitField0_ |= 0x00020000;
+
         hasLyrics_ = value;
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -13733,8 +13947,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if ((bitField0_ & 0x00040000) == 0) {
-          availability_ = new java.util.ArrayList<>(availability_);
+        if (!((bitField0_ & 0x00040000) != 0)) {
+          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
           bitField0_ |= 0x00040000;
          }
       }
@@ -13959,7 +14173,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
                   availability_,
                   ((bitField0_ & 0x00040000) != 0),
                   getParentForChildren(),
@@ -13999,11 +14214,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           licensor_ = value;
-          onChanged();
         } else {
           licensorBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00080000;
+        onChanged();
         return this;
       }
       /**
@@ -14013,11 +14228,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.Builder builderForValue) {
         if (licensorBuilder_ == null) {
           licensor_ = builderForValue.build();
-          onChanged();
         } else {
           licensorBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00080000;
+        onChanged();
         return this;
       }
       /**
@@ -14026,31 +14241,30 @@ public final class Metadata {
       public Builder mergeLicensor(com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor value) {
         if (licensorBuilder_ == null) {
           if (((bitField0_ & 0x00080000) != 0) &&
-              licensor_ != null &&
-              licensor_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.getDefaultInstance()) {
-            licensor_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.newBuilder(licensor_).mergeFrom(value).buildPartial();
+            licensor_ != null &&
+            licensor_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.getDefaultInstance()) {
+            getLicensorBuilder().mergeFrom(value);
           } else {
             licensor_ = value;
           }
-          onChanged();
         } else {
           licensorBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00080000;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Licensor licensor = 21;</code>
        */
       public Builder clearLicensor() {
-        if (licensorBuilder_ == null) {
-          licensor_ = null;
-          onChanged();
-        } else {
-          licensorBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00080000);
+        licensor_ = null;
+        if (licensorBuilder_ != null) {
+          licensorBuilder_.dispose();
+          licensorBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -14079,7 +14293,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor, com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder> 
           getLicensorFieldBuilder() {
         if (licensorBuilder_ == null) {
-          licensorBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          licensorBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor, com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder>(
                   getLicensor(),
                   getParentForChildren(),
                   isClean());
@@ -14088,13 +14303,13 @@ public final class Metadata {
         return licensorBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -14125,10 +14340,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -14201,11 +14417,15 @@ public final class Metadata {
 
     /**
      * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=91
      * @return Whether the deprecatedPopularity field is set.
      */
     @java.lang.Deprecated boolean hasDeprecatedPopularity();
     /**
      * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=91
      * @return The deprecatedPopularity.
      */
     @java.lang.Deprecated int getDeprecatedPopularity();
@@ -14433,7 +14653,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Show}
    */
-  public  static final class Show extends
+  public static final class Show extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Show)
       ShowOrBuilder {
@@ -14451,8 +14671,9 @@ public final class Metadata {
       episode_ = java.util.Collections.emptyList();
       copyright_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
-      keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        mediaType_ = 0;
+      keyword_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      mediaType_ = 0;
       consumptionOrder_ = 1;
       availability_ = java.util.Collections.emptyList();
       trailerUri_ = "";
@@ -14465,12 +14686,7 @@ public final class Metadata {
       return new Show();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Show_descriptor;
     }
@@ -14549,7 +14765,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           MediaType> internalValueMap =
-              MediaType::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<MediaType>() {
+              public MediaType findValueByNumber(int number) {
+                return MediaType.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -14559,7 +14779,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDescriptor().getEnumTypes().get(0);
       }
@@ -14577,7 +14797,7 @@ public final class Metadata {
 
       private final int value;
 
-      MediaType(int value) {
+      private MediaType(int value) {
         this.value = value;
       }
 
@@ -14650,7 +14870,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           ConsumptionOrder> internalValueMap =
-              ConsumptionOrder::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<ConsumptionOrder>() {
+              public ConsumptionOrder findValueByNumber(int number) {
+                return ConsumptionOrder.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -14660,7 +14884,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDescriptor().getEnumTypes().get(1);
       }
@@ -14678,7 +14902,7 @@ public final class Metadata {
 
       private final int value;
 
-      ConsumptionOrder(int value) {
+      private ConsumptionOrder(int value) {
         this.value = value;
       }
 
@@ -14687,11 +14911,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int GID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString gid_;
+    private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes gid = 1;</code>
      * @return Whether the gid field is set.
      */
+    @java.lang.Override
     public boolean hasGid() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -14699,16 +14924,19 @@ public final class Metadata {
      * <code>optional bytes gid = 1;</code>
      * @return The gid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getGid() {
       return gid_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 2;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -14716,6 +14944,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -14734,6 +14963,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -14749,11 +14979,13 @@ public final class Metadata {
     }
 
     public static final int DESCRIPTION_FIELD_NUMBER = 64;
-    private volatile java.lang.Object description_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
     /**
      * <code>optional string description = 64;</code>
      * @return Whether the description field is set.
      */
+    @java.lang.Override
     public boolean hasDescription() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -14761,6 +14993,7 @@ public final class Metadata {
      * <code>optional string description = 64;</code>
      * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -14779,6 +15012,7 @@ public final class Metadata {
      * <code>optional string description = 64;</code>
      * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -14794,28 +15028,36 @@ public final class Metadata {
     }
 
     public static final int DEPRECATED_POPULARITY_FIELD_NUMBER = 65;
-    private int deprecatedPopularity_;
+    private int deprecatedPopularity_ = 0;
     /**
      * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=91
      * @return Whether the deprecatedPopularity field is set.
      */
+    @java.lang.Override
     @java.lang.Deprecated public boolean hasDeprecatedPopularity() {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
      * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=91
      * @return The deprecatedPopularity.
      */
+    @java.lang.Override
     @java.lang.Deprecated public int getDeprecatedPopularity() {
       return deprecatedPopularity_;
     }
 
     public static final int PUBLISHER_FIELD_NUMBER = 66;
-    private volatile java.lang.Object publisher_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object publisher_ = "";
     /**
      * <code>optional string publisher = 66;</code>
      * @return Whether the publisher field is set.
      */
+    @java.lang.Override
     public boolean hasPublisher() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -14823,6 +15065,7 @@ public final class Metadata {
      * <code>optional string publisher = 66;</code>
      * @return The publisher.
      */
+    @java.lang.Override
     public java.lang.String getPublisher() {
       java.lang.Object ref = publisher_;
       if (ref instanceof java.lang.String) {
@@ -14841,6 +15084,7 @@ public final class Metadata {
      * <code>optional string publisher = 66;</code>
      * @return The bytes for publisher.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPublisherBytes() {
       java.lang.Object ref = publisher_;
@@ -14856,11 +15100,13 @@ public final class Metadata {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 67;
-    private volatile java.lang.Object language_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object language_ = "";
     /**
      * <code>optional string language = 67;</code>
      * @return Whether the language field is set.
      */
+    @java.lang.Override
     public boolean hasLanguage() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -14868,6 +15114,7 @@ public final class Metadata {
      * <code>optional string language = 67;</code>
      * @return The language.
      */
+    @java.lang.Override
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
       if (ref instanceof java.lang.String) {
@@ -14886,6 +15133,7 @@ public final class Metadata {
      * <code>optional string language = 67;</code>
      * @return The bytes for language.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLanguageBytes() {
       java.lang.Object ref = language_;
@@ -14901,11 +15149,12 @@ public final class Metadata {
     }
 
     public static final int EXPLICIT_FIELD_NUMBER = 68;
-    private boolean explicit_;
+    private boolean explicit_ = false;
     /**
      * <code>optional bool explicit = 68;</code>
      * @return Whether the explicit field is set.
      */
+    @java.lang.Override
     public boolean hasExplicit() {
       return ((bitField0_ & 0x00000040) != 0);
     }
@@ -14913,6 +15162,7 @@ public final class Metadata {
      * <code>optional bool explicit = 68;</code>
      * @return The explicit.
      */
+    @java.lang.Override
     public boolean getExplicit() {
       return explicit_;
     }
@@ -14923,6 +15173,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 69;</code>
      * @return Whether the coverImage field is set.
      */
+    @java.lang.Override
     public boolean hasCoverImage() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -14930,27 +15181,32 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 69;</code>
      * @return The coverImage.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup getCoverImage() {
       return coverImage_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : coverImage_;
     }
     /**
      * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 69;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder getCoverImageOrBuilder() {
       return coverImage_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : coverImage_;
     }
 
     public static final int EPISODE_FIELD_NUMBER = 70;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode> episode_;
     /**
      * <code>repeated .spotify.metadata.proto.Episode episode = 70;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode> getEpisodeList() {
       return episode_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Episode episode = 70;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder> 
         getEpisodeOrBuilderList() {
       return episode_;
@@ -14958,34 +15214,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Episode episode = 70;</code>
      */
+    @java.lang.Override
     public int getEpisodeCount() {
       return episode_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Episode episode = 70;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode getEpisode(int index) {
       return episode_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Episode episode = 70;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder getEpisodeOrBuilder(
         int index) {
       return episode_.get(index);
     }
 
     public static final int COPYRIGHT_FIELD_NUMBER = 71;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> copyright_;
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 71;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> getCopyrightList() {
       return copyright_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 71;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder> 
         getCopyrightOrBuilderList() {
       return copyright_;
@@ -14993,34 +15255,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 71;</code>
      */
+    @java.lang.Override
     public int getCopyrightCount() {
       return copyright_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 71;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright getCopyright(int index) {
       return copyright_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Copyright copyright = 71;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder getCopyrightOrBuilder(
         int index) {
       return copyright_.get(index);
     }
 
     public static final int RESTRICTION_FIELD_NUMBER = 72;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_;
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 72;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> getRestrictionList() {
       return restriction_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 72;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
         getRestrictionOrBuilderList() {
       return restriction_;
@@ -15028,25 +15296,30 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 72;</code>
      */
+    @java.lang.Override
     public int getRestrictionCount() {
       return restriction_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 72;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction getRestriction(int index) {
       return restriction_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 72;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder getRestrictionOrBuilder(
         int index) {
       return restriction_.get(index);
     }
 
     public static final int KEYWORD_FIELD_NUMBER = 73;
-    private com.google.protobuf.LazyStringList keyword_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList keyword_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string keyword = 73;</code>
      * @return A list containing the keyword.
@@ -15081,52 +15354,55 @@ public final class Metadata {
     }
 
     public static final int MEDIA_TYPE_FIELD_NUMBER = 74;
-    private int mediaType_;
+    private int mediaType_ = 0;
     /**
      * <code>optional .spotify.metadata.proto.Show.MediaType media_type = 74;</code>
      * @return Whether the mediaType field is set.
      */
-    public boolean hasMediaType() {
+    @java.lang.Override public boolean hasMediaType() {
       return ((bitField0_ & 0x00000100) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Show.MediaType media_type = 74;</code>
      * @return The mediaType.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType getMediaType() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.valueOf(mediaType_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType getMediaType() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.forNumber(mediaType_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.MIXED : result;
     }
 
     public static final int CONSUMPTION_ORDER_FIELD_NUMBER = 75;
-    private int consumptionOrder_;
+    private int consumptionOrder_ = 1;
     /**
      * <code>optional .spotify.metadata.proto.Show.ConsumptionOrder consumption_order = 75;</code>
      * @return Whether the consumptionOrder field is set.
      */
-    public boolean hasConsumptionOrder() {
+    @java.lang.Override public boolean hasConsumptionOrder() {
       return ((bitField0_ & 0x00000200) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Show.ConsumptionOrder consumption_order = 75;</code>
      * @return The consumptionOrder.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder getConsumptionOrder() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.valueOf(consumptionOrder_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder getConsumptionOrder() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.forNumber(consumptionOrder_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.SEQUENTIAL : result;
     }
 
     public static final int AVAILABILITY_FIELD_NUMBER = 78;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_;
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 78;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> getAvailabilityList() {
       return availability_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 78;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
         getAvailabilityOrBuilderList() {
       return availability_;
@@ -15134,29 +15410,34 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 78;</code>
      */
+    @java.lang.Override
     public int getAvailabilityCount() {
       return availability_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 78;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability getAvailability(int index) {
       return availability_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 78;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder getAvailabilityOrBuilder(
         int index) {
       return availability_.get(index);
     }
 
     public static final int TRAILER_URI_FIELD_NUMBER = 83;
-    private volatile java.lang.Object trailerUri_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object trailerUri_ = "";
     /**
      * <code>optional string trailer_uri = 83;</code>
      * @return Whether the trailerUri field is set.
      */
+    @java.lang.Override
     public boolean hasTrailerUri() {
       return ((bitField0_ & 0x00000400) != 0);
     }
@@ -15164,6 +15445,7 @@ public final class Metadata {
      * <code>optional string trailer_uri = 83;</code>
      * @return The trailerUri.
      */
+    @java.lang.Override
     public java.lang.String getTrailerUri() {
       java.lang.Object ref = trailerUri_;
       if (ref instanceof java.lang.String) {
@@ -15182,6 +15464,7 @@ public final class Metadata {
      * <code>optional string trailer_uri = 83;</code>
      * @return The bytes for trailerUri.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTrailerUriBytes() {
       java.lang.Object ref = trailerUri_;
@@ -15240,11 +15523,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Show parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Show parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15283,7 +15568,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Show}
@@ -15292,7 +15578,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Show)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Show_descriptor;
       }
@@ -15328,58 +15614,52 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         gid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         deprecatedPopularity_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         publisher_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
         language_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
         explicit_ = false;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        if (coverImageBuilder_ == null) {
-          coverImage_ = null;
-        } else {
-          coverImageBuilder_.clear();
+        coverImage_ = null;
+        if (coverImageBuilder_ != null) {
+          coverImageBuilder_.dispose();
+          coverImageBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
         if (episodeBuilder_ == null) {
           episode_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
         } else {
+          episode_ = null;
           episodeBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000100);
         if (copyrightBuilder_ == null) {
           copyright_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
         } else {
+          copyright_ = null;
           copyrightBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000200);
         if (restrictionBuilder_ == null) {
           restriction_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000400);
         } else {
+          restriction_ = null;
           restrictionBuilder_.clear();
         }
-        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000400);
+        keyword_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         mediaType_ = 0;
-        bitField0_ = (bitField0_ & ~0x00001000);
         consumptionOrder_ = 1;
-        bitField0_ = (bitField0_ & ~0x00002000);
         if (availabilityBuilder_ == null) {
           availability_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00004000);
         } else {
+          availability_ = null;
           availabilityBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00004000);
         trailerUri_ = "";
-        bitField0_ = (bitField0_ & ~0x00008000);
         return this;
       }
 
@@ -15406,44 +15686,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Show result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Show(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.gid_ = gid_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.description_ = description_;
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.deprecatedPopularity_ = deprecatedPopularity_;
-          to_bitField0_ |= 0x00000008;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.publisher_ = publisher_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.language_ = language_;
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.explicit_ = explicit_;
-          to_bitField0_ |= 0x00000040;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          if (coverImageBuilder_ == null) {
-            result.coverImage_ = coverImage_;
-          } else {
-            result.coverImage_ = coverImageBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000080;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Show result) {
         if (episodeBuilder_ == null) {
           if (((bitField0_ & 0x00000100) != 0)) {
             episode_ = java.util.Collections.unmodifiableList(episode_);
@@ -15471,19 +15720,6 @@ public final class Metadata {
         } else {
           result.restriction_ = restrictionBuilder_.build();
         }
-        if (((bitField0_ & 0x00000800) != 0)) {
-          keyword_ = keyword_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000800);
-        }
-        result.keyword_ = keyword_;
-        if (((from_bitField0_ & 0x00001000) != 0)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.mediaType_ = mediaType_;
-        if (((from_bitField0_ & 0x00002000) != 0)) {
-          to_bitField0_ |= 0x00000200;
-        }
-        result.consumptionOrder_ = consumptionOrder_;
         if (availabilityBuilder_ == null) {
           if (((bitField0_ & 0x00004000) != 0)) {
             availability_ = java.util.Collections.unmodifiableList(availability_);
@@ -15493,47 +15729,64 @@ public final class Metadata {
         } else {
           result.availability_ = availabilityBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00008000) != 0)) {
-          to_bitField0_ |= 0x00000400;
-        }
-        result.trailerUri_ = trailerUri_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Show result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.gid_ = gid_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.description_ = description_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.deprecatedPopularity_ = deprecatedPopularity_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.publisher_ = publisher_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.language_ = language_;
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.explicit_ = explicit_;
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.coverImage_ = coverImageBuilder_ == null
+              ? coverImage_
+              : coverImageBuilder_.build();
+          to_bitField0_ |= 0x00000080;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          keyword_.makeImmutable();
+          result.keyword_ = keyword_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.mediaType_ = mediaType_;
+          to_bitField0_ |= 0x00000100;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          result.consumptionOrder_ = consumptionOrder_;
+          to_bitField0_ |= 0x00000200;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          result.trailerUri_ = trailerUri_;
+          to_bitField0_ |= 0x00000400;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
@@ -15541,6 +15794,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return Whether the gid field is set.
        */
+      @java.lang.Override
       public boolean hasGid() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -15548,6 +15802,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return The gid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getGid() {
         return gid_;
       }
@@ -15557,11 +15812,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setGid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         gid_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -15626,11 +15879,9 @@ public final class Metadata {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -15639,8 +15890,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -15651,11 +15902,9 @@ public final class Metadata {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -15710,11 +15959,9 @@ public final class Metadata {
        */
       public Builder setDescription(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -15723,8 +15970,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -15735,11 +15982,9 @@ public final class Metadata {
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -15747,31 +15992,42 @@ public final class Metadata {
       private int deprecatedPopularity_ ;
       /**
        * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=91
        * @return Whether the deprecatedPopularity field is set.
        */
+      @java.lang.Override
       @java.lang.Deprecated public boolean hasDeprecatedPopularity() {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=91
        * @return The deprecatedPopularity.
        */
+      @java.lang.Override
       @java.lang.Deprecated public int getDeprecatedPopularity() {
         return deprecatedPopularity_;
       }
       /**
        * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=91
        * @param value The deprecatedPopularity to set.
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder setDeprecatedPopularity(int value) {
-        bitField0_ |= 0x00000008;
+
         deprecatedPopularity_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
        * <code>optional sint32 deprecated_popularity = 65 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Show.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=91
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder clearDeprecatedPopularity() {
@@ -15831,11 +16087,9 @@ public final class Metadata {
        */
       public Builder setPublisher(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         publisher_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -15844,8 +16098,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearPublisher() {
-        bitField0_ = (bitField0_ & ~0x00000010);
         publisher_ = getDefaultInstance().getPublisher();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -15856,11 +16110,9 @@ public final class Metadata {
        */
       public Builder setPublisherBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         publisher_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -15915,11 +16167,9 @@ public final class Metadata {
        */
       public Builder setLanguage(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         language_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -15928,8 +16178,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearLanguage() {
-        bitField0_ = (bitField0_ & ~0x00000020);
         language_ = getDefaultInstance().getLanguage();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -15940,11 +16190,9 @@ public final class Metadata {
        */
       public Builder setLanguageBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
+        if (value == null) { throw new NullPointerException(); }
         language_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -15954,6 +16202,7 @@ public final class Metadata {
        * <code>optional bool explicit = 68;</code>
        * @return Whether the explicit field is set.
        */
+      @java.lang.Override
       public boolean hasExplicit() {
         return ((bitField0_ & 0x00000040) != 0);
       }
@@ -15961,6 +16210,7 @@ public final class Metadata {
        * <code>optional bool explicit = 68;</code>
        * @return The explicit.
        */
+      @java.lang.Override
       public boolean getExplicit() {
         return explicit_;
       }
@@ -15970,8 +16220,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setExplicit(boolean value) {
-        bitField0_ |= 0x00000040;
+
         explicit_ = value;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -16016,11 +16267,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           coverImage_ = value;
-          onChanged();
         } else {
           coverImageBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -16030,11 +16281,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder builderForValue) {
         if (coverImageBuilder_ == null) {
           coverImage_ = builderForValue.build();
-          onChanged();
         } else {
           coverImageBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
@@ -16043,31 +16294,30 @@ public final class Metadata {
       public Builder mergeCoverImage(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup value) {
         if (coverImageBuilder_ == null) {
           if (((bitField0_ & 0x00000080) != 0) &&
-              coverImage_ != null &&
-              coverImage_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
-            coverImage_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.newBuilder(coverImage_).mergeFrom(value).buildPartial();
+            coverImage_ != null &&
+            coverImage_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
+            getCoverImageBuilder().mergeFrom(value);
           } else {
             coverImage_ = value;
           }
-          onChanged();
         } else {
           coverImageBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000080;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 69;</code>
        */
       public Builder clearCoverImage() {
-        if (coverImageBuilder_ == null) {
-          coverImage_ = null;
-          onChanged();
-        } else {
-          coverImageBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000080);
+        coverImage_ = null;
+        if (coverImageBuilder_ != null) {
+          coverImageBuilder_.dispose();
+          coverImageBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -16096,7 +16346,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getCoverImageFieldBuilder() {
         if (coverImageBuilder_ == null) {
-          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
                   getCoverImage(),
                   getParentForChildren(),
                   isClean());
@@ -16108,8 +16359,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode> episode_ =
         java.util.Collections.emptyList();
       private void ensureEpisodeIsMutable() {
-        if ((bitField0_ & 0x00000100) == 0) {
-          episode_ = new java.util.ArrayList<>(episode_);
+        if (!((bitField0_ & 0x00000100) != 0)) {
+          episode_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode>(episode_);
           bitField0_ |= 0x00000100;
          }
       }
@@ -16334,7 +16585,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode, com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder> 
           getEpisodeFieldBuilder() {
         if (episodeBuilder_ == null) {
-          episodeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          episodeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode, com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder>(
                   episode_,
                   ((bitField0_ & 0x00000100) != 0),
                   getParentForChildren(),
@@ -16347,8 +16599,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright> copyright_ =
         java.util.Collections.emptyList();
       private void ensureCopyrightIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
-          copyright_ = new java.util.ArrayList<>(copyright_);
+        if (!((bitField0_ & 0x00000200) != 0)) {
+          copyright_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright>(copyright_);
           bitField0_ |= 0x00000200;
          }
       }
@@ -16573,7 +16825,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder> 
           getCopyrightFieldBuilder() {
         if (copyrightBuilder_ == null) {
-          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          copyrightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright, com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder>(
                   copyright_,
                   ((bitField0_ & 0x00000200) != 0),
                   getParentForChildren(),
@@ -16586,8 +16839,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if ((bitField0_ & 0x00000400) == 0) {
-          restriction_ = new java.util.ArrayList<>(restriction_);
+        if (!((bitField0_ & 0x00000400) != 0)) {
+          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
           bitField0_ |= 0x00000400;
          }
       }
@@ -16812,7 +17065,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
                   restriction_,
                   ((bitField0_ & 0x00000400) != 0),
                   getParentForChildren(),
@@ -16822,13 +17076,13 @@ public final class Metadata {
         return restrictionBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureKeywordIsMutable() {
-        if ((bitField0_ & 0x00000800) == 0) {
+      private com.google.protobuf.LazyStringArrayList keyword_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureKeywordIsMutable() {
+        if (!keyword_.isModifiable()) {
           keyword_ = new com.google.protobuf.LazyStringArrayList(keyword_);
-          bitField0_ |= 0x00000800;
-         }
+        }
+        bitField0_ |= 0x00000800;
       }
       /**
        * <code>repeated string keyword = 73;</code>
@@ -16836,7 +17090,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getKeywordList() {
-        return keyword_.getUnmodifiableView();
+        keyword_.makeImmutable();
+        return keyword_;
       }
       /**
        * <code>repeated string keyword = 73;</code>
@@ -16870,11 +17125,10 @@ public final class Metadata {
        */
       public Builder setKeyword(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureKeywordIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureKeywordIsMutable();
         keyword_.set(index, value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -16885,11 +17139,10 @@ public final class Metadata {
        */
       public Builder addKeyword(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureKeywordIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureKeywordIsMutable();
         keyword_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -16903,6 +17156,7 @@ public final class Metadata {
         ensureKeywordIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, keyword_);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -16911,8 +17165,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearKeyword() {
-        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000800);
+        keyword_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000800);;
         onChanged();
         return this;
       }
@@ -16923,11 +17178,10 @@ public final class Metadata {
        */
       public Builder addKeywordBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureKeywordIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureKeywordIsMutable();
         keyword_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -16937,15 +17191,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Show.MediaType media_type = 74;</code>
        * @return Whether the mediaType field is set.
        */
-      public boolean hasMediaType() {
+      @java.lang.Override public boolean hasMediaType() {
         return ((bitField0_ & 0x00001000) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Show.MediaType media_type = 74;</code>
        * @return The mediaType.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType getMediaType() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.valueOf(mediaType_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.forNumber(mediaType_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.MediaType.MIXED : result;
       }
       /**
@@ -16978,15 +17233,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Show.ConsumptionOrder consumption_order = 75;</code>
        * @return Whether the consumptionOrder field is set.
        */
-      public boolean hasConsumptionOrder() {
+      @java.lang.Override public boolean hasConsumptionOrder() {
         return ((bitField0_ & 0x00002000) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Show.ConsumptionOrder consumption_order = 75;</code>
        * @return The consumptionOrder.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder getConsumptionOrder() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.valueOf(consumptionOrder_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.forNumber(consumptionOrder_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.ConsumptionOrder.SEQUENTIAL : result;
       }
       /**
@@ -17017,8 +17273,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
-          availability_ = new java.util.ArrayList<>(availability_);
+        if (!((bitField0_ & 0x00004000) != 0)) {
+          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -17243,7 +17499,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
                   availability_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -17303,11 +17560,9 @@ public final class Metadata {
        */
       public Builder setTrailerUri(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00008000;
+        if (value == null) { throw new NullPointerException(); }
         trailerUri_ = value;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -17316,8 +17571,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearTrailerUri() {
-        bitField0_ = (bitField0_ & ~0x00008000);
         trailerUri_ = getDefaultInstance().getTrailerUri();
+        bitField0_ = (bitField0_ & ~0x00008000);
         onChanged();
         return this;
       }
@@ -17328,22 +17583,20 @@ public final class Metadata {
        */
       public Builder setTrailerUriBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00008000;
+        if (value == null) { throw new NullPointerException(); }
         trailerUri_ = value;
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -17374,10 +17627,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -17511,11 +17765,15 @@ public final class Metadata {
 
     /**
      * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=127
      * @return Whether the deprecatedPopularity field is set.
      */
     @java.lang.Deprecated boolean hasDeprecatedPopularity();
     /**
      * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=127
      * @return The deprecatedPopularity.
      */
     @java.lang.Deprecated int getDeprecatedPopularity();
@@ -17780,7 +18038,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Episode}
    */
-  public  static final class Episode extends
+  public static final class Episode extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Episode)
       EpisodeOrBuilder {
@@ -17799,8 +18057,9 @@ public final class Metadata {
       videoPreview_ = java.util.Collections.emptyList();
       audioPreview_ = java.util.Collections.emptyList();
       restriction_ = java.util.Collections.emptyList();
-      keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        availability_ = java.util.Collections.emptyList();
+      keyword_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      availability_ = java.util.Collections.emptyList();
       externalUrl_ = "";
       type_ = 0;
     }
@@ -17812,12 +18071,7 @@ public final class Metadata {
       return new Episode();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Episode_descriptor;
     }
@@ -17896,7 +18150,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           EpisodeType> internalValueMap =
-              EpisodeType::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<EpisodeType>() {
+              public EpisodeType findValueByNumber(int number) {
+                return EpisodeType.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -17906,7 +18164,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.getDescriptor().getEnumTypes().get(0);
       }
@@ -17924,7 +18182,7 @@ public final class Metadata {
 
       private final int value;
 
-      EpisodeType(int value) {
+      private EpisodeType(int value) {
         this.value = value;
       }
 
@@ -17933,11 +18191,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int GID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString gid_;
+    private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes gid = 1;</code>
      * @return Whether the gid field is set.
      */
+    @java.lang.Override
     public boolean hasGid() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -17945,16 +18204,19 @@ public final class Metadata {
      * <code>optional bytes gid = 1;</code>
      * @return The gid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getGid() {
       return gid_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 2;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -17962,6 +18224,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -17980,6 +18243,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -17995,11 +18259,12 @@ public final class Metadata {
     }
 
     public static final int DURATION_FIELD_NUMBER = 7;
-    private int duration_;
+    private int duration_ = 0;
     /**
      * <code>optional sint32 duration = 7;</code>
      * @return Whether the duration field is set.
      */
+    @java.lang.Override
     public boolean hasDuration() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -18007,21 +18272,25 @@ public final class Metadata {
      * <code>optional sint32 duration = 7;</code>
      * @return The duration.
      */
+    @java.lang.Override
     public int getDuration() {
       return duration_;
     }
 
     public static final int AUDIO_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> audio_;
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> getAudioList() {
       return audio_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
         getAudioOrBuilderList() {
       return audio_;
@@ -18029,29 +18298,34 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio = 12;</code>
      */
+    @java.lang.Override
     public int getAudioCount() {
       return audio_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile getAudio(int index) {
       return audio_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio = 12;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder getAudioOrBuilder(
         int index) {
       return audio_.get(index);
     }
 
     public static final int DESCRIPTION_FIELD_NUMBER = 64;
-    private volatile java.lang.Object description_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
     /**
      * <code>optional string description = 64;</code>
      * @return Whether the description field is set.
      */
+    @java.lang.Override
     public boolean hasDescription() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -18059,6 +18333,7 @@ public final class Metadata {
      * <code>optional string description = 64;</code>
      * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -18077,6 +18352,7 @@ public final class Metadata {
      * <code>optional string description = 64;</code>
      * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -18092,11 +18368,12 @@ public final class Metadata {
     }
 
     public static final int NUMBER_FIELD_NUMBER = 65;
-    private int number_;
+    private int number_ = 0;
     /**
      * <code>optional sint32 number = 65;</code>
      * @return Whether the number field is set.
      */
+    @java.lang.Override
     public boolean hasNumber() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -18104,6 +18381,7 @@ public final class Metadata {
      * <code>optional sint32 number = 65;</code>
      * @return The number.
      */
+    @java.lang.Override
     public int getNumber() {
       return number_;
     }
@@ -18114,6 +18392,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date publish_time = 66;</code>
      * @return Whether the publishTime field is set.
      */
+    @java.lang.Override
     public boolean hasPublishTime() {
       return ((bitField0_ & 0x00000020) != 0);
     }
@@ -18121,29 +18400,37 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date publish_time = 66;</code>
      * @return The publishTime.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Date getPublishTime() {
       return publishTime_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : publishTime_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Date publish_time = 66;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder getPublishTimeOrBuilder() {
       return publishTime_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : publishTime_;
     }
 
     public static final int DEPRECATED_POPULARITY_FIELD_NUMBER = 67;
-    private int deprecatedPopularity_;
+    private int deprecatedPopularity_ = 0;
     /**
      * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=127
      * @return Whether the deprecatedPopularity field is set.
      */
+    @java.lang.Override
     @java.lang.Deprecated public boolean hasDeprecatedPopularity() {
       return ((bitField0_ & 0x00000040) != 0);
     }
     /**
      * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+     * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+     *     See metadata.proto;l=127
      * @return The deprecatedPopularity.
      */
+    @java.lang.Override
     @java.lang.Deprecated public int getDeprecatedPopularity() {
       return deprecatedPopularity_;
     }
@@ -18154,6 +18441,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 68;</code>
      * @return Whether the coverImage field is set.
      */
+    @java.lang.Override
     public boolean hasCoverImage() {
       return ((bitField0_ & 0x00000080) != 0);
     }
@@ -18161,22 +18449,26 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 68;</code>
      * @return The coverImage.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup getCoverImage() {
       return coverImage_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : coverImage_;
     }
     /**
      * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 68;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder getCoverImageOrBuilder() {
       return coverImage_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : coverImage_;
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 69;
-    private volatile java.lang.Object language_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object language_ = "";
     /**
      * <code>optional string language = 69;</code>
      * @return Whether the language field is set.
      */
+    @java.lang.Override
     public boolean hasLanguage() {
       return ((bitField0_ & 0x00000100) != 0);
     }
@@ -18184,6 +18476,7 @@ public final class Metadata {
      * <code>optional string language = 69;</code>
      * @return The language.
      */
+    @java.lang.Override
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
       if (ref instanceof java.lang.String) {
@@ -18202,6 +18495,7 @@ public final class Metadata {
      * <code>optional string language = 69;</code>
      * @return The bytes for language.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLanguageBytes() {
       java.lang.Object ref = language_;
@@ -18217,11 +18511,12 @@ public final class Metadata {
     }
 
     public static final int EXPLICIT_FIELD_NUMBER = 70;
-    private boolean explicit_;
+    private boolean explicit_ = false;
     /**
      * <code>optional bool explicit = 70;</code>
      * @return Whether the explicit field is set.
      */
+    @java.lang.Override
     public boolean hasExplicit() {
       return ((bitField0_ & 0x00000200) != 0);
     }
@@ -18229,6 +18524,7 @@ public final class Metadata {
      * <code>optional bool explicit = 70;</code>
      * @return The explicit.
      */
+    @java.lang.Override
     public boolean getExplicit() {
       return explicit_;
     }
@@ -18239,6 +18535,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Show show = 71;</code>
      * @return Whether the show field is set.
      */
+    @java.lang.Override
     public boolean hasShow() {
       return ((bitField0_ & 0x00000400) != 0);
     }
@@ -18246,27 +18543,32 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Show show = 71;</code>
      * @return The show.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Show getShow() {
       return show_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDefaultInstance() : show_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Show show = 71;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder getShowOrBuilder() {
       return show_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDefaultInstance() : show_;
     }
 
     public static final int VIDEO_FIELD_NUMBER = 72;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> video_;
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video = 72;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> getVideoList() {
       return video_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video = 72;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder> 
         getVideoOrBuilderList() {
       return video_;
@@ -18274,34 +18576,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video = 72;</code>
      */
+    @java.lang.Override
     public int getVideoCount() {
       return video_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video = 72;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile getVideo(int index) {
       return video_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video = 72;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder getVideoOrBuilder(
         int index) {
       return video_.get(index);
     }
 
     public static final int VIDEO_PREVIEW_FIELD_NUMBER = 73;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> videoPreview_;
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video_preview = 73;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> getVideoPreviewList() {
       return videoPreview_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video_preview = 73;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder> 
         getVideoPreviewOrBuilderList() {
       return videoPreview_;
@@ -18309,34 +18617,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video_preview = 73;</code>
      */
+    @java.lang.Override
     public int getVideoPreviewCount() {
       return videoPreview_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video_preview = 73;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile getVideoPreview(int index) {
       return videoPreview_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.VideoFile video_preview = 73;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder getVideoPreviewOrBuilder(
         int index) {
       return videoPreview_.get(index);
     }
 
     public static final int AUDIO_PREVIEW_FIELD_NUMBER = 74;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> audioPreview_;
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio_preview = 74;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> getAudioPreviewList() {
       return audioPreview_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio_preview = 74;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
         getAudioPreviewOrBuilderList() {
       return audioPreview_;
@@ -18344,34 +18658,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio_preview = 74;</code>
      */
+    @java.lang.Override
     public int getAudioPreviewCount() {
       return audioPreview_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio_preview = 74;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile getAudioPreview(int index) {
       return audioPreview_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.AudioFile audio_preview = 74;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder getAudioPreviewOrBuilder(
         int index) {
       return audioPreview_.get(index);
     }
 
     public static final int RESTRICTION_FIELD_NUMBER = 75;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_;
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 75;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> getRestrictionList() {
       return restriction_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 75;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
         getRestrictionOrBuilderList() {
       return restriction_;
@@ -18379,18 +18699,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 75;</code>
      */
+    @java.lang.Override
     public int getRestrictionCount() {
       return restriction_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 75;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction getRestriction(int index) {
       return restriction_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 75;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder getRestrictionOrBuilder(
         int index) {
       return restriction_.get(index);
@@ -18402,6 +18725,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup freeze_frame = 76;</code>
      * @return Whether the freezeFrame field is set.
      */
+    @java.lang.Override
     public boolean hasFreezeFrame() {
       return ((bitField0_ & 0x00000800) != 0);
     }
@@ -18409,18 +18733,22 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.ImageGroup freeze_frame = 76;</code>
      * @return The freezeFrame.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup getFreezeFrame() {
       return freezeFrame_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : freezeFrame_;
     }
     /**
      * <code>optional .spotify.metadata.proto.ImageGroup freeze_frame = 76;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder getFreezeFrameOrBuilder() {
       return freezeFrame_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance() : freezeFrame_;
     }
 
     public static final int KEYWORD_FIELD_NUMBER = 77;
-    private com.google.protobuf.LazyStringList keyword_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList keyword_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string keyword = 77;</code>
      * @return A list containing the keyword.
@@ -18455,11 +18783,12 @@ public final class Metadata {
     }
 
     public static final int ALLOW_BACKGROUND_PLAYBACK_FIELD_NUMBER = 81;
-    private boolean allowBackgroundPlayback_;
+    private boolean allowBackgroundPlayback_ = false;
     /**
      * <code>optional bool allow_background_playback = 81;</code>
      * @return Whether the allowBackgroundPlayback field is set.
      */
+    @java.lang.Override
     public boolean hasAllowBackgroundPlayback() {
       return ((bitField0_ & 0x00001000) != 0);
     }
@@ -18467,21 +18796,25 @@ public final class Metadata {
      * <code>optional bool allow_background_playback = 81;</code>
      * @return The allowBackgroundPlayback.
      */
+    @java.lang.Override
     public boolean getAllowBackgroundPlayback() {
       return allowBackgroundPlayback_;
     }
 
     public static final int AVAILABILITY_FIELD_NUMBER = 82;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_;
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 82;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> getAvailabilityList() {
       return availability_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 82;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
         getAvailabilityOrBuilderList() {
       return availability_;
@@ -18489,29 +18822,34 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 82;</code>
      */
+    @java.lang.Override
     public int getAvailabilityCount() {
       return availability_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 82;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability getAvailability(int index) {
       return availability_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Availability availability = 82;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder getAvailabilityOrBuilder(
         int index) {
       return availability_.get(index);
     }
 
     public static final int EXTERNAL_URL_FIELD_NUMBER = 83;
-    private volatile java.lang.Object externalUrl_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object externalUrl_ = "";
     /**
      * <code>optional string external_url = 83;</code>
      * @return Whether the externalUrl field is set.
      */
+    @java.lang.Override
     public boolean hasExternalUrl() {
       return ((bitField0_ & 0x00002000) != 0);
     }
@@ -18519,6 +18857,7 @@ public final class Metadata {
      * <code>optional string external_url = 83;</code>
      * @return The externalUrl.
      */
+    @java.lang.Override
     public java.lang.String getExternalUrl() {
       java.lang.Object ref = externalUrl_;
       if (ref instanceof java.lang.String) {
@@ -18537,6 +18876,7 @@ public final class Metadata {
      * <code>optional string external_url = 83;</code>
      * @return The bytes for externalUrl.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getExternalUrlBytes() {
       java.lang.Object ref = externalUrl_;
@@ -18552,20 +18892,20 @@ public final class Metadata {
     }
 
     public static final int TYPE_FIELD_NUMBER = 87;
-    private int type_;
+    private int type_ = 0;
     /**
      * <code>optional .spotify.metadata.proto.Episode.EpisodeType type = 87;</code>
      * @return Whether the type field is set.
      */
-    public boolean hasType() {
+    @java.lang.Override public boolean hasType() {
       return ((bitField0_ & 0x00004000) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Episode.EpisodeType type = 87;</code>
      * @return The type.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType getType() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.valueOf(type_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType getType() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.forNumber(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.FULL : result;
     }
 
@@ -18613,11 +18953,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -18656,7 +18998,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Episode}
@@ -18665,7 +19008,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Episode)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.EpisodeOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Episode_descriptor;
       }
@@ -18706,90 +19049,82 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         gid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         duration_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (audioBuilder_ == null) {
           audio_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          audio_ = null;
           audioBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
         number_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        if (publishTimeBuilder_ == null) {
-          publishTime_ = null;
-        } else {
-          publishTimeBuilder_.clear();
+        publishTime_ = null;
+        if (publishTimeBuilder_ != null) {
+          publishTimeBuilder_.dispose();
+          publishTimeBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
         deprecatedPopularity_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        if (coverImageBuilder_ == null) {
-          coverImage_ = null;
-        } else {
-          coverImageBuilder_.clear();
+        coverImage_ = null;
+        if (coverImageBuilder_ != null) {
+          coverImageBuilder_.dispose();
+          coverImageBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
         language_ = "";
-        bitField0_ = (bitField0_ & ~0x00000200);
         explicit_ = false;
-        bitField0_ = (bitField0_ & ~0x00000400);
-        if (showBuilder_ == null) {
-          show_ = null;
-        } else {
-          showBuilder_.clear();
+        show_ = null;
+        if (showBuilder_ != null) {
+          showBuilder_.dispose();
+          showBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000800);
         if (videoBuilder_ == null) {
           video_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00001000);
         } else {
+          video_ = null;
           videoBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00001000);
         if (videoPreviewBuilder_ == null) {
           videoPreview_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00002000);
         } else {
+          videoPreview_ = null;
           videoPreviewBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00002000);
         if (audioPreviewBuilder_ == null) {
           audioPreview_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00004000);
         } else {
+          audioPreview_ = null;
           audioPreviewBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00004000);
         if (restrictionBuilder_ == null) {
           restriction_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00008000);
         } else {
+          restriction_ = null;
           restrictionBuilder_.clear();
         }
-        if (freezeFrameBuilder_ == null) {
-          freezeFrame_ = null;
-        } else {
-          freezeFrameBuilder_.clear();
+        bitField0_ = (bitField0_ & ~0x00008000);
+        freezeFrame_ = null;
+        if (freezeFrameBuilder_ != null) {
+          freezeFrameBuilder_.dispose();
+          freezeFrameBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00010000);
-        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00020000);
+        keyword_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         allowBackgroundPlayback_ = false;
-        bitField0_ = (bitField0_ & ~0x00040000);
         if (availabilityBuilder_ == null) {
           availability_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00080000);
         } else {
+          availability_ = null;
           availabilityBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00080000);
         externalUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00100000);
         type_ = 0;
-        bitField0_ = (bitField0_ & ~0x00200000);
         return this;
       }
 
@@ -18816,20 +19151,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.gid_ = gid_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.duration_ = duration_;
-          to_bitField0_ |= 0x00000004;
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode result) {
         if (audioBuilder_ == null) {
           if (((bitField0_ & 0x00000008) != 0)) {
             audio_ = java.util.Collections.unmodifiableList(audio_);
@@ -18838,50 +19166,6 @@ public final class Metadata {
           result.audio_ = audio_;
         } else {
           result.audio_ = audioBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.description_ = description_;
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.number_ = number_;
-          to_bitField0_ |= 0x00000010;
-        }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
-          if (publishTimeBuilder_ == null) {
-            result.publishTime_ = publishTime_;
-          } else {
-            result.publishTime_ = publishTimeBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000020;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          result.deprecatedPopularity_ = deprecatedPopularity_;
-          to_bitField0_ |= 0x00000040;
-        }
-        if (((from_bitField0_ & 0x00000100) != 0)) {
-          if (coverImageBuilder_ == null) {
-            result.coverImage_ = coverImage_;
-          } else {
-            result.coverImage_ = coverImageBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000080;
-        }
-        if (((from_bitField0_ & 0x00000200) != 0)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.language_ = language_;
-        if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.explicit_ = explicit_;
-          to_bitField0_ |= 0x00000200;
-        }
-        if (((from_bitField0_ & 0x00000800) != 0)) {
-          if (showBuilder_ == null) {
-            result.show_ = show_;
-          } else {
-            result.show_ = showBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000400;
         }
         if (videoBuilder_ == null) {
           if (((bitField0_ & 0x00001000) != 0)) {
@@ -18919,23 +19203,6 @@ public final class Metadata {
         } else {
           result.restriction_ = restrictionBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00010000) != 0)) {
-          if (freezeFrameBuilder_ == null) {
-            result.freezeFrame_ = freezeFrame_;
-          } else {
-            result.freezeFrame_ = freezeFrameBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000800;
-        }
-        if (((bitField0_ & 0x00020000) != 0)) {
-          keyword_ = keyword_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00020000);
-        }
-        result.keyword_ = keyword_;
-        if (((from_bitField0_ & 0x00040000) != 0)) {
-          result.allowBackgroundPlayback_ = allowBackgroundPlayback_;
-          to_bitField0_ |= 0x00001000;
-        }
         if (availabilityBuilder_ == null) {
           if (((bitField0_ & 0x00080000) != 0)) {
             availability_ = java.util.Collections.unmodifiableList(availability_);
@@ -18945,51 +19212,86 @@ public final class Metadata {
         } else {
           result.availability_ = availabilityBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00100000) != 0)) {
-          to_bitField0_ |= 0x00002000;
-        }
-        result.externalUrl_ = externalUrl_;
-        if (((from_bitField0_ & 0x00200000) != 0)) {
-          to_bitField0_ |= 0x00004000;
-        }
-        result.type_ = type_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.gid_ = gid_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.duration_ = duration_;
+          to_bitField0_ |= 0x00000004;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.description_ = description_;
+          to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.number_ = number_;
+          to_bitField0_ |= 0x00000010;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.publishTime_ = publishTimeBuilder_ == null
+              ? publishTime_
+              : publishTimeBuilder_.build();
+          to_bitField0_ |= 0x00000020;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.deprecatedPopularity_ = deprecatedPopularity_;
+          to_bitField0_ |= 0x00000040;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.coverImage_ = coverImageBuilder_ == null
+              ? coverImage_
+              : coverImageBuilder_.build();
+          to_bitField0_ |= 0x00000080;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.language_ = language_;
+          to_bitField0_ |= 0x00000100;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.explicit_ = explicit_;
+          to_bitField0_ |= 0x00000200;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.show_ = showBuilder_ == null
+              ? show_
+              : showBuilder_.build();
+          to_bitField0_ |= 0x00000400;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          result.freezeFrame_ = freezeFrameBuilder_ == null
+              ? freezeFrame_
+              : freezeFrameBuilder_.build();
+          to_bitField0_ |= 0x00000800;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          keyword_.makeImmutable();
+          result.keyword_ = keyword_;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          result.allowBackgroundPlayback_ = allowBackgroundPlayback_;
+          to_bitField0_ |= 0x00001000;
+        }
+        if (((from_bitField0_ & 0x00100000) != 0)) {
+          result.externalUrl_ = externalUrl_;
+          to_bitField0_ |= 0x00002000;
+        }
+        if (((from_bitField0_ & 0x00200000) != 0)) {
+          result.type_ = type_;
+          to_bitField0_ |= 0x00004000;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString gid_ = com.google.protobuf.ByteString.EMPTY;
@@ -18997,6 +19299,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return Whether the gid field is set.
        */
+      @java.lang.Override
       public boolean hasGid() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -19004,6 +19307,7 @@ public final class Metadata {
        * <code>optional bytes gid = 1;</code>
        * @return The gid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getGid() {
         return gid_;
       }
@@ -19013,11 +19317,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setGid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         gid_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -19082,11 +19384,9 @@ public final class Metadata {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -19095,8 +19395,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -19107,11 +19407,9 @@ public final class Metadata {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -19121,6 +19419,7 @@ public final class Metadata {
        * <code>optional sint32 duration = 7;</code>
        * @return Whether the duration field is set.
        */
+      @java.lang.Override
       public boolean hasDuration() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -19128,6 +19427,7 @@ public final class Metadata {
        * <code>optional sint32 duration = 7;</code>
        * @return The duration.
        */
+      @java.lang.Override
       public int getDuration() {
         return duration_;
       }
@@ -19137,8 +19437,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setDuration(int value) {
-        bitField0_ |= 0x00000004;
+
         duration_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -19156,8 +19457,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> audio_ =
         java.util.Collections.emptyList();
       private void ensureAudioIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
-          audio_ = new java.util.ArrayList<>(audio_);
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          audio_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(audio_);
           bitField0_ |= 0x00000008;
          }
       }
@@ -19382,7 +19683,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getAudioFieldBuilder() {
         if (audioBuilder_ == null) {
-          audioBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          audioBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
                   audio_,
                   ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
@@ -19442,11 +19744,9 @@ public final class Metadata {
        */
       public Builder setDescription(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -19455,8 +19755,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000010);
         description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -19467,11 +19767,9 @@ public final class Metadata {
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
+        if (value == null) { throw new NullPointerException(); }
         description_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -19481,6 +19779,7 @@ public final class Metadata {
        * <code>optional sint32 number = 65;</code>
        * @return Whether the number field is set.
        */
+      @java.lang.Override
       public boolean hasNumber() {
         return ((bitField0_ & 0x00000020) != 0);
       }
@@ -19488,6 +19787,7 @@ public final class Metadata {
        * <code>optional sint32 number = 65;</code>
        * @return The number.
        */
+      @java.lang.Override
       public int getNumber() {
         return number_;
       }
@@ -19497,8 +19797,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setNumber(int value) {
-        bitField0_ |= 0x00000020;
+
         number_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -19543,11 +19844,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           publishTime_ = value;
-          onChanged();
         } else {
           publishTimeBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -19557,11 +19858,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder builderForValue) {
         if (publishTimeBuilder_ == null) {
           publishTime_ = builderForValue.build();
-          onChanged();
         } else {
           publishTimeBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -19570,31 +19871,30 @@ public final class Metadata {
       public Builder mergePublishTime(com.spotifyxp.deps.com.spotify.metadata.Metadata.Date value) {
         if (publishTimeBuilder_ == null) {
           if (((bitField0_ & 0x00000040) != 0) &&
-              publishTime_ != null &&
-              publishTime_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
-            publishTime_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.newBuilder(publishTime_).mergeFrom(value).buildPartial();
+            publishTime_ != null &&
+            publishTime_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
+            getPublishTimeBuilder().mergeFrom(value);
           } else {
             publishTime_ = value;
           }
-          onChanged();
         } else {
           publishTimeBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Date publish_time = 66;</code>
        */
       public Builder clearPublishTime() {
-        if (publishTimeBuilder_ == null) {
-          publishTime_ = null;
-          onChanged();
-        } else {
-          publishTimeBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000040);
+        publishTime_ = null;
+        if (publishTimeBuilder_ != null) {
+          publishTimeBuilder_.dispose();
+          publishTimeBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -19623,7 +19923,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getPublishTimeFieldBuilder() {
         if (publishTimeBuilder_ == null) {
-          publishTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          publishTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
                   getPublishTime(),
                   getParentForChildren(),
                   isClean());
@@ -19635,31 +19936,42 @@ public final class Metadata {
       private int deprecatedPopularity_ ;
       /**
        * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=127
        * @return Whether the deprecatedPopularity field is set.
        */
+      @java.lang.Override
       @java.lang.Deprecated public boolean hasDeprecatedPopularity() {
         return ((bitField0_ & 0x00000080) != 0);
       }
       /**
        * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=127
        * @return The deprecatedPopularity.
        */
+      @java.lang.Override
       @java.lang.Deprecated public int getDeprecatedPopularity() {
         return deprecatedPopularity_;
       }
       /**
        * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=127
        * @param value The deprecatedPopularity to set.
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder setDeprecatedPopularity(int value) {
-        bitField0_ |= 0x00000080;
+
         deprecatedPopularity_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
        * <code>optional sint32 deprecated_popularity = 67 [deprecated = true];</code>
+       * @deprecated spotify.metadata.proto.Episode.deprecated_popularity is deprecated.
+       *     See metadata.proto;l=127
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder clearDeprecatedPopularity() {
@@ -19699,11 +20011,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           coverImage_ = value;
-          onChanged();
         } else {
           coverImageBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
@@ -19713,11 +20025,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder builderForValue) {
         if (coverImageBuilder_ == null) {
           coverImage_ = builderForValue.build();
-          onChanged();
         } else {
           coverImageBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
@@ -19726,31 +20038,30 @@ public final class Metadata {
       public Builder mergeCoverImage(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup value) {
         if (coverImageBuilder_ == null) {
           if (((bitField0_ & 0x00000100) != 0) &&
-              coverImage_ != null &&
-              coverImage_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
-            coverImage_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.newBuilder(coverImage_).mergeFrom(value).buildPartial();
+            coverImage_ != null &&
+            coverImage_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
+            getCoverImageBuilder().mergeFrom(value);
           } else {
             coverImage_ = value;
           }
-          onChanged();
         } else {
           coverImageBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.ImageGroup cover_image = 68;</code>
        */
       public Builder clearCoverImage() {
-        if (coverImageBuilder_ == null) {
-          coverImage_ = null;
-          onChanged();
-        } else {
-          coverImageBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000100);
+        coverImage_ = null;
+        if (coverImageBuilder_ != null) {
+          coverImageBuilder_.dispose();
+          coverImageBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -19779,7 +20090,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getCoverImageFieldBuilder() {
         if (coverImageBuilder_ == null) {
-          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          coverImageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
                   getCoverImage(),
                   getParentForChildren(),
                   isClean());
@@ -19838,11 +20150,9 @@ public final class Metadata {
        */
       public Builder setLanguage(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000200;
+        if (value == null) { throw new NullPointerException(); }
         language_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -19851,8 +20161,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearLanguage() {
-        bitField0_ = (bitField0_ & ~0x00000200);
         language_ = getDefaultInstance().getLanguage();
+        bitField0_ = (bitField0_ & ~0x00000200);
         onChanged();
         return this;
       }
@@ -19863,11 +20173,9 @@ public final class Metadata {
        */
       public Builder setLanguageBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000200;
+        if (value == null) { throw new NullPointerException(); }
         language_ = value;
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -19877,6 +20185,7 @@ public final class Metadata {
        * <code>optional bool explicit = 70;</code>
        * @return Whether the explicit field is set.
        */
+      @java.lang.Override
       public boolean hasExplicit() {
         return ((bitField0_ & 0x00000400) != 0);
       }
@@ -19884,6 +20193,7 @@ public final class Metadata {
        * <code>optional bool explicit = 70;</code>
        * @return The explicit.
        */
+      @java.lang.Override
       public boolean getExplicit() {
         return explicit_;
       }
@@ -19893,8 +20203,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setExplicit(boolean value) {
-        bitField0_ |= 0x00000400;
+
         explicit_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -19939,11 +20250,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           show_ = value;
-          onChanged();
         } else {
           showBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000800;
+        onChanged();
         return this;
       }
       /**
@@ -19953,11 +20264,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.Builder builderForValue) {
         if (showBuilder_ == null) {
           show_ = builderForValue.build();
-          onChanged();
         } else {
           showBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000800;
+        onChanged();
         return this;
       }
       /**
@@ -19966,31 +20277,30 @@ public final class Metadata {
       public Builder mergeShow(com.spotifyxp.deps.com.spotify.metadata.Metadata.Show value) {
         if (showBuilder_ == null) {
           if (((bitField0_ & 0x00000800) != 0) &&
-              show_ != null &&
-              show_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDefaultInstance()) {
-            show_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.newBuilder(show_).mergeFrom(value).buildPartial();
+            show_ != null &&
+            show_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.getDefaultInstance()) {
+            getShowBuilder().mergeFrom(value);
           } else {
             show_ = value;
           }
-          onChanged();
         } else {
           showBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000800;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Show show = 71;</code>
        */
       public Builder clearShow() {
-        if (showBuilder_ == null) {
-          show_ = null;
-          onChanged();
-        } else {
-          showBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000800);
+        show_ = null;
+        if (showBuilder_ != null) {
+          showBuilder_.dispose();
+          showBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -20019,7 +20329,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Show, com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder> 
           getShowFieldBuilder() {
         if (showBuilder_ == null) {
-          showBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          showBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Show, com.spotifyxp.deps.com.spotify.metadata.Metadata.Show.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ShowOrBuilder>(
                   getShow(),
                   getParentForChildren(),
                   isClean());
@@ -20031,8 +20342,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> video_ =
         java.util.Collections.emptyList();
       private void ensureVideoIsMutable() {
-        if ((bitField0_ & 0x00001000) == 0) {
-          video_ = new java.util.ArrayList<>(video_);
+        if (!((bitField0_ & 0x00001000) != 0)) {
+          video_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile>(video_);
           bitField0_ |= 0x00001000;
          }
       }
@@ -20257,7 +20568,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder> 
           getVideoFieldBuilder() {
         if (videoBuilder_ == null) {
-          videoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          videoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder>(
                   video_,
                   ((bitField0_ & 0x00001000) != 0),
                   getParentForChildren(),
@@ -20270,8 +20582,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile> videoPreview_ =
         java.util.Collections.emptyList();
       private void ensureVideoPreviewIsMutable() {
-        if ((bitField0_ & 0x00002000) == 0) {
-          videoPreview_ = new java.util.ArrayList<>(videoPreview_);
+        if (!((bitField0_ & 0x00002000) != 0)) {
+          videoPreview_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile>(videoPreview_);
           bitField0_ |= 0x00002000;
          }
       }
@@ -20496,7 +20808,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder> 
           getVideoPreviewFieldBuilder() {
         if (videoPreviewBuilder_ == null) {
-          videoPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          videoPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder>(
                   videoPreview_,
                   ((bitField0_ & 0x00002000) != 0),
                   getParentForChildren(),
@@ -20509,8 +20822,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile> audioPreview_ =
         java.util.Collections.emptyList();
       private void ensureAudioPreviewIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
-          audioPreview_ = new java.util.ArrayList<>(audioPreview_);
+        if (!((bitField0_ & 0x00004000) != 0)) {
+          audioPreview_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile>(audioPreview_);
           bitField0_ |= 0x00004000;
          }
       }
@@ -20735,7 +21048,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder> 
           getAudioPreviewFieldBuilder() {
         if (audioPreviewBuilder_ == null) {
-          audioPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          audioPreviewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder>(
                   audioPreview_,
                   ((bitField0_ & 0x00004000) != 0),
                   getParentForChildren(),
@@ -20748,8 +21062,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if ((bitField0_ & 0x00008000) == 0) {
-          restriction_ = new java.util.ArrayList<>(restriction_);
+        if (!((bitField0_ & 0x00008000) != 0)) {
+          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
           bitField0_ |= 0x00008000;
          }
       }
@@ -20974,7 +21288,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
                   restriction_,
                   ((bitField0_ & 0x00008000) != 0),
                   getParentForChildren(),
@@ -21014,11 +21329,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           freezeFrame_ = value;
-          onChanged();
         } else {
           freezeFrameBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -21028,11 +21343,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder builderForValue) {
         if (freezeFrameBuilder_ == null) {
           freezeFrame_ = builderForValue.build();
-          onChanged();
         } else {
           freezeFrameBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
@@ -21041,31 +21356,30 @@ public final class Metadata {
       public Builder mergeFreezeFrame(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup value) {
         if (freezeFrameBuilder_ == null) {
           if (((bitField0_ & 0x00010000) != 0) &&
-              freezeFrame_ != null &&
-              freezeFrame_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
-            freezeFrame_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.newBuilder(freezeFrame_).mergeFrom(value).buildPartial();
+            freezeFrame_ != null &&
+            freezeFrame_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.getDefaultInstance()) {
+            getFreezeFrameBuilder().mergeFrom(value);
           } else {
             freezeFrame_ = value;
           }
-          onChanged();
         } else {
           freezeFrameBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00010000;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.ImageGroup freeze_frame = 76;</code>
        */
       public Builder clearFreezeFrame() {
-        if (freezeFrameBuilder_ == null) {
-          freezeFrame_ = null;
-          onChanged();
-        } else {
-          freezeFrameBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00010000);
+        freezeFrame_ = null;
+        if (freezeFrameBuilder_ != null) {
+          freezeFrameBuilder_.dispose();
+          freezeFrameBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -21094,7 +21408,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getFreezeFrameFieldBuilder() {
         if (freezeFrameBuilder_ == null) {
-          freezeFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          freezeFrameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
                   getFreezeFrame(),
                   getParentForChildren(),
                   isClean());
@@ -21103,13 +21418,13 @@ public final class Metadata {
         return freezeFrameBuilder_;
       }
 
-      private com.google.protobuf.LazyStringList keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureKeywordIsMutable() {
-        if ((bitField0_ & 0x00020000) == 0) {
+      private com.google.protobuf.LazyStringArrayList keyword_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureKeywordIsMutable() {
+        if (!keyword_.isModifiable()) {
           keyword_ = new com.google.protobuf.LazyStringArrayList(keyword_);
-          bitField0_ |= 0x00020000;
-         }
+        }
+        bitField0_ |= 0x00020000;
       }
       /**
        * <code>repeated string keyword = 77;</code>
@@ -21117,7 +21432,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getKeywordList() {
-        return keyword_.getUnmodifiableView();
+        keyword_.makeImmutable();
+        return keyword_;
       }
       /**
        * <code>repeated string keyword = 77;</code>
@@ -21151,11 +21467,10 @@ public final class Metadata {
        */
       public Builder setKeyword(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureKeywordIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureKeywordIsMutable();
         keyword_.set(index, value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -21166,11 +21481,10 @@ public final class Metadata {
        */
       public Builder addKeyword(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureKeywordIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureKeywordIsMutable();
         keyword_.add(value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -21184,6 +21498,7 @@ public final class Metadata {
         ensureKeywordIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, keyword_);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -21192,8 +21507,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearKeyword() {
-        keyword_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00020000);
+        keyword_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00020000);;
         onChanged();
         return this;
       }
@@ -21204,11 +21520,10 @@ public final class Metadata {
        */
       public Builder addKeywordBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureKeywordIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureKeywordIsMutable();
         keyword_.add(value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -21218,6 +21533,7 @@ public final class Metadata {
        * <code>optional bool allow_background_playback = 81;</code>
        * @return Whether the allowBackgroundPlayback field is set.
        */
+      @java.lang.Override
       public boolean hasAllowBackgroundPlayback() {
         return ((bitField0_ & 0x00040000) != 0);
       }
@@ -21225,6 +21541,7 @@ public final class Metadata {
        * <code>optional bool allow_background_playback = 81;</code>
        * @return The allowBackgroundPlayback.
        */
+      @java.lang.Override
       public boolean getAllowBackgroundPlayback() {
         return allowBackgroundPlayback_;
       }
@@ -21234,8 +21551,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setAllowBackgroundPlayback(boolean value) {
-        bitField0_ |= 0x00040000;
+
         allowBackgroundPlayback_ = value;
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -21253,8 +21571,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability> availability_ =
         java.util.Collections.emptyList();
       private void ensureAvailabilityIsMutable() {
-        if ((bitField0_ & 0x00080000) == 0) {
-          availability_ = new java.util.ArrayList<>(availability_);
+        if (!((bitField0_ & 0x00080000) != 0)) {
+          availability_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability>(availability_);
           bitField0_ |= 0x00080000;
          }
       }
@@ -21479,7 +21797,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder> 
           getAvailabilityFieldBuilder() {
         if (availabilityBuilder_ == null) {
-          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          availabilityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability, com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder>(
                   availability_,
                   ((bitField0_ & 0x00080000) != 0),
                   getParentForChildren(),
@@ -21539,11 +21858,9 @@ public final class Metadata {
        */
       public Builder setExternalUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00100000;
+        if (value == null) { throw new NullPointerException(); }
         externalUrl_ = value;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -21552,8 +21869,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearExternalUrl() {
-        bitField0_ = (bitField0_ & ~0x00100000);
         externalUrl_ = getDefaultInstance().getExternalUrl();
+        bitField0_ = (bitField0_ & ~0x00100000);
         onChanged();
         return this;
       }
@@ -21564,11 +21881,9 @@ public final class Metadata {
        */
       public Builder setExternalUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00100000;
+        if (value == null) { throw new NullPointerException(); }
         externalUrl_ = value;
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -21578,15 +21893,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Episode.EpisodeType type = 87;</code>
        * @return Whether the type field is set.
        */
-      public boolean hasType() {
+      @java.lang.Override public boolean hasType() {
         return ((bitField0_ & 0x00200000) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Episode.EpisodeType type = 87;</code>
        * @return The type.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType getType() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.valueOf(type_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.forNumber(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Episode.EpisodeType.FULL : result;
       }
       /**
@@ -21614,13 +21930,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -21651,10 +21967,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -21694,7 +22011,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Licensor}
    */
-  public  static final class Licensor extends
+  public static final class Licensor extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Licensor)
       LicensorOrBuilder {
@@ -21714,12 +22031,7 @@ public final class Metadata {
       return new Licensor();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Licensor_descriptor;
     }
@@ -21734,11 +22046,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int UUID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString uuid_;
+    private com.google.protobuf.ByteString uuid_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes uuid = 1;</code>
      * @return Whether the uuid field is set.
      */
+    @java.lang.Override
     public boolean hasUuid() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -21746,6 +22059,7 @@ public final class Metadata {
      * <code>optional bytes uuid = 1;</code>
      * @return The uuid.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getUuid() {
       return uuid_;
     }
@@ -21794,11 +22108,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -21837,7 +22153,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Licensor}
@@ -21846,7 +22163,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Licensor)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.LicensorOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Licensor_descriptor;
       }
@@ -21861,21 +22178,19 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         uuid_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -21902,49 +22217,21 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.uuid_ = uuid_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Licensor result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uuid_ = uuid_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString uuid_ = com.google.protobuf.ByteString.EMPTY;
@@ -21952,6 +22239,7 @@ public final class Metadata {
        * <code>optional bytes uuid = 1;</code>
        * @return Whether the uuid field is set.
        */
+      @java.lang.Override
       public boolean hasUuid() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -21959,6 +22247,7 @@ public final class Metadata {
        * <code>optional bytes uuid = 1;</code>
        * @return The uuid.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getUuid() {
         return uuid_;
       }
@@ -21968,11 +22257,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setUuid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         uuid_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -21987,13 +22274,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -22024,10 +22311,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -22097,7 +22385,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.TopTracks}
    */
-  public  static final class TopTracks extends
+  public static final class TopTracks extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.TopTracks)
       TopTracksOrBuilder {
@@ -22118,12 +22406,7 @@ public final class Metadata {
       return new TopTracks();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_TopTracks_descriptor;
     }
@@ -22138,11 +22421,13 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int COUNTRY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object country_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object country_ = "";
     /**
      * <code>optional string country = 1;</code>
      * @return Whether the country field is set.
      */
+    @java.lang.Override
     public boolean hasCountry() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -22150,6 +22435,7 @@ public final class Metadata {
      * <code>optional string country = 1;</code>
      * @return The country.
      */
+    @java.lang.Override
     public java.lang.String getCountry() {
       java.lang.Object ref = country_;
       if (ref instanceof java.lang.String) {
@@ -22168,6 +22454,7 @@ public final class Metadata {
      * <code>optional string country = 1;</code>
      * @return The bytes for country.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCountryBytes() {
       java.lang.Object ref = country_;
@@ -22183,16 +22470,19 @@ public final class Metadata {
     }
 
     public static final int TRACK_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> track_;
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> getTrackList() {
       return track_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
         getTrackOrBuilderList() {
       return track_;
@@ -22200,18 +22490,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 2;</code>
      */
+    @java.lang.Override
     public int getTrackCount() {
       return track_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Track getTrack(int index) {
       return track_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder getTrackOrBuilder(
         int index) {
       return track_.get(index);
@@ -22261,11 +22554,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -22304,7 +22599,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.TopTracks}
@@ -22313,7 +22609,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.TopTracks)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracksOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_TopTracks_descriptor;
       }
@@ -22328,31 +22624,26 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTrackFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         country_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         if (trackBuilder_ == null) {
           track_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          track_ = null;
           trackBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -22379,12 +22670,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.country_ = country_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks result) {
         if (trackBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             track_ = java.util.Collections.unmodifiableList(track_);
@@ -22394,43 +22686,18 @@ public final class Metadata {
         } else {
           result.track_ = trackBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.TopTracks result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.country_ = country_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object country_ = "";
@@ -22483,11 +22750,9 @@ public final class Metadata {
        */
       public Builder setCountry(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         country_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -22496,8 +22761,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearCountry() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         country_ = getDefaultInstance().getCountry();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -22508,11 +22773,9 @@ public final class Metadata {
        */
       public Builder setCountryBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         country_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -22520,8 +22783,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> track_ =
         java.util.Collections.emptyList();
       private void ensureTrackIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          track_ = new java.util.ArrayList<>(track_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          track_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track>(track_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -22746,7 +23009,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
           getTrackFieldBuilder() {
         if (trackBuilder_ == null) {
-          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder>(
                   track_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -22756,13 +23020,13 @@ public final class Metadata {
         return trackBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -22793,10 +23057,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -22858,7 +23123,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.ActivityPeriod}
    */
-  public  static final class ActivityPeriod extends
+  public static final class ActivityPeriod extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.ActivityPeriod)
       ActivityPeriodOrBuilder {
@@ -22877,12 +23142,7 @@ public final class Metadata {
       return new ActivityPeriod();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ActivityPeriod_descriptor;
     }
@@ -22897,11 +23157,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int START_YEAR_FIELD_NUMBER = 1;
-    private int startYear_;
+    private int startYear_ = 0;
     /**
      * <code>optional sint32 start_year = 1;</code>
      * @return Whether the startYear field is set.
      */
+    @java.lang.Override
     public boolean hasStartYear() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -22909,16 +23170,18 @@ public final class Metadata {
      * <code>optional sint32 start_year = 1;</code>
      * @return The startYear.
      */
+    @java.lang.Override
     public int getStartYear() {
       return startYear_;
     }
 
     public static final int END_YEAR_FIELD_NUMBER = 2;
-    private int endYear_;
+    private int endYear_ = 0;
     /**
      * <code>optional sint32 end_year = 2;</code>
      * @return Whether the endYear field is set.
      */
+    @java.lang.Override
     public boolean hasEndYear() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -22926,16 +23189,18 @@ public final class Metadata {
      * <code>optional sint32 end_year = 2;</code>
      * @return The endYear.
      */
+    @java.lang.Override
     public int getEndYear() {
       return endYear_;
     }
 
     public static final int DECADE_FIELD_NUMBER = 3;
-    private int decade_;
+    private int decade_ = 0;
     /**
      * <code>optional sint32 decade = 3;</code>
      * @return Whether the decade field is set.
      */
+    @java.lang.Override
     public boolean hasDecade() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -22943,6 +23208,7 @@ public final class Metadata {
      * <code>optional sint32 decade = 3;</code>
      * @return The decade.
      */
+    @java.lang.Override
     public int getDecade() {
       return decade_;
     }
@@ -22991,11 +23257,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -23034,7 +23302,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.ActivityPeriod}
@@ -23043,7 +23312,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.ActivityPeriod)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriodOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ActivityPeriod_descriptor;
       }
@@ -23058,25 +23327,21 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         startYear_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         endYear_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         decade_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -23103,6 +23368,12 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.ActivityPeriod result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -23117,43 +23388,9 @@ public final class Metadata {
           result.decade_ = decade_;
           to_bitField0_ |= 0x00000004;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int startYear_ ;
@@ -23161,6 +23398,7 @@ public final class Metadata {
        * <code>optional sint32 start_year = 1;</code>
        * @return Whether the startYear field is set.
        */
+      @java.lang.Override
       public boolean hasStartYear() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -23168,6 +23406,7 @@ public final class Metadata {
        * <code>optional sint32 start_year = 1;</code>
        * @return The startYear.
        */
+      @java.lang.Override
       public int getStartYear() {
         return startYear_;
       }
@@ -23177,8 +23416,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setStartYear(int value) {
-        bitField0_ |= 0x00000001;
+
         startYear_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -23198,6 +23438,7 @@ public final class Metadata {
        * <code>optional sint32 end_year = 2;</code>
        * @return Whether the endYear field is set.
        */
+      @java.lang.Override
       public boolean hasEndYear() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -23205,6 +23446,7 @@ public final class Metadata {
        * <code>optional sint32 end_year = 2;</code>
        * @return The endYear.
        */
+      @java.lang.Override
       public int getEndYear() {
         return endYear_;
       }
@@ -23214,8 +23456,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setEndYear(int value) {
-        bitField0_ |= 0x00000002;
+
         endYear_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -23235,6 +23478,7 @@ public final class Metadata {
        * <code>optional sint32 decade = 3;</code>
        * @return Whether the decade field is set.
        */
+      @java.lang.Override
       public boolean hasDecade() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -23242,6 +23486,7 @@ public final class Metadata {
        * <code>optional sint32 decade = 3;</code>
        * @return The decade.
        */
+      @java.lang.Override
       public int getDecade() {
         return decade_;
       }
@@ -23251,8 +23496,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setDecade(int value) {
-        bitField0_ |= 0x00000004;
+
         decade_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -23267,13 +23513,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -23304,10 +23550,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -23360,7 +23607,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.AlbumGroup}
    */
-  public  static final class AlbumGroup extends
+  public static final class AlbumGroup extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.AlbumGroup)
       AlbumGroupOrBuilder {
@@ -23380,12 +23627,7 @@ public final class Metadata {
       return new AlbumGroup();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AlbumGroup_descriptor;
     }
@@ -23399,16 +23641,19 @@ public final class Metadata {
     }
 
     public static final int ALBUM_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> album_;
     /**
      * <code>repeated .spotify.metadata.proto.Album album = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> getAlbumList() {
       return album_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Album album = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
         getAlbumOrBuilderList() {
       return album_;
@@ -23416,18 +23661,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Album album = 1;</code>
      */
+    @java.lang.Override
     public int getAlbumCount() {
       return album_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Album album = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Album getAlbum(int index) {
       return album_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Album album = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder getAlbumOrBuilder(
         int index) {
       return album_.get(index);
@@ -23477,11 +23725,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -23520,7 +23770,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.AlbumGroup}
@@ -23529,7 +23780,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.AlbumGroup)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroupOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AlbumGroup_descriptor;
       }
@@ -23544,29 +23795,25 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getAlbumFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (albumBuilder_ == null) {
           album_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          album_ = null;
           albumBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -23593,7 +23840,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup result) {
         if (albumBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             album_ = java.util.Collections.unmodifiableList(album_);
@@ -23603,49 +23856,19 @@ public final class Metadata {
         } else {
           result.album_ = albumBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumGroup result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album> album_ =
         java.util.Collections.emptyList();
       private void ensureAlbumIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          album_ = new java.util.ArrayList<>(album_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          album_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Album>(album_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -23870,7 +24093,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder> 
           getAlbumFieldBuilder() {
         if (albumBuilder_ == null) {
-          albumBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          albumBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Album, com.spotifyxp.deps.com.spotify.metadata.Metadata.Album.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.AlbumOrBuilder>(
                   album_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -23880,13 +24104,13 @@ public final class Metadata {
         return albumBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -23917,10 +24141,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -24004,7 +24229,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Date}
    */
-  public  static final class Date extends
+  public static final class Date extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Date)
       DateOrBuilder {
@@ -24023,12 +24248,7 @@ public final class Metadata {
       return new Date();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Date_descriptor;
     }
@@ -24043,11 +24263,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int YEAR_FIELD_NUMBER = 1;
-    private int year_;
+    private int year_ = 0;
     /**
      * <code>optional sint32 year = 1;</code>
      * @return Whether the year field is set.
      */
+    @java.lang.Override
     public boolean hasYear() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -24055,16 +24276,18 @@ public final class Metadata {
      * <code>optional sint32 year = 1;</code>
      * @return The year.
      */
+    @java.lang.Override
     public int getYear() {
       return year_;
     }
 
     public static final int MONTH_FIELD_NUMBER = 2;
-    private int month_;
+    private int month_ = 0;
     /**
      * <code>optional sint32 month = 2;</code>
      * @return Whether the month field is set.
      */
+    @java.lang.Override
     public boolean hasMonth() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -24072,16 +24295,18 @@ public final class Metadata {
      * <code>optional sint32 month = 2;</code>
      * @return The month.
      */
+    @java.lang.Override
     public int getMonth() {
       return month_;
     }
 
     public static final int DAY_FIELD_NUMBER = 3;
-    private int day_;
+    private int day_ = 0;
     /**
      * <code>optional sint32 day = 3;</code>
      * @return Whether the day field is set.
      */
+    @java.lang.Override
     public boolean hasDay() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -24089,16 +24314,18 @@ public final class Metadata {
      * <code>optional sint32 day = 3;</code>
      * @return The day.
      */
+    @java.lang.Override
     public int getDay() {
       return day_;
     }
 
     public static final int HOUR_FIELD_NUMBER = 4;
-    private int hour_;
+    private int hour_ = 0;
     /**
      * <code>optional sint32 hour = 4;</code>
      * @return Whether the hour field is set.
      */
+    @java.lang.Override
     public boolean hasHour() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -24106,16 +24333,18 @@ public final class Metadata {
      * <code>optional sint32 hour = 4;</code>
      * @return The hour.
      */
+    @java.lang.Override
     public int getHour() {
       return hour_;
     }
 
     public static final int MINUTE_FIELD_NUMBER = 5;
-    private int minute_;
+    private int minute_ = 0;
     /**
      * <code>optional sint32 minute = 5;</code>
      * @return Whether the minute field is set.
      */
+    @java.lang.Override
     public boolean hasMinute() {
       return ((bitField0_ & 0x00000010) != 0);
     }
@@ -24123,6 +24352,7 @@ public final class Metadata {
      * <code>optional sint32 minute = 5;</code>
      * @return The minute.
      */
+    @java.lang.Override
     public int getMinute() {
       return minute_;
     }
@@ -24171,11 +24401,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Date parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Date parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -24214,7 +24446,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Date}
@@ -24223,7 +24456,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Date)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Date_descriptor;
       }
@@ -24238,29 +24471,23 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         year_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         month_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         day_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         hour_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         minute_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -24287,6 +24514,12 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Date buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Date result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Date(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Date result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -24309,43 +24542,9 @@ public final class Metadata {
           result.minute_ = minute_;
           to_bitField0_ |= 0x00000010;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private int year_ ;
@@ -24353,6 +24552,7 @@ public final class Metadata {
        * <code>optional sint32 year = 1;</code>
        * @return Whether the year field is set.
        */
+      @java.lang.Override
       public boolean hasYear() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -24360,6 +24560,7 @@ public final class Metadata {
        * <code>optional sint32 year = 1;</code>
        * @return The year.
        */
+      @java.lang.Override
       public int getYear() {
         return year_;
       }
@@ -24369,8 +24570,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setYear(int value) {
-        bitField0_ |= 0x00000001;
+
         year_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -24390,6 +24592,7 @@ public final class Metadata {
        * <code>optional sint32 month = 2;</code>
        * @return Whether the month field is set.
        */
+      @java.lang.Override
       public boolean hasMonth() {
         return ((bitField0_ & 0x00000002) != 0);
       }
@@ -24397,6 +24600,7 @@ public final class Metadata {
        * <code>optional sint32 month = 2;</code>
        * @return The month.
        */
+      @java.lang.Override
       public int getMonth() {
         return month_;
       }
@@ -24406,8 +24610,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setMonth(int value) {
-        bitField0_ |= 0x00000002;
+
         month_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -24427,6 +24632,7 @@ public final class Metadata {
        * <code>optional sint32 day = 3;</code>
        * @return Whether the day field is set.
        */
+      @java.lang.Override
       public boolean hasDay() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -24434,6 +24640,7 @@ public final class Metadata {
        * <code>optional sint32 day = 3;</code>
        * @return The day.
        */
+      @java.lang.Override
       public int getDay() {
         return day_;
       }
@@ -24443,8 +24650,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setDay(int value) {
-        bitField0_ |= 0x00000004;
+
         day_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -24464,6 +24672,7 @@ public final class Metadata {
        * <code>optional sint32 hour = 4;</code>
        * @return Whether the hour field is set.
        */
+      @java.lang.Override
       public boolean hasHour() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -24471,6 +24680,7 @@ public final class Metadata {
        * <code>optional sint32 hour = 4;</code>
        * @return The hour.
        */
+      @java.lang.Override
       public int getHour() {
         return hour_;
       }
@@ -24480,8 +24690,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setHour(int value) {
-        bitField0_ |= 0x00000008;
+
         hour_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -24501,6 +24712,7 @@ public final class Metadata {
        * <code>optional sint32 minute = 5;</code>
        * @return Whether the minute field is set.
        */
+      @java.lang.Override
       public boolean hasMinute() {
         return ((bitField0_ & 0x00000010) != 0);
       }
@@ -24508,6 +24720,7 @@ public final class Metadata {
        * <code>optional sint32 minute = 5;</code>
        * @return The minute.
        */
+      @java.lang.Override
       public int getMinute() {
         return minute_;
       }
@@ -24517,8 +24730,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setMinute(int value) {
-        bitField0_ |= 0x00000010;
+
         minute_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -24533,13 +24747,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -24570,10 +24784,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -24646,7 +24861,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Image}
    */
-  public  static final class Image extends
+  public static final class Image extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Image)
       ImageOrBuilder {
@@ -24667,12 +24882,7 @@ public final class Metadata {
       return new Image();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Image_descriptor;
     }
@@ -24760,7 +24970,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Size> internalValueMap =
-              Size::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Size>() {
+              public Size findValueByNumber(int number) {
+                return Size.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -24770,7 +24984,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.getDescriptor().getEnumTypes().get(0);
       }
@@ -24788,7 +25002,7 @@ public final class Metadata {
 
       private final int value;
 
-      Size(int value) {
+      private Size(int value) {
         this.value = value;
       }
 
@@ -24797,11 +25011,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int FILE_ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString fileId_;
+    private com.google.protobuf.ByteString fileId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes file_id = 1;</code>
      * @return Whether the fileId field is set.
      */
+    @java.lang.Override
     public boolean hasFileId() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -24809,34 +25024,36 @@ public final class Metadata {
      * <code>optional bytes file_id = 1;</code>
      * @return The fileId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFileId() {
       return fileId_;
     }
 
     public static final int SIZE_FIELD_NUMBER = 2;
-    private int size_;
+    private int size_ = 0;
     /**
      * <code>optional .spotify.metadata.proto.Image.Size size = 2;</code>
      * @return Whether the size field is set.
      */
-    public boolean hasSize() {
+    @java.lang.Override public boolean hasSize() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Image.Size size = 2;</code>
      * @return The size.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size getSize() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.valueOf(size_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size getSize() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.forNumber(size_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.DEFAULT : result;
     }
 
     public static final int WIDTH_FIELD_NUMBER = 3;
-    private int width_;
+    private int width_ = 0;
     /**
      * <code>optional sint32 width = 3;</code>
      * @return Whether the width field is set.
      */
+    @java.lang.Override
     public boolean hasWidth() {
       return ((bitField0_ & 0x00000004) != 0);
     }
@@ -24844,16 +25061,18 @@ public final class Metadata {
      * <code>optional sint32 width = 3;</code>
      * @return The width.
      */
+    @java.lang.Override
     public int getWidth() {
       return width_;
     }
 
     public static final int HEIGHT_FIELD_NUMBER = 4;
-    private int height_;
+    private int height_ = 0;
     /**
      * <code>optional sint32 height = 4;</code>
      * @return Whether the height field is set.
      */
+    @java.lang.Override
     public boolean hasHeight() {
       return ((bitField0_ & 0x00000008) != 0);
     }
@@ -24861,6 +25080,7 @@ public final class Metadata {
      * <code>optional sint32 height = 4;</code>
      * @return The height.
      */
+    @java.lang.Override
     public int getHeight() {
       return height_;
     }
@@ -24909,11 +25129,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Image parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Image parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -24952,7 +25174,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Image}
@@ -24961,7 +25184,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Image)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Image_descriptor;
       }
@@ -24976,27 +25199,22 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fileId_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         size_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         width_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         height_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -25023,16 +25241,22 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Image result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Image(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Image result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.fileId_ = fileId_;
           to_bitField0_ |= 0x00000001;
         }
-        result.fileId_ = fileId_;
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.size_ = size_;
           to_bitField0_ |= 0x00000002;
         }
-        result.size_ = size_;
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.width_ = width_;
           to_bitField0_ |= 0x00000004;
@@ -25041,43 +25265,9 @@ public final class Metadata {
           result.height_ = height_;
           to_bitField0_ |= 0x00000008;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private com.google.protobuf.ByteString fileId_ = com.google.protobuf.ByteString.EMPTY;
@@ -25085,6 +25275,7 @@ public final class Metadata {
        * <code>optional bytes file_id = 1;</code>
        * @return Whether the fileId field is set.
        */
+      @java.lang.Override
       public boolean hasFileId() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -25092,6 +25283,7 @@ public final class Metadata {
        * <code>optional bytes file_id = 1;</code>
        * @return The fileId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFileId() {
         return fileId_;
       }
@@ -25101,11 +25293,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setFileId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         fileId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -25125,15 +25315,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Image.Size size = 2;</code>
        * @return Whether the size field is set.
        */
-      public boolean hasSize() {
+      @java.lang.Override public boolean hasSize() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Image.Size size = 2;</code>
        * @return The size.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size getSize() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.valueOf(size_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.forNumber(size_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Size.DEFAULT : result;
       }
       /**
@@ -25166,6 +25357,7 @@ public final class Metadata {
        * <code>optional sint32 width = 3;</code>
        * @return Whether the width field is set.
        */
+      @java.lang.Override
       public boolean hasWidth() {
         return ((bitField0_ & 0x00000004) != 0);
       }
@@ -25173,6 +25365,7 @@ public final class Metadata {
        * <code>optional sint32 width = 3;</code>
        * @return The width.
        */
+      @java.lang.Override
       public int getWidth() {
         return width_;
       }
@@ -25182,8 +25375,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setWidth(int value) {
-        bitField0_ |= 0x00000004;
+
         width_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -25203,6 +25397,7 @@ public final class Metadata {
        * <code>optional sint32 height = 4;</code>
        * @return Whether the height field is set.
        */
+      @java.lang.Override
       public boolean hasHeight() {
         return ((bitField0_ & 0x00000008) != 0);
       }
@@ -25210,6 +25405,7 @@ public final class Metadata {
        * <code>optional sint32 height = 4;</code>
        * @return The height.
        */
+      @java.lang.Override
       public int getHeight() {
         return height_;
       }
@@ -25219,8 +25415,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setHeight(int value) {
-        bitField0_ |= 0x00000008;
+
         height_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -25235,13 +25432,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -25272,10 +25469,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -25328,7 +25526,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.ImageGroup}
    */
-  public  static final class ImageGroup extends
+  public static final class ImageGroup extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.ImageGroup)
       ImageGroupOrBuilder {
@@ -25348,12 +25546,7 @@ public final class Metadata {
       return new ImageGroup();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ImageGroup_descriptor;
     }
@@ -25367,16 +25560,19 @@ public final class Metadata {
     }
 
     public static final int IMAGE_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> image_;
     /**
      * <code>repeated .spotify.metadata.proto.Image image = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> getImageList() {
       return image_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image image = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
         getImageOrBuilderList() {
       return image_;
@@ -25384,18 +25580,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Image image = 1;</code>
      */
+    @java.lang.Override
     public int getImageCount() {
       return image_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image image = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image getImage(int index) {
       return image_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image image = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder getImageOrBuilder(
         int index) {
       return image_.get(index);
@@ -25445,11 +25644,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -25488,7 +25689,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.ImageGroup}
@@ -25497,7 +25699,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.ImageGroup)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ImageGroup_descriptor;
       }
@@ -25512,29 +25714,25 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getImageFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (imageBuilder_ == null) {
           image_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          image_ = null;
           imageBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -25561,7 +25759,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup result) {
         if (imageBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             image_ = java.util.Collections.unmodifiableList(image_);
@@ -25571,49 +25775,19 @@ public final class Metadata {
         } else {
           result.image_ = imageBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> image_ =
         java.util.Collections.emptyList();
       private void ensureImageIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          image_ = new java.util.ArrayList<>(image_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          image_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(image_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -25838,7 +26012,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getImageFieldBuilder() {
         if (imageBuilder_ == null) {
-          imageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          imageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
                   image_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -25848,13 +26023,13 @@ public final class Metadata {
         return imageBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -25885,10 +26060,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -25982,7 +26158,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Biography}
    */
-  public  static final class Biography extends
+  public static final class Biography extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Biography)
       BiographyOrBuilder {
@@ -26004,12 +26180,7 @@ public final class Metadata {
       return new Biography();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Biography_descriptor;
     }
@@ -26024,11 +26195,13 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int TEXT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object text_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object text_ = "";
     /**
      * <code>optional string text = 1;</code>
      * @return Whether the text field is set.
      */
+    @java.lang.Override
     public boolean hasText() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -26036,6 +26209,7 @@ public final class Metadata {
      * <code>optional string text = 1;</code>
      * @return The text.
      */
+    @java.lang.Override
     public java.lang.String getText() {
       java.lang.Object ref = text_;
       if (ref instanceof java.lang.String) {
@@ -26054,6 +26228,7 @@ public final class Metadata {
      * <code>optional string text = 1;</code>
      * @return The bytes for text.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTextBytes() {
       java.lang.Object ref = text_;
@@ -26069,16 +26244,19 @@ public final class Metadata {
     }
 
     public static final int PORTRAIT_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> portrait_;
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> getPortraitList() {
       return portrait_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
         getPortraitOrBuilderList() {
       return portrait_;
@@ -26086,34 +26264,40 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 2;</code>
      */
+    @java.lang.Override
     public int getPortraitCount() {
       return portrait_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Image getPortrait(int index) {
       return portrait_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Image portrait = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder getPortraitOrBuilder(
         int index) {
       return portrait_.get(index);
     }
 
     public static final int PORTRAIT_GROUP_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup> portraitGroup_;
     /**
      * <code>repeated .spotify.metadata.proto.ImageGroup portrait_group = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup> getPortraitGroupList() {
       return portraitGroup_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.ImageGroup portrait_group = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
         getPortraitGroupOrBuilderList() {
       return portraitGroup_;
@@ -26121,18 +26305,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.ImageGroup portrait_group = 3;</code>
      */
+    @java.lang.Override
     public int getPortraitGroupCount() {
       return portraitGroup_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.ImageGroup portrait_group = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup getPortraitGroup(int index) {
       return portraitGroup_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.ImageGroup portrait_group = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder getPortraitGroupOrBuilder(
         int index) {
       return portraitGroup_.get(index);
@@ -26182,11 +26369,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -26225,7 +26414,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Biography}
@@ -26234,7 +26424,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Biography)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.BiographyOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Biography_descriptor;
       }
@@ -26249,38 +26439,33 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getPortraitFieldBuilder();
-          getPortraitGroupFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         text_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         if (portraitBuilder_ == null) {
           portrait_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          portrait_ = null;
           portraitBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (portraitGroupBuilder_ == null) {
           portraitGroup_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          portraitGroup_ = null;
           portraitGroupBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -26307,12 +26492,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.text_ = text_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography result) {
         if (portraitBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             portrait_ = java.util.Collections.unmodifiableList(portrait_);
@@ -26331,43 +26517,18 @@ public final class Metadata {
         } else {
           result.portraitGroup_ = portraitGroupBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Biography result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.text_ = text_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object text_ = "";
@@ -26420,11 +26581,9 @@ public final class Metadata {
        */
       public Builder setText(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         text_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -26433,8 +26592,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearText() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         text_ = getDefaultInstance().getText();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -26445,11 +26604,9 @@ public final class Metadata {
        */
       public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         text_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -26457,8 +26614,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image> portrait_ =
         java.util.Collections.emptyList();
       private void ensurePortraitIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
-          portrait_ = new java.util.ArrayList<>(portrait_);
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          portrait_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Image>(portrait_);
           bitField0_ |= 0x00000002;
          }
       }
@@ -26683,7 +26840,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder> 
           getPortraitFieldBuilder() {
         if (portraitBuilder_ == null) {
-          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          portraitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Image, com.spotifyxp.deps.com.spotify.metadata.Metadata.Image.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageOrBuilder>(
                   portrait_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -26696,8 +26854,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup> portraitGroup_ =
         java.util.Collections.emptyList();
       private void ensurePortraitGroupIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
-          portraitGroup_ = new java.util.ArrayList<>(portraitGroup_);
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          portraitGroup_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup>(portraitGroup_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -26922,7 +27080,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder> 
           getPortraitGroupFieldBuilder() {
         if (portraitGroupBuilder_ == null) {
-          portraitGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          portraitGroupBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroup.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.ImageGroupOrBuilder>(
                   portraitGroup_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -26932,13 +27091,13 @@ public final class Metadata {
         return portraitGroupBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -26969,10 +27128,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -27053,7 +27213,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Disc}
    */
-  public  static final class Disc extends
+  public static final class Disc extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Disc)
       DiscOrBuilder {
@@ -27074,12 +27234,7 @@ public final class Metadata {
       return new Disc();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Disc_descriptor;
     }
@@ -27094,11 +27249,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int NUMBER_FIELD_NUMBER = 1;
-    private int number_;
+    private int number_ = 0;
     /**
      * <code>optional sint32 number = 1;</code>
      * @return Whether the number field is set.
      */
+    @java.lang.Override
     public boolean hasNumber() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -27106,16 +27262,19 @@ public final class Metadata {
      * <code>optional sint32 number = 1;</code>
      * @return The number.
      */
+    @java.lang.Override
     public int getNumber() {
       return number_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <code>optional string name = 2;</code>
      * @return Whether the name field is set.
      */
+    @java.lang.Override
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -27123,6 +27282,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -27141,6 +27301,7 @@ public final class Metadata {
      * <code>optional string name = 2;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -27156,16 +27317,19 @@ public final class Metadata {
     }
 
     public static final int TRACK_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> track_;
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> getTrackList() {
       return track_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
         getTrackOrBuilderList() {
       return track_;
@@ -27173,18 +27337,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 3;</code>
      */
+    @java.lang.Override
     public int getTrackCount() {
       return track_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Track getTrack(int index) {
       return track_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Track track = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder getTrackOrBuilder(
         int index) {
       return track_.get(index);
@@ -27234,11 +27401,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -27277,7 +27446,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Disc}
@@ -27286,7 +27456,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Disc)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.DiscOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Disc_descriptor;
       }
@@ -27301,33 +27471,27 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTrackFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         number_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         if (trackBuilder_ == null) {
           track_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          track_ = null;
           trackBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -27354,16 +27518,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.number_ = number_;
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.name_ = name_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc result) {
         if (trackBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0)) {
             track_ = java.util.Collections.unmodifiableList(track_);
@@ -27373,43 +27534,22 @@ public final class Metadata {
         } else {
           result.track_ = trackBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Disc result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.number_ = number_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int number_ ;
@@ -27417,6 +27557,7 @@ public final class Metadata {
        * <code>optional sint32 number = 1;</code>
        * @return Whether the number field is set.
        */
+      @java.lang.Override
       public boolean hasNumber() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -27424,6 +27565,7 @@ public final class Metadata {
        * <code>optional sint32 number = 1;</code>
        * @return The number.
        */
+      @java.lang.Override
       public int getNumber() {
         return number_;
       }
@@ -27433,8 +27575,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setNumber(int value) {
-        bitField0_ |= 0x00000001;
+
         number_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -27499,11 +27642,9 @@ public final class Metadata {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -27512,8 +27653,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -27524,11 +27665,9 @@ public final class Metadata {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -27536,8 +27675,8 @@ public final class Metadata {
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track> track_ =
         java.util.Collections.emptyList();
       private void ensureTrackIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
-          track_ = new java.util.ArrayList<>(track_);
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          track_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Track>(track_);
           bitField0_ |= 0x00000004;
          }
       }
@@ -27762,7 +27901,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder> 
           getTrackFieldBuilder() {
         if (trackBuilder_ == null) {
-          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          trackBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Track, com.spotifyxp.deps.com.spotify.metadata.Metadata.Track.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.TrackOrBuilder>(
                   track_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -27772,13 +27912,13 @@ public final class Metadata {
         return trackBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -27809,10 +27949,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -27869,7 +28010,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Copyright}
    */
-  public  static final class Copyright extends
+  public static final class Copyright extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Copyright)
       CopyrightOrBuilder {
@@ -27890,12 +28031,7 @@ public final class Metadata {
       return new Copyright();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Copyright_descriptor;
     }
@@ -27965,7 +28101,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Type> internalValueMap =
-              Type::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -27975,7 +28115,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.getDescriptor().getEnumTypes().get(0);
       }
@@ -27993,7 +28133,7 @@ public final class Metadata {
 
       private final int value;
 
-      Type(int value) {
+      private Type(int value) {
         this.value = value;
       }
 
@@ -28002,29 +28142,31 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
+    private int type_ = 0;
     /**
      * <code>optional .spotify.metadata.proto.Copyright.Type type = 1;</code>
      * @return Whether the type field is set.
      */
-    public boolean hasType() {
+    @java.lang.Override public boolean hasType() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Copyright.Type type = 1;</code>
      * @return The type.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type getType() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.valueOf(type_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type getType() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.forNumber(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.P : result;
     }
 
     public static final int TEXT_FIELD_NUMBER = 2;
-    private volatile java.lang.Object text_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object text_ = "";
     /**
      * <code>optional string text = 2;</code>
      * @return Whether the text field is set.
      */
+    @java.lang.Override
     public boolean hasText() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -28032,6 +28174,7 @@ public final class Metadata {
      * <code>optional string text = 2;</code>
      * @return The text.
      */
+    @java.lang.Override
     public java.lang.String getText() {
       java.lang.Object ref = text_;
       if (ref instanceof java.lang.String) {
@@ -28050,6 +28193,7 @@ public final class Metadata {
      * <code>optional string text = 2;</code>
      * @return The bytes for text.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTextBytes() {
       java.lang.Object ref = text_;
@@ -28108,11 +28252,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -28151,7 +28297,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Copyright}
@@ -28160,7 +28307,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Copyright)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.CopyrightOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Copyright_descriptor;
       }
@@ -28175,23 +28322,20 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         type_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         text_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -28218,53 +28362,25 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.type_ = type_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.text_ = text_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.text_ = text_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private int type_ = 0;
@@ -28272,15 +28388,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Copyright.Type type = 1;</code>
        * @return Whether the type field is set.
        */
-      public boolean hasType() {
+      @java.lang.Override public boolean hasType() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Copyright.Type type = 1;</code>
        * @return The type.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type getType() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.valueOf(type_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.forNumber(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Copyright.Type.P : result;
       }
       /**
@@ -28358,11 +28475,9 @@ public final class Metadata {
        */
       public Builder setText(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         text_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -28371,8 +28486,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearText() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         text_ = getDefaultInstance().getText();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -28383,22 +28498,20 @@ public final class Metadata {
        */
       public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         text_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -28429,10 +28542,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -28512,34 +28626,34 @@ public final class Metadata {
         getCatalogueStrBytes(int index);
 
     /**
-     * <code>optional string countries_allowed = 2;</code>
+     * <code>string countries_allowed = 2;</code>
      * @return Whether the countriesAllowed field is set.
      */
     boolean hasCountriesAllowed();
     /**
-     * <code>optional string countries_allowed = 2;</code>
+     * <code>string countries_allowed = 2;</code>
      * @return The countriesAllowed.
      */
     java.lang.String getCountriesAllowed();
     /**
-     * <code>optional string countries_allowed = 2;</code>
+     * <code>string countries_allowed = 2;</code>
      * @return The bytes for countriesAllowed.
      */
     com.google.protobuf.ByteString
         getCountriesAllowedBytes();
 
     /**
-     * <code>optional string countries_forbidden = 3;</code>
+     * <code>string countries_forbidden = 3;</code>
      * @return Whether the countriesForbidden field is set.
      */
     boolean hasCountriesForbidden();
     /**
-     * <code>optional string countries_forbidden = 3;</code>
+     * <code>string countries_forbidden = 3;</code>
      * @return The countriesForbidden.
      */
     java.lang.String getCountriesForbidden();
     /**
-     * <code>optional string countries_forbidden = 3;</code>
+     * <code>string countries_forbidden = 3;</code>
      * @return The bytes for countriesForbidden.
      */
     com.google.protobuf.ByteString
@@ -28550,7 +28664,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Restriction}
    */
-  public  static final class Restriction extends
+  public static final class Restriction extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Restriction)
       RestrictionOrBuilder {
@@ -28562,7 +28676,8 @@ public final class Metadata {
     private Restriction() {
       catalogue_ = java.util.Collections.emptyList();
       type_ = 0;
-      catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
+      catalogueStr_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -28572,12 +28687,7 @@ public final class Metadata {
       return new Restriction();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Restriction_descriptor;
     }
@@ -28674,7 +28784,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Catalogue> internalValueMap =
-              Catalogue::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Catalogue>() {
+              public Catalogue findValueByNumber(int number) {
+                return Catalogue.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -28684,7 +28798,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.getDescriptor().getEnumTypes().get(0);
       }
@@ -28702,7 +28816,7 @@ public final class Metadata {
 
       private final int value;
 
-      Catalogue(int value) {
+      private Catalogue(int value) {
         this.value = value;
       }
 
@@ -28745,10 +28859,10 @@ public final class Metadata {
        * @return The enum associated with the given numeric wire value.
        */
       public static Type forNumber(int value) {
-          if (value == 0) {
-              return STREAMING;
-          }
-          return null;
+        switch (value) {
+          case 0: return STREAMING;
+          default: return null;
+        }
       }
 
       public static com.google.protobuf.Internal.EnumLiteMap<Type>
@@ -28757,7 +28871,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Type> internalValueMap =
-              Type::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -28767,7 +28885,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.getDescriptor().getEnumTypes().get(1);
       }
@@ -28785,7 +28903,7 @@ public final class Metadata {
 
       private final int value;
 
-      Type(int value) {
+      private Type(int value) {
         this.value = value;
       }
 
@@ -28794,6 +28912,7 @@ public final class Metadata {
 
     private int bitField0_;
     private int countryRestrictionCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object countryRestriction_;
     public enum CountryRestrictionCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -28802,7 +28921,7 @@ public final class Metadata {
       COUNTRIES_FORBIDDEN(3),
       COUNTRYRESTRICTION_NOT_SET(0);
       private final int value;
-      CountryRestrictionCase(int value) {
+      private CountryRestrictionCase(int value) {
         this.value = value;
       }
       /**
@@ -28826,33 +28945,40 @@ public final class Metadata {
       public int getNumber() {
         return this.value;
       }
-    }
+    };
 
-      public CountryRestrictionCase
+    public CountryRestrictionCase
     getCountryRestrictionCase() {
       return CountryRestrictionCase.forNumber(
           countryRestrictionCase_);
     }
 
     public static final int CATALOGUE_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<java.lang.Integer> catalogue_;
     private static final com.google.protobuf.Internal.ListAdapter.Converter<
         java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue> catalogue_converter_ =
-            from -> {
-              Catalogue result = Catalogue.valueOf(from);
-              return result == null ? Catalogue.AD : result;
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue>() {
+              public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue convert(java.lang.Integer from) {
+                com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue.forNumber(from);
+                return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue.AD : result;
+              }
             };
     /**
      * <code>repeated .spotify.metadata.proto.Restriction.Catalogue catalogue = 1;</code>
      * @return A list containing the catalogue.
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue> getCatalogueList() {
-      return new com.google.protobuf.Internal.ListAdapter<>(catalogue_, catalogue_converter_);
+      return new com.google.protobuf.Internal.ListAdapter<
+          java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue>(catalogue_, catalogue_converter_);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction.Catalogue catalogue = 1;</code>
      * @return The count of catalogue.
      */
+    @java.lang.Override
     public int getCatalogueCount() {
       return catalogue_.size();
     }
@@ -28861,30 +28987,33 @@ public final class Metadata {
      * @param index The index of the element to return.
      * @return The catalogue at the given index.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue getCatalogue(int index) {
       return catalogue_converter_.convert(catalogue_.get(index));
     }
 
     public static final int TYPE_FIELD_NUMBER = 4;
-    private int type_;
+    private int type_ = 0;
     /**
      * <code>optional .spotify.metadata.proto.Restriction.Type type = 4;</code>
      * @return Whether the type field is set.
      */
-    public boolean hasType() {
+    @java.lang.Override public boolean hasType() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.Restriction.Type type = 4;</code>
      * @return The type.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type getType() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.valueOf(type_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type getType() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.forNumber(type_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.STREAMING : result;
     }
 
     public static final int CATALOGUE_STR_FIELD_NUMBER = 5;
-    private com.google.protobuf.LazyStringList catalogueStr_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList catalogueStr_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string catalogue_str = 5;</code>
      * @return A list containing the catalogueStr.
@@ -28920,14 +29049,14 @@ public final class Metadata {
 
     public static final int COUNTRIES_ALLOWED_FIELD_NUMBER = 2;
     /**
-     * <code>optional string countries_allowed = 2;</code>
+     * <code>string countries_allowed = 2;</code>
      * @return Whether the countriesAllowed field is set.
      */
     public boolean hasCountriesAllowed() {
       return countryRestrictionCase_ == 2;
     }
     /**
-     * <code>optional string countries_allowed = 2;</code>
+     * <code>string countries_allowed = 2;</code>
      * @return The countriesAllowed.
      */
     public java.lang.String getCountriesAllowed() {
@@ -28948,7 +29077,7 @@ public final class Metadata {
       }
     }
     /**
-     * <code>optional string countries_allowed = 2;</code>
+     * <code>string countries_allowed = 2;</code>
      * @return The bytes for countriesAllowed.
      */
     public com.google.protobuf.ByteString
@@ -28972,14 +29101,14 @@ public final class Metadata {
 
     public static final int COUNTRIES_FORBIDDEN_FIELD_NUMBER = 3;
     /**
-     * <code>optional string countries_forbidden = 3;</code>
+     * <code>string countries_forbidden = 3;</code>
      * @return Whether the countriesForbidden field is set.
      */
     public boolean hasCountriesForbidden() {
       return countryRestrictionCase_ == 3;
     }
     /**
-     * <code>optional string countries_forbidden = 3;</code>
+     * <code>string countries_forbidden = 3;</code>
      * @return The countriesForbidden.
      */
     public java.lang.String getCountriesForbidden() {
@@ -29000,7 +29129,7 @@ public final class Metadata {
       }
     }
     /**
-     * <code>optional string countries_forbidden = 3;</code>
+     * <code>string countries_forbidden = 3;</code>
      * @return The bytes for countriesForbidden.
      */
     public com.google.protobuf.ByteString
@@ -29066,11 +29195,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -29109,7 +29240,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Restriction}
@@ -29118,7 +29250,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Restriction)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Restriction_descriptor;
       }
@@ -29133,25 +29265,23 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         catalogue_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
         type_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+        catalogueStr_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         countryRestrictionCase_ = 0;
         countryRestriction_ = null;
         return this;
@@ -29180,66 +29310,40 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction result) {
         if (((bitField0_ & 0x00000001) != 0)) {
           catalogue_ = java.util.Collections.unmodifiableList(catalogue_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.catalogue_ = catalogue_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.type_ = type_;
-        if (((bitField0_ & 0x00000004) != 0)) {
-          catalogueStr_ = catalogueStr_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.catalogueStr_ = catalogueStr_;
-        if (countryRestrictionCase_ == 2) {
-          result.countryRestriction_ = countryRestriction_;
-        }
-        if (countryRestrictionCase_ == 3) {
-          result.countryRestriction_ = countryRestriction_;
-        }
-        result.bitField0_ = to_bitField0_;
-        result.countryRestrictionCase_ = countryRestrictionCase_;
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.type_ = type_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          catalogueStr_.makeImmutable();
+          result.catalogueStr_ = catalogueStr_;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
+
+      private void buildPartialOneofs(com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction result) {
+        result.countryRestrictionCase_ = countryRestrictionCase_;
+        result.countryRestriction_ = this.countryRestriction_;
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int countryRestrictionCase_ = 0;
       private java.lang.Object countryRestriction_;
       public CountryRestrictionCase
@@ -29260,8 +29364,8 @@ public final class Metadata {
       private java.util.List<java.lang.Integer> catalogue_ =
         java.util.Collections.emptyList();
       private void ensureCatalogueIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          catalogue_ = new java.util.ArrayList<>(catalogue_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          catalogue_ = new java.util.ArrayList<java.lang.Integer>(catalogue_);
           bitField0_ |= 0x00000001;
         }
       }
@@ -29270,7 +29374,8 @@ public final class Metadata {
        * @return A list containing the catalogue.
        */
       public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue> getCatalogueList() {
-        return new com.google.protobuf.Internal.ListAdapter<>(catalogue_, catalogue_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<
+            java.lang.Integer, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Catalogue>(catalogue_, catalogue_converter_);
       }
       /**
        * <code>repeated .spotify.metadata.proto.Restriction.Catalogue catalogue = 1;</code>
@@ -29347,15 +29452,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.Restriction.Type type = 4;</code>
        * @return Whether the type field is set.
        */
-      public boolean hasType() {
+      @java.lang.Override public boolean hasType() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.Restriction.Type type = 4;</code>
        * @return The type.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type getType() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.valueOf(type_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type result = com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.forNumber(type_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Type.STREAMING : result;
       }
       /**
@@ -29383,13 +29489,13 @@ public final class Metadata {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureCatalogueStrIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
+      private com.google.protobuf.LazyStringArrayList catalogueStr_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureCatalogueStrIsMutable() {
+        if (!catalogueStr_.isModifiable()) {
           catalogueStr_ = new com.google.protobuf.LazyStringArrayList(catalogueStr_);
-          bitField0_ |= 0x00000004;
-         }
+        }
+        bitField0_ |= 0x00000004;
       }
       /**
        * <code>repeated string catalogue_str = 5;</code>
@@ -29397,7 +29503,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getCatalogueStrList() {
-        return catalogueStr_.getUnmodifiableView();
+        catalogueStr_.makeImmutable();
+        return catalogueStr_;
       }
       /**
        * <code>repeated string catalogue_str = 5;</code>
@@ -29431,11 +29538,10 @@ public final class Metadata {
        */
       public Builder setCatalogueStr(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCatalogueStrIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCatalogueStrIsMutable();
         catalogueStr_.set(index, value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -29446,11 +29552,10 @@ public final class Metadata {
        */
       public Builder addCatalogueStr(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCatalogueStrIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCatalogueStrIsMutable();
         catalogueStr_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -29464,6 +29569,7 @@ public final class Metadata {
         ensureCatalogueStrIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, catalogueStr_);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -29472,8 +29578,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearCatalogueStr() {
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+        catalogueStr_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);;
         onChanged();
         return this;
       }
@@ -29484,26 +29591,27 @@ public final class Metadata {
        */
       public Builder addCatalogueStrBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCatalogueStrIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCatalogueStrIsMutable();
         catalogueStr_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
       /**
-       * <code>optional string countries_allowed = 2;</code>
+       * <code>string countries_allowed = 2;</code>
        * @return Whether the countriesAllowed field is set.
        */
+      @java.lang.Override
       public boolean hasCountriesAllowed() {
         return countryRestrictionCase_ == 2;
       }
       /**
-       * <code>optional string countries_allowed = 2;</code>
+       * <code>string countries_allowed = 2;</code>
        * @return The countriesAllowed.
        */
+      @java.lang.Override
       public java.lang.String getCountriesAllowed() {
         java.lang.Object ref = "";
         if (countryRestrictionCase_ == 2) {
@@ -29524,9 +29632,10 @@ public final class Metadata {
         }
       }
       /**
-       * <code>optional string countries_allowed = 2;</code>
+       * <code>string countries_allowed = 2;</code>
        * @return The bytes for countriesAllowed.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getCountriesAllowedBytes() {
         java.lang.Object ref = "";
@@ -29546,22 +29655,20 @@ public final class Metadata {
         }
       }
       /**
-       * <code>optional string countries_allowed = 2;</code>
+       * <code>string countries_allowed = 2;</code>
        * @param value The countriesAllowed to set.
        * @return This builder for chaining.
        */
       public Builder setCountriesAllowed(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  countryRestrictionCase_ = 2;
+        if (value == null) { throw new NullPointerException(); }
+        countryRestrictionCase_ = 2;
         countryRestriction_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string countries_allowed = 2;</code>
+       * <code>string countries_allowed = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearCountriesAllowed() {
@@ -29573,32 +29680,32 @@ public final class Metadata {
         return this;
       }
       /**
-       * <code>optional string countries_allowed = 2;</code>
+       * <code>string countries_allowed = 2;</code>
        * @param value The bytes for countriesAllowed to set.
        * @return This builder for chaining.
        */
       public Builder setCountriesAllowedBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  countryRestrictionCase_ = 2;
+        if (value == null) { throw new NullPointerException(); }
+        countryRestrictionCase_ = 2;
         countryRestriction_ = value;
         onChanged();
         return this;
       }
 
       /**
-       * <code>optional string countries_forbidden = 3;</code>
+       * <code>string countries_forbidden = 3;</code>
        * @return Whether the countriesForbidden field is set.
        */
+      @java.lang.Override
       public boolean hasCountriesForbidden() {
         return countryRestrictionCase_ == 3;
       }
       /**
-       * <code>optional string countries_forbidden = 3;</code>
+       * <code>string countries_forbidden = 3;</code>
        * @return The countriesForbidden.
        */
+      @java.lang.Override
       public java.lang.String getCountriesForbidden() {
         java.lang.Object ref = "";
         if (countryRestrictionCase_ == 3) {
@@ -29619,9 +29726,10 @@ public final class Metadata {
         }
       }
       /**
-       * <code>optional string countries_forbidden = 3;</code>
+       * <code>string countries_forbidden = 3;</code>
        * @return The bytes for countriesForbidden.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getCountriesForbiddenBytes() {
         java.lang.Object ref = "";
@@ -29641,22 +29749,20 @@ public final class Metadata {
         }
       }
       /**
-       * <code>optional string countries_forbidden = 3;</code>
+       * <code>string countries_forbidden = 3;</code>
        * @param value The countriesForbidden to set.
        * @return This builder for chaining.
        */
       public Builder setCountriesForbidden(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  countryRestrictionCase_ = 3;
+        if (value == null) { throw new NullPointerException(); }
+        countryRestrictionCase_ = 3;
         countryRestriction_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string countries_forbidden = 3;</code>
+       * <code>string countries_forbidden = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCountriesForbidden() {
@@ -29668,28 +29774,26 @@ public final class Metadata {
         return this;
       }
       /**
-       * <code>optional string countries_forbidden = 3;</code>
+       * <code>string countries_forbidden = 3;</code>
        * @param value The bytes for countriesForbidden to set.
        * @return This builder for chaining.
        */
       public Builder setCountriesForbiddenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  countryRestrictionCase_ = 3;
+        if (value == null) { throw new NullPointerException(); }
+        countryRestrictionCase_ = 3;
         countryRestriction_ = value;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -29720,10 +29824,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -29792,7 +29897,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.Availability}
    */
-  public  static final class Availability extends
+  public static final class Availability extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.Availability)
       AvailabilityOrBuilder {
@@ -29802,7 +29907,8 @@ public final class Metadata {
       super(builder);
     }
     private Availability() {
-      catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
+      catalogueStr_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -29812,12 +29918,7 @@ public final class Metadata {
       return new Availability();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Availability_descriptor;
     }
@@ -29832,7 +29933,9 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int CATALOGUE_STR_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList catalogueStr_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList catalogueStr_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string catalogue_str = 1;</code>
      * @return A list containing the catalogueStr.
@@ -29872,6 +29975,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date start = 2;</code>
      * @return Whether the start field is set.
      */
+    @java.lang.Override
     public boolean hasStart() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -29879,12 +29983,14 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date start = 2;</code>
      * @return The start.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Date getStart() {
       return start_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : start_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Date start = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder getStartOrBuilder() {
       return start_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : start_;
     }
@@ -29933,11 +30039,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -29976,7 +30084,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.Availability}
@@ -29985,7 +30094,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.Availability)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AvailabilityOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_Availability_descriptor;
       }
@@ -30017,14 +30126,14 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        if (startBuilder_ == null) {
-          start_ = null;
-        } else {
-          startBuilder_.clear();
+        bitField0_ = 0;
+        catalogueStr_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        start_ = null;
+        if (startBuilder_ != null) {
+          startBuilder_.dispose();
+          startBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -30051,67 +30160,36 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          catalogueStr_ = catalogueStr_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.catalogueStr_ = catalogueStr_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (startBuilder_ == null) {
-            result.start_ = start_;
-          } else {
-            result.start_ = startBuilder_.build();
-          }
-          to_bitField0_ |= 0x00000001;
-        }
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.Availability result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          catalogueStr_.makeImmutable();
+          result.catalogueStr_ = catalogueStr_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.start_ = startBuilder_ == null
+              ? start_
+              : startBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
-      private com.google.protobuf.LazyStringList catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
-        private void ensureCatalogueStrIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+      private com.google.protobuf.LazyStringArrayList catalogueStr_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureCatalogueStrIsMutable() {
+        if (!catalogueStr_.isModifiable()) {
           catalogueStr_ = new com.google.protobuf.LazyStringArrayList(catalogueStr_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000001;
       }
       /**
        * <code>repeated string catalogue_str = 1;</code>
@@ -30119,7 +30197,8 @@ public final class Metadata {
        */
       public com.google.protobuf.ProtocolStringList
           getCatalogueStrList() {
-        return catalogueStr_.getUnmodifiableView();
+        catalogueStr_.makeImmutable();
+        return catalogueStr_;
       }
       /**
        * <code>repeated string catalogue_str = 1;</code>
@@ -30153,11 +30232,10 @@ public final class Metadata {
        */
       public Builder setCatalogueStr(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCatalogueStrIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCatalogueStrIsMutable();
         catalogueStr_.set(index, value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -30168,11 +30246,10 @@ public final class Metadata {
        */
       public Builder addCatalogueStr(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCatalogueStrIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCatalogueStrIsMutable();
         catalogueStr_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -30186,6 +30263,7 @@ public final class Metadata {
         ensureCatalogueStrIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, catalogueStr_);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -30194,8 +30272,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearCatalogueStr() {
-        catalogueStr_ = com.google.protobuf.LazyStringArrayList.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+        catalogueStr_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
         onChanged();
         return this;
       }
@@ -30206,11 +30285,10 @@ public final class Metadata {
        */
       public Builder addCatalogueStrBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureCatalogueStrIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureCatalogueStrIsMutable();
         catalogueStr_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -30245,11 +30323,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           start_ = value;
-          onChanged();
         } else {
           startBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -30259,11 +30337,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder builderForValue) {
         if (startBuilder_ == null) {
           start_ = builderForValue.build();
-          onChanged();
         } else {
           startBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -30272,31 +30350,30 @@ public final class Metadata {
       public Builder mergeStart(com.spotifyxp.deps.com.spotify.metadata.Metadata.Date value) {
         if (startBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              start_ != null &&
-              start_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
-            start_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.newBuilder(start_).mergeFrom(value).buildPartial();
+            start_ != null &&
+            start_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
+            getStartBuilder().mergeFrom(value);
           } else {
             start_ = value;
           }
-          onChanged();
         } else {
           startBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Date start = 2;</code>
        */
       public Builder clearStart() {
-        if (startBuilder_ == null) {
-          start_ = null;
-          onChanged();
-        } else {
-          startBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        start_ = null;
+        if (startBuilder_ != null) {
+          startBuilder_.dispose();
+          startBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -30325,7 +30402,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getStartFieldBuilder() {
         if (startBuilder_ == null) {
-          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
                   getStart(),
                   getParentForChildren(),
                   isClean());
@@ -30334,13 +30412,13 @@ public final class Metadata {
         return startBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -30371,10 +30449,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -30457,7 +30536,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.SalePeriod}
    */
-  public  static final class SalePeriod extends
+  public static final class SalePeriod extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.SalePeriod)
       SalePeriodOrBuilder {
@@ -30477,12 +30556,7 @@ public final class Metadata {
       return new SalePeriod();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_SalePeriod_descriptor;
     }
@@ -30497,16 +30571,19 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int RESTRICTION_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_;
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> getRestrictionList() {
       return restriction_;
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
         getRestrictionOrBuilderList() {
       return restriction_;
@@ -30514,18 +30591,21 @@ public final class Metadata {
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 1;</code>
      */
+    @java.lang.Override
     public int getRestrictionCount() {
       return restriction_.size();
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction getRestriction(int index) {
       return restriction_.get(index);
     }
     /**
      * <code>repeated .spotify.metadata.proto.Restriction restriction = 1;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder getRestrictionOrBuilder(
         int index) {
       return restriction_.get(index);
@@ -30537,6 +30617,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date start = 2;</code>
      * @return Whether the start field is set.
      */
+    @java.lang.Override
     public boolean hasStart() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -30544,12 +30625,14 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date start = 2;</code>
      * @return The start.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Date getStart() {
       return start_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : start_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Date start = 2;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder getStartOrBuilder() {
       return start_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : start_;
     }
@@ -30560,6 +30643,7 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date end = 3;</code>
      * @return Whether the end field is set.
      */
+    @java.lang.Override
     public boolean hasEnd() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -30567,12 +30651,14 @@ public final class Metadata {
      * <code>optional .spotify.metadata.proto.Date end = 3;</code>
      * @return The end.
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.Date getEnd() {
       return end_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : end_;
     }
     /**
      * <code>optional .spotify.metadata.proto.Date end = 3;</code>
      */
+    @java.lang.Override
     public com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder getEndOrBuilder() {
       return end_ == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance() : end_;
     }
@@ -30621,11 +30707,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -30664,7 +30752,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.SalePeriod}
@@ -30673,7 +30762,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.SalePeriod)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriodOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_SalePeriod_descriptor;
       }
@@ -30707,24 +30796,24 @@ public final class Metadata {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (restrictionBuilder_ == null) {
           restriction_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          restriction_ = null;
           restrictionBuilder_.clear();
         }
-        if (startBuilder_ == null) {
-          start_ = null;
-        } else {
-          startBuilder_.clear();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        start_ = null;
+        if (startBuilder_ != null) {
+          startBuilder_.dispose();
+          startBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (endBuilder_ == null) {
-          end_ = null;
-        } else {
-          endBuilder_.clear();
+        end_ = null;
+        if (endBuilder_ != null) {
+          endBuilder_.dispose();
+          endBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -30751,8 +30840,13 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod result) {
         if (restrictionBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             restriction_ = java.util.Collections.unmodifiableList(restriction_);
@@ -30762,66 +30856,33 @@ public final class Metadata {
         } else {
           result.restriction_ = restrictionBuilder_.build();
         }
+      }
+
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.SalePeriod result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          if (startBuilder_ == null) {
-            result.start_ = start_;
-          } else {
-            result.start_ = startBuilder_.build();
-          }
+          result.start_ = startBuilder_ == null
+              ? start_
+              : startBuilder_.build();
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          if (endBuilder_ == null) {
-            result.end_ = end_;
-          } else {
-            result.end_ = endBuilder_.build();
-          }
+          result.end_ = endBuilder_ == null
+              ? end_
+              : endBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        result.bitField0_ |= to_bitField0_;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
       private int bitField0_;
 
       private java.util.List<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction> restriction_ =
         java.util.Collections.emptyList();
       private void ensureRestrictionIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
-          restriction_ = new java.util.ArrayList<>(restriction_);
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          restriction_ = new java.util.ArrayList<com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction>(restriction_);
           bitField0_ |= 0x00000001;
          }
       }
@@ -31046,7 +31107,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder> 
           getRestrictionFieldBuilder() {
         if (restrictionBuilder_ == null) {
-          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+          restrictionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction, com.spotifyxp.deps.com.spotify.metadata.Metadata.Restriction.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.RestrictionOrBuilder>(
                   restriction_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -31086,11 +31148,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           start_ = value;
-          onChanged();
         } else {
           startBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -31100,11 +31162,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder builderForValue) {
         if (startBuilder_ == null) {
           start_ = builderForValue.build();
-          onChanged();
         } else {
           startBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -31113,31 +31175,30 @@ public final class Metadata {
       public Builder mergeStart(com.spotifyxp.deps.com.spotify.metadata.Metadata.Date value) {
         if (startBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0) &&
-              start_ != null &&
-              start_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
-            start_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.newBuilder(start_).mergeFrom(value).buildPartial();
+            start_ != null &&
+            start_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
+            getStartBuilder().mergeFrom(value);
           } else {
             start_ = value;
           }
-          onChanged();
         } else {
           startBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Date start = 2;</code>
        */
       public Builder clearStart() {
-        if (startBuilder_ == null) {
-          start_ = null;
-          onChanged();
-        } else {
-          startBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        start_ = null;
+        if (startBuilder_ != null) {
+          startBuilder_.dispose();
+          startBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -31166,7 +31227,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getStartFieldBuilder() {
         if (startBuilder_ == null) {
-          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
                   getStart(),
                   getParentForChildren(),
                   isClean());
@@ -31205,11 +31267,11 @@ public final class Metadata {
             throw new NullPointerException();
           }
           end_ = value;
-          onChanged();
         } else {
           endBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -31219,11 +31281,11 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder builderForValue) {
         if (endBuilder_ == null) {
           end_ = builderForValue.build();
-          onChanged();
         } else {
           endBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -31232,31 +31294,30 @@ public final class Metadata {
       public Builder mergeEnd(com.spotifyxp.deps.com.spotify.metadata.Metadata.Date value) {
         if (endBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0) &&
-              end_ != null &&
-              end_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
-            end_ =
-              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.newBuilder(end_).mergeFrom(value).buildPartial();
+            end_ != null &&
+            end_ != com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.getDefaultInstance()) {
+            getEndBuilder().mergeFrom(value);
           } else {
             end_ = value;
           }
-          onChanged();
         } else {
           endBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
        * <code>optional .spotify.metadata.proto.Date end = 3;</code>
        */
       public Builder clearEnd() {
-        if (endBuilder_ == null) {
-          end_ = null;
-          onChanged();
-        } else {
-          endBuilder_.clear();
-        }
         bitField0_ = (bitField0_ & ~0x00000004);
+        end_ = null;
+        if (endBuilder_ != null) {
+          endBuilder_.dispose();
+          endBuilder_ = null;
+        }
+        onChanged();
         return this;
       }
       /**
@@ -31285,7 +31346,8 @@ public final class Metadata {
           com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder> 
           getEndFieldBuilder() {
         if (endBuilder_ == null) {
-          endBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+          endBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.spotifyxp.deps.com.spotify.metadata.Metadata.Date, com.spotifyxp.deps.com.spotify.metadata.Metadata.Date.Builder, com.spotifyxp.deps.com.spotify.metadata.Metadata.DateOrBuilder>(
                   getEnd(),
                   getParentForChildren(),
                   isClean());
@@ -31294,13 +31356,13 @@ public final class Metadata {
         return endBuilder_;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -31331,10 +31393,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -31397,7 +31460,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.ExternalId}
    */
-  public  static final class ExternalId extends
+  public static final class ExternalId extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.ExternalId)
       ExternalIdOrBuilder {
@@ -31418,12 +31481,7 @@ public final class Metadata {
       return new ExternalId();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ExternalId_descriptor;
     }
@@ -31438,11 +31496,13 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int TYPE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object type_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object type_ = "";
     /**
      * <code>optional string type = 1;</code>
      * @return Whether the type field is set.
      */
+    @java.lang.Override
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -31450,6 +31510,7 @@ public final class Metadata {
      * <code>optional string type = 1;</code>
      * @return The type.
      */
+    @java.lang.Override
     public java.lang.String getType() {
       java.lang.Object ref = type_;
       if (ref instanceof java.lang.String) {
@@ -31468,6 +31529,7 @@ public final class Metadata {
      * <code>optional string type = 1;</code>
      * @return The bytes for type.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTypeBytes() {
       java.lang.Object ref = type_;
@@ -31483,11 +31545,13 @@ public final class Metadata {
     }
 
     public static final int ID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object id_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object id_ = "";
     /**
      * <code>optional string id = 2;</code>
      * @return Whether the id field is set.
      */
+    @java.lang.Override
     public boolean hasId() {
       return ((bitField0_ & 0x00000002) != 0);
     }
@@ -31495,6 +31559,7 @@ public final class Metadata {
      * <code>optional string id = 2;</code>
      * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -31513,6 +31578,7 @@ public final class Metadata {
      * <code>optional string id = 2;</code>
      * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -31571,11 +31637,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -31614,7 +31682,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.ExternalId}
@@ -31623,7 +31692,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.ExternalId)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalIdOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_ExternalId_descriptor;
       }
@@ -31638,23 +31707,20 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         type_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         id_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -31681,53 +31747,25 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.type_ = type_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.id_ = id_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.ExternalId result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.id_ = id_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private java.lang.Object type_ = "";
@@ -31780,11 +31818,9 @@ public final class Metadata {
        */
       public Builder setType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -31793,8 +31829,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearType() {
-        bitField0_ = (bitField0_ & ~0x00000001);
         type_ = getDefaultInstance().getType();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -31805,11 +31841,9 @@ public final class Metadata {
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -31864,11 +31898,9 @@ public final class Metadata {
        */
       public Builder setId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         id_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -31877,8 +31909,8 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         id_ = getDefaultInstance().getId();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -31889,22 +31921,20 @@ public final class Metadata {
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+        if (value == null) { throw new NullPointerException(); }
         id_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -31935,10 +31965,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -31989,7 +32020,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.AudioFile}
    */
-  public  static final class AudioFile extends
+  public static final class AudioFile extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.AudioFile)
       AudioFileOrBuilder {
@@ -32010,12 +32041,7 @@ public final class Metadata {
       return new AudioFile();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AudioFile_descriptor;
     }
@@ -32166,7 +32192,11 @@ public final class Metadata {
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
           Format> internalValueMap =
-              Format::forNumber;
+            new com.google.protobuf.Internal.EnumLiteMap<Format>() {
+              public Format findValueByNumber(int number) {
+                return Format.forNumber(number);
+              }
+            };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
@@ -32176,7 +32206,7 @@ public final class Metadata {
           getDescriptorForType() {
         return getDescriptor();
       }
-      public static com.google.protobuf.Descriptors.EnumDescriptor
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.getDescriptor().getEnumTypes().get(0);
       }
@@ -32194,7 +32224,7 @@ public final class Metadata {
 
       private final int value;
 
-      Format(int value) {
+      private Format(int value) {
         this.value = value;
       }
 
@@ -32203,11 +32233,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int FILE_ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString fileId_;
+    private com.google.protobuf.ByteString fileId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes file_id = 1;</code>
      * @return Whether the fileId field is set.
      */
+    @java.lang.Override
     public boolean hasFileId() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -32215,25 +32246,26 @@ public final class Metadata {
      * <code>optional bytes file_id = 1;</code>
      * @return The fileId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFileId() {
       return fileId_;
     }
 
     public static final int FORMAT_FIELD_NUMBER = 2;
-    private int format_;
+    private int format_ = 0;
     /**
      * <code>optional .spotify.metadata.proto.AudioFile.Format format = 2;</code>
      * @return Whether the format field is set.
      */
-    public boolean hasFormat() {
+    @java.lang.Override public boolean hasFormat() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>optional .spotify.metadata.proto.AudioFile.Format format = 2;</code>
      * @return The format.
      */
-    public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format getFormat() {
-      com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format result = com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.valueOf(format_);
+    @java.lang.Override public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format getFormat() {
+      com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format result = com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.forNumber(format_);
       return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.OGG_VORBIS_96 : result;
     }
 
@@ -32281,11 +32313,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -32324,7 +32358,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.AudioFile}
@@ -32333,7 +32368,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.AudioFile)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFileOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_AudioFile_descriptor;
       }
@@ -32348,23 +32383,20 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fileId_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         format_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -32391,53 +32423,25 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.fileId_ = fileId_;
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.format_ = format_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.fileId_ = fileId_;
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.format_ = format_;
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString fileId_ = com.google.protobuf.ByteString.EMPTY;
@@ -32445,6 +32449,7 @@ public final class Metadata {
        * <code>optional bytes file_id = 1;</code>
        * @return Whether the fileId field is set.
        */
+      @java.lang.Override
       public boolean hasFileId() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -32452,6 +32457,7 @@ public final class Metadata {
        * <code>optional bytes file_id = 1;</code>
        * @return The fileId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFileId() {
         return fileId_;
       }
@@ -32461,11 +32467,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setFileId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         fileId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -32485,15 +32489,16 @@ public final class Metadata {
        * <code>optional .spotify.metadata.proto.AudioFile.Format format = 2;</code>
        * @return Whether the format field is set.
        */
-      public boolean hasFormat() {
+      @java.lang.Override public boolean hasFormat() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>optional .spotify.metadata.proto.AudioFile.Format format = 2;</code>
        * @return The format.
        */
+      @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format getFormat() {
-        com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format result = com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.valueOf(format_);
+        com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format result = com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.forNumber(format_);
         return result == null ? com.spotifyxp.deps.com.spotify.metadata.Metadata.AudioFile.Format.OGG_VORBIS_96 : result;
       }
       /**
@@ -32521,13 +32526,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -32558,10 +32563,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -32601,7 +32607,7 @@ public final class Metadata {
   /**
    * Protobuf type {@code spotify.metadata.proto.VideoFile}
    */
-  public  static final class VideoFile extends
+  public static final class VideoFile extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.metadata.proto.VideoFile)
       VideoFileOrBuilder {
@@ -32621,12 +32627,7 @@ public final class Metadata {
       return new VideoFile();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_VideoFile_descriptor;
     }
@@ -32641,11 +32642,12 @@ public final class Metadata {
 
     private int bitField0_;
     public static final int FILE_ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString fileId_;
+    private com.google.protobuf.ByteString fileId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>optional bytes file_id = 1;</code>
      * @return Whether the fileId field is set.
      */
+    @java.lang.Override
     public boolean hasFileId() {
       return ((bitField0_ & 0x00000001) != 0);
     }
@@ -32653,6 +32655,7 @@ public final class Metadata {
      * <code>optional bytes file_id = 1;</code>
      * @return The fileId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFileId() {
       return fileId_;
     }
@@ -32701,11 +32704,13 @@ public final class Metadata {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -32744,7 +32749,8 @@ public final class Metadata {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.metadata.proto.VideoFile}
@@ -32753,7 +32759,7 @@ public final class Metadata {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.metadata.proto.VideoFile)
         com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFileOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.metadata.Metadata.internal_static_spotify_metadata_proto_VideoFile_descriptor;
       }
@@ -32768,21 +32774,19 @@ public final class Metadata {
 
       // Construct using com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         fileId_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -32809,49 +32813,21 @@ public final class Metadata {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile buildPartial() {
         com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile result = new com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.fileId_ = fileId_;
-        result.bitField0_ = to_bitField0_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.metadata.Metadata.VideoFile result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.fileId_ = fileId_;
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
       private com.google.protobuf.ByteString fileId_ = com.google.protobuf.ByteString.EMPTY;
@@ -32859,6 +32835,7 @@ public final class Metadata {
        * <code>optional bytes file_id = 1;</code>
        * @return Whether the fileId field is set.
        */
+      @java.lang.Override
       public boolean hasFileId() {
         return ((bitField0_ & 0x00000001) != 0);
       }
@@ -32866,6 +32843,7 @@ public final class Metadata {
        * <code>optional bytes file_id = 1;</code>
        * @return The fileId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFileId() {
         return fileId_;
       }
@@ -32875,11 +32853,9 @@ public final class Metadata {
        * @return This builder for chaining.
        */
       public Builder setFileId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+        if (value == null) { throw new NullPointerException(); }
         fileId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -32894,13 +32870,13 @@ public final class Metadata {
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -32931,10 +32907,11 @@ public final class Metadata {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -33066,7 +33043,7 @@ public final class Metadata {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -33218,8 +33195,9 @@ public final class Metadata {
       "BIS_320\020\002\022\013\n\007MP3_256\020\003\022\013\n\007MP3_320\020\004\022\013\n\007M" +
       "P3_160\020\005\022\n\n\006MP3_96\020\006\022\017\n\013MP3_160_ENC\020\007\022\n\n" +
       "\006AAC_24\020\010\022\n\n\006AAC_48\020\t\022\017\n\013AAC_24_NORM\020\020\"\034" +
-      "\n\tVideoFile\022\017\n\007file_id\030\001 \001(\014B\"\n\024com.spot" +
-      "ify.metadataB\010MetadataH\002"
+      "\n\tVideoFile\022\017\n\007file_id\030\001 \001(\014B5\n\'com.spot" +
+      "ifyxp.deps.com.spotify.metadataB\010Metadat" +
+      "aH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

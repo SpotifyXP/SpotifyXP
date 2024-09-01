@@ -546,7 +546,7 @@ public final class RestrictionsOuterClass {
   /**
    * Protobuf type {@code spotify.player.proto.Restrictions}
    */
-  public  static final class Restrictions extends
+  public static final class Restrictions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:spotify.player.proto.Restrictions)
       RestrictionsOrBuilder {
@@ -556,27 +556,48 @@ public final class RestrictionsOuterClass {
       super(builder);
     }
     private Restrictions() {
-      disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-      disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowPausingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowResumingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSeekingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowPeekingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowPeekingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSkippingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSkippingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTogglingRepeatContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTogglingRepeatTrackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTogglingShuffleReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowSetQueueReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowInterruptingPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowTransferringPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowRemoteControlReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowInsertingIntoNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowInsertingIntoContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowReorderingInNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowReorderingInContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowRemovingFromNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowRemovingFromContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      disallowUpdatingContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -586,12 +607,7 @@ public final class RestrictionsOuterClass {
       return new Restrictions();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    public static com.google.protobuf.Descriptors.Descriptor
+    public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.internal_static_spotify_player_proto_Restrictions_descriptor;
     }
@@ -601,11 +617,13 @@ public final class RestrictionsOuterClass {
         internalGetFieldAccessorTable() {
       return com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.internal_static_spotify_player_proto_Restrictions_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-                  com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.class, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.Builder.class);
+              com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.class, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.Builder.class);
     }
 
     public static final int DISALLOW_PAUSING_REASONS_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList disallowPausingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPausingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_pausing_reasons = 1;</code>
      * @return A list containing the disallowPausingReasons.
@@ -640,7 +658,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_RESUMING_REASONS_FIELD_NUMBER = 2;
-    private com.google.protobuf.LazyStringList disallowResumingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowResumingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_resuming_reasons = 2;</code>
      * @return A list containing the disallowResumingReasons.
@@ -675,7 +695,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_SEEKING_REASONS_FIELD_NUMBER = 3;
-    private com.google.protobuf.LazyStringList disallowSeekingReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSeekingReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_seeking_reasons = 3;</code>
      * @return A list containing the disallowSeekingReasons.
@@ -710,7 +732,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_PEEKING_PREV_REASONS_FIELD_NUMBER = 4;
-    private com.google.protobuf.LazyStringList disallowPeekingPrevReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPeekingPrevReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_peeking_prev_reasons = 4;</code>
      * @return A list containing the disallowPeekingPrevReasons.
@@ -745,7 +769,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_PEEKING_NEXT_REASONS_FIELD_NUMBER = 5;
-    private com.google.protobuf.LazyStringList disallowPeekingNextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowPeekingNextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_peeking_next_reasons = 5;</code>
      * @return A list containing the disallowPeekingNextReasons.
@@ -780,7 +806,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_SKIPPING_PREV_REASONS_FIELD_NUMBER = 6;
-    private com.google.protobuf.LazyStringList disallowSkippingPrevReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSkippingPrevReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_skipping_prev_reasons = 6;</code>
      * @return A list containing the disallowSkippingPrevReasons.
@@ -815,7 +843,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_SKIPPING_NEXT_REASONS_FIELD_NUMBER = 7;
-    private com.google.protobuf.LazyStringList disallowSkippingNextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSkippingNextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_skipping_next_reasons = 7;</code>
      * @return A list containing the disallowSkippingNextReasons.
@@ -850,7 +880,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_TOGGLING_REPEAT_CONTEXT_REASONS_FIELD_NUMBER = 8;
-    private com.google.protobuf.LazyStringList disallowTogglingRepeatContextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatContextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_toggling_repeat_context_reasons = 8;</code>
      * @return A list containing the disallowTogglingRepeatContextReasons.
@@ -885,7 +917,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_TOGGLING_REPEAT_TRACK_REASONS_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList disallowTogglingRepeatTrackReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatTrackReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_toggling_repeat_track_reasons = 9;</code>
      * @return A list containing the disallowTogglingRepeatTrackReasons.
@@ -920,7 +954,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_TOGGLING_SHUFFLE_REASONS_FIELD_NUMBER = 10;
-    private com.google.protobuf.LazyStringList disallowTogglingShuffleReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTogglingShuffleReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_toggling_shuffle_reasons = 10;</code>
      * @return A list containing the disallowTogglingShuffleReasons.
@@ -955,7 +991,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_SET_QUEUE_REASONS_FIELD_NUMBER = 11;
-    private com.google.protobuf.LazyStringList disallowSetQueueReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowSetQueueReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_set_queue_reasons = 11;</code>
      * @return A list containing the disallowSetQueueReasons.
@@ -990,7 +1028,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_INTERRUPTING_PLAYBACK_REASONS_FIELD_NUMBER = 12;
-    private com.google.protobuf.LazyStringList disallowInterruptingPlaybackReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowInterruptingPlaybackReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_interrupting_playback_reasons = 12;</code>
      * @return A list containing the disallowInterruptingPlaybackReasons.
@@ -1025,7 +1065,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_TRANSFERRING_PLAYBACK_REASONS_FIELD_NUMBER = 13;
-    private com.google.protobuf.LazyStringList disallowTransferringPlaybackReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowTransferringPlaybackReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_transferring_playback_reasons = 13;</code>
      * @return A list containing the disallowTransferringPlaybackReasons.
@@ -1060,7 +1102,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_REMOTE_CONTROL_REASONS_FIELD_NUMBER = 14;
-    private com.google.protobuf.LazyStringList disallowRemoteControlReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowRemoteControlReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_remote_control_reasons = 14;</code>
      * @return A list containing the disallowRemoteControlReasons.
@@ -1095,7 +1139,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_INSERTING_INTO_NEXT_TRACKS_REASONS_FIELD_NUMBER = 15;
-    private com.google.protobuf.LazyStringList disallowInsertingIntoNextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowInsertingIntoNextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_inserting_into_next_tracks_reasons = 15;</code>
      * @return A list containing the disallowInsertingIntoNextTracksReasons.
@@ -1130,7 +1176,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_INSERTING_INTO_CONTEXT_TRACKS_REASONS_FIELD_NUMBER = 16;
-    private com.google.protobuf.LazyStringList disallowInsertingIntoContextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowInsertingIntoContextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_inserting_into_context_tracks_reasons = 16;</code>
      * @return A list containing the disallowInsertingIntoContextTracksReasons.
@@ -1165,7 +1213,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_REORDERING_IN_NEXT_TRACKS_REASONS_FIELD_NUMBER = 17;
-    private com.google.protobuf.LazyStringList disallowReorderingInNextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowReorderingInNextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_reordering_in_next_tracks_reasons = 17;</code>
      * @return A list containing the disallowReorderingInNextTracksReasons.
@@ -1200,7 +1250,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_REORDERING_IN_CONTEXT_TRACKS_REASONS_FIELD_NUMBER = 18;
-    private com.google.protobuf.LazyStringList disallowReorderingInContextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowReorderingInContextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_reordering_in_context_tracks_reasons = 18;</code>
      * @return A list containing the disallowReorderingInContextTracksReasons.
@@ -1235,7 +1287,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_REMOVING_FROM_NEXT_TRACKS_REASONS_FIELD_NUMBER = 19;
-    private com.google.protobuf.LazyStringList disallowRemovingFromNextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowRemovingFromNextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_removing_from_next_tracks_reasons = 19;</code>
      * @return A list containing the disallowRemovingFromNextTracksReasons.
@@ -1270,7 +1324,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_REMOVING_FROM_CONTEXT_TRACKS_REASONS_FIELD_NUMBER = 20;
-    private com.google.protobuf.LazyStringList disallowRemovingFromContextTracksReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowRemovingFromContextTracksReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_removing_from_context_tracks_reasons = 20;</code>
      * @return A list containing the disallowRemovingFromContextTracksReasons.
@@ -1305,7 +1361,9 @@ public final class RestrictionsOuterClass {
     }
 
     public static final int DISALLOW_UPDATING_CONTEXT_REASONS_FIELD_NUMBER = 21;
-    private com.google.protobuf.LazyStringList disallowUpdatingContextReasons_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList disallowUpdatingContextReasons_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string disallow_updating_context_reasons = 21;</code>
      * @return A list containing the disallowUpdatingContextReasons.
@@ -1383,11 +1441,13 @@ public final class RestrictionsOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1426,7 +1486,8 @@ public final class RestrictionsOuterClass {
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        return new Builder(parent);
+      Builder builder = new Builder(parent);
+      return builder;
     }
     /**
      * Protobuf type {@code spotify.player.proto.Restrictions}
@@ -1434,8 +1495,8 @@ public final class RestrictionsOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:spotify.player.proto.Restrictions)
-           com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.RestrictionsOrBuilder {
-      public static com.google.protobuf.Descriptors.Descriptor
+        com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.RestrictionsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.internal_static_spotify_player_proto_Restrictions_descriptor;
       }
@@ -1445,66 +1506,65 @@ public final class RestrictionsOuterClass {
           internalGetFieldAccessorTable() {
         return com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.internal_static_spotify_player_proto_Restrictions_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                    com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.class, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.Builder.class);
+                com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.class, com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.Builder.class);
       }
 
       // Construct using com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
-        disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
-        disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
-        disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
-        disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
-        disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
-        disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
-        disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000200);
-        disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000400);
-        disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000800);
-        disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00001000);
-        disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00002000);
-        disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00004000);
-        disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00008000);
-        disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00010000);
-        disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00020000);
-        disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00040000);
-        disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00080000);
-        disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00100000);
+        bitField0_ = 0;
+        disallowPausingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowResumingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSeekingReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowPeekingPrevReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowPeekingNextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSkippingPrevReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSkippingNextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTogglingRepeatContextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTogglingRepeatTrackReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTogglingShuffleReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowSetQueueReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowInterruptingPlaybackReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowTransferringPlaybackReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowRemoteControlReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowInsertingIntoNextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowInsertingIntoContextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowReorderingInNextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowReorderingInContextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowRemovingFromNextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowRemovingFromContextTracksReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        disallowUpdatingContextReasons_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -1531,157 +1591,108 @@ public final class RestrictionsOuterClass {
       @java.lang.Override
       public com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions buildPartial() {
         com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions result = new com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          disallowPausingReasons_ = disallowPausingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.disallowPausingReasons_ = disallowPausingReasons_;
-        if (((bitField0_ & 0x00000002) != 0)) {
-          disallowResumingReasons_ = disallowResumingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.disallowResumingReasons_ = disallowResumingReasons_;
-        if (((bitField0_ & 0x00000004) != 0)) {
-          disallowSeekingReasons_ = disallowSeekingReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.disallowSeekingReasons_ = disallowSeekingReasons_;
-        if (((bitField0_ & 0x00000008) != 0)) {
-          disallowPeekingPrevReasons_ = disallowPeekingPrevReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000008);
-        }
-        result.disallowPeekingPrevReasons_ = disallowPeekingPrevReasons_;
-        if (((bitField0_ & 0x00000010) != 0)) {
-          disallowPeekingNextReasons_ = disallowPeekingNextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        }
-        result.disallowPeekingNextReasons_ = disallowPeekingNextReasons_;
-        if (((bitField0_ & 0x00000020) != 0)) {
-          disallowSkippingPrevReasons_ = disallowSkippingPrevReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000020);
-        }
-        result.disallowSkippingPrevReasons_ = disallowSkippingPrevReasons_;
-        if (((bitField0_ & 0x00000040) != 0)) {
-          disallowSkippingNextReasons_ = disallowSkippingNextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000040);
-        }
-        result.disallowSkippingNextReasons_ = disallowSkippingNextReasons_;
-        if (((bitField0_ & 0x00000080) != 0)) {
-          disallowTogglingRepeatContextReasons_ = disallowTogglingRepeatContextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000080);
-        }
-        result.disallowTogglingRepeatContextReasons_ = disallowTogglingRepeatContextReasons_;
-        if (((bitField0_ & 0x00000100) != 0)) {
-          disallowTogglingRepeatTrackReasons_ = disallowTogglingRepeatTrackReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000100);
-        }
-        result.disallowTogglingRepeatTrackReasons_ = disallowTogglingRepeatTrackReasons_;
-        if (((bitField0_ & 0x00000200) != 0)) {
-          disallowTogglingShuffleReasons_ = disallowTogglingShuffleReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000200);
-        }
-        result.disallowTogglingShuffleReasons_ = disallowTogglingShuffleReasons_;
-        if (((bitField0_ & 0x00000400) != 0)) {
-          disallowSetQueueReasons_ = disallowSetQueueReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000400);
-        }
-        result.disallowSetQueueReasons_ = disallowSetQueueReasons_;
-        if (((bitField0_ & 0x00000800) != 0)) {
-          disallowInterruptingPlaybackReasons_ = disallowInterruptingPlaybackReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000800);
-        }
-        result.disallowInterruptingPlaybackReasons_ = disallowInterruptingPlaybackReasons_;
-        if (((bitField0_ & 0x00001000) != 0)) {
-          disallowTransferringPlaybackReasons_ = disallowTransferringPlaybackReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00001000);
-        }
-        result.disallowTransferringPlaybackReasons_ = disallowTransferringPlaybackReasons_;
-        if (((bitField0_ & 0x00002000) != 0)) {
-          disallowRemoteControlReasons_ = disallowRemoteControlReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00002000);
-        }
-        result.disallowRemoteControlReasons_ = disallowRemoteControlReasons_;
-        if (((bitField0_ & 0x00004000) != 0)) {
-          disallowInsertingIntoNextTracksReasons_ = disallowInsertingIntoNextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00004000);
-        }
-        result.disallowInsertingIntoNextTracksReasons_ = disallowInsertingIntoNextTracksReasons_;
-        if (((bitField0_ & 0x00008000) != 0)) {
-          disallowInsertingIntoContextTracksReasons_ = disallowInsertingIntoContextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00008000);
-        }
-        result.disallowInsertingIntoContextTracksReasons_ = disallowInsertingIntoContextTracksReasons_;
-        if (((bitField0_ & 0x00010000) != 0)) {
-          disallowReorderingInNextTracksReasons_ = disallowReorderingInNextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00010000);
-        }
-        result.disallowReorderingInNextTracksReasons_ = disallowReorderingInNextTracksReasons_;
-        if (((bitField0_ & 0x00020000) != 0)) {
-          disallowReorderingInContextTracksReasons_ = disallowReorderingInContextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00020000);
-        }
-        result.disallowReorderingInContextTracksReasons_ = disallowReorderingInContextTracksReasons_;
-        if (((bitField0_ & 0x00040000) != 0)) {
-          disallowRemovingFromNextTracksReasons_ = disallowRemovingFromNextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00040000);
-        }
-        result.disallowRemovingFromNextTracksReasons_ = disallowRemovingFromNextTracksReasons_;
-        if (((bitField0_ & 0x00080000) != 0)) {
-          disallowRemovingFromContextTracksReasons_ = disallowRemovingFromContextTracksReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00080000);
-        }
-        result.disallowRemovingFromContextTracksReasons_ = disallowRemovingFromContextTracksReasons_;
-        if (((bitField0_ & 0x00100000) != 0)) {
-          disallowUpdatingContextReasons_ = disallowUpdatingContextReasons_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00100000);
-        }
-        result.disallowUpdatingContextReasons_ = disallowUpdatingContextReasons_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.spotifyxp.deps.com.spotify.context.RestrictionsOuterClass.Restrictions result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          disallowPausingReasons_.makeImmutable();
+          result.disallowPausingReasons_ = disallowPausingReasons_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          disallowResumingReasons_.makeImmutable();
+          result.disallowResumingReasons_ = disallowResumingReasons_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          disallowSeekingReasons_.makeImmutable();
+          result.disallowSeekingReasons_ = disallowSeekingReasons_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          disallowPeekingPrevReasons_.makeImmutable();
+          result.disallowPeekingPrevReasons_ = disallowPeekingPrevReasons_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          disallowPeekingNextReasons_.makeImmutable();
+          result.disallowPeekingNextReasons_ = disallowPeekingNextReasons_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          disallowSkippingPrevReasons_.makeImmutable();
+          result.disallowSkippingPrevReasons_ = disallowSkippingPrevReasons_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          disallowSkippingNextReasons_.makeImmutable();
+          result.disallowSkippingNextReasons_ = disallowSkippingNextReasons_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          disallowTogglingRepeatContextReasons_.makeImmutable();
+          result.disallowTogglingRepeatContextReasons_ = disallowTogglingRepeatContextReasons_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          disallowTogglingRepeatTrackReasons_.makeImmutable();
+          result.disallowTogglingRepeatTrackReasons_ = disallowTogglingRepeatTrackReasons_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          disallowTogglingShuffleReasons_.makeImmutable();
+          result.disallowTogglingShuffleReasons_ = disallowTogglingShuffleReasons_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          disallowSetQueueReasons_.makeImmutable();
+          result.disallowSetQueueReasons_ = disallowSetQueueReasons_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          disallowInterruptingPlaybackReasons_.makeImmutable();
+          result.disallowInterruptingPlaybackReasons_ = disallowInterruptingPlaybackReasons_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          disallowTransferringPlaybackReasons_.makeImmutable();
+          result.disallowTransferringPlaybackReasons_ = disallowTransferringPlaybackReasons_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          disallowRemoteControlReasons_.makeImmutable();
+          result.disallowRemoteControlReasons_ = disallowRemoteControlReasons_;
+        }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          disallowInsertingIntoNextTracksReasons_.makeImmutable();
+          result.disallowInsertingIntoNextTracksReasons_ = disallowInsertingIntoNextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          disallowInsertingIntoContextTracksReasons_.makeImmutable();
+          result.disallowInsertingIntoContextTracksReasons_ = disallowInsertingIntoContextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00010000) != 0)) {
+          disallowReorderingInNextTracksReasons_.makeImmutable();
+          result.disallowReorderingInNextTracksReasons_ = disallowReorderingInNextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          disallowReorderingInContextTracksReasons_.makeImmutable();
+          result.disallowReorderingInContextTracksReasons_ = disallowReorderingInContextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          disallowRemovingFromNextTracksReasons_.makeImmutable();
+          result.disallowRemovingFromNextTracksReasons_ = disallowRemovingFromNextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          disallowRemovingFromContextTracksReasons_.makeImmutable();
+          result.disallowRemovingFromContextTracksReasons_ = disallowRemovingFromContextTracksReasons_;
+        }
+        if (((from_bitField0_ & 0x00100000) != 0)) {
+          disallowUpdatingContextReasons_.makeImmutable();
+          result.disallowUpdatingContextReasons_ = disallowUpdatingContextReasons_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       private int bitField0_;
 
-      private com.google.protobuf.LazyStringList disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowPausingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPausingReasonsIsMutable() {
-        if ((bitField0_ & 0x00000001) == 0) {
+        if (!disallowPausingReasons_.isModifiable()) {
           disallowPausingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPausingReasons_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000001;
       }
       /**
        * <code>repeated string disallow_pausing_reasons = 1;</code>
@@ -1689,7 +1700,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPausingReasonsList() {
-        return disallowPausingReasons_.getUnmodifiableView();
+        disallowPausingReasons_.makeImmutable();
+        return disallowPausingReasons_;
       }
       /**
        * <code>repeated string disallow_pausing_reasons = 1;</code>
@@ -1723,11 +1735,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowPausingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPausingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPausingReasonsIsMutable();
         disallowPausingReasons_.set(index, value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1738,11 +1749,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowPausingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPausingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPausingReasonsIsMutable();
         disallowPausingReasons_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1756,6 +1766,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowPausingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPausingReasons_);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1764,8 +1775,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPausingReasons() {
-        disallowPausingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        disallowPausingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
         onChanged();
         return this;
       }
@@ -1776,22 +1788,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowPausingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPausingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPausingReasonsIsMutable();
         disallowPausingReasons_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowResumingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowResumingReasonsIsMutable() {
-        if ((bitField0_ & 0x00000002) == 0) {
+        if (!disallowResumingReasons_.isModifiable()) {
           disallowResumingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowResumingReasons_);
-          bitField0_ |= 0x00000002;
-         }
+        }
+        bitField0_ |= 0x00000002;
       }
       /**
        * <code>repeated string disallow_resuming_reasons = 2;</code>
@@ -1799,7 +1810,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowResumingReasonsList() {
-        return disallowResumingReasons_.getUnmodifiableView();
+        disallowResumingReasons_.makeImmutable();
+        return disallowResumingReasons_;
       }
       /**
        * <code>repeated string disallow_resuming_reasons = 2;</code>
@@ -1833,11 +1845,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowResumingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowResumingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowResumingReasonsIsMutable();
         disallowResumingReasons_.set(index, value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1848,11 +1859,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowResumingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowResumingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowResumingReasonsIsMutable();
         disallowResumingReasons_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1866,6 +1876,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowResumingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowResumingReasons_);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1874,8 +1885,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowResumingReasons() {
-        disallowResumingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        disallowResumingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);;
         onChanged();
         return this;
       }
@@ -1886,22 +1898,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowResumingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowResumingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowResumingReasonsIsMutable();
         disallowResumingReasons_.add(value);
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowSeekingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSeekingReasonsIsMutable() {
-        if ((bitField0_ & 0x00000004) == 0) {
+        if (!disallowSeekingReasons_.isModifiable()) {
           disallowSeekingReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSeekingReasons_);
-          bitField0_ |= 0x00000004;
-         }
+        }
+        bitField0_ |= 0x00000004;
       }
       /**
        * <code>repeated string disallow_seeking_reasons = 3;</code>
@@ -1909,7 +1920,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSeekingReasonsList() {
-        return disallowSeekingReasons_.getUnmodifiableView();
+        disallowSeekingReasons_.makeImmutable();
+        return disallowSeekingReasons_;
       }
       /**
        * <code>repeated string disallow_seeking_reasons = 3;</code>
@@ -1943,11 +1955,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowSeekingReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSeekingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSeekingReasonsIsMutable();
         disallowSeekingReasons_.set(index, value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1958,11 +1969,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSeekingReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSeekingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSeekingReasonsIsMutable();
         disallowSeekingReasons_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1976,6 +1986,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowSeekingReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSeekingReasons_);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1984,8 +1995,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSeekingReasons() {
-        disallowSeekingReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        disallowSeekingReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);;
         onChanged();
         return this;
       }
@@ -1996,22 +2008,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSeekingReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSeekingReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSeekingReasonsIsMutable();
         disallowSeekingReasons_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowPeekingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPeekingPrevReasonsIsMutable() {
-        if ((bitField0_ & 0x00000008) == 0) {
+        if (!disallowPeekingPrevReasons_.isModifiable()) {
           disallowPeekingPrevReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPeekingPrevReasons_);
-          bitField0_ |= 0x00000008;
-         }
+        }
+        bitField0_ |= 0x00000008;
       }
       /**
        * <code>repeated string disallow_peeking_prev_reasons = 4;</code>
@@ -2019,7 +2030,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPeekingPrevReasonsList() {
-        return disallowPeekingPrevReasons_.getUnmodifiableView();
+        disallowPeekingPrevReasons_.makeImmutable();
+        return disallowPeekingPrevReasons_;
       }
       /**
        * <code>repeated string disallow_peeking_prev_reasons = 4;</code>
@@ -2053,11 +2065,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowPeekingPrevReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingPrevReasonsIsMutable();
         disallowPeekingPrevReasons_.set(index, value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2068,11 +2079,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowPeekingPrevReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingPrevReasonsIsMutable();
         disallowPeekingPrevReasons_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2086,6 +2096,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowPeekingPrevReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPeekingPrevReasons_);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2094,8 +2105,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPeekingPrevReasons() {
-        disallowPeekingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
+        disallowPeekingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);;
         onChanged();
         return this;
       }
@@ -2106,22 +2118,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowPeekingPrevReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingPrevReasonsIsMutable();
         disallowPeekingPrevReasons_.add(value);
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowPeekingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowPeekingNextReasonsIsMutable() {
-        if ((bitField0_ & 0x00000010) == 0) {
+        if (!disallowPeekingNextReasons_.isModifiable()) {
           disallowPeekingNextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowPeekingNextReasons_);
-          bitField0_ |= 0x00000010;
-         }
+        }
+        bitField0_ |= 0x00000010;
       }
       /**
        * <code>repeated string disallow_peeking_next_reasons = 5;</code>
@@ -2129,7 +2140,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowPeekingNextReasonsList() {
-        return disallowPeekingNextReasons_.getUnmodifiableView();
+        disallowPeekingNextReasons_.makeImmutable();
+        return disallowPeekingNextReasons_;
       }
       /**
        * <code>repeated string disallow_peeking_next_reasons = 5;</code>
@@ -2163,11 +2175,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowPeekingNextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingNextReasonsIsMutable();
         disallowPeekingNextReasons_.set(index, value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2178,11 +2189,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowPeekingNextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingNextReasonsIsMutable();
         disallowPeekingNextReasons_.add(value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2196,6 +2206,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowPeekingNextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowPeekingNextReasons_);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2204,8 +2215,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowPeekingNextReasons() {
-        disallowPeekingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        disallowPeekingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);;
         onChanged();
         return this;
       }
@@ -2216,22 +2228,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowPeekingNextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowPeekingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowPeekingNextReasonsIsMutable();
         disallowPeekingNextReasons_.add(value);
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowSkippingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSkippingPrevReasonsIsMutable() {
-        if ((bitField0_ & 0x00000020) == 0) {
+        if (!disallowSkippingPrevReasons_.isModifiable()) {
           disallowSkippingPrevReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSkippingPrevReasons_);
-          bitField0_ |= 0x00000020;
-         }
+        }
+        bitField0_ |= 0x00000020;
       }
       /**
        * <code>repeated string disallow_skipping_prev_reasons = 6;</code>
@@ -2239,7 +2250,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSkippingPrevReasonsList() {
-        return disallowSkippingPrevReasons_.getUnmodifiableView();
+        disallowSkippingPrevReasons_.makeImmutable();
+        return disallowSkippingPrevReasons_;
       }
       /**
        * <code>repeated string disallow_skipping_prev_reasons = 6;</code>
@@ -2273,11 +2285,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowSkippingPrevReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingPrevReasonsIsMutable();
         disallowSkippingPrevReasons_.set(index, value);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -2288,11 +2299,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSkippingPrevReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingPrevReasonsIsMutable();
         disallowSkippingPrevReasons_.add(value);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -2306,6 +2316,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowSkippingPrevReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSkippingPrevReasons_);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -2314,8 +2325,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSkippingPrevReasons() {
-        disallowSkippingPrevReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
+        disallowSkippingPrevReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);;
         onChanged();
         return this;
       }
@@ -2326,22 +2338,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSkippingPrevReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingPrevReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingPrevReasonsIsMutable();
         disallowSkippingPrevReasons_.add(value);
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowSkippingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSkippingNextReasonsIsMutable() {
-        if ((bitField0_ & 0x00000040) == 0) {
+        if (!disallowSkippingNextReasons_.isModifiable()) {
           disallowSkippingNextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSkippingNextReasons_);
-          bitField0_ |= 0x00000040;
-         }
+        }
+        bitField0_ |= 0x00000040;
       }
       /**
        * <code>repeated string disallow_skipping_next_reasons = 7;</code>
@@ -2349,7 +2360,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSkippingNextReasonsList() {
-        return disallowSkippingNextReasons_.getUnmodifiableView();
+        disallowSkippingNextReasons_.makeImmutable();
+        return disallowSkippingNextReasons_;
       }
       /**
        * <code>repeated string disallow_skipping_next_reasons = 7;</code>
@@ -2383,11 +2395,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowSkippingNextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingNextReasonsIsMutable();
         disallowSkippingNextReasons_.set(index, value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -2398,11 +2409,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSkippingNextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingNextReasonsIsMutable();
         disallowSkippingNextReasons_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -2416,6 +2426,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowSkippingNextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSkippingNextReasons_);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -2424,8 +2435,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSkippingNextReasons() {
-        disallowSkippingNextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000040);
+        disallowSkippingNextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);;
         onChanged();
         return this;
       }
@@ -2436,22 +2448,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSkippingNextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSkippingNextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSkippingNextReasonsIsMutable();
         disallowSkippingNextReasons_.add(value);
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTogglingRepeatContextReasonsIsMutable() {
-        if ((bitField0_ & 0x00000080) == 0) {
+        if (!disallowTogglingRepeatContextReasons_.isModifiable()) {
           disallowTogglingRepeatContextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingRepeatContextReasons_);
-          bitField0_ |= 0x00000080;
-         }
+        }
+        bitField0_ |= 0x00000080;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_context_reasons = 8;</code>
@@ -2459,7 +2470,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTogglingRepeatContextReasonsList() {
-        return disallowTogglingRepeatContextReasons_.getUnmodifiableView();
+        disallowTogglingRepeatContextReasons_.makeImmutable();
+        return disallowTogglingRepeatContextReasons_;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_context_reasons = 8;</code>
@@ -2493,11 +2505,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowTogglingRepeatContextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatContextReasonsIsMutable();
         disallowTogglingRepeatContextReasons_.set(index, value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -2508,11 +2519,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTogglingRepeatContextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatContextReasonsIsMutable();
         disallowTogglingRepeatContextReasons_.add(value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -2526,6 +2536,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowTogglingRepeatContextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTogglingRepeatContextReasons_);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -2534,8 +2545,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTogglingRepeatContextReasons() {
-        disallowTogglingRepeatContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
+        disallowTogglingRepeatContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000080);;
         onChanged();
         return this;
       }
@@ -2546,22 +2558,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTogglingRepeatContextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatContextReasonsIsMutable();
         disallowTogglingRepeatContextReasons_.add(value);
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowTogglingRepeatTrackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTogglingRepeatTrackReasonsIsMutable() {
-        if ((bitField0_ & 0x00000100) == 0) {
+        if (!disallowTogglingRepeatTrackReasons_.isModifiable()) {
           disallowTogglingRepeatTrackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingRepeatTrackReasons_);
-          bitField0_ |= 0x00000100;
-         }
+        }
+        bitField0_ |= 0x00000100;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_track_reasons = 9;</code>
@@ -2569,7 +2580,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTogglingRepeatTrackReasonsList() {
-        return disallowTogglingRepeatTrackReasons_.getUnmodifiableView();
+        disallowTogglingRepeatTrackReasons_.makeImmutable();
+        return disallowTogglingRepeatTrackReasons_;
       }
       /**
        * <code>repeated string disallow_toggling_repeat_track_reasons = 9;</code>
@@ -2603,11 +2615,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowTogglingRepeatTrackReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatTrackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         disallowTogglingRepeatTrackReasons_.set(index, value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2618,11 +2629,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTogglingRepeatTrackReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatTrackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         disallowTogglingRepeatTrackReasons_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2636,6 +2646,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTogglingRepeatTrackReasons_);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
@@ -2644,8 +2655,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTogglingRepeatTrackReasons() {
-        disallowTogglingRepeatTrackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        disallowTogglingRepeatTrackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000100);;
         onChanged();
         return this;
       }
@@ -2656,22 +2668,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTogglingRepeatTrackReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingRepeatTrackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingRepeatTrackReasonsIsMutable();
         disallowTogglingRepeatTrackReasons_.add(value);
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowTogglingShuffleReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTogglingShuffleReasonsIsMutable() {
-        if ((bitField0_ & 0x00000200) == 0) {
+        if (!disallowTogglingShuffleReasons_.isModifiable()) {
           disallowTogglingShuffleReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTogglingShuffleReasons_);
-          bitField0_ |= 0x00000200;
-         }
+        }
+        bitField0_ |= 0x00000200;
       }
       /**
        * <code>repeated string disallow_toggling_shuffle_reasons = 10;</code>
@@ -2679,7 +2690,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTogglingShuffleReasonsList() {
-        return disallowTogglingShuffleReasons_.getUnmodifiableView();
+        disallowTogglingShuffleReasons_.makeImmutable();
+        return disallowTogglingShuffleReasons_;
       }
       /**
        * <code>repeated string disallow_toggling_shuffle_reasons = 10;</code>
@@ -2713,11 +2725,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowTogglingShuffleReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingShuffleReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingShuffleReasonsIsMutable();
         disallowTogglingShuffleReasons_.set(index, value);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -2728,11 +2739,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTogglingShuffleReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingShuffleReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingShuffleReasonsIsMutable();
         disallowTogglingShuffleReasons_.add(value);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -2746,6 +2756,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowTogglingShuffleReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTogglingShuffleReasons_);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
@@ -2754,8 +2765,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTogglingShuffleReasons() {
-        disallowTogglingShuffleReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000200);
+        disallowTogglingShuffleReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000200);;
         onChanged();
         return this;
       }
@@ -2766,22 +2778,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTogglingShuffleReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTogglingShuffleReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTogglingShuffleReasonsIsMutable();
         disallowTogglingShuffleReasons_.add(value);
+        bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowSetQueueReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowSetQueueReasonsIsMutable() {
-        if ((bitField0_ & 0x00000400) == 0) {
+        if (!disallowSetQueueReasons_.isModifiable()) {
           disallowSetQueueReasons_ = new com.google.protobuf.LazyStringArrayList(disallowSetQueueReasons_);
-          bitField0_ |= 0x00000400;
-         }
+        }
+        bitField0_ |= 0x00000400;
       }
       /**
        * <code>repeated string disallow_set_queue_reasons = 11;</code>
@@ -2789,7 +2800,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowSetQueueReasonsList() {
-        return disallowSetQueueReasons_.getUnmodifiableView();
+        disallowSetQueueReasons_.makeImmutable();
+        return disallowSetQueueReasons_;
       }
       /**
        * <code>repeated string disallow_set_queue_reasons = 11;</code>
@@ -2823,11 +2835,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowSetQueueReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSetQueueReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSetQueueReasonsIsMutable();
         disallowSetQueueReasons_.set(index, value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -2838,11 +2849,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSetQueueReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSetQueueReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSetQueueReasonsIsMutable();
         disallowSetQueueReasons_.add(value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -2856,6 +2866,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowSetQueueReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowSetQueueReasons_);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -2864,8 +2875,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowSetQueueReasons() {
-        disallowSetQueueReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000400);
+        disallowSetQueueReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000400);;
         onChanged();
         return this;
       }
@@ -2876,22 +2888,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowSetQueueReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowSetQueueReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowSetQueueReasonsIsMutable();
         disallowSetQueueReasons_.add(value);
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowInterruptingPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowInterruptingPlaybackReasonsIsMutable() {
-        if ((bitField0_ & 0x00000800) == 0) {
+        if (!disallowInterruptingPlaybackReasons_.isModifiable()) {
           disallowInterruptingPlaybackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInterruptingPlaybackReasons_);
-          bitField0_ |= 0x00000800;
-         }
+        }
+        bitField0_ |= 0x00000800;
       }
       /**
        * <code>repeated string disallow_interrupting_playback_reasons = 12;</code>
@@ -2899,7 +2910,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowInterruptingPlaybackReasonsList() {
-        return disallowInterruptingPlaybackReasons_.getUnmodifiableView();
+        disallowInterruptingPlaybackReasons_.makeImmutable();
+        return disallowInterruptingPlaybackReasons_;
       }
       /**
        * <code>repeated string disallow_interrupting_playback_reasons = 12;</code>
@@ -2933,11 +2945,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowInterruptingPlaybackReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInterruptingPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInterruptingPlaybackReasonsIsMutable();
         disallowInterruptingPlaybackReasons_.set(index, value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -2948,11 +2959,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowInterruptingPlaybackReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInterruptingPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInterruptingPlaybackReasonsIsMutable();
         disallowInterruptingPlaybackReasons_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -2966,6 +2976,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowInterruptingPlaybackReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowInterruptingPlaybackReasons_);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -2974,8 +2985,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowInterruptingPlaybackReasons() {
-        disallowInterruptingPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000800);
+        disallowInterruptingPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000800);;
         onChanged();
         return this;
       }
@@ -2986,22 +2998,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowInterruptingPlaybackReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInterruptingPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInterruptingPlaybackReasonsIsMutable();
         disallowInterruptingPlaybackReasons_.add(value);
+        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowTransferringPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowTransferringPlaybackReasonsIsMutable() {
-        if ((bitField0_ & 0x00001000) == 0) {
+        if (!disallowTransferringPlaybackReasons_.isModifiable()) {
           disallowTransferringPlaybackReasons_ = new com.google.protobuf.LazyStringArrayList(disallowTransferringPlaybackReasons_);
-          bitField0_ |= 0x00001000;
-         }
+        }
+        bitField0_ |= 0x00001000;
       }
       /**
        * <code>repeated string disallow_transferring_playback_reasons = 13;</code>
@@ -3009,7 +3020,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowTransferringPlaybackReasonsList() {
-        return disallowTransferringPlaybackReasons_.getUnmodifiableView();
+        disallowTransferringPlaybackReasons_.makeImmutable();
+        return disallowTransferringPlaybackReasons_;
       }
       /**
        * <code>repeated string disallow_transferring_playback_reasons = 13;</code>
@@ -3043,11 +3055,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowTransferringPlaybackReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTransferringPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTransferringPlaybackReasonsIsMutable();
         disallowTransferringPlaybackReasons_.set(index, value);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -3058,11 +3069,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTransferringPlaybackReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTransferringPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTransferringPlaybackReasonsIsMutable();
         disallowTransferringPlaybackReasons_.add(value);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -3076,6 +3086,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowTransferringPlaybackReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowTransferringPlaybackReasons_);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
@@ -3084,8 +3095,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowTransferringPlaybackReasons() {
-        disallowTransferringPlaybackReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00001000);
+        disallowTransferringPlaybackReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00001000);;
         onChanged();
         return this;
       }
@@ -3096,22 +3108,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowTransferringPlaybackReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowTransferringPlaybackReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowTransferringPlaybackReasonsIsMutable();
         disallowTransferringPlaybackReasons_.add(value);
+        bitField0_ |= 0x00001000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowRemoteControlReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowRemoteControlReasonsIsMutable() {
-        if ((bitField0_ & 0x00002000) == 0) {
+        if (!disallowRemoteControlReasons_.isModifiable()) {
           disallowRemoteControlReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemoteControlReasons_);
-          bitField0_ |= 0x00002000;
-         }
+        }
+        bitField0_ |= 0x00002000;
       }
       /**
        * <code>repeated string disallow_remote_control_reasons = 14;</code>
@@ -3119,7 +3130,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowRemoteControlReasonsList() {
-        return disallowRemoteControlReasons_.getUnmodifiableView();
+        disallowRemoteControlReasons_.makeImmutable();
+        return disallowRemoteControlReasons_;
       }
       /**
        * <code>repeated string disallow_remote_control_reasons = 14;</code>
@@ -3153,11 +3165,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowRemoteControlReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemoteControlReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemoteControlReasonsIsMutable();
         disallowRemoteControlReasons_.set(index, value);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -3168,11 +3179,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowRemoteControlReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemoteControlReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemoteControlReasonsIsMutable();
         disallowRemoteControlReasons_.add(value);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -3186,6 +3196,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowRemoteControlReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowRemoteControlReasons_);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
@@ -3194,8 +3205,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowRemoteControlReasons() {
-        disallowRemoteControlReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00002000);
+        disallowRemoteControlReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00002000);;
         onChanged();
         return this;
       }
@@ -3206,22 +3218,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowRemoteControlReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemoteControlReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemoteControlReasonsIsMutable();
         disallowRemoteControlReasons_.add(value);
+        bitField0_ |= 0x00002000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowInsertingIntoNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowInsertingIntoNextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00004000) == 0) {
+        if (!disallowInsertingIntoNextTracksReasons_.isModifiable()) {
           disallowInsertingIntoNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInsertingIntoNextTracksReasons_);
-          bitField0_ |= 0x00004000;
-         }
+        }
+        bitField0_ |= 0x00004000;
       }
       /**
        * <code>repeated string disallow_inserting_into_next_tracks_reasons = 15;</code>
@@ -3229,7 +3240,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowInsertingIntoNextTracksReasonsList() {
-        return disallowInsertingIntoNextTracksReasons_.getUnmodifiableView();
+        disallowInsertingIntoNextTracksReasons_.makeImmutable();
+        return disallowInsertingIntoNextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_inserting_into_next_tracks_reasons = 15;</code>
@@ -3263,11 +3275,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowInsertingIntoNextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         disallowInsertingIntoNextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -3278,11 +3289,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowInsertingIntoNextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         disallowInsertingIntoNextTracksReasons_.add(value);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -3296,6 +3306,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowInsertingIntoNextTracksReasons_);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
@@ -3304,8 +3315,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowInsertingIntoNextTracksReasons() {
-        disallowInsertingIntoNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00004000);
+        disallowInsertingIntoNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00004000);;
         onChanged();
         return this;
       }
@@ -3316,22 +3328,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowInsertingIntoNextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoNextTracksReasonsIsMutable();
         disallowInsertingIntoNextTracksReasons_.add(value);
+        bitField0_ |= 0x00004000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowInsertingIntoContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowInsertingIntoContextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00008000) == 0) {
+        if (!disallowInsertingIntoContextTracksReasons_.isModifiable()) {
           disallowInsertingIntoContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowInsertingIntoContextTracksReasons_);
-          bitField0_ |= 0x00008000;
-         }
+        }
+        bitField0_ |= 0x00008000;
       }
       /**
        * <code>repeated string disallow_inserting_into_context_tracks_reasons = 16;</code>
@@ -3339,7 +3350,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowInsertingIntoContextTracksReasonsList() {
-        return disallowInsertingIntoContextTracksReasons_.getUnmodifiableView();
+        disallowInsertingIntoContextTracksReasons_.makeImmutable();
+        return disallowInsertingIntoContextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_inserting_into_context_tracks_reasons = 16;</code>
@@ -3373,11 +3385,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowInsertingIntoContextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         disallowInsertingIntoContextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -3388,11 +3399,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowInsertingIntoContextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         disallowInsertingIntoContextTracksReasons_.add(value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -3406,6 +3416,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowInsertingIntoContextTracksReasons_);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
@@ -3414,8 +3425,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowInsertingIntoContextTracksReasons() {
-        disallowInsertingIntoContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00008000);
+        disallowInsertingIntoContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00008000);;
         onChanged();
         return this;
       }
@@ -3426,22 +3438,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowInsertingIntoContextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowInsertingIntoContextTracksReasonsIsMutable();
         disallowInsertingIntoContextTracksReasons_.add(value);
+        bitField0_ |= 0x00008000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowReorderingInNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowReorderingInNextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00010000) == 0) {
+        if (!disallowReorderingInNextTracksReasons_.isModifiable()) {
           disallowReorderingInNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReorderingInNextTracksReasons_);
-          bitField0_ |= 0x00010000;
-         }
+        }
+        bitField0_ |= 0x00010000;
       }
       /**
        * <code>repeated string disallow_reordering_in_next_tracks_reasons = 17;</code>
@@ -3449,7 +3460,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowReorderingInNextTracksReasonsList() {
-        return disallowReorderingInNextTracksReasons_.getUnmodifiableView();
+        disallowReorderingInNextTracksReasons_.makeImmutable();
+        return disallowReorderingInNextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_reordering_in_next_tracks_reasons = 17;</code>
@@ -3483,11 +3495,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowReorderingInNextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInNextTracksReasonsIsMutable();
         disallowReorderingInNextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -3498,11 +3509,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowReorderingInNextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInNextTracksReasonsIsMutable();
         disallowReorderingInNextTracksReasons_.add(value);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -3516,6 +3526,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowReorderingInNextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowReorderingInNextTracksReasons_);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
@@ -3524,8 +3535,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowReorderingInNextTracksReasons() {
-        disallowReorderingInNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00010000);
+        disallowReorderingInNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00010000);;
         onChanged();
         return this;
       }
@@ -3536,22 +3548,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowReorderingInNextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInNextTracksReasonsIsMutable();
         disallowReorderingInNextTracksReasons_.add(value);
+        bitField0_ |= 0x00010000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowReorderingInContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowReorderingInContextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00020000) == 0) {
+        if (!disallowReorderingInContextTracksReasons_.isModifiable()) {
           disallowReorderingInContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowReorderingInContextTracksReasons_);
-          bitField0_ |= 0x00020000;
-         }
+        }
+        bitField0_ |= 0x00020000;
       }
       /**
        * <code>repeated string disallow_reordering_in_context_tracks_reasons = 18;</code>
@@ -3559,7 +3570,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowReorderingInContextTracksReasonsList() {
-        return disallowReorderingInContextTracksReasons_.getUnmodifiableView();
+        disallowReorderingInContextTracksReasons_.makeImmutable();
+        return disallowReorderingInContextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_reordering_in_context_tracks_reasons = 18;</code>
@@ -3593,11 +3605,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowReorderingInContextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInContextTracksReasonsIsMutable();
         disallowReorderingInContextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -3608,11 +3619,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowReorderingInContextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInContextTracksReasonsIsMutable();
         disallowReorderingInContextTracksReasons_.add(value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -3626,6 +3636,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowReorderingInContextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowReorderingInContextTracksReasons_);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
@@ -3634,8 +3645,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowReorderingInContextTracksReasons() {
-        disallowReorderingInContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00020000);
+        disallowReorderingInContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00020000);;
         onChanged();
         return this;
       }
@@ -3646,22 +3658,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowReorderingInContextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowReorderingInContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowReorderingInContextTracksReasonsIsMutable();
         disallowReorderingInContextTracksReasons_.add(value);
+        bitField0_ |= 0x00020000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowRemovingFromNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowRemovingFromNextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00040000) == 0) {
+        if (!disallowRemovingFromNextTracksReasons_.isModifiable()) {
           disallowRemovingFromNextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemovingFromNextTracksReasons_);
-          bitField0_ |= 0x00040000;
-         }
+        }
+        bitField0_ |= 0x00040000;
       }
       /**
        * <code>repeated string disallow_removing_from_next_tracks_reasons = 19;</code>
@@ -3669,7 +3680,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowRemovingFromNextTracksReasonsList() {
-        return disallowRemovingFromNextTracksReasons_.getUnmodifiableView();
+        disallowRemovingFromNextTracksReasons_.makeImmutable();
+        return disallowRemovingFromNextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_removing_from_next_tracks_reasons = 19;</code>
@@ -3703,11 +3715,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowRemovingFromNextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         disallowRemovingFromNextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -3718,11 +3729,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowRemovingFromNextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         disallowRemovingFromNextTracksReasons_.add(value);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -3736,6 +3746,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowRemovingFromNextTracksReasons_);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
@@ -3744,8 +3755,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowRemovingFromNextTracksReasons() {
-        disallowRemovingFromNextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00040000);
+        disallowRemovingFromNextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00040000);;
         onChanged();
         return this;
       }
@@ -3756,22 +3768,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowRemovingFromNextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromNextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromNextTracksReasonsIsMutable();
         disallowRemovingFromNextTracksReasons_.add(value);
+        bitField0_ |= 0x00040000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowRemovingFromContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowRemovingFromContextTracksReasonsIsMutable() {
-        if ((bitField0_ & 0x00080000) == 0) {
+        if (!disallowRemovingFromContextTracksReasons_.isModifiable()) {
           disallowRemovingFromContextTracksReasons_ = new com.google.protobuf.LazyStringArrayList(disallowRemovingFromContextTracksReasons_);
-          bitField0_ |= 0x00080000;
-         }
+        }
+        bitField0_ |= 0x00080000;
       }
       /**
        * <code>repeated string disallow_removing_from_context_tracks_reasons = 20;</code>
@@ -3779,7 +3790,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowRemovingFromContextTracksReasonsList() {
-        return disallowRemovingFromContextTracksReasons_.getUnmodifiableView();
+        disallowRemovingFromContextTracksReasons_.makeImmutable();
+        return disallowRemovingFromContextTracksReasons_;
       }
       /**
        * <code>repeated string disallow_removing_from_context_tracks_reasons = 20;</code>
@@ -3813,11 +3825,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowRemovingFromContextTracksReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         disallowRemovingFromContextTracksReasons_.set(index, value);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -3828,11 +3839,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowRemovingFromContextTracksReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         disallowRemovingFromContextTracksReasons_.add(value);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -3846,6 +3856,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowRemovingFromContextTracksReasons_);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
@@ -3854,8 +3865,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowRemovingFromContextTracksReasons() {
-        disallowRemovingFromContextTracksReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00080000);
+        disallowRemovingFromContextTracksReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00080000);;
         onChanged();
         return this;
       }
@@ -3866,22 +3878,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowRemovingFromContextTracksReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowRemovingFromContextTracksReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowRemovingFromContextTracksReasonsIsMutable();
         disallowRemovingFromContextTracksReasons_.add(value);
+        bitField0_ |= 0x00080000;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.LazyStringList disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-
+      private com.google.protobuf.LazyStringArrayList disallowUpdatingContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureDisallowUpdatingContextReasonsIsMutable() {
-        if ((bitField0_ & 0x00100000) == 0) {
+        if (!disallowUpdatingContextReasons_.isModifiable()) {
           disallowUpdatingContextReasons_ = new com.google.protobuf.LazyStringArrayList(disallowUpdatingContextReasons_);
-          bitField0_ |= 0x00100000;
-         }
+        }
+        bitField0_ |= 0x00100000;
       }
       /**
        * <code>repeated string disallow_updating_context_reasons = 21;</code>
@@ -3889,7 +3900,8 @@ public final class RestrictionsOuterClass {
        */
       public com.google.protobuf.ProtocolStringList
           getDisallowUpdatingContextReasonsList() {
-        return disallowUpdatingContextReasons_.getUnmodifiableView();
+        disallowUpdatingContextReasons_.makeImmutable();
+        return disallowUpdatingContextReasons_;
       }
       /**
        * <code>repeated string disallow_updating_context_reasons = 21;</code>
@@ -3923,11 +3935,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder setDisallowUpdatingContextReasons(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUpdatingContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUpdatingContextReasonsIsMutable();
         disallowUpdatingContextReasons_.set(index, value);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -3938,11 +3949,10 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowUpdatingContextReasons(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUpdatingContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUpdatingContextReasonsIsMutable();
         disallowUpdatingContextReasons_.add(value);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -3956,6 +3966,7 @@ public final class RestrictionsOuterClass {
         ensureDisallowUpdatingContextReasonsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, disallowUpdatingContextReasons_);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
@@ -3964,8 +3975,9 @@ public final class RestrictionsOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDisallowUpdatingContextReasons() {
-        disallowUpdatingContextReasons_ = com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00100000);
+        disallowUpdatingContextReasons_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00100000);;
         onChanged();
         return this;
       }
@@ -3976,22 +3988,21 @@ public final class RestrictionsOuterClass {
        */
       public Builder addDisallowUpdatingContextReasonsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureDisallowUpdatingContextReasonsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureDisallowUpdatingContextReasonsIsMutable();
         disallowUpdatingContextReasons_.add(value);
+        bitField0_ |= 0x00100000;
         onChanged();
         return this;
       }
       @java.lang.Override
-      public Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
-      public Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
@@ -4022,10 +4033,11 @@ public final class RestrictionsOuterClass {
           builder.mergeFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e.getMessage()).setUnfinishedMessage(
-                  builder.buildPartial());
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
         }
         return builder.buildPartial();
       }
@@ -4057,7 +4069,7 @@ public final class RestrictionsOuterClass {
       getDescriptor() {
     return descriptor;
   }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -4075,7 +4087,7 @@ public final class RestrictionsOuterClass {
       "shuffle_reasons\030\n \003(\t\022\"\n\032disallow_set_qu" +
       "eue_reasons\030\013 \003(\t\022.\n&disallow_interrupti" +
       "ng_playback_reasons\030\014 \003(\t\022.\n&disallow_tr" +
-              "ansferring_playback_reasons\030\r \003(\t\022'\n\037dis" +
+      "ansferring_playback_reasons\030\r \003(\t\022\'\n\037dis" +
       "allow_remote_control_reasons\030\016 \003(\t\0223\n+di" +
       "sallow_inserting_into_next_tracks_reason" +
       "s\030\017 \003(\t\0226\n.disallow_inserting_into_conte" +
@@ -4086,7 +4098,8 @@ public final class RestrictionsOuterClass {
       "t_tracks_reasons\030\023 \003(\t\0225\n-disallow_remov" +
       "ing_from_context_tracks_reasons\030\024 \003(\t\022)\n" +
       "!disallow_updating_context_reasons\030\025 \003(\t" +
-      "B\027\n\023com.spotify.contextH\002"
+      "B*\n&com.spotifyxp.deps.com.spotify.conte" +
+      "xtH\002"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
