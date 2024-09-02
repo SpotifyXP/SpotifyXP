@@ -110,7 +110,7 @@ public class ContentPanel extends JPanel {
         setLayout(null);
         SplashPanel.linfo.setText("Creating errorDisplay...");
         createErrorDisplay();
-        Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), () -> PublicValues.blockLoading = false);
+        Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), (Object... data) -> PublicValues.blockLoading = false);
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
         tabpanel.setLayout(null);

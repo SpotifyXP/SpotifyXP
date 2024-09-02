@@ -5,6 +5,8 @@ import com.spotifyxp.logging.ConsoleLogging;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class Events {
     private static class PrivateEvent {
@@ -14,10 +16,10 @@ public class Events {
             this.name = name;
             this.isProtected = isProtected;
         }
-        public ArrayList<Runnable> subscribers = new ArrayList<>();
-        public void trigger() {
-            for(Runnable runnable : new ArrayList<>(subscribers)) {
-                runnable.run();
+        public ArrayList<EventSubscriber> subscribers = new ArrayList<>();
+        public void trigger(Object... data) {
+            for(EventSubscriber subscriber : new ArrayList<>(subscribers)) {
+                subscriber.run(data);
             }
         }
     }
@@ -25,14 +27,14 @@ public class Events {
     public static class Event {
         private final String name;
         private final boolean isProtected;
-        public Event(String name, boolean isProtected, ArrayList<Runnable> subscribers) {
+        public Event(String name, boolean isProtected, ArrayList<EventSubscriber> subscribers) {
             this.name = name;
             this.isProtected = isProtected;
             this.subscribers = subscribers;
         }
-        private final ArrayList<Runnable> subscribers;
+        private final ArrayList<EventSubscriber> subscribers;
 
-        public ArrayList<Runnable> getSubscribers() {
+        public ArrayList<EventSubscriber> getSubscribers() {
             return subscribers;
         }
 
@@ -90,12 +92,12 @@ public class Events {
         registeredEvents.remove(result);
     }
 
-    public static void subscribe(String name, Runnable runnable) {
+    public static void subscribe(String name, EventSubscriber runnable) {
         if(debug) ConsoleLogging.debug("[Events] Subscribing to " + name);
         Objects.requireNonNull(getEventWithName(name)).subscribers.add(runnable);
     }
 
-    public static void unsubscribe(String name, Runnable runnable) {
+    public static void unsubscribe(String name, EventSubscriber runnable) {
         if(debug) ConsoleLogging.debug("[Events] Unsubscribing from " + name);
         Objects.requireNonNull(getEventWithName(name)).subscribers.remove(runnable);
     }
@@ -108,8 +110,22 @@ public class Events {
         return events;
     }
 
-    public static void triggerEvent(String name) {
+    public static void triggerEvent(String name, Object... data) {
         if(debug) ConsoleLogging.debug("[Events] Triggering event:" + name);
-        Objects.requireNonNull(getEventWithName(name)).trigger();
+        Objects.requireNonNull(getEventWithName(name)).trigger(data);
+    }
+
+    public static void triggerEventButWait(String name, CompletableFuture<Boolean> waitFor, Object... data) {
+        Thread waitForThread = new Thread(() -> {
+            try {
+                waitFor.get();
+                triggerEvent(name, data);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        waitForThread.start();
     }
 }

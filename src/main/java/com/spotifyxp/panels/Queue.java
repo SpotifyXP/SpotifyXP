@@ -34,7 +34,7 @@ public class Queue extends JPanel {
         queuelist = new JList<>(queuelistmodel);
         queuelist.setForeground(PublicValues.globalFontColor);
         queuescrollpane.setViewportView(queuelist);
-        Events.subscribe(SpotifyXPEvents.queueUpdate.getName(), () -> {
+        Events.subscribe(SpotifyXPEvents.queueUpdate.getName(), (Object... data) -> {
             if (queuelistmodel.isEmpty()) {
                 return;
             }
@@ -53,14 +53,14 @@ public class Queue extends JPanel {
                 throw new RuntimeException("Failed to list tracks in queue");
             }
         });
-        Events.subscribe(SpotifyXPEvents.queueAdvance.getName(), () -> {
+        Events.subscribe(SpotifyXPEvents.queueAdvance.getName(), (Object... data) -> {
             if (queuelistmodel.isEmpty()) {
                 return;
             }
             queueuricache.remove(0);
             queuelistmodel.remove(0);
         });
-        Events.subscribe(SpotifyXPEvents.queueRegress.getName(), () -> {
+        Events.subscribe(SpotifyXPEvents.queueRegress.getName(), (Object... data) -> {
             if (queuelistmodel.isEmpty()) {
                 return;
             }

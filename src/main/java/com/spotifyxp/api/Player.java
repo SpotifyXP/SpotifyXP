@@ -15,14 +15,6 @@ public class Player {
      */
     public void retry() {
         player = InstanceManager.getPlayerUtils().buildPlayer();
-        try {
-            player.waitReady();
-        } catch (InterruptedException e) {
-            ConsoleLogging.Throwable(e);
-            GraphicalMessage.openException(e);
-        } catch (NullPointerException e) {
-            GraphicalMessage.sorryErrorExit("Failed building player");
-        }
         ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
         player.addEventsListener(new PlayerListener(this));
         PublicValues.spotifyplayer = player;
@@ -43,14 +35,6 @@ public class Player {
     public Player(SpotifyAPI a) {
         api = a;
         player = InstanceManager.getPlayerUtils().buildPlayer();
-        try {
-            player.waitReady();
-        } catch (InterruptedException e) {
-            ConsoleLogging.Throwable(e);
-            GraphicalMessage.openException(e);
-        } catch (NullPointerException e) {
-            GraphicalMessage.sorryErrorExit("Failed building player");
-        }
         ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
         player.addEventsListener(new PlayerListener(this));
         PublicValues.spotifyplayer = player;

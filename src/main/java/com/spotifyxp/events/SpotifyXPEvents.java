@@ -15,7 +15,8 @@ public enum SpotifyXPEvents {
     injectorAPIReady("injectorAPIReady", "Fires when the injector api class has finished initializing"),
     internetConnectionDropped("internetConDrop", "Fires when the internet connection drops"),
     internetConnectionReconnected("internetConRec", "Fires when the internet gets reconnected"),
-    apikeyrefresh("apikeyrefresh", "Fires when the api key refreshes");
+    apikeyrefresh("apikeyrefresh", "Fires when the api key refreshes"),
+    connectionId("connectionId", "Fires when the connection id has been received");
 
     public String getName() {
         return name;

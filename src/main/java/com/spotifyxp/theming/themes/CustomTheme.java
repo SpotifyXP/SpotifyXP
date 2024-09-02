@@ -230,7 +230,7 @@ public class CustomTheme implements Theme {
             throw new RuntimeException(e);
         }
         PublicValues.globalFontColor = Color.decode(config.get("fontcolor"));
-        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), () -> {
+        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), (Object... data) -> {
             JMenu menu = new JMenu(PublicValues.language.translate("ui.theme.menu"));
             JMenuItem change = new JMenuItem(PublicValues.language.translate("ui.theme.change"));
             menu.add(change);

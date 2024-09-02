@@ -6,6 +6,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
@@ -23,9 +24,9 @@ public class SpotifyAPI {
     static SpotifyApi spotifyApi = null;
 
     public SpotifyAPI() {
-        Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), new Runnable() {
+        Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), new EventSubscriber() {
             @Override
-            public void run() {
+            public void run(Object... data) {
                 if(PublicValues.spotifyplayer == null) return;
                 spotifyApi.setAccessToken(Token.getDefaultToken());
             }

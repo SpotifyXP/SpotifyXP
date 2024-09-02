@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -104,19 +105,19 @@ public class LyricsDialog extends JDialog {
         }
     }
 
-    Runnable seekedForwards() {
-        return new Runnable() {
+    EventSubscriber seekedForwards() {
+        return new EventSubscriber() {
             @Override
-            public void run() {
+            public void run(Object... data) {
                 triggerRefresh();
             }
         };
     }
 
-    Runnable seekedBackwards() {
-        return new Runnable() {
+    EventSubscriber seekedBackwards() {
+        return new EventSubscriber() {
             @Override
-            public void run() {
+            public void run(Object... data) {
                 lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
                 coloredLines.clear();
                 for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {

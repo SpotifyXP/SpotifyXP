@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.dialogs.LyricsDialog;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.graphics.Graphics;
@@ -288,7 +289,7 @@ public class PlayerArea extends JPanel {
 
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
-        Events.subscribe(SpotifyXPEvents.trackNext.getName(), () -> {
+        Events.subscribe(SpotifyXPEvents.trackNext.getName(), (Object... data) -> {
             if(PublicValues.spotifyplayer.currentPlayable() == null) return;
             if(!doneLastParsing) return;
             if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
@@ -381,9 +382,9 @@ public class PlayerArea extends JPanel {
             }
         });
 
-        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new Runnable() {
+        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
             @Override
-            public void run() {
+            public void run(Object... data) {
                 if (new File(PublicValues.fileslocation, "play.state").exists()) {
                     parseLastPlayState();
                     try {
@@ -399,16 +400,16 @@ public class PlayerArea extends JPanel {
                                 PlayerArea.heart.isFilled = true;
                                 PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
                             }
-                            Runnable event = new Runnable() {
+                            EventSubscriber subscriber = new EventSubscriber() {
                                 @Override
-                                public void run() {
+                                public void run(Object... data) {
                                     PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider) * 1000);
                                     PlayerArea.playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
                                     Events.unsubscribe(SpotifyXPEvents.playerLockRelease.getName(), this);
                                     doneLastParsing = true;
                                 }
                             };
-                            Events.subscribe(SpotifyXPEvents.playerLockRelease.getName(), event);
+                            Events.subscribe(SpotifyXPEvents.playerLockRelease.getName(), subscriber);
                         }
                         if(!lastPlayState.queue.isEmpty()) {
                             try {

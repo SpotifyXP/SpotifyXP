@@ -36,8 +36,8 @@ public class Initiator {
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
         startupTime = new StartupTime(); //Saving the time SpotifyXP was started
-        initEvents(); //Initializing the event support
         PublicValues.argParser.parseArguments(args); //Parsing the arguments
+        initEvents(); //Initializing the event support
         new SplashPanel().show(); //Initializing the splash panel
         System.setProperty("http.agent", ApplicationUtils.getUserAgent()); //Setting the user agent string that SpotifyXP uses
         checkDebug(); //Checking if debug is enabled

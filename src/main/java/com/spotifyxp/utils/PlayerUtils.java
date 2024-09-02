@@ -12,6 +12,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.dialogs.LoginDialog;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -87,7 +88,6 @@ public class PlayerUtils {
                             }
                         });
                         session = sessionFuture.get();
-                        zeroconfServer.close();
                     } catch (IOException e) {
                         ConsoleLogging.Throwable(e);
                         GraphicalMessage.sorryError("Failed to build player");
@@ -128,20 +128,20 @@ public class PlayerUtils {
         return null;
     }
 
-    Runnable connectionReconnectedListener() {
-        return new Runnable() {
+    EventSubscriber connectionReconnectedListener() {
+        return new EventSubscriber() {
             @Override
-            public void run() {
+            public void run(Object... data) {
                 PublicValues.wasOffline = false;
                 System.out.println("Connection re established!");
             }
         };
     }
 
-    Runnable connectionDroppedListener() {
-        return new Runnable() {
+    EventSubscriber connectionDroppedListener() {
+        return new EventSubscriber() {
             @Override
-            public void run() {
+            public void run(Object... data) {
                 PublicValues.wasOffline = true;
                 System.out.println("Connection dropped! Reconnecting...");
             }

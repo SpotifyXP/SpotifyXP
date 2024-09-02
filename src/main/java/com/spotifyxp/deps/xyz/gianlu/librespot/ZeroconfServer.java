@@ -16,9 +16,11 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot;
 
+import com.google.common.graph.Graph;
 import com.google.gson.JsonObject;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.HttpUrl;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -87,7 +89,7 @@ public class ZeroconfServer implements Closeable {
         DEFAULT_GET_INFO_FIELDS.addProperty("spotifyError", 0);
         DEFAULT_GET_INFO_FIELDS.addProperty("version", "2.7.1");
         DEFAULT_GET_INFO_FIELDS.addProperty("libraryVersion", Version.versionNumber());
-        DEFAULT_GET_INFO_FIELDS.addProperty("accountReq", "PREMIUM");
+        DEFAULT_GET_INFO_FIELDS.addProperty("accountReq", "FREE");
         DEFAULT_GET_INFO_FIELDS.addProperty("brandDisplayName", "librespot-org");
         DEFAULT_GET_INFO_FIELDS.addProperty("modelDisplayName", "librespot-java");
         DEFAULT_GET_INFO_FIELDS.addProperty("voiceSupport", "NO");
@@ -369,6 +371,18 @@ public class ZeroconfServer implements Closeable {
             }
 
             sessionListeners.forEach(l -> l.sessionChanged(session));
+        } catch (ConnectException connectException) {
+            GraphicalMessage.sorryErrorExit("Please try again");
+
+            synchronized (connectionLock) {
+                connectingUsername = null;
+            }
+
+            out.write(httpVersion.getBytes());
+            out.write(" 500 Internal Server Error".getBytes()); // I don't think this is the Spotify way
+            out.write(EOL);
+            out.write(EOL);
+            out.flush();
         } catch (Session.SpotifyAuthenticationException | MercuryClient.MercuryException | IOException | GeneralSecurityException ex) {
             ConsoleLoggingModules.error("Couldn't establish a new session.", ex);
 

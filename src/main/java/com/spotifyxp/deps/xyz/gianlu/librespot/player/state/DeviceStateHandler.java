@@ -24,6 +24,9 @@ import com.google.protobuf.TextFormat;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
+import com.spotifyxp.events.EventSubscriber;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -69,6 +72,17 @@ public final class DeviceStateHandler implements Closeable, DealerClient.Message
     private String lastCommandSentByDeviceId;
 
     public DeviceStateHandler(@NotNull Session session, @NotNull PlayerConfiguration conf) {
+        Events.subscribe(SpotifyXPEvents.connectionId.getName(), new EventSubscriber() {
+            @Override
+            public void run(Object... data) {
+                try {
+                    onMessage((String) data[0], (Map<String, String>) data[1], (byte[]) data[2]);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
         this.session = session;
         this.deviceInfo = initializeDeviceInfo(session, conf);
         this.putStateWorker = new AsyncWorker<>("put-state-worker", this::putConnectState);

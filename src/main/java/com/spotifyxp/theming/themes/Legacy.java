@@ -30,7 +30,7 @@ public class Legacy implements Theme {
                  InstantiationException | IllegalAccessException e) {
             ConsoleLogging.Throwable(e);
         }
-        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), () -> {
+        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), (Object... data) -> {
             ContentPanel.legacyswitch.setBackgroundAt(0, Color.white);
             ContentPanel.legacyswitch.setBackgroundAt(1, Color.white);
             ContentPanel.legacyswitch.setBackgroundAt(2, Color.white);
