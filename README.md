@@ -8,7 +8,7 @@
  <p align="center">
     A real Spotify Player for Windows XP
     <br/>
-<center>    <br/>
+    <br/>
     <a href="https://github.com/SpotifyXP/SpotifyXP/wiki">SpotifyXP Wiki</a>
     .
     <a href="https://github.com/SpotifyXP/SpotifyXP/issues">Report Bug</a>
@@ -17,7 +17,11 @@
   </p>
 </p>
 
+<center>
+
 ![Downloads](https://img.shields.io/github/downloads/SpotifyXP/SpotifyXP/total) ![Contributors](https://img.shields.io/github/contributors/SpotifyXP/SpotifyXP?color=dark-green) ![Issues](https://img.shields.io/github/issues/SpotifyXP/SpotifyXP)
+
+</center>
 
 ## Table Of Contents
 
