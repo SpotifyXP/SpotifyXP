@@ -102,6 +102,9 @@ for u in unused:
     print("Unused: " + u)
 print("Found " + str(len(unused)) + " unused translations")
 
+if len(unused) == 0:
+    exit(0)
+
 inp = input("Delete those? (y/n) ")
 
 if(inp.__eq__("y")):

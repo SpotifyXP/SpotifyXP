@@ -1,191 +1,202 @@
-import subprocess
-import shutil
-import sys
+# DepHelper version 2.0
+#
+# Info:
+# It gets all dependencies and their licenses and copies them to resources for SpotifyXP
+# In every deps directory there is a .DEPINFO file that has the link of the GitHub repository
+# Output: src/main/resources/setup/thirdparty.html
+import asyncio
+import json
 import os
+import subprocess
+import threading
+import webbrowser
+import github.GithubException
 import requests
-from bs4 import BeautifulSoup
-
-access_token = ""
-
-if os.path.exists("access_token"):
-    with open("access_token") as tokenfile:
-        access_token = tokenfile.read()
-else:
-    if len(sys.argv) < 0:
-        access_token = sys.argv[1]
-    else:
-        print("Please provide the GitHub access token as a parameter")
-        sys.exit(1)
+from simple_http_server import route, Parameter, server, Response
+from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
+import lxml  # Needed for BeautifulSoup
+import warnings
+from github import Github, Auth
 
 
-try:
-    os.remove("src/main/resources/licenses.xml")
-except:
-    pass
-try:
-    os.remove("src/main/resources/setup/thirdparty.html")
-except:
-    pass
-subprocess.run(["mvn", "org.codehaus.mojo:license-maven-plugin:2.0.0:aggregate-download-licenses", "-Dlicense.excludedScopes=system,test -Dlicense.sortByGroupIdAndArtifactId=true"])
-shutil.copyfile("target/generated-resources/licenses.xml", "src/main/resources/licenses.xml")
+class DependencyEntry:
+    licenseName: str = "No license"
+    licenseUrl: str = ""
+    groupId: str = ""
+    artifactId: str = ""
 
-thirdparty = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>Title</title>\n</head>\n<body>\n<h1>ThirdParty Licenses</h1>\n<br>\n<br>\n<div style="text-align: center;">'
-end = "\n</div>\n</body>\n</html>"
+    def toPrintableArray(self):
+        return ["licenseName", self.licenseName, "groupId", self.groupId, "artifactId", self.artifactId]
 
 
-class LicenseEntry:
-    def __init__(self, name, url, isjson = False):
-        self.name = name
-        self.url = url
-        self.isjson = isjson
-
-
-def traverse_directory(directory):
-    githuburls = []
+def getLinksForEmbedded(directory: str, links=None) -> []:
+    if links is None:
+        links = []
     for root, dirs, files in os.walk(directory):
-        for file_name in files:
-            if str(file_name).__eq__(".DEPINFO"):
-                with open(os.path.join(root, file_name)) as depinfo:
-                    if not (githuburls.__contains__(depinfo.read())): githuburls.append(depinfo.read())
-                break
-
-        for dir_name in dirs:
-            githuburls.append(traverse_directory(os.path.join(root, dir_name)))
-    return githuburls
-
-def get_github_repository_license(repo_url):
-    _, _, _, username, repo_name = repo_url.rstrip('/').split('/')
-    api_url = f'https://api.github.com/repos/{username}/{repo_name}'
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        repository_info = response.json()
-        if 'license' in repository_info:
-            license_name = repository_info['license']['spdx_id']
-            return f"{license_name}"
-        else:
-            return ""
-    else:
-        return f""
+        for file in files:
+            if file.__eq__(".DEPINFO"):
+                with open(os.path.join(root, file), "r") as fileobject:
+                    content = fileobject.read()
+                    if not links.__contains__(content):
+                        links.append(content)
+    return links
 
 
-tofind = []
-depspath = "src/main/java/com/spotifyxp/deps"
-github_urls = []
+def authenticateWithGitHub() -> str:
+    # Callback url: http://127.0.0.1:41305
+    git = Github()
+    app = git.get_oauth_application("Ov23litYkJBtG5B6rfXE", "34f1e0261af4625c4e580735ff88b447f0840e2d")
+    loginUrl = app.get_login_url("http://127.0.0.1:41305")
+    running = threading.Event()
 
-def traverse_directory(directory):
-    for root, dirs, files in os.walk(directory):
-        for file_name in files:
-            if file_name == ".DEPINFO":
-                file_path = os.path.join(root, file_name)
-                with open(file_path, 'r') as depinfo:
-                    content = depinfo.read().strip()
-                    if content and content not in github_urls:
-                        if not content.__eq__("NONE"):
-                            github_urls.append(str(content))
-        for dir_name in dirs:
-            traverse_directory(os.path.join(root, dir_name))
+    @route("/", method=["GET"])
+    def index(response: Response, code=Parameter("code", default="null")):
+        global codeReturn
+        codeReturn = code
+        response.status_code = 200
+        response.set_header("Content-Type", "text/html")
+        response.write_bytes(b"<html><a>Ok</a><script>window.close();</script></html>")
+        response.close()
+        server.stop()
 
+    webbrowser.open(loginUrl)
 
-def get_github_repository_license(repo_url):
-    parts = str(repo_url).rstrip('/').split('/')
-    if len(parts) == 5 and parts[2] == 'github.com':
-        username, repo_name = parts[3], parts[4]
-    else:
-        return "", ""
-    api_url = f'https://api.github.com/repos/{username}/{repo_name}'
-    headers = {
-        'Authorization': f'Token {access_token}',
-        'Accept': 'application/vnd.github.v3+json'  # Specify the API version
-    }
-    print(f"Getting license at: {api_url}")
-    response = requests.get(api_url, headers=headers)
-    if response.status_code == 200:
-        repository_info = response.json()
-        if 'license' in repository_info:
-            license_url = repository_info['license']['url']
-            return f"{license_url}", repository_info["license"]["spdx_id"]
-        else:
-            return "", ""
-    else:
-        return "", ""
+    running.set()
+    try:
+        asyncio.run(server.start_async("127.0.0.1", port=41305))
+    except RuntimeError:
+        pass
+
+    return app.get_access_token(codeReturn).token
 
 
-def get_body_of_license(url):
-    if url.__eq__(""): return ""
-    response = requests.get(url)
-    return response.json()["body"]
+def convertToRepo(url: str) -> str:
+    url = url.replace("https://github.com/", "")
+    return url.split("/")[0] + "/" + url.split("/")[1]
 
-with open("src/main/resources/licenses.xml") as f:
-    out = BeautifulSoup(f.read(), features="xml")
-    for s in out.find_all("dependency"):
-        soup = BeautifulSoup(str(s), features="xml")
-        groupId = soup.find("groupId")
-        artifactId = soup.find("artifactId")
-        alicense = soup.find("licenses").find("license")
-        alicenseName = alicense.find("name")
-        alicenseURL = alicense.find("url")
-        line = f"\n<h3>{groupId}:{artifactId}</h3>\n<br>\n<a>{alicenseName}</a>\n<br>\n<br>"
-        thirdparty += line
-    traverse_directory(depspath)
 
-    for url in github_urls:
-        licenseURL, licenseName = get_github_repository_license(url)
-        tofind.append(LicenseEntry(licenseName, licenseURL, True))
+def getLicenseOfGitHubRepository(git: Github, repo: str):
+    repo = git.get_repo(convertToRepo(repo))
+    return repo.license
 
-    # Dependency parsing done now insert all the licenses
-    thirdparty += "<br>\n<br>\n<br>\n<br>\n<br>"
-    counter = 0
-    for s in out.find_all("dependency"):
-        soup = BeautifulSoup(str(s), features="xml")
-        alicense = soup.find("licenses").find("license")
-        alicenseName = str(alicense.find("name")).replace("<name>", "").replace("</name>", "")
-        alicenseURL = alicense.find("url")
-        contains = False
-        for entry in tofind:
-            if (str(entry.name).__eq__(alicenseName)):
-                contains = True
-                break
-        if not contains:
-            if(alicenseName.__eq__("BSD-3-Clause")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/bsd-3-clause.txt"
-            if(alicenseName.__eq__("LGPL, version 2.1")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/lgpl-2.1.txt"
-            if(alicenseName.__eq__("GNU Lesser General Public License, Version 2.1")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/lgpl-2.1.txt"
-            if(alicenseName.__eq__("GNU Lesser General Public License")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/gpl-3.0.txt"
-            if(alicenseName.__eq__("Public Domain")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/cc0-1.0.txt"
-            if(alicenseName.__eq__("GPL v3")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/gpl-3.0.txt"
-            if(alicenseName.__eq__("GNU General Public License")):
-                alicenseURL = "https://raw.githubusercontent.com/s-a/license/master/_licenses/gpl-3.0.txt"
-            lentry = LicenseEntry(alicenseName, alicenseURL)
-            tofind.append(lentry)
-            print(f"Adding license ({lentry.name}) : {counter}/{len(out.find_all('dependency'))}")
-        else:
-            print(f"Skipping {counter}")
-        counter += 1
-    counter = 0
-    for entry in tofind:
-        if entry.isjson:
-            print(f"Downloading license ({entry.name}) : {counter}/{len(tofind)}")
-            down = get_body_of_license(entry.url)
-            if str(down).__eq__(""):
-                print(f"Skipping {counter} because it's empty")
-                counter+=1
-                continue
-            thirdparty += f"\n<h2>{entry.name}</h2>\n<br>\n<br>\n<a>{down}</a>\n<br>\n<br>\n<br>"
-            counter+=1
-            continue
-        print(f"Downloading license ({entry.name}) : {counter}/{len(tofind)}")
-        down = requests.get(str(entry.url).replace("<url>", "").replace("</url>", "")).text
-        if BeautifulSoup(down, features='lxml').find(attrs={'id':'LicenseText'}) == None:
-            thirdparty += f"\n<h2>{entry.name}</h2>\n<br>\n<br>\n<a>{down}</a>\n<br>\n<br>\n<br>"
-        else:
-            thirdparty += f"\n<h2>{entry.name}</h2>\n<br>\n<br>\n<a>{BeautifulSoup(down, features='lxml').find(attrs={'id':'LicenseText'})}</a>\n<br>\n<br>\n<br>"
-        counter += 1
-    thirdparty += end
-f = open("src/main/resources/setup/thirdparty.html", "w")
-f.write(thirdparty)
-f.close()
+
+def getReadableForEmbedded(token: str, entries=None) -> []:
+    if entries is None:
+        entries = []
+    git = Github(auth=Auth.Token(token))
+    for link in getLinksForEmbedded("src/main/java/com/spotifyxp/deps"):
+        entry: DependencyEntry = DependencyEntry()
+        try:
+            licenseResult = getLicenseOfGitHubRepository(git, link)
+            if licenseResult:
+                entry.licenseName = licenseResult.name
+            if licenseResult:
+                entry.licenseUrl = licenseResult.url
+        except github.GithubException:
+            pass
+        raw = convertToRepo(link)
+        entry.groupId = raw.split("/")[0]
+        entry.artifactId = raw.split("/")[1]
+        entries.append(entry)
+    return entries
+
+
+def getLinksForMaven() -> []:
+    links = []
+    try:
+        subprocess.run(["mvn", "org.codehaus.mojo:license-maven-plugin:2.0.0:aggregate-download-licenses",
+                        "-Dlicense.excludedScopes=system,test -Dlicense.sortByGroupIdAndArtifactId=true"],
+                       capture_output=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        exit(-1)
+    links.append(os.listdir("target/generated-resources/licenses"))
+    return links
+
+
+def getReadableForMaven(dependencyEntries=[]) -> []:
+    warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
+    parsed = BeautifulSoup(open("target/generated-resources/licenses.xml", "r").read(), "lxml")
+    for dependency in parsed.find_all("dependency"):
+        entry: DependencyEntry = DependencyEntry()
+        entry.licenseName = dependency.find_next("name").text
+        entry.groupId = dependency.find_next("groupid").text
+        entry.artifactId = dependency.find_next("artifactid").text
+        entry.licenseUrl = dependency.find_next("file").text
+        dependencyEntries.append(entry)
+    return dependencyEntries
+
+
+def generateHTML(dependencyEntries: []) -> str:
+    baseHtml = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Thirdparty</title>
+    </head>
+    <body>
+    <center>
+    <h1>ThirdParty</h1>
+    </center>
+    <br>
+    <br>
+    <center>
+    <h2>Dependencies</h2>
+    </center>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    """
+    end = """
+    </div>
+    </body>
+    </html>
+    """
+    licenseContents: [] = []
+    licenses: [] = []
+    for dependencyEntry in dependencyEntries:
+        baseHtml += "<h3>" + dependencyEntry.groupId + ":" + dependencyEntry.artifactId + "</h3>\n"
+        baseHtml += "<br>\n"
+        baseHtml += "<a>" + dependencyEntry.licenseName + "</a>\n"
+        baseHtml += "<br>\n"
+        baseHtml += "<br>\n"
+        if not licenses.__contains__(dependencyEntry.licenseName):
+            licenses.append(dependencyEntry.licenseName)
+            if dependencyEntry.licenseUrl.__contains__("http"):
+                licenseContents.append([
+                    dependencyEntry.licenseName,
+                    requests.get(dependencyEntry.licenseUrl).content.decode("utf-8")
+                ])
+    baseHtml += "<br>\n"
+    baseHtml += "<br>\n"
+    baseHtml += "<br>\n"
+    baseHtml += "<center><h2>Licenses</h2></center>\n"
+    baseHtml += "<br>\n"
+    baseHtml += "<br>\n"
+    baseHtml += "<br>\n"
+    for licenseContent in licenseContents:
+        baseHtml += "<h2>" + licenseContent[0] + "</h2>\n"
+        baseHtml += "<br>\n"
+        baseHtml += "<br>\n"
+        baseHtml += "<a>" + json.loads(licenseContent[1])["body"] + "</a>\n"
+        baseHtml += "<br>\n"
+        baseHtml += "<br>\n"
+        baseHtml += "<br>\n"
+    baseHtml += end
+    return baseHtml.replace("F*ck", "Fuck")
+
+
+embedLinks = getLinksForEmbedded("src/main/java/com/spotifyxp/deps")
+embedReadable = getReadableForEmbedded(authenticateWithGitHub())
+mavenLinks = getLinksForMaven()
+mavenReadable = getReadableForMaven()
+
+dependencyEntries: [] = []
+
+dependencyEntries.extend(embedReadable)
+dependencyEntries.extend(mavenReadable)
+
+with open("src/main/resources/setup/thirdparty.html", "w") as file:
+    file.write(generateHTML(dependencyEntries))
+    file.close()
