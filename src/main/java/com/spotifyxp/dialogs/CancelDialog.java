@@ -8,8 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CancelDialog extends JDialog {
-    private JPanel contentPane;
-    private JButton cancelButton;
+    public JPanel contentPane;
+    public JButton cancelButton;
 
     public CancelDialog() {
         setPreferredSize(new Dimension(300, 100));

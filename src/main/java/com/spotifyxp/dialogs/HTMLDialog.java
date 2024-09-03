@@ -10,8 +10,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 public class HTMLDialog extends JDialog {
-    private JPanel contentPane;
-    private JTextPane html;
+    public JPanel contentPane;
+    public JTextPane html;
 
     public HTMLDialog() {
         setContentPane(contentPane);

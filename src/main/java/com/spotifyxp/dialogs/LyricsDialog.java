@@ -29,9 +29,9 @@ import java.util.ArrayList;
 import static com.spotifyxp.panels.PlayerArea.playerarealyricsbutton;
 
 public class LyricsDialog extends JDialog {
-    private JPanel contentPanel;
-    private JScrollPane pane;
-    private JPanel paintPanel;
+    public JPanel contentPanel;
+    public JScrollPane pane;
+    public JPanel paintPanel;
     private final ArrayList<ColoredLyricsLine> displayedLines = new ArrayList<>();
 
     public LyricsDialog() {

@@ -20,14 +20,14 @@ import java.awt.event.ActionListener;
 //ToDo: Check if this is the first start of SpotifyXP and when not support translation
 
 public class LoginDialog extends JDialog {
-    private JPanel contentPane;
-    private JButton spotifyokbutton;
-    private JButton spotifycancelbutton;
-    private JButton facebook;
-    private JLabel spotifylabelusername;
-    private JLabel spotifylabelpassword;
-    private CustomLengthTextField spotifyusernamefield;
-    private CustomLengthPasswordField usernamepasswordfield;
+    public JPanel contentPane;
+    public JButton spotifyokbutton;
+    public JButton spotifycancelbutton;
+    public JButton facebook;
+    public JLabel spotifylabelusername;
+    public JLabel spotifylabelpassword;
+    public CustomLengthTextField spotifyusernamefield;
+    public CustomLengthPasswordField usernamepasswordfield;
 
     public LoginDialog() {
 
