@@ -135,6 +135,8 @@
  "ui.playback.changedevice": "Change device",
  "ui.playback.changedevice.message": "Change playback device",
  "ui.playback.changedevice.title": "Change device",
+ "ui.login.title": "SpotifyXP - Login",
+ "ui.login.message": "Please click on 'Devices' in the normal Spotify client and click on 'SpotifyXP'",
  "theme.bgfield": "Background Color",
  "theme.button": "Select Color",
  "theme.borderfield": "Border Color",

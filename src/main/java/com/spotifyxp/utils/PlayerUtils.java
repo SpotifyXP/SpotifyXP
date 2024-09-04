@@ -2,8 +2,6 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.deps.com.spotify.Authentication;
-import com.spotifyxp.deps.com.spotify.Keyexchange;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
@@ -11,6 +9,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -22,18 +21,15 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.Future;
 
 public class PlayerUtils {
+    private LoginDialog dialog;
 
     public Player buildPlayer() {
-        Session.Builder builder = new Session.Builder()
-                .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
-                .setDeviceType(Connect.DeviceType.COMPUTER)
-                .setDeviceName(PublicValues.deviceName)
-                .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase());
+        if(dialog == null) {
+            dialog = new LoginDialog();
+            dialog.open();
+        }
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
                 .setAutoplayEnabled(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name))
                 .setCrossfadeDuration(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name))
@@ -99,13 +95,12 @@ public class PlayerUtils {
             PublicValues.session = session;
             Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
+            dialog.close();
             return player;
-        } catch (Session.SpotifyAuthenticationException e) {
+        } catch (Session.SpotifyAuthenticationException | IllegalArgumentException e) {
             return buildPlayer();
         } catch (UnknownHostException offline) {
             GraphicalMessage.sorryErrorExit("No internet connection!");
-        } catch (IllegalArgumentException e) {
-            return buildPlayer();
         } catch (Exception e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.sorryError("Failed to build player");
