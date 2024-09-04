@@ -26,10 +26,6 @@ public class PlayerUtils {
     private LoginDialog dialog;
 
     public Player buildPlayer() {
-        if(dialog == null) {
-            dialog = new LoginDialog();
-            dialog.open();
-        }
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
                 .setAutoplayEnabled(PublicValues.config.getBoolean(ConfigValues.other_autoplayenabled.name))
                 .setCrossfadeDuration(PublicValues.config.getInt(ConfigValues.other_crossfadeduration.name))
@@ -63,6 +59,10 @@ public class PlayerUtils {
                         .stored(new File(PublicValues.fileslocation, "credentials.json"))
                         .create();
             } else {
+                if(dialog == null) {
+                    dialog = new LoginDialog();
+                    dialog.open();
+                }
                 Session.Configuration configuration = new Session.Configuration.Builder()
                         .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
                         .build();
