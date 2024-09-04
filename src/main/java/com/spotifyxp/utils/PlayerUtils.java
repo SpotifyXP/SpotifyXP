@@ -11,7 +11,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
-import com.spotifyxp.dialogs.LoginDialog;
 import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -106,7 +105,6 @@ public class PlayerUtils {
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
             return player;
         }catch (Session.SpotifyAuthenticationException e) {
-            new LoginDialog().openWithInvalidAuth();
             return buildPlayer();
         }catch (UnknownHostException offline) {
             GraphicalMessage.sorryErrorExit("No internet connection!");
