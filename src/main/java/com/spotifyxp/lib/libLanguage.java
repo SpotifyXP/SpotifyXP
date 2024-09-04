@@ -244,6 +244,12 @@ public class libLanguage {
             return "";
         }
     }
+
+    final Class<?> classForResources;
+    public libLanguage(Class<?> classForResources) {
+        this.classForResources = classForResources;
+    }
+
     boolean afl = false;
     String languageCode = System.getProperty("user.language");
     String lf = "";
@@ -346,7 +352,7 @@ public class libLanguage {
                 }
             }
             try {
-                JSONObject object = new JSONObject(removeComment(new Resources(true).readToString(lf + "/" + languageCode + ".json")));
+                JSONObject object = new JSONObject(removeComment(new Resources(true, classForResources).readToString(lf + "/" + languageCode + ".json")));
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {

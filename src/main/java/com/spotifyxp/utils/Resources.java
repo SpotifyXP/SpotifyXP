@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 
+import com.spotifyxp.Initiator;
 import com.spotifyxp.logging.ConsoleLogging;
 import org.apache.commons.io.IOUtils;
 
@@ -12,8 +13,12 @@ import java.nio.charset.Charset;
 
 public class Resources {
     boolean sm = false;
+    Class<?> classForResources = Initiator.class;
     public Resources(boolean suppresserrors) {
         sm = true;
+    }
+    public Resources(boolean suppresserrors, Class<?> classForResources) {
+        this.classForResources = classForResources;
     }
     public Resources() {
 
