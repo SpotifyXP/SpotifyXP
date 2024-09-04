@@ -28,7 +28,6 @@ public enum ConfigValues {
     lastfmpassword("lastfm.user.settings.password", ConfigValueTypes.STRING, ""),
     lastfmtracklimit("lastfm.user.settings.tracklimit", ConfigValueTypes.INT, 20),
     lastfmartistlimit("lastfm.user.settings.artistlimit", ConfigValueTypes.INT, 10),
-    facebook("user.settings.isfacebook", ConfigValueTypes.BOOLEAN, false),
     spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false),
     webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true);
     public final String name;

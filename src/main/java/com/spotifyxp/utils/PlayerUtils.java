@@ -57,61 +57,56 @@ public class PlayerUtils {
                 .build();
         try {
             Session session = null;
-
-            if (!PublicValues.config.getBoolean(ConfigValues.facebook.name)) {
-                if(new File(PublicValues.fileslocation, "credentials.json").exists()) {
-                    Session.Configuration configuration = new Session.Configuration.Builder()
-                            .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
-                            .build();
-                    session = new Session.Builder(configuration)
-                            .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
-                            .setDeviceType(Connect.DeviceType.COMPUTER)
-                            .setDeviceName(PublicValues.deviceName)
-                            .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
-                            .stored(new File(PublicValues.fileslocation, "credentials.json"))
-                            .create();
-                }else {
-                    Session.Configuration configuration = new Session.Configuration.Builder()
-                            .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
-                            .build();
-                    CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
-                    try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder(configuration)
-                            .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
-                            .setDeviceType(Connect.DeviceType.COMPUTER)
-                            .setDeviceName(PublicValues.deviceName)
-                            .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
-                            .setListenAll(true).create()) {
-                        zeroconfServer.addSessionListener(new ZeroconfServer.SessionListener() {
-                            @Override
-                            public void sessionClosing(@NotNull Session var1) {
-                                ConsoleLogging.warning("sessionClosing in zeroconf server! Unimplemented");
-                            }
-
-                            @Override
-                            public void sessionChanged(@NotNull Session var1) {
-                                sessionFuture.complete(var1);
-                            }
-                        });
-                        session = sessionFuture.get();
-                    } catch (IOException e) {
-                        ConsoleLogging.Throwable(e);
-                        GraphicalMessage.sorryError("Failed to build player");
-                        System.exit(0);
-                    }
-                }
+            if (new File(PublicValues.fileslocation, "credentials.json").exists()) {
+                Session.Configuration configuration = new Session.Configuration.Builder()
+                        .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
+                        .build();
+                session = new Session.Builder(configuration)
+                        .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
+                        .setDeviceType(Connect.DeviceType.COMPUTER)
+                        .setDeviceName(PublicValues.deviceName)
+                        .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
+                        .stored(new File(PublicValues.fileslocation, "credentials.json"))
+                        .create();
             } else {
-                session = builder.facebook().create();
+                Session.Configuration configuration = new Session.Configuration.Builder()
+                        .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
+                        .build();
+                CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
+                try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder(configuration)
+                        .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
+                        .setDeviceType(Connect.DeviceType.COMPUTER)
+                        .setDeviceName(PublicValues.deviceName)
+                        .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
+                        .setListenAll(true).create()) {
+                    zeroconfServer.addSessionListener(new ZeroconfServer.SessionListener() {
+                        @Override
+                        public void sessionClosing(@NotNull Session var1) {
+                            ConsoleLogging.warning("sessionClosing in zeroconf server! Unimplemented");
+                        }
+
+                        @Override
+                        public void sessionChanged(@NotNull Session var1) {
+                            sessionFuture.complete(var1);
+                        }
+                    });
+                    session = sessionFuture.get();
+                } catch (IOException e) {
+                    ConsoleLogging.Throwable(e);
+                    GraphicalMessage.sorryError("Failed to build player");
+                    System.exit(0);
+                }
             }
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
             return player;
-        }catch (Session.SpotifyAuthenticationException e) {
+        } catch (Session.SpotifyAuthenticationException e) {
             return buildPlayer();
-        }catch (UnknownHostException offline) {
+        } catch (UnknownHostException offline) {
             GraphicalMessage.sorryErrorExit("No internet connection!");
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             try {
                 Session session = builder.blob(savedUsername, savedBlob).create();
                 Player player = new Player(playerconfig, session);
@@ -119,12 +114,12 @@ public class PlayerUtils {
                 Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
                 Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
                 return player;
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 ConsoleLogging.Throwable(ex);
                 GraphicalMessage.sorryError("Failed to build player");
                 System.exit(0);
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.sorryError("Failed to build player");
             System.exit(0);
