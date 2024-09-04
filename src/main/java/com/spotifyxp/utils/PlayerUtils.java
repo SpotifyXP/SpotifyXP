@@ -95,7 +95,7 @@ public class PlayerUtils {
             PublicValues.session = session;
             Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
-            dialog.close();
+            if (dialog != null) dialog.close();
             return player;
         } catch (Session.SpotifyAuthenticationException | IllegalArgumentException e) {
             return buildPlayer();
