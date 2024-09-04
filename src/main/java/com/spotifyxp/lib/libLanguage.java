@@ -1,5 +1,6 @@
 package com.spotifyxp.lib;
 
+import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONObject;
@@ -245,9 +246,12 @@ public class libLanguage {
         }
     }
 
-    final Class<?> classForResources;
+    Class<?> classForResources = Initiator.class;
     public libLanguage(Class<?> classForResources) {
         this.classForResources = classForResources;
+    }
+
+    public libLanguage() {
     }
 
     boolean afl = false;
