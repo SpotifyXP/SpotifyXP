@@ -18,10 +18,10 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.javazoom.jl.decoder.*;
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.SeekableInputStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.OutputAudioFormat;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;

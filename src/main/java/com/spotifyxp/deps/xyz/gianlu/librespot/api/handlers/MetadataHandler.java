@@ -17,10 +17,6 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers;
 
 import com.google.gson.JsonObject;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import io.undertow.server.HttpServerExchange;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.SessionWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtobufToJson;
@@ -28,6 +24,10 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.ApiClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.*;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import io.undertow.server.HttpServerExchange;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.Deque;

@@ -16,10 +16,6 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
@@ -32,6 +28,10 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlaybackMetrics.Re
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.util.Map;

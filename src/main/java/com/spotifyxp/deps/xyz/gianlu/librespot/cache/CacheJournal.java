@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.cache;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.io.Closeable;
 import java.io.File;

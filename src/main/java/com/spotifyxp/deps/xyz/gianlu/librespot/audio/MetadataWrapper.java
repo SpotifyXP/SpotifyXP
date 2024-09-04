@@ -17,12 +17,12 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.LocalId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author devgianlu

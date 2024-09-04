@@ -16,6 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.api.SessionWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.FileUtils;
 import io.undertow.util.HeaderValues;
@@ -23,9 +26,6 @@ import io.undertow.util.Headers;
 import io.undertow.util.HttpString;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.api.SessionWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.TokenProvider;
 
 public final class WebApiHandler extends AbsSessionHandler {
     private static final String[] API_TOKENS_ALL = new String[]{"ugc-image-upload", "playlist-read-collaborative", "playlist-modify-private", "playlist-modify-public", "playlist-read-private", "user-read-playback-position", "user-read-recently-played", "user-top-read", "user-modify-playback-state", "user-read-currently-playing", "user-read-playback-state", "user-read-private", "user-read-email", "user-library-modify", "user-library-read", "user-follow-modify", "user-follow-read", "streaming", "app-remote-control"};

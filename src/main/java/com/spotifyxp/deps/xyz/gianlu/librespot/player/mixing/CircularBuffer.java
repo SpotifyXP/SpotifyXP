@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.TestOnly;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 
 import java.io.Closeable;
 import java.util.concurrent.TimeUnit;

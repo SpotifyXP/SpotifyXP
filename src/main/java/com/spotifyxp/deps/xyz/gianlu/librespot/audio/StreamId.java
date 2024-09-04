@@ -18,8 +18,8 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
 import com.google.protobuf.ByteString;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Gianlu

@@ -20,11 +20,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
 import com.spotifyxp.deps.com.spotify.Authentication;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NetUtils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
 
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;

@@ -24,12 +24,6 @@ import com.google.protobuf.TextFormat;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrack;
-import com.spotifyxp.events.EventSubscriber;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.Version;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.AsyncWorker;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtoUtils;
@@ -41,6 +35,12 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient.RequestResult
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
+import com.spotifyxp.events.EventSubscriber;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.IOException;

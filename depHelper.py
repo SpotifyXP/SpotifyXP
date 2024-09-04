@@ -9,14 +9,15 @@ import json
 import os
 import subprocess
 import threading
+import warnings
 import webbrowser
+
 import github.GithubException
 import requests
-from simple_http_server import route, Parameter, server, Response
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 import lxml  # Needed for BeautifulSoup
-import warnings
 from github import Github, Auth
+from simple_http_server import route, Parameter, server, Response
 
 
 class DependencyEntry:

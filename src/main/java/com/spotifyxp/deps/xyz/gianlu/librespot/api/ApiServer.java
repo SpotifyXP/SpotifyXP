@@ -16,13 +16,13 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.api;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers.*;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import io.undertow.Undertow;
 import io.undertow.server.RoutingHandler;
 import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.ResponseCodeHandler;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers.*;
 
 public class ApiServer {
     protected final RoutingHandler handler;

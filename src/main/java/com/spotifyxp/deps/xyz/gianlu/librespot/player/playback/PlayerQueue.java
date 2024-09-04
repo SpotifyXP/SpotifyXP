@@ -16,11 +16,11 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
 
 import java.io.Closeable;
 import java.util.concurrent.ExecutorService;

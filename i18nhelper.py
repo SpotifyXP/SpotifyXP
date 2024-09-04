@@ -1,7 +1,6 @@
+import json
 import os
 import sys
-import json
-
 
 root = "src/main/java"
 langf = "src/main/resources/lang/"

@@ -16,12 +16,12 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.Decoder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.output.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Closeable;
 import java.io.IOException;

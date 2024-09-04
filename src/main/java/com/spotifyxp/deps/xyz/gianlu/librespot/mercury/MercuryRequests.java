@@ -16,10 +16,10 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.mercury;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.GenericJson;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.ResolvedContextWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.StationsWrapper;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Gianlu

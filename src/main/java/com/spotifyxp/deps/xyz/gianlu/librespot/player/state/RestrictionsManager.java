@@ -17,8 +17,8 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.state;
 
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.contexts.AbsSpotifyContext;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Gianlu

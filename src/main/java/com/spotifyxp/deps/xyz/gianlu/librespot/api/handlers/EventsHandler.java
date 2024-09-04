@@ -17,6 +17,12 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers;
 
 import com.google.gson.JsonObject;
+import com.spotifyxp.deps.xyz.gianlu.librespot.api.PlayerWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtobufToJson;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import io.undertow.websockets.WebSocketConnectionCallback;
 import io.undertow.websockets.WebSocketProtocolHandshakeHandler;
@@ -25,12 +31,6 @@ import io.undertow.websockets.core.WebSockets;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
-import com.spotifyxp.deps.xyz.gianlu.librespot.api.PlayerWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.common.ProtobufToJson;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
-import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 
 public final class EventsHandler extends WebSocketProtocolHandshakeHandler implements Player.EventsListener, PlayerWrapper.Listener, Session.ReconnectionListener {
 

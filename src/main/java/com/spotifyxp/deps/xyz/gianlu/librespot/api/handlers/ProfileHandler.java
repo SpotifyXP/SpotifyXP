@@ -17,12 +17,12 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers;
 
 import com.google.gson.JsonObject;
-import io.undertow.server.HttpServerExchange;
-import io.undertow.util.Headers;
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.SessionWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Headers;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Deque;
 import java.util.Map;

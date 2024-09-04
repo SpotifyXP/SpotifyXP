@@ -28,10 +28,10 @@ import com.spotifyxp.deps.com.spotify.context.ContextPageOuterClass.ContextPage;
 import com.spotifyxp.deps.com.spotify.context.ContextPlayerOptionsOuterClass;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.playlist4.Playlist4ApiProto;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 
 import java.lang.reflect.Field;
 import java.util.*;

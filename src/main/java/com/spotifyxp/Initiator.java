@@ -25,6 +25,7 @@ import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
+
 import java.io.File;
 
 @SuppressWarnings({"all", "RedundantArrayCreation"})

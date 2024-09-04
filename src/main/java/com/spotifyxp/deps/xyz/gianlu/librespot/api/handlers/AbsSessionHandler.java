@@ -16,13 +16,13 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers;
 
+import com.spotifyxp.deps.xyz.gianlu.librespot.api.SessionWrapper;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 import io.undertow.util.StatusCodes;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.api.SessionWrapper;
-import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 
 /**
  * @author Gianlu

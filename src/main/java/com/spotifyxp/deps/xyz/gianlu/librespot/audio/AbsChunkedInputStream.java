@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.decoders.SeekableInputStream;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 

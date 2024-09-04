@@ -4,7 +4,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.utils.GraphicalMessage;
 
 public class Player {
     com.spotifyxp.deps.xyz.gianlu.librespot.player.Player player;

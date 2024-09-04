@@ -18,13 +18,13 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.TimeInfo;
 import org.jetbrains.annotations.NotNull;
-import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 
 import java.io.IOException;
 import java.net.InetAddress;

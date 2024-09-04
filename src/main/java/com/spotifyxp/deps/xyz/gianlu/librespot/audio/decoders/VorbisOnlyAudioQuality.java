@@ -17,12 +17,12 @@
 package com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders;
 
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.AudioQualityPicker;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 

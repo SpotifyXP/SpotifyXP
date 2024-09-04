@@ -16,8 +16,8 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Gianlu

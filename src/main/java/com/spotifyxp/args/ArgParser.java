@@ -1,6 +1,7 @@
 package com.spotifyxp.args;
 
 import com.spotifyxp.utils.ApplicationUtils;
+
 import java.util.ArrayList;
 
 public class ArgParser {

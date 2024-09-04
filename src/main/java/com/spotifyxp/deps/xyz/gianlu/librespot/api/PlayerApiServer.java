@@ -16,9 +16,9 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.api;
 
-import org.jetbrains.annotations.NotNull;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers.InstanceHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers.PlayerHandler;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author devgianlu

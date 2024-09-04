@@ -18,16 +18,13 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.GenericJson;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;

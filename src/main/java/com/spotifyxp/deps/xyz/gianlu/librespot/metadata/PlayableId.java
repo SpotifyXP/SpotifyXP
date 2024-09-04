@@ -19,10 +19,10 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.metadata;
 import com.google.protobuf.ByteString;
 import com.spotifyxp.deps.com.spotify.connectstate.Player;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Base62;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;

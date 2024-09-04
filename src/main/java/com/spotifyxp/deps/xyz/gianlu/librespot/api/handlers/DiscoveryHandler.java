@@ -18,14 +18,14 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.api.handlers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.spotifyxp.logging.ConsoleLoggingModules;
-import io.undertow.server.HttpHandler;
-import io.undertow.server.HttpServerExchange;
-import io.undertow.util.Headers;
 import com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer;
 import com.spotifyxp.deps.xyz.gianlu.librespot.api.Utils;
 import com.spotifyxp.deps.xyz.gianlu.zeroconf.DiscoveredService;
 import com.spotifyxp.deps.xyz.gianlu.zeroconf.Zeroconf;
+import com.spotifyxp.logging.ConsoleLoggingModules;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Headers;
 
 import java.io.IOException;
 import java.util.Deque;
