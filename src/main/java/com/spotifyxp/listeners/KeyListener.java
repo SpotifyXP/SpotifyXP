@@ -41,10 +41,6 @@ public class KeyListener {
                             PublicValues.spotifyplayer.previous();
                             break;
                         }
-                    if (nativeEvent.getKeyCode() == NativeKeyEvent.VC_CONTROL) {
-                       if(!ContentPanel.pressedCTRL) ContentPanel.frame.setResizable(true);
-                       ContentPanel.pressedCTRL = true;
-                    }
                 }
 
                 @Override
@@ -63,10 +59,6 @@ public class KeyListener {
                             previouspressed = false;
                             break;
                         }
-                    if(ContentPanel.pressedCTRL) {
-                        ContentPanel.frame.setResizable(false);
-                        ContentPanel.pressedCTRL = false;
-                    }
                 }
             });
         }catch (Exception ex) {
