@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.util.concurrent.CompletableFuture;
@@ -59,7 +60,7 @@ public class PlayerUtils {
                         .stored(new File(PublicValues.fileslocation, "credentials.json"))
                         .create();
             } else {
-                if(dialog == null) {
+                if (dialog == null) {
                     dialog = new LoginDialog();
                     dialog.open();
                 }
@@ -97,7 +98,7 @@ public class PlayerUtils {
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
             if (dialog != null) dialog.close();
             return player;
-        } catch (Session.SpotifyAuthenticationException | IllegalArgumentException e) {
+        } catch (ConnectException | Session.SpotifyAuthenticationException | IllegalArgumentException e) {
             return buildPlayer();
         } catch (UnknownHostException offline) {
             GraphicalMessage.sorryErrorExit("No internet connection!");
