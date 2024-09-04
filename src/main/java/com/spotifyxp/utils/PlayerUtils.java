@@ -69,8 +69,11 @@ public class PlayerUtils {
                             .stored(new File(PublicValues.fileslocation, "credentials.json"))
                             .create();
                 }else {
+                    Session.Configuration configuration = new Session.Configuration.Builder()
+                            .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
+                            .build();
                     CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
-                    try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder()
+                    try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder(configuration)
                             .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
                             .setDeviceType(Connect.DeviceType.COMPUTER)
                             .setDeviceName(PublicValues.deviceName)
