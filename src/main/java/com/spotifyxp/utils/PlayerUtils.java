@@ -60,7 +60,10 @@ public class PlayerUtils {
 
             if (!PublicValues.config.getBoolean(ConfigValues.facebook.name)) {
                 if(new File(PublicValues.fileslocation, "credentials.json").exists()) {
-                    session = new Session.Builder()
+                    Session.Configuration configuration = new Session.Configuration.Builder()
+                            .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
+                            .build();
+                    session = new Session.Builder(configuration)
                             .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
                             .setDeviceType(Connect.DeviceType.COMPUTER)
                             .setDeviceName(PublicValues.deviceName)
