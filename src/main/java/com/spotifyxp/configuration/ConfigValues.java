@@ -24,10 +24,6 @@ public enum ConfigValues {
     other_bypasssinkvolume("user.settings.other.bypasssinkvolume", ConfigValueTypes.BOOLEAN, false),
     other_preferredlocale("user.settings.other.preferredlocale", ConfigValueTypes.STRING, "en"),
     hideExceptions("general.exception.visibility", ConfigValueTypes.BOOLEAN, false),
-    lastfmusername("lastfm.user.settings.username", ConfigValueTypes.STRING, ""),
-    lastfmpassword("lastfm.user.settings.password", ConfigValueTypes.STRING, ""),
-    lastfmtracklimit("lastfm.user.settings.tracklimit", ConfigValueTypes.INT, 20),
-    lastfmartistlimit("lastfm.user.settings.artistlimit", ConfigValueTypes.INT, 10),
     spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false),
     webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true);
     public final String name;
