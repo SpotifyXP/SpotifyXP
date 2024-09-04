@@ -27,8 +27,6 @@ import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.Future;
 
 public class PlayerUtils {
-    private byte[] savedBlob;
-    private String savedUsername;
 
     public Player buildPlayer() {
         Session.Builder builder = new Session.Builder()
@@ -107,18 +105,7 @@ public class PlayerUtils {
         } catch (UnknownHostException offline) {
             GraphicalMessage.sorryErrorExit("No internet connection!");
         } catch (IllegalArgumentException e) {
-            try {
-                Session session = builder.blob(savedUsername, savedBlob).create();
-                Player player = new Player(playerconfig, session);
-                PublicValues.session = session;
-                Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
-                Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
-                return player;
-            } catch (Exception ex) {
-                ConsoleLogging.Throwable(ex);
-                GraphicalMessage.sorryError("Failed to build player");
-                System.exit(0);
-            }
+            return buildPlayer();
         } catch (Exception e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.sorryError("Failed to build player");
