@@ -29,8 +29,8 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
-    public static int applicationHeight = 590;
-    public static int applicationWidth = 784;
+    public static int applicationHeight = 600;
+    public static int applicationWidth = 795;
     public static Dimension getApplicationDimensions() {
         return new Dimension(applicationWidth, applicationHeight);
     }
