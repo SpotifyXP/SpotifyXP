@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -135,6 +136,19 @@ public class TrackUtils {
         }
         return "Unknown (BUG)";
     }
+
+    public static String getArtists(Metadata.Artist[] artists) {
+        StringBuilder builder = new StringBuilder();
+        for (Metadata.Artist artist : artists) {
+            if (!(builder.length() == artists.length - 1)) {
+                builder.append(artist.getName()).append(", ");
+            } else {
+                builder.append(artist.getName());
+            }
+        }
+        return builder.toString();
+    }
+
     public static String getArtists(ArtistSimplified[] artists) {
         StringBuilder builder = new StringBuilder();
         for (ArtistSimplified artist : artists) {
