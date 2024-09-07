@@ -22,15 +22,20 @@ import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass.ContextTrac
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.com.spotify.transfer.TransferStateOuterClass;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.AbsChunkedInputStream;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.cdn.CdnManager;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.VorbisOnlyAudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.NameThreadFactory;
+import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dacp.DacpMetadataPipe;
 import com.spotifyxp.deps.xyz.gianlu.librespot.json.StationsWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.ImageId;
+import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.LocalId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.StateWrapper.NextPlayable;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.contexts.AbsSpotifyContext;
@@ -53,6 +58,7 @@ import org.jetbrains.annotations.Range;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -168,6 +174,12 @@ public class Player implements Closeable {
             }
         });
     }
+
+    public InputStream getStream(String uri) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, PlayableContentFeeder.ContentRestrictedException {
+        PlayableContentFeeder.LoadedStream stream = session.contentFeeder().load(PlayableId.fromUri(uri), new VorbisOnlyAudioQuality(conf.preferredQuality), true, null);
+        return stream.in.stream();
+    }
+
 
     // ================================ //
     // =========== Commands =========== //
