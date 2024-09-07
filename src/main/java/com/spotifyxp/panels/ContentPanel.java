@@ -76,10 +76,26 @@ public class ContentPanel extends JPanel {
     public static final ArrayList<String> advanceduricache = new ArrayList<>();
     public static boolean pressedCTRL = false;
     public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
+    public static Views currentView = Views.HOME; //The view on start is home
     static boolean steamdeck = false;
     static LastTypes lastmenu = LastTypes.HotList;
     static boolean advancedSongPanelVisible = false;
     static boolean errorDisplayVisible = false;
+
+    public enum Views {
+        HOME,
+        PLAYLISTS,
+        LIBRARY,
+        SEARCH,
+        HOTLIST,
+        QUEUE,
+        FEEDBACK,
+        PLAYLIST,
+        SHOW,
+        ALBUM,
+        ARTIST,
+        OTHER
+    }
 
     static class TabEntry {
         public String title;
@@ -189,6 +205,7 @@ public class ContentPanel extends JPanel {
     }
 
     public static void showArtistPanel(String fromuri) {
+        currentView = Views.ARTIST;
         if (advancedSongPanelVisible) {
             homepanel.getComponent().setVisible(true);
             advancedSongPanelVisible = false;
@@ -302,18 +319,21 @@ public class ContentPanel extends JPanel {
         try {
             switch (contentType) {
                 case playlist:
+                    currentView = Views.PLAYLISTS;
                     for (PlaylistTrack simplified : SpotifyUtils.getAllTracksPlaylist(foruri)) {
                         ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getTrack().getName(), TrackUtils.calculateFileSizeKb(simplified.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getTrack().getDurationMs())});
                         advanceduricache.add(simplified.getTrack().getUri());
                     }
                     break;
                 case show:
+                    currentView = Views.SHOW;
                     for (EpisodeSimplified simplified : SpotifyUtils.getAllEpisodesShow(foruri)) {
                         ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                         advanceduricache.add(simplified.getUri());
                     }
                     break;
                 case album:
+                    currentView = Views.ALBUM;
                     for (TrackSimplified simplified : SpotifyUtils.getAllTracksAlbum(foruri)) {
                         ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                         advanceduricache.add(simplified.getUri());
@@ -383,6 +403,7 @@ public class ContentPanel extends JPanel {
             }
             switch (lastmenu) {
                 case Search:
+                    currentView = Views.SEARCH;
                     if (isLastArtist) {
                         artistPanel.openPanel();
                         artistPanel.isFirst = true;
@@ -399,6 +420,7 @@ public class ContentPanel extends JPanel {
                     }
                     break;
                 case Home:
+                    currentView = Views.HOME;
                     homepanel.getComponent().setVisible(true);
                     artistPanelBackButton.setVisible(false);
                     artistPanel.contentPanel.setVisible(false);
@@ -565,16 +587,19 @@ public class ContentPanel extends JPanel {
         legacyswitch.addChangeListener(e -> {
             switch (legacyswitch.getSelectedIndex()) {
                 case 0:
+                    currentView = Views.HOME;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                     setHomeVisible();
                     break;
                 case 1:
+                    currentView = Views.PLAYLIST;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                     setPlaylistsVisible();
                     break;
                 case 2:
+                    currentView = Views.LIBRARY;
                     if (Library.librarysonglist.getModel().getRowCount() == 0) {
                         Library.librarythread.start();
                     }
@@ -583,26 +608,31 @@ public class ContentPanel extends JPanel {
                     setLibraryVisible();
                     break;
                 case 3:
+                    currentView = Views.SEARCH;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                     setSearchVisible();
                     break;
                 case 4:
+                    currentView = Views.HOTLIST;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                     setHotlistVisible();
                     break;
                 case 5:
+                    currentView = Views.QUEUE;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                     setQueueVisible();
                     break;
                 case 6:
+                    currentView = Views.FEEDBACK;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
                     setFeedbackVisible();
                     break;
                 default:
+                    currentView = Views.OTHER;
                     int selected = legacyswitch.getSelectedIndex();
                     if(extraTabs.isEmpty()) {
                         ConsoleLogging.warning("JTabbedPane tried to open pane outside of the allowed range");
@@ -808,6 +838,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setLibraryVisible() {
+        currentView = Views.LIBRARY;
         lastmenu = LastTypes.Library;
         librarypanel.setVisible(true);
         searchpanel.setVisible(false);
@@ -826,6 +857,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setSearchVisible() {
+        currentView = Views.SEARCH;
         lastmenu = LastTypes.Search;
         librarypanel.setVisible(false);
         searchpanel.setVisible(true);
@@ -893,6 +925,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setHotlistVisible() {
+        currentView = Views.HOTLIST;
         lastmenu = LastTypes.HotList;
         librarypanel.setVisible(false);
         searchpanel.setVisible(false);
@@ -915,6 +948,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setFeedbackVisible() {
+        currentView = Views.FEEDBACK;
         lastmenu = LastTypes.Feedback;
         librarypanel.setVisible(false);
         searchpanel.setVisible(false);
@@ -933,6 +967,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setPlaylistsVisible() {
+        currentView = Views.PLAYLIST;
         lastmenu = LastTypes.Playlists;
         librarypanel.setVisible(false);
         searchpanel.setVisible(false);
@@ -983,6 +1018,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setQueueVisible() {
+        currentView = Views.QUEUE;
         lastmenu = LastTypes.Queue;
         librarypanel.setVisible(false);
         searchpanel.setVisible(false);
@@ -1020,6 +1056,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setHomeVisible() {
+        currentView = Views.HOME;
         lastmenu = LastTypes.Home;
         librarypanel.setVisible(false);
         searchpanel.setVisible(false);
