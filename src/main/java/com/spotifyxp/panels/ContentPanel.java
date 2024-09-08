@@ -319,7 +319,7 @@ public class ContentPanel extends JPanel {
         try {
             switch (contentType) {
                 case playlist:
-                    currentView = Views.PLAYLISTS;
+                    currentView = Views.PLAYLIST;
                     for (PlaylistTrack simplified : SpotifyUtils.getAllTracksPlaylist(foruri)) {
                         ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getTrack().getName(), TrackUtils.calculateFileSizeKb(simplified.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getTrack().getDurationMs())});
                         advanceduricache.add(simplified.getTrack().getUri());
@@ -967,7 +967,7 @@ public class ContentPanel extends JPanel {
     }
 
     public void setPlaylistsVisible() {
-        currentView = Views.PLAYLIST;
+        currentView = Views.PLAYLISTS;
         lastmenu = LastTypes.Playlists;
         librarypanel.setVisible(false);
         searchpanel.setVisible(false);
