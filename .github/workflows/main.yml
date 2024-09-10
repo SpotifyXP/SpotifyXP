@@ -1,3 +1,4 @@
+name: Stable
 on:
   push:
     branches:    
