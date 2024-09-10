@@ -1116,6 +1116,11 @@ public class ContentPanel extends JPanel {
             bar.remove(helpMenu);
             bar.add(helpMenu);
         }
+        PublicValues.menuBar.setFont(getFont());
+        PublicValues.menuBar.setBorder(null);
+        PublicValues.menuBar.setForeground(PublicValues.globalFontColor);
+        PublicValues.menuBar.setBackground(getBackground());
+        mainframe.setJMenuBar(PublicValues.menuBar);
         mainframe.open();
         mainframe.setLocation(
                 Toolkit.getDefaultToolkit().getScreenSize().width / 2 - PublicValues.applicationWidth / 2,
