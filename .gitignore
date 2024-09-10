@@ -12,7 +12,6 @@ X
 src/main/resources/SpotifyXP-Updater.jar
 ExternalDebugger.jar
 access_token
-.github/
 .idea/
 .classpath
 .project

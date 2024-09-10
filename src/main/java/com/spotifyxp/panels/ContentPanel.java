@@ -77,6 +77,7 @@ public class ContentPanel extends JPanel {
     public static boolean pressedCTRL = false;
     public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static Views currentView = Views.HOME; //The view on start is home
+    public static String advancedSongPanelUri;
     static boolean steamdeck = false;
     static LastTypes lastmenu = LastTypes.HotList;
     static boolean advancedSongPanelVisible = false;
@@ -310,6 +311,7 @@ public class ContentPanel extends JPanel {
 
     public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {
         homepanel.getComponent().setVisible(false);
+        advancedSongPanelUri = foruri;
         ((DefaultTableModel) advancedsongtable.getModel()).setRowCount(0);
         advanceduricache.clear();
         advancedSongPanelVisible = true;

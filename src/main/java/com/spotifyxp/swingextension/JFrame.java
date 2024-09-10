@@ -28,24 +28,6 @@ public class JFrame extends javax.swing.JFrame {
         aa = value;
     }
 
-    private JMenuBar copyJMenuBar(JMenuBar originalMenuBar) {
-        JMenuBar newMenuBar = new JMenuBar();
-        for (int i = 0; i < originalMenuBar.getMenuCount(); i++) {
-            JMenu originalMenu = originalMenuBar.getMenu(i);
-            JMenu newMenu = new JMenu(originalMenu.getText());
-            for (int j = 0; j < originalMenu.getItemCount(); j++) {
-                JMenuItem originalMenuItem = originalMenu.getItem(j);
-                JMenuItem newMenuItem = new JMenuItem(originalMenuItem.getText());
-                for(ActionListener listener : originalMenuItem.getActionListeners()) {
-                    newMenuItem.addActionListener(new AsyncActionListener(listener));
-                }
-                newMenu.add(newMenuItem);
-            }
-            newMenuBar.add(newMenu);
-        }
-        return newMenuBar;
-    }
-
     @Override
     public void paintComponents(Graphics g) {
         if(aa) {
@@ -59,14 +41,6 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     public void open() {
-        if(!(PublicValues.menuBar == null)) {
-            setJMenuBar(copyJMenuBar(PublicValues.menuBar));
-        }
-        this.setVisible(true);
-        this.pack();
-    }
-
-    public void openMain() {
         this.setVisible(true);
         this.pack();
     }
