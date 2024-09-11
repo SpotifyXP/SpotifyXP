@@ -2,12 +2,9 @@ package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.Utils;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class JFrame extends javax.swing.JFrame {
     public JFrame(String title) {

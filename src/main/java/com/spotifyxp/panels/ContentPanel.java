@@ -21,7 +21,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
-import com.spotifyxp.theming.themes.DarkGreen;
 import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
 import org.apache.hc.core5.http.ParseException;
