@@ -55,10 +55,12 @@ public class ExceptionDialog {
 
         exceptionscrollpane.setViewportView(exceptiontext);
 
-        exceptiontext.setEditable(false);
+        if(exceptiontext.getText().isEmpty()) {
+            exceptiontext.setEditable(false);
 
-        for(StackTraceElement trace : e.getStackTrace()) {
-            exceptiontext.setText(exceptiontext.getText() + trace + "\n");
+            for (StackTraceElement trace : e.getStackTrace()) {
+                exceptiontext.setText(exceptiontext.getText() + trace + "\n");
+            }
         }
 
         ContextMenu menu = new ContextMenu(contentPane, exceptiontext);
