@@ -1131,6 +1131,7 @@ public class ContentPanel extends JPanel {
         }
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
+        Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
     }
 
     enum LastTypes {Playlists, Library, Search, HotList, Queue, Feedback, Home}

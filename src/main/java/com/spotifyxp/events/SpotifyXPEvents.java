@@ -9,6 +9,7 @@ public enum SpotifyXPEvents {
     playerSeekedBackwards("playerseekedbackwards", "Fires when the user seeked the track backwards"),
     onSupportModulesLoaded("onsupportmodulesloaded", "Fires when the SupportModules where loaded"),
     onFrameReady("frameReady", "Fires when the main JFrame finished building itself (before opening)"),
+    onFrameVisible("frameVisible", "Fires when the main JFrame is visible"),
     trackNext("trackNext", "Fires when next track plays"),
     trackLoad("trackLoad", "Fires when the next track loads"),
     trackLoadFinished("trackLoadFinished", "Fires when the track loading is finished"),
