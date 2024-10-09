@@ -1,9 +1,6 @@
 package com.spotifyxp.swingextension;
 
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.threading.DefThread;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.swing.JSVGCanvas;
@@ -15,21 +12,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-@SuppressWarnings("BusyWait")
 public class JImageButton extends JSVGCanvas {
-    //This will create a new type of jbutton that is not really a jbutton
-    //but looks like one and acts like one
-    private final BufferedImage image = null;
-    public boolean isFilled = false;
-    private String rad = "";
+    //This will create a new type of JButton that is not really a JButton
+    //but looks like one and acts like one but with SVG support
     final JSVGCanvas canvas = this;
-    void refresh() {
-        this.repaint();
-    }
     boolean highlight = false;
     boolean click = false;
     ActionListener l;
@@ -41,19 +30,19 @@ public class JImageButton extends JSVGCanvas {
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 highlight = false;
-                canvas.repaint();
+                refreshPaint();
             }
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 highlight = true;
-                canvas.repaint();
+                refreshPaint();
             }
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 click = true;
-                canvas.repaint();
+                refreshPaint();
                 l.actionPerformed(null);
                 button.getMouseListeners()[0].mouseClicked(e);
             }
@@ -62,10 +51,9 @@ public class JImageButton extends JSVGCanvas {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 click = false;
-                canvas.repaint();
+                refreshPaint();
             }
         });
-        t.start();
         setBorderPainted(true);
         setFocusPainted(true);
         setContentAreaFilled(true);
@@ -82,10 +70,8 @@ public class JImageButton extends JSVGCanvas {
                 canvas.setBounds(canvas.getX(), canvas.getY(), canvas.getWidth() / 2, canvas.getHeight() / 2);
             }
         }catch (IOException e) {
-            GraphicalMessage.openException(e);
-            ConsoleLogging.Throwable(e);
+           throw new RuntimeException(e);
         }
-        refresh();
     }
 
     public void setImage(String resourcePath) {
@@ -96,11 +82,6 @@ public class JImageButton extends JSVGCanvas {
 
     public void addActionListener(ActionListener listener) {
         l = listener;
-    }
-
-    public void setRotation(int value) {
-        rad = String.valueOf(value);
-        this.repaint();
     }
 
     boolean paintBorder = true;
@@ -132,9 +113,7 @@ public class JImageButton extends JSVGCanvas {
         focusPainted = value;
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    public void refreshPaint() {
         if (click) {
             setBackground(getBackground().brighter().brighter());
         } else {
@@ -147,22 +126,14 @@ public class JImageButton extends JSVGCanvas {
                 setBackground(oldColor);
             }
         }
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         if(paintBorder) {
             g.setColor(oldColor.brighter());
             g.drawRoundRect(getX(), getY(), getWidth(), getHeight(), 15 ,15);
         }
-        if(!(rad.isEmpty())) {
-            ((Graphics2D)g).rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
-        }
     }
-
-    final DefThread t = new DefThread(() -> {
-        while(!ContentPanel.frame.isVisible()) {
-            try {
-                Thread.sleep(99);
-            } catch (InterruptedException ignored) {
-            }
-        }
-        canvas.setBounds(canvas.getBounds());
-    });
 }
