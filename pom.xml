@@ -180,6 +180,12 @@
             <groupId>com.intellij</groupId>
             <artifactId>forms_rt</artifactId>
             <version>7.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.hypfvieh</groupId>
+            <artifactId>dbus-java</artifactId>
+            <version>3.3.2</version>
         </dependency>
     </dependencies>
 
@@ -187,6 +193,10 @@
         <repository>
             <id>Jabylon</id>
             <url>https://www.jabylon.org/maven/</url>
+        </repository>
+        <repository>
+            <id>Meethour</id>
+            <url>https://repo.meethour.io/maven/releases/</url>
         </repository>
     </repositories>
 
