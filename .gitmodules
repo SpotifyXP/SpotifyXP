@@ -1,0 +1,3 @@
+[submodule "deps/mpris-java"]
+	path = deps/mpris-java
+	url = https://github.com/SpotifyXP/mpris-java
