@@ -21,7 +21,6 @@ jobs:
         uses: s4u/setup-maven-action@v1.15.0
         with:
           java-version: '8'
-          distribution: 'corretto'
       - name: Clone Repository
         run: git clone --branch developer --recursive https://github.com/SpotifyXP/SpotifyXP
       - name: Run init.py
@@ -33,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.1
         with:
           name: Build
-          path: D:\a\SpotifyXP\SpotifyXP\SpotifyXP\target\SpotifyXP.jar
+          path: /home/runner/work/SpotifyXP/SpotifyXP/SpotifyXP/target/SpotifyXP.jar
