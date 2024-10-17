@@ -5,16 +5,27 @@ on:
       - developer
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
+      - uses: actions/checkout@v4
+      - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'oracle'
+          java-version: '8'
+          distribution: 'corretto'
+      - name: Set up python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up maven
+        uses: s4u/setup-maven-action@v1.15.0
+        with:
+          java-version: '8'
+          distribution: 'corretto'
       - name: Clone Repository
-        run: git clone --branch developer https://github.com/SpotifyXP/SpotifyXP
+        run: git clone --branch developer --recursive https://github.com/SpotifyXP/SpotifyXP
+      - name: Run init.py
+        run: python init.py
       - name: Build with Maven
         run: mvn --batch-mode -f SpotifyXP/pom.xml --update-snapshots package
       - name: Upload a Build Artifact
