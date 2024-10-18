@@ -180,7 +180,6 @@
             <groupId>com.jetbrains.intellij.java</groupId>
             <artifactId>java-gui-forms-rt</artifactId>
             <version>242.22855.106</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.github.hypfvieh</groupId>
