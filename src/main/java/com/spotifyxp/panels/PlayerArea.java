@@ -19,8 +19,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.sql.SQLException;
@@ -46,15 +46,10 @@ public class PlayerArea extends JPanel {
     public static JLabel playerareavolumecurrent;
     public static JSVGPanel heart;
     public static JSVGPanel historybutton;
-    private static int playerareawidth = 0;
-    private static int playerareaheight = 0;
-    private boolean windowWasOpened = false;
-    private static PlayerArea playerarea;
     private static LastPlayState lastPlayState;
     private static boolean doneLastParsing = false;
 
     public PlayerArea(JFrame frame) {
-        playerarea = this;
         setBounds(72, 0, 565, 100);
         setLayout(null);
         playerareashufflebutton = new JSVGPanel();
@@ -319,68 +314,6 @@ public class PlayerArea extends JPanel {
         }));
         ContentPanel.frame.add(historybutton.getJComponent());
 
-        JFrame dialog = new JFrame();
-        addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (e.getClickCount() == 2) {
-                    if (!dialog.isVisible()) {
-                        playerareawidth = getWidth();
-                        playerareaheight = getHeight();
-                        windowWasOpened = true;
-                        frame.getContentPane().remove(playerarea);
-                        frame.repaint();
-                        frame.getContentPane().repaint();
-                        dialog.setTitle(PublicValues.language.translate("ui.player.dialog.title"));
-                        dialog.setContentPane(playerarea);
-                        dialog.setPreferredSize(new Dimension(338, 359));
-                        dialog.setVisible(true);
-                        dialog.pack();
-                        changePlayerToWindowStyle();
-                    } else {
-                        windowWasOpened = false;
-                        dialog.dispose();
-                        setBounds(784 / 2 - playerareawidth / 2, 8, playerareawidth, playerareaheight);
-                        restoreDefaultPlayerStyle();
-                        PublicValues.contentPanel.add(playerarea);
-                        frame.repaint();
-                        PublicValues.contentPanel.repaint();
-                    }
-                }
-            }
-        }));
-        dialog.setResizable(false);
-        dialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                windowWasOpened = false;
-                dialog.dispose();
-                setBounds(784 / 2 - playerareawidth / 2, 8, playerareawidth, playerareaheight);
-                restoreDefaultPlayerStyle();
-                PublicValues.contentPanel.add(playerarea);
-                frame.repaint();
-                PublicValues.contentPanel.repaint();
-            }
-        });
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                dialog.dispose();
-            }
-        });
-        frame.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                super.componentShown(e);
-                if (windowWasOpened) {
-                    dialog.setVisible(true);
-                }
-            }
-        });
-
         Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
             @Override
             public void run(Object... data) {
@@ -426,48 +359,6 @@ public class PlayerArea extends JPanel {
                 }
             }
         });
-    }
-
-    void changePlayerToWindowStyle() {
-        playerareashufflebutton.getJComponent().setBounds(20, 293, 20, 20);
-        playerarearepeatingbutton.getJComponent().setBounds(280, 293, 20, 20);
-        playertitle.setHorizontalAlignment(SwingConstants.CENTER);
-        playerarealyricsbutton.getJComponent().setBounds(20, 232, 14, 14);
-        playerdescription.setHorizontalAlignment(SwingConstants.CENTER);
-        playerimage.setBounds(91, 11, 132, 130);
-         playertitle.setBounds(10, 166, 301, 14);
-        playerdescription.setBounds(10, 184, 300, 20);
-        playerplaypreviousbutton.setBounds(47, 222, 70, 36);
-        playerplaypausebutton.setBounds(129, 222, 69, 36);
-        playerplaynextbutton.setBounds(208, 222, 69, 36);
-        playercurrenttime.setBounds(62, 269, 200, 13);
-        playerplaytime.setBounds(0, 269, 57, 14);
-        playerplaytimetotal.setBounds(262, 269, 49, 14);
-        playerareavolumeicon.getJComponent().setBounds(62, 293, 14, 14);
-        playerareavolumeslider.setBounds(87, 293, 145, 13);
-        playerareavolumecurrent.setBounds(242, 293, 35, 14);
-        heart.getJComponent().setBounds(286, 229, 24, 24);
-    }
-
-    void restoreDefaultPlayerStyle() {
-        playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
-        playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
-        playertitle.setHorizontalAlignment(SwingConstants.LEFT);
-        playerdescription.setHorizontalAlignment(SwingConstants.LEFT);
-        playerimage.setBounds(10, 11, 78, 78);
-        playertitle.setBounds(109, 11, 168, 14);
-        playerarealyricsbutton.getJComponent().setBounds(280, 75, 14, 14);
-        playerdescription.setBounds(109, 40, 138, 20);
-        playerplaypreviousbutton.setBounds(287, 11, 70, 36);
-        playerplaypausebutton.setBounds(369, 11, 69, 36);
-        playerplaynextbutton.setBounds(448, 11, 69, 36);
-        playercurrenttime.setBounds(306, 54, 200, 13);
-        playerplaytime.setBounds(244, 54, 57, 14);
-        playerplaytimetotal.setBounds(506, 54, 49, 14);
-        playerareavolumeicon.getJComponent().setBounds(306, 75, 14, 14);
-        playerareavolumeslider.setBounds(334, 76, 145, 13);
-        playerareavolumecurrent.setBounds(489, 75, 35, 14);
-        heart.getJComponent().setBounds(525, 20, 24, 24);
     }
 
     public static void saveCurrentState() {
