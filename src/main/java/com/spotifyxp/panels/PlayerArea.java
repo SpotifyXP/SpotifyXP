@@ -296,6 +296,7 @@ public class PlayerArea extends JPanel {
         });
         historybutton = new JSVGPanel();
         historybutton.setImage(Graphics.HISTORY.getPath());
+        historybutton.getJComponent().setBackground(heart.getJComponent().getBackground());
         historybutton.getJComponent().setBounds(720, 50, 20, 20);
         historybutton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
