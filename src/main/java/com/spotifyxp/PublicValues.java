@@ -5,6 +5,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
+import com.spotifyxp.deps.org.mpris.MPRISMP2None;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.dialogs.CancelDialog;
@@ -76,6 +77,7 @@ public class PublicValues {
     public static CountryCode countryCode;
     public static boolean enableMediaControl = true;
     public static boolean disableChunkDebug = false;
+    public static MPRISMP2None mpris;
     //Devstuff
     public static boolean locationFinderActive = false;
     //----
