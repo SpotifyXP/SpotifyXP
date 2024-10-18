@@ -3,6 +3,8 @@ package com.spotifyxp.dialogs;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +31,10 @@ public class LoginDialog {
     }
 
     public void open() {
-
         frame = new JFrame();
+        SplashPanel.frame.setAlwaysOnTop(false);
+        frame.setLocationRelativeTo(null);
+        frame.setLocation(SplashPanel.frame.getLocation());
         frame.setTitle(PublicValues.language.translate("ui.login.title"));
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
