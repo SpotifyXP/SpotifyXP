@@ -74,6 +74,7 @@ public class PlayerListener implements Player.EventsListener {
         if(PlayerArea.playerarealyricsbutton.isFilled) {
             PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
         }
+        Events.triggerEvent(SpotifyXPEvents.trackNext.getName());
         if(!PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name)) {
             timer.schedule(new PlayerThread(), 0, 1000);
             try {
