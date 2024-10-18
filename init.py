@@ -45,4 +45,7 @@ def doMPRISJava():
     else:
         copyMPRISJava()
 
-doMPRISJava()
+def doInit():
+    doMPRISJava()
+
+doInit()
