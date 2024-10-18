@@ -5,17 +5,15 @@
 # In every deps directory there is a .DEPINFO file that has the link of the GitHub repository
 # Output: src/main/resources/setup/thirdparty.html
 import asyncio
+import github.GithubException
 import json
 import os
+import requests
 import subprocess
 import threading
 import warnings
 import webbrowser
-
-import github.GithubException
-import requests
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
-import lxml  # Needed for BeautifulSoup
 from github import Github, Auth
 from simple_http_server import route, Parameter, server, Response
 
