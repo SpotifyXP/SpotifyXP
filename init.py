@@ -30,7 +30,8 @@ def doMPRISJava():
     def copyMPRISJava():
         if os.path.exists("src/main/java/com/spotifyxp/deps/org"): removeDirectory("src/main/java/com/spotifyxp/deps/org")
         copyDirectory("deps/mpris-java/src/main/java/org", "src/main/java/com/spotifyxp/deps/org")
-        mass_replace("src/main/java/com/spotifyxp/deps/org/mpris", "*.java", "org.mpris", "com.spotifyxp.deps.org.mpris")
+        mass_replace("src/main/java/com/spotifyxp/deps/org/mpris", "*.java", "import org.mpris", "import com.spotifyxp.deps.org.mpris")
+        mass_replace("src/main/java/com/spotifyxp/deps/org/mpris", "*.java", "package org.mpris", "package com.spotifyxp.deps.org.mpris")
     if os.path.exists("src/main/java/com/spotifyxp/deps/org"):
         inp = input("Overwrite mpris-java? [Y/N]")
         if inp.lower().__eq__("y"):
@@ -45,5 +46,3 @@ def doMPRISJava():
         copyMPRISJava()
 
 doMPRISJava()
-
-print("Init script finished")
