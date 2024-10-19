@@ -12,19 +12,19 @@ public class AsyncMouseListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Thread thread = new Thread(() -> listener.mouseClicked(e));
+        Thread thread = new Thread(() -> listener.mouseClicked(e), "AsyncMouseListener clicked");
         thread.start();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        Thread thread = new Thread(() -> listener.mousePressed(e));
+        Thread thread = new Thread(() -> listener.mousePressed(e), "AsyncMouseListener pressed");
         thread.start();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        Thread thread = new Thread(() -> listener.mouseReleased(e));
+        Thread thread = new Thread(() -> listener.mouseReleased(e), "AsyncMouseListener released");
         thread.start();
     }
 
