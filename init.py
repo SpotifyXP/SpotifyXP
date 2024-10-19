@@ -45,7 +45,27 @@ def doMPRISJava():
     else:
         copyMPRISJava()
 
+def doJavaSetupTool():
+    def copyJavaSetupTool():
+        if os.path.exists("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool"): removeDirectory("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool")
+        copyDirectory("deps/JavaSetupTool/src/main/java/de/werwolf2303/javasetuptool", "src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool")
+        mass_replace("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool", "*.java", "import de.werwolf2303.javasetuptool", "import com.spotifyxp.deps.de.werwolf2303.javasetuptool")
+        mass_replace("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool", "*.java", "package de.werwolf2303.javasetuptool", "package com.spotifyxp.deps.de.werwolf2303.javasetuptool")
+    if os.path.exists("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool"):
+        inp = input("Overwrite JavaSetupTool? [Y/N]")
+        if inp.lower().__eq__("y"):
+            copyJavaSetupTool()
+        elif inp.lower().__eq__(""):
+            copyJavaSetupTool()
+        elif inp.lower().__eq__("n"):
+            return
+        else:
+            doJavaSetupTool()
+    else:
+        copyJavaSetupTool()
+
 def doInit():
     doMPRISJava()
+    doJavaSetupTool()
 
 doInit()

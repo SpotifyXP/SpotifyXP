@@ -2,6 +2,7 @@ package com.spotifyxp.setup;
 
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Logger;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup.SetupBuilder;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.AcceptComponent;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.InstallProgressComponent;
@@ -9,6 +10,7 @@ import com.spotifyxp.deps.mslinks.ShellLink;
 import com.spotifyxp.deps.mslinks.ShellLinkHelper;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.utils.*;
 
@@ -22,6 +24,12 @@ public class Setup {
         SplashPanel.frame.setVisible(false);
         AcceptComponent thirdparty = new AcceptComponent();
         thirdparty.load(new Resources().readToString("setup/thirdparty.html"));
+        com.spotifyxp.deps.de.werwolf2303.javasetuptool.PublicValues.logger = new Logger() {
+            @Override
+            public void catching(Throwable t) {
+                ConsoleLoggingModules.Throwable(t);
+            }
+        };
         new com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup().open(new SetupBuilder()
                 .setProgramImage(new Resources(true).readToInputStream("setup.png"))
                 .setProgramName(ApplicationUtils.getName())
