@@ -105,13 +105,18 @@ public class SystemTrayDialog {
                         @Override
                         public void windowLostFocus(WindowEvent e) {
                             e.getWindow().dispose();
-                            extendedSystemTray.onClose();
-                            extendedDialog = null;
+                        }
+                    });
+                    extendedDialog.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosing(WindowEvent e) {
                             try {
                                 UIManager.setLookAndFeel(originalLookAndFeel);
                             } catch (UnsupportedLookAndFeelException ex) {
                                 throw new RuntimeException(ex);
                             }
+                            extendedSystemTray.onClose();
+                            extendedDialog = null;
                         }
                     });
                     extendedDialog.setVisible(true);
