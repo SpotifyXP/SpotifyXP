@@ -18,7 +18,7 @@ jobs:
       - name: Set up python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13.0'
       - name: Set up maven
         uses: s4u/setup-maven-action@v1.15.0
         with:
