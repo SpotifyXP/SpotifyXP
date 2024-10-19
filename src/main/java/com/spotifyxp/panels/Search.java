@@ -435,8 +435,7 @@ public class Search extends JPanel {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.artistalbumalbumtable));
-                                    albumthread.start();
+                                    InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.artistalbumalbumtable);
                                     trackthread.start();
                                 } catch (Exception e1) {
                                     throw new RuntimeException(e1);

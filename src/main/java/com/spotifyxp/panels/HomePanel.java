@@ -144,8 +144,7 @@ public class HomePanel {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     }, "Get tracks (HomePanel)");
-                                    Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
-                                    albumthread.start();
+                                    InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable);
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                     ConsoleLogging.Throwable(ex);
@@ -251,8 +250,7 @@ public class HomePanel {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     }, "Get tracks (Artist)");
-                                    Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
-                                    albumthread.start();
+                                    InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable);
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                     ConsoleLogging.Throwable(ex);

@@ -162,8 +162,7 @@ public class ContentPanel extends JPanel {
         }));
         SplashPanel.linfo.setText("Deciding population of hotlist...");
         if (PublicValues.autoLoadHotList) {
-            Thread t = new Thread(this::setHotlistVisible, "Make HotList visible");
-            t.start();
+            setHotlistVisible();
         }
         SplashPanel.linfo.setText("Making window interactive...");
         createLegacy();
