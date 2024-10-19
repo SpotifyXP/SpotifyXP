@@ -1,8 +1,10 @@
 name: Nightly
+
 on:
   push:
     branches:
       - developer
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
