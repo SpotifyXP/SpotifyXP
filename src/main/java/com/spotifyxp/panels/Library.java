@@ -58,7 +58,7 @@ public class Library extends JPanel {
                 throw new RuntimeException(e);
             }
         }
-    });
+    }, "Library thread");
 
     public Library() {
         setBounds(0, 0, 784, 421);
@@ -77,7 +77,7 @@ public class Library extends JPanel {
                 if (value + extent >= maximum / 2) {
                     if (ContentPanel.libraryVisble) {
                         if (!libraryLoadingInProgress) {
-                            Thread thread = new Thread(Library::loadNext);
+                            Thread thread = new Thread(Library::loadNext, "Library load next");
                             thread.start();
                         }
                     }
@@ -99,7 +99,7 @@ public class Library extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     InstanceManager.getPlayer().getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, PublicValues.shuffle);
-                    Thread thread1 = new Thread(() -> TrackUtils.addAllToQueue(libraryuricache, librarysonglist));
+                    Thread thread1 = new Thread(() -> TrackUtils.addAllToQueue(libraryuricache, librarysonglist), "Library add to queue");
                     thread1.start();
                 }
             }

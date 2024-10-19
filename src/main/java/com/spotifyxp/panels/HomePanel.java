@@ -42,7 +42,7 @@ public class HomePanel {
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollholder.setSize(784, 421);
-        Thread t = new Thread(this::initializeContent);
+        Thread t = new Thread(this::initializeContent, "Get home");
         t.start();
     }
 
@@ -143,7 +143,7 @@ public class HomePanel {
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
-                                    });
+                                    }, "Get tracks (HomePanel)");
                                     Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
@@ -250,7 +250,7 @@ public class HomePanel {
                                         } catch (IOException | ParseException | SpotifyWebApiException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
-                                    });
+                                    }, "Get tracks (Artist)");
                                     Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();

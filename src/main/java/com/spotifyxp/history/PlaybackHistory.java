@@ -289,7 +289,7 @@ public class PlaybackHistory extends JFrame {
             }catch (Exception e) {
                 ConsoleLogging.Throwable(e);
             }
-        });
+        }, "Fetch playback history");
         fetchhistory.start();
         super.open();
     }

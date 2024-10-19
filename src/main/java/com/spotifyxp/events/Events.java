@@ -125,7 +125,7 @@ public class Events {
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
-        });
+        }, "Wait for future (Events)");
         waitForThread.start();
     }
 }

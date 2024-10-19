@@ -30,7 +30,7 @@ import java.io.File;
 @SuppressWarnings({"all", "RedundantArrayCreation"})
 public class Initiator {
     public static StartupTime startupTime;
-    static final Thread hook = new Thread(PlayerArea::saveCurrentState);
+    static final Thread hook = new Thread(PlayerArea::saveCurrentState, "Save play state");
 
     public static boolean past = false;
     @SuppressWarnings("rawtypes")

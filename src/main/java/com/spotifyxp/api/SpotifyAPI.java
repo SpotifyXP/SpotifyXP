@@ -76,7 +76,7 @@ public class SpotifyAPI {
             }catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        });
+        }, "Add albums to list");
         thread.start();
     }
 

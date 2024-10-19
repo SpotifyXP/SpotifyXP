@@ -134,7 +134,7 @@ public class Playlists extends JPanel {
                         } catch (Exception e1) {
                             throw new RuntimeException(e1);
                         }
-                    });
+                    }, "Get playlist tracks");
                     thread.start();
                 }
             }

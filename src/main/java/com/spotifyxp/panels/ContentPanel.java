@@ -162,7 +162,7 @@ public class ContentPanel extends JPanel {
         }));
         SplashPanel.linfo.setText("Deciding population of hotlist...");
         if (PublicValues.autoLoadHotList) {
-            Thread t = new Thread(this::setHotlistVisible);
+            Thread t = new Thread(this::setHotlistVisible, "Make HotList visible");
             t.start();
         }
         SplashPanel.linfo.setText("Making window interactive...");
@@ -260,13 +260,13 @@ public class ContentPanel extends JPanel {
                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
                     ConsoleLogging.Throwable(ex);
                 }
-            });
+            }, "Get tracks");
             Thread albumthread = new Thread(() -> {
                 for(AlbumSimplified album : SpotifyUtils.getAllAlbumsArtist(a.getUri())) {
                     artistPanel.albumuricache.add(album.getUri());
                     ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).addRow(new Object[]{album.getName()});
                 }
-            });
+            }, "Get albums for artist");
             albumthread.start();
             trackthread.start();
             artistPanel.openPanel();
@@ -942,7 +942,7 @@ public class ContentPanel extends JPanel {
         hotlistVisible = true;
         feedbackVisible = false;
         if (HotList.hotlistplayliststable.getRowCount() == 0) {
-            Thread t = new Thread(HotList::fetchHotlist);
+            Thread t = new Thread(HotList::fetchHotlist, "Get HotList");
             t.start();
         }
     }
@@ -1011,7 +1011,7 @@ public class ContentPanel extends JPanel {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        });
+        }, "Playlists fetcher");
         if (Playlists.playlistsplayliststable.getModel().getRowCount() == 0) {
             thread.start();
         }
@@ -1050,7 +1050,7 @@ public class ContentPanel extends JPanel {
                 } catch (NullPointerException exc) {
                     // Nothing in queue
                 }
-            });
+            }, "Queue worker (ContentPanel)");
             queueworker.start();
         }
     }

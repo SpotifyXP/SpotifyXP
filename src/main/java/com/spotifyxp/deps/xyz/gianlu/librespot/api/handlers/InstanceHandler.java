@@ -98,7 +98,7 @@ public final class InstanceHandler {
                     switch (action) {
                         case "terminate":
                             exchange.endExchange();
-                            new Thread(server::stop).start();
+                            new Thread(server::stop, "APiServer stop (SessionHandler)").start();
                             break;
                         case "close":
                             session.close();
@@ -144,7 +144,7 @@ public final class InstanceHandler {
                     switch (action) {
                         case "terminate":
                             exchange.endExchange();
-                            new Thread(server::stop).start();
+                            new Thread(server::stop, "APiServer stop (PlayerHandler)").start();
                             break;
                         case "close":
                             session.close();

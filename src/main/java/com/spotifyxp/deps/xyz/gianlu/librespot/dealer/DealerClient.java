@@ -216,7 +216,7 @@ public class DealerClient implements Closeable {
                         }
                     }
                 }
-            });
+            }, "Get connection id");
             giveConnectionIdThread.start();
             Events.triggerEventButWait(SpotifyXPEvents.connectionId.getName(), future, uri, headers, decodedPayload);
             return;

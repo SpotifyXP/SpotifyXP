@@ -260,7 +260,7 @@ public class Search extends JPanel {
                     ConsoleLogging.Throwable(ex);
                 }
                 searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
-            });
+            }, "Search thread");
             thread1.start();
         }));
         searchscrollpanel = new JScrollPane();
