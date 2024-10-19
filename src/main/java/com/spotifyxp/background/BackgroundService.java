@@ -52,6 +52,7 @@ public class BackgroundService implements ExtendedSystemTray {
 
     @Override
     public void onInit(JDialog dialog) {
+        dialog.setModal(true);
         if(PublicValues.osType != libDetect.OSType.Windows) {
             dialog.dispose();
             return;
