@@ -24,6 +24,7 @@ public class BackgroundService implements ExtendedSystemTray {
      * Holds the trayDialog after start() was called
      */
     public static SystemTrayDialog trayDialog;
+    private JTextField titleAndText;
 
     /**
      * Creates the tray icon
@@ -41,6 +42,14 @@ public class BackgroundService implements ExtendedSystemTray {
         }
     }
 
+    EventSubscriber onNextTrack = new EventSubscriber() {
+        @Override
+        public void run(Object... data) {
+            titleAndText.setText(InstanceManager.getPlayer().getPlayer().currentMetadata().getName() + " - "
+                    + InstanceManager.getPlayer().getPlayer().currentMetadata().getArtist());
+        }
+    };
+
     @Override
     public void onInit(JDialog dialog) {
         if(PublicValues.osType != libDetect.OSType.Windows) {
@@ -54,8 +63,10 @@ public class BackgroundService implements ExtendedSystemTray {
         contentPanel.setLayout(new BorderLayout());
 
         try {
-            JTextField titleAndText = new JTextField();
+            titleAndText = new JTextField();
             titleAndText.setEditable(false);
+
+            Events.subscribe(SpotifyXPEvents.trackNext.getName(), onNextTrack);
 
             titleAndText.setText(InstanceManager.getPlayer().getPlayer().currentMetadata().getName() + " - "
                     + InstanceManager.getPlayer().getPlayer().currentMetadata().getArtist());
@@ -63,7 +74,7 @@ public class BackgroundService implements ExtendedSystemTray {
             textPanel.add(titleAndText, BorderLayout.CENTER);
         }catch (NullPointerException e) {
             ConsoleLogging.Throwable(e);
-            JTextField titleAndText = new JTextField("N/A");
+            titleAndText = new JTextField("N/A");
             titleAndText.setEditable(false);
 
             textPanel.add(titleAndText,BorderLayout.CENTER);
@@ -118,5 +129,7 @@ public class BackgroundService implements ExtendedSystemTray {
 
     @Override
     public void onClose() {
+        Events.unsubscribe(SpotifyXPEvents.trackNext.getName(), onNextTrack);
+        titleAndText = null;
     }
 }
