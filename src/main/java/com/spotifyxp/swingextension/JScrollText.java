@@ -1,7 +1,5 @@
 package com.spotifyxp.swingextension;
 
-import com.spotifyxp.threading.DefThread;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +10,7 @@ public class JScrollText extends JLabel implements Runnable {
         setText(text);
     }
 
-    DefThread t;
+    Thread t;
     boolean animate = true;
 
     public void run() {
@@ -59,7 +57,7 @@ public class JScrollText extends JLabel implements Runnable {
         text = text + "       ";
         super.setText(text);
         animate = true;
-        t = new DefThread(this);
+        t = new Thread(this);
         t.start();
     }
 }

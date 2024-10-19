@@ -11,7 +11,6 @@ import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.Token;
 import com.spotifyxp.utils.TrackUtils;
 
@@ -49,7 +48,7 @@ public class SpotifyAPI {
      * @param totable the table to store all albums found
      */
     public void addAllAlbumsToList(ArrayList<String> uricache, String fromuri, DefTable totable) {
-        DefThread thread = new DefThread(() -> {
+        Thread thread = new Thread(() -> {
             try {
                 int offset = 0;
                 int limit = 50;

@@ -19,7 +19,6 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
-import com.spotifyxp.threading.ThreadManager;
 import com.spotifyxp.utils.ArchitectureDetection;
 import com.spotifyxp.utils.Utils;
 import com.spotifyxp.visuals.AudioVisualizer;
@@ -66,7 +65,6 @@ public class PublicValues {
     public static Color borderColor = Color.black;
     public static boolean autoLoadHotList = false;
     public static PlaybackHistory history;
-    public static ThreadManager threadManager = new ThreadManager();
     public static boolean blockLoading = false;
     public static boolean devMode = false;
     public static JMenuBar menuBar;

@@ -10,7 +10,6 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.StringUtils;
@@ -43,7 +42,7 @@ public class HomePanel {
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollholder.setSize(784, 421);
-        DefThread t = new DefThread(this::initializeContent);
+        Thread t = new Thread(this::initializeContent);
         t.start();
     }
 
@@ -135,7 +134,7 @@ public class HomePanel {
                                         //No artist image (when this is raised it's a bug)
                                     }
                                     ArtistPanel.artisttitle.setText(a.getName());
-                                    DefThread trackthread = new DefThread(() -> {
+                                    Thread trackthread = new Thread(() -> {
                                         try {
                                             for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
                                                 ArtistPanel.popularuricache.add(t.getUri());
@@ -145,7 +144,7 @@ public class HomePanel {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
+                                    Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {
@@ -242,7 +241,7 @@ public class HomePanel {
                                         //No artist image (when this is raised it's a bug)
                                     }
                                     ArtistPanel.artisttitle.setText(a.getName());
-                                    DefThread trackthread = new DefThread(() -> {
+                                    Thread trackthread = new Thread(() -> {
                                         try {
                                             for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
                                                 ArtistPanel.popularuricache.add(t.getUri());
@@ -252,7 +251,7 @@ public class HomePanel {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
+                                    Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (IOException | ParseException | SpotifyWebApiException ex) {

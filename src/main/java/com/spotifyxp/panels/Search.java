@@ -8,7 +8,6 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
 import org.apache.hc.core5.http.ParseException;
 
@@ -171,7 +170,7 @@ public class Search extends JPanel {
             searchfilterartist.setSelected(false);
         });
         searchfinditbutton.addActionListener(new AsyncActionListener(e -> {
-            DefThread thread1 = new DefThread(() -> {
+            Thread thread1 = new Thread(() -> {
                 String searchartist = searchartistfield.getText();
                 String searchtitle = searchsongtitlefield.getText();
                 boolean track = searchfiltertrack.isSelected();
@@ -276,7 +275,7 @@ public class Search extends JPanel {
                     try {
                         if (searchsonglist.getModel().getValueAt(searchsonglist.getSelectedRow(), 2).toString().equals(PublicValues.language.translate("ui.general.loadmore"))) {
                             ((DefaultTableModel) searchsonglist.getModel()).setRowCount(searchsonglist.getRowCount() - 1);
-                            DefThread thread1 = new DefThread(() -> {
+                            Thread thread1 = new Thread(() -> {
                                 String searchartist = searchCacheArtist;
                                 String searchtitle = searchCacheTitle;
                                 boolean track = searchsonglistcache.get(0).split(":")[1].equals("track");
@@ -383,7 +382,7 @@ public class Search extends JPanel {
                             ContentPanel.blockTabSwitch();
                             break;
                     }
-                    DefThread thread = new DefThread(() -> {
+                    Thread thread = new Thread(() -> {
                         switch (searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1].toLowerCase()) {
                             case "playlist":
                                 try {
@@ -423,7 +422,7 @@ public class Search extends JPanel {
                                         // No artist image (when this is raised it's a bug)
                                     }
                                     ArtistPanel.artisttitle.setText(a.getName());
-                                    DefThread trackthread = new DefThread(() -> {
+                                    Thread trackthread = new Thread(() -> {
                                         try {
                                             for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
                                                 if (!ContentPanel.artistPanel.isVisible()) {
@@ -436,7 +435,7 @@ public class Search extends JPanel {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
-                                    DefThread albumthread = new DefThread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.artistalbumalbumtable));
+                                    Thread albumthread = new Thread(() -> InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.artistalbumalbumtable));
                                     albumthread.start();
                                     trackthread.start();
                                 } catch (Exception e1) {

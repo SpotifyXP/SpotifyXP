@@ -10,7 +10,6 @@ import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.URITree;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.AsyncMouseListener;
 
@@ -261,7 +260,7 @@ public class PlaybackHistory extends JFrame {
         root.removeAllChildren();
         ((DefaultTreeModel) tree.getModel()).reload();
 
-        DefThread fetchhistory = new DefThread(() -> {
+        Thread fetchhistory = new Thread(() -> {
             try {
                 for (PlaybackHistory.SongEntry entry : get15Songs(0)) {
                     DefaultMutableTreeNode addedTo;

@@ -21,7 +21,6 @@ import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.SupportModuleLoader;
 import com.spotifyxp.theming.ThemeLoader;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
@@ -31,7 +30,7 @@ import java.io.File;
 @SuppressWarnings({"all", "RedundantArrayCreation"})
 public class Initiator {
     public static StartupTime startupTime;
-    static final DefThread hook = new DefThread(PlayerArea::saveCurrentState);
+    static final Thread hook = new Thread(PlayerArea::saveCurrentState);
 
     public static boolean past = false;
     @SuppressWarnings("rawtypes")
@@ -237,7 +236,7 @@ public class Initiator {
 
     static void addShutdownHook() {
         SplashPanel.linfo.setText("Add shutdown hook...");
-        Runtime.getRuntime().addShutdownHook(hook.getRawThread());
+        Runtime.getRuntime().addShutdownHook(hook);
     }
 
     static void createKeyListener() {

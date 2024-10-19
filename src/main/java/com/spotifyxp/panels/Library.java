@@ -7,7 +7,6 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
@@ -26,7 +25,7 @@ public class Library extends JPanel {
     public static DefaultTableModel librarydefaulttablemodel;
     public static final ArrayList<String> libraryuricache = new ArrayList<>();
     private static boolean libraryLoadingInProgress = false;
-    public static final DefThread librarythread = new DefThread(new Runnable() {
+    public static final Thread librarythread = new Thread(new Runnable() {
         public void run() {
             try {
                 libraryLoadingInProgress = true;
@@ -78,7 +77,7 @@ public class Library extends JPanel {
                 if (value + extent >= maximum / 2) {
                     if (ContentPanel.libraryVisble) {
                         if (!libraryLoadingInProgress) {
-                            DefThread thread = new DefThread(Library::loadNext);
+                            Thread thread = new Thread(Library::loadNext);
                             thread.start();
                         }
                     }
@@ -100,7 +99,7 @@ public class Library extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     InstanceManager.getPlayer().getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, PublicValues.shuffle);
-                    DefThread thread1 = new DefThread(() -> TrackUtils.addAllToQueue(libraryuricache, librarysonglist));
+                    Thread thread1 = new Thread(() -> TrackUtils.addAllToQueue(libraryuricache, librarysonglist));
                     thread1.start();
                 }
             }

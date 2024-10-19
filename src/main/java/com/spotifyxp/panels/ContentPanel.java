@@ -21,7 +21,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.*;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.http.client.HttpClient;
@@ -249,7 +248,7 @@ public class ContentPanel extends JPanel {
                 // No artist image (when this is raised it's a bug)
             }
             artistPanel.artisttitle.setText(a.getName());
-            DefThread trackthread = new DefThread(() -> {
+            Thread trackthread = new Thread(() -> {
                 try {
                     for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
                         if (!artistPanel.isVisible()) {
@@ -262,7 +261,7 @@ public class ContentPanel extends JPanel {
                     ConsoleLogging.Throwable(ex);
                 }
             });
-            DefThread albumthread = new DefThread(() -> {
+            Thread albumthread = new Thread(() -> {
                 for(AlbumSimplified album : SpotifyUtils.getAllAlbumsArtist(a.getUri())) {
                     artistPanel.albumuricache.add(album.getUri());
                     ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).addRow(new Object[]{album.getName()});
@@ -984,7 +983,7 @@ public class ContentPanel extends JPanel {
         libraryVisble = false;
         hotlistVisible = false;
         feedbackVisible = false;
-        DefThread thread = new DefThread(() -> {
+        Thread thread = new Thread(() -> {
             try {
                 int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
                 int parsed = 0;
@@ -1038,7 +1037,7 @@ public class ContentPanel extends JPanel {
         if (Queue.queuelistmodel.isEmpty()) {
             ((DefaultListModel<?>) Queue.queuelist.getModel()).removeAllElements();
             Queue.queueuricache.clear();
-            DefThread queueworker = new DefThread(() -> {
+            Thread queueworker = new Thread(() -> {
                 try {
                     for (ContextTrackOuterClass.ContextTrack track : InstanceManager.getPlayer().getPlayer().tracks(true).next) {
                         Track t = InstanceManager.getSpotifyApi().getTrack(track.getUri().split(":")[2]).build().execute();

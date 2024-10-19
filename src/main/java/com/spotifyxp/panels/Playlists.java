@@ -9,7 +9,6 @@ import com.spotifyxp.dialogs.AddPlaylistDialog;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.threading.DefThread;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.TrackUtils;
 import org.apache.hc.core5.http.ParseException;
@@ -105,7 +104,7 @@ public class Playlists extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    DefThread thread = new DefThread(() -> {
+                    Thread thread = new Thread(() -> {
                         playlistssonguricache.clear();
                         ((DefaultTableModel) playlistssongtable.getModel()).setRowCount(0);
                         try {
