@@ -106,7 +106,10 @@ Follow the steps under 'Getting Started' and then login with your Email and Pass
 
 ## Compiling
 
-Just run the 'build.bat' inside the root of the repository. It will print some useful information
+1. Git clone with '--recursive'
+2. Run the init.py
+3. Run the build.py
+4. Executable is target/SpotifyXP.jar
 
 ## Contributing
 
