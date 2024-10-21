@@ -5,7 +5,7 @@ import com.spotifyxp.PublicValues;
 public class ArchitectureDetection {
     public ArchitectureDetection() {
         String arch = System.getProperty("os.arch");
-        if(arch.equals("x86_64")) {
+        if (arch.equals("x86_64")) {
             PublicValues.architecture = Architecture.amd64;
             return;
         }

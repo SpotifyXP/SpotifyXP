@@ -30,7 +30,7 @@ import java.util.List;
  * @author Gianlu
  */
 public final class VorbisOnlyAudioQuality implements AudioQualityPicker {
-     private final AudioQuality preferred;
+    private final AudioQuality preferred;
 
     public VorbisOnlyAudioQuality(@NotNull AudioQuality preferred) {
         this.preferred = preferred;

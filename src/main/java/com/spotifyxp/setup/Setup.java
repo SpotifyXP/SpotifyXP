@@ -43,7 +43,7 @@ public class Setup {
                 .setInstallComponent(getForSystem())
                 .addComponent(thirdparty)
                 .build());
-        while(true) {
+        while (true) {
             try {
                 Thread.sleep(99);
             } catch (InterruptedException exception) {
@@ -53,10 +53,10 @@ public class Setup {
     }
 
     public InstallProgressComponent getForSystem() {
-        if(PublicValues.osType == libDetect.OSType.Linux) {
+        if (PublicValues.osType == libDetect.OSType.Linux) {
             return buildLinux();
         }
-        if(PublicValues.osType == libDetect.OSType.MacOS) {
+        if (PublicValues.osType == libDetect.OSType.MacOS) {
             return buildMacOS();
         }
         return buildWindows();
@@ -123,7 +123,7 @@ public class Setup {
                             helper.setLocalTarget("C", PublicValues.appLocation.replace("C:\\", "") + "/SpotifyXP.jar");
                             helper.saveTo(System.getProperty("user.home") + "/Desktop/SpotifyXP.lnk");
                             return true;
-                        }catch (Exception e) {
+                        } catch (Exception e) {
                             ConsoleLogging.Throwable(e);
                             return false;
                         }

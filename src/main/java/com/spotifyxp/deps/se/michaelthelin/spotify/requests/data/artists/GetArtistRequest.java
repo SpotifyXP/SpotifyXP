@@ -1,10 +1,8 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.artists;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -14,70 +12,67 @@ import java.io.IOException;
 @JsonDeserialize(builder = GetArtistRequest.Builder.class)
 public class GetArtistRequest extends AbstractDataRequest<Artist> {
 
-  /**
-   * The private {@link GetArtistRequest} constructor.
-   *
-   * @param builder A {@link GetArtistRequest.Builder}.
-   */
-  private GetArtistRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Get an {@link Artist}.
-   *
-   * @return An {@link Artist}.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public Artist execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new Artist.JsonUtil().createModelObject(getJson());
-  }
-
-  /**
-   * Builder class for building a {@link GetArtistRequest}.
-   */
-  public static final class Builder extends AbstractDataRequest.Builder<Artist, Builder> {
-
     /**
-     * Create a new {@link GetArtistRequest.Builder} instance.
+     * The private {@link GetArtistRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link GetArtistRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private GetArtistRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The artist ID setter.
+     * Get an {@link Artist}.
      *
-     * @param id The Spotify ID for the artist.
-     * @return A {@link GetArtistRequest.Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify URIs &amp; IDs</a>
+     * @return An {@link Artist}.
+     * @throws IOException In case of networking issues.
      */
-    public Builder id(final String id) {
-      assert (id != null);
-      assert (!id.isEmpty());
-      return setPathParameter("id", id);
+    public Artist execute() throws
+            IOException {
+        return new Artist.JsonUtil().createModelObject(getJson());
     }
 
     /**
-     * The request build method.
-     *
-     * @return A custom {@link GetArtistRequest}.
+     * Builder class for building a {@link GetArtistRequest}.
      */
-    @Override
-    public GetArtistRequest build() {
-      setPath("/v1/artists/{id}");
-      return new GetArtistRequest(this);
-    }
+    public static final class Builder extends AbstractDataRequest.Builder<Artist, Builder> {
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * Create a new {@link GetArtistRequest.Builder} instance.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
+
+        /**
+         * The artist ID setter.
+         *
+         * @param id The Spotify ID for the artist.
+         * @return A {@link GetArtistRequest.Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify URIs &amp; IDs</a>
+         */
+        public Builder id(final String id) {
+            assert (id != null);
+            assert (!id.isEmpty());
+            return setPathParameter("id", id);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link GetArtistRequest}.
+         */
+        @Override
+        public GetArtistRequest build() {
+            setPath("/v1/artists/{id}");
+            return new GetArtistRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

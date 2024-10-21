@@ -16,17 +16,17 @@ public class EasyJLabelUI extends JFrame {
     }
 
     public void addJLabel(JLabel label) {
-        if(isVisible()) return;
+        if (isVisible()) return;
         labels.add(label);
     }
 
     @Override
     public void open() {
         int ycache = 8;
-        for(JLabel label : labels) {
+        for (JLabel label : labels) {
             label.setBounds(5, ycache, getPreferredSize().width, 15);
             panel.add(label);
-            ycache+=20 + 3;
+            ycache += 20 + 3;
             panel.setPreferredSize(new Dimension(getPreferredSize().width, ycache + 10));
         }
         super.open();

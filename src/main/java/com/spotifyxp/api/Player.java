@@ -41,7 +41,8 @@ public class Player {
 
     /**
      * Returns an instance of librespot-player
-     * @return    an instance of librespot-player
+     *
+     * @return an instance of librespot-player
      */
     public com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getPlayer() {
         return player;

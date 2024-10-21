@@ -207,10 +207,10 @@ public class DealerClient implements Closeable {
             Thread giveConnectionIdThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while(true) {
+                    while (true) {
                         for (Events.Event event : Events.getEventsList()) {
                             if (event.getName() == SpotifyXPEvents.connectionId.getName()) {
-                                if(!event.getSubscribers().isEmpty()) future.complete(true);
+                                if (!event.getSubscribers().isEmpty()) future.complete(true);
                                 break;
                             }
                         }

@@ -94,8 +94,8 @@ public enum HttpStatusCodes {
     }
 
     public static HttpStatusCodes getByValue(int value) {
-        for(HttpStatusCodes status : values()) {
-            if(status.value == value) return status;
+        for (HttpStatusCodes status : values()) {
+            if (status.value == value) return status;
         }
         throw new IllegalArgumentException("Invalid status code: " + value);
     }

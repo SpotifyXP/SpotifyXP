@@ -75,7 +75,7 @@ public class GlobalScreen {
                     if (lib.exists() && lib.isFile() && lib.canRead()) {
                         try {
                             System.load(lib.getPath());
-                        }catch (NoClassDefFoundError e) {
+                        } catch (NoClassDefFoundError e) {
                             e.printStackTrace();
                         }
                     }
@@ -110,7 +110,7 @@ public class GlobalScreen {
         Integer pointerAccelerationMultiplier = GlobalScreen.getPointerAccelerationMultiplier();
         if (pointerAccelerationMultiplier != null) {
             System.setProperty("jnativehook.pointer.acceleration.multiplier",
-                pointerAccelerationMultiplier.toString());
+                    pointerAccelerationMultiplier.toString());
         }
 
         Integer pointerAccelerationThreshold = GlobalScreen.getPointerAccelerationThreshold();
@@ -454,7 +454,7 @@ public class GlobalScreen {
      * Add a <code>NativeInputEvent</code> to the operating system's event queue. Each type of
      * <code>NativeInputEvent</code> is processed according to its event id.
      * <p>
-     *
+     * <p>
      * For both <code>NATIVE_KEY_PRESSED</code> and
      * <code>NATIVE_KEY_RELEASED</code> events, the virtual keycode and modifier
      * mask are used in the creation of the native event.  Please note that some platforms may
@@ -575,7 +575,7 @@ public class GlobalScreen {
          */
         private void processButtonEvent(NativeMouseEvent nativeEvent) {
             NativeMouseListener[] listeners = eventListeners
-                .getListeners(NativeMouseListener.class);
+                    .getListeners(NativeMouseListener.class);
 
             for (NativeMouseListener listener : listeners) {
                 switch (nativeEvent.getID()) {
@@ -605,7 +605,7 @@ public class GlobalScreen {
          */
         private void processMouseEvent(NativeMouseEvent nativeEvent) {
             NativeMouseMotionListener[] listeners = eventListeners
-                .getListeners(NativeMouseMotionListener.class);
+                    .getListeners(NativeMouseMotionListener.class);
 
             for (NativeMouseMotionListener listener : listeners) {
                 switch (nativeEvent.getID()) {

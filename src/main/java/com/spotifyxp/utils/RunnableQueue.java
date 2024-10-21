@@ -26,7 +26,7 @@ public final class RunnableQueue {
 
             Runnable l_runnable = current();
 
-            while(l_runnable != null) {
+            while (l_runnable != null) {
                 l_runnable.run();
                 l_runnable = next();
             }
@@ -47,10 +47,10 @@ public final class RunnableQueue {
     }
 
     public void enqueue(Runnable runnable) {
-        if(runnable != null) {
+        if (runnable != null) {
             synchronized (m_runnables) {
                 m_runnables.add(runnable);
-                if(m_runnables.size() == 1) {
+                if (m_runnables.size() == 1) {
                     m_executorService.execute(m_loop);
                 }
             }

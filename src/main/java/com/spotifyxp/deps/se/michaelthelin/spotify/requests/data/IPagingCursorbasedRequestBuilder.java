@@ -4,8 +4,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.P
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.IRequest;
 
 public interface IPagingCursorbasedRequestBuilder<T, A, BT extends IRequest.Builder<PagingCursorbased<T>, ?>>
-  extends IRequest.Builder<PagingCursorbased<T>, BT> {
-  BT limit(final Integer limit);
+        extends IRequest.Builder<PagingCursorbased<T>, BT> {
+    BT limit(final Integer limit);
 
-  BT after(final A after);
+    BT after(final A after);
 }

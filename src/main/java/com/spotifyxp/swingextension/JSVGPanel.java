@@ -21,9 +21,12 @@ public class JSVGPanel {
     public boolean isFilled = false;
 
     static BufferedImage image;
+
     public interface DrawMethods {
         void draw();
+
         void setImage(InputStream stream);
+
         JComponent getJComponent();
     }
 
@@ -64,15 +67,16 @@ public class JSVGPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D graphics2D = (Graphics2D) g;
-            if(!(rad.isEmpty())) {
-                graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
+            if (!(rad.isEmpty())) {
+                graphics2D.rotate(Double.parseDouble(rad), (float) this.getWidth() / 2, (float) this.getHeight() / 2);
             }
-            g.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_SMOOTH), this.getWidth()/8, this.getHeight()/8, null);
+            g.drawImage(image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH), this.getWidth() / 8, this.getHeight() / 8, null);
         }
     }
 
     public static class DrawImage implements DrawMethods {
         final RealDrawImage realDrawImage = new RealDrawImage();
+
         @Override
         public void draw() {
             realDrawImage.repaint();
@@ -84,7 +88,7 @@ public class JSVGPanel {
                 image = ImageIO.read(stream);
                 realDrawImage.paintImmediately(realDrawImage.getX(), realDrawImage.getY(), realDrawImage.getWidth(), realDrawImage.getHeight());
                 realDrawImage.repaint();
-            }catch (IOException ignored) {
+            } catch (IOException ignored) {
             }
         }
 
@@ -111,16 +115,17 @@ public class JSVGPanel {
     }
 
     public void setSVG(boolean value) {
-        if(value) {
+        if (value) {
             type = DrawTypes.SVG;
             method = new DrawSVG();
-        }else{
+        } else {
             type = DrawTypes.IMAGE;
             method = new DrawImage();
         }
     }
+
     public void setRotation(int percent) {
-        rad = String.valueOf(((float) 360/100*percent) * 0.01745329252);
+        rad = String.valueOf(((float) 360 / 100 * percent) * 0.01745329252);
         method.getJComponent().repaint();
     }
 }

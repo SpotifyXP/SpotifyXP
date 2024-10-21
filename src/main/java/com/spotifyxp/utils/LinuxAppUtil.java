@@ -17,6 +17,7 @@ public class LinuxAppUtil {
     String com;
     String pa;
     String cat;
+
     public LinuxAppUtil(String name) {
         appName = name;
     }
@@ -47,7 +48,7 @@ public class LinuxAppUtil {
 
     public void setCategories(String... category) {
         StringBuilder buffer = new StringBuilder();
-        for(String s : category) {
+        for (String s : category) {
             buffer.append(s).append(";");
         }
         cat = buffer.toString();
@@ -86,28 +87,28 @@ public class LinuxAppUtil {
         builder.append("Icon=").append(entry.icon).append("\n");
         builder.append("Terminal=").append(entry.terminal).append("\n");
         builder.append("Categories=").append(entry.categories);
-        if(new File(System.getProperty("user.home") + "/.local/share/applications").exists()) {
+        if (new File(System.getProperty("user.home") + "/.local/share/applications").exists()) {
             try {
                 Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/.local/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 ConsoleLogging.Throwable(e);
             }
-        }else{
-            if(new File("/usr/share/applications").exists()) {
+        } else {
+            if (new File("/usr/share/applications").exists()) {
                 try {
                     Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File("/usr/share/applications", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException e) {
                     try {
                         Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/Schreibtisch", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    }catch (IOException e2) {
+                    } catch (IOException e2) {
                         try {
                             Files.copy(IOUtils.toInputStream(builder.toString(), Charset.defaultCharset()), new File(System.getProperty("user.home") + "/Desktop", entry.name + ".desktop").toPath(), StandardCopyOption.REPLACE_EXISTING);
-                        }catch (IOException e3) {
+                        } catch (IOException e3) {
                             GraphicalMessage.bug("Cant create shortcut! All methods failed");
                         }
                     }
                 }
-            }else{
+            } else {
                 GraphicalMessage.bug("No applications folder found!");
             }
         }

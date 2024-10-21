@@ -24,94 +24,95 @@ import java.util.LinkedList;
 
 @SuppressWarnings("JavadocDeclaration")
 public class LinkTargetIDList extends LinkedList<ItemID> implements Serializable {
-	
-	public LinkTargetIDList() {}
-	
-	public LinkTargetIDList(ByteReader data) throws IOException, ShellLinkException {
-		int size = (int)data.read2bytes();
-		int pos = data.getPosition(); 
-		
-		while (true) {
-			int itemSize = (int)data.read2bytes();
-			if (itemSize == 0)
-				break;
 
-			int typeFlags = data.read();
-			ItemID item = ItemID.createItem(typeFlags);
-			item.load(data, itemSize - 3);
-			add(item);
-		}
-		
-		pos = data.getPosition() - pos;
-		if (pos != size) 
-			throw new ShellLinkException("unexpected size of LinkTargetIDList");
-	}
+    public LinkTargetIDList() {
+    }
 
-	public void serialize(ByteWriter bw) throws IOException {
-		int size = 2;
-		byte[][] b = new byte[size()][];
-		int i = 0;
-		for (ItemID j : this) {
-			ByteArrayOutputStream ba = new ByteArrayOutputStream();
-			ByteWriter w = new ByteWriter(ba);
-			
-			j.serialize(w);
-			b[i++] = ba.toByteArray();
-		}
-		for (byte[] j : b)
-			size += j.length + 2;
-		
-		bw.write2bytes(size);
-		for (byte[] j : b) {
-			bw.write2bytes(j.length + 2);
-			bw.write(j);
-		}
-		bw.write2bytes(0);
-	}
+    public LinkTargetIDList(ByteReader data) throws IOException, ShellLinkException {
+        int size = (int) data.read2bytes();
+        int pos = data.getPosition();
 
-	/**
-	 * @Deprecated Equivalent of {@link #canBuildPath()} method
-	 */
-	
-	public boolean isCorrect() {
-		return canBuildPath();
-	}
-	
-	public boolean canBuildPath() {
-		for (ItemID i : this)
-			if (i instanceof ItemIDUnknown)
-				return false;
-		return true;
-	}
+        while (true) {
+            int itemSize = (int) data.read2bytes();
+            if (itemSize == 0)
+                break;
 
-	public boolean canBuildAbsolutePath() {
-		if (size() < 2)
-			return false;
+            int typeFlags = data.read();
+            ItemID item = ItemID.createItem(typeFlags);
+            item.load(data, itemSize - 3);
+            add(item);
+        }
 
-		ItemID firstId = getFirst();
-		if (!(firstId instanceof ItemIDRoot))
-			return false;
+        pos = data.getPosition() - pos;
+        if (pos != size)
+            throw new ShellLinkException("unexpected size of LinkTargetIDList");
+    }
 
-		ItemIDRoot rootId = (ItemIDRoot) firstId;
-		if (!rootId.getClsid().equals(Registry.CLSID_COMPUTER))
-			return false;
+    public void serialize(ByteWriter bw) throws IOException {
+        int size = 2;
+        byte[][] b = new byte[size()][];
+        int i = 0;
+        for (ItemID j : this) {
+            ByteArrayOutputStream ba = new ByteArrayOutputStream();
+            ByteWriter w = new ByteWriter(ba);
 
-		ItemID secondId = get(1);
-		return secondId instanceof ItemIDDrive;
-	}
+            j.serialize(w);
+            b[i++] = ba.toByteArray();
+        }
+        for (byte[] j : b)
+            size += j.length + 2;
 
-	public String buildPath() {
-		StringBuilder path = new StringBuilder();
-		if (!isEmpty()) {
-			// when a link created by drag'n'drop menu from desktop, id list starts from filename directly
-			ItemID firstId = getFirst();
-			if (firstId instanceof ItemIDFS)
-				path.append("<Desktop>\\");
+        bw.write2bytes(size);
+        for (byte[] j : b) {
+            bw.write2bytes(j.length + 2);
+            bw.write(j);
+        }
+        bw.write2bytes(0);
+    }
 
-			for (ItemID i : this) {
-				path.append(i.toString());
-			}
-		}
-		return path.toString();
-	}
+    /**
+     * @Deprecated Equivalent of {@link #canBuildPath()} method
+     */
+
+    public boolean isCorrect() {
+        return canBuildPath();
+    }
+
+    public boolean canBuildPath() {
+        for (ItemID i : this)
+            if (i instanceof ItemIDUnknown)
+                return false;
+        return true;
+    }
+
+    public boolean canBuildAbsolutePath() {
+        if (size() < 2)
+            return false;
+
+        ItemID firstId = getFirst();
+        if (!(firstId instanceof ItemIDRoot))
+            return false;
+
+        ItemIDRoot rootId = (ItemIDRoot) firstId;
+        if (!rootId.getClsid().equals(Registry.CLSID_COMPUTER))
+            return false;
+
+        ItemID secondId = get(1);
+        return secondId instanceof ItemIDDrive;
+    }
+
+    public String buildPath() {
+        StringBuilder path = new StringBuilder();
+        if (!isEmpty()) {
+            // when a link created by drag'n'drop menu from desktop, id list starts from filename directly
+            ItemID firstId = getFirst();
+            if (firstId instanceof ItemIDFS)
+                path.append("<Desktop>\\");
+
+            for (ItemID i : this) {
+                path.append(i.toString());
+            }
+        }
+        return path.toString();
+    }
 }

@@ -22,6 +22,7 @@ public class JImageButton extends JSVGCanvas {
     boolean highlight = false;
     boolean click = false;
     ActionListener l;
+
     public JImageButton() {
         JImageButton button = this;
         canvas.setBackground(getBackground());
@@ -32,12 +33,14 @@ public class JImageButton extends JSVGCanvas {
                 highlight = false;
                 refreshPaint();
             }
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 highlight = true;
                 refreshPaint();
             }
+
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
@@ -60,17 +63,18 @@ public class JImageButton extends JSVGCanvas {
     }
 
     final boolean first = false;
+
     public void setImage(InputStream inputStream) {
         try {
             String parser = XMLResourceDescriptor.getXMLParserClassName();
             SAXSVGDocumentFactory factory = new SAXSVGDocumentFactory(parser);
             SVGDocument document = factory.createSVGDocument("", inputStream);
             canvas.setSVGDocument(document);
-            if(first) {
+            if (first) {
                 canvas.setBounds(canvas.getX(), canvas.getY(), canvas.getWidth() / 2, canvas.getHeight() / 2);
             }
-        }catch (IOException e) {
-           throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -90,9 +94,9 @@ public class JImageButton extends JSVGCanvas {
 
     public void setBorderPainted(boolean value) {
         paintBorder = value;
-        if(value) {
+        if (value) {
             repaint();
-        }else{
+        } else {
             canvas.setBorder(BorderFactory.createEmptyBorder());
             repaint();
         }
@@ -104,7 +108,7 @@ public class JImageButton extends JSVGCanvas {
 
     public void setContentAreaFilled(boolean value) {
         areaFilled = value;
-        if(!value) {
+        if (!value) {
             setBackground(oldColor);
         }
     }
@@ -119,7 +123,7 @@ public class JImageButton extends JSVGCanvas {
         } else {
             setBackground(oldColor);
         }
-        if(focusPainted) {
+        if (focusPainted) {
             if (highlight) {
                 setBackground(getBackground().brighter());
             } else {
@@ -131,9 +135,9 @@ public class JImageButton extends JSVGCanvas {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(paintBorder) {
+        if (paintBorder) {
             g.setColor(oldColor.brighter());
-            g.drawRoundRect(getX(), getY(), getWidth(), getHeight(), 15 ,15);
+            g.drawRoundRect(getX(), getY(), getWidth(), getHeight(), 15, 15);
         }
     }
 }

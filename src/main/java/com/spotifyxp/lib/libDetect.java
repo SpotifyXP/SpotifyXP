@@ -6,7 +6,9 @@ public class libDetect {
     public enum OSType {
         Windows, MacOS, Linux, Other, Steamos
     }
+
     protected static OSType detectedOS;
+
     static OSType getOperatingSystemType() {
         String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
         if ((OS.contains("mac")) || (OS.contains("darwin"))) {

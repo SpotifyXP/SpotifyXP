@@ -55,7 +55,8 @@ public interface SpotifyId {
         }
     }
 
-    @NotNull String toSpotifyUri();
+    @NotNull
+    String toSpotifyUri();
 
     class SpotifyIdParsingException extends Exception {
         SpotifyIdParsingException(Throwable cause) {

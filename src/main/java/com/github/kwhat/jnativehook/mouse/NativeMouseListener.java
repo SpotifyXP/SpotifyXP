@@ -25,7 +25,7 @@ import java.util.EventListener;
  * The listener interface for receiving systemwide <code>NativeMouseEvents</code>. (To track native
  * mouse moves, use the <code>NativeMouseMotionListener</code>.)
  * <p>
- *
+ * <p>
  * The class that is interested in processing a <code>NativeMouseEvent</code> implements this
  * interface, and the object created with that class is registered with the
  * <code>GlobalScreen</code> using the {@link GlobalScreen#addNativeMouseListener} method. When the
@@ -34,8 +34,8 @@ import java.util.EventListener;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.0
- * @since 1.0
  * @see NativeMouseEvent
+ * @since 1.0
  */
 public interface NativeMouseListener extends EventListener {
     /**
@@ -43,19 +43,22 @@ public interface NativeMouseListener extends EventListener {
      *
      * @param nativeEvent the native mouse event.
      */
-    default void nativeMouseClicked(NativeMouseEvent nativeEvent) {}
+    default void nativeMouseClicked(NativeMouseEvent nativeEvent) {
+    }
 
     /**
      * Invoked when a mouse button has been pressed
      *
      * @param nativeEvent the native mouse event.
      */
-    default void nativeMousePressed(NativeMouseEvent nativeEvent) {}
+    default void nativeMousePressed(NativeMouseEvent nativeEvent) {
+    }
 
     /**
      * Invoked when a mouse button has been released
      *
      * @param nativeEvent the native mouse event.
      */
-    default void nativeMouseReleased(NativeMouseEvent nativeEvent) {}
+    default void nativeMouseReleased(NativeMouseEvent nativeEvent) {
+    }
 }

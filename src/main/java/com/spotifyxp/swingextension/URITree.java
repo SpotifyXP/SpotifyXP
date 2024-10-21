@@ -92,7 +92,7 @@ public class URITree extends JTree {
                             default:
                                 ConsoleLogging.warning("[URITree] Invalid nodeType! Falling back to folder icon");
                         }
-                    }catch (NullPointerException ignored) {
+                    } catch (NullPointerException ignored) {
                     }
                 }
             }

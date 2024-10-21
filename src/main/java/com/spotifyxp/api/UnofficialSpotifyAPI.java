@@ -4,14 +4,10 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.utils.ApplicationUtils;
+import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.GraphicalMessage;
-import org.apache.http.Header;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import com.spotifyxp.utils.MapUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,63 +29,12 @@ public class UnofficialSpotifyAPI {
 
     /**
      * Refreshes the api token with new given one
+     *
      * @param token token in format of a Spotify API token
      */
     public void refresh(String token) {
         api = token;
     }
-
-    private static String makeGetStatic(String url, Header... headers) {
-        HttpClient client = HttpClients.createDefault();
-        HttpGet get = new HttpGet(url);
-        get.setHeader("Authorization", "Bearer " + InstanceManager.getUnofficialSpotifyApi().api);
-        get.setHeader("App-Platform", "Win32");
-        get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
-        for (Header header : headers) {
-            get.setHeader(header);
-        }
-        try {
-            return EntityUtils.toString(client.execute(get).getEntity());
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-        return "FAILED";
-    }
-
-    private String makeGet(String url, Header... headers) {
-        HttpClient client = HttpClients.createDefault();
-        HttpGet get = new HttpGet(url);
-        get.setHeader("Authorization", "Bearer " + InstanceManager.getUnofficialSpotifyApi().api);
-        get.setHeader("App-Platform", "Win32");
-        get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
-        for (Header header : headers) {
-            get.setHeader(header);
-        }
-        try {
-            return EntityUtils.toString(client.execute(get).getEntity());
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-        return "FAILED";
-    }
-
-    private String makePost(String url, Header... headers) {
-        HttpClient client = HttpClients.createDefault();
-        HttpPost post = new HttpPost(url);
-        post.setHeader("Authorization", "Bearer " + InstanceManager.getUnofficialSpotifyApi().api);
-        post.setHeader("App-Platform", "Win32");
-        post.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.65 Spotify/1.2.9.743 Safari/537.36");
-        for (Header header : headers) {
-            post.setHeader(header);
-        }
-        try {
-            return EntityUtils.toString(client.execute(post).getEntity());
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
-        return "FAILED";
-    }
-
 
     /**
      * Holds all the information of the lyrics for a track
@@ -114,13 +59,15 @@ public class UnofficialSpotifyAPI {
 
     /**
      * Returns lyrics for a track
+     *
      * @param uri uri of track
      * @return instance of Lyrics
      * @see Lyrics
      */
     public Lyrics getLyrics(String uri) {
         try {
-            JSONObject object = new JSONObject(makeGet("https://spclient.wg.spotify.com/color-lyrics/v2/track/" + uri.split(":")[2] + "?format=json&vocalRemoval=false"));
+            JSONObject object = new JSONObject(ConnectionUtils.makeGet("https://spclient.wg.spotify.com/color-lyrics/v2/track/" + uri.split(":")[2] + "?format=json&vocalRemoval=false",
+                    MapUtils.of("Authorization", "Bearer " + api, "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent())));
             JSONObject lyricsroot = new JSONObject(object.getJSONObject("lyrics").toString());
             Lyrics lyrics = new Lyrics();
             lyrics.language = lyricsroot.getString("language");
@@ -136,13 +83,13 @@ public class UnofficialSpotifyAPI {
                 lyrics.lines.add(lyricsLine);
             }
             return lyrics;
-        }catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             return null;
         }
     }
 
     /**
-     Holds information about an artist
+     * Holds information about an artist
      */
     public static class Artist {
         public String id = "";
@@ -274,25 +221,28 @@ public class UnofficialSpotifyAPI {
 
     /**
      * Gets the complete HomeTab (Used in the tab Home)
+     *
      * @return instance of HomeTab
      * @see HomeTab
      */
-    public HomeTab getHomeTab() {
+    public HomeTab getHomeTab() throws IOException {
         JSONObject root = new JSONObject();
         try {
             //https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=%7B%22timeZone%22%3A%22Europe%2FBerlin%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D
             String url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
-            root = new JSONObject(new JSONObject(makeGet(url)).getJSONObject("data").getJSONObject("home").toString());
-        }catch (JSONException e) {
-            if(times>5) {
+            root = new JSONObject(new JSONObject(ConnectionUtils.makeGet(url,
+                    MapUtils.of("Authorization", "Bearer " + api, "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
+        } catch (JSONException e) {
+            if (times > 5) {
                 GraphicalMessage.sorryError();
-            }else{
-                times+=1;
+            } else {
+                times += 1;
                 return getHomeTab();
             }
         } catch (UnsupportedEncodingException e) {
             String url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
-            root = new JSONObject(new JSONObject(makeGet(url)).getJSONObject("data").getJSONObject("home").toString());
+            root = new JSONObject(new JSONObject(ConnectionUtils.makeGet(url,
+                    MapUtils.of("Authorization", "Bearer " + api, "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
         }
         HomeTab tab = new HomeTab();
         tab.greeting = root.getJSONObject("greeting").getString("text");
@@ -332,12 +282,12 @@ public class UnofficialSpotifyAPI {
                                 HomeTabAlbum album = new HomeTabAlbum();
                                 try {
                                     album.name = data.getString("name");
-                                }catch (JSONException e) {
+                                } catch (JSONException e) {
                                     ConsoleLogging.warning("[HomeTab] Couldnt get name for album");
                                 }
                                 try {
                                     album.uri = data.getString("uri");
-                                }catch (JSONException e) {
+                                } catch (JSONException e) {
                                     ConsoleLogging.warning("[HomeTab] Couldnt get uri for album");
                                 }
                                 imageData = new HomeTabImage();
@@ -498,12 +448,12 @@ public class UnofficialSpotifyAPI {
                                     JSONObject podcastV2 = data.getJSONObject("podcastV2").getJSONObject("data");
                                     try {
                                         eoc.name = podcastV2.getString("name");
-                                    }catch (JSONException e) {
+                                    } catch (JSONException e) {
                                         ConsoleLogging.warning("[HomeTab] Couldnt get name for podcast");
                                     }
                                     try {
                                         eoc.publisherName = podcastV2.getJSONObject("publisher").getString("name");
-                                    }catch (JSONException e) {
+                                    } catch (JSONException e) {
                                         ConsoleLogging.warning("[HomeTab] Couldnt get name of publisher for podcast");
                                     }
                                     for (Object source : podcastV2.getJSONObject("coverArt").getJSONArray("sources")) {
@@ -572,12 +522,12 @@ public class UnofficialSpotifyAPI {
                             HomeTabAlbum album = new HomeTabAlbum();
                             try {
                                 album.name = data.getString("name");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get name for album");
                             }
                             try {
                                 album.uri = data.getString("uri");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get uri for album");
                             }
                             imageData = new HomeTabImage();
@@ -597,12 +547,12 @@ public class UnofficialSpotifyAPI {
                                 HomeTabArtistNoImage artistData = new HomeTabArtistNoImage();
                                 try {
                                     artistData.name = artistSource.getJSONObject("profile").getString("name");
-                                }catch (JSONException e) {
+                                } catch (JSONException e) {
                                     ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
                                 }
                                 try {
                                     artistData.uri = artistSource.getString("uri");
-                                }catch (JSONException e) {
+                                } catch (JSONException e) {
                                     ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
                                 }
                                 album.artists.add(artistData);
@@ -653,7 +603,7 @@ public class UnofficialSpotifyAPI {
                                         HomeTabImageSource imagesSource = new HomeTabImageSource();
                                         try {
                                             imagesSource.url = sourceData.getString("url");
-                                        }catch (JSONException e) {
+                                        } catch (JSONException e) {
                                             ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
                                         }
                                         images.sources.add(imagesSource);
@@ -665,22 +615,22 @@ public class UnofficialSpotifyAPI {
                             }
                             try {
                                 playlist.description = data.getString("description"); //Get description
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get description for playlist");
                             }
                             try {
                                 playlist.name = data.getString("name"); //Get Name
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get name for playlist");
                             }
                             try {
                                 playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get owner of playlist");
                             }
                             try {
                                 playlist.uri = item.getString("uri"); //Get Uri
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get uri of playlist");
                             }
                             homeTabSection.playlists.add(playlist);
@@ -694,32 +644,32 @@ public class UnofficialSpotifyAPI {
                             }
                             try {
                                 eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get total milliseconds for episode/chapter");
                             }
                             try {
                                 eoc.uri = item.getString("uri");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get uri for episode/chapter");
                             }
                             try {
                                 eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get isodate for episode/chapter");
                             }
                             try {
                                 eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get play position for episode/chapter");
                             }
                             try {
                                 eoc.EpisodeOrChapterName = data.getString("name");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get name for episode/chapter");
                             }
                             try {
                                 eoc.description = data.getString("description");
-                            }catch (JSONException e) {
+                            } catch (JSONException e) {
                                 ConsoleLogging.warning("[HomeTab] Couldnt get description for episode/chapter");
                             }
                             for (Object source : data.getJSONObject("coverArt").getJSONArray("sources")) {
@@ -770,6 +720,7 @@ public class UnofficialSpotifyAPI {
     /**
      * Gets an url referring to a canvas mp4 file for a track<br><br>
      * <a style="color:yellow;font:bold">!!Deprecated!! </a> Will be removed in a future version
+     *
      * @param uri Track URI (spotify:track:xyz)
      * @return String
      */

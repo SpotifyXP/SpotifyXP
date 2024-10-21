@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
@@ -9,7 +8,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.*;
-import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -178,7 +176,7 @@ public class Search extends JPanel {
                 boolean album = searchfilteralbum.isSelected();
                 boolean show = searchfiltershow.isSelected();
                 boolean playlist = searchfilterplaylist.isSelected();
-                if(!track & !artist & !album & !show & !playlist) {
+                if (!track & !artist & !album & !show & !playlist) {
                     //No search filter was selected! Selecting tracks
                     searchfiltertrack.setSelected(true);
                     track = true;
@@ -256,7 +254,7 @@ public class Search extends JPanel {
                             InstanceManager.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
                         }
                     }
-                } catch (IOException | SpotifyWebApiException | ParseException ex) {
+                } catch (IOException ex) {
                     ConsoleLogging.Throwable(ex);
                 }
                 searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
@@ -347,7 +345,7 @@ public class Search extends JPanel {
                                             InstanceManager.getSpotifyAPI().addPlaylistToList(t, searchsonglist);
                                         }
                                     }
-                                } catch (IOException | SpotifyWebApiException | ParseException ex) {
+                                } catch (IOException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
                                 searchsonglist.addModifyAction(() -> ((DefaultTableModel) searchsonglist.getModel()).addRow(new Object[]{PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore"), PublicValues.language.translate("ui.general.loadmore")}));
@@ -355,7 +353,7 @@ public class Search extends JPanel {
                             thread1.start();
                             return;
                         }
-                    }catch (NullPointerException ignored) {
+                    } catch (NullPointerException ignored) {
                     }
                     switch (searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1]) {
                         case "playlist":
@@ -431,7 +429,7 @@ public class Search extends JPanel {
                                                 ArtistPanel.popularuricache.add(t.getUri());
                                                 InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
                                             }
-                                        } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                                        } catch (IOException ex) {
                                             ConsoleLogging.Throwable(ex);
                                         }
                                     });
@@ -551,9 +549,9 @@ public class Search extends JPanel {
         searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow())));
         searchbackbutton.addActionListener(new AsyncActionListener(e -> {
             searchplaylistpanel.setVisible(false);
-            if(ContentPanel.artistPanelVisible) {
+            if (ContentPanel.artistPanelVisible) {
                 ArtistPanel.contentPanel.setVisible(true);
-            }else{
+            } else {
                 ContentPanel.searchpanel.setVisible(true);
             }
             PublicValues.contentPanel.setVisible(true);

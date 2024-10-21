@@ -86,6 +86,7 @@ public final class FpsCounter {
         public double getAggregateFps() {
             return this.aggregateFps;
         }
+
         private final double averageFps;
         private final double aggregateFps;
     }
@@ -241,6 +242,7 @@ public final class FpsCounter {
 
         return fps;
     }
+
     private int averageFrameCount = 100; // Report frame rate after maxframe number of frames have been rendered
     private boolean started = true; // flag to indicate the counter has been started
     private long lastTime;          // last system nanos measured

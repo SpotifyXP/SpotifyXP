@@ -16,7 +16,7 @@ public class MacOSXSupportModule implements SupportModule {
 
     @Override
     public void run() {
-        if(!PublicValues.customSaveDir) {
+        if (!PublicValues.customSaveDir) {
             PublicValues.fileslocation = System.getProperty("user.home") + "/SpotifyXP";
             PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
             PublicValues.configfilepath = PublicValues.fileslocation + "/config.json";
@@ -34,7 +34,7 @@ public class MacOSXSupportModule implements SupportModule {
             URL url = Initiator.class.getClassLoader().getResource("spotifyxp.png");
             Image image = Toolkit.getDefaultToolkit().getImage(url);
             setDockIconImage.invoke(application, image);
-        }catch (Exception ignored) {
+        } catch (Exception ignored) {
             try {
                 Class<?> util = Class.forName("java.awt.Taskbar");
                 Method getApplication = util.getMethod("getTaskbar", new Class[0]);

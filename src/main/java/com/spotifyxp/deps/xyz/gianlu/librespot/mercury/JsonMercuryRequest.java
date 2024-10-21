@@ -44,7 +44,8 @@ public class JsonMercuryRequest<W extends JsonWrapper> {
         try (Reader reader = new InputStreamReader(resp.payload.stream())) {
             JsonElement elm = JsonParser.parseReader(reader);
             return wrapperClass.getConstructor(JsonObject.class).newInstance(elm.getAsJsonObject());
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | IOException ex) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException |
+                 IOException ex) {
             throw new IllegalArgumentException(ex);
         }
     }

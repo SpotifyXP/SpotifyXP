@@ -31,7 +31,7 @@ public class LocationFinder {
             public void run() {
                 Rectangle rectangle = ContentPanel.frame.getBounds();
                 Point screenlocation = MouseInfo.getPointerInfo().getLocation();
-                if(rectangle.contains(screenlocation)) {
+                if (rectangle.contains(screenlocation)) {
                     PublicValues.contentPanel.repaint();
                 }
             }
@@ -40,13 +40,13 @@ public class LocationFinder {
     }
 
     public static void open() {
-        if(PublicValues.locationFinderActive) {
+        if (PublicValues.locationFinderActive) {
             PublicValues.contentPanel.removePaintOverwrite();
             executor.shutdown();
             helloRunnable = null;
             PublicValues.locationFinderActive = false;
             PublicValues.contentPanel.repaint();
-        }else{
+        } else {
             new LocationFinder();
         }
     }

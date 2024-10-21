@@ -24,58 +24,56 @@ import java.util.GregorianCalendar;
 
 @SuppressWarnings("LongLiteralEndingWithLowercaseL")
 public class Filetime extends GregorianCalendar implements Serializable {
-	private long residue;
-	
-	public Filetime() {
-		super();
-	}
-	
-	public Filetime(ByteReader data) throws IOException {
-		this(data.read8bytes());
-	}
-	
-	public Filetime(long time) {
-		long t = time / 10000;
-		residue = time - t;
-		setTimeInMillis(t);
-		add(Calendar.YEAR, -369);
-	}
+    private long residue;
 
-	@Override
-	public boolean equals(Object o)
-	{
-		if (o == this)
-			return true;
+    public Filetime() {
+        super();
+    }
 
-		if (o == null || getClass() != o.getClass())
-			return false;
+    public Filetime(ByteReader data) throws IOException {
+        this(data.read8bytes());
+    }
 
-		if (!super.equals(o))
-			return false;
+    public Filetime(long time) {
+        long t = time / 10000;
+        residue = time - t;
+        setTimeInMillis(t);
+        add(Calendar.YEAR, -369);
+    }
 
-		Filetime obj = (Filetime)o;
-		return residue == obj.residue;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
 
-	@Override
-	public int hashCode()
-	{
-		return (int)(super.hashCode() ^ ((residue & 0xffffffff00000000l) >> 32) ^ (residue & 0xffffffffl));
-	}
-	
-	public long toLong() {
-		GregorianCalendar tmp = (GregorianCalendar)clone();
-		tmp.add(Calendar.YEAR, 369);
-		return tmp.getTimeInMillis() + residue;
-	}
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-	public void serialize(ByteWriter bw) throws IOException {
-		bw.write8bytes(toLong());
-	}
-	
-	public String toString() {
-		return String.format("%02d:%02d:%02d %02d.%02d.%04d", 
-				get(Calendar.HOUR_OF_DAY), get(Calendar.MINUTE), get(Calendar.SECOND),
-				get(Calendar.DAY_OF_MONTH), get(Calendar.MONTH) + 1, get(Calendar.YEAR));
-	}
+        if (!super.equals(o))
+            return false;
+
+        Filetime obj = (Filetime) o;
+        return residue == obj.residue;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (super.hashCode() ^ ((residue & 0xffffffff00000000l) >> 32) ^ (residue & 0xffffffffl));
+    }
+
+    public long toLong() {
+        GregorianCalendar tmp = (GregorianCalendar) clone();
+        tmp.add(Calendar.YEAR, 369);
+        return tmp.getTimeInMillis() + residue;
+    }
+
+    public void serialize(ByteWriter bw) throws IOException {
+        bw.write8bytes(toLong());
+    }
+
+    public String toString() {
+        return String.format("%02d:%02d:%02d %02d.%02d.%04d",
+                get(Calendar.HOUR_OF_DAY), get(Calendar.MINUTE), get(Calendar.SECOND),
+                get(Calendar.DAY_OF_MONTH), get(Calendar.MONTH) + 1, get(Calendar.YEAR));
+    }
 }

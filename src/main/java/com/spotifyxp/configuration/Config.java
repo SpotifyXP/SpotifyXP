@@ -29,25 +29,27 @@ public class Config {
             put(value.name, value.defaultValue);
         }
     }
+
     JSONProperties properties;
+
     public Config() {
         properties = new JSONProperties();
-        if(!new File(PublicValues.configfilepath).exists()) {
-            for(ConfigValues value : ConfigValues.values()) {
+        if (!new File(PublicValues.configfilepath).exists()) {
+            for (ConfigValues value : ConfigValues.values()) {
                 properties.put(value);
             }
-            if(!new File(PublicValues.fileslocation).exists()) {
-                if(!new File(PublicValues.fileslocation).mkdir()) {
+            if (!new File(PublicValues.fileslocation).exists()) {
+                if (!new File(PublicValues.fileslocation).mkdir()) {
                     GraphicalMessage.sorryErrorExit("Failed creating important directory");
                 }
             }
-            if(!new File(PublicValues.appLocation).exists()) {
-                if(!new File(PublicValues.appLocation).mkdir()) {
+            if (!new File(PublicValues.appLocation).exists()) {
+                if (!new File(PublicValues.appLocation).mkdir()) {
                     GraphicalMessage.sorryErrorExit("Failed creating important directory");
                 }
             }
             try {
-                if(!new File(PublicValues.configfilepath).createNewFile()) {
+                if (!new File(PublicValues.configfilepath).createNewFile()) {
                     ConsoleLogging.error(PublicValues.language.translate("configuration.error.failedcreateconfig"));
                 }
             } catch (IOException e) {
@@ -73,55 +75,55 @@ public class Config {
     public void checkConfig() {
         //Checks config for invalid values
         boolean foundInvalid = false;
-        for(ConfigValues value : ConfigValues.values()) {
+        for (ConfigValues value : ConfigValues.values()) {
             //Handle some values that need extra checking
             switch (value.name) {
                 case "settings.playback.quality":
-                    if(!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
+                    if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
                         ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
                         foundInvalid = true;
                     }
                     try {
                         Quality.valueOf(properties.getString(value.name));
-                    }catch (IllegalArgumentException e) {
+                    } catch (IllegalArgumentException e) {
                         ConsoleLogging.warning("Key '" + value.name + "' has an invalid value: '" + properties.get(value.name) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
                         foundInvalid = true;
                     }
                     break;
                 case "settings.ui.theme":
-                    if(!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
+                    if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
                         ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
                         foundInvalid = true;
                     }
                     PublicValues.themeLoader = new ThemeLoader();
-                    if(!ThemeLoader.hasTheme(properties.getString(value.name))) {
+                    if (!ThemeLoader.hasTheme(properties.getString(value.name))) {
                         ConsoleLogging.warning("Key '" + value.name + "' has an invalid value: '" + properties.get(value.name) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
                         foundInvalid = true;
                     }
                     break;
                 default:
-                    if(!properties.has(value.name)) {
+                    if (!properties.has(value.name)) {
                         try {
                             properties.put(Objects.requireNonNull(ConfigValues.get(value.name)));
                             ConsoleLogging.warning("Key '" + value.name + "' not found! Creating...");
                             foundInvalid = true;
-                        }catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             ConsoleLogging.error("Failed creating key '" + value.name + "'!");
                         }
                         continue;
                     }
-                    if(!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
+                    if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
                         ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
                         properties.put(value.name, value.defaultValue);
                         foundInvalid = true;
                     }
             }
         }
-        if(foundInvalid) {
+        if (foundInvalid) {
             try {
                 Files.write(Paths.get(PublicValues.configfilepath), properties.toString().getBytes(StandardCharsets.UTF_8));
             } catch (IOException e) {
@@ -132,7 +134,8 @@ public class Config {
 
     /**
      * Writes a new entry with the name and value to the config file
-     * @param name Name of entry
+     *
+     * @param name  Name of entry
      * @param value Value of entry
      */
     public void write(String name, Object value) {
@@ -146,6 +149,7 @@ public class Config {
 
     /**
      * Returns the value of the given entry inside the config as object
+     *
      * @param name name of the entry
      * @return Object
      */
@@ -159,6 +163,7 @@ public class Config {
 
     /**
      * Returns the value of the given entry inside the config as String
+     *
      * @param name name of the entry
      * @return String
      */
@@ -172,6 +177,7 @@ public class Config {
 
     /**
      * Returns the value of the given entry inside the config as Boolean
+     *
      * @param name name of the entry
      * @return Boolean
      */
@@ -181,6 +187,7 @@ public class Config {
 
     /**
      * Returns the value of the given entry inside the config as Integer
+     *
      * @param name name of the entry
      * @return Integer
      */
@@ -190,6 +197,7 @@ public class Config {
 
     /**
      * Returns the value of the given entry inside the config as Double
+     *
      * @param name name of the entry
      * @return Double
      */
@@ -199,6 +207,7 @@ public class Config {
 
     /**
      * Returns the value of the given entry inside the config as Float
+     *
      * @param name name of the entry
      * @return Float
      */

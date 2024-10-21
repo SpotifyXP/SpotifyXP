@@ -23,23 +23,25 @@ public class StringUtils {
         // Draw the String
         g.drawString(text, x, y);
     }
+
     public static String generateStringFrom(int length) {
         int number = 1;
         Random r = new Random();
         String letters = "abcdefghijklmnopqrstuvwxyz";
         String numbers = "0123456789";
         StringBuilder strbuilder = new StringBuilder();
-        for(int i=0; i < length; i++) {
-            if(r.nextInt(3)==number) {
+        for (int i = 0; i < length; i++) {
+            if (r.nextInt(3) == number) {
                 //Number (1,2,3)
                 strbuilder.append(numbers.charAt(r.nextInt(numbers.length())));
-            }else{
+            } else {
                 //Letters (A,B,C)
                 strbuilder.append(letters.charAt(r.nextInt(letters.length())));
             }
         }
         return strbuilder.toString();
     }
+
     public static String hashWith256(String textToHash) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

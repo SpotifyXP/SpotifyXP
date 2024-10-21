@@ -152,7 +152,7 @@ public class CustomTheme implements Theme {
                 }
                 Color c = JColorChooser.showDialog(this, "Choose the Color", defc); //ToDo: Translate the text
                 return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
-            }catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 //User cancelled the color selection
                 return color;
             }
@@ -183,7 +183,7 @@ public class CustomTheme implements Theme {
     }
 
     void openCustomzationMenu() {
-        if(!(content==null)) {
+        if (!(content == null)) {
             frame.setVisible(true);
             frame.pack();
             return;
@@ -245,7 +245,7 @@ public class CustomTheme implements Theme {
 
         public ThemeConfig() {
             configFile = new File(PublicValues.fileslocation, "customTheme.json");
-            if(!configFile.exists()) {
+            if (!configFile.exists()) {
                 try {
                     configFile.createNewFile();
                 } catch (IOException e) {

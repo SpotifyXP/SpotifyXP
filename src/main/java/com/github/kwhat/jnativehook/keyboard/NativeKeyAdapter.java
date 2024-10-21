@@ -21,9 +21,10 @@ package com.github.kwhat.jnativehook.keyboard;
  * Adapter implementation of the NativeKeyListener interface. The methods are empty so the super
  * call is obsolete.
  *
- * @deprecated No need to extend this class, implement the {@code NativeKeyListener} interface instead
  * @author Johannes Boczek
  * @since 2.1
+ * @deprecated No need to extend this class, implement the {@code NativeKeyListener} interface instead
  */
 
-public class NativeKeyAdapter implements NativeKeyListener {}
+public class NativeKeyAdapter implements NativeKeyListener {
+}

@@ -6,6 +6,7 @@ import java.awt.*;
 @SuppressWarnings("BusyWait")
 public class JScrollText extends JLabel implements Runnable {
     String text;
+
     public JScrollText(String text) {
         setText(text);
     }
@@ -17,9 +18,9 @@ public class JScrollText extends JLabel implements Runnable {
         FontMetrics metrics = null;
         try {
             metrics = getFontMetrics(getFont());
-        }catch (NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
         }
-        if(metrics != null) {
+        if (metrics != null) {
             while (animate) {
                 if (!isVisible()) {
                     return;

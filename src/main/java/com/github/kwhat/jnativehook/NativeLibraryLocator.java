@@ -29,9 +29,8 @@ import java.util.Iterator;
  *
  * @author Aidas Adomkus (vasiukai@gmail.com)
  * @version 2.0
- * @since   2.0
- *
  * @see DefaultLibraryLocator
+ * @since 2.0
  */
 public interface NativeLibraryLocator {
     /**

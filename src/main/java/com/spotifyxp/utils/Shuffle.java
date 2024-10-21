@@ -9,19 +9,20 @@ import java.util.Collections;
 
 public class Shuffle {
     public static ArrayList<String> before = new ArrayList<>();
+
     public static void makeShuffle() {
         try {
             ArrayList<String> mixed = new ArrayList<>();
-            for(ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+            for (ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
                 mixed.add(t.getUri());
             }
             before = mixed;
             Collections.shuffle(mixed);
             PublicValues.spotifyplayer.tracks(true).next.clear();
-            for(String s : mixed) {
+            for (String s : mixed) {
                 PublicValues.spotifyplayer.addToQueue(s);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.openException(e);
         }

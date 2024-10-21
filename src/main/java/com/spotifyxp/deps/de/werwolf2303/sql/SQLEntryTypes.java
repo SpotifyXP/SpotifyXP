@@ -7,6 +7,7 @@ public enum SQLEntryTypes {
     DATE("DATE");
 
     private final String realType;
+
     SQLEntryTypes(String realType) {
         this.realType = realType;
     }

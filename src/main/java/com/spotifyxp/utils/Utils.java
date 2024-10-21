@@ -26,12 +26,13 @@ public class Utils {
             IOUtils.write(content, Files.newOutputStream(Paths.get(filelocation)), Charset.defaultCharset());
             fis.close();
             fos.close();
-        }catch (IOException ioe) {
+        } catch (IOException ioe) {
             ConsoleLogging.Throwable(ioe);
         }
     }
+
     public static int calculateRest(int from, int by) {
-        return from - Math.round(from/by);
+        return from - Math.round(from / by);
     }
 
     @SuppressWarnings("rawtypes")
@@ -59,7 +60,7 @@ public class Utils {
 
     @SuppressWarnings("rawtypes")
     public static String getClassName(Class c) {
-        return c.getName().split("\\.")[c.getName().split("\\.").length-1];
+        return c.getName().split("\\.")[c.getName().split("\\.").length - 1];
     }
 
     @SuppressWarnings("all")
@@ -87,7 +88,7 @@ public class Utils {
         for (int i = 0; i < allScreenDevices.length; i++) {
             if (config.getDevice() == allScreenDevices[i]) {
                 // Return the display number if the device matches
-                if(PublicValues.debug) ConsoleLogging.debug("Returning screen number: " + (i + 1));
+                if (PublicValues.debug) ConsoleLogging.debug("Returning screen number: " + (i + 1));
                 return i + 1; // Display numbers are usually 1-based
             }
         }
@@ -111,11 +112,10 @@ public class Utils {
             int y = (ContentPanel.frame.getSize().height - frame.getHeight()) / 2;
 
 
-
             // Set the JFrame location to the center of the target screen
             frame.setLocation(targetConfig.getBounds().x + x, targetConfig.getBounds().y + y);
 
-            if(PublicValues.debug) ConsoleLogging.debug("Moving JFrame to screen number: " + targetDisplayNumber);
+            if (PublicValues.debug) ConsoleLogging.debug("Moving JFrame to screen number: " + targetDisplayNumber);
         } else {
             ConsoleLogging.warning("Can't move window to the right screen");
         }

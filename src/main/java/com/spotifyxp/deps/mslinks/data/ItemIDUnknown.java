@@ -22,31 +22,31 @@ import java.io.IOException;
 
 public class ItemIDUnknown extends ItemID {
 
-	protected byte[] data;
+    protected byte[] data;
 
-	public ItemIDUnknown(int flags) {
-		super(flags);
-	}
+    public ItemIDUnknown(int flags) {
+        super(flags);
+    }
 
-	@Override
-	public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
-		int startPos = br.getPosition();
-		
-		super.load(br, maxSize);
-		
-		int bytesRead = br.getPosition() - startPos;
-		data = new byte[maxSize - bytesRead];
-		br.read(data);
-	}
+    @Override
+    public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
+        int startPos = br.getPosition();
 
-	@Override
-	public void serialize(ByteWriter bw) throws IOException {
-		super.serialize(bw);
-		bw.write(data);
-	}
+        super.load(br, maxSize);
 
-	@Override
-	public String toString() {
-		return String.format("<ItemIDUnknown 0x%02X>", typeFlags);
-	}
+        int bytesRead = br.getPosition() - startPos;
+        data = new byte[maxSize - bytesRead];
+        br.read(data);
+    }
+
+    @Override
+    public void serialize(ByteWriter bw) throws IOException {
+        super.serialize(bw);
+        bw.write(data);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("<ItemIDUnknown 0x%02X>", typeFlags);
+    }
 }

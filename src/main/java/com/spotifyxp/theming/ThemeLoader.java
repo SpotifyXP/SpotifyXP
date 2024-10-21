@@ -16,7 +16,7 @@ public class ThemeLoader {
     public ThemeLoader() {
         availableThemes.add(new DarkGreen());
         availableThemes.add(new Legacy());
-        if(!(PublicValues.osType == libDetect.OSType.MacOS)) {
+        if (!(PublicValues.osType == libDetect.OSType.MacOS)) {
             //Unsupported byte count: 16
             availableThemes.add(new MacOS());
         }
@@ -25,8 +25,8 @@ public class ThemeLoader {
     }
 
     public static boolean hasTheme(String name) {
-        for(Theme t : availableThemes) {
-            if(Utils.getClassName(t.getClass()).equals(name)) {
+        for (Theme t : availableThemes) {
+            if (Utils.getClassName(t.getClass()).equals(name)) {
                 return true;
             }
         }
@@ -35,28 +35,28 @@ public class ThemeLoader {
 
     public void tryLoadTheme(String name) throws UnknownThemeException {
         boolean found = false;
-        for(Theme theme : availableThemes) {
-            if(Utils.getClassName(theme.getClass()).toLowerCase().contains(name.toLowerCase())) {
+        for (Theme theme : availableThemes) {
+            if (Utils.getClassName(theme.getClass()).toLowerCase().contains(name.toLowerCase())) {
                 executeTheme(theme);
                 PublicValues.theme = theme;
                 found = true;
             }
         }
-        if(!found) {
+        if (!found) {
             throw new UnknownThemeException(name);
         }
     }
 
     public void loadTheme(String name) throws UnknownThemeException {
         boolean found = false;
-        for(Theme theme : availableThemes) {
-            if(Utils.getClassName(theme.getClass()).equals(name)) {
+        for (Theme theme : availableThemes) {
+            if (Utils.getClassName(theme.getClass()).equals(name)) {
                 executeTheme(theme);
                 PublicValues.theme = theme;
                 found = true;
             }
         }
-        if(!found) {
+        if (!found) {
             throw new UnknownThemeException(name);
         }
     }

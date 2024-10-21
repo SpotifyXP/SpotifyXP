@@ -6,18 +6,18 @@ import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.lib.libDetect;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.tray.ExtendedSystemTray;
 import com.spotifyxp.tray.SystemTrayDialog;
-import com.spotifyxp.logging.ConsoleLogging;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.utils.Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BackgroundService implements ExtendedSystemTray {
     /**
@@ -53,7 +53,7 @@ public class BackgroundService implements ExtendedSystemTray {
     @Override
     public void onInit(JDialog dialog) {
         dialog.setModal(true);
-        if(PublicValues.osType != libDetect.OSType.Windows) {
+        if (PublicValues.osType != libDetect.OSType.Windows) {
             dialog.dispose();
             return;
         }
@@ -73,12 +73,12 @@ public class BackgroundService implements ExtendedSystemTray {
                     + InstanceManager.getPlayer().getPlayer().currentMetadata().getArtist());
 
             textPanel.add(titleAndText, BorderLayout.CENTER);
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             ConsoleLogging.Throwable(e);
             titleAndText = new JTextField("N/A");
             titleAndText.setEditable(false);
 
-            textPanel.add(titleAndText,BorderLayout.CENTER);
+            textPanel.add(titleAndText, BorderLayout.CENTER);
         }
 
         contentPanel.add(textPanel, BorderLayout.NORTH);
@@ -122,7 +122,7 @@ public class BackgroundService implements ExtendedSystemTray {
 
     @Override
     public void onOpen() {
-        if(PublicValues.osType != libDetect.OSType.Windows) {
+        if (PublicValues.osType != libDetect.OSType.Windows) {
             ContentPanel.frame.setVisible(true);
             ContentPanel.frame.requestFocus();
         }

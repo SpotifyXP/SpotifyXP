@@ -25,9 +25,8 @@ public class CustomLengthTextField extends JTextField {
     }
 
     /**
-     *
      * @param length - maksimalan length
-     * @param upper - turn it to upercase
+     * @param upper  - turn it to upercase
      * @param inpVer - InputVerifier
      */
     public CustomLengthTextField(int length, boolean upper, InputVerifier inpVer) {

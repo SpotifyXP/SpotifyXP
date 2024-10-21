@@ -15,7 +15,7 @@
 package com.spotifyxp.deps.mslinks;
 
 public class UnsupportedItemIDException extends ShellLinkException {
-	public UnsupportedItemIDException(int typeFlags) {
-		super(String.format("unsupported ItemID type %02x", typeFlags));
-	}
+    public UnsupportedItemIDException(int typeFlags) {
+        super(String.format("unsupported ItemID type %02x", typeFlags));
+    }
 }

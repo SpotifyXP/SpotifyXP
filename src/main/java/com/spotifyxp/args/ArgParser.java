@@ -33,6 +33,7 @@ public class ArgParser {
 
         /**
          * Returns the name of the argument
+         *
          * @return String
          */
         public String getName() {
@@ -41,6 +42,7 @@ public class ArgParser {
 
         /**
          * Returns the description of the argument
+         *
          * @return String
          */
         public String getDescription() {
@@ -50,6 +52,7 @@ public class ArgParser {
         /**
          * Returns the parameter given to the argument (if hasParameter is true)<br>
          * Example: myargument=xyz
+         *
          * @return String
          */
         public String getParameter() {
@@ -58,6 +61,7 @@ public class ArgParser {
 
         /**
          * Returns if the argument has a parameter
+         *
          * @return Boolean
          */
         public boolean hasParameter() {
@@ -83,10 +87,10 @@ public class ArgParser {
     public void printHelp() {
         System.out.println("SpotifyXP - " + ApplicationUtils.getVersion() + "\n");
         System.out.println("Usage java -jar SpotifyXP.jar <argument>..." + "\n\n");
-        for(com.spotifyxp.args.Argument a : arguments) {
-            if(a.hasParameter()) {
+        for (com.spotifyxp.args.Argument a : arguments) {
+            if (a.hasParameter()) {
                 System.out.println("--" + a.getName() + "=<parameter>" + "   =>   " + a.getDescription());
-            }else {
+            } else {
                 System.out.println("--" + a.getName() + "   =>   " + a.getDescription());
             }
         }
@@ -94,23 +98,24 @@ public class ArgParser {
 
     /**
      * Parses all the given arguments
+     *
      * @param args Array of all arguments passed to SpotifyXP
      */
     public void parseArguments(String[] args) {
         boolean isvalid = false;
-        for(String s : args) {
+        for (String s : args) {
             String argument = s.replace("--", "");
             try {
                 argument = s.replace("--", "").split("=")[0];
-            }catch (Exception ignored) {
+            } catch (Exception ignored) {
             }
             String parameter = "";
             try {
                 parameter = s.split("=")[1];
-            }catch (Exception ignored) {
+            } catch (Exception ignored) {
             }
-            for(com.spotifyxp.args.Argument a : arguments) {
-                if(a.getName().equals(argument)) {
+            for (com.spotifyxp.args.Argument a : arguments) {
+                if (a.getName().equals(argument)) {
                     isvalid = true;
                     a.runArgument(parameter).run();
                     Argument arg = new Argument();
@@ -123,7 +128,7 @@ public class ArgParser {
                     break;
                 }
             }
-            if(!isvalid) {
+            if (!isvalid) {
                 System.out.println("Invalid argument: " + argument + "\n");
                 printHelp();
             }

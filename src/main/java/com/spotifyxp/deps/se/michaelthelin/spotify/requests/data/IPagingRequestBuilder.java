@@ -4,8 +4,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.P
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.IRequest;
 
 public interface IPagingRequestBuilder<T, BT extends IRequest.Builder<Paging<T>, ?>>
-  extends IRequest.Builder<Paging<T>, BT> {
-  BT limit(final Integer limit);
+        extends IRequest.Builder<Paging<T>, BT> {
+    BT limit(final Integer limit);
 
-  BT offset(final Integer offset);
+    BT offset(final Integer offset);
 }

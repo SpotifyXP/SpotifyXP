@@ -1,10 +1,8 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.miscellaneous.Device;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -14,60 +12,57 @@ import java.io.IOException;
 @JsonDeserialize(builder = GetUsersAvailableDevicesRequest.Builder.class)
 public class GetUsersAvailableDevicesRequest extends AbstractDataRequest<Device[]> {
 
-  /**
-   * The private {@link GetUsersAvailableDevicesRequest} constructor.
-   *
-   * @param builder A {@link GetUsersAvailableDevicesRequest.Builder}.
-   */
-  private GetUsersAvailableDevicesRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Get an user's available devices.
-   *
-   * @return An user's available devices.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public Device[] execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new Device.JsonUtil().createModelObjectArray(getJson(), "devices");
-  }
-
-  /**
-   * Builder class for building a {@link GetUsersAvailableDevicesRequest}.
-   */
-  public static final class Builder extends AbstractDataRequest.Builder<Device[], Builder> {
-
     /**
-     * Create a new {@link GetUsersAvailableDevicesRequest.Builder}.
-     * <p>
-     * Your access token must have the {@code user-read-playback-state} scope authorized in order to read information.
+     * The private {@link GetUsersAvailableDevicesRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
-     * @see <a href="https://developer.spotify.com/web-api/using-scopes/">Spotify: Using Scopes</a>
+     * @param builder A {@link GetUsersAvailableDevicesRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private GetUsersAvailableDevicesRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The request build method.
+     * Get an user's available devices.
      *
-     * @return A custom {@link GetUsersAvailableDevicesRequest}.
+     * @return An user's available devices.
+     * @throws IOException In case of networking issues.
      */
-    @Override
-    public GetUsersAvailableDevicesRequest build() {
-      setPath("/v1/me/player/devices");
-      return new GetUsersAvailableDevicesRequest(this);
+    public Device[] execute() throws
+            IOException {
+        return new Device.JsonUtil().createModelObjectArray(getJson(), "devices");
     }
 
-    @Override
-    protected Builder self() {
-      return this;
+    /**
+     * Builder class for building a {@link GetUsersAvailableDevicesRequest}.
+     */
+    public static final class Builder extends AbstractDataRequest.Builder<Device[], Builder> {
+
+        /**
+         * Create a new {@link GetUsersAvailableDevicesRequest.Builder}.
+         * <p>
+         * Your access token must have the {@code user-read-playback-state} scope authorized in order to read information.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         * @see <a href="https://developer.spotify.com/web-api/using-scopes/">Spotify: Using Scopes</a>
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link GetUsersAvailableDevicesRequest}.
+         */
+        @Override
+        public GetUsersAvailableDevicesRequest build() {
+            setPath("/v1/me/player/devices");
+            return new GetUsersAvailableDevicesRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

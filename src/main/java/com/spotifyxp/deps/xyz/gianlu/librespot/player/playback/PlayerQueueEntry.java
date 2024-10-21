@@ -272,7 +272,8 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
 
         try {
             load(preloaded);
-        } catch (IOException | PlayableContentFeeder.ContentRestrictedException | CdnManager.CdnException | MercuryClient.MercuryException | Decoder.DecoderException ex) {
+        } catch (IOException | PlayableContentFeeder.ContentRestrictedException | CdnManager.CdnException |
+                 MercuryClient.MercuryException | Decoder.DecoderException ex) {
             close();
             listener.loadingError(this, ex, retried);
             ConsoleLoggingModules.debug("{} terminated at loading.", this, ex);

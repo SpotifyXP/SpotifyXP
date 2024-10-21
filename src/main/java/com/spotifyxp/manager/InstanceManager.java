@@ -9,8 +9,7 @@ import java.util.ArrayList;
 /**
  * This class is a manager
  *
- * @apiNote
- * get[insertName] -> Gets an instance of the specified class
+ * @apiNote get[insertName] -> Gets an instance of the specified class
  * <br>set[insertName] -> Sets the instance of the specified class
  * <br> Get Example: getUnofficialSpotifyApi()
  * <br> Set Example: setUnofficialSpotifyApi( [instance of UnofficialSpotifyAPI] )
@@ -26,7 +25,7 @@ public class InstanceManager {
     static ArrayList<Object> classInstances = new ArrayList<>();
 
     public static Player getPlayer() {
-        if(player == null) {
+        if (player == null) {
             player = new Player(api);
         }
         return player;
@@ -37,14 +36,14 @@ public class InstanceManager {
     }
 
     public static OAuthPKCE getPkce() {
-        if(pkce == null) {
-            pkce = new OAuthPKCE(true);
+        if (pkce == null) {
+            pkce = new OAuthPKCE();
         }
         return pkce;
     }
 
     public static UnofficialSpotifyAPI getUnofficialSpotifyApi() {
-        if(unofficialSpotifyAPI == null) {
+        if (unofficialSpotifyAPI == null) {
             unofficialSpotifyAPI = new UnofficialSpotifyAPI(InstanceManager.getPkce().getToken());
         }
         return unofficialSpotifyAPI;
@@ -59,14 +58,14 @@ public class InstanceManager {
     }
 
     public static SpotifyAPI getSpotifyAPI() {
-        if(api == null) {
+        if (api == null) {
             api = new SpotifyAPI();
         }
         return api;
     }
 
     public static PlayerUtils getPlayerUtils() {
-        if(playerUtils == null) {
+        if (playerUtils == null) {
             playerUtils = new PlayerUtils();
         }
         return playerUtils;
@@ -85,14 +84,14 @@ public class InstanceManager {
     }
 
     public static SpotifyApi getSpotifyApi() {
-        if(sapi == null) {
+        if (sapi == null) {
             sapi = SpotifyApi.builder().setAccessToken(pkce.getToken()).build();
         }
         return sapi;
     }
 
     public static GitHubAPI getGitHubAPI() {
-        if(gitHubAPI == null) {
+        if (gitHubAPI == null) {
             gitHubAPI = new GitHubAPI();
         }
         return gitHubAPI;
@@ -115,8 +114,8 @@ public class InstanceManager {
 
     @SuppressWarnings("unchecked")
     public static <T> T getInstanceOf(Class<T> classReference) throws InstantiationException, IllegalAccessException {
-        for(Object clazz : classInstances) {
-            if(classReference.isInstance(clazz)) {
+        for (Object clazz : classInstances) {
+            if (classReference.isInstance(clazz)) {
                 return (T) clazz;
             }
         }
@@ -124,4 +123,4 @@ public class InstanceManager {
         classInstances.add(instance);
         return (T) instance;
     }
- }
+}

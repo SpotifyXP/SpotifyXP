@@ -135,7 +135,7 @@ public final class Mp3Decoder extends Decoder {
 
             int total = 0;
             while (total < MAX_READ_SIZE) {
-                if(PublicValues.lyricsDialog!=null) {
+                if (PublicValues.lyricsDialog != null) {
                     PublicValues.lyricsDialog.triggerRefresh();
                 }
                 Header header;
@@ -156,7 +156,7 @@ public final class Mp3Decoder extends Decoder {
                     throw new IOException(ex);
                 }
 
-                if(PublicValues.visualizer.isVisible()) {
+                if (PublicValues.visualizer.isVisible()) {
                     PublicValues.visualizer.update(buffer.array(), buffer.array().length);
                 }
 

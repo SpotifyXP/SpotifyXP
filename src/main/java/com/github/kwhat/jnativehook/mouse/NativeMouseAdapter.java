@@ -21,8 +21,9 @@ package com.github.kwhat.jnativehook.mouse;
  * Adapter implementation of the NativeMouseListener interface. The methods are empty so the super
  * call is obsolete.
  *
- * @deprecated No need to extend this class, implement the {@code NativeMouseListener} interface instead
  * @author Johannes Boczek
+ * @deprecated No need to extend this class, implement the {@code NativeMouseListener} interface instead
  */
 
-public class NativeMouseAdapter implements NativeMouseListener {}
+public class NativeMouseAdapter implements NativeMouseListener {
+}

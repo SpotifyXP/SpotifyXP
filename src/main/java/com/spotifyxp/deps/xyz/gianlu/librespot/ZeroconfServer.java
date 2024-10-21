@@ -382,7 +382,8 @@ public class ZeroconfServer implements Closeable {
             out.write(EOL);
             out.write(EOL);
             out.flush();
-        } catch (Session.SpotifyAuthenticationException | MercuryClient.MercuryException | IOException | GeneralSecurityException ex) {
+        } catch (Session.SpotifyAuthenticationException | MercuryClient.MercuryException | IOException |
+                 GeneralSecurityException ex) {
             ConsoleLoggingModules.error("Couldn't establish a new session.", ex);
 
             synchronized (connectionLock) {

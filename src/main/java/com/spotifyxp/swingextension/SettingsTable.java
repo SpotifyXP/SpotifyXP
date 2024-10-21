@@ -22,6 +22,6 @@ public class SettingsTable extends JPanel {
         component.setForeground(PublicValues.globalFontColor);
         add(component);
         add(field);
-        ycache+=component.getHeight()+10;
+        ycache += component.getHeight() + 10;
     }
 }

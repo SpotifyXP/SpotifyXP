@@ -72,6 +72,7 @@ public class ConsoleLogging {
         public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
         public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
         public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
+
         public static void reset() {
             System.out.print(RESET);
         }
@@ -134,15 +135,15 @@ public class ConsoleLogging {
     }
 
     private static String getPrefix(PrefixTypes type) {
-        if(isColored) {
+        if (isColored) {
             String toOut = ColoredPrefixes.valueOf(type.name()).getPrefix();
-            if(!showClassName) {
+            if (!showClassName) {
                 toOut = toOut.replace("::{CLASSNAME}", "");
             }
             return toOut;
-        }else{
+        } else {
             String toOut = Prefixes.valueOf(type.name()).getPrefix();
-            if(!showClassName) {
+            if (!showClassName) {
                 toOut = toOut.replace("::{CLASSNAME}", "");
             }
             return toOut;
@@ -153,49 +154,52 @@ public class ConsoleLogging {
     public static void info(String message, Object... object) {
         int counter = 0;
         StringBuilder builder = new StringBuilder();
-        for(String m : message.split("\\{\\}")) {
+        for (String m : message.split("\\{\\}")) {
             try {
                 builder.append(m).append(object[counter]);
-            }catch (ArrayIndexOutOfBoundsException exc) {
+            } catch (ArrayIndexOutOfBoundsException exc) {
                 builder.append(m);
             }
             counter++;
         }
         info(builder.toString());
     }
+
     public static void error(String message, Object... object) {
         int counter = 0;
         StringBuilder builder = new StringBuilder();
-        for(String m : message.split("\\{\\}")) {
+        for (String m : message.split("\\{\\}")) {
             try {
                 builder.append(m).append(object[counter]);
-            }catch (ArrayIndexOutOfBoundsException exc) {
+            } catch (ArrayIndexOutOfBoundsException exc) {
                 builder.append(m);
             }
             counter++;
         }
         error(builder.toString());
     }
+
     public static void warning(String message, Object... object) {
         int counter = 0;
         StringBuilder builder = new StringBuilder();
-        for(String m : message.split("\\{\\}")) {
+        for (String m : message.split("\\{\\}")) {
             try {
                 builder.append(m).append(object[counter]);
-            }catch (ArrayIndexOutOfBoundsException exc) {
+            } catch (ArrayIndexOutOfBoundsException exc) {
                 builder.append(m);
             }
             counter++;
         }
         warning(builder.toString());
     }
+
     public static void debug(String message, Object... object) {
         int counter = 0;
         StringBuilder builder = new StringBuilder();
-        for(String m : message.split("\\{\\}")) {
+        for (String m : message.split("\\{\\}")) {
             try {
                 builder.append(m).append(object[counter]);
-            }catch (ArrayIndexOutOfBoundsException exc) {
+            } catch (ArrayIndexOutOfBoundsException exc) {
                 builder.append(m);
             }
             counter++;
@@ -205,31 +209,31 @@ public class ConsoleLogging {
     //-------------------------
 
     public static void Throwable(Throwable throwable) {
-        if(killSwitch) return;
+        if (killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + throwable.getMessage());
-        for(StackTraceElement s : throwable.getStackTrace()) {
+        for (StackTraceElement s : throwable.getStackTrace()) {
             System.out.println(getPrefix(PrefixTypes.THROWABLE).replace("(CLASSNAME)", throwable.getClass().getName()) + s);
         }
         GraphicalMessage.openException(throwable);
     }
 
     public static void info(String message) {
-        if(killSwitch) return;
+        if (killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.INFO).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 
     public static void error(String message) {
-        if(killSwitch) return;
+        if (killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.ERROR).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 
     public static void debug(String message) {
-        if(killSwitch) return;
+        if (killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.DEBUG).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 
     public static void warning(String message) {
-        if(killSwitch) return;
+        if (killSwitch) return;
         System.out.println(getPrefix(PrefixTypes.WARNING).replace("{CLASSNAME}", Thread.currentThread().getStackTrace()[Thread.currentThread().getStackTrace().length - 1].getClassName()) + message);
     }
 

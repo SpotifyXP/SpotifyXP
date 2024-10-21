@@ -10,7 +10,7 @@ public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(Thread thread, Throwable throwable) {
         ConsoleLogging.Throwable(throwable);
         throwable.printStackTrace();
-        if(throwable instanceof OutOfMemoryError) {
+        if (throwable instanceof OutOfMemoryError) {
             Initiator.past = true;
             GraphicalMessage.sorryErrorExit("Out of memory");
         }

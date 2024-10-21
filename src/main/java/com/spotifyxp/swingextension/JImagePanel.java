@@ -41,35 +41,40 @@ public class JImagePanel extends JPanel {
         }
         refresh();
     }
+
     public void setImage(File file) {
         try {
             imagebytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
         refresh();
     }
+
     public void setRotation(int percent) {
-        rad = String.valueOf(((float) 360/100*percent) * 0.01745329252);
+        rad = String.valueOf(((float) 360 / 100 * percent) * 0.01745329252);
         refresh();
     }
+
     public void setImage(URL url) {
         try {
             imagebytes = IOUtils.toByteArray(url);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
         refresh();
     }
+
     public void setImage(InputStream inputStream) {
         try {
             imagebytes = IOUtils.toByteArray(inputStream);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
             GraphicalMessage.openException(ex);
         }
         refresh();
     }
+
     public void setImage(ImageInputStream imageInputStream) {
         try {
             imageInputStream.readFully(imagebytes);
@@ -81,7 +86,7 @@ public class JImagePanel extends JPanel {
     }
 
     public InputStream getImageStream() {
-        if(imagebytes == null || imagebytes.length == 0) {
+        if (imagebytes == null || imagebytes.length == 0) {
             return null;
         }
         return new ByteArrayInputStream(imagebytes);
@@ -90,13 +95,13 @@ public class JImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(image == null) {
+        if (image == null) {
             return;
         }
         Graphics2D graphics2D = (Graphics2D) g;
-        if(!(rad.isEmpty())) {
-            graphics2D.rotate(Double.parseDouble(rad), (float)this.getWidth() / 2, (float)this.getHeight() / 2);
+        if (!(rad.isEmpty())) {
+            graphics2D.rotate(Double.parseDouble(rad), (float) this.getWidth() / 2, (float) this.getHeight() / 2);
         }
-        graphics2D.drawImage(image.getScaledInstance(this.getWidth(),this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
+        graphics2D.drawImage(image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
     }
 }

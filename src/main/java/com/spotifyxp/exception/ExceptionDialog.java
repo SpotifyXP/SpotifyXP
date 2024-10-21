@@ -23,6 +23,7 @@ public class ExceptionDialog {
 
     /**
      * Gets a preview string of the exception (used inside the exception counter dialog)
+     *
      * @return string preview for the excpetion
      */
     public String getPreview() {
@@ -33,10 +34,10 @@ public class ExceptionDialog {
      * Opens a real exception window
      */
     public void openReal() {
-        if(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name)) {
+        if (PublicValues.config.getBoolean(ConfigValues.hideExceptions.name)) {
             return;
         }
-        if(SplashPanel.frame.isVisible()) {
+        if (SplashPanel.frame.isVisible()) {
             SplashPanel.frame.setAlwaysOnTop(false);
         }
         JFrame frame = new JFrame(PublicValues.language.translate("exception.dialog.title"));
@@ -55,7 +56,7 @@ public class ExceptionDialog {
 
         exceptionscrollpane.setViewportView(exceptiontext);
 
-        if(exceptiontext.getText().isEmpty()) {
+        if (exceptiontext.getText().isEmpty()) {
             exceptiontext.setEditable(false);
 
             for (StackTraceElement trace : e.getStackTrace()) {
@@ -80,7 +81,7 @@ public class ExceptionDialog {
 
     public String getExcptionMessage() {
         StringBuilder builder = new StringBuilder();
-        for(StackTraceElement element : e.getStackTrace()) {
+        for (StackTraceElement element : e.getStackTrace()) {
             builder.append(element.toString()).append("\n");
         }
         return builder.toString();
@@ -89,7 +90,7 @@ public class ExceptionDialog {
     public String getAsFormattedText() {
         StringBuilder builder = new StringBuilder();
         builder.append("[").append(e.toString()).append("] ");
-        for(StackTraceElement element : e.getStackTrace()) {
+        for (StackTraceElement element : e.getStackTrace()) {
             builder.append(element.toString()).append("\n");
         }
         return builder.toString();

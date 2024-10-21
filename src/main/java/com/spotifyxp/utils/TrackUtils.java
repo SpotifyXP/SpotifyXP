@@ -31,6 +31,7 @@ public class TrackUtils {
     public static String calculateFileSizeKb(Track t) {
         return calculateFileSizeKb(t.getDurationMs());
     }
+
     public static String calculateFileSizeKb(long milliseconds) {
         long minutes = getMMofTrack(milliseconds);
         //720kb per minute if normal 96kbps
@@ -39,26 +40,29 @@ public class TrackUtils {
         String toret = "";
         switch (PublicValues.quality) {
             case NORMAL:
-                toret = String.valueOf(minutes*720);
+                toret = String.valueOf(minutes * 720);
                 break;
             case HIGH:
-                toret = String.valueOf(minutes*1200);
+                toret = String.valueOf(minutes * 1200);
                 break;
             case VERY_HIGH:
-                toret = String.valueOf(minutes*2400);
+                toret = String.valueOf(minutes * 2400);
                 break;
         }
-        if(toret.isEmpty() || toret.equals("0")) {
+        if (toret.isEmpty() || toret.equals("0")) {
             toret = "N/A";
         }
         return toret + " KB";
     }
+
     public static String calculateFileSizeKb(TrackSimplified t) {
         return calculateFileSizeKb(t.getDurationMs());
     }
+
     public static long getMMofTrack(long milliseconds) {
-        return milliseconds/60000;
+        return milliseconds / 60000;
     }
+
     public static String getHHMMSSOfTrack(long milliseconds) {
         int seconds = Math.round(milliseconds / 1000);
         int hh = seconds / 3600;
@@ -70,6 +74,7 @@ public class TrackUtils {
         }
         return formattedTime;
     }
+
     public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
         try {
             try {
@@ -116,15 +121,18 @@ public class TrackUtils {
                 Shuffle.makeShuffle();
             }
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
-        }catch (IndexOutOfBoundsException ignored) {
+        } catch (IndexOutOfBoundsException ignored) {
         }
     }
+
     public static Integer roundVolumeToNormal(float volume) {
-        return Integer.parseInt(String.valueOf(Math.round(volume*10)));
+        return Integer.parseInt(String.valueOf(Math.round(volume * 10)));
     }
+
     public static int getSecondsFromMS(long milliseconds) {
-        return Math.round(milliseconds/1000);
+        return Math.round(milliseconds / 1000);
     }
+
     public static String getBitrate() {
         switch (PublicValues.quality) {
             case NORMAL:
@@ -162,12 +170,12 @@ public class TrackUtils {
     }
 
     public static boolean trackHasArtist(ArtistSimplified[] artists, String tosearchfor, boolean ignoreCase) {
-        for(ArtistSimplified artist : artists) {
-            if(ignoreCase) {
+        for (ArtistSimplified artist : artists) {
+            if (ignoreCase) {
                 if (artist.getName().equalsIgnoreCase(tosearchfor)) {
                     return true;
                 }
-            }else {
+            } else {
                 if (artist.getName().equals(tosearchfor)) {
                     return true;
                 }
@@ -179,7 +187,7 @@ public class TrackUtils {
     public static boolean isTrackLiked(String id) {
         try {
             return InstanceManager.getSpotifyApi().checkUsersSavedTracks(id).build().execute()[0];
-        }catch (Exception e) {
+        } catch (Exception e) {
             ConsoleLogging.Throwable(e);
             return false;
         }
@@ -190,6 +198,7 @@ public class TrackUtils {
         uricache.remove(table.getSelectedRow());
         table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow()));
     }
+
     public static void removeFollowedPlaylist(DefTable table, ArrayList<String> uricache) {
         InstanceManager.getSpotifyApi().unfollowPlaylist(uricache.get(table.getSelectedRow()).split(":")[2]);
         uricache.remove(table.getSelectedRow());

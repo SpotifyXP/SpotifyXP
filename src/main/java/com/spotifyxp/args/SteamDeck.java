@@ -10,7 +10,7 @@ public class SteamDeck implements Argument {
             public void run() {
                 try {
                     ContentPanel.frame.setUndecorated(true);
-                }catch (Exception ignored) {
+                } catch (Exception ignored) {
                 }
                 ContentPanel.frame.setJMenuBar(null);
                 ContentPanel.steamDeck();

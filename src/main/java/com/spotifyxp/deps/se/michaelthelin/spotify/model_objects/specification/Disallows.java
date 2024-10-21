@@ -17,78 +17,78 @@ import java.util.Map;
  */
 @JsonDeserialize(builder = Actions.Builder.class)
 public class Disallows extends AbstractModelObject {
-  private final EnumSet<Action> disallowedActions;
+    private final EnumSet<Action> disallowedActions;
 
-  public Disallows(Builder builder) {
-    super(builder);
-    this.disallowedActions = builder.disallowedActions;
-  }
-
-  /**
-   * Get a set of disallowed actions.
-   *
-   * @return The set of disallowed actions.
-   */
-  public EnumSet<Action> getDisallowedActions() {
-    return disallowedActions;
-  }
-
-  @Override
-  public String toString() {
-    return "Disallows(disallowedActions=" + disallowedActions + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link Disallows} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    private EnumSet<Action> disallowedActions;
+    public Disallows(Builder builder) {
+        super(builder);
+        this.disallowedActions = builder.disallowedActions;
+    }
 
     /**
-     * Set the set of disallowed actions.
+     * Get a set of disallowed actions.
      *
-     * @param disallowedActions The set of disallowed actions.
-     * @return A {@link Disallows.Builder}.
+     * @return The set of disallowed actions.
      */
-    public Builder setDisallowedActions(EnumSet<Action> disallowedActions) {
-      this.disallowedActions = disallowedActions;
-      return this;
+    public EnumSet<Action> getDisallowedActions() {
+        return disallowedActions;
     }
 
     @Override
-    public Disallows build() {
-      return new Disallows(this);
+    public String toString() {
+        return "Disallows(disallowedActions=" + disallowedActions + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link Disallows} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<Disallows> {
     @Override
-    public Disallows createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
+    public Builder builder() {
+        return new Builder();
+    }
 
-      EnumSet<Action> disallowedActions = EnumSet.noneOf(Action.class);
-      for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-        if (entry.getValue().getAsJsonPrimitive().getAsBoolean()) {
-          disallowedActions.add(
-            Action.keyOf(entry.getKey().toLowerCase()));
+    /**
+     * Builder class for building {@link Disallows} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        private EnumSet<Action> disallowedActions;
+
+        /**
+         * Set the set of disallowed actions.
+         *
+         * @param disallowedActions The set of disallowed actions.
+         * @return A {@link Disallows.Builder}.
+         */
+        public Builder setDisallowedActions(EnumSet<Action> disallowedActions) {
+            this.disallowedActions = disallowedActions;
+            return this;
         }
-      }
 
-      return new Builder()
-        .setDisallowedActions(
-          disallowedActions)
-        .build();
+        @Override
+        public Disallows build() {
+            return new Disallows(this);
+        }
     }
-  }
+
+    /**
+     * JsonUtil class for building {@link Disallows} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<Disallows> {
+        @Override
+        public Disallows createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            EnumSet<Action> disallowedActions = EnumSet.noneOf(Action.class);
+            for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+                if (entry.getValue().getAsJsonPrimitive().getAsBoolean()) {
+                    disallowedActions.add(
+                            Action.keyOf(entry.getKey().toLowerCase()));
+                }
+            }
+
+            return new Builder()
+                    .setDisallowedActions(
+                            disallowedActions)
+                    .build();
+        }
+    }
 
 }

@@ -11,125 +11,125 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelOb
  */
 @JsonDeserialize(builder = Image.Builder.class)
 public class Image extends AbstractModelObject {
-  private final Integer height;
-  private final String url;
-  private final Integer width;
+    private final Integer height;
+    private final String url;
+    private final Integer width;
 
-  private Image(final Builder builder) {
-    super(builder);
+    private Image(final Builder builder) {
+        super(builder);
 
-    this.height = builder.height;
-    this.url = builder.url;
-    this.width = builder.width;
-  }
-
-  /**
-   * Get the height of the image in pixels.
-   *
-   * @return The image height in pixels. If unknown: {@code null}.
-   */
-  public Integer getHeight() {
-    return height;
-  }
-
-  /**
-   * Get the source URL of the image.
-   *
-   * @return The source URL of the image.
-   */
-  public String getUrl() {
-    return url;
-  }
-
-  /**
-   * Get the width of the image in pixels.
-   *
-   * @return The image width in pixels. If unknown: {@code null}.
-   */
-  public Integer getWidth() {
-    return width;
-  }
-
-  @Override
-  public String toString() {
-    return "Image(height=" + height + ", url=" + url + ", width=" + width + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link Image} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    private Integer height;
-    private String url;
-    private Integer width;
-
-    /**
-     * The height setter.
-     *
-     * @param height The image height in pixels. If unknown: {@code null}.
-     * @return A {@link Image.Builder}.
-     */
-    public Builder setHeight(Integer height) {
-      this.height = height;
-      return this;
+        this.height = builder.height;
+        this.url = builder.url;
+        this.width = builder.width;
     }
 
     /**
-     * The source URL setter.
+     * Get the height of the image in pixels.
      *
-     * @param url The source URL of the image.
-     * @return A {@link Image.Builder}.
+     * @return The image height in pixels. If unknown: {@code null}.
      */
-    public Builder setUrl(String url) {
-      this.url = url;
-      return this;
+    public Integer getHeight() {
+        return height;
     }
 
     /**
-     * The width setter.
+     * Get the source URL of the image.
      *
-     * @param width The image width in pixels. If unknown: {@code null}.
-     * @return A {@link Image.Builder}.
+     * @return The source URL of the image.
      */
-    public Builder setWidth(Integer width) {
-      this.width = width;
-      return this;
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * Get the width of the image in pixels.
+     *
+     * @return The image width in pixels. If unknown: {@code null}.
+     */
+    public Integer getWidth() {
+        return width;
     }
 
     @Override
-    public Image build() {
-      return new Image(this);
+    public String toString() {
+        return "Image(height=" + height + ", url=" + url + ", width=" + width + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link Image} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<Image> {
-    public Image createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
-
-      return new Image.Builder()
-        .setHeight(
-          hasAndNotNull(jsonObject, "height")
-            ? jsonObject.get("height").getAsInt()
-            : null)
-        .setUrl(
-          hasAndNotNull(jsonObject, "url")
-            ? jsonObject.get("url").getAsString()
-            : null)
-        .setWidth(
-          hasAndNotNull(jsonObject, "width")
-            ? jsonObject.get("width").getAsInt()
-            : null)
-        .build();
+    @Override
+    public Builder builder() {
+        return new Builder();
     }
-  }
+
+    /**
+     * Builder class for building {@link Image} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        private Integer height;
+        private String url;
+        private Integer width;
+
+        /**
+         * The height setter.
+         *
+         * @param height The image height in pixels. If unknown: {@code null}.
+         * @return A {@link Image.Builder}.
+         */
+        public Builder setHeight(Integer height) {
+            this.height = height;
+            return this;
+        }
+
+        /**
+         * The source URL setter.
+         *
+         * @param url The source URL of the image.
+         * @return A {@link Image.Builder}.
+         */
+        public Builder setUrl(String url) {
+            this.url = url;
+            return this;
+        }
+
+        /**
+         * The width setter.
+         *
+         * @param width The image width in pixels. If unknown: {@code null}.
+         * @return A {@link Image.Builder}.
+         */
+        public Builder setWidth(Integer width) {
+            this.width = width;
+            return this;
+        }
+
+        @Override
+        public Image build() {
+            return new Image(this);
+        }
+    }
+
+    /**
+     * JsonUtil class for building {@link Image} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<Image> {
+        public Image createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            return new Image.Builder()
+                    .setHeight(
+                            hasAndNotNull(jsonObject, "height")
+                                    ? jsonObject.get("height").getAsInt()
+                                    : null)
+                    .setUrl(
+                            hasAndNotNull(jsonObject, "url")
+                                    ? jsonObject.get("url").getAsString()
+                                    : null)
+                    .setWidth(
+                            hasAndNotNull(jsonObject, "width")
+                                    ? jsonObject.get("width").getAsInt()
+                                    : null)
+                    .build();
+        }
+    }
 }

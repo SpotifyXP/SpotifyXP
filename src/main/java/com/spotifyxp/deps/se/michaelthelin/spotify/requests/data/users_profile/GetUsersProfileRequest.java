@@ -1,10 +1,8 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.users_profile;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.User;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -14,70 +12,67 @@ import java.io.IOException;
 @JsonDeserialize(builder = GetUsersProfileRequest.Builder.class)
 public class GetUsersProfileRequest extends AbstractDataRequest<User> {
 
-  /**
-   * The private {@link GetUsersProfileRequest} constructor.
-   *
-   * @param builder A {@link GetUsersProfileRequest.Builder}.
-   */
-  private GetUsersProfileRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Get the profile of a current user.
-   *
-   * @return A {@link User}.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public User execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new User.JsonUtil().createModelObject(getJson());
-  }
-
-  /**
-   * Builder class for building a {@link GetUsersProfileRequest}.
-   */
-  public static final class Builder extends AbstractDataRequest.Builder<User, Builder> {
-
     /**
-     * Create a new {@link GetUsersProfileRequest.Builder}.
+     * The private {@link GetUsersProfileRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link GetUsersProfileRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private GetUsersProfileRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The user ID setter.
+     * Get the profile of a current user.
      *
-     * @param user_id The user's Spotify user ID.
-     * @return A {@link GetUsersProfileRequest.Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
+     * @return A {@link User}.
+     * @throws IOException In case of networking issues.
      */
-    public Builder user_id(final String user_id) {
-      assert (user_id != null);
-      assert (!user_id.isEmpty());
-      return setPathParameter("user_id", user_id);
+    public User execute() throws
+            IOException {
+        return new User.JsonUtil().createModelObject(getJson());
     }
 
     /**
-     * The request build method.
-     *
-     * @return A custom {@link GetUsersProfileRequest}.
+     * Builder class for building a {@link GetUsersProfileRequest}.
      */
-    @Override
-    public GetUsersProfileRequest build() {
-      setPath("/v1/users/{user_id}");
-      return new GetUsersProfileRequest(this);
-    }
+    public static final class Builder extends AbstractDataRequest.Builder<User, Builder> {
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * Create a new {@link GetUsersProfileRequest.Builder}.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
+
+        /**
+         * The user ID setter.
+         *
+         * @param user_id The user's Spotify user ID.
+         * @return A {@link GetUsersProfileRequest.Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
+         */
+        public Builder user_id(final String user_id) {
+            assert (user_id != null);
+            assert (!user_id.isEmpty());
+            return setPathParameter("user_id", user_id);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link GetUsersProfileRequest}.
+         */
+        @Override
+        public GetUsersProfileRequest build() {
+            setPath("/v1/users/{user_id}");
+            return new GetUsersProfileRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

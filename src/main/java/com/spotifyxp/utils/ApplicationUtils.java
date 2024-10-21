@@ -8,46 +8,51 @@ import java.time.format.DateTimeFormatter;
 public class ApplicationUtils {
     private ApplicationUtils() {
     }
+
     private static JSONObject object = null;
     private static final String ErrorMessage = "Check Application.json";
 
     private static void fetch() {
         object = new JSONObject(new Resources(true).readToString("Application.json"));
     }
+
     public static String getName() {
-        if(object == null) {
+        if (object == null) {
             fetch();
         }
-        if(object.has("Name")) {
+        if (object.has("Name")) {
             return object.getString("Name");
-        }else{
+        } else {
             return ErrorMessage;
         }
     }
+
     public static String getVersion() {
-        if(object == null) {
+        if (object == null) {
             fetch();
         }
-        if(object.has("Version")) {
+        if (object.has("Version")) {
             return object.getString("Version");
-        }else{
+        } else {
             return ErrorMessage;
         }
     }
+
     public static String getReleaseCandidate() {
-        if(object == null) {
+        if (object == null) {
             fetch();
         }
-        if(object.has("ReleaseCandidate")) {
+        if (object.has("ReleaseCandidate")) {
             return object.getString("ReleaseCandidate");
-        }else{
+        } else {
             return ErrorMessage;
         }
     }
 
     public static String getUserAgent() {
         String osSpecifier = System.getProperty("os.name").contains("mac") ? "Macintosh" :
-                System.getProperty("os.name").contains("win") ? "Windows" : "Linux";; //Macintosh
+                System.getProperty("os.name").contains("win") ? "Windows" : "Linux";
+        ; //Macintosh
         String osName = System.getProperty("os.name"); //Mac OS X
         String osVersion = System.getProperty("os.version"); //10.15
         String browserSpecifier = "Java"; //Java

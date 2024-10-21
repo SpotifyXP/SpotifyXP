@@ -2,13 +2,11 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.simplif
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.SearchItemRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -18,126 +16,123 @@ import java.io.IOException;
 @JsonDeserialize(builder = SearchTracksRequest.Builder.class)
 public class SearchTracksRequest extends AbstractDataRequest<Paging<Track>> {
 
-  /**
-   * The private {@link SearchTracksRequest} constructor.
-   *
-   * @param builder A {@link SearchTracksRequest.Builder}.
-   */
-  private SearchTracksRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Search for tracks.
-   *
-   * @return A {@link Track} paging.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public Paging<Track> execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new Track.JsonUtil().createModelObjectPaging(getJson(), "tracks");
-  }
-
-  /**
-   * Builder class for building a {@link SearchTracksRequest}.
-   */
-  public static final class Builder extends AbstractDataPagingRequest.Builder<Track, Builder> {
-
     /**
-     * Create a new {@link SearchTracksRequest.Builder}.
+     * The private {@link SearchTracksRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link SearchTracksRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private SearchTracksRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The search query setter.
+     * Search for tracks.
      *
-     * @param q Required. The search query's keywords (and optional field filters and operators).
-     * @return A {@link SearchTracksRequest.Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/search-item/#tablepress-47">Spotify: Search Query Options</a>
+     * @return A {@link Track} paging.
+     * @throws IOException In case of networking issues.
      */
-    public Builder q(final String q) {
-      assert (q != null);
-      assert (!q.isEmpty());
-      return setQueryParameter("q", q);
+    public Paging<Track> execute() throws
+            IOException {
+        return new Track.JsonUtil().createModelObjectPaging(getJson(), "tracks");
     }
 
     /**
-     * The market country code setter.
-     *
-     * @param market Optional. An ISO 3166-1 alpha-2 country code. If a country code is given, only artists,
-     *               albums, and tracks with content playable in that market will be returned. (Playlist
-     *               results are not affected by the market parameter.)
-     * @return A {@link SearchTracksRequest.Builder}.
-     * @see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">Wikipedia: ISO 3166-1 alpha-2 country codes</a>
+     * Builder class for building a {@link SearchTracksRequest}.
      */
-    public Builder market(final CountryCode market) {
-      assert (market != null);
-      return setQueryParameter("market", market);
-    }
+    public static final class Builder extends AbstractDataPagingRequest.Builder<Track, Builder> {
 
-    /**
-     * The limit setter.
-     *
-     * @param limit Optional. The maximum number of results to return. Default: 20. Minimum: 1. Maximum: 50.
-     * @return A {@link SearchTracksRequest.Builder}.
-     */
-    @Override
-    public Builder limit(final Integer limit) {
-      assert (limit != null);
-      assert (1 <= limit && limit <= 50);
-      return setQueryParameter("limit", limit);
-    }
+        /**
+         * Create a new {@link SearchTracksRequest.Builder}.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
 
-    /**
-     * The offset setter.
-     *
-     * @param offset Optional. The index of the first result to return. Default: 0 (i.e., the first result). Maximum
-     *               offset: 100.000. Use with {@link #limit(Integer)} to get the next page of search results.
-     * @return A {@link SearchTracksRequest.Builder}.
-     */
-    @Override
-    public Builder offset(final Integer offset) {
-      assert (offset != null);
-      assert (0 <= offset && offset <= 100000);
-      return setQueryParameter("offset", offset);
-    }
+        /**
+         * The search query setter.
+         *
+         * @param q Required. The search query's keywords (and optional field filters and operators).
+         * @return A {@link SearchTracksRequest.Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/search-item/#tablepress-47">Spotify: Search Query Options</a>
+         */
+        public Builder q(final String q) {
+            assert (q != null);
+            assert (!q.isEmpty());
+            return setQueryParameter("q", q);
+        }
 
-    /**
-     * The include external setter.
-     *
-     * @param includeExternal Optional. Possible values: {@code audio}. If {@code audio} is set
-     *                        the response will include any relevant audio content that is hosted externally.
-     *                        By default external content is filtered out from responses.
-     * @return A {@link SearchItemRequest.Builder}.
-     */
-    public Builder includeExternal(String includeExternal) {
-      assert (includeExternal != null);
-      assert (includeExternal.matches("audio"));
-      return setQueryParameter("include_external", includeExternal);
-    }
+        /**
+         * The market country code setter.
+         *
+         * @param market Optional. An ISO 3166-1 alpha-2 country code. If a country code is given, only artists,
+         *               albums, and tracks with content playable in that market will be returned. (Playlist
+         *               results are not affected by the market parameter.)
+         * @return A {@link SearchTracksRequest.Builder}.
+         * @see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">Wikipedia: ISO 3166-1 alpha-2 country codes</a>
+         */
+        public Builder market(final CountryCode market) {
+            assert (market != null);
+            return setQueryParameter("market", market);
+        }
 
-    /**
-     * The request build method.
-     *
-     * @return A {@link SearchTracksRequest.Builder}.
-     */
-    @Override
-    public SearchTracksRequest build() {
-      setPath("/v1/search");
-      setQueryParameter("type", "track");
-      return new SearchTracksRequest(this);
-    }
+        /**
+         * The limit setter.
+         *
+         * @param limit Optional. The maximum number of results to return. Default: 20. Minimum: 1. Maximum: 50.
+         * @return A {@link SearchTracksRequest.Builder}.
+         */
+        @Override
+        public Builder limit(final Integer limit) {
+            assert (limit != null);
+            assert (1 <= limit && limit <= 50);
+            return setQueryParameter("limit", limit);
+        }
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * The offset setter.
+         *
+         * @param offset Optional. The index of the first result to return. Default: 0 (i.e., the first result). Maximum
+         *               offset: 100.000. Use with {@link #limit(Integer)} to get the next page of search results.
+         * @return A {@link SearchTracksRequest.Builder}.
+         */
+        @Override
+        public Builder offset(final Integer offset) {
+            assert (offset != null);
+            assert (0 <= offset && offset <= 100000);
+            return setQueryParameter("offset", offset);
+        }
+
+        /**
+         * The include external setter.
+         *
+         * @param includeExternal Optional. Possible values: {@code audio}. If {@code audio} is set
+         *                        the response will include any relevant audio content that is hosted externally.
+         *                        By default external content is filtered out from responses.
+         * @return A {@link SearchItemRequest.Builder}.
+         */
+        public Builder includeExternal(String includeExternal) {
+            assert (includeExternal != null);
+            assert (includeExternal.matches("audio"));
+            return setQueryParameter("include_external", includeExternal);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A {@link SearchTracksRequest.Builder}.
+         */
+        @Override
+        public SearchTracksRequest build() {
+            setPath("/v1/search");
+            setQueryParameter("type", "track");
+            return new SearchTracksRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

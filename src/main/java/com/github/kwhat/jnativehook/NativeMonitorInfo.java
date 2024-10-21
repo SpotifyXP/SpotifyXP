@@ -20,16 +20,15 @@ package com.github.kwhat.jnativehook;
 /**
  * Object representation of a native monitor layout.
  * <p>
- *
+ * <p>
  * The primary display is guaranteed to be at number zero.  No other grantee is made about monitor number for subsequent
  * displays.  All logical displays are guaranteed to have x and y coordinates relative to the primary display.
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.1
- * @since   2.1
- *
  * @see java.util.concurrent.ExecutorService
  * @see GlobalScreen#setEventDispatcher
+ * @since 2.1
  */
 public class NativeMonitorInfo {
     /**
@@ -63,9 +62,9 @@ public class NativeMonitorInfo {
      * Note that passing in an invalid ID results in unspecified behavior.
      *
      * @param number an integer that identifies the display.
-     * @param x the x coordate of this display.
-     * @param y the y coordate of this display.
-     * @param width the width coordate of this display.
+     * @param x      the x coordate of this display.
+     * @param y      the y coordate of this display.
+     * @param width  the width coordate of this display.
      * @param height the height coordate of this display.
      */
     public NativeMonitorInfo(short number, int x, int y, short width, short height) {

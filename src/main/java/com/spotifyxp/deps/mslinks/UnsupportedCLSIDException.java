@@ -17,7 +17,7 @@ package com.spotifyxp.deps.mslinks;
 import com.spotifyxp.deps.mslinks.data.GUID;
 
 public class UnsupportedCLSIDException extends ShellLinkException {
-	public UnsupportedCLSIDException(GUID clsid) {
-		super(clsid.toString());
-	}
+    public UnsupportedCLSIDException(GUID clsid) {
+        super(clsid.toString());
+    }
 }

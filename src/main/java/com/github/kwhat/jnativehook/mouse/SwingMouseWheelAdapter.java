@@ -27,7 +27,7 @@ import java.awt.event.MouseWheelListener;
  * @since 2.1
  */
 public class SwingMouseWheelAdapter extends SwingMouseAdapter implements NativeMouseWheelListener,
-    MouseWheelListener {
+        MouseWheelListener {
 
     @Override
     public void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {
@@ -35,7 +35,8 @@ public class SwingMouseWheelAdapter extends SwingMouseAdapter implements NativeM
     }
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {}
+    public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
+    }
 
     protected MouseWheelEvent getJavaMouseWheelEvent(NativeMouseWheelEvent nativeEvent) {
         int scrollType = MouseWheelEvent.WHEEL_UNIT_SCROLL;
@@ -44,17 +45,17 @@ public class SwingMouseWheelAdapter extends SwingMouseAdapter implements NativeM
         }
 
         return new MouseWheelEvent(
-            this,
-            nativeEvent.getID() - (NativeMouseWheelEvent.NATIVE_MOUSE_FIRST
-                    - MouseWheelEvent.MOUSE_FIRST),
-            System.currentTimeMillis(),
-            this.getJavaModifiers(nativeEvent.getModifiers()),
-            nativeEvent.getX(),
-            nativeEvent.getY(),
-            nativeEvent.getClickCount(),
-            false,
-            scrollType,
-            nativeEvent.getScrollAmount(),
-            nativeEvent.getWheelRotation());
+                this,
+                nativeEvent.getID() - (NativeMouseWheelEvent.NATIVE_MOUSE_FIRST
+                        - MouseWheelEvent.MOUSE_FIRST),
+                System.currentTimeMillis(),
+                this.getJavaModifiers(nativeEvent.getModifiers()),
+                nativeEvent.getX(),
+                nativeEvent.getY(),
+                nativeEvent.getClickCount(),
+                false,
+                scrollType,
+                nativeEvent.getScrollAmount(),
+                nativeEvent.getWheelRotation());
     }
 }

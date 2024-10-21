@@ -20,250 +20,250 @@ import java.util.Arrays;
  */
 @JsonDeserialize(builder = AudioAnalysis.Builder.class)
 public class AudioAnalysis extends AbstractModelObject {
-  private final AudioAnalysisMeasure[] bars;
-  private final AudioAnalysisMeasure[] beats;
-  private final AudioAnalysisMeta meta;
-  private final AudioAnalysisSection[] sections;
-  private final AudioAnalysisSegment[] segments;
-  private final AudioAnalysisMeasure[] tatums;
-  private final AudioAnalysisTrack track;
+    private final AudioAnalysisMeasure[] bars;
+    private final AudioAnalysisMeasure[] beats;
+    private final AudioAnalysisMeta meta;
+    private final AudioAnalysisSection[] sections;
+    private final AudioAnalysisSegment[] segments;
+    private final AudioAnalysisMeasure[] tatums;
+    private final AudioAnalysisTrack track;
 
-  private AudioAnalysis(final Builder builder) {
-    super(builder);
+    private AudioAnalysis(final Builder builder) {
+        super(builder);
 
-    this.bars = builder.bars;
-    this.beats = builder.beats;
-    this.meta = builder.meta;
-    this.sections = builder.sections;
-    this.segments = builder.segments;
-    this.tatums = builder.tatums;
-    this.track = builder.track;
-  }
-
-  /**
-   * Get the list of bar markers, in seconds.  A bar (or measure) is a segment of time defined as a given number of
-   * beats. Bar offsets also indicate downbeats, the first beat of the measure.
-   *
-   * @return The list of bar markers, in seconds.
-   */
-  public AudioAnalysisMeasure[] getBars() {
-    return bars;
-  }
-
-  /**
-   * Get the list of beat markers, in seconds. A beat is the basic time unit of a piece of music; for example, each tick
-   * of a metronome. Beats are typically multiples of tatums.
-   *
-   * @return The list of beat markers, in seconds.
-   */
-  public AudioAnalysisMeasure[] getBeats() {
-    return beats;
-  }
-
-  /**
-   * Get the metadata of the analyzer software for the track.
-   *
-   * @return Analyze, compute, and track information.
-   */
-  public AudioAnalysisMeta getMeta() {
-    return meta;
-  }
-
-  /**
-   * Get the set of section markers, in seconds. Sections are defined by large variations in rhythm or timbre, e.g.
-   * chorus, verse, bridge, guitar solo, etc. Each section contains its own descriptions of tempo, key, mode,
-   * time_signature, and loudness
-   *
-   * @return The set of section markers, in seconds.
-   */
-  public AudioAnalysisSection[] getSections() {
-    return sections;
-  }
-
-  /**
-   * Get the set of sound entities (typically under a second) each relatively uniform in timbre and harmony.
-   * Segments are characterized by their perceptual onsets and duration in seconds, loudness (dB), pitch and timbral
-   * content.
-   *
-   * @return The set of sound entities (typically under a second) each relatively uniform in timbre and harmony.
-   */
-  public AudioAnalysisSegment[] getSegments() {
-    return segments;
-  }
-
-  /**
-   * Get the list of tatum markers, in seconds. Tatums represent the lowest regular pulse train that a listener
-   * intuitively infers from the timing of perceived musical events (segments).
-   *
-   * @return Get the list of tatum markers, in seconds.
-   */
-  public AudioAnalysisMeasure[] getTatums() {
-    return tatums;
-  }
-
-  /**
-   * Get the track data of the audio analysis object.
-   *
-   * @return Track data of audio analysis object.
-   */
-  public AudioAnalysisTrack getTrack() {
-    return track;
-  }
-
-  @Override
-  public String toString() {
-    return "AudioAnalysis(bars=" + Arrays.toString(bars) + ", beats=" + Arrays.toString(beats) + ", meta=" + meta
-        + ", sections=" + Arrays.toString(sections) + ", segments=" + Arrays.toString(segments) + ", tatums="
-        + Arrays.toString(tatums) + ", track=" + track + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link AudioAnalysis} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    private AudioAnalysisMeasure[] bars;
-    private AudioAnalysisMeasure[] beats;
-    private AudioAnalysisMeta meta;
-    private AudioAnalysisSection[] sections;
-    private AudioAnalysisSegment[] segments;
-    private AudioAnalysisMeasure[] tatums;
-    private AudioAnalysisTrack track;
-
-    /**
-     * Track bars setter.
-     *
-     * @param bars The list of bar markers, in seconds.
-     * @return An {@link AudioAnalysis.Builder}.
-     */
-    public Builder setBars(AudioAnalysisMeasure[] bars) {
-      this.bars = bars;
-      return this;
+        this.bars = builder.bars;
+        this.beats = builder.beats;
+        this.meta = builder.meta;
+        this.sections = builder.sections;
+        this.segments = builder.segments;
+        this.tatums = builder.tatums;
+        this.track = builder.track;
     }
 
     /**
-     * The track beats setter.
+     * Get the list of bar markers, in seconds.  A bar (or measure) is a segment of time defined as a given number of
+     * beats. Bar offsets also indicate downbeats, the first beat of the measure.
      *
-     * @param beats The list of beat markers, in seconds.
-     * @return An {@link AudioAnalysis.Builder}.
+     * @return The list of bar markers, in seconds.
      */
-    public Builder setBeats(AudioAnalysisMeasure[] beats) {
-      this.beats = beats;
-      return this;
+    public AudioAnalysisMeasure[] getBars() {
+        return bars;
     }
 
     /**
-     * The anaylzer metadata setter.
+     * Get the list of beat markers, in seconds. A beat is the basic time unit of a piece of music; for example, each tick
+     * of a metronome. Beats are typically multiples of tatums.
      *
-     * @param meta Analyze, compute, and track information.
-     * @return An {@link AudioAnalysis.Builder}.
+     * @return The list of beat markers, in seconds.
      */
-    public Builder setMeta(AudioAnalysisMeta meta) {
-      this.meta = meta;
-      return this;
+    public AudioAnalysisMeasure[] getBeats() {
+        return beats;
     }
 
     /**
-     * The track sections setter.
+     * Get the metadata of the analyzer software for the track.
      *
-     * @param sections The set of section markers, in seconds.
-     * @return An {@link AudioAnalysis.Builder}.
+     * @return Analyze, compute, and track information.
      */
-    public Builder setSections(AudioAnalysisSection[] sections) {
-      this.sections = sections;
-      return this;
+    public AudioAnalysisMeta getMeta() {
+        return meta;
     }
 
     /**
-     * The track segments setter.
+     * Get the set of section markers, in seconds. Sections are defined by large variations in rhythm or timbre, e.g.
+     * chorus, verse, bridge, guitar solo, etc. Each section contains its own descriptions of tempo, key, mode,
+     * time_signature, and loudness
      *
-     * @param segments The set of sound entities (typically under a second) each relatively uniform in timbre and
-     *                 harmony.
-     * @return An {@link AudioAnalysis.Builder}.
+     * @return The set of section markers, in seconds.
      */
-    public Builder setSegments(AudioAnalysisSegment[] segments) {
-      this.segments = segments;
-      return this;
+    public AudioAnalysisSection[] getSections() {
+        return sections;
     }
 
     /**
-     * The track tatums setter.
+     * Get the set of sound entities (typically under a second) each relatively uniform in timbre and harmony.
+     * Segments are characterized by their perceptual onsets and duration in seconds, loudness (dB), pitch and timbral
+     * content.
      *
-     * @param tatums Get the list of tatum markers, in seconds.
-     * @return An {@link AudioAnalysis.Builder}.
+     * @return The set of sound entities (typically under a second) each relatively uniform in timbre and harmony.
      */
-    public Builder setTatums(AudioAnalysisMeasure[] tatums) {
-      this.tatums = tatums;
-      return this;
+    public AudioAnalysisSegment[] getSegments() {
+        return segments;
     }
 
     /**
-     * The track data setter.
+     * Get the list of tatum markers, in seconds. Tatums represent the lowest regular pulse train that a listener
+     * intuitively infers from the timing of perceived musical events (segments).
      *
-     * @param track Track data of audio analysis object.
-     * @return An {@link AudioAnalysis.Builder}.
+     * @return Get the list of tatum markers, in seconds.
      */
-    public Builder setTrack(AudioAnalysisTrack track) {
-      this.track = track;
-      return this;
+    public AudioAnalysisMeasure[] getTatums() {
+        return tatums;
+    }
+
+    /**
+     * Get the track data of the audio analysis object.
+     *
+     * @return Track data of audio analysis object.
+     */
+    public AudioAnalysisTrack getTrack() {
+        return track;
     }
 
     @Override
-    public AudioAnalysis build() {
-      return new AudioAnalysis(this);
+    public String toString() {
+        return "AudioAnalysis(bars=" + Arrays.toString(bars) + ", beats=" + Arrays.toString(beats) + ", meta=" + meta
+                + ", sections=" + Arrays.toString(sections) + ", segments=" + Arrays.toString(segments) + ", tatums="
+                + Arrays.toString(tatums) + ", track=" + track + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link AudioAnalysis} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<AudioAnalysis> {
-    public AudioAnalysis createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
-
-      return new AudioAnalysis.Builder()
-        .setBars(
-          hasAndNotNull(jsonObject, "bars")
-            ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(
-            jsonObject.getAsJsonArray("bars"))
-            : null)
-        .setBeats(
-          hasAndNotNull(jsonObject, "beats")
-            ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(
-            jsonObject.getAsJsonArray("beats"))
-            : null)
-        .setMeta(
-          hasAndNotNull(jsonObject, "meta")
-            ? new AudioAnalysisMeta.JsonUtil().createModelObject(
-            jsonObject.getAsJsonObject("meta"))
-            : null)
-        .setSections(
-          hasAndNotNull(jsonObject, "sections")
-            ? new AudioAnalysisSection.JsonUtil().createModelObjectArray(
-            jsonObject.getAsJsonArray("sections"))
-            : null)
-        .setSegments(
-          hasAndNotNull(jsonObject, "segments")
-            ? new AudioAnalysisSegment.JsonUtil().createModelObjectArray(
-            jsonObject.getAsJsonArray("segments"))
-            : null)
-        .setTatums(
-          hasAndNotNull(jsonObject, "tatums")
-            ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(
-            jsonObject.getAsJsonArray("tatums"))
-            : null)
-        .setTrack(
-          hasAndNotNull(jsonObject, "track")
-            ? new AudioAnalysisTrack.JsonUtil().createModelObject(
-            jsonObject.getAsJsonObject("track"))
-            : null)
-        .build();
+    @Override
+    public Builder builder() {
+        return new Builder();
     }
-  }
+
+    /**
+     * Builder class for building {@link AudioAnalysis} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        private AudioAnalysisMeasure[] bars;
+        private AudioAnalysisMeasure[] beats;
+        private AudioAnalysisMeta meta;
+        private AudioAnalysisSection[] sections;
+        private AudioAnalysisSegment[] segments;
+        private AudioAnalysisMeasure[] tatums;
+        private AudioAnalysisTrack track;
+
+        /**
+         * Track bars setter.
+         *
+         * @param bars The list of bar markers, in seconds.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setBars(AudioAnalysisMeasure[] bars) {
+            this.bars = bars;
+            return this;
+        }
+
+        /**
+         * The track beats setter.
+         *
+         * @param beats The list of beat markers, in seconds.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setBeats(AudioAnalysisMeasure[] beats) {
+            this.beats = beats;
+            return this;
+        }
+
+        /**
+         * The anaylzer metadata setter.
+         *
+         * @param meta Analyze, compute, and track information.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setMeta(AudioAnalysisMeta meta) {
+            this.meta = meta;
+            return this;
+        }
+
+        /**
+         * The track sections setter.
+         *
+         * @param sections The set of section markers, in seconds.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setSections(AudioAnalysisSection[] sections) {
+            this.sections = sections;
+            return this;
+        }
+
+        /**
+         * The track segments setter.
+         *
+         * @param segments The set of sound entities (typically under a second) each relatively uniform in timbre and
+         *                 harmony.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setSegments(AudioAnalysisSegment[] segments) {
+            this.segments = segments;
+            return this;
+        }
+
+        /**
+         * The track tatums setter.
+         *
+         * @param tatums Get the list of tatum markers, in seconds.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setTatums(AudioAnalysisMeasure[] tatums) {
+            this.tatums = tatums;
+            return this;
+        }
+
+        /**
+         * The track data setter.
+         *
+         * @param track Track data of audio analysis object.
+         * @return An {@link AudioAnalysis.Builder}.
+         */
+        public Builder setTrack(AudioAnalysisTrack track) {
+            this.track = track;
+            return this;
+        }
+
+        @Override
+        public AudioAnalysis build() {
+            return new AudioAnalysis(this);
+        }
+    }
+
+    /**
+     * JsonUtil class for building {@link AudioAnalysis} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<AudioAnalysis> {
+        public AudioAnalysis createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            return new AudioAnalysis.Builder()
+                    .setBars(
+                            hasAndNotNull(jsonObject, "bars")
+                                    ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(
+                                    jsonObject.getAsJsonArray("bars"))
+                                    : null)
+                    .setBeats(
+                            hasAndNotNull(jsonObject, "beats")
+                                    ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(
+                                    jsonObject.getAsJsonArray("beats"))
+                                    : null)
+                    .setMeta(
+                            hasAndNotNull(jsonObject, "meta")
+                                    ? new AudioAnalysisMeta.JsonUtil().createModelObject(
+                                    jsonObject.getAsJsonObject("meta"))
+                                    : null)
+                    .setSections(
+                            hasAndNotNull(jsonObject, "sections")
+                                    ? new AudioAnalysisSection.JsonUtil().createModelObjectArray(
+                                    jsonObject.getAsJsonArray("sections"))
+                                    : null)
+                    .setSegments(
+                            hasAndNotNull(jsonObject, "segments")
+                                    ? new AudioAnalysisSegment.JsonUtil().createModelObjectArray(
+                                    jsonObject.getAsJsonArray("segments"))
+                                    : null)
+                    .setTatums(
+                            hasAndNotNull(jsonObject, "tatums")
+                                    ? new AudioAnalysisMeasure.JsonUtil().createModelObjectArray(
+                                    jsonObject.getAsJsonArray("tatums"))
+                                    : null)
+                    .setTrack(
+                            hasAndNotNull(jsonObject, "track")
+                                    ? new AudioAnalysisTrack.JsonUtil().createModelObject(
+                                    jsonObject.getAsJsonObject("track"))
+                                    : null)
+                    .build();
+        }
+    }
 }

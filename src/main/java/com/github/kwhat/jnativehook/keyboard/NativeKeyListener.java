@@ -24,7 +24,7 @@ import java.util.EventListener;
 /**
  * The listener interface for receiving global <code>NativeKeyEvents</code>.
  * <p>
- *
+ * <p>
  * The class that is interested in processing a <code>NativeKeyEvent</code> implements this
  * interface, and the object created with that class is registered with the
  * <code>GlobalScreen</code> using the {@link GlobalScreen#addNativeKeyListener(NativeKeyListener)}
@@ -34,8 +34,8 @@ import java.util.EventListener;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.0
- * @since 1.0
  * @see NativeKeyEvent
+ * @since 1.0
  */
 public interface NativeKeyListener extends EventListener {
 
@@ -45,19 +45,22 @@ public interface NativeKeyListener extends EventListener {
      * @param nativeEvent the native key event.
      * @since 1.1
      */
-    default void nativeKeyTyped(NativeKeyEvent nativeEvent) {}
+    default void nativeKeyTyped(NativeKeyEvent nativeEvent) {
+    }
 
     /**
      * Invoked when a key has been pressed.
      *
      * @param nativeEvent the native key event.
      */
-    default void nativeKeyPressed(NativeKeyEvent nativeEvent) {}
+    default void nativeKeyPressed(NativeKeyEvent nativeEvent) {
+    }
 
     /**
      * Invoked when a key has been released.
      *
      * @param nativeEvent the native key event.
      */
-    default void nativeKeyReleased(NativeKeyEvent nativeEvent) {}
+    default void nativeKeyReleased(NativeKeyEvent nativeEvent) {
+    }
 }

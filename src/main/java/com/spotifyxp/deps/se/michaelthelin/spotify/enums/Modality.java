@@ -10,34 +10,34 @@ import java.util.Map;
  */
 public enum Modality {
 
-  MAJOR(1),
-  MINOR(0);
+    MAJOR(1),
+    MINOR(0);
 
-  private static final Map<Integer, Modality> map = new HashMap<>();
+    private static final Map<Integer, Modality> map = new HashMap<>();
 
-  static {
-    for (Modality modality : Modality.values()) {
-      map.put(modality.mode, modality);
+    static {
+        for (Modality modality : Modality.values()) {
+            map.put(modality.mode, modality);
+        }
     }
-  }
 
-  public final int mode;
+    public final int mode;
 
-  Modality(final int mode) {
-    this.mode = mode;
-  }
+    Modality(final int mode) {
+        this.mode = mode;
+    }
 
-  public static Modality keyOf(int mode) {
-    return map.get(mode);
-  }
+    public static Modality keyOf(int mode) {
+        return map.get(mode);
+    }
 
-  /**
-   * Get the {@link Modality} type as a string.
-   *
-   * @return {@link Modality} type as a string.
-   */
-  public int getType() {
-    return this.mode;
-  }
+    /**
+     * Get the {@link Modality} type as a string.
+     *
+     * @return {@link Modality} type as a string.
+     */
+    public int getType() {
+        return this.mode;
+    }
 
 }

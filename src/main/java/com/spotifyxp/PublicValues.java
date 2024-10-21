@@ -31,9 +31,11 @@ import java.util.ArrayList;
 public class PublicValues {
     public static int applicationHeight = 600;
     public static int applicationWidth = 795;
+
     public static Dimension getApplicationDimensions() {
         return new Dimension(applicationWidth, applicationHeight);
     }
+
     public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
     public static CancelDialog facebookcanceldialog;
     public static libLanguage language = null;

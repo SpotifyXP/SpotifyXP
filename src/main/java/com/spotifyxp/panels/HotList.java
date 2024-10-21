@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlayHistory;
@@ -11,7 +10,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.*;
-import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -132,7 +130,7 @@ public class HotList extends JPanel {
                     String a = TrackUtils.getArtists(albumreq.getArtists());
                     ((DefaultTableModel) hotlistplayliststable.getModel()).addRow(new Object[]{albumreq.getName() + " - " + a});
                     hotlistplaylistlistcache.add(albumreq.getUri());
-                } catch (IOException | ParseException | SpotifyWebApiException e) {
+                } catch (IOException e) {
                     ConsoleLogging.Throwable(e);
                 }
             }

@@ -14,14 +14,16 @@ public class ContextMenu {
         public Runnable torun;
         public String name;
     }
+
     final JPopupMenu holder = new JPopupMenu();
+
     public ContextMenu(JComponent container, JComponent click) {
         click.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(SwingUtilities.isRightMouseButton(e)) {
-                    for(MouseListener listener : container.getMouseListeners()) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    for (MouseListener listener : container.getMouseListeners()) {
                         listener.mouseClicked(e);
                     }
                 }
@@ -31,57 +33,61 @@ public class ContextMenu {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(SwingUtilities.isRightMouseButton(e)) {
+                if (SwingUtilities.isRightMouseButton(e)) {
                     holder.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
         }));
-        for(GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+        for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             JMenuItem i = new JMenuItem(item.name);
             i.addActionListener(new AsyncActionListener(e -> item.torun.run()));
             holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
+
     public ContextMenu(JPanel panel) {
         panel.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(SwingUtilities.isRightMouseButton(e)) {
+                if (SwingUtilities.isRightMouseButton(e)) {
                     holder.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
         }));
-        for(GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+        for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             JMenuItem i = new JMenuItem(item.name);
             i.addActionListener(new AsyncActionListener(e -> item.torun.run()));
             holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
+
     public ContextMenu(JComponent component) {
         component.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(SwingUtilities.isRightMouseButton(e)) {
+                if (SwingUtilities.isRightMouseButton(e)) {
                     holder.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
         }));
-        for(GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+        for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             JMenuItem i = new JMenuItem(item.name);
             i.addActionListener(new AsyncActionListener(e -> item.torun.run()));
             holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
+
     public void addItem(String text, Runnable onClick) {
         JMenuItem item = new JMenuItem(text);
         item.addActionListener(new AsyncActionListener(e -> onClick.run()));
         holder.add(item);
     }
+
     public void addSeperator() {
         holder.add(new JSeparator());
     }

@@ -26,7 +26,7 @@ public class SpotifyAPI {
         Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), new EventSubscriber() {
             @Override
             public void run(Object... data) {
-                if(PublicValues.spotifyplayer == null) return;
+                if (PublicValues.spotifyplayer == null) return;
                 spotifyApi.setAccessToken(Token.getDefaultToken());
             }
         });
@@ -34,6 +34,7 @@ public class SpotifyAPI {
 
     /**
      * Injects a SpotifyApi instance (For debugging)
+     *
      * @param api an instance of the class SpotifyApi
      * @see SpotifyApi
      */
@@ -43,9 +44,10 @@ public class SpotifyAPI {
 
     /**
      * Adds all albums to the table specified
+     *
      * @param uricache cache that holds all uris
-     * @param fromuri artist uri
-     * @param totable the table to store all albums found
+     * @param fromuri  artist uri
+     * @param totable  the table to store all albums found
      */
     public void addAllAlbumsToList(ArrayList<String> uricache, String fromuri, DefTable totable) {
         Thread thread = new Thread(() -> {
@@ -56,24 +58,24 @@ public class SpotifyAPI {
                 int total = InstanceManager.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).build().execute().getTotal();
                 int counter = 0;
                 int last = 0;
-                while(parsed != total) {
-                    for(AlbumSimplified album : InstanceManager.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+                while (parsed != total) {
+                    for (AlbumSimplified album : InstanceManager.getSpotifyApi().getArtistsAlbums(fromuri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                         totable.addModifyAction(() -> ((DefaultTableModel) totable.getModel()).addRow(new Object[]{album.getName()}));
                         uricache.add(album.getUri());
                         parsed++;
                     }
-                    if(last == parsed) {
-                        if(counter > 1) {
+                    if (last == parsed) {
+                        if (counter > 1) {
                             break;
                         }
                         counter++;
-                    }else{
+                    } else {
                         counter = 0;
                     }
                     last = parsed;
                     offset += limit;
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }, "Add albums to list");
@@ -82,18 +84,20 @@ public class SpotifyAPI {
 
     /**
      * Adds an album to a table
+     *
      * @param simplified instance of AlbumSimplified
-     * @param table table to store the album
+     * @param table      table to store the album
      * @see AlbumSimplified
      */
     public void addAlbumToList(AlbumSimplified simplified, DefTable table) {
-        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[] {simplified.getName()}));
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{simplified.getName()}));
     }
 
     /**
      * Adds an album to a table
+     *
      * @param artist instance of Artist
-     * @param table table to store the album
+     * @param table  table to store the album
      * @see Artist
      */
     public void addArtistToList(Artist artist, DefTable table) {
@@ -102,19 +106,21 @@ public class SpotifyAPI {
 
     /**
      * Adds a song to a table
+     *
      * @param artists artists to insert (for display)
-     * @param track instance of Track
-     * @param table table to store the song
+     * @param track   instance of Track
+     * @param table   table to store the song
      * @see Track
      */
     public void addSongToList(String artists, Track track, DefTable table) {
-        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{track.getName() + " - " + track.getAlbum().getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(),TrackUtils.getHHMMSSOfTrack(track.getDurationMs())}));
+        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{track.getName() + " - " + track.getAlbum().getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())}));
     }
 
     /**
      * Adds a playlist to a table
+     *
      * @param simplified instance of PlaylistSimplified
-     * @param table table to store the playlist
+     * @param table      table to store the playlist
      * @see PlaylistSimplified
      */
     public void addPlaylistToList(PlaylistSimplified simplified, DefTable table) {

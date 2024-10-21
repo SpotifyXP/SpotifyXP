@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class SpotifyUtils {
     public static Image getImageForSystem(Image[] images) {
-        if(SystemUtils.getUsableRAMmb() < 512) {
-            for(Image i : images) {
-                if(i.getWidth() == 64) {
+        if (SystemUtils.getUsableRAMmb() < 512) {
+            for (Image i : images) {
+                if (i.getWidth() == 64) {
                     return i;
                 }
             }
@@ -29,27 +29,28 @@ public class SpotifyUtils {
             int total = InstanceManager.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
-            while(parsed != total) {
-                for(TrackSimplified track : InstanceManager.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+            while (parsed != total) {
+                for (TrackSimplified track : InstanceManager.getSpotifyApi().getAlbumsTracks(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     tracks.add(track);
                     parsed++;
                 }
-                if(last == parsed) {
-                    if(counter > 1) {
+                if (last == parsed) {
+                    if (counter > 1) {
                         break;
                     }
                     counter++;
-                }else{
+                } else {
                     counter = 0;
                 }
                 last = parsed;
                 offset += limit;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return tracks;
     }
+
     public static ArrayList<PlaylistTrack> getAllTracksPlaylist(String uri) {
         ArrayList<PlaylistTrack> tracks = new ArrayList<>();
         try {
@@ -59,27 +60,28 @@ public class SpotifyUtils {
             int total = InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
-            while(parsed != total) {
-                for(PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+            while (parsed != total) {
+                for (PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     tracks.add(track);
                     parsed++;
                 }
-                if(last == parsed) {
-                    if(counter > 1) {
+                if (last == parsed) {
+                    if (counter > 1) {
                         break;
                     }
                     counter++;
-                }else{
+                } else {
                     counter = 0;
                 }
                 last = parsed;
                 offset += limit;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return tracks;
     }
+
     public static ArrayList<EpisodeSimplified> getAllEpisodesShow(String uri) {
         ArrayList<EpisodeSimplified> episodes = new ArrayList<>();
         try {
@@ -89,27 +91,28 @@ public class SpotifyUtils {
             int total = InstanceManager.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
-            while(parsed != total) {
-                for(EpisodeSimplified episode : InstanceManager.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+            while (parsed != total) {
+                for (EpisodeSimplified episode : InstanceManager.getSpotifyApi().getShowEpisodes(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     episodes.add(episode);
                     parsed++;
                 }
-                if(last == parsed) {
-                    if(counter > 1) {
+                if (last == parsed) {
+                    if (counter > 1) {
                         break;
                     }
                     counter++;
-                }else{
+                } else {
                     counter = 0;
                 }
                 last = parsed;
                 offset += limit;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return episodes;
     }
+
     public static ArrayList<AlbumSimplified> getAllAlbumsArtist(String uri) {
         ArrayList<AlbumSimplified> albums = new ArrayList<>();
         try {
@@ -119,27 +122,28 @@ public class SpotifyUtils {
             int total = InstanceManager.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).build().execute().getTotal();
             int counter = 0;
             int last = 0;
-            while(parsed != total) {
-                for(AlbumSimplified album : InstanceManager.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
+            while (parsed != total) {
+                for (AlbumSimplified album : InstanceManager.getSpotifyApi().getArtistsAlbums(uri.split(":")[2]).offset(offset).limit(limit).build().execute().getItems()) {
                     albums.add(album);
                     parsed++;
                 }
-                if(last == parsed) {
-                    if(counter > 1) {
+                if (last == parsed) {
+                    if (counter > 1) {
                         break;
                     }
                     counter++;
-                }else{
+                } else {
                     counter = 0;
                 }
                 last = parsed;
                 offset += limit;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return albums;
     }
+
     public static ArrayList<Track> getAllTopTracksArtist(String uri) {
         ArrayList<Track> tracks = new ArrayList<>();
         try {
@@ -147,22 +151,22 @@ public class SpotifyUtils {
             int total = InstanceManager.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute().length;
             int counter = 0;
             int last = 0;
-            while(parsed != total) {
-                for(Track track : InstanceManager.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute()) {
+            while (parsed != total) {
+                for (Track track : InstanceManager.getSpotifyApi().getArtistsTopTracks(uri.split(":")[2], PublicValues.countryCode).build().execute()) {
                     tracks.add(track);
                     parsed++;
                 }
-                if(last == parsed) {
-                    if(counter > 1) {
+                if (last == parsed) {
+                    if (counter > 1) {
                         break;
                     }
                     counter++;
-                }else{
+                } else {
                     counter = 0;
                 }
                 last = parsed;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return tracks;

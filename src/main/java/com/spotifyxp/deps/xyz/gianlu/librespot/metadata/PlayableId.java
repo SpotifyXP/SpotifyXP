@@ -113,7 +113,8 @@ public interface PlayableId {
         throw new UnsupportedOperationException();
     }
 
-    @NotNull String toSpotifyUri();
+    @NotNull
+    String toSpotifyUri();
 
     default boolean matches(@NotNull ContextTrack current) {
         if (current.hasUri())

@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -16,84 +14,81 @@ import java.io.IOException;
 @JsonDeserialize(builder = CheckCurrentUserFollowsArtistsOrUsersRequest.Builder.class)
 public class CheckCurrentUserFollowsArtistsOrUsersRequest extends AbstractDataRequest<Boolean[]> {
 
-  /**
-   * The private {@link CheckCurrentUserFollowsArtistsOrUsersRequest} constructor.
-   *
-   * @param builder A {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder}.
-   */
-  private CheckCurrentUserFollowsArtistsOrUsersRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Check whether the user is following one or more users or artist or not.
-   *
-   * @return If the user is following more users or artists.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public Boolean[] execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new Gson().fromJson(JsonParser.parseString(getJson()).getAsJsonArray(), Boolean[].class);
-  }
-
-  /**
-   * Builder class for building a {@link CheckCurrentUserFollowsArtistsOrUsersRequest}.
-   */
-  public static final class Builder extends AbstractDataRequest.Builder<Boolean[], Builder> {
-
     /**
-     * Create a new {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder} instance.
+     * The private {@link CheckCurrentUserFollowsArtistsOrUsersRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private CheckCurrentUserFollowsArtistsOrUsersRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The ID type setter.
+     * Check whether the user is following one or more users or artist or not.
      *
-     * @param type Required. The ID type: either {@code artist} or {@code user}.
-     * @return A {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify URIs &amp; IDs</a>
+     * @return If the user is following more users or artists.
+     * @throws IOException In case of networking issues.
      */
-    public Builder type(final ModelObjectType type) {
-      assert (type != null);
-      assert (type.getType().equals("artist") || type.getType().equals("user"));
-      return setQueryParameter("type", type);
+    public Boolean[] execute() throws
+            IOException {
+        return new Gson().fromJson(JsonParser.parseString(getJson()).getAsJsonArray(), Boolean[].class);
     }
 
     /**
-     * The artist or user IDs setter.
-     *
-     * @param ids Required. A comma-separated list of the artist or the user Spotify IDs to check. A maximum of 50 IDs
-     *            can be sent in one request.
-     * @return A {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify URIs &amp; IDs</a>
+     * Builder class for building a {@link CheckCurrentUserFollowsArtistsOrUsersRequest}.
      */
-    public Builder ids(final String ids) {
-      assert (ids != null);
-      assert (ids.split(",").length <= 50);
-      return setQueryParameter("ids", ids);
-    }
+    public static final class Builder extends AbstractDataRequest.Builder<Boolean[], Builder> {
 
-    /**
-     * The request build method.
-     *
-     * @return A custom {@link CheckCurrentUserFollowsArtistsOrUsersRequest}.
-     */
-    @Override
-    public CheckCurrentUserFollowsArtistsOrUsersRequest build() {
-      setPath("/v1/me/following/contains");
-      return new CheckCurrentUserFollowsArtistsOrUsersRequest(this);
-    }
+        /**
+         * Create a new {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder} instance.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * The ID type setter.
+         *
+         * @param type Required. The ID type: either {@code artist} or {@code user}.
+         * @return A {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify URIs &amp; IDs</a>
+         */
+        public Builder type(final ModelObjectType type) {
+            assert (type != null);
+            assert (type.getType().equals("artist") || type.getType().equals("user"));
+            return setQueryParameter("type", type);
+        }
+
+        /**
+         * The artist or user IDs setter.
+         *
+         * @param ids Required. A comma-separated list of the artist or the user Spotify IDs to check. A maximum of 50 IDs
+         *            can be sent in one request.
+         * @return A {@link CheckCurrentUserFollowsArtistsOrUsersRequest.Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify URIs &amp; IDs</a>
+         */
+        public Builder ids(final String ids) {
+            assert (ids != null);
+            assert (ids.split(",").length <= 50);
+            return setQueryParameter("ids", ids);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link CheckCurrentUserFollowsArtistsOrUsersRequest}.
+         */
+        @Override
+        public CheckCurrentUserFollowsArtistsOrUsersRequest build() {
+            setPath("/v1/me/following/contains");
+            return new CheckCurrentUserFollowsArtistsOrUsersRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

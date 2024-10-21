@@ -61,7 +61,7 @@ public class NormalizationData {
     }
 
     public float getFactor(float normalisationPregain, boolean useAlbumGain) {
-        float gain = useAlbumGain? album_gain_db : track_gain_db;
+        float gain = useAlbumGain ? album_gain_db : track_gain_db;
         ConsoleLoggingModules.debug("Using gain: {}", gain);
         float normalisationFactor = (float) Math.pow(10, (gain + normalisationPregain) / 20);
         if (normalisationFactor * track_peak > 1) {

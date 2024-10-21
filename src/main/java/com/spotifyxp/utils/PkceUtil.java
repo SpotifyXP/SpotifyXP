@@ -16,6 +16,7 @@ public class PkceUtil {
         secureRandom.nextBytes(codeVerifier);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(codeVerifier);
     }
+
     public static String generateCodeChallenge(String codeVerifier) {
         try {
             byte[] bytes = codeVerifier.getBytes(StandardCharsets.US_ASCII);

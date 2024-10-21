@@ -1,22 +1,22 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed;
 
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import java.io.IOException;
 
 /**
  * The requested resource could not be found. This error can be due to a temporary or permanent condition.
  */
-public class NotFoundException extends SpotifyWebApiException {
+public class NotFoundException extends IOException {
 
-  public NotFoundException() {
-    super();
-  }
+    public NotFoundException() {
+        super();
+    }
 
-  public NotFoundException(String message) {
-    super(message);
-  }
+    public NotFoundException(String message) {
+        super(message);
+    }
 
-  public NotFoundException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public NotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

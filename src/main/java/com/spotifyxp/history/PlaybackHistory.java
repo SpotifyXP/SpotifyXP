@@ -64,7 +64,7 @@ public class PlaybackHistory extends JFrame {
 
         try {
             sqlSession.connect();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             ConsoleLogging.error("Can't establish a connection to the playback history database");
             PublicValues.history = null;
             return;
@@ -74,7 +74,7 @@ public class PlaybackHistory extends JFrame {
 
         sqlSession.initSQLElement(sqlTable);
         try {
-            if(!sqlTable.exists()) {
+            if (!sqlTable.exists()) {
                 try {
                     sqlTable.create(new SQLEntryPair("track_uri", false, SQLEntryTypes.STRING),
                             new SQLEntryPair("track_name", false, SQLEntryTypes.STRING),
@@ -83,7 +83,7 @@ public class PlaybackHistory extends JFrame {
                             new SQLEntryPair("album_uri", false, SQLEntryTypes.STRING),
                             new SQLEntryPair("album_name", false, SQLEntryTypes.STRING),
                             new SQLEntryPair("count", false, SQLEntryTypes.INTEGER));
-                }catch (SQLException e) {
+                } catch (SQLException e) {
                     PublicValues.history = null;
                     return;
                 }
@@ -115,11 +115,10 @@ public class PlaybackHistory extends JFrame {
         add(removeall, BorderLayout.SOUTH);
 
 
-
         tree.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(e.getClickCount() == 2) {
+                if (e.getClickCount() == 2) {
                     try {
                         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getSelectionModel().getSelectionPath().getLastPathComponent();
                         URITree.TreeNodeData data = ((URITree.TreeNodeData) node.getUserObject());
@@ -139,7 +138,7 @@ public class PlaybackHistory extends JFrame {
                             default:
                                 break;
                         }
-                    }catch (Exception ignored) {
+                    } catch (Exception ignored) {
                         tree.expandRow(0);
                     }
                 }
@@ -159,7 +158,7 @@ public class PlaybackHistory extends JFrame {
     void loadMore() {
         try {
             try {
-                ((DefaultTreeModel) tree.getModel()).removeNodeFromParent(((DefaultMutableTreeNode)root.getChildAt(root.getChildCount() - 1)));
+                ((DefaultTreeModel) tree.getModel()).removeNodeFromParent(((DefaultMutableTreeNode) root.getChildAt(root.getChildCount() - 1)));
                 for (PlaybackHistory.SongEntry entry : get15Songs(offset)) {
                     DefaultMutableTreeNode addedTo;
                     DefaultMutableTreeNode artist = new DefaultMutableTreeNode(new URITree.TreeNodeData(entry.artistName, entry.artistURI, URITree.NodeType.ARTIST));
@@ -180,29 +179,29 @@ public class PlaybackHistory extends JFrame {
                         root.remove(i);
                     }
                 }
-                if(sqlTable.tryGetRowCount() - 1 > offset) {
+                if (sqlTable.tryGetRowCount() - 1 > offset) {
                     root.add(new DefaultMutableTreeNode(new URITree.TreeNodeData(PublicValues.language.translate("ui.general.loadmore"), "", URITree.NodeType.LOADMORE)));
                 }
                 ((DefaultTreeModel) tree.getModel()).reload();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 ConsoleLogging.Throwable(e);
             }
-        }catch (Exception ignored) {
+        } catch (Exception ignored) {
         }
     }
 
     void removeEntry(TreeNode node, ArrayList<PlaybackHistory.TreeEntry> entries) {
         int toRemove = 0;
         boolean found = false;
-        for(int i = 0; i < entries.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             PlaybackHistory.TreeEntry entry = entries.get(i);
-            if(entry.addedTo == node) {
+            if (entry.addedTo == node) {
                 toRemove = i;
                 found = true;
                 break;
             }
         }
-        if(found) {
+        if (found) {
             entries.remove(toRemove);
         }
     }
@@ -212,7 +211,7 @@ public class PlaybackHistory extends JFrame {
         int counter = 0;
         try {
             PlaybackHistory.SongEntry entry = new PlaybackHistory.SongEntry();
-            for(SQLEntryPair pair : sqlTable.parseTableBackwards(15, offset, "count")) {
+            for (SQLEntryPair pair : sqlTable.parseTableBackwards(15, offset, "count")) {
                 switch (counter) {
                     case 0:
                         entry.songURI = pair.getValueString();
@@ -282,11 +281,11 @@ public class PlaybackHistory extends JFrame {
                         root.remove(i);
                     }
                 }
-                if(sqlTable.tryGetRowCount() - 1 > offset) {
+                if (sqlTable.tryGetRowCount() - 1 > offset) {
                     root.add(new DefaultMutableTreeNode(new URITree.TreeNodeData(PublicValues.language.translate("ui.general.loadmore"), "", URITree.NodeType.LOADMORE)));
                 }
                 tree.expandRow(0);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 ConsoleLogging.Throwable(e);
             }
         }, "Fetch playback history");
@@ -295,8 +294,8 @@ public class PlaybackHistory extends JFrame {
     }
 
     DefaultMutableTreeNode getEntry(String name, ArrayList<PlaybackHistory.TreeEntry> entries) {
-        for(PlaybackHistory.TreeEntry entry : entries) {
-            if(entry.name.equals(name)) {
+        for (PlaybackHistory.TreeEntry entry : entries) {
+            if (entry.name.equals(name)) {
                 return entry.addedTo;
             }
         }

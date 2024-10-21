@@ -5,6 +5,8 @@ import com.spotifyxp.utils.ConnectionUtils;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Feedback extends JPanel {
     public static JLabel feedbackmakesurelabel;
@@ -38,8 +40,26 @@ public class Feedback extends JPanel {
         feedbackgithubbutton.setBounds(466, 355, 250, 55);
         add(feedbackgithubbutton);
         feedbackgithubbutton.setForeground(PublicValues.globalFontColor);
-        feedbackgithubbutton.addActionListener(e -> ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP"));
-        feedbackviewissuesbutton.addActionListener(e -> ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues"));
-        feedbackcreateissuebutton.addActionListener(e -> ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues/new"));
+        feedbackgithubbutton.addActionListener(e -> {
+            try {
+                ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        feedbackviewissuesbutton.addActionListener(e -> {
+            try {
+                ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        feedbackcreateissuebutton.addActionListener(e -> {
+            try {
+                ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues/new");
+            } catch (URISyntaxException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 }

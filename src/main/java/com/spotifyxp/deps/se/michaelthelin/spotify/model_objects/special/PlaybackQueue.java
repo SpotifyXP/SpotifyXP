@@ -18,121 +18,121 @@ import java.util.List;
  */
 @JsonDeserialize(builder = CurrentlyPlaying.Builder.class)
 public class PlaybackQueue extends AbstractModelObject {
-  private final IPlaylistItem currentlyPlaying;
-  private final List<IPlaylistItem> queue;
+    private final IPlaylistItem currentlyPlaying;
+    private final List<IPlaylistItem> queue;
 
-  private PlaybackQueue(final Builder builder) {
-    super(builder);
-    this.currentlyPlaying = builder.currentlyPlaying;
-    this.queue = builder.queue;
-  }
-
-  /**
-   * Get the user's currently playing item.
-   *
-   * @return the user's currently playing item
-   */
-  public IPlaylistItem getCurrentlyPlaying() {
-    return currentlyPlaying;
-  }
-
-  /**
-   * Get the list of items that make up the user's queue.
-   *
-   * @return The items that are in the user's queue for the upcoming playback.
-   */
-  public List<IPlaylistItem> getQueue() {
-    return queue;
-  }
-
-  @Override
-  public String toString() {
-    return "PlaybackQueue{" +
-      "currentlyPlaying=" + currentlyPlaying +
-      ", queue=" + queue +
-      '}';
-  }
-
-  @Override
-  public IModelObject.Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link PlaybackQueue} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-
-    private IPlaylistItem currentlyPlaying;
-    private List<IPlaylistItem> queue;
-
-    /**
-     * The item representing the user's currently playing item setter.
-     *
-     * @param currentlyPlaying The item representing the user's currently playing item.
-     * @return A {@link PlaybackQueue.Builder}.
-     */
-    public Builder setCurrentlyPlaying(IPlaylistItem currentlyPlaying) {
-      this.currentlyPlaying = currentlyPlaying;
-      return this;
+    private PlaybackQueue(final Builder builder) {
+        super(builder);
+        this.currentlyPlaying = builder.currentlyPlaying;
+        this.queue = builder.queue;
     }
 
     /**
-     * The items that are in the user's queue for the upcoming playback setter.
+     * Get the user's currently playing item.
      *
-     * @param queue The items that are in the user's queue for the upcoming playback.
-     * @return A {@link PlaybackQueue.Builder}.
+     * @return the user's currently playing item
      */
-    public Builder setQueue(List<IPlaylistItem> queue) {
-      this.queue = queue;
-      return this;
+    public IPlaylistItem getCurrentlyPlaying() {
+        return currentlyPlaying;
+    }
+
+    /**
+     * Get the list of items that make up the user's queue.
+     *
+     * @return The items that are in the user's queue for the upcoming playback.
+     */
+    public List<IPlaylistItem> getQueue() {
+        return queue;
     }
 
     @Override
-    public PlaybackQueue build() {
-      return new PlaybackQueue(this);
+    public String toString() {
+        return "PlaybackQueue{" +
+                "currentlyPlaying=" + currentlyPlaying +
+                ", queue=" + queue +
+                '}';
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link PlaybackQueue} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<PlaybackQueue> {
-    public PlaybackQueue createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
+    @Override
+    public IModelObject.Builder builder() {
+        return new Builder();
+    }
 
-      IPlaylistItem currentlyPlaying = hasAndNotNull(jsonObject, "currently_playing")
-        ? asPlaylistItem(jsonObject.getAsJsonObject("currently_playing"))
-        : null;
+    /**
+     * Builder class for building {@link PlaybackQueue} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
 
-      List<IPlaylistItem> queue = new ArrayList<>();
-      if (hasAndNotNull(jsonObject, "queue")) {
-        for (JsonElement jsonElement : jsonObject.getAsJsonArray("queue")) {
-          IPlaylistItem queueItem = asPlaylistItem(jsonElement.getAsJsonObject());
-          queue.add(queueItem);
+        private IPlaylistItem currentlyPlaying;
+        private List<IPlaylistItem> queue;
+
+        /**
+         * The item representing the user's currently playing item setter.
+         *
+         * @param currentlyPlaying The item representing the user's currently playing item.
+         * @return A {@link PlaybackQueue.Builder}.
+         */
+        public Builder setCurrentlyPlaying(IPlaylistItem currentlyPlaying) {
+            this.currentlyPlaying = currentlyPlaying;
+            return this;
         }
-      }
 
-      return new PlaybackQueue.Builder()
-        .setCurrentlyPlaying(currentlyPlaying)
-        .setQueue(queue)
-        .build();
-    }
-
-    private IPlaylistItem asPlaylistItem(JsonObject trackObj) {
-      IPlaylistItem item = null;
-      if (hasAndNotNull(trackObj, "type")) {
-        String type = trackObj.get("type").getAsString().toLowerCase();
-
-        if (type.equals("track")) {
-          item = new Track.JsonUtil().createModelObject(trackObj);
-        } else if (type.equals("episode")) {
-          item = new Episode.JsonUtil().createModelObject(trackObj);
+        /**
+         * The items that are in the user's queue for the upcoming playback setter.
+         *
+         * @param queue The items that are in the user's queue for the upcoming playback.
+         * @return A {@link PlaybackQueue.Builder}.
+         */
+        public Builder setQueue(List<IPlaylistItem> queue) {
+            this.queue = queue;
+            return this;
         }
-      }
-      return item;
+
+        @Override
+        public PlaybackQueue build() {
+            return new PlaybackQueue(this);
+        }
     }
-  }
+
+    /**
+     * JsonUtil class for building {@link PlaybackQueue} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<PlaybackQueue> {
+        public PlaybackQueue createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            IPlaylistItem currentlyPlaying = hasAndNotNull(jsonObject, "currently_playing")
+                    ? asPlaylistItem(jsonObject.getAsJsonObject("currently_playing"))
+                    : null;
+
+            List<IPlaylistItem> queue = new ArrayList<>();
+            if (hasAndNotNull(jsonObject, "queue")) {
+                for (JsonElement jsonElement : jsonObject.getAsJsonArray("queue")) {
+                    IPlaylistItem queueItem = asPlaylistItem(jsonElement.getAsJsonObject());
+                    queue.add(queueItem);
+                }
+            }
+
+            return new PlaybackQueue.Builder()
+                    .setCurrentlyPlaying(currentlyPlaying)
+                    .setQueue(queue)
+                    .build();
+        }
+
+        private IPlaylistItem asPlaylistItem(JsonObject trackObj) {
+            IPlaylistItem item = null;
+            if (hasAndNotNull(trackObj, "type")) {
+                String type = trackObj.get("type").getAsString().toLowerCase();
+
+                if (type.equals("track")) {
+                    item = new Track.JsonUtil().createModelObject(trackObj);
+                } else if (type.equals("episode")) {
+                    item = new Episode.JsonUtil().createModelObject(trackObj);
+                }
+            }
+            return item;
+        }
+    }
 }

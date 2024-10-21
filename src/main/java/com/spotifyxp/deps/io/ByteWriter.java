@@ -20,164 +20,218 @@ import java.nio.ByteOrder;
 
 @SuppressWarnings({"NegativeIntConstantInLongContext", "NullableProblems"})
 public class ByteWriter extends OutputStream {
-	private boolean le = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
+    private boolean le = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
 
-	private final OutputStream stream;
-	private int pos = 0;
-	
-	
-	public ByteWriter(OutputStream out) {
-		stream = out;
-	}
-	
-	public int getPosition() {
-		return pos;
-	}
-	
-	public ByteWriter changeEndiannes() {
-		le = !le;
-		return this;
-	}
+    private final OutputStream stream;
+    private int pos = 0;
 
-	public ByteWriter setLittleEndian() {
-		le = true;
-		return this;
-	}
 
-	public ByteWriter setBigEndian() {
-		le = false;
-		return this;
-	}
+    public ByteWriter(OutputStream out) {
+        stream = out;
+    }
 
-	@Override
-	public void close() throws IOException
-	{
-		stream.close();
-		super.close();
-	}
+    public int getPosition() {
+        return pos;
+    }
 
-	@Override
-	public void write(byte[] b, int off, int len) throws IOException
-	{
-		pos += len;
-		stream.write(b, off, len);
-	}
-	
-	@Override
-	public void write(int b) throws IOException {
-		pos++;
-		stream.write(b);
-	}
+    public ByteWriter changeEndiannes() {
+        le = !le;
+        return this;
+    }
 
-	public void write(long b) throws IOException {
-		write((int)b);
-	}
-	
-	public void write2bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		if (le) {
-			write(b0); write(b1);
-		} else {
-			write(b1); write(b0);
-		}
-	}
-	
-	public void write3bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		long b2 = (n & 0xff0000) >> 16;
-		if (le) {
-			write(b0); write(b1); write(b2);
-		} else {
-			write(b2); write(b1); write(b0);
-		}
-	}
-	
-	public void write4bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		long b2 = (n & 0xff0000) >> 16;
-		long b3 = (n & 0xff000000) >>> 24;
-		if (le) {
-			write(b0); write(b1); write(b2); write(b3);
-		} else {
-			write(b3); write(b2); write(b1); write(b0);
-		}
-	}
-	
-	public void write5bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		long b2 = (n & 0xff0000) >> 16;
-		long b3 = (n & 0xff000000) >>> 24;
-		long b4 = (n & 0xff00000000L) >> 32;
-		if (le) {
-			write(b0); write(b1); write(b2); write(b3); write(b4);
-		} else {
-			write(b4); write(b3); write(b2); write(b1); write(b0);
-		}
-	}
-	
-	public void write6bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		long b2 = (n & 0xff0000) >> 16;
-		long b3 = (n & 0xff000000) >>> 24;
-		long b4 = (n & 0xff00000000L) >> 32;
-		long b5 = (n & 0xff0000000000L) >> 40;
-		if (le) {
-			write(b0); write(b1); write(b2); write(b3); write(b4); write(b5);
-		} else {
-			write(b5); write(b4); write(b3); write(b2); write(b1); write(b0);
-		}
-	}
-	
-	public void write7bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		long b2 = (n & 0xff0000) >> 16;
-		long b3 = (n & 0xff000000) >>> 24;
-		long b4 = (n & 0xff00000000L) >> 32;
-		long b5 = (n & 0xff0000000000L) >> 40;
-		long b6 = (n & 0xff000000000000L) >> 48;
-		if (le) {
-			write(b0); write(b1); write(b2); write(b3); write(b4); write(b5); write(b6);
-		} else {
-			write(b6); write(b5); write(b4); write(b3); write(b2); write(b1); write(b0);
-		}
-	}
-	
-	public void write8bytes(long n) throws IOException {
-		long b0 = n & 0xff;
-		long b1 = (n & 0xff00) >> 8;
-		long b2 = (n & 0xff0000) >> 16;
-		long b3 = (n & 0xff000000) >>> 24;
-		long b4 = (n & 0xff00000000L) >> 32;
-		long b5 = (n & 0xff0000000000L) >> 40;
-		long b6 = (n & 0xff000000000000L) >> 48;
-		long b7 = (n & 0xff00000000000000L) >>> 56;
-		if (le) {
-			write(b0); write(b1); write(b2); write(b3); write(b4); write(b5); write(b6); write(b7);
-		} else {
-			write(b7); write(b6); write(b5); write(b4); write(b3); write(b2); write(b1); write(b0);
-		}
-	}
+    public ByteWriter setLittleEndian() {
+        le = true;
+        return this;
+    }
 
-	public void writeString(String s) throws IOException {
-		write(s.getBytes());
-		write(0);
-	}
+    public ByteWriter setBigEndian() {
+        le = false;
+        return this;
+    }
 
-	public void writeUnicodeStringNullTerm(String s) throws IOException {
-		for (int i=0; i<s.length(); i++)
-			write2bytes(s.charAt(i));
-		write2bytes(0);
-	}
+    @Override
+    public void close() throws IOException {
+        stream.close();
+        super.close();
+    }
 
-	public void writeUnicodeStringSizePadded(String s) throws IOException {
-		write2bytes(s.length());
-		for (int i=0; i<s.length(); i++)
-			write2bytes(s.charAt(i));
-	}
+    @Override
+    public void write(byte[] b, int off, int len) throws IOException {
+        pos += len;
+        stream.write(b, off, len);
+    }
+
+    @Override
+    public void write(int b) throws IOException {
+        pos++;
+        stream.write(b);
+    }
+
+    public void write(long b) throws IOException {
+        write((int) b);
+    }
+
+    public void write2bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        if (le) {
+            write(b0);
+            write(b1);
+        } else {
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void write3bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        long b2 = (n & 0xff0000) >> 16;
+        if (le) {
+            write(b0);
+            write(b1);
+            write(b2);
+        } else {
+            write(b2);
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void write4bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        long b2 = (n & 0xff0000) >> 16;
+        long b3 = (n & 0xff000000) >>> 24;
+        if (le) {
+            write(b0);
+            write(b1);
+            write(b2);
+            write(b3);
+        } else {
+            write(b3);
+            write(b2);
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void write5bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        long b2 = (n & 0xff0000) >> 16;
+        long b3 = (n & 0xff000000) >>> 24;
+        long b4 = (n & 0xff00000000L) >> 32;
+        if (le) {
+            write(b0);
+            write(b1);
+            write(b2);
+            write(b3);
+            write(b4);
+        } else {
+            write(b4);
+            write(b3);
+            write(b2);
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void write6bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        long b2 = (n & 0xff0000) >> 16;
+        long b3 = (n & 0xff000000) >>> 24;
+        long b4 = (n & 0xff00000000L) >> 32;
+        long b5 = (n & 0xff0000000000L) >> 40;
+        if (le) {
+            write(b0);
+            write(b1);
+            write(b2);
+            write(b3);
+            write(b4);
+            write(b5);
+        } else {
+            write(b5);
+            write(b4);
+            write(b3);
+            write(b2);
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void write7bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        long b2 = (n & 0xff0000) >> 16;
+        long b3 = (n & 0xff000000) >>> 24;
+        long b4 = (n & 0xff00000000L) >> 32;
+        long b5 = (n & 0xff0000000000L) >> 40;
+        long b6 = (n & 0xff000000000000L) >> 48;
+        if (le) {
+            write(b0);
+            write(b1);
+            write(b2);
+            write(b3);
+            write(b4);
+            write(b5);
+            write(b6);
+        } else {
+            write(b6);
+            write(b5);
+            write(b4);
+            write(b3);
+            write(b2);
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void write8bytes(long n) throws IOException {
+        long b0 = n & 0xff;
+        long b1 = (n & 0xff00) >> 8;
+        long b2 = (n & 0xff0000) >> 16;
+        long b3 = (n & 0xff000000) >>> 24;
+        long b4 = (n & 0xff00000000L) >> 32;
+        long b5 = (n & 0xff0000000000L) >> 40;
+        long b6 = (n & 0xff000000000000L) >> 48;
+        long b7 = (n & 0xff00000000000000L) >>> 56;
+        if (le) {
+            write(b0);
+            write(b1);
+            write(b2);
+            write(b3);
+            write(b4);
+            write(b5);
+            write(b6);
+            write(b7);
+        } else {
+            write(b7);
+            write(b6);
+            write(b5);
+            write(b4);
+            write(b3);
+            write(b2);
+            write(b1);
+            write(b0);
+        }
+    }
+
+    public void writeString(String s) throws IOException {
+        write(s.getBytes());
+        write(0);
+    }
+
+    public void writeUnicodeStringNullTerm(String s) throws IOException {
+        for (int i = 0; i < s.length(); i++)
+            write2bytes(s.charAt(i));
+        write2bytes(0);
+    }
+
+    public void writeUnicodeStringSizePadded(String s) throws IOException {
+        write2bytes(s.length());
+        for (int i = 0; i < s.length(); i++)
+            write2bytes(s.charAt(i));
+    }
 }

@@ -31,25 +31,25 @@ public class SQLSession {
         element.provideSession(new SQLSessionPrivate());
     }
 
-    public boolean isConnected() throws SQLException{
+    public boolean isConnected() throws SQLException {
         return !connection.isClosed();
     }
 
     public boolean tryIsConnected() {
         try {
             return !connection.isClosed();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return false;
         }
     }
 
     public boolean connect() throws SQLException {
-        if(username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty()) {
             connection = DriverManager.getConnection(sqlBaseURL);
-        }else{
+        } else {
             connection = DriverManager.getConnection(sqlBaseURL, username, password);
         }
-        for(SQLElement element : elements) {
+        for (SQLElement element : elements) {
             element.provideSession(new SQLSessionPrivate());
         }
         return isConnected();
@@ -58,7 +58,7 @@ public class SQLSession {
     public boolean tryConnect() {
         try {
             return connect();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -69,7 +69,7 @@ public class SQLSession {
             sqlBaseURL += name;
             sqlBaseURL += ":" + sqlType + ":" + database;
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -81,7 +81,7 @@ public class SQLSession {
     public void tryDisconnect() {
         try {
             disconnect();
-        }catch (SQLException ignored) {
+        } catch (SQLException ignored) {
         }
     }
 
@@ -90,7 +90,7 @@ public class SQLSession {
             element.provideSession(this);
         }
 
-        public boolean isConnected() throws SQLException{
+        public boolean isConnected() throws SQLException {
             return itself.isConnected();
         }
 
@@ -109,7 +109,7 @@ public class SQLSession {
         public void tryDisconnect() {
             try {
                 itself.disconnect();
-            }catch (SQLException ignored) {
+            } catch (SQLException ignored) {
             }
         }
 

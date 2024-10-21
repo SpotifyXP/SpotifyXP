@@ -30,7 +30,7 @@ public class InjectorStore {
     static JTabbedPane switcher;
 
 
-    public InjectorStore() {
+    public InjectorStore() throws IOException {
         api = new InjectorAPI();
         installedExtensions = new ArrayList<>();
         updatesExtensions = new ArrayList<>();
@@ -42,7 +42,7 @@ public class InjectorStore {
     /**
      * Opens the extension store
      */
-    public void open() {
+    public void open() throws IOException {
         main = new JFrame(PublicValues.language.translate("extension.title"));
         switcher = new JTabbedPane();
         switcher.setTabPlacement(SwingConstants.TOP);
@@ -66,7 +66,7 @@ public class InjectorStore {
         final JPanel modulesholder;
         int ycache = 0;
 
-        public UpdatePanel() {
+        public UpdatePanel() throws IOException {
             setLayout(null);
             scrollPane = new JScrollPane();
             scrollPane.setBounds(0, 0, 361, 487);
@@ -75,7 +75,7 @@ public class InjectorStore {
             modulesholder.setSize(361, 487 * updatesExtensions.size());
             scrollPane.setViewportView(modulesholder);
             modulesholder.setLayout(null);
-            for(InjectorAPI.ExtensionSimplified updateAvailable : updatesExtensions) {
+            for (InjectorAPI.ExtensionSimplified updateAvailable : updatesExtensions) {
                 addModule(api.getExtensionRepository(updateAvailable.getName(), updateAvailable.getAuthor()), updateAvailable);
             }
         }
@@ -86,16 +86,16 @@ public class InjectorStore {
             modulesholder.add(extensioninstallremovebutton);
             extensioninstallremovebutton.setForeground(PublicValues.globalFontColor);
             InjectorAPI.ExtensionSimplified installedExtension = null;
-            for(InjectorAPI.ExtensionSimplified installed : api.getInjectorFile().getExtensions()) {
-                if(installed.getAuthor().equals(ex.getAuthor()) && installed.getName().equals(ex.getName())) {
+            for (InjectorAPI.ExtensionSimplified installed : api.getInjectorFile().getExtensions()) {
+                if (installed.getAuthor().equals(ex.getAuthor()) && installed.getName().equals(ex.getName())) {
                     installedExtension = installed;
                     break;
                 }
             }
             JLabel extensiontitle;
-            if(installedExtension == null) {
+            if (installedExtension == null) {
                 extensiontitle = new JLabel(ex.getName() + " from " + ex.getAuthor() + " - " + ex.getVersion());
-            }else{
+            } else {
                 extensiontitle = new JLabel(ex.getName() + " from " + ex.getAuthor() + " - " + installedExtension.getVersion() + " > " + ex.getVersion());
             }
             extensiontitle.setBounds(10, ycache + 11, 339, 14);
@@ -124,10 +124,10 @@ public class InjectorStore {
             separator.setLocation(0, ycache);
             modulesholder.add(separator);
             extensioninstallremovebutton.addActionListener(new AsyncActionListener(e -> {
-                InjectorAPI.Extension extension = api.getExtensionFromSimplified(ex, repository);
                 try {
+                    InjectorAPI.Extension extension = api.getExtensionFromSimplified(ex, repository);
                     long size = api.getSizeOfExtension(repository, extension);
-                    for(InjectorAPI.ExtensionSimplified dependency : extension.getDependencies()) {
+                    for (InjectorAPI.ExtensionSimplified dependency : extension.getDependencies()) {
                         long depSize = api.getSizeOfExtension(repository, dependency);
                         InjectorAPI.Extension depExtension = api.getExtensionFromSimplified(dependency, repository);
                         api.downloadExtension(depExtension, repository, filesizeDownloaded -> {
@@ -154,7 +154,7 @@ public class InjectorStore {
         final JPanel modulesholder;
         int ycache = 0;
 
-        public ContentPanel() {
+        public ContentPanel() throws IOException {
             setLayout(null);
             scrollPane = new JScrollPane();
             scrollPane.setBounds(0, 0, 361, 487);
@@ -164,8 +164,8 @@ public class InjectorStore {
             scrollPane.setViewportView(modulesholder);
             modulesholder.setLayout(null);
             boolean found = false;
-            for(InjectorAPI.APIInjectorRepository repository : api.getRepositories()) {
-                for(InjectorAPI.ExtensionSimplified extensionSimplified : installedExtensions) {
+            for (InjectorAPI.APIInjectorRepository repository : api.getRepositories()) {
+                for (InjectorAPI.ExtensionSimplified extensionSimplified : installedExtensions) {
                     exnum++;
                     addModule(repository, extensionSimplified);
                 }
@@ -201,7 +201,7 @@ public class InjectorStore {
                 }
             }
             extensioninstallremovebutton.addActionListener(new AsyncActionListener(e -> {
-                if(!extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
+                if (!extensioninstallremovebutton.getText().equals(PublicValues.language.translate("extension.remove"))) {
                     return;
                 }
                 //Remove extension
@@ -216,7 +216,7 @@ public class InjectorStore {
                         }
                     }
                 }
-                if(new File(PublicValues.appLocation + File.separator + "Extensions", ex.getName() + "-" + ex.getAuthor() + ".jar").delete()) {
+                if (new File(PublicValues.appLocation + File.separator + "Extensions", ex.getName() + "-" + ex.getAuthor() + ".jar").delete()) {
                     api.getInjectorFile().remove(ex);
                     installedExtensions.remove(ex);
                 }
@@ -280,10 +280,10 @@ public class InjectorStore {
                     }
                 } else {
                     //Install extension
-                    InjectorAPI.Extension extension = api.getExtensionFromSimplified(ex, repository);
                     try {
+                        InjectorAPI.Extension extension = api.getExtensionFromSimplified(ex, repository);
                         long size = api.getSizeOfExtension(repository, extension);
-                        for(InjectorAPI.ExtensionSimplified dependency : extension.getDependencies()) {
+                        for (InjectorAPI.ExtensionSimplified dependency : extension.getDependencies()) {
                             long depSize = api.getSizeOfExtension(repository, dependency);
                             InjectorAPI.Extension depExtension = api.getExtensionFromSimplified(dependency, repository);
                             api.downloadExtension(depExtension, repository, filesizeDownloaded -> {
@@ -340,19 +340,19 @@ public class InjectorStore {
         }
     }
 
-    public void checkUpdate() {
+    public void checkUpdate() throws IOException {
         boolean didInform = false;
-        for(InjectorAPI.ExtensionSimplified extension : installedExtensions) {
+        for (InjectorAPI.ExtensionSimplified extension : installedExtensions) {
             InjectorAPI.ExtensionSimplified webExtension = api.getExtensionWithNameAndAuthor(extension.getName(), extension.getAuthor());
-            if(!Objects.equals(webExtension.getVersion(), extension.getVersion())) {
+            if (!Objects.equals(webExtension.getVersion(), extension.getVersion())) {
                 //New version available!
                 //Notify user
-                if(!Objects.equals(webExtension.getMinVersion(), ApplicationUtils.getVersion())) {
+                if (!Objects.equals(webExtension.getMinVersion(), ApplicationUtils.getVersion())) {
                     continue;
                 }
                 update_available = true;
                 updatesExtensions.add(webExtension);
-                if(!didInform) {
+                if (!didInform) {
                     didInform = true;
                     GraphicalMessage.showMessageDialog("extension.updateAvailable.title", "extension.updateAvailable.message", JOptionPane.INFORMATION_MESSAGE);
                 }

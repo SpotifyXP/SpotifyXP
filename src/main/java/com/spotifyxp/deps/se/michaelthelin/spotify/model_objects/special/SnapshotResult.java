@@ -13,65 +13,65 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelOb
  */
 @JsonDeserialize(builder = SnapshotResult.Builder.class)
 public class SnapshotResult extends AbstractModelObject {
-  private final String snapshotId;
+    private final String snapshotId;
 
-  private SnapshotResult(final Builder builder) {
-    super(builder);
+    private SnapshotResult(final Builder builder) {
+        super(builder);
 
-    this.snapshotId = builder.snapshotId;
-  }
+        this.snapshotId = builder.snapshotId;
+    }
 
-  /**
-   * Get the snapshot ID.
-   *
-   * @return The snapshot ID.
-   */
-  public String getSnapshotId() {
-    return snapshotId;
-  }
-
-  @Override
-  public String toString() {
-    return "SnapshotResult(snapshotId=" + snapshotId + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link SnapshotResult} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    public String snapshotId;
-
-    public Builder setSnapshotId(String snapshotId) {
-      this.snapshotId = snapshotId;
-      return this;
+    /**
+     * Get the snapshot ID.
+     *
+     * @return The snapshot ID.
+     */
+    public String getSnapshotId() {
+        return snapshotId;
     }
 
     @Override
-    public SnapshotResult build() {
-      return new SnapshotResult(this);
+    public String toString() {
+        return "SnapshotResult(snapshotId=" + snapshotId + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link SnapshotResult} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<SnapshotResult> {
-    public SnapshotResult createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
-
-      return new SnapshotResult.Builder()
-        .setSnapshotId(
-          hasAndNotNull(jsonObject, "snapshot_id")
-            ? jsonObject.get("snapshot_id").getAsString()
-            : null)
-        .build();
+    @Override
+    public Builder builder() {
+        return new Builder();
     }
-  }
+
+    /**
+     * Builder class for building {@link SnapshotResult} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        public String snapshotId;
+
+        public Builder setSnapshotId(String snapshotId) {
+            this.snapshotId = snapshotId;
+            return this;
+        }
+
+        @Override
+        public SnapshotResult build() {
+            return new SnapshotResult(this);
+        }
+    }
+
+    /**
+     * JsonUtil class for building {@link SnapshotResult} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<SnapshotResult> {
+        public SnapshotResult createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            return new SnapshotResult.Builder()
+                    .setSnapshotId(
+                            hasAndNotNull(jsonObject, "snapshot_id")
+                                    ? jsonObject.get("snapshot_id").getAsString()
+                                    : null)
+                    .build();
+        }
+    }
 }

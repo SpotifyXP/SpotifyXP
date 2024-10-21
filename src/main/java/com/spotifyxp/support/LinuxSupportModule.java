@@ -5,7 +5,6 @@ import com.spotifyxp.deps.org.mpris.MPRISMediaPlayer;
 import com.spotifyxp.deps.org.mpris.Metadata;
 import com.spotifyxp.deps.org.mpris.TypeRunnable;
 import com.spotifyxp.deps.org.mpris.mpris.PlaybackStatus;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
@@ -13,7 +12,6 @@ import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.manager.InstanceManager;
-import org.apache.hc.core5.http.ParseException;
 import org.freedesktop.dbus.DBusPath;
 import org.freedesktop.dbus.connections.impl.DBusConnection;
 import org.freedesktop.dbus.exceptions.DBusException;
@@ -34,7 +32,7 @@ public class LinuxSupportModule implements SupportModule {
     @Override
     public void run() {
         PublicValues.enableMediaControl = false;
-        if(!PublicValues.customSaveDir) {
+        if (!PublicValues.customSaveDir) {
             PublicValues.fileslocation = System.getProperty("user.home") + "/SpotifyXP";
             PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
             PublicValues.configfilepath = PublicValues.fileslocation + "/config.json";
@@ -91,7 +89,7 @@ public class LinuxSupportModule implements SupportModule {
                                     .build())
             );
             mediaPlayer.create();
-        }catch (DBusException e) {
+        } catch (DBusException e) {
             throw new RuntimeException(e);
         }
         Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
@@ -158,14 +156,16 @@ public class LinuxSupportModule implements SupportModule {
                                     .setArtists(Collections.singletonList(metadata.getArtist()))
                                     .setAlbumName(metadata.getAlbumName())
                                     .build());
-                        } catch (DBusException | ParseException | IOException | SpotifyWebApiException ex) {
+                        } catch (DBusException ex) {
                             throw new RuntimeException(ex);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
                     }
 
                     @Override
                     public void onPlaybackHaltStateChanged(@NotNull Player player, boolean halted, long trackTime) {
-                        if(halted) {
+                        if (halted) {
                             try {
                                 PublicValues.mpris.setPlaybackStatus(PlaybackStatus.STOPPED);
                             } catch (DBusException ex) {

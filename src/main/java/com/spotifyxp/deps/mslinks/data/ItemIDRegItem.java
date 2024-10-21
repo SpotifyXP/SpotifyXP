@@ -22,46 +22,46 @@ import com.spotifyxp.deps.mslinks.UnsupportedCLSIDException;
 import java.io.IOException;
 
 public abstract class ItemIDRegItem extends ItemID {
-	
-	protected GUID clsid;
 
-	public ItemIDRegItem(int flags) {
-		super(flags);
-	}
+    protected GUID clsid;
 
-	@Override
-	public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
-		super.load(br, maxSize);
-		br.read(); // order
-		setClsid(new GUID(br));
-	}
+    public ItemIDRegItem(int flags) {
+        super(flags);
+    }
 
-	@Override
-	public void serialize(ByteWriter bw) throws IOException {
-		super.serialize(bw);
-		bw.write(0); // order
-		clsid.serialize(bw);
-	}
+    @Override
+    public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
+        super.load(br, maxSize);
+        br.read(); // order
+        setClsid(new GUID(br));
+    }
 
-	@Override
-	public String toString() {
-		String name;
-		try {
-			name = Registry.getName(clsid);
-		} catch (UnsupportedCLSIDException e) {
-			name = this.getClass().getSimpleName();
-		}
-		return "<" + name + ">\\";
-	}
+    @Override
+    public void serialize(ByteWriter bw) throws IOException {
+        super.serialize(bw);
+        bw.write(0); // order
+        clsid.serialize(bw);
+    }
 
-	public GUID getClsid() {
-		return clsid;
-	}
+    @Override
+    public String toString() {
+        String name;
+        try {
+            name = Registry.getName(clsid);
+        } catch (UnsupportedCLSIDException e) {
+            name = this.getClass().getSimpleName();
+        }
+        return "<" + name + ">\\";
+    }
 
-	public ItemIDRegItem setClsid(GUID clsid) throws UnsupportedCLSIDException {
-		if (!Registry.canUseClsidIn(clsid, this.getClass()))
-			throw new UnsupportedCLSIDException(clsid);
-		this.clsid = clsid;
-		return this;
-	}
+    public GUID getClsid() {
+        return clsid;
+    }
+
+    public ItemIDRegItem setClsid(GUID clsid) throws UnsupportedCLSIDException {
+        if (!Registry.canUseClsidIn(clsid, this.getClass()))
+            throw new UnsupportedCLSIDException(clsid);
+        this.clsid = clsid;
+        return this;
+    }
 }

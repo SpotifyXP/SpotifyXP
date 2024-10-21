@@ -46,13 +46,16 @@ public class SwingKeyAdapter extends AbstractSwingInputAdapter implements Native
     }
 
     @Override
-    public void keyTyped(KeyEvent keyEvent) {}
+    public void keyTyped(KeyEvent keyEvent) {
+    }
 
     @Override
-    public void keyPressed(KeyEvent keyEvent) {}
+    public void keyPressed(KeyEvent keyEvent) {
+    }
 
     @Override
-    public void keyReleased(KeyEvent keyEvent) {}
+    public void keyReleased(KeyEvent keyEvent) {
+    }
 
     protected KeyEvent getJavaKeyEvent(NativeKeyEvent nativeEvent) {
         int keyLocation = KeyEvent.KEY_LOCATION_UNKNOWN;
@@ -566,12 +569,12 @@ public class SwingKeyAdapter extends AbstractSwingInputAdapter implements Native
         }
 
         return new KeyEvent(
-            this,
-            nativeEvent.getID() - (NativeKeyEvent.NATIVE_KEY_FIRST - KeyEvent.KEY_FIRST),
-            System.currentTimeMillis(),
-            this.getJavaModifiers(nativeEvent.getModifiers()),
-            keyCode,
-            nativeEvent.getKeyChar(),
-            keyLocation);
+                this,
+                nativeEvent.getID() - (NativeKeyEvent.NATIVE_KEY_FIRST - KeyEvent.KEY_FIRST),
+                System.currentTimeMillis(),
+                this.getJavaModifiers(nativeEvent.getModifiers()),
+                keyCode,
+                nativeEvent.getKeyChar(),
+                keyLocation);
     }
 }

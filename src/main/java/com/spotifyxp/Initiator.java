@@ -22,6 +22,7 @@ import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.SupportModuleLoader;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.ApplicationUtils;
+import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
 
@@ -33,6 +34,7 @@ public class Initiator {
     static final Thread hook = new Thread(PlayerArea::saveCurrentState, "Save play state");
 
     public static boolean past = false;
+
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
         startupTime = new StartupTime(); //Saving the time SpotifyXP was started
@@ -43,7 +45,8 @@ public class Initiator {
         checkDebug(); //Checking if debug is enabled
         detectOS(); //Detecting the operating system
         checkSetup();
-        initConfig(); //Initializing the configuratio
+        initConfig(); //Initializing the configuration
+        new ConnectionUtils(); //Initializing the OkHttpClient
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
         storeArguments(args); //Storing the program arguments in PublicValues.class
@@ -53,7 +56,8 @@ public class Initiator {
         creatingLock(); //Creating the 'LOCK' file
         addShutdownHook(); //Adding the shutdown hook
         initAPI(); //Initializing all the apis used
-        if (PublicValues.enableMediaControl) createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
+        if (PublicValues.enableMediaControl)
+            createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
         initTrayIcon(); //Creating the tray icon
         initGUI(); //Initializing the GUI
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
@@ -61,83 +65,282 @@ public class Initiator {
     }
 
     static void checkDebug() {
-        if(PublicValues.debug) {
+        if (PublicValues.debug) {
             PublicValues.logger.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
             ConsoleLoggingModules modules = new ConsoleLoggingModules();
             modules.setColored(!System.getProperty("os.name").toLowerCase().contains("win"));
-        }else{
+        } else {
             System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
-                @Override public void write(int b) {}
+                @Override
+                public void write(int b) {
+                }
             }) {
-                @Override public void flush() {
+                @Override
+                public void flush() {
                 }
-                @Override public void close() {
+
+                @Override
+                public void close() {
                 }
-                @Override public void write(int b) {}
-                @Override public void write(byte[] b) {}
-                @Override public void write(byte[] buf, int off, int len) {}
-                @Override public void print(boolean b) {}
-                @Override public void print(char c) {}
-                @Override public void print(int i) {}
-                @Override public void print(long l) {}
-                @Override public void print(float f) {}
-                @Override public void print(double d) {}
-                @Override public void print(char[] s) {}
-                @Override public void print(String s) {
+
+                @Override
+                public void write(int b) {
                 }
-                @Override public void print(Object obj) {}
-                @Override public void println() {}
-                @Override public void println(boolean x) {}
-                @Override public void println(char x) {}
-                @Override public void println(int x) {}
-                @Override public void println(long x) {}
-                @Override public void println(float x) {}
-                @Override public void println(double x) {}
-                @Override public void println(char[] x) {}
-                @Override public void println(String x) {}
-                @Override public void println(Object x) {}
-                @Override public java.io.PrintStream printf(String format, Object... args) { return this; }
-                @Override public java.io.PrintStream printf(java.util.Locale l, String format, Object... args) { return this; }
-                @Override public java.io.PrintStream format(String format, Object... args) { return this; }
-                @Override public java.io.PrintStream format(java.util.Locale l, String format, Object... args) { return this; }
-                @Override public java.io.PrintStream append(CharSequence csq) { return this; }
-                @Override public java.io.PrintStream append(CharSequence csq, int start, int end) { return this; }
-                @Override public java.io.PrintStream append(char c) { return this; }
+
+                @Override
+                public void write(byte[] b) {
+                }
+
+                @Override
+                public void write(byte[] buf, int off, int len) {
+                }
+
+                @Override
+                public void print(boolean b) {
+                }
+
+                @Override
+                public void print(char c) {
+                }
+
+                @Override
+                public void print(int i) {
+                }
+
+                @Override
+                public void print(long l) {
+                }
+
+                @Override
+                public void print(float f) {
+                }
+
+                @Override
+                public void print(double d) {
+                }
+
+                @Override
+                public void print(char[] s) {
+                }
+
+                @Override
+                public void print(String s) {
+                }
+
+                @Override
+                public void print(Object obj) {
+                }
+
+                @Override
+                public void println() {
+                }
+
+                @Override
+                public void println(boolean x) {
+                }
+
+                @Override
+                public void println(char x) {
+                }
+
+                @Override
+                public void println(int x) {
+                }
+
+                @Override
+                public void println(long x) {
+                }
+
+                @Override
+                public void println(float x) {
+                }
+
+                @Override
+                public void println(double x) {
+                }
+
+                @Override
+                public void println(char[] x) {
+                }
+
+                @Override
+                public void println(String x) {
+                }
+
+                @Override
+                public void println(Object x) {
+                }
+
+                @Override
+                public java.io.PrintStream printf(String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream printf(java.util.Locale l, String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream format(String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream format(java.util.Locale l, String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream append(CharSequence csq) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream append(CharSequence csq, int start, int end) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream append(char c) {
+                    return this;
+                }
             });
             System.setErr(new java.io.PrintStream(new java.io.OutputStream() {
-                @Override public void write(int b) {}
+                @Override
+                public void write(int b) {
+                }
             }) {
-                @Override public void flush() {}
-                @Override public void close() {}
-                @Override public void write(int b) {}
-                @Override public void write(byte[] b) {}
-                @Override public void write(byte[] buf, int off, int len) {}
-                @Override public void print(boolean b) {}
-                @Override public void print(char c) {}
-                @Override public void print(int i) {}
-                @Override public void print(long l) {}
-                @Override public void print(float f) {}
-                @Override public void print(double d) {}
-                @Override public void print(char[] s) {}
-                @Override public void print(String s) {}
-                @Override public void print(Object obj) {}
-                @Override public void println() {}
-                @Override public void println(boolean x) {}
-                @Override public void println(char x) {}
-                @Override public void println(int x) {}
-                @Override public void println(long x) {}
-                @Override public void println(float x) {}
-                @Override public void println(double x) {}
-                @Override public void println(char[] x) {}
-                @Override public void println(String x) {}
-                @Override public void println(Object x) {}
-                @Override public java.io.PrintStream printf(String format, Object... args) { return this; }
-                @Override public java.io.PrintStream printf(java.util.Locale l, String format, Object... args) { return this; }
-                @Override public java.io.PrintStream format(String format, Object... args) { return this; }
-                @Override public java.io.PrintStream format(java.util.Locale l, String format, Object... args) { return this; }
-                @Override public java.io.PrintStream append(CharSequence csq) { return this; }
-                @Override public java.io.PrintStream append(CharSequence csq, int start, int end) { return this; }
-                @Override public java.io.PrintStream append(char c) { return this; }
+                @Override
+                public void flush() {
+                }
+
+                @Override
+                public void close() {
+                }
+
+                @Override
+                public void write(int b) {
+                }
+
+                @Override
+                public void write(byte[] b) {
+                }
+
+                @Override
+                public void write(byte[] buf, int off, int len) {
+                }
+
+                @Override
+                public void print(boolean b) {
+                }
+
+                @Override
+                public void print(char c) {
+                }
+
+                @Override
+                public void print(int i) {
+                }
+
+                @Override
+                public void print(long l) {
+                }
+
+                @Override
+                public void print(float f) {
+                }
+
+                @Override
+                public void print(double d) {
+                }
+
+                @Override
+                public void print(char[] s) {
+                }
+
+                @Override
+                public void print(String s) {
+                }
+
+                @Override
+                public void print(Object obj) {
+                }
+
+                @Override
+                public void println() {
+                }
+
+                @Override
+                public void println(boolean x) {
+                }
+
+                @Override
+                public void println(char x) {
+                }
+
+                @Override
+                public void println(int x) {
+                }
+
+                @Override
+                public void println(long x) {
+                }
+
+                @Override
+                public void println(float x) {
+                }
+
+                @Override
+                public void println(double x) {
+                }
+
+                @Override
+                public void println(char[] x) {
+                }
+
+                @Override
+                public void println(String x) {
+                }
+
+                @Override
+                public void println(Object x) {
+                }
+
+                @Override
+                public java.io.PrintStream printf(String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream printf(java.util.Locale l, String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream format(String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream format(java.util.Locale l, String format, Object... args) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream append(CharSequence csq) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream append(CharSequence csq, int start, int end) {
+                    return this;
+                }
+
+                @Override
+                public java.io.PrintStream append(char c) {
+                    return this;
+                }
             });
         }
     }
@@ -155,7 +358,7 @@ public class Initiator {
     }
 
     static void initEvents() {
-        for(SpotifyXPEvents s : SpotifyXPEvents.values()) {
+        for (SpotifyXPEvents s : SpotifyXPEvents.values()) {
             Events.register(s.getName(), true);
         }
     }
@@ -192,7 +395,7 @@ public class Initiator {
         SplashPanel.linfo.setText("Parsing audio quality info...");
         try {
             PublicValues.quality = Quality.valueOf(PublicValues.config.getString(ConfigValues.audioquality.name));
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             //This should not happen but when it happens don't crash SpotifyXP
             PublicValues.quality = Quality.NORMAL;
             ConsoleLogging.warning("Can't find the right audio quality! Defaulting to 'NORMAL'");
@@ -201,7 +404,7 @@ public class Initiator {
 
     static void checkSetup() {
         SplashPanel.linfo.setText("Checking setup...");
-        if(!PublicValues.foundSetupArgument) {
+        if (!PublicValues.foundSetupArgument) {
             new Setup();
             startupTime = new StartupTime();
         }
@@ -224,10 +427,10 @@ public class Initiator {
 
     static void creatingLock() {
         try {
-            if(new File(PublicValues.appLocation, "LOCK").createNewFile()) {
+            if (new File(PublicValues.appLocation, "LOCK").createNewFile()) {
                 new File(PublicValues.appLocation, "LOCK").deleteOnExit();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
             ConsoleLogging.warning("Couldn't create LOCK! SpotifyXP may be unstable");

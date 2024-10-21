@@ -3,7 +3,6 @@ package com.spotifyxp.dialogs;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;

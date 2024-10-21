@@ -7,23 +7,25 @@ import java.util.ArrayList;
 public class ArrayListUtils {
     private ArrayListUtils() {
     }
+
     public static String ArrayListtoString(ArrayList<String> list) {
         StringBuilder builder = new StringBuilder();
-        for(String s : list) {
-            if(builder.toString().isEmpty()) {
+        for (String s : list) {
+            if (builder.toString().isEmpty()) {
                 builder.append(s);
-            }else{
+            } else {
                 builder.append(", ").append(s);
             }
         }
         return builder.toString();
     }
+
     public static String ArtistSimplifiedtoString(ArtistSimplified[] list) {
         StringBuilder builder = new StringBuilder();
-        for(ArtistSimplified s : list) {
-            if(builder.toString().isEmpty()) {
+        for (ArtistSimplified s : list) {
+            if (builder.toString().isEmpty()) {
                 builder.append(s.getName());
-            }else{
+            } else {
                 builder.append(", ").append(s.getName());
             }
         }

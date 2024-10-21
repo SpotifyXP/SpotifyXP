@@ -27,9 +27,11 @@ public enum LookAndFeel {
     FlatMacLightLaf("com.formdev.flatlaf.MacLight");
     @SuppressWarnings({"NonFinalFieldInEnum", "CanBeFinal"})
     String selected;
+
     LookAndFeel(String select) {
         selected = select;
     }
+
     public String getClassName() {
         return selected;
     }

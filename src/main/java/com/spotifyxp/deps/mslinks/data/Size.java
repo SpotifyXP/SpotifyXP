@@ -19,39 +19,39 @@ import com.spotifyxp.deps.mslinks.Serializable;
 
 import java.io.IOException;
 
-public class Size implements Serializable{
-	private int x, y;
-	
-	public Size() {
-		x = y = 0;
-	}
-	
-	public Size(int _x, int _y) {
-		x = _x;
-		y = _y;
-	}
+public class Size implements Serializable {
+    private int x, y;
 
-	public int getX() {
-		return x;
-	}
+    public Size() {
+        x = y = 0;
+    }
 
-	public Size setX(int x) {
-		this.x = x;
-		return this;
-	}
+    public Size(int _x, int _y) {
+        x = _x;
+        y = _y;
+    }
 
-	public int getY() {
-		return y;
-	}
+    public int getX() {
+        return x;
+    }
 
-	public Size setY(int y) {
-		this.y = y;
-		return this;
-	}
+    public Size setX(int x) {
+        this.x = x;
+        return this;
+    }
 
-	@Override
-	public void serialize(ByteWriter bw) throws IOException {
-		bw.write2bytes(x);
-		bw.write2bytes(y);
-	}	
+    public int getY() {
+        return y;
+    }
+
+    public Size setY(int y) {
+        this.y = y;
+        return this;
+    }
+
+    @Override
+    public void serialize(ByteWriter bw) throws IOException {
+        bw.write2bytes(x);
+        bw.write2bytes(y);
+    }
 }

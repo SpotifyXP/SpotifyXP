@@ -28,13 +28,14 @@ public class Injector {
     private int loadedExtensions = 0;
     private ArrayList<InjectionEntry> missingJars = new ArrayList<>();
     private InjectionEntry currentEntry = null;
+
     /**
      * Injects all extensions found inside the Extensions folder
      */
     public void autoInject() {
-        if(!new File(PublicValues.appLocation, "Extensions").exists()) {
+        if (!new File(PublicValues.appLocation, "Extensions").exists()) {
             new File(PublicValues.appLocation, "Extensions").mkdir();
-        }else{
+        } else {
             availableExtensions = new File(PublicValues.appLocation, "Extensions").listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
@@ -42,14 +43,14 @@ public class Injector {
                 }
             }).length;
             boolean firstGoThrough = true;
-            while(loadedExtensions != availableExtensions) {
-                if(availableExtensions < 0) {
+            while (loadedExtensions != availableExtensions) {
+                if (availableExtensions < 0) {
                     break;
                 }
-                if(availableExtensions == 0) {
+                if (availableExtensions == 0) {
                     break;
                 }
-                if(firstGoThrough) {
+                if (firstGoThrough) {
                     for (File file : new File(PublicValues.appLocation, "Extensions").listFiles(new FilenameFilter() {
                         @Override
                         public boolean accept(File dir, String name) {
@@ -71,11 +72,12 @@ public class Injector {
 
     /**
      * Opens a file selection window. Selection of custom jar to inject
+     *
      * @param path Path to start with
      */
     public void openInjectWindow(String path) {
         String openpath = path;
-        if(path.isEmpty()) {
+        if (path.isEmpty()) {
             openpath = System.getProperty("user.dir");
         }
         JFileChooser chooser = new JFileChooser();
@@ -92,13 +94,14 @@ public class Injector {
 
     /**
      * Load extension jar file at the path
+     *
      * @param path path of jar file
      */
     @SuppressWarnings("unchecked")
     public void loadJarAt(String path) {
-        if(!path.split("\\.")[path.split("\\.").length - 1].equalsIgnoreCase("jar")) return; //Invalid file
+        if (!path.split("\\.")[path.split("\\.").length - 1].equalsIgnoreCase("jar")) return; //Invalid file
         InjectionEntry entry = new InjectionEntry();
-        if(currentEntry != null) entry = currentEntry;
+        if (currentEntry != null) entry = currentEntry;
         entry.path = path;
         boolean foundIdentifier = false;
         boolean foundVersion = false;
@@ -171,32 +174,32 @@ public class Injector {
             } else {
                 classLoader.close();
             }
-        }catch (JSONException jsonException) {
+        } catch (JSONException jsonException) {
             ConsoleLogging.error("Failed to load extension: '" + path + "'! Invalid plugin.json");
             availableExtensions--;
             entry.failed = true;
-        }catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             ConsoleLogging.error("Failed to load extension: '" + path + "'! plugin.json not found");
             availableExtensions--;
             entry.failed = true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
             entry.failed = true;
             availableExtensions--;
         }
-        if(!foundVersion || !foundIdentifier || !foundAuthor) {
+        if (!foundVersion || !foundIdentifier || !foundAuthor) {
             entry.failed = true;
             availableExtensions--;
             ConsoleLogging.error("Failed to load extension: '" + path + "'");
-        }else {
+        } else {
             injectedJars.add(entry);
         }
     }
 
     public boolean isJarInjected(String name, String author) {
-        for(InjectionEntry entry : injectedJars) {
-            if(entry.identifier.equals(name) && entry.author.equals(author)) {
+        for (InjectionEntry entry : injectedJars) {
+            if (entry.identifier.equals(name) && entry.author.equals(author)) {
                 return true;
             }
         }
@@ -204,8 +207,8 @@ public class Injector {
     }
 
     public boolean isJarInjected(String name, String author, String version) {
-        for(InjectionEntry entry : injectedJars) {
-            if(entry.identifier.equals(name) && entry.author.equals(author) && entry.version.equals(version)) {
+        for (InjectionEntry entry : injectedJars) {
+            if (entry.identifier.equals(name) && entry.author.equals(author) && entry.version.equals(version)) {
                 return true;
             }
         }
@@ -238,7 +241,7 @@ public class Injector {
 
         @Override
         public String toString() {
-            return identifier+"-"+version+"-"+author;
+            return identifier + "-" + version + "-" + author;
         }
     }
 }

@@ -237,7 +237,7 @@ public final class MercuryClient implements PacketsReceiver, Closeable {
         }
     }
 
-    public void interestedIn( @NotNull SubListener listener, @NotNull String uri) {
+    public void interestedIn(@NotNull SubListener listener, @NotNull String uri) {
         subscriptions.add(new InternalSubListener(uri, listener, false));
     }
 

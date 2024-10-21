@@ -20,7 +20,7 @@ public enum ConfigValues {
     other_normalizationpregain("user.settings.other.normalizationpregain", ConfigValueTypes.INT, 3),
     other_mixersearchkeywords("user.settings.other.mixersearchkeywords", ConfigValueTypes.STRING, ""),
     other_preloadenabled("user.settings.other.preloadenabled", ConfigValueTypes.BOOLEAN, true),
-    other_releaselinedelay("user.settings.other.releaselinedelay",ConfigValueTypes.INT, 20),
+    other_releaselinedelay("user.settings.other.releaselinedelay", ConfigValueTypes.INT, 20),
     other_bypasssinkvolume("user.settings.other.bypasssinkvolume", ConfigValueTypes.BOOLEAN, false),
     other_preferredlocale("user.settings.other.preferredlocale", ConfigValueTypes.STRING, "en"),
     hideExceptions("general.exception.visibility", ConfigValueTypes.BOOLEAN, false),
@@ -29,6 +29,7 @@ public enum ConfigValues {
     public final String name;
     public final ConfigValueTypes type;
     public final Object defaultValue;
+
     ConfigValues(String name, ConfigValueTypes type, Object defaultValue) {
         this.name = name;
         this.type = type;
@@ -37,12 +38,13 @@ public enum ConfigValues {
 
     /**
      * Returns the ConfigValues instance for the config value
+     *
      * @param name name of the config value e.g. user.settings.spconnect
      * @return ConfigValues
      */
     public static ConfigValues get(String name) {
-        for(ConfigValues value : ConfigValues.values()) {
-            if(value.name.equals(name)) {
+        for (ConfigValues value : ConfigValues.values()) {
+            if (value.name.equals(name)) {
                 return value;
             }
         }

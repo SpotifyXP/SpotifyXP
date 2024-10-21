@@ -2,7 +2,7 @@ package com.spotifyxp.args;
 
 import com.spotifyxp.PublicValues;
 
-public class CustomSaveDir implements Argument{
+public class CustomSaveDir implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
         return () -> {
@@ -20,7 +20,7 @@ public class CustomSaveDir implements Argument{
 
     @Override
     public String getDescription() {
-        return "Sets save directory (normally AppData) (Paramter z.b 'C://bla' or '/etc/bla')" ;
+        return "Sets save directory (normally AppData) (Paramter z.b 'C://bla' or '/etc/bla')";
     }
 
     @Override

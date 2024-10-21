@@ -17,6 +17,7 @@ public class AudioVisualizer extends JPanel {
     final ArrayList<Color> colors = new ArrayList<>();
     int buffersize = 0;
     int gain = 0;
+
     public void open() {
         counter.start();
         frame = new JFrame(PublicValues.language.translate("ui.audiovisualizer.title"));
@@ -41,7 +42,7 @@ public class AudioVisualizer extends JPanel {
 
     public boolean isVisible() {
         converted = null;
-        if(frame == null) {
+        if (frame == null) {
             return false;
         }
         return frame.isVisible();
@@ -66,7 +67,7 @@ public class AudioVisualizer extends JPanel {
     @Override
     public void paint(Graphics gr) {
         super.paint(gr);
-        if(rainbow) {
+        if (rainbow) {
             if (converted != null) {
                 try {
                     gr.setColor(Color.decode("#2596be"));
@@ -104,8 +105,8 @@ public class AudioVisualizer extends JPanel {
                 } catch (IllegalArgumentException ignored) {
                 }
             }
-        }else{
-            if(converted != null) {
+        } else {
+            if (converted != null) {
                 try {
                     gr.setColor(Color.black);
                     gr.fillRect(0, 0, getWidth(), getHeight());
@@ -120,13 +121,13 @@ public class AudioVisualizer extends JPanel {
                         spectrumData = lastspectrumdata;
                     }
                     for (int i = 0; i < spectrumData.length; i++) {
-                        if(c > colors.size() - 1) {
+                        if (c > colors.size() - 1) {
                             c = 0;
                         }
                         double amp = spectrumData[i];
                         gr.setColor(colors.get(c));
                         gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerareavolumecurrent.getText()))));
-                        if(a == 5) {
+                        if (a == 5) {
                             c++;
                             a = 0;
                         }
@@ -134,13 +135,13 @@ public class AudioVisualizer extends JPanel {
                     }
                     drawFPS(gr);
                     lastspectrumdata = spectrumData;
-                }catch (IllegalArgumentException ignored) {
+                } catch (IllegalArgumentException ignored) {
                 }
             }
         }
     }
 
-    public void update(byte[] converted, int buffersize)  {
+    public void update(byte[] converted, int buffersize) {
         this.buffersize = buffersize;
         this.converted = converted;
         repaint();

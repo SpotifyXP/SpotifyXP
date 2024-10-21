@@ -46,31 +46,36 @@ public class SwingMouseAdapter extends AbstractSwingInputAdapter implements Nati
     }
 
     @Override
-    public void mouseClicked(MouseEvent mouseEvent) {}
+    public void mouseClicked(MouseEvent mouseEvent) {
+    }
 
     @Override
-    public void mousePressed(MouseEvent mouseEvent) {}
+    public void mousePressed(MouseEvent mouseEvent) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent mouseEvent) {}
+    public void mouseReleased(MouseEvent mouseEvent) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent mouseEvent) {}
+    public void mouseEntered(MouseEvent mouseEvent) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent mouseEvent) {}
+    public void mouseExited(MouseEvent mouseEvent) {
+    }
 
     protected MouseEvent getJavaKeyEvent(NativeMouseEvent nativeEvent) {
         return new MouseEvent(
-            this,
-            nativeEvent.getID() - (NativeMouseEvent.NATIVE_MOUSE_FIRST
-                - MouseEvent.MOUSE_FIRST),
-            System.currentTimeMillis(),
-            this.getJavaModifiers(nativeEvent.getModifiers()),
-            nativeEvent.getX(),
-            nativeEvent.getY(),
-            nativeEvent.getClickCount(),
-            false,
-            nativeEvent.getButton());
+                this,
+                nativeEvent.getID() - (NativeMouseEvent.NATIVE_MOUSE_FIRST
+                        - MouseEvent.MOUSE_FIRST),
+                System.currentTimeMillis(),
+                this.getJavaModifiers(nativeEvent.getModifiers()),
+                nativeEvent.getX(),
+                nativeEvent.getY(),
+                nativeEvent.getClickCount(),
+                false,
+                nativeEvent.getButton());
     }
 }

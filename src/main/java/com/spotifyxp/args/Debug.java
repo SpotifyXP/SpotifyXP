@@ -2,7 +2,7 @@ package com.spotifyxp.args;
 
 import com.spotifyxp.PublicValues;
 
-public class Debug implements Argument{
+public class Debug implements Argument {
     @Override
     public Runnable runArgument(String parameter1) {
         return () -> PublicValues.debug = true;

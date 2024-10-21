@@ -35,120 +35,169 @@ import java.util.EventObject;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.1
- * @since   1.0
- *
  * @see NativeKeyListener
  * @see NativeMouseListener
  * @see NativeMouseMotionListener
  * @see NativeMouseWheelListener
+ * @since 1.0
  */
 public class NativeInputEvent extends EventObject {
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 2306729722565226621L;
 
-    /** The type of event. */
+    /**
+     * The type of event.
+     */
     private final int id;
 
-    /** The platform dependent time the event occured at. */
+    /**
+     * The platform dependent time the event occured at.
+     */
     private final long when;
 
-    /** The modifier keys down during event. */
+    /**
+     * The modifier keys down during event.
+     */
     private int modifiers;
-    
-    /** Mask for undocumented behavior.
+
+    /**
+     * Mask for undocumented behavior.
      * More information available at:
      * <a href="https://github.com/kwhat/jnativehook/blob/2.2/doc/ConsumingEvents.md">doc/ConsumingEvents.md</a>
+     *
      * @since 2.0
      */
     @SuppressWarnings("unused")
     private short reserved;
 
-    /** The left shift key modifier constant.
+    /**
+     * The left shift key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int SHIFT_L_MASK     = 1;
+    public static final int SHIFT_L_MASK = 1;
 
-    /** The left ctrl key modifier constant. 
+    /**
+     * The left ctrl key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int CTRL_L_MASK      = 1 << 1;
+    public static final int CTRL_L_MASK = 1 << 1;
 
-    /** The left meta key modifier constant. 
+    /**
+     * The left meta key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int META_L_MASK      = 1 << 2;
+    public static final int META_L_MASK = 1 << 2;
 
-    /** The left alt key modifier constant. 
+    /**
+     * The left alt key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int ALT_L_MASK       = 1 << 3;
+    public static final int ALT_L_MASK = 1 << 3;
 
-    /** The right shift key modifier constant. 
+    /**
+     * The right shift key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int SHIFT_R_MASK     = 1 << 4;
+    public static final int SHIFT_R_MASK = 1 << 4;
 
-    /** The right ctrl key modifier constant. 
+    /**
+     * The right ctrl key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int CTRL_R_MASK      = 1 << 5;
+    public static final int CTRL_R_MASK = 1 << 5;
 
-    /** The right meta key modifier constant. 
+    /**
+     * The right meta key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int META_R_MASK      = 1 << 6;
+    public static final int META_R_MASK = 1 << 6;
 
-    /** The right alt key modifier constant. 
+    /**
+     * The right alt key modifier constant.
+     *
      * @since 2.0
      */
-    public static final int ALT_R_MASK       = 1 << 7;
-    
-    /** Either the right or left shift key modifier constant. */
-    public static final int SHIFT_MASK       = SHIFT_L_MASK | SHIFT_R_MASK;
-    
-    /** Either the right or left ctrl key modifier constant. */
-    public static final int CTRL_MASK        = CTRL_L_MASK  | CTRL_R_MASK;
-    
-    /** Either the right or left meta key modifier constant. */
-    public static final int META_MASK        = META_L_MASK  | META_R_MASK;
+    public static final int ALT_R_MASK = 1 << 7;
 
-    /** Either the right or left alt key modifier constant. */
-    public static final int ALT_MASK         = ALT_L_MASK   | ALT_R_MASK;
-    
-    /** The Button1 modifier constant. */
-    public static final int BUTTON1_MASK     = 1 << 8;
+    /**
+     * Either the right or left shift key modifier constant.
+     */
+    public static final int SHIFT_MASK = SHIFT_L_MASK | SHIFT_R_MASK;
 
-    /** The Button2 modifier constant. */
-    public static final int BUTTON2_MASK     = 1 << 9;
+    /**
+     * Either the right or left ctrl key modifier constant.
+     */
+    public static final int CTRL_MASK = CTRL_L_MASK | CTRL_R_MASK;
 
-    /** The Button3 modifier constant. */
-    public static final int BUTTON3_MASK     = 1 << 10;
+    /**
+     * Either the right or left meta key modifier constant.
+     */
+    public static final int META_MASK = META_L_MASK | META_R_MASK;
 
-    /** The Button4 modifier constant. */
-    public static final int BUTTON4_MASK     = 1 << 11;
+    /**
+     * Either the right or left alt key modifier constant.
+     */
+    public static final int ALT_MASK = ALT_L_MASK | ALT_R_MASK;
 
-    /** The Button5 modifier constant. */
-    public static final int BUTTON5_MASK     = 1 << 12;
+    /**
+     * The Button1 modifier constant.
+     */
+    public static final int BUTTON1_MASK = 1 << 8;
 
-    /** The Number Lock modifier constant. */
-    public static final int NUM_LOCK_MASK    = 1 << 13;
+    /**
+     * The Button2 modifier constant.
+     */
+    public static final int BUTTON2_MASK = 1 << 9;
 
-    /** The Caps Lock modifier constant. */
-    public static final int CAPS_LOCK_MASK   = 1 << 14;
+    /**
+     * The Button3 modifier constant.
+     */
+    public static final int BUTTON3_MASK = 1 << 10;
 
-    /** The Scroll Lock modifier constant. */
+    /**
+     * The Button4 modifier constant.
+     */
+    public static final int BUTTON4_MASK = 1 << 11;
+
+    /**
+     * The Button5 modifier constant.
+     */
+    public static final int BUTTON5_MASK = 1 << 12;
+
+    /**
+     * The Number Lock modifier constant.
+     */
+    public static final int NUM_LOCK_MASK = 1 << 13;
+
+    /**
+     * The Caps Lock modifier constant.
+     */
+    public static final int CAPS_LOCK_MASK = 1 << 14;
+
+    /**
+     * The Scroll Lock modifier constant.
+     */
     public static final int SCROLL_LOCK_MASK = 1 << 15;
 
 
     /**
      * Instantiates a new native input event.
      *
-     * @param source The source of the event.
-     * @param id The type of event.
+     * @param source    The source of the event.
+     * @param id        The type of event.
      * @param modifiers the modifier keys down during event.
-     * <code>NativeInputEvent</code> _MASK modifiers should be used as they are
-     * not compatible with the extended _DOWN_MASK or the old _MASK
-     * <code>InputEvent</code> modifiers.
+     *                  <code>NativeInputEvent</code> _MASK modifiers should be used as they are
+     *                  not compatible with the extended _DOWN_MASK or the old _MASK
+     *                  <code>InputEvent</code> modifiers.
      */
     public NativeInputEvent(Class<GlobalScreen> source, int id, int modifiers) {
         super(source);
@@ -199,16 +248,15 @@ public class NativeInputEvent extends EventObject {
     /**
      * Sets the reserved flags for this event.
      * <p>
-     *
+     * <p>
      * Note the use of this method may not be supported by all native platforms.
      * <p>
-     *
+     * <p>
      * Event propagation support for X11 cannot be provided due to an oversight
      * in the way that XRecord currently operates.  No public method will be
      * available until a working cross-platform solution can be provided.
      *
      * @param reserved Non-portable flags for unsupported functionality.
-     * 
      * @since 1.1
      * @deprecated
      */
@@ -216,14 +264,14 @@ public class NativeInputEvent extends EventObject {
     private void setReserved(short reserved) {
         this.reserved = reserved;
     }
-    
+
     /**
      * Gets a <code>String</code> describing the modifier flags, such as
      * "Button1", or "Ctrl+Alt". These strings can be localized by changing the
      * awt.properties file.
      *
      * @param modifiers a modifier mask describing the modifier keys and mouse
-     * buttons of an event.
+     *                  buttons of an event.
      * @return the modifier mask's textual representation.
      */
     public static String getModifiersText(int modifiers) {
@@ -308,10 +356,10 @@ public class NativeInputEvent extends EventObject {
     public String paramString() {
 
         String param = "id=" + getID() + ','
-            + "when=" + getWhen() + ','
-            + "mask=" + Integer.toBinaryString(getModifiers()) + ','
-            + "modifiers=" + getModifiersText(getModifiers());
-        
+                + "when=" + getWhen() + ','
+                + "mask=" + Integer.toBinaryString(getModifiers()) + ','
+                + "modifiers=" + getModifiersText(getModifiers());
+
         return param;
     }
 }

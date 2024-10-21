@@ -11,100 +11,100 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelOb
  */
 @JsonDeserialize(builder = Followers.Builder.class)
 public class Followers extends AbstractModelObject {
-  private final String href;
-  private final Integer total;
+    private final String href;
+    private final Integer total;
 
-  private Followers(final Builder builder) {
-    super(builder);
+    private Followers(final Builder builder) {
+        super(builder);
 
-    this.href = builder.href;
-    this.total = builder.total;
-  }
-
-  /**
-   * Get a link to the Web API endpoint providing full details of the followers object. <br>
-   * <b>Please note:</b> This will always be set to {@code null}, as the Web API does not support it at the moment.
-   *
-   * @return A link to the Web API endpoint providing full details of the followers; {@code null} if not available.
-   */
-  public String getHref() {
-    return href;
-  }
-
-  /**
-   * Get the total number of followers.
-   *
-   * @return The total number of followers.
-   */
-  public Integer getTotal() {
-    return total;
-  }
-
-  @Override
-  public String toString() {
-    return "Followers(href=" + href + ", total=" + total + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link Followers} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    private String href;
-    private Integer total;
-
-    /**
-     * The href setter.
-     *
-     * @param href A link to the Web API endpoint providing full details of the followers; {@code null} if not
-     *             available.
-     * @return A {@link Followers.Builder}.
-     */
-    public Builder setHref(String href) {
-      this.href = href;
-      return this;
+        this.href = builder.href;
+        this.total = builder.total;
     }
 
     /**
-     * The follower count setter.
+     * Get a link to the Web API endpoint providing full details of the followers object. <br>
+     * <b>Please note:</b> This will always be set to {@code null}, as the Web API does not support it at the moment.
      *
-     * @param total The total number of followers.
-     * @return A {@link Followers.Builder}.
+     * @return A link to the Web API endpoint providing full details of the followers; {@code null} if not available.
      */
-    public Builder setTotal(Integer total) {
-      this.total = total;
-      return this;
+    public String getHref() {
+        return href;
+    }
+
+    /**
+     * Get the total number of followers.
+     *
+     * @return The total number of followers.
+     */
+    public Integer getTotal() {
+        return total;
     }
 
     @Override
-    public Followers build() {
-      return new Followers(this);
+    public String toString() {
+        return "Followers(href=" + href + ", total=" + total + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link Followers} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<Followers> {
-    public Followers createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
-
-      return new Followers.Builder()
-        .setHref(
-          hasAndNotNull(jsonObject, "href")
-            ? jsonObject.get("href").getAsString()
-            : null)
-        .setTotal(
-          hasAndNotNull(jsonObject, "total")
-            ? jsonObject.get("total").getAsInt()
-            : null)
-        .build();
+    @Override
+    public Builder builder() {
+        return new Builder();
     }
-  }
+
+    /**
+     * Builder class for building {@link Followers} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        private String href;
+        private Integer total;
+
+        /**
+         * The href setter.
+         *
+         * @param href A link to the Web API endpoint providing full details of the followers; {@code null} if not
+         *             available.
+         * @return A {@link Followers.Builder}.
+         */
+        public Builder setHref(String href) {
+            this.href = href;
+            return this;
+        }
+
+        /**
+         * The follower count setter.
+         *
+         * @param total The total number of followers.
+         * @return A {@link Followers.Builder}.
+         */
+        public Builder setTotal(Integer total) {
+            this.total = total;
+            return this;
+        }
+
+        @Override
+        public Followers build() {
+            return new Followers(this);
+        }
+    }
+
+    /**
+     * JsonUtil class for building {@link Followers} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<Followers> {
+        public Followers createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            return new Followers.Builder()
+                    .setHref(
+                            hasAndNotNull(jsonObject, "href")
+                                    ? jsonObject.get("href").getAsString()
+                                    : null)
+                    .setTotal(
+                            hasAndNotNull(jsonObject, "total")
+                                    ? jsonObject.get("total").getAsInt()
+                                    : null)
+                    .build();
+        }
+    }
 }

@@ -25,9 +25,8 @@ public class CustomLengthPasswordField extends JPasswordField {
     }
 
     /**
-     *
      * @param length - maksimalan length
-     * @param upper - turn it to upercase
+     * @param upper  - turn it to upercase
      * @param inpVer - InputVerifier
      */
     public CustomLengthPasswordField(int length, boolean upper, InputVerifier inpVer) {

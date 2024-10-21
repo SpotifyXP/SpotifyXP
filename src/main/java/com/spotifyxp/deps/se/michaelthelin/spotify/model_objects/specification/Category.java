@@ -13,172 +13,172 @@ import java.util.Objects;
  */
 @JsonDeserialize(builder = Category.Builder.class)
 public class Category extends AbstractModelObject {
-  private final String href;
-  private final Image[] icons;
-  private final String id;
-  private final String name;
+    private final String href;
+    private final Image[] icons;
+    private final String id;
+    private final String name;
 
-  private Category(final Builder builder) {
-    super(builder);
+    private Category(final Builder builder) {
+        super(builder);
 
-    this.href = builder.href;
-    this.icons = builder.icons;
-    this.id = builder.id;
-    this.name = builder.name;
-  }
-
-  /**
-   * Get the Spotify Web API endpoint URL of the category.
-   *
-   * @return A link to the Spotify Web API endpoint returning full details of the category.
-   */
-  public String getHref() {
-    return href;
-  }
-
-  /**
-   * Get the category icon in various sizes.
-   *
-   * @return The category icon, in various sizes.
-   */
-  public Image[] getIcons() {
-    return icons;
-  }
-
-  /**
-   * Get the <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify ID</a>
-   * of the category.
-   *
-   * @return The Spotify category ID of the category.
-   */
-  public String getId() {
-    return id;
-  }
-
-  /**
-   * Get the name of the category.
-   *
-   * @return The name of the category.
-   */
-  public String getName() {
-    return name;
-  }
-
-  @Override
-  public String toString() {
-    return "Category(href=" + href + ", icons=" + Arrays.toString(icons) + ", id=" + id + ", name=" + name + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link Category} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    private String href;
-    private Image[] icons;
-    private String id;
-    private String name;
-
-    /**
-     * The category href setter.
-     *
-     * @param href A link to the Spotify Web API endpoint returning full details of the category.
-     * @return A Category builder.
-     */
-    public Builder setHref(String href) {
-      this.href = href;
-      return this;
+        this.href = builder.href;
+        this.icons = builder.icons;
+        this.id = builder.id;
+        this.name = builder.name;
     }
 
     /**
-     * The category icon setter.
+     * Get the Spotify Web API endpoint URL of the category.
      *
-     * @param icons The category icon, in various sizes.
-     * @return A Category builder.
+     * @return A link to the Spotify Web API endpoint returning full details of the category.
      */
-    public Builder setIcons(Image... icons) {
-      this.icons = icons;
-      return this;
+    public String getHref() {
+        return href;
     }
 
     /**
-     * The category ID setter.
+     * Get the category icon in various sizes.
      *
-     * @param id The Spotify category ID of the category.
-     * @return A Category builder.
+     * @return The category icon, in various sizes.
      */
-    public Builder setId(String id) {
-      this.id = id;
-      return this;
+    public Image[] getIcons() {
+        return icons;
     }
 
     /**
-     * The category name setter.
+     * Get the <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify ID</a>
+     * of the category.
      *
-     * @param name The name of the category.
-     * @return A Category builder.
+     * @return The Spotify category ID of the category.
      */
-    public Builder setName(String name) {
-      this.name = name;
-      return this;
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Get the name of the category.
+     *
+     * @return The name of the category.
+     */
+    public String getName() {
+        return name;
     }
 
     @Override
-    public Category build() {
-      return new Category(this);
+    public String toString() {
+        return "Category(href=" + href + ", icons=" + Arrays.toString(icons) + ", id=" + id + ", name=" + name + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link Category} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<Category> {
-    public Category createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
-
-      return new Category.Builder()
-        .setHref(
-          hasAndNotNull(jsonObject, "href")
-            ? jsonObject.get("href").getAsString()
-            : null)
-        .setIcons(
-          hasAndNotNull(jsonObject, "icons")
-            ? new Image.JsonUtil().createModelObjectArray(
-            jsonObject.getAsJsonArray("icons"))
-            : null)
-        .setId(
-          hasAndNotNull(jsonObject, "id")
-            ? jsonObject.get("id").getAsString()
-            : null)
-        .setName(
-          hasAndNotNull(jsonObject, "name")
-            ? jsonObject.get("name").getAsString()
-            : null)
-        .build();
+    @Override
+    public Builder builder() {
+        return new Builder();
     }
-  }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Category category = (Category) o;
-    return Objects.equals(href, category.href) && Objects.equals(id, category.id) &&
-      Objects.equals(name, category.name);
-  }
+    /**
+     * Builder class for building {@link Category} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        private String href;
+        private Image[] icons;
+        private String id;
+        private String name;
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(href, id, name);
-  }
+        /**
+         * The category href setter.
+         *
+         * @param href A link to the Spotify Web API endpoint returning full details of the category.
+         * @return A Category builder.
+         */
+        public Builder setHref(String href) {
+            this.href = href;
+            return this;
+        }
+
+        /**
+         * The category icon setter.
+         *
+         * @param icons The category icon, in various sizes.
+         * @return A Category builder.
+         */
+        public Builder setIcons(Image... icons) {
+            this.icons = icons;
+            return this;
+        }
+
+        /**
+         * The category ID setter.
+         *
+         * @param id The Spotify category ID of the category.
+         * @return A Category builder.
+         */
+        public Builder setId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * The category name setter.
+         *
+         * @param name The name of the category.
+         * @return A Category builder.
+         */
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        @Override
+        public Category build() {
+            return new Category(this);
+        }
+    }
+
+    /**
+     * JsonUtil class for building {@link Category} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<Category> {
+        public Category createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            return new Category.Builder()
+                    .setHref(
+                            hasAndNotNull(jsonObject, "href")
+                                    ? jsonObject.get("href").getAsString()
+                                    : null)
+                    .setIcons(
+                            hasAndNotNull(jsonObject, "icons")
+                                    ? new Image.JsonUtil().createModelObjectArray(
+                                    jsonObject.getAsJsonArray("icons"))
+                                    : null)
+                    .setId(
+                            hasAndNotNull(jsonObject, "id")
+                                    ? jsonObject.get("id").getAsString()
+                                    : null)
+                    .setName(
+                            hasAndNotNull(jsonObject, "name")
+                                    ? jsonObject.get("name").getAsString()
+                                    : null)
+                    .build();
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Category category = (Category) o;
+        return Objects.equals(href, category.href) && Objects.equals(id, category.id) &&
+                Objects.equals(name, category.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(href, id, name);
+    }
 }

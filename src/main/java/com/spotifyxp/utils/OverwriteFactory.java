@@ -10,7 +10,7 @@ public class OverwriteFactory {
     }
 
     public static void run(InputStream stream) {
-        if(overwriteWith == null) {
+        if (overwriteWith == null) {
             return;
         }
         overwriteWith.execute(stream);

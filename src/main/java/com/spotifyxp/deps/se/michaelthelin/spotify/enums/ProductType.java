@@ -8,37 +8,37 @@ import java.util.Map;
  */
 public enum ProductType {
 
-  BASIC_DESKTOP("basic-desktop"),
-  DAYPASS("daypass"),
-  FREE("free"),
-  OPEN("open"),
-  PREMIUM("premium");
+    BASIC_DESKTOP("basic-desktop"),
+    DAYPASS("daypass"),
+    FREE("free"),
+    OPEN("open"),
+    PREMIUM("premium");
 
-  private static final Map<String, ProductType> map = new HashMap<>();
+    private static final Map<String, ProductType> map = new HashMap<>();
 
-  static {
-    for (ProductType productType : ProductType.values()) {
-      map.put(productType.type, productType);
+    static {
+        for (ProductType productType : ProductType.values()) {
+            map.put(productType.type, productType);
+        }
     }
-  }
 
-  public final String type;
+    public final String type;
 
-  ProductType(final String type) {
-    this.type = type;
-  }
+    ProductType(final String type) {
+        this.type = type;
+    }
 
-  public static ProductType keyOf(String type) {
-    return map.get(type);
-  }
+    public static ProductType keyOf(String type) {
+        return map.get(type);
+    }
 
-  /**
-   * Get the Spotify product type as a string.
-   *
-   * @return The Spotify product type as a string.
-   */
-  public String getType() {
-    return type;
-  }
+    /**
+     * Get the Spotify product type as a string.
+     *
+     * @return The Spotify product type as a string.
+     */
+    public String getType() {
+        return type;
+    }
 
 }

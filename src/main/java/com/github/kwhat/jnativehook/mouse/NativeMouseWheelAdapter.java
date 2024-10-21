@@ -21,4 +21,5 @@ package com.github.kwhat.jnativehook.mouse;
  * @deprecated No need to extend this class, implement the {@code NativeMouseWheelListener} interface instead
  */
 
-public class NativeMouseWheelAdapter implements NativeMouseWheelListener {}
+public class NativeMouseWheelAdapter implements NativeMouseWheelListener {
+}

@@ -2,12 +2,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.player;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingCursorbasedRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 import java.util.Date;
@@ -29,99 +27,96 @@ import java.util.Date;
 @JsonDeserialize(builder = GetCurrentUsersRecentlyPlayedTracksRequest.Builder.class)
 public class GetCurrentUsersRecentlyPlayedTracksRequest extends AbstractDataRequest<PagingCursorbased<PlayHistory>> {
 
-  /**
-   * The private {@link GetCurrentUsersRecentlyPlayedTracksRequest} constructor.
-   *
-   * @param builder A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
-   */
-  private GetCurrentUsersRecentlyPlayedTracksRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Get an user's recently played tracks.
-   *
-   * @return An user's recently played tracks.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public PagingCursorbased<PlayHistory> execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new PlayHistory.JsonUtil().createModelObjectPagingCursorbased(getJson());
-  }
-
-  /**
-   * Builder class for building a {@link GetCurrentUsersRecentlyPlayedTracksRequest}.
-   */
-  public static final class Builder extends AbstractDataPagingCursorbasedRequest.Builder<PlayHistory, Date, Builder> {
-
     /**
-     * Create a new {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
-     * <p>
-     * Your access token must have the {@code user-read-recently-played} scope authorized in order to read
-     * the user's recently played track.
+     * The private {@link GetCurrentUsersRecentlyPlayedTracksRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
-     * @see <a href="https://developer.spotify.com/web-api/using-scopes/">Spotify: Using Scopes</a>
+     * @param builder A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private GetCurrentUsersRecentlyPlayedTracksRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The limit setter.
+     * Get an user's recently played tracks.
      *
-     * @param limit Optional. The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
-     * @return A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
+     * @return An user's recently played tracks.
+     * @throws IOException In case of networking issues.
      */
-    @Override
-    public Builder limit(final Integer limit) {
-      assert (limit != null);
-      assert (1 <= limit && limit <= 50);
-      return setQueryParameter("limit", limit);
+    public PagingCursorbased<PlayHistory> execute() throws
+            IOException {
+        return new PlayHistory.JsonUtil().createModelObjectPagingCursorbased(getJson());
     }
 
     /**
-     * The after date setter.
-     *
-     * @param after Optional. A {@link Date} object. Returns all items after (but not including) this cursor position.
-     *              If this is specified, {@link #before(Date)} must not be specified.
-     * @return A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
+     * Builder class for building a {@link GetCurrentUsersRecentlyPlayedTracksRequest}.
      */
-    @Override
-    public Builder after(final Date after) {
-      assert (after != null);
-      return setQueryParameter("after", SpotifyApi.formatDefaultDate(after));
-    }
+    public static final class Builder extends AbstractDataPagingCursorbasedRequest.Builder<PlayHistory, Date, Builder> {
 
-    /**
-     * The before date setter.
-     *
-     * @param before Optional. A {@link Date} object. Returns all items before (but not including) this cursor position.
-     *               If this is specified, {@link #after(Date)} must not be specified.
-     * @return A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
-     */
-    public Builder before(final Date before) {
-      assert (before != null);
-      return setQueryParameter("before", SpotifyApi.formatDefaultDate(before));
-    }
+        /**
+         * Create a new {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
+         * <p>
+         * Your access token must have the {@code user-read-recently-played} scope authorized in order to read
+         * the user's recently played track.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         * @see <a href="https://developer.spotify.com/web-api/using-scopes/">Spotify: Using Scopes</a>
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
 
-    /**
-     * The request build method.
-     *
-     * @return A custom {@link GetCurrentUsersRecentlyPlayedTracksRequest}.
-     */
-    @Override
-    public GetCurrentUsersRecentlyPlayedTracksRequest build() {
-      setPath("/v1/me/player/recently-played");
-      return new GetCurrentUsersRecentlyPlayedTracksRequest(this);
-    }
+        /**
+         * The limit setter.
+         *
+         * @param limit Optional. The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
+         * @return A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
+         */
+        @Override
+        public Builder limit(final Integer limit) {
+            assert (limit != null);
+            assert (1 <= limit && limit <= 50);
+            return setQueryParameter("limit", limit);
+        }
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * The after date setter.
+         *
+         * @param after Optional. A {@link Date} object. Returns all items after (but not including) this cursor position.
+         *              If this is specified, {@link #before(Date)} must not be specified.
+         * @return A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
+         */
+        @Override
+        public Builder after(final Date after) {
+            assert (after != null);
+            return setQueryParameter("after", SpotifyApi.formatDefaultDate(after));
+        }
+
+        /**
+         * The before date setter.
+         *
+         * @param before Optional. A {@link Date} object. Returns all items before (but not including) this cursor position.
+         *               If this is specified, {@link #after(Date)} must not be specified.
+         * @return A {@link GetCurrentUsersRecentlyPlayedTracksRequest.Builder}.
+         */
+        public Builder before(final Date before) {
+            assert (before != null);
+            return setQueryParameter("before", SpotifyApi.formatDefaultDate(before));
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link GetCurrentUsersRecentlyPlayedTracksRequest}.
+         */
+        @Override
+        public GetCurrentUsersRecentlyPlayedTracksRequest build() {
+            setPath("/v1/me/player/recently-played");
+            return new GetCurrentUsersRecentlyPlayedTracksRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

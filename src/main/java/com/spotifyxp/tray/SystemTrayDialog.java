@@ -3,6 +3,7 @@ package com.spotifyxp.tray;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.AsyncMouseListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -48,7 +49,7 @@ public class SystemTrayDialog {
     }
 
     public void addEntry(String name, ActionListener onclick) {
-        if(calledadd) {
+        if (calledadd) {
             MenuItem action = new MenuItem(name);
             action.addActionListener(new AsyncActionListener(onclick));
             menu.add(action);
@@ -56,7 +57,7 @@ public class SystemTrayDialog {
     }
 
     public void open(ActionListener ondoubleclick) {
-        if(!calledopen && calledadd) {
+        if (!calledopen && calledadd) {
             calledopen = true;
             trayIcon = new TrayIcon(image, toolt);
             trayIcon.setImageAutoSize(true);
@@ -70,19 +71,19 @@ public class SystemTrayDialog {
     }
 
     public void openExtended() {
-        if(!calledopen && isExtended) {
+        if (!calledopen && isExtended) {
             calledopen = true;
             trayIcon = new TrayIcon(image, toolt);
             trayIcon.setImageAutoSize(true);
             trayIcon.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(SwingUtilities.isRightMouseButton(e)) {
+                    if (SwingUtilities.isRightMouseButton(e)) {
                         onExtendedRightClick.actionPerformed(new ActionEvent(e.getSource(), e.getID(), ""));
                         return;
                     }
 
-                    if(extendedDialog != null) {
+                    if (extendedDialog != null) {
                         extendedDialog.dispose();
                         extendedDialog = null;
                         return;
@@ -141,7 +142,7 @@ public class SystemTrayDialog {
     }
 
     public void open(MouseAdapter adapter) {
-        if(!calledopen) {
+        if (!calledopen) {
             calledopen = true;
             trayIcon = new TrayIcon(image, toolt);
             trayIcon.setPopupMenu(menu);

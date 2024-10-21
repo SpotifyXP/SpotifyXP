@@ -22,29 +22,29 @@ import java.io.IOException;
 
 public class ItemIDRoot extends ItemIDRegItem {
 
-	public ItemIDRoot() {
-		super(GROUP_ROOT | TYPE_ROOT_REGITEM);
-	}
+    public ItemIDRoot() {
+        super(GROUP_ROOT | TYPE_ROOT_REGITEM);
+    }
 
-	public ItemIDRoot(int flags) throws UnsupportedItemIDException {
-		super(flags | GROUP_ROOT);
+    public ItemIDRoot(int flags) throws UnsupportedItemIDException {
+        super(flags | GROUP_ROOT);
 
-		int subType = typeFlags & ID_TYPE_INGROUPMASK;
-		if (subType != TYPE_ROOT_REGITEM)
-			throw new UnsupportedItemIDException(typeFlags);
-	}
+        int subType = typeFlags & ID_TYPE_INGROUPMASK;
+        if (subType != TYPE_ROOT_REGITEM)
+            throw new UnsupportedItemIDException(typeFlags);
+    }
 
-	@Override
-	public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
-		int endPos = br.getPosition() + maxSize;
-		super.load(br, maxSize);
-		br.seekTo(endPos);
-	}
+    @Override
+    public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
+        int endPos = br.getPosition() + maxSize;
+        super.load(br, maxSize);
+        br.seekTo(endPos);
+    }
 
-	@Override
-	public String toString() {
-		if (clsid.equals(Registry.CLSID_COMPUTER))
-			return "";
-		return super.toString();
-	}
+    @Override
+    public String toString() {
+        if (clsid.equals(Registry.CLSID_COMPUTER))
+            return "";
+        return super.toString();
+    }
 }

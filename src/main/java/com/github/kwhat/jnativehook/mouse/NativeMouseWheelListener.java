@@ -32,8 +32,8 @@ import java.util.EventListener;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.0
- * @since 1.1
  * @see NativeMouseWheelEvent
+ * @since 1.1
  */
 public interface NativeMouseWheelListener extends EventListener {
 
@@ -42,5 +42,6 @@ public interface NativeMouseWheelListener extends EventListener {
      *
      * @param nativeEvent the native mouse wheel event.
      */
-    default void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {}
+    default void nativeMouseWheelMoved(NativeMouseWheelEvent nativeEvent) {
+    }
 }

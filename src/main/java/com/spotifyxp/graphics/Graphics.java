@@ -33,6 +33,7 @@ public enum Graphics {
     PLAYLIST("playlist"),
     SHOW("podcast");
     final String path;
+
     Graphics(String resourcePath) {
         String fullPath = "/icons/" + resourcePath;
         switch (resourcePath) {
@@ -47,9 +48,9 @@ public enum Graphics {
                 path = fullPath + ".svg";
                 break;
             default:
-                if(PublicValues.theme.isLight()) {
+                if (PublicValues.theme.isLight()) {
                     path = fullPath + "dark.svg";
-                }else{
+                } else {
                     path = fullPath + "white.svg";
                 }
                 break;

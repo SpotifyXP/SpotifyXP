@@ -2,85 +2,74 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.spotifyxp.deps.se.michaelthelin.spotify.IHttpManager;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import org.apache.hc.core5.http.*;
+import com.spotifyxp.utils.NameValuePair;
+import okhttp3.RequestBody;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public interface IRequest<T> {
 
-  IHttpManager getHttpManager();
+    IHttpManager getHttpManager();
 
-  URI getUri();
+    URI getUri();
 
-  List<Header> getHeaders();
+    Map<String, String> getHeaders();
 
-  ContentType getContentType();
+    RequestBody getBody();
 
-  HttpEntity getBody();
+    List<NameValuePair> getBodyParameters();
 
-  List<NameValuePair> getBodyParameters();
+    T execute() throws
+            IOException;
 
-  T execute() throws
-    IOException,
-          SpotifyWebApiException,
-    ParseException;
+    CompletableFuture<T> executeAsync();
 
-  CompletableFuture<T> executeAsync();
+    String getJson() throws
+            IOException;
 
-  String getJson() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException;
+    String postJson() throws
+            IOException;
 
-  String postJson() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException;
+    String putJson() throws
+            IOException;
 
-  String putJson() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException;
+    String deleteJson() throws
+            IOException;
 
-  String deleteJson() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException;
+    @JsonPOJOBuilder(withPrefix = "set")
+    interface Builder<T, BT extends Builder<T, ?>> {
 
-  @JsonPOJOBuilder(withPrefix = "set")
-  interface Builder<T, BT extends Builder<T, ?>> {
+        BT setHttpManager(final IHttpManager httpManager);
 
-    BT setHttpManager(final IHttpManager httpManager);
+        BT setScheme(final String scheme);
 
-    BT setScheme(final String scheme);
+        BT setHost(final String host);
 
-    BT setHost(final String host);
+        BT setPort(final Integer port);
 
-    BT setPort(final Integer port);
+        BT setPath(final String path);
 
-    BT setPath(final String path);
+        BT setPathParameter(final String name, final String value);
 
-    BT setPathParameter(final String name, final String value);
+        BT setDefaults(final IHttpManager httpManager,
+                       final String scheme,
+                       final String host,
+                       final Integer port);
 
-    BT setDefaults(final IHttpManager httpManager,
-                   final String scheme,
-                   final String host,
-                   final Integer port);
+        <ST> BT setQueryParameter(final String name, final ST value);
 
-    <ST> BT setQueryParameter(final String name, final ST value);
+        <ST> BT setHeader(final String name, final ST value);
 
-    <ST> BT setHeader(final String name, final ST value);
+        BT setContentType(final String contentType);
 
-    BT setContentType(final ContentType contentType);
+        BT setBody(final RequestBody httpEntity);
 
-    BT setBody(final HttpEntity httpEntity);
+        <ST> BT setBodyParameter(final String name, final ST value);
 
-    <ST> BT setBodyParameter(final String name, final ST value);
-
-    IRequest<T> build();
-  }
+        IRequest<T> build();
+    }
 }

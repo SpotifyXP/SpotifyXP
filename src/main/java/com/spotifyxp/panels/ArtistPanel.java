@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.guielements.DefTable;
@@ -13,7 +12,6 @@ import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.TrackUtils;
-import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +34,7 @@ public class ArtistPanel extends JPanel {
     public static ContextMenu artistpopularsonglistcontextmenu;
     public static ContextMenu artistalbumcontextmenu;
     public static boolean isFirst = false;
+
     public ArtistPanel() {
         contentPanel = new JScrollPane();
         contentPanel.setViewportView(this);
@@ -112,7 +111,7 @@ public class ArtistPanel extends JPanel {
                                 Search.searchplaylistsongscache.add(simplified.getUri());
                             });
                         }
-                    } catch (IOException | ParseException | SpotifyWebApiException ex) {
+                    } catch (IOException ex) {
                         GraphicalMessage.openException(ex);
                         ConsoleLogging.Throwable(ex);
                     }
@@ -157,7 +156,7 @@ public class ArtistPanel extends JPanel {
 
     public void openPanel() {
         ContentPanel.artistPanelVisible = true;
-        for(Runnable runnable : runWhenOpeningArtistPanel) {
+        for (Runnable runnable : runWhenOpeningArtistPanel) {
             runnable.run();
         }
         ContentPanel.blockTabSwitch();

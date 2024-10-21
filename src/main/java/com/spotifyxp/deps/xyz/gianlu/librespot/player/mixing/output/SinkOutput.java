@@ -26,7 +26,7 @@ import java.io.IOException;
  * @author devgianlu
  */
 public interface SinkOutput extends Closeable {
-    default boolean start(@NotNull OutputAudioFormat format) throws SinkException{
+    default boolean start(@NotNull OutputAudioFormat format) throws SinkException {
         return false;
     }
 

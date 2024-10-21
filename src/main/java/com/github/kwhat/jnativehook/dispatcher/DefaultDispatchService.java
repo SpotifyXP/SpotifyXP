@@ -31,9 +31,9 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.0
- * @since 2.0
  * @see java.util.concurrent.ExecutorService
  * @see GlobalScreen#setEventDispatcher
+ * @since 2.0
  */
 public class DefaultDispatchService extends ThreadPoolExecutor {
     /**
@@ -41,17 +41,17 @@ public class DefaultDispatchService extends ThreadPoolExecutor {
      */
     public DefaultDispatchService() {
         super(
-            1, 1, 0L,
-            TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(),
-            new ThreadFactory() {
-                public Thread newThread(Runnable r) {
-                    Thread t = new Thread(r);
-                    t.setName("JNativeHook Dispatch Thread");
-                    t.setDaemon(true);
+                1, 1, 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(),
+                new ThreadFactory() {
+                    public Thread newThread(Runnable r) {
+                        Thread t = new Thread(r);
+                        t.setName("JNativeHook Dispatch Thread");
+                        t.setDaemon(true);
 
-                    return t;
+                        return t;
+                    }
                 }
-            }
         );
     }
 }

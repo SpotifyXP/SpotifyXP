@@ -12,73 +12,73 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.D
  */
 @JsonDeserialize(builder = Actions.Builder.class)
 public class Actions extends AbstractModelObject {
-  private final Disallows disallows;
+    private final Disallows disallows;
 
-  public Actions(Builder builder) {
-    super(builder);
-    this.disallows = builder.disallows;
-  }
-
-  /**
-   * Get the Disallows object.
-   *
-   * @return Disallows object.
-   */
-  public Disallows getDisallows() {
-    return disallows;
-  }
-
-  @Override
-  public String toString() {
-    return "Actions(disallows=" + disallows + ")";
-  }
-
-  @Override
-  public Builder builder() {
-    return new Builder();
-  }
-
-  /**
-   * Builder class for building {@link Actions} instances.
-   */
-  public static final class Builder extends AbstractModelObject.Builder {
-    private Disallows disallows;
+    public Actions(Builder builder) {
+        super(builder);
+        this.disallows = builder.disallows;
+    }
 
     /**
-     * Set the Disallows object of the Actions object to be built.
+     * Get the Disallows object.
      *
-     * @param disallows The {@link Disallows} object.
-     * @return A {@link Actions.Builder}.
+     * @return Disallows object.
      */
-    public Builder setDisallows(Disallows disallows) {
-      this.disallows = disallows;
-      return this;
+    public Disallows getDisallows() {
+        return disallows;
     }
 
     @Override
-    public Actions build() {
-      return new Actions(this);
+    public String toString() {
+        return "Actions(disallows=" + disallows + ")";
     }
-  }
 
-  /**
-   * JsonUtil class for building {@link Actions} instances.
-   */
-  public static final class JsonUtil extends AbstractModelObject.JsonUtil<Actions> {
     @Override
-    public Actions createModelObject(JsonObject jsonObject) {
-      if (jsonObject == null || jsonObject.isJsonNull()) {
-        return null;
-      }
-
-      return new Builder()
-        .setDisallows(
-          hasAndNotNull(jsonObject, "disallows")
-            ? new Disallows.JsonUtil().createModelObject(
-            jsonObject.getAsJsonObject("disallows"))
-            : null)
-        .build();
+    public Builder builder() {
+        return new Builder();
     }
-  }
+
+    /**
+     * Builder class for building {@link Actions} instances.
+     */
+    public static final class Builder extends AbstractModelObject.Builder {
+        private Disallows disallows;
+
+        /**
+         * Set the Disallows object of the Actions object to be built.
+         *
+         * @param disallows The {@link Disallows} object.
+         * @return A {@link Actions.Builder}.
+         */
+        public Builder setDisallows(Disallows disallows) {
+            this.disallows = disallows;
+            return this;
+        }
+
+        @Override
+        public Actions build() {
+            return new Actions(this);
+        }
+    }
+
+    /**
+     * JsonUtil class for building {@link Actions} instances.
+     */
+    public static final class JsonUtil extends AbstractModelObject.JsonUtil<Actions> {
+        @Override
+        public Actions createModelObject(JsonObject jsonObject) {
+            if (jsonObject == null || jsonObject.isJsonNull()) {
+                return null;
+            }
+
+            return new Builder()
+                    .setDisallows(
+                            hasAndNotNull(jsonObject, "disallows")
+                                    ? new Disallows.JsonUtil().createModelObject(
+                                    jsonObject.getAsJsonObject("disallows"))
+                                    : null)
+                    .build();
+        }
+    }
 
 }

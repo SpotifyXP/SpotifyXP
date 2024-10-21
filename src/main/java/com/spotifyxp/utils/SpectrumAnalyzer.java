@@ -39,7 +39,7 @@ public class SpectrumAnalyzer {
             }
 
             return spectrumData;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             return null;
         }
     }

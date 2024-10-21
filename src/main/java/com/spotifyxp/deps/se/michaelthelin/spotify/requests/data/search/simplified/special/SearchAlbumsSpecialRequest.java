@@ -2,12 +2,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.simplif
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.AlbumSimplifiedSpecial;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -20,112 +18,109 @@ import java.io.IOException;
 @JsonDeserialize(builder = SearchAlbumsSpecialRequest.Builder.class)
 public class SearchAlbumsSpecialRequest extends AbstractDataRequest<Paging<AlbumSimplifiedSpecial>> {
 
-  /**
-   * The private {@link SearchAlbumsSpecialRequest} constructor.
-   *
-   * @param builder A {@link Builder}.
-   */
-  private SearchAlbumsSpecialRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Search for albums.
-   *
-   * @return An {@link AlbumSimplifiedSpecial} paging.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public Paging<AlbumSimplifiedSpecial> execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new AlbumSimplifiedSpecial.JsonUtil().createModelObjectPaging(getJson(), "albums");
-  }
-
-  /**
-   * Builder class for building a {@link SearchAlbumsSpecialRequest}.
-   */
-  public static final class Builder extends AbstractDataPagingRequest.Builder<AlbumSimplifiedSpecial, Builder> {
-
     /**
-     * Create a new {@link Builder}.
+     * The private {@link SearchAlbumsSpecialRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private SearchAlbumsSpecialRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The search query setter.
+     * Search for albums.
      *
-     * @param q Required. The search query's keywords (and optional field filters and operators).
-     * @return A {@link Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/search-item/#tablepress-47">Spotify: Search Query Options</a>
+     * @return An {@link AlbumSimplifiedSpecial} paging.
+     * @throws IOException In case of networking issues.
      */
-    public Builder q(final String q) {
-      assert (q != null);
-      assert (!q.isEmpty());
-      return setQueryParameter("q", q);
+    public Paging<AlbumSimplifiedSpecial> execute() throws
+            IOException {
+        return new AlbumSimplifiedSpecial.JsonUtil().createModelObjectPaging(getJson(), "albums");
     }
 
     /**
-     * The market country code setter.
-     *
-     * @param market Optional. An ISO 3166-1 alpha-2 country code. If a country code is given, only artists,
-     *               albums, and tracks with content playable in that market will be returned. (Playlist
-     *               results are not affected by the market parameter.)
-     * @return A {@link Builder}.
-     * @see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">Wikipedia: ISO 3166-1 alpha-2 country codes</a>
+     * Builder class for building a {@link SearchAlbumsSpecialRequest}.
      */
-    public Builder market(final CountryCode market) {
-      assert (market != null);
-      return setQueryParameter("market", market);
-    }
+    public static final class Builder extends AbstractDataPagingRequest.Builder<AlbumSimplifiedSpecial, Builder> {
 
-    /**
-     * The limit setter.
-     *
-     * @param limit Optional. The maximum number of results to return. Default: 20. Minimum: 1. Maximum: 50.
-     * @return A {@link Builder}.
-     */
-    @Override
-    public Builder limit(final Integer limit) {
-      assert (limit != null);
-      assert (1 <= limit && limit <= 50);
-      return setQueryParameter("limit", limit);
-    }
+        /**
+         * Create a new {@link Builder}.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
 
-    /**
-     * The offset setter.
-     *
-     * @param offset Optional. The index of the first result to return. Default: 0 (i.e., the first result). Maximum
-     *               offset: 100.000. Use with {@link #limit(Integer)} to get the next page of search results.
-     * @return A {@link Builder}.
-     */
-    @Override
-    public Builder offset(final Integer offset) {
-      assert (offset != null);
-      assert (0 <= offset && offset <= 100000);
-      return setQueryParameter("offset", offset);
-    }
+        /**
+         * The search query setter.
+         *
+         * @param q Required. The search query's keywords (and optional field filters and operators).
+         * @return A {@link Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/search-item/#tablepress-47">Spotify: Search Query Options</a>
+         */
+        public Builder q(final String q) {
+            assert (q != null);
+            assert (!q.isEmpty());
+            return setQueryParameter("q", q);
+        }
 
-    /**
-     * The request build method.
-     *
-     * @return A {@link Builder}.
-     */
-    @Override
-    public SearchAlbumsSpecialRequest build() {
-      setPath("/v1/search");
-      setQueryParameter("type", "album");
-      return new SearchAlbumsSpecialRequest(this);
-    }
+        /**
+         * The market country code setter.
+         *
+         * @param market Optional. An ISO 3166-1 alpha-2 country code. If a country code is given, only artists,
+         *               albums, and tracks with content playable in that market will be returned. (Playlist
+         *               results are not affected by the market parameter.)
+         * @return A {@link Builder}.
+         * @see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">Wikipedia: ISO 3166-1 alpha-2 country codes</a>
+         */
+        public Builder market(final CountryCode market) {
+            assert (market != null);
+            return setQueryParameter("market", market);
+        }
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * The limit setter.
+         *
+         * @param limit Optional. The maximum number of results to return. Default: 20. Minimum: 1. Maximum: 50.
+         * @return A {@link Builder}.
+         */
+        @Override
+        public Builder limit(final Integer limit) {
+            assert (limit != null);
+            assert (1 <= limit && limit <= 50);
+            return setQueryParameter("limit", limit);
+        }
+
+        /**
+         * The offset setter.
+         *
+         * @param offset Optional. The index of the first result to return. Default: 0 (i.e., the first result). Maximum
+         *               offset: 100.000. Use with {@link #limit(Integer)} to get the next page of search results.
+         * @return A {@link Builder}.
+         */
+        @Override
+        public Builder offset(final Integer offset) {
+            assert (offset != null);
+            assert (0 <= offset && offset <= 100000);
+            return setQueryParameter("offset", offset);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A {@link Builder}.
+         */
+        @Override
+        public SearchAlbumsSpecialRequest build() {
+            setPath("/v1/search");
+            setQueryParameter("type", "album");
+            return new SearchAlbumsSpecialRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

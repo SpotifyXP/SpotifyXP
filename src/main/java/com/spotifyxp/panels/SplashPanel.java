@@ -15,18 +15,19 @@ import java.awt.*;
 public class SplashPanel {
     public static JFrame frame;
     public static JLabel linfo = new JLabel();
+
     public void show() {
         frame = new JFrame();
         JImagePanel image = new JImagePanel();
         linfo = new JLabel("Please wait...");
         image.setImage(new Resources().readToInputStream("spotifyxp.png"));
         frame.getContentPane().add(image);
-        frame.setPreferredSize(new Dimension(290,300));
+        frame.setPreferredSize(new Dimension(290, 300));
         try {
             frame.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
-        }catch (Exception e) {
+        } catch (Exception e) {
             ConsoleLogging.Throwable(e);
-            if(PublicValues.config.getString(ConfigValues.hideExceptions.name).equals("false")) {
+            if (PublicValues.config.getString(ConfigValues.hideExceptions.name).equals("false")) {
                 GraphicalMessage.openException(e);
             }
         }
@@ -36,8 +37,9 @@ public class SplashPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.pack();
-        frame.setLocation(frame.getLocation().x - frame.getWidth()/2, frame.getLocation().y - frame.getHeight()/2);
+        frame.setLocation(frame.getLocation().x - frame.getWidth() / 2, frame.getLocation().y - frame.getHeight() / 2);
     }
+
     public static void hide() {
         frame.setVisible(false);
     }

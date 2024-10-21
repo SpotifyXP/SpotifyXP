@@ -16,13 +16,13 @@ public class SQLEntryPair {
 
     public SQLEntryPair(String name, boolean canBeNull, String type) {
         this.name = name;
-        for(SQLEntryTypes o : SQLEntryTypes.values()) {
-            if(o.getRealType().equals(type)) {
+        for (SQLEntryTypes o : SQLEntryTypes.values()) {
+            if (o.getRealType().equals(type)) {
                 this.types = o;
             }
         }
         this.canBeNull = canBeNull;
-        if(this.types == null) {
+        if (this.types == null) {
             throw new RuntimeException();
         }
     }

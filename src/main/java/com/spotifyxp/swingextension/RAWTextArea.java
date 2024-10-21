@@ -27,10 +27,12 @@ public class RAWTextArea extends JPanel {
             return this.textContent;
         }
     }
+
     public enum ColoredModifyLocations {
         HEAD,
         TAIL
     }
+
     private String content = "";
     private boolean colorMode = false;
     private final ArrayList<ColoredLine> coloredLines = new ArrayList<>();
@@ -68,7 +70,7 @@ public class RAWTextArea extends JPanel {
                 break;
             case TAIL:
                 ColoredLine tail = coloredLines.get(coloredLines.size() - 1);
-                coloredLines.remove(coloredLines.size() -1);
+                coloredLines.remove(coloredLines.size() - 1);
                 tail.textColor = changeTo;
                 coloredLines.add(tail);
                 repaint();
@@ -107,8 +109,8 @@ public class RAWTextArea extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        if(skipPaint) return;
-        if(!colorMode) {
+        if (skipPaint) return;
+        if (!colorMode) {
             g.setColor(PublicValues.globalFontColor);
             Rectangle2D r = g.getFontMetrics().getStringBounds(content, g);
             int ycache = getFontMetrics(getFont()).getHeight() + 5;
@@ -121,7 +123,7 @@ public class RAWTextArea extends JPanel {
             return;
         }
         int ycache = getFontMetrics(getFont()).getHeight() + 5;
-        for(ColoredLine line : coloredLines) {
+        for (ColoredLine line : coloredLines) {
             g.setColor(PublicValues.globalFontColor);
             Rectangle2D r = g.getFontMetrics().getStringBounds(line.textContent, g);
             g.drawString(line.textContent, 5, ycache);

@@ -15,7 +15,9 @@ public class CryptoAES {
     public CryptoAES(String password) {
         key = password.getBytes();
     }
+
     private static final String CipherMode = "AES/ECB/PKCS5Padding";
+
     public static byte[] encrypt(byte[] content, String password) {
         try {/* ww w. ja  v a2 s  .  co  m*/
             SecretKeySpec key = createKey(password);
@@ -83,10 +85,10 @@ public class CryptoAES {
     }
 
 
-     final byte[]  key;
-    final String algorithm="AES";
+    final byte[] key;
+    final String algorithm = "AES";
 
-    public String encrypt(String data){
+    public String encrypt(String data) {
         byte[] dataToSend = data.getBytes();
         Cipher c = null;
         try {
@@ -94,7 +96,7 @@ public class CryptoAES {
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException(e);
         }
-        SecretKeySpec k =  new SecretKeySpec(key, algorithm);
+        SecretKeySpec k = new SecretKeySpec(key, algorithm);
         try {
             c.init(Cipher.ENCRYPT_MODE, k);
         } catch (InvalidKeyException e) {
@@ -107,10 +109,10 @@ public class CryptoAES {
             throw new RuntimeException(e);
         }
         byte[] encryptedByteValue = Base64.getEncoder().encode(encryptedData);
-        return  new String(encryptedByteValue);
+        return new String(encryptedByteValue);
     }
 
-    public String decrypt(String data){
+    public String decrypt(String data) {
         byte[] encryptedByteValue = java.util.Base64.getDecoder().decode(data.getBytes());
         Cipher c = null;
         try {
@@ -118,7 +120,7 @@ public class CryptoAES {
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException(e);
         }
-        SecretKeySpec k =  new SecretKeySpec(key, algorithm);
+        SecretKeySpec k = new SecretKeySpec(key, algorithm);
         try {
             c.init(Cipher.DECRYPT_MODE, k);
         } catch (InvalidKeyException e) {
@@ -130,6 +132,6 @@ public class CryptoAES {
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             throw new RuntimeException(e);
         }
-        return  new String(decryptedData);
+        return new String(decryptedData);
     }
 }

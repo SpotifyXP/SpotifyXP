@@ -32,7 +32,7 @@ public class ErrorSimulator extends JFrame {
     }
 
     public void open() {
-        if(isVisible()) return;
+        if (isVisible()) return;
         setResizable(false);
         getContentPane().add(new ContentPanel());
         super.open();

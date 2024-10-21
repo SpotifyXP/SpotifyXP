@@ -24,65 +24,65 @@ import java.util.regex.Pattern;
 
 public class ItemIDDrive extends ItemID {
 
-	protected String name;
+    protected String name;
 
-	public ItemIDDrive(int flags) throws UnsupportedItemIDException {
-		super(flags | GROUP_COMPUTER);
+    public ItemIDDrive(int flags) throws UnsupportedItemIDException {
+        super(flags | GROUP_COMPUTER);
 
-		int subType = typeFlags & ID_TYPE_INGROUPMASK;
-		if (subType == 0)
-			throw new UnsupportedItemIDException(typeFlags);
-	}
-	
-	@Override
-	public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
-		int startPos = br.getPosition();
-		int endPos = startPos + maxSize;
+        int subType = typeFlags & ID_TYPE_INGROUPMASK;
+        if (subType == 0)
+            throw new UnsupportedItemIDException(typeFlags);
+    }
 
-		super.load(br, maxSize);
+    @Override
+    public void load(ByteReader br, int maxSize) throws IOException, ShellLinkException {
+        int startPos = br.getPosition();
+        int endPos = startPos + maxSize;
 
-		setName(br.readString(4));
-		// 8 bytes: drive size
-		// 8 bytes: drive free size
-		// 1 byte: 0/1 - has drive extension
-		// 1 byte: 0/1 - drive extension has class id
-		// 16 bytes: clsid - only possible value is CDBurn
-		br.seekTo(endPos);
-	}
+        super.load(br, maxSize);
 
-	@Override
-	public void serialize(ByteWriter bw) throws IOException {
-		super.serialize(bw);
+        setName(br.readString(4));
+        // 8 bytes: drive size
+        // 8 bytes: drive free size
+        // 1 byte: 0/1 - has drive extension
+        // 1 byte: 0/1 - drive extension has class id
+        // 16 bytes: clsid - only possible value is CDBurn
+        br.seekTo(endPos);
+    }
 
-		bw.writeString(name);
-		bw.write8bytes(0); // drive size
-		bw.write8bytes(0); // drive free size
-		bw.write(0); // no extension
-		bw.write(0); // no clsid
-	}
+    @Override
+    public void serialize(ByteWriter bw) throws IOException {
+        super.serialize(bw);
 
-	@Override
-	public String toString() {
-		return name;
-	}
+        bw.writeString(name);
+        bw.write8bytes(0); // drive size
+        bw.write8bytes(0); // drive free size
+        bw.write(0); // no extension
+        bw.write(0); // no clsid
+    }
 
-	public String getName() {
-		return name;
-	}
-	
-	public ItemIDDrive setName(String s) throws ShellLinkException {
-		if (s == null) 
-			return this;
-		
-		if (Pattern.matches("\\w:\\\\", s))
-			name = s;
-		else if (Pattern.matches("\\w:", s))
-			name = s + "\\";
-		else if (Pattern.matches("\\w", s))
-			name = s + ":\\";
-		else 
-			throw new ShellLinkException("wrong drive name: " + s);
-		
-		return this;
-	}
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ItemIDDrive setName(String s) throws ShellLinkException {
+        if (s == null)
+            return this;
+
+        if (Pattern.matches("\\w:\\\\", s))
+            name = s;
+        else if (Pattern.matches("\\w:", s))
+            name = s + "\\";
+        else if (Pattern.matches("\\w", s))
+            name = s + ":\\";
+        else
+            throw new ShellLinkException("wrong drive name: " + s);
+
+        return this;
+    }
 }

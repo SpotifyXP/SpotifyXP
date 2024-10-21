@@ -26,7 +26,7 @@ import java.awt.*;
  * An event which indicates that a mouse action occurred on the system. This event is not limited to
  * a particular component's scope or visibility.
  * <p>
- *
+ * <p>
  * This low-level event is generated natively for:
  * <ul>
  * 	<li>
@@ -46,14 +46,14 @@ import java.awt.*;
  * 	</li>
  * </ul>
  * <p>
- *
+ * <p>
  * A <code>NativeMouseEvent</code> object is passed to every
  * <code>NativeMouseListener</code> object which is registered to receive mouse
  * events using the {@link GlobalScreen#addNativeMouseListener} method. The
  * <code>GlobalScreen</code> object then dispatches a
  * <code>NativeMouseEvent</code> to each listener.
  * <p>
- *
+ * <p>
  * A <code>NativeMouseEvent</code> object is also passed to every
  * <code>NativeMouseMotionListener</code> object which has been registered to
  * receive mouse motion events using the
@@ -61,7 +61,7 @@ import java.awt.*;
  * <code>GlobalScreen</code> object then dispatches a
  * <code>NativeMouseEvent</code> to each listener.
  * <p>
- *
+ * <p>
  * When a mouse button is clicked, events are generated and sent to the
  * registered <code>NativeMouseListeners</code>. The state of modifiers can be
  * retrieved using {@link NativeInputEvent#getModifiers}. All modifiers returned
@@ -70,10 +70,10 @@ import java.awt.*;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.0
- * @since 1.0
  * @see GlobalScreen
  * @see NativeMouseListener
  * @see NativeMouseMotionListener
+ * @since 1.0
  */
 public class NativeMouseEvent extends NativeInputEvent {
 

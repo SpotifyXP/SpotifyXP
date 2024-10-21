@@ -17,6 +17,7 @@ public class MacOSAppUtil {
     String executableLocation;
     final String applicationsfolderpath = System.getProperty("user.home") + "/Applications";
     String iconpath;
+
     //
     // Hello.app
     //  -> Contents
@@ -40,7 +41,7 @@ public class MacOSAppUtil {
 
     void internalCreate(String dp) {
         File contents = new File(dp, "Contents");
-        if(contents.mkdir()) {
+        if (contents.mkdir()) {
             //Create plist
             NSDictionary root = new NSDictionary();
             root.put("CFBundleExecutable", appName);
@@ -56,7 +57,7 @@ public class MacOSAppUtil {
                 GraphicalMessage.openException(e);
             }
             File macos = new File(dp + "/Contents", "MacOS");
-            if(macos.mkdir()) {
+            if (macos.mkdir()) {
                 try {
                     File execfile = new File(macos, appName);
                     execfile.setExecutable(true, false);
@@ -64,13 +65,13 @@ public class MacOSAppUtil {
                     execfile.setWritable(true, false);
                     Files.copy(IOUtils.toInputStream("#!/bin/zsh\njava -jar " + executableLocation + " --setup-complete", Charset.defaultCharset()), execfile.toPath());
                     new ProcessBuilder().command("/bin/sh", "-c", "chmod +x \"" + applicationsfolderpath + "/" + appName + ".app/Contents/MacOS/" + appName + "\"").inheritIO().start();
-                }catch (IOException e) {
+                } catch (IOException e) {
                     ConsoleLogging.Throwable(e);
                     GraphicalMessage.openException(e);
                 }
             }
             File resources = new File(dp + "/Contents", "Resources");
-            if(resources.mkdir()) {
+            if (resources.mkdir()) {
                 try {
                     Files.copy(new Resources().readToInputStream(iconpath), new File(dp + "/Contents/Resources", "AppIcon.icns").toPath());
                 } catch (IOException e) {
@@ -88,8 +89,8 @@ public class MacOSAppUtil {
 
     public void create() {
         File app = new File(applicationsfolderpath, appName + ".app");
-        if(!app.exists()) {
-            if(app.mkdir()) {
+        if (!app.exists()) {
+            if (app.mkdir()) {
                 internalCreate(applicationsfolderpath + "/" + appName + ".app");
             }
         }

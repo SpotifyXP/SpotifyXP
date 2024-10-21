@@ -29,7 +29,7 @@ public class InjectorAPI {
         public InjectorRepository(String url) {
             this.url = url;
             this.isAvailable = ConnectionUtils.isWebsiteReachable(this.url);
-            if(!this.isAvailable) {
+            if (!this.isAvailable) {
                 ConsoleLogging.error("Repository with url '" + this.url + "' is not reachable");
             }
         }
@@ -42,6 +42,7 @@ public class InjectorAPI {
             return this.isAvailable;
         }
     }
+
     public static class APIInjectorRepository {
         private String name;
         private String url;
@@ -52,10 +53,10 @@ public class InjectorAPI {
                 this.url = url;
                 JSONObject root = new JSONObject(response);
                 this.name = root.getString("name");
-                for(Object o : root.getJSONArray("extensions")) {
+                for (Object o : root.getJSONArray("extensions")) {
                     this.extensionURLs.add(new JSONObject(o.toString()).getString("location"));
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 ConsoleLogging.Throwable(e);
             }
             return this;
@@ -73,9 +74,11 @@ public class InjectorAPI {
             return this.extensionURLs;
         }
     }
+
     private final ArrayList<InjectorAPI.Extension> extensions = new ArrayList<>();
     public static String compatibleMinVersion = "2.0.3";
     private static final ArrayList<APIInjectorRepository> apiInjectorRepositories = new ArrayList<>();
+
     public static class Extension {
         private final String location;
         private final String name;
@@ -136,6 +139,7 @@ public class InjectorAPI {
             return this.minVersion;
         }
     }
+
     public static class ExtensionSimplified {
         private final String location;
         private final String name;
@@ -195,17 +199,17 @@ public class InjectorAPI {
         void run(long filesizeDownloaded);
     }
 
-    public InjectorAPI() {
+    public InjectorAPI() throws IOException {
         injectorRepos.add(new InjectorRepository(
                 "https://raw.githubusercontent.com/SpotifyXP/SpotifyXP-Repository/main/repo"));
         Events.triggerEvent(SpotifyXPEvents.injectorAPIReady.getName());
-        for(InjectorRepository repository : injectorRepos) {
-            apiInjectorRepositories.add(new APIInjectorRepository().buildFromResponse(ConnectionUtils.makeGet(repository.url + "/repo.json"), repository.url));
+        for (InjectorRepository repository : injectorRepos) {
+            apiInjectorRepositories.add(new APIInjectorRepository().buildFromResponse(ConnectionUtils.makeGet(repository.url + "/repo.json", null), repository.url));
         }
     }
 
-    public ExtensionSimplified getExtensionWithNameAndAuthor(String name, String author) {
-        for(APIInjectorRepository repository : getRepositories()) {
+    public ExtensionSimplified getExtensionWithNameAndAuthor(String name, String author) throws IOException {
+        for (APIInjectorRepository repository : getRepositories()) {
             for (ExtensionSimplified simplified : getExtensions(repository)) {
                 if (simplified.getName().equals(name) && simplified.getAuthor().equals(author)) {
                     return simplified;
@@ -215,10 +219,10 @@ public class InjectorAPI {
         return null;
     }
 
-    public APIInjectorRepository getExtensionRepository(String name, String author) {
-        for(APIInjectorRepository repository : getRepositories()) {
-            for(ExtensionSimplified extensionSimplified : getExtensions(repository)) {
-                if(extensionSimplified.getName().equals(name) && extensionSimplified.getAuthor().equals(author)) {
+    public APIInjectorRepository getExtensionRepository(String name, String author) throws IOException {
+        for (APIInjectorRepository repository : getRepositories()) {
+            for (ExtensionSimplified extensionSimplified : getExtensions(repository)) {
+                if (extensionSimplified.getName().equals(name) && extensionSimplified.getAuthor().equals(author)) {
                     return repository;
                 }
             }
@@ -242,10 +246,10 @@ public class InjectorAPI {
         return new URL(repository.url + e.location).openStream().available();
     }
 
-    public Extension getExtension(String extensionURL, APIInjectorRepository repository) {
-        JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + "/" + extensionURL + ".json"));
+    public Extension getExtension(String extensionURL, APIInjectorRepository repository) throws IOException {
+        JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + "/" + extensionURL + ".json", null));
         ArrayList<ExtensionSimplified> dependencies = new ArrayList<>();
-        for(Object o : root.getJSONArray("dependencies")) {
+        for (Object o : root.getJSONArray("dependencies")) {
             JSONObject dependency = new JSONObject(o.toString());
             Extension dependencyExtension = getExtension(dependency.getString("location"), repository);
             ExtensionSimplified simplified = new ExtensionSimplified(
@@ -271,10 +275,10 @@ public class InjectorAPI {
         );
     }
 
-    public ArrayList<ExtensionSimplified> getExtensions(APIInjectorRepository repository) {
+    public ArrayList<ExtensionSimplified> getExtensions(APIInjectorRepository repository) throws IOException {
         ArrayList<ExtensionSimplified> extensions = new ArrayList<>();
-        for(String s : repository.extensionURLs) {
-            JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + s));
+        for (String s : repository.extensionURLs) {
+            JSONObject root = new JSONObject(ConnectionUtils.makeGet(repository.url + s, null));
             extensions.add(new ExtensionSimplified(
                     root.getString("location"),
                     root.getString("identifier"),
@@ -288,22 +292,22 @@ public class InjectorAPI {
         return extensions;
     }
 
-    public ArrayList<ExtensionSimplified> getExtensionWithIdentifier(String identifier, APIInjectorRepository repository) {
+    public ArrayList<ExtensionSimplified> getExtensionWithIdentifier(String identifier, APIInjectorRepository repository) throws IOException {
         ArrayList<ExtensionSimplified> extensions = new ArrayList<>();
-        for(ExtensionSimplified simplified : getExtensions(repository)) {
-            if(simplified.getIdentifier().toLowerCase().contains(identifier)) {
+        for (ExtensionSimplified simplified : getExtensions(repository)) {
+            if (simplified.getIdentifier().toLowerCase().contains(identifier)) {
                 extensions.add(simplified);
             }
         }
         return extensions;
     }
 
-    public Extension getExtensionFromSimplified(ExtensionSimplified extensionSimplified, APIInjectorRepository repository) {
+    public Extension getExtensionFromSimplified(ExtensionSimplified extensionSimplified, APIInjectorRepository repository) throws IOException {
         return getExtension(extensionSimplified.getName() + "-" + extensionSimplified.getAuthor(), repository);
     }
 
     String getFileName(String url) {
-        return url.split("/")[url.split("/").length-1];
+        return url.split("/")[url.split("/").length - 1];
     }
 
     public void downloadExtension(Extension e, APIInjectorRepository repository, InjectorAPI.ProgressRunnable progressRunnable) throws IOException {
@@ -330,7 +334,7 @@ public class InjectorAPI {
     InjectorStoreFile injectorStoreFile = null;
 
     public InjectorStoreFile getInjectorFile() {
-        if(injectorStoreFile == null) {
+        if (injectorStoreFile == null) {
             injectorStoreFile = new InjectorStoreFile();
         }
         return injectorStoreFile;
@@ -343,7 +347,7 @@ public class InjectorAPI {
 
         InjectorStoreFile() {
             path = new File(PublicValues.appLocation, "InjectorStore.json").getAbsolutePath();
-            if(!new File(path).exists()) {
+            if (!new File(path).exists()) {
                 JSONObject root = new JSONObject();
                 root.put("installed", new JSONArray());
                 com.spotifyxp.utils.FileUtils.appendToFile(path, root.toString());
@@ -361,14 +365,14 @@ public class InjectorAPI {
 
         public void write(ExtensionSimplified simplified) {
             int counter = 0;
-            for(Object o : cache.getJSONArray("installed")) {
+            for (Object o : cache.getJSONArray("installed")) {
                 JSONObject extension = new JSONObject(o.toString());
-                if(extension.getString("name").equals(simplified.getName()) && extension.getString("author").equals(simplified.getAuthor())) {
+                if (extension.getString("name").equals(simplified.getName()) && extension.getString("author").equals(simplified.getAuthor())) {
                     extension.put("location", simplified.getLocation());
                     extension.put("identifier", simplified.getIdentifier());
                     extension.put("name", simplified.getName());
                     extension.put("author", simplified.getAuthor());
-                    extension.put("version",simplified.getVersion());
+                    extension.put("version", simplified.getVersion());
                     extension.put("description", simplified.getDescription());
                     extension.put("minversion", simplified.getMinVersion());
                     cache.getJSONArray("installed").remove(counter);
@@ -389,7 +393,7 @@ public class InjectorAPI {
             extension.put("identifier", simplified.getIdentifier());
             extension.put("name", simplified.getName());
             extension.put("author", simplified.getAuthor());
-            extension.put("version",simplified.getVersion());
+            extension.put("version", simplified.getVersion());
             extension.put("description", simplified.getDescription());
             extension.put("minversion", simplified.getMinVersion());
             cache.getJSONArray("installed").put(extension);
@@ -404,16 +408,16 @@ public class InjectorAPI {
 
         public ArrayList<ExtensionSimplified> getExtensions() {
             ArrayList<ExtensionSimplified> extensions = new ArrayList<>();
-            for(Object o : cache.getJSONArray("installed")) {
+            for (Object o : cache.getJSONArray("installed")) {
                 JSONObject root = new JSONObject(o.toString());
                 extensions.add(new ExtensionSimplified(
-                   root.getString("location"),
-                   root.getString("identifier"),
-                   root.getString("name"),
-                   root.getString("author"),
-                   root.getString("version"),
-                   root.getString("description"),
-                   root.getString("minversion")
+                        root.getString("location"),
+                        root.getString("identifier"),
+                        root.getString("name"),
+                        root.getString("author"),
+                        root.getString("version"),
+                        root.getString("description"),
+                        root.getString("minversion")
                 ));
             }
             return extensions;
@@ -421,9 +425,9 @@ public class InjectorAPI {
 
         public void remove(ExtensionSimplified ex) {
             int counter = 0;
-            for(Object o : cache.getJSONArray("installed")) {
+            for (Object o : cache.getJSONArray("installed")) {
                 JSONObject extension = new JSONObject(o.toString());
-                if(ex.getName().equals(extension.getString("name")) && ex.getAuthor().equals(extension.getString("author"))) {
+                if (ex.getName().equals(extension.getString("name")) && ex.getAuthor().equals(extension.getString("author"))) {
                     break;
                 }
                 counter++;

@@ -23,7 +23,7 @@ public class SQLTable implements SQLElement {
                 if (resultSet.getString("TABLE_NAME").equals(name)) {
                     ret = true;
                 }
-            }catch (NullPointerException ignored) {
+            } catch (NullPointerException ignored) {
             }
         }
         sqlSession.disconnect();
@@ -33,7 +33,7 @@ public class SQLTable implements SQLElement {
     public boolean tryExists() {
         try {
             return exists();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -43,14 +43,14 @@ public class SQLTable implements SQLElement {
         StringBuilder command = new StringBuilder();
         command.append("CREATE TABLE ").append(name).append("(");
         int counter = 1;
-        for(SQLEntryPair pair : pairs) {
+        for (SQLEntryPair pair : pairs) {
             String additional = "";
-            if(!pair.canBeNull()) {
+            if (!pair.canBeNull()) {
                 additional = " NOT NULL";
             }
-            if(counter == pairs.length) {
+            if (counter == pairs.length) {
                 command.append(pair.getName()).append(" ").append(pair.getType().getRealType()).append(additional);
-            }else {
+            } else {
                 command.append(pair.getName()).append(" ").append(pair.getType().getRealType()).append(additional).append(",").append(" ");
             }
             counter++;
@@ -64,7 +64,7 @@ public class SQLTable implements SQLElement {
     public boolean tryCreate(SQLEntryPair... pairs) {
         try {
             return create(pairs);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -87,7 +87,7 @@ public class SQLTable implements SQLElement {
     public ArrayList<SQLEntryPair> tryGetTableDefinition() {
         try {
             return getTableDefinition();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return new ArrayList<>();
         }
     }
@@ -99,12 +99,12 @@ public class SQLTable implements SQLElement {
         sqlSession.connect();
         ResultSet resultSet = sqlSession.getConnection().createStatement().executeQuery("SELECT * FROM " + name);
         int counter = 0;
-        while(resultSet.next()) {
-            if(counter == amount + offset) {
+        while (resultSet.next()) {
+            if (counter == amount + offset) {
                 break;
             }
-            if(counter >= offset) {
-                for(SQLEntryPair pair : tableDefinition) {
+            if (counter >= offset) {
+                for (SQLEntryPair pair : tableDefinition) {
                     SQLEntryPair p = null;
                     switch (pair.getType()) {
                         case DATE:
@@ -132,7 +132,7 @@ public class SQLTable implements SQLElement {
     public ArrayList<SQLEntryPair> tryParseTable(int amount, int offset) {
         try {
             return parseTable(amount, offset);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return new ArrayList<>();
         }
     }
@@ -144,26 +144,26 @@ public class SQLTable implements SQLElement {
         int counter = 1;
         ArrayList<SQLEntryPair> defs = getTableDefinition();
         sqlSession.connect();
-        for(SQLEntryPair p : defs) {
-            if(counter == defs.size()) {
+        for (SQLEntryPair p : defs) {
+            if (counter == defs.size()) {
                 sqlcom.append(p.getName());
-            }else{
+            } else {
                 sqlcom.append(p.getName()).append(", ");
             }
             counter++;
         }
         sqlcom.append(") VALUES (");
-        for(int i = 0; i < inserts.length; i++) {
-            if(i == inserts.length - 1) {
+        for (int i = 0; i < inserts.length; i++) {
+            if (i == inserts.length - 1) {
                 sqlcom.append("?");
-            }else{
+            } else {
                 sqlcom.append("?, ");
             }
         }
         sqlcom.append(")");
         PreparedStatement statement = sqlSession.getConnection().prepareStatement(sqlcom.toString());
         counter = 1;
-        for(SQLInsert in : inserts) {
+        for (SQLInsert in : inserts) {
             switch (in.getType()) {
                 case BOOLEAN:
                     statement.setBoolean(counter, in.getBoolean());
@@ -187,7 +187,7 @@ public class SQLTable implements SQLElement {
     public void tryInsertIntoTable(SQLInsert... inserts) {
         try {
             insertIntoTable(inserts);
-        }catch (SQLException ignored) {
+        } catch (SQLException ignored) {
         }
     }
 
@@ -200,7 +200,7 @@ public class SQLTable implements SQLElement {
     public void tryClearTable() {
         try {
             clearTable();
-        }catch (SQLException ignored) {
+        } catch (SQLException ignored) {
         }
     }
 
@@ -211,12 +211,12 @@ public class SQLTable implements SQLElement {
         sqlSession.connect();
         ResultSet resultSet = sqlSession.getConnection().createStatement().executeQuery("SELECT * FROM " + name + " ORDER BY " + counterName + " DESC");
         int counter = 0;
-        while(resultSet.next()) {
-            if(counter == amount + offset) {
+        while (resultSet.next()) {
+            if (counter == amount + offset) {
                 break;
             }
-            if(counter >= offset) {
-                for(SQLEntryPair pair : tableDefinition) {
+            if (counter >= offset) {
+                for (SQLEntryPair pair : tableDefinition) {
                     SQLEntryPair p = null;
                     switch (pair.getType()) {
                         case DATE:
@@ -244,7 +244,7 @@ public class SQLTable implements SQLElement {
     public ArrayList<SQLEntryPair> tryParseTableBackwards(int amount, int offset, String counterName) {
         try {
             return parseTableBackwards(amount, offset, counterName);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return new ArrayList<>();
         }
     }
@@ -265,7 +265,7 @@ public class SQLTable implements SQLElement {
     public int tryGetRowCount() {
         try {
             return getRowCount();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             return 0;
         }
     }

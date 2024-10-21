@@ -71,13 +71,12 @@ public class SettingsPanel extends JPanel {
     //
 
 
-
     public SettingsPanel() {
         setBounds(100, 100, 422, 506);
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
-        switcher.setBounds(0, 0,422, 506);
+        switcher.setBounds(0, 0, 422, 506);
 
         switcher.setForeground(PublicValues.globalFontColor);
 
@@ -152,8 +151,8 @@ public class SettingsPanel extends JPanel {
         settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
         settingsuiselecttheme = new JComboBox();
-        for(Theme theme : ThemeLoader.getAvailableThemes()) {
-            ((DefaultComboBoxModel)settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
+        for (Theme theme : ThemeLoader.getAvailableThemes()) {
+            ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
         }
         settingsuiselecttheme.setBounds(159, 85, 217, 30);
         settingsuiborder.add(settingsuiselecttheme);
@@ -171,7 +170,7 @@ public class SettingsPanel extends JPanel {
 
         settingsplaybacklabel.setForeground(PublicValues.globalFontColor);
 
-        settingsplaybackselectquality = new JComboBox(new String[] {
+        settingsplaybackselectquality = new JComboBox(new String[]{
                 "Normal", "High", "Very_High"
         });
         settingsplaybackselectquality.setBounds(167, 28, 206, 22);
@@ -205,11 +204,12 @@ public class SettingsPanel extends JPanel {
         settingspathsetbutton.addActionListener(new AsyncActionListener(e -> {
             JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"),"exe");
+            FileFilter filter = new FileNameExtensionFilter(PublicValues.language.translate("ui.settings.mypal.path.filter"), "exe");
             chooser.setFileFilter(filter);
             chooser.setDialogTitle(PublicValues.language.translate("ui.settings.mypal.path.choose"));
             chooser.showOpenDialog(panel);
-            if(chooser.getSelectedFile() != null) settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
+            if (chooser.getSelectedFile() != null)
+                settingsbrowserpath.setText(chooser.getSelectedFile().getAbsolutePath());
         }));
 
         settingslanguagelabel = new JLabel(PublicValues.language.translate("ui.settings.language"));
@@ -289,7 +289,7 @@ public class SettingsPanel extends JPanel {
         switcher.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(switcher.getSelectedIndex() == switcher.getTabCount() - 1) {
+                if (switcher.getSelectedIndex() == switcher.getTabCount() - 1) {
                     JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.other.message"), PublicValues.language.translate("ui.settings.other.message.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                 }
             }
@@ -299,16 +299,16 @@ public class SettingsPanel extends JPanel {
 
         ArrayList<String> selectcache = new ArrayList<>();
 
-        for(libLanguage.Language language : libLanguage.Language.values()) {
-            if(selectcache.contains(language.getName())) {
+        for (libLanguage.Language language : libLanguage.Language.values()) {
+            if (selectcache.contains(language.getName())) {
                 continue;
             }
-            if(new Resources(true).readToInputStream("lang/" + language.getCode() + ".json") != null) {
+            if (new Resources(true).readToInputStream("lang/" + language.getCode() + ".json") != null) {
                 selectcache.add(language.getName());
             }
         }
 
-        for(String s : selectcache) {
+        for (String s : selectcache) {
             ((DefaultComboBoxModel) settingslanguageselect.getModel()).addElement(s);
         }
 
@@ -320,7 +320,7 @@ public class SettingsPanel extends JPanel {
         settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
         settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
 
-        if(settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
+        if (settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
         }
     }
@@ -354,7 +354,7 @@ public class SettingsPanel extends JPanel {
             PublicValues.config.write(ConfigValues.other_bypasssinkvolume.name, bypasssinkvolume.isSelected());
             PublicValues.config.write(ConfigValues.other_preferredlocale.name, preferredlocale.getText());
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             GraphicalMessage.sorryError("Failed to write settings");
         }
     }
@@ -367,9 +367,9 @@ public class SettingsPanel extends JPanel {
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
-        if(System.getProperty("os.name").toLowerCase().contains("win")) {
+        if (System.getProperty("os.name").toLowerCase().contains("win")) {
             builder = new ProcessBuilder("cmd.exe", "/c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
-        }else{
+        } else {
             builder = new ProcessBuilder("bash", "-c", "\"" + System.getProperty("java.home") + "/bin/java\"" + " -jar " + PublicValues.tempPath + "/SpotifyXP-Uninstaller.jar");
         }
         try {

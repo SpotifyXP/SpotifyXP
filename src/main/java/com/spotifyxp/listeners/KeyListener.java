@@ -39,7 +39,7 @@ public class KeyListener {
                             previouspressed = true;
                             PublicValues.spotifyplayer.previous();
                             break;
-                        }
+                    }
                 }
 
                 @Override
@@ -57,10 +57,10 @@ public class KeyListener {
                             //Previous
                             previouspressed = false;
                             break;
-                        }
+                    }
                 }
             });
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             try {
                 GlobalScreen.unregisterNativeHook();
             } catch (NativeHookException e) {

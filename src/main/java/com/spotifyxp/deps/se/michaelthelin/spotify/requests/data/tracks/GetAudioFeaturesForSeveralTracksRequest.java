@@ -1,10 +1,8 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.tracks;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AudioFeatures;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -14,70 +12,67 @@ import java.io.IOException;
 @JsonDeserialize(builder = GetAudioFeaturesForSeveralTracksRequest.Builder.class)
 public class GetAudioFeaturesForSeveralTracksRequest extends AbstractDataRequest<AudioFeatures[]> {
 
-  /**
-   * The private {@link GetAudioFeaturesForSeveralTracksRequest} constructor.
-   *
-   * @param builder A {@link GetAudioFeaturesForSeveralTracksRequest.Builder}.
-   */
-  private GetAudioFeaturesForSeveralTracksRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Get audio features for several tracks.
-   *
-   * @return Multiple {@link AudioFeatures} objects.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public AudioFeatures[] execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new AudioFeatures.JsonUtil().createModelObjectArray(getJson(), "audio_features");
-  }
-
-  /**
-   * Builder class for building a {@link GetAudioFeaturesForSeveralTracksRequest}.
-   */
-  public static final class Builder extends AbstractDataRequest.Builder<AudioFeatures[], Builder> {
-
     /**
-     * Create a new {@link GetAudioFeaturesForSeveralTracksRequest.Builder}.
+     * The private {@link GetAudioFeaturesForSeveralTracksRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link GetAudioFeaturesForSeveralTracksRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private GetAudioFeaturesForSeveralTracksRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The track IDs setter.
+     * Get audio features for several tracks.
      *
-     * @param ids Required. A comma-separated list of the Spotify IDs for the tracks. Maximum: 100 IDs.
-     * @return A {@link GetAudioFeaturesForSeveralTracksRequest.Builder}.
-     * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
+     * @return Multiple {@link AudioFeatures} objects.
+     * @throws IOException In case of networking issues.
      */
-    public Builder ids(final String ids) {
-      assert (ids != null);
-      assert (ids.split(",").length <= 100);
-      return setQueryParameter("ids", ids);
+    public AudioFeatures[] execute() throws
+            IOException {
+        return new AudioFeatures.JsonUtil().createModelObjectArray(getJson(), "audio_features");
     }
 
     /**
-     * The request build method.
-     *
-     * @return A custom {@link GetAudioFeaturesForSeveralTracksRequest}.
+     * Builder class for building a {@link GetAudioFeaturesForSeveralTracksRequest}.
      */
-    @Override
-    public GetAudioFeaturesForSeveralTracksRequest build() {
-      setPath("/v1/audio-features");
-      return new GetAudioFeaturesForSeveralTracksRequest(this);
-    }
+    public static final class Builder extends AbstractDataRequest.Builder<AudioFeatures[], Builder> {
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * Create a new {@link GetAudioFeaturesForSeveralTracksRequest.Builder}.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
+
+        /**
+         * The track IDs setter.
+         *
+         * @param ids Required. A comma-separated list of the Spotify IDs for the tracks. Maximum: 100 IDs.
+         * @return A {@link GetAudioFeaturesForSeveralTracksRequest.Builder}.
+         * @see <a href="https://developer.spotify.com/web-api/user-guide/#spotify-uris-and-ids">Spotify: URIs &amp; IDs</a>
+         */
+        public Builder ids(final String ids) {
+            assert (ids != null);
+            assert (ids.split(",").length <= 100);
+            return setQueryParameter("ids", ids);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link GetAudioFeaturesForSeveralTracksRequest}.
+         */
+        @Override
+        public GetAudioFeaturesForSeveralTracksRequest build() {
+            setPath("/v1/audio-features");
+            return new GetAudioFeaturesForSeveralTracksRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

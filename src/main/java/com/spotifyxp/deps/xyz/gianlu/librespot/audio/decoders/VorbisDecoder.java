@@ -140,7 +140,7 @@ public final class VorbisDecoder extends Decoder {
      * Reads the body. All "holes" (-1) are skipped, and the playback continues
      *
      * @throws DecoderException if a decoding exception occurs
-     * @throws IOException            if an I/O exception occurs
+     * @throws IOException      if an I/O exception occurs
      */
     @Override
     public synchronized int readInternal(@NotNull OutputStream out) throws IOException, DecoderException {
@@ -195,11 +195,11 @@ public final class VorbisDecoder extends Decoder {
         while ((samples = jorbisDspState.synthesis_pcmout(pcmInfo, pcmIndex)) > 0) {
             range = Math.min(samples, CONVERTED_BUFFER_SIZE);
 
-            if(PublicValues.lyricsDialog!=null) {
+            if (PublicValues.lyricsDialog != null) {
                 PublicValues.lyricsDialog.triggerRefresh();
             }
 
-            if(PublicValues.visualizer.isVisible()) {
+            if (PublicValues.visualizer.isVisible()) {
                 PublicValues.visualizer.update(convertedBuffer, convertedBuffer.length);
             }
 

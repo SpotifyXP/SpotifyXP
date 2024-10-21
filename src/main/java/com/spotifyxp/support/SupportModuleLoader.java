@@ -14,8 +14,8 @@ public class SupportModuleLoader {
     }
 
     public void loadModules() {
-        for(SupportModule module : supportModules) {
-            if(module.getOSName().equals(System.getProperty("os.name"))) {
+        for (SupportModule module : supportModules) {
+            if (module.getOSName().equals(System.getProperty("os.name"))) {
                 module.run();
             }
         }

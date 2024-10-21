@@ -26,7 +26,7 @@ import java.util.Locale;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.2
- * @since   1.0
+ * @since 1.0
  */
 public class NativeSystem {
     /**

@@ -8,35 +8,35 @@ import java.util.Map;
  */
 public enum AlbumType {
 
-  ALBUM("album"),
-  COMPILATION("compilation"),
-  SINGLE("single");
+    ALBUM("album"),
+    COMPILATION("compilation"),
+    SINGLE("single");
 
-  private static final Map<String, AlbumType> map = new HashMap<>();
+    private static final Map<String, AlbumType> map = new HashMap<>();
 
-  static {
-    for (AlbumType albumType : AlbumType.values()) {
-      map.put(albumType.type, albumType);
+    static {
+        for (AlbumType albumType : AlbumType.values()) {
+            map.put(albumType.type, albumType);
+        }
     }
-  }
 
-  public final String type;
+    public final String type;
 
-  AlbumType(final String type) {
-    this.type = type;
-  }
+    AlbumType(final String type) {
+        this.type = type;
+    }
 
-  public static AlbumType keyOf(String type) {
-    return map.get(type);
-  }
+    public static AlbumType keyOf(String type) {
+        return map.get(type);
+    }
 
-  /**
-   * Get the album type as a string.
-   *
-   * @return Album type as string.
-   */
-  public String getType() {
-    return type;
-  }
+    /**
+     * Get the album type as a string.
+     *
+     * @return Album type as string.
+     */
+    public String getType() {
+        return type;
+    }
 
 }

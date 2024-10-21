@@ -2,7 +2,6 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
@@ -17,18 +16,20 @@ import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.*;
 import com.spotifyxp.utils.*;
 import org.apache.commons.io.IOUtils;
-import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class PlayerArea extends JPanel {
     public static JImagePanel playerimage;
@@ -250,7 +251,7 @@ public class PlayerArea extends JPanel {
                 if (heart.isFilled) {
                     try {
                         InstanceManager.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
-                    }catch (IOException | ParseException | SpotifyWebApiException ex) {
+                    } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
                     heart.setImage(Graphics.HEART.getPath());
@@ -258,7 +259,7 @@ public class PlayerArea extends JPanel {
                 } else {
                     try {
                         InstanceManager.getSpotifyApi().saveTracksForUser(Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
-                    }catch (IOException | ParseException | SpotifyWebApiException ex) {
+                    } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
                     heart.setImage(Graphics.HEARTFILLED.getPath());
@@ -292,12 +293,12 @@ public class PlayerArea extends JPanel {
         SplashPanel.linfo.setText("Creating playback history...");
         PublicValues.history = new PlaybackHistory();
         Events.subscribe(SpotifyXPEvents.trackNext.getName(), (Object... data) -> {
-            if(PublicValues.spotifyplayer.currentPlayable() == null) return;
-            if(!doneLastParsing) return;
-            if(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
+            if (PublicValues.spotifyplayer.currentPlayable() == null) return;
+            if (!doneLastParsing) return;
+            if (Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[1].equals("track")) {
                 try {
                     PublicValues.history.addSong(InstanceManager.getSpotifyApi().getTrack(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri().split(":")[2]).build().execute());
-                } catch (SQLException | IOException | SpotifyWebApiException | ParseException e) {
+                } catch (SQLException | IOException e) {
                     ConsoleLogging.Throwable(e);
                 }
             }
@@ -310,11 +311,11 @@ public class PlayerArea extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(historybutton.isFilled) {
+                if (historybutton.isFilled) {
                     historybutton.isFilled = false;
                     historybutton.setImage(Graphics.HISTORY.getPath());
                     PublicValues.history.dispose();
-                }else{
+                } else {
                     historybutton.isFilled = true;
                     historybutton.setImage(Graphics.HISTORYSELECTED.getPath());
                     PublicValues.history.open();
@@ -352,23 +353,23 @@ public class PlayerArea extends JPanel {
                             };
                             Events.subscribe(SpotifyXPEvents.playerLockRelease.getName(), subscriber);
                         }
-                        if(!lastPlayState.history.isEmpty()) {
+                        if (!lastPlayState.history.isEmpty()) {
                             try {
                                 PublicValues.spotifyplayer.tracks(true).previous.clear();
-                                for(String s : lastPlayState.history) {
+                                for (String s : lastPlayState.history) {
                                     PublicValues.spotifyplayer.addToQueue(s);
                                 }
-                            }catch (Exception ignored) {
+                            } catch (Exception ignored) {
                                 ConsoleLogging.warning("Failed to restore player history");
                             }
                         }
-                        if(!lastPlayState.queue.isEmpty()) {
+                        if (!lastPlayState.queue.isEmpty()) {
                             try {
                                 PublicValues.spotifyplayer.tracks(true).next.clear();
-                                for(String s : lastPlayState.queue) {
+                                for (String s : lastPlayState.queue) {
                                     PublicValues.spotifyplayer.addToQueue(s);
                                 }
-                            }catch (Exception ignored) {
+                            } catch (Exception ignored) {
                                 ConsoleLogging.warning("Failed to restore player queue");
                             }
                         }
@@ -386,18 +387,18 @@ public class PlayerArea extends JPanel {
             Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable());
             List<PlayerState.PlayableUri> playableQueue = new ArrayList<>();
             List<ContextTrackOuterClass.ContextTrack> playableQueueTracks = PublicValues.spotifyplayer.tracks(true).next;
-            for(int playableQueueTracksIndex = 0; playableQueueTracksIndex < playableQueueTracks.size(); playableQueueTracksIndex++) {
-                if(playableQueueTracksIndex >= 200) break; // Because of protobuf this can be higher
+            for (int playableQueueTracksIndex = 0; playableQueueTracksIndex < playableQueueTracks.size(); playableQueueTracksIndex++) {
+                if (playableQueueTracksIndex >= 200) break; // Because of protobuf this can be higher
                 ContextTrackOuterClass.ContextTrack track = playableQueueTracks.get(playableQueueTracksIndex);
                 playableQueue.add(PlayerState.PlayableUri.newBuilder()
-                                .setId(track.getUri().split(":")[2])
-                                .setType(PlayerState.EntityType.valueOf(track.getUri().split(":")[1].toUpperCase()))
+                        .setId(track.getUri().split(":")[2])
+                        .setType(PlayerState.EntityType.valueOf(track.getUri().split(":")[1].toUpperCase()))
                         .build());
             }
             List<PlayerState.PlayableUri> playableHistory = new ArrayList<>();
             List<ContextTrackOuterClass.ContextTrack> playableHistoryTracks = PublicValues.spotifyplayer.tracks(true).previous;
-            for(int playableHistoryTracksIndex = 0; playableHistoryTracksIndex < playableHistoryTracks.size(); playableHistoryTracksIndex++) {
-                if(playableHistoryTracksIndex >= 200) break; // Because of protobuf this can be higher
+            for (int playableHistoryTracksIndex = 0; playableHistoryTracksIndex < playableHistoryTracks.size(); playableHistoryTracksIndex++) {
+                if (playableHistoryTracksIndex >= 200) break; // Because of protobuf this can be higher
                 ContextTrackOuterClass.ContextTrack track = playableHistoryTracks.get(playableHistoryTracksIndex);
                 playableHistory.add(PlayerState.PlayableUri.newBuilder()
                         .setId(track.getUri().split(":")[2])
@@ -420,13 +421,13 @@ public class PlayerArea extends JPanel {
             try (FileOutputStream outputStream = new FileOutputStream(new File(PublicValues.fileslocation, "play.state"))) {
                 outputStream.write(state.toByteArray());
             }
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.openException(e);
-            if(new File(PublicValues.fileslocation, "play.state").exists()) {
+            if (new File(PublicValues.fileslocation, "play.state").exists()) {
                 new File(PublicValues.fileslocation, "play.state").delete();
             }
-        }catch(IOException e) {
+        } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.openException(e);
         }
@@ -448,10 +449,10 @@ public class PlayerArea extends JPanel {
             state.playtime = parsedState.getCurrentTimeString();
             state.playtimetotal = parsedState.getDurationString();
             state.playervolume = parsedState.getCurrentVolumeString();
-            for(PlayerState.PlayableUri playableUri : parsedState.getPlayableHistoryList()) {
+            for (PlayerState.PlayableUri playableUri : parsedState.getPlayableHistoryList()) {
                 state.history.add("spotify" + ":" + playableUri.getType().toString().toLowerCase(Locale.ROOT) + ":" + playableUri.getId());
             }
-            for(PlayerState.PlayableUri playableUri : parsedState.getPlayableQueueList()) {
+            for (PlayerState.PlayableUri playableUri : parsedState.getPlayableQueueList()) {
                 state.queue.add("spotify" + ":" + playableUri.getType().toString().toLowerCase(Locale.ROOT) + ":" + playableUri.getId());
             }
             PlayerArea.lastPlayState = state;

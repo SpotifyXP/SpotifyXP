@@ -2,12 +2,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.browse;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
 
@@ -17,96 +15,93 @@ import java.io.IOException;
 @JsonDeserialize(builder = GetListOfNewReleasesRequest.Builder.class)
 public class GetListOfNewReleasesRequest extends AbstractDataRequest<Paging<AlbumSimplified>> {
 
-  /**
-   * The private {@link GetListOfNewReleasesRequest} constructor.
-   *
-   * @param builder A {@link GetListOfNewReleasesRequest.Builder}.
-   */
-  private GetListOfNewReleasesRequest(final Builder builder) {
-    super(builder);
-  }
-
-  /**
-   * Get a paging of new {@link AlbumSimplified} releases.
-   *
-   * @return An {@link AlbumSimplified} paging.
-   * @throws IOException            In case of networking issues.
-   * @throws SpotifyWebApiException The Web API returned an error further specified in this exception's root cause.
-   */
-  public Paging<AlbumSimplified> execute() throws
-    IOException,
-    SpotifyWebApiException,
-    ParseException {
-    return new AlbumSimplified.JsonUtil().createModelObjectPaging(getJson(), "albums");
-  }
-
-  /**
-   * Builder class for building a {@link GetListOfNewReleasesRequest}.
-   */
-  public static final class Builder extends AbstractDataPagingRequest.Builder<AlbumSimplified, Builder> {
-
     /**
-     * Create a new {@link GetListOfNewReleasesRequest.Builder} instance.
+     * The private {@link GetListOfNewReleasesRequest} constructor.
      *
-     * @param accessToken Required. A valid access token from the Spotify Accounts service.
+     * @param builder A {@link GetListOfNewReleasesRequest.Builder}.
      */
-    public Builder(final String accessToken) {
-      super(accessToken);
+    private GetListOfNewReleasesRequest(final Builder builder) {
+        super(builder);
     }
 
     /**
-     * The country code setter.
+     * Get a paging of new {@link AlbumSimplified} releases.
      *
-     * @param country Optional. A country: an ISO 3166-1 alpha-2 country code. Provide this parameter if you want the
-     *                list of returned items to be relevant to a particular country. If omitted, the returned items will
-     *                be relevant to all countries.
-     * @return A {@link GetListOfNewReleasesRequest.Builder}.
-     * @see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">Wikipedia: ISO 3166-1 alpha-2 country codes</a>
+     * @return An {@link AlbumSimplified} paging.
+     * @throws IOException In case of networking issues.
      */
-    public Builder country(final CountryCode country) {
-      assert (country != null);
-      return setQueryParameter("country", country);
+    public Paging<AlbumSimplified> execute() throws
+            IOException {
+        return new AlbumSimplified.JsonUtil().createModelObjectPaging(getJson(), "albums");
     }
 
     /**
-     * The limit setter.
-     *
-     * @param limit Optional. The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
-     * @return A {@link GetListOfNewReleasesRequest.Builder}.
+     * Builder class for building a {@link GetListOfNewReleasesRequest}.
      */
-    @Override
-    public Builder limit(final Integer limit) {
-      assert (1 <= limit && limit <= 50);
-      return setQueryParameter("limit", limit);
-    }
+    public static final class Builder extends AbstractDataPagingRequest.Builder<AlbumSimplified, Builder> {
 
-    /**
-     * The offset setter.
-     *
-     * @param offset Optional. The index of the first item to return. Default: 0 (the first object). Use with
-     *               {@link #limit(Integer)} to get the next set of items.
-     * @return A {@link GetListOfNewReleasesRequest.Builder}.
-     */
-    @Override
-    public Builder offset(final Integer offset) {
-      assert (offset >= 0);
-      return setQueryParameter("offset", offset);
-    }
+        /**
+         * Create a new {@link GetListOfNewReleasesRequest.Builder} instance.
+         *
+         * @param accessToken Required. A valid access token from the Spotify Accounts service.
+         */
+        public Builder(final String accessToken) {
+            super(accessToken);
+        }
 
-    /**
-     * The request build method.
-     *
-     * @return A custom {@link GetListOfNewReleasesRequest}.
-     */
-    @Override
-    public GetListOfNewReleasesRequest build() {
-      setPath("/v1/browse/new-releases");
-      return new GetListOfNewReleasesRequest(this);
-    }
+        /**
+         * The country code setter.
+         *
+         * @param country Optional. A country: an ISO 3166-1 alpha-2 country code. Provide this parameter if you want the
+         *                list of returned items to be relevant to a particular country. If omitted, the returned items will
+         *                be relevant to all countries.
+         * @return A {@link GetListOfNewReleasesRequest.Builder}.
+         * @see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">Wikipedia: ISO 3166-1 alpha-2 country codes</a>
+         */
+        public Builder country(final CountryCode country) {
+            assert (country != null);
+            return setQueryParameter("country", country);
+        }
 
-    @Override
-    protected Builder self() {
-      return this;
+        /**
+         * The limit setter.
+         *
+         * @param limit Optional. The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
+         * @return A {@link GetListOfNewReleasesRequest.Builder}.
+         */
+        @Override
+        public Builder limit(final Integer limit) {
+            assert (1 <= limit && limit <= 50);
+            return setQueryParameter("limit", limit);
+        }
+
+        /**
+         * The offset setter.
+         *
+         * @param offset Optional. The index of the first item to return. Default: 0 (the first object). Use with
+         *               {@link #limit(Integer)} to get the next set of items.
+         * @return A {@link GetListOfNewReleasesRequest.Builder}.
+         */
+        @Override
+        public Builder offset(final Integer offset) {
+            assert (offset >= 0);
+            return setQueryParameter("offset", offset);
+        }
+
+        /**
+         * The request build method.
+         *
+         * @return A custom {@link GetListOfNewReleasesRequest}.
+         */
+        @Override
+        public GetListOfNewReleasesRequest build() {
+            setPath("/v1/browse/new-releases");
+            return new GetListOfNewReleasesRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
     }
-  }
 }

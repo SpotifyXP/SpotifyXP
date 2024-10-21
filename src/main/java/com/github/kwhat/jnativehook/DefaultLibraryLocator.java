@@ -37,11 +37,11 @@ import java.util.List;
  *
  * @author Alexander Barker (<a href="mailto:alex@1stleg.com">alex@1stleg.com</a>)
  * @version 2.0
- * @since 2.0
  * @see NativeLibraryLocator
+ * @since 2.0
  */
 public class DefaultLibraryLocator implements NativeLibraryLocator {
-     /**
+    /**
      * Perform default procedures to interface with the native library. These procedures include
      * unpacking and loading the library into the Java Virtual Machine.
      */
@@ -55,21 +55,20 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
 
         String libNativeArch = NativeSystem.getArchitecture().toString().toLowerCase();
         String libNativeName = System
-            .mapLibraryName(libName) // Get what the system "thinks" the library name should be.
-            .replaceAll("\\.jnilib$", "\\.dylib"); // Hack for OS X JRE 1.6 and earlier.
+                .mapLibraryName(libName) // Get what the system "thinks" the library name should be.
+                .replaceAll("\\.jnilib$", "\\.dylib"); // Hack for OS X JRE 1.6 and earlier.
 
         // Resource path for the native library.
         String libResourcePath = "/" + basePackage + "/lib/" +
-            NativeSystem.getFamily().toString().toLowerCase() +
-            '/' + libNativeArch + '/' + libNativeName;
+                NativeSystem.getFamily().toString().toLowerCase() +
+                '/' + libNativeArch + '/' + libNativeName;
 
         URL classLocation = GlobalScreen.class.getProtectionDomain().getCodeSource().getLocation();
 
         File classFile;
         try {
             classFile = new File(classLocation.toURI());
-        }
-        catch (URISyntaxException e) {
+        } catch (URISyntaxException e) {
             ConsoleLoggingModules.warning(e.getMessage());
             classFile = new File(classLocation.getPath());
         }
@@ -92,8 +91,8 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
             }
 
             libFile = new File(
-                libPath,
-                libNativeName.replaceAll("^(.*)\\.(.*)$", "$1" + version + '.' + libNativeArch + ".$2")
+                    libPath,
+                    libNativeName.replaceAll("^(.*)\\.(.*)$", "$1" + version + '.' + libNativeArch + ".$2")
             );
             if (!libFile.exists()) {
                 try {
@@ -110,14 +109,13 @@ public class DefaultLibraryLocator implements NativeLibraryLocator {
                     // Close all the streams.
                     resourceInputStream.close();
                     libOutputStream.close();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     throw new RuntimeException(e.getMessage(), e);
                 }
 
                 ConsoleLoggingModules.info("Extracted library: " + libFile.getPath() + ".\n");
             }
-        }  else {
+        } else {
             // Loose Classes
             libFile = Paths.get(classFile.getAbsolutePath(), libResourcePath.toString()).toFile();
         }

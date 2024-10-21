@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -11,7 +10,6 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.TrackUtils;
-import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -94,7 +92,7 @@ public class Playlists extends JPanel {
                             ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{playlistname});
                         }
                     });
-                } catch (IOException | SpotifyWebApiException | ParseException e) {
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }, () -> {
