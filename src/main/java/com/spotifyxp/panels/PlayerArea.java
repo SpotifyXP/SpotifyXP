@@ -12,6 +12,7 @@ import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.protogens.PlayerState;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.*;
 import com.spotifyxp.utils.*;
@@ -19,14 +20,14 @@ import org.apache.commons.io.IOUtils;
 import org.apache.hc.core5.http.ParseException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
+import java.util.List;
 
 public class PlayerArea extends JPanel {
     public static JImagePanel playerimage;
@@ -105,6 +106,12 @@ public class PlayerArea extends JPanel {
         playerimage = new JImagePanel();
         playerimage.setBounds(10, 11, 78, 78);
         add(playerimage);
+        Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
+            @Override
+            public void run(Object... data) {
+                playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(getClass().getResourceAsStream(Graphics.NOTHINGPLAYING.getPath()), new Dimension(78, 78)));
+            }
+        });
         playerarealyricsbutton = new JSVGPanel();
         playerarealyricsbutton.getJComponent().setBounds(280, 75, 14, 14);
         playerarealyricsbutton.getJComponent().setBackground(frame.getBackground());
@@ -324,7 +331,7 @@ public class PlayerArea extends JPanel {
                         if (!lastPlayState.uri.isEmpty()) {
                             PlayerArea.playerplaytime.setText(lastPlayState.playtime);
                             PlayerArea.playerplaytimetotal.setText(lastPlayState.playtimetotal);
-                            PlayerArea.playercurrenttime.setMaximum(Integer.parseInt(lastPlayState.playerslidermax));
+                            PlayerArea.playercurrenttime.setMaximum(lastPlayState.playerslidermax);
                             PublicValues.spotifyplayer.load(lastPlayState.uri, false, PublicValues.shuffle);
                             if (!TrackUtils.isTrackLiked(lastPlayState.uri.split(":")[2])) {
                                 PlayerArea.heart.isFilled = false;
@@ -336,13 +343,23 @@ public class PlayerArea extends JPanel {
                             EventSubscriber subscriber = new EventSubscriber() {
                                 @Override
                                 public void run(Object... data) {
-                                    PublicValues.spotifyplayer.seek(Integer.parseInt(lastPlayState.playerslider) * 1000);
+                                    PublicValues.spotifyplayer.seek(lastPlayState.playerslider * 1000);
                                     PlayerArea.playerareavolumeslider.setValue(Integer.parseInt(lastPlayState.playervolume));
                                     Events.unsubscribe(SpotifyXPEvents.playerLockRelease.getName(), this);
                                     doneLastParsing = true;
                                 }
                             };
                             Events.subscribe(SpotifyXPEvents.playerLockRelease.getName(), subscriber);
+                        }
+                        if(!lastPlayState.history.isEmpty()) {
+                            try {
+                                PublicValues.spotifyplayer.tracks(true).previous.clear();
+                                for(String s : lastPlayState.history) {
+                                    PublicValues.spotifyplayer.addToQueue(s);
+                                }
+                            }catch (Exception ignored) {
+                                ConsoleLogging.warning("Failed to restore player history");
+                            }
                         }
                         if(!lastPlayState.queue.isEmpty()) {
                             try {
@@ -355,31 +372,54 @@ public class PlayerArea extends JPanel {
                             }
                         }
                     } catch (Exception e) {
-                        //Failed to load last play state! Dont notify user because its not that important
+                        //Failed to load last play state! Don't notify user because it's not that important
                     }
                 }
             }
         });
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static void saveCurrentState() {
         try {
-            Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri();
-        } catch (Exception e) {
-            return;
-        }
-        try {
-            FileWriter writer = new FileWriter(new File(PublicValues.fileslocation, "play.state"));
-            StringBuilder queue = new StringBuilder();
-            int counter = 0;
-            for(ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
-                if(counter == 50) break;
-                queue.append(t.getUri()).append("\n");
-                counter++;
+            Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable());
+            List<PlayerState.PlayableUri> playableQueue = new ArrayList<>();
+            List<ContextTrackOuterClass.ContextTrack> playableQueueTracks = PublicValues.spotifyplayer.tracks(true).next;
+            for(int playableQueueTracksIndex = 0; playableQueueTracksIndex < playableQueueTracks.size(); playableQueueTracksIndex++) {
+                if(playableQueueTracksIndex >= 200) break; // Because of protobuf this can be higher
+                ContextTrackOuterClass.ContextTrack track = playableQueueTracks.get(playableQueueTracksIndex);
+                playableQueue.add(PlayerState.PlayableUri.newBuilder()
+                                .setId(track.getUri().split(":")[2])
+                                .setType(PlayerState.EntityType.valueOf(track.getUri().split(":")[1].toUpperCase()))
+                        .build());
             }
-            writer.write(Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable()).toSpotifyUri() + "\n" + PlayerArea.playercurrenttime.getValue() + "\n" + PlayerArea.playerplaytime.getText() + "\n" + PlayerArea.playerplaytimetotal.getText() + "\n" + PlayerArea.playercurrenttime.getMaximum() + "\n" + PlayerArea.playerareavolumecurrent.getText() + "\n" + StringUtils.replaceLast(queue.toString(), "\n", ""));
-            writer.close();
-        } catch (IOException e) {
+            List<PlayerState.PlayableUri> playableHistory = new ArrayList<>();
+            List<ContextTrackOuterClass.ContextTrack> playableHistoryTracks = PublicValues.spotifyplayer.tracks(true).previous;
+            for(int playableHistoryTracksIndex = 0; playableHistoryTracksIndex < playableHistoryTracks.size(); playableHistoryTracksIndex++) {
+                if(playableHistoryTracksIndex >= 200) break; // Because of protobuf this can be higher
+                ContextTrackOuterClass.ContextTrack track = playableHistoryTracks.get(playableHistoryTracksIndex);
+                playableHistory.add(PlayerState.PlayableUri.newBuilder()
+                        .setId(track.getUri().split(":")[2])
+                        .setType(PlayerState.EntityType.valueOf(track.getUri().split(":")[1].toUpperCase()))
+                        .build());
+            }
+            PlayerState.State state = PlayerState.State.newBuilder()
+                    .setCurrentTrack(PlayerState.PlayableUri.newBuilder()
+                            .setId(InstanceManager.getPlayer().getPlayer().currentPlayable().toSpotifyUri().split(":")[2])
+                            .setType(PlayerState.EntityType.valueOf(InstanceManager.getPlayer().getPlayer().currentPlayable().toSpotifyUri().split(":")[1].toUpperCase()))
+                            .build())
+                    .setCurrentTimeSlider(PlayerArea.playercurrenttime.getValue())
+                    .setCurrentTimeSliderMax(PlayerArea.playercurrenttime.getMaximum())
+                    .setCurrentTimeString(PlayerArea.playerplaytime.getText())
+                    .setDurationString(PlayerArea.playerplaytimetotal.getText())
+                    .setCurrentVolumeString(PlayerArea.playerareavolumecurrent.getText())
+                    .addAllPlayableHistory(playableHistory)
+                    .addAllPlayableQueue(playableQueue)
+                    .build();
+            try (FileOutputStream outputStream = new FileOutputStream(new File(PublicValues.fileslocation, "play.state"))) {
+                outputStream.write(state.toByteArray());
+            }
+        }catch (NullPointerException | IOException e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.openException(e);
         }
@@ -392,45 +432,21 @@ public class PlayerArea extends JPanel {
 
     void parseLastPlayState() {
         try {
+            byte[] protoBytes = IOUtils.toByteArray(new FileInputStream(new File(PublicValues.fileslocation, "play.state")));
+            PlayerState.State parsedState = PlayerState.State.parseFrom(protoBytes);
             LastPlayState state = new LastPlayState();
-            File playstate = new File(PublicValues.fileslocation, "play.state");
-            Scanner scan = new Scanner(playstate);
-            int read = 0;
-            while (scan.hasNextLine()) {
-                String data = scan.nextLine();
-                switch (read) {
-                    case 0:
-                        state.uri = data;
-                        break;
-                    case 1:
-                        state.playerslider = data;
-                        break;
-                    case 2:
-                        state.playtime = data;
-                        break;
-                    case 3:
-                        state.playtimetotal = data;
-                        break;
-                    case 4:
-                        state.playerslidermax = data;
-                        break;
-                    case 5:
-                        state.playervolume = data;
-                        break;
-                }
-                read++;
+            state.uri = "spotify" + parsedState.getCurrentTrack().getType().toString().toLowerCase(Locale.ROOT) + ":" + parsedState.getCurrentTrack().getId();
+            state.playerslider = (int) parsedState.getCurrentTimeSlider();
+            state.playerslidermax = (int) parsedState.getCurrentTimeSliderMax();
+            state.playtime = parsedState.getCurrentTimeString();
+            state.playtimetotal = parsedState.getDurationString();
+            state.playervolume = parsedState.getCurrentVolumeString();
+            for(PlayerState.PlayableUri playableUri : parsedState.getPlayableHistoryList()) {
+                state.history.add("spotify" + ":" + playableUri.getType().toString().toLowerCase(Locale.ROOT) + ":" + playableUri.getId());
             }
-            String out = IOUtils.toString(new FileInputStream(new File(PublicValues.fileslocation, "play.state")), Charset.defaultCharset());
-            for(int i = 0; i < out.split("\n").length; i++) {
-                if(i > 5) {
-                    state.queue.add(out.split("\n")[i]);
-                }
+            for(PlayerState.PlayableUri playableUri : parsedState.getPlayableQueueList()) {
+                state.queue.add("spotify" + ":" + playableUri.getType().toString().toLowerCase(Locale.ROOT) + ":" + playableUri.getId());
             }
-            scan.close();
-            lastPlayState = state;
-        } catch (FileNotFoundException e) {
-            GraphicalMessage.openException(e);
-            ConsoleLogging.Throwable(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -440,9 +456,10 @@ public class PlayerArea extends JPanel {
         public String uri;
         public String playtimetotal;
         public String playtime;
-        public String playerslider;
-        public String playerslidermax;
+        public int playerslider;
+        public int playerslidermax;
         public String playervolume;
+        public final ArrayList<String> history = new ArrayList<>();
         public final ArrayList<String> queue = new ArrayList<>();
     }
 }

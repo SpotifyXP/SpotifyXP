@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package spotifyxp.playerstate;
+
+option java_package = "com.spotifyxp.protogens";
+
+enum EntityType {
+  TRACK = 0;
+  EPISODE = 1;
+}
+
+message PlayableUri {
+  string id = 1;
+  EntityType type = 2;
+}
+
+message State {
+  PlayableUri currentTrack = 1;
+  int64 currentTimeSlider = 2;
+  int64 currentTimeSliderMax = 3;
+  string currentTimeString = 4;
+  string durationString = 5;
+  string currentVolumeString = 6;
+  repeated PlayableUri playableHistory = 7;
+  repeated PlayableUri playableQueue = 8;
+}
