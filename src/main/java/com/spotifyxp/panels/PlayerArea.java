@@ -25,6 +25,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
@@ -382,7 +383,7 @@ public class PlayerArea extends JPanel {
     @SuppressWarnings("ConstantConditions")
     public static void saveCurrentState() {
         try {
-            Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable());
+            Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable());
             List<PlayerState.PlayableUri> playableQueue = new ArrayList<>();
             List<ContextTrackOuterClass.ContextTrack> playableQueueTracks = PublicValues.spotifyplayer.tracks(true).next;
             for(int playableQueueTracksIndex = 0; playableQueueTracksIndex < playableQueueTracks.size(); playableQueueTracksIndex++) {
@@ -405,8 +406,8 @@ public class PlayerArea extends JPanel {
             }
             PlayerState.State state = PlayerState.State.newBuilder()
                     .setCurrentTrack(PlayerState.PlayableUri.newBuilder()
-                            .setId(InstanceManager.getPlayer().getPlayer().currentPlayable().toSpotifyUri().split(":")[2])
-                            .setType(PlayerState.EntityType.valueOf(InstanceManager.getPlayer().getPlayer().currentPlayable().toSpotifyUri().split(":")[1].toUpperCase()))
+                            .setId(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri().split(":")[2])
+                            .setType(PlayerState.EntityType.valueOf(PublicValues.spotifyplayer.currentPlayable().toSpotifyUri().split(":")[1].toUpperCase()))
                             .build())
                     .setCurrentTimeSlider(PlayerArea.playercurrenttime.getValue())
                     .setCurrentTimeSliderMax(PlayerArea.playercurrenttime.getMaximum())
@@ -419,7 +420,13 @@ public class PlayerArea extends JPanel {
             try (FileOutputStream outputStream = new FileOutputStream(new File(PublicValues.fileslocation, "play.state"))) {
                 outputStream.write(state.toByteArray());
             }
-        }catch (NullPointerException | IOException e) {
+        }catch (NullPointerException e) {
+            ConsoleLogging.Throwable(e);
+            GraphicalMessage.openException(e);
+            if(new File(PublicValues.fileslocation, "play.state").exists()) {
+                new File(PublicValues.fileslocation, "play.state").delete();
+            }
+        }catch(IOException e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.openException(e);
         }
@@ -432,10 +439,10 @@ public class PlayerArea extends JPanel {
 
     void parseLastPlayState() {
         try {
-            byte[] protoBytes = IOUtils.toByteArray(new FileInputStream(new File(PublicValues.fileslocation, "play.state")));
+            byte[] protoBytes = IOUtils.toByteArray(Files.newInputStream(new File(PublicValues.fileslocation, "play.state").toPath()));
             PlayerState.State parsedState = PlayerState.State.parseFrom(protoBytes);
             LastPlayState state = new LastPlayState();
-            state.uri = "spotify" + parsedState.getCurrentTrack().getType().toString().toLowerCase(Locale.ROOT) + ":" + parsedState.getCurrentTrack().getId();
+            state.uri = "spotify" + ":" + parsedState.getCurrentTrack().getType().toString().toLowerCase(Locale.ROOT) + ":" + parsedState.getCurrentTrack().getId();
             state.playerslider = (int) parsedState.getCurrentTimeSlider();
             state.playerslidermax = (int) parsedState.getCurrentTimeSliderMax();
             state.playtime = parsedState.getCurrentTimeString();
@@ -447,6 +454,7 @@ public class PlayerArea extends JPanel {
             for(PlayerState.PlayableUri playableUri : parsedState.getPlayableQueueList()) {
                 state.queue.add("spotify" + ":" + playableUri.getType().toString().toLowerCase(Locale.ROOT) + ":" + playableUri.getId());
             }
+            PlayerArea.lastPlayState = state;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
