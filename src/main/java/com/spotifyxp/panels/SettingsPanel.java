@@ -46,6 +46,7 @@ public class SettingsPanel extends JPanel {
     public static JLabel settingsplaybacklabel;
     public static JLabel settingsplaybackselectqualitylabel;
     public static JRadioButton settingsturnoffspotifyconnect;
+    public static JRadioButton settingsplaybackdisablecaching;
     public static SettingsTable settingsTable;
 
     //Borders
@@ -184,9 +185,15 @@ public class SettingsPanel extends JPanel {
         settingsturnoffspotifyconnect = new JRadioButton(PublicValues.language.translate("ui.settings.spconnect"));
         settingsturnoffspotifyconnect.setForeground(PublicValues.globalFontColor);
 
-        settingsturnoffspotifyconnect.setBounds(120, 55, 200, 20);
+        settingsturnoffspotifyconnect.setBounds(100, 55, 220, 20);
 
         playbackborder.add(settingsturnoffspotifyconnect);
+
+        settingsplaybackdisablecaching = new JRadioButton(PublicValues.language.translate("ui.settings.disablecache"));
+        settingsplaybackdisablecaching.setForeground(PublicValues.globalFontColor);
+        settingsplaybackdisablecaching.setBounds(100, 90, 220, 20);
+
+        playbackborder.add(settingsplaybackdisablecaching);
 
 
         settingsplaybackselectquality.setForeground(PublicValues.globalFontColor);
@@ -319,6 +326,7 @@ public class SettingsPanel extends JPanel {
         settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.theme.name));
         settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
         settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
+        settingsplaybackdisablecaching.setSelected(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name));
 
         if (settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
@@ -339,6 +347,7 @@ public class SettingsPanel extends JPanel {
                     break;
             }
             PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
+            PublicValues.config.write(ConfigValues.cache_disabled.name, settingsplaybackdisablecaching.isSelected());
             PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
             PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
             PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);

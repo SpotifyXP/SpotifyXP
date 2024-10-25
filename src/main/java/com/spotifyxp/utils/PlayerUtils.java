@@ -46,12 +46,19 @@ public class PlayerUtils {
                 .setBypassSinkVolume(PublicValues.config.getBoolean(ConfigValues.other_bypasssinkvolume.name))
                 .setLocalFilesPath(new File(PublicValues.fileslocation))
                 .build();
+        Session.Configuration.Builder configurationBuilder = new Session.Configuration.Builder()
+                .setCacheDir(new File(PublicValues.fileslocation, "cache"))
+                .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"));
+        if(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name)) {
+            if(new File(PublicValues.fileslocation, "cache").exists()) {
+                FileUtils.deleteDir(new File(PublicValues.fileslocation, "cache"));
+            }
+            configurationBuilder.setCacheEnabled(false);
+        }
+        Session.Configuration configuration = configurationBuilder.build();
         try {
             Session session = null;
             if (new File(PublicValues.fileslocation, "credentials.json").exists()) {
-                Session.Configuration configuration = new Session.Configuration.Builder()
-                        .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
-                        .build();
                 session = new Session.Builder(configuration)
                         .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
                         .setDeviceType(Connect.DeviceType.COMPUTER)
@@ -64,9 +71,6 @@ public class PlayerUtils {
                     dialog = new LoginDialog();
                     dialog.open();
                 }
-                Session.Configuration configuration = new Session.Configuration.Builder()
-                        .setStoredCredentialsFile(new File(PublicValues.fileslocation, "credentials.json"))
-                        .build();
                 CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
                 try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder(configuration)
                         .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))

@@ -25,7 +25,8 @@ public enum ConfigValues {
     other_preferredlocale("user.settings.other.preferredlocale", ConfigValueTypes.STRING, "en"),
     hideExceptions("general.exception.visibility", ConfigValueTypes.BOOLEAN, false),
     spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false),
-    webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true);
+    webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true),
+    cache_disabled("user.settings.cache.disabled", ConfigValueTypes.BOOLEAN, false),;
     public final String name;
     public final ConfigValueTypes type;
     public final Object defaultValue;
