@@ -22,7 +22,11 @@ public class Events {
 
         public void trigger(Object... data) {
             for (EventSubscriber subscriber : new ArrayList<>(subscribers)) {
-                subscriber.run(data);
+                try {
+                    subscriber.run(data);
+                }catch (Exception e) {
+                    ConsoleLogging.Throwable(e);
+                }
             }
         }
     }
