@@ -298,6 +298,9 @@ public class ContentPanel extends JPanel {
         //---
     }
 
+
+    private static boolean[] inProg = {false};
+    private static boolean loadnew = false;
     public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {
         homepanel.getComponent().setVisible(false);
         advancedSongPanelUri = foruri;
@@ -311,10 +314,16 @@ public class ContentPanel extends JPanel {
             switch (contentType) {
                 case playlist:
                     currentView = Views.PLAYLIST;
-                    for (PlaylistTrack simplified : SpotifyUtils.getAllTracksPlaylist(foruri)) {
-                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getTrack().getName(), TrackUtils.calculateFileSizeKb(simplified.getTrack().getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getTrack().getDurationMs())});
-                        advanceduricache.add(simplified.getTrack().getUri());
-                    }
+                    loadnew = true;
+                    TrackUtils.initializeLazyLoadingForPlaylists(
+                            advancedscrollpanel,
+                            advanceduricache,
+                            advancedsongtable,
+                            28,
+                            foruri.split(":")[2],
+                            inProg,
+                            loadnew
+                    );
                     break;
                 case show:
                     currentView = Views.SHOW;

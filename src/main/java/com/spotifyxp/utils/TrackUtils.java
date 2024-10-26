@@ -4,9 +4,8 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IPlaylistItem;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
@@ -22,7 +21,10 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.Library;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -234,5 +236,96 @@ public class TrackUtils {
 
         OverwriteFactory.run(audioStream.stream());
         PublicValues.disableChunkDebug = false;
+    }
+
+    public static void initializeLazyLoadingForPlaylists(
+            JScrollPane scrollPane,
+            ArrayList<String> uricache,
+            DefTable table, 
+            int visibleCount,
+            String playlistId,
+            boolean[] inProg,
+            boolean loadnew) {
+        if (loadnew) {
+            uricache.clear();
+            ((DefaultTableModel) table.getModel()).setRowCount(0);
+        }
+        final int[] globVisibleCount = {visibleCount};
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        try {
+            int count = 0;
+            int songTableHeight = scrollPane.getHeight();
+            int limitTrackHeight = table.getRowHeight() * visibleCount;
+            while (songTableHeight > limitTrackHeight) {
+                limitTrackHeight = table.getRowHeight() * (visibleCount + 1);
+            }
+            for (PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(playlistId).limit(visibleCount).build().execute().getItems()) {
+                if (!uricache.contains(track.getTrack().getUri())) {
+                    String a = TrackUtils.getArtists(InstanceManager.getSpotifyApi().getTrack(track.getTrack().getId()).build().execute().getArtists());
+                    model.insertRow(count, new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                    uricache.add(count, track.getTrack().getUri());
+                    count++;
+                }
+            }
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+        }
+        scrollPane.addMouseWheelListener(e -> {
+            if (!inProg[0]) {
+                inProg[0] = true;
+                BoundedRangeModel m = scrollPane.getVerticalScrollBar().getModel();
+                int extent = m.getExtent();
+                int maximum = m.getMaximum();
+                int value = m.getValue();
+                if (value + extent >= maximum / 4) {
+                    if (scrollPane.isVisible()) {
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    int visibleCount = globVisibleCount[0];
+                                    int counter = 0;
+                                    int last = 0;
+                                    int parsed = 0;
+                                    while (parsed != visibleCount) {
+                                        PlaylistTrack[] track;
+                                        Paging<PlaylistTrack> playlist = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistId).limit(visibleCount).build().execute();
+                                        if (playlist.getTotal() <= uricache.size()) {
+                                            return;
+                                        }
+                                        track = playlist.getItems();
+                                        for (PlaylistTrack t : track) {
+                                            uricache.add(t.getTrack().getUri());
+                                            String a = TrackUtils.getArtists(InstanceManager.getSpotifyApi().getTrack(t.getTrack().getId()).build().execute().getArtists());
+                                            table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
+                                            parsed++;
+                                        }
+                                        if (parsed == last) {
+                                            if (counter > 1) {
+                                                break;
+                                            }
+                                            counter++;
+                                        } else {
+                                            counter = 0;
+                                        }
+                                        last = parsed;
+                                    }
+                                    inProg[0] = false;
+                                } catch (Exception e) {
+                                    ConsoleLogging.error("Error loading playlist tracks!");
+                                    inProg[0] = false;
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }, "Lazy load next");
+                        thread.start();
+                    }
+                }
+            }
+        });
+    }
+
+    public static String calculateFileSizeKb(IPlaylistItem track) {
+        return calculateFileSizeKb(track.getDurationMs());
     }
 }

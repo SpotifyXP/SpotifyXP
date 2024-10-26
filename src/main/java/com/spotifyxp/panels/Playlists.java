@@ -30,6 +30,8 @@ public class Playlists extends JPanel {
     public static DefTable playlistssongtable;
     public static final ArrayList<String> playlistsuricache = new ArrayList<>();
     public static final ArrayList<String> playlistssonguricache = new ArrayList<>();
+    private boolean[] inProg = {false};
+    private boolean loadnew = false;
 
 
     public Playlists() {
@@ -102,7 +104,7 @@ public class Playlists extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    Thread thread = new Thread(() -> {
+                    /*Thread thread = new Thread(() -> {
                         playlistssonguricache.clear();
                         ((DefaultTableModel) playlistssongtable.getModel()).setRowCount(0);
                         try {
@@ -133,7 +135,18 @@ public class Playlists extends JPanel {
                             throw new RuntimeException(e1);
                         }
                     }, "Get playlist tracks");
-                    thread.start();
+                    thread.start(); */
+                    loadnew = true;
+                    TrackUtils.initializeLazyLoadingForPlaylists(
+                            playlistssongsscroll,
+                            playlistssonguricache,
+                            playlistssongtable,
+                            28,
+                            playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2],
+                            inProg,
+                            loadnew
+                    );
+                    loadnew = false;
                 }
             }
         }));

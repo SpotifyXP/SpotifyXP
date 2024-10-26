@@ -48,6 +48,8 @@ public class Search extends JPanel {
     private String searchCacheTitle = "";
     private String searchCacheArtist = "";
     private boolean excludeExplicit = false;
+    private boolean[] inProg = {false};
+    private boolean loadnew = false;
 
     public Search() {
         setBounds(0, 0, 784, 421);
@@ -383,33 +385,17 @@ public class Search extends JPanel {
                     Thread thread = new Thread(() -> {
                         switch (searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1].toLowerCase()) {
                             case "playlist":
-                                try {
-                                    Playlist pl = InstanceManager.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                    int parsed = 0;
-                                    int offset = 0;
-                                    int counter = 0;
-                                    int last = 0;
-                                    int total = pl.getTracks().getTotal();
-                                    while (parsed != total) {
-                                        for (PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute().getItems()) {
-                                            ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + pl.getName() + " - " + pl.getOwner().getDisplayName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                            searchplaylistsongscache.add(track.getTrack().getUri());
-                                            parsed++;
-                                        }
-                                        if (last == parsed) {
-                                            if (counter > 1) {
-                                                break;
-                                            }
-                                            counter++;
-                                        } else {
-                                            counter = 0;
-                                        }
-                                        last = parsed;
-                                        offset += 100;
-                                    }
-                                } catch (Exception e1) {
-                                    ConsoleLogging.Throwable(e1);
-                                }
+                                loadnew = true;
+                                TrackUtils.initializeLazyLoadingForPlaylists(
+                                     searchplaylistscrollpanel,
+                                     searchplaylistsongscache,
+                                        searchplaylisttable,
+                                        28,
+                                        searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2],
+                                        inProg,
+                                        loadnew
+                                );
+                                loadnew = false;
                                 break;
                             case "artist":
                                 try {
