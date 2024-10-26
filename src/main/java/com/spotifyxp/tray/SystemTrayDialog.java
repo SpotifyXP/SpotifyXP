@@ -89,14 +89,6 @@ public class SystemTrayDialog {
                         return;
                     }
 
-                    LookAndFeel originalLookAndFeel = UIManager.getLookAndFeel();
-                    try {
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException |
-                             IllegalAccessException ex) {
-                        ConsoleLogging.Throwable(ex);
-                    }
-
                     extendedDialog = new JDialog();
                     extendedDialog.setUndecorated(true);
                     extendedDialog.setAlwaysOnTop(true);
@@ -111,11 +103,6 @@ public class SystemTrayDialog {
                     extendedDialog.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
-                            try {
-                                UIManager.setLookAndFeel(originalLookAndFeel);
-                            } catch (UnsupportedLookAndFeelException ex) {
-                                throw new RuntimeException(ex);
-                            }
                             extendedSystemTray.onClose();
                             extendedDialog = null;
                         }

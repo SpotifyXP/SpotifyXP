@@ -42,7 +42,7 @@ public class BackgroundService implements ExtendedSystemTray {
         }
     }
 
-    EventSubscriber onNextTrack = new EventSubscriber() {
+    EventSubscriber onNextTrackLoaded = new EventSubscriber() {
         @Override
         public void run(Object... data) {
             titleAndText.setText(InstanceManager.getPlayer().getPlayer().currentMetadata().getName() + " - "
@@ -67,7 +67,7 @@ public class BackgroundService implements ExtendedSystemTray {
             titleAndText = new JTextField();
             titleAndText.setEditable(false);
 
-            Events.subscribe(SpotifyXPEvents.trackNext.getName(), onNextTrack);
+            Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), onNextTrackLoaded);
 
             titleAndText.setText(InstanceManager.getPlayer().getPlayer().currentMetadata().getName() + " - "
                     + InstanceManager.getPlayer().getPlayer().currentMetadata().getArtist());
@@ -130,7 +130,7 @@ public class BackgroundService implements ExtendedSystemTray {
 
     @Override
     public void onClose() {
-        Events.unsubscribe(SpotifyXPEvents.trackNext.getName(), onNextTrack);
+        Events.unsubscribe(SpotifyXPEvents.trackLoadFinished.getName(), onNextTrackLoaded);
         titleAndText = null;
     }
 }
