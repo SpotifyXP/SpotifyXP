@@ -87,6 +87,7 @@
  "ui.settings.pleaserestart": "Please restart SpotifyXP to apply the changes",
  "ui.settings.quality": "Select Quality",
  "ui.settings.disablecache": "Disable caching",
+ "ui.settings.disableautoqueue": "Disable auto queue",
  "ui.settings.theme": "Select Theme",
  "ui.settings.title": "SpotifyXP - Settings",
  "ui.settings.ui.label": "UI",

@@ -47,6 +47,7 @@ public class SettingsPanel extends JPanel {
     public static JLabel settingsplaybackselectqualitylabel;
     public static JRadioButton settingsturnoffspotifyconnect;
     public static JRadioButton settingsplaybackdisablecaching;
+    public static JRadioButton settingsplaybackdisableautoqueue;
     public static SettingsTable settingsTable;
 
     //Borders
@@ -195,6 +196,12 @@ public class SettingsPanel extends JPanel {
 
         playbackborder.add(settingsplaybackdisablecaching);
 
+        settingsplaybackdisableautoqueue = new JRadioButton(PublicValues.language.translate("ui.settings.disableautoqueue"));
+        settingsplaybackdisableautoqueue.setForeground(PublicValues.globalFontColor);
+        settingsplaybackdisableautoqueue.setBounds(100, 120, 220, 20);
+
+        playbackborder.add(settingsplaybackdisableautoqueue);
+
 
         settingsplaybackselectquality.setForeground(PublicValues.globalFontColor);
 
@@ -327,6 +334,7 @@ public class SettingsPanel extends JPanel {
         settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
         settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
         settingsplaybackdisablecaching.setSelected(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name));
+        settingsplaybackdisableautoqueue.setSelected(PublicValues.config.getBoolean(ConfigValues.disable_autoqueue.name));
 
         if (settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));

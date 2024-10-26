@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
@@ -76,6 +77,9 @@ public class TrackUtils {
     }
 
     public static void addAllToQueue(ArrayList<String> cache, DefTable addintable) {
+        if(PublicValues.config.getBoolean(ConfigValues.disable_autoqueue.name)) {
+            return;
+        }
         try {
             try {
                 if (!InstanceManager.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {

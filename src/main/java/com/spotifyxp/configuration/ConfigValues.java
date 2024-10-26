@@ -26,7 +26,9 @@ public enum ConfigValues {
     hideExceptions("general.exception.visibility", ConfigValueTypes.BOOLEAN, false),
     spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false),
     webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true),
-    cache_disabled("user.settings.cache.disabled", ConfigValueTypes.BOOLEAN, false),;
+    cache_disabled("user.settings.cache.disabled", ConfigValueTypes.BOOLEAN, false),
+    disable_autoqueue("user.settings.autoqueue.disabled", ConfigValueTypes.BOOLEAN, false);
+
     public final String name;
     public final ConfigValueTypes type;
     public final Object defaultValue;
