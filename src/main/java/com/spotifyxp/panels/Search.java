@@ -390,7 +390,7 @@ public class Search extends JPanel {
                                      searchplaylistscrollpanel,
                                      searchplaylistsongscache,
                                         searchplaylisttable,
-                                        28,
+                                        new int[] {28},
                                         searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2],
                                         inProg,
                                         loadnew

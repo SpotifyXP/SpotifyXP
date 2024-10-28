@@ -242,7 +242,7 @@ public class TrackUtils {
             JScrollPane scrollPane,
             ArrayList<String> uricache,
             DefTable table, 
-            int visibleCount,
+            int[] visibleCount,
             String playlistId,
             boolean[] inProg,
             boolean loadnew) {
@@ -250,16 +250,15 @@ public class TrackUtils {
             uricache.clear();
             ((DefaultTableModel) table.getModel()).setRowCount(0);
         }
-        final int[] globVisibleCount = {visibleCount};
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         try {
             int count = 0;
             int songTableHeight = scrollPane.getHeight();
-            int limitTrackHeight = table.getRowHeight() * visibleCount;
+            int limitTrackHeight = table.getRowHeight() * visibleCount[0];
             while (songTableHeight > limitTrackHeight) {
-                limitTrackHeight = table.getRowHeight() * (visibleCount + 1);
+                limitTrackHeight = table.getRowHeight() * (visibleCount[0] + 1);
             }
-            for (PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(playlistId).limit(visibleCount).build().execute().getItems()) {
+            for (PlaylistTrack track : InstanceManager.getSpotifyApi().getPlaylistsItems(playlistId).limit(visibleCount[0]).build().execute().getItems()) {
                 if (!uricache.contains(track.getTrack().getUri())) {
                     String a = TrackUtils.getArtists(InstanceManager.getSpotifyApi().getTrack(track.getTrack().getId()).build().execute().getArtists());
                     model.insertRow(count, new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
@@ -270,59 +269,63 @@ public class TrackUtils {
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
-        scrollPane.addMouseWheelListener(e -> {
-            if (!inProg[0]) {
-                inProg[0] = true;
-                BoundedRangeModel m = scrollPane.getVerticalScrollBar().getModel();
-                int extent = m.getExtent();
-                int maximum = m.getMaximum();
-                int value = m.getValue();
-                if (value + extent >= maximum / 4) {
-                    if (scrollPane.isVisible()) {
-                        Thread thread = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    int visibleCount = globVisibleCount[0];
-                                    int counter = 0;
-                                    int last = 0;
-                                    int parsed = 0;
-                                    while (parsed != visibleCount) {
-                                        PlaylistTrack[] track;
-                                        Paging<PlaylistTrack> playlist = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistId).limit(visibleCount).build().execute();
-                                        if (playlist.getTotal() <= uricache.size()) {
-                                            return;
-                                        }
-                                        track = playlist.getItems();
-                                        for (PlaylistTrack t : track) {
-                                            uricache.add(t.getTrack().getUri());
-                                            String a = TrackUtils.getArtists(InstanceManager.getSpotifyApi().getTrack(t.getTrack().getId()).build().execute().getArtists());
-                                            table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
-                                            parsed++;
-                                        }
-                                        if (parsed == last) {
-                                            if (counter > 1) {
-                                                break;
+        //ToDo: Add parameter for storing if the function should add a mouse listener
+        //FixMe: When the user changes load all tracks to enable, the mouse listener would be still loading tracks thus creating duplicates
+        if (scrollPane.getName() == null || !scrollPane.getName().equals("MouseListenerTrackUtilsActive")) { // <- This bad
+            scrollPane.setName("MouseListenerTrackUtilsActive"); // <- This bad
+            scrollPane.addMouseWheelListener(e -> {
+                if (!inProg[0]) {
+                    inProg[0] = true;
+                    BoundedRangeModel m = scrollPane.getVerticalScrollBar().getModel();
+                    int extent = m.getExtent();
+                    int maximum = m.getMaximum();
+                    int value = m.getValue();
+                    if (value + extent >= maximum / 4) {
+                        if (scrollPane.isVisible()) {
+                            Thread thread = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        int counter = 0;
+                                        int last = 0;
+                                        int parsed = 0;
+                                        while (parsed != visibleCount[0]) {
+                                            PlaylistTrack[] track;
+                                            Paging<PlaylistTrack> playlist = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistId).limit(visibleCount[0]).offset(table.getRowCount()).build().execute();
+                                            if (playlist.getTotal() <= uricache.size()) {
+                                                return;
                                             }
-                                            counter++;
-                                        } else {
-                                            counter = 0;
+                                            track = playlist.getItems();
+                                            for (PlaylistTrack t : track) {
+                                                uricache.add(t.getTrack().getUri());
+                                                String a = TrackUtils.getArtists(InstanceManager.getSpotifyApi().getTrack(t.getTrack().getId()).build().execute().getArtists());
+                                                table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
+                                                parsed++;
+                                            }
+                                            if (parsed == last) {
+                                                if (counter > 1) {
+                                                    break;
+                                                }
+                                                counter++;
+                                            } else {
+                                                counter = 0;
+                                            }
+                                            last = parsed;
                                         }
-                                        last = parsed;
+                                        inProg[0] = false;
+                                    } catch (Exception e) {
+                                        ConsoleLogging.error("Error loading playlist tracks!");
+                                        inProg[0] = false;
+                                        throw new RuntimeException(e);
                                     }
-                                    inProg[0] = false;
-                                } catch (Exception e) {
-                                    ConsoleLogging.error("Error loading playlist tracks!");
-                                    inProg[0] = false;
-                                    throw new RuntimeException(e);
                                 }
-                            }
-                        }, "Lazy load next");
-                        thread.start();
+                            }, "Lazy load next");
+                            thread.start();
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     public static String calculateFileSizeKb(IPlaylistItem track) {

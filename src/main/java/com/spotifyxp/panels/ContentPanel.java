@@ -353,7 +353,7 @@ public class ContentPanel extends JPanel {
                                 advancedscrollpanel,
                                 advanceduricache,
                                 advancedsongtable,
-                                28,
+                                new int[] {28},
                                 foruri.split(":")[2],
                                 inProg,
                                 loadnew

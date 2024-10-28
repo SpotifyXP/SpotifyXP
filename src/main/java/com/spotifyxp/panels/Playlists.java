@@ -144,7 +144,7 @@ public class Playlists extends JPanel {
                                 playlistssongsscroll,
                                 playlistssonguricache,
                                 playlistssongtable,
-                                28,
+                                new int[] {28},
                                 playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2],
                                 inProg,
                                 loadnew
