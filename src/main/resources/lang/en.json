@@ -88,6 +88,7 @@
  "ui.settings.quality": "Select Quality",
  "ui.settings.disablecache": "Disable caching",
  "ui.settings.disableautoqueue": "Disable auto queue",
+ "user.settings.load_all_tracks": "Load all tracks",
  "ui.settings.theme": "Select Theme",
  "ui.settings.title": "SpotifyXP - Settings",
  "ui.settings.ui.label": "UI",

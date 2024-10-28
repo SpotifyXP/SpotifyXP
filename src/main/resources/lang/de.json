@@ -91,6 +91,7 @@
  "ui.settings.quality": "Qualit\u00e4t ausw\u00e4hlen",
  "ui.settings.disablecache": "Puffer deaktivieren",
  "ui.settings.disableautoqueue": "Auto queue deaktivieren",
+ "user.settings.load_all_tracks": "Alle tracks laden",
  "ui.settings.theme": "Design ausw\u00e4hlen",
  "ui.settings.title": "SpotifyXP - Einstellungen",
  "ui.settings.ui.label": "UI",

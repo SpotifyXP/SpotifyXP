@@ -49,6 +49,7 @@ public class SettingsPanel extends JPanel {
     public static JRadioButton settingsplaybackdisablecaching;
     public static JRadioButton settingsplaybackdisableautoqueue;
     public static SettingsTable settingsTable;
+    public static JRadioButton settingsloadalltracks;
 
     //Borders
     public static JPanel browsersettingsborder;
@@ -152,15 +153,21 @@ public class SettingsPanel extends JPanel {
 
         settingsuidisableplayerstats.setForeground(PublicValues.globalFontColor);
 
+        settingsloadalltracks = new JRadioButton(PublicValues.language.translate(PublicValues.language.translate("user.settings.load_all_tracks")));
+        settingsloadalltracks.setForeground(PublicValues.globalFontColor);
+        settingsloadalltracks.setBounds(6, 78, 370, 23);
+
+        settingsuiborder.add(settingsloadalltracks);
+
         settingsuiselecttheme = new JComboBox();
         for (Theme theme : ThemeLoader.getAvailableThemes()) {
             ((DefaultComboBoxModel) settingsuiselecttheme.getModel()).addElement(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
         }
-        settingsuiselecttheme.setBounds(159, 85, 217, 30);
+        settingsuiselecttheme.setBounds(159, 110, 217, 30);
         settingsuiborder.add(settingsuiselecttheme);
 
         settingsuithemelabel = new JLabel(PublicValues.language.translate("ui.settings.theme"));
-        settingsuithemelabel.setBounds(6, 90, 151, 16);
+        settingsuithemelabel.setBounds(6, 115, 151, 16);
         settingsuiborder.add(settingsuithemelabel);
         settingsuithemelabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -227,18 +234,18 @@ public class SettingsPanel extends JPanel {
         }));
 
         settingslanguagelabel = new JLabel(PublicValues.language.translate("ui.settings.language"));
-        settingslanguagelabel.setBounds(6, 118, 370, 20);
+        settingslanguagelabel.setBounds(6, 140, 370, 20);
         settingslanguagelabel.setFont(new Font(settingslanguagelabel.getFont().getName(), Font.BOLD, settingslanguagelabel.getFont().getSize()));
         settingsuiborder.add(settingslanguagelabel);
 
         settingslanguagelabel.setForeground(PublicValues.globalFontColor);
 
         settingslanguageselect = new JComboBox();
-        settingslanguageselect.setBounds(159, 146, 217, 27);
+        settingslanguageselect.setBounds(159, 168, 217, 27);
         settingsuiborder.add(settingslanguageselect);
 
         settingslanguageselectlabel = new JLabel(PublicValues.language.translate("ui.settings.langselect"));
-        settingslanguageselectlabel.setBounds(6, 150, 140, 16);
+        settingslanguageselectlabel.setBounds(6, 172, 140, 16);
         settingsuiborder.add(settingslanguageselectlabel);
 
         settingslanguageselectlabel.setForeground(PublicValues.globalFontColor);
@@ -335,6 +342,7 @@ public class SettingsPanel extends JPanel {
         settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
         settingsplaybackdisablecaching.setSelected(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name));
         settingsplaybackdisableautoqueue.setSelected(PublicValues.config.getBoolean(ConfigValues.disable_autoqueue.name));
+        settingsloadalltracks.setSelected(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name));
 
         if (settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
             settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
@@ -357,6 +365,7 @@ public class SettingsPanel extends JPanel {
             PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
             PublicValues.config.write(ConfigValues.cache_disabled.name, settingsplaybackdisablecaching.isSelected());
             PublicValues.config.write(ConfigValues.disable_autoqueue.name, settingsplaybackdisableautoqueue.isSelected());
+            PublicValues.config.write(ConfigValues.load_all_tracks.name, settingsloadalltracks.isSelected());
             PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
             PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
             PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);

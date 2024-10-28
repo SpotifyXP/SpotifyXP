@@ -1,6 +1,7 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
@@ -104,49 +105,52 @@ public class Playlists extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    /*Thread thread = new Thread(() -> {
-                        playlistssonguricache.clear();
-                        ((DefaultTableModel) playlistssongtable.getModel()).setRowCount(0);
-                        try {
-                            int offset = 0;
-                            int parsed = 0;
-                            int counter = 0;
-                            int last = 0;
-                            int total = InstanceManager.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
-                            while (parsed != total) {
-                                Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
-                                for (PlaylistTrack track : ptracks.getItems()) {
-                                    ((DefaultTableModel) playlistssongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                    playlistssonguricache.add(track.getTrack().getUri());
-                                    parsed++;
-                                }
-                                if (last == parsed) {
-                                    if (counter > 1) {
-                                        break;
+                    if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
+                        Thread thread = new Thread(() -> {
+                            playlistssonguricache.clear();
+                            ((DefaultTableModel) playlistssongtable.getModel()).setRowCount(0);
+                            try {
+                                int offset = 0;
+                                int parsed = 0;
+                                int counter = 0;
+                                int last = 0;
+                                int total = InstanceManager.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
+                                while (parsed != total) {
+                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
+                                    for (PlaylistTrack track : ptracks.getItems()) {
+                                        ((DefaultTableModel) playlistssongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        playlistssonguricache.add(track.getTrack().getUri());
+                                        parsed++;
                                     }
-                                    counter++;
-                                } else {
-                                    counter = 0;
+                                    if (last == parsed) {
+                                        if (counter > 1) {
+                                            break;
+                                        }
+                                        counter++;
+                                    } else {
+                                        counter = 0;
+                                    }
+                                    last = parsed;
+                                    offset += 100;
                                 }
-                                last = parsed;
-                                offset += 100;
+                            } catch (Exception e1) {
+                                throw new RuntimeException(e1);
                             }
-                        } catch (Exception e1) {
-                            throw new RuntimeException(e1);
-                        }
-                    }, "Get playlist tracks");
-                    thread.start(); */
-                    loadnew = true;
-                    TrackUtils.initializeLazyLoadingForPlaylists(
-                            playlistssongsscroll,
-                            playlistssonguricache,
-                            playlistssongtable,
-                            28,
-                            playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2],
-                            inProg,
-                            loadnew
-                    );
-                    loadnew = false;
+                        }, "Get playlist tracks");
+                        thread.start();
+                    }else {
+                        loadnew = true;
+                        TrackUtils.initializeLazyLoadingForPlaylists(
+                                playlistssongsscroll,
+                                playlistssonguricache,
+                                playlistssongtable,
+                                28,
+                                playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2],
+                                inProg,
+                                loadnew
+                        );
+                        loadnew = false;
+                    }
                 }
             }
         }));

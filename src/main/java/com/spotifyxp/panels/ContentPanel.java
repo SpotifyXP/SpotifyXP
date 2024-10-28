@@ -314,16 +314,51 @@ public class ContentPanel extends JPanel {
             switch (contentType) {
                 case playlist:
                     currentView = Views.PLAYLIST;
-                    loadnew = true;
-                    TrackUtils.initializeLazyLoadingForPlaylists(
-                            advancedscrollpanel,
-                            advanceduricache,
-                            advancedsongtable,
-                            28,
-                            foruri.split(":")[2],
-                            inProg,
-                            loadnew
-                    );
+                    if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
+                        Thread thread = new Thread(() -> {
+                            advanceduricache.clear();
+                            ((DefaultTableModel)  advancedsongtable.getModel()).setRowCount(0);
+                            try {
+                                int offset = 0;
+                                int parsed = 0;
+                                int counter = 0;
+                                int last = 0;
+                                int total = InstanceManager.getSpotifyApi().getPlaylist(foruri.split(":")[2]).build().execute().getTracks().getTotal();
+                                while (parsed != total) {
+                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(foruri.split(":")[2]).offset(offset).limit(100).build().execute();
+                                    for (PlaylistTrack track : ptracks.getItems()) {
+                                        ((DefaultTableModel)  advancedsongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        advanceduricache.add(track.getTrack().getUri());
+                                        parsed++;
+                                    }
+                                    if (last == parsed) {
+                                        if (counter > 1) {
+                                            break;
+                                        }
+                                        counter++;
+                                    } else {
+                                        counter = 0;
+                                    }
+                                    last = parsed;
+                                    offset += 100;
+                                }
+                            } catch (Exception e1) {
+                                throw new RuntimeException(e1);
+                            }
+                        }, "Get playlist tracks");
+                        thread.start();
+                    }else {
+                        loadnew = true;
+                        TrackUtils.initializeLazyLoadingForPlaylists(
+                                advancedscrollpanel,
+                                advanceduricache,
+                                advancedsongtable,
+                                28,
+                                foruri.split(":")[2],
+                                inProg,
+                                loadnew
+                        );
+                    }
                     break;
                 case show:
                     currentView = Views.SHOW;

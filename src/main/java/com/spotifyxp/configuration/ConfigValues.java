@@ -27,7 +27,8 @@ public enum ConfigValues {
     spconnect("user.settings.spconnect", ConfigValueTypes.BOOLEAN, false),
     webinteface("user.settings.webinterface", ConfigValueTypes.BOOLEAN, true),
     cache_disabled("user.settings.cache.disabled", ConfigValueTypes.BOOLEAN, false),
-    disable_autoqueue("user.settings.autoqueue.disabled", ConfigValueTypes.BOOLEAN, false);
+    disable_autoqueue("user.settings.autoqueue.disabled", ConfigValueTypes.BOOLEAN, false),
+    load_all_tracks("user.settings.load_all_tracks", ConfigValueTypes.BOOLEAN, true);
 
     public final String name;
     public final ConfigValueTypes type;
