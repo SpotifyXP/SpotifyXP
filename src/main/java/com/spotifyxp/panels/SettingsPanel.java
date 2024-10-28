@@ -356,6 +356,7 @@ public class SettingsPanel extends JPanel {
             }
             PublicValues.config.write(ConfigValues.spconnect.name, settingsturnoffspotifyconnect.isSelected());
             PublicValues.config.write(ConfigValues.cache_disabled.name, settingsplaybackdisablecaching.isSelected());
+            PublicValues.config.write(ConfigValues.disable_autoqueue.name, settingsplaybackdisableautoqueue.isSelected());
             PublicValues.config.write(ConfigValues.language.name, settingslanguageselect.getModel().getSelectedItem().toString());
             PublicValues.config.write(ConfigValues.hideExceptions.name, settingsdisableexceptions.isSelected());
             PublicValues.config.write(ConfigValues.theme.name, settingsuiselecttheme.getModel().getSelectedItem().toString().split(" from ")[0]);
