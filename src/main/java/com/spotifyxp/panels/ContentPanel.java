@@ -72,6 +72,7 @@ public class ContentPanel extends JPanel {
     static LastTypes lastmenu = LastTypes.HotList;
     static boolean advancedSongPanelVisible = false;
     static boolean errorDisplayVisible = false;
+    public static SettingsPanel settingsPanel;
 
     public enum Views {
         HOME,
@@ -142,6 +143,8 @@ public class ContentPanel extends JPanel {
         createHome();
         SplashPanel.linfo.setText("Creating advancedPanel...");
         createAdvancedPanel();
+        SplashPanel.linfo.setText("Creating settingsPanel...");
+        createSettings();
         SplashPanel.linfo.setText("Adding window mouse listener...");
         addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
@@ -172,6 +175,10 @@ public class ContentPanel extends JPanel {
         updateTheme();
         SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelend"));
+    }
+
+    void createSettings() {
+        settingsPanel = new SettingsPanel();
     }
 
     @Override
@@ -729,7 +736,7 @@ public class ContentPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 JFrame dialog = new JFrame();
                 dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
-                dialog.getContentPane().add(new SettingsPanel());
+                dialog.getContentPane().add(settingsPanel);
                 dialog.setPreferredSize(new Dimension(422, 506));
                 dialog.setResizable(false);
                 dialog.setVisible(true);
