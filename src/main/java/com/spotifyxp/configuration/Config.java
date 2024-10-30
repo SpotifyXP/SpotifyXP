@@ -139,9 +139,10 @@ public class Config {
      * @param value Value of entry
      */
     public void write(String name, Object value) {
-        properties.put(name, value);
+        JSONProperties cloneOfProperties = new JSONProperties(properties.toString());
+        cloneOfProperties.put(name, value);
         try {
-            Files.write(Paths.get(PublicValues.configfilepath), properties.toString().getBytes(StandardCharsets.UTF_8));
+            Files.write(Paths.get(PublicValues.configfilepath), cloneOfProperties.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }
