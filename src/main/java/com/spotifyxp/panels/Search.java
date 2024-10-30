@@ -1,6 +1,7 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
@@ -385,17 +386,52 @@ public class Search extends JPanel {
                     Thread thread = new Thread(() -> {
                         switch (searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[1].toLowerCase()) {
                             case "playlist":
-                                loadnew = true;
-                                TrackUtils.initializeLazyLoadingForPlaylists(
-                                     searchplaylistscrollpanel,
-                                     searchplaylistsongscache,
-                                        searchplaylisttable,
-                                        new int[] {28},
-                                        searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2],
-                                        inProg,
-                                        loadnew
-                                );
-                                loadnew = false;
+                                if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
+                                    Thread playlistloadthread = new Thread(() -> {
+                                        searchplaylistsongscache.clear();
+                                        ((DefaultTableModel) searchplaylisttable.getModel()).setRowCount(0);
+                                        try {
+                                            int offset = 0;
+                                            int parsed = 0;
+                                            int counter = 0;
+                                            int last = 0;
+                                            int total = InstanceManager.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
+                                            while (parsed != total) {
+                                                Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
+                                                for (PlaylistTrack track : ptracks.getItems()) {
+                                                    ((DefaultTableModel) searchplaylisttable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                                    searchplaylistsongscache.add(track.getTrack().getUri());
+                                                    parsed++;
+                                                }
+                                                if (last == parsed) {
+                                                    if (counter > 1) {
+                                                        break;
+                                                    }
+                                                    counter++;
+                                                } else {
+                                                    counter = 0;
+                                                }
+                                                last = parsed;
+                                                offset += 100;
+                                            }
+                                        } catch (Exception e1) {
+                                            throw new RuntimeException(e1);
+                                        }
+                                    }, "Get playlist tracks");
+                                    playlistloadthread.start();
+                                }else {
+                                    loadnew = true;
+                                    TrackUtils.initializeLazyLoadingForPlaylists(
+                                            searchplaylistscrollpanel,
+                                            searchplaylistsongscache,
+                                            searchplaylisttable,
+                                            new int[]{28},
+                                            searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2],
+                                            inProg,
+                                            loadnew
+                                    );
+                                    loadnew = false;
+                                }
                                 break;
                             case "artist":
                                 try {
