@@ -1,6 +1,7 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -11,6 +12,7 @@ import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
+import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -21,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -333,19 +336,44 @@ public class SettingsPanel extends JPanel {
             ((DefaultComboBoxModel) settingslanguageselect.getModel()).addElement(s);
         }
 
-        settingslanguageselect.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.language.name));
-        settingsdisableexceptions.setSelected(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name));
-        settingsuidisableplayerstats.setSelected(PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name));
-        settingsbrowserpath.setText(PublicValues.config.getString(ConfigValues.mypalpath.name));
-        settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.theme.name));
-        settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
-        settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
-        settingsplaybackdisablecaching.setSelected(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name));
-        settingsplaybackdisableautoqueue.setSelected(PublicValues.config.getBoolean(ConfigValues.disable_autoqueue.name));
-        settingsloadalltracks.setSelected(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name));
+        Config.JSONProperties properties = null;
+        try {
+            properties = new Config.JSONProperties(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath)), Charset.defaultCharset()));
+        } catch (IOException e) {
+            GraphicalMessage.sorryErrorExit("Failed creating important directory");
+        }
 
-        if (settingslanguageselect.getModel().getSelectedItem().toString().equals(ConfigValues.language.name)) {
-            settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
+        if(properties == null) {
+            JOptionPane.showConfirmDialog(null, "Failed loading config from file! Using cached config", "Settings warning", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+            settingslanguageselect.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.language.name));
+            settingsdisableexceptions.setSelected(PublicValues.config.getBoolean(ConfigValues.hideExceptions.name));
+            settingsuidisableplayerstats.setSelected(PublicValues.config.getBoolean(ConfigValues.disableplayerstats.name));
+            settingsbrowserpath.setText(PublicValues.config.getString(ConfigValues.mypalpath.name));
+            settingsuiselecttheme.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.theme.name));
+            settingsplaybackselectquality.getModel().setSelectedItem(PublicValues.config.getString(ConfigValues.audioquality.name));
+            settingsturnoffspotifyconnect.setSelected(PublicValues.config.getBoolean(ConfigValues.spconnect.name));
+            settingsplaybackdisablecaching.setSelected(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name));
+            settingsplaybackdisableautoqueue.setSelected(PublicValues.config.getBoolean(ConfigValues.disable_autoqueue.name));
+            settingsloadalltracks.setSelected(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name));
+
+            if (settingslanguageselect.getModel().getSelectedItem().toString().equals(PublicValues.config.getString(ConfigValues.language.name))) {
+                settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
+            }
+        } else {
+            settingslanguageselect.getModel().setSelectedItem(properties.getString(ConfigValues.language.name));
+            settingsdisableexceptions.setSelected(properties.getBoolean(ConfigValues.hideExceptions.name));
+            settingsuidisableplayerstats.setSelected(properties.getBoolean(ConfigValues.disableplayerstats.name));
+            settingsbrowserpath.setText(properties.getString(ConfigValues.mypalpath.name));
+            settingsuiselecttheme.getModel().setSelectedItem(properties.getString(ConfigValues.theme.name));
+            settingsplaybackselectquality.getModel().setSelectedItem(properties.getString(ConfigValues.audioquality.name));
+            settingsturnoffspotifyconnect.setSelected(properties.getBoolean(ConfigValues.spconnect.name));
+            settingsplaybackdisablecaching.setSelected(properties.getBoolean(ConfigValues.cache_disabled.name));
+            settingsplaybackdisableautoqueue.setSelected(properties.getBoolean(ConfigValues.disable_autoqueue.name));
+            settingsloadalltracks.setSelected(properties.getBoolean(ConfigValues.load_all_tracks.name));
+
+            if (settingslanguageselect.getModel().getSelectedItem().toString().equals(properties.getString(ConfigValues.language.name))) {
+                settingslanguageselect.getModel().setSelectedItem(PublicValues.language.translate("ui.settings.nolang"));
+            }
         }
     }
 
@@ -380,6 +408,7 @@ public class SettingsPanel extends JPanel {
             PublicValues.config.write(ConfigValues.other_releaselinedelay.name, Integer.parseInt(releaselinedelay.getText()));
             PublicValues.config.write(ConfigValues.other_bypasssinkvolume.name, bypasssinkvolume.isSelected());
             PublicValues.config.write(ConfigValues.other_preferredlocale.name, preferredlocale.getText());
+            PublicValues.config.save();
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
         } catch (NumberFormatException e) {
             GraphicalMessage.sorryError("Failed to write settings");

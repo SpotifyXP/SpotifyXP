@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 public class Config {
-    private static class JSONProperties extends JSONObject {
+    public static class JSONProperties extends JSONObject {
         public JSONProperties() {
         }
 
@@ -31,6 +31,7 @@ public class Config {
     }
 
     JSONProperties properties;
+    JSONProperties modifiedAtRuntime;
 
     public Config() {
         properties = new JSONProperties();
@@ -63,6 +64,7 @@ public class Config {
         }
         try {
             properties = new JSONProperties(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath)), Charset.defaultCharset()));
+            modifiedAtRuntime = new JSONProperties(IOUtils.toString(Files.newInputStream(Paths.get(PublicValues.configfilepath)), Charset.defaultCharset()));
         } catch (IOException e) {
             GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }
@@ -139,10 +141,12 @@ public class Config {
      * @param value Value of entry
      */
     public void write(String name, Object value) {
-        JSONProperties cloneOfProperties = new JSONProperties(properties.toString());
-        cloneOfProperties.put(name, value);
+        modifiedAtRuntime.put(name, value);
+    }
+
+    public void save() {
         try {
-            Files.write(Paths.get(PublicValues.configfilepath), cloneOfProperties.toString().getBytes(StandardCharsets.UTF_8));
+            Files.write(Paths.get(PublicValues.configfilepath), modifiedAtRuntime.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             GraphicalMessage.sorryErrorExit("Failed creating important directory");
         }
