@@ -51,6 +51,7 @@ public class Search extends JPanel {
     private boolean excludeExplicit = false;
     private boolean[] inProg = {false};
     private boolean loadnew = false;
+    private Runnable lazyLoadingDeInit;
 
     public Search() {
         setBounds(0, 0, 784, 421);
@@ -421,7 +422,7 @@ public class Search extends JPanel {
                                     playlistloadthread.start();
                                 }else {
                                     loadnew = true;
-                                    TrackUtils.initializeLazyLoadingForPlaylists(
+                                    lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
                                             searchplaylistscrollpanel,
                                             searchplaylistsongscache,
                                             searchplaylisttable,
@@ -571,6 +572,10 @@ public class Search extends JPanel {
         searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow())));
         searchbackbutton.addActionListener(new AsyncActionListener(e -> {
             searchplaylistpanel.setVisible(false);
+            if(lazyLoadingDeInit != null) {
+                lazyLoadingDeInit.run();
+                lazyLoadingDeInit = null;
+            }
             if (ContentPanel.artistPanelVisible) {
                 ArtistPanel.contentPanel.setVisible(true);
             } else {

@@ -33,6 +33,7 @@ public class Playlists extends JPanel {
     public static final ArrayList<String> playlistssonguricache = new ArrayList<>();
     private boolean[] inProg = {false};
     private boolean loadnew = false;
+    private Runnable lazyLoadingDeInit;
 
 
     public Playlists() {
@@ -105,6 +106,10 @@ public class Playlists extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
+                    if(lazyLoadingDeInit != null) {
+                        lazyLoadingDeInit.run();
+                        lazyLoadingDeInit = null;
+                    }
                     if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
                         Thread thread = new Thread(() -> {
                             playlistssonguricache.clear();
@@ -140,7 +145,7 @@ public class Playlists extends JPanel {
                         thread.start();
                     }else {
                         loadnew = true;
-                        TrackUtils.initializeLazyLoadingForPlaylists(
+                        lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
                                 playlistssongsscroll,
                                 playlistssonguricache,
                                 playlistssongtable,

@@ -73,6 +73,7 @@ public class ContentPanel extends JPanel {
     static boolean advancedSongPanelVisible = false;
     static boolean errorDisplayVisible = false;
     public static SettingsPanel settingsPanel;
+    private static Runnable lazyLoadingDeInit;
 
     public enum Views {
         HOME,
@@ -356,7 +357,7 @@ public class ContentPanel extends JPanel {
                         thread.start();
                     }else {
                         loadnew = true;
-                        TrackUtils.initializeLazyLoadingForPlaylists(
+                        lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
                                 advancedscrollpanel,
                                 advanceduricache,
                                 advancedsongtable,
@@ -829,6 +830,10 @@ public class ContentPanel extends JPanel {
         advancedbackbutton.setForeground(PublicValues.globalFontColor);
         advancedsongpanel.setVisible(false);
         advancedbackbutton.addActionListener(new AsyncActionListener(e -> {
+            if(lazyLoadingDeInit != null) {
+                lazyLoadingDeInit.run();
+                lazyLoadingDeInit = null;
+            }
             advancedsongpanel.setVisible(false);
             homepanel.getComponent().setVisible(true);
             ContentPanel.enableTabSwitch();
