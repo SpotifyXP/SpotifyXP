@@ -6,7 +6,9 @@ import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.OAuth;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
+import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.PlayerConfiguration;
 import com.spotifyxp.dialogs.LoginDialog;
@@ -20,11 +22,73 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class PlayerUtils {
-    private LoginDialog dialog;
+    Session authViaZeroconf(Session.Configuration configuration, EventSubscriber cancelCallback) throws InterruptedException, ExecutionException {
+        CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
+        try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder(configuration)
+                .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
+                .setDeviceType(Connect.DeviceType.COMPUTER)
+                .setDeviceName(PublicValues.deviceName)
+                .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
+                .setCancelCallback(cancelCallback)
+                .setListenAll(true).create()) {
+            zeroconfServer.addSessionListener(new ZeroconfServer.SessionListener() {
+                @Override
+                public void sessionClosing(@NotNull Session var1) {
+                    ConsoleLogging.warning("sessionClosing in zeroconf server! Unimplemented");
+                }
+
+                @Override
+                public void sessionChanged(@NotNull Session var1) {
+                    sessionFuture.complete(var1);
+                    try {
+                        zeroconfServer.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                @Override
+                public void cancelled() {
+                    sessionFuture.complete(null);
+                }
+            });
+            synchronized (sessionFuture) {
+                return sessionFuture.get();
+            }
+        } catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            GraphicalMessage.sorryError("Failed to build player");
+            System.exit(0);
+        }
+        return null;
+    }
+
+    Session authViaOauth(Session.Configuration configuration, OAuth.CallbackURLReceiver receiver, EventSubscriber onCancelCallback) throws Session.SpotifyAuthenticationException, GeneralSecurityException, IOException, MercuryClient.MercuryException, CancellationException {
+        return new Session.Builder(configuration)
+                .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
+                .setDeviceType(Connect.DeviceType.COMPUTER)
+                .setDeviceName(PublicValues.deviceName)
+                .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
+                .oauth(receiver, onCancelCallback)
+                .create();
+    }
+
+    Session authViaStored(Session.Configuration configuration) throws IOException, Session.SpotifyAuthenticationException, GeneralSecurityException, MercuryClient.MercuryException {
+        return new Session.Builder(configuration)
+                .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
+                .setDeviceType(Connect.DeviceType.COMPUTER)
+                .setDeviceName(PublicValues.deviceName)
+                .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
+                .stored(new File(PublicValues.fileslocation, "credentials.json"))
+                .create();
+    }
 
     public Player buildPlayer() {
         PlayerConfiguration playerconfig = new PlayerConfiguration.Builder()
@@ -59,48 +123,14 @@ public class PlayerUtils {
         try {
             Session session = null;
             if (new File(PublicValues.fileslocation, "credentials.json").exists()) {
-                session = new Session.Builder(configuration)
-                        .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
-                        .setDeviceType(Connect.DeviceType.COMPUTER)
-                        .setDeviceName(PublicValues.deviceName)
-                        .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
-                        .stored(new File(PublicValues.fileslocation, "credentials.json"))
-                        .create();
+               session = authViaStored(configuration);
             } else {
-                if (dialog == null) {
-                    dialog = new LoginDialog();
-                    dialog.open();
-                }
-                CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
-                try (ZeroconfServer zeroconfServer = new ZeroconfServer.Builder(configuration)
-                        .setPreferredLocale(PublicValues.config.getString(ConfigValues.other_preferredlocale.name))
-                        .setDeviceType(Connect.DeviceType.COMPUTER)
-                        .setDeviceName(PublicValues.deviceName)
-                        .setDeviceId(Utils.randomHexString(new SecureRandom(), 40).toLowerCase())
-                        .setListenAll(true).create()) {
-                    zeroconfServer.addSessionListener(new ZeroconfServer.SessionListener() {
-                        @Override
-                        public void sessionClosing(@NotNull Session var1) {
-                            ConsoleLogging.warning("sessionClosing in zeroconf server! Unimplemented");
-                        }
-
-                        @Override
-                        public void sessionChanged(@NotNull Session var1) {
-                            sessionFuture.complete(var1);
-                        }
-                    });
-                    session = sessionFuture.get();
-                } catch (IOException e) {
-                    ConsoleLogging.Throwable(e);
-                    GraphicalMessage.sorryError("Failed to build player");
-                    System.exit(0);
-                }
+                session = authenticate(configuration);
             }
             Player player = new Player(playerconfig, session);
             PublicValues.session = session;
             Events.subscribe(SpotifyXPEvents.internetConnectionDropped.getName(), connectionDroppedListener());
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
-            if (dialog != null) dialog.close();
             return player;
         } catch (ConnectException | Session.SpotifyAuthenticationException | IllegalArgumentException e) {
             return buildPlayer();
@@ -112,6 +142,53 @@ public class PlayerUtils {
             System.exit(0);
         }
         return null;
+    }
+
+    Session authenticate(Session.Configuration configuration) throws ExecutionException, InterruptedException {
+        CompletableFuture<Session> sessionFuture = new CompletableFuture<>();
+        final Runnable[] cancelRunnable = new Runnable[1];
+        LoginDialog.open(
+                data -> {
+                    cancelRunnable[0].run();
+                },
+                data -> {
+                    Thread zeroconfthread = new Thread(() -> {
+                        try {
+                            Session session = authViaZeroconf(configuration, data2 -> {
+                                cancelRunnable[0] = (Runnable) data2[0];
+                            });
+                            sessionFuture.complete(session);
+                        }catch (Exception e) {
+                            sessionFuture.completeExceptionally(e);
+                        }
+                    });
+                    zeroconfthread.start();
+                },
+                data -> {
+                    cancelRunnable[0].run();
+                },
+                data -> {
+                    Thread oauthThread = new Thread(() -> {
+                        try {
+                            Session session = authViaOauth(configuration, callbackURL ->  {
+                                ((EventSubscriber) data[0]).run(callbackURL);
+                            }, data1 -> cancelRunnable[0] = (Runnable) data1[0]);
+                            sessionFuture.complete(session);
+                        }catch (Exception e) {
+                            sessionFuture.completeExceptionally(e);
+                        }
+                    });
+                    oauthThread.start();
+                }
+        );
+        synchronized (sessionFuture) {
+            Session session = sessionFuture.get();
+            if(session == null) {
+                return authenticate(configuration);
+            }
+            LoginDialog.close();
+            return sessionFuture.get();
+        }
     }
 
     EventSubscriber connectionReconnectedListener() {

@@ -31,8 +31,10 @@ import com.spotifyxp.deps.com.spotify.connectstate.Connect;
 import com.spotifyxp.deps.xyz.gianlu.librespot.ZeroconfServer;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.decoders.AudioQuality;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
+import com.spotifyxp.deps.xyz.gianlu.librespot.core.OAuth;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.TimeProvider;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -47,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 /**
@@ -393,6 +396,15 @@ public final class FileConfiguration {
             case STORED:
                 builder.stored();
                 break;
+            case OAUTH:
+                builder.oauth(new OAuth.CallbackURLReceiver() {
+                    @Override
+                    public void run(String callbackURL) {
+                        ConsoleLoggingModules.info("Open url this url to authenticate: " + callbackURL);
+                    }
+                }, data -> {
+                });
+                break;
             case ZEROCONF:
             default:
                 throw new IllegalArgumentException(authStrategy().name());
@@ -449,7 +461,7 @@ public final class FileConfiguration {
     }
 
     public enum AuthStrategy {
-        FACEBOOK, BLOB, USER_PASS, ZEROCONF, STORED
+        FACEBOOK, BLOB, USER_PASS, ZEROCONF, STORED, OAUTH
     }
 
     private final static class PropertiesFormat implements ConfigFormat<Config> {

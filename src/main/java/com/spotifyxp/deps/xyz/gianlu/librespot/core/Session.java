@@ -39,6 +39,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.ApiClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.dealer.DealerClient;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import okhttp3.Authenticator;
 import okhttp3.*;
@@ -69,6 +70,7 @@ import java.security.spec.RSAPublicKeySpec;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import static com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests.KEYMASTER_CLIENT_ID;
 
 /**
  * @author Gianlu
@@ -338,6 +340,10 @@ public final class Session implements Closeable {
      */
     private void authenticate(@NotNull Authentication.LoginCredentials credentials) throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
         authenticatePartial(credentials, false);
+
+        if (credentials.getTyp() == Authentication.AuthenticationType.AUTHENTICATION_SPOTIFY_TOKEN) {
+            reconnect();
+        }
 
         synchronized (authLock) {
             mercuryClient = new MercuryClient(this);
@@ -899,6 +905,7 @@ public final class Session implements Closeable {
      */
     public static class Builder extends AbsBuilder<Builder> {
         private Authentication.LoginCredentials loginCredentials = null;
+        private OAuth oAuth;
 
         public Builder(@NotNull Configuration conf) {
             super(conf);
@@ -967,6 +974,18 @@ public final class Session implements Closeable {
          */
         public Builder credentials(@NotNull Authentication.LoginCredentials credentials) {
             loginCredentials = credentials;
+            return this;
+        }
+
+        /**
+         * Authenticates via OAuth flow, will prompt to open a link in the browser. This locks until completion.
+         */
+        public Builder oauth(OAuth.CallbackURLReceiver receiver, EventSubscriber onCancelCallback) throws IOException {
+            try {
+                oAuth = new OAuth(KEYMASTER_CLIENT_ID, "http://127.0.0.1:5588/login", onCancelCallback);
+                loginCredentials = oAuth.flow(receiver);
+            } catch (InterruptedException ignored) {
+            }
             return this;
         }
 
@@ -1043,8 +1062,10 @@ public final class Session implements Closeable {
         /**
          * Creates a connected and fully authenticated {@link Session} object.
          */
-        @NotNull
-        public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException {
+        public Session create() throws IOException, GeneralSecurityException, SpotifyAuthenticationException, MercuryClient.MercuryException, CancellationException {
+            if (loginCredentials == null && oAuth != null && oAuth.wasCancelled()) {
+                return null;
+            }
             if (loginCredentials == null)
                 throw new IllegalStateException("You must select an authentication method.");
 

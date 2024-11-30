@@ -25,6 +25,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.DiffieHellman;
 import com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryClient;
 import com.spotifyxp.deps.xyz.gianlu.zeroconf.Service;
 import com.spotifyxp.deps.xyz.gianlu.zeroconf.Zeroconf;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.HttpUrl;
@@ -115,10 +116,18 @@ public class ZeroconfServer implements Closeable {
     private volatile Session session;
     private String connectingUsername = null;
 
-    private ZeroconfServer(@NotNull Inner inner, int listenPort, boolean listenAllInterfaces, String[] interfacesList) throws IOException {
+    private ZeroconfServer(@NotNull Inner inner, int listenPort, boolean listenAllInterfaces, String[] interfacesList, EventSubscriber cancelCallback) throws IOException {
         this.inner = inner;
         this.keys = new DiffieHellman(inner.random);
         this.sessionListeners = new ArrayList<>();
+
+        cancelCallback.run((Runnable) () -> {
+            try {
+                cancel();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         if (listenPort == -1)
             listenPort = inner.random.nextInt((MAX_PORT - MIN_PORT) + 1) + MIN_PORT;
@@ -406,6 +415,13 @@ public class ZeroconfServer implements Closeable {
         sessionListeners.remove(listener);
     }
 
+    public void cancel() throws IOException {
+        close();
+        for(SessionListener listener : sessionListeners) {
+            listener.cancelled();
+        }
+    }
+
     public interface SessionListener {
         /**
          * The session instance is going to be closed after this call.
@@ -420,12 +436,15 @@ public class ZeroconfServer implements Closeable {
          * @param session The new {@link Session}
          */
         void sessionChanged(@NotNull Session session);
+
+        void cancelled();
     }
 
     public static class Builder extends Session.AbsBuilder<Builder> {
         private boolean listenAll = true;
         private int listenPort = -1;
         private String[] listenInterfaces = null;
+        private EventSubscriber cancelCallback = null;
 
         public Builder(Session.@NotNull Configuration conf) {
             super(conf);
@@ -451,9 +470,14 @@ public class ZeroconfServer implements Closeable {
             return this;
         }
 
+        public Builder setCancelCallback(EventSubscriber cancelCallback) {
+            this.cancelCallback = cancelCallback;
+            return this;
+        }
+
         @NonNls
         public ZeroconfServer create() throws IOException {
-            return new ZeroconfServer(new Inner(deviceType, deviceName, deviceId, preferredLocale, conf), listenPort, listenAll, listenInterfaces);
+            return new ZeroconfServer(new Inner(deviceType, deviceName, deviceId, preferredLocale, conf), listenPort, listenAll, listenInterfaces, cancelCallback);
         }
     }
 

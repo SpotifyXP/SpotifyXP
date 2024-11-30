@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -65,19 +66,23 @@ public class ConnectionUtils {
     }
 
     public static void openBrowser(String url) throws URISyntaxException, IOException {
-        String browserpath = PublicValues.config.getString(ConfigValues.mypalpath.name);
+        String browserpath = "";
+        if(new File(PublicValues.fileslocation, "credentials.json").exists()) {
+            browserpath = PublicValues.config.getString(ConfigValues.mypalpath.name);
+            if(!browserpath.isEmpty()) {
+                ProcessBuilder builder = new ProcessBuilder("\"" + browserpath + "\"", url);
+                try {
+                    builder.start();
+                } catch (IOException e) {
+                    ConsoleLogging.Throwable(e);
+                }
+            }
+        }
         if (browserpath.isEmpty()) {
-            JOptionPane.showConfirmDialog(ContentPanel.frame, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
+            if(new File(PublicValues.fileslocation, "credentials.json").exists()) JOptionPane.showConfirmDialog(ContentPanel.frame, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().browse(new URI(url));
             }
-            return;
-        }
-        ProcessBuilder builder = new ProcessBuilder("\"" + browserpath + "\"", url);
-        try {
-            builder.start();
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
         }
     }
 }
