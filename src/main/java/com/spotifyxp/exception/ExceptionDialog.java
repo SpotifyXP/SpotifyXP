@@ -6,10 +6,14 @@ import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.ClipboardUtil;
-import com.spotifyxp.utils.Utils;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class ExceptionDialog {
     private final Throwable e;
@@ -28,6 +32,13 @@ public class ExceptionDialog {
      */
     public String getPreview() {
         return exceptiontext.getText();
+    }
+
+    public static String extractStackTrace(Throwable throwable) {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        throwable.printStackTrace(printWriter);
+        return stringWriter.toString();
     }
 
     /**
@@ -55,13 +66,10 @@ public class ExceptionDialog {
         contentPane.add(exceptionscrollpane);
 
         exceptionscrollpane.setViewportView(exceptiontext);
+        exceptiontext.setEditable(false);
 
-        if (exceptiontext.getText().isEmpty()) {
-            exceptiontext.setEditable(false);
-
-            for (StackTraceElement trace : e.getStackTrace()) {
-                exceptiontext.setText(exceptiontext.getText() + trace + "\n");
-            }
+        if (!exceptiontext.getText().contains(extractStackTrace(e))) {
+            exceptiontext.setText(extractStackTrace(e));
         }
 
         ContextMenu menu = new ContextMenu(contentPane, exceptiontext);
@@ -76,15 +84,14 @@ public class ExceptionDialog {
         frame.getContentPane().add(contentPane);
         frame.setPreferredSize(new Dimension(605, 439));
         frame.setVisible(true);
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                exceptionokbutton.setBounds(0, 377, e.getComponent().getWidth() - 10, 23);
+                exceptionscrollpane.setBounds(0, 37, e.getComponent().getWidth() - 10, 339);
+            }
+        });
         frame.pack();
-    }
-
-    public String getExcptionMessage() {
-        StringBuilder builder = new StringBuilder();
-        for (StackTraceElement element : e.getStackTrace()) {
-            builder.append(element.toString()).append("\n");
-        }
-        return builder.toString();
     }
 
     public String getAsFormattedText() {
@@ -94,9 +101,5 @@ public class ExceptionDialog {
             builder.append(element.toString()).append("\n");
         }
         return builder.toString();
-    }
-
-    public String getExceptionName() {
-        return Utils.getClassName(e.getClass());
     }
 }
