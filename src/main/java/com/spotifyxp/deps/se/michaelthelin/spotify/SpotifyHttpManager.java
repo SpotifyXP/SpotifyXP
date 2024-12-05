@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.net.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class SpotifyHttpManager implements IHttpManager {
 
@@ -245,15 +247,27 @@ public class SpotifyHttpManager implements IHttpManager {
         return delete(uri, headersMap, body);
     }
 
-    @SuppressWarnings("deprecation")
+    //ToDo: Remove this dirty hack
+    private int retries = 0;
     private Response execute(OkHttpClient httpClient, Request method) throws
             IOException {
         Response response;
         try {
             response = httpClient.newCall(method).execute();
         } catch (UnknownHostException e) {
-            return null;
+            // No internet?
+            if(retries > 30) {
+                throw new IOException(e.getMessage());
+            }
+            try {
+                Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            retries++;
+            return execute(httpClient, method);
         }
+        retries = 0;
         return response;
     }
 
