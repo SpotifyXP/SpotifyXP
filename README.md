@@ -1,5 +1,6 @@
 <h2>New login method info:</h2>
 <a>SpotifyXP will now hang on "creating api...". Open a modern spotify client and select SpotifyXP under devices and SpotifyXP should authenticate with spotify</a>
+<h2>All releases of SpotifyXP are under the Actions Tab.</h2>
 <p align="center">
   <a href="https://github.com/SpotifyXP/SpotifyXP">
     <img src="https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/spotifyxp.png" alt="Logo" width="80" height="80">
@@ -93,7 +94,7 @@ SpotifyXP is build with
 
 ### Install instructions
 
-1. Download the Stable version under Releases or download the nightly version under the Actions tab
+1. ~~Download the Stable version under Releases or~~ Download the nightly version under the Actions tab
 2. Double click **SpotifyXP.jar** or run this in the directory where **SpotifyXP.jar** is downloaded: <pre>java -jar SpotifyXP.jar</pre>
 
 ## Usage
