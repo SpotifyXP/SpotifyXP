@@ -247,28 +247,9 @@ public class SpotifyHttpManager implements IHttpManager {
         return delete(uri, headersMap, body);
     }
 
-    //ToDo: Remove this dirty hack
-    private int retries = 0;
     private Response execute(OkHttpClient httpClient, Request method) throws
             IOException {
-        Response response;
-        try {
-            response = httpClient.newCall(method).execute();
-        } catch (UnknownHostException e) {
-            // No internet?
-            if(retries > 30) {
-                throw new IOException(e.getMessage());
-            }
-            try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-            retries++;
-            return execute(httpClient, method);
-        }
-        retries = 0;
-        return response;
+        return httpClient.newCall(method).execute();
     }
 
     public static boolean triggerTokenExpire = false;
