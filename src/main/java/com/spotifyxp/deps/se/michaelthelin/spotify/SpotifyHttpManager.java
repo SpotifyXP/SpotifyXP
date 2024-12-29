@@ -1,26 +1,22 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
-import com.spotifyxp.enums.HttpStatusCodes;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.manager.InstanceManager;
 import kotlin.Pair;
-import okhttp3.Authenticator;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.*;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 public class SpotifyHttpManager implements IHttpManager {
 
@@ -252,8 +248,6 @@ public class SpotifyHttpManager implements IHttpManager {
         return httpClient.newCall(method).execute();
     }
 
-    public static boolean triggerTokenExpire = false;
-
     private String getResponseBody(Response httpResponse, String uri, String method, Request base, RequestBody body) throws
             IOException {
 
@@ -285,13 +279,6 @@ public class SpotifyHttpManager implements IHttpManager {
             }
         }
 
-        if (triggerTokenExpire) {
-            httpResponse = new Response.Builder()
-                    .priorResponse(httpResponse)
-                    .code(HttpStatusCodes.UNAUTHORIZED.getValue())
-                    .build();
-        }
-
         ConsoleLoggingModules.debug(
                 "The http response has status code " + httpResponse.code());
 
@@ -299,23 +286,22 @@ public class SpotifyHttpManager implements IHttpManager {
             case 400:
                 throw new BadRequestException(errorMessage);
             case 401:
+
+
+                // Here
+
+
+
                 //Refresh token
                 Events.triggerEvent(SpotifyXPEvents.apikeyrefresh.getName());
-                base = base.newBuilder().removeHeader("Authorization")
-                        .addHeader("Authorization", "Bearer " + InstanceManager.getPkce().getToken())
-                        .build();
                 switch (method) {
                     case "get":
-                        triggerTokenExpire = false;
                         return get(URI.create(uri), base.headers());
                     case "post":
-                        triggerTokenExpire = false;
                         return post(URI.create(uri), base.headers(), body);
                     case "put":
-                        triggerTokenExpire = false;
                         return put(URI.create(uri), base.headers(), body);
                     case "delete":
-                        triggerTokenExpire = false;
                         return delete(URI.create(uri), base.headers(), body);
                 }
             case 403:

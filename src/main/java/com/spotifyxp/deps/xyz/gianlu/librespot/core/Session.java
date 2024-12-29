@@ -70,6 +70,7 @@ import java.security.spec.RSAPublicKeySpec;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import static com.spotifyxp.deps.xyz.gianlu.librespot.mercury.MercuryRequests.KEYMASTER_CLIENT_ID;
 
 /**

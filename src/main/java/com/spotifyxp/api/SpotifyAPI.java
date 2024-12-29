@@ -1,7 +1,6 @@
 package com.spotifyxp.api;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
@@ -19,27 +18,14 @@ import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
 public class SpotifyAPI {
-    public static int waitAmount = 4;
-    static SpotifyApi spotifyApi = null;
-
     public SpotifyAPI() {
         Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), new EventSubscriber() {
             @Override
             public void run(Object... data) {
                 if (PublicValues.spotifyplayer == null) return;
-                spotifyApi.setAccessToken(Token.getDefaultToken());
+                InstanceManager.getSpotifyApi().setAccessToken(Token.getDefaultToken());
             }
         });
-    }
-
-    /**
-     * Injects a SpotifyApi instance (For debugging)
-     *
-     * @param api an instance of the class SpotifyApi
-     * @see SpotifyApi
-     */
-    public void setSpotifyApi(SpotifyApi api) {
-        spotifyApi = api;
     }
 
     /**
