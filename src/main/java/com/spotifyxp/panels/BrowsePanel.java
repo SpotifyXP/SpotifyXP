@@ -34,14 +34,14 @@ public class BrowsePanel extends JScrollPane implements View {
         contentPanel = new JPanel();
         setViewportView(contentPanel);
         contentPanel.setLayout(null);
-        try {
-            spotifyBrowse = UnofficialSpotifyAPI.getSpotifyBrowse();
-        }catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                try {
+                    spotifyBrowse = UnofficialSpotifyAPI.getSpotifyBrowse();
+                }catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 if(PublicValues.config.getInt(ConfigValues.browse_view_style.name) == 1) {
                     displayBrowseTable();
                 } else {
