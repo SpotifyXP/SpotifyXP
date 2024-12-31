@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class HotList extends JPanel {
+public class HotList extends JPanel implements View {
     public static DefTable hotlistplayliststable;
     public static DefTable hotlistsongstable;
     public static JPanel hotlistplaylistspanel;
@@ -36,6 +36,7 @@ public class HotList extends JPanel {
         setBounds(0, 0, 784, 421);
         ContentPanel.tabpanel.add(this);
         setLayout(null);
+        setVisible(false);
         hotlistplaylistspanel = new JPanel();
         hotlistplaylistspanel.setBounds(0, 0, 259, 421);
         add(hotlistplaylistspanel);
@@ -151,5 +152,19 @@ public class HotList extends JPanel {
         count = Math.min(count, copyList.size());
         // Create a sublist containing the first 'count' elements from the shuffled list.
         return new String[]{copyList.subList(0, count).toString().replaceAll("\\[", "").replaceAll("]", "")};
+    }
+
+    @Override
+    public void makeVisible() {
+        if (HotList.hotlistplayliststable.getRowCount() == 0) {
+            Thread t = new Thread(HotList::fetchHotlist, "Get HotList");
+            t.start();
+        }
+        setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        setVisible(false);
     }
 }

@@ -17,7 +17,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Library extends JPanel {
+public class Library extends JPanel implements View {
     public static DefTable librarysonglist;
     public static JScrollPane libraryscrollpane;
     public static DefaultTableModel librarydefaulttablemodel;
@@ -61,6 +61,7 @@ public class Library extends JPanel {
     public Library() {
         setBounds(0, 0, 784, 421);
         setLayout(null);
+        setVisible(false);
         libraryscrollpane = new JScrollPane();
         libraryscrollpane.setBounds(0, 0, 784, 421);
         add(libraryscrollpane);
@@ -73,7 +74,7 @@ public class Library extends JPanel {
                 int maximum = m.getMaximum();
                 int value = m.getValue();
                 if (value + extent >= maximum / 2) {
-                    if (ContentPanel.libraryVisble) {
+                    if (ContentPanel.currentView == Views.LIBRARY) {
                         if (!libraryLoadingInProgress) {
                             Thread thread = new Thread(Library::loadNext, "Library load next");
                             thread.start();
@@ -170,5 +171,15 @@ public class Library extends JPanel {
         } catch (IOException e) {
             ConsoleLogging.Throwable(e);
         }
+    }
+
+    @Override
+    public void makeVisible() {
+        setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        setVisible(false);
     }
 }

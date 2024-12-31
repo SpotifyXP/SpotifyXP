@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class HomePanel {
+public class HomePanel implements View {
     JScrollPane scrollholder;
     JPanel content;
 
@@ -44,6 +44,7 @@ public class HomePanel {
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollholder.setSize(784, 421);
+        scrollholder.setVisible(false);
         Thread t = new Thread(this::initializeContent, "Get home");
         t.start();
     }
@@ -123,11 +124,8 @@ public class HomePanel {
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
-                                ArtistPanel.popularuricache.clear();
-                                ArtistPanel.albumuricache.clear();
-                                ((DefaultTableModel) ArtistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                                ((DefaultTableModel) ArtistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                                ArtistPanel.artisttitle.setText("");
+                                ContentPanel.artistPanel.reset();
+                                ContentPanel.switchView(Views.ARTIST);
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(id).build().execute();
                                     try {
@@ -151,17 +149,13 @@ public class HomePanel {
                                 } catch (IOException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
-                                ContentPanel.artistPanel.openPanel();
-                                ArtistPanel.isFirst = true;
-                                ArtistPanel.contentPanel.setVisible(true);
-                                ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
                             case episode:
                                 PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             default:
-                                ContentPanel.showAdvancedSongPanel(uri, ct);
+                                ContentPanel.trackPanel.open(uri, ct);
                                 break;
                         }
                     } catch (Exception ignored) {
@@ -229,11 +223,8 @@ public class HomePanel {
                                 break;
                             case artist:
                                 scrollholder.setVisible(false);
-                                ArtistPanel.popularuricache.clear();
-                                ArtistPanel.albumuricache.clear();
-                                ((DefaultTableModel) ArtistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                                ((DefaultTableModel) ArtistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                                ArtistPanel.artisttitle.setText("");
+                                ContentPanel.artistPanel.reset();
+                                ContentPanel.switchView(Views.ARTIST);
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(id).build().execute();
                                     try {
@@ -257,13 +248,9 @@ public class HomePanel {
                                 } catch (IOException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
-                                ContentPanel.artistPanel.openPanel();
-                                ArtistPanel.isFirst = true;
-                                ArtistPanel.contentPanel.setVisible(true);
-                                ContentPanel.artistPanelBackButton.setVisible(true);
                                 break;
                             default:
-                                ContentPanel.showAdvancedSongPanel(uri, ct);
+                                ContentPanel.trackPanel.open(uri, ct);
                                 break;
                         }
                     } catch (Exception ignored) {
@@ -307,5 +294,15 @@ public class HomePanel {
 
     public JPanel getPanel() {
         return content;
+    }
+
+    @Override
+    public void makeVisible() {
+        scrollholder.setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        scrollholder.setVisible(false);
     }
 }

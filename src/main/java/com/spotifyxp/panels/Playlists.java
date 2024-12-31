@@ -3,6 +3,7 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dialogs.AddPlaylistDialog;
@@ -22,7 +23,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Playlists extends JPanel {
+public class Playlists extends JPanel implements View {
     public static JPanel playlistsplaylistslist;
     public static JScrollPane playlistsplaylistsscroll;
     public static JPanel playlistssonglist;
@@ -40,6 +41,7 @@ public class Playlists extends JPanel {
         setBounds(0, 0, 784, 421);
         ContentPanel.tabpanel.add(this);
         setLayout(null);
+        setVisible(false);
         playlistsplaylistslist = new JPanel();
         playlistsplaylistslist.setBounds(0, 0, 259, 421);
         add(playlistsplaylistslist);
@@ -168,5 +170,47 @@ public class Playlists extends JPanel {
                 }
             }
         }));
+    }
+
+    @Override
+    public void makeVisible() {
+        Thread thread = new Thread(() -> {
+            try {
+                int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
+                int parsed = 0;
+                int counter = 0;
+                int last = 0;
+                int offset = 0;
+                while (parsed != total) {
+                    PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
+                    for (PlaylistSimplified simplified : playlists) {
+                        Playlists.playlistsuricache.add(simplified.getUri());
+                        ((DefaultTableModel) Playlists.playlistsplayliststable.getModel()).addRow(new Object[]{simplified.getName()});
+                        parsed++;
+                    }
+                    if (parsed == last) {
+                        if (counter > 1) {
+                            break;
+                        }
+                        counter++;
+                    } else {
+                        counter = 0;
+                    }
+                    last = parsed;
+                    offset += 50;
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }, "Playlists fetcher");
+        if (Playlists.playlistsplayliststable.getModel().getRowCount() == 0) {
+            thread.start();
+        }
+        setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        setVisible(false);
     }
 }

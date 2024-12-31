@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Search extends JPanel {
+public class Search extends JPanel implements View {
     public static JPanel searchplaylistpanel;
     public static JButton searchbackbutton;
     public static DefTable searchplaylisttable;
@@ -57,6 +57,7 @@ public class Search extends JPanel {
         setBounds(0, 0, 784, 421);
         ContentPanel.tabpanel.add(this);
         setLayout(null);
+        setVisible(false);
         searchfieldspanel = new JPanel();
         searchfieldspanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
         searchfieldspanel.setBounds(0, 0, 784, 128);
@@ -370,17 +371,8 @@ public class Search extends JPanel {
                             ((DefaultTableModel) searchplaylisttable.getModel()).setRowCount(0);
                             break;
                         case "artist":
-                            ArtistPanel.popularuricache.clear();
-                            ArtistPanel.albumuricache.clear();
-                            ((DefaultTableModel) ArtistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                            ((DefaultTableModel) ArtistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                            ArtistPanel.artisttitle.setText("");
-                            ContentPanel.artistPanel.openPanel();
-                            ArtistPanel.isFirst = true;
-                            ArtistPanel.contentPanel.setVisible(true);
-                            ContentPanel.artistPanelBackButton.setVisible(true);
-                            ContentPanel.artistPanelVisible = true;
-                            setVisible(false);
+                            ContentPanel.artistPanel.reset();
+                            ContentPanel.switchView(Views.ARTIST);
                             ContentPanel.blockTabSwitch();
                             break;
                     }
@@ -576,13 +568,13 @@ public class Search extends JPanel {
                 lazyLoadingDeInit.run();
                 lazyLoadingDeInit = null;
             }
-            if (ContentPanel.artistPanelVisible) {
+            if (ContentPanel.currentView == Views.ARTIST) {
                 ArtistPanel.contentPanel.setVisible(true);
             } else {
                 ContentPanel.searchpanel.setVisible(true);
             }
             PublicValues.contentPanel.setVisible(true);
-            if (!ContentPanel.artistPanelVisible) {
+            if (ContentPanel.currentView != Views.ARTIST) {
                 ContentPanel.enableTabSwitch();
             }
         }));
@@ -596,5 +588,15 @@ public class Search extends JPanel {
             }
         });
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow())));
+    }
+
+    @Override
+    public void makeVisible() {
+        setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        setVisible(false);
     }
 }

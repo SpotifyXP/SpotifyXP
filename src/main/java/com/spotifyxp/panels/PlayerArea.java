@@ -230,6 +230,7 @@ public class PlayerArea extends JPanel {
         add(playerplaynextbutton);
         playercurrenttime = new JSlider();
         playercurrenttime.setValue(0);
+        playercurrenttime.setMaximum(381);
         playercurrenttime.setBounds(306, 54, 200, 13);
         add(playercurrenttime);
         playerplaytime = new JLabel("00:00");
@@ -384,7 +385,7 @@ public class PlayerArea extends JPanel {
     @SuppressWarnings("ConstantConditions")
     public static void saveCurrentState() {
         try {
-            Objects.requireNonNull(PublicValues.spotifyplayer.currentPlayable());
+            if(PublicValues.spotifyplayer.currentPlayable() == null) return;
             List<PlayerState.PlayableUri> playableQueue = new ArrayList<>();
             List<ContextTrackOuterClass.ContextTrack> playableQueueTracks = PublicValues.spotifyplayer.tracks(true).next;
             for (int playableQueueTracksIndex = 0; playableQueueTracksIndex < playableQueueTracks.size(); playableQueueTracksIndex++) {

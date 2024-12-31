@@ -8,7 +8,7 @@ import javax.swing.border.TitledBorder;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class Feedback extends JPanel {
+public class Feedback extends JPanel implements View {
     public static JLabel feedbackmakesurelabel;
     public static JPanel feedbackissuepanel;
     public static JButton feedbackviewissuesbutton;
@@ -19,6 +19,7 @@ public class Feedback extends JPanel {
         setBounds(0, 0, 784, 421);
         ContentPanel.tabpanel.add(this);
         setLayout(null);
+        setVisible(false);
         feedbackmakesurelabel = new JLabel(PublicValues.language.translate("ui.feedback.makesure"));
         feedbackmakesurelabel.setBounds(10, 23, 690, 25);
         add(feedbackmakesurelabel);
@@ -61,5 +62,15 @@ public class Feedback extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
+    }
+
+    @Override
+    public void makeVisible() {
+        setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        setVisible(false);
     }
 }

@@ -309,6 +309,10 @@ public final class ApiClient {
         }
     }
 
+    public String getClientToken() {
+        return clientToken;
+    }
+
     @NotNull
     private ClientToken.ClientTokenResponse clientToken() throws IOException {
         ClientToken.ClientTokenRequest protoReq = ClientToken.ClientTokenRequest.newBuilder()

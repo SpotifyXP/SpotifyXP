@@ -8,10 +8,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
-import com.spotifyxp.utils.AsyncMouseListener;
-import com.spotifyxp.utils.ClipboardUtil;
-import com.spotifyxp.utils.GraphicalMessage;
-import com.spotifyxp.utils.TrackUtils;
+import com.spotifyxp.utils.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @SuppressWarnings("BusyWait")
-public class ArtistPanel extends JPanel {
+public class ArtistPanel extends JPanel implements View {
     public static DefTable artistpopularsonglist;
     public static DefTable artistalbumalbumtable;
     public static JScrollPane artistpopularscrollpane;
@@ -33,15 +30,25 @@ public class ArtistPanel extends JPanel {
     public static JImagePanel artistimage;
     public static ContextMenu artistpopularsonglistcontextmenu;
     public static ContextMenu artistalbumcontextmenu;
-    public static boolean isFirst = false;
+    public static boolean isLastArtist = false;
+    public static JButton backButton;
 
     public ArtistPanel() {
         contentPanel = new JScrollPane();
         contentPanel.setViewportView(this);
+        contentPanel.setVisible(false);
         setLayout(null);
         setPreferredSize(new Dimension(800, 1005));
 
-        JLabel artistpopularlabel = new JLabel("Popular");
+        backButton = new JButton(PublicValues.language.translate("ui.back"));
+        backButton.setBounds(0, 0, 89, 23);
+        backButton.setForeground(PublicValues.globalFontColor);
+        backButton.addActionListener(new AsyncActionListener(e -> {
+            ContentPanel.switchView(ContentPanel.lastView);
+        }));
+        add(backButton);
+
+        JLabel artistpopularlabel = new JLabel("Popular"); //ToDo: Translate
         artistpopularlabel.setBounds(5, 291, 137, 27);
         add(artistpopularlabel);
 
@@ -66,7 +73,7 @@ public class ArtistPanel extends JPanel {
 
         contentPanel.getVerticalScrollBar().setUnitIncrement(20);
 
-        JLabel artistalbumlabel = new JLabel("Albums");
+        JLabel artistalbumlabel = new JLabel("Albums"); //ToDo: Translate
         artistalbumlabel.setBounds(5, 642, 102, 14);
         add(artistalbumlabel);
 
@@ -98,7 +105,7 @@ public class ArtistPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    ContentPanel.isLastArtist = true;
+                    isLastArtist = true;
                     ArtistPanel.contentPanel.setVisible(false);
                     Search.searchplaylistpanel.setVisible(true);
                     Search.searchplaylistsongscache.clear();
@@ -155,11 +162,30 @@ public class ArtistPanel extends JPanel {
     public static ArrayList<Runnable> runWhenOpeningArtistPanel = new ArrayList<>();
 
     public void openPanel() {
-        ContentPanel.artistPanelVisible = true;
         for (Runnable runnable : runWhenOpeningArtistPanel) {
             runnable.run();
         }
         ContentPanel.blockTabSwitch();
         javax.swing.SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
+    }
+
+    public void reset() {
+        popularuricache.clear();
+        albumuricache.clear();
+        ((DefaultTableModel) artistalbumalbumtable.getModel()).setRowCount(0);
+        ((DefaultTableModel) artistpopularsonglist.getModel()).setRowCount(0);
+        artisttitle.setText("");
+    }
+
+    @Override
+    public void makeVisible() {
+        contentPanel.setVisible(true);
+        openPanel();
+    }
+
+    @Override
+    public void makeInvisible() {
+        contentPanel.setVisible(false);
+        ContentPanel.enableTabSwitch();
     }
 }

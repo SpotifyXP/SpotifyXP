@@ -5,14 +5,16 @@ import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Queue extends JPanel {
+public class Queue extends JPanel implements View {
     public static JButton queueremovebutton;
     public static JScrollPane queuescrollpane;
     public static JList<String> queuelist;
@@ -24,6 +26,7 @@ public class Queue extends JPanel {
         setBounds(0, 0, 784, 421);
         ContentPanel.tabpanel.add(this);
         setLayout(null);
+        setVisible(false);
         queueremovebutton = new JButton(PublicValues.language.translate("ui.queue.remove"));
         queueremovebutton.setBounds(0, 398, 784, 23);
         add(queueremovebutton);
@@ -80,5 +83,34 @@ public class Queue extends JPanel {
             queueuricache.remove(queueuricache.get(queuelist.getSelectedIndex()));
             ((DefaultListModel<?>) queuelist.getModel()).remove(queuelist.getSelectedIndex());
         }));
+    }
+
+    @Override
+    public void makeVisible() {
+        if (Queue.queuelistmodel.isEmpty()) {
+            ((DefaultListModel<?>) Queue.queuelist.getModel()).removeAllElements();
+            Queue.queueuricache.clear();
+            Thread queueworker = new Thread(() -> {
+                try {
+                    for (ContextTrackOuterClass.ContextTrack track : InstanceManager.getPlayer().getPlayer().tracks(true).next) {
+                        Track t = InstanceManager.getSpotifyApi().getTrack(track.getUri().split(":")[2]).build().execute();
+                        String a = TrackUtils.getArtists(t.getArtists());
+                        Queue.queueuricache.add(track.getUri());
+                        Queue.queuelistmodel.addElement(t.getName() + " - " + a);
+                    }
+                } catch (IOException ex) {
+                    ConsoleLogging.Throwable(ex);
+                } catch (NullPointerException exc) {
+                    // Nothing in queue
+                }
+            }, "Queue worker (ContentPanel)");
+            queueworker.start();
+        }
+        setVisible(true);
+    }
+
+    @Override
+    public void makeInvisible() {
+        setVisible(false);
     }
 }

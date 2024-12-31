@@ -19,6 +19,7 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.*;
+import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -31,6 +32,7 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -39,56 +41,28 @@ public class ContentPanel extends JPanel {
     public static Search searchpanel;
     public static Library librarypanel;
     public static Playlists playlistspanel;
+    public static BrowsePanel browsepanel;
     public static HomePanel homepanel;
     public static HotList hotlistpanel;
     public static Queue queuepanel;
     public static Feedback feedbackpanel;
     public static ArtistPanel artistPanel;
     public static JPanel tabpanel;
-    public static boolean searchVisible = false;
-    public static boolean playlistsVisible = false;
-    public static boolean feedbackVisible = false;
-    public static boolean queueVisible = false;
-    public static boolean hotlistVisible = false;
-    public static boolean libraryVisble = false;
-    public static boolean artistPanelVisible = false;
-    public static boolean homeVisible = false;
     public static final JTabbedPane legacyswitch = new JTabbedPane();
     public static final JMenuBar bar = new JMenuBar();
-    public static boolean isLastArtist = false;
-    public static DefTable advancedsongtable;
-    public static JButton artistPanelBackButton;
-    public static JPanel advancedsongpanel;
-    public static JScrollPane advancedscrollpanel;
-    public static JButton advancedbackbutton;
     public static JButton errorDisplay;
     public static ArrayList<ExceptionDialog> errorQueue;
-    public static final ArrayList<String> advanceduricache = new ArrayList<>();
     public static boolean pressedCTRL = false;
     public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static Views currentView = Views.HOME; //The view on start is home
-    public static String advancedSongPanelUri;
+    public static Views lastView = Views.HOME;
+    public static View currentViewPanel;
+    public static View lastViewPanel;
     static boolean steamdeck = false;
-    static LastTypes lastmenu = LastTypes.HotList;
-    static boolean advancedSongPanelVisible = false;
     static boolean errorDisplayVisible = false;
     public static SettingsPanel settingsPanel;
-    private static Runnable lazyLoadingDeInit;
-
-    public enum Views {
-        HOME,
-        PLAYLISTS,
-        LIBRARY,
-        SEARCH,
-        HOTLIST,
-        QUEUE,
-        FEEDBACK,
-        PLAYLIST,
-        SHOW,
-        ALBUM,
-        ARTIST,
-        OTHER
-    }
+    public static TrackPanel trackPanel;
+    public static SpotifySectionPanel sectionPanel;
 
     static class TabEntry {
         public String title;
@@ -140,10 +114,14 @@ public class ContentPanel extends JPanel {
         createSearch();
         SplashPanel.linfo.setText("Creating artistPanel...");
         createArtistPanel();
+        SplashPanel.linfo.setText("Creating browse...");
+        createBrowse();
+        SplashPanel.linfo.setText("Creating browse section...");
+        createSectionPanel();
         SplashPanel.linfo.setText("Creating home...");
         createHome();
-        SplashPanel.linfo.setText("Creating advancedPanel...");
-        createAdvancedPanel();
+        SplashPanel.linfo.setText("Creating track panel...");
+        createTrackPanel();
         SplashPanel.linfo.setText("Creating settingsPanel...");
         createSettings();
         SplashPanel.linfo.setText("Adding window mouse listener...");
@@ -157,9 +135,6 @@ public class ContentPanel extends JPanel {
             }
         }));
         SplashPanel.linfo.setText("Deciding population of hotlist...");
-        if (PublicValues.autoLoadHotList) {
-            setHotlistVisible();
-        }
         SplashPanel.linfo.setText("Making window interactive...");
         createLegacy();
         try {
@@ -171,11 +146,15 @@ public class ContentPanel extends JPanel {
             // Defaulting to German
             PublicValues.countryCode = CountryCode.DE;
         }
-        artistPanelBackButton.setVisible(false);
         SplashPanel.linfo.setText("Init Theme...");
         updateTheme();
         SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelend"));
+    }
+
+    private void createTrackPanel() {
+        trackPanel = new TrackPanel();
+        tabpanel.add(trackPanel);
     }
 
     void createSettings() {
@@ -203,42 +182,18 @@ public class ContentPanel extends JPanel {
     }
 
     public static void showArtistPanel(String fromuri) {
-        currentView = Views.ARTIST;
-        if (advancedSongPanelVisible) {
-            homepanel.getComponent().setVisible(true);
-            advancedSongPanelVisible = false;
-            advancedsongpanel.setVisible(false);
-        }
-        switch (lastmenu) {
-            case Home:
-                artistPanel.popularuricache.clear();
-                artistPanel.albumuricache.clear();
-                ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                ((DefaultTableModel) artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                artistPanel.artisttitle.setText("");
-                ContentPanel.artistPanel.openPanel();
-                ArtistPanel.isFirst = true;
-                artistPanel.contentPanel.setVisible(true);
-                artistPanelBackButton.setVisible(true);
-                artistPanelVisible = true;
-                homepanel.getComponent().setVisible(false);
-                ContentPanel.blockTabSwitch();
+        switch (currentView) {
+            case BROWSE:
+                // ToDo: Implement this
                 break;
-            case Search:
-                artistPanel.popularuricache.clear();
-                artistPanel.albumuricache.clear();
-                ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).setRowCount(0);
-                ((DefaultTableModel) artistPanel.artistpopularsonglist.getModel()).setRowCount(0);
-                artistPanel.artisttitle.setText("");
-                ContentPanel.artistPanel.openPanel();
-                ArtistPanel.isFirst = true;
-                artistPanel.contentPanel.setVisible(true);
-                artistPanelBackButton.setVisible(true);
-                artistPanelVisible = true;
-                searchpanel.setVisible(false);
-                ContentPanel.blockTabSwitch();
+            case HOME:
+                homepanel.makeInvisible();
+                break;
+            case SEARCH:
+                searchpanel.makeInvisible();
                 break;
         }
+        switchView(Views.ARTIST);
         try {
             Artist a = InstanceManager.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
             try {
@@ -306,93 +261,6 @@ public class ContentPanel extends JPanel {
         //---
     }
 
-
-    private static boolean[] inProg = {false};
-    private static boolean loadnew = false;
-    public static void showAdvancedSongPanel(String foruri, HomePanel.ContentTypes contentType) {
-        homepanel.getComponent().setVisible(false);
-        advancedSongPanelUri = foruri;
-        ((DefaultTableModel) advancedsongtable.getModel()).setRowCount(0);
-        advanceduricache.clear();
-        advancedSongPanelVisible = true;
-        if (artistPanelVisible) {
-            artistPanelBackButton.doClick();
-        }
-        try {
-            switch (contentType) {
-                case playlist:
-                    currentView = Views.PLAYLIST;
-                    if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
-                        Thread thread = new Thread(() -> {
-                            advanceduricache.clear();
-                            ((DefaultTableModel)  advancedsongtable.getModel()).setRowCount(0);
-                            try {
-                                int offset = 0;
-                                int parsed = 0;
-                                int counter = 0;
-                                int last = 0;
-                                int total = InstanceManager.getSpotifyApi().getPlaylist(foruri.split(":")[2]).build().execute().getTracks().getTotal();
-                                while (parsed != total) {
-                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(foruri.split(":")[2]).offset(offset).limit(100).build().execute();
-                                    for (PlaylistTrack track : ptracks.getItems()) {
-                                        ((DefaultTableModel)  advancedsongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                        advanceduricache.add(track.getTrack().getUri());
-                                        parsed++;
-                                    }
-                                    if (last == parsed) {
-                                        if (counter > 1) {
-                                            break;
-                                        }
-                                        counter++;
-                                    } else {
-                                        counter = 0;
-                                    }
-                                    last = parsed;
-                                    offset += 100;
-                                }
-                            } catch (Exception e1) {
-                                throw new RuntimeException(e1);
-                            }
-                        }, "Get playlist tracks");
-                        thread.start();
-                    }else {
-                        loadnew = true;
-                        lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
-                                advancedscrollpanel,
-                                advanceduricache,
-                                advancedsongtable,
-                                new int[] {28},
-                                foruri.split(":")[2],
-                                inProg,
-                                loadnew
-                        );
-                    }
-                    break;
-                case show:
-                    currentView = Views.SHOW;
-                    for (EpisodeSimplified simplified : SpotifyUtils.getAllEpisodesShow(foruri)) {
-                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                        advanceduricache.add(simplified.getUri());
-                    }
-                    break;
-                case album:
-                    currentView = Views.ALBUM;
-                    for (TrackSimplified simplified : SpotifyUtils.getAllTracksAlbum(foruri)) {
-                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                        advanceduricache.add(simplified.getUri());
-                    }
-                    break;
-                default:
-                    GraphicalMessage.bug("tried to invoke showAdvancedSongPanel with incompatible type -> " + contentType);
-                    break;
-            }
-        } catch (Exception e) {
-            ConsoleLogging.Throwable(e);
-        }
-        advancedsongpanel.setVisible(true);
-        blockTabSwitch();
-    }
-
     public static void openAbout() {
         HTMLDialog dialog = new HTMLDialog();
         dialog.getDialog().setPreferredSize(new Dimension(400, 500));
@@ -426,6 +294,11 @@ public class ContentPanel extends JPanel {
         tabpanel.add(homepanel.getComponent());
     }
 
+    void createBrowse() {
+        browsepanel = new BrowsePanel();
+        tabpanel.add(browsepanel);
+    }
+
     void createPlayerArea() {
         playerarea = new PlayerArea(frame);
         add(playerarea);
@@ -436,46 +309,16 @@ public class ContentPanel extends JPanel {
         tabpanel.add(librarypanel);
     }
 
+    void createSectionPanel() {
+        sectionPanel = new SpotifySectionPanel();
+        tabpanel.add(sectionPanel);
+    }
+
     void createArtistPanel() {
-        artistPanelBackButton = new JButton(PublicValues.language.translate("ui.back"));
-        artistPanelBackButton.setBounds(0, 0, 89, 23);
-        artistPanelBackButton.setForeground(PublicValues.globalFontColor);
-        artistPanelBackButton.addActionListener(new AsyncActionListener(e -> {
-            if (PublicValues.blockArtistPanelBackButton) {
-                return;
-            }
-            switch (lastmenu) {
-                case Search:
-                    currentView = Views.SEARCH;
-                    if (isLastArtist) {
-                        artistPanel.openPanel();
-                        artistPanel.isFirst = true;
-                        artistPanel.contentPanel.setVisible(true);
-                        Search.searchplaylistpanel.setVisible(false);
-                        artistPanelVisible = true;
-                        isLastArtist = false;
-                    } else {
-                        artistPanel.contentPanel.setVisible(false);
-                        artistPanelBackButton.setVisible(false);
-                        searchpanel.setVisible(true);
-                        artistPanelVisible = false;
-                        ContentPanel.enableTabSwitch();
-                    }
-                    break;
-                case Home:
-                    currentView = Views.HOME;
-                    homepanel.getComponent().setVisible(true);
-                    artistPanelBackButton.setVisible(false);
-                    artistPanel.contentPanel.setVisible(false);
-                    artistPanelVisible = false;
-                    ContentPanel.enableTabSwitch();
-            }
-        }));
-        tabpanel.add(artistPanelBackButton);
         artistPanel = new ArtistPanel();
-        artistPanel.contentPanel.setBounds(0, 21, 784, 400);
-        tabpanel.add(artistPanel.contentPanel);
-        artistPanel.contentPanel.setVisible(false);
+        ArtistPanel.contentPanel.setBounds(0, 0, 784, 400);
+        tabpanel.add(ArtistPanel.contentPanel);
+        ArtistPanel.contentPanel.setVisible(false);
     }
 
     void createPlaylist() {
@@ -601,14 +444,18 @@ public class ContentPanel extends JPanel {
 
     void createFeedback() {
         feedbackpanel = new Feedback();
-        tabpanel.add(feedbackpanel);
+        tabpanel.add(feedbackpanel, -1);
     }
 
+    //ToDo: Remove this code. This is a horrible way to use a JTabbedPane
+    // This is left over code from the pre JTabbedPane era, where
+    // the views were switched by JButtons
     @SuppressWarnings("all")
     void createLegacy() {
         legacyswitch.setForeground(PublicValues.globalFontColor);
         legacyswitch.setBounds(0, 111, 784, 450);
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
+        legacyswitch.addTab("Browse", new JPanel());
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.library"), new JPanel());
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.search"), new JPanel());
@@ -623,70 +470,64 @@ public class ContentPanel extends JPanel {
         });
         add(legacyswitch);
         legacyswitch.setSelectedIndex(0);
-        setHomeVisible();
         preventBugLegacySwitch();
         legacyswitch.setComponentAt(0, tabpanel);
-        setHomeVisible();
+        switchView(Views.HOME);
         legacyswitch.addChangeListener(e -> {
             switch (legacyswitch.getSelectedIndex()) {
                 case 0:
                     currentView = Views.HOME;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setHomeVisible();
+                    switchView(Views.HOME);
                     break;
                 case 1:
+                    currentView = Views.BROWSE;
+                    preventBugLegacySwitch();
+                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    switchView(Views.BROWSE);
+                    break;
+                case 2:
                     currentView = Views.PLAYLIST;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setPlaylistsVisible();
+                    switchView(Views.PLAYLIST);
                     break;
-                case 2:
+                case 3:
                     currentView = Views.LIBRARY;
                     if (Library.librarysonglist.getModel().getRowCount() == 0) {
                         Library.librarythread.start();
                     }
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setLibraryVisible();
+                    switchView(Views.LIBRARY);
                     break;
-                case 3:
+                case 4:
                     currentView = Views.SEARCH;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setSearchVisible();
+                    switchView(Views.SEARCH);
                     break;
-                case 4:
+                case 5:
                     currentView = Views.HOTLIST;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setHotlistVisible();
+                    switchView(Views.HOTLIST);
                     break;
-                case 5:
+                case 6:
                     currentView = Views.QUEUE;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setQueueVisible();
+                    switchView(Views.QUEUE);
                     break;
-                case 6:
+                case 7:
                     currentView = Views.FEEDBACK;
                     preventBugLegacySwitch();
                     legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    setFeedbackVisible();
+                    switchView(Views.FEEDBACK);
                     break;
                 default:
-                    currentView = Views.OTHER;
-                    int selected = legacyswitch.getSelectedIndex();
-                    if (extraTabs.isEmpty()) {
-                        ConsoleLogging.warning("JTabbedPane tried to open pane outside of the allowed range");
-                        break;
-                    }
-                    hideAllPanel();
-                    TabEntry entry = extraTabs.get(selected - 7);
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
-                    entry.component.setVisible(true);
-                    break;
+                    GraphicalMessage.bug("JTabbedPane: Clicked outsite of allowed range");
             }
         });
         JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
@@ -819,281 +660,51 @@ public class ContentPanel extends JPanel {
         PublicValues.contentPanel.repaint();
     }
 
-    void createAdvancedPanel() {
-        advancedsongpanel = new JPanel();
-        advancedsongpanel.setBounds(0, 0, 784, 421);
-        tabpanel.add(advancedsongpanel);
-        advancedsongpanel.setLayout(null);
-        advancedbackbutton = new JButton(PublicValues.language.translate("ui.back"));
-        advancedbackbutton.setBounds(0, 0, 89, 23);
-        advancedsongpanel.add(advancedbackbutton);
-        advancedbackbutton.setForeground(PublicValues.globalFontColor);
-        advancedsongpanel.setVisible(false);
-        advancedbackbutton.addActionListener(new AsyncActionListener(e -> {
-            if(lazyLoadingDeInit != null) {
-                lazyLoadingDeInit.run();
-                lazyLoadingDeInit = null;
-            }
-            advancedsongpanel.setVisible(false);
-            homepanel.getComponent().setVisible(true);
-            ContentPanel.enableTabSwitch();
-        }));
-        advancedsongtable = new DefTable();
-        advancedsongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
-        advancedsongtable.setForeground(PublicValues.globalFontColor);
-        advancedsongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        advancedscrollpanel = new JScrollPane();
-        advancedscrollpanel.setBounds(0, 22, 784, 399);
-        advancedsongpanel.add(advancedscrollpanel);
-        advancedscrollpanel.setViewportView(advancedsongtable);
-        advancedsongtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, PublicValues.shuffle);
-                    advancedsongtable.setColumnSelectionInterval(0, advancedsongtable.getColumnCount() - 1);
-                    TrackUtils.addAllToQueue(advanceduricache, advancedsongtable);
-                }
-            }
-        }));
-    }
-
-    public void setLibraryVisible() {
-        currentView = Views.LIBRARY;
-        lastmenu = LastTypes.Library;
-        librarypanel.setVisible(true);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = true;
-        hotlistVisible = false;
-        feedbackVisible = false;
-    }
-
-    public void setSearchVisible() {
-        currentView = Views.SEARCH;
-        lastmenu = LastTypes.Search;
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(true);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = true;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = false;
-    }
-
-    public void setButtonsHidden() {
-        playerarea.setVisible(false);
-    }
-
-    public void setButtonsVisible() {
-        playerarea.setVisible(true);
-    }
-
-    public void setNothingVisible() {
-        setButtonsHidden();
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = false;
-        for (TabEntry entry : extraTabs) {
-            entry.component.setVisible(false);
+    public static void switchView(Views view) {
+        if(currentViewPanel != null) {
+            lastView = currentView;
+            lastViewPanel = currentViewPanel;
         }
-    }
-
-    public void hideAllPanel() {
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = false;
-        for (TabEntry entry : extraTabs) {
-            entry.component.setVisible(false);
+        if(lastViewPanel != null) {
+            lastViewPanel.makeInvisible();
         }
-    }
-
-    public void setHotlistVisible() {
-        currentView = Views.HOTLIST;
-        lastmenu = LastTypes.HotList;
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(true);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = true;
-        feedbackVisible = false;
-        if (HotList.hotlistplayliststable.getRowCount() == 0) {
-            Thread t = new Thread(HotList::fetchHotlist, "Get HotList");
-            t.start();
+        currentView = view;
+        switch (view) {
+            case HOME:
+                currentViewPanel = homepanel;
+                break;
+            case BROWSE:
+                currentViewPanel = browsepanel;
+                break;
+            case TRACKPANEL:
+                currentViewPanel = trackPanel;
+                break;
+            case PLAYLIST:
+                currentViewPanel = playlistspanel;
+                break;
+            case ARTIST:
+                currentViewPanel = artistPanel;
+                break;
+            case SEARCH:
+                currentViewPanel = searchpanel;
+                break;
+            case LIBRARY:
+                currentViewPanel = librarypanel;
+                break;
+            case QUEUE:
+                currentViewPanel = queuepanel;
+                break;
+            case HOTLIST:
+                currentViewPanel = hotlistpanel;
+                break;
+            case FEEDBACK:
+                currentViewPanel = feedbackpanel;
+                break;
+            case BROWSESECTION:
+                currentViewPanel = sectionPanel;
+                break;
         }
-    }
-
-    public void setFeedbackVisible() {
-        currentView = Views.FEEDBACK;
-        lastmenu = LastTypes.Feedback;
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(true);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = true;
-    }
-
-    public void setPlaylistsVisible() {
-        currentView = Views.PLAYLISTS;
-        lastmenu = LastTypes.Playlists;
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(true);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = false;
-        playlistsVisible = true;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = false;
-        Thread thread = new Thread(() -> {
-            try {
-                int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
-                int parsed = 0;
-                int counter = 0;
-                int last = 0;
-                int offset = 0;
-                while (parsed != total) {
-                    PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
-                    for (PlaylistSimplified simplified : playlists) {
-                        Playlists.playlistsuricache.add(simplified.getUri());
-                        ((DefaultTableModel) Playlists.playlistsplayliststable.getModel()).addRow(new Object[]{simplified.getName()});
-                        parsed++;
-                    }
-                    if (parsed == last) {
-                        if (counter > 1) {
-                            break;
-                        }
-                        counter++;
-                    } else {
-                        counter = 0;
-                    }
-                    last = parsed;
-                    offset += 50;
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, "Playlists fetcher");
-        if (Playlists.playlistsplayliststable.getModel().getRowCount() == 0) {
-            thread.start();
-        }
-    }
-
-    public void setQueueVisible() {
-        currentView = Views.QUEUE;
-        lastmenu = LastTypes.Queue;
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(true);
-        homepanel.getComponent().setVisible(false);
-        homeVisible = false;
-        queueVisible = true;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = false;
-        if (Queue.queuelistmodel.isEmpty()) {
-            ((DefaultListModel<?>) Queue.queuelist.getModel()).removeAllElements();
-            Queue.queueuricache.clear();
-            Thread queueworker = new Thread(() -> {
-                try {
-                    for (ContextTrackOuterClass.ContextTrack track : InstanceManager.getPlayer().getPlayer().tracks(true).next) {
-                        Track t = InstanceManager.getSpotifyApi().getTrack(track.getUri().split(":")[2]).build().execute();
-                        String a = TrackUtils.getArtists(t.getArtists());
-                        Queue.queueuricache.add(track.getUri());
-                        Queue.queuelistmodel.addElement(t.getName() + " - " + a);
-                    }
-                } catch (IOException ex) {
-                    ConsoleLogging.Throwable(ex);
-                } catch (NullPointerException exc) {
-                    // Nothing in queue
-                }
-            }, "Queue worker (ContentPanel)");
-            queueworker.start();
-        }
-    }
-
-    public void setHomeVisible() {
-        currentView = Views.HOME;
-        lastmenu = LastTypes.Home;
-        librarypanel.setVisible(false);
-        searchpanel.setVisible(false);
-        hotlistpanel.setVisible(false);
-        feedbackpanel.setVisible(false);
-        playlistspanel.setVisible(false);
-        queuepanel.setVisible(false);
-        homepanel.getComponent().setVisible(true);
-        homeVisible = true;
-        queueVisible = false;
-        playlistsVisible = false;
-        searchVisible = false;
-        libraryVisble = false;
-        hotlistVisible = false;
-        feedbackVisible = false;
+        currentViewPanel.makeVisible();
     }
 
     public void open() {
@@ -1154,6 +765,4 @@ public class ContentPanel extends JPanel {
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
     }
-
-    enum LastTypes {Playlists, Library, Search, HotList, Queue, Feedback, Home}
 }

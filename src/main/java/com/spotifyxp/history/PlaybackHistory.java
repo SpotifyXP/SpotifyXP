@@ -8,6 +8,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.PlayerArea;
+import com.spotifyxp.panels.TrackPanel;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.utils.AsyncActionListener;
@@ -119,6 +120,7 @@ public class PlaybackHistory extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
+                    ContentPanel.switchView(ContentPanel.lastView);
                     try {
                         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getSelectionModel().getSelectionPath().getLastPathComponent();
                         URITree.TreeNodeData data = ((URITree.TreeNodeData) node.getUserObject());
@@ -127,7 +129,7 @@ public class PlaybackHistory extends JFrame {
                                 ContentPanel.showArtistPanel(data.getURI());
                                 break;
                             case ALBUM:
-                                ContentPanel.showAdvancedSongPanel(data.getURI(), HomePanel.ContentTypes.album);
+                                ContentPanel.trackPanel.open(data.getURI(), HomePanel.ContentTypes.album);
                                 break;
                             case TRACK:
                                 PublicValues.spotifyplayer.load(data.getURI(), true, false);
