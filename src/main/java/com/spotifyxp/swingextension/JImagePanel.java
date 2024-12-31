@@ -21,8 +21,13 @@ import java.nio.file.Paths;
 public class JImagePanel extends JPanel {
     private BufferedImage image = null;
     private byte[] imagebytes;
-    public boolean isFilled = false;
+    public boolean keepAspectRatio = false;
     private String rad = "";
+
+    public void setKeepAspectRatio(boolean keepAspectRatio) {
+        this.keepAspectRatio = keepAspectRatio;
+        refresh();
+    }
 
     void refresh() {
         try {
@@ -92,6 +97,29 @@ public class JImagePanel extends JPanel {
         return new ByteArrayInputStream(imagebytes);
     }
 
+    public void drawImage(Graphics2D graphics2D, BufferedImage image) {
+        int originalWidth = image.getWidth();
+        int originalHeight = image.getHeight();
+        int desiredWidth = this.getWidth();
+        int desiredHeight = this.getHeight();
+        double originalAspectRatio = (double) originalWidth / originalHeight;
+        double desiredAspectRatio = (double) desiredWidth / desiredHeight;
+        int newWidth, newHeight;
+        int xOffset, yOffset;
+        if (originalAspectRatio > desiredAspectRatio) {
+            newWidth = desiredWidth;
+            newHeight = (int) (desiredWidth / originalAspectRatio);
+            xOffset = 0;
+            yOffset = (desiredHeight - newHeight) / 2;
+        } else {
+            newWidth = (int) (desiredHeight * originalAspectRatio);
+            newHeight = desiredHeight;
+            xOffset = (desiredWidth - newWidth) / 2;
+            yOffset = 0;
+        }
+        graphics2D.drawImage(image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), xOffset, yOffset, null);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -102,6 +130,6 @@ public class JImagePanel extends JPanel {
         if (!(rad.isEmpty())) {
             graphics2D.rotate(Double.parseDouble(rad), (float) this.getWidth() / 2, (float) this.getHeight() / 2);
         }
-        graphics2D.drawImage(image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
+        drawImage(graphics2D, image);
     }
 }

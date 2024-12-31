@@ -26,7 +26,6 @@ public class ArtistPanel extends JPanel implements View {
     public static JScrollPane artistalbumscrollpanel;
     public static JScrollPane contentPanel;
     public static JLabel artisttitle;
-    public static JImagePanel artistbackgroundimage;
     public static JImagePanel artistimage;
     public static ContextMenu artistpopularsonglistcontextmenu;
     public static ContextMenu artistalbumcontextmenu;
@@ -89,10 +88,6 @@ public class ArtistPanel extends JPanel implements View {
         add(artisttitle);
 
         artisttitle.setForeground(PublicValues.globalFontColor);
-
-        artistbackgroundimage = new JImagePanel();
-        artistbackgroundimage.setBounds(0, 0, 780, 277);
-        add(artistbackgroundimage);
 
         artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
         artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumuricache.get(artistalbumalbumtable.getSelectedRow())));
