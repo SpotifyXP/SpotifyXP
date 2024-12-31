@@ -5,12 +5,14 @@ import com.spotifyxp.deps.org.mpris.MPRISMediaPlayer;
 import com.spotifyxp.deps.org.mpris.Metadata;
 import com.spotifyxp.deps.org.mpris.TypeRunnable;
 import com.spotifyxp.deps.org.mpris.mpris.PlaybackStatus;
+import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
 import com.spotifyxp.deps.xyz.gianlu.librespot.metadata.PlayableId;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
 import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import org.freedesktop.dbus.DBusPath;
 import org.freedesktop.dbus.connections.impl.DBusConnection;
@@ -156,10 +158,10 @@ public class LinuxSupportModule implements SupportModule {
                                     .setArtists(Collections.singletonList(metadata.getArtist()))
                                     .setAlbumName(metadata.getAlbumName())
                                     .build());
-                        } catch (DBusException ex) {
+                        } catch (NotFoundException e) {
+                            ConsoleLogging.warning("Resource not found in onMetadataAvailable");
+                        } catch (DBusException | IOException ex) {
                             throw new RuntimeException(ex);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
                         }
                     }
 

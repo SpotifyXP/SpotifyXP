@@ -407,7 +407,9 @@ public class Player implements Closeable {
                 else
                     ConsoleLoggingModules.error("Playback error!", ex);
 
-                panicState(PlaybackMetrics.Reason.TRACK_ERROR);
+                if (!(ex instanceof ArrayIndexOutOfBoundsException)) {
+                    panicState(PlaybackMetrics.Reason.TRACK_ERROR);
+                }
             }
 
             @Override

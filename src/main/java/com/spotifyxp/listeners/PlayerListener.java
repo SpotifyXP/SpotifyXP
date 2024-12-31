@@ -163,6 +163,10 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackFailed(@NotNull Player player, @NotNull Exception e) {
+        if(e instanceof ArrayIndexOutOfBoundsException) {
+            ConsoleLogging.warning("Invalid mp3 file");
+            return;
+        }
         ConsoleLogging.error("Player failed! retry");
         ConsoleLogging.Throwable(e);
         pl.retry();

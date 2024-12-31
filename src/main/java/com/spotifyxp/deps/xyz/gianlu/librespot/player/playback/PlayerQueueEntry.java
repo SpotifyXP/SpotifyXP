@@ -16,6 +16,7 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;
@@ -37,6 +38,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.panels.ContentPanel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -333,6 +335,17 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
                     close();
                     break;
                 }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                if (!closed) {
+                    close();
+                }
+                listener.playbackError(this, e);
+                if(PublicValues.spotifyplayer.tracks(true).next.isEmpty()) {
+                    ContentPanel.playerarea.reset();
+                } else {
+                    PublicValues.spotifyplayer.next();
+                }
+                return;
             } catch (IOException | Decoder.DecoderException ex) {
                 if (!closed) {
                     close();

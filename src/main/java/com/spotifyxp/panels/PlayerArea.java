@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class PlayerArea extends JPanel {
     public static JImagePanel playerimage;
@@ -211,7 +212,7 @@ public class PlayerArea extends JPanel {
         playertitle.setBounds(109, 11, 168, 14);
         add(playertitle);
         playertitle.setForeground(PublicValues.globalFontColor);
-        playerdescription = new JLabel(PublicValues.language.translate("ui.player.description"));
+            playerdescription = new JLabel(PublicValues.language.translate("ui.player.description"));
         playerdescription.setBounds(109, 40, 138, 20);
         add(playerdescription);
         playerdescription.setForeground(PublicValues.globalFontColor);
@@ -459,6 +460,47 @@ public class PlayerArea extends JPanel {
             PlayerArea.lastPlayState = state;
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void reset() {
+        if(!ContentPanel.frame.isVisible()) {
+            Events.subscribe(SpotifyXPEvents.onFrameVisible.getName(), new EventSubscriber() {
+                @Override
+                public void run(Object... data) {
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(TimeUnit.SECONDS.toMillis(3));
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                            reset();
+                        }
+                    });
+                    thread.start();
+                }
+            });
+        }
+        playerplaytime.setText("00:00");
+        playerplaytimetotal.setText("00:00");
+        playertitle.setText(PublicValues.language.translate("ui.player.title"));
+        playerdescription.setText(PublicValues.language.translate("ui.player.description"));
+        playerimage.setImage(Graphics.NOTHINGPLAYING.getInputStream());
+        playercurrenttime.setValue(0);
+        playercurrenttime.setMaximum(381);
+        heart.setImage(Graphics.HEART.getPath());
+        heart.isFilled = false;
+        if(playerarealyricsbutton.isFilled) {
+            PublicValues.lyricsDialog.close();
+            playerarealyricsbutton.setImage(Graphics.MICROPHONE.getPath());
+            playerarealyricsbutton.isFilled = false;
+        }
+        if(playerarearepeatingbutton.isFilled) {
+            InstanceManager.getPlayer().getPlayer().setRepeat(false, false);
+            playerarearepeatingbutton.setImage(Graphics.REPEAT.getPath());
+            playerarearepeatingbutton.isFilled = false;
         }
     }
 
