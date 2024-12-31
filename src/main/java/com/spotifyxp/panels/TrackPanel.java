@@ -104,7 +104,7 @@ public class TrackPanel extends Panel implements View {
                                 while (parsed != total) {
                                     Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(foruri.split(":")[2]).offset(offset).limit(100).build().execute();
                                     for (PlaylistTrack track : ptracks.getItems()) {
-                                        ((DefaultTableModel)  advancedsongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb((Track) track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        ((DefaultTableModel)  advancedsongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
                                         advanceduricache.add(track.getTrack().getUri());
                                         parsed++;
                                     }
