@@ -31,7 +31,9 @@ public enum Graphics {
     TRACK("track"),
     ALBUM("album"),
     PLAYLIST("playlist"),
-    SHOW("podcast");
+    SHOW("podcast"),
+    MVERTICAL("mvertical"),
+    MVERTICALSELECTED("mverticalselected");
     final String path;
 
     Graphics(String resourcePath) {

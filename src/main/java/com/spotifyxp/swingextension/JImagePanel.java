@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 public class JImagePanel extends JPanel {
     private BufferedImage image = null;
     private byte[] imagebytes;
-    public boolean keepAspectRatio = false;
+    public boolean keepAspectRatio = true;
     private String rad = "";
 
     public void setKeepAspectRatio(boolean keepAspectRatio) {
@@ -97,7 +97,7 @@ public class JImagePanel extends JPanel {
         return new ByteArrayInputStream(imagebytes);
     }
 
-    public void drawImage(Graphics2D graphics2D, BufferedImage image) {
+    private void drawImage(Graphics graphics2D, BufferedImage image) {
         int originalWidth = image.getWidth();
         int originalHeight = image.getHeight();
         int desiredWidth = this.getWidth();
@@ -126,10 +126,15 @@ public class JImagePanel extends JPanel {
         if (image == null) {
             return;
         }
-        Graphics2D graphics2D = (Graphics2D) g;
         if (!(rad.isEmpty())) {
-            graphics2D.rotate(Double.parseDouble(rad), (float) this.getWidth() / 2, (float) this.getHeight() / 2);
+            Graphics2D graphics2D = (Graphics2D) g;
+            if(graphics2D != null) graphics2D.rotate(Double.parseDouble(rad), (float) this.getWidth() / 2, (float) this.getHeight() / 2);
         }
-        drawImage(graphics2D, image);
+        if(this.keepAspectRatio) {
+            drawImage(g, image);
+        } else {
+            assert g != null;
+            g.drawImage(image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
+        }
     }
 }

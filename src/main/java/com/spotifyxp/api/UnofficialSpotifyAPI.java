@@ -1221,35 +1221,8 @@ public class UnofficialSpotifyAPI {
 
     public static SpotifyBrowse getSpotifyBrowse() throws IOException {
         String query = "?platform=android&client-timezone=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&podcast=true&locale=" + Locale.getDefault();
-        CompletableFuture<String> clientTokenFuture = new CompletableFuture<>();
-        String clientToken = PublicValues.session.api().getClientToken();
-        Thread checkThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(!clientTokenFuture.isDone()) {
-                    if(PublicValues.session.api().getClientToken() != null) {
-                        clientTokenFuture.complete(PublicValues.session.api().getClientToken());
-                    }
-                    try {
-                        Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        });
-        if(clientToken == null) {
-            checkThread.start();
-            try {
-                synchronized (clientTokenFuture) {
-                    clientTokenFuture.wait();
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
         return SpotifyBrowse.fromJSON(ConnectionUtils.makeGet("https://spclient.wg.spotify.com/hubview-mobile-v1/browse" + query, new HashMap<String, String>() {{
-            put("client-token", clientToken);
+            put("client-token", PublicValues.session.api().getClientToken());
             put("authorization", "Bearer " + InstanceManager.getPkce().getToken());
         }}));
     }
@@ -1259,33 +1232,8 @@ public class UnofficialSpotifyAPI {
     // The endpoint returns an id of 'browse-page-mobile-fallback' when there is something wrong
     public static SpotifyBrowseSection getSpotifyBrowseSection(String sectionUri) throws IOException {
         String query = "?platform=android&client-timezone=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&podcast=true&locale=" + Locale.getDefault();
-        CompletableFuture<String> clientTokenFuture = new CompletableFuture<>();
-        String clientToken = PublicValues.session.api().getClientToken();
-        Thread checkThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(!clientTokenFuture.isDone()) {
-                    if(PublicValues.session.api().getClientToken() != null) {
-                        clientTokenFuture.complete(PublicValues.session.api().getClientToken());
-                    }
-                    try {
-                        Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        });
-        if(clientToken == null) {
-            checkThread.start();
-            try {
-                clientTokenFuture.wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
         return SpotifyBrowseSection.fromJSON(ConnectionUtils.makeGet("https://spclient.wg.spotify.com/hubview-mobile-v1/browse/" + sectionUri + query, new HashMap<String, String>() {{
-            put("client-token", clientToken);
+            put("client-token", PublicValues.session.api().getClientToken());
             put("authorization", "Bearer " + InstanceManager.getPkce().getToken());
         }}));
     }

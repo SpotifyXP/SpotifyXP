@@ -2,6 +2,8 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.SavedTrack;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
@@ -9,6 +11,7 @@ import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +26,7 @@ public class Library extends JPanel implements View {
     public static DefaultTableModel librarydefaulttablemodel;
     public static final ArrayList<String> libraryuricache = new ArrayList<>();
     private static boolean libraryLoadingInProgress = false;
+    public static ContextMenu contextmenu;
     public static final Thread librarythread = new Thread(new Runnable() {
         public void run() {
             try {
@@ -93,6 +97,7 @@ public class Library extends JPanel implements View {
         librarysonglist.getColumnModel().getColumn(3).setPreferredWidth(51);
         librarysonglist.setFillsViewportHeight(true);
         libraryscrollpane.setViewportView(librarysonglist);
+        contextmenu = new ContextMenu(librarysonglist);
         librarysonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -109,6 +114,10 @@ public class Library extends JPanel implements View {
             libraryuricache.clear();
             librarysonglist.removeAll();
             librarythread.start();
+        });
+        librarymenu.addItem("Add to queue", () -> {
+            if(librarysonglist.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), libraryuricache.get(librarysonglist.getSelectedRow()));
         });
         librarymenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
             InstanceManager.getSpotifyApi().removeUsersSavedTracks(libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);

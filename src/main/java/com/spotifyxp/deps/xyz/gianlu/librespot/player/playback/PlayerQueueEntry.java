@@ -274,6 +274,9 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
 
         try {
             load(preloaded);
+        }catch (IndexOutOfBoundsException e) {
+            close();
+            return;
         } catch (IOException | PlayableContentFeeder.ContentRestrictedException | CdnManager.CdnException |
                  MercuryClient.MercuryException | Decoder.DecoderException ex) {
             close();

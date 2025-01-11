@@ -17,7 +17,8 @@ public enum SpotifyXPEvents {
     internetConnectionDropped("internetConDrop", "Fires when the internet connection drops"),
     internetConnectionReconnected("internetConRec", "Fires when the internet gets reconnected"),
     apikeyrefresh("apikeyrefresh", "Fires when the api key refreshes"),
-    connectionId("connectionId", "Fires when the connection id has been received");
+    connectionId("connectionId", "Fires when the connection id has been received"),
+    addtoqueue("addToQueue", "Fires when a track should be added to the queue"),;
 
     public String getName() {
         return name;

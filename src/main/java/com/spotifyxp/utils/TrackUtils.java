@@ -2,6 +2,7 @@ package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
+import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.NotFoundException;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IPlaylistItem;
@@ -84,12 +85,7 @@ public class TrackUtils {
         }
         try {
             try {
-                if (!InstanceManager.getPlayer().getPlayer().tracks(true).previous.isEmpty()) {
-                    InstanceManager.getPlayer().getPlayer().tracks(true).previous.clear();
-                }
-                if (!InstanceManager.getPlayer().getPlayer().tracks(true).next.isEmpty()) {
-                    InstanceManager.getPlayer().getPlayer().tracks(true).next.clear();
-                }
+                InstanceManager.getPlayer().getPlayer().clearQueue();
             } catch (Exception exc) {
                 ConsoleLogging.warning("Couldn't queue tracks");
                 ConsoleLogging.Throwable(exc);
@@ -97,6 +93,7 @@ public class TrackUtils {
             }
             int counter = 0;
             try {
+                ArrayList<ContextTrackOuterClass.ContextTrack> tracks = new ArrayList<>();
                 for (String s : cache) {
                     if (!(counter == addintable.getSelectedRow() + 1)) {
                         counter++;
@@ -105,22 +102,11 @@ public class TrackUtils {
                     if (counter == addintable.getRowCount()) {
                         break; //User is on the last song
                     }
-                    InstanceManager.getPlayer().getPlayer().addToQueue(s);
+                    tracks.add(ContextTrackOuterClass.ContextTrack.newBuilder().setUri(s).build());
                 }
+                InstanceManager.getPlayer().getPlayer().setQueue(tracks);
             } catch (ArrayIndexOutOfBoundsException exception) {
                 GraphicalMessage.bug("TrackUtils line 112");
-            } catch (NullPointerException exc) {
-                //Factory.getPlayer().getPlayer().load("spotify:track:40aG6sP7TMy3x1J1zGW8su", true, false);
-                for (String s : cache) {
-                    if (!(counter == addintable.getSelectedRow() + 1)) {
-                        counter++;
-                        continue;
-                    }
-                    if (counter == addintable.getRowCount()) {
-                        break; //User is on the last song
-                    }
-                    InstanceManager.getPlayer().getPlayer().addToQueue(s);
-                }
             }
             InstanceManager.getPlayer().getPlayer().setShuffle(PublicValues.shuffle);
             if (PublicValues.shuffle) {

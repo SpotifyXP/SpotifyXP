@@ -3,9 +3,12 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.*;
 
 import javax.swing.*;
@@ -28,6 +31,7 @@ public class TrackPanel extends Panel implements View {
     private static Runnable lazyLoadingDeInit;
     public static String advancedSongPanelUri;
     private boolean blockDefaultBackAction = false;
+    public static ContextMenu contextMenu;
 
     public TrackPanel() {
         setBounds(0, 0, 784, 421);
@@ -53,6 +57,16 @@ public class TrackPanel extends Panel implements View {
         advancedsongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         advancedsongtable.setForeground(PublicValues.globalFontColor);
         advancedsongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        contextMenu = new ContextMenu(advancedsongtable);
+        contextMenu.addItem("All to queue", () -> {
+            for(String s : advanceduricache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        contextMenu.addItem("Add to queue", () -> {
+            if(advancedsongtable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), advanceduricache.get(advancedsongtable.getSelectedRow()));
+        });
         advancedscrollpanel = new JScrollPane();
         advancedscrollpanel.setBounds(0, 22, 784, 399);
         add(advancedscrollpanel);

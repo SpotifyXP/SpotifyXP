@@ -132,7 +132,7 @@ public class PlaybackHistory extends JFrame {
                                 ContentPanel.trackPanel.open(data.getURI(), HomePanel.ContentTypes.album);
                                 break;
                             case TRACK:
-                                PublicValues.spotifyplayer.load(data.getURI(), true, false);
+                                PublicValues.spotifyplayer.load(data.getURI(), true, PublicValues.shuffle);
                                 break;
                             case LOADMORE:
                                 loadMore();

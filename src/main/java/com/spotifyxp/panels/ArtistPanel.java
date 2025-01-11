@@ -3,6 +3,8 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
@@ -62,6 +64,15 @@ public class ArtistPanel extends JPanel implements View {
         artistpopularscrollpane.setViewportView(artistpopularsonglist);
 
         artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
+        artistpopularsonglistcontextmenu.addItem("All to queue", () -> {
+            for(String s : popularuricache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        artistpopularsonglistcontextmenu.addItem("Add to queue", () -> {
+            if(artistpopularsonglist.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularuricache.get(artistpopularsonglist.getSelectedRow()));
+        });
         artistalbumscrollpanel = new JScrollPane();
         artistalbumscrollpanel.setBounds(5, 667, 760, 295);
         add(artistalbumscrollpanel);
@@ -144,7 +155,7 @@ public class ArtistPanel extends JPanel implements View {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(popularuricache.get(artistpopularsonglist.getSelectedRow()), true, false);
+                    InstanceManager.getPlayer().getPlayer().load(popularuricache.get(artistpopularsonglist.getSelectedRow()), true, PublicValues.shuffle);
                     TrackUtils.addAllToQueue(popularuricache, artistpopularsonglist);
                 }
             }

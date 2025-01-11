@@ -7,6 +7,7 @@ import com.spotifyxp.configuration.Config;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
+import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.lib.libLanguage;
@@ -26,7 +27,10 @@ import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.StartupTime;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 @SuppressWarnings({"all", "RedundantArrayCreation"})
 public class Initiator {
@@ -59,7 +63,12 @@ public class Initiator {
         if (PublicValues.enableMediaControl)
             createKeyListener(); //Starting the key listener (For Play/Pause/Previous/Next)
         initTrayIcon(); //Creating the tray icon
-        initGUI(); //Initializing the GUI
+        try {
+            initGUI(); //Initializing the GUI
+        }catch (IOException e) {
+            ConsoleLogging.Throwable(e);
+            GraphicalMessage.sorryError("Critical exception in GUI initialization");
+        }
         ConsoleLogging.info(PublicValues.language.translate("startup.info.took").replace("{}", startupTime.getMMSS()));
         SplashPanel.hide(); //Hiding the splash panel
     }
@@ -456,7 +465,7 @@ public class Initiator {
         InstanceManager.getUnofficialSpotifyApi();
     }
 
-    static void initGUI() {
+    static void initGUI() throws IOException {
         SplashPanel.linfo.setText("Creating contentPanel...");
         ContentPanel panel = new ContentPanel();
         panel.open();

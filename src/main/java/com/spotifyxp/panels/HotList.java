@@ -5,6 +5,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
@@ -71,6 +73,15 @@ public class HotList extends JPanel implements View {
         hotlistsongstable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")}));
         hotlistsongstablecontextmenu = new ContextMenu(hotlistsongstable);
         hotlistsongstablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow())));
+        hotlistsongstablecontextmenu.addItem("All to queue", () -> {
+            for(String s : hotlistsonglistcache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        hotlistsongstablecontextmenu.addItem("Add to queue", () -> {
+            if(hotlistsongstable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()));
+        });
         hotlistsongstable.getColumnModel().getColumn(0).setPreferredWidth(363);
         hotlistsongstable.getColumnModel().getColumn(1).setPreferredWidth(89);
         hotlistsongstable.getColumnModel().getColumn(3).setPreferredWidth(96);

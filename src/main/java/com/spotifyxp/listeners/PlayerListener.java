@@ -66,6 +66,7 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackChanged(@NotNull Player player, @NotNull PlayableId playableId, @Nullable MetadataWrapper metadataWrapper, boolean b) {
+        Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName(), playableId.toSpotifyUri());
         if (!TrackUtils.isTrackLiked(playableId.toSpotifyUri().split(":")[2])) {
             PlayerArea.heart.isFilled = false;
             PlayerArea.heart.setImage(Graphics.HEART.getPath());

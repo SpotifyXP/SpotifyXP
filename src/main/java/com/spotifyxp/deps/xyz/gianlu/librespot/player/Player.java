@@ -46,6 +46,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.manager.InstanceManager;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -657,6 +658,7 @@ public class Player implements Closeable {
     }
 
     private void handleSkipPrev() {
+        if(state.getPrevTracks().isEmpty()) return;
         if (state.getPosition() < 3000) {
             StateWrapper.PreviousPlayable prev = state.previousPlayable();
             if (prev.isOk()) {
@@ -787,6 +789,16 @@ public class Player implements Closeable {
     @NotNull
     public Tracks tracks(boolean withQueue) {
         return new Tracks(state.getPrevTracks(), state.getCurrentTrack(), state.getNextTracks(withQueue));
+    }
+
+    public void clearQueue() {
+        state.setQueue(state.getPrevTracks(), Collections.emptyList());
+        state.updated();
+    }
+
+    public void setQueue(List<ContextTrack> tracks) {
+        state.setQueue(state.getPrevTracks(), tracks);
+        state.updated();
     }
 
     /**

@@ -3,6 +3,8 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
@@ -560,7 +562,17 @@ public class Search extends JPanel implements View {
         }));
         searchplaylisttable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         searchplaylistpanel.setVisible(false);
+
         searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable);
+        searchplaylistsongscontextmenu.addItem("All to queue", () -> {
+            for(String s : searchplaylistsongscache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        searchplaylistsongscontextmenu.addItem("Add to queue", () -> {
+            if(searchplaylisttable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()));
+        });
         searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow())));
         searchbackbutton.addActionListener(new AsyncActionListener(e -> {
             searchplaylistpanel.setVisible(false);
@@ -588,6 +600,15 @@ public class Search extends JPanel implements View {
             }
         });
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow())));
+        searchcontextmenu.addItem("All to queue", () -> {
+            for(String s : searchsonglistcache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        searchcontextmenu.addItem("Add to queue", () -> {
+            if(searchsonglist.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), searchsonglistcache.get(searchsonglist.getSelectedRow()));
+        });
     }
 
     @Override

@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ConcurrentModificationException;
 
 public class JSVGPanel {
     static String rad = "";
@@ -50,15 +51,26 @@ public class JSVGPanel {
 
         @Override
         public void setImage(InputStream stream) {
-            try {
-                String parser = XMLResourceDescriptor.getXMLParserClassName();
-                SAXSVGDocumentFactory factory = new SAXSVGDocumentFactory(parser);
-                SVGDocument document = factory.createSVGDocument("", stream);
-                setSVGDocument(document);
-            } catch (IOException e) {
-                GraphicalMessage.openException(e);
-                ConsoleLogging.Throwable(e);
-            }
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        String parser = XMLResourceDescriptor.getXMLParserClassName();
+                        SAXSVGDocumentFactory factory = new SAXSVGDocumentFactory(parser);
+                        SVGDocument document = factory.createSVGDocument("", stream);
+                        setSVGDocument(document);
+                    } catch (IOException e) {
+                        GraphicalMessage.openException(e);
+                        ConsoleLogging.Throwable(e);
+                    } catch (ConcurrentModificationException e) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                setImage(stream);
+                            }
+                        });
+                    }
+                }
+            });
         }
     }
 

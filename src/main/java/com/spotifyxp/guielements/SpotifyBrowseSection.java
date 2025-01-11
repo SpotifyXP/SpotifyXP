@@ -67,7 +67,7 @@ public class SpotifyBrowseSection extends JScrollPane {
                             break;
                         case "episode":
                         case "track":
-                            PublicValues.spotifyplayer.load(entry, true, false);
+                            PublicValues.spotifyplayer.load(entry, true, PublicValues.shuffle);
                             return;
                         default:
                             GraphicalMessage.bug("Called browse onclick with an unsupported content type: " + entry.split(":")[1]);

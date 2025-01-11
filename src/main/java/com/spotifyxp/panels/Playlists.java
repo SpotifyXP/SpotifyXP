@@ -7,6 +7,8 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.P
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dialogs.AddPlaylistDialog;
+import com.spotifyxp.events.Events;
+import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -74,6 +76,18 @@ public class Playlists extends JPanel implements View {
         playlistssongtable.setFillsViewportHeight(true);
         playlistssongtable.setColumnSelectionAllowed(true);
         playlistssongsscroll.setViewportView(playlistssongtable);
+
+        ContextMenu songsCTXMenu = new ContextMenu(playlistssongtable);
+        songsCTXMenu.addItem("All to queue", () -> {
+            for(String s : playlistssonguricache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        songsCTXMenu.addItem("Add to queue", () -> {
+            if(playlistssongtable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistssonguricache.get(playlistssongtable.getSelectedRow()));
+        });
+
         ContextMenu menu = new ContextMenu(playlistsplayliststable);
         menu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
             InstanceManager.getSpotifyApi().unfollowPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]);

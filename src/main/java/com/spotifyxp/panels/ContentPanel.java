@@ -8,6 +8,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*
 import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.HTMLDialog;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.exception.ExceptionDialog;
@@ -85,7 +86,7 @@ public class ContentPanel extends JPanel {
     }
 
     @SuppressWarnings("Busy")
-    public ContentPanel() {
+    public ContentPanel() throws IOException {
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
         SplashPanel.linfo.setText("Setting window size...");
         setPreferredSize(new Dimension(783, 600));
@@ -146,6 +147,12 @@ public class ContentPanel extends JPanel {
             // Defaulting to German
             PublicValues.countryCode = CountryCode.DE;
         }
+        Events.subscribe(SpotifyXPEvents.addtoqueue.getName(), new EventSubscriber() {
+            @Override
+            public void run(Object... data) {
+                InstanceManager.getPlayer().getPlayer().addToQueue((String)data[0]);
+            }
+        });
         SplashPanel.linfo.setText("Init Theme...");
         updateTheme();
         SplashPanel.linfo.setText("Done building contentPanel");
@@ -437,7 +444,7 @@ public class ContentPanel extends JPanel {
         tabpanel.add(hotlistpanel);
     }
 
-    void createQueue() {
+    void createQueue() throws IOException {
         queuepanel = new Queue();
         tabpanel.add(queuepanel);
     }
@@ -602,7 +609,7 @@ public class ContentPanel extends JPanel {
         exit.addActionListener(e -> System.exit(0));
         playuri.addActionListener(new AsyncActionListener(e -> {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
-            PublicValues.spotifyplayer.load(uri, true, false);
+            PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
         }));
         if (steamdeck) {
@@ -757,12 +764,9 @@ public class ContentPanel extends JPanel {
                 Toolkit.getDefaultToolkit().getScreenSize().width / 2 - PublicValues.applicationWidth / 2,
                 Toolkit.getDefaultToolkit().getScreenSize().height / 2 - PublicValues.applicationHeight / 2)
         ;
-        try {
-            Thread.sleep(TimeUnit.SECONDS.toMillis(2));
-        } catch (InterruptedException ignored) {
-        }
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
     }
+
 }

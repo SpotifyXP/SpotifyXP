@@ -59,7 +59,7 @@ public class PlayerArea extends JPanel {
         playerareashufflebutton = new JSVGPanel();
         playerareashufflebutton.getJComponent().setBounds(510, 75, 20, 20);
         playerareashufflebutton.getJComponent().setBackground(frame.getBackground());
-        // frame.add(playerareashufflebutton.getJComponent());
+        add(playerareashufflebutton.getJComponent());
         playerarearepeatingbutton = new JSVGPanel();
         playerarearepeatingbutton.getJComponent().setBounds(540, 75, 20, 20);
         playerarearepeatingbutton.getJComponent().setBackground(frame.getBackground());

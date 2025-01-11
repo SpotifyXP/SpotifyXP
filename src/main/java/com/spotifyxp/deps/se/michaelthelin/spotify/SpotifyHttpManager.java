@@ -5,6 +5,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.manager.InstanceManager;
 import kotlin.Pair;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -286,14 +287,11 @@ public class SpotifyHttpManager implements IHttpManager {
             case 400:
                 throw new BadRequestException(errorMessage);
             case 401:
-
-
-                // Here
-
-
-
                 //Refresh token
                 Events.triggerEvent(SpotifyXPEvents.apikeyrefresh.getName());
+                Headers headers = base.headers();
+                headers.newBuilder().removeAll("Authorization");
+                headers.newBuilder().add("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken());
                 switch (method) {
                     case "get":
                         return get(URI.create(uri), base.headers());

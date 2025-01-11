@@ -119,7 +119,7 @@ public class HomePanel implements View {
                     try {
                         switch (ct) {
                             case track:
-                                PublicValues.spotifyplayer.load(uri, true, false);
+                                PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             case artist:
@@ -218,7 +218,7 @@ public class HomePanel implements View {
                     try {
                         switch (ct) {
                             case track:
-                                PublicValues.spotifyplayer.load(uri, true, false);
+                                PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             case artist:
