@@ -1,11 +1,13 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.panels.ContentPanel;
 import kotlin.Pair;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -290,17 +292,20 @@ public class SpotifyHttpManager implements IHttpManager {
                 //Refresh token
                 Events.triggerEvent(SpotifyXPEvents.apikeyrefresh.getName());
                 Headers headers = base.headers();
-                headers.newBuilder().removeAll("Authorization");
-                headers.newBuilder().add("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken());
+                headers = headers.newBuilder()
+                        .removeAll("Authorization")
+                        .add("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken())
+                .build();
+
                 switch (method) {
                     case "get":
-                        return get(URI.create(uri), base.headers());
+                        return get(URI.create(uri), headers);
                     case "post":
-                        return post(URI.create(uri), base.headers(), body);
+                        return post(URI.create(uri), headers, body);
                     case "put":
-                        return put(URI.create(uri), base.headers(), body);
+                        return put(URI.create(uri), headers, body);
                     case "delete":
-                        return delete(URI.create(uri), base.headers(), body);
+                        return delete(URI.create(uri), headers, body);
                 }
             case 403:
                 throw new ForbiddenException(errorMessage);
