@@ -1,5 +1,6 @@
-<h2>New login method info:</h2>
-<a>SpotifyXP will now hang on "creating api...". Open a modern spotify client and select SpotifyXP under devices and SpotifyXP should authenticate with spotify</a>
+<h2>New login methods info:</h2>
+<a>1. Zeroconf: open a modern Spotify client and select SpotifyXP under devices and SpotifyXP should authenticate with Spotify. <h5>Works only with Spotify Premium account.</h5></a>
+<a>2. OAuth: in the default browser's window which will open automatically, login with your credentials on Spotify website. Then confirm connecting SpotifyXP to your Spotify account and close the browser. <h5>You need to have a modern browser that supports HTML5.</h5></a>
 <p align="center">
   <a href="https://github.com/SpotifyXP/SpotifyXP">
     <img src="https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/spotifyxp.png" alt="Logo" width="80" height="80">
