@@ -1222,7 +1222,7 @@ public class UnofficialSpotifyAPI {
     public static SpotifyBrowse getSpotifyBrowse() throws IOException {
         String query = "?platform=android&client-timezone=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&podcast=true&locale=" + Locale.getDefault();
         return SpotifyBrowse.fromJSON(ConnectionUtils.makeGet("https://spclient.wg.spotify.com/hubview-mobile-v1/browse" + query, new HashMap<String, String>() {{
-            put("client-token", PublicValues.session.api().getClientToken());
+            //put("client-token", PublicValues.session.api().getClientToken());
             put("authorization", "Bearer " + InstanceManager.getPkce().getToken());
         }}));
     }
@@ -1233,7 +1233,7 @@ public class UnofficialSpotifyAPI {
     public static SpotifyBrowseSection getSpotifyBrowseSection(String sectionUri) throws IOException {
         String query = "?platform=android&client-timezone=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&podcast=true&locale=" + Locale.getDefault();
         return SpotifyBrowseSection.fromJSON(ConnectionUtils.makeGet("https://spclient.wg.spotify.com/hubview-mobile-v1/browse/" + sectionUri + query, new HashMap<String, String>() {{
-            put("client-token", PublicValues.session.api().getClientToken());
+            //put("client-token", PublicValues.session.api().getClientToken());
             put("authorization", "Bearer " + InstanceManager.getPkce().getToken());
         }}));
     }
