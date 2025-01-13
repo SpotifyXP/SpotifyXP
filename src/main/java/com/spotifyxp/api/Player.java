@@ -19,10 +19,6 @@ public class Player {
         PublicValues.spotifyplayer = player;
     }
 
-    public Player() {
-
-    }
-
     /**
      * Destroys the librespot-player instance
      */

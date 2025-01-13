@@ -7,7 +7,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.ConnectionUtils;
-import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.MapUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,28 +20,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused", "SameParameterValue"})
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class UnofficialSpotifyAPI {
-    //This API is used in the Official Spotify Client
-    String api;
-
-    public UnofficialSpotifyAPI(String apitoken) {
-        api = apitoken;
-    }
-
-
-    /**
-     * Refreshes the api token with new given one
-     *
-     * @param token token in format of a Spotify API token
-     */
-    public void refresh(String token) {
-        api = token;
-    }
-
     /**
      * Holds all the information of the lyrics for a track
      */
@@ -74,7 +54,7 @@ public class UnofficialSpotifyAPI {
     public Lyrics getLyrics(String uri) {
         try {
             JSONObject object = new JSONObject(ConnectionUtils.makeGet("https://spclient.wg.spotify.com/color-lyrics/v2/track/" + uri.split(":")[2] + "?format=json&vocalRemoval=false",
-                    MapUtils.of("Authorization", "Bearer " + api, "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent())));
+                    MapUtils.of("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken(), "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent())));
             JSONObject lyricsroot = new JSONObject(object.getJSONObject("lyrics").toString());
             Lyrics lyrics = new Lyrics();
             lyrics.language = lyricsroot.getString("language");
@@ -95,127 +75,13 @@ public class UnofficialSpotifyAPI {
         }
     }
 
-    /**
-     * Holds information about an artist
-     */
-    public static class Artist {
-        public String id = "";
-        public String uri = "";
-        public boolean saved = false;
-        public String name = "";
-        public String biography = "";
-        public String a = "";
+    public enum HomeTabSectionTypes {
+        HomeShortsSectionData,
+        HomeGenericSectionData,
+        HomeRecentlyPlayedSectionData
     }
 
-    /**
-     * Holds information about the HomeTab content
-     */
-    public static class HomeTab {
-        public String greeting = "";
-        public final ArrayList<HomeTabSection> sections = new ArrayList<>();
-        public HomeTabSectionNoName firstSection = new HomeTabSectionNoName(); //Holds user liked songs thingy and more
-    }
-
-    /**
-     * Holds information about HomeTab images
-     */
-    public static class HomeTabImage {
-        public final ArrayList<HomeTabImageSource> sources = new ArrayList<>();
-    }
-
-    /**
-     * Holds information about an HomeTab image
-     */
-    public static class HomeTabImageSource {
-        public String width = "";
-        public String height = "";
-        public String url = "";
-    }
-
-    /**
-     * Holds information about an HomeTab playlist
-     */
-    public static class HomeTabPlaylist {
-        public String name = "";
-        public String description = "";
-        public String uri = "";
-        public String ownerName = "";
-        public final ArrayList<HomeTabImage> images = new ArrayList<>();
-    }
-
-    /**
-     * Holds information about an HomeTab artist
-     */
-    public static class HomeTabArtist {
-        public String name = "";
-        public String uri = "";
-        public final ArrayList<HomeTabImage> images = new ArrayList<>();
-    }
-
-    /**
-     * Holds information about an HomeTab artist (with image)
-     */
-    public static class HomeTabArtistNoImage {
-        public String name = "";
-        public String uri = "";
-    }
-
-    /**
-     * Holds information about an HomeTab album
-     */
-    public static class HomeTabAlbum {
-        public String name = "";
-        public String uri = "";
-        public final ArrayList<HomeTabArtistNoImage> artists = new ArrayList<>();
-        public final ArrayList<HomeTabImage> images = new ArrayList<>();
-    }
-
-    /**
-     * Holds information about an HomeTab episode or chapter
-     */
-    public static class HomeTabEpisodeOrChapter {
-        public long totalMilliseconds = 0;
-        public String isoDate = "";
-        public long playPositionMilliseconds = 0;
-        public String EpisodeOrChapterName = "";
-        public String description = "";
-        //public String contentRating = ""; Don't know what the possible values are
-        public String uri = "";
-        public final ArrayList<HomeTabImage> EpisodeOrChapterImages = new ArrayList<>();
-        public String name = "";
-        public String publisherName = "";
-        public final ArrayList<HomeTabImage> coverImages = new ArrayList<>();
-    }
-
-    /**
-     * Holds information:<br><br>
-     * Liked songs entry<br>
-     * Some other entries<br>
-     */
-    public static class HomeTabSectionNoName {
-        //Has liked songs and some stuff
-        public int totalCount = 0;
-        public String uri = "";
-        public final ArrayList<HomeTabAlbum> albums = new ArrayList<>();
-        public final ArrayList<HomeTabArtist> artists = new ArrayList<>();
-        public final ArrayList<HomeTabPlaylist> playlists = new ArrayList<>();
-        public final ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
-    }
-
-    /**
-     * Holds information about an HomeTab section
-     */
-    public static class HomeTabSection {
-        public int totalCount = 0;
-        public String name = "";
-        public String uri = "";
-        public final ArrayList<HomeTabAlbum> albums = new ArrayList<>();
-        public final ArrayList<HomeTabArtist> artists = new ArrayList<>();
-        public final ArrayList<HomeTabPlaylist> playlists = new ArrayList<>();
-        public final ArrayList<HomeTabEpisodeOrChapter> episodeOrChapters = new ArrayList<>();
-    }
-
-    private enum SectionItemTypes {
+    public enum HomeTabSectionItemTypes {
         UnknownType,
         PlaylistResponseWrapper,
         ArtistResponseWrapper,
@@ -224,7 +90,482 @@ public class UnofficialSpotifyAPI {
         PodcastOrAudiobookResponseWrapper
     }
 
-    int times = 0;
+    public static class HomeTabSectionItem {
+        private final HomeTabSectionItemTypes type;
+        private final String uri;
+        private final Optional<HomeTabPlaylist> playlist;
+        private final Optional<HomeTabArtist> artist;
+        private final Optional<HomeTabAlbum> album;
+        private final Optional<HomeTabEpisodeOrChapter> episodeOrChapter;
+
+        public HomeTabSectionItem(
+                HomeTabSectionItemTypes type,
+                String uri,
+                Optional<HomeTabPlaylist> playlist,
+                Optional<HomeTabArtist> artist,
+                Optional<HomeTabAlbum> album,
+                Optional<HomeTabEpisodeOrChapter> episodeOrChapter
+        ) {
+            this.type = type;
+            this.uri = uri;
+            this.playlist = playlist;
+            this.artist = artist;
+            this.album = album;
+            this.episodeOrChapter = episodeOrChapter;
+        }
+
+        public HomeTabSectionItemTypes getType() {
+            return type;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public Optional<HomeTabPlaylist> getPlaylist() {
+            return playlist;
+        }
+
+        public Optional<HomeTabArtist> getArtist() {
+            return artist;
+        }
+
+        public Optional<HomeTabAlbum> getAlbum() {
+            return album;
+        }
+
+        public Optional<HomeTabEpisodeOrChapter> getEpisodeOrChapter() {
+            return episodeOrChapter;
+        }
+
+        public static HomeTabSectionItem fromJSON(JSONObject json) {
+            Optional<HomeTabPlaylist> playlist = Optional.empty();
+            Optional<HomeTabArtist> artist = Optional.empty();
+            Optional<HomeTabAlbum> album = Optional.empty();
+            Optional<HomeTabEpisodeOrChapter> episodeOrChapter = Optional.empty();
+            switch (HomeTabSectionItemTypes.valueOf(json.getJSONObject("content").getString("__typename"))) {
+                case PlaylistResponseWrapper:
+                    if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
+                        break;
+                    }
+                    playlist = Optional.of(HomeTabPlaylist.fromJSON(json.getJSONObject("content").getJSONObject("data")));
+                    break;
+                case ArtistResponseWrapper:
+                    if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
+                        break;
+                    }
+                    artist = Optional.of(HomeTabArtist.fromJSON(json.getJSONObject("content").getJSONObject("data")));
+                    break;
+                case AlbumResponseWrapper:
+                    if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
+                        break;
+                    }
+                    album = Optional.of(HomeTabAlbum.fromJSON(json.getJSONObject("content").getJSONObject("data")));
+                    break;
+                case EpisodeOrChapterResponseWrapper:
+                    if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
+                        break;
+                    }
+                    episodeOrChapter = Optional.of(HomeTabEpisodeOrChapter.fromJSON(json.getJSONObject("content").getJSONObject("data")));
+                    break;
+                case UnknownType:
+                    ConsoleLogging.warning("[HomeTab] Got section item with unknown type");
+            }
+            return new HomeTabSectionItem(
+                    HomeTabSectionItemTypes.valueOf(json.getJSONObject("content").getString("__typename")),
+                    json.getString("uri"),
+                    playlist,
+                    artist,
+                    album,
+                    episodeOrChapter
+            );
+        }
+    }
+
+    /**
+     * Holds information about an HomeTab section
+     */
+    public static class HomeTabSection {
+        private final HomeTabSectionTypes type;
+        private final Optional<String> name;
+        private final String uri;
+        private final ArrayList<HomeTabSectionItem> items;
+
+        public HomeTabSection(
+                HomeTabSectionTypes type,
+                Optional<String> name,
+                String uri,
+                ArrayList<HomeTabSectionItem> items
+        ) {
+            this.type = type;
+            this.name = name;
+            this.uri = uri;
+            this.items = items;
+        }
+
+        public HomeTabSectionTypes getType() {
+            return type;
+        }
+
+        public Optional<String> getName() {
+            return name;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public ArrayList<HomeTabSectionItem> getItems() {
+            return items;
+        }
+
+        public static HomeTabSection fromJSON(JSONObject json) {
+            Optional<String> name = Optional.empty();
+            if(json.getJSONObject("data").has("title")) {
+                name = Optional.of(json.getJSONObject("data").getJSONObject("title").getString("text"));
+            }
+            ArrayList<HomeTabSectionItem> items = new ArrayList<>();
+            for(Object itemObject : json.getJSONObject("sectionItems").getJSONArray("items")) {
+                items.add(HomeTabSectionItem.fromJSON(new JSONObject(itemObject.toString())));
+            }
+            return new HomeTabSection(
+                    HomeTabSectionTypes.valueOf(json.getJSONObject("data").getString("__typename")),
+                    name,
+                    json.getString("uri"),
+                    items
+            );
+        }
+    }
+
+    /**
+     * Holds information about the HomeTab content
+     */
+    public static class HomeTab {
+        private final String greeting;
+        private final ArrayList<HomeTabSection> sections;
+
+        private HomeTab(String greeting, ArrayList<HomeTabSection> sections) {
+            this.greeting = greeting;
+            this.sections = sections;
+        }
+
+        public String getGreeting() {
+            return greeting;
+        }
+
+        public ArrayList<HomeTabSection> getSections() {
+            return sections;
+        }
+
+        public static HomeTab fromJSON(JSONObject json) {
+            ArrayList<HomeTabSection> sections = new ArrayList<>();
+            for(Object sectionObject : json.getJSONObject("sectionContainer").getJSONObject("sections").getJSONArray("items")) {
+                sections.add(HomeTabSection.fromJSON(new JSONObject(sectionObject.toString())));
+            }
+            return new HomeTab(
+                    json.getJSONObject("greeting").getString("text"),
+                    sections
+            );
+        }
+    }
+
+    /**
+     * Holds information about an HomeTab playlist
+     */
+    public static class HomeTabPlaylist {
+        private final String name;
+        private final String description;
+        private final String uri;
+        private final String ownerName;
+        private final ArrayList<HomeTabImage> images;
+
+        private HomeTabPlaylist(
+                String name,
+                String description,
+                String uri,
+                String ownerName,
+                ArrayList<HomeTabImage> images
+        ) {
+            this.name = name;
+            this.description = description;
+            this.uri = uri;
+            this.ownerName = ownerName;
+            this.images = images;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public String getOwnerName() {
+            return ownerName;
+        }
+
+        public ArrayList<HomeTabImage> getImages() {
+            return images;
+        }
+
+        public static HomeTabPlaylist fromJSON(JSONObject object) {
+            ArrayList<HomeTabImage> images = new ArrayList<>();
+            for(Object image : object.getJSONObject("images").getJSONArray("items")) {
+                JSONObject imageObject = new JSONObject(image.toString());
+                images.add(HomeTabImage.fromJSON(imageObject.getJSONArray("sources").getJSONObject(0)));
+            }
+            return new HomeTabPlaylist(
+                    object.getString("name"),
+                    object.getString("description"),
+                    object.getString("uri"),
+                    object.getJSONObject("ownerV2").getJSONObject("data").getString("name"),
+                    images
+            );
+        }
+    }
+
+    /**
+     * Holds information about an HomeTab image
+     */
+    public static class HomeTabImage {
+        private final int width;
+        private final int height;
+        private final String url;
+
+        private HomeTabImage(
+                int width,
+                int height,
+                String url
+        ) {
+            this.width = width;
+            this.height = height;
+            this.url = url;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public static HomeTabImage fromJSON(JSONObject json) {
+            return new HomeTabImage(
+                    json.optInt("width", -1),
+                    json.optInt("height", -1),
+                    json.getString("url")
+            );
+        }
+    }
+
+    /**
+     * Holds information about an HomeTab artist
+     */
+    public static class HomeTabArtist {
+        private final String name;
+        private final String uri;
+        private final ArrayList<HomeTabImage> images;
+
+        private HomeTabArtist(String name, String uri, ArrayList<HomeTabImage> images) {
+            this.name = name;
+            this.uri = uri;
+            this.images = images;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public ArrayList<HomeTabImage> getImages() {
+            return images;
+        }
+
+        public static HomeTabArtist fromJSON(JSONObject json) {
+            ArrayList<HomeTabImage> images = new ArrayList<>();
+            if(json.has("visuals")) {
+                for (Object imageObject : json.getJSONObject("visuals").getJSONObject("avatarImage").getJSONArray("sources")) {
+                    images.add(HomeTabImage.fromJSON(new JSONObject(imageObject.toString())));
+                }
+            }
+            return new HomeTabArtist(
+                    json.getJSONObject("profile").getString("name"),
+                    json.getString("uri"),
+                    images
+            );
+        }
+    }
+
+    /**
+     * Holds information about an HomeTab album
+     */
+    public static class HomeTabAlbum {
+        private final String name;
+        private final String uri;
+        private final ArrayList<HomeTabArtist> artists;
+        private final ArrayList<HomeTabImage> images;
+
+        private HomeTabAlbum(
+                String name,
+                String uri,
+                ArrayList<HomeTabArtist> artists,
+                ArrayList<HomeTabImage> images
+        ) {
+            this.name = name;
+            this.uri = uri;
+            this.artists = artists;
+            this.images = images;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public ArrayList<HomeTabArtist> getArtists() {
+            return artists;
+        }
+
+        public ArrayList<HomeTabImage> getImages() {
+            return images;
+        }
+
+        public static HomeTabAlbum fromJSON(JSONObject object) {
+            ArrayList<HomeTabArtist> artists = new ArrayList<>();
+            for(Object artist : object.getJSONObject("artists").getJSONArray("items")) {
+                artists.add(HomeTabArtist.fromJSON(new JSONObject(artist.toString())));
+            }
+            ArrayList<HomeTabImage> images = new ArrayList<>();
+            for(Object image : object.getJSONObject("coverArt").getJSONArray("sources")) {
+                images.add(HomeTabImage.fromJSON(new JSONObject(image.toString())));
+            }
+            return new HomeTabAlbum(
+                    object.getString("name"),
+                    object.getString("uri"),
+                    artists,
+                    images
+            );
+        }
+    }
+
+    /**
+     * Holds information about an HomeTab episode or chapter
+     */
+    public static class HomeTabEpisodeOrChapter {
+        private final long totalMilliseconds;
+        private final String isoDate;
+        private final long playPositionMilliseconds;
+        private final String EpisodeOrChapterName;
+        private final String description;
+        private final String uri;
+        private final ArrayList<HomeTabImage> EpisodeOrChapterImages;
+        private final String name;
+        private final String publisherName;
+        private final ArrayList<HomeTabImage> coverImages;
+
+        private HomeTabEpisodeOrChapter(
+                long totalMilliseconds,
+                String isoDate,
+                long playPositionMilliseconds,
+                String EpisodeOrChapterName,
+                String description,
+                String uri,
+                ArrayList<HomeTabImage> EpisodeOrChapterImages,
+                String name,
+                String publisherName,
+                ArrayList<HomeTabImage> coverImages
+        ) {
+            this.totalMilliseconds = totalMilliseconds;
+            this.isoDate = isoDate;
+            this.playPositionMilliseconds = playPositionMilliseconds;
+            this.EpisodeOrChapterName = EpisodeOrChapterName;
+            this.description = description;
+            this.uri = uri;
+            this.EpisodeOrChapterImages = EpisodeOrChapterImages;
+            this.name = name;
+            this.publisherName = publisherName;
+            this.coverImages = coverImages;
+        }
+
+        public long getTotalMilliseconds() {
+            return totalMilliseconds;
+        }
+
+        public String getIsoDate() {
+            return isoDate;
+        }
+
+        public long getPlayPositionMilliseconds() {
+            return playPositionMilliseconds;
+        }
+
+        public String getEpisodeOrChapterName() {
+            return EpisodeOrChapterName;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public ArrayList<HomeTabImage> getEpisodeOrChapterImages() {
+            return EpisodeOrChapterImages;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getPublisherName() {
+            return publisherName;
+        }
+
+        public ArrayList<HomeTabImage> getCoverImages() {
+            return coverImages;
+        }
+
+        public static HomeTabEpisodeOrChapter fromJSON(JSONObject object) {
+            ArrayList<HomeTabImage> EpisodeOrChapterImages = new ArrayList<>();
+            for(Object image : object.getJSONObject("coverArt").getJSONArray("sources")) {
+                EpisodeOrChapterImages.add(HomeTabImage.fromJSON(new JSONObject(image.toString())));
+            }
+            ArrayList<HomeTabImage> coverImages = new ArrayList<>();
+            for(Object image : object.getJSONObject("podcastV2").getJSONObject("data").getJSONObject("coverArt").getJSONArray("sources")) {
+                coverImages.add(HomeTabImage.fromJSON(new JSONObject(image.toString())));
+            }
+            return new HomeTabEpisodeOrChapter(
+                    object.getJSONObject("duration").getLong("totalMilliseconds"),
+                    object.getJSONObject("releaseDate").getString("isoString"),
+                    object.getJSONObject("playedState").getLong("playPositionMilliseconds"),
+                    object.getString("name"),
+                    object.getString("description"),
+                    object.getString("uri"),
+                    EpisodeOrChapterImages,
+                    object.getJSONObject("podcastV2").getJSONObject("data").getString("name"),
+                    object.getJSONObject("podcastV2").getJSONObject("data").getJSONObject("publisher").getString("name"),
+                    coverImages
+            );
+        }
+    }
 
     /**
      * Gets the complete HomeTab (Used in the tab Home)
@@ -238,490 +579,13 @@ public class UnofficialSpotifyAPI {
             //https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=%7B%22timeZone%22%3A%22Europe%2FBerlin%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D
             String url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
             root = new JSONObject(new JSONObject(ConnectionUtils.makeGet(url,
-                    MapUtils.of("Authorization", "Bearer " + api, "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
-        } catch (JSONException e) {
-            if (times > 5) {
-                GraphicalMessage.sorryError();
-            } else {
-                times += 1;
-                return getHomeTab();
-            }
+                    MapUtils.of("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken(), "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
         } catch (UnsupportedEncodingException e) {
             String url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
             root = new JSONObject(new JSONObject(ConnectionUtils.makeGet(url,
-                    MapUtils.of("Authorization", "Bearer " + api, "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
+                    MapUtils.of("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken(), "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
         }
-        HomeTab tab = new HomeTab();
-        tab.greeting = root.getJSONObject("greeting").getString("text");
-        int counter = 0;
-        for (Object o : root.getJSONObject("sectionContainer").getJSONObject("sections").getJSONArray("items")) {
-            if (counter == 0) {
-                HomeTabSectionNoName userlist = new HomeTabSectionNoName();
-                JSONObject section = new JSONObject(o.toString());
-                try {
-                    userlist.uri = section.getString("uri");
-                } catch (JSONException e) {
-                    ConsoleLogging.error("[HomeTab] Couldnt get uri for section");
-                }
-                try {
-                    userlist.totalCount = section.getJSONObject("sectionItems").getInt("totalCount");
-                } catch (JSONException e) {
-                    ConsoleLogging.error("[HomeTab] Couldnt get totalcount for section");
-                }
-                int ic = 0;
-                try {
-                    for (Object i : new JSONObject(o.toString()).getJSONObject("sectionItems").getJSONArray("items")) {
-                        if (ic == 0) {
-                            ic++;
-                            continue; //Guess: The first item always contains nothing
-                        }
-                        JSONObject item = new JSONObject(i.toString());
-                        SectionItemTypes itemTypeName = SectionItemTypes.valueOf(item.getJSONObject("content").getString("__typename"));
-                        JSONObject content;
-                        JSONObject data;
-                        HomeTabImage imageData;
-                        switch (itemTypeName) {
-                            case UnknownType:
-                                continue;
-                            case AlbumResponseWrapper:
-                                content = new JSONObject(item.getJSONObject("content").toString());
-                                data = new JSONObject(content.getJSONObject("data").toString());
-                                HomeTabAlbum album = new HomeTabAlbum();
-                                try {
-                                    album.name = data.getString("name");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for album");
-                                }
-                                try {
-                                    album.uri = data.getString("uri");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for album");
-                                }
-                                imageData = new HomeTabImage();
-                                for (Object image : data.getJSONObject("coverArt").getJSONArray("sources")) {
-                                    JSONObject sourceData = new JSONObject(image.toString());
-                                    HomeTabImageSource imageSource = new HomeTabImageSource();
-                                    try {
-                                        imageSource.url = sourceData.getString("url");
-                                    } catch (JSONException ignored) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                    }
-                                    imageData.sources.add(imageSource);
-                                }
-                                album.images.add(imageData);
-                                for (Object artist : data.getJSONObject("artists").getJSONArray("items")) {
-                                    JSONObject artistSource = new JSONObject(artist.toString());
-                                    HomeTabArtistNoImage artistData = new HomeTabArtistNoImage();
-                                    try {
-                                        artistData.name = artistSource.getJSONObject("profile").getString("name");
-                                    } catch (JSONException e) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
-                                    }
-                                    try {
-                                        artistData.uri = artistSource.getString("uri");
-                                    } catch (JSONException e) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
-                                    }
-                                    album.artists.add(artistData);
-                                }
-                                userlist.albums.add(album);
-                                break;
-                            case ArtistResponseWrapper:
-                                content = new JSONObject(item.getJSONObject("content").toString());
-                                data = new JSONObject(content.getJSONObject("data").toString());
-                                HomeTabArtist artist = new HomeTabArtist();
-                                imageData = new HomeTabImage();
-                                try {
-                                    for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
-                                        JSONObject sourceData = new JSONObject(image);
-                                        HomeTabImageSource imageSource = new HomeTabImageSource();
-                                        try {
-                                            imageSource.url = sourceData.getString("url");
-                                        } catch (JSONException ignored) {
-                                            ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                        }
-                                        imageData.sources.add(imageSource);
-                                    }
-                                } catch (JSONException ignored) {
-                                    //No images
-                                }
-                                artist.images.add(imageData);
-                                try {
-                                    artist.name = data.getJSONObject("profile").getString("name");
-                                } catch (JSONException ignored) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
-                                }
-                                try {
-                                    artist.uri = data.getString("uri");
-                                } catch (JSONException ignored) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
-                                }
-                                userlist.artists.add(artist);
-                                break;
-                            case PlaylistResponseWrapper:
-                                content = new JSONObject(item.getJSONObject("content").toString());
-                                data = new JSONObject(content.getJSONObject("data").toString());
-                                HomeTabPlaylist playlist = new HomeTabPlaylist();
-                                try {
-                                    for (Object image : data.getJSONObject("images").getJSONArray("items")) {
-                                        HomeTabImage images = new HomeTabImage();
-                                        for (Object imageSource : new JSONObject(image.toString()).getJSONArray("sources")) {
-                                            JSONObject sourceData = new JSONObject(imageSource.toString());
-                                            HomeTabImageSource imagesSource = new HomeTabImageSource();
-                                            try {
-                                                imagesSource.url = sourceData.getString("url");
-                                            } catch (JSONException e) {
-                                                ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                            }
-                                            images.sources.add(imagesSource);
-                                        }
-                                        playlist.images.add(images);
-                                    } //Get images
-                                } catch (JSONException e) {
-                                    //No images
-                                }
-                                try {
-                                    playlist.description = data.getString("description"); //Get description
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get description for playlist");
-                                }
-                                try {
-                                    playlist.name = data.getString("name"); //Get Name
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for playlist");
-                                }
-                                try {
-                                    playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get owner of playlist");
-                                }
-                                try {
-                                    playlist.uri = item.getString("uri"); //Get Uri
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for playlist");
-                                }
-                                userlist.playlists.add(playlist);
-                                break;
-                            case EpisodeOrChapterResponseWrapper:
-                                content = new JSONObject(item.getJSONObject("content").toString());
-                                data = new JSONObject(content.getJSONObject("data").toString());
-                                HomeTabEpisodeOrChapter eoc = new HomeTabEpisodeOrChapter();
-                                if (data.getString("__typename").equals("GenericError")) {
-                                    break;
-                                }
-                                try {
-                                    eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
-                                } catch (JSONException exception) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get duration for episode/chapter");
-                                }
-                                try {
-                                    eoc.uri = item.getString("uri");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for episode/chapter");
-                                }
-                                try {
-                                    eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get isodate for episode/chapter");
-                                }
-                                try {
-                                    eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get play position for episode/chapter");
-                                }
-                                try {
-                                    eoc.EpisodeOrChapterName = data.getString("name");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for episode/chapter");
-                                }
-                                try {
-                                    eoc.description = data.getString("description");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get description for episode/chapter");
-                                }
-                                for (Object source : data.getJSONObject("coverArt").getJSONArray("sources")) {
-                                    JSONObject coverSource = new JSONObject(source.toString());
-                                    HomeTabImage coverImage = new HomeTabImage();
-                                    HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                    try {
-                                        coverImageSource.url = coverSource.getString("url");
-                                    } catch (JSONException e) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                    }
-                                    coverImage.sources.add(coverImageSource);
-                                    eoc.EpisodeOrChapterImages.add(coverImage);
-                                }
-                                try {
-                                    JSONObject podcastV2 = data.getJSONObject("podcastV2").getJSONObject("data");
-                                    try {
-                                        eoc.name = podcastV2.getString("name");
-                                    } catch (JSONException e) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get name for podcast");
-                                    }
-                                    try {
-                                        eoc.publisherName = podcastV2.getJSONObject("publisher").getString("name");
-                                    } catch (JSONException e) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get name of publisher for podcast");
-                                    }
-                                    for (Object source : podcastV2.getJSONObject("coverArt").getJSONArray("sources")) {
-                                        JSONObject coverSource = new JSONObject(source.toString());
-                                        HomeTabImage coverImage = new HomeTabImage();
-                                        HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                        try {
-                                            coverImageSource.url = coverSource.getString("url");
-                                        } catch (JSONException e) {
-                                            ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                        }
-                                        coverImage.sources.add(coverImageSource);
-                                        eoc.coverImages.add(coverImage);
-                                    }
-                                } catch (JSONException e) {
-                                    ConsoleLogging.error("HomeTab -> Can't parse podcastV2 element (JSONData)-> " + data);
-                                }
-                                userlist.episodeOrChapters.add(eoc);
-                                break;
-                        }
-                    }
-                    tab.firstSection = userlist;
-                    counter++;
-                    continue;
-                } catch (JSONException e) {
-                    ConsoleLogging.warning("[HomeTab] Couldnt parse section");
-                }
-            }
-            JSONObject section = new JSONObject(o.toString());
-            JSONObject sectionItems = new JSONObject(section.getJSONObject("sectionItems").toString());
-            HomeTabSection homeTabSection = new HomeTabSection();
-            try {
-                homeTabSection.name = section.getJSONObject("data").getJSONObject("title").getString("text");
-            } catch (JSONException ignored) {
-                ConsoleLogging.warning("[HomeTab] Couldnt get name of section");
-            }
-            try {
-                homeTabSection.uri = section.getString("uri");
-            } catch (JSONException ignored) {
-                ConsoleLogging.warning("[HomeTab] Couldnt get uri of section");
-            }
-            try {
-                homeTabSection.totalCount = section.getJSONObject("sectionItems").getInt("totalCount");
-            } catch (JSONException ignored) {
-                ConsoleLogging.warning("[HomeTab] Couldnt get totalcount of section");
-            }
-            for (Object i : sectionItems.getJSONArray("items")) {
-                JSONObject item = new JSONObject(i.toString());
-                try {
-                    if (item.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
-                        continue;
-                    }
-                } catch (JSONException ignored) {
-                }
-                try {
-                    SectionItemTypes itemTypeName = SectionItemTypes.valueOf(item.getJSONObject("content").getString("__typename"));
-                    JSONObject content;
-                    JSONObject data;
-                    HomeTabImage imageData;
-                    switch (itemTypeName) {
-                        case UnknownType:
-                            continue;
-                        case AlbumResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabAlbum album = new HomeTabAlbum();
-                            try {
-                                album.name = data.getString("name");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get name for album");
-                            }
-                            try {
-                                album.uri = data.getString("uri");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get uri for album");
-                            }
-                            imageData = new HomeTabImage();
-                            for (Object image : data.getJSONObject("coverArt").getJSONArray("sources")) {
-                                JSONObject sourceData = new JSONObject(image.toString());
-                                HomeTabImageSource imageSource = new HomeTabImageSource();
-                                try {
-                                    imageSource.url = sourceData.getString("url");
-                                } catch (JSONException ignored) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                }
-                                imageData.sources.add(imageSource);
-                            }
-                            album.images.add(imageData);
-                            for (Object artist : data.getJSONObject("artists").getJSONArray("items")) {
-                                JSONObject artistSource = new JSONObject(artist.toString());
-                                HomeTabArtistNoImage artistData = new HomeTabArtistNoImage();
-                                try {
-                                    artistData.name = artistSource.getJSONObject("profile").getString("name");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
-                                }
-                                try {
-                                    artistData.uri = artistSource.getString("uri");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
-                                }
-                                album.artists.add(artistData);
-                            }
-                            homeTabSection.albums.add(album);
-                            break;
-                        case ArtistResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabArtist artist = new HomeTabArtist();
-                            imageData = new HomeTabImage();
-                            try {
-                                for (Object image : data.getJSONObject("visuals").getJSONArray("sources")) {
-                                    JSONObject sourceData = new JSONObject(image.toString());
-                                    HomeTabImageSource imageSource = new HomeTabImageSource();
-                                    try {
-                                        imageSource.url = sourceData.getString("url");
-                                    } catch (JSONException ignored) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                    }
-                                    imageData.sources.add(imageSource);
-                                }
-                            } catch (JSONException ignored) {
-                                //No images
-                            }
-                            artist.images.add(imageData);
-                            try {
-                                artist.name = data.getJSONObject("profile").getString("name");
-                            } catch (JSONException ignored) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get name for artist");
-                            }
-                            try {
-                                artist.uri = data.getString("uri");
-                            } catch (JSONException ignored) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get uri for artist");
-                            }
-                            homeTabSection.artists.add(artist);
-                            break;
-                        case PlaylistResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabPlaylist playlist = new HomeTabPlaylist();
-                            try {
-                                for (Object image : data.getJSONObject("images").getJSONArray("items")) {
-                                    HomeTabImage images = new HomeTabImage();
-                                    for (Object imageSource : new JSONObject(image.toString()).getJSONArray("sources")) {
-                                        JSONObject sourceData = new JSONObject(imageSource.toString());
-                                        HomeTabImageSource imagesSource = new HomeTabImageSource();
-                                        try {
-                                            imagesSource.url = sourceData.getString("url");
-                                        } catch (JSONException e) {
-                                            ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                        }
-                                        images.sources.add(imagesSource);
-                                    }
-                                    playlist.images.add(images);
-                                } //Get images
-                            } catch (JSONException e) {
-                                //No images
-                            }
-                            try {
-                                playlist.description = data.getString("description"); //Get description
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get description for playlist");
-                            }
-                            try {
-                                playlist.name = data.getString("name"); //Get Name
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get name for playlist");
-                            }
-                            try {
-                                playlist.ownerName = data.getJSONObject("ownerV2").getJSONObject("data").getString("name"); //Get Artist/Owner name
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get owner of playlist");
-                            }
-                            try {
-                                playlist.uri = item.getString("uri"); //Get Uri
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get uri of playlist");
-                            }
-                            homeTabSection.playlists.add(playlist);
-                            break;
-                        case EpisodeOrChapterResponseWrapper:
-                            content = new JSONObject(item.getJSONObject("content").toString());
-                            data = new JSONObject(content.getJSONObject("data").toString());
-                            HomeTabEpisodeOrChapter eoc = new HomeTabEpisodeOrChapter();
-                            if (data.getString("__typename").equals("GenericError") || data.getString("__typename").equals("RestrictedContent")) {
-                                break;
-                            }
-                            try {
-                                eoc.totalMilliseconds = data.getJSONObject("duration").getLong("totalMilliseconds");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get total milliseconds for episode/chapter");
-                            }
-                            try {
-                                eoc.uri = item.getString("uri");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get uri for episode/chapter");
-                            }
-                            try {
-                                eoc.isoDate = data.getJSONObject("releaseDate").getString("isoString");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get isodate for episode/chapter");
-                            }
-                            try {
-                                eoc.playPositionMilliseconds = data.getJSONObject("playedState").getLong("playPositionMilliseconds");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get play position for episode/chapter");
-                            }
-                            try {
-                                eoc.EpisodeOrChapterName = data.getString("name");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get name for episode/chapter");
-                            }
-                            try {
-                                eoc.description = data.getString("description");
-                            } catch (JSONException e) {
-                                ConsoleLogging.warning("[HomeTab] Couldnt get description for episode/chapter");
-                            }
-                            for (Object source : data.getJSONObject("coverArt").getJSONArray("sources")) {
-                                JSONObject coverSource = new JSONObject(source.toString());
-                                HomeTabImage coverImage = new HomeTabImage();
-                                HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                try {
-                                    coverImageSource.url = coverSource.getString("url");
-                                } catch (JSONException e) {
-                                    ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                }
-                                coverImage.sources.add(coverImageSource);
-                                eoc.EpisodeOrChapterImages.add(coverImage);
-                            }
-                            try {
-                                JSONObject podcastV2 = data.getJSONObject("podcastV2").getJSONObject("data");
-                                eoc.name = podcastV2.getString("name");
-                                eoc.publisherName = podcastV2.getJSONObject("publisher").getString("name");
-                                for (Object source : podcastV2.getJSONObject("coverArt").getJSONArray("sources")) {
-                                    JSONObject coverSource = new JSONObject(source.toString());
-                                    HomeTabImage coverImage = new HomeTabImage();
-                                    HomeTabImageSource coverImageSource = new HomeTabImageSource();
-                                    try {
-                                        coverImageSource.url = coverSource.getString("url");
-                                    } catch (JSONException e) {
-                                        ConsoleLogging.warning("[HomeTab] Couldnt get url for image");
-                                    }
-                                    coverImage.sources.add(coverImageSource);
-                                    eoc.coverImages.add(coverImage);
-                                }
-                            } catch (JSONException e) {
-                                ConsoleLogging.error("HomeTab -> Can't parse podcastV2 element (JSONData)-> " + data);
-                            }
-                            homeTabSection.episodeOrChapters.add(eoc);
-                            break;
-                    }
-                } catch (IllegalArgumentException e) {
-                    ConsoleLogging.error("Found unsupported SectionType: " + item.getJSONObject("content").getString("__typename"));
-                }
-            }
-            counter++;
-            tab.sections.add(homeTabSection);
-        }
-        //---
-        return tab;
+        return HomeTab.fromJSON(root);
     }
 
     /**
@@ -1060,10 +924,6 @@ public class UnofficialSpotifyAPI {
         }
     }
 
-    public enum SpotifyBrowseEntryEventsEventDataTypes {
-        URI
-    }
-
     public enum SpotifyBrowseEntryEventsTypes {
         TOGGLEPLAYSTATECLICK,
         CLICK,
@@ -1227,8 +1087,6 @@ public class UnofficialSpotifyAPI {
         }}));
     }
 
-
-    // ToDo: Add error handling
     // The endpoint returns an id of 'browse-page-mobile-fallback' when there is something wrong
     public static SpotifyBrowseSection getSpotifyBrowseSection(String sectionUri) throws IOException {
         String query = "?platform=android&client-timezone=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&podcast=true&locale=" + Locale.getDefault();

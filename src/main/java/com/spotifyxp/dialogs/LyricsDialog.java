@@ -46,11 +46,11 @@ public class LyricsDialog extends JDialog {
     public boolean open(String uri) {
         try {
             if (isVisible()) {
-                lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                lyrics = InstanceManager.getUnofficialSpotifyApi().getLyrics(uri);
                 if (lyrics == null) throw new JSONException("");
                 //New lyrics
             } else {
-                lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                lyrics = InstanceManager.getUnofficialSpotifyApi().getLyrics(uri);
                 if (lyrics == null) throw new JSONException("");
                 addWindowListener(new WindowAdapter() {
                     @Override
@@ -118,7 +118,7 @@ public class LyricsDialog extends JDialog {
         return new EventSubscriber() {
             @Override
             public void run(Object... data) {
-                lyrics = new UnofficialSpotifyAPI(InstanceManager.getSpotifyApi().getAccessToken()).getLyrics(uri);
+                lyrics = InstanceManager.getUnofficialSpotifyApi().getLyrics(uri);
                 coloredLines.clear();
                 for (UnofficialSpotifyAPI.LyricsLine line : lyrics.lines) {
                     coloredLines.add(new LyricsDialog.ColoredLyricsLine(PublicValues.globalFontColor, line.words, line.startTimeMs));

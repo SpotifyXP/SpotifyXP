@@ -21,11 +21,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ConnectionUtils {
-    private static OkHttpClient client;
-
-    public ConnectionUtils() {
-        client = new OkHttpClient();
-    }
 
     public static String makeGet(String url, @Nullable Map<String, String> headers) throws IOException {
         Request.Builder requestBuilder = new Request.Builder()
@@ -33,7 +28,7 @@ public class ConnectionUtils {
                 .addHeader("User-Agent", ApplicationUtils.getUserAgent())
                 .get();
         if (headers != null) requestBuilder.headers(Headers.of(headers));
-        return Objects.requireNonNull(client.newCall(requestBuilder.build()).execute().body()).string();
+        return Objects.requireNonNull(PublicValues.defaultHttpClient.newCall(requestBuilder.build()).execute().body()).string();
     }
 
     public static boolean isWebsiteReachable(String url) {
@@ -55,14 +50,14 @@ public class ConnectionUtils {
                 .addHeader("User-Agent", ApplicationUtils.getUserAgent())
                 .post(formBodyBuilder.build());
         if (headers != null) requestBuilder.headers(Headers.of(headers));
-        return Objects.requireNonNull(client.newCall(requestBuilder.build()).execute().body()).string();
+        return Objects.requireNonNull(PublicValues.defaultHttpClient.newCall(requestBuilder.build()).execute().body()).string();
     }
 
     public static String makeDelete(String url, @Nullable Map<String, String> headers) throws IOException {
         Request.Builder requestBuilder = new Request.Builder()
                 .addHeader("User-Agent", ApplicationUtils.getUserAgent());
         if (headers != null) requestBuilder.headers(Headers.of(headers));
-        return Objects.requireNonNull(client.newCall(requestBuilder.build()).execute().body()).string();
+        return Objects.requireNonNull(PublicValues.defaultHttpClient.newCall(requestBuilder.build()).execute().body()).string();
     }
 
     public static void openBrowser(String url) throws URISyntaxException, IOException {

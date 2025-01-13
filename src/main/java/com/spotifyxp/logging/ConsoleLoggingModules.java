@@ -3,7 +3,7 @@ package com.spotifyxp.logging;
 import com.spotifyxp.utils.GraphicalMessage;
 
 public class ConsoleLoggingModules {
-    private static boolean killSwitch = false;
+    private static final boolean killSwitch = false;
 
     //All colors available in the console
     private static class ColorMap {
@@ -126,11 +126,11 @@ public class ConsoleLoggingModules {
     private static boolean isColored = false;
     private static boolean showClassName = false;
 
-    public void setColored(boolean colored) {
+    public static void setColored(boolean colored) {
         isColored = colored;
     }
 
-    public void setShowClassName(boolean show) {
+    public static void setShowClassName(boolean show) {
         showClassName = show;
     }
 

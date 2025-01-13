@@ -19,7 +19,6 @@ public class InstanceManager {
     static SpotifyApi sapi;
     static OAuthPKCE pkce;
     static Player player;
-    static GitHubAPI gitHubAPI;
     static UnofficialSpotifyAPI unofficialSpotifyAPI;
     static PlayerUtils playerUtils;
     static ArrayList<Object> classInstances = new ArrayList<>();
@@ -44,7 +43,7 @@ public class InstanceManager {
 
     public static UnofficialSpotifyAPI getUnofficialSpotifyApi() {
         if (unofficialSpotifyAPI == null) {
-            unofficialSpotifyAPI = new UnofficialSpotifyAPI(InstanceManager.getPkce().getToken());
+            unofficialSpotifyAPI = new UnofficialSpotifyAPI();
         }
         return unofficialSpotifyAPI;
     }
@@ -90,24 +89,12 @@ public class InstanceManager {
         return sapi;
     }
 
-    public static GitHubAPI getGitHubAPI() {
-        if (gitHubAPI == null) {
-            gitHubAPI = new GitHubAPI();
-        }
-        return gitHubAPI;
-    }
-
-    public static void setGitHubAPI(GitHubAPI api) {
-        gitHubAPI = api;
-    }
-
     public static void destroy() {
         classInstances.clear();
         api = null;
         sapi = null;
         pkce = null;
         player = null;
-        gitHubAPI = null;
         unofficialSpotifyAPI = null;
         playerUtils = null;
     }

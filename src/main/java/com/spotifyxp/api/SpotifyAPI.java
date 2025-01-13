@@ -5,26 +5,20 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.A
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.utils.Token;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-@SuppressWarnings("CanBeFinal")
 public class SpotifyAPI {
     public SpotifyAPI() {
-        Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), new EventSubscriber() {
-            @Override
-            public void run(Object... data) {
-                if (PublicValues.spotifyplayer == null) return;
-                InstanceManager.getSpotifyApi().setAccessToken(Token.getDefaultToken());
-            }
+        Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), data -> {
+            if (PublicValues.spotifyplayer == null) return;
+            InstanceManager.getPkce().refresh();
         });
     }
 
@@ -66,17 +60,6 @@ public class SpotifyAPI {
             }
         }, "Add albums to list");
         thread.start();
-    }
-
-    /**
-     * Adds an album to a table
-     *
-     * @param simplified instance of AlbumSimplified
-     * @param table      table to store the album
-     * @see AlbumSimplified
-     */
-    public void addAlbumToList(AlbumSimplified simplified, DefTable table) {
-        table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[]{simplified.getName()}));
     }
 
     /**

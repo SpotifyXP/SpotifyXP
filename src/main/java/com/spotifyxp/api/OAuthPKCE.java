@@ -4,7 +4,7 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.Token;
 
 public class OAuthPKCE {
-    private String token = "";
+    private String token;
 
     public OAuthPKCE() {
         token = Token.getDefaultToken();

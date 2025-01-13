@@ -111,7 +111,7 @@ public class ArgParser {
             }
             String parameter = "";
             try {
-                parameter = s.split("=")[1];
+                parameter = s.replace(s.split("=")[0] + "=", "");
             } catch (Exception ignored) {
             }
             for (com.spotifyxp.args.Argument a : arguments) {

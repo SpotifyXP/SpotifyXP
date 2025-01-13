@@ -22,6 +22,7 @@ import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.ArchitectureDetection;
 import com.spotifyxp.utils.Utils;
 import com.spotifyxp.visuals.AudioVisualizer;
+import okhttp3.OkHttpClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -78,6 +79,7 @@ public class PublicValues {
     public static boolean enableMediaControl = true;
     public static boolean disableChunkDebug = false;
     public static MPRISMP2None mpris;
+    public static OkHttpClient defaultHttpClient;
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

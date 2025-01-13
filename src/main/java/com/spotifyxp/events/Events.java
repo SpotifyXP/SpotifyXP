@@ -129,9 +129,7 @@ public class Events {
             try {
                 waitFor.get();
                 triggerEvent(name, data);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
         }, "Wait for future (Events)");
