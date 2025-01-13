@@ -111,16 +111,4 @@ public class InstanceManager {
         unofficialSpotifyAPI = null;
         playerUtils = null;
     }
-
-    @SuppressWarnings("unchecked")
-    public static <T> T getInstanceOf(Class<T> classReference) throws InstantiationException, IllegalAccessException {
-        for (Object clazz : classInstances) {
-            if (classReference.isInstance(clazz)) {
-                return (T) clazz;
-            }
-        }
-        Object instance = classReference.newInstance();
-        classInstances.add(instance);
-        return (T) instance;
-    }
 }
