@@ -47,7 +47,7 @@
  "ui.library.songlist.filesize": "Filesize",
  "ui.library.songlist.length": "Length",
  "ui.library.songlist.songname": "Song name",
- "ui.logout.text": "SpotifyXP now exits. On the next start you must enter your email and password",
+ "ui.logout.text": "SpotifyXP will now close. To use SpotifyXP again, login with either Zeroconf (with the Spotify app) or OAuth (with the browser)",
  "ui.logout.title": "Info",
  "ui.menu.help.about": "About SpotifyXP",
  "ui.navigation.feedback": "Feedback",
