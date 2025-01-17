@@ -5,7 +5,6 @@ import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dialogs.AddPlaylistDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -25,10 +24,8 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Playlists extends JPanel implements View {
-    public static JPanel playlistsplaylistslist;
+public class Playlists extends JSplitPane implements View {
     public static JScrollPane playlistsplaylistsscroll;
-    public static JPanel playlistssonglist;
     public static JScrollPane playlistssongsscroll;
     public static DefTable playlistsplayliststable;
     public static DefTable playlistssongtable;
@@ -40,17 +37,11 @@ public class Playlists extends JPanel implements View {
 
 
     public Playlists() {
-        setBounds(0, 0, 784, 421);
-        ContentPanel.tabpanel.add(this);
-        setLayout(null);
+        setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setVisible(false);
-        playlistsplaylistslist = new JPanel();
-        playlistsplaylistslist.setBounds(0, 0, 259, 421);
-        add(playlistsplaylistslist);
-        playlistsplaylistslist.setLayout(null);
         playlistsplaylistsscroll = new JScrollPane();
-        playlistsplaylistsscroll.setBounds(0, 0, 259, 421);
-        playlistsplaylistslist.add(playlistsplaylistsscroll);
+        playlistsplaylistsscroll.setPreferredSize(new Dimension(259, getHeight()));
+        setLeftComponent(playlistsplaylistsscroll);
         playlistsplayliststable = new DefTable();
         playlistsplayliststable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.playlists.playlistname")}));
         playlistsplayliststable.setForeground(PublicValues.globalFontColor);
@@ -59,13 +50,8 @@ public class Playlists extends JPanel implements View {
         playlistsplayliststable.setColumnSelectionAllowed(true);
         playlistsplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistsplaylistsscroll.setViewportView(playlistsplayliststable);
-        playlistssonglist = new JPanel();
-        playlistssonglist.setBounds(260, 0, 524, 421);
-        add(playlistssonglist);
-        playlistssonglist.setLayout(null);
         playlistssongsscroll = new JScrollPane();
-        playlistssongsscroll.setBounds(0, 0, 524, 421);
-        playlistssonglist.add(playlistssongsscroll);
+        setRightComponent(playlistssongsscroll);
         playlistssongtable = new DefTable();
         playlistssongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
         playlistssongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.songslist.songtitle"), PublicValues.language.translate("ui.playlists.songslist.filesize"), PublicValues.language.translate("ui.playlists.songslist.bitrate"), PublicValues.language.translate("ui.playlists.songslist.length")}));

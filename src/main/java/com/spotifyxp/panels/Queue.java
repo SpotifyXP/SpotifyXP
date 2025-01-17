@@ -10,7 +10,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.DDReorderList;
-import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
@@ -19,8 +18,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Queue extends JPanel implements View {
-    public static JScrollPane queuescrollpane;
+public class Queue extends JScrollPane implements View {
     public static DDReorderList<String> queuelist;
     public static final ArrayList<String> queueuricache = new ArrayList<>();
     public static final DefaultListModel<String> queuelistmodel = new DefaultListModel<>();
@@ -29,13 +27,7 @@ public class Queue extends JPanel implements View {
 
     //ToDo: Implement the reordering of the queue after dragging
     public Queue() throws IOException {
-        setBounds(0, 0, 784, 421);
-        ContentPanel.tabpanel.add(this);
-        setLayout(null);
         setVisible(false);
-        queuescrollpane = new JScrollPane();
-        queuescrollpane.setBounds(0, 0, 784, 395);
-        add(queuescrollpane);
         queuelist = new DDReorderList<>(queuelistmodel);
         // ToDo: Fix multiple firing of onReordered when dragged
         queuelist.setOnReordered(new DDReorderList.OnReordered<String>() {
@@ -78,7 +70,7 @@ public class Queue extends JPanel implements View {
         });
         queuelist.setForeground(PublicValues.globalFontColor);
         queuelist.setBackground(getBackground());
-        queuescrollpane.setViewportView(queuelist);
+        setViewportView(queuelist);
         Events.subscribe(SpotifyXPEvents.addtoqueue.getName(), new EventSubscriber() {
             @Override
             public void run(Object... data) {
@@ -110,11 +102,11 @@ public class Queue extends JPanel implements View {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // This happens when (psst... i dont know)
                 } catch (Exception e) {
-                    throw new RuntimeException("Failed to list tracks in queue");
+                    throw new RuntimeException("Failed to list tracks in queue", e);
                 }
                 return;
             }
-            if (!queuelistmodel.isEmpty() && !queueuricache.isEmpty() && data[0] != null && (data[0] instanceof String)) {
+            if (!queuelistmodel.isEmpty() && !queueuricache.isEmpty() && data.length == 1 && data[0] != null && (data[0] instanceof String)) {
                 if(queueuricache.get(0).equals(data[0])) {
                     Events.triggerEvent(SpotifyXPEvents.queueAdvance.getName());
                     return;

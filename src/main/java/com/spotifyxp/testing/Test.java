@@ -7,7 +7,6 @@ import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.utils.PlayerUtils;
 
 import java.io.File;
 import java.io.IOException;

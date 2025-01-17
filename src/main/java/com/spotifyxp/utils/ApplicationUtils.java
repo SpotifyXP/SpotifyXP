@@ -6,14 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ApplicationUtils {
-    private ApplicationUtils() {
-    }
-
     private static JSONObject object = null;
     private static final String ErrorMessage = "Check Application.json";
 
     private static void fetch() {
-        object = new JSONObject(new Resources(true).readToString("Application.json"));
+        object = new JSONObject(new Resources().readToString("Application.json"));
     }
 
     public static String getName() {

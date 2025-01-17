@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 public class PlayerArea extends JPanel {
     public static JImagePanel playerimage;
     public static JScrollText playertitle;
-    public static JLabel playerdescription;
+    public static JScrollText playerdescription;
     public static JImageButton playerplaypreviousbutton;
     public static JImageButton playerplaypausebutton;
     public static JImageButton playerplaynextbutton;
@@ -209,11 +209,11 @@ public class PlayerArea extends JPanel {
             }
         });
         playertitle = new JScrollText(PublicValues.language.translate("ui.player.title"));
-        playertitle.setBounds(109, 11, 168, 14);
+        playertitle.setBounds(109, 11, 168, getFontMetrics(getFont()).getHeight());
         add(playertitle);
         playertitle.setForeground(PublicValues.globalFontColor);
-            playerdescription = new JLabel(PublicValues.language.translate("ui.player.description"));
-        playerdescription.setBounds(109, 40, 138, 20);
+        playerdescription = new JScrollText(PublicValues.language.translate("ui.player.description"));
+        playerdescription.setBounds(109, 40, 138, getFontMetrics(getFont()).getHeight());
         add(playerdescription);
         playerdescription.setForeground(PublicValues.globalFontColor);
         playerplaypreviousbutton = new JImageButton();
@@ -223,7 +223,7 @@ public class PlayerArea extends JPanel {
         playerplaypausebutton = new JImageButton();
         playerplaypausebutton.setColor(frame.getBackground());
         playerplaypausebutton.setBounds(369, 11, 69, 36);
-        playerplaypausebutton.addActionListener(e -> InstanceManager.getPlayer().getPlayer().playPause());
+        playerplaypausebutton.addActionListener(new AsyncActionListener(e -> InstanceManager.getPlayer().getPlayer().playPause()));
         add(playerplaypausebutton);
         playerplaynextbutton = new JImageButton();
         playerplaynextbutton.setColor(frame.getBackground());
@@ -288,7 +288,7 @@ public class PlayerArea extends JPanel {
                 InstanceManager.getPlayer().getPlayer().play();
             }
         }));
-        playerplaynextbutton.addActionListener(e -> InstanceManager.getPlayer().getPlayer().next());
+        playerplaynextbutton.addActionListener(new AsyncActionListener(e -> InstanceManager.getPlayer().getPlayer().next()));
         playerplaypreviousbutton.addActionListener(new AsyncActionListener(e -> PublicValues.spotifyplayer.previous()));
         playercurrenttime.addChangeListener(e -> playerplaytime.setText(TrackUtils.getHHMMSSOfTrack(InstanceManager.getPlayer().getPlayer().time())));
 

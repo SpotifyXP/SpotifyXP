@@ -90,8 +90,4 @@ public class SVGUtils {
             throw new RuntimeException(ex);
         }
     }
-
-    public static ImageIcon svgToImageIcon(InputStream stream, Dimension size) {
-        return svgToImageIcon(stream, size.width, size.height);
-    }
 }

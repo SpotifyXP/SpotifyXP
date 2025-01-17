@@ -3,8 +3,9 @@ package com.spotifyxp.panels;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.HTMLDialog;
@@ -20,11 +21,9 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.*;
-import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableModel;
@@ -33,9 +32,7 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 public class ContentPanel extends JPanel {
     public static PlayerArea playerarea;
@@ -79,6 +76,7 @@ public class ContentPanel extends JPanel {
 
     private static ArrayList<TabEntry> extraTabs = new ArrayList<>();
 
+    @Deprecated
     public static void addComponentToTabs(String title, JComponent component) {
         extraTabs.add(new TabEntry(title, component));
         legacyswitch.addTab(title, new JPanel());
@@ -88,17 +86,17 @@ public class ContentPanel extends JPanel {
     @SuppressWarnings("Busy")
     public ContentPanel() throws IOException {
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
+        SplashPanel.linfo.setText("Creating menu bar...");
+        createMenuBar();
         SplashPanel.linfo.setText("Setting window size...");
-        setPreferredSize(new Dimension(783, 600));
-        setBorder(new EmptyBorder(5, 5, 5, 5));
+        setPreferredSize(PublicValues.getApplicationDimensions());
         setLayout(null);
         SplashPanel.linfo.setText("Creating errorDisplay...");
         createErrorDisplay();
         Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), (Object... data) -> PublicValues.blockLoading = false);
         SplashPanel.linfo.setText("Creating tabpanel...");
         tabpanel = new JPanel();
-        tabpanel.setLayout(null);
-        tabpanel.setBounds(0, 140, 784, 450);
+        tabpanel.setLayout(new BoxLayout(tabpanel, BoxLayout.Y_AXIS));
         SplashPanel.linfo.setText("Creating playerarea...");
         createPlayerArea();
         SplashPanel.linfo.setText("Creating feedback...");
@@ -191,7 +189,7 @@ public class ContentPanel extends JPanel {
     public static void showArtistPanel(String fromuri) {
         switch (currentView) {
             case BROWSE:
-                // ToDo: Implement this
+                browsepanel.makeInvisible();
                 break;
             case HOME:
                 homepanel.makeInvisible();
@@ -323,7 +321,7 @@ public class ContentPanel extends JPanel {
 
     void createArtistPanel() {
         artistPanel = new ArtistPanel();
-        ArtistPanel.contentPanel.setBounds(0, 0, 784, 400);
+        ArtistPanel.contentPanel.setPreferredSize(new Dimension(784, 400));
         tabpanel.add(ArtistPanel.contentPanel);
         ArtistPanel.contentPanel.setVisible(false);
     }
@@ -451,7 +449,7 @@ public class ContentPanel extends JPanel {
 
     void createFeedback() {
         feedbackpanel = new Feedback();
-        tabpanel.add(feedbackpanel, -1);
+        tabpanel.add(feedbackpanel);
     }
 
     //ToDo: Remove this code. This is a horrible way to use a JTabbedPane
@@ -460,7 +458,7 @@ public class ContentPanel extends JPanel {
     @SuppressWarnings("all")
     void createLegacy() {
         legacyswitch.setForeground(PublicValues.globalFontColor);
-        legacyswitch.setBounds(0, 111, 784, 450);
+        legacyswitch.setBounds(0, 111, PublicValues.applicationWidth, PublicValues.contentContainerHeight());
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
         legacyswitch.addTab("Browse", new JPanel());
         legacyswitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
@@ -537,10 +535,12 @@ public class ContentPanel extends JPanel {
                     GraphicalMessage.bug("JTabbedPane: Clicked outsite of allowed range");
             }
         });
+    }
+
+    void createMenuBar() {
         JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
         JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
         JMenu view = new JMenu(PublicValues.language.translate("ui.legacy.view"));
-        JMenu playback = new JMenu(PublicValues.language.translate("ui.playback.menu"));
         JMenu account = new JMenu(PublicValues.language.translate("ui.legacy.account"));
         JMenu help = new JMenu(PublicValues.language.translate("ui.legacy.help"));
         JMenuItem exit = new JMenuItem(PublicValues.language.translate("ui.legacy.exit"));
@@ -612,39 +612,7 @@ public class ContentPanel extends JPanel {
             PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
         }));
-        if (steamdeck) {
-            for (int i = 0; i < bar.getMenuCount(); i++) {
-                JMenu menu1 = bar.getMenu(i);
-                JFrame window = new JFrame();
-                window.setTitle(menu1.getText());
-                ArrayList<JMenuItem> items = new ArrayList<>();
-                DefTable table = new DefTable();
-                table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{""}));
-                window.add(table, BorderLayout.CENTER);
-                for (int j = 0; j < menu1.getMenuComponentCount(); j++) {
-                    java.awt.Component comp = menu1.getMenuComponent(j);
-                    if (comp instanceof JMenuItem) {
-                        JMenuItem menuItem1 = (JMenuItem) comp;
-                        items.add(menuItem1);
-                        ((DefaultTableModel) table.getModel()).addRow(new Object[]{menuItem1.getText()});
-                    }
-                }
-                table.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        super.mouseClicked(e);
-                        if (e.getClickCount() == 2) {
-                            items.get(table.getSelectedRow()).doClick();
-                        }
-                    }
-                }));
-                window.setPreferredSize(new Dimension(300, 300));
-                window.setVisible(true);
-                window.pack();
-            }
-        } else {
-            PublicValues.menuBar = bar;
-        }
+        PublicValues.menuBar = bar;
     }
 
     @FunctionalInterface
@@ -714,12 +682,15 @@ public class ContentPanel extends JPanel {
         currentViewPanel.makeVisible();
     }
 
+    void fixSize() {
+        legacyswitch.setSize(new Dimension(legacyswitch.getWidth(), getHeight() - 111));
+    }
+
     public void open() {
         PublicValues.contentPanel = this;
-        JFrame mainframe;
-        mainframe = frame;
+        JFrame mainframe = frame;
         try {
-            mainframe.setIconImage(ImageIO.read(new Resources(false).readToInputStream("spotifyxp.png")));
+            mainframe.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
         } catch (IOException e) {
             GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
@@ -731,8 +702,9 @@ public class ContentPanel extends JPanel {
                 super.componentMoved(e);
             }
         });
-        mainframe.setPreferredSize(PublicValues.getApplicationDimensions());
-        mainframe.getContentPane().add(this);
+        mainframe.setPreferredSize(new Dimension(800, 600));
+        mainframe.setMinimumSize(new Dimension(800, 600));
+        mainframe.setContentPane(this);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.addWindowListener(new WindowAdapter() {
             @Override
@@ -764,6 +736,8 @@ public class ContentPanel extends JPanel {
                 Toolkit.getDefaultToolkit().getScreenSize().width / 2 - PublicValues.applicationWidth / 2,
                 Toolkit.getDefaultToolkit().getScreenSize().height / 2 - PublicValues.applicationHeight / 2)
         ;
+        Events.subscribe(SpotifyXPEvents.recalculateSizes.getName(), (Object... data) -> fixSize());
+        Events.triggerEvent(SpotifyXPEvents.recalculateSizes.getName());
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());

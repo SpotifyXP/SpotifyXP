@@ -1,6 +1,5 @@
 package com.spotifyxp.lib;
 
-import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONObject;
@@ -251,12 +250,6 @@ public class libLanguage {
         }
     }
 
-    Class<?> classForResources = Initiator.class;
-
-    public libLanguage(Class<?> classForResources) {
-        this.classForResources = classForResources;
-    }
-
     public libLanguage() {
     }
 
@@ -331,7 +324,7 @@ public class libLanguage {
         }
         if (afl) {
             try {
-                JSONObject object = new JSONObject(removeComment(new Resources(true).readToString(lf + "/" + languageCode + ".json")));
+                JSONObject object = new JSONObject(removeComment(new Resources().readToString(lf + "/" + languageCode + ".json")));
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {
@@ -369,7 +362,7 @@ public class libLanguage {
                 }
             }
             try {
-                JSONObject object = new JSONObject(removeComment(new Resources(true, classForResources).readToString(lf + "/" + languageCode + ".json")));
+                JSONObject object = new JSONObject(removeComment(new Resources().readToString(lf + "/" + languageCode + ".json")));
                 object.toMap().forEach(new BiConsumer<String, Object>() {
                     @Override
                     public void accept(String s, Object o) {

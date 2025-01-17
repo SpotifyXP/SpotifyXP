@@ -5,58 +5,70 @@ import java.awt.*;
 
 @SuppressWarnings("BusyWait")
 public class JScrollText extends JLabel implements Runnable {
-    String text;
+    private Thread t;
+    private volatile boolean animate = true;
+    private volatile String originalText;
 
     public JScrollText(String text) {
-        setText(text);
-    }
-
-    Thread t;
-    boolean animate = true;
-
-    public void run() {
-        FontMetrics metrics = null;
-        try {
-            metrics = getFontMetrics(getFont());
-        } catch (NullPointerException ignored) {
-        }
-        if (metrics != null) {
-            while (animate) {
-                if (!isVisible()) {
-                    return;
-                }
-                int hgt = metrics.getHeight();
-                int adv = metrics.stringWidth(getText());
-
-                //Check if the text is completely visible (Don't need to scroll)
-                Dimension size = new Dimension(adv + 2, hgt + 2);
-                if (!(size.width > getWidth())) {
-                    animate = false;
-                    break;
-                }
-                //----
-
-                String oldText = super.getText();
-                String newText = oldText.substring(1) + oldText.charAt(0);
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException ignored) {
-                }
-                super.setText(newText);
-            }
-        }
+        super.setText(text);
     }
 
     @Override
-    public String getText() {
-        return text;
+    public void run() {
+        long frameTime = 1000 / 2;
+        long lastFrameTime = System.currentTimeMillis();
+        while (animate) {
+            Insets insets = getInsets();
+            int labelWidth = getWidth() - insets.left - insets.right;
+
+            FontMetrics fm = getFontMetrics(getFont());
+            int stringWidth = fm.stringWidth(originalText);
+
+            if (stringWidth <= labelWidth) {
+                animate = false;
+                break;
+            }
+
+            String oldText = getText();
+            String newText = oldText.substring(1) + oldText.charAt(0);
+            long currentTime = System.currentTimeMillis();
+            long elapsedTime = currentTime - lastFrameTime;
+            if (elapsedTime < frameTime) {
+                try {
+                    Thread.sleep(frameTime - elapsedTime);
+                } catch (InterruptedException ignored) {
+                }
+            }
+            lastFrameTime = currentTime;
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    realSetText(newText);
+                }
+            });
+        }
+    }
+
+    void realSetText(String text) {
+        super.setText(text);
     }
 
     @Override
     public void setText(String text) {
-        this.text = text;
-        text = text + "       ";
-        super.setText(text);
+        if (t != null) {
+            animate = false;
+            try {
+                t.join();
+            } catch (InterruptedException ignored) {
+            }
+        }
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                realSetText(text + "  ");
+            }
+        });
+        originalText = text;
         animate = true;
         t = new Thread(this);
         t.start();

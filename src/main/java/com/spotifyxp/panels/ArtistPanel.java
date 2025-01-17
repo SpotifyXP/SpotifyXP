@@ -39,7 +39,7 @@ public class ArtistPanel extends JPanel implements View {
         contentPanel.setViewportView(this);
         contentPanel.setVisible(false);
         setLayout(null);
-        setPreferredSize(new Dimension(800, 1005));
+        setPreferredSize(new Dimension(getWidth(), 1005));
 
         backButton = new JButton(PublicValues.language.translate("ui.back"));
         backButton.setBounds(0, 0, 89, 23);

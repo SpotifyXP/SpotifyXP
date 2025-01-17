@@ -31,7 +31,7 @@ public class JFrame extends javax.swing.JFrame {
     @Override
     public void paintComponents(Graphics g) {
         if (aa) {
-            Graphics2D g2d = (Graphics2D) g.create();
+            Graphics2D g2d = (Graphics2D) g;
             RenderingHints hints = new RenderingHints(
                     RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON
             );

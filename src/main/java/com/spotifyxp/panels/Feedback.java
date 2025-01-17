@@ -16,8 +16,6 @@ public class Feedback extends JPanel implements View {
     public static JButton feedbackgithubbutton;
 
     public Feedback() {
-        setBounds(0, 0, 784, 421);
-        ContentPanel.tabpanel.add(this);
         setLayout(null);
         setVisible(false);
         feedbackmakesurelabel = new JLabel(PublicValues.language.translate("ui.feedback.makesure"));
@@ -26,7 +24,7 @@ public class Feedback extends JPanel implements View {
         feedbackmakesurelabel.setForeground(PublicValues.globalFontColor);
         feedbackissuepanel = new JPanel();
         feedbackissuepanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, PublicValues.globalFontColor));
-        feedbackissuepanel.setBounds(0, 333, 426, 88);
+        feedbackissuepanel.setBounds(0, 313, 426, 88);
         add(feedbackissuepanel);
         feedbackissuepanel.setLayout(null);
         feedbackviewissuesbutton = new JButton(PublicValues.language.translate("ui.feedback.issues.view"));
@@ -38,7 +36,7 @@ public class Feedback extends JPanel implements View {
         feedbackissuepanel.add(feedbackcreateissuebutton);
         feedbackcreateissuebutton.setForeground(PublicValues.globalFontColor);
         feedbackgithubbutton = new JButton(PublicValues.language.translate("ui.feedback.github.open"));
-        feedbackgithubbutton.setBounds(466, 355, 250, 55);
+        feedbackgithubbutton.setBounds(466, 335, 250, 55);
         add(feedbackgithubbutton);
         feedbackgithubbutton.setForeground(PublicValues.globalFontColor);
         feedbackgithubbutton.addActionListener(e -> {

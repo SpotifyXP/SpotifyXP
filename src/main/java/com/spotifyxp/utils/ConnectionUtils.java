@@ -7,7 +7,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import okhttp3.FormBody;
 import okhttp3.Headers;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,6 +19,7 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class ConnectionUtils {
 
     public static String makeGet(String url, @Nullable Map<String, String> headers) throws IOException {

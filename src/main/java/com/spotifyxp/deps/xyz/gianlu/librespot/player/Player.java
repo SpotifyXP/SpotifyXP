@@ -46,7 +46,6 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.logging.ConsoleLoggingModules;
-import com.spotifyxp.manager.InstanceManager;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;

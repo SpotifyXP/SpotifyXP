@@ -40,10 +40,9 @@ public class HomePanel implements View {
 
     public void initializeLayout() {
         content = new JPanel();
-        content.setPreferredSize(new Dimension(784, 337 * (tab.getSections().size() - 1)));
+        content.setPreferredSize(new Dimension(content.getWidth(), 337 * (tab.getSections().size() - 1)));
         scrollholder = new JScrollPane(content);
         scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollholder.setSize(784, 421);
         scrollholder.setVisible(false);
         Thread t = new Thread(this::initializeContent, "Get home");
         t.start();

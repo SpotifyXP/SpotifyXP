@@ -1,6 +1,5 @@
 package com.spotifyxp.stabilizer;
 
-import com.spotifyxp.Initiator;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.utils.GraphicalMessage;
 

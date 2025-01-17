@@ -1,13 +1,11 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.panels.ContentPanel;
 import kotlin.Pair;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;

@@ -7,6 +7,7 @@ import com.spotifyxp.panels.SplashPanel;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class GraphicalMessage {
     public static void bug(String where) {
         if (SplashPanel.frame.isVisible()) {
@@ -33,7 +34,7 @@ public class GraphicalMessage {
         if (SplashPanel.frame.isVisible()) {
             SplashPanel.frame.setAlwaysOnTop(false);
         }
-        JOptionPane.showMessageDialog(ContentPanel.frame, o.toString(), "Debug", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(ContentPanel.frame, o.toString(), "Debug", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void sorryError(String additional) {
@@ -65,14 +66,6 @@ public class GraphicalMessage {
             return;
         }
         System.exit(2);
-    }
-
-
-    public static boolean stuck() {
-        if (SplashPanel.frame.isVisible()) {
-            SplashPanel.frame.setAlwaysOnTop(false);
-        }
-        return JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("message.stuck.text"), PublicValues.language.translate("message.stuck.title"), JOptionPane.YES_NO_OPTION) == 0;
     }
 
     public static int showConfirmDialog(String titleTranslation, String messageTranslation, int options, int messageType) {

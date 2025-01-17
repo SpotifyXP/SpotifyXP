@@ -18,7 +18,8 @@ public enum SpotifyXPEvents {
     internetConnectionReconnected("internetConRec", "Fires when the internet gets reconnected"),
     apikeyrefresh("apikeyrefresh", "Fires when the api key refreshes"),
     connectionId("connectionId", "Fires when the connection id has been received"),
-    addtoqueue("addToQueue", "Fires when a track should be added to the queue"),;
+    addtoqueue("addToQueue", "Fires when a track should be added to the queue"),
+    recalculateSizes("recalcSizes", "Fires when the sizes of the JComponent's should be recalculated");
 
     public String getName() {
         return name;

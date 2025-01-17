@@ -4,7 +4,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
-import com.spotifyxp.panels.View;
 import com.spotifyxp.panels.Views;
 import com.spotifyxp.utils.GraphicalMessage;
 
@@ -81,6 +80,8 @@ public class SpotifyBrowseSection extends JScrollPane {
                             ContentPanel.switchView(Views.BROWSESECTION);
                             ContentPanel.lastViewPanel = ContentPanel.browsepanel;
                             ContentPanel.lastView = Views.BROWSE;
+                            ContentPanel.frame.revalidate();
+                            ContentPanel.frame.repaint();
                         }
                     });
                 }

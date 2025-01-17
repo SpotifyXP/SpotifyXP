@@ -19,7 +19,6 @@ public class SpotifySectionPanel extends JScrollPane implements View {
 
         javax.swing.SwingUtilities.invokeLater(() -> getVerticalScrollBar().setValue(0));
 
-        setBounds(0, 0, 784, 421);
         setVisible(false);
         setViewportView(contentPanel);
 

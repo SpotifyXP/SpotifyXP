@@ -1,7 +1,9 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.PublicValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.EpisodeSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Image;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 
@@ -51,7 +53,7 @@ public class SpotifyUtils {
         return tracks;
     }
 
-    public static ArrayList<PlaylistTrack> getAllTracksPlaylist(String uri) {
+    /*public static ArrayList<PlaylistTrack> getAllTracksPlaylist(String uri) {
         ArrayList<PlaylistTrack> tracks = new ArrayList<>();
         try {
             int offset = 0;
@@ -80,7 +82,7 @@ public class SpotifyUtils {
             throw new RuntimeException(e);
         }
         return tracks;
-    }
+    }*/
 
     public static ArrayList<EpisodeSimplified> getAllEpisodesShow(String uri) {
         ArrayList<EpisodeSimplified> episodes = new ArrayList<>();
@@ -144,7 +146,7 @@ public class SpotifyUtils {
         return albums;
     }
 
-    public static ArrayList<Track> getAllTopTracksArtist(String uri) {
+    /*public static ArrayList<Track> getAllTopTracksArtist(String uri) {
         ArrayList<Track> tracks = new ArrayList<>();
         try {
             int parsed = 0;
@@ -170,5 +172,5 @@ public class SpotifyUtils {
             throw new RuntimeException(e);
         }
         return tracks;
-    }
+    }*/
 }

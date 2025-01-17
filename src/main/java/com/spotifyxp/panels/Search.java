@@ -15,6 +15,7 @@ import com.spotifyxp.utils.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -48,6 +49,7 @@ public class Search extends JPanel implements View {
     public static final ArrayList<String> searchplaylistsongscache = new ArrayList<>();
     public static ContextMenu searchplaylistsongscontextmenu;
     public static ContextMenu searchcontextmenu;
+    public static JPanel backButtonContainer;
     private String searchCacheTitle = "";
     private String searchCacheArtist = "";
     private boolean excludeExplicit = false;
@@ -56,14 +58,12 @@ public class Search extends JPanel implements View {
     private Runnable lazyLoadingDeInit;
 
     public Search() {
-        setBounds(0, 0, 784, 421);
-        ContentPanel.tabpanel.add(this);
-        setLayout(null);
         setVisible(false);
+        setLayout(new BorderLayout());
         searchfieldspanel = new JPanel();
         searchfieldspanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.search.searchfield.border"), TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        searchfieldspanel.setBounds(0, 0, 784, 128);
-        add(searchfieldspanel);
+        searchfieldspanel.setPreferredSize(new Dimension(getWidth(), 128));
+        add(searchfieldspanel, BorderLayout.NORTH);
         searchfieldspanel.setLayout(null);
         searchfieldspanel.setForeground(PublicValues.globalFontColor);
         searchartistlabel = new JLabel(PublicValues.language.translate("ui.search.searchfield.artist"));
@@ -89,9 +89,8 @@ public class Search extends JPanel implements View {
         searchfieldspanel.add(searchfinditbutton);
         searchfinditbutton.setForeground(PublicValues.globalFontColor);
         searchartistfield = new JTextField();
-        searchartistfield.setBounds(86, 22, 356, 20);
+        searchartistfield.setBounds(86, 22, 356, 25);
         searchfieldspanel.add(searchartistfield);
-        searchartistfield.setColumns(10);
         searchartistfield.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -102,8 +101,7 @@ public class Search extends JPanel implements View {
             }
         });
         searchsongtitlefield = new JTextField();
-        searchsongtitlefield.setColumns(10);
-        searchsongtitlefield.setBounds(86, 59, 356, 20);
+        searchsongtitlefield.setBounds(86, 59, 356, 25);
         searchfieldspanel.add(searchsongtitlefield);
         searchsongtitlefield.addKeyListener(new KeyAdapter() {
             @Override
@@ -269,8 +267,7 @@ public class Search extends JPanel implements View {
             thread1.start();
         }));
         searchscrollpanel = new JScrollPane();
-        searchscrollpanel.setBounds(0, 139, 784, 282);
-        add(searchscrollpanel);
+        add(searchscrollpanel, BorderLayout.CENTER);
         searchsonglist = new DefTable();
         searchsonglist.getTableHeader().setReorderingAllowed(false);
         searchsonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
@@ -535,16 +532,16 @@ public class Search extends JPanel implements View {
         searchsonglist.setColumnSelectionAllowed(true);
         searchscrollpanel.setViewportView(searchsonglist);
         searchplaylistpanel = new JPanel();
-        searchplaylistpanel.setBounds(0, 0, 784, 421);
+        searchplaylistpanel.setLayout(new BorderLayout());
         ContentPanel.tabpanel.add(searchplaylistpanel);
-        searchplaylistpanel.setLayout(null);
+        backButtonContainer = new JPanel();
+        backButtonContainer.setLayout(new BorderLayout());
+        searchplaylistpanel.add(backButtonContainer, BorderLayout.NORTH);
         searchbackbutton = new JButton(PublicValues.language.translate("ui.back"));
-        searchbackbutton.setBounds(0, 0, 89, 23);
-        searchplaylistpanel.add(searchbackbutton);
+        backButtonContainer.add(searchbackbutton, BorderLayout.WEST);
         searchbackbutton.setForeground(PublicValues.globalFontColor);
         searchplaylistscrollpanel = new JScrollPane();
-        searchplaylistscrollpanel.setBounds(0, 22, 784, 399);
-        searchplaylistpanel.add(searchplaylistscrollpanel);
+        searchplaylistpanel.add(searchplaylistscrollpanel, BorderLayout.CENTER);
         searchplaylisttable = new DefTable();
         searchplaylistscrollpanel.setViewportView(searchplaylisttable);
         searchplaylisttable.setForeground(PublicValues.globalFontColor);

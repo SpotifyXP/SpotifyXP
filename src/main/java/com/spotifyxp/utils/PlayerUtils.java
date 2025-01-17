@@ -121,7 +121,7 @@ public class PlayerUtils {
         }
         Session.Configuration configuration = configurationBuilder.build();
         try {
-            Session session = null;
+            Session session;
             if (new File(PublicValues.fileslocation, "credentials.json").exists()) {
                session = authViaStored(configuration);
             } else {
@@ -192,22 +192,16 @@ public class PlayerUtils {
     }
 
     EventSubscriber connectionReconnectedListener() {
-        return new EventSubscriber() {
-            @Override
-            public void run(Object... data) {
-                PublicValues.wasOffline = false;
-                System.out.println("Connection re established!");
-            }
+        return data -> {
+            PublicValues.wasOffline = false;
+            System.out.println("Connection re established!");
         };
     }
 
     EventSubscriber connectionDroppedListener() {
-        return new EventSubscriber() {
-            @Override
-            public void run(Object... data) {
-                PublicValues.wasOffline = true;
-                System.out.println("Connection dropped! Reconnecting...");
-            }
+        return data -> {
+            PublicValues.wasOffline = true;
+            System.out.println("Connection dropped! Reconnecting...");
         };
     }
 }

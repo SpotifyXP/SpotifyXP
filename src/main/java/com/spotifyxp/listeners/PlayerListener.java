@@ -207,7 +207,9 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onVolumeChanged(@NotNull Player player, @Range(from = 0L, to = 1L) float v) {
         try {
-            PlayerArea.playerareavolumeslider.setValue(TrackUtils.roundVolumeToNormal(v));
+            if(!PlayerArea.playerareavolumeslider.getValueIsAdjusting()) {
+                PlayerArea.playerareavolumeslider.setValue(TrackUtils.roundVolumeToNormal(v));
+            }
         } catch (NullPointerException ex) {
             //ContentPanel is not visible yet
         }

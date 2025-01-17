@@ -15,6 +15,7 @@ import com.spotifyxp.utils.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -22,12 +23,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class HotList extends JPanel implements View {
+public class HotList extends JSplitPane implements View {
     public static DefTable hotlistplayliststable;
     public static DefTable hotlistsongstable;
-    public static JPanel hotlistplaylistspanel;
     public static JScrollPane hotlistplaylistsscrollpanel;
-    public static JPanel hotlistsonglistpanel;
     public static JScrollPane hotslistsongscrollpanel;
     public static final ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
     public static final ArrayList<String> hotlistsonglistcache = new ArrayList<>();
@@ -35,17 +34,11 @@ public class HotList extends JPanel implements View {
     public static ContextMenu hotlistsongstablecontextmenu;
 
     public HotList() {
-        setBounds(0, 0, 784, 421);
-        ContentPanel.tabpanel.add(this);
-        setLayout(null);
+        setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setVisible(false);
-        hotlistplaylistspanel = new JPanel();
-        hotlistplaylistspanel.setBounds(0, 0, 259, 421);
-        add(hotlistplaylistspanel);
-        hotlistplaylistspanel.setLayout(null);
         hotlistplaylistsscrollpanel = new JScrollPane();
-        hotlistplaylistsscrollpanel.setBounds(0, 0, 259, 421);
-        hotlistplaylistspanel.add(hotlistplaylistsscrollpanel);
+        hotlistplaylistsscrollpanel.setPreferredSize(new Dimension(259, getHeight()));
+        setLeftComponent(hotlistplaylistsscrollpanel);
         hotlistplayliststable = new DefTable();
         hotlistplayliststable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.playlistlist.playlists")}));
         hotlistplayliststable.setForeground(PublicValues.globalFontColor);
@@ -54,13 +47,7 @@ public class HotList extends JPanel implements View {
         hotlistplayliststable.setFillsViewportHeight(true);
         hotlistplayliststable.setColumnSelectionAllowed(true);
         hotlistplaylistsscrollpanel.setViewportView(hotlistplayliststable);
-        hotlistsonglistpanel = new JPanel();
-        hotlistsonglistpanel.setBounds(260, 0, 524, 421);
-        add(hotlistsonglistpanel);
-        hotlistsonglistpanel.setLayout(null);
         hotslistsongscrollpanel = new JScrollPane();
-        hotslistsongscrollpanel.setBounds(0, 0, 524, 421);
-        hotlistsonglistpanel.add(hotslistsongscrollpanel);
         hotlistplaylistspanelrightclickmenu = new ContextMenu(hotlistplayliststable);
         hotlistplaylistspanelrightclickmenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             hotlistplaylistlistcache.clear();
@@ -69,6 +56,7 @@ public class HotList extends JPanel implements View {
             ((DefaultTableModel) hotlistplayliststable.getModel()).setRowCount(0);
             fetchHotlist();
         });
+        setRightComponent(hotslistsongscrollpanel);
         hotlistsongstable = new DefTable();
         hotlistsongstable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")}));
         hotlistsongstablecontextmenu = new ContextMenu(hotlistsongstable);

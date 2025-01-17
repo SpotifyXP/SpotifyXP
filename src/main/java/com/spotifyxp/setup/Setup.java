@@ -31,7 +31,7 @@ public class Setup {
             }
         };
         new com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup().open(new SetupBuilder()
-                .setProgramImage(new Resources(true).readToInputStream("setup.png"))
+                .setProgramImage(new Resources().readToInputStream("setup.png"))
                 .setProgramName(ApplicationUtils.getName())
                 .setProgramVersion(ApplicationUtils.getVersion())
                 .setOnFinish(new Runnable() {
@@ -69,7 +69,7 @@ public class Setup {
                     .setFrom(PublicValues.appLocation)
                     .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));
             macos.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setFrom(new Resources(true).readToInputStream("spotifyxp.ico"))
+                    .setFrom(new Resources().readToInputStream("spotifyxp.ico"))
                     .setTo(PublicValues.appLocation + File.separator + "spotifyxp.ico")
                     .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM));
             String jarPath = Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
@@ -105,7 +105,7 @@ public class Setup {
                     .setFrom(PublicValues.appLocation)
                     .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));
             win.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setFrom(new Resources(true).readToInputStream("spotifyxp.ico"))
+                    .setFrom(new Resources().readToInputStream("spotifyxp.ico"))
                     .setTo(PublicValues.appLocation + "/spotifyxp.ico")
                     .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM));
             String jarPath = Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
@@ -145,7 +145,7 @@ public class Setup {
                     .setFrom(PublicValues.appLocation)
                     .setType(InstallProgressComponent.FileOperationTypes.CREATEDIR));
             linux.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
-                    .setFrom(new Resources(true).readToInputStream("spotifyxp.ico"))
+                    .setFrom(new Resources().readToInputStream("spotifyxp.ico"))
                     .setTo(PublicValues.appLocation + File.separator + "spotifyxp.ico")
                     .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM));
             String jarPath = Initiator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();

@@ -12,6 +12,7 @@ public class AsyncActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Utils.executeAsync(() -> listener.actionPerformed(e));
+        Thread thread = new Thread(() -> listener.actionPerformed(e));
+        thread.start();
     }
 }

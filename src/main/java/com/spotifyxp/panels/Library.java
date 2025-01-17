@@ -11,7 +11,6 @@ import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
-import org.checkerframework.checker.units.qual.C;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,9 +19,8 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Library extends JPanel implements View {
+public class Library extends JScrollPane implements View {
     public static DefTable librarysonglist;
-    public static JScrollPane libraryscrollpane;
     public static DefaultTableModel librarydefaulttablemodel;
     public static final ArrayList<String> libraryuricache = new ArrayList<>();
     private static boolean libraryLoadingInProgress = false;
@@ -63,17 +61,12 @@ public class Library extends JPanel implements View {
     }, "Library thread");
 
     public Library() {
-        setBounds(0, 0, 784, 421);
-        setLayout(null);
         setVisible(false);
-        libraryscrollpane = new JScrollPane();
-        libraryscrollpane.setBounds(0, 0, 784, 421);
-        add(libraryscrollpane);
         final boolean[] inProg = {false};
-        libraryscrollpane.addMouseWheelListener(e -> {
+        addMouseWheelListener(e -> {
             if (!inProg[0]) {
                 inProg[0] = true;
-                BoundedRangeModel m = libraryscrollpane.getVerticalScrollBar().getModel();
+                BoundedRangeModel m = getVerticalScrollBar().getModel();
                 int extent = m.getExtent();
                 int maximum = m.getMaximum();
                 int value = m.getValue();
@@ -96,7 +89,7 @@ public class Library extends JPanel implements View {
         librarysonglist.getColumnModel().getColumn(0).setPreferredWidth(347);
         librarysonglist.getColumnModel().getColumn(3).setPreferredWidth(51);
         librarysonglist.setFillsViewportHeight(true);
-        libraryscrollpane.setViewportView(librarysonglist);
+        setViewportView(librarysonglist);
         contextmenu = new ContextMenu(librarysonglist);
         librarysonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override

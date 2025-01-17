@@ -2,7 +2,10 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.*;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.EpisodeSimplified;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
@@ -14,7 +17,6 @@ import com.spotifyxp.utils.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,15 +34,17 @@ public class TrackPanel extends Panel implements View {
     public static String advancedSongPanelUri;
     private boolean blockDefaultBackAction = false;
     public static ContextMenu contextMenu;
+    public static JPanel backButtonContainer;
 
     public TrackPanel() {
-        setBounds(0, 0, 784, 421);
-        setLayout(null);
-        advancedbackbutton = new JButton(PublicValues.language.translate("ui.back"));
-        advancedbackbutton.setBounds(0, 0, 89, 23);
-        add(advancedbackbutton);
-        advancedbackbutton.setForeground(PublicValues.globalFontColor);
+        setLayout(new BorderLayout());
         setVisible(false);
+        backButtonContainer = new JPanel();
+        backButtonContainer.setLayout(new BorderLayout());
+        advancedbackbutton = new JButton(PublicValues.language.translate("ui.back"));
+        backButtonContainer.add(advancedbackbutton, BorderLayout.WEST);
+        advancedbackbutton.setForeground(PublicValues.globalFontColor);
+        add(backButtonContainer, BorderLayout.NORTH);
         advancedbackbutton.addActionListener(new AsyncActionListener(e -> {
             if(lazyLoadingDeInit != null) {
                 lazyLoadingDeInit.run();
@@ -69,7 +73,7 @@ public class TrackPanel extends Panel implements View {
         });
         advancedscrollpanel = new JScrollPane();
         advancedscrollpanel.setBounds(0, 22, 784, 399);
-        add(advancedscrollpanel);
+        add(advancedscrollpanel, BorderLayout.CENTER);
         advancedscrollpanel.setViewportView(advancedsongtable);
         advancedsongtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
@@ -173,6 +177,8 @@ public class TrackPanel extends Panel implements View {
             ConsoleLogging.Throwable(e);
         }
         ContentPanel.blockTabSwitch();
+        ContentPanel.frame.revalidate();
+        ContentPanel.frame.repaint();
     }
 
     @Override

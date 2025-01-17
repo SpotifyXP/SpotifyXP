@@ -5,9 +5,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.guielements.SpotifyBrowseModule;
-import org.apache.commons.io.IOUtils;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -16,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,7 +26,6 @@ public class BrowsePanel extends JScrollPane implements View {
     public static ArrayList<String> genreIds;
 
     public BrowsePanel() {
-        setBounds(0, 0, 784, 421);
         setVisible(false);
         contentPanel = new JPanel();
         setViewportView(contentPanel);

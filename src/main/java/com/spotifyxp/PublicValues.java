@@ -8,13 +8,11 @@ import com.spotifyxp.configuration.Config;
 import com.spotifyxp.deps.org.mpris.MPRISMP2None;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.Player;
-import com.spotifyxp.dialogs.CancelDialog;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.lib.libLanguage;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.theming.Theme;
@@ -31,18 +29,20 @@ import java.util.ArrayList;
 @SuppressWarnings("CanBeFinal")
 public class PublicValues {
     public static int applicationHeight = 600;
-    public static int applicationWidth = 795;
+    public static int applicationWidth = 800;
+
+    public static int contentContainerHeight() {
+        return applicationHeight - 111;
+    }
 
     public static Dimension getApplicationDimensions() {
-        return new Dimension(applicationWidth, applicationHeight);
+        return new Dimension(applicationWidth, (int) (applicationHeight + (PublicValues.osType == libDetect.OSType.MacOS ? 0 : menuBar.getPreferredSize().getHeight())));
     }
 
     public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
-    public static CancelDialog facebookcanceldialog;
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
     public static Player spotifyplayer = null;
-    public static ConsoleLogging logger = new ConsoleLogging();
     public static String configfilepath = fileslocation + "/config.json";
     public static Config config = null;
     public static Session session;
@@ -64,9 +64,7 @@ public class PublicValues {
     public static ArrayList<ContextMenu.GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
     public static String tempPath = System.getenv("temp");
     public static ArrayList<ContextMenu> contextMenus = new ArrayList<>();
-    public static boolean blockArtistPanelBackButton = false;
     public static Color borderColor = Color.black;
-    public static boolean autoLoadHotList = false;
     public static PlaybackHistory history;
     public static boolean blockLoading = false;
     public static boolean devMode = false;
@@ -77,7 +75,6 @@ public class PublicValues {
     public static boolean wasOffline;
     public static CountryCode countryCode;
     public static boolean enableMediaControl = true;
-    public static boolean disableChunkDebug = false;
     public static MPRISMP2None mpris;
     public static OkHttpClient defaultHttpClient;
     //Devstuff

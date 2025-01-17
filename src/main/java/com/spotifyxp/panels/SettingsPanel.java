@@ -327,7 +327,7 @@ public class SettingsPanel extends JPanel {
             if (selectcache.contains(language.getName())) {
                 continue;
             }
-            if (new Resources(true).readToInputStream("lang/" + language.getCode() + ".json") != null) {
+            if (new Resources().readToInputStream("lang/" + language.getCode() + ".json") != null) {
                 selectcache.add(language.getName());
             }
         }

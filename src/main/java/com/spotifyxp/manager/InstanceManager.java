@@ -1,6 +1,9 @@
 package com.spotifyxp.manager;
 
-import com.spotifyxp.api.*;
+import com.spotifyxp.api.OAuthPKCE;
+import com.spotifyxp.api.Player;
+import com.spotifyxp.api.SpotifyAPI;
+import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
 import com.spotifyxp.utils.PlayerUtils;
 

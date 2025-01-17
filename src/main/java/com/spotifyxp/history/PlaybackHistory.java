@@ -8,7 +8,6 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.PlayerArea;
-import com.spotifyxp.panels.TrackPanel;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.URITree;
 import com.spotifyxp.utils.AsyncActionListener;
