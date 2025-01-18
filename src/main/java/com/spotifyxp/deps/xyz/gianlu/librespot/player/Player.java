@@ -46,6 +46,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.playback.PlayerSession;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.state.DeviceStateHandler.PlayCommandHelper;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.utils.GraphicalMessage;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -394,6 +395,7 @@ public class Player implements Closeable {
                 events.playbackFailed(ex);
                 if (ex instanceof PlayableContentFeeder.ContentRestrictedException) {
                     ConsoleLoggingModules.error("Can't load track (content restricted).", ex);
+                    next();
                 } else {
                     ConsoleLoggingModules.error("Failed loading track.", ex);
                     panicState(PlaybackMetrics.Reason.TRACK_ERROR);

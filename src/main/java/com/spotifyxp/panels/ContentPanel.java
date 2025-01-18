@@ -143,8 +143,8 @@ public class ContentPanel extends JPanel {
             }
         } catch (IOException | NullPointerException e) {
             ConsoleLogging.Throwable(e);
-            // Defaulting to German
-            PublicValues.countryCode = CountryCode.DE;
+            // Defaulting to United States
+            PublicValues.countryCode = CountryCode.US;
         }
         Events.subscribe(SpotifyXPEvents.addtoqueue.getName(), new EventSubscriber() {
             @Override

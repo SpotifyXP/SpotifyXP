@@ -76,7 +76,6 @@ public class SettingsPanel extends JPanel {
     public static JTextField preferredlocale;
     //
 
-
     public SettingsPanel() {
         setBounds(100, 100, 422, 506);
         setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -314,7 +313,7 @@ public class SettingsPanel extends JPanel {
             @Override
             public void stateChanged(ChangeEvent e) {
                 if (switcher.getSelectedIndex() == switcher.getTabCount() - 1) {
-                    JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.other.message"), PublicValues.language.translate("ui.settings.other.message.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showConfirmDialog(ContentPanel.settingsPanel, PublicValues.language.translate("ui.settings.other.message"), PublicValues.language.translate("ui.settings.other.message.title"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -409,7 +408,7 @@ public class SettingsPanel extends JPanel {
             PublicValues.config.write(ConfigValues.other_bypasssinkvolume.name, bypasssinkvolume.isSelected());
             PublicValues.config.write(ConfigValues.other_preferredlocale.name, preferredlocale.getText());
             PublicValues.config.save();
-            JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(ContentPanel.settingsPanel, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
         } catch (NumberFormatException e) {
             GraphicalMessage.sorryError("Failed to write settings");
         }

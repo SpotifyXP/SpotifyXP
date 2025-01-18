@@ -8,6 +8,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.T
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
@@ -90,7 +91,6 @@ public class HotList extends JSplitPane implements View {
             public void mouseClicked(MouseEvent e) {
                 hotlistsongstable.setColumnSelectionInterval(0, hotlistsongstable.getColumnCount() - 1);
                 if (e.getClickCount() == 2) {
-                    // Factory.getPlayer().getPlayer().tracks(true).next.clear();
                     InstanceManager.getPlayer().getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, PublicValues.shuffle);
                     TrackUtils.addAllToQueue(hotlistsonglistcache, hotlistsongstable);
                 }
@@ -99,9 +99,9 @@ public class HotList extends JSplitPane implements View {
         hotlistplayliststable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ((DefaultTableModel) hotlistsongstable.getModel()).setRowCount(0);
-                hotlistsonglistcache.clear();
                 if (e.getClickCount() == 2) {
+                    ((DefaultTableModel) hotlistsongstable.getModel()).setRowCount(0);
+                    hotlistsonglistcache.clear();
                     for (TrackSimplified track : SpotifyUtils.getAllTracksAlbum(hotlistplaylistlistcache.get(hotlistplayliststable.getSelectedRow()))) {
                         String a = TrackUtils.getArtists(track.getArtists());
                         hotlistsonglistcache.add(track.getUri());
@@ -115,12 +115,18 @@ public class HotList extends JSplitPane implements View {
     public static void fetchHotlist() {
         try {
             Artist[] artist = InstanceManager.getSpotifyApi().getUsersTopArtists().build().execute().getItems();
-            PlayHistory[] history = InstanceManager.getSpotifyApi().getCurrentUsersRecentlyPlayedTracks().limit(10).build().execute().getItems();
             ArrayList<String> genres = new ArrayList<>();
             ArrayList<String> tracks = new ArrayList<>();
             ArrayList<String> artists = new ArrayList<>();
-            for (PlayHistory h : history) {
-                tracks.add(h.getTrack().getUri().split(":")[2]);
+            ArrayList<PlaybackHistory.SongEntry> entries = PublicValues.history.get15Songs(0);
+            if(entries.isEmpty()) {
+                for(PlayHistory h : InstanceManager.getSpotifyApi().getCurrentUsersRecentlyPlayedTracks().limit(10).build().execute().getItems()) {
+                    tracks.add(h.getTrack().getUri().split(":")[2]);
+                }
+            }else {
+                for (PlaybackHistory.SongEntry entry : entries) {
+                    tracks.add(entry.songURI.split(":")[2]);
+                }
             }
             for (Artist a : artist) {
                 genres.addAll(Arrays.asList(a.getGenres()));
