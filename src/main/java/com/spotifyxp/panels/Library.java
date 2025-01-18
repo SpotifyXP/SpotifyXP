@@ -91,6 +91,9 @@ public class Library extends JScrollPane implements View {
         librarysonglist.setFillsViewportHeight(true);
         setViewportView(librarysonglist);
         contextmenu = new ContextMenu(librarysonglist);
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            contextmenu.addItem(item.name, item.torun);
+        }
         librarysonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -101,18 +104,17 @@ public class Library extends JScrollPane implements View {
                 }
             }
         }));
-        ContextMenu librarymenu = new ContextMenu(librarysonglist);
-        librarymenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryuricache.get(librarysonglist.getSelectedRow())));
-        librarymenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
+        contextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryuricache.get(librarysonglist.getSelectedRow())));
+        contextmenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             libraryuricache.clear();
             librarysonglist.removeAll();
             librarythread.start();
         });
-        librarymenu.addItem("Add to queue", () -> {
+        contextmenu.addItem("Add to queue", () -> {
             if(librarysonglist.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), libraryuricache.get(librarysonglist.getSelectedRow()));
         });
-        librarymenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
+        contextmenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
             InstanceManager.getSpotifyApi().removeUsersSavedTracks(libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);
             libraryuricache.remove(librarysonglist.getSelectedRow());
             ((DefaultTableModel) librarysonglist.getModel()).removeRow(librarysonglist.getSelectedRow());

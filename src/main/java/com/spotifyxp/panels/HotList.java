@@ -56,6 +56,9 @@ public class HotList extends JSplitPane implements View {
             ((DefaultTableModel) hotlistplayliststable.getModel()).setRowCount(0);
             fetchHotlist();
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            hotlistplaylistspanelrightclickmenu.addItem(item.name, item.torun);
+        }
         setRightComponent(hotslistsongscrollpanel);
         hotlistsongstable = new DefTable();
         hotlistsongstable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")}));
@@ -66,6 +69,9 @@ public class HotList extends JSplitPane implements View {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
             }
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            hotlistsongstablecontextmenu.addItem(item.name, item.torun);
+        }
         hotlistsongstablecontextmenu.addItem("Add to queue", () -> {
             if(hotlistsongstable.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()));

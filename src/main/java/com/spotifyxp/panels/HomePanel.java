@@ -9,10 +9,12 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.StringUtils;
 import com.spotifyxp.utils.TrackUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,35 +24,51 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.*;
 
-public class HomePanel implements View {
-    JScrollPane scrollholder;
+public class HomePanel extends JScrollPane implements View {
     JPanel content;
-
-    final UnofficialSpotifyAPI.HomeTab tab;
+    UnofficialSpotifyAPI.HomeTab tab;
+    ContextMenu menu;
+    CompletableFuture<?> future;
 
     public HomePanel() {
-        try {
-            tab = InstanceManager.getUnofficialSpotifyApi().getHomeTab();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        initializeLayout();
-    }
-
-    public void initializeLayout() {
         content = new JPanel();
-        content.setPreferredSize(new Dimension(content.getWidth(), 337 * (tab.getSections().size() - 1)));
-        scrollholder = new JScrollPane(content);
-        scrollholder.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollholder.setVisible(false);
-        Thread t = new Thread(this::initializeContent, "Get home");
-        t.start();
+        content.setLayout(null);
+        menu = new ContextMenu(content);
+        menu.addItem("Refresh", this::refill);
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            menu.addItem(item.name, item.torun);
+        }
+        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        setVisible(false);
+        setViewportView(content);
+        future = new CompletableFuture<>();
+        Thread requestTabThread = new Thread(() -> {
+            try {
+                tab = InstanceManager.getUnofficialSpotifyApi().getHomeTab();
+                future.complete(null);
+            } catch (IOException e) {
+                future.cancel(false);
+                throw new RuntimeException(e);
+            }
+        }, "Request home tab");
+        requestTabThread.start();
+        Events.subscribe(SpotifyXPEvents.onFrameVisible.getName(), (args) -> {
+            Thread thread = new Thread(() -> {
+                try {
+                    future.get();
+                }catch (CancellationException e) {
+                    ConsoleLogging.error("Failed to get home tab");
+                    return;
+                } catch (InterruptedException | ExecutionException e) {
+                    throw new RuntimeException(e);
+                }
+                SwingUtilities.invokeLater(this::fill);
+            }, "Wait for home tab");
+            thread.start();
+        });
     }
-
-    int addCache = 302;
-
-    int cache = 0;
 
     public enum ContentTypes {
         show,
@@ -62,17 +80,17 @@ public class HomePanel implements View {
         playlist
     }
 
-    public void addModule(UnofficialSpotifyAPI.HomeTabSection section) {
+    public void addModule(UnofficialSpotifyAPI.HomeTabSection section, int titleHeight, int x, int y, int titleY, int width, int height) {
         ArrayList<String> uricache = new ArrayList<>();
-        JLabel homepanelmoduletext = new JLabel(section.getName().orElse("N/A"));
+        JLabel homepanelmoduletext = new JLabel(section.getName().orElse(""));
         homepanelmoduletext.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        homepanelmoduletext.setBounds(0, addCache + 11, 375, 24);
+        homepanelmoduletext.setBounds(x, titleY, width, titleHeight);
         content.add(homepanelmoduletext);
 
         homepanelmoduletext.setForeground(PublicValues.globalFontColor);
 
         JScrollPane homepanelmodulescrollpanel = new JScrollPane();
-        homepanelmodulescrollpanel.setBounds(0, addCache + 38, 777, 281);
+        homepanelmodulescrollpanel.setBounds(x, y, width, height);
         content.add(homepanelmodulescrollpanel);
 
         DefTable homepanelmodulecontenttable = new DefTable() {
@@ -133,7 +151,7 @@ public class HomePanel implements View {
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             case artist:
-                                scrollholder.setVisible(false);
+                                setVisible(false);
                                 ContentPanel.artistPanel.reset();
                                 ContentPanel.switchView(Views.ARTIST);
                                 try {
@@ -173,11 +191,6 @@ public class HomePanel implements View {
                 }
             }
         }));
-
-        addCache += 319;
-        cache++;
-        content.revalidate();
-        content.repaint();
     }
 
     String artistParser(ArrayList<UnofficialSpotifyAPI.HomeTabArtist> cache) {
@@ -196,122 +209,58 @@ public class HomePanel implements View {
 
 
     public void initializeContent() {
-        content.setLayout(null);
-        ArrayList<String> usersuricache = new ArrayList<>();
+        int width = getWidth() - 32;
+        int height = 261;
+        int spacing = 70;
+        int xCache = 10;
+        int titleHeight = getFontMetrics(getFont()).getHeight();
+        int yCache = titleHeight + 55;
+        int titleSpacing = 5;
 
-        JScrollPane homepaneluserscrollpanel = new JScrollPane();
-        homepaneluserscrollpanel.setBounds(0, 39, 777, 261);
-        content.add(homepaneluserscrollpanel);
-
-        DefTable homepanelusertable = new DefTable() {
-        };
-        homepaneluserscrollpanel.setViewportView(homepanelusertable);
-        homepanelusertable.setForeground(PublicValues.globalFontColor);
-        homepanelusertable.getTableHeader().setForeground(PublicValues.globalFontColor);
-
-        homepanelusertable.setModel(new DefaultTableModel(
-                new Object[][]{
-                },
-                new String[]{
-                        "Name", "Artist"
-                }
-        ));
-
-        homepanelusertable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (e.getClickCount() == 2) {
-                    ContentTypes ct = ContentTypes.valueOf(usersuricache.get(homepanelusertable.getSelectedRow()).split(":")[1]);
-                    String uri = usersuricache.get(homepanelusertable.getSelectedRow());
-                    String id = uri.split(":")[2];
-                    try {
-                        switch (ct) {
-                            case track:
-                                PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
-                                Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
-                                break;
-                            case artist:
-                                scrollholder.setVisible(false);
-                                ContentPanel.artistPanel.reset();
-                                ContentPanel.switchView(Views.ARTIST);
-                                try {
-                                    Artist a = InstanceManager.getSpotifyApi().getArtist(id).build().execute();
-                                    try {
-                                        ArtistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
-                                    } catch (ArrayIndexOutOfBoundsException exception) {
-                                        //No artist image (when this is raised it's a bug)
-                                    }
-                                    ArtistPanel.artisttitle.setText(a.getName());
-                                    Thread trackthread = new Thread(() -> {
-                                        try {
-                                            for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
-                                                ArtistPanel.popularuricache.add(t.getUri());
-                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
-                                            }
-                                        } catch (IOException ex) {
-                                            ConsoleLogging.Throwable(ex);
-                                        }
-                                    }, "Get tracks (Artist)");
-                                    InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable);
-                                    trackthread.start();
-                                } catch (IOException ex) {
-                                    ConsoleLogging.Throwable(ex);
-                                }
-                                break;
-                            default:
-                                ContentPanel.trackPanel.open(uri, ct);
-                                break;
-                        }
-                    } catch (Exception ignored) {
-                    }
-                }
-            }
-        }));
-
+        JPanel homepanelgreetings = new JPanel();
+        homepanelgreetings.setBounds(0, 11, getWidth(), getFontMetrics(getFont()).getHeight());
+        homepanelgreetings.setLayout(new BorderLayout());
         JLabel homepanelgreetingstext = new JLabel(tab.getGreeting());
-        homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        homepanelgreetingstext.setBounds(0, 11, 375, 24);
-        content.add(homepanelgreetingstext);
+        homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        homepanelgreetingstext.setHorizontalAlignment(SwingConstants.CENTER);
         homepanelgreetingstext.setForeground(PublicValues.globalFontColor);
+        homepanelgreetings.add(homepanelgreetingstext);
+        content.add(homepanelgreetings);
 
-        for(UnofficialSpotifyAPI.HomeTabSectionItem item : tab.getSections().get(0).getItems()) {
-            switch (item.getType()) {
-                case AlbumResponseWrapper:
-                    if(!item.getAlbum().isPresent()) break;
-                    UnofficialSpotifyAPI.HomeTabAlbum album = item.getAlbum().get();
-                    usersuricache.add(album.getUri());
-                    homepanelusertable.addModifyAction(() -> ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{album.getName(), artistParser(album.getArtists())}));
-                    break;
-                case ArtistResponseWrapper:
-                    if(!item.getArtist().isPresent()) break;
-                    UnofficialSpotifyAPI.HomeTabArtist artist = item.getArtist().get();
-                    usersuricache.add(artist.getUri());
-                    homepanelusertable.addModifyAction(() -> ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{artist.getName(), ""}));
-                    break;
-                case EpisodeOrChapterResponseWrapper:
-                    if(!item.getEpisodeOrChapter().isPresent()) break;
-                    UnofficialSpotifyAPI.HomeTabEpisodeOrChapter episodeOrChapter = item.getEpisodeOrChapter().get();
-                    usersuricache.add(episodeOrChapter.getUri());
-                    homepanelusertable.addModifyAction(() -> ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{episodeOrChapter.getEpisodeOrChapterName(), episodeOrChapter.getName() + " - " + episodeOrChapter.getPublisherName()}));
-                    break;
-                case PlaylistResponseWrapper:
-                    if(!item.getPlaylist().isPresent()) break;
-                    UnofficialSpotifyAPI.HomeTabPlaylist playlist = item.getPlaylist().get();
-                    usersuricache.add(playlist.getUri());
-                    homepanelusertable.addModifyAction(() -> ((DefaultTableModel) homepanelusertable.getModel()).addRow(new Object[]{playlist.getName(), playlist.getOwnerName()}));
-                    break;
-            }
-        }
-
-        for (UnofficialSpotifyAPI.HomeTabSection section : tab.getSections().subList(1, tab.getSections().size())) {
-            addModule(section);
+        for (UnofficialSpotifyAPI.HomeTabSection section : tab.getSections()) {
+            addModule(section, titleHeight, xCache, yCache, yCache - titleHeight - titleSpacing, width, height);
+            yCache += height + spacing;
         }
     }
 
+    void requestHome() {
+        Thread thread = new Thread(() -> {
+            try {
+                tab = InstanceManager.getUnofficialSpotifyApi().getHomeTab();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        fill();
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }, "Request home");
+        thread.start();
+    }
 
-    public JScrollPane getComponent() {
-        return scrollholder;
+    void refill() {
+        content.removeAll();
+        requestHome();
+    }
+
+    void fill() {
+        Thread t = new Thread(this::initializeContent, "Get home");
+        t.start();
+        content.setPreferredSize(new Dimension(content.getWidth(), (261 + getFontMetrics(getFont()).getHeight() + 55) * tab.getSections().size()));
+        content.revalidate();
+        content.repaint();
     }
 
     public JPanel getPanel() {
@@ -320,11 +269,11 @@ public class HomePanel implements View {
 
     @Override
     public void makeVisible() {
-        scrollholder.setVisible(true);
+        setVisible(true);
     }
 
     @Override
     public void makeInvisible() {
-        scrollholder.setVisible(false);
+        setVisible(false);
     }
 }

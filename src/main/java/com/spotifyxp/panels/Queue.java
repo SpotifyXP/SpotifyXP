@@ -173,6 +173,9 @@ public class Queue extends JScrollPane implements View {
             queueuricache.remove(queueuricache.get(queuelist.getSelectedIndex()));
             ((DefaultListModel<?>) queuelist.getModel()).remove(queuelist.getSelectedIndex());
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            contextMenu.addItem(item.name, item.torun);
+        }
     }
 
     @Override

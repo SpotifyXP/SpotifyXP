@@ -73,6 +73,9 @@ public class ExceptionDialog {
 
         ContextMenu menu = new ContextMenu(contentPane, exceptiontext);
         menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(exceptiontext.getText()));
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            menu.addItem(item.name, item.torun);
+        }
 
         JButton exceptionokbutton = new JButton(PublicValues.language.translate("exception.dialog.button.text"));
         exceptionokbutton.setBounds(0, 377, 589, 23);

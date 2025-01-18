@@ -73,6 +73,9 @@ public class Playlists extends JSplitPane implements View {
             if(playlistssongtable.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistssonguricache.get(playlistssongtable.getSelectedRow()));
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            songsCTXMenu.addItem(item.name, item.torun);
+        }
 
         ContextMenu menu = new ContextMenu(playlistsplayliststable);
         menu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
@@ -104,6 +107,9 @@ public class Playlists extends JSplitPane implements View {
             }, () -> {
             }, dialog::dispose);
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            menu.addItem(item.name, item.torun);
+        }
         playlistsplayliststable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

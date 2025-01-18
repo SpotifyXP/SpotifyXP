@@ -566,6 +566,9 @@ public class Search extends JPanel implements View {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
             }
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            searchplaylistsongscontextmenu.addItem(item.name, item.torun);
+        }
         searchplaylistsongscontextmenu.addItem("Add to queue", () -> {
             if(searchplaylisttable.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()));
@@ -606,6 +609,9 @@ public class Search extends JPanel implements View {
             if(searchsonglist.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), searchsonglistcache.get(searchsonglist.getSelectedRow()));
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            searchcontextmenu.addItem(item.name, item.torun);
+        }
     }
 
     @Override

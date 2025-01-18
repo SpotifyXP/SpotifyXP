@@ -85,6 +85,9 @@ public class LyricsDialog extends JDialog {
                         ClipboardUtil.set(buffer.toString());
                     }
                 });
+                for (ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+                    menu.addItem(item.name, item.torun);
+                }
                 setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
                 pack();
                 setVisible(true);

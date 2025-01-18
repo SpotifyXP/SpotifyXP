@@ -52,8 +52,6 @@ public class SpotifySectionPanel extends JScrollPane implements View {
         title.setFont(title.getFont().deriveFont(Font.BOLD).deriveFont(23f));
 
         contentPanel.add(title);
-
-
     }
 
     void fillIt() {

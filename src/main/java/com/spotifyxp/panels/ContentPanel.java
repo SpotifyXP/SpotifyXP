@@ -297,7 +297,7 @@ public class ContentPanel extends JPanel {
 
     void createHome() {
         homepanel = new HomePanel();
-        tabpanel.add(homepanel.getComponent());
+        tabpanel.add(homepanel);
     }
 
     void createBrowse() {
@@ -413,6 +413,9 @@ public class ContentPanel extends JPanel {
                         errorDisplay.setVisible(false);
                     }
                 });
+                for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+                    menu.addItem(item.name, item.torun);
+                }
                 JButton remove = new JButton(PublicValues.language.translate("ui.errorqueue.clear"));
                 remove.addActionListener(new AsyncActionListener(e1 -> {
                     errorQueue.clear();

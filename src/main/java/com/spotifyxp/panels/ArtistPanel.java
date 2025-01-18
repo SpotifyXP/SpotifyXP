@@ -69,6 +69,9 @@ public class ArtistPanel extends JPanel implements View {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
             }
         });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            artistpopularsonglistcontextmenu.addItem(item.name, item.torun);
+        }
         artistpopularsonglistcontextmenu.addItem("Add to queue", () -> {
             if(artistpopularsonglist.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularuricache.get(artistpopularsonglist.getSelectedRow()));
@@ -102,6 +105,9 @@ public class ArtistPanel extends JPanel implements View {
 
         artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
         artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumuricache.get(artistalbumalbumtable.getSelectedRow())));
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            artistalbumcontextmenu.addItem(item.name, item.torun);
+        }
 
         artistalbumalbumtable.setForeground(PublicValues.globalFontColor);
         artistalbumalbumtable.getTableHeader().setForeground(PublicValues.globalFontColor);
