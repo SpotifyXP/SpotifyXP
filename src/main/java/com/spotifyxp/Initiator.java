@@ -40,13 +40,13 @@ public class Initiator {
         System.setProperty("http.agent", ApplicationUtils.getUserAgent()); //Setting the user agent string that SpotifyXP uses
         checkDebug(); //Checking if debug is enabled
         checkSetup();
+        detectOS(); //Detecting the operating system
         initConfig(); //Initializing the configuration
         if(new File(PublicValues.appLocation, "LOCK").exists()) {
             JOptionPane.showMessageDialog(null, "Another instance of SpotifyXP is already running! Exiting...");
             System.exit(-1);
         }
         creatingLock(); //Creating the 'LOCK' file
-        detectOS(); //Detecting the operating system
         PublicValues.defaultHttpClient = new OkHttpClient(); //Creating the default http client
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
