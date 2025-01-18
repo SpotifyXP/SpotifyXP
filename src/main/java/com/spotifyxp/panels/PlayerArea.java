@@ -324,7 +324,7 @@ public class PlayerArea extends JPanel {
                 }
             }
         }));
-        ContentPanel.frame.add(historybutton.getJComponent());
+        PublicValues.contentPanel.add(historybutton.getJComponent());
 
         Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
             @Override

@@ -85,6 +85,7 @@ public class ContentPanel extends JPanel {
 
     @SuppressWarnings("Busy")
     public ContentPanel() throws IOException {
+        PublicValues.contentPanel = this;
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
         SplashPanel.linfo.setText("Creating menu bar...");
         createMenuBar();
@@ -687,7 +688,6 @@ public class ContentPanel extends JPanel {
     }
 
     public void open() {
-        PublicValues.contentPanel = this;
         JFrame mainframe = frame;
         try {
             mainframe.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
