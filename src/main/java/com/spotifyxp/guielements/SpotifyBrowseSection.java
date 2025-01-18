@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
+import com.spotifyxp.panels.SpotifySectionPanel;
 import com.spotifyxp.panels.Views;
 import com.spotifyxp.utils.GraphicalMessage;
 
@@ -12,11 +13,80 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class SpotifyBrowseSection extends JScrollPane {
     public DefTable table;
     private ArrayList<String> uris;
+
+    public SpotifyBrowseSection(List<ArrayList<String>> entries, int x, int y, int width, int height) {
+        table = new DefTable();
+        uris = new ArrayList<>();
+
+        table.setModel(new DefaultTableModel(
+                new Object[][]{
+                },
+                new String[]{
+                        "Name", "Description", ""
+                }
+        ));
+        table.setForeground(PublicValues.globalFontColor);
+        table.getTableHeader().setForeground(PublicValues.globalFontColor);
+
+        for(ArrayList<String> e : entries) {
+            uris.add(e.get(3));
+            table.addModifyAction(new Runnable() {
+                @Override
+                public void run() {
+                    ((DefaultTableModel) table.getModel()).addRow(new Object[] {e.get(0), e.get(1), e.get(2)});
+                }
+            });
+        }
+
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() == 2) {
+                    String entry = uris.get(table.getSelectedRow());
+                    HomePanel.ContentTypes contentType;
+                    switch(entry.split(":")[1].toLowerCase(Locale.ENGLISH)) {
+                        case "playlist":
+                            contentType = HomePanel.ContentTypes.playlist;
+                            break;
+                        case "album":
+                            contentType = HomePanel.ContentTypes.album;
+                            break;
+                        case "show":
+                            contentType = HomePanel.ContentTypes.show;
+                            break;
+                        case "episode":
+                        case "track":
+                            PublicValues.spotifyplayer.load(entry, true, PublicValues.shuffle);
+                            return;
+                        default:
+                            GraphicalMessage.bug("Called browse onclick with an unsupported content type: " + entry.split(":")[1]);
+                            return;
+                    }
+
+                    //This opens the track panel but additionally also hijacks the back button
+                    ContentPanel.trackPanel.open(entry, contentType, new Runnable() {
+                        @Override
+                        public void run() {
+                            ContentPanel.switchView(Views.BROWSESECTION);
+                            ContentPanel.lastViewPanel = ContentPanel.browsepanel;
+                            ContentPanel.lastView = Views.BROWSE;
+                            ContentPanel.frame.revalidate();
+                            ContentPanel.frame.repaint();
+                        }
+                    });
+                }
+            }
+        });
+
+        setViewportView(table);
+        setBounds(x, y, width, height);
+    }
 
     public SpotifyBrowseSection(ArrayList<UnofficialSpotifyAPI.SpotifyBrowseEntry> entries, int x, int y, int width, int height) {
         table = new DefTable();

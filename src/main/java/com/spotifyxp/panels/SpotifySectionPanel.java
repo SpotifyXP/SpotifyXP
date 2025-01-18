@@ -7,6 +7,8 @@ import com.spotifyxp.utils.AsyncActionListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SpotifySectionPanel extends JScrollPane implements View {
     public static JButton backButton;
@@ -64,7 +66,12 @@ public class SpotifySectionPanel extends JScrollPane implements View {
         int spacing = 70;
         int titleHeight = getFontMetrics(title.getFont()).getHeight();
         int titleSpacing = 5;
-        for(UnofficialSpotifyAPI.SpotifyBrowseEntry entry : section.getBody()) {
+        ArrayList<Integer> skip = new ArrayList<>();
+        for(int i = 0; i < section.getBody().size(); i++) {
+            if(skip.contains(i)) {
+                continue;
+            }
+            UnofficialSpotifyAPI.SpotifyBrowseEntry entry = section.getBody().get(i);
             if(entry.getComponent().getId().contains("carousel")) {
                 JLabel titleOfEntry = new JLabel(entry.getText().getTitle());
                 titleOfEntry.setForeground(PublicValues.globalFontColor);
@@ -75,6 +82,25 @@ public class SpotifySectionPanel extends JScrollPane implements View {
                 contentPanel.add(spotifyBrowseSection);
 
                 yCache += height + spacing;
+            }
+            if(entry.getComponent().getCategory().contains("card") && !entry.getChildren().isPresent()) {
+                JLabel titleOfEntry = new JLabel(section.getBody().get(i-1).getText().getTitle());
+                titleOfEntry.setForeground(PublicValues.globalFontColor);
+                titleOfEntry.setBounds(xCache, yCache - titleHeight - titleSpacing, width, titleHeight);
+                ArrayList<ArrayList<String>> entries = new ArrayList<>();
+                for(int j = 0; j < section.getBody().subList(i, section.getBody().size()).size(); j++) {
+                    UnofficialSpotifyAPI.SpotifyBrowseEntry cardEntry = section.getBody().subList(i, section.getBody().size()).get(j);
+                    if(cardEntry.getComponent().getCategory().contains("card")) {
+                        entries.add(new ArrayList<>(Arrays.asList(cardEntry.getText().getTitle(), cardEntry.getText().getDescription().orElse(""), cardEntry.getText().getSubtitle().orElse(""), cardEntry.getEvents().get().getEvents().get(0).getData_uri().get().getUri())));
+                        skip.add(i + j);
+                    } else {
+                        break;
+                    }
+                }
+                SpotifyBrowseSection spotifyBrowseSection = new SpotifyBrowseSection(entries, xCache, yCache, width, height);
+
+                contentPanel.add(titleOfEntry);
+                contentPanel.add(spotifyBrowseSection);
             }
         }
 
