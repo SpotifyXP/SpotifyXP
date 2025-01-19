@@ -15,6 +15,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.guielements.Settings;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
@@ -58,7 +59,7 @@ public class ContentPanel extends JPanel {
     public static View lastViewPanel;
     static boolean steamdeck = false;
     static boolean errorDisplayVisible = false;
-    public static SettingsPanel settingsPanel;
+    public static Settings settings;
     public static TrackPanel trackPanel;
     public static SpotifySectionPanel sectionPanel;
 
@@ -164,7 +165,7 @@ public class ContentPanel extends JPanel {
     }
 
     void createSettings() {
-        settingsPanel = new SettingsPanel();
+        settings = new Settings();
     }
 
     @Override
@@ -550,7 +551,7 @@ public class ContentPanel extends JPanel {
         JMenuItem exit = new JMenuItem(PublicValues.language.translate("ui.legacy.exit"));
         JMenuItem logout = new JMenuItem(PublicValues.language.translate("ui.legacy.logout"));
         JMenuItem about = new JMenuItem(PublicValues.language.translate("ui.legacy.about"));
-        JMenuItem settings = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
+        JMenuItem settingsItem = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
         JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
         JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
         JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
@@ -571,7 +572,7 @@ public class ContentPanel extends JPanel {
         }
         file.add(playuri);
         file.add(exit);
-        edit.add(settings);
+        edit.add(settingsItem);
         view.add(audiovisualizer);
         account.add(logout);
         help.add(extensions);
@@ -584,28 +585,13 @@ public class ContentPanel extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
-        settings.addActionListener(new AsyncActionListener(new ActionListener() {
+        settingsItem.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame dialog = new JFrame();
-                dialog.setTitle(PublicValues.language.translate("ui.settings.title"));
-                dialog.getContentPane().add(settingsPanel);
-                dialog.setPreferredSize(new Dimension(422, 506));
-                dialog.setResizable(false);
-                dialog.setVisible(true);
-                dialog.pack();
-                dialog.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        SettingsPanel.applySettings();
-                    }
-                });
+                settings.open();
             }
         }));
         logout.addActionListener(new AsyncActionListener(e -> {
-            PublicValues.config.write(ConfigValues.username.name, "");
-            PublicValues.config.write(ConfigValues.password.name, "");
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
         }));
@@ -692,12 +678,6 @@ public class ContentPanel extends JPanel {
 
     public void open() {
         JFrame mainframe = frame;
-        try {
-            mainframe.setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
-        } catch (IOException e) {
-            GraphicalMessage.openException(e);
-            ConsoleLogging.Throwable(e);
-        }
         mainframe.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentMoved(ComponentEvent e) {

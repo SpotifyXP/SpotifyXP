@@ -6,6 +6,7 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.JFrame;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Utils {
     @SuppressWarnings("rawtypes")
@@ -73,5 +74,13 @@ public class Utils {
             }
         }
         return -1;
+    }
+
+    public static ArrayList<Object> enumToObjectArray(Enum<?>[] enums) {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (Enum<?> e : enums) {
+            objects.add(e.name());
+        }
+        return objects;
     }
 }

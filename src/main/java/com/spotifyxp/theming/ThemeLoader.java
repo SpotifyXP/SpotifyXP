@@ -74,6 +74,22 @@ public class ThemeLoader {
         ConsoleLogging.info("Loaded Theme => " + Utils.getClassName(theme.getClass()) + " from => " + theme.getAuthor());
     }
 
+    public ArrayList<String> getThemes() {
+        ArrayList<String> themes = new ArrayList<>();
+        for (Theme theme : availableThemes) {
+            themes.add(Utils.getClassName(theme.getClass()));
+        }
+        return themes;
+    }
+
+    public ArrayList<String> getThemesAsSetting() {
+        ArrayList<String> themes = new ArrayList<>();
+        for (Theme theme : availableThemes) {
+            themes.add(Utils.getClassName(theme.getClass()) + " from " + theme.getAuthor());
+        }
+        return themes;
+    }
+
     public static class UnknownThemeException extends Exception {
         public UnknownThemeException(String themeName) {
             super(themeName);

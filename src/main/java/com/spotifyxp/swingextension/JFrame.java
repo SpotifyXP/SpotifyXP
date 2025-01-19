@@ -1,10 +1,15 @@
 package com.spotifyxp.swingextension;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.IOException;
 
 public class JFrame extends javax.swing.JFrame {
     public JFrame(String title) {
@@ -41,6 +46,12 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     public void open() {
+        try {
+            setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
+        } catch (IOException e) {
+            GraphicalMessage.openException(e);
+            ConsoleLogging.Throwable(e);
+        }
         this.setVisible(true);
         this.pack();
     }

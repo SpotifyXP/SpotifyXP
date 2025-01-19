@@ -70,59 +70,58 @@ public class Config {
         }
     }
 
+    JSONProperties getProperties() {
+        return properties;
+    }
+
     /**
      * Checks the config for errors<br>
      * If there are any they will be replaced with their default value
      */
+    @SuppressWarnings("DuplicatedCode")
     public void checkConfig() {
         //Checks config for invalid values
         boolean foundInvalid = false;
+        PublicValues.themeLoader = new ThemeLoader();
         for (ConfigValues value : ConfigValues.values()) {
-            //Handle some values that need extra checking
-            switch (value.name) {
-                case "settings.playback.quality":
-                    if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
-                        ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
-                        properties.put(value.name, value.defaultValue);
-                        foundInvalid = true;
-                    }
+            if(value.defaultValue instanceof CustomConfigValue) {
+                if (!properties.has(value.name)) {
                     try {
-                        Quality.valueOf(properties.getString(value.name));
-                    } catch (IllegalArgumentException e) {
-                        ConsoleLogging.warning("Key '" + value.name + "' has an invalid value: '" + properties.get(value.name) + "'! Resetting to default value...");
-                        properties.put(value.name, value.defaultValue);
+                        properties.put(Objects.requireNonNull(ConfigValues.get(value.name)));
+                        ConsoleLogging.warning("Key '" + value.name + "' not found! Creating...");
                         foundInvalid = true;
+                    } catch (NullPointerException e) {
+                        ConsoleLogging.error("Failed creating key '" + value.name + "'!");
                     }
-                    break;
-                case "settings.ui.theme":
-                    if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
-                        ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
-                        properties.put(value.name, value.defaultValue);
-                        foundInvalid = true;
-                    }
-                    PublicValues.themeLoader = new ThemeLoader();
-                    if (!ThemeLoader.hasTheme(properties.getString(value.name))) {
-                        ConsoleLogging.warning("Key '" + value.name + "' has an invalid value: '" + properties.get(value.name) + "'! Resetting to default value...");
-                        properties.put(value.name, value.defaultValue);
-                        foundInvalid = true;
-                    }
-                    break;
-                default:
-                    if (!properties.has(value.name)) {
-                        try {
-                            properties.put(Objects.requireNonNull(ConfigValues.get(value.name)));
-                            ConsoleLogging.warning("Key '" + value.name + "' not found! Creating...");
-                            foundInvalid = true;
-                        } catch (NullPointerException e) {
-                            ConsoleLogging.error("Failed creating key '" + value.name + "'!");
-                        }
-                        continue;
-                    }
-                    if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
-                        ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
-                        properties.put(value.name, value.defaultValue);
-                        foundInvalid = true;
-                    }
+                    continue;
+                }
+                if (!(ConfigValueTypes.parse(properties.get(value.name)) == ((CustomConfigValue<?>)value.defaultValue).internalType())) {
+                    ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
+                    properties.put(value.name, ((CustomConfigValue<?>)value.defaultValue).getDefaultValue());
+                    foundInvalid = true;
+                }
+                if (!((CustomConfigValue<?>)value.defaultValue).check()) {
+                    ConsoleLogging.warning("Key '" + value.name + "' has an invalid value! Resetting to default value...");
+                    ((CustomConfigValue<?>)value.defaultValue).writeDefault();
+                    foundInvalid = true;
+                }
+                continue;
+            }
+            //Handle some values that need extra checking
+            if (!properties.has(value.name)) {
+                try {
+                    properties.put(Objects.requireNonNull(ConfigValues.get(value.name)));
+                    ConsoleLogging.warning("Key '" + value.name + "' not found! Creating...");
+                    foundInvalid = true;
+                } catch (NullPointerException e) {
+                    ConsoleLogging.error("Failed creating key '" + value.name + "'!");
+                }
+                continue;
+            }
+            if (!(ConfigValueTypes.parse(properties.get(value.name)) == value.type)) {
+                ConsoleLogging.warning("Key '" + value.name + "' has the wrong value type: '" + ConfigValueTypes.parse(properties.get(value.name)) + "'! Resetting to default value...");
+                properties.put(value.name, value.defaultValue);
+                foundInvalid = true;
             }
         }
         if (foundInvalid) {
@@ -198,25 +197,5 @@ public class Config {
      */
     public int getInt(String name) {
         return properties.optInt(name);
-    }
-
-    /**
-     * Returns the value of the given entry inside the config as Double
-     *
-     * @param name name of the entry
-     * @return Double
-     */
-    public Double getDouble(String name) {
-        return properties.optDouble(name);
-    }
-
-    /**
-     * Returns the value of the given entry inside the config as Float
-     *
-     * @param name name of the entry
-     * @return Float
-     */
-    public Float getFloat(String name) {
-        return properties.getFloat(name);
     }
 }

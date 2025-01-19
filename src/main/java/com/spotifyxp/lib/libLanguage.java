@@ -4,6 +4,7 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.Resources;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.function.BiConsumer;
 
@@ -13,23 +14,23 @@ import java.util.function.BiConsumer;
 @SuppressWarnings("Convert2Lambda")
 public class libLanguage {
     /*
-    How to use:
+        How to use:
 
-    1. Define if library auto-finds the language or not (when not define the language code yourself look at: https://www.science.co.il/language/Locale-codes.php line 'Language Code' in the table)
-    2. Set Language Files folder
-    3. Enter translation key z.b hello.world
+        1. Define if library auto-finds the language or not (when not define the language code yourself look at: https://www.science.co.il/language/Locale-codes.php line 'Language Code' in the table)
+        2. Set Language Files folder
+        3. Enter translation key z.b hello.world
 
-    INFO: All files must be located in the resources folder
-
-
-    Language skeleton (Name the file as the language code it has z.b de.json)
+        INFO: All files must be located in the resources folder
 
 
-    {
-       "hello.world" : "Hello World",
-       "hello.world2" : "Hello World 2"
-     }
-     */
+        Language skeleton (Name the file as the language code it has z.b de.json)
+
+
+        {
+           "hello.world" : "Hello World",
+           "hello.world2" : "Hello World 2"
+         }
+         */
     @SuppressWarnings("NonAsciiCharacters")
     public enum Language {
         ABKHAZIAN("Abkhazian", "ab"),
@@ -382,5 +383,18 @@ public class libLanguage {
             }
         }
         return ret[0];
+    }
+
+    public ArrayList<String> getAvailableLanguages() {
+        ArrayList<String> languages = new ArrayList<>();
+        for (libLanguage.Language language : libLanguage.Language.values()) {
+            if (languages.contains(language.getName())) {
+                continue;
+            }
+            if (new Resources().readToInputStream("lang/" + language.getCode() + ".json") != null) {
+                languages.add(language.getName());
+            }
+        }
+        return languages;
     }
 }

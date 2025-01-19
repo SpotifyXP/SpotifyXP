@@ -7,31 +7,19 @@ import java.util.NoSuchElementException;
  */
 public enum ConfigValueTypes {
     STRING,
-    BYTE,
-    SHORT,
     INT,
-    LONG,
-    FLOAT,
-    DOUBLE,
-    BOOLEAN;
+    BOOLEAN,
+    CUSTOM;
 
     public static ConfigValueTypes parse(Object object) {
-        if (object instanceof Byte) {
-            return ConfigValueTypes.BYTE;
-        } else if (object instanceof String) {
+        if (object instanceof String) {
             return ConfigValueTypes.STRING;
-        } else if (object instanceof Short) {
-            return ConfigValueTypes.SHORT;
         } else if (object instanceof Integer) {
             return ConfigValueTypes.INT;
-        } else if (object instanceof Long) {
-            return ConfigValueTypes.LONG;
-        } else if (object instanceof Float) {
-            return ConfigValueTypes.FLOAT;
-        } else if (object instanceof Double) {
-            return ConfigValueTypes.DOUBLE;
         } else if (object instanceof Boolean) {
             return ConfigValueTypes.BOOLEAN;
+        } else if (ICustomConfigValue.class.isAssignableFrom(object.getClass())) {
+            return ConfigValueTypes.CUSTOM;
         }
         throw new NoSuchElementException(object.toString());
     }

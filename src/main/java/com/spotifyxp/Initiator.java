@@ -41,7 +41,9 @@ public class Initiator {
         checkDebug(); //Checking if debug is enabled
         checkSetup();
         detectOS(); //Detecting the operating system
+        initLanguageSupport(); //Initializing the language support
         initConfig(); //Initializing the configuration
+        setLanguage(); //Set the language to the one specified in the config
         if(new File(PublicValues.appLocation, "LOCK").exists()) {
             JOptionPane.showMessageDialog(null, "Another instance of SpotifyXP is already running! Exiting...");
             System.exit(-1);
@@ -51,7 +53,6 @@ public class Initiator {
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
         storeArguments(args); //Storing the program arguments in PublicValues.class
-        initLanguageSupport(); //Initializing the language support
         parseAudioQuality(); //Parsing the audio quality
         initThemes(); //Initializing the theming support
         addShutdownHook(); //Adding the shutdown hook
@@ -115,6 +116,10 @@ public class Initiator {
         SplashPanel.linfo.setText("Init Language...");
         PublicValues.language = new libLanguage();
         PublicValues.language.setLanguageFolder("lang");
+    }
+
+    static void setLanguage() {
+        SplashPanel.linfo.setText("Setting language...");
         PublicValues.language.setNoAutoFindLanguage(libLanguage.Language.getCodeFromName(PublicValues.config.getString(ConfigValues.language.name)));
     }
 
