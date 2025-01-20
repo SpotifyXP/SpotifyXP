@@ -10,7 +10,10 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
-import com.spotifyxp.utils.*;
+import com.spotifyxp.utils.AsyncActionListener;
+import com.spotifyxp.utils.AsyncMouseListener;
+import com.spotifyxp.utils.ClipboardUtil;
+import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -21,7 +24,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Search extends JPanel implements View {
@@ -215,8 +217,6 @@ public class Search extends JPanel implements View {
                         }
                     }
                     if (artist) {
-                        ArtistPanel.albumuricache.clear();
-                        ArtistPanel.popularuricache.clear();
                         if (searchtitle.isEmpty()) {
                             searchtitle = searchartist;
                         }
@@ -224,7 +224,6 @@ public class Search extends JPanel implements View {
                             searchsonglistcache.add(a.getUri());
                             InstanceManager.getSpotifyAPI().addArtistToList(a, searchsonglist);
                         }
-
                     }
                     if (album) {
                         for (AlbumSimplified a : InstanceManager.getSpotifyApi().searchAlbums(searchtitle).build().execute().getItems()) {
@@ -306,8 +305,6 @@ public class Search extends JPanel implements View {
                                         }
                                     }
                                     if (artist) {
-                                        ArtistPanel.albumuricache.clear();
-                                        ArtistPanel.popularuricache.clear();
                                         if (searchtitle.isEmpty()) {
                                             searchtitle = searchartist;
                                         }
@@ -428,27 +425,7 @@ public class Search extends JPanel implements View {
                             case "artist":
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
-                                    try {
-                                        ArtistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
-                                    } catch (ArrayIndexOutOfBoundsException exception) {
-                                        // No artist image (when this is raised it's a bug)
-                                    }
-                                    ArtistPanel.artisttitle.setText(a.getName());
-                                    Thread trackthread = new Thread(() -> {
-                                        try {
-                                            for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
-                                                if (!ContentPanel.artistPanel.isVisible()) {
-                                                    break;
-                                                }
-                                                ArtistPanel.popularuricache.add(t.getUri());
-                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
-                                            }
-                                        } catch (IOException ex) {
-                                            ConsoleLogging.Throwable(ex);
-                                        }
-                                    });
-                                    InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, a.getUri(), ArtistPanel.artistalbumalbumtable);
-                                    trackthread.start();
+                                    ContentPanel.artistPanel.fillWith(a);
                                 } catch (Exception e1) {
                                     throw new RuntimeException(e1);
                                 }
@@ -533,7 +510,7 @@ public class Search extends JPanel implements View {
         searchscrollpanel.setViewportView(searchsonglist);
         searchplaylistpanel = new JPanel();
         searchplaylistpanel.setLayout(new BorderLayout());
-        ContentPanel.tabpanel.add(searchplaylistpanel);
+        ContentPanel.tabPanel.add(searchplaylistpanel);
         backButtonContainer = new JPanel();
         backButtonContainer.setLayout(new BorderLayout());
         searchplaylistpanel.add(backButtonContainer, BorderLayout.NORTH);
@@ -583,7 +560,7 @@ public class Search extends JPanel implements View {
             if (ContentPanel.currentView == Views.ARTIST) {
                 ArtistPanel.contentPanel.setVisible(true);
             } else {
-                ContentPanel.searchpanel.setVisible(true);
+                ContentPanel.searchPanel.setVisible(true);
             }
             PublicValues.contentPanel.setVisible(true);
             if (ContentPanel.currentView != Views.ARTIST) {
@@ -595,9 +572,6 @@ public class Search extends JPanel implements View {
             PlayerArea.heart.isFilled = true;
             PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
             InstanceManager.getSpotifyApi().saveTracksForUser("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
-            if (!Library.libraryuricache.isEmpty()) {
-                Library.fetchOnlyFirstSongsFromUserLibrary();
-            }
         });
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow())));
         searchcontextmenu.addItem("All to queue", () -> {

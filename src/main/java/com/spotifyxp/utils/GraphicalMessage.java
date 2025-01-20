@@ -1,6 +1,7 @@
 package com.spotifyxp.utils;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.dialogs.ErrorDisplay;
 import com.spotifyxp.exception.ExceptionDialog;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.SplashPanel;
@@ -82,8 +83,8 @@ public class GraphicalMessage {
      * @param ex instance of an Exception
      */
     public static void openException(Throwable ex) {
-        if (ContentPanel.errorQueue != null) {
-            ContentPanel.errorQueue.add(new ExceptionDialog(ex));
+        if (ErrorDisplay.errorQueue != null) {
+            ErrorDisplay.errorQueue.add(new ExceptionDialog(ex));
         }
     }
 }

@@ -2,6 +2,8 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Album;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -18,101 +20,89 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
-@SuppressWarnings("BusyWait")
 public class ArtistPanel extends JPanel implements View {
-    public static DefTable artistpopularsonglist;
-    public static DefTable artistalbumalbumtable;
-    public static JScrollPane artistpopularscrollpane;
-    public static JScrollPane artistalbumscrollpanel;
     public static JScrollPane contentPanel;
-    public static JLabel artisttitle;
-    public static JImagePanel artistimage;
+    public static JLabel artistTitle;
+    public static JImagePanel artistImage;
+    public static JLabel artistPopularLabel;
+    public static JScrollPane artistPopularScrollPane;
     public static ContextMenu artistpopularsonglistcontextmenu;
+    public static DefTable artistPopularSongList;
     public static ContextMenu artistalbumcontextmenu;
-    public static boolean isLastArtist = false;
+    public static DefTable artistAlbumTable;
+    public static JLabel artistAlbumLabel;
+    public static JScrollPane artistAlbumScrollPane;
     public static JButton backButton;
+
+    public static boolean isLastArtist = false;
+    public static ArrayList<String> albumUriCache = new ArrayList<>();
+    public static ArrayList<String> popularUriCache = new ArrayList<>();
+    public static ArrayList<Runnable> runWhenOpeningArtistPanel = new ArrayList<>();
 
     public ArtistPanel() {
         contentPanel = new JScrollPane();
         contentPanel.setViewportView(this);
         contentPanel.setVisible(false);
+        contentPanel.getVerticalScrollBar().setUnitIncrement(20);
+
         setLayout(null);
         setPreferredSize(new Dimension(getWidth(), 1005));
+        setVisible(false);
+
+        artistImage = new JImagePanel();
+        artistImage.setBounds(288, 11, 155, 153);
+        add(artistImage);
+
+        artistTitle = new JLabel("");
+        artistTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        artistTitle.setBounds(0, 213, 780, 64);
+        artistTitle.setForeground(PublicValues.globalFontColor);
+        add(artistTitle);
 
         backButton = new JButton(PublicValues.language.translate("ui.back"));
         backButton.setBounds(0, 0, 89, 23);
         backButton.setForeground(PublicValues.globalFontColor);
-        backButton.addActionListener(new AsyncActionListener(e -> {
-            ContentPanel.switchView(ContentPanel.lastView);
-        }));
+        backButton.addActionListener(new AsyncActionListener(e -> ContentPanel.switchView(ContentPanel.lastView)));
         add(backButton);
 
-        JLabel artistpopularlabel = new JLabel("Popular"); //ToDo: Translate
-        artistpopularlabel.setBounds(5, 291, 137, 27);
-        add(artistpopularlabel);
+        artistPopularLabel = new JLabel("Popular"); //ToDo: Translate
+        artistPopularLabel.setBounds(5, 291, 137, 27);
+        artistPopularLabel.setForeground(PublicValues.globalFontColor);
+        add(artistPopularLabel);
 
-        artistpopularlabel.setForeground(PublicValues.globalFontColor);
-
-        artistpopularscrollpane = new JScrollPane();
-        artistpopularscrollpane.setBounds(5, 320, 760, 277);
-        add(artistpopularscrollpane);
-
-        artistpopularsonglist = new DefTable() {
-        };
-        artistpopularscrollpane.setViewportView(artistpopularsonglist);
-
-        artistpopularsonglistcontextmenu = new ContextMenu(artistpopularsonglist);
-        artistpopularsonglistcontextmenu.addItem("All to queue", () -> {
-            for(String s : popularuricache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+        artistPopularSongList = new DefTable();
+        artistPopularSongList.setModel(new DefaultTableModel(
+                new Object[][]{
+                },
+                new String[]{
+                        PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
+                }
+        ));
+        artistPopularSongList.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (e.getClickCount() == 2) {
+                    InstanceManager.getPlayer().getPlayer().load(popularUriCache.get(artistPopularSongList.getSelectedRow()), true, PublicValues.shuffle);
+                    TrackUtils.addAllToQueue(popularUriCache, artistPopularSongList);
+                }
             }
-        });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            artistpopularsonglistcontextmenu.addItem(item.name, item.torun);
-        }
-        artistpopularsonglistcontextmenu.addItem("Add to queue", () -> {
-            if(artistpopularsonglist.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularuricache.get(artistpopularsonglist.getSelectedRow()));
-        });
-        artistalbumscrollpanel = new JScrollPane();
-        artistalbumscrollpanel.setBounds(5, 667, 760, 295);
-        add(artistalbumscrollpanel);
+        }));
+        artistPopularSongList.setForeground(PublicValues.globalFontColor);
+        artistPopularSongList.getTableHeader().setForeground(PublicValues.globalFontColor);
 
-        artistalbumalbumtable = new DefTable() {
-        };
-        artistalbumscrollpanel.setViewportView(artistalbumalbumtable);
+        artistPopularScrollPane = new JScrollPane();
+        artistPopularScrollPane.setBounds(5, 320, 760, 277);
+        artistPopularScrollPane.setViewportView(artistPopularSongList);
+        add(artistPopularScrollPane);
 
-        contentPanel.getVerticalScrollBar().setUnitIncrement(20);
-
-        JLabel artistalbumlabel = new JLabel("Albums"); //ToDo: Translate
-        artistalbumlabel.setBounds(5, 642, 102, 14);
-        add(artistalbumlabel);
-
-        artistalbumlabel.setForeground(PublicValues.globalFontColor);
-
-        artistimage = new JImagePanel();
-        artistimage.setBounds(288, 11, 155, 153);
-        add(artistimage);
-
-        artisttitle = new JLabel("");
-        artisttitle.setHorizontalAlignment(SwingConstants.CENTER);
-        artisttitle.setBounds(0, 213, 780, 64);
-        add(artisttitle);
-
-        artisttitle.setForeground(PublicValues.globalFontColor);
-
-        artistalbumcontextmenu = new ContextMenu(artistalbumalbumtable);
-        artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumuricache.get(artistalbumalbumtable.getSelectedRow())));
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            artistalbumcontextmenu.addItem(item.name, item.torun);
-        }
-
-        artistalbumalbumtable.setForeground(PublicValues.globalFontColor);
-        artistalbumalbumtable.getTableHeader().setForeground(PublicValues.globalFontColor);
-
-        artistalbumalbumtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+        artistAlbumTable = new DefTable();
+        artistAlbumTable.setForeground(PublicValues.globalFontColor);
+        artistAlbumTable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        artistAlbumTable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -123,9 +113,9 @@ public class ArtistPanel extends JPanel implements View {
                     Search.searchplaylistsongscache.clear();
                     ((DefaultTableModel) Search.searchplaylisttable.getModel()).setRowCount(0);
                     try {
-                        Album album = InstanceManager.getSpotifyApi().getAlbum(albumuricache.get(artistalbumalbumtable.getSelectedRow()).split(":")[2]).build().execute();
+                        Album album = InstanceManager.getSpotifyApi().getAlbum(albumUriCache.get(artistAlbumTable.getSelectedRow()).split(":")[2]).build().execute();
                         for (TrackSimplified simplified : album.getTracks().getItems()) {
-                            artistalbumalbumtable.addModifyAction(() -> {
+                            artistAlbumTable.addModifyAction(() -> {
                                 ((DefaultTableModel) Search.searchplaylisttable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
                                 Search.searchplaylistsongscache.add(simplified.getUri());
                             });
@@ -137,18 +127,7 @@ public class ArtistPanel extends JPanel implements View {
                 }
             }
         }));
-
-        artistpopularsonglist.setModel(new DefaultTableModel(
-                new Object[][]{
-                },
-                new String[]{
-                        PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")
-                }
-        ));
-        artistpopularsonglist.setForeground(PublicValues.globalFontColor);
-        artistpopularsonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
-
-        artistalbumalbumtable.setModel(new DefaultTableModel(
+        artistAlbumTable.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
                 new String[]{
@@ -156,22 +135,18 @@ public class ArtistPanel extends JPanel implements View {
                 }
         ));
 
-        artistpopularsonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(popularuricache.get(artistpopularsonglist.getSelectedRow()), true, PublicValues.shuffle);
-                    TrackUtils.addAllToQueue(popularuricache, artistpopularsonglist);
-                }
-            }
-        }));
+        artistAlbumScrollPane = new JScrollPane();
+        artistAlbumScrollPane.setBounds(5, 667, 760, 295);
+        artistAlbumScrollPane.setViewportView(artistAlbumTable);
+        add(artistAlbumScrollPane);
+
+        artistAlbumLabel = new JLabel("Albums"); //ToDo: Translate
+        artistAlbumLabel.setBounds(5, 642, 102, 14);
+        artistAlbumLabel.setForeground(PublicValues.globalFontColor);
+        add(artistAlbumLabel);
+
+        createContextMenus();
     }
-
-    public static ArrayList<String> albumuricache = new ArrayList<>();
-    public static ArrayList<String> popularuricache = new ArrayList<>();
-
-    public static ArrayList<Runnable> runWhenOpeningArtistPanel = new ArrayList<>();
 
     public void openPanel() {
         for (Runnable runnable : runWhenOpeningArtistPanel) {
@@ -181,12 +156,51 @@ public class ArtistPanel extends JPanel implements View {
         javax.swing.SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
     }
 
+    void createContextMenus() {
+        artistpopularsonglistcontextmenu = new ContextMenu(artistPopularSongList);
+        artistpopularsonglistcontextmenu.addItem("All to queue", () -> {
+            for (String s : popularUriCache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        for (ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            artistpopularsonglistcontextmenu.addItem(item.name, item.torun);
+        }
+        artistpopularsonglistcontextmenu.addItem("Add to queue", () -> {
+            if (artistPopularSongList.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularUriCache.get(artistPopularSongList.getSelectedRow()));
+        });
+        artistalbumcontextmenu = new ContextMenu(artistAlbumTable);
+        artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumUriCache.get(artistAlbumTable.getSelectedRow())));
+        for (ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            artistalbumcontextmenu.addItem(item.name, item.torun);
+        }
+    }
+
+    public void fillWith(Artist artist) throws IOException {
+        reset();
+        artistImage.setImage(new URL(SpotifyUtils.getImageForSystem(artist.getImages()).getUrl()).openStream());
+        artistTitle.setText(artist.getName());
+        Thread trackthread = new Thread(() -> {
+            try {
+                for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(artist.getId(), PublicValues.countryCode).build().execute()) {
+                    ArtistPanel.popularUriCache.add(t.getUri());
+                    InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPopularSongList);
+                }
+            } catch (IOException ex) {
+                ConsoleLogging.Throwable(ex);
+            }
+        }, "Get tracks (HomePanel)");
+        InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumUriCache, artist.getUri(), ArtistPanel.artistAlbumTable);
+        trackthread.start();
+    }
+
     public void reset() {
-        popularuricache.clear();
-        albumuricache.clear();
-        ((DefaultTableModel) artistalbumalbumtable.getModel()).setRowCount(0);
-        ((DefaultTableModel) artistpopularsonglist.getModel()).setRowCount(0);
-        artisttitle.setText("");
+        popularUriCache.clear();
+        albumUriCache.clear();
+        ((DefaultTableModel) artistAlbumTable.getModel()).setRowCount(0);
+        ((DefaultTableModel) artistPopularSongList.getModel()).setRowCount(0);
+        artistTitle.setText("");
     }
 
     @Override

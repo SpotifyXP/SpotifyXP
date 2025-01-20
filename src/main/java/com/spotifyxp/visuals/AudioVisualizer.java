@@ -97,7 +97,7 @@ public class AudioVisualizer extends JPanel {
                             gr.setColor(colors.get(c));
                         }
                         double amp = spectrumData[i];
-                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerareavolumecurrent.getText()))));
+                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerAreaVolumeCurrent.getText()))));
                         c++;
                     }
                     drawFPS(gr);
@@ -126,7 +126,7 @@ public class AudioVisualizer extends JPanel {
                         }
                         double amp = spectrumData[i];
                         gr.setColor(colors.get(c));
-                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerareavolumecurrent.getText()))));
+                        gr.drawLine(i, getHeight(), i, (int) (Math.round(getHeight() - amp * Integer.parseInt(PlayerArea.playerAreaVolumeCurrent.getText()))));
                         if (a == 5) {
                             c++;
                             a = 0;

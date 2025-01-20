@@ -77,7 +77,6 @@ public class ArgParser {
         arguments.add(new NoMediaControl());
         arguments.add(new SaveLog());
         arguments.add(new SetupComplete());
-        arguments.add(new SteamDeck());
         arguments.add(new Help());
     }
 

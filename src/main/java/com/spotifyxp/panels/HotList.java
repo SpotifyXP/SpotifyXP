@@ -25,91 +25,97 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class HotList extends JSplitPane implements View {
-    public static DefTable hotlistplayliststable;
-    public static DefTable hotlistsongstable;
-    public static JScrollPane hotlistplaylistsscrollpanel;
-    public static JScrollPane hotslistsongscrollpanel;
-    public static final ArrayList<String> hotlistplaylistlistcache = new ArrayList<>();
-    public static final ArrayList<String> hotlistsonglistcache = new ArrayList<>();
-    public static ContextMenu hotlistplaylistspanelrightclickmenu;
-    public static ContextMenu hotlistsongstablecontextmenu;
+    public static DefTable hotListPlaylistsTable;
+    public static DefTable hotListSongsTable;
+    public static JScrollPane hotListPlaylistsScrollPanel;
+    public static JScrollPane hotListSongsScrollPanel;
+    public static final ArrayList<String> hotListPlaylistCache = new ArrayList<>();
+    public static final ArrayList<String> hotListSongListCache = new ArrayList<>();
+    public static ContextMenu hotListPlaylistsPanelRightClickMenu;
+    public static ContextMenu hotListSongsTablecontextmenu;
 
     public HotList() {
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setVisible(false);
-        hotlistplaylistsscrollpanel = new JScrollPane();
-        hotlistplaylistsscrollpanel.setPreferredSize(new Dimension(259, getHeight()));
-        setLeftComponent(hotlistplaylistsscrollpanel);
-        hotlistplayliststable = new DefTable();
-        hotlistplayliststable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.playlistlist.playlists")}));
-        hotlistplayliststable.setForeground(PublicValues.globalFontColor);
-        hotlistplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        hotlistplayliststable.getColumnModel().getColumn(0).setPreferredWidth(623);
-        hotlistplayliststable.setFillsViewportHeight(true);
-        hotlistplayliststable.setColumnSelectionAllowed(true);
-        hotlistplaylistsscrollpanel.setViewportView(hotlistplayliststable);
-        hotslistsongscrollpanel = new JScrollPane();
-        hotlistplaylistspanelrightclickmenu = new ContextMenu(hotlistplayliststable);
-        hotlistplaylistspanelrightclickmenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
-            hotlistplaylistlistcache.clear();
-            hotlistsonglistcache.clear();
-            ((DefaultTableModel) hotlistsongstable.getModel()).setRowCount(0);
-            ((DefaultTableModel) hotlistplayliststable.getModel()).setRowCount(0);
-            fetchHotlist();
-        });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            hotlistplaylistspanelrightclickmenu.addItem(item.name, item.torun);
-        }
-        setRightComponent(hotslistsongscrollpanel);
-        hotlistsongstable = new DefTable();
-        hotlistsongstable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")}));
-        hotlistsongstablecontextmenu = new ContextMenu(hotlistsongstable);
-        hotlistsongstablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow())));
-        hotlistsongstablecontextmenu.addItem("All to queue", () -> {
-            for(String s : hotlistsonglistcache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            hotlistsongstablecontextmenu.addItem(item.name, item.torun);
-        }
-        hotlistsongstablecontextmenu.addItem("Add to queue", () -> {
-            if(hotlistsongstable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()));
-        });
-        hotlistsongstable.getColumnModel().getColumn(0).setPreferredWidth(363);
-        hotlistsongstable.getColumnModel().getColumn(1).setPreferredWidth(89);
-        hotlistsongstable.getColumnModel().getColumn(3).setPreferredWidth(96);
-        hotlistsongstable.setFillsViewportHeight(true);
-        hotlistsongstable.setColumnSelectionAllowed(true);
-        hotlistsongstable.setForeground(PublicValues.globalFontColor);
-        hotlistsongstable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        hotslistsongscrollpanel.setViewportView(hotlistsongstable);
-        hotlistplayliststable.getTableHeader().setReorderingAllowed(false);
-        hotlistsongstable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                hotlistsongstable.setColumnSelectionInterval(0, hotlistsongstable.getColumnCount() - 1);
-                if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(hotlistsonglistcache.get(hotlistsongstable.getSelectedRow()), true, PublicValues.shuffle);
-                    TrackUtils.addAllToQueue(hotlistsonglistcache, hotlistsongstable);
-                }
-            }
-        }));
-        hotlistplayliststable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+
+        hotListPlaylistsTable = new DefTable();
+        hotListPlaylistsTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.playlistlist.playlists")}));
+        hotListPlaylistsTable.setForeground(PublicValues.globalFontColor);
+        hotListPlaylistsTable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        hotListPlaylistsTable.getColumnModel().getColumn(0).setPreferredWidth(623);
+        hotListPlaylistsTable.setFillsViewportHeight(true);
+        hotListPlaylistsTable.setColumnSelectionAllowed(true);
+        hotListPlaylistsTable.getTableHeader().setReorderingAllowed(false);
+        hotListPlaylistsTable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    ((DefaultTableModel) hotlistsongstable.getModel()).setRowCount(0);
-                    hotlistsonglistcache.clear();
-                    for (TrackSimplified track : SpotifyUtils.getAllTracksAlbum(hotlistplaylistlistcache.get(hotlistplayliststable.getSelectedRow()))) {
+                    ((DefaultTableModel) hotListSongsTable.getModel()).setRowCount(0);
+                    hotListSongListCache.clear();
+                    for (TrackSimplified track : SpotifyUtils.getAllTracksAlbum(hotListPlaylistCache.get(hotListPlaylistsTable.getSelectedRow()))) {
                         String a = TrackUtils.getArtists(track.getArtists());
-                        hotlistsonglistcache.add(track.getUri());
-                        ((DefaultTableModel) hotlistsongstable.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
+                        hotListSongListCache.add(track.getUri());
+                        ((DefaultTableModel) hotListSongsTable.getModel()).addRow(new Object[]{track.getName() + " - " + a, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())});
                     }
                 }
             }
         }));
+
+        hotListPlaylistsScrollPanel = new JScrollPane();
+        hotListPlaylistsScrollPanel.setPreferredSize(new Dimension(259, getHeight()));
+        hotListPlaylistsScrollPanel.setViewportView(hotListPlaylistsTable);
+        setLeftComponent(hotListPlaylistsScrollPanel);
+
+        hotListPlaylistsPanelRightClickMenu = new ContextMenu(hotListPlaylistsTable);
+        hotListPlaylistsPanelRightClickMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
+            hotListPlaylistCache.clear();
+            hotListSongListCache.clear();
+            ((DefaultTableModel) hotListSongsTable.getModel()).setRowCount(0);
+            ((DefaultTableModel) hotListPlaylistsTable.getModel()).setRowCount(0);
+            fetchHotlist();
+        });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            hotListPlaylistsPanelRightClickMenu.addItem(item.name, item.torun);
+        }
+
+        hotListSongsTable = new DefTable();
+        hotListSongsTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.hotlist.songlist.songtitle"), PublicValues.language.translate("ui.hotlist.songlist.filesize"), PublicValues.language.translate("ui.hotlist.songlist.bitrate"), PublicValues.language.translate("ui.hotlist.songlist.length")}));
+        hotListSongsTable.getColumnModel().getColumn(0).setPreferredWidth(363);
+        hotListSongsTable.getColumnModel().getColumn(1).setPreferredWidth(89);
+        hotListSongsTable.getColumnModel().getColumn(3).setPreferredWidth(96);
+        hotListSongsTable.setFillsViewportHeight(true);
+        hotListSongsTable.setColumnSelectionAllowed(true);
+        hotListSongsTable.setForeground(PublicValues.globalFontColor);
+        hotListSongsTable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        hotListSongsTable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                hotListSongsTable.setColumnSelectionInterval(0, hotListSongsTable.getColumnCount() - 1);
+                if (e.getClickCount() == 2) {
+                    InstanceManager.getPlayer().getPlayer().load(hotListSongListCache.get(hotListSongsTable.getSelectedRow()), true, PublicValues.shuffle);
+                    TrackUtils.addAllToQueue(hotListSongListCache, hotListSongsTable);
+                }
+            }
+        }));
+
+        hotListSongsScrollPanel = new JScrollPane();
+        hotListSongsScrollPanel.setViewportView(hotListSongsTable);
+        setRightComponent(hotListSongsScrollPanel);
+
+        hotListSongsTablecontextmenu = new ContextMenu(hotListSongsTable);
+        hotListSongsTablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(hotListSongListCache.get(hotListSongsTable.getSelectedRow())));
+        hotListSongsTablecontextmenu.addItem("All to queue", () -> {
+            for(String s : hotListSongListCache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            hotListSongsTablecontextmenu.addItem(item.name, item.torun);
+        }
+        hotListSongsTablecontextmenu.addItem("Add to queue", () -> {
+            if(hotListSongsTable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), hotListSongListCache.get(hotListSongsTable.getSelectedRow()));
+        });
     }
 
     public static void fetchHotlist() {
@@ -140,8 +146,8 @@ public class HotList extends JSplitPane implements View {
                 try {
                     AlbumSimplified albumreq = InstanceManager.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute().getAlbum();
                     String a = TrackUtils.getArtists(albumreq.getArtists());
-                    ((DefaultTableModel) hotlistplayliststable.getModel()).addRow(new Object[]{albumreq.getName() + " - " + a});
-                    hotlistplaylistlistcache.add(albumreq.getUri());
+                    ((DefaultTableModel) hotListPlaylistsTable.getModel()).addRow(new Object[]{albumreq.getName() + " - " + a});
+                    hotListPlaylistCache.add(albumreq.getUri());
                 } catch (IOException e) {
                     ConsoleLogging.Throwable(e);
                 }
@@ -167,7 +173,7 @@ public class HotList extends JSplitPane implements View {
 
     @Override
     public void makeVisible() {
-        if (HotList.hotlistplayliststable.getRowCount() == 0) {
+        if (HotList.hotListPlaylistsTable.getRowCount() == 0) {
             Thread t = new Thread(HotList::fetchHotlist, "Get HotList");
             t.start();
         }

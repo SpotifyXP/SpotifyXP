@@ -5,10 +5,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 /**
  * Holds all registered config values with their type and default value
  *

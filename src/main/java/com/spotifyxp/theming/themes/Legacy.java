@@ -31,13 +31,13 @@ public class Legacy implements Theme {
             ConsoleLogging.Throwable(e);
         }
         Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), (Object... data) -> {
-            ContentPanel.legacyswitch.setBackgroundAt(0, Color.white);
-            ContentPanel.legacyswitch.setBackgroundAt(1, Color.white);
-            ContentPanel.legacyswitch.setBackgroundAt(2, Color.white);
-            ContentPanel.legacyswitch.setBackgroundAt(3, Color.white);
-            ContentPanel.legacyswitch.setBackgroundAt(4, Color.white);
-            ContentPanel.legacyswitch.setBackgroundAt(5, Color.white);
-            ContentPanel.legacyswitch.setBackgroundAt(6, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(0, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(1, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(2, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(3, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(4, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(5, Color.white);
+            ContentPanel.legacySwitch.setBackgroundAt(6, Color.white);
         });
     }
 }

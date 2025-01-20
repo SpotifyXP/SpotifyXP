@@ -4,7 +4,6 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
-import com.spotifyxp.panels.SpotifySectionPanel;
 import com.spotifyxp.panels.Views;
 import com.spotifyxp.utils.GraphicalMessage;
 
@@ -74,7 +73,7 @@ public class SpotifyBrowseSection extends JScrollPane {
                         @Override
                         public void run() {
                             ContentPanel.switchView(Views.BROWSESECTION);
-                            ContentPanel.lastViewPanel = ContentPanel.browsepanel;
+                            ContentPanel.lastViewPanel = ContentPanel.browsePanel;
                             ContentPanel.lastView = Views.BROWSE;
                             ContentPanel.frame.revalidate();
                             ContentPanel.frame.repaint();
@@ -148,7 +147,7 @@ public class SpotifyBrowseSection extends JScrollPane {
                         @Override
                         public void run() {
                             ContentPanel.switchView(Views.BROWSESECTION);
-                            ContentPanel.lastViewPanel = ContentPanel.browsepanel;
+                            ContentPanel.lastViewPanel = ContentPanel.browsePanel;
                             ContentPanel.lastView = Views.BROWSE;
                             ContentPanel.frame.revalidate();
                             ContentPanel.frame.repaint();

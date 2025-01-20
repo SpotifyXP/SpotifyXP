@@ -1,5 +1,7 @@
 package com.spotifyxp.swingextension;
 
+import com.spotifyxp.panels.ContentPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +12,7 @@ public class JScrollText extends JLabel implements Runnable {
     private volatile String originalText;
 
     public JScrollText(String text) {
-        super.setText(text);
+        super(text);
     }
 
     @Override
@@ -71,6 +73,6 @@ public class JScrollText extends JLabel implements Runnable {
         originalText = text;
         animate = true;
         t = new Thread(this);
-        t.start();
+        if(ContentPanel.frame.isVisible()) t.start();
     }
 }

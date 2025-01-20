@@ -25,92 +25,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Playlists extends JSplitPane implements View {
-    public static JScrollPane playlistsplaylistsscroll;
-    public static JScrollPane playlistssongsscroll;
-    public static DefTable playlistsplayliststable;
-    public static DefTable playlistssongtable;
-    public static final ArrayList<String> playlistsuricache = new ArrayList<>();
-    public static final ArrayList<String> playlistssonguricache = new ArrayList<>();
-    private boolean[] inProg = {false};
-    private boolean loadnew = false;
+    public static JScrollPane playlistsPlaylistsScrollPane;
+    public static JScrollPane playlistsSongsScrollPane;
+    public static DefTable playlistsPlaylistsTable;
+    public static DefTable playlistsSongTable;
+    public static final ArrayList<String> playlistsUriCache = new ArrayList<>();
+    public static final ArrayList<String> playlistsSongUriCache = new ArrayList<>();
+    public static ContextMenu playlistsSongTableContextMenu;
+    public static ContextMenu playlistsPlaylistsTableContextMenu;
+    private final boolean[] inProg = {false};
+    private boolean loadNew = false;
     private Runnable lazyLoadingDeInit;
 
 
     public Playlists() {
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setVisible(false);
-        playlistsplaylistsscroll = new JScrollPane();
-        playlistsplaylistsscroll.setPreferredSize(new Dimension(259, getHeight()));
-        setLeftComponent(playlistsplaylistsscroll);
-        playlistsplayliststable = new DefTable();
-        playlistsplayliststable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.playlists.playlistname")}));
-        playlistsplayliststable.setForeground(PublicValues.globalFontColor);
-        playlistsplayliststable.getColumnModel().getColumn(0).setPreferredWidth(623);
-        playlistsplayliststable.setFillsViewportHeight(true);
-        playlistsplayliststable.setColumnSelectionAllowed(true);
-        playlistsplayliststable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        playlistsplaylistsscroll.setViewportView(playlistsplayliststable);
-        playlistssongsscroll = new JScrollPane();
-        setRightComponent(playlistssongsscroll);
-        playlistssongtable = new DefTable();
-        playlistssongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        playlistssongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.songslist.songtitle"), PublicValues.language.translate("ui.playlists.songslist.filesize"), PublicValues.language.translate("ui.playlists.songslist.bitrate"), PublicValues.language.translate("ui.playlists.songslist.length")}));
-        playlistssongtable.setForeground(PublicValues.globalFontColor);
-        playlistssongtable.getColumnModel().getColumn(0).setPreferredWidth(363);
-        playlistssongtable.getColumnModel().getColumn(1).setPreferredWidth(89);
-        playlistssongtable.getColumnModel().getColumn(3).setPreferredWidth(96);
-        playlistssongtable.setFillsViewportHeight(true);
-        playlistssongtable.setColumnSelectionAllowed(true);
-        playlistssongsscroll.setViewportView(playlistssongtable);
 
-        ContextMenu songsCTXMenu = new ContextMenu(playlistssongtable);
-        songsCTXMenu.addItem("All to queue", () -> {
-            for(String s : playlistssonguricache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        songsCTXMenu.addItem("Add to queue", () -> {
-            if(playlistssongtable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistssonguricache.get(playlistssongtable.getSelectedRow()));
-        });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            songsCTXMenu.addItem(item.name, item.torun);
-        }
-
-        ContextMenu menu = new ContextMenu(playlistsplayliststable);
-        menu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
-            InstanceManager.getSpotifyApi().unfollowPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]);
-            playlistsuricache.remove(playlistsuricache.get(playlistsplayliststable.getSelectedRow()));
-            ((DefaultTableModel) playlistsplayliststable.getModel()).removeRow(playlistsplayliststable.getSelectedRow());
-        });
-        menu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> {
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Clipboard clipboard = toolkit.getSystemClipboard();
-            StringSelection strSel = new StringSelection(playlistsuricache.get(playlistsplayliststable.getSelectedRow()));
-            clipboard.setContents(strSel, null);
-        });
-        menu.addItem(PublicValues.language.translate("playlists.create.title"), () -> {
-            AddPlaylistDialog dialog = new AddPlaylistDialog();
-            dialog.show((playlistname, playlistvisibility) -> {
-                try {
-                    String uri = InstanceManager.getSpotifyApi().createPlaylist(PublicValues.session.username(), playlistname).public_(playlistvisibility).build().execute().getUri();
-                    playlistsplayliststable.addModifyAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            playlistsuricache.add(uri);
-                            ((DefaultTableModel) playlistsplayliststable.getModel()).addRow(new Object[]{playlistname});
-                        }
-                    });
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }, () -> {
-            }, dialog::dispose);
-        });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            menu.addItem(item.name, item.torun);
-        }
-        playlistsplayliststable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+        playlistsPlaylistsTable = new DefTable();
+        playlistsPlaylistsTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.playlists.playlistname")}));
+        playlistsPlaylistsTable.setForeground(PublicValues.globalFontColor);
+        playlistsPlaylistsTable.getColumnModel().getColumn(0).setPreferredWidth(623);
+        playlistsPlaylistsTable.setFillsViewportHeight(true);
+        playlistsPlaylistsTable.setColumnSelectionAllowed(true);
+        playlistsPlaylistsTable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        playlistsPlaylistsTable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -120,19 +59,19 @@ public class Playlists extends JSplitPane implements View {
                     }
                     if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
                         Thread thread = new Thread(() -> {
-                            playlistssonguricache.clear();
-                            ((DefaultTableModel) playlistssongtable.getModel()).setRowCount(0);
+                            playlistsSongUriCache.clear();
+                            ((DefaultTableModel) playlistsSongTable.getModel()).setRowCount(0);
                             try {
                                 int offset = 0;
                                 int parsed = 0;
                                 int counter = 0;
                                 int last = 0;
-                                int total = InstanceManager.getSpotifyApi().getPlaylist(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
+                                int total = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
                                 while (parsed != total) {
-                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
+                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
                                     for (PlaylistTrack track : ptracks.getItems()) {
-                                        ((DefaultTableModel) playlistssongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                        playlistssonguricache.add(track.getTrack().getUri());
+                                        ((DefaultTableModel) playlistsSongTable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        playlistsSongUriCache.add(track.getTrack().getUri());
                                         parsed++;
                                     }
                                     if (last == parsed) {
@@ -152,30 +91,94 @@ public class Playlists extends JSplitPane implements View {
                         }, "Get playlist tracks");
                         thread.start();
                     }else {
-                        loadnew = true;
+                        loadNew = true;
                         lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
-                                playlistssongsscroll,
-                                playlistssonguricache,
-                                playlistssongtable,
+                                playlistsSongsScrollPane,
+                                playlistsSongUriCache,
+                                playlistsSongTable,
                                 new int[] {28},
-                                playlistsuricache.get(playlistsplayliststable.getSelectedRow()).split(":")[2],
+                                playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2],
                                 inProg,
-                                loadnew
+                                loadNew
                         );
-                        loadnew = false;
+                        loadNew = false;
                     }
                 }
             }
         }));
-        playlistssongtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+
+        playlistsPlaylistsScrollPane = new JScrollPane();
+        playlistsPlaylistsScrollPane.setPreferredSize(new Dimension(259, getHeight()));
+        setLeftComponent(playlistsPlaylistsScrollPane);
+        playlistsPlaylistsScrollPane.setViewportView(playlistsPlaylistsTable);
+
+        playlistsSongTable = new DefTable();
+        playlistsSongTable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        playlistsSongTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.songslist.songtitle"), PublicValues.language.translate("ui.playlists.songslist.filesize"), PublicValues.language.translate("ui.playlists.songslist.bitrate"), PublicValues.language.translate("ui.playlists.songslist.length")}));
+        playlistsSongTable.setForeground(PublicValues.globalFontColor);
+        playlistsSongTable.getColumnModel().getColumn(0).setPreferredWidth(363);
+        playlistsSongTable.getColumnModel().getColumn(1).setPreferredWidth(89);
+        playlistsSongTable.getColumnModel().getColumn(3).setPreferredWidth(96);
+        playlistsSongTable.setFillsViewportHeight(true);
+        playlistsSongTable.setColumnSelectionAllowed(true);
+        playlistsSongTable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(playlistssonguricache.get(playlistssongtable.getSelectedRow()), true, PublicValues.shuffle);
-                    TrackUtils.addAllToQueue(playlistssonguricache, playlistssongtable);
+                    InstanceManager.getPlayer().getPlayer().load(playlistsSongUriCache.get(playlistsSongTable.getSelectedRow()), true, PublicValues.shuffle);
+                    TrackUtils.addAllToQueue(playlistsSongUriCache, playlistsSongTable);
                 }
             }
         }));
+
+        playlistsSongsScrollPane = new JScrollPane();
+        setRightComponent(playlistsSongsScrollPane);
+        playlistsSongsScrollPane.setViewportView(playlistsSongTable);
+
+        playlistsSongTableContextMenu = new ContextMenu(playlistsSongTable);
+        playlistsSongTableContextMenu.addItem("All to queue", () -> {
+            for(String s : playlistsSongUriCache) {
+                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
+            }
+        });
+        playlistsSongTableContextMenu.addItem("Add to queue", () -> {
+            if(playlistsSongTable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistsSongUriCache.get(playlistsSongTable.getSelectedRow()));
+        });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            playlistsSongTableContextMenu.addItem(item.name, item.torun);
+        }
+
+        playlistsPlaylistsTableContextMenu = new ContextMenu(playlistsPlaylistsTable);
+        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
+            InstanceManager.getSpotifyApi().unfollowPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]);
+            playlistsUriCache.remove(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()));
+            ((DefaultTableModel) playlistsPlaylistsTable.getModel()).removeRow(playlistsPlaylistsTable.getSelectedRow());
+        });
+        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> {
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            Clipboard clipboard = toolkit.getSystemClipboard();
+            StringSelection strSel = new StringSelection(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()));
+            clipboard.setContents(strSel, null);
+        });
+        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("playlists.create.title"), () -> {
+            AddPlaylistDialog dialog = new AddPlaylistDialog();
+            dialog.show((playlistname, playlistvisibility) -> {
+                try {
+                    String uri = InstanceManager.getSpotifyApi().createPlaylist(PublicValues.session.username(), playlistname).public_(playlistvisibility).build().execute().getUri();
+                    playlistsPlaylistsTable.addModifyAction(() -> {
+                        playlistsUriCache.add(uri);
+                        ((DefaultTableModel) playlistsPlaylistsTable.getModel()).addRow(new Object[]{playlistname});
+                    });
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }, () -> {
+            }, dialog::dispose);
+        });
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            playlistsPlaylistsTableContextMenu.addItem(item.name, item.torun);
+        }
     }
 
     @Override
@@ -190,8 +193,8 @@ public class Playlists extends JSplitPane implements View {
                 while (parsed != total) {
                     PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
                     for (PlaylistSimplified simplified : playlists) {
-                        Playlists.playlistsuricache.add(simplified.getUri());
-                        ((DefaultTableModel) Playlists.playlistsplayliststable.getModel()).addRow(new Object[]{simplified.getName()});
+                        Playlists.playlistsUriCache.add(simplified.getUri());
+                        ((DefaultTableModel) Playlists.playlistsPlaylistsTable.getModel()).addRow(new Object[]{simplified.getName()});
                         parsed++;
                     }
                     if (parsed == last) {
@@ -209,7 +212,7 @@ public class Playlists extends JSplitPane implements View {
                 throw new RuntimeException(e);
             }
         }, "Playlists fetcher");
-        if (Playlists.playlistsplayliststable.getModel().getRowCount() == 0) {
+        if (Playlists.playlistsPlaylistsTable.getModel().getRowCount() == 0) {
             thread.start();
         }
         setVisible(true);

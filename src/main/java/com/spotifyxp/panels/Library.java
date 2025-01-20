@@ -16,16 +16,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library extends JScrollPane implements View {
-    public static DefTable librarysonglist;
-    public static DefaultTableModel librarydefaulttablemodel;
-    public static final ArrayList<String> libraryuricache = new ArrayList<>();
+    public static DefTable librarySongList;
+    public static final ArrayList<String> libraryUriCache = new ArrayList<>();
     private static boolean libraryLoadingInProgress = false;
-    public static ContextMenu contextmenu;
-    public static final Thread librarythread = new Thread(new Runnable() {
+    public static ContextMenu contextMenu;
+    public static final Thread libraryThread = new Thread(new Runnable() {
         public void run() {
             try {
                 libraryLoadingInProgress = true;
@@ -36,9 +34,9 @@ public class Library extends JScrollPane implements View {
                 while (parsed != visibleCount) {
                     SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getItems();
                     for (SavedTrack t : track) {
-                        libraryuricache.add(t.getTrack().getUri());
+                        libraryUriCache.add(t.getTrack().getUri());
                         String a = TrackUtils.getArtists(t.getTrack().getArtists());
-                        librarysonglist.addModifyAction(() -> ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
+                        librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
                         parsed++;
                     }
                     if (parsed == last) {
@@ -81,43 +79,48 @@ public class Library extends JScrollPane implements View {
                 inProg[0] = false;
             }
         });
-        librarysonglist = new DefTable();
-        librarysonglist.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.library.songlist.songname"), PublicValues.language.translate("ui.library.songlist.filesize"), PublicValues.language.translate("ui.library.songlist.bitrate"), PublicValues.language.translate("ui.library.songlist.length")}));
-        librarysonglist.getTableHeader().setForeground(PublicValues.globalFontColor);
-        librarysonglist.setForeground(PublicValues.globalFontColor);
-        librarydefaulttablemodel = (DefaultTableModel) librarysonglist.getModel();
-        librarysonglist.getColumnModel().getColumn(0).setPreferredWidth(347);
-        librarysonglist.getColumnModel().getColumn(3).setPreferredWidth(51);
-        librarysonglist.setFillsViewportHeight(true);
-        setViewportView(librarysonglist);
-        contextmenu = new ContextMenu(librarysonglist);
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            contextmenu.addItem(item.name, item.torun);
-        }
-        librarysonglist.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+
+        librarySongList = new DefTable();
+        librarySongList.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.library.songlist.songname"), PublicValues.language.translate("ui.library.songlist.filesize"), PublicValues.language.translate("ui.library.songlist.bitrate"), PublicValues.language.translate("ui.library.songlist.length")}));
+        librarySongList.getTableHeader().setForeground(PublicValues.globalFontColor);
+        librarySongList.setForeground(PublicValues.globalFontColor);
+        librarySongList.getColumnModel().getColumn(0).setPreferredWidth(347);
+        librarySongList.getColumnModel().getColumn(3).setPreferredWidth(51);
+        librarySongList.setFillsViewportHeight(true);
+        librarySongList.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(libraryuricache.get(librarysonglist.getSelectedRow()), true, PublicValues.shuffle);
-                    Thread thread1 = new Thread(() -> TrackUtils.addAllToQueue(libraryuricache, librarysonglist), "Library add to queue");
+                    InstanceManager.getPlayer().getPlayer().load(libraryUriCache.get(librarySongList.getSelectedRow()), true, PublicValues.shuffle);
+                    Thread thread1 = new Thread(() -> TrackUtils.addAllToQueue(libraryUriCache, librarySongList), "Library add to queue");
                     thread1.start();
                 }
             }
         }));
-        contextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryuricache.get(librarysonglist.getSelectedRow())));
-        contextmenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
-            libraryuricache.clear();
-            librarysonglist.removeAll();
-            librarythread.start();
+        setViewportView(librarySongList);
+        
+        createcontextMenu();
+    }
+
+    void createcontextMenu() {
+        contextMenu = new ContextMenu(librarySongList);
+        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
+            contextMenu.addItem(item.name, item.torun);
+        }
+        contextMenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryUriCache.get(librarySongList.getSelectedRow())));
+        contextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
+            libraryUriCache.clear();
+            librarySongList.removeAll();
+            libraryThread.start();
         });
-        contextmenu.addItem("Add to queue", () -> {
-            if(librarysonglist.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), libraryuricache.get(librarysonglist.getSelectedRow()));
+        contextMenu.addItem("Add to queue", () -> {
+            if(librarySongList.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), libraryUriCache.get(librarySongList.getSelectedRow()));
         });
-        contextmenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
-            InstanceManager.getSpotifyApi().removeUsersSavedTracks(libraryuricache.get(librarysonglist.getSelectedRow()).split(":")[2]);
-            libraryuricache.remove(librarysonglist.getSelectedRow());
-            ((DefaultTableModel) librarysonglist.getModel()).removeRow(librarysonglist.getSelectedRow());
+        contextMenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
+            InstanceManager.getSpotifyApi().removeUsersSavedTracks(libraryUriCache.get(librarySongList.getSelectedRow()).split(":")[2]);
+            libraryUriCache.remove(librarySongList.getSelectedRow());
+            ((DefaultTableModel) librarySongList.getModel()).removeRow(librarySongList.getSelectedRow());
         });
     }
 
@@ -132,13 +135,13 @@ public class Library extends JScrollPane implements View {
             int parsed = 0;
             int counter = 0;
             int last = 0;
-            if (total != libraryuricache.size()) {
+            if (total != libraryUriCache.size()) {
                 while (parsed != 19) {
-                    SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).offset(libraryuricache.size()).build().execute().getItems();
+                    SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).offset(libraryUriCache.size()).build().execute().getItems();
                     for (SavedTrack t : track) {
-                        libraryuricache.add(t.getTrack().getUri());
+                        libraryUriCache.add(t.getTrack().getUri());
                         String a = TrackUtils.getArtists(t.getTrack().getArtists());
-                        librarysonglist.addModifyAction(() -> ((DefaultTableModel) librarysonglist.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
+                        librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
                         parsed++;
                     }
                     if (last == parsed) {
@@ -158,23 +161,6 @@ public class Library extends JScrollPane implements View {
             throw new RuntimeException(e);
         }
         libraryLoadingInProgress = false;
-    }
-
-    public static void fetchOnlyFirstSongsFromUserLibrary() {
-        DefaultTableModel model = (DefaultTableModel) librarysonglist.getModel();
-        try {
-            int count = 0;
-            for (SavedTrack track : InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(10).build().execute().getItems()) {
-                if (!libraryuricache.contains(track.getTrack().getUri())) {
-                    String a = TrackUtils.getArtists(track.getTrack().getArtists());
-                    model.insertRow(count, new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                    libraryuricache.add(count, track.getTrack().getUri());
-                    count++;
-                }
-            }
-        } catch (IOException e) {
-            ConsoleLogging.Throwable(e);
-        }
     }
 
     @Override

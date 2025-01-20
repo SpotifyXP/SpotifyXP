@@ -207,7 +207,7 @@ public class CustomTheme implements Theme {
     public void initTheme() {
         config = new ThemeConfig();
         com.spotifyxp.panels.ContentPanel.frame.setBackground(Color.decode(config.get("bgcolor")));
-        com.spotifyxp.panels.ContentPanel.legacyswitch.setBackground(Color.decode(config.get("tabpanelcolor")));
+        com.spotifyxp.panels.ContentPanel.legacySwitch.setBackground(Color.decode(config.get("tabpanelcolor")));
         PublicValues.borderColor = Color.decode(config.get("bordercolor"));
         try {
             switch (config.get("themetouse")) {

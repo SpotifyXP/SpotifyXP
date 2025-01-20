@@ -9,14 +9,13 @@ import com.spotifyxp.guielements.SpotifyBrowseModule;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 public class BrowsePanel extends JScrollPane implements View {
     public static UnofficialSpotifyAPI.SpotifyBrowse spotifyBrowse;
@@ -24,28 +23,13 @@ public class BrowsePanel extends JScrollPane implements View {
     public static JPopupMenu popupMenu;
     public static DefTable table;
     public static ArrayList<String> genreIds;
+    public static JCheckBoxMenuItem metroLayout;
+    public static JCheckBoxMenuItem tableLayout;
+    public static JScrollPane tableScrollPane;
 
     public BrowsePanel() {
-        setVisible(false);
         contentPanel = new JPanel();
-        setViewportView(contentPanel);
         contentPanel.setLayout(null);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    spotifyBrowse = UnofficialSpotifyAPI.getSpotifyBrowse();
-                }catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                if(PublicValues.config.getInt(ConfigValues.browse_view_style.name) == 1) {
-                    displayBrowseTable();
-                } else {
-                    displayBrowseMetro();
-                }
-            }
-        });
-        thread.start();
         contentPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -54,49 +38,50 @@ public class BrowsePanel extends JScrollPane implements View {
                 }
             }
         });
-        popupMenu = new JPopupMenu();
-        JCheckBoxMenuItem metroLayout = new JCheckBoxMenuItem("Metro layout"); //ToDo: Translate
-        JCheckBoxMenuItem tableLayout = new JCheckBoxMenuItem("Table layout"); //ToDo: Translate
-        boolean isTableLayout = PublicValues.config.getInt(ConfigValues.browse_view_style.name) == 1;
-        metroLayout.setSelected(!isTableLayout);
-        tableLayout.setSelected(isTableLayout);
-        metroLayout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tableLayout.setSelected(false);
-                metroLayout.setSelected(true);
-                PublicValues.config.write(ConfigValues.browse_view_style.name, 0);
-                PublicValues.config.save();
-                contentPanel.removeAll();
-                contentPanel.revalidate();
-                contentPanel.repaint();
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        displayBrowseMetro();
-                    }
-                });
-                thread.start();
+
+        setVisible(false);
+        setViewportView(contentPanel);
+
+        Thread thread = new Thread(() -> {
+            try {
+                spotifyBrowse = UnofficialSpotifyAPI.getSpotifyBrowse();
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            if(PublicValues.config.getInt(ConfigValues.browse_view_style.name) == 1) {
+                displayBrowseTable();
+            } else {
+                displayBrowseMetro();
             }
         });
-        tableLayout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                metroLayout.setSelected(false);
-                tableLayout.setSelected(true);
-                PublicValues.config.write(ConfigValues.browse_view_style.name, 1);
-                PublicValues.config.save();
-                contentPanel.removeAll();
-                contentPanel.revalidate();
-                contentPanel.repaint();
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        displayBrowseTable();
-                    }
-                });
-                thread.start();
-            }
+        thread.start();
+
+        popupMenu = new JPopupMenu();
+        metroLayout = new JCheckBoxMenuItem("Metro layout"); //ToDo: Translate
+        tableLayout = new JCheckBoxMenuItem("Table layout"); //ToDo: Translate
+        metroLayout.setSelected(PublicValues.config.getInt(ConfigValues.browse_view_style.name) == 0);
+        tableLayout.setSelected(!metroLayout.isSelected());
+        metroLayout.addActionListener(e -> {
+            tableLayout.setSelected(false);
+            metroLayout.setSelected(true);
+            PublicValues.config.write(ConfigValues.browse_view_style.name, 0);
+            PublicValues.config.save();
+            contentPanel.removeAll();
+            contentPanel.revalidate();
+            contentPanel.repaint();
+            Thread thread1 = new Thread(this::displayBrowseMetro);
+            thread1.start();
+        });
+        tableLayout.addActionListener(e -> {
+            metroLayout.setSelected(false);
+            tableLayout.setSelected(true);
+            PublicValues.config.write(ConfigValues.browse_view_style.name, 1);
+            PublicValues.config.save();
+            contentPanel.removeAll();
+            contentPanel.revalidate();
+            contentPanel.repaint();
+            Thread thread2 = new Thread(this::displayBrowseTable);
+            thread2.start();
         });
         popupMenu.add(metroLayout);
         popupMenu.add(tableLayout);
@@ -112,10 +97,10 @@ public class BrowsePanel extends JScrollPane implements View {
         void run(String id);
     }
 
-    void displayBrowseTable() {
+    void displayBrowseTable() throws NoSuchElementException {
         genreIds = new ArrayList<>();
+
         table = new DefTable();
-        JScrollPane scrollPane = new JScrollPane(table);
         table.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
@@ -137,7 +122,9 @@ public class BrowsePanel extends JScrollPane implements View {
                 }
             }
         });
-        scrollPane.setBounds(10, 10, getWidth() - 30, getHeight() - 40);
+
+        tableScrollPane = new JScrollPane(table);
+        tableScrollPane.setBounds(10, 10, getWidth() - 30, getHeight() - 40);
 
         for(UnofficialSpotifyAPI.SpotifyBrowseEntry entry : spotifyBrowse.getBody()) {
             if(entry.getMetadata().isPresent()) {
@@ -146,22 +133,20 @@ public class BrowsePanel extends JScrollPane implements View {
                         && !entry.getComponent().getCategory().toLowerCase(Locale.ENGLISH).contains("sectionheader")
                         && entry.getCustom().isPresent()
                         && entry.getCustom().get().getBackgroundColor().isPresent()) {
-                    table.addModifyAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((DefaultTableModel) table.getModel()).addRow(new Object[] {entry.getText().getTitle()});
-                        }
-                    });
+                    table.addModifyAction(() -> ((DefaultTableModel) table.getModel()).addRow(new Object[] {entry.getText().getTitle()}));
+                    if(!entry.getEvents().isPresent()
+                            || entry.getEvents().get().getEvents().get(0).getData_uri().isPresent()
+                    ) throw new NoSuchElementException();
                     genreIds.add(entry.getEvents().get().getEvents().get(0).getData_uri().get().getUri());
                 }
             }
         }
 
-        contentPanel.add(scrollPane);
+        contentPanel.add(tableScrollPane);
         contentPanel.setPreferredSize(new Dimension(782, 405));
     }
 
-    void displayBrowseMetro() {
+    void displayBrowseMetro() throws NoSuchElementException {
         int yCache = 10;
         int xCache = 10;
         int xCount = 0;
@@ -182,6 +167,10 @@ public class BrowsePanel extends JScrollPane implements View {
 
                     try {
                         String uri = "";
+                        if (!entry.getImages().isPresent()
+                                || !entry.getEvents().isPresent()
+                                || !entry.getEvents().get().getEvents().get(0).getData_uri().isPresent()
+                        ) throw new NoSuchElementException();
                         for(UnofficialSpotifyAPI.SpotifyBrowseEntryImagesImage image : entry.getImages().get().getImages()) {
                             if(image.getType() == UnofficialSpotifyAPI.SpotifyBrowseEntryImagesImageTypes.MAIN) {
                                 uri = image.getUri();
@@ -213,23 +202,17 @@ public class BrowsePanel extends JScrollPane implements View {
         }
     };
 
-    IDRunnable idRunnable = new IDRunnable() {
-        @Override
-        public void run(String id) {
-            ContentPanel.switchView(Views.BROWSESECTION);
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        ContentPanel.sectionPanel.fillWith(UnofficialSpotifyAPI.getSpotifyBrowseSection(id));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-            thread.start();
-            ContentPanel.blockTabSwitch();
-        }
+    IDRunnable idRunnable = id -> {
+        ContentPanel.switchView(Views.BROWSESECTION);
+        Thread thread = new Thread(() -> {
+            try {
+                ContentPanel.sectionPanel.fillWith(UnofficialSpotifyAPI.getSpotifyBrowseSection(id));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        thread.start();
+        ContentPanel.blockTabSwitch();
     };
 
     @Override

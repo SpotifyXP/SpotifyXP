@@ -344,7 +344,7 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
                 }
                 listener.playbackError(this, e);
                 if(PublicValues.spotifyplayer.tracks(true).next.isEmpty()) {
-                    ContentPanel.playerarea.reset();
+                    ContentPanel.playerArea.reset();
                 } else {
                     PublicValues.spotifyplayer.next();
                 }

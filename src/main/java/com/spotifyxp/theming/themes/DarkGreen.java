@@ -23,7 +23,7 @@ public class DarkGreen implements Theme {
     @Override
     public void initTheme() {
         ContentPanel.frame.setBackground(Color.getColor("#3c3f41"));
-        ContentPanel.legacyswitch.setBackground(new Color(63, 63, 63));
+        ContentPanel.legacySwitch.setBackground(new Color(63, 63, 63));
         PublicValues.borderColor = Color.black;
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());

@@ -2,92 +2,55 @@ package com.spotifyxp.panels;
 
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.configuration.ConfigValues;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
+import com.spotifyxp.dialogs.ErrorDisplay;
 import com.spotifyxp.dialogs.HTMLDialog;
-import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
-import com.spotifyxp.exception.ExceptionDialog;
-import com.spotifyxp.graphics.Graphics;
-import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.guielements.Settings;
 import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class ContentPanel extends JPanel {
-    public static PlayerArea playerarea;
-    public static Search searchpanel;
-    public static Library librarypanel;
-    public static Playlists playlistspanel;
-    public static BrowsePanel browsepanel;
-    public static HomePanel homepanel;
-    public static HotList hotlistpanel;
-    public static Queue queuepanel;
-    public static Feedback feedbackpanel;
+    public static PlayerArea playerArea;
+    public static Search searchPanel;
+    public static Library libraryPanel;
+    public static Playlists playlistsPanel;
+    public static BrowsePanel browsePanel;
+    public static HomePanel homePanel;
+    public static HotList hotListPanel;
+    public static Queue queuePanel;
+    public static Feedback feedbackPanel;
     public static ArtistPanel artistPanel;
-    public static JPanel tabpanel;
-    public static final JTabbedPane legacyswitch = new JTabbedPane();
+    public static JPanel tabPanel;
+    public static final JTabbedPane legacySwitch = new JTabbedPane();
     public static final JMenuBar bar = new JMenuBar();
-    public static JButton errorDisplay;
-    public static ArrayList<ExceptionDialog> errorQueue;
     public static boolean pressedCTRL = false;
     public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static Views currentView = Views.HOME; //The view on start is home
     public static Views lastView = Views.HOME;
     public static View currentViewPanel;
     public static View lastViewPanel;
-    static boolean steamdeck = false;
-    static boolean errorDisplayVisible = false;
     public static Settings settings;
     public static TrackPanel trackPanel;
     public static SpotifySectionPanel sectionPanel;
+    public static ErrorDisplay errorDisplay;
 
-    static class TabEntry {
-        public String title;
-        public JComponent component;
-        public int count;
-
-        public TabEntry(String title, JComponent component) {
-            this.title = title;
-            this.component = component;
-            this.count = extraTabs.size() + 1;
-        }
-    }
-
-    private static ArrayList<TabEntry> extraTabs = new ArrayList<>();
-
-    @Deprecated
-    public static void addComponentToTabs(String title, JComponent component) {
-        extraTabs.add(new TabEntry(title, component));
-        legacyswitch.addTab(title, new JPanel());
-        tabpanel.add(component);
-    }
-
-    @SuppressWarnings("Busy")
     public ContentPanel() throws IOException {
         PublicValues.contentPanel = this;
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelbegin"));
+        Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), (Object... data) -> PublicValues.blockLoading = false);
         SplashPanel.linfo.setText("Creating menu bar...");
         createMenuBar();
         SplashPanel.linfo.setText("Setting window size...");
@@ -95,10 +58,8 @@ public class ContentPanel extends JPanel {
         setLayout(null);
         SplashPanel.linfo.setText("Creating errorDisplay...");
         createErrorDisplay();
-        Events.subscribe(SpotifyXPEvents.trackLoadFinished.getName(), (Object... data) -> PublicValues.blockLoading = false);
         SplashPanel.linfo.setText("Creating tabpanel...");
-        tabpanel = new JPanel();
-        tabpanel.setLayout(new BoxLayout(tabpanel, BoxLayout.Y_AXIS));
+        createTabPanel();
         SplashPanel.linfo.setText("Creating playerarea...");
         createPlayerArea();
         SplashPanel.linfo.setText("Creating feedback...");
@@ -111,8 +72,8 @@ public class ContentPanel extends JPanel {
         createPlaylist();
         SplashPanel.linfo.setText("Creating queue...");
         createQueue();
-        SplashPanel.linfo.setText("Creating search...");
-        createSearch();
+        SplashPanel.linfo.setText("Creating searchPanel...");
+        createSearchPanel();
         SplashPanel.linfo.setText("Creating artistPanel...");
         createArtistPanel();
         SplashPanel.linfo.setText("Creating browse...");
@@ -147,21 +108,19 @@ public class ContentPanel extends JPanel {
             // Defaulting to United States
             PublicValues.countryCode = CountryCode.US;
         }
-        Events.subscribe(SpotifyXPEvents.addtoqueue.getName(), new EventSubscriber() {
-            @Override
-            public void run(Object... data) {
-                InstanceManager.getPlayer().getPlayer().addToQueue((String)data[0]);
-            }
-        });
-        SplashPanel.linfo.setText("Init Theme...");
-        updateTheme();
+        Events.subscribe(SpotifyXPEvents.addtoqueue.getName(), data -> InstanceManager.getPlayer().getPlayer().addToQueue((String)data[0]));
         SplashPanel.linfo.setText("Done building contentPanel");
         ConsoleLogging.info(PublicValues.language.translate("debug.buildcontentpanelend"));
     }
 
     private void createTrackPanel() {
         trackPanel = new TrackPanel();
-        tabpanel.add(trackPanel);
+        tabPanel.add(trackPanel);
+    }
+
+    void createTabPanel() {
+        tabPanel = new JPanel();
+        tabPanel.setLayout(new BoxLayout(tabPanel, BoxLayout.Y_AXIS));
     }
 
     void createSettings() {
@@ -177,95 +136,39 @@ public class ContentPanel extends JPanel {
     }
 
     public static void blockTabSwitch() {
-        legacyswitch.setEnabled(false);
+        legacySwitch.setEnabled(false);
     }
 
     public static void enableTabSwitch() {
-        legacyswitch.setEnabled(true);
+        legacySwitch.setEnabled(true);
     }
 
-    public static void steamDeck() {
-        steamdeck = true;
-    }
-
-    public static void showArtistPanel(String fromuri) {
+    public static void showArtistPanel(String fromUri) {
         switch (currentView) {
             case BROWSE:
-                browsepanel.makeInvisible();
+                browsePanel.makeInvisible();
                 break;
             case HOME:
-                homepanel.makeInvisible();
+                homePanel.makeInvisible();
                 break;
             case SEARCH:
-                searchpanel.makeInvisible();
+                searchPanel.makeInvisible();
                 break;
         }
         switchView(Views.ARTIST);
         try {
-            Artist a = InstanceManager.getSpotifyApi().getArtist(fromuri.split(":")[2]).build().execute();
-            try {
-                artistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
-            } catch (ArrayIndexOutOfBoundsException exception) {
-                // No artist image (when this is raised it's a bug)
-            }
-            artistPanel.artisttitle.setText(a.getName());
-            Thread trackthread = new Thread(() -> {
-                try {
-                    for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(a.getUri().split(":")[2], PublicValues.countryCode).build().execute()) {
-                        if (!artistPanel.isVisible()) {
-                            break;
-                        }
-                        artistPanel.popularuricache.add(t.getUri());
-                        InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, artistPanel.artistpopularsonglist);
-                    }
-                } catch (IOException ex) {
-                    ConsoleLogging.Throwable(ex);
-                }
-            }, "Get tracks");
-            Thread albumthread = new Thread(() -> {
-                for (AlbumSimplified album : SpotifyUtils.getAllAlbumsArtist(a.getUri())) {
-                    artistPanel.albumuricache.add(album.getUri());
-                    ((DefaultTableModel) artistPanel.artistalbumalbumtable.getModel()).addRow(new Object[]{album.getName()});
-                }
-            }, "Get albums for artist");
-            albumthread.start();
-            trackthread.start();
+            Artist a = InstanceManager.getSpotifyApi().getArtist(fromUri.split(":")[2]).build().execute();
+            artistPanel.fillWith(a);
             artistPanel.openPanel();
         } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
     }
 
-    static void preventBugLegacySwitch() {
-        for (int i = 0; i < legacyswitch.getTabCount(); i++) {
-            legacyswitch.setComponentAt(i, new JPanel());
+    static void preventBuglegacySwitch() {
+        for (int i = 0; i < legacySwitch.getTabCount(); i++) {
+            legacySwitch.setComponentAt(i, new JPanel());
         }
-    }
-
-    public static void updateTheme() {
-        PlayerArea.playerareavolumeicon.setImage(Graphics.VOLUMEFULL.getPath());
-        playerarea.setBorder(new LineBorder(PublicValues.borderColor));
-        PlayerArea.playerplaypreviousbutton.setImage(Graphics.PLAYERPLAYPREVIOUS.getPath());
-        PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPlAY.getPath());
-        PlayerArea.playerplaynextbutton.setImage(Graphics.PLAYERPLAYNEXT.getPath());
-        PlayerArea.playerareashufflebutton.setImage(Graphics.SHUFFLE.getPath());
-        PlayerArea.playerarearepeatingbutton.setImage(Graphics.REPEAT.getPath());
-        PlayerArea.playerarealyricsbutton.setImage(Graphics.MICROPHONE.getPath());
-        PlayerArea.playerplaypausebutton.setBorderPainted(false);
-        PlayerArea.playerplaypausebutton.setContentAreaFilled(false);
-        PlayerArea.playerplaynextbutton.setBorderPainted(false);
-        PlayerArea.playerplaynextbutton.setContentAreaFilled(false);
-        PlayerArea.playerplaypreviousbutton.setBorderPainted(false);
-        PlayerArea.playerplaypreviousbutton.setContentAreaFilled(false);
-        PlayerArea.playerimage.setImage(Graphics.NOTHINGPLAYING.getPath());
-        playerarea.setBorder(null);
-        //---
-        // Resize components
-        playerarea.setBounds(784 / 2 - playerarea.getWidth() / 2, 8, playerarea.getWidth(), playerarea.getHeight() - 3);
-        //---
-        // Add JTabbedPane
-        legacyswitch.setVisible(true);
-        //---
     }
 
     public static void openAbout() {
@@ -281,9 +184,9 @@ public class ContentPanel extends JPanel {
                 }
                 cache.append(s);
             }
-            String opensourcelist = new Resources().readToString("setup/thirdparty.html");
-            String finalhtml = cache.toString().split("<insertOpenSourceList>")[0] + opensourcelist + cache.toString().split("</insertOpenSourceList>")[1];
-            dialog.open(PublicValues.language.translate("ui.menu.help.about"), finalhtml);
+            String openSourceList = new Resources().readToString("setup/thirdparty.html");
+            String finalHTML = cache.toString().split("<insertOpenSourceList>")[0] + openSourceList + cache.toString().split("</insertOpenSourceList>")[1];
+            dialog.open(PublicValues.language.translate("ui.menu.help.about"), finalHTML);
         } catch (Exception ex) {
             GraphicalMessage.openException(ex);
             ConsoleLogging.Throwable(ex);
@@ -297,164 +200,63 @@ public class ContentPanel extends JPanel {
     }
 
     void createHome() {
-        homepanel = new HomePanel();
-        tabpanel.add(homepanel);
+        homePanel = new HomePanel();
+        tabPanel.add(homePanel);
     }
 
     void createBrowse() {
-        browsepanel = new BrowsePanel();
-        tabpanel.add(browsepanel);
+        browsePanel = new BrowsePanel();
+        tabPanel.add(browsePanel);
     }
 
     void createPlayerArea() {
-        playerarea = new PlayerArea(frame);
-        add(playerarea);
+        playerArea = new PlayerArea(frame);
+        add(playerArea);
     }
 
     void createLibrary() {
-        librarypanel = new Library();
-        tabpanel.add(librarypanel);
+        libraryPanel = new Library();
+        tabPanel.add(libraryPanel);
     }
 
     void createSectionPanel() {
         sectionPanel = new SpotifySectionPanel();
-        tabpanel.add(sectionPanel);
+        tabPanel.add(sectionPanel);
     }
 
     void createArtistPanel() {
         artistPanel = new ArtistPanel();
-        ArtistPanel.contentPanel.setPreferredSize(new Dimension(784, 400));
-        tabpanel.add(ArtistPanel.contentPanel);
-        ArtistPanel.contentPanel.setVisible(false);
+        tabPanel.add(ArtistPanel.contentPanel);
     }
 
     void createPlaylist() {
-        playlistspanel = new Playlists();
-        tabpanel.add(playlistspanel);
+        playlistsPanel = new Playlists();
+        tabPanel.add(playlistsPanel);
     }
 
-    void createSearch() {
-        searchpanel = new Search();
-        tabpanel.add(searchpanel);
+    void createSearchPanel() {
+        searchPanel = new Search();
+        tabPanel.add(searchPanel);
     }
 
     void createErrorDisplay() {
-        errorDisplay = new JButton() {
-            @Override
-            public void setText(String text) {
-                if (text.equals("Default")) {
-                    text = PublicValues.language.translate("ui.errorqueue.button");
-                    super.setText(text);
-                    return;
-                }
-                if (!text.contains(PublicValues.language.translate("ui.errorqueue.button"))) {
-                    text = PublicValues.language.translate("ui.errorqueue.button") + " " + text;
-                }
-                if (errorDisplay != null) errorDisplay.setVisible(true);
-                if (text.equals(String.valueOf(0))) {
-                    try {
-                        Objects.requireNonNull(errorDisplay);
-                        errorDisplay.setVisible(false);
-                    } catch (NullPointerException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                super.setText(text);
-                if (errorDisplay != null)
-                    errorDisplay.setBounds(10, 10, errorDisplay.getWidth(), errorDisplay.getHeight());
-            }
-        };
-        errorDisplay.setText("Default");
-        errorQueue = new ArrayList<ExceptionDialog>() {
-            @Override
-            public boolean add(ExceptionDialog exceptionDialog) {
-                super.add(exceptionDialog);
-                errorDisplay.setText(String.valueOf(errorQueue.size()));
-                return true;
-            }
-        };
-        errorDisplay.addActionListener(new AsyncActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (errorQueue.size() > 100) {
-                    if (!(SystemUtils.getUsableRAMmb() > 512)) {
-                        errorQueue.clear();
-                        GraphicalMessage.sorryError("Too many errors! Out of memory prevention");
-                        return;
-                    }
-                }
-                if (errorDisplayVisible) {
-                    return;
-                }
-                errorDisplayVisible = true;
-                JFrame dialog = new JFrame();
-                dialog.setTitle(PublicValues.language.translate("ui.errorqueue.title"));
-                JScrollPane pane = new JScrollPane();
-                DefTable table = new DefTable();
-                table.setModel(new DefaultTableModel(new Object[][]{}, new String[]{""}));
-                pane.setViewportView(table);
-                for (ExceptionDialog exd : errorQueue) {
-                    ((DefaultTableModel) table.getModel()).addRow(new Object[]{exd.getPreview()});
-                }
-                table.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        super.mouseClicked(e);
-                        if (SwingUtilities.isRightMouseButton(e)) return;
-                        if (e.getClickCount() == 2) errorQueue.get(table.getSelectedRow()).openReal();
-                    }
-                }));
-                ContextMenu menu = new ContextMenu(pane, table);
-                menu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(errorQueue.get(table.getSelectedRow()).getAsFormattedText()));
-                menu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
-                    errorQueue.remove(table.getSelectedRow());
-                    errorDisplay.setText(String.valueOf(errorQueue.size()));
-                    ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
-                    if (table.getModel().getRowCount() == 0) {
-                        errorDisplay.setVisible(false);
-                    }
-                });
-                for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-                    menu.addItem(item.name, item.torun);
-                }
-                JButton remove = new JButton(PublicValues.language.translate("ui.errorqueue.clear"));
-                remove.addActionListener(new AsyncActionListener(e1 -> {
-                    errorQueue.clear();
-                    ((DefaultTableModel) table.getModel()).setRowCount(0);
-                    errorDisplay.setVisible(false);
-                }));
-                dialog.add(remove, BorderLayout.SOUTH);
-                dialog.setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
-                dialog.add(pane, BorderLayout.CENTER);
-                dialog.setVisible(true);
-                dialog.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        errorDisplayVisible = false;
-                    }
-                });
-                dialog.pack();
-            }
-        }));
-        errorDisplay.setVisible(false);
-        add(errorDisplay);
-        errorDisplay.setBackground(Color.decode("#BB0000"));
-        errorDisplay.setBounds(5, 5, 100, 40);
+        errorDisplay = new ErrorDisplay();
+        add(errorDisplay.getDisplayPanel());
     }
 
     void createHotList() {
-        hotlistpanel = new HotList();
-        tabpanel.add(hotlistpanel);
+        hotListPanel = new HotList();
+        tabPanel.add(hotListPanel);
     }
 
     void createQueue() throws IOException {
-        queuepanel = new Queue();
-        tabpanel.add(queuepanel);
+        queuePanel = new Queue();
+        tabPanel.add(queuePanel);
     }
 
     void createFeedback() {
-        feedbackpanel = new Feedback();
-        tabpanel.add(feedbackpanel);
+        feedbackPanel = new Feedback();
+        tabPanel.add(feedbackPanel);
     }
 
     //ToDo: Remove this code. This is a horrible way to use a JTabbedPane
@@ -462,78 +264,78 @@ public class ContentPanel extends JPanel {
     // the views were switched by JButtons
     @SuppressWarnings("all")
     void createLegacy() {
-        legacyswitch.setForeground(PublicValues.globalFontColor);
-        legacyswitch.setBounds(0, 111, PublicValues.applicationWidth, PublicValues.contentContainerHeight());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
-        legacyswitch.addTab("Browse", new JPanel());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.library"), new JPanel());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.search"), new JPanel());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.hotlist"), new JPanel());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.queue"), new JPanel());
-        legacyswitch.addTab(PublicValues.language.translate("ui.navigation.feedback"), new JPanel());
-        legacyswitch.setUI(new BasicTabbedPaneUI() {
+        legacySwitch.setForeground(PublicValues.globalFontColor);
+        legacySwitch.setBounds(0, 111, PublicValues.applicationWidth, PublicValues.contentContainerHeight());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
+        legacySwitch.addTab("Browse", new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.library"), new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.search"), new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.hotlist"), new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.queue"), new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.feedback"), new JPanel());
+        legacySwitch.setUI(new BasicTabbedPaneUI() {
             @Override
             protected int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
-                return 800 / legacyswitch.getTabCount() - 3;
+                return 800 / legacySwitch.getTabCount() - 3;
             }
         });
-        add(legacyswitch);
-        legacyswitch.setSelectedIndex(0);
-        preventBugLegacySwitch();
-        legacyswitch.setComponentAt(0, tabpanel);
+        add(legacySwitch);
+        legacySwitch.setSelectedIndex(0);
+        preventBuglegacySwitch();
+        legacySwitch.setComponentAt(0, tabPanel);
         switchView(Views.HOME);
-        legacyswitch.addChangeListener(e -> {
-            switch (legacyswitch.getSelectedIndex()) {
+        legacySwitch.addChangeListener(e -> {
+            switch (legacySwitch.getSelectedIndex()) {
                 case 0:
                     currentView = Views.HOME;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.HOME);
                     break;
                 case 1:
                     currentView = Views.BROWSE;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.BROWSE);
                     break;
                 case 2:
                     currentView = Views.PLAYLIST;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.PLAYLIST);
                     break;
                 case 3:
                     currentView = Views.LIBRARY;
-                    if (Library.librarysonglist.getModel().getRowCount() == 0) {
-                        Library.librarythread.start();
+                    if (Library.librarySongList.getModel().getRowCount() == 0) {
+                        Library.libraryThread.start();
                     }
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.LIBRARY);
                     break;
                 case 4:
                     currentView = Views.SEARCH;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.SEARCH);
                     break;
                 case 5:
                     currentView = Views.HOTLIST;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.HOTLIST);
                     break;
                 case 6:
                     currentView = Views.QUEUE;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.QUEUE);
                     break;
                 case 7:
                     currentView = Views.FEEDBACK;
-                    preventBugLegacySwitch();
-                    legacyswitch.setComponentAt(legacyswitch.getSelectedIndex(), tabpanel);
+                    preventBuglegacySwitch();
+                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.FEEDBACK);
                     break;
                 default:
@@ -543,6 +345,7 @@ public class ContentPanel extends JPanel {
     }
 
     void createMenuBar() {
+        PublicValues.menuBar = bar;
         JMenu file = new JMenu(PublicValues.language.translate("ui.legacy.file"));
         JMenu edit = new JMenu(PublicValues.language.translate("ui.legacy.edit"));
         JMenu view = new JMenu(PublicValues.language.translate("ui.legacy.view"));
@@ -553,8 +356,8 @@ public class ContentPanel extends JPanel {
         JMenuItem about = new JMenuItem(PublicValues.language.translate("ui.legacy.about"));
         JMenuItem settingsItem = new JMenuItem(PublicValues.language.translate("ui.legacy.settings"));
         JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
-        JMenuItem audiovisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
-        JMenuItem playuri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
+        JMenuItem audioVisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
+        JMenuItem playUri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
         bar.add(file);
         bar.add(edit);
         bar.add(view);
@@ -562,22 +365,22 @@ public class ContentPanel extends JPanel {
         bar.add(help);
         if (PublicValues.devMode) {
             JMenu developer = new JMenu("Developer");
-            JMenuItem locationfinder = new JMenuItem("Location Finder");
-            JMenuItem errorsimulator = new JMenuItem("Error Generator");
+            JMenuItem locationFinder = new JMenuItem("Location Finder");
+            JMenuItem errorSimulator = new JMenuItem("Error Generator");
             bar.add(developer);
-            developer.add(errorsimulator);
-            developer.add(locationfinder);
-            errorsimulator.addActionListener(e -> new ErrorSimulator().open());
-            locationfinder.addActionListener(e -> new LocationFinder());
+            developer.add(errorSimulator);
+            developer.add(locationFinder);
+            errorSimulator.addActionListener(e -> new ErrorSimulator().open());
+            locationFinder.addActionListener(e -> new LocationFinder());
         }
-        file.add(playuri);
+        file.add(playUri);
         file.add(exit);
         edit.add(settingsItem);
-        view.add(audiovisualizer);
+        view.add(audioVisualizer);
         account.add(logout);
         help.add(extensions);
         help.add(about);
-        audiovisualizer.addActionListener(e -> PublicValues.visualizer.open());
+        audioVisualizer.addActionListener(e -> PublicValues.visualizer.open());
         extensions.addActionListener(e -> {
             try {
                 new InjectorStore().open();
@@ -585,24 +388,18 @@ public class ContentPanel extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
-        settingsItem.addActionListener(new AsyncActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                settings.open();
-            }
-        }));
+        settingsItem.addActionListener(new AsyncActionListener(e -> settings.open()));
         logout.addActionListener(new AsyncActionListener(e -> {
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.logout.text"), PublicValues.language.translate("ui.logout.title"), JOptionPane.OK_CANCEL_OPTION);
             System.exit(0);
         }));
         about.addActionListener(new AsyncActionListener(e -> openAbout()));
         exit.addActionListener(e -> System.exit(0));
-        playuri.addActionListener(new AsyncActionListener(e -> {
+        playUri.addActionListener(new AsyncActionListener(e -> {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
             PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
         }));
-        PublicValues.menuBar = bar;
     }
 
     @FunctionalInterface
@@ -636,34 +433,34 @@ public class ContentPanel extends JPanel {
         currentView = view;
         switch (view) {
             case HOME:
-                currentViewPanel = homepanel;
+                currentViewPanel = homePanel;
                 break;
             case BROWSE:
-                currentViewPanel = browsepanel;
+                currentViewPanel = browsePanel;
                 break;
             case TRACKPANEL:
                 currentViewPanel = trackPanel;
                 break;
             case PLAYLIST:
-                currentViewPanel = playlistspanel;
+                currentViewPanel = playlistsPanel;
                 break;
             case ARTIST:
                 currentViewPanel = artistPanel;
                 break;
             case SEARCH:
-                currentViewPanel = searchpanel;
+                currentViewPanel = searchPanel;
                 break;
             case LIBRARY:
-                currentViewPanel = librarypanel;
+                currentViewPanel = libraryPanel;
                 break;
             case QUEUE:
-                currentViewPanel = queuepanel;
+                currentViewPanel = queuePanel;
                 break;
             case HOTLIST:
-                currentViewPanel = hotlistpanel;
+                currentViewPanel = hotListPanel;
                 break;
             case FEEDBACK:
-                currentViewPanel = feedbackpanel;
+                currentViewPanel = feedbackPanel;
                 break;
             case BROWSESECTION:
                 currentViewPanel = sectionPanel;
@@ -673,7 +470,7 @@ public class ContentPanel extends JPanel {
     }
 
     void fixSize() {
-        legacyswitch.setSize(new Dimension(legacyswitch.getWidth(), getHeight() - 111));
+        legacySwitch.setSize(new Dimension(legacySwitch.getWidth(), getHeight() - 111));
     }
 
     public void open() {
@@ -725,5 +522,4 @@ public class ContentPanel extends JPanel {
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
     }
-
 }

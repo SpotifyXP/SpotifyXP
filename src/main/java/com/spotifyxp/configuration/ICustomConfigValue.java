@@ -1,7 +1,6 @@
 package com.spotifyxp.configuration;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 

@@ -3,7 +3,6 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
@@ -11,10 +10,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
-import com.spotifyxp.utils.SpotifyUtils;
 import com.spotifyxp.utils.StringUtils;
-import com.spotifyxp.utils.TrackUtils;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +18,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.*;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class HomePanel extends JScrollPane implements View {
     JPanel content;
@@ -35,14 +32,17 @@ public class HomePanel extends JScrollPane implements View {
     public HomePanel() {
         content = new JPanel();
         content.setLayout(null);
+
         menu = new ContextMenu(content);
         menu.addItem("Refresh", this::refill);
         for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             menu.addItem(item.name, item.torun);
         }
+
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         setVisible(false);
         setViewportView(content);
+
         future = new CompletableFuture<>();
         Thread requestTabThread = new Thread(() -> {
             try {
@@ -152,28 +152,10 @@ public class HomePanel extends JScrollPane implements View {
                                 break;
                             case artist:
                                 setVisible(false);
-                                ContentPanel.artistPanel.reset();
                                 ContentPanel.switchView(Views.ARTIST);
                                 try {
                                     Artist a = InstanceManager.getSpotifyApi().getArtist(id).build().execute();
-                                    try {
-                                        ArtistPanel.artistimage.setImage(new URL(SpotifyUtils.getImageForSystem(a.getImages()).getUrl()).openStream());
-                                    } catch (ArrayIndexOutOfBoundsException exception) {
-                                        //No artist image (when this is raised it's a bug)
-                                    }
-                                    ArtistPanel.artisttitle.setText(a.getName());
-                                    Thread trackthread = new Thread(() -> {
-                                        try {
-                                            for (Track t : InstanceManager.getSpotifyApi().getArtistsTopTracks(id, PublicValues.countryCode).build().execute()) {
-                                                ArtistPanel.popularuricache.add(t.getUri());
-                                                InstanceManager.getSpotifyAPI().addSongToList(TrackUtils.getArtists(t.getArtists()), t, ArtistPanel.artistpopularsonglist);
-                                            }
-                                        } catch (IOException ex) {
-                                            ConsoleLogging.Throwable(ex);
-                                        }
-                                    }, "Get tracks (HomePanel)");
-                                    InstanceManager.getSpotifyAPI().addAllAlbumsToList(ArtistPanel.albumuricache, uri, ArtistPanel.artistalbumalbumtable);
-                                    trackthread.start();
+                                    ContentPanel.artistPanel.fillWith(a);
                                 } catch (IOException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }

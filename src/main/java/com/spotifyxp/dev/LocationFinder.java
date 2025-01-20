@@ -39,7 +39,7 @@ public class LocationFinder {
         executor.scheduleAtFixedRate(helloRunnable, 0, 10, TimeUnit.MILLISECONDS);
     }
 
-    public static void open() {
+    public void open() {
         if (PublicValues.locationFinderActive) {
             PublicValues.contentPanel.removePaintOverwrite();
             executor.shutdown();

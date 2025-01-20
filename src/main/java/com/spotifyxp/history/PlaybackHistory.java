@@ -26,6 +26,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+@SuppressWarnings("Duplicates")
 public class PlaybackHistory extends JFrame {
     public static class SongEntry {
         public String songURI;
@@ -52,14 +53,14 @@ public class PlaybackHistory extends JFrame {
     private static DefaultMutableTreeNode root;
     private static ArrayList<PlaybackHistory.TreeEntry> addedArtists = new ArrayList<>();
     private static int offset = 0;
-    private static String databasePath;
-    private static SQLSession sqlSession;
     private static SQLTable sqlTable;
+    public static JButton removeAll;
+    public static JScrollPane pane;
 
     public PlaybackHistory() {
-        databasePath = new File(PublicValues.fileslocation, "playbackhistory.db").getAbsolutePath();
+        String databasePath = new File(PublicValues.fileslocation, "playbackhistory.db").getAbsolutePath();
 
-        sqlSession = new SQLSession(databasePath);
+        SQLSession sqlSession = new SQLSession(databasePath);
         sqlSession.loadDriver("org.sqlite.JDBC", "jdbc", "sqlite");
 
         try {
@@ -98,12 +99,12 @@ public class PlaybackHistory extends JFrame {
         root = new DefaultMutableTreeNode(PublicValues.language.translate("ui.history.tree.root"));
         tree = new URITree(root);
 
-        JScrollPane pane = new JScrollPane(tree);
+        pane = new JScrollPane(tree);
         add(pane, BorderLayout.CENTER);
 
-        JButton removeall = new JButton(PublicValues.language.translate("ui.history.removeall"));
+        removeAll = new JButton(PublicValues.language.translate("ui.history.removeall"));
 
-        removeall.addActionListener(new AsyncActionListener(e -> {
+        removeAll.addActionListener(new AsyncActionListener(e -> {
             try {
                 removeAllSongs();
             } catch (SQLException ex) {
@@ -112,7 +113,7 @@ public class PlaybackHistory extends JFrame {
 
         }));
 
-        add(removeall, BorderLayout.SOUTH);
+        add(removeAll, BorderLayout.SOUTH);
 
 
         tree.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
@@ -150,8 +151,8 @@ public class PlaybackHistory extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 dispose();
-                PlayerArea.historybutton.isFilled = false;
-                PlayerArea.historybutton.setImage(Graphics.HISTORY.getInputStream());
+                PlayerArea.historyButton.isFilled = false;
+                PlayerArea.historyButton.setImage(Graphics.HISTORY.getInputStream());
             }
         });
     }
@@ -260,7 +261,7 @@ public class PlaybackHistory extends JFrame {
         root.removeAllChildren();
         ((DefaultTreeModel) tree.getModel()).reload();
 
-        Thread fetchhistory = new Thread(() -> {
+        Thread fetchHistory = new Thread(() -> {
             try {
                 for (PlaybackHistory.SongEntry entry : get15Songs(0)) {
                     DefaultMutableTreeNode addedTo;
@@ -290,17 +291,8 @@ public class PlaybackHistory extends JFrame {
                 ConsoleLogging.Throwable(e);
             }
         }, "Fetch playback history");
-        fetchhistory.start();
+        fetchHistory.start();
         super.open();
-    }
-
-    DefaultMutableTreeNode getEntry(String name, ArrayList<PlaybackHistory.TreeEntry> entries) {
-        for (PlaybackHistory.TreeEntry entry : entries) {
-            if (entry.name.equals(name)) {
-                return entry.addedTo;
-            }
-        }
-        return null;
     }
 
     public void addSong(Track t) throws SQLException {

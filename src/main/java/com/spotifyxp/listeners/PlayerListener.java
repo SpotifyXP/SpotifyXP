@@ -42,8 +42,8 @@ public class PlayerListener implements Player.EventsListener {
             if (!pauseTimer) {
                 if (!PublicValues.spotifyplayer.isPaused()) {
                     try {
-                        PlayerArea.playercurrenttime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
-                        PlayerArea.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
+                        PlayerArea.playerCurrentTime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
+                        PlayerArea.playerCurrentTime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));
                     } catch (NullPointerException ex) {
                         //No song is playing
                     }
@@ -73,7 +73,7 @@ public class PlayerListener implements Player.EventsListener {
             PlayerArea.heart.isFilled = true;
             PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
         }
-        if (PlayerArea.playerarealyricsbutton.isFilled) {
+        if (PlayerArea.playerAreaLyricsButton.isFilled) {
             PublicValues.lyricsDialog.open(playableId.toSpotifyUri());
         }
         Events.triggerEvent(SpotifyXPEvents.trackNext.getName());
@@ -83,20 +83,20 @@ public class PlayerListener implements Player.EventsListener {
             switch (playableId.toSpotifyUri().split(":")[1]) {
                 case "episode":
                     Episode episode = InstanceManager.getSpotifyApi().getEpisode(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                    PlayerArea.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
-                    PlayerArea.playertitle.setText(episode.getName());
+                    PlayerArea.playerPlayTimeTotal.setText(TrackUtils.getHHMMSSOfTrack(episode.getDurationMs()));
+                    PlayerArea.playerTitle.setText(episode.getName());
                     artists.append(episode.getShow().getPublisher());
                     try {
-                        PlayerArea.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
+                        PlayerArea.playerImage.setImage(new URL(SpotifyUtils.getImageForSystem(episode.getImages()).getUrl()).openStream());
                     } catch (Exception e) {
                         ConsoleLogging.warning("Failed to load cover for track");
-                        PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
+                        PlayerArea.playerImage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerImage.getSize()));
                     }
                     break;
                 case "track":
                     Track track = InstanceManager.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                    PlayerArea.playerplaytimetotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
-                    PlayerArea.playertitle.setText(track.getName());
+                    PlayerArea.playerPlayTimeTotal.setText(TrackUtils.getHHMMSSOfTrack(track.getDurationMs()));
+                    PlayerArea.playerTitle.setText(track.getName());
                     for (ArtistSimplified artist : track.getArtists()) {
                         if (artists.toString().isEmpty()) {
                             artists.append(artist.getName());
@@ -105,17 +105,17 @@ public class PlayerListener implements Player.EventsListener {
                         }
                     }
                     try {
-                        PlayerArea.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
+                        PlayerArea.playerImage.setImage(new URL(SpotifyUtils.getImageForSystem(track.getAlbum().getImages()).getUrl()).openStream());
                     } catch (Exception e) {
                         ConsoleLogging.warning("Failed to load cover for track");
-                        PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
+                        PlayerArea.playerImage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerImage.getSize()));
                     }
                     break;
                 default:
                     ConsoleLogging.warning(PublicValues.language.translate("playerlistener.playableid.unknowntype"));
                     Track t = InstanceManager.getSpotifyApi().getTrack(playableId.toSpotifyUri().split(":")[2]).build().execute();
-                    PlayerArea.playerplaytimetotal.setText(String.valueOf(t.getDurationMs()));
-                    PlayerArea.playertitle.setText(t.getName());
+                    PlayerArea.playerPlayTimeTotal.setText(String.valueOf(t.getDurationMs()));
+                    PlayerArea.playerTitle.setText(t.getName());
                     for (ArtistSimplified artist : t.getArtists()) {
                         if (artists.toString().isEmpty()) {
                             artists.append(artist.getName());
@@ -124,21 +124,21 @@ public class PlayerListener implements Player.EventsListener {
                         }
                     }
                     try {
-                        PlayerArea.playerimage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
+                        PlayerArea.playerImage.setImage(new URL(SpotifyUtils.getImageForSystem(t.getAlbum().getImages()).getUrl()).openStream());
                     } catch (Exception e) {
                         ConsoleLogging.warning("Failed to load cover for track");
-                        PlayerArea.playerimage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerimage.getSize()));
+                        PlayerArea.playerImage.setImage(SVGUtils.svgToImageInputStreamSameSize(Graphics.NOTHINGPLAYING.getInputStream(), PlayerArea.playerImage.getSize()));
                     }
             }
-            PlayerArea.playerdescription.setText(artists.toString());
+            PlayerArea.playerDescription.setText(artists.toString());
         } catch (IOException | JSONException e) {
             GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
         if (InstanceManager.getUnofficialSpotifyApi().getLyrics(playableId.toSpotifyUri()) == null) {
-            PlayerArea.playerarealyricsbutton.getJComponent().setToolTipText("No lyrics found");
+            PlayerArea.playerAreaLyricsButton.getJComponent().setToolTipText("No lyrics found");
         } else {
-            PlayerArea.playerarealyricsbutton.getJComponent().setToolTipText(null);
+            PlayerArea.playerAreaLyricsButton.getJComponent().setToolTipText(null);
         }
         locked = false;
         Events.triggerEvent(SpotifyXPEvents.playerLockRelease.getName());
@@ -151,12 +151,12 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
-        PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPlAY.getPath());
+        PlayerArea.playerPlayPauseButton.setImage(Graphics.PLAYERPlAY.getPath());
     }
 
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
-        PlayerArea.playerplaypausebutton.setImage(Graphics.PLAYERPAUSE.getPath());
+        PlayerArea.playerPlayPauseButton.setImage(Graphics.PLAYERPAUSE.getPath());
     }
 
     @Override
@@ -172,14 +172,14 @@ public class PlayerListener implements Player.EventsListener {
 
     @Override
     public void onTrackSeeked(@NotNull Player player, long l) {
-        if (PlayerArea.playercurrenttime.getValue() < TrackUtils.getSecondsFromMS(InstanceManager.getPlayer().getPlayer().time())) {
+        if (PlayerArea.playerCurrentTime.getValue() < TrackUtils.getSecondsFromMS(InstanceManager.getPlayer().getPlayer().time())) {
             //Backwards
             Events.triggerEvent(SpotifyXPEvents.playerSeekedBackwards.getName());
         } else {
             //Forwards
             Events.triggerEvent(SpotifyXPEvents.playerSeekedForwards.getName());
         }
-        PlayerArea.playercurrenttime.setValue(TrackUtils.getSecondsFromMS(l));
+        PlayerArea.playerCurrentTime.setValue(TrackUtils.getSecondsFromMS(l));
         locked = false;
         Events.triggerEvent(SpotifyXPEvents.playerLockRelease.getName());
     }
@@ -202,8 +202,8 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onVolumeChanged(@NotNull Player player, @Range(from = 0L, to = 1L) float v) {
         try {
-            if (!PlayerArea.playerareavolumeslider.getValueIsAdjusting()) {
-                PlayerArea.playerareavolumeslider.setValue(TrackUtils.roundVolumeToNormal(v));
+            if (!PlayerArea.playerAreaVolumeSlider.getValueIsAdjusting()) {
+                PlayerArea.playerAreaVolumeSlider.setValue(TrackUtils.roundVolumeToNormal(v));
             }
         } catch (NullPointerException ex) {
             //ContentPanel is not visible yet

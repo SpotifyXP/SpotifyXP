@@ -1,7 +1,6 @@
 package com.spotifyxp.configuration;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.audio.Quality;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.GraphicalMessage;

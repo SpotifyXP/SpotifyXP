@@ -11,6 +11,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
+import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.swingextension.PaintPanel;
 import com.spotifyxp.swingextension.RAWTextArea;
@@ -25,8 +26,6 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-
-import static com.spotifyxp.panels.PlayerArea.playerarealyricsbutton;
 
 public class LyricsDialog extends JDialog {
     public JPanel contentPanel;
@@ -57,11 +56,11 @@ public class LyricsDialog extends JDialog {
                     public void windowClosing(WindowEvent e) {
                         super.windowClosing(e);
                         if (PublicValues.theme.isLight()) {
-                            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
+                            PlayerArea.playerAreaLyricsButton.setImage(new Resources().readToInputStream("icons/microphonedark.svg"));
                         } else {
-                            playerarealyricsbutton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
+                            PlayerArea.playerAreaLyricsButton.setImage(new Resources().readToInputStream("icons/microphonewhite.svg"));
                         }
-                        playerarealyricsbutton.isFilled = false;
+                        PlayerArea.playerAreaLyricsButton.isFilled = false;
                         Events.unsubscribe(SpotifyXPEvents.playerSeekedBackwards.getName(), seekedBackwards());
                         Events.unsubscribe(SpotifyXPEvents.playerSeekedForwards.getName(), seekedForwards());
                     }

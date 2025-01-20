@@ -26,10 +26,10 @@ import java.util.ArrayList;
 This class holds a panel that shows a table that contains a list of tracks
  **/
 public class TrackPanel extends Panel implements View {
-    public static DefTable advancedsongtable;
-    public static JScrollPane advancedscrollpanel;
-    public static JButton advancedbackbutton;
-    public static final ArrayList<String> advanceduricache = new ArrayList<>();
+    public static DefTable advancedSongTable;
+    public static JScrollPane advancedScrollPanel;
+    public static JButton advancedBackButton;
+    public static final ArrayList<String> advancedUriCache = new ArrayList<>();
     private static Runnable lazyLoadingDeInit;
     public static String advancedSongPanelUri;
     private boolean blockDefaultBackAction = false;
@@ -41,11 +41,11 @@ public class TrackPanel extends Panel implements View {
         setVisible(false);
         backButtonContainer = new JPanel();
         backButtonContainer.setLayout(new BorderLayout());
-        advancedbackbutton = new JButton(PublicValues.language.translate("ui.back"));
-        backButtonContainer.add(advancedbackbutton, BorderLayout.WEST);
-        advancedbackbutton.setForeground(PublicValues.globalFontColor);
+        advancedBackButton = new JButton(PublicValues.language.translate("ui.back"));
+        backButtonContainer.add(advancedBackButton, BorderLayout.WEST);
+        advancedBackButton.setForeground(PublicValues.globalFontColor);
         add(backButtonContainer, BorderLayout.NORTH);
-        advancedbackbutton.addActionListener(new AsyncActionListener(e -> {
+        advancedBackButton.addActionListener(new AsyncActionListener(e -> {
             if(lazyLoadingDeInit != null) {
                 lazyLoadingDeInit.run();
                 lazyLoadingDeInit = null;
@@ -57,76 +57,76 @@ public class TrackPanel extends Panel implements View {
             ContentPanel.switchView(ContentPanel.lastView);
             ContentPanel.enableTabSwitch();
         }));
-        advancedsongtable = new DefTable();
-        advancedsongtable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
-        advancedsongtable.setForeground(PublicValues.globalFontColor);
-        advancedsongtable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        contextMenu = new ContextMenu(advancedsongtable);
+        advancedSongTable = new DefTable();
+        advancedSongTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
+        advancedSongTable.setForeground(PublicValues.globalFontColor);
+        advancedSongTable.getTableHeader().setForeground(PublicValues.globalFontColor);
+        contextMenu = new ContextMenu(advancedSongTable);
         contextMenu.addItem("All to queue", () -> {
-            for(String s : advanceduricache) {
+            for(String s : advancedUriCache) {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
             }
         });
         contextMenu.addItem("Add to queue", () -> {
-            if(advancedsongtable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), advanceduricache.get(advancedsongtable.getSelectedRow()));
+            if(advancedSongTable.getSelectedRow() == -1) return;
+            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), advancedUriCache.get(advancedSongTable.getSelectedRow()));
         });
         for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             contextMenu.addItem(item.name, item.torun);
         }
-        advancedscrollpanel = new JScrollPane();
-        advancedscrollpanel.setBounds(0, 22, 784, 399);
-        add(advancedscrollpanel, BorderLayout.CENTER);
-        advancedscrollpanel.setViewportView(advancedsongtable);
-        advancedsongtable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+        advancedScrollPanel = new JScrollPane();
+        advancedScrollPanel.setBounds(0, 22, 784, 399);
+        add(advancedScrollPanel, BorderLayout.CENTER);
+        advancedScrollPanel.setViewportView(advancedSongTable);
+        advancedSongTable.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
-                    InstanceManager.getPlayer().getPlayer().load(advanceduricache.get(advancedsongtable.getSelectedRow()), true, PublicValues.shuffle);
-                    advancedsongtable.setColumnSelectionInterval(0, advancedsongtable.getColumnCount() - 1);
-                    TrackUtils.addAllToQueue(advanceduricache, advancedsongtable);
+                    InstanceManager.getPlayer().getPlayer().load(advancedUriCache.get(advancedSongTable.getSelectedRow()), true, PublicValues.shuffle);
+                    advancedSongTable.setColumnSelectionInterval(0, advancedSongTable.getColumnCount() - 1);
+                    TrackUtils.addAllToQueue(advancedUriCache, advancedSongTable);
                 }
             }
         }));
     }
 
     ActionListener customListener;
-    public void open(String foruri, HomePanel.ContentTypes contentType, Runnable onBack) {
+    public void open(String forUri, HomePanel.ContentTypes contentType, Runnable onBack) {
         blockDefaultBackAction = true;
         customListener = e -> {
             onBack.run();
-            advancedbackbutton.removeActionListener(customListener);
+            advancedBackButton.removeActionListener(customListener);
         };
-        open(foruri, contentType);
-        advancedbackbutton.addActionListener(customListener);
+        open(forUri, contentType);
+        advancedBackButton.addActionListener(customListener);
     }
 
-    private static boolean[] inProg = {false};
-    private static boolean loadnew = false;
-    public void open(String foruri, HomePanel.ContentTypes contentType) {
+    private static final boolean[] inProg = {false};
+
+    public void open(String forUri, HomePanel.ContentTypes contentType) {
         ContentPanel.switchView(Views.TRACKPANEL);
-        advancedSongPanelUri = foruri;
-        ((DefaultTableModel) advancedsongtable.getModel()).setRowCount(0);
-        advanceduricache.clear();
+        advancedSongPanelUri = forUri;
+        ((DefaultTableModel) advancedSongTable.getModel()).setRowCount(0);
+        advancedUriCache.clear();
         try {
             switch (contentType) {
                 case playlist:
                     if(PublicValues.config.getBoolean(ConfigValues.load_all_tracks.name)) {
                         Thread thread = new Thread(() -> {
-                            advanceduricache.clear();
-                            ((DefaultTableModel)  advancedsongtable.getModel()).setRowCount(0);
+                            advancedUriCache.clear();
+                            ((DefaultTableModel)  advancedSongTable.getModel()).setRowCount(0);
                             try {
                                 int offset = 0;
                                 int parsed = 0;
                                 int counter = 0;
                                 int last = 0;
-                                int total = InstanceManager.getSpotifyApi().getPlaylist(foruri.split(":")[2]).build().execute().getTracks().getTotal();
+                                int total = InstanceManager.getSpotifyApi().getPlaylist(forUri.split(":")[2]).build().execute().getTracks().getTotal();
                                 while (parsed != total) {
-                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(foruri.split(":")[2]).offset(offset).limit(100).build().execute();
+                                    Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(forUri.split(":")[2]).offset(offset).limit(100).build().execute();
                                     for (PlaylistTrack track : ptracks.getItems()) {
-                                        ((DefaultTableModel)  advancedsongtable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
-                                        advanceduricache.add(track.getTrack().getUri());
+                                        ((DefaultTableModel)  advancedSongTable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        advancedUriCache.add(track.getTrack().getUri());
                                         parsed++;
                                     }
                                     if (last == parsed) {
@@ -148,28 +148,28 @@ public class TrackPanel extends Panel implements View {
                         }, "Get playlist tracks");
                         thread.start();
                     }else {
-                        loadnew = true;
+                        boolean loadNew = true;
                         lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
-                                advancedscrollpanel,
-                                advanceduricache,
-                                advancedsongtable,
+                                advancedScrollPanel,
+                                advancedUriCache,
+                                advancedSongTable,
                                 new int[] {28},
-                                foruri.split(":")[2],
+                                forUri.split(":")[2],
                                 inProg,
-                                loadnew
+                                loadNew
                         );
                     }
                     break;
                 case show:
-                    for (EpisodeSimplified simplified : SpotifyUtils.getAllEpisodesShow(foruri)) {
-                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                        advanceduricache.add(simplified.getUri());
+                    for (EpisodeSimplified simplified : SpotifyUtils.getAllEpisodesShow(forUri)) {
+                        ((DefaultTableModel) advancedSongTable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                        advancedUriCache.add(simplified.getUri());
                     }
                     break;
                 case album:
-                    for (TrackSimplified simplified : SpotifyUtils.getAllTracksAlbum(foruri)) {
-                        ((DefaultTableModel) advancedsongtable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
-                        advanceduricache.add(simplified.getUri());
+                    for (TrackSimplified simplified : SpotifyUtils.getAllTracksAlbum(forUri)) {
+                        ((DefaultTableModel) advancedSongTable.getModel()).addRow(new Object[]{simplified.getName(), TrackUtils.calculateFileSizeKb(simplified.getDurationMs()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(simplified.getDurationMs())});
+                        advancedUriCache.add(simplified.getUri());
                     }
                     break;
                 default:
