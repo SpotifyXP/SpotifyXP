@@ -11,9 +11,11 @@ import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.Settings;
 import com.spotifyxp.injector.InjectorStore;
+import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.JFrame;
+import com.spotifyxp.tray.SystemTrayDialog;
 import com.spotifyxp.utils.*;
 
 import javax.swing.*;
@@ -36,7 +38,6 @@ public class ContentPanel extends JPanel {
     public static JPanel tabPanel;
     public static final JTabbedPane legacySwitch = new JTabbedPane();
     public static final JMenuBar bar = new JMenuBar();
-    public static boolean pressedCTRL = false;
     public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static Views currentView = Views.HOME; //The view on start is home
     public static Views lastView = Views.HOME;
@@ -87,15 +88,6 @@ public class ContentPanel extends JPanel {
         SplashPanel.linfo.setText("Creating settingsPanel...");
         createSettings();
         SplashPanel.linfo.setText("Adding window mouse listener...");
-        addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                if (pressedCTRL) {
-                    PublicValues.injector.openInjectWindow("");
-                }
-            }
-        }));
         SplashPanel.linfo.setText("Deciding population of hotlist...");
         SplashPanel.linfo.setText("Making window interactive...");
         createLegacy();
@@ -277,7 +269,7 @@ public class ContentPanel extends JPanel {
         legacySwitch.setUI(new BasicTabbedPaneUI() {
             @Override
             protected int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
-                return 800 / legacySwitch.getTabCount() - 3;
+                return 800 / legacySwitch.getTabCount();
             }
         });
         add(legacySwitch);
@@ -482,13 +474,15 @@ public class ContentPanel extends JPanel {
                 super.componentMoved(e);
             }
         });
-        mainframe.setPreferredSize(new Dimension(800, 600));
-        mainframe.setMinimumSize(new Dimension(800, 600));
         mainframe.setContentPane(this);
         mainframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainframe.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                if(PublicValues.osType == libDetect.OSType.Linux) {
+                    //No support for ICCCM XEmbed protocol on newer Desktop Environments
+                    System.exit(0);
+                }
                 mainframe.dispose();
             }
         });
@@ -512,6 +506,7 @@ public class ContentPanel extends JPanel {
         PublicValues.menuBar.setBackground(getBackground());
         mainframe.setJMenuBar(PublicValues.menuBar);
         mainframe.open();
+        mainframe.setResizable(false);
         mainframe.setLocation(
                 Toolkit.getDefaultToolkit().getScreenSize().width / 2 - PublicValues.applicationWidth / 2,
                 Toolkit.getDefaultToolkit().getScreenSize().height / 2 - PublicValues.applicationHeight / 2)
@@ -521,5 +516,18 @@ public class ContentPanel extends JPanel {
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
+    }
+
+    private static void scrollToCenter(JScrollPane scrollPane, int x, int y) {
+        SwingUtilities.invokeLater(() -> {
+            JViewport viewport = scrollPane.getViewport();
+            Rectangle bounds = viewport.getViewRect();
+            Dimension size = viewport.getViewSize();
+
+            int centerX = (size.width - bounds.width) / 2 + x - bounds.width / 2;
+            int centerY = (size.height - bounds.height) / 2 + y - bounds.height / 2;
+
+            viewport.setViewPosition(new Point(centerX, centerY));
+        });
     }
 }

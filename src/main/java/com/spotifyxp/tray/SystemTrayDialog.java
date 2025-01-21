@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
+/**
+ * Will be removed in the near future
+ */
+@Deprecated
 @SuppressWarnings("CanBeFinal")
 public class SystemTrayDialog {
     String toolt = null;

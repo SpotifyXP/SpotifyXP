@@ -41,6 +41,7 @@ public class BrowsePanel extends JScrollPane implements View {
 
         setVisible(false);
         setViewportView(contentPanel);
+        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         Thread thread = new Thread(() -> {
             try {

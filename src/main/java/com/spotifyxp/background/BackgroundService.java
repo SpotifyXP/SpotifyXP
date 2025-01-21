@@ -19,6 +19,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Will be removed in the near future
+ */
+@Deprecated
 public class BackgroundService implements ExtendedSystemTray {
     /**
      * Holds the trayDialog after start() was called
@@ -30,6 +34,10 @@ public class BackgroundService implements ExtendedSystemTray {
      * Creates the tray icon
      */
     public void start() {
+        if(PublicValues.osType == libDetect.OSType.Linux) {
+            //No support for ICCCM XEmbed protocol on newer Desktop Environments
+            return;
+        }
         try {
             trayDialog = new SystemTrayDialog();
             trayDialog.setExtendedTrayIcon(this, e -> {
