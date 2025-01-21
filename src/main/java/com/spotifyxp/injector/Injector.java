@@ -71,28 +71,6 @@ public class Injector {
     }
 
     /**
-     * Opens a file selection window. Selection of custom jar to inject
-     *
-     * @param path Path to start with
-     */
-    public void openInjectWindow(String path) {
-        String openpath = path;
-        if (path.isEmpty()) {
-            openpath = System.getProperty("user.dir");
-        }
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Java Executables", "jar");
-        chooser.setFileFilter(filter);
-        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        chooser.setDialogTitle("Choose jar to inject");
-        int returnVal = chooser.showOpenDialog(ContentPanel.frame);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
-            loadJarAt(file.getAbsolutePath());
-        }
-    }
-
-    /**
      * Load extension jar file at the path
      *
      * @param path path of jar file

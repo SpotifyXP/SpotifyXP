@@ -12,6 +12,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -110,8 +112,11 @@ public class Settings extends JFrame {
                 JTextField textField = new JTextField();
                 textField.setForeground(PublicValues.globalFontColor);
                 textField.setText((String) currentValue);
-                textField.addActionListener(e -> {
-                    if(textField.getText() != defaultValue) settingsChanged = true;
+                textField.addKeyListener(new KeyAdapter() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        if (textField.getText() != defaultValue) settingsChanged = true;
+                    }
                 });
                 panel.add(textField, createGbc(1, panel.getComponentCount(), -1));
                 custom_settings.get(category).add(0);
@@ -166,8 +171,11 @@ public class Settings extends JFrame {
                 textField.setName(value.name);
                 textField.setForeground(PublicValues.globalFontColor);
                 textField.setText(PublicValues.config.getString(value.name));
-                textField.addActionListener(e -> {
-                    if(textField.getText() != value.defaultValue) settingsChanged = true;
+                textField.addKeyListener(new KeyAdapter() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        if (textField.getText() != value.defaultValue) settingsChanged = true;
+                    }
                 });
                 panel.add(textField, createGbc(1, i, -1));
                 custom_settings.get(value.category).add(0);
