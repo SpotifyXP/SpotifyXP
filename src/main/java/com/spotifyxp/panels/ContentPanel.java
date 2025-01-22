@@ -218,7 +218,7 @@ public class ContentPanel extends JPanel {
 
     void createArtistPanel() {
         artistPanel = new ArtistPanel();
-        tabPanel.add(ArtistPanel.contentPanel);
+        tabPanel.add(artistPanel);
     }
 
     void createPlaylist() {

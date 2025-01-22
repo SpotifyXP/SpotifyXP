@@ -23,8 +23,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ArtistPanel extends JPanel implements View {
-    public static JScrollPane contentPanel;
+public class ArtistPanel extends JScrollPane implements View {
+    public static JPanel contentPanel;
     public static JLabel artistTitle;
     public static JImagePanel artistImage;
     public static JLabel artistPopularLabel;
@@ -43,35 +43,34 @@ public class ArtistPanel extends JPanel implements View {
     public static ArrayList<Runnable> runWhenOpeningArtistPanel = new ArrayList<>();
 
     public ArtistPanel() {
-        contentPanel = new JScrollPane();
-        contentPanel.setViewportView(this);
-        contentPanel.setVisible(false);
-        contentPanel.getVerticalScrollBar().setUnitIncrement(20);
+        contentPanel = new JPanel();
+        contentPanel.setLayout(null);
+        contentPanel.setPreferredSize(new Dimension(getWidth(), 1005));
 
-        setLayout(null);
-        setPreferredSize(new Dimension(getWidth(), 1005));
+        getVerticalScrollBar().setUnitIncrement(20);
+        setViewportView(contentPanel);
         setVisible(false);
 
         artistImage = new JImagePanel();
         artistImage.setBounds(288, 11, 155, 153);
-        add(artistImage);
+        contentPanel.add(artistImage);
 
         artistTitle = new JLabel("");
         artistTitle.setHorizontalAlignment(SwingConstants.CENTER);
         artistTitle.setBounds(0, 213, 780, 64);
         artistTitle.setForeground(PublicValues.globalFontColor);
-        add(artistTitle);
+        contentPanel.add(artistTitle);
 
         backButton = new JButton(PublicValues.language.translate("ui.back"));
         backButton.setBounds(0, 0, 89, 23);
         backButton.setForeground(PublicValues.globalFontColor);
         backButton.addActionListener(new AsyncActionListener(e -> ContentPanel.switchView(ContentPanel.lastView)));
-        add(backButton);
+        contentPanel.add(backButton);
 
         artistPopularLabel = new JLabel("Popular"); //ToDo: Translate
         artistPopularLabel.setBounds(5, 291, 137, 27);
         artistPopularLabel.setForeground(PublicValues.globalFontColor);
-        add(artistPopularLabel);
+        contentPanel.add(artistPopularLabel);
 
         artistPopularSongList = new DefTable();
         artistPopularSongList.setModel(new DefaultTableModel(
@@ -97,7 +96,7 @@ public class ArtistPanel extends JPanel implements View {
         artistPopularScrollPane = new JScrollPane();
         artistPopularScrollPane.setBounds(5, 320, 760, 277);
         artistPopularScrollPane.setViewportView(artistPopularSongList);
-        add(artistPopularScrollPane);
+        contentPanel.add(artistPopularScrollPane);
 
         artistAlbumTable = new DefTable();
         artistAlbumTable.setForeground(PublicValues.globalFontColor);
@@ -138,12 +137,12 @@ public class ArtistPanel extends JPanel implements View {
         artistAlbumScrollPane = new JScrollPane();
         artistAlbumScrollPane.setBounds(5, 667, 760, 295);
         artistAlbumScrollPane.setViewportView(artistAlbumTable);
-        add(artistAlbumScrollPane);
+        contentPanel.add(artistAlbumScrollPane);
 
         artistAlbumLabel = new JLabel("Albums"); //ToDo: Translate
         artistAlbumLabel.setBounds(5, 642, 102, 14);
         artistAlbumLabel.setForeground(PublicValues.globalFontColor);
-        add(artistAlbumLabel);
+        contentPanel.add(artistAlbumLabel);
 
         createContextMenus();
     }
@@ -153,7 +152,7 @@ public class ArtistPanel extends JPanel implements View {
             runnable.run();
         }
         ContentPanel.blockTabSwitch();
-        javax.swing.SwingUtilities.invokeLater(() -> contentPanel.getVerticalScrollBar().setValue(0));
+        javax.swing.SwingUtilities.invokeLater(() -> getVerticalScrollBar().setValue(0));
     }
 
     void createContextMenus() {
@@ -205,13 +204,13 @@ public class ArtistPanel extends JPanel implements View {
 
     @Override
     public void makeVisible() {
-        contentPanel.setVisible(true);
+        setVisible(true);
         openPanel();
     }
 
     @Override
     public void makeInvisible() {
-        contentPanel.setVisible(false);
+        setVisible(false);
         ContentPanel.enableTabSwitch();
     }
 }

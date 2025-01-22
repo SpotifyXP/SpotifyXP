@@ -34,6 +34,7 @@ public class Config {
 
     public Config() {
         properties = new JSONProperties();
+        PublicValues.themeLoader = new ThemeLoader();
         if (!new File(PublicValues.configfilepath).exists()) {
             for (ConfigValues value : ConfigValues.values()) {
                 properties.put(value);
@@ -81,7 +82,6 @@ public class Config {
     public void checkConfig() {
         //Checks config for invalid values
         boolean foundInvalid = false;
-        PublicValues.themeLoader = new ThemeLoader();
         for (ConfigValues value : ConfigValues.values()) {
             if(value.defaultValue instanceof CustomConfigValue) {
                 if (!properties.has(value.name)) {
