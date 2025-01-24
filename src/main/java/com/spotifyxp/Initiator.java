@@ -23,6 +23,7 @@ import com.spotifyxp.support.SupportModuleLoader;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Utils;
 import okhttp3.OkHttpClient;
 import org.apache.commons.io.output.NullPrintStream;
 
@@ -44,10 +45,6 @@ public class Initiator {
         initLanguageSupport(); //Initializing the language support
         initConfig(); //Initializing the configuration
         setLanguage(); //Set the language to the one specified in the config
-        if(new File(PublicValues.appLocation, "LOCK").exists()) {
-            JOptionPane.showMessageDialog(null, "Another instance of SpotifyXP is already running! Exiting...");
-            System.exit(-1);
-        }
         creatingLock(); //Creating the 'LOCK' file
         PublicValues.defaultHttpClient = new OkHttpClient(); //Creating the default http client
         loadExtensions(); //Loading extensions if there are any
@@ -158,8 +155,9 @@ public class Initiator {
 
     static void creatingLock() {
         try {
-            if (new File(PublicValues.appLocation, "LOCK").createNewFile()) {
-                new File(PublicValues.appLocation, "LOCK").deleteOnExit();
+            if(Utils.checkOrLockFile()) {
+                JOptionPane.showMessageDialog(null, "Another instance of SpotifyXP is already running! Exiting...");
+                System.exit(-1);
             }
         } catch (Exception e) {
             GraphicalMessage.openException(e);

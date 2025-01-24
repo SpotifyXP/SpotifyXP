@@ -287,6 +287,7 @@ public class Settings extends JFrame {
                     }
                 }
             }
+            PublicValues.config.save();
             JOptionPane.showConfirmDialog(ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
         }
     }

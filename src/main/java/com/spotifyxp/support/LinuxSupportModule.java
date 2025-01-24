@@ -92,7 +92,7 @@ public class LinuxSupportModule implements SupportModule {
             );
             mediaPlayer.create();
         } catch (DBusException e) {
-            throw new RuntimeException(e);
+            ConsoleLogging.warning("Failed to initialize MPRIS support");
         }
         Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
             @Override

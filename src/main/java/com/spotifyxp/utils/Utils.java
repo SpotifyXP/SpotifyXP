@@ -6,6 +6,11 @@ import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.swingextension.JFrame;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class Utils {
@@ -82,5 +87,15 @@ public class Utils {
             objects.add(e.name());
         }
         return objects;
+    }
+
+    public static boolean checkOrLockFile() throws IOException {
+        FileChannel channel = FileChannel.open(
+                new File(PublicValues.configfilepath).toPath(),
+                StandardOpenOption.CREATE,
+                StandardOpenOption.WRITE
+        );
+        FileLock lock = channel.tryLock();
+        return lock == null;
     }
 }
