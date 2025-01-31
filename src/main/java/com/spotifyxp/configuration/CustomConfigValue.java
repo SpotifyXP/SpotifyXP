@@ -30,7 +30,8 @@ public class CustomConfigValue<T> implements ICustomConfigValue<T>{
         this.internalTyp = internalType;
     }
 
-    @SuppressWarnings("unchecked")
+    // ToDo: Find a way to get the set value of the injected setting
+    /*@SuppressWarnings("unchecked")
     public CustomConfigValue(String name, Object defaultValue, ArrayList<String> displayValues, ArrayList<T> possibleValues, ConfigValueTypes internalType, boolean p) {
         this.name = name;
         this.fromSpotifyXP = false;
@@ -42,7 +43,7 @@ public class CustomConfigValue<T> implements ICustomConfigValue<T>{
             this.possibleValues = possibleValues;
         }
         this.internalTyp = internalType;
-    }
+    }*/
 
     private static class ColoredComboBoxRenderer implements ListCellRenderer<String> {
         private final DefaultListCellRenderer defaultRenderer;
@@ -77,7 +78,11 @@ public class CustomConfigValue<T> implements ICustomConfigValue<T>{
             if(fromSpotifyXP) {
                 this.component = new JComboBox<>(displayValues.toArray(new String[0]));
                 this.component.setRenderer(new ColoredComboBoxRenderer());
-                this.component.setSelectedItem(PublicValues.config.getObject(name));
+                if(possibleValues != null) {
+                    this.component.setSelectedIndex(possibleValues.indexOf(PublicValues.config.getObject(name)));
+                }else {
+                    this.component.setSelectedItem(PublicValues.config.getObject(name));
+                }
             }else {
                 this.component = new JComboBox<>(displayValues.toArray(new String[0]));
                 this.component.setRenderer(new ColoredComboBoxRenderer());
