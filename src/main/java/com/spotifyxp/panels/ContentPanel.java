@@ -22,6 +22,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 public class ContentPanel extends JPanel {
@@ -516,6 +517,11 @@ public class ContentPanel extends JPanel {
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
+
+        if(PublicValues.vlcPlayer.isVideoPlaybackEnabled()) {
+            //tabPanel.add(PublicValues.vlcPlayer.getComponent());
+            //PublicValues.vlcPlayer.play(new File("test.mp4").getAbsolutePath());
+        }
     }
 
     private static void scrollToCenter(JScrollPane scrollPane, int x, int y) {

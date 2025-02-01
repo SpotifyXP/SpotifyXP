@@ -3,6 +3,7 @@ package com.spotifyxp.setup;
 import com.spotifyxp.Initiator;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Logger;
+import com.spotifyxp.deps.de.werwolf2303.javasetuptool.RunnableWEC;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.Setup.SetupBuilder;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.AcceptComponent;
 import com.spotifyxp.deps.de.werwolf2303.javasetuptool.components.InstallProgressComponent;
@@ -13,9 +14,13 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.utils.*;
+import org.apache.commons.io.IOUtils;
+import org.apache.xmlgraphics.io.Resource;
 
 import java.io.File;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Setup {
 
@@ -98,6 +103,43 @@ public class Setup {
         return macos;
     }
 
+    public void addVideoPlaybackSupport(InstallProgressComponent component) {
+        try {
+            if (PublicValues.architecture == ArchitectureDetection.Architecture.x86) {
+                if(new Resources().readToInputStream("vlc/files.txt") == null) return;
+                File path = new File(PublicValues.appLocation, "vlc");
+                if(!path.exists()) {
+                    if(!path.mkdir()) {
+                        ConsoleLogging.error("Failed to create vlc directory");
+                        return;
+                    }
+                }
+                for (String file : IOUtils.toString(new Resources().readToInputStream("vlc/files.txt"), StandardCharsets.UTF_8).split("\n")) {
+                    File realPath = new File(path, file);
+                    File dirPath = realPath.getParentFile();
+                    component.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
+                                    .setCustom(new RunnableWEC() {
+                                        @Override
+                                        public boolean run() {
+                                            if(!dirPath.exists()) {
+                                                return dirPath.mkdirs();
+                                            }
+                                            return true;
+                                        }
+                                    })
+                            .setType(InstallProgressComponent.FileOperationTypes.CUSTOM));
+                    if(file.contains(".")) component.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
+                            .setFrom(getClass().getResourceAsStream("/vlc/" + file))
+                            .setTo(realPath.getAbsolutePath())
+                            .setType(InstallProgressComponent.FileOperationTypes.COPYSTREAM)
+                    );
+                }
+            }
+        }catch (Exception e) {
+            ConsoleLogging.Throwable(e);
+        }
+    }
+
     public InstallProgressComponent buildWindows() {
         InstallProgressComponent win = new InstallProgressComponent();
         try {
@@ -113,6 +155,7 @@ public class Setup {
                     .setFrom(jarPath)
                     .setTo(PublicValues.appLocation + "/SpotifyXP.jar")
                     .setType(InstallProgressComponent.FileOperationTypes.COPY));
+            addVideoPlaybackSupport(win);
             win.addFileOperation(new InstallProgressComponent.FileOperationBuilder()
                     .setCustom(() -> {
                         try {

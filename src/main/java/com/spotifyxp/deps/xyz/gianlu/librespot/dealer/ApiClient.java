@@ -309,7 +309,10 @@ public final class ApiClient {
         }
     }
 
-    public String getClientToken() {
+    public String getClientToken() throws IOException {
+        if(clientToken == null) {
+            clientToken = clientToken().getGrantedToken().getToken();
+        }
         return clientToken;
     }
 

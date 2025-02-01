@@ -47,6 +47,7 @@ public class Initiator {
         setLanguage(); //Set the language to the one specified in the config
         creatingLock(); //Creating the 'LOCK' file
         PublicValues.defaultHttpClient = new OkHttpClient(); //Creating the default http client
+        initializeVideoPlayback();
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
         storeArguments(args); //Storing the program arguments in PublicValues.class
@@ -80,6 +81,16 @@ public class Initiator {
         SplashPanel.linfo.setText("Detecting operating system...");
         PublicValues.osType = libDetect.getDetectedOS();
         new SupportModuleLoader().loadModules();
+    }
+
+    static void initializeVideoPlayback() {
+        try {
+            Class<?> util = Class.forName("com.spotifyxp.deps.uk.co.caprica.vlcj.SPXPInit");
+            util.getMethod("init").invoke(util);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            ConsoleLogging.info("SpotifyXP was built without video playback support");
+        }
     }
 
     static void initEvents() {

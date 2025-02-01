@@ -19,6 +19,8 @@ import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.ArchitectureDetection;
 import com.spotifyxp.utils.Utils;
+import com.spotifyxp.video.DummyVLCPlayer;
+import com.spotifyxp.video.VLCPlayer;
 import com.spotifyxp.visuals.AudioVisualizer;
 import okhttp3.OkHttpClient;
 
@@ -77,6 +79,7 @@ public class PublicValues {
     public static boolean enableMediaControl = true;
     public static MPRISMP2None mpris;
     public static OkHttpClient defaultHttpClient;
+    public static VLCPlayer vlcPlayer = new DummyVLCPlayer();
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

@@ -29,6 +29,8 @@ public enum Graphics {
     VOLUMEMUTE("volumemute"),
     ACCOUNT("account"),
     TRACK("track"),
+    VIDEO("video"),
+    VIDEOSELECTED("videoselected"),
     ALBUM("album"),
     PLAYLIST("playlist"),
     SHOW("podcast"),
@@ -46,6 +48,7 @@ public enum Graphics {
             case "repeatselected":
             case "shuffleselected":
             case "nothingplaying":
+            case "videoselected":
             case "heart":
                 path = fullPath + ".svg";
                 break;

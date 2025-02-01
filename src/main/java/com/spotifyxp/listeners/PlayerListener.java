@@ -152,11 +152,13 @@ public class PlayerListener implements Player.EventsListener {
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
         PlayerArea.playerPlayPauseButton.setImage(Graphics.PLAYERPlAY.getPath());
+        Events.triggerEvent(SpotifyXPEvents.playerpause.getName());
     }
 
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
         PlayerArea.playerPlayPauseButton.setImage(Graphics.PLAYERPAUSE.getPath());
+        Events.triggerEvent(SpotifyXPEvents.playerresume.getName());
     }
 
     @Override

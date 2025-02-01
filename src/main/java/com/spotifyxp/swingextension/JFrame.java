@@ -52,8 +52,8 @@ public class JFrame extends javax.swing.JFrame {
             GraphicalMessage.openException(e);
             ConsoleLogging.Throwable(e);
         }
-        this.setVisible(true);
         this.pack();
+        this.setVisible(true);
     }
 
     @Override

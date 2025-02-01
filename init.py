@@ -25,7 +25,6 @@ def mass_replace(directory, file_pattern, search_string, replace_string):
                 for line in file:
                     print(line.replace(search_string, replace_string), end='')
 
-
 def doMPRISJava():
     def copyMPRISJava():
         if os.path.exists("src/main/java/com/spotifyxp/deps/org"): removeDirectory("src/main/java/com/spotifyxp/deps/org")
@@ -64,8 +63,31 @@ def doJavaSetupTool():
     else:
         copyJavaSetupTool()
 
+def doVlcj():
+    def copyVlcj():
+        if os.path.exists("src/main/java/com/spotifyxp/deps/uk"): removeDirectory("src/main/java/com/spotifyxp/deps/uk")
+        if os.path.exists("src/main/resources/vlc"): removeDirectory("src/main/resources/vlc")
+        copyDirectory("deps/vlcj/src/main/java/uk", "src/main/java/com/spotifyxp/deps/uk")
+        copyDirectory("deps/vlcj/src/main/resources/vlc", "src/main/resources/vlc")
+        mass_replace("src/main/java/com/spotifyxp/deps/uk", "*.java", "import uk.co.caprica", "import com.spotifyxp.deps.uk.co.caprica")
+        mass_replace("src/main/java/com/spotifyxp/deps/uk", "*.java", "import static uk.co.caprica", "import static com.spotifyxp.deps.uk.co.caprica")
+        mass_replace("src/main/java/com/spotifyxp/deps/uk", "*.java", "package uk.co.caprica", "package com.spotifyxp.deps.uk.co.caprica")
+    if os.path.exists("src/main/java/com/spotifyxp/deps/uk"):
+        inp = input("Overwrite vlcj? [Y/N]")
+        if inp.lower().__eq__("y"):
+            copyVlcj()
+        elif inp.lower().__eq__(""):
+            copyVlcj()
+        elif inp.lower().__eq__("n"):
+            return
+        else:
+            doVlcj()
+    else:
+        copyVlcj()
+
 def doInit():
     doMPRISJava()
     doJavaSetupTool()
+    doVlcj()
 
 doInit()

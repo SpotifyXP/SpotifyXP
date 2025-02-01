@@ -15,6 +15,7 @@ import com.spotifyxp.protogens.PlayerState;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.*;
 import com.spotifyxp.utils.*;
+import com.spotifyxp.video.CanvasPlayer;
 import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
@@ -51,6 +52,8 @@ public class PlayerArea extends JPanel {
     public static JSVGPanel heart;
     public static JSVGPanel historyButton;
     private static LastPlayState lastPlayState;
+    public static CanvasPlayer canvasPlayer;
+    public static JSVGPanel canvasPlayerButton;
     private static boolean doneLastParsing = false;
 
     public PlayerArea(JFrame frame) {
@@ -335,10 +338,33 @@ public class PlayerArea extends JPanel {
             }
         });
 
+        if(PublicValues.vlcPlayer.isVideoPlaybackEnabled()) canvasPlayer = new CanvasPlayer();
+        canvasPlayerButton = new JSVGPanel();
+        canvasPlayerButton.setImage(Graphics.VIDEO.getPath());
+        canvasPlayerButton.getJComponent().setBackground(heart.getJComponent().getBackground());
+        canvasPlayerButton.getJComponent().setBounds(720, 30, 20, 20);
+        canvasPlayerButton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (canvasPlayerButton.isFilled) {
+                    canvasPlayerButton.isFilled = false;
+                    canvasPlayerButton.setImage(Graphics.VIDEO.getPath());
+                    canvasPlayer.close();
+                } else {
+                    canvasPlayerButton.isFilled = true;
+                    canvasPlayerButton.setImage(Graphics.VIDEOSELECTED.getPath());
+                    canvasPlayer.open();
+                }
+            }
+        }));
+        if(PublicValues.vlcPlayer.isVideoPlaybackEnabled()) PublicValues.contentPanel.add(canvasPlayerButton.getJComponent());
+
+
         historyButton = new JSVGPanel();
         historyButton.setImage(Graphics.HISTORY.getPath());
         historyButton.getJComponent().setBackground(heart.getJComponent().getBackground());
-        historyButton.getJComponent().setBounds(720, 50, 20, 20);
+        historyButton.getJComponent().setBounds(720, 55, 20, 20);
         historyButton.getJComponent().addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
