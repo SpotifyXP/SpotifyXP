@@ -149,4 +149,4 @@ limitations under the License.
 
 * [StapleBacon5037](https://github.com/StapleBacon5037) - For improving the readme
 * [skippster1337](https://github.com/skipster1337) - For listing SpotifyXP on his site
-* [Jri-creator](https://github.com/Jri-creator) - For the new setup image
+* [Jri-creator](https://github.com/Jri-creator) - For the new setup image and improving the readme
