@@ -94,7 +94,6 @@ SpotifyXP is build with
 
 ### Install instructions
 
-[1. Download the Stable version under Releases or download the nightly version under the Actions tab]:#
 1. Download the nightly version under the Actions tab
 2. Double click **SpotifyXP.jar** or run this in the directory where **SpotifyXP.jar** is downloaded: <pre>java -jar SpotifyXP.jar</pre>
 
