@@ -148,6 +148,7 @@ public class UnofficialSpotifyAPI {
                     if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
                         break;
                     }
+                    if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("GenericError")) break;
                     playlist = Optional.of(HomeTabPlaylist.fromJSON(json.getJSONObject("content").getJSONObject("data")));
                     break;
                 case ArtistResponseWrapper:

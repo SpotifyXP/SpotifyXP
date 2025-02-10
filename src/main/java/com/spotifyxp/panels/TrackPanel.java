@@ -71,9 +71,6 @@ public class TrackPanel extends Panel implements View {
             if(advancedSongTable.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), advancedUriCache.get(advancedSongTable.getSelectedRow()));
         });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            contextMenu.addItem(item.name, item.torun);
-        }
         advancedScrollPanel = new JScrollPane();
         advancedScrollPanel.setBounds(0, 22, 784, 399);
         add(advancedScrollPanel, BorderLayout.CENTER);

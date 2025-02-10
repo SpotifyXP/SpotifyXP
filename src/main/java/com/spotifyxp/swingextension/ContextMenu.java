@@ -5,14 +5,13 @@ import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.AsyncMouseListener;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 public class ContextMenu {
-    public static class GlobalContextMenuItem {
-        public Runnable torun;
-        public String name;
+    public interface GlobalContextMenuItem {
+        Runnable toRun(JComponent component);
+        String name();
+        boolean shouldBeAdded(JComponent component);
     }
 
     final JPopupMenu holder = new JPopupMenu();
@@ -39,9 +38,9 @@ public class ContextMenu {
             }
         }));
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            JMenuItem i = new JMenuItem(item.name);
-            i.addActionListener(new AsyncActionListener(e -> item.torun.run()));
-            holder.add(i);
+            JMenuItem i = new JMenuItem(item.name());
+            i.addActionListener(new AsyncActionListener(e -> item.toRun(container).run()));
+            if(item.shouldBeAdded(container)) holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
@@ -57,9 +56,9 @@ public class ContextMenu {
             }
         }));
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            JMenuItem i = new JMenuItem(item.name);
-            i.addActionListener(new AsyncActionListener(e -> item.torun.run()));
-            holder.add(i);
+            JMenuItem i = new JMenuItem(item.name());
+            i.addActionListener(new AsyncActionListener(e -> item.toRun(panel).run()));
+            if(item.shouldBeAdded(panel)) holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
@@ -75,9 +74,9 @@ public class ContextMenu {
             }
         }));
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            JMenuItem i = new JMenuItem(item.name);
-            i.addActionListener(new AsyncActionListener(e -> item.torun.run()));
-            holder.add(i);
+            JMenuItem i = new JMenuItem(item.name());
+            i.addActionListener(new AsyncActionListener(e -> item.toRun(component).run()));
+            if(item.shouldBeAdded(component)) holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }

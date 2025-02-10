@@ -24,20 +24,19 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class HomePanel extends JScrollPane implements View {
-    JPanel content;
-    UnofficialSpotifyAPI.HomeTab tab;
-    ContextMenu menu;
-    CompletableFuture<?> future;
+    public static JPanel content;
+    public static UnofficialSpotifyAPI.HomeTab tab;
+    public static ContextMenu menu;
+    public static CompletableFuture<?> future;
+    public static ArrayList<ArrayList<String>> uriCacheForAll;
 
     public HomePanel() {
+        uriCacheForAll = new ArrayList<>();
         content = new JPanel();
         content.setLayout(null);
 
         menu = new ContextMenu(content);
         menu.addItem("Refresh", this::refill);
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            menu.addItem(item.name, item.torun);
-        }
 
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         setVisible(false);
@@ -95,9 +94,12 @@ public class HomePanel extends JScrollPane implements View {
 
         DefTable homepanelmodulecontenttable = new DefTable() {
         };
+        homepanelmodulecontenttable.setName(String.valueOf(uriCacheForAll.size()));
         homepanelmodulescrollpanel.setViewportView(homepanelmodulecontenttable);
         homepanelmodulecontenttable.setForeground(PublicValues.globalFontColor);
         homepanelmodulecontenttable.getTableHeader().setForeground(PublicValues.globalFontColor);
+
+        ContextMenu sectionContextMenu = new ContextMenu(homepanelmodulecontenttable);
 
         homepanelmodulecontenttable.setModel(new DefaultTableModel(
                 new Object[][]{
@@ -173,6 +175,7 @@ public class HomePanel extends JScrollPane implements View {
                 }
             }
         }));
+        uriCacheForAll.add(uricache);
     }
 
     String artistParser(ArrayList<UnofficialSpotifyAPI.HomeTabArtist> cache) {

@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -158,6 +159,11 @@ public class Injector {
             entry.failed = true;
         } catch (NullPointerException nullPointerException) {
             ConsoleLogging.error("Failed to load extension: '" + path + "'! plugin.json not found");
+            availableExtensions--;
+            entry.failed = true;
+        } catch (InvocationTargetException e) {
+            ConsoleLogging.error("Failed to load extension: '" + path + "'! Exception was thrown");
+            ConsoleLogging.Throwable(e.getCause());
             availableExtensions--;
             entry.failed = true;
         } catch (Exception e) {

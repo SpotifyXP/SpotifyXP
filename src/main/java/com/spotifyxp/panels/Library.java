@@ -104,9 +104,6 @@ public class Library extends JScrollPane implements View {
 
     void createcontextMenu() {
         contextMenu = new ContextMenu(librarySongList);
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            contextMenu.addItem(item.name, item.torun);
-        }
         contextMenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryUriCache.get(librarySongList.getSelectedRow())));
         contextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             libraryUriCache.clear();
