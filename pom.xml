@@ -20,12 +20,12 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.13.0</version> <!-- Updated version -->
+            <version>2.14.0</version> <!-- Updated version -->
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20230924</version> <!-- Updated version -->
+            <version>20231013</version> <!-- Updated version -->
         </dependency>
         <dependency>
             <groupId>com.formdev</groupId>
