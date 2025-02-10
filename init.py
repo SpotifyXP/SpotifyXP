@@ -1,93 +1,102 @@
-import shutil, errno
+import shutil
 import os
 import fnmatch
-import fileinput
+import errno
 
-def copyDirectory(src, dst):
+# Function to copy a directory and its contents
+def copy_directory(src, dst):
+    """Copy a directory and its contents."""
     try:
         shutil.copytree(src, dst)
     except OSError as exc:
         if exc.errno in (errno.ENOTDIR, errno.EINVAL):
             shutil.copy(src, dst)
-        else: raise
+        else:
+            raise
 
-def removeDirectory(src):
-    try:
-        shutil.rmtree(src)
-    except OSError as exc:
-        raise
+# Function to remove a directory and its contents
+def remove_directory(src):
+    """Remove a directory and its contents."""
+    if os.path.exists(src):
+        try:
+            shutil.rmtree(src)
+        except OSError as e:
+            print(f"Error removing directory {src}: {e}")
 
+# Function to perform mass text replacement in files matching a pattern
 def mass_replace(directory, file_pattern, search_string, replace_string):
-    for root, dirs, files in os.walk(directory):
+    """Perform mass text replacement in files matching a pattern."""
+    for root, _, files in os.walk(directory):
         for filename in fnmatch.filter(files, file_pattern):
             filepath = os.path.join(root, filename)
-            with fileinput.FileInput(filepath, inplace=True, backup=False) as file:
-                for line in file:
-                    print(line.replace(search_string, replace_string), end='')
+            try:
+                with open(filepath, 'r', encoding='utf-8') as file:
+                    lines = file.readlines()
 
-def doMPRISJava():
-    def copyMPRISJava():
-        if os.path.exists("src/main/java/com/spotifyxp/deps/org"): removeDirectory("src/main/java/com/spotifyxp/deps/org")
-        copyDirectory("deps/mpris-java/src/main/java/org", "src/main/java/com/spotifyxp/deps/org")
-        mass_replace("src/main/java/com/spotifyxp/deps/org/mpris", "*.java", "import org.mpris", "import com.spotifyxp.deps.org.mpris")
-        mass_replace("src/main/java/com/spotifyxp/deps/org/mpris", "*.java", "package org.mpris", "package com.spotifyxp.deps.org.mpris")
-    if os.path.exists("src/main/java/com/spotifyxp/deps/org"):
-        inp = input("Overwrite mpris-java? [Y/N]")
-        if inp.lower().__eq__("y"):
-            copyMPRISJava()
-        elif inp.lower().__eq__(""):
-            copyMPRISJava()
-        elif inp.lower().__eq__("n"):
+                modified_lines = [line.replace(search_string, replace_string) for line in lines]
+
+                with open(filepath, 'w', encoding='utf-8') as file:
+                    file.writelines(modified_lines)
+            except Exception as e:
+                print(f"Error performing replacement in file {filepath}: {e}")
+
+# Function to handle MPRIS Java files copy and replacements
+def handle_mpris_java():
+    """Handle copying and replacing MPRIS Java files."""
+    src = "deps/mpris-java/src/main/java/org"
+    dst = "src/main/java/com/spotifyxp/deps/org"
+    if os.path.exists(dst):
+        inp = input(f"Directory {dst} already exists. Overwrite? [Y/N]").strip().lower()
+        if inp not in ["y", ""]:
             return
-        else:
-            doMPRISJava()
-    else:
-        copyMPRISJava()
 
-def doJavaSetupTool():
-    def copyJavaSetupTool():
-        if os.path.exists("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool"): removeDirectory("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool")
-        copyDirectory("deps/JavaSetupTool/src/main/java/de/werwolf2303/javasetuptool", "src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool")
-        mass_replace("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool", "*.java", "import de.werwolf2303.javasetuptool", "import com.spotifyxp.deps.de.werwolf2303.javasetuptool")
-        mass_replace("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool", "*.java", "package de.werwolf2303.javasetuptool", "package com.spotifyxp.deps.de.werwolf2303.javasetuptool")
-    if os.path.exists("src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool"):
-        inp = input("Overwrite JavaSetupTool? [Y/N]")
-        if inp.lower().__eq__("y"):
-            copyJavaSetupTool()
-        elif inp.lower().__eq__(""):
-            copyJavaSetupTool()
-        elif inp.lower().__eq__("n"):
+    remove_directory(dst)
+    copy_directory(src, dst)
+    mass_replace(dst, "*.java", "import org.mpris", "import com.spotifyxp.deps.org.mpris")
+    mass_replace(dst, "*.java", "package org.mpris", "package com.spotifyxp.deps.org.mpris")
+
+# Function to handle Java Setup Tool files copy and replacements
+def handle_java_setup_tool():
+    """Handle copying and replacing Java Setup Tool files."""
+    src = "deps/JavaSetupTool/src/main/java/de/werwolf2303/javasetuptool"
+    dst = "src/main/java/com/spotifyxp/deps/de/werwolf2303/javasetuptool"
+    if os.path.exists(dst):
+        inp = input(f"Directory {dst} already exists. Overwrite? [Y/N]").strip().lower()
+        if inp not in ["y", ""]:
             return
-        else:
-            doJavaSetupTool()
-    else:
-        copyJavaSetupTool()
 
-def doVlcj():
-    def copyVlcj():
-        if os.path.exists("src/main/java/com/spotifyxp/deps/uk"): removeDirectory("src/main/java/com/spotifyxp/deps/uk")
-        if os.path.exists("src/main/resources/vlc"): removeDirectory("src/main/resources/vlc")
-        copyDirectory("deps/vlcj/src/main/java/uk", "src/main/java/com/spotifyxp/deps/uk")
-        copyDirectory("deps/vlcj/src/main/resources/vlc", "src/main/resources/vlc")
-        mass_replace("src/main/java/com/spotifyxp/deps/uk", "*.java", "import uk.co.caprica", "import com.spotifyxp.deps.uk.co.caprica")
-        mass_replace("src/main/java/com/spotifyxp/deps/uk", "*.java", "import static uk.co.caprica", "import static com.spotifyxp.deps.uk.co.caprica")
-        mass_replace("src/main/java/com/spotifyxp/deps/uk", "*.java", "package uk.co.caprica", "package com.spotifyxp.deps.uk.co.caprica")
-    if os.path.exists("src/main/java/com/spotifyxp/deps/uk"):
-        inp = input("Overwrite vlcj? [Y/N]")
-        if inp.lower().__eq__("y"):
-            copyVlcj()
-        elif inp.lower().__eq__(""):
-            copyVlcj()
-        elif inp.lower().__eq__("n"):
+    remove_directory(dst)
+    copy_directory(src, dst)
+    mass_replace(dst, "*.java", "import de.werwolf2303.javasetuptool", "import com.spotifyxp.deps.de.werwolf2303.javasetuptool")
+    mass_replace(dst, "*.java", "package de.werwolf2303.javasetuptool", "package com.spotifyxp.deps.de.werwolf2303.javasetuptool")
+
+# Function to handle vlcj files copy and replacements
+def handle_vlcj():
+    """Handle copying and replacing vlcj files."""
+    src_java = "deps/vlcj/src/main/java/uk"
+    dst_java = "src/main/java/com/spotifyxp/deps/uk"
+    src_vlc = "deps/vlcj/src/main/resources/vlc"
+    dst_vlc = "src/main/resources/vlc"
+
+    if os.path.exists(dst_java):
+        inp = input(f"Directory {dst_java} already exists. Overwrite? [Y/N]").strip().lower()
+        if inp not in ["y", ""]:
             return
-        else:
-            doVlcj()
-    else:
-        copyVlcj()
 
-def doInit():
-    doMPRISJava()
-    doJavaSetupTool()
-    doVlcj()
+    remove_directory(dst_java)
+    remove_directory(dst_vlc)
+    copy_directory(src_java, dst_java)
+    copy_directory(src_vlc, dst_vlc)
+    mass_replace(dst_java, "*.java", "import uk.co.caprica", "import com.spotifyxp.deps.uk.co.caprica")
+    mass_replace(dst_java, "*.java", "import static uk.co.caprica", "import static com.spotifyxp.deps.uk.co.caprica")
+    mass_replace(dst_java, "*.java", "package uk.co.caprica", "package com.spotifyxp.deps.uk.co.caprica")
 
-doInit()
+# Function to initialize the project by running all setup operations
+def initialize_project():
+    """Run all the setup tasks for the project."""
+    handle_mpris_java()
+    handle_java_setup_tool()
+    handle_vlcj()
+
+# Start the initialization process
+initialize_project()
