@@ -172,12 +172,6 @@ public class Player implements Closeable {
         });
     }
 
-    public InputStream getStream(String uri) throws IOException, MercuryClient.MercuryException, CdnManager.CdnException, PlayableContentFeeder.ContentRestrictedException {
-        PlayableContentFeeder.LoadedStream stream = session.contentFeeder().load(PlayableId.fromUri(uri), new VorbisOnlyAudioQuality(conf.preferredQuality), true, null);
-        return stream.in.stream();
-    }
-
-
     // ================================ //
     // =========== Commands =========== //
     // ================================ //

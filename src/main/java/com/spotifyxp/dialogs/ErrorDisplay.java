@@ -55,9 +55,6 @@ public class ErrorDisplay extends JFrame {
                 errorDisplayPanel.setVisible(false);
             }
         });
-        for(ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            errorDisplayContextMenu.addItem(item.name, item.torun);
-        }
 
         removeButton = new JButton(PublicValues.language.translate("ui.errorqueue.clear"));
         removeButton.addActionListener(new AsyncActionListener(e1 -> {

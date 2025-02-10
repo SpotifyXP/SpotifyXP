@@ -55,10 +55,13 @@ public class PlayerArea extends JPanel {
     public static CanvasPlayer canvasPlayer;
     public static JSVGPanel canvasPlayerButton;
     private static boolean doneLastParsing = false;
+    public static ContextMenu playerAreaContextMenu;
 
     public PlayerArea(JFrame frame) {
         setBounds(72, 0, 565, 100);
         setLayout(null);
+
+        playerAreaContextMenu = new ContextMenu(this);
 
         playerAreaShuffleButton = new JSVGPanel();
         playerAreaShuffleButton.getJComponent().setBounds(510, 75, 20, 20);

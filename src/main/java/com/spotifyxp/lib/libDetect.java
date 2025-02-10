@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public class libDetect {
     public enum OSType {
-        Windows, MacOS, Linux, Other, Steamos
+        Windows, MacOS, Linux, Other
     }
 
     protected static OSType detectedOS;

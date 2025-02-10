@@ -20,6 +20,7 @@ import com.spotifyxp.deps.com.spotify.metadata.Metadata;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.NormalizationData;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.deps.xyz.gianlu.librespot.crypto.Packet;
 import org.jetbrains.annotations.NotNull;
@@ -50,7 +51,7 @@ public final class StorageFeedHelper {
         NormalizationData normalizationData = NormalizationData.read(in);
         if (in.skip(0xa7) != 0xa7) throw new IOException("Couldn't skip 0xa7 bytes!");
 
-        return new PlayableContentFeeder.LoadedStream(track, stream, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), preload, preload ? -1 : audioKeyTime));
+        return new PlayableContentFeeder.LoadedStream(track, stream, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), preload, preload ? -1 : audioKeyTime), SuperAudioFormat.get(file.getFormat()));
     }
 
     public static @NotNull PlayableContentFeeder.LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, Metadata.@NotNull AudioFile file, boolean preload, @Nullable HaltListener haltListener) throws IOException {
@@ -65,6 +66,6 @@ public final class StorageFeedHelper {
         NormalizationData normalizationData = NormalizationData.read(in);
         if (in.skip(0xa7) != 0xa7) throw new IOException("Couldn't skip 0xa7 bytes!");
 
-        return new PlayableContentFeeder.LoadedStream(episode, stream, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), preload, preload ? -1 : audioKeyTime));
+        return new PlayableContentFeeder.LoadedStream(episode, stream, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), preload, preload ? -1 : audioKeyTime), SuperAudioFormat.get(file.getFormat()));
     }
 }

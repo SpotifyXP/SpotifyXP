@@ -5,6 +5,7 @@ import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.Views;
+import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ import java.util.Locale;
 public class SpotifyBrowseSection extends JScrollPane {
     public DefTable table;
     private ArrayList<String> uris;
+    private ContextMenu contextMenu;
 
     public SpotifyBrowseSection(List<ArrayList<String>> entries, int x, int y, int width, int height) {
         table = new DefTable();
@@ -32,6 +34,8 @@ public class SpotifyBrowseSection extends JScrollPane {
         ));
         table.setForeground(PublicValues.globalFontColor);
         table.getTableHeader().setForeground(PublicValues.globalFontColor);
+
+        contextMenu = new ContextMenu(table);
 
         for(ArrayList<String> e : entries) {
             uris.add(e.get(3));
@@ -100,6 +104,7 @@ public class SpotifyBrowseSection extends JScrollPane {
         ));
         table.setForeground(PublicValues.globalFontColor);
         table.getTableHeader().setForeground(PublicValues.globalFontColor);
+        contextMenu = new ContextMenu(table);
 
         for(UnofficialSpotifyAPI.SpotifyBrowseEntry e : entries) {
             uris.add(e.getEvents().get().getEvents().get(0).getData_uri().get().getUri());

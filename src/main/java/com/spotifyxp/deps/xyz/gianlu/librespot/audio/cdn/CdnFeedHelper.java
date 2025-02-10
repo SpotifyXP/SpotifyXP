@@ -22,6 +22,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.NormalizationData;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.PlayableContentFeeder.LoadedStream;
+import com.spotifyxp.deps.xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import com.spotifyxp.deps.xyz.gianlu.librespot.common.Utils;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.logging.ConsoleLoggingModules;
@@ -62,7 +63,7 @@ public final class CdnFeedHelper {
         InputStream in = streamer.stream();
         NormalizationData normalizationData = NormalizationData.read(in);
         if (in.skip(0xa7) != 0xa7) throw new IOException("Couldn't skip 0xa7 bytes!");
-        return new LoadedStream(track, streamer, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), preload, preload ? -1 : audioKeyTime));
+        return new LoadedStream(track, streamer, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), preload, preload ? -1 : audioKeyTime), SuperAudioFormat.get(file.getFormat()));
     }
 
     public static @NotNull LoadedStream loadTrack(@NotNull Session session, Metadata.@NotNull Track track, Metadata.@NotNull AudioFile file,
@@ -81,7 +82,15 @@ public final class CdnFeedHelper {
             ConsoleLoggingModules.debug("Fetched external url for {}: {}", Utils.bytesToHex(episode.getGid()), url);
 
             CdnManager.Streamer streamer = session.cdn().streamExternalEpisode(episode, url, haltListener);
-            return new LoadedStream(episode, streamer, null, new PlayableContentFeeder.Metrics(null, false, -1));
+            SuperAudioFormat format;
+            if(url.toString().toLowerCase().endsWith(".mp3")) {
+                format = SuperAudioFormat.MP3;
+            } else if(url.toString().toLowerCase().endsWith(".ogg")) {
+                format = SuperAudioFormat.VORBIS;
+            } else if(url.toString().toLowerCase().endsWith(".aac")) {
+                format = SuperAudioFormat.AAC;
+            } else format = SuperAudioFormat.MP3; // Guessing mp3
+            return new LoadedStream(episode, streamer, null, new PlayableContentFeeder.Metrics(null, false, -1), format);
         }
     }
 
@@ -94,7 +103,7 @@ public final class CdnFeedHelper {
         InputStream in = streamer.stream();
         NormalizationData normalizationData = NormalizationData.read(in);
         if (in.skip(0xa7) != 0xa7) throw new IOException("Couldn't skip 0xa7 bytes!");
-        return new LoadedStream(episode, streamer, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), false, audioKeyTime));
+        return new LoadedStream(episode, streamer, normalizationData, new PlayableContentFeeder.Metrics(file.getFileId(), false, audioKeyTime), SuperAudioFormat.get(file.getFormat()));
     }
 
     public static @NotNull LoadedStream loadEpisode(@NotNull Session session, Metadata.@NotNull Episode episode, @NotNull Metadata.AudioFile file, @NotNull StorageResolveResponse storage, @Nullable HaltListener haltListener) throws IOException, CdnManager.CdnException {

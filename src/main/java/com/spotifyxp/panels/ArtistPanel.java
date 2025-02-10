@@ -162,18 +162,12 @@ public class ArtistPanel extends JScrollPane implements View {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
             }
         });
-        for (ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            artistpopularsonglistcontextmenu.addItem(item.name, item.torun);
-        }
         artistpopularsonglistcontextmenu.addItem("Add to queue", () -> {
             if (artistPopularSongList.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularUriCache.get(artistPopularSongList.getSelectedRow()));
         });
         artistalbumcontextmenu = new ContextMenu(artistAlbumTable);
         artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumUriCache.get(artistAlbumTable.getSelectedRow())));
-        for (ContextMenu.GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            artistalbumcontextmenu.addItem(item.name, item.torun);
-        }
     }
 
     public void fillWith(Artist artist) throws IOException {

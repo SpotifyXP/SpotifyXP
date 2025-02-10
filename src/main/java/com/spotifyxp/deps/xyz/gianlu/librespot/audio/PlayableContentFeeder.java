@@ -45,6 +45,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -276,31 +277,44 @@ public final class PlayableContentFeeder {
         public final DecodedAudioStream in;
         public final NormalizationData normalizationData;
         public final Metrics metrics;
+        public final SuperAudioFormat audioFormat;
 
-        public LoadedStream(@NotNull Metadata.Track track, @NotNull DecodedAudioStream in, @Nullable NormalizationData normalizationData, @NotNull Metrics metrics) {
+        public LoadedStream(@NotNull Metadata.Track track, @NotNull DecodedAudioStream in, @Nullable NormalizationData normalizationData, @NotNull Metrics metrics, SuperAudioFormat audioFormat) {
             this.metadata = new MetadataWrapper(track, null, null);
             this.in = in;
             this.normalizationData = normalizationData;
             this.metrics = metrics;
+            this.audioFormat = audioFormat;
         }
 
-        public LoadedStream(@NotNull Metadata.Episode episode, @NotNull DecodedAudioStream in, @Nullable NormalizationData normalizationData, @NotNull Metrics metrics) {
+        public LoadedStream(@NotNull Metadata.Episode episode, @NotNull DecodedAudioStream in, @Nullable NormalizationData normalizationData, @NotNull Metrics metrics, SuperAudioFormat audioFormat) {
             this.metadata = new MetadataWrapper(null, episode, null);
             this.in = in;
             this.normalizationData = normalizationData;
             this.metrics = metrics;
+            this.audioFormat = audioFormat;
         }
 
-        private LoadedStream(@NotNull LocalId id, @NotNull DecodedAudioStream in) {
+        private LoadedStream(@NotNull LocalId id, @NotNull DecodedAudioStream in, SuperAudioFormat audioFormat) {
             this.metadata = new MetadataWrapper(null, null, id);
             this.in = in;
             this.normalizationData = null;
             this.metrics = new Metrics(null, false, 0);
+            this.audioFormat = audioFormat;
         }
 
         @NotNull
         public static LoadedStream forLocalFile(@NotNull LocalId id, @NotNull File file) throws IOException {
-            return new LoadedStream(id, new FileAudioStream(file));
+            SuperAudioFormat format;
+            String fileName = file.getName().toLowerCase();
+            if(fileName.endsWith(".mp3")) {
+                format = SuperAudioFormat.MP3;
+            } else if(fileName.endsWith(".ogg")) {
+                format = SuperAudioFormat.VORBIS;
+            } else if(fileName.endsWith(".aac")) {
+                format = SuperAudioFormat.AAC;
+            } else format = SuperAudioFormat.MP3;
+            return new LoadedStream(id, new FileAudioStream(file), format);
         }
     }
 

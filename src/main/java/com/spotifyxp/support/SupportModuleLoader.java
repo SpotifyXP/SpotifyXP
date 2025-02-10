@@ -19,6 +19,5 @@ public class SupportModuleLoader {
                 module.run();
             }
         }
-        Events.triggerEvent(SpotifyXPEvents.onSupportModulesLoaded.getName());
     }
 }
