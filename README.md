@@ -1,6 +1,3 @@
-<h2>New login methods info:</h2>
-<a>1. Zeroconf: open a modern Spotify client and select SpotifyXP under devices and SpotifyXP should authenticate with Spotify. <h5>Works only with Spotify Premium account.</h5></a>
-<a>2. OAuth: in the default browser's window which will open automatically, login with your credentials on Spotify website. Then confirm connecting SpotifyXP to your Spotify account and close the browser. <h5>You need to have a modern browser that supports HTML5.</h5></a>
 <p align="center">
   <a href="https://github.com/SpotifyXP/SpotifyXP">
     <img src="https://raw.githubusercontent.com/SpotifyXP/SpotifyXP/main/src/main/resources/spotifyxp.png" alt="Logo" width="80" height="80">
@@ -18,11 +15,9 @@
   </p>
 </p>
 
-<center>
+![Contributors](https://img.shields.io/github/contributors/SpotifyXP/SpotifyXP?color=dark-green) ![Issues](https://img.shields.io/github/issues/SpotifyXP/SpotifyXP)
 
-![Downloads](https://img.shields.io/github/downloads/SpotifyXP/SpotifyXP/total) ![Contributors](https://img.shields.io/github/contributors/SpotifyXP/SpotifyXP?color=dark-green) ![Issues](https://img.shields.io/github/issues/SpotifyXP/SpotifyXP)
-
-</center>
+<!--![Downloads](https://img.shields.io/github/downloads/SpotifyXP/SpotifyXP/total)-->
 
 ## Table Of Contents
 
@@ -33,6 +28,7 @@
 * [Built With](#built-with)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
+* [New Login Methods](#new-login-methods)
 * [Contributing](#contributing)
 * [License](#license)
 * [Authors](#authors)
@@ -46,7 +42,7 @@ Stable version
 
 I developed SpotifyXP for my old daily driver that runs Windows XP. My daily driver is now an MacBook Pro (2022)
 
-<h5>Why use SpotifyXP:</h5>
+<h3>Why use SpotifyXP:</h3>
 
 On December 2022, Spotify shutdown it's last version for Windows XP, making this application the only way to listen to Spotify.
 
@@ -63,7 +59,7 @@ When you have an issue, check the Wiki before creating an Issue to see if that i
 * OS: Windows XP or above
 * Processor: Anything that can handle SNES Emulation
 * RAM: 512MB
-* Storage (Without cache): 60MB
+* Storage (Without cache): 70MB
 * Storage (With cache): My folder is 700MB
 
 <h4>Minimum</h4>
@@ -71,7 +67,7 @@ When you have an issue, check the Wiki before creating an Issue to see if that i
 * OS: Windows 98 (KernelEx)
 * Processor: Anything that can handle SNES Emulation
 * RAM: 256MB
-* Storage (Without cache): 60MB
+* Storage (Without cache): 70MB
 * Storage (With cache): My folder is 700MB
 
 ## Translating
@@ -98,12 +94,18 @@ SpotifyXP is build with
 
 ### Install instructions
 
-1. Download the Stable version under Releases or download the nightly version under the Actions tab
+1. Download the nightly version under the Actions tab
 2. Double click **SpotifyXP.jar** or run this in the directory where **SpotifyXP.jar** is downloaded: <pre>java -jar SpotifyXP.jar</pre>
 
 ## Usage
 
-Follow the steps under 'Getting Started' and then login with your Email and Password. Then just listen to music
+Follow the instructions under the header **Getting Started**. Then, select one of the options under the header **New Login Methods**. 
+Then, enjoy the music.
+
+## New login methods
+1. Zeroconf: open a modern Spotify client and select SpotifyXP under devices and SpotifyXP should authenticate with Spotify. **Works only with Spotify Premium account**.
+2. OAuth: in the default browser's window which will open automatically, login with your credentials on Spotify website. Then confirm connecting SpotifyXP to your Spotify account and close the browser. **You need to have a modern browser that supports HTML5**.
+
 
 ## Compiling
 
@@ -125,7 +127,7 @@ Just make your desired changes and open a pull request
 
 ## License
 
-Copyright [2024] [Gianluca Beil]
+Copyright [2025] [Gianluca Beil]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -147,4 +149,4 @@ limitations under the License.
 
 * [StapleBacon5037](https://github.com/StapleBacon5037) - For improving the readme
 * [skippster1337](https://github.com/skipster1337) - For listing SpotifyXP on his site
-* [Jri-creator](https://github.com/Jri-creator) - For the new setup image
+* [Jri-creator](https://github.com/Jri-creator) - For the new setup image and improving the readme
