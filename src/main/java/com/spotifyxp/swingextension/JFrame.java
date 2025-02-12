@@ -27,24 +27,6 @@ public class JFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
-    boolean aa = false;
-
-    public void setAntiAliasingActive(boolean value) {
-        aa = value;
-    }
-
-    @Override
-    public void paintComponents(Graphics g) {
-        if (aa) {
-            Graphics2D g2d = (Graphics2D) g;
-            RenderingHints hints = new RenderingHints(
-                    RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON
-            );
-            g2d.setRenderingHints(hints);
-        }
-        super.paintComponents(g);
-    }
-
     public void open() {
         try {
             setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));

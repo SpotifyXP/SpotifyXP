@@ -38,7 +38,7 @@ public class Utils {
         return -1;
     }
 
-    public static void moveToScreen(JFrame frame, int targetDisplayNumber) {
+    public static void moveToScreen(Window window, int targetDisplayNumber) {
         // Get an array of all screen devices
         GraphicsDevice[] allScreenDevices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
 
@@ -47,12 +47,12 @@ public class Utils {
             GraphicsConfiguration targetConfig = allScreenDevices[targetDisplayNumber - 1].getDefaultConfiguration();
 
             // Calculate the center position on the target screen
-            int x = (ContentPanel.frame.getSize().width - frame.getWidth()) / 2;
-            int y = (ContentPanel.frame.getSize().height - frame.getHeight()) / 2;
+            int x = (ContentPanel.frame.getSize().width - window.getWidth()) / 2;
+            int y = (ContentPanel.frame.getSize().height - window.getHeight()) / 2;
 
 
             // Set the JFrame location to the center of the target screen
-            frame.setLocation(targetConfig.getBounds().x + x, targetConfig.getBounds().y + y);
+            window.setLocation(targetConfig.getBounds().x + x, targetConfig.getBounds().y + y);
 
             if (PublicValues.debug) ConsoleLogging.debug("Moving JFrame to screen number: " + targetDisplayNumber);
         } else {

@@ -9,6 +9,7 @@ import com.spotifyxp.dialogs.AddPlaylistDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
+import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
@@ -36,6 +37,37 @@ public class Playlists extends JSplitPane implements View {
     private final boolean[] inProg = {false};
     private boolean loadNew = false;
     private Runnable lazyLoadingDeInit;
+
+
+    private void fetchPlaylists() {
+        try {
+            int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
+            int parsed = 0;
+            int counter = 0;
+            int last = 0;
+            int offset = 0;
+            while (parsed != total) {
+                PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
+                for (PlaylistSimplified simplified : playlists) {
+                    Playlists.playlistsUriCache.add(simplified.getUri());
+                    ((DefaultTableModel) Playlists.playlistsPlaylistsTable.getModel()).addRow(new Object[]{simplified.getName()});
+                    parsed++;
+                }
+                if (parsed == last) {
+                    if (counter > 1) {
+                        break;
+                    }
+                    counter++;
+                } else {
+                    counter = 0;
+                }
+                last = parsed;
+                offset += 50;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public Playlists() {
@@ -158,56 +190,47 @@ public class Playlists extends JSplitPane implements View {
             StringSelection strSel = new StringSelection(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()));
             clipboard.setContents(strSel, null);
         });
+        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
+            ((DefaultTableModel) playlistsPlaylistsTable.getModel()).setRowCount(0);
+            playlistsUriCache.clear();
+            new Thread(this::fetchPlaylists, "Fetch playlists").start();
+        });
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("playlists.create.title"), () -> {
-            AddPlaylistDialog dialog = new AddPlaylistDialog();
-            dialog.show((playlistname, playlistvisibility) -> {
-                try {
-                    String uri = InstanceManager.getSpotifyApi().createPlaylist(PublicValues.session.username(), playlistname).public_(playlistvisibility).build().execute().getUri();
-                    playlistsPlaylistsTable.addModifyAction(() -> {
-                        playlistsUriCache.add(uri);
-                        ((DefaultTableModel) playlistsPlaylistsTable.getModel()).addRow(new Object[]{playlistname});
-                    });
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }, () -> {
-            }, dialog::dispose);
+            try {
+                AddPlaylistDialog dialog = new AddPlaylistDialog();
+                dialog.show((data) -> {
+                    new Thread(() -> {
+                        try {
+                            String uri = InstanceManager.getSpotifyApi().createPlaylist(
+                                    PublicValues.session.username(),
+                                    data.name
+                            ).public_(data.isPublic).description(data.description).collaborative(data.isCollaborative).build().execute().getUri();
+                            if(!data.imageBase64.isEmpty()) {
+                                try {
+                                    InstanceManager.getSpotifyApi().uploadCustomPlaylistCoverImage(uri.split(":")[2])
+                                            .image_data(data.imageBase64)
+                                            .build().execute();
+                                }catch(IOException e) {
+                                    ConsoleLogging.Throwable(e);
+                                }
+                            }
+                            new Thread(this::fetchPlaylists, "Fetch playlists").start();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }, "Create playlist thread").start();
+                }, () -> {
+                }, dialog::dispose);
+            }catch (IOException e) {
+                ConsoleLogging.Throwable(e);
+            }
         });
     }
 
     @Override
     public void makeVisible() {
-        Thread thread = new Thread(() -> {
-            try {
-                int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
-                int parsed = 0;
-                int counter = 0;
-                int last = 0;
-                int offset = 0;
-                while (parsed != total) {
-                    PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
-                    for (PlaylistSimplified simplified : playlists) {
-                        Playlists.playlistsUriCache.add(simplified.getUri());
-                        ((DefaultTableModel) Playlists.playlistsPlaylistsTable.getModel()).addRow(new Object[]{simplified.getName()});
-                        parsed++;
-                    }
-                    if (parsed == last) {
-                        if (counter > 1) {
-                            break;
-                        }
-                        counter++;
-                    } else {
-                        counter = 0;
-                    }
-                    last = parsed;
-                    offset += 50;
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, "Playlists fetcher");
         if (Playlists.playlistsPlaylistsTable.getModel().getRowCount() == 0) {
-            thread.start();
+            new Thread(this::fetchPlaylists, "Fetch playlists").start();
         }
         setVisible(true);
     }

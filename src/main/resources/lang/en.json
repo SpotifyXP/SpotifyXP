@@ -146,5 +146,5 @@
  "extension.store.tab": "Store",
  "playlists.create.title": "Create playlist",
  "playlists.create.name.label": "Playlist name",
- "playlists.create.visibility": "Set visibility public?"
+ "playlists.create.visibility": "Make playlist public?"
 }

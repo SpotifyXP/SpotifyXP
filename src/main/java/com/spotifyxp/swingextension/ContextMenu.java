@@ -3,10 +3,13 @@ package com.spotifyxp.swingextension;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.AsyncMouseListener;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("unused")
 public class ContextMenu {
     public interface GlobalContextMenuItem {
         Runnable toRun(JComponent component);
@@ -15,6 +18,9 @@ public class ContextMenu {
     }
 
     final JPopupMenu holder = new JPopupMenu();
+
+    public ContextMenu() {
+    }
 
     public ContextMenu(JComponent container, JComponent click) {
         click.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
@@ -87,7 +93,39 @@ public class ContextMenu {
         holder.add(item);
     }
 
-    public void addSeperator() {
+    public void addSeparator() {
         holder.add(new JSeparator());
+    }
+
+    /**
+     * Show the context menu at a specific location
+     * @param invoker - The component to which the location is relative
+     * @param x - X location where the context menu should appear
+     * @param y - Y location where the context menu should appear
+     */
+    public void showAt(@Nullable JComponent invoker, int x, int y) {
+        if(invoker == null) {
+            holder.setLocation(x, y);
+            holder.setVisible(true);
+        }else{
+            holder.show(invoker, x, y);
+        }
+    }
+
+    /**
+     * Show the context menu at a specific location with a specific size
+     * @apiNote You have to reset the preferred size manually after invoking this
+     * @param invoker - The component to which the location is relative
+     * @param x - X location where the context menu should appear
+     * @param y - Y location where the context menu should appear
+     * @param w - Width of the context menu
+     * @param h - Height of the context menu
+     */
+    public void showAt(@Nullable JComponent invoker, int x, int y, @Nullable Integer w, @Nullable Integer h) {
+        Dimension preferredSize = holder.getPreferredSize();
+        if(w != null) preferredSize.width = w;
+        if(h != null) preferredSize.height = h;
+        holder.setPreferredSize(preferredSize);
+        showAt(invoker, x, y);
     }
 }

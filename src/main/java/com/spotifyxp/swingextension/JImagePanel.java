@@ -21,8 +21,14 @@ import java.nio.file.Paths;
 public class JImagePanel extends JPanel {
     private BufferedImage image = null;
     private byte[] imagebytes;
+    private SVGImageRecalculate recalculate = null;
     public boolean keepAspectRatio = true;
     private String rad = "";
+
+    @FunctionalInterface
+    public interface SVGImageRecalculate {
+        byte[] svgImageRecalculate();
+    }
 
     public void setKeepAspectRatio(boolean keepAspectRatio) {
         this.keepAspectRatio = keepAspectRatio;
@@ -31,7 +37,9 @@ public class JImagePanel extends JPanel {
 
     void refresh() {
         try {
-            image = ImageIO.read(new ByteArrayInputStream(imagebytes));
+            if(recalculate == null) {
+                image = ImageIO.read(new ByteArrayInputStream(imagebytes));
+            }
         } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
@@ -39,6 +47,7 @@ public class JImagePanel extends JPanel {
     }
 
     public void setImage(String filename) {
+        this.recalculate = null;
         try {
             imagebytes = IOUtils.toByteArray(new Resources().readToInputStream(filename));
         } catch (IOException ex) {
@@ -48,11 +57,23 @@ public class JImagePanel extends JPanel {
     }
 
     public void setImage(File file) {
+        this.recalculate = null;
         try {
             imagebytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
         } catch (IOException ex) {
             ConsoleLogging.Throwable(ex);
         }
+        refresh();
+    }
+
+    public void setImage(byte[] bytes) {
+        this.recalculate = null;
+        imagebytes = bytes;
+        refresh();
+    }
+
+    public void setImage(SVGImageRecalculate recalculate) {
+        this.recalculate = recalculate;
         refresh();
     }
 
@@ -62,6 +83,7 @@ public class JImagePanel extends JPanel {
     }
 
     public void setImage(URL url) {
+        this.recalculate = null;
         try {
             imagebytes = IOUtils.toByteArray(url);
         } catch (IOException ex) {
@@ -81,6 +103,7 @@ public class JImagePanel extends JPanel {
     }
 
     public void setImage(ImageInputStream imageInputStream) {
+        this.recalculate = null;
         try {
             imageInputStream.readFully(imagebytes);
         } catch (IOException e) {
@@ -123,8 +146,18 @@ public class JImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (image == null) {
+        if (image == null && recalculate == null) {
             return;
+        }else if(recalculate != null) {
+            try {
+                byte[] newBytes = recalculate.svgImageRecalculate();
+                if(newBytes != null && newBytes.length > 0) {
+                    image = ImageIO.read(new ByteArrayInputStream(newBytes));
+                }
+            } catch (IOException e) {
+                ConsoleLogging.Throwable(e);
+                return;
+            }
         }
         if (!(rad.isEmpty())) {
             Graphics2D graphics2D = (Graphics2D) g;

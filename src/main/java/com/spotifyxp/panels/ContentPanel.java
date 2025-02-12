@@ -517,11 +517,6 @@ public class ContentPanel extends JPanel {
         mainframe.requestFocus();
         mainframe.setAlwaysOnTop(false);
         Events.triggerEvent(SpotifyXPEvents.onFrameVisible.getName());
-
-        if(PublicValues.vlcPlayer.isVideoPlaybackEnabled()) {
-            //tabPanel.add(PublicValues.vlcPlayer.getComponent());
-            //PublicValues.vlcPlayer.play(new File("test.mp4").getAbsolutePath());
-        }
     }
 
     private static void scrollToCenter(JScrollPane scrollPane, int x, int y) {

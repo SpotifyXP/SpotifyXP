@@ -8,13 +8,17 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.MapUtils;
+import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -586,6 +590,7 @@ public class UnofficialSpotifyAPI {
             root = new JSONObject(new JSONObject(ConnectionUtils.makeGet(url,
                     MapUtils.of("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken(), "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
         }
+        Files.write(Paths.get(new File(System.getProperty("user.home"), "spxphomedump.json").getAbsolutePath()), IOUtils.toByteArray(root.toString()));
         return HomeTab.fromJSON(root);
     }
 
