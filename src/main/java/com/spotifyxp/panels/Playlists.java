@@ -3,9 +3,11 @@ package com.spotifyxp.panels;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Playlist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
 import com.spotifyxp.dialogs.AddPlaylistDialog;
+import com.spotifyxp.dialogs.ChangePlaylistDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
@@ -40,6 +42,8 @@ public class Playlists extends JSplitPane implements View {
 
 
     private void fetchPlaylists() {
+        ((DefaultTableModel) playlistsPlaylistsTable.getModel()).setRowCount(0);
+        playlistsUriCache.clear();
         try {
             int total = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().build().execute().getTotal();
             int parsed = 0;
@@ -191,9 +195,41 @@ public class Playlists extends JSplitPane implements View {
             clipboard.setContents(strSel, null);
         });
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
-            ((DefaultTableModel) playlistsPlaylistsTable.getModel()).setRowCount(0);
-            playlistsUriCache.clear();
             new Thread(this::fetchPlaylists, "Fetch playlists").start();
+        });
+        playlistsPlaylistsTableContextMenu.addItem("Change playlist", () -> {
+            if(playlistsPlaylistsTable.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(ContentPanel.frame, "No playlist selected", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            try {
+                Playlist playlistRec = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
+                ChangePlaylistDialog dialog = new ChangePlaylistDialog();
+                dialog.show(
+                        playlistRec
+                        , new ChangePlaylistDialog.ChangedPlaylistRunnable() {
+                            @Override
+                            public void receive(ChangePlaylistDialog.ChangedPlaylist playlist) {
+                                new Thread(() -> {
+                                    try {
+                                        InstanceManager.getSpotifyApi().changePlaylistsDetails(
+                                                playlistRec.getId()
+                                        )
+                                                .collaborative(playlist.isCollaborative)
+                                                .public_(playlist.isPublic)
+                                                .name(playlist.playlistName)
+                                                .description(playlist.playlistDescription)
+                                                .build().execute();
+                                        new Thread(Playlists.this::fetchPlaylists, "Fetch playlists").start();
+                                    } catch (IOException e) {
+                                        ConsoleLogging.Throwable(e);
+                                    }
+                                }, "Change playlist").start();
+                            }
+                        });
+            } catch (IOException e) {
+                ConsoleLogging.Throwable(e);
+            }
         });
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("playlists.create.title"), () -> {
             try {
