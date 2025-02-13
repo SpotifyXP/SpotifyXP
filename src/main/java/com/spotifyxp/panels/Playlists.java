@@ -36,6 +36,8 @@ public class Playlists extends JSplitPane implements View {
     public static final ArrayList<String> playlistsSongUriCache = new ArrayList<>();
     public static ContextMenu playlistsSongTableContextMenu;
     public static ContextMenu playlistsPlaylistsTableContextMenu;
+    public static JTextArea playlistDescription;
+    public static JPanel playlistsSongsPanel;
     private final boolean[] inProg = {false};
     private boolean loadNew = false;
     private Runnable lazyLoadingDeInit;
@@ -78,6 +80,15 @@ public class Playlists extends JSplitPane implements View {
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setVisible(false);
 
+        playlistsSongsPanel = new JPanel();
+        playlistsSongsPanel.setLayout(new BorderLayout());
+
+        playlistDescription = new JTextArea();
+        playlistDescription.setVisible(false);
+        playlistDescription.setEditable(false);
+        playlistsSongsPanel.add(playlistDescription, BorderLayout.NORTH);
+
+
         playlistsPlaylistsTable = new DefTable();
         playlistsPlaylistsTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.playlists.playlists.playlistname")}));
         playlistsPlaylistsTable.setForeground(PublicValues.globalFontColor);
@@ -102,7 +113,10 @@ public class Playlists extends JSplitPane implements View {
                                 int parsed = 0;
                                 int counter = 0;
                                 int last = 0;
-                                int total = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
+                                Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
+                                int total = playlist.getTracks().getTotal();
+                                playlistDescription.setText(playlist.getDescription());
+                                playlistDescription.setVisible(!playlistDescription.getText().isEmpty());
                                 while (parsed != total) {
                                     Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
                                     for (PlaylistTrack track : ptracks.getItems()) {
@@ -127,6 +141,13 @@ public class Playlists extends JSplitPane implements View {
                         }, "Get playlist tracks");
                         thread.start();
                     }else {
+                        try {
+                            Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
+                            playlistDescription.setText(playlist.getDescription());
+                            playlistDescription.setVisible(!playlistDescription.getText().isEmpty());
+                        } catch (IOException ex) {
+                            ConsoleLogging.Throwable(ex);
+                        }
                         loadNew = true;
                         lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
                                 playlistsSongsScrollPane,
@@ -168,8 +189,10 @@ public class Playlists extends JSplitPane implements View {
         }));
 
         playlistsSongsScrollPane = new JScrollPane();
-        setRightComponent(playlistsSongsScrollPane);
+        setRightComponent(playlistsSongsPanel);
         playlistsSongsScrollPane.setViewportView(playlistsSongTable);
+
+        playlistsSongsPanel.add(playlistsSongsScrollPane, BorderLayout.CENTER);
 
         playlistsSongTableContextMenu = new ContextMenu(playlistsSongTable);
         playlistsSongTableContextMenu.addItem("All to queue", () -> {
