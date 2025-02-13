@@ -35,21 +35,30 @@ public class ChangePlaylistDialog extends JDialog {
         getRootPane().setDefaultButton(okButton);
 
         playlistNameLabel.setForeground(PublicValues.globalFontColor);
-        playlistDescriptionLabel.setForeground(PublicValues.globalFontColor);
-        visibility.setForeground(PublicValues.globalFontColor);
-        collaborative.setForeground(PublicValues.globalFontColor);
+        playlistNameLabel.setText(PublicValues.language.translate("changeplaylist.name"));
 
+        playlistDescriptionLabel.setForeground(PublicValues.globalFontColor);
+        playlistDescriptionLabel.setText(PublicValues.language.translate("changeplaylist.description"));
+
+        visibility.setForeground(PublicValues.globalFontColor);
+        visibility.setText(PublicValues.language.translate("changeplaylist.visibility"));
+        visibility.addChangeListener(e -> {
+            if (visibility.isSelected()) {
+                collaborative.setSelected(false);
+            }
+        });
+
+        collaborative.setForeground(PublicValues.globalFontColor);
+        collaborative.setText(PublicValues.language.translate("changeplaylist.collaborative"));
         collaborative.addChangeListener(e -> {
             if (collaborative.isSelected()) {
                 visibility.setSelected(false);
             }
         });
 
-        visibility.addChangeListener(e -> {
-            if (visibility.isSelected()) {
-                collaborative.setSelected(false);
-            }
-        });
+        okButton.setText(PublicValues.language.translate("changeplaylist.ok"));
+
+        cancelButton.setText(PublicValues.language.translate("changeplaylist.cancel"));
     }
 
     public static class ChangedPlaylist {
@@ -89,35 +98,37 @@ public class ChangePlaylistDialog extends JDialog {
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayoutManager(3, 3, new Insets(10, 10, 10, 10), -1, -1));
         cancelButton = new JButton();
-        cancelButton.setText("Cancel");
+        cancelButton.setText("");
         contentPanel.add(cancelButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         contentPanel.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         okButton = new JButton();
-        okButton.setText("Ok");
+        okButton.setText("");
         contentPanel.add(okButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(7, 2, new Insets(0, 0, 0, 0), -1, -1));
         contentPanel.add(panel1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         playlistNameLabel = new JLabel();
-        playlistNameLabel.setText("Playlist name");
+        playlistNameLabel.setText("");
         panel1.add(playlistNameLabel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         playlistName = new JTextField();
         panel1.add(playlistName, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         playlistDescriptionLabel = new JLabel();
-        playlistDescriptionLabel.setText("Playlist description");
+        playlistDescriptionLabel.setText("");
         panel1.add(playlistDescriptionLabel, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel1.add(separator1, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(-1, 10), new Dimension(-1, 10), 0, false));
         visibility = new JRadioButton();
-        visibility.setText("Make public");
+        visibility.setText("");
         panel1.add(visibility, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         collaborative = new JRadioButton();
         collaborative.setSelected(false);
-        collaborative.setText("Make collaborative");
+        collaborative.setText("");
         panel1.add(collaborative, new GridConstraints(6, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        panel1.add(scrollPane1, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         playlistDescription = new JTextArea();
-        panel1.add(playlistDescription, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        scrollPane1.setViewportView(playlistDescription);
         final JSeparator separator2 = new JSeparator();
         contentPanel.add(separator2, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(-1, 10), new Dimension(-1, 10), 0, false));
     }
@@ -152,7 +163,7 @@ public class ChangePlaylistDialog extends JDialog {
                 dispose();
             }
         });
-        setTitle("Change playlist");
+        setTitle(PublicValues.language.translate("changeplaylist.title"));
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override

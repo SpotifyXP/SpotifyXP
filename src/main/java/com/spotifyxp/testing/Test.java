@@ -3,7 +3,9 @@ package com.spotifyxp.testing;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.configuration.Config;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Playlist;
 import com.spotifyxp.dialogs.AddPlaylistDialog;
+import com.spotifyxp.dialogs.ChangePlaylistDialog;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.lib.libLanguage;
@@ -33,7 +35,17 @@ public class Test {
             Events.register(s.getName(), true);
         }
 
-        AddPlaylistDialog dialog = new AddPlaylistDialog();
-        dialog.show((data) -> {}, () -> {}, () -> {});
+        ChangePlaylistDialog dialog = new ChangePlaylistDialog();
+        dialog.show(new Playlist.Builder()
+                        .setCollaborative(false)
+                        .setPublicAccess(true)
+                        .setName("Great songs")
+                        .setDescription("My awesome playlist")
+                .build(), new ChangePlaylistDialog.ChangedPlaylistRunnable() {
+            @Override
+            public void receive(ChangePlaylistDialog.ChangedPlaylist playlist) {
+                System.out.println(playlist.toString());
+            }
+        });
     }
 }

@@ -248,9 +248,9 @@ public class Playlists extends JSplitPane implements View {
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             new Thread(this::fetchPlaylists, "Fetch playlists").start();
         });
-        playlistsPlaylistsTableContextMenu.addItem("Change playlist", () -> {
+        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("changeplaylist.title"), () -> {
             if(playlistsPlaylistsTable.getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(ContentPanel.frame, "No playlist selected", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(ContentPanel.frame, PublicValues.language.translate("changeplaylist.dialog.noselected.description"), PublicValues.language.translate("changeplaylist.dialog.noselected.title"), JOptionPane.ERROR_MESSAGE);
                 return;
             }
             try {
@@ -282,7 +282,7 @@ public class Playlists extends JSplitPane implements View {
                 ConsoleLogging.Throwable(e);
             }
         });
-        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("playlists.create.title"), () -> {
+        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("addplaylist.title"), () -> {
             try {
                 AddPlaylistDialog dialog = new AddPlaylistDialog();
                 dialog.show((data) -> {

@@ -76,10 +76,10 @@ public class AddPlaylistDialog extends JDialog {
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
         panel1.add(panel2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         okbutton = new JButton();
-        okbutton.setText("OK");
+        okbutton.setText("");
         panel2.add(okbutton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cancelbutton = new JButton();
-        cancelbutton.setText("Cancel");
+        cancelbutton.setText("");
         panel2.add(cancelbutton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1));
@@ -87,26 +87,28 @@ public class AddPlaylistDialog extends JDialog {
         playlistName = new JTextField();
         panel3.add(playlistName, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         playlistNameLabel = new JLabel();
-        playlistNameLabel.setText("Playlist name");
+        playlistNameLabel.setText("");
         panel3.add(playlistNameLabel, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         playlistDescriptionLabel = new JLabel();
-        playlistDescriptionLabel.setText("Playlist description");
+        playlistDescriptionLabel.setText("");
         panel3.add(playlistDescriptionLabel, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        playlistDescriptionText = new JTextArea();
-        panel3.add(playlistDescriptionText, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel3.add(separator1, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(-1, 10), new Dimension(-1, 10), 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        panel3.add(scrollPane1, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        playlistDescriptionText = new JTextArea();
+        scrollPane1.setViewportView(playlistDescriptionText);
         final JSeparator separator2 = new JSeparator();
         contentPane.add(separator2, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(-1, 10), new Dimension(-1, 10), 0, false));
         playlistVisibility = new JCheckBox();
         playlistVisibility.setSelected(false);
-        playlistVisibility.setText("Make playlist public");
+        playlistVisibility.setText("");
         contentPane.add(playlistVisibility, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         playlistCollaborative = new JCheckBox();
-        playlistCollaborative.setText("Make playlist collaborative");
+        playlistCollaborative.setText("");
         contentPane.add(playlistCollaborative, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         playlistChangeImageButton = new JButton();
-        playlistChangeImageButton.setText("Change image");
+        playlistChangeImageButton.setText("");
         contentPane.add(playlistChangeImageButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         playlistImage = new JImagePanel();
         playlistImage.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
@@ -161,10 +163,10 @@ public class AddPlaylistDialog extends JDialog {
                 .collect(Collectors.toSet());
 
         fileSelectMenu = new ContextMenu();
-        fileSelectMenu.addItem("From url", new Runnable() {
+        fileSelectMenu.addItem(PublicValues.language.translate("addplaylist.ctxmenu.fromurl"), new Runnable() {
             @Override
             public void run() {
-                String[] url = new String[]{JOptionPane.showInputDialog(thisDialog, "Image url", "Playlist image url", JOptionPane.PLAIN_MESSAGE)};
+                String[] url = new String[]{JOptionPane.showInputDialog(thisDialog, PublicValues.language.translate("addplaylist.image.dialog.description"), PublicValues.language.translate("addplaylist.image.dialog.title"), JOptionPane.PLAIN_MESSAGE)};
                 if (url[0] == null || url[0].isEmpty()) {
                     return;
                 }
@@ -173,14 +175,14 @@ public class AddPlaylistDialog extends JDialog {
                         imageBytes = convertToJPEG(new URL(url[0]).openStream());
                         return imageBytes;
                     } catch (IOException e) {
-                        JOptionPane.showMessageDialog(thisDialog, "Failed to get image. Error message: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(thisDialog, PublicValues.language.translate("addplaylist.image.error") + " " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         ConsoleLogging.Throwable(e);
                         return new byte[0];
                     }
                 });
             }
         });
-        fileSelectMenu.addItem("From file", new Runnable() {
+        fileSelectMenu.addItem(PublicValues.language.translate("addplaylist.ctxmenu.fromfile"), new Runnable() {
             @Override
             public void run() {
                 JFileChooser chooser = new JFileChooser();
@@ -195,7 +197,7 @@ public class AddPlaylistDialog extends JDialog {
 
                     @Override
                     public String getDescription() {
-                        return "Supported Image Files (*." + String.join(", *.", formats) + ")";
+                        return PublicValues.language.translate("addplaylist.fileselect.description") + " (*." + String.join(", *.", formats) + ")";
                     }
                 });
                 if (chooser.showOpenDialog(thisDialog) == JFileChooser.APPROVE_OPTION) {
@@ -203,7 +205,7 @@ public class AddPlaylistDialog extends JDialog {
                         imageBytes = convertToJPEG(Files.newInputStream(Paths.get(chooser.getSelectedFile().getAbsolutePath())));
                         playlistImage.setImage(imageBytes);
                     } catch (IOException e) {
-                        JOptionPane.showMessageDialog(thisDialog, "Failed to get image. Error message: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(thisDialog, PublicValues.language.translate("addplaylist.image.error") + " " + e.getMessage(), PublicValues.language.translate("addplaylist.image.error.title"), JOptionPane.ERROR_MESSAGE);
                         ConsoleLogging.Throwable(e);
                     }
                 }
@@ -211,29 +213,10 @@ public class AddPlaylistDialog extends JDialog {
         });
 
         playlistNameLabel.setForeground(PublicValues.globalFontColor);
+        playlistNameLabel.setText(PublicValues.language.translate("addplaylist.name"));
+
         playlistChangeImageButton.setForeground(PublicValues.globalFontColor);
-        playlistVisibility.setForeground(PublicValues.globalFontColor);
-        playlistCollaborative.setForeground(PublicValues.globalFontColor);
-        playlistDescriptionLabel.setForeground(PublicValues.globalFontColor);
-
-        playlistCollaborative.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (playlistCollaborative.isSelected()) {
-                    playlistVisibility.setSelected(false);
-                }
-            }
-        });
-
-        playlistVisibility.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (playlistVisibility.isSelected()) {
-                    playlistCollaborative.setSelected(false);
-                }
-            }
-        });
-
+        playlistChangeImageButton.setText(PublicValues.language.translate("addplaylist.image.button"));
         playlistChangeImageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -244,6 +227,35 @@ public class AddPlaylistDialog extends JDialog {
                         null);
             }
         });
+
+        playlistVisibility.setForeground(PublicValues.globalFontColor);
+        playlistVisibility.setText(PublicValues.language.translate("addplaylist.visibility"));
+        playlistVisibility.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (playlistVisibility.isSelected()) {
+                    playlistCollaborative.setSelected(false);
+                }
+            }
+        });
+
+        playlistCollaborative.setForeground(PublicValues.globalFontColor);
+        playlistCollaborative.setText(PublicValues.language.translate("addplaylist.collaborative"));
+        playlistCollaborative.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (playlistCollaborative.isSelected()) {
+                    playlistVisibility.setSelected(false);
+                }
+            }
+        });
+
+        playlistDescriptionLabel.setForeground(PublicValues.globalFontColor);
+        playlistDescriptionLabel.setText(PublicValues.language.translate("addplaylist.description"));
+
+        okbutton.setText(PublicValues.language.translate("addplaylist.ok"));
+
+        cancelbutton.setText(PublicValues.language.translate("addplaylist.cancel"));
     }
 
     public byte[] convertToJPEG(InputStream source) throws IOException {
@@ -257,9 +269,7 @@ public class AddPlaylistDialog extends JDialog {
 
     public void show(OkRunnable ok, Runnable cancel, Runnable onClose) {
         setLocation(ContentPanel.frame.getCenter());
-        playlistVisibility.setText(PublicValues.language.translate("playlists.create.visibility"));
-        playlistNameLabel.setText(PublicValues.language.translate("playlists.create.name.label"));
-        setTitle(PublicValues.language.translate("playlists.create.title"));
+        setTitle(PublicValues.language.translate("addplaylist.title"));
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -267,12 +277,12 @@ public class AddPlaylistDialog extends JDialog {
                 if (imageBytes != null) {
                     base64EncodedImageData = Base64.getEncoder().encodeToString(imageBytes);
                     if (StringUtils.calculateStringSizeInKilobytes(base64EncodedImageData) > 255.0) {
-                        JOptionPane.showMessageDialog(thisDialog, "Image is bigger than 255 Kilobytes", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(thisDialog, PublicValues.language.translate("addplaylist.dialog.toobig.description"), PublicValues.language.translate("addplaylist.dialog.toobig.title"), JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 }
                 if (playlistName.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(thisDialog, "Please enter a playlist name", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(thisDialog, PublicValues.language.translate("addplaylist.dialog.noname.description"), PublicValues.language.translate("addplaylist.dialog.noname.title"), JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 ok.run(new Playlist(
