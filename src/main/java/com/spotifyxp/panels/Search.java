@@ -18,6 +18,7 @@ import com.spotifyxp.utils.TrackUtils;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -52,6 +53,8 @@ public class Search extends JPanel implements View {
     public static ContextMenu searchplaylistsongscontextmenu;
     public static ContextMenu searchcontextmenu;
     public static JPanel backButtonContainer;
+    public static JTextPane playlistDescription;
+    public static JScrollPane playlistDescriptionScrollPane;
     private String searchCacheTitle = "";
     private String searchCacheArtist = "";
     private boolean excludeExplicit = false;
@@ -365,6 +368,7 @@ public class Search extends JPanel implements View {
                             searchplaylistpanel.setVisible(true);
                             searchplaylistsongscache.clear();
                             ((DefaultTableModel) searchplaylisttable.getModel()).setRowCount(0);
+                            playlistDescription.setText("");
                             break;
                         case "artist":
                             ContentPanel.artistPanel.reset();
@@ -384,7 +388,12 @@ public class Search extends JPanel implements View {
                                             int parsed = 0;
                                             int counter = 0;
                                             int last = 0;
-                                            int total = InstanceManager.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute().getTracks().getTotal();
+                                            Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                            playlistDescription.setText(playlist.getDescription());
+                                            playlistDescriptionScrollPane.setVisible(!playlistDescription.getText().isEmpty());
+                                            backButtonContainer.revalidate();
+                                            backButtonContainer.repaint();
+                                            int total = playlist.getTracks().getTotal();
                                             while (parsed != total) {
                                                 Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
                                                 for (PlaylistTrack track : ptracks.getItems()) {
@@ -409,6 +418,15 @@ public class Search extends JPanel implements View {
                                     }, "Get playlist tracks");
                                     playlistloadthread.start();
                                 }else {
+                                    try {
+                                        Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]).build().execute();
+                                        playlistDescription.setText(playlist.getDescription());
+                                        playlistDescriptionScrollPane.setVisible(!playlistDescription.getText().isEmpty());
+                                        backButtonContainer.revalidate();
+                                        backButtonContainer.repaint();
+                                    }catch (IOException ex) {
+                                        ConsoleLogging.Throwable(ex);
+                                    }
                                     loadnew = true;
                                     lazyLoadingDeInit = TrackUtils.initializeLazyLoadingForPlaylists(
                                             searchplaylistscrollpanel,
@@ -510,9 +528,30 @@ public class Search extends JPanel implements View {
         searchscrollpanel.setViewportView(searchsonglist);
         searchplaylistpanel = new JPanel();
         searchplaylistpanel.setLayout(new BorderLayout());
+        playlistDescriptionScrollPane = new JScrollPane();
+        playlistDescriptionScrollPane.setPreferredSize(new Dimension(-1, 40));
+        playlistDescriptionScrollPane.setVisible(false);
+        playlistDescription = new JTextPane();
+        playlistDescription.setEditable(false);
+        playlistDescription.setContentType("text/html");
+        ((AbstractDocument) playlistDescription.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                string = string.replaceAll("\n", "");
+                super.insertString(fb, offset, string, attr);
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                text = text.replaceAll("\n", "");
+                super.replace(fb, offset, length, text, attrs);
+            }
+        });
+        playlistDescriptionScrollPane.setViewportView(playlistDescription);
         ContentPanel.tabPanel.add(searchplaylistpanel);
         backButtonContainer = new JPanel();
         backButtonContainer.setLayout(new BorderLayout());
+        backButtonContainer.add(playlistDescriptionScrollPane, BorderLayout.CENTER);
         searchplaylistpanel.add(backButtonContainer, BorderLayout.NORTH);
         searchbackbutton = new JButton(PublicValues.language.translate("ui.back"));
         backButtonContainer.add(searchbackbutton, BorderLayout.WEST);

@@ -2,6 +2,7 @@ package com.spotifyxp.guielements;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.Views;
@@ -65,7 +66,7 @@ public class SpotifyBrowseSection extends JScrollPane {
                             break;
                         case "episode":
                         case "track":
-                            PublicValues.spotifyplayer.load(entry, true, PublicValues.shuffle);
+                            InstanceManager.getPlayer().getPlayer().load(entry, true, PublicValues.shuffle);
                             return;
                         default:
                             GraphicalMessage.bug("Called browse onclick with an unsupported content type: " + entry.split(":")[1]);
@@ -140,7 +141,7 @@ public class SpotifyBrowseSection extends JScrollPane {
                             break;
                         case "episode":
                         case "track":
-                            PublicValues.spotifyplayer.load(entry, true, PublicValues.shuffle);
+                            InstanceManager.getSpotifyPlayer().load(entry, true, PublicValues.shuffle);
                             return;
                         default:
                             GraphicalMessage.bug("Called browse onclick with an unsupported content type: " + entry.split(":")[1]);

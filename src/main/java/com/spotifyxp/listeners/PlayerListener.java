@@ -40,7 +40,7 @@ public class PlayerListener implements Player.EventsListener {
     class PlayerThread extends TimerTask {
         public void run() {
             if (!pauseTimer) {
-                if (!PublicValues.spotifyplayer.isPaused()) {
+                if (!InstanceManager.getSpotifyPlayer().isPaused()) {
                     try {
                         PlayerArea.playerCurrentTime.setMaximum(TrackUtils.getSecondsFromMS(Objects.requireNonNull(pl.getPlayer().currentMetadata()).duration()));
                         PlayerArea.playerCurrentTime.setValue(TrackUtils.getSecondsFromMS(pl.getPlayer().time()));

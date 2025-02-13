@@ -10,6 +10,7 @@ import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.JFrame;
 
@@ -42,7 +43,7 @@ public class CanvasPlayer extends JFrame {
             @Override
             public void windowOpened(WindowEvent e) {
                 super.windowOpened(e);
-                MetadataWrapper metadataWrapper = PublicValues.spotifyplayer.currentMetadata();
+                MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();
                 if (metadataWrapper == null || metadataWrapper.id == null) {
                     return;
                 }
@@ -135,7 +136,7 @@ public class CanvasPlayer extends JFrame {
 
     void loadCanvasForCurrentTrack() {
         clearCache();
-        MetadataWrapper metadataWrapper = PublicValues.spotifyplayer.currentMetadata();
+        MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();
         if (metadataWrapper == null || metadataWrapper.id == null) {
             return;
         }
@@ -151,7 +152,7 @@ public class CanvasPlayer extends JFrame {
         public void run(Object... data) {
             if(PublicValues.vlcPlayer.wasReleased()) return;
             PublicValues.vlcPlayer.stop();
-            MetadataWrapper metadataWrapper = PublicValues.spotifyplayer.currentMetadata();
+            MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();
             if (metadataWrapper == null || metadataWrapper.id == null) {
                 return;
             }

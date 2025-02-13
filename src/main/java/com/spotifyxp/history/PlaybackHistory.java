@@ -5,6 +5,7 @@ import com.spotifyxp.deps.de.werwolf2303.sql.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
 import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.HomePanel;
 import com.spotifyxp.panels.PlayerArea;
@@ -132,7 +133,7 @@ public class PlaybackHistory extends JFrame {
                                 ContentPanel.trackPanel.open(data.getURI(), HomePanel.ContentTypes.album);
                                 break;
                             case TRACK:
-                                PublicValues.spotifyplayer.load(data.getURI(), true, PublicValues.shuffle);
+                                InstanceManager.getSpotifyPlayer().load(data.getURI(), true, PublicValues.shuffle);
                                 break;
                             case LOADMORE:
                                 loadMore();

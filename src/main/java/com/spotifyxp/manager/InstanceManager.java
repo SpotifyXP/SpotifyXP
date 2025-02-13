@@ -12,8 +12,6 @@ import java.util.ArrayList;
 /**
  * This class is a manager
  *
- * @apiNote get[insertName] -> Gets an instance of the specified class
- * <br>set[insertName] -> Sets the instance of the specified class
  * <br> Get Example: getUnofficialSpotifyApi()
  * <br> Set Example: setUnofficialSpotifyApi( [instance of UnofficialSpotifyAPI] )
  */
@@ -24,13 +22,19 @@ public class InstanceManager {
     static Player player;
     static UnofficialSpotifyAPI unofficialSpotifyAPI;
     static PlayerUtils playerUtils;
-    static ArrayList<Object> classInstances = new ArrayList<>();
 
     public static Player getPlayer() {
         if (player == null) {
             player = new Player(api);
         }
         return player;
+    }
+
+    public static com.spotifyxp.deps.xyz.gianlu.librespot.player.Player getSpotifyPlayer() {
+        if (player == null) {
+            player = new Player(api);
+        }
+        return player.getPlayer();
     }
 
     public static void setPlayer(Player p) {
@@ -93,7 +97,6 @@ public class InstanceManager {
     }
 
     public static void destroy() {
-        classInstances.clear();
         api = null;
         sapi = null;
         pkce = null;

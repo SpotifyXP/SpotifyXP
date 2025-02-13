@@ -6,6 +6,7 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.logging.ConsoleLogging;
+import com.spotifyxp.manager.InstanceManager;
 
 @SuppressWarnings("CanBeFinal")
 public class KeyListener {
@@ -27,17 +28,17 @@ public class KeyListener {
                         case NativeKeyEvent.VC_MEDIA_PLAY:
                             //PlayPause
                             playpausepressed = true;
-                            PublicValues.spotifyplayer.playPause();
+                            InstanceManager.getSpotifyPlayer().playPause();
                             break;
                         case NativeKeyEvent.VC_MEDIA_NEXT:
                             //Next
                             nextpressed = true;
-                            PublicValues.spotifyplayer.next();
+                            InstanceManager.getSpotifyPlayer().next();
                             break;
                         case NativeKeyEvent.VC_MEDIA_PREVIOUS:
                             //Previous
                             previouspressed = true;
-                            PublicValues.spotifyplayer.previous();
+                            InstanceManager.getSpotifyPlayer().previous();
                             break;
                     }
                 }

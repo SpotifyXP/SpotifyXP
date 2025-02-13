@@ -390,7 +390,7 @@ public class ContentPanel extends JPanel {
         exit.addActionListener(e -> System.exit(0));
         playUri.addActionListener(new AsyncActionListener(e -> {
             String uri = JOptionPane.showInputDialog(frame, PublicValues.language.translate("ui.playtrackuri.message"), PublicValues.language.translate("ui.playtrackuri.title"), JOptionPane.PLAIN_MESSAGE);
-            PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
+            InstanceManager.getSpotifyPlayer().load(uri, true, PublicValues.shuffle);
             Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
         }));
     }

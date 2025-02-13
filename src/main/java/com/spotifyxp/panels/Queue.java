@@ -88,7 +88,7 @@ public class Queue extends JScrollPane implements View {
                 queueUriCache.clear();
                 ((DefaultListModel<?>) queueList.getModel()).clear();
                 try {
-                    for (ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+                    for (ContextTrackOuterClass.ContextTrack t : InstanceManager.getSpotifyPlayer().tracks(true).next) {
                         Track track = InstanceManager.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute();
                         queueUriCache.add(t.getUri());
                         String a = TrackUtils.getArtists(track.getArtists());
@@ -115,7 +115,7 @@ public class Queue extends JScrollPane implements View {
             queueUriCache.clear();
             ((DefaultListModel<?>) queueList.getModel()).clear();
             try {
-                for (ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+                for (ContextTrackOuterClass.ContextTrack t : InstanceManager.getSpotifyPlayer().tracks(true).next) {
                     Track track = InstanceManager.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute();
                     queueUriCache.add(t.getUri());
                     String a = TrackUtils.getArtists(track.getArtists());
@@ -141,7 +141,7 @@ public class Queue extends JScrollPane implements View {
             queueUriCache.clear();
             ((DefaultListModel<?>) queueList.getModel()).clear();
             try {
-                for (ContextTrackOuterClass.ContextTrack t : PublicValues.spotifyplayer.tracks(true).next) {
+                for (ContextTrackOuterClass.ContextTrack t : InstanceManager.getSpotifyPlayer().tracks(true).next) {
                     Track track = InstanceManager.getSpotifyApi().getTrack(t.getUri().split(":")[2]).build().execute();
                     queueUriCache.add(t.getUri());
                     String a = TrackUtils.getArtists(track.getArtists());

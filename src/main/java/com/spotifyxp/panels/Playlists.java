@@ -19,6 +19,10 @@ import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -36,7 +40,8 @@ public class Playlists extends JSplitPane implements View {
     public static final ArrayList<String> playlistsSongUriCache = new ArrayList<>();
     public static ContextMenu playlistsSongTableContextMenu;
     public static ContextMenu playlistsPlaylistsTableContextMenu;
-    public static JTextArea playlistDescription;
+    public static JTextPane playlistDescription;
+    public static JScrollPane playlistDescriptionScrollPane;
     public static JPanel playlistsSongsPanel;
     private final boolean[] inProg = {false};
     private boolean loadNew = false;
@@ -83,10 +88,29 @@ public class Playlists extends JSplitPane implements View {
         playlistsSongsPanel = new JPanel();
         playlistsSongsPanel.setLayout(new BorderLayout());
 
-        playlistDescription = new JTextArea();
-        playlistDescription.setVisible(false);
+        playlistDescriptionScrollPane = new JScrollPane();
+        playlistDescriptionScrollPane.setPreferredSize(new Dimension(-1, 40));
+        playlistDescriptionScrollPane.setVisible(false);
+
+        playlistDescription = new JTextPane();
         playlistDescription.setEditable(false);
-        playlistsSongsPanel.add(playlistDescription, BorderLayout.NORTH);
+        playlistDescription.setContentType("text/html");
+        ((AbstractDocument) playlistDescription.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                string = string.replaceAll("\n", "");
+                super.insertString(fb, offset, string, attr);
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                text = text.replaceAll("\n", "");
+                super.replace(fb, offset, length, text, attrs);
+            }
+        });
+
+        playlistDescriptionScrollPane.setViewportView(playlistDescription);
+        playlistsSongsPanel.add(playlistDescriptionScrollPane, BorderLayout.NORTH);
 
 
         playlistsPlaylistsTable = new DefTable();
@@ -116,7 +140,9 @@ public class Playlists extends JSplitPane implements View {
                                 Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
                                 int total = playlist.getTracks().getTotal();
                                 playlistDescription.setText(playlist.getDescription());
-                                playlistDescription.setVisible(!playlistDescription.getText().isEmpty());
+                                playlistDescriptionScrollPane.setVisible(!playlistDescription.getText().isEmpty());
+                                playlistsSongsPanel.revalidate();
+                                playlistsSongsPanel.repaint();
                                 while (parsed != total) {
                                     Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
                                     for (PlaylistTrack track : ptracks.getItems()) {
@@ -144,7 +170,9 @@ public class Playlists extends JSplitPane implements View {
                         try {
                             Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
                             playlistDescription.setText(playlist.getDescription());
-                            playlistDescription.setVisible(!playlistDescription.getText().isEmpty());
+                            playlistDescriptionScrollPane.setVisible(!playlistDescription.getText().isEmpty());
+                            playlistsSongsPanel.revalidate();
+                            playlistsSongsPanel.repaint();
                         } catch (IOException ex) {
                             ConsoleLogging.Throwable(ex);
                         }

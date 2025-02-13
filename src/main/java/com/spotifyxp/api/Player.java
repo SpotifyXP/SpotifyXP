@@ -16,14 +16,13 @@ public class Player {
         player = InstanceManager.getPlayerUtils().buildPlayer();
         ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
         player.addEventsListener(new PlayerListener(this));
-        PublicValues.spotifyplayer = player;
     }
 
     /**
      * Destroys the librespot-player instance
      */
     public void destroy() {
-        PublicValues.spotifyplayer.close();
+        InstanceManager.getSpotifyPlayer().close();
         InstanceManager.setPlayer(null);
     }
 
@@ -32,7 +31,6 @@ public class Player {
         player = InstanceManager.getPlayerUtils().buildPlayer();
         ConsoleLogging.info(PublicValues.language.translate("debug.connection.ready"));
         player.addEventsListener(new PlayerListener(this));
-        PublicValues.spotifyplayer = player;
     }
 
     /**

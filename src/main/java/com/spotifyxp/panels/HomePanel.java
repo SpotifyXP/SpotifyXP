@@ -149,7 +149,7 @@ public class HomePanel extends JScrollPane implements View {
                     try {
                         switch (ct) {
                             case track:
-                                PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
+                                InstanceManager.getSpotifyPlayer().load(uri, true, PublicValues.shuffle);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             case artist:
@@ -163,7 +163,7 @@ public class HomePanel extends JScrollPane implements View {
                                 }
                                 break;
                             case episode:
-                                PublicValues.spotifyplayer.load(uri, true, PublicValues.shuffle);
+                                InstanceManager.getSpotifyPlayer().load(uri, true, PublicValues.shuffle);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             default:

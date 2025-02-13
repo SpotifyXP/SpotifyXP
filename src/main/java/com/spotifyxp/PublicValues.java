@@ -44,8 +44,6 @@ public class PublicValues {
     public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
     public static libLanguage language = null;
     public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
-    @Deprecated
-    public static Player spotifyplayer = null;
     public static String configfilepath = fileslocation + "/config.json";
     public static Config config = null;
     public static Session session;

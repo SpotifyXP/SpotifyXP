@@ -38,6 +38,7 @@ import com.spotifyxp.deps.xyz.gianlu.librespot.player.metrics.PlayerMetrics;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.AudioSink;
 import com.spotifyxp.deps.xyz.gianlu.librespot.player.mixing.MixingLine;
 import com.spotifyxp.logging.ConsoleLoggingModules;
+import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -343,10 +344,10 @@ class PlayerQueueEntry extends PlayerQueue.Entry implements Closeable, Runnable,
                     close();
                 }
                 listener.playbackError(this, e);
-                if(PublicValues.spotifyplayer.tracks(true).next.isEmpty()) {
+                if(InstanceManager.getSpotifyPlayer().tracks(true).next.isEmpty()) {
                     ContentPanel.playerArea.reset();
                 } else {
-                    PublicValues.spotifyplayer.next();
+                    InstanceManager.getSpotifyPlayer().next();
                 }
                 return;
             } catch (IOException | Decoder.DecoderException ex) {

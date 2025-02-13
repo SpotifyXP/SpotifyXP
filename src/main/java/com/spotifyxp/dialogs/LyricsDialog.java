@@ -203,7 +203,7 @@ public class LyricsDialog extends JDialog {
         displayedLines.clear();
         for (LyricsDialog.ColoredLyricsLine line : new ArrayList<>(coloredLines)) {
             try {
-                if (line.startTimeMS < PublicValues.spotifyplayer.time() && coloredLines.get(counter + 1).startTimeMS > PublicValues.spotifyplayer.time()) {
+                if (line.startTimeMS < InstanceManager.getSpotifyPlayer().time() && coloredLines.get(counter + 1).startTimeMS > InstanceManager.getSpotifyPlayer().time()) {
                     displayedLines.add(line);
                     try {
                         displayedLines.add(coloredLines.get(counter + 1));

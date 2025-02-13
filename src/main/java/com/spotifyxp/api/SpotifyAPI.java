@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class SpotifyAPI {
     public SpotifyAPI() {
         Events.subscribe(SpotifyXPEvents.apikeyrefresh.getName(), data -> {
-            if (PublicValues.spotifyplayer == null) return;
+            if (InstanceManager.getSpotifyPlayer() == null) return;
             InstanceManager.getPkce().refresh();
         });
     }
