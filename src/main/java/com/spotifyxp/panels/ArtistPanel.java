@@ -156,7 +156,7 @@ public class ArtistPanel extends JScrollPane implements View {
     }
 
     void createContextMenus() {
-        artistpopularsonglistcontextmenu = new ContextMenu(artistPopularSongList);
+        artistpopularsonglistcontextmenu = new ContextMenu(artistPopularSongList, popularUriCache, getClass());
         artistpopularsonglistcontextmenu.addItem("All to queue", () -> {
             for (String s : popularUriCache) {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
@@ -166,7 +166,7 @@ public class ArtistPanel extends JScrollPane implements View {
             if (artistPopularSongList.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularUriCache.get(artistPopularSongList.getSelectedRow()));
         });
-        artistalbumcontextmenu = new ContextMenu(artistAlbumTable);
+        artistalbumcontextmenu = new ContextMenu(artistAlbumTable, albumUriCache, getClass());
         artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumUriCache.get(artistAlbumTable.getSelectedRow())));
     }
 

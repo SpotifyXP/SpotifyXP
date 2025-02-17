@@ -36,7 +36,7 @@ public class SpotifyBrowseSection extends JScrollPane {
         table.setForeground(PublicValues.globalFontColor);
         table.getTableHeader().setForeground(PublicValues.globalFontColor);
 
-        contextMenu = new ContextMenu(table);
+        contextMenu = new ContextMenu(table, uris, getClass());
 
         for(ArrayList<String> e : entries) {
             uris.add(e.get(3));
@@ -105,7 +105,7 @@ public class SpotifyBrowseSection extends JScrollPane {
         ));
         table.setForeground(PublicValues.globalFontColor);
         table.getTableHeader().setForeground(PublicValues.globalFontColor);
-        contextMenu = new ContextMenu(table);
+        contextMenu = new ContextMenu(table, uris, getClass());
 
         for(UnofficialSpotifyAPI.SpotifyBrowseEntry e : entries) {
             uris.add(e.getEvents().get().getEvents().get(0).getData_uri().get().getUri());

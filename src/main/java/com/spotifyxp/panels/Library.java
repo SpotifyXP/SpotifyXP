@@ -2,6 +2,8 @@ package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.SavedTrack;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
+import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
@@ -16,6 +18,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library extends JScrollPane implements View {
@@ -100,10 +103,40 @@ public class Library extends JScrollPane implements View {
         setViewportView(librarySongList);
         
         createcontextMenu();
+
+        Events.subscribe(SpotifyXPEvents.libraryupdate.getName(), new EventSubscriber() {
+            @Override
+            public void run(Object... data) {
+                if(libraryUriCache.size() == 0) return;
+                // Parameters
+                // Type
+                // uri
+                if(data[0] instanceof Integer && (Integer) data[0] == 1) {
+                    for(int i = 0; i < libraryUriCache.size(); i++) {
+                        String uri = libraryUriCache.get(i);
+                        if(uri == data[1]) {
+                            int counter = i;
+                            librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).removeRow(counter));
+                            libraryUriCache.remove(counter);
+                            break;
+                        }
+                    }
+                }else {
+                    try {
+                        Track track = InstanceManager.getSpotifyApi().getTrack(((String) data[1]).split(":")[2]).build().execute();
+                        String artists = TrackUtils.getArtists(track.getArtists());
+                        librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).insertRow(0, new Object[]{track.getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())}));
+                        libraryUriCache.add(0, (String) data[0]);
+                    } catch (IOException e) {
+                        ConsoleLogging.Throwable(e);
+                    }
+                }
+            }
+        });
     }
 
     void createcontextMenu() {
-        contextMenu = new ContextMenu(librarySongList);
+        contextMenu = new ContextMenu(librarySongList, libraryUriCache, getClass());
         contextMenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(libraryUriCache.get(librarySongList.getSelectedRow())));
         contextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             libraryUriCache.clear();

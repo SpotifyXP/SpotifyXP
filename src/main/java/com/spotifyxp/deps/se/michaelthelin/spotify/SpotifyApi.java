@@ -13,6 +13,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.browse.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.browse.miscellaneous.GetAvailableGenreSeedsRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.GetEpisodeRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.GetSeveralEpisodesRequest;
+import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.SaveEpisodesRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.follow.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.follow.legacy.FollowPlaylistRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.library.*;
@@ -91,8 +92,8 @@ public class SpotifyApi {
     private final Integer port;
     private final String proxyUrl;
     private final Integer proxyPort;
-    private final Integer proxyUsername;
-    private final Integer proxyPassword;
+    private final String proxyUsername;
+    private final String proxyPassword;
     private final String clientId;
     private final String clientSecret;
     private final URI redirectUri;
@@ -248,7 +249,7 @@ public class SpotifyApi {
      *
      * @return The proxy username.
      */
-    public Integer getProxyUsername() {
+    public String getProxyUsername() {
         return proxyUsername;
     }
 
@@ -257,7 +258,7 @@ public class SpotifyApi {
      *
      * @return The proxy password.
      */
-    public Integer getProxyPassword() {
+    public String getProxyPassword() {
         return proxyPassword;
     }
 
@@ -531,6 +532,12 @@ public class SpotifyApi {
         return new GetSeveralEpisodesRequest.Builder(accessToken)
                 .setDefaults(httpManager, scheme, host, port)
                 .ids(concat(ids, ','));
+    }
+
+    public SaveEpisodesRequest.Builder saveEpisodesForCurrentUser(String... ids) {
+        return new SaveEpisodesRequest.Builder(accessToken)
+                .setDefaults(httpManager, scheme, host, port)
+                .ids(ids);
     }
 
     /**
@@ -1165,7 +1172,7 @@ public class SpotifyApi {
         return new AddItemsToPlaylistRequest.Builder(accessToken)
                 .setDefaults(httpManager, scheme, host, port)
                 .playlist_id(playlist_id)
-                .uris(concat(uris, ','));
+                .uris(uris);
     }
 
     /**
@@ -1594,8 +1601,8 @@ public class SpotifyApi {
         private Integer port = DEFAULT_PORT;
         private String proxyUrl;
         private Integer proxyPort;
-        private Integer proxyUsername;
-        private Integer proxyPassword;
+        private String proxyUsername;
+        private String proxyPassword;
         private String clientId;
         private String clientSecret;
         private URI redirectUri;
@@ -1674,7 +1681,7 @@ public class SpotifyApi {
          * @param proxyUsername A proxy username.
          * @return A {@link Builder}.
          */
-        public Builder setProxyUsername(Integer proxyUsername) {
+        public Builder setProxyUsername(String proxyUsername) {
             this.proxyUsername = proxyUsername;
             return this;
         }
@@ -1685,7 +1692,7 @@ public class SpotifyApi {
          * @param proxyPassword A proxy password.
          * @return A {@link Builder}.
          */
-        public Builder setProxyPassword(Integer proxyPassword) {
+        public Builder setProxyPassword(String proxyPassword) {
             this.proxyPassword = proxyPassword;
             return this;
         }

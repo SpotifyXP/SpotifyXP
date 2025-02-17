@@ -5,6 +5,11 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.utils.Utils;
 
+import java.net.Proxy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /**
  * Holds all registered config values with their type and default value
  *
@@ -24,6 +29,12 @@ public enum ConfigValues {
     cache_disabled("user.settings.cache.disabled", ConfigValueTypes.BOOLEAN, "ui.settings.playback.label", false),
     disable_autoqueue("user.settings.autoqueue.disabled", ConfigValueTypes.BOOLEAN, "ui.settings.playback.label", false),
     audioquality("settings.playback.quality", ConfigValueTypes.CUSTOM, "ui.settings.playback.label", new CustomConfigValue<>("settings.playback.quality", Quality.NORMAL.configValue(), Lists.newArrayList("Normal", "High", "Very high"), Utils.enumToObjectArray(Quality.values()), ConfigValueTypes.STRING)),
+    proxy_enable("proxy.enable", ConfigValueTypes.BOOLEAN, "ui.settings.proxy", false),
+    proxy_type("proxy.type", ConfigValueTypes.CUSTOM, "ui.settings.proxy", new CustomConfigValue<>("proxy.type", Proxy.Type.HTTP.name(), Arrays.stream(Proxy.Type.values()).map(Enum::name).collect(Collectors.toCollection(ArrayList::new)), Arrays.stream(Proxy.Type.values()).map(Enum::name).collect(Collectors.toCollection(ArrayList::new)), ConfigValueTypes.STRING)),
+    proxy_address("proxy.address", ConfigValueTypes.STRING, "ui.settings.proxy", ""),
+    proxy_username("proxy.username", ConfigValueTypes.STRING, "ui.settings.proxy", ""),
+    proxy_password("proxy.password", ConfigValueTypes.STRING, "ui.settings.proxy", ""),
+    proxy_trustall("proxy.trustall", ConfigValueTypes.BOOLEAN, "ui.settings.proxy", false),
     other_autoplayenabled("user.settings.other.autoplayenabled", ConfigValueTypes.BOOLEAN, "ui.settings.other", true),
     other_crossfadeduration("user.settings.other.crossfadeduration", ConfigValueTypes.INT, "ui.settings.other", 0),
     other_enablenormalization("user.settings.other.enablenormalization", ConfigValueTypes.BOOLEAN, "ui.settings.other", true),

@@ -1,6 +1,7 @@
 package com.spotifyxp.deps.se.michaelthelin.spotify;
 
 import com.google.gson.*;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.exceptions.detailed.*;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
@@ -11,6 +12,9 @@ import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -22,11 +26,7 @@ import java.util.Map;
 public class SpotifyHttpManager implements IHttpManager {
 
     private static final Gson GSON = new Gson();
-    private final OkHttpClient httpClient;
-    private final InetSocketAddress proxyAddress;
-    private final Proxy.Type proxyType;
-    private final String proxyUsername;
-    private final String proxyPassword;
+    private OkHttpClient httpClient;
     private final Integer connectionRequestTimeout;
     private final Integer connectTimeout;
     private final Integer socketTimeout;
@@ -37,33 +37,13 @@ public class SpotifyHttpManager implements IHttpManager {
      * @param builder The builder.
      */
     public SpotifyHttpManager(Builder builder) {
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-        this.proxyAddress = builder.proxyAddress;
-        this.proxyType = builder.proxyType;
-        this.proxyUsername = builder.proxyUsername;
-        this.proxyPassword = builder.proxyPassword;
+        OkHttpClient.Builder clientBuilder = PublicValues.defaultHttpClient.newBuilder();
         this.connectionRequestTimeout = builder.connectionRequestTimeout;
         this.connectTimeout = builder.connectTimeout;
         this.socketTimeout = builder.socketTimeout;
 
         if (connectTimeout != null) clientBuilder.setConnectTimeout$okhttp(connectTimeout);
         if (connectionRequestTimeout != null) clientBuilder.setCallTimeout$okhttp(connectionRequestTimeout);
-        if (proxyAddress != null) {
-            if (proxyUsername != null && proxyPassword != null) {
-                clientBuilder.setProxyAuthenticator$okhttp(new Authenticator() {
-                    @Nullable
-                    @Override
-                    public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
-                        String credential = Credentials.basic(proxyUsername, proxyPassword);
-                        return response.request().newBuilder()
-                                .header("Proxy-Authorization", credential)
-                                .build();
-                    }
-                });
-            }
-            clientBuilder.setProxy$okhttp(new Proxy(proxyType, proxyAddress));
-        }
-
         this.httpClient = new OkHttpClient(clientBuilder);
     }
 
@@ -75,22 +55,6 @@ public class SpotifyHttpManager implements IHttpManager {
                     "URI Syntax Exception for \"" + uriString + "\"");
             return null;
         }
-    }
-
-    public InetSocketAddress getProxyAddress() {
-        return proxyAddress;
-    }
-
-    public Proxy.Type getProxyType() {
-        return proxyType;
-    }
-
-    public String getProxyUsername() {
-        return proxyUsername;
-    }
-
-    public String getProxyPassword() {
-        return proxyPassword;
     }
 
     public Integer getConnectionRequestTimeout() {
@@ -330,35 +294,11 @@ public class SpotifyHttpManager implements IHttpManager {
     }
 
     public static class Builder {
-        private InetSocketAddress proxyAddress;
-        private Proxy.Type proxyType;
-        private String proxyUsername;
-        private String proxyPassword;
         private Integer cacheMaxEntries;
         private Integer cacheMaxObjectSize;
         private Integer connectionRequestTimeout;
         private Integer connectTimeout;
         private Integer socketTimeout;
-
-        public Builder setProxyAddress(InetSocketAddress proxyAddress) {
-            this.proxyAddress = proxyAddress;
-            return this;
-        }
-
-        public Builder setProxyType(Proxy.Type proxyType) {
-            this.proxyType = proxyType;
-            return this;
-        }
-
-        public Builder setProxyUsername(String proxyUsername) {
-            this.proxyUsername = proxyUsername;
-            return this;
-        }
-
-        public Builder setProxyPassword(String proxyPassword) {
-            this.proxyPassword = proxyPassword;
-            return this;
-        }
 
         public Builder setCacheMaxEntries(Integer cacheMaxEntries) {
             this.cacheMaxEntries = cacheMaxEntries;

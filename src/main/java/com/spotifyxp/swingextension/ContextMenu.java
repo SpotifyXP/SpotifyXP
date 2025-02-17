@@ -8,13 +8,14 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class ContextMenu {
     public interface GlobalContextMenuItem {
-        Runnable toRun(JComponent component);
+        Runnable toRun(JComponent component, @Nullable ArrayList<String> uris);
         String name();
-        boolean shouldBeAdded(JComponent component);
+        boolean shouldBeAdded(JComponent component, Class<?> containingClass);
     }
 
     final JPopupMenu holder = new JPopupMenu();
@@ -22,7 +23,7 @@ public class ContextMenu {
     public ContextMenu() {
     }
 
-    public ContextMenu(JComponent container, JComponent click) {
+    public ContextMenu(JComponent container, JComponent click, @Nullable ArrayList<String> uris, Class<?> containingClass) {
         click.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -45,13 +46,13 @@ public class ContextMenu {
         }));
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             JMenuItem i = new JMenuItem(item.name());
-            i.addActionListener(new AsyncActionListener(e -> item.toRun(container).run()));
-            if(item.shouldBeAdded(container)) holder.add(i);
+            i.addActionListener(new AsyncActionListener(e -> item.toRun(container, uris).run()));
+            if(item.shouldBeAdded(container, containingClass)) holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
 
-    public ContextMenu(JPanel panel) {
+    public ContextMenu(JPanel panel, @Nullable ArrayList<String> uris, Class<?> containingClass) {
         panel.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -63,13 +64,13 @@ public class ContextMenu {
         }));
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             JMenuItem i = new JMenuItem(item.name());
-            i.addActionListener(new AsyncActionListener(e -> item.toRun(panel).run()));
-            if(item.shouldBeAdded(panel)) holder.add(i);
+            i.addActionListener(new AsyncActionListener(e -> item.toRun(panel, uris).run()));
+            if(item.shouldBeAdded(panel, containingClass)) holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }
 
-    public ContextMenu(JComponent component) {
+    public ContextMenu(JComponent component, @Nullable ArrayList<String> uris, Class<?> containingClass) {
         component.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -81,8 +82,8 @@ public class ContextMenu {
         }));
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
             JMenuItem i = new JMenuItem(item.name());
-            i.addActionListener(new AsyncActionListener(e -> item.toRun(component).run()));
-            if(item.shouldBeAdded(component)) holder.add(i);
+            i.addActionListener(new AsyncActionListener(e -> item.toRun(component, uris).run()));
+            if(item.shouldBeAdded(component, containingClass)) holder.add(i);
         }
         PublicValues.contextMenus.add(this);
     }

@@ -61,7 +61,7 @@ public class TrackPanel extends Panel implements View {
         advancedSongTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         advancedSongTable.setForeground(PublicValues.globalFontColor);
         advancedSongTable.getTableHeader().setForeground(PublicValues.globalFontColor);
-        contextMenu = new ContextMenu(advancedSongTable);
+        contextMenu = new ContextMenu(advancedSongTable, advancedUriCache, getClass());
         contextMenu.addItem("All to queue", () -> {
             for(String s : advancedUriCache) {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);

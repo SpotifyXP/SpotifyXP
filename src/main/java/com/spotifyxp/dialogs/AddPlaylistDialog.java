@@ -268,6 +268,7 @@ public class AddPlaylistDialog extends JDialog {
     }
 
     public void show(OkRunnable ok, Runnable cancel, Runnable onClose) {
+        setModal(true);
         setLocation(ContentPanel.frame.getCenter());
         setTitle(PublicValues.language.translate("addplaylist.title"));
         okbutton.addActionListener(new ActionListener() {

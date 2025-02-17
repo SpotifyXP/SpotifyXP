@@ -66,7 +66,7 @@ public class HotList extends JSplitPane implements View {
         hotListPlaylistsScrollPanel.setViewportView(hotListPlaylistsTable);
         setLeftComponent(hotListPlaylistsScrollPanel);
 
-        hotListPlaylistsPanelRightClickMenu = new ContextMenu(hotListPlaylistsTable);
+        hotListPlaylistsPanelRightClickMenu = new ContextMenu(hotListPlaylistsTable, hotListPlaylistCache, getClass());
         hotListPlaylistsPanelRightClickMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             hotListPlaylistCache.clear();
             hotListSongListCache.clear();
@@ -99,7 +99,7 @@ public class HotList extends JSplitPane implements View {
         hotListSongsScrollPanel.setViewportView(hotListSongsTable);
         setRightComponent(hotListSongsScrollPanel);
 
-        hotListSongsTablecontextmenu = new ContextMenu(hotListSongsTable);
+        hotListSongsTablecontextmenu = new ContextMenu(hotListSongsTable, hotListSongListCache, getClass());
         hotListSongsTablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(hotListSongListCache.get(hotListSongsTable.getSelectedRow())));
         hotListSongsTablecontextmenu.addItem("All to queue", () -> {
             for(String s : hotListSongListCache) {

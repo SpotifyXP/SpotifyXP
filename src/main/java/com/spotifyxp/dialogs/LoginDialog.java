@@ -4,7 +4,9 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.events.EventSubscriber;
+import com.spotifyxp.guielements.Settings;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.ConnectionUtils;
@@ -14,6 +16,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -38,9 +42,17 @@ public class LoginDialog {
     public JButton oauthbackbutton;
     public JButton oauthcopybutton;
     public JPanel oauthViewSubPanel;
+    public JButton proxysettings;
 
     private static JFrame frame;
     private String oAuthCallbackURL;
+
+    private class CustomSettingsDialog extends Settings {
+        @Override
+        public void addSetting(ConfigValues value, int i) {
+            super.addSetting(value, i);
+        }
+    }
 
     private enum Views {
         MAIN,
@@ -59,6 +71,24 @@ public class LoginDialog {
         spotifyxplogo.setIcon(
                 new ImageIcon(icon.getImage().getScaledInstance((int) defaultDimension.getWidth() / 3, (int) defaultDimension.getWidth() / 3, Image.SCALE_FAST))
         );
+
+        proxysettings.setForeground(PublicValues.globalFontColor);
+        proxysettings.setText(PublicValues.language.translate("ui.login.openproxysettings"));
+        proxysettings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CustomSettingsDialog dialog = new CustomSettingsDialog();
+                int counter = 0;
+                for (ConfigValues values : ConfigValues.values()) {
+                    if (values.category.equalsIgnoreCase("ui.settings.proxy")) {
+                        dialog.addSetting(values, counter);
+                        counter++;
+                    }
+                }
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+        });
 
         chooseloginmethodlabel.setForeground(PublicValues.globalFontColor);
         zeroconfloginmethodbutton.setForeground(PublicValues.globalFontColor);
@@ -183,8 +213,8 @@ public class LoginDialog {
         contentPanel.setMinimumSize(new Dimension(296, 384));
         contentPanel.setPreferredSize(new Dimension(296, 384));
         mainView = new JPanel();
-        mainView.setLayout(new GridLayoutManager(7, 1, new Insets(0, 0, 0, 0), -1, -1));
-        mainView.setVisible(false);
+        mainView.setLayout(new GridLayoutManager(8, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainView.setVisible(true);
         contentPanel.add(mainView, "Card1");
         spotifyxplogo = new JLabel();
         spotifyxplogo.setAlignmentY(1.0f);
@@ -210,9 +240,12 @@ public class LoginDialog {
         final Spacer spacer1 = new Spacer();
         mainView.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 30), new Dimension(-1, 30), new Dimension(-1, 40), 0, false));
         final Spacer spacer2 = new Spacer();
-        mainView.add(spacer2, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 20), new Dimension(-1, 20), new Dimension(20, -1), 0, false));
+        mainView.add(spacer2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(-1, 10), new Dimension(-1, 10), 0, false));
+        proxysettings = new JButton();
+        proxysettings.setText("Button");
+        mainView.add(proxysettings, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        mainView.add(spacer3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(-1, 10), new Dimension(-1, 10), 0, false));
+        mainView.add(spacer3, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 20), new Dimension(-1, 20), new Dimension(20, -1), 0, false));
         zeroconfView = new JPanel();
         zeroconfView.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         zeroconfView.setVisible(false);
@@ -227,7 +260,7 @@ public class LoginDialog {
         zeroconfView.add(spacer4, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         oauthView = new JPanel();
         oauthView.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
-        oauthView.setVisible(true);
+        oauthView.setVisible(false);
         contentPanel.add(oauthView, "Card3");
         oauthbackbutton = new JButton();
         oauthbackbutton.setText("Back");

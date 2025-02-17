@@ -73,7 +73,7 @@ public class LyricsDialog extends JDialog {
                         GraphicalMessage.openException(e);
                     }
                 }
-                ContextMenu menu = new ContextMenu(paintPanel);
+                ContextMenu menu = new ContextMenu(paintPanel, null, getClass());
                 menu.addItem(PublicValues.language.translate("ui.general.copy"), new Runnable() {
                     @Override
                     public void run() {

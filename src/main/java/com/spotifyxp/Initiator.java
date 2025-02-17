@@ -24,12 +24,19 @@ import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
 import com.spotifyxp.utils.Utils;
-import okhttp3.OkHttpClient;
+import okhttp3.*;
 import org.apache.commons.io.output.NullPrintStream;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 public class Initiator {
     static final Thread hook = new Thread(PlayerArea::saveCurrentState, "Save play state");
@@ -47,6 +54,7 @@ public class Initiator {
         setLanguage(); //Set the language to the one specified in the config
         creatingLock(); //Creating the 'LOCK' file
         PublicValues.defaultHttpClient = new OkHttpClient(); //Creating the default http client
+        initProxy();
         initializeVideoPlayback();
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
@@ -60,11 +68,63 @@ public class Initiator {
         initTrayIcon(); //Creating the tray icon
         try {
             initGUI(); //Initializing the GUI
-        }catch (IOException e) {
+        } catch (IOException e) {
             ConsoleLogging.Throwable(e);
             GraphicalMessage.sorryError("Critical exception in GUI initialization");
         }
         SplashPanel.hide(); //Hiding the splash panel
+    }
+
+    static void initProxy() {
+        if (PublicValues.config.getBoolean(ConfigValues.proxy_enable.name)) {
+            SplashPanel.linfo.setText("Initializing proxy...");
+            try {
+                OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+                clientBuilder.setProxyAuthenticator$okhttp(new Authenticator() {
+                    @Nullable
+                    @Override
+                    public Request authenticate(@Nullable Route route, @NotNull Response response) throws IOException {
+                        String credential = Credentials.basic(
+                                PublicValues.config.getString(ConfigValues.proxy_username.name),
+                                PublicValues.config.getString(ConfigValues.proxy_password.name)
+                        );
+                        return response.request().newBuilder()
+                                .header("Proxy-Authorization", credential)
+                                .build();
+                    }
+                });
+                clientBuilder.setProxy$okhttp(new Proxy(
+                        Proxy.Type.valueOf(PublicValues.config.getString(ConfigValues.proxy_type.name)),
+                        new InetSocketAddress(
+                                InetAddress.getByName(PublicValues.config.getString(ConfigValues.proxy_address.name).split(":")[0]),
+                                Integer.parseInt(PublicValues.config.getString(ConfigValues.proxy_address.name).split(":")[1])
+                        )
+                ));
+                TrustManager[] trustAllCerts = new TrustManager[]{
+                        new X509TrustManager() {
+                            @Override
+                            public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                            }
+
+                            @Override
+                            public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                            }
+
+                            @Override
+                            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                                return new java.security.cert.X509Certificate[]{};
+                            }
+                        }
+                };
+                SSLContext sslContext = SSLContext.getInstance("SSL");
+                sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+                clientBuilder.sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustAllCerts[0]);
+                clientBuilder.hostnameVerifier((hostname, session) -> true);
+                PublicValues.defaultHttpClient = clientBuilder.build();
+            } catch (Exception e) {
+                ConsoleLogging.Throwable(e);
+            }
+        }
     }
 
     static void checkDebug() {
@@ -166,7 +226,7 @@ public class Initiator {
 
     static void creatingLock() {
         try {
-            if(Utils.checkOrLockFile()) {
+            if (Utils.checkOrLockFile()) {
                 JOptionPane.showMessageDialog(null, "Another instance of SpotifyXP is already running! Exiting...");
                 System.exit(-1);
             }

@@ -142,7 +142,7 @@ public class Settings extends JFrame {
         }
     }
 
-    void addSetting(ConfigValues value, int i) {
+    protected void addSetting(ConfigValues value, int i) {
         if(!tabs.containsKey(value.category)) {
             JPanel panel = new JPanel();
             panel.setLayout(new GridBagLayout());

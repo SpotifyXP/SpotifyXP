@@ -4,8 +4,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.JsonArray;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.special.SnapshotResult;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Add one or more items to a user’s playlist.
@@ -81,6 +86,10 @@ public class AddItemsToPlaylistRequest extends AbstractDataRequest<SnapshotResul
          */
         public Builder uris(final String uris) {
             return setQueryParameter("uris", uris);
+        }
+
+        public Builder uris(final String[] uris) {
+            return setBodyParameter("uris", new JSONArray(Arrays.asList(uris)));
         }
 
         /**

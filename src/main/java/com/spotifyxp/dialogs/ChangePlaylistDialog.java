@@ -163,6 +163,7 @@ public class ChangePlaylistDialog extends JDialog {
                 dispose();
             }
         });
+        setModal(true);
         setTitle(PublicValues.language.translate("changeplaylist.title"));
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {

@@ -55,13 +55,10 @@ public class PlayerArea extends JPanel {
     public static CanvasPlayer canvasPlayer;
     public static JSVGPanel canvasPlayerButton;
     private static boolean doneLastParsing = false;
-    public static ContextMenu playerAreaContextMenu;
 
     public PlayerArea(JFrame frame) {
         setBounds(72, 0, 565, 100);
         setLayout(null);
-
-        playerAreaContextMenu = new ContextMenu(this);
 
         playerAreaShuffleButton = new JSVGPanel();
         playerAreaShuffleButton.getJComponent().setBounds(510, 75, 20, 20);
@@ -309,6 +306,7 @@ public class PlayerArea extends JPanel {
                 if (heart.isFilled) {
                     try {
                         InstanceManager.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
+                        Events.triggerEvent(SpotifyXPEvents.libraryupdate.getName(), 1, Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

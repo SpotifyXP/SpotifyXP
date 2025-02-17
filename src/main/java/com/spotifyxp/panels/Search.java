@@ -576,7 +576,7 @@ public class Search extends JPanel implements View {
         searchplaylisttable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{PublicValues.language.translate("ui.search.songlist.songname"), PublicValues.language.translate("ui.search.songlist.filesize"), PublicValues.language.translate("ui.search.songlist.bitrate"), PublicValues.language.translate("ui.search.songlist.length")}));
         searchplaylistpanel.setVisible(false);
 
-        searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable);
+        searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable, searchplaylistsongscache, getClass());
         searchplaylistsongscontextmenu.addItem("All to queue", () -> {
             for(String s : searchplaylistsongscache) {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
@@ -603,7 +603,7 @@ public class Search extends JPanel implements View {
                 ContentPanel.enableTabSwitch();
             }
         }));
-        searchcontextmenu = new ContextMenu(searchsonglist);
+        searchcontextmenu = new ContextMenu(searchsonglist, searchsonglistcache, getClass());
         searchcontextmenu.addItem(PublicValues.language.translate("ui.general.addtolibrary"), () -> {
             PlayerArea.heart.isFilled = true;
             PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());

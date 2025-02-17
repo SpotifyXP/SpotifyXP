@@ -35,7 +35,7 @@ public class HomePanel extends JScrollPane implements View {
         content = new JPanel();
         content.setLayout(null);
 
-        menu = new ContextMenu(content);
+        menu = new ContextMenu(content, null, getClass());
         menu.addItem("Refresh", this::refill);
 
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -99,7 +99,7 @@ public class HomePanel extends JScrollPane implements View {
         homepanelmodulecontenttable.setForeground(PublicValues.globalFontColor);
         homepanelmodulecontenttable.getTableHeader().setForeground(PublicValues.globalFontColor);
 
-        ContextMenu sectionContextMenu = new ContextMenu(homepanelmodulecontenttable);
+        new ContextMenu(homepanelmodulecontenttable, uricache, getClass());
 
         homepanelmodulecontenttable.setModel(new DefaultTableModel(
                 new Object[][]{

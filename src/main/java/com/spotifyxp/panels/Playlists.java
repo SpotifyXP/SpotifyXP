@@ -222,7 +222,7 @@ public class Playlists extends JSplitPane implements View {
 
         playlistsSongsPanel.add(playlistsSongsScrollPane, BorderLayout.CENTER);
 
-        playlistsSongTableContextMenu = new ContextMenu(playlistsSongTable);
+        playlistsSongTableContextMenu = new ContextMenu(playlistsSongTable, playlistsSongUriCache, getClass());
         playlistsSongTableContextMenu.addItem("All to queue", () -> {
             for(String s : playlistsSongUriCache) {
                 Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
@@ -233,7 +233,7 @@ public class Playlists extends JSplitPane implements View {
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistsSongUriCache.get(playlistsSongTable.getSelectedRow()));
         });
 
-        playlistsPlaylistsTableContextMenu = new ContextMenu(playlistsPlaylistsTable);
+        playlistsPlaylistsTableContextMenu = new ContextMenu(playlistsPlaylistsTable, playlistsUriCache, getClass());
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
             InstanceManager.getSpotifyApi().unfollowPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]);
             playlistsUriCache.remove(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()));

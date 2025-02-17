@@ -19,6 +19,7 @@ package com.spotifyxp.deps.xyz.gianlu.librespot.core;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.protobuf.ByteString;
+import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.Authentication;
 import com.spotifyxp.deps.com.spotify.Keyexchange;
 import com.spotifyxp.deps.com.spotify.connectstate.Connect;
@@ -143,7 +144,7 @@ public final class Session implements Closeable {
 
     @NotNull
     private static OkHttpClient createClient(@NotNull Configuration conf) {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = PublicValues.defaultHttpClient.newBuilder();
         builder.retryOnConnectionFailure(true);
 
         if (conf.proxyEnabled && conf.proxyType != Proxy.Type.DIRECT) {

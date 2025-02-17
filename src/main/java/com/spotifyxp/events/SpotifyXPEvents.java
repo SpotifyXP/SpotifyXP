@@ -20,7 +20,8 @@ public enum SpotifyXPEvents {
     addtoqueue("addToQueue", "Fires when a track should be added to the queue"),
     recalculateSizes("recalcSizes", "Fires when the sizes of the JComponent's should be recalculated"),
     playerresume("playerresume", "Fires when the player resumes"),
-    playerpause("playerpause", "Fires when the player is paused"),;
+    playerpause("playerpause", "Fires when the player is paused"),
+    libraryupdate("libraryupdate", "Fires when the library updates");
 
     public String getName() {
         return name;

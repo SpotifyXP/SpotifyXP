@@ -154,7 +154,7 @@ public class Queue extends JScrollPane implements View {
             }
         });
 
-        contextMenu = new ContextMenu(queueList);
+        contextMenu = new ContextMenu(queueList, queueUriCache, getClass());
         contextMenu.addItem("Remove", () -> {
             String uri = queueUriCache.get(queueList.getSelectedIndex());
             ArrayList<ContextTrackOuterClass.ContextTrack> tracks = new ArrayList<>();
