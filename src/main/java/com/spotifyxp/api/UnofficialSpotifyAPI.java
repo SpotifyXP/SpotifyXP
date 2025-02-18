@@ -171,7 +171,8 @@ public class UnofficialSpotifyAPI {
                     if(json.getJSONObject("content").getJSONObject("data").getString("__typename").equals("NotFound")) {
                         break;
                     }
-                    episodeOrChapter = Optional.of(HomeTabEpisodeOrChapter.fromJSON(json.getJSONObject("content").getJSONObject("data")));
+                    HomeTabEpisodeOrChapter homeTabEpisodeOrChapter = HomeTabEpisodeOrChapter.fromJSON(json.getJSONObject("content").getJSONObject("data"));
+                    if(homeTabEpisodeOrChapter != null) episodeOrChapter = Optional.of(homeTabEpisodeOrChapter);
                     break;
                 case UnknownType:
                     ConsoleLogging.warning("[HomeTab] Got section item with unknown type");
