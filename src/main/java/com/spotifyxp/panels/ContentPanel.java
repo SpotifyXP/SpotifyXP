@@ -177,7 +177,7 @@ public class ContentPanel extends JPanel {
                                 new Thread(() -> {
                                     try {
                                         InstanceManager.getSpotifyApi().saveShowsForCurrentUser(
-                                                uris.get(table.getSelectedRow())
+                                                uris.get(table.getSelectedRow()).split(":")[2]
                                         ).build().execute();
                                     }catch (IOException e) {
                                         ConsoleLogging.Throwable(e);
@@ -188,8 +188,8 @@ public class ContentPanel extends JPanel {
                                 new Thread(() -> {
                                     try {
                                         InstanceManager.getSpotifyApi().followArtistsOrUsers(
-                                                ModelObjectType.PLAYLIST,
-                                                new String[] {uris.get(table.getSelectedRow())}
+                                                ModelObjectType.ARTIST,
+                                                new String[] {uris.get(table.getSelectedRow()).split(":")[2]}
                                         ).build().execute();
                                     }catch (IOException e) {
                                         ConsoleLogging.Throwable(e);
@@ -200,7 +200,7 @@ public class ContentPanel extends JPanel {
                                 new Thread(() -> {
                                     try {
                                         InstanceManager.getSpotifyApi().saveTracksForUser(
-                                                uris.get(table.getSelectedRow())
+                                                uris.get(table.getSelectedRow()).split(":")[2]
                                         ).build().execute();
                                         Events.triggerEvent(SpotifyXPEvents.libraryupdate.getName(), 0, uris.get(table.getSelectedRow()));
                                     }catch (IOException e) {
@@ -212,7 +212,7 @@ public class ContentPanel extends JPanel {
                                 new Thread(() -> {
                                     try {
                                         InstanceManager.getSpotifyApi().saveEpisodesForCurrentUser(
-                                                uris.get(table.getSelectedRow())
+                                                uris.get(table.getSelectedRow()).split(":")[2]
                                         ).build().execute();
                                     }catch (IOException e) {
                                         ConsoleLogging.Throwable(e);
@@ -223,7 +223,7 @@ public class ContentPanel extends JPanel {
                                 new Thread(() -> {
                                     try {
                                         InstanceManager.getSpotifyApi().saveAlbumsForCurrentUser(
-                                                uris.get(table.getSelectedRow())
+                                                uris.get(table.getSelectedRow()).split(":")[2]
                                         ).build().execute();
                                     }catch (IOException e) {
                                         ConsoleLogging.Throwable(e);
