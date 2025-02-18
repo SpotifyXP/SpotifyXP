@@ -550,6 +550,7 @@ public class UnofficialSpotifyAPI {
 
         public static HomeTabEpisodeOrChapter fromJSON(JSONObject object) {
             ArrayList<HomeTabImage> EpisodeOrChapterImages = new ArrayList<>();
+            if(object.getString("__typename").equalsIgnoreCase("restrictedcontent")) return null;
             for(Object image : object.getJSONObject("coverArt").getJSONArray("sources")) {
                 EpisodeOrChapterImages.add(HomeTabImage.fromJSON(new JSONObject(image.toString())));
             }
