@@ -31,7 +31,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Playlists extends JSplitPane implements View {
+public class LibraryPlaylists extends JSplitPane {
     public static JScrollPane playlistsPlaylistsScrollPane;
     public static JScrollPane playlistsSongsScrollPane;
     public static DefTable playlistsPlaylistsTable;
@@ -60,8 +60,8 @@ public class Playlists extends JSplitPane implements View {
             while (parsed != total) {
                 PlaylistSimplified[] playlists = InstanceManager.getSpotifyApi().getListOfCurrentUsersPlaylists().offset(offset).limit(50).build().execute().getItems();
                 for (PlaylistSimplified simplified : playlists) {
-                    Playlists.playlistsUriCache.add(simplified.getUri());
-                    ((DefaultTableModel) Playlists.playlistsPlaylistsTable.getModel()).addRow(new Object[]{simplified.getName()});
+                    playlistsUriCache.add(simplified.getUri());
+                    ((DefaultTableModel) playlistsPlaylistsTable.getModel()).addRow(new Object[]{simplified.getName()});
                     parsed++;
                 }
                 if (parsed == last) {
@@ -81,7 +81,7 @@ public class Playlists extends JSplitPane implements View {
     }
 
 
-    public Playlists() {
+    public LibraryPlaylists() {
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setVisible(false);
 
@@ -140,13 +140,13 @@ public class Playlists extends JSplitPane implements View {
                                 Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
                                 int total = playlist.getTracks().getTotal();
                                 playlistDescription.setText(playlist.getDescription());
-                                playlistDescriptionScrollPane.setVisible(!playlistDescription.getText().isEmpty());
+                                playlistDescriptionScrollPane.setVisible(!playlist.getDescription().isEmpty());
                                 playlistsSongsPanel.revalidate();
                                 playlistsSongsPanel.repaint();
                                 while (parsed != total) {
                                     Paging<PlaylistTrack> ptracks = InstanceManager.getSpotifyApi().getPlaylistsItems(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).offset(offset).limit(100).build().execute();
                                     for (PlaylistTrack track : ptracks.getItems()) {
-                                        ((DefaultTableModel) playlistsSongTable.getModel()).addRow(new Object[]{track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
+                                        ((DefaultTableModel) playlistsSongTable.getModel()).addRow(new Object[] {track.getTrack().getName(), TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())});
                                         playlistsSongUriCache.add(track.getTrack().getUri());
                                         parsed++;
                                     }
@@ -170,7 +170,7 @@ public class Playlists extends JSplitPane implements View {
                         try {
                             Playlist playlist = InstanceManager.getSpotifyApi().getPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]).build().execute();
                             playlistDescription.setText(playlist.getDescription());
-                            playlistDescriptionScrollPane.setVisible(!playlistDescription.getText().isEmpty());
+                            playlistDescriptionScrollPane.setVisible(!playlist.getDescription().isEmpty());
                             playlistsSongsPanel.revalidate();
                             playlistsSongsPanel.repaint();
                         } catch (IOException ex) {
@@ -232,6 +232,14 @@ public class Playlists extends JSplitPane implements View {
             if(playlistsSongTable.getSelectedRow() == -1) return;
             Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistsSongUriCache.get(playlistsSongTable.getSelectedRow()));
         });
+        playlistsSongTableContextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), new Runnable() {
+            @Override
+            public void run() {
+                ((DefaultTableModel) playlistsSongTable.getModel()).setRowCount(0);
+                playlistsSongUriCache.clear();
+                fill();
+            }
+        });
 
         playlistsPlaylistsTableContextMenu = new ContextMenu(playlistsPlaylistsTable, playlistsUriCache, getClass());
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.remove.playlist"), () -> {
@@ -264,14 +272,14 @@ public class Playlists extends JSplitPane implements View {
                                 new Thread(() -> {
                                     try {
                                         InstanceManager.getSpotifyApi().changePlaylistsDetails(
-                                                playlistRec.getId()
-                                        )
+                                                        playlistRec.getId()
+                                                )
                                                 .collaborative(playlist.isCollaborative)
                                                 .public_(playlist.isPublic)
                                                 .name(playlist.playlistName)
                                                 .description(playlist.playlistDescription)
                                                 .build().execute();
-                                        new Thread(Playlists.this::fetchPlaylists, "Fetch playlists").start();
+                                        new Thread(LibraryPlaylists.this::fetchPlaylists, "Fetch playlists").start();
                                     } catch (IOException e) {
                                         ConsoleLogging.Throwable(e);
                                     }
@@ -314,16 +322,7 @@ public class Playlists extends JSplitPane implements View {
         });
     }
 
-    @Override
-    public void makeVisible() {
-        if (Playlists.playlistsPlaylistsTable.getModel().getRowCount() == 0) {
-            new Thread(this::fetchPlaylists, "Fetch playlists").start();
-        }
-        setVisible(true);
-    }
-
-    @Override
-    public void makeInvisible() {
-        setVisible(false);
+    public void fill() {
+        new Thread(this::fetchPlaylists, "Fetch playlists").start();
     }
 }

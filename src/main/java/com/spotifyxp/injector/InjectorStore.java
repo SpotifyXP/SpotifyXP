@@ -50,7 +50,6 @@ public class InjectorStore {
         switcher.addTab(PublicValues.language.translate("extension.updater.tab"), new UpdatePanel());
         main.getContentPane().add(switcher);
         main.setPreferredSize(new Dimension(377, 526));
-        main.setVisible(true);
         main.setResizable(false);
         main.addWindowListener(new WindowAdapter() {
             @Override
@@ -59,6 +58,7 @@ public class InjectorStore {
             }
         });
         main.pack();
+        main.setVisible(true);
     }
 
     class UpdatePanel extends JPanel {

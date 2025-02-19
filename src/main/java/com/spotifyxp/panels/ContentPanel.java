@@ -37,7 +37,6 @@ public class ContentPanel extends JPanel {
     public static PlayerArea playerArea;
     public static Search searchPanel;
     public static Library libraryPanel;
-    public static Playlists playlistsPanel;
     public static BrowsePanel browsePanel;
     public static HomePanel homePanel;
     public static HotList hotListPanel;
@@ -80,8 +79,6 @@ public class ContentPanel extends JPanel {
         createLibrary();
         SplashPanel.linfo.setText("Creating hotlist...");
         createHotList();
-        SplashPanel.linfo.setText("Creating playlist...");
-        createPlaylist();
         SplashPanel.linfo.setText("Creating queue...");
         createQueue();
         SplashPanel.linfo.setText("Creating searchPanel...");
@@ -279,7 +276,7 @@ public class ContentPanel extends JPanel {
                                                 while(offset < total) {
                                                     for(PlaylistTrack playlistTrack : playlistTracks.getItems()) {
                                                         urisToBeAdded.add(playlistTrack.getTrack().getUri());
-                                                        offset += limit;
+                                                        offset++;
                                                     }
                                                     playlistTracks = InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2])
                                                             .limit(limit)
@@ -300,7 +297,7 @@ public class ContentPanel extends JPanel {
                                                 while(offset < total) {
                                                     for(TrackSimplified albumTrack : albumTracks.getItems()) {
                                                         urisToBeAdded.add(albumTrack.getUri());
-                                                        offset += limit;
+                                                        offset++;
                                                     }
                                                     InstanceManager.getSpotifyApi().getAlbumsTracks(uris.get(table.getSelectedRow()).split(":")[2])
                                                             .limit(limit)
@@ -371,17 +368,7 @@ public class ContentPanel extends JPanel {
     }
 
     public static void showArtistPanel(String fromUri) {
-        switch (currentView) {
-            case BROWSE:
-                browsePanel.makeInvisible();
-                break;
-            case HOME:
-                homePanel.makeInvisible();
-                break;
-            case SEARCH:
-                searchPanel.makeInvisible();
-                break;
-        }
+        currentViewPanel.makeInvisible();
         switchView(Views.ARTIST);
         try {
             Artist a = InstanceManager.getSpotifyApi().getArtist(fromUri.split(":")[2]).build().execute();
@@ -456,11 +443,6 @@ public class ContentPanel extends JPanel {
         tabPanel.add(artistPanel);
     }
 
-    void createPlaylist() {
-        playlistsPanel = new Playlists();
-        tabPanel.add(playlistsPanel);
-    }
-
     void createSearchPanel() {
         searchPanel = new Search();
         tabPanel.add(searchPanel);
@@ -486,16 +468,12 @@ public class ContentPanel extends JPanel {
         tabPanel.add(feedbackPanel);
     }
 
-    //ToDo: Remove this code. This is a horrible way to use a JTabbedPane
-    // This is left over code from the pre JTabbedPane era, where
-    // the views were switched by JButtons
     @SuppressWarnings("all")
     void createLegacy() {
         legacySwitch.setForeground(PublicValues.globalFontColor);
         legacySwitch.setBounds(0, 111, PublicValues.applicationWidth, PublicValues.contentContainerHeight());
         legacySwitch.addTab(PublicValues.language.translate("ui.navigation.home"), new JPanel());
-        legacySwitch.addTab("Browse", new JPanel());
-        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.playlists"), new JPanel());
+        legacySwitch.addTab(PublicValues.language.translate("ui.navigation.browse"), new JPanel());
         legacySwitch.addTab(PublicValues.language.translate("ui.navigation.library"), new JPanel());
         legacySwitch.addTab(PublicValues.language.translate("ui.navigation.search"), new JPanel());
         legacySwitch.addTab(PublicValues.language.translate("ui.navigation.hotlist"), new JPanel());
@@ -527,39 +505,33 @@ public class ContentPanel extends JPanel {
                     switchView(Views.BROWSE);
                     break;
                 case 2:
-                    currentView = Views.PLAYLIST;
-                    preventBuglegacySwitch();
-                    legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
-                    switchView(Views.PLAYLIST);
-                    break;
-                case 3:
                     currentView = Views.LIBRARY;
-                    if (Library.librarySongList.getModel().getRowCount() == 0) {
-                        Library.libraryThread.start();
+                    if (Library.libraryTracks.librarySongList.getModel().getRowCount() == 0) {
+                        Library.libraryTracks.libraryThread.start();
                     }
                     preventBuglegacySwitch();
                     legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.LIBRARY);
                     break;
-                case 4:
+                case 3:
                     currentView = Views.SEARCH;
                     preventBuglegacySwitch();
                     legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.SEARCH);
                     break;
-                case 5:
+                case 4:
                     currentView = Views.HOTLIST;
                     preventBuglegacySwitch();
                     legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.HOTLIST);
                     break;
-                case 6:
+                case 5:
                     currentView = Views.QUEUE;
                     preventBuglegacySwitch();
                     legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
                     switchView(Views.QUEUE);
                     break;
-                case 7:
+                case 6:
                     currentView = Views.FEEDBACK;
                     preventBuglegacySwitch();
                     legacySwitch.setComponentAt(legacySwitch.getSelectedIndex(), tabPanel);
@@ -667,9 +639,6 @@ public class ContentPanel extends JPanel {
                 break;
             case TRACKPANEL:
                 currentViewPanel = trackPanel;
-                break;
-            case PLAYLIST:
-                currentViewPanel = playlistsPanel;
                 break;
             case ARTIST:
                 currentViewPanel = artistPanel;

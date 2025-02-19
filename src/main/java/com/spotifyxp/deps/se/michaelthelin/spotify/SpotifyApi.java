@@ -11,9 +11,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.albums.GetSever
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.artists.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.browse.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.browse.miscellaneous.GetAvailableGenreSeedsRequest;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.GetEpisodeRequest;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.GetSeveralEpisodesRequest;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.SaveEpisodesRequest;
+import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.follow.*;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.follow.legacy.FollowPlaylistRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.library.*;
@@ -1500,6 +1498,17 @@ public class SpotifyApi {
         return new GetShowsEpisodesRequest.Builder(accessToken)
                 .setDefaults(httpManager, scheme, host, port)
                 .id(id);
+    }
+
+    public GetUsersSavedEpisodesRequest.Builder getUsersSavedEpisodes() {
+        return new GetUsersSavedEpisodesRequest.Builder(accessToken)
+                .setDefaults(httpManager, scheme, host, port);
+    }
+
+    public RemoveUsersSavedEpisodesRequest.Builder removeUsersSavedEpisodes(String... ids) {
+        return new RemoveUsersSavedEpisodesRequest.Builder(accessToken)
+                .setDefaults(httpManager, scheme, host, port)
+                .ids(String.join(",", ids));
     }
 
     /**
