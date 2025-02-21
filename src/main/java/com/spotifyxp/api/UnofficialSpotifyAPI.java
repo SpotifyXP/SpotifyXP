@@ -82,7 +82,8 @@ public class UnofficialSpotifyAPI {
     public enum HomeTabSectionTypes {
         HomeShortsSectionData,
         HomeGenericSectionData,
-        HomeRecentlyPlayedSectionData
+        HomeRecentlyPlayedSectionData,
+        HomeSpotlightSectionData
     }
 
     public enum HomeTabSectionItemTypes {
