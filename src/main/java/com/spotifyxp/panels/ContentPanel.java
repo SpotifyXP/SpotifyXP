@@ -199,7 +199,6 @@ public class ContentPanel extends JPanel {
                                         InstanceManager.getSpotifyApi().saveTracksForUser(
                                                 uris.get(table.getSelectedRow()).split(":")[2]
                                         ).build().execute();
-                                        Events.triggerEvent(SpotifyXPEvents.libraryupdate.getName(), 0, uris.get(table.getSelectedRow()));
                                     }catch (IOException e) {
                                         ConsoleLogging.Throwable(e);
                                     }

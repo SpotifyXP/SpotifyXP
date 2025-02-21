@@ -101,38 +101,8 @@ public class LibraryTracks extends JScrollPane implements View {
             }
         }));
         setViewportView(librarySongList);
-        
-        createcontextMenu();
 
-        Events.subscribe(SpotifyXPEvents.libraryupdate.getName(), new EventSubscriber() {
-            @Override
-            public void run(Object... data) {
-                if(libraryUriCache.size() == 0) return;
-                // Parameters
-                // Type
-                // uri
-                if(data[0] instanceof Integer && (Integer) data[0] == 1) {
-                    for(int i = 0; i < libraryUriCache.size(); i++) {
-                        String uri = libraryUriCache.get(i);
-                        if(uri == data[1]) {
-                            int counter = i;
-                            librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).removeRow(counter));
-                            libraryUriCache.remove(counter);
-                            break;
-                        }
-                    }
-                }else {
-                    try {
-                        Track track = InstanceManager.getSpotifyApi().getTrack(((String) data[1]).split(":")[2]).build().execute();
-                        String artists = TrackUtils.getArtists(track.getArtists());
-                        librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).insertRow(0, new Object[]{track.getName() + " - " + artists, TrackUtils.calculateFileSizeKb(track), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getDurationMs())}));
-                        libraryUriCache.add(0, (String) data[0]);
-                    } catch (IOException e) {
-                        ConsoleLogging.Throwable(e);
-                    }
-                }
-            }
-        });
+        createcontextMenu();
     }
 
     void createcontextMenu() {

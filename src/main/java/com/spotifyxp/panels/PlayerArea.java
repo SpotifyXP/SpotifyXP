@@ -306,7 +306,6 @@ public class PlayerArea extends JPanel {
                 if (heart.isFilled) {
                     try {
                         InstanceManager.getSpotifyApi().removeUsersSavedTracks(Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri().split(":")[2]).build().execute();
-                        Events.triggerEvent(SpotifyXPEvents.libraryupdate.getName(), 1, Objects.requireNonNull(InstanceManager.getPlayer().getPlayer().currentPlayable()).toSpotifyUri());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
