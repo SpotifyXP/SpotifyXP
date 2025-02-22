@@ -146,7 +146,8 @@ public class Config {
         try {
             Files.write(Paths.get(PublicValues.configfilepath), modifiedAtRuntime.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
-            GraphicalMessage.sorryErrorExit("Failed creating important directory");
+            ConsoleLogging.Throwable(e);
+            GraphicalMessage.sorryErrorExit("Failed to write config");
         }
     }
 

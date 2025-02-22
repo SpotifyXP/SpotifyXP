@@ -26,6 +26,7 @@ import okhttp3.OkHttpClient;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 @SuppressWarnings("CanBeFinal")
@@ -43,14 +44,14 @@ public class PublicValues {
 
     public static ArchitectureDetection.Architecture architecture = ArchitectureDetection.Architecture.x86;
     public static libLanguage language = null;
-    public static String fileslocation = System.getenv("appdata") + "/SpotifyXP";
-    public static String configfilepath = fileslocation + "/config.json";
+    public static String fileslocation = System.getenv("appdata") + File.separator +  "SpotifyXP";
+    public static String configfilepath = fileslocation + File.separator + "config.json";
     public static Config config = null;
     public static Session session;
     public static boolean debug = false;
     public static Quality quality = null;
     public static String[] args = null;
-    public static String appLocation = System.getProperty("user.home") + "/SpotifyXP";
+    public static String appLocation = System.getProperty("user.home") + File.separator + "SpotifyXP";
     public static String deviceName = "SpotifyXP";
     public static Theme theme = null;
     public static libDetect.OSType osType;
