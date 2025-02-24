@@ -9,7 +9,7 @@ import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.ClipboardUtil;
@@ -577,16 +577,6 @@ public class Search extends JPanel implements View {
         searchplaylistpanel.setVisible(false);
 
         searchplaylistsongscontextmenu = new ContextMenu(searchplaylisttable, searchplaylistsongscache, getClass());
-        searchplaylistsongscontextmenu.addItem("All to queue", () -> {
-            for(String s : searchplaylistsongscache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        searchplaylistsongscontextmenu.addItem("Add to queue", () -> {
-            if(searchplaylisttable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), searchplaylistsongscache.get(searchplaylisttable.getSelectedRow()));
-        });
-        searchplaylistsongscontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchplaylistsongscache.get(searchplaylisttable.getSelectedRow())));
         searchbackbutton.addActionListener(new AsyncActionListener(e -> {
             searchplaylistpanel.setVisible(false);
             if(lazyLoadingDeInit != null) {
@@ -604,21 +594,6 @@ public class Search extends JPanel implements View {
             }
         }));
         searchcontextmenu = new ContextMenu(searchsonglist, searchsonglistcache, getClass());
-        searchcontextmenu.addItem(PublicValues.language.translate("ui.general.addtolibrary"), () -> {
-            PlayerArea.heart.isFilled = true;
-            PlayerArea.heart.setImage(Graphics.HEARTFILLED.getPath());
-            InstanceManager.getSpotifyApi().saveTracksForUser("https://api.spotify.com/v1/me/tracks?ids=" + searchsonglistcache.get(searchsonglist.getSelectedRow()).split(":")[2]);
-        });
-        searchcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(searchsonglistcache.get(searchsonglist.getSelectedRow())));
-        searchcontextmenu.addItem("All to queue", () -> {
-            for(String s : searchsonglistcache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        searchcontextmenu.addItem("Add to queue", () -> {
-            if(searchsonglist.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), searchsonglistcache.get(searchsonglist.getSelectedRow()));
-        });
     }
 
     @Override

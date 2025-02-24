@@ -4,15 +4,13 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.graphics.Graphics;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JDialog;
 import com.spotifyxp.swingextension.JImagePanel;
-import com.spotifyxp.utils.SVGUtils;
 import com.spotifyxp.utils.StringUtils;
-import org.apache.commons.io.IOUtils;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

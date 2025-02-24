@@ -213,5 +213,7 @@
  "selectplaylist.dialog.description": "Playlist",
  "selectplaylist.dialog.ok": "Ok",
  "selectplaylist.dialog.cancel": "Cancel",
- "ui.login.openproxysettings": "Open proxy settings"
+ "ui.login.openproxysettings": "Open proxy settings",
+ "ui.general.addalltoqueue": "Add all to queue",
+ "ui.general.addtoqueue": "Add to queue"
 }

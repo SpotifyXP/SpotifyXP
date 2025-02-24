@@ -3,7 +3,7 @@ package com.spotifyxp.exception;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.panels.SplashPanel;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.ClipboardUtil;
 

@@ -13,7 +13,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
 import com.spotifyxp.utils.TrackUtils;
 
@@ -223,15 +223,6 @@ public class LibraryPlaylists extends JSplitPane {
         playlistsSongsPanel.add(playlistsSongsScrollPane, BorderLayout.CENTER);
 
         playlistsSongTableContextMenu = new ContextMenu(playlistsSongTable, playlistsSongUriCache, getClass());
-        playlistsSongTableContextMenu.addItem("All to queue", () -> {
-            for(String s : playlistsSongUriCache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        playlistsSongTableContextMenu.addItem("Add to queue", () -> {
-            if(playlistsSongTable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), playlistsSongUriCache.get(playlistsSongTable.getSelectedRow()));
-        });
         playlistsSongTableContextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), new Runnable() {
             @Override
             public void run() {
@@ -246,12 +237,6 @@ public class LibraryPlaylists extends JSplitPane {
             InstanceManager.getSpotifyApi().unfollowPlaylist(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()).split(":")[2]);
             playlistsUriCache.remove(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()));
             ((DefaultTableModel) playlistsPlaylistsTable.getModel()).removeRow(playlistsPlaylistsTable.getSelectedRow());
-        });
-        playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> {
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Clipboard clipboard = toolkit.getSystemClipboard();
-            StringSelection strSel = new StringSelection(playlistsUriCache.get(playlistsPlaylistsTable.getSelectedRow()));
-            clipboard.setContents(strSel, null);
         });
         playlistsPlaylistsTableContextMenu.addItem(PublicValues.language.translate("ui.general.refresh"), () -> {
             new Thread(this::fetchPlaylists, "Fetch playlists").start();

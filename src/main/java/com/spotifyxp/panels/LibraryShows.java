@@ -7,7 +7,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.S
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JDialog;
 
 import javax.swing.*;

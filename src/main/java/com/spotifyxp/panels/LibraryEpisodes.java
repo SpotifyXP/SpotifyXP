@@ -7,7 +7,7 @@ import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.P
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JDialog;
 import com.spotifyxp.utils.TrackUtils;
 
@@ -18,7 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class LibraryEpisodes extends JScrollPane {
     public static DefTable episodesTable;

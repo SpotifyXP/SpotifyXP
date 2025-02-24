@@ -10,7 +10,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.utils.*;
 
@@ -157,17 +157,7 @@ public class ArtistPanel extends JScrollPane implements View {
 
     void createContextMenus() {
         artistpopularsonglistcontextmenu = new ContextMenu(artistPopularSongList, popularUriCache, getClass());
-        artistpopularsonglistcontextmenu.addItem("All to queue", () -> {
-            for (String s : popularUriCache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        artistpopularsonglistcontextmenu.addItem("Add to queue", () -> {
-            if (artistPopularSongList.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), popularUriCache.get(artistPopularSongList.getSelectedRow()));
-        });
         artistalbumcontextmenu = new ContextMenu(artistAlbumTable, albumUriCache, getClass());
-        artistalbumcontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(albumUriCache.get(artistAlbumTable.getSelectedRow())));
     }
 
     public void fillWith(Artist artist) throws IOException {

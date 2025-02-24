@@ -2,6 +2,7 @@ package com.spotifyxp.panels;
 
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.ctxmenu.GlobalContextMenus;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
@@ -20,7 +21,7 @@ import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.utils.*;
 import org.jetbrains.annotations.Nullable;
@@ -114,226 +115,9 @@ public class ContentPanel extends JPanel {
     }
 
     void createContextMenuItems() {
-        //Copy uri
-        PublicValues.globalContextMenuItems.add(new ContextMenu.GlobalContextMenuItem() {
-            @Override
-            public Runnable toRun(JComponent component, @Nullable ArrayList<String> uris) {
-                return new Runnable() {
-                    @Override
-                    public void run() {
-                        JTable table = (JTable) component;
-                        if(table.getSelectedRow() == -1) return;
-                        ClipboardUtil.set(uris.get(table.getSelectedRow()));
-                    }
-                };
-            }
-
-            @Override
-            public String name() {
-                return PublicValues.language.translate("ui.general.copyuri");
-            }
-
-            @Override
-            public boolean shouldBeAdded(JComponent component, Class<?> containingClass) {
-                return component instanceof JTable;
-            }
-        });
-        //Add to library
-        PublicValues.globalContextMenuItems.add(new ContextMenu.GlobalContextMenuItem() {
-            @Override
-            public Runnable toRun(JComponent component, @Nullable ArrayList<String> uris) {
-                return new Runnable() {
-                    @Override
-                    public void run() {
-                        JTable table = (JTable) component;
-                        if(table.getSelectedRow() == -1) return;
-                        switch (uris.get(table.getSelectedRow()).toLowerCase(Locale.ENGLISH).split(":")[1]) {
-                            case "playlist":
-                                try {
-                                    FollowPlaylist playlist = new FollowPlaylist(new FollowPlaylist.OnOptionSelected() {
-                                        @Override
-                                        public void optionSelected(boolean isPublic) {
-                                            new Thread(() -> {
-                                                try {
-                                                    InstanceManager.getSpotifyApi().followPlaylist(
-                                                            uris.get(table.getSelectedRow()).split(":")[2],
-                                                            isPublic
-                                                    ).build().execute();
-                                                }catch (IOException e) {
-                                                    ConsoleLogging.Throwable(e);
-                                                }
-                                            }, "Follow playlist").start();
-                                        }
-                                    });
-                                    playlist.open();
-                                }catch (IOException e) {
-                                    ConsoleLogging.Throwable(e);
-                                }
-                                break;
-                            case "show":
-                                new Thread(() -> {
-                                    try {
-                                        InstanceManager.getSpotifyApi().saveShowsForCurrentUser(
-                                                uris.get(table.getSelectedRow()).split(":")[2]
-                                        ).build().execute();
-                                    }catch (IOException e) {
-                                        ConsoleLogging.Throwable(e);
-                                    }
-                                }, "Save album").start();
-                                break;
-                            case "artist":
-                                new Thread(() -> {
-                                    try {
-                                        InstanceManager.getSpotifyApi().followArtistsOrUsers(
-                                                ModelObjectType.ARTIST,
-                                                new String[] {uris.get(table.getSelectedRow()).split(":")[2]}
-                                        ).build().execute();
-                                    }catch (IOException e) {
-                                        ConsoleLogging.Throwable(e);
-                                    }
-                                }, "Save Artist").start();
-                                break;
-                            case "track":
-                                new Thread(() -> {
-                                    try {
-                                        InstanceManager.getSpotifyApi().saveTracksForUser(
-                                                uris.get(table.getSelectedRow()).split(":")[2]
-                                        ).build().execute();
-                                    }catch (IOException e) {
-                                        ConsoleLogging.Throwable(e);
-                                    }
-                                }, "Save track").start();
-                                break;
-                            case "episode":
-                                new Thread(() -> {
-                                    try {
-                                        InstanceManager.getSpotifyApi().saveEpisodesForCurrentUser(
-                                                uris.get(table.getSelectedRow()).split(":")[2]
-                                        ).build().execute();
-                                    }catch (IOException e) {
-                                        ConsoleLogging.Throwable(e);
-                                    }
-                                }, "Save episode").start();
-                                break;
-                            case "album":
-                                new Thread(() -> {
-                                    try {
-                                        InstanceManager.getSpotifyApi().saveAlbumsForCurrentUser(
-                                                uris.get(table.getSelectedRow()).split(":")[2]
-                                        ).build().execute();
-                                    }catch (IOException e) {
-                                        ConsoleLogging.Throwable(e);
-                                    }
-                                }, "Save album").start();
-                                break;
-                        }
-                    }
-                };
-            }
-
-            @Override
-            public String name() {
-                return PublicValues.language.translate("ui.general.addtolibrary");
-            }
-
-            @Override
-            public boolean shouldBeAdded(JComponent component, Class<?> containingClass) {
-                return true;
-            }
-        });
-        //Add to playlist
-        PublicValues.globalContextMenuItems.add(new ContextMenu.GlobalContextMenuItem() {
-            @Override
-            public Runnable toRun(JComponent component, @Nullable ArrayList<String> uris) {
-                return new Runnable() {
-                    @Override
-                    public void run() {
-                        JTable table = (JTable) component;
-                        if (table.getSelectedRow() == -1) return;
-                        if(uris.get(table.getSelectedRow()).split(":")[1].equalsIgnoreCase("artist")
-                        || uris.get(table.getSelectedRow()).split(":")[1].equalsIgnoreCase("show")) {
-                            JOptionPane.showMessageDialog(ContentPanel.frame, "Artists can't be added to a playlist");
-                            return;
-                        }
-                        try {
-                            SelectPlaylist playlist = new SelectPlaylist(new SelectPlaylist.onPlaylistSelected() {
-                                @Override
-                                public void playlistSelected(String uri) {
-                                    int limit;
-                                    int offset;
-                                    int total;
-                                    try {
-                                        ArrayList<String> urisToBeAdded = new ArrayList<>();
-                                        switch (uris.get(table.getSelectedRow()).toLowerCase(Locale.ENGLISH).split(":")[1]) {
-                                            case "playlist":
-                                                limit = 50;
-                                                Paging<PlaylistTrack> playlistTracks = InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2])
-                                                        .limit(limit)
-                                                        .build().execute();
-                                                total = playlistTracks.getTotal();
-                                                offset = 0;
-                                                while(offset < total) {
-                                                    for(PlaylistTrack playlistTrack : playlistTracks.getItems()) {
-                                                        urisToBeAdded.add(playlistTrack.getTrack().getUri());
-                                                        offset++;
-                                                    }
-                                                    playlistTracks = InstanceManager.getSpotifyApi().getPlaylistsItems(uri.split(":")[2])
-                                                            .limit(limit)
-                                                            .offset(offset)
-                                                            .build().execute();
-                                                }
-                                                break;
-                                            case "episode":
-                                            case "track":
-                                                urisToBeAdded.add(uris.get(table.getSelectedRow()));
-                                                break;
-                                            case "album":
-                                                limit = 50;
-                                                Paging<TrackSimplified> albumTracks = InstanceManager.getSpotifyApi().getAlbumsTracks(uris.get(table.getSelectedRow()).split(":")[2])
-                                                        .build().execute();
-                                                total = albumTracks.getTotal();
-                                                offset = 0;
-                                                while(offset < total) {
-                                                    for(TrackSimplified albumTrack : albumTracks.getItems()) {
-                                                        urisToBeAdded.add(albumTrack.getUri());
-                                                        offset++;
-                                                    }
-                                                    InstanceManager.getSpotifyApi().getAlbumsTracks(uris.get(table.getSelectedRow()).split(":")[2])
-                                                            .limit(limit)
-                                                            .offset(offset)
-                                                            .build().execute();
-                                                }
-                                        }
-                                        offset = 0;
-                                        while(offset < urisToBeAdded.size()) {
-                                            InstanceManager.getSpotifyApi().addItemsToPlaylist(uri.split(":")[2],
-                                                    urisToBeAdded.subList(offset, Math.min(offset + 100, urisToBeAdded.size())).toArray(new String[0])
-                                            ).build().execute();
-                                            offset += 100;
-                                        }
-                                    }catch (IOException e) {
-                                        ConsoleLogging.Throwable(e);
-                                    }
-                                }
-                            });
-                            playlist.open();
-                        }catch (IOException e) {
-                            ConsoleLogging.Throwable(e);
-                        }
-                    }
-                };
-            }
-
-            @Override
-            public String name() {
-                return PublicValues.language.translate("ui.general.addtoplaylist");
-            }
-
-            @Override
-            public boolean shouldBeAdded(JComponent component, Class<?> containingClass) {
-                return true;
-            }
-        });
+        for(GlobalContextMenus menu : GlobalContextMenus.values()) {
+            PublicValues.globalContextMenuItems.add(menu.getGlobalContextMenuItem());
+        }
     }
 
     private void createTrackPanel() {

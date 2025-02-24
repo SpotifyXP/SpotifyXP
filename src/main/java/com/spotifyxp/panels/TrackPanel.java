@@ -11,7 +11,7 @@ import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.utils.*;
 
 import javax.swing.*;
@@ -62,15 +62,6 @@ public class TrackPanel extends Panel implements View {
         advancedSongTable.setForeground(PublicValues.globalFontColor);
         advancedSongTable.getTableHeader().setForeground(PublicValues.globalFontColor);
         contextMenu = new ContextMenu(advancedSongTable, advancedUriCache, getClass());
-        contextMenu.addItem("All to queue", () -> {
-            for(String s : advancedUriCache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        contextMenu.addItem("Add to queue", () -> {
-            if(advancedSongTable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), advancedUriCache.get(advancedSongTable.getSelectedRow()));
-        });
         advancedScrollPanel = new JScrollPane();
         advancedScrollPanel.setBounds(0, 22, 784, 399);
         add(advancedScrollPanel, BorderLayout.CENTER);

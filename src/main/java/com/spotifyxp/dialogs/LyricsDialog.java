@@ -12,7 +12,7 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.PlayerArea;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.PaintPanel;
 import com.spotifyxp.swingextension.RAWTextArea;
 import com.spotifyxp.utils.ClipboardUtil;

@@ -11,7 +11,7 @@ import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.swingextension.ContextMenu;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.utils.*;
 
 import javax.swing.*;
@@ -100,16 +100,6 @@ public class HotList extends JSplitPane implements View {
         setRightComponent(hotListSongsScrollPanel);
 
         hotListSongsTablecontextmenu = new ContextMenu(hotListSongsTable, hotListSongListCache, getClass());
-        hotListSongsTablecontextmenu.addItem(PublicValues.language.translate("ui.general.copyuri"), () -> ClipboardUtil.set(hotListSongListCache.get(hotListSongsTable.getSelectedRow())));
-        hotListSongsTablecontextmenu.addItem("All to queue", () -> {
-            for(String s : hotListSongListCache) {
-                Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), s);
-            }
-        });
-        hotListSongsTablecontextmenu.addItem("Add to queue", () -> {
-            if(hotListSongsTable.getSelectedRow() == -1) return;
-            Events.triggerEvent(SpotifyXPEvents.addtoqueue.getName(), hotListSongListCache.get(hotListSongsTable.getSelectedRow()));
-        });
     }
 
     public static void fetchHotlist() {
