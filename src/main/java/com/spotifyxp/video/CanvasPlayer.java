@@ -39,20 +39,6 @@ public class CanvasPlayer extends JFrame {
                 PublicValues.vlcPlayer.stop();
                 PublicValues.vlcPlayer.release();
             }
-
-            @Override
-            public void windowOpened(WindowEvent e) {
-                super.windowOpened(e);
-                MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();
-                if (metadataWrapper == null || metadataWrapper.id == null) {
-                    return;
-                }
-                if(!metadataWrapper.isTrack()) {
-                    // Canvases are only available for tracks
-                    return;
-                }
-                loadCanvas(metadataWrapper.id.toSpotifyUri());
-            }
         });
         if(!PublicValues.config.getBoolean(ConfigValues.cache_disabled.name)) {
             cachePath = new File(PublicValues.appLocation, "cvnscache");
@@ -102,7 +88,8 @@ public class CanvasPlayer extends JFrame {
 
     public void loadCanvas(String uri) {
         try {
-            if(PublicValues.config.getBoolean(ConfigValues.cache_disabled.name)) {
+            if(!PublicValues.config.getBoolean(ConfigValues.cache_disabled.name)) {
+                clearCache();
                 String cvnsUrl = PublicValues.session.api().getCanvases(CanvazOuterClass.EntityCanvazRequest.newBuilder()
                         .addEntities(CanvazOuterClass.EntityCanvazRequest.Entity.newBuilder()
                                 .setEntityUri(uri)
@@ -134,19 +121,6 @@ public class CanvasPlayer extends JFrame {
         }
     }
 
-    void loadCanvasForCurrentTrack() {
-        clearCache();
-        MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();
-        if (metadataWrapper == null || metadataWrapper.id == null) {
-            return;
-        }
-        if(!metadataWrapper.isTrack()) {
-            // Canvases are only available for tracks
-            return;
-        }
-        loadCanvas(metadataWrapper.id.toSpotifyUri());
-    }
-
     EventSubscriber onNextTrack = new EventSubscriber() {
         @Override
         public void run(Object... data) {
@@ -164,11 +138,12 @@ public class CanvasPlayer extends JFrame {
         }
     };
 
+
     @Override
-    public void open() {
+    public void open() throws NullPointerException {
         PublicValues.vlcPlayer.init(this::close);
         PublicValues.vlcPlayer.setLooping(true);
         super.open();
-        loadCanvasForCurrentTrack();
+        loadCanvas(Objects.requireNonNull(InstanceManager.getSpotifyPlayer().currentMetadata()).id.toSpotifyUri());
     }
 }
