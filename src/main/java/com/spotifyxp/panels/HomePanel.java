@@ -19,13 +19,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class HomePanel extends JScrollPane implements View {
     public static JPanel content;
-    public static UnofficialSpotifyAPI.HomeTab tab;
+    public static Optional<UnofficialSpotifyAPI.HomeTab> tab;
     public static ContextMenu menu;
     public static CompletableFuture<?> future;
     public static ArrayList<ArrayList<String>> uriCacheForAll;
@@ -148,6 +149,7 @@ public class HomePanel extends JScrollPane implements View {
                     String id = uri.split(":")[2];
                     try {
                         switch (ct) {
+                            case episode:
                             case track:
                                 InstanceManager.getSpotifyPlayer().load(uri, true, PublicValues.shuffle);
                                 Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
@@ -161,10 +163,6 @@ public class HomePanel extends JScrollPane implements View {
                                 } catch (IOException ex) {
                                     ConsoleLogging.Throwable(ex);
                                 }
-                                break;
-                            case episode:
-                                InstanceManager.getSpotifyPlayer().load(uri, true, PublicValues.shuffle);
-                                Events.triggerEvent(SpotifyXPEvents.queueUpdate.getName());
                                 break;
                             default:
                                 ContentPanel.trackPanel.open(uri, ct);
@@ -194,6 +192,8 @@ public class HomePanel extends JScrollPane implements View {
 
 
     public void initializeContent() {
+        if(!tab.isPresent()) return;
+
         int width = getWidth() - 32;
         int height = 261;
         int spacing = 70;
@@ -202,17 +202,19 @@ public class HomePanel extends JScrollPane implements View {
         int yCache = titleHeight + 55;
         int titleSpacing = 5;
 
+        UnofficialSpotifyAPI.HomeTab tabCopy = tab.get();
+
         JPanel homepanelgreetings = new JPanel();
         homepanelgreetings.setBounds(0, 11, getWidth(), getFontMetrics(getFont()).getHeight());
         homepanelgreetings.setLayout(new BorderLayout());
-        JLabel homepanelgreetingstext = new JLabel(tab.getGreeting());
+        JLabel homepanelgreetingstext = new JLabel(tabCopy.getGreeting());
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 20));
         homepanelgreetingstext.setHorizontalAlignment(SwingConstants.CENTER);
         homepanelgreetingstext.setForeground(PublicValues.globalFontColor);
         homepanelgreetings.add(homepanelgreetingstext);
         content.add(homepanelgreetings);
 
-        for (UnofficialSpotifyAPI.HomeTabSection section : tab.getSections()) {
+        for (UnofficialSpotifyAPI.HomeTabSection section : tabCopy.getSections()) {
             addModule(section, titleHeight, xCache, yCache, yCache - titleHeight - titleSpacing, width, height);
             yCache += height + spacing;
         }
@@ -243,7 +245,8 @@ public class HomePanel extends JScrollPane implements View {
     void fill() {
         Thread t = new Thread(this::initializeContent, "Get home");
         t.start();
-        content.setPreferredSize(new Dimension(content.getWidth(), (261 + getFontMetrics(getFont()).getHeight() + 55) * tab.getSections().size()));
+        if(!tab.isPresent()) return;
+        content.setPreferredSize(new Dimension(content.getWidth(), (261 + getFontMetrics(getFont()).getHeight() + 55) * tab.get().getSections().size()));
         content.revalidate();
         content.repaint();
     }

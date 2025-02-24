@@ -581,8 +581,8 @@ public class UnofficialSpotifyAPI {
      * @return instance of HomeTab
      * @see HomeTab
      */
-    public HomeTab getHomeTab() throws IOException {
-        JSONObject root = new JSONObject();
+    public Optional<HomeTab> getHomeTab() throws IOException {
+        JSONObject root;
         try {
             //https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=%7B%22timeZone%22%3A%22Europe%2FBerlin%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D
             String url = "https://api-partner.spotify.com/pathfinder/v1/query?operationName=home&variables=" + URLEncoder.encode("{\"timeZone\":\"" + ZoneId.systemDefault() + "\"}", Charset.defaultCharset().toString()) + "&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2263c412a34a2071adfd99b804ea2fe1d8e9c5fd7d248e29ca54cc97a7ca06b561%22%7D%7D";
@@ -593,8 +593,13 @@ public class UnofficialSpotifyAPI {
             root = new JSONObject(new JSONObject(ConnectionUtils.makeGet(url,
                     MapUtils.of("Authorization", "Bearer " + InstanceManager.getSpotifyApi().getAccessToken(), "App-Platform", "Win32", "User-Agent", ApplicationUtils.getUserAgent()))).getJSONObject("data").getJSONObject("home").toString());
         }
-        Files.write(Paths.get(new File(System.getProperty("user.home"), "spxphomedump.json").getAbsolutePath()), IOUtils.toByteArray(root.toString()));
-        return HomeTab.fromJSON(root);
+        try {
+            return Optional.of(HomeTab.fromJSON(root));
+        }catch (JSONException e) {
+            ConsoleLogging.error("Error in HomeTab! Dumping JSON: " + root);
+            ConsoleLogging.Throwable(e);
+        }
+        return Optional.empty();
     }
 
     /**
