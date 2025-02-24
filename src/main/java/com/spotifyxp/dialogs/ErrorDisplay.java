@@ -73,8 +73,8 @@ public class ErrorDisplay extends JFrame {
         add(removeButton, BorderLayout.SOUTH);
         setPreferredSize(new Dimension(ContentPanel.frame.getWidth() / 2, ContentPanel.frame.getHeight() / 2));
         add(errorDisplayTable, BorderLayout.CENTER);
-        setVisible(true);
         pack();
+        setVisible(true);
     }
 
     public static class ErrorDisplayPanel extends JButton {

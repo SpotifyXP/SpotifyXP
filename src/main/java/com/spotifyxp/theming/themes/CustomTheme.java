@@ -184,13 +184,14 @@ public class CustomTheme implements Theme {
 
     void openCustomzationMenu() {
         if (!(content == null)) {
-            frame.setVisible(true);
             frame.pack();
+            frame.setVisible(true);
             return;
         }
         content = new ContentPanel();
         frame.setPreferredSize(new Dimension(400, 341));
         frame.getContentPane().add(content);
+        frame.pack();
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -200,7 +201,6 @@ public class CustomTheme implements Theme {
                 JOptionPane.showConfirmDialog(com.spotifyxp.panels.ContentPanel.frame, PublicValues.language.translate("ui.settings.pleaserestart"), PublicValues.language.translate("joptionpane.info"), JOptionPane.OK_CANCEL_OPTION);
             }
         });
-        frame.pack();
     }
 
     @Override

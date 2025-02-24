@@ -77,8 +77,8 @@ public class ExceptionDialog {
 
         frame.getContentPane().add(contentPane);
         frame.setPreferredSize(new Dimension(600, 439));
-        frame.setVisible(true);
         frame.pack();
+        frame.setVisible(true);
     }
 
     public String getAsFormattedText() {

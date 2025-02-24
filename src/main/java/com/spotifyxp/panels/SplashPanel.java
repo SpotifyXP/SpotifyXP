@@ -68,8 +68,8 @@ public class SplashPanel {
         frame.setAlwaysOnTop(true);
         frame.setLocationRelativeTo(null);
         frame.setUndecorated(true);
-        frame.setVisible(true);
         frame.pack();
+        frame.setVisible(true);
         frame.setLocation(frame.getLocation().x - frame.getWidth() / 2, frame.getLocation().y - frame.getHeight() / 2);
     }
 

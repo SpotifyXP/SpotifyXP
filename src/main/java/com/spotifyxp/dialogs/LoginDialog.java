@@ -185,8 +185,8 @@ public class LoginDialog {
                 System.exit(0);
             }
         });
-        frame.setVisible(true);
         frame.pack();
+        frame.setVisible(true);
     }
 
     public static void close() {
