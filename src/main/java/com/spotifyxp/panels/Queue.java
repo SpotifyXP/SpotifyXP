@@ -84,6 +84,7 @@ public class Queue extends JScrollPane implements View {
             }
         });
         Events.subscribe(SpotifyXPEvents.queueUpdate.getName(), (Object... data) -> {
+            if(queueUriCache.isEmpty()) return;
             if(InstanceManager.getPlayer().getPlayer().tracks(true).next.size() > queueUriCache.size()) {
                 queueUriCache.clear();
                 ((DefaultListModel<?>) queueList.getModel()).clear();
