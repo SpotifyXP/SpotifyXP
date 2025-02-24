@@ -14,9 +14,21 @@ import java.io.IOException;
 public class JFrame extends javax.swing.JFrame {
     public JFrame(String title) {
         super.setTitle(title);
+        try {
+            setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
+        } catch (IOException e) {
+            GraphicalMessage.openException(e);
+            ConsoleLogging.Throwable(e);
+        }
     }
 
     public JFrame() {
+        try {
+            setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
+        } catch (IOException e) {
+            GraphicalMessage.openException(e);
+            ConsoleLogging.Throwable(e);
+        }
     }
 
     public Point getCenter() {
@@ -28,12 +40,6 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     public void open() {
-        try {
-            setIconImage(ImageIO.read(new Resources().readToInputStream("spotifyxp.png")));
-        } catch (IOException e) {
-            GraphicalMessage.openException(e);
-            ConsoleLogging.Throwable(e);
-        }
         this.pack();
         this.setVisible(true);
     }
