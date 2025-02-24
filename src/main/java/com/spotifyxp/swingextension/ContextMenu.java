@@ -23,35 +23,6 @@ public class ContextMenu {
     public ContextMenu() {
     }
 
-    public ContextMenu(JComponent container, JComponent click, @Nullable ArrayList<String> uris, Class<?> containingClass) {
-        click.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (SwingUtilities.isRightMouseButton(e)) {
-                    for (MouseListener listener : container.getMouseListeners()) {
-                        listener.mouseClicked(e);
-                    }
-                }
-            }
-        }));
-        container.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (SwingUtilities.isRightMouseButton(e)) {
-                    holder.show(e.getComponent(), e.getX(), e.getY());
-                }
-            }
-        }));
-        for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            JMenuItem i = new JMenuItem(item.name());
-            i.addActionListener(new AsyncActionListener(e -> item.toRun(container, uris).run()));
-            if(item.shouldBeAdded(container, containingClass)) holder.add(i);
-        }
-        PublicValues.contextMenus.add(this);
-    }
-
     public ContextMenu(JPanel panel, @Nullable ArrayList<String> uris, Class<?> containingClass) {
         panel.addMouseListener(new AsyncMouseListener(new MouseAdapter() {
             @Override

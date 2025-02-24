@@ -45,7 +45,7 @@ public class ErrorDisplay extends JFrame {
         errorDisplayScrollPane = new JScrollPane();
         errorDisplayScrollPane.setViewportView(errorDisplayTable);
 
-        errorDisplayContextMenu = new ContextMenu(errorDisplayPanel, errorDisplayTable, null, getClass());
+        errorDisplayContextMenu = new ContextMenu(errorDisplayTable, null, getClass());
         errorDisplayContextMenu.addItem(PublicValues.language.translate("ui.general.copy"), () -> ClipboardUtil.set(errorQueue.get(errorDisplayTable.getSelectedRow()).getAsFormattedText()));
         errorDisplayContextMenu.addItem(PublicValues.language.translate("ui.general.remove"), () -> {
             errorQueue.remove(errorDisplayTable.getSelectedRow());
