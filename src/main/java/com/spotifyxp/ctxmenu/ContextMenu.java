@@ -26,12 +26,7 @@ public class ContextMenu {
 
     public static class ContextualPopupMenu extends JPopupMenu {
         private ArrayList<GlobalContextMenuItem> globalContextMenuItems = new ArrayList<>();
-        private ArrayList<JMenuItem> items = new ArrayList<>();
         private ArrayList<JMenuItem> normalItems = new ArrayList<>();
-
-        public ContextualPopupMenu(ArrayList<JMenuItem> items) {
-            this.items = items;
-        }
 
         public ContextualPopupMenu() {
         }
@@ -44,17 +39,10 @@ public class ContextMenu {
 
         public void addGlobalContextMenuItem(GlobalContextMenuItem item) {
             globalContextMenuItems.add(item);
-            items.add(new JMenuItem(item.name()));
         }
 
         public void removeGlobalContextMenuItem(GlobalContextMenuItem item) {
             globalContextMenuItems.remove(item);
-            for(JMenuItem i : new ArrayList<>(items)) {
-                if(i.getText().equalsIgnoreCase(item.name())) {
-                    items.remove(i);
-                    break;
-                }
-            }
         }
 
         public void show(JComponent invoker, int x, int y, ArrayList<String> uris) {
@@ -64,7 +52,8 @@ public class ContextMenu {
             }
             for(int i = 0; i < globalContextMenuItems.size(); i++) {
                 GlobalContextMenuItem globalContextMenuItem = globalContextMenuItems.get(i);
-                JMenuItem item = items.get(i);
+                JMenuItem item = new JMenuItem(globalContextMenuItem.name());
+                item.addActionListener(new AsyncActionListener(e -> globalContextMenuItem.toRun(invoker, uris).run()));
                 if(globalContextMenuItem.showItem(invoker, uris)) super.add(item);
             }
             super.show(invoker, x, y);
@@ -86,13 +75,10 @@ public class ContextMenu {
                 }
             }
         }));
-        ArrayList<JMenuItem> items = new ArrayList<>();
+        holder = new ContextualPopupMenu();
         for (GlobalContextMenuItem item : PublicValues.globalContextMenuItems) {
-            JMenuItem i = new JMenuItem(item.name());
-            i.addActionListener(new AsyncActionListener(e -> item.toRun(component, uris).run()));
-            if(item.shouldBeAdded(component, containingClass)) items.add(i);
+            if(item.shouldBeAdded(component, containingClass)) holder.addGlobalContextMenuItem(item);
         }
-        holder = new ContextualPopupMenu(items);
         PublicValues.contextMenus.add(this);
     }
 

@@ -29,10 +29,8 @@ public class HomePanel extends JScrollPane implements View {
     public static Optional<UnofficialSpotifyAPI.HomeTab> tab;
     public static ContextMenu menu;
     public static CompletableFuture<?> future;
-    public static ArrayList<ArrayList<String>> uriCacheForAll;
 
     public HomePanel() {
-        uriCacheForAll = new ArrayList<>();
         content = new JPanel();
         content.setLayout(null);
 
@@ -95,13 +93,9 @@ public class HomePanel extends JScrollPane implements View {
 
         DefTable homepanelmodulecontenttable = new DefTable() {
         };
-        homepanelmodulecontenttable.setName(String.valueOf(uriCacheForAll.size()));
         homepanelmodulescrollpanel.setViewportView(homepanelmodulecontenttable);
         homepanelmodulecontenttable.setForeground(PublicValues.globalFontColor);
         homepanelmodulecontenttable.getTableHeader().setForeground(PublicValues.globalFontColor);
-
-        new ContextMenu(homepanelmodulecontenttable, uricache, getClass());
-
         homepanelmodulecontenttable.setModel(new DefaultTableModel(
                 new Object[][]{
                 },
@@ -109,6 +103,8 @@ public class HomePanel extends JScrollPane implements View {
                         "Name", "Artist"
                 }
         ));
+
+        new ContextMenu(homepanelmodulecontenttable, uricache, getClass());
 
         for(UnofficialSpotifyAPI.HomeTabSectionItem item : section.getItems()) {
             switch (item.getType()) {
@@ -173,7 +169,6 @@ public class HomePanel extends JScrollPane implements View {
                 }
             }
         }));
-        uriCacheForAll.add(uricache);
     }
 
     String artistParser(ArrayList<UnofficialSpotifyAPI.HomeTabArtist> cache) {
