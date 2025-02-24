@@ -1,9 +1,8 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.SavedTrack;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Track;
-import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
@@ -11,14 +10,12 @@ import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.swingextension.ContextMenu;
 import com.spotifyxp.utils.AsyncMouseListener;
-import com.spotifyxp.utils.ClipboardUtil;
 import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class LibraryTracks extends JScrollPane implements View {
@@ -26,31 +23,18 @@ public class LibraryTracks extends JScrollPane implements View {
     public static final ArrayList<String> libraryUriCache = new ArrayList<>();
     private static boolean libraryLoadingInProgress = false;
     public static ContextMenu contextMenu;
+    public static int totalTracks = 0;
     public static final Thread libraryThread = new Thread(new Runnable() {
         public void run() {
             try {
                 libraryLoadingInProgress = true;
-                int visibleCount = 28;
-                int counter = 0;
-                int last = 0;
-                int parsed = 0;
-                while (parsed != visibleCount) {
-                    SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).build().execute().getItems();
-                    for (SavedTrack t : track) {
-                        libraryUriCache.add(t.getTrack().getUri());
-                        String a = TrackUtils.getArtists(t.getTrack().getArtists());
-                        librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
-                        parsed++;
-                    }
-                    if (parsed == last) {
-                        if (counter > 1) {
-                            break;
-                        }
-                        counter++;
-                    } else {
-                        counter = 0;
-                    }
-                    last = parsed;
+                int limit = 50;
+                Paging<SavedTrack> libraryTracks = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(limit).build().execute();
+                totalTracks = libraryTracks.getTotal();
+                for(SavedTrack track : libraryTracks.getItems()) {
+                    libraryUriCache.add(track.getTrack().getUri());
+                    String a = TrackUtils.getArtists(track.getTrack().getArtists());
+                    librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())}));
                 }
                 libraryLoadingInProgress = false;
             } catch (Exception e) {
@@ -127,39 +111,24 @@ public class LibraryTracks extends JScrollPane implements View {
         if (libraryLoadingInProgress) {
             return;
         }
-        libraryLoadingInProgress = true;
+        if(libraryUriCache.size() == totalTracks) return;
         try {
-            int visibleCount = 19;
-            int total = InstanceManager.getSpotifyApi().getUsersSavedTracks().build().execute().getTotal();
-            int parsed = 0;
-            int counter = 0;
-            int last = 0;
-            if (total != libraryUriCache.size()) {
-                while (parsed != 19) {
-                    SavedTrack[] track = InstanceManager.getSpotifyApi().getUsersSavedTracks().limit(visibleCount).offset(libraryUriCache.size()).build().execute().getItems();
-                    for (SavedTrack t : track) {
-                        libraryUriCache.add(t.getTrack().getUri());
-                        String a = TrackUtils.getArtists(t.getTrack().getArtists());
-                        librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).addRow(new Object[]{t.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(t.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(t.getTrack().getDurationMs())}));
-                        parsed++;
-                    }
-                    if (last == parsed) {
-                        if (counter > 1) {
-                            break;
-                        }
-                        counter++;
-                    } else {
-                        counter = 0;
-                    }
-                    last = parsed;
-                }
+            libraryLoadingInProgress = true;
+            int limit = 50;
+            Paging<SavedTrack> libraryTracks = InstanceManager.getSpotifyApi().getUsersSavedTracks()
+                    .offset(libraryUriCache.size()).limit(limit).build().execute();
+            totalTracks = libraryTracks.getTotal();
+            for(SavedTrack track : libraryTracks.getItems()) {
+                libraryUriCache.add(track.getTrack().getUri());
+                String a = TrackUtils.getArtists(track.getTrack().getArtists());
+                librarySongList.addModifyAction(() -> ((DefaultTableModel) librarySongList.getModel()).addRow(new Object[]{track.getTrack().getName() + " - " + a, TrackUtils.calculateFileSizeKb(track.getTrack()), TrackUtils.getBitrate(), TrackUtils.getHHMMSSOfTrack(track.getTrack().getDurationMs())}));
             }
+            libraryLoadingInProgress = false;
         } catch (Exception e) {
             libraryLoadingInProgress = true;
             ConsoleLogging.error("Error loading users library! Library now locked");
             throw new RuntimeException(e);
         }
-        libraryLoadingInProgress = false;
     }
 
     @Override
