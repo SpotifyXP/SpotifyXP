@@ -58,6 +58,15 @@ public class ContextMenu {
             }
             super.show(invoker, x, y);
         }
+
+        @Override
+        public void show(Component invoker, int x, int y) {
+            removeAll();
+            for(JMenuItem item : normalItems) {
+                super.add(item);
+            }
+            super.show(invoker, x, y);
+        }
     }
 
     public ContextMenu() {
