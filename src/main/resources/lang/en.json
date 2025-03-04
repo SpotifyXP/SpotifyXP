@@ -101,6 +101,7 @@
  "ui.search.songlist.filesize": "Filesize",
  "ui.search.songlist.length": "Length",
  "ui.search.songlist.songname": "Name",
+ "ui.playerarea.ctxmenu.item1": "Open in PiP",
  "ui.settings.browser": "Browser",
  "settings.mypal.path": "Mypal executable path",
  "ui.settings.mypal.path.filter": "EXE File",
@@ -215,5 +216,7 @@
  "selectplaylist.dialog.cancel": "Cancel",
  "ui.login.openproxysettings": "Open proxy settings",
  "ui.general.addalltoqueue": "Add all to queue",
- "ui.general.addtoqueue": "Add to queue"
+ "ui.general.addtoqueue": "Add to queue",
+ "pip.ctxmenu.item1": "Change button height",
+ "pip.ctxmenu.item1.message": "Change button height"
 }

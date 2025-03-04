@@ -1,6 +1,7 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.dialogs.LyricsDialog;
 import com.spotifyxp.events.EventSubscriber;
@@ -11,6 +12,7 @@ import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.listeners.PlayerListener;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.pip.PiPPlayer;
 import com.spotifyxp.protogens.PlayerState;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.*;
@@ -55,6 +57,8 @@ public class PlayerArea extends JPanel {
     public static CanvasPlayer canvasPlayer;
     public static JSVGPanel canvasPlayerButton;
     private static boolean doneLastParsing = false;
+    public static ContextMenu contextMenu;
+    public static PiPPlayer pipPlayer;
 
     public PlayerArea(JFrame frame) {
         setBounds(72, 0, 565, 100);
@@ -381,6 +385,25 @@ public class PlayerArea extends JPanel {
             }
         }));
         PublicValues.contentPanel.add(historyButton.getJComponent());
+
+        pipPlayer = new PiPPlayer();
+
+        contextMenu = new ContextMenu();
+        contextMenu.addItem(PublicValues.language.translate("ui.playerarea.ctxmenu.item1"), new Runnable() {
+            @Override
+            public void run() {
+                pipPlayer.open();
+            }
+        });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(SwingUtilities.isRightMouseButton(e)) {
+                    contextMenu.showAt(ContentPanel.playerArea, e.getX(), e.getY());
+                }
+            }
+        });
 
         Events.subscribe(SpotifyXPEvents.onFrameReady.getName(), new EventSubscriber() {
             @Override

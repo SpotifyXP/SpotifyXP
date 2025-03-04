@@ -27,7 +27,6 @@ public class CanvasPlayer extends JFrame {
     public CanvasPlayer() {
         setTitle("SpotifyXP - Canvas"); // ToDo: Translate
         setPreferredSize(new Dimension(290, 460));
-        add(PublicValues.vlcPlayer.getComponent());
         Events.subscribe(SpotifyXPEvents.trackNext.getName(), onNextTrack);
         Events.subscribe(SpotifyXPEvents.playerpause.getName(), onPause);
         Events.subscribe(SpotifyXPEvents.playerresume.getName(), onPlay);
@@ -138,9 +137,15 @@ public class CanvasPlayer extends JFrame {
         }
     };
 
+    @Override
+    public void close() {
+        remove(PublicValues.vlcPlayer.getComponent());
+        super.close();
+    }
 
     @Override
     public void open() throws NullPointerException {
+        add(PublicValues.vlcPlayer.getComponent());
         PublicValues.vlcPlayer.init(this::close);
         PublicValues.vlcPlayer.setLooping(true);
         super.open();
