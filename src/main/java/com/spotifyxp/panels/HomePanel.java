@@ -193,14 +193,14 @@ public class HomePanel extends JScrollPane implements View {
         int height = 261;
         int spacing = 70;
         int xCache = 10;
-        int titleHeight = getFontMetrics(getFont()).getHeight();
+        int titleHeight = getFontMetrics(new Font("Tahoma", Font.PLAIN, 16)).getHeight();
         int yCache = titleHeight + 55;
         int titleSpacing = 5;
 
         UnofficialSpotifyAPI.HomeTab tabCopy = tab.get();
 
         JPanel homepanelgreetings = new JPanel();
-        homepanelgreetings.setBounds(0, 11, getWidth(), getFontMetrics(getFont()).getHeight());
+        homepanelgreetings.setBounds(0, 11, getWidth(), getFontMetrics(new Font("Tahoma", Font.PLAIN, 20)).getHeight());
         homepanelgreetings.setLayout(new BorderLayout());
         JLabel homepanelgreetingstext = new JLabel(tabCopy.getGreeting());
         homepanelgreetingstext.setFont(new Font("Tahoma", Font.PLAIN, 20));
