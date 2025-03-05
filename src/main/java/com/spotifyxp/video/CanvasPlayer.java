@@ -53,6 +53,7 @@ public class CanvasPlayer extends JFrame {
     EventSubscriber onPause = new EventSubscriber() {
         @Override
         public void run(Object... data) {
+            if(!isVisible()) return;
             if(PublicValues.vlcPlayer.wasReleased()) return;
             if(!PublicValues.vlcPlayer.isPlaying()) return;
             PublicValues.vlcPlayer.pause();
@@ -62,6 +63,7 @@ public class CanvasPlayer extends JFrame {
     EventSubscriber onPlay = new EventSubscriber() {
         @Override
         public void run(Object... data) {
+            if(!isVisible()) return;
             if(PublicValues.vlcPlayer.wasReleased()) return;
             if(PublicValues.vlcPlayer.isPlaying()) return;
             PublicValues.vlcPlayer.resume();
@@ -123,6 +125,7 @@ public class CanvasPlayer extends JFrame {
     EventSubscriber onNextTrack = new EventSubscriber() {
         @Override
         public void run(Object... data) {
+            if(!isVisible()) return;
             if(PublicValues.vlcPlayer.wasReleased()) return;
             PublicValues.vlcPlayer.stop();
             MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();

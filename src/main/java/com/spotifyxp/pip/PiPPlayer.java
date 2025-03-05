@@ -1,7 +1,6 @@
 package com.spotifyxp.pip;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.configuration.ConfigValues;
 import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.deps.com.spotify.canvaz.CanvazOuterClass;
@@ -12,18 +11,21 @@ import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.panels.ContentPanel;
 import com.spotifyxp.panels.PlayerArea;
 import com.spotifyxp.swingextension.JFrame;
 import com.spotifyxp.swingextension.JImageButton;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.Resources;
+import com.sun.awt.AWTUtilities;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PiPPlayer extends JFrame {
@@ -37,7 +39,6 @@ public class PiPPlayer extends JFrame {
     public static JLayeredPane container;
     public static JImageButton playPause;
     public static JImageButton closeButton;
-    public static JPanel controls;
     public static JImageButton nextButton;
     public static JImageButton previousButton;
     public static JPanel videoContainer;
@@ -54,6 +55,10 @@ public class PiPPlayer extends JFrame {
     public static File cachePath;
 
     public static ContextMenu ctxMenu;
+
+    public static ArrayList<JImageButton> controlButtons ;
+
+    public static javax.swing.JFrame controlsWindow;
 
     void resizeComponents() {
         for(Component component : container.getComponents()) {
@@ -118,7 +123,8 @@ public class PiPPlayer extends JFrame {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            controls.setVisible(true);
+            controlsWindow.setVisible(true);
+            setAlwaysOnTop(false);
             revalidate();
             repaint();
         }
@@ -126,7 +132,8 @@ public class PiPPlayer extends JFrame {
         @Override
         public void mouseExited(MouseEvent e) {
             if(contains(e.getPoint())) return;
-            controls.setVisible(false);
+            controlsWindow.setVisible(false);
+            setAlwaysOnTop(true);
             revalidate();
             repaint();
         }
@@ -179,11 +186,9 @@ public class PiPPlayer extends JFrame {
 
         @Override
         public void mouseMoved(MouseEvent me) {
-            Component at = controls.getComponentAt(me.getPoint());
-            if(at != null) {
-                if(!(at instanceof JPanel)) {
+            for(JImageButton button : controlButtons) {
+                if(button.contains(me.getPoint())) {
                     setCursor(Cursor.DEFAULT_CURSOR);
-                    return;
                 }
             }
             if (northWestRect.contains(me.getPoint())) {
@@ -205,12 +210,29 @@ public class PiPPlayer extends JFrame {
     public PiPPlayer() {
         recalculateRects(true);
 
+        controlButtons = new ArrayList<>();
+
         setBackground(Color.BLACK);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                PublicValues.vlcPlayer.stop();
                 PublicValues.vlcPlayer.release();
                 dispose();
+                controlsWindow.dispose();
+            }
+        });
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if(controlsWindow == null) return;
+                controlsWindow.setSize(new Dimension(getSize().width - (resizingRectSpacing * 2), getSize().height - (resizingRectSpacing * 2)));
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                if(controlsWindow == null) return;
+                controlsWindow.setLocation(getLocation().x + resizingRectSpacing, getLocation().y + resizingRectSpacing);
             }
         });
         setAlwaysOnTop(true);
@@ -219,7 +241,7 @@ public class PiPPlayer extends JFrame {
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseMotionListener);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         if(!PublicValues.config.getBoolean(ConfigValues.cache_disabled.name)) {
             cachePath = new File(PublicValues.appLocation, "cvnscache");
@@ -260,19 +282,10 @@ public class PiPPlayer extends JFrame {
 
 
         videoContainer = new JPanel();
-        //videoContainer.setVisible(false);
+        videoContainer.setBackground(Color.BLACK);
+        videoContainer.setVisible(false);
         videoContainer.setLayout(new BorderLayout());
         container.add(videoContainer, JLayeredPane.PALETTE_LAYER);
-
-
-        controls = new JPanel();
-        controls.setLayout(null);
-        controls.setBounds(resizingRect);
-        controls.setVisible(false);
-        controls.setName("ResizeRect");
-        controls.setOpaque(false);
-        controls.setBackground(new Color(0, 0, 0, 0));
-        container.add(controls, JLayeredPane.MODAL_LAYER);
 
         closeButton = new JImageButton();
         closeButton.setBorderPainted(false);
@@ -281,11 +294,14 @@ public class PiPPlayer extends JFrame {
         closeButton.addActionListener(new AsyncActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                PublicValues.vlcPlayer.stop();
+                PublicValues.vlcPlayer.release();
                 dispose();
+                controlsWindow.dispose();
             }
         }));
         closeButton.setBounds(resizingRect.width / 2 - buttonSize / 2, 0, buttonSize, buttonSize);
-        controls.add(closeButton);
+        controlButtons.add(closeButton);
 
 
         previousButton = new JImageButton();
@@ -299,7 +315,7 @@ public class PiPPlayer extends JFrame {
             }
         }));
         previousButton.setBounds(0, resizingRect.height - buttonSize, buttonSize, buttonSize);
-        controls.add(previousButton);
+        controlButtons.add(previousButton);
 
 
         playPause = new JImageButton();
@@ -317,7 +333,7 @@ public class PiPPlayer extends JFrame {
         playPause.setBorderPainted(false);
         playPause.setColor(Color.WHITE);
         playPause.setBounds(resizingRect.width / 2  - buttonSize / 2, resizingRect.height - buttonSize, buttonSize, buttonSize);
-        controls.add(playPause);
+        controlButtons.add(playPause);
 
 
         nextButton = new JImageButton();
@@ -331,7 +347,32 @@ public class PiPPlayer extends JFrame {
             }
         }));
         nextButton.setBounds(resizingRect.width - buttonSize, resizingRect.height - buttonSize, buttonSize, buttonSize);
-        controls.add(nextButton);
+        controlButtons.add(nextButton);
+
+        controlsWindow = new javax.swing.JFrame();
+        controlsWindow.addMouseListener(mouseAdapter);
+        controlsWindow.addMouseMotionListener(mouseMotionListener);
+        controlsWindow.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                controlsWindow.setVisible(false);
+            }
+        });
+        controlsWindow.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                revalidate();
+                repaint();
+            }
+        });
+        controlsWindow.setLayout(null);
+        controlsWindow.add(closeButton);
+        controlsWindow.add(nextButton);
+        controlsWindow.add(playPause);
+        controlsWindow.add(previousButton);
+        controlsWindow.setUndecorated(true);
+        controlsWindow.setBackground(new Color(0, 0, 0, 0));
+        controlsWindow.setAlwaysOnTop(true);
 
         Events.subscribe(SpotifyXPEvents.playerresume.getName(), new EventSubscriber() {
             @Override
@@ -391,6 +432,7 @@ public class PiPPlayer extends JFrame {
     EventSubscriber onPause = new EventSubscriber() {
         @Override
         public void run(Object... data) {
+            if(!videoContainer.isVisible()) return;
             if(PublicValues.vlcPlayer.wasReleased()) return;
             if(!PublicValues.vlcPlayer.isPlaying()) return;
             PublicValues.vlcPlayer.pause();
@@ -400,6 +442,7 @@ public class PiPPlayer extends JFrame {
     EventSubscriber onPlay = new EventSubscriber() {
         @Override
         public void run(Object... data) {
+            if(!videoContainer.isVisible()) return;
             if(PublicValues.vlcPlayer.wasReleased()) return;
             if(PublicValues.vlcPlayer.isPlaying()) return;
             PublicValues.vlcPlayer.resume();
@@ -465,14 +508,17 @@ public class PiPPlayer extends JFrame {
     EventSubscriber onNextTrack = new EventSubscriber() {
         @Override
         public void run(Object... data) {
+            if(!videoContainer.isVisible()) return;
             if(PublicValues.vlcPlayer.wasReleased()) return;
             PublicValues.vlcPlayer.stop();
             MetadataWrapper metadataWrapper = InstanceManager.getSpotifyPlayer().currentMetadata();
             if (metadataWrapper == null || metadataWrapper.id == null) {
+                videoContainer.setVisible(false);
                 return;
             }
             if(!metadataWrapper.isTrack()) {
                 // Canvases are only available for tracks
+                videoContainer.setVisible(false);
                 return;
             }
             loadCanvas(metadataWrapper.id.toSpotifyUri());
@@ -483,14 +529,10 @@ public class PiPPlayer extends JFrame {
     public void open() {
         super.open();
         resizeComponents();
-        setLocation(
-                getGraphicsConfiguration().getBounds().width - getWidth(),
-                getGraphicsConfiguration().getBounds().height - getHeight()
-        );
+        setLocation(ContentPanel.frame.getLocation());
+        controlsWindow.setLocation(getLocation());
+        controlsWindow.setSize(getSize());
         if(PublicValues.vlcPlayer.isVideoPlaybackEnabled()) {
-            if(PlayerArea.canvasPlayer != null && PlayerArea.canvasPlayer.isVisible()) {
-                PlayerArea.canvasPlayer.setVisible(false);
-            }
             PublicValues.vlcPlayer.init(this::close);
             PublicValues.vlcPlayer.setLooping(true);
             PublicValues.vlcPlayer.getComponent().getComponent(0).addMouseListener(mouseAdapter);
