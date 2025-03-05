@@ -133,6 +133,7 @@ public class PlayerUtils {
             Events.subscribe(SpotifyXPEvents.internetConnectionReconnected.getName(), connectionReconnectedListener());
             return player;
         } catch (ConnectException | Session.SpotifyAuthenticationException | IllegalArgumentException e) {
+            ConsoleLogging.Throwable(e);
             return buildPlayer();
         } catch (UnknownHostException offline) {
             GraphicalMessage.sorryErrorExit("No internet connection!");
