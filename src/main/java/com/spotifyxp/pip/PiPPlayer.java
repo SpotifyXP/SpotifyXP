@@ -124,7 +124,6 @@ public class PiPPlayer extends JFrame {
         @Override
         public void mouseEntered(MouseEvent e) {
             controlsWindow.setVisible(true);
-            setAlwaysOnTop(false);
             revalidate();
             repaint();
         }
@@ -133,7 +132,6 @@ public class PiPPlayer extends JFrame {
         public void mouseExited(MouseEvent e) {
             if(contains(e.getPoint())) return;
             controlsWindow.setVisible(false);
-            setAlwaysOnTop(true);
             revalidate();
             repaint();
         }
