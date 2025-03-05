@@ -21,6 +21,12 @@ jobs:
           java-version: '8'
       - name: Clone Repository
         run: git clone --branch developer --recursive https://github.com/SpotifyXP/SpotifyXP
+      - name: Get commit ID
+        id: get_commit_id
+        run: echo "COMMIT_ID=${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+      - name: Save commit ID to file
+        working-directory: ./SpotifyXP
+        run: echo ${{ steps.get_commit_id.outputs.COMMIT_ID }} > src/main/resources/commit_id.txt
       - name: Run init.py
         working-directory: ./SpotifyXP
         run: python3 init.py
