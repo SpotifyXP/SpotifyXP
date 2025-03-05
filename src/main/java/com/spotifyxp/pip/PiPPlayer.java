@@ -18,8 +18,6 @@ import com.spotifyxp.swingextension.JImageButton;
 import com.spotifyxp.swingextension.JImagePanel;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.Resources;
-import com.sun.awt.AWTUtilities;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
