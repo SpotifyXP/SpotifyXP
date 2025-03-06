@@ -1,39 +1,28 @@
 package com.spotifyxp.testing;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.api.UnofficialSpotifyAPI;
-import com.spotifyxp.args.CustomSaveDir;
 import com.spotifyxp.configuration.Config;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyHttpManager;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Playlist;
-import com.spotifyxp.dialogs.AddPlaylistDialog;
-import com.spotifyxp.dialogs.ChangePlaylistDialog;
-import com.spotifyxp.dialogs.FollowPlaylist;
-import com.spotifyxp.dialogs.SelectPlaylist;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.lib.libLanguage;
-import com.spotifyxp.manager.InstanceManager;
+import com.spotifyxp.support.LinuxSupportModule;
 import com.spotifyxp.theming.themes.DarkGreen;
-import com.spotifyxp.utils.FileUtils;
-import com.spotifyxp.utils.StringUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.net.util.Base64;
-import org.json.JSONObject;
+import com.spotifyxp.updater.Updater;
+import okhttp3.OkHttpClient;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.net.URISyntaxException;
 
 public class Test {
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException, IOException, InterruptedException {
-        new CustomSaveDir().runArgument(new File("data").getAbsolutePath()).run();
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, IOException, InterruptedException, URISyntaxException, ClassNotFoundException {
+        //new CustomSaveDir().runArgument(new File("data").getAbsolutePath()).run();
+
+        for(SpotifyXPEvents events : SpotifyXPEvents.values()) {
+            Events.register(events.getName(), true);
+        }
+
+        new LinuxSupportModule().run();
+
         PublicValues.config = new Config();
         PublicValues.language = new libLanguage();
         PublicValues.language.setNoAutoFindLanguage("en");
@@ -41,13 +30,11 @@ public class Test {
 
         PublicValues.theme = new DarkGreen();
         PublicValues.theme.initTheme();
+        PublicValues.defaultHttpClient = new OkHttpClient();
 
-        for (SpotifyXPEvents s : SpotifyXPEvents.values()) {
-            Events.register(s.getName(), true);
-        }
-
-        UnofficialSpotifyAPI.HomeTab homeTab = UnofficialSpotifyAPI.HomeTab.fromJSON(
-                new JSONObject(IOUtils.toString(new FileInputStream("spxphomedump.json")))
-        );
+        Updater.UpdateInfo updateInfo = new Updater.UpdateInfo();
+        updateInfo.commit_id = "cd0fbdc7736f45dc6569e205e773a9ce77147796";
+        updateInfo.url = "https://api.github.com/repos/SpotifyXP/SpotifyXP/actions/artifacts/2699340620/zip";
+        new Updater().invoke(updateInfo);
     }
 }

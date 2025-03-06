@@ -8,17 +8,13 @@ import com.spotifyxp.manager.InstanceManager;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.ConnectionUtils;
 import com.spotifyxp.utils.MapUtils;
-import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;

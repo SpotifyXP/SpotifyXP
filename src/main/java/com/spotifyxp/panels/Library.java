@@ -1,7 +1,6 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.utils.GraphicalMessage;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

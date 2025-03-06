@@ -1,16 +1,14 @@
 package com.spotifyxp.ctxmenu;
 
 import com.spotifyxp.PublicValues;
-import com.spotifyxp.events.EventSubscriber;
 import com.spotifyxp.utils.AsyncActionListener;
 import com.spotifyxp.utils.AsyncMouseListener;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")

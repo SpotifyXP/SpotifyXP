@@ -21,8 +21,11 @@ import com.spotifyxp.setup.Setup;
 import com.spotifyxp.stabilizer.GlobalExceptionHandler;
 import com.spotifyxp.support.SupportModuleLoader;
 import com.spotifyxp.theming.ThemeLoader;
+import com.spotifyxp.updater.Updater;
+import com.spotifyxp.updater.UpdaterUI;
 import com.spotifyxp.utils.ApplicationUtils;
 import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.Resources;
 import com.spotifyxp.utils.Utils;
 import okhttp3.*;
 import org.apache.commons.io.output.NullPrintStream;
@@ -37,6 +40,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class Initiator {
     static final Thread hook = new Thread(PlayerArea::saveCurrentState, "Save play state");
@@ -55,6 +61,7 @@ public class Initiator {
         creatingLock(); //Creating the 'LOCK' file
         PublicValues.defaultHttpClient = new OkHttpClient(); //Creating the default http client
         initProxy();
+        checkUpdate();
         initializeVideoPlayback();
         loadExtensions(); //Loading extensions if there are any
         initGEH(); //Initializing the global exception handler
@@ -156,6 +163,24 @@ public class Initiator {
     static void initEvents() {
         for (SpotifyXPEvents s : SpotifyXPEvents.values()) {
             Events.register(s.getName(), true);
+        }
+    }
+
+    static void checkUpdate() {
+        try {
+            if(new Resources().readToInputStream("commit_id.txt") == null) {
+                PublicValues.updaterDisabled = true;
+                return;
+            }
+            Optional<Updater.UpdateInfo> updateInfoOptional = Updater.updateAvailable();
+            if(updateInfoOptional.isPresent()) {
+                SplashPanel.frame.setAlwaysOnTop(false);
+                CompletableFuture<Boolean> usersChoiceFuture = new UpdaterUI().openWithoutUpdateFunctionality(updateInfoOptional.get());
+                usersChoiceFuture.get();
+                SplashPanel.frame.setAlwaysOnTop(true);
+            }
+        } catch (IOException | ExecutionException | InterruptedException e) {
+            ConsoleLogging.Throwable(e);
         }
     }
 

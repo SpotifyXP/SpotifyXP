@@ -5,7 +5,6 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Playlist;
-import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.swingextension.JDialog;
 
 import javax.swing.*;
@@ -15,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 public class ChangePlaylistDialog extends JDialog {
     public JButton okButton;

@@ -1,18 +1,19 @@
 package com.spotifyxp.panels;
 
 import com.spotifyxp.PublicValues;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.DefTable;
 import com.spotifyxp.history.PlaybackHistory;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.ctxmenu.ContextMenu;
-import com.spotifyxp.utils.*;
+import com.spotifyxp.utils.AsyncMouseListener;
+import com.spotifyxp.utils.GraphicalMessage;
+import com.spotifyxp.utils.SpotifyUtils;
+import com.spotifyxp.utils.TrackUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -9,15 +9,8 @@ import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.manager.InstanceManager;
 import kotlin.Pair;
 import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;

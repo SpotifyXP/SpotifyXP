@@ -47,7 +47,7 @@ public class InjectorStore {
         switcher = new JTabbedPane();
         switcher.setTabPlacement(SwingConstants.TOP);
         switcher.addTab(PublicValues.language.translate("extension.store.tab"), new ContentPanel());
-        switcher.addTab(PublicValues.language.translate("extension.updater.tab"), new UpdatePanel());
+        switcher.addTab(PublicValues.language.translate("extension.com.spotifyxp.updater.tab"), new UpdatePanel());
         main.getContentPane().add(switcher);
         main.setPreferredSize(new Dimension(377, 526));
         main.setResizable(false);

@@ -5,6 +5,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.args.ArgParser;
 import com.spotifyxp.audio.Quality;
 import com.spotifyxp.configuration.Config;
+import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.deps.org.mpris.MPRISMP2None;
 import com.spotifyxp.deps.xyz.gianlu.librespot.core.Session;
 import com.spotifyxp.dialogs.LyricsDialog;
@@ -13,7 +14,6 @@ import com.spotifyxp.injector.Injector;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.lib.libLanguage;
 import com.spotifyxp.panels.ContentPanel;
-import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.theming.Theme;
 import com.spotifyxp.theming.ThemeLoader;
 import com.spotifyxp.utils.ArchitectureDetection;
@@ -50,7 +50,8 @@ public class PublicValues {
     public static boolean debug = false;
     public static Quality quality = null;
     public static String[] args = null;
-    public static String appLocation = System.getProperty("user.home") + File.separator + "SpotifyXP";
+    @Deprecated
+    public static String appLocation = fileslocation;
     public static String deviceName = "SpotifyXP";
     public static Theme theme = null;
     public static libDetect.OSType osType;
@@ -79,6 +80,7 @@ public class PublicValues {
     public static MPRISMP2None mpris;
     public static OkHttpClient defaultHttpClient;
     public static VLCPlayer vlcPlayer = new DummyVLCPlayer();
+    public static boolean updaterDisabled = false;
     //Devstuff
     public static boolean locationFinderActive = false;
     //----

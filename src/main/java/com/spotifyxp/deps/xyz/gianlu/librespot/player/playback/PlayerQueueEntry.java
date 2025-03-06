@@ -16,7 +16,6 @@
 
 package com.spotifyxp.deps.xyz.gianlu.librespot.player.playback;
 
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.DecodedAudioStream;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.HaltListener;
 import com.spotifyxp.deps.xyz.gianlu.librespot.audio.MetadataWrapper;

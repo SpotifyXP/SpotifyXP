@@ -218,5 +218,16 @@
  "ui.general.addalltoqueue": "Add all to queue",
  "ui.general.addtoqueue": "Add to queue",
  "pip.ctxmenu.item1": "Change button height",
- "pip.ctxmenu.item1.message": "Change button height"
+ "pip.ctxmenu.item1.message": "Change button height",
+ "updater.menubar.title": "Check for update",
+ "updater.availableui.progresslabel": "Update available! Click 'Start update' to update",
+ "updater.availableui.updateButton": "Start update",
+ "updater.availableui.cancelButton": "Cancel update",
+ "updater.availableui.failed": "Update failed! %s",
+ "updater.availableui.cancelButtonDone": "Close",
+ "updater.availableui.updating": "Updating",
+ "updater.availableui.done": "Done",
+ "updater.availableui.title": "SpotifyXP - Updater",
+ "updater.noupdatedialog.title": "SpotifyXP - Updater",
+ "updater.noupdatedialog.message": "No update available"
 }

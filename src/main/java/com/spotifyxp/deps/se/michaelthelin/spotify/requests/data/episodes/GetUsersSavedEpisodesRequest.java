@@ -2,14 +2,10 @@ package com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.episodes;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.neovisionaries.i18n.CountryCode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Episode;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.EpisodeSimplified;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.EpisodeWrapped;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataPagingRequest;
 import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.AbstractDataRequest;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.follow.GetUsersFollowedArtistsRequest;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.playlists.GetListOfUsersPlaylistsRequest;
 
 import java.io.IOException;
 

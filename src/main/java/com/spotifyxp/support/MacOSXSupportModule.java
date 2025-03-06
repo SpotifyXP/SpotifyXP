@@ -17,8 +17,8 @@ public class MacOSXSupportModule implements SupportModule {
     @Override
     public void run() {
         if (!PublicValues.customSaveDir) {
-            PublicValues.fileslocation = System.getProperty("user.home") + "/SpotifyXP";
-            PublicValues.appLocation = PublicValues.fileslocation + "/AppData";
+            PublicValues.fileslocation = System.getProperty("user.home") + "/Library/Application Support/SpotifyXP";
+            PublicValues.appLocation = PublicValues.fileslocation;
             PublicValues.configfilepath = PublicValues.fileslocation + "/config.json";
             PublicValues.tempPath = System.getProperty("java.io.tmpdir");
         }

@@ -3,17 +3,11 @@ package com.spotifyxp.panels;
 import com.neovisionaries.i18n.CountryCode;
 import com.spotifyxp.PublicValues;
 import com.spotifyxp.ctxmenu.GlobalContextMenus;
-import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Artist;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.Paging;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import com.spotifyxp.dev.ErrorSimulator;
 import com.spotifyxp.dev.LocationFinder;
 import com.spotifyxp.dialogs.ErrorDisplay;
-import com.spotifyxp.dialogs.FollowPlaylist;
 import com.spotifyxp.dialogs.HTMLDialog;
-import com.spotifyxp.dialogs.SelectPlaylist;
 import com.spotifyxp.events.Events;
 import com.spotifyxp.events.SpotifyXPEvents;
 import com.spotifyxp.guielements.Settings;
@@ -21,18 +15,17 @@ import com.spotifyxp.injector.InjectorStore;
 import com.spotifyxp.lib.libDetect;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;
-import com.spotifyxp.ctxmenu.ContextMenu;
 import com.spotifyxp.swingextension.JFrame;
+import com.spotifyxp.updater.Updater;
+import com.spotifyxp.updater.UpdaterUI;
 import com.spotifyxp.utils.*;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Optional;
 
 public class ContentPanel extends JPanel {
     public static PlayerArea playerArea;
@@ -47,7 +40,7 @@ public class ContentPanel extends JPanel {
     public static JPanel tabPanel;
     public static final JTabbedPane legacySwitch = new JTabbedPane();
     public static final JMenuBar bar = new JMenuBar();
-    public static final JFrame frame = new JFrame("SpotifyXP - v" + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
+    public static final JFrame frame = new JFrame("SpotifyXP - " + ApplicationUtils.getVersion() + " " + ApplicationUtils.getReleaseCandidate());
     public static Views currentView = Views.HOME; //The view on start is home
     public static Views lastView = Views.HOME;
     public static View currentViewPanel;
@@ -340,6 +333,7 @@ public class ContentPanel extends JPanel {
         JMenuItem extensions = new JMenuItem(PublicValues.language.translate("ui.legacy.extensionstore"));
         JMenuItem audioVisualizer = new JMenuItem(PublicValues.language.translate("ui.legacy.view.audiovisualizer"));
         JMenuItem playUri = new JMenuItem(PublicValues.language.translate("ui.legacy.playuri"));
+        JMenuItem checkUpdate = new JMenuItem(PublicValues.language.translate("updater.menubar.title"));
         bar.add(file);
         bar.add(edit);
         bar.add(view);
@@ -361,7 +355,23 @@ public class ContentPanel extends JPanel {
         view.add(audioVisualizer);
         account.add(logout);
         help.add(extensions);
+        help.add(checkUpdate);
         help.add(about);
+        checkUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Optional<Updater.UpdateInfo> updateInfo = Updater.updateAvailable();
+                    if(updateInfo.isPresent()) {
+                        new UpdaterUI().openWithoutUpdateFunctionality(updateInfo.get());
+                    }else{
+                        JOptionPane.showMessageDialog(ContentPanel.frame, PublicValues.language.translate("updater.noupdatedialog.message"), PublicValues.language.translate("updater.noupdatedialog.title"), JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         audioVisualizer.addActionListener(e -> PublicValues.visualizer.open());
         extensions.addActionListener(e -> {
             try {

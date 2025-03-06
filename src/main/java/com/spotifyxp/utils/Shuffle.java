@@ -1,6 +1,5 @@
 package com.spotifyxp.utils;
 
-import com.spotifyxp.PublicValues;
 import com.spotifyxp.deps.com.spotify.context.ContextTrackOuterClass;
 import com.spotifyxp.logging.ConsoleLogging;
 import com.spotifyxp.manager.InstanceManager;

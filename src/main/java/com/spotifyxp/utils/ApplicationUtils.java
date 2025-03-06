@@ -1,5 +1,6 @@
 package com.spotifyxp.utils;
 
+import com.spotifyxp.PublicValues;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
@@ -25,14 +26,17 @@ public class ApplicationUtils {
     }
 
     public static String getVersion() {
-        if (object == null) {
-            fetch();
+        if(PublicValues.updaterDisabled || new Resources().readToInputStream("commit_id.txt") == null) {
+            return "Debug Build";
         }
-        if (object.has("Version")) {
-            return object.getString("Version");
-        } else {
-            return ErrorMessage;
+        return new Resources().readToString("commit_id.txt").substring(0, 7);
+    }
+
+    public static String getFullVersion() {
+        if(PublicValues.updaterDisabled || new Resources().readToInputStream("commit_id.txt") == null) {
+            return "";
         }
+        return new Resources().readToString("commit_id.txt");
     }
 
     public static String getReleaseCandidate() {

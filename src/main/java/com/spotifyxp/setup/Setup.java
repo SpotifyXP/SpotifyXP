@@ -15,11 +15,9 @@ import com.spotifyxp.logging.ConsoleLoggingModules;
 import com.spotifyxp.panels.SplashPanel;
 import com.spotifyxp.utils.*;
 import org.apache.commons.io.IOUtils;
-import org.apache.xmlgraphics.io.Resource;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class Setup {

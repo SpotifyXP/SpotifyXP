@@ -6,11 +6,8 @@ import com.google.gson.JsonObject;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ModelObjectType;
 import com.spotifyxp.deps.se.michaelthelin.spotify.enums.ReleaseDatePrecision;
 import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.AbstractModelObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.model_objects.IModelObject;
-import com.spotifyxp.deps.se.michaelthelin.spotify.requests.data.search.interfaces.ISearchModelObject;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 @JsonDeserialize(builder = EpisodeWrapped.Builder.class)
 public class EpisodeWrapped extends AbstractModelObject {

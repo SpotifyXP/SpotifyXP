@@ -1,8 +1,5 @@
 package com.spotifyxp.support;
 
-import com.spotifyxp.events.Events;
-import com.spotifyxp.events.SpotifyXPEvents;
-
 import java.util.ArrayList;
 
 public class SupportModuleLoader {

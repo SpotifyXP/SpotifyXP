@@ -5,12 +5,7 @@ import com.spotifyxp.api.Player;
 import com.spotifyxp.api.SpotifyAPI;
 import com.spotifyxp.api.UnofficialSpotifyAPI;
 import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyApi;
-import com.spotifyxp.deps.se.michaelthelin.spotify.SpotifyHttpManager;
 import com.spotifyxp.utils.PlayerUtils;
-
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.util.ArrayList;
 
 /**
  * This class is a manager
