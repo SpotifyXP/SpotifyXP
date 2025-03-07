@@ -74,9 +74,10 @@ public class ConnectionUtils {
             }
         }
         if (browserpath.isEmpty()) {
-            if(new File(PublicValues.fileslocation, "credentials.json").exists()) JOptionPane.showConfirmDialog(ContentPanel.frame, "Please set the mypal path in settings", "Info", JOptionPane.OK_CANCEL_OPTION);
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().browse(new URI(url));
+            }else{
+                JOptionPane.showMessageDialog(ContentPanel.frame, PublicValues.language.translate("utils.browserpath.unabletoopen.message"), PublicValues.language.translate("utils.browserpath.unabletoopen.title"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }

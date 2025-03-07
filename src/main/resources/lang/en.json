@@ -17,11 +17,15 @@
  "ui.about.deps": "OpenSource Dependencies",
  "ui.about.description": "Plays real spotify music on Windows XP",
  "ui.about.tested": "Tested on an Amilo PA1510 with Windows XP Home Edition x86",
- "ui.feedback.github.open": "View SpotifyXP on GitHub",
- "ui.feedback.issues.border": "Issues",
- "ui.feedback.issues.create": "Create Issue",
- "ui.feedback.issues.view": "View Issues",
+ "ui.feedback.foundabug": "Found a bug?",
+ "ui.feedback.reportbug": "Report on GitHub (Account required)",
  "ui.feedback.makesure": "Before clicking any button make sure you have mypal 68 downloaded and set the path to mypal 68 in settings",
+ "ui.feedback.seeknownbugs": "Want to see known bugs?",
+ "ui.feedback.viewbugs": "View bugs on GitHub",
+ "ui.feedback.visitprojectlabel": "Want to give the project a visit?",
+ "ui.feedback.viewproject": "View project on GitHub",
+ "ui.feedback.browserinfo": "Clicking any button will open the corresponding web page in a browser. You can choose the browser by setting the browser path in SpotifyXP settings, or by setting the default browser in your system settings.",
+ "ui.feedback.thankyoutext": "Thank you for using SpotifyXP :)\n\n\nIt would really help if you report bugs that you come across",
  "ui.general.addtolibrary": "Add to library",
  "ui.general.addtoplaylist": "Add to playlist",
  "ui.general.copyuri": "Copy URI",
@@ -229,5 +233,7 @@
  "updater.availableui.done": "Done",
  "updater.availableui.title": "SpotifyXP - Updater",
  "updater.noupdatedialog.title": "SpotifyXP - Updater",
- "updater.noupdatedialog.message": "No update available"
+ "updater.noupdatedialog.message": "No update available",
+ "utils.browserpath.unabletoopen.title": "Unable to open page",
+ "utils.browserpath.unabletoopen.message": "Java reports that the Desktop class is not supported and no browser was set in SpotifyXP's settings"
 }

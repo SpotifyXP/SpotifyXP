@@ -4,67 +4,166 @@ import com.spotifyxp.PublicValues;
 import com.spotifyxp.utils.ConnectionUtils;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Feedback extends JPanel implements View {
-    public static JLabel feedbackMakeSureLabel;
-    public static JPanel feedbackIssuePanel;
-    public static JButton feedbackViewIssuesButton;
-    public static JButton feedbackCreateIssueButton;
-    public static JButton feedbackGitHubButton;
+    public static JTextPane thankYouText;
+    public static JPanel thankYouTextContainer;
+    public static GridBagConstraints thankYouTextConstraints;
+
+    public static JPanel contentContainer;
+
+    public static JTextArea browserinfo;
+
+    public static JPanel reportBugContainer;
+    public static JLabel foundABugLabel;
+    public static JButton reportBugButton;
+
+    public static JPanel bugsContainer;
+    public static JLabel whichBugsLabel;
+    public static JButton viewBugsButton;
+
+    public static JPanel visitProjectContainer;
+    public static JLabel visitProjectLabel;
+    public static JButton visitProjectButton;
+
+    public static int contentSpacing;
+    public static Dimension buttonSize;
+
+    public static Font titleFont;
 
     public Feedback() {
-        setLayout(null);
         setVisible(false);
+        setLayout(null);
 
-        feedbackMakeSureLabel = new JLabel(PublicValues.language.translate("ui.feedback.makesure"));
-        feedbackMakeSureLabel.setBounds(10, 23, 690, 25);
-        add(feedbackMakeSureLabel);
-        feedbackMakeSureLabel.setForeground(PublicValues.globalFontColor);
+        contentSpacing = PublicValues.applicationWidth / 100 * 30 + 50;
+        buttonSize = new Dimension();
+        buttonSize.height = 60;
+        titleFont = getFont().deriveFont(18f);
 
-        feedbackIssuePanel = new JPanel();
-        feedbackIssuePanel.setBorder(new TitledBorder(null, PublicValues.language.translate("ui.feedback.issues.border"), TitledBorder.LEADING, TitledBorder.TOP, null, PublicValues.globalFontColor));
-        feedbackIssuePanel.setBounds(0, 313, 426, 88);
-        add(feedbackIssuePanel);
-        feedbackIssuePanel.setLayout(null);
+        contentContainer = new JPanel();
+        contentContainer.setLayout(new GridBagLayout());
+        contentContainer.setBounds(contentSpacing, 0, PublicValues.applicationWidth - contentSpacing - 20, PublicValues.contentContainerHeight());
+        add(contentContainer);
 
-        feedbackViewIssuesButton = new JButton(PublicValues.language.translate("ui.feedback.issues.view"));
-        feedbackViewIssuesButton.setBounds(10, 21, 188, 56);
-        feedbackIssuePanel.add(feedbackViewIssuesButton);
-        feedbackViewIssuesButton.setForeground(PublicValues.globalFontColor);
-        feedbackViewIssuesButton.addActionListener(e -> {
-            try {
-                ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues");
-            } catch (URISyntaxException | IOException ex) {
-                throw new RuntimeException(ex);
+        thankYouTextContainer = new JPanel();
+        thankYouTextContainer.setLayout(new GridBagLayout());
+        thankYouTextContainer.setBounds(0, 0, PublicValues.applicationWidth / 100 * 30, PublicValues.contentContainerHeight());
+        add(thankYouTextContainer);
+
+        thankYouText = new JTextPane();
+        thankYouText.setEditable(false);
+        thankYouText.setForeground(PublicValues.globalFontColor);
+        StyledDocument doc = thankYouText.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        thankYouText.setText(PublicValues.language.translate("ui.feedback.thankyoutext"));
+        thankYouTextConstraints = new GridBagConstraints();
+        thankYouTextConstraints.anchor = GridBagConstraints.CENTER;
+        thankYouTextConstraints.fill = GridBagConstraints.HORIZONTAL;
+        thankYouTextConstraints.weightx = 1.0;
+        thankYouTextConstraints.weighty = 1.0;
+        thankYouText.setFont(thankYouText.getFont().deriveFont(17f));
+        thankYouTextContainer.add(thankYouText, thankYouTextConstraints);
+
+        browserinfo = new JTextArea(PublicValues.language.translate("ui.feedback.browserinfo"));
+        browserinfo.setForeground(PublicValues.globalFontColor);
+        browserinfo.setFont(getFont().deriveFont(14f));
+        browserinfo.setWrapStyleWord(true);
+        browserinfo.setLineWrap(true);
+        browserinfo.setEditable(false);
+        contentContainer.add(browserinfo, getConstraintsFor(0)); // Spacing
+
+        reportBugContainer = new JPanel();
+        reportBugContainer.setLayout(new BorderLayout());
+        contentContainer.add(reportBugContainer, getConstraintsFor(1));
+
+        foundABugLabel = new JLabel(PublicValues.language.translate("ui.feedback.foundabug"));
+        foundABugLabel.setForeground(PublicValues.globalFontColor);
+        foundABugLabel.setFont(titleFont);
+        reportBugContainer.add(foundABugLabel, BorderLayout.NORTH);
+
+        reportBugButton = new JButton(PublicValues.language.translate("ui.feedback.reportbug"));
+        reportBugButton.setForeground(PublicValues.globalFontColor);
+        reportBugButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues/new");
+                } catch (URISyntaxException | IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
+        reportBugButton.setPreferredSize(buttonSize);
+        reportBugContainer.add(reportBugButton, BorderLayout.CENTER);
 
-        feedbackCreateIssueButton = new JButton(PublicValues.language.translate("ui.feedback.issues.create"));
-        feedbackCreateIssueButton.setBounds(227, 21, 188, 56);
-        feedbackIssuePanel.add(feedbackCreateIssueButton);
-        feedbackCreateIssueButton.setForeground(PublicValues.globalFontColor);
-        feedbackCreateIssueButton.addActionListener(e -> {
-            try {
-                ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues/new");
-            } catch (URISyntaxException | IOException ex) {
-                throw new RuntimeException(ex);
+        bugsContainer = new JPanel();
+        bugsContainer.setLayout(new BorderLayout());
+        contentContainer.add(bugsContainer, getConstraintsFor(2));
+
+        whichBugsLabel = new JLabel(PublicValues.language.translate("ui.feedback.seeknownbugs"));
+        whichBugsLabel.setFont(titleFont);
+        whichBugsLabel.setForeground(PublicValues.globalFontColor);
+        bugsContainer.add(whichBugsLabel, BorderLayout.NORTH);
+
+        viewBugsButton = new JButton(PublicValues.language.translate("ui.feedback.viewbugs"));
+        viewBugsButton.setForeground(PublicValues.globalFontColor);
+        viewBugsButton.setPreferredSize(buttonSize);
+        viewBugsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP/issues");
+                } catch (URISyntaxException | IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
+        bugsContainer.add(viewBugsButton, BorderLayout.CENTER);
 
-        feedbackGitHubButton = new JButton(PublicValues.language.translate("ui.feedback.github.open"));
-        feedbackGitHubButton.setBounds(466, 335, 250, 55);
-        add(feedbackGitHubButton);
-        feedbackGitHubButton.setForeground(PublicValues.globalFontColor);
-        feedbackGitHubButton.addActionListener(e -> {
-            try {
-                ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP");
-            } catch (URISyntaxException | IOException ex) {
-                throw new RuntimeException(ex);
+        visitProjectContainer = new JPanel();
+        visitProjectContainer.setLayout(new BorderLayout());
+        contentContainer.add(visitProjectContainer, getConstraintsFor(3));
+
+        visitProjectLabel = new JLabel(PublicValues.language.translate("ui.feedback.visitprojectlabel"));
+        visitProjectLabel.setForeground(PublicValues.globalFontColor);
+        visitProjectLabel.setFont(titleFont);
+        visitProjectContainer.add(visitProjectLabel, BorderLayout.NORTH);
+
+        visitProjectButton = new JButton(PublicValues.language.translate("ui.feedback.viewproject"));
+        visitProjectButton.setForeground(PublicValues.globalFontColor);
+        visitProjectButton.setPreferredSize(buttonSize);
+        visitProjectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ConnectionUtils.openBrowser("https://github.com/SpotifyXP/SpotifyXP");
+                } catch (URISyntaxException | IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
+        visitProjectContainer.add(visitProjectButton, BorderLayout.CENTER);
+
+        contentContainer.add(new JPanel(), getConstraintsFor(5)); // Spacing
+    }
+
+    private GridBagConstraints getConstraintsFor(int number) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridy = number;
+        gbc.weighty = 1;
+        gbc.weightx = 1;
+        return gbc;
     }
 
     @Override
