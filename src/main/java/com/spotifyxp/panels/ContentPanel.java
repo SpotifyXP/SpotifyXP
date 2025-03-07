@@ -355,7 +355,7 @@ public class ContentPanel extends JPanel {
         view.add(audioVisualizer);
         account.add(logout);
         help.add(extensions);
-        help.add(checkUpdate);
+        if(!PublicValues.updaterDisabled) help.add(checkUpdate);
         help.add(about);
         checkUpdate.addActionListener(new ActionListener() {
             @Override
